@@ -1,13 +1,15 @@
 package com.cannolicatfish.rankine;
 
+import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
+import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.blocks.alloys.AlloyBlockTile;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
-import com.cannolicatfish.rankine.blocks.distillationtower.DistillationTowerTile;
-import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
+import com.cannolicatfish.rankine.blocks.distillationtower.DistillationTowerTile;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
+import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.gascondenser.GasCondenserContainer;
@@ -19,35 +21,27 @@ import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherTile;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
+import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
+import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxContainer;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
-import com.cannolicatfish.rankine.client.renders.RopeCoilArrowRenderer;
+import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.enchantment.*;
 import com.cannolicatfish.rankine.entities.*;
 import com.cannolicatfish.rankine.fluids.*;
-import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.*;
-import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
-import com.cannolicatfish.rankine.recipe.*;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
-import com.cannolicatfish.rankine.util.colors.*;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.potion.RankinePotions;
-import com.cannolicatfish.rankine.client.renders.*;
-import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
-import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
-import com.cannolicatfish.rankine.init.RankineFluids;
+import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.POIFixer;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
+import com.cannolicatfish.rankine.util.colors.*;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
@@ -60,7 +54,6 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.PointOfInterestType;
@@ -69,7 +62,7 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraftforge.common.*;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -83,7 +76,9 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.*;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -175,6 +170,9 @@ public class ProjectRankine {
             event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK_STAIRS.get());
             event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK_WALL.get());
 
+            event.getItemColors().register(new LeavesItemBaseColor(), RankineBlocks.BIRCH_LEAF_LITTER.get(), RankineBlocks.SPRUCE_LEAF_LITTER.get(), RankineBlocks.ACACIA_LEAF_LITTER.get(), RankineBlocks.JUNGLE_LEAF_LITTER.get(), RankineBlocks.DARK_OAK_LEAF_LITTER.get(), RankineBlocks.OAK_LEAF_LITTER.get());
+
+
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_GEAR::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_DUST::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_INGOT::get);
@@ -213,6 +211,10 @@ public class ProjectRankine {
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_VERTICAL_SLAB.get());
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_WALL.get());
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_STAIRS.get());
+
+            event.getBlockColors().register(new LeavesBlockBaseColor(), RankineBlocks.BIRCH_LEAF_LITTER.get(), RankineBlocks.SPRUCE_LEAF_LITTER.get(), RankineBlocks.ACACIA_LEAF_LITTER.get(), RankineBlocks.JUNGLE_LEAF_LITTER.get(), RankineBlocks.DARK_OAK_LEAF_LITTER.get(), RankineBlocks.OAK_LEAF_LITTER.get());
+
+
         }
 
         @SubscribeEvent

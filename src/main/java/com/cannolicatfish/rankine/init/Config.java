@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.init;
 
-import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -295,7 +294,7 @@ public class Config {
             METEORITE_SIZE = b.comment("Size parameter for meteorites. Higher number is bigger.")
                     .defineInRange("meteoriteSize", 1, 0, 10);
             METEORITE_CHANCE = b.comment("The chance a meteroite will spawn in the Overworld. Higher numbers increase rarity.")
-                    .defineInRange("meteoriteChance", 100, 0, 1000);
+                    .defineInRange("meteoriteChance", 70, 0, 1000);
             BIG_METEORITE_CHANCE = b.comment("The chance a meteroite will be big.")
                     .defineInRange("meteoriteBigChance", 0.25, 0.00, 1.00);
             b.pop();
@@ -620,7 +619,7 @@ public class Config {
                     LEAF_LITTER_GEN = b.comment("Chance for leaves to drop leaf litter on a random tick")
                             .defineInRange("leafLitterChance", 0.01D, 0.0D, 1.0D);
                     LEAF_LITTER_GEN_TREES = b.comment("Chance for leaves to drop leaf litter on break from chopping")
-                            .defineInRange("leafLitterChanceChop", 0.06D, 0.0D, 1.0D);
+                            .defineInRange("leafLitterChanceChop", 0.1D, 0.0D, 1.0D);
                     STUMP_CREATION = b.comment("Creates stumps when tree chopping.")
                             .define("createStumps",true);
                     FORCE_BREAK = b.comment("The range to force break leaves.")
@@ -1108,6 +1107,7 @@ public class Config {
             oreSettings.add(Arrays.asList("rankine:monazite_ore", Arrays.asList("nether"), "sphere", 10, 40, 2, 0.5D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:interspinifex_ore", Arrays.asList("minecraft:crimson_forest"), "default", 50, 90, 6, 1.0D, 8, 1.0));
 
+            /*
             oreSettings.add(Arrays.asList("rankine:native_gallium_ore", Arrays.asList("the_end"), "default", 10, 60, 4, 1.0D, 15, 1.0));
             oreSettings.add(Arrays.asList("rankine:native_indium_ore", Arrays.asList("the_end"), "default", 10, 60, 4, 1.0D, 15, 1.0));
             oreSettings.add(Arrays.asList("rankine:native_selenium_ore", Arrays.asList("the_end"), "default", 10, 60, 4, 1.0D, 15, 1.0));
@@ -1117,6 +1117,8 @@ public class Config {
             oreSettings.add(Arrays.asList("rankine:xenotime_ore", Arrays.asList("the_end"), "sphere", 10, 60, 3, 0.6D, 1, 0.5));
             oreSettings.add(Arrays.asList("rankine:greenockite_ore", Arrays.asList("the_end"), "sphere", 10, 60, 3, 0.6D, 1, 0.5));
 
+
+             */
 
 
 

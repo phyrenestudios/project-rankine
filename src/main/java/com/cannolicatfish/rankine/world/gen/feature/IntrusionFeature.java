@@ -14,6 +14,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraftforge.common.Tags;
 
 import java.util.Random;
 
@@ -29,14 +30,18 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
 
         if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
             if (BIOME.getCategory() == Biome.Category.NETHER) {
-                int radius = Config.MISC_WORLDGEN.NETHER_INTRUSION_RADIUS.get() + rand.nextInt(3);
-                int startY = 126;
-                int endY = 1;
-                int shiftx = 0;
-                int shiftz = 0;
+
+                if (WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())) == null) {
+                    return false;
+                }
 
                 BlockState INTRUSION = WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
                 if (!INTRUSION.matchesBlock(Blocks.AIR)) {
+                    int radius = Config.MISC_WORLDGEN.NETHER_INTRUSION_RADIUS.get() + rand.nextInt(3);
+                    int startY = 126;
+                    int endY = 1;
+                    int shiftx = 0;
+                    int shiftz = 0;
                     BlockPos pos1 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
                     BlockPos pos2 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
                     BlockPos pos3 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
@@ -93,14 +98,18 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
                     return true;
                 }
             } else {
-                int radius = Config.MISC_WORLDGEN.OVERWORLD_INTRUSION_RADIUS.get() + rand.nextInt(3);
-                int startY = 1;
-                int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, pos.getX(), pos.getZ());
-                int shiftx = 0;
-                int shiftz = 0;
-
+                if (WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())) == null) {
+                    return false;
+                }
                 BlockState INTRUSION = WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
                 if (!INTRUSION.matchesBlock(Blocks.AIR)) {
+                    int radius = Config.MISC_WORLDGEN.OVERWORLD_INTRUSION_RADIUS.get() + rand.nextInt(3);
+                    int startY = 1;
+                    int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, pos.getX(), pos.getZ());
+                    int shiftx = 0;
+                    int shiftz = 0;
+
+
                     BlockPos pos1 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
                     BlockPos pos2 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
                     BlockPos pos3 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
@@ -127,7 +136,11 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
                                         if (ORE.getBlock() instanceof RankineOreBlock) {
                                             ORE = ORE.with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(INTRUSION.getBlock()));
                                         }
-                                        reader.setBlockState(b, ORE, 2);
+                                        if (ORE.isIn(Tags.Blocks.ORES_DIAMOND) && y > endY*0.5) {
+                                            reader.setBlockState(b, INTRUSION, 2);
+                                        } else {
+                                            reader.setBlockState(b, ORE, 2);
+                                        }
                                     } else {
                                         reader.setBlockState(b, INTRUSION, 2);
                                     }

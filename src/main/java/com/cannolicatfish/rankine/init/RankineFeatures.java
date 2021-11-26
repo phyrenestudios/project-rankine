@@ -53,6 +53,7 @@ public class RankineFeatures {
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:red_lily_patch",RED_LILY_PATCH);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:orange_lily_patch",ORANGE_LILY_PATCH);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:white_lily_patch",WHITE_LILY_PATCH);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:petrified_chorus_tree",PETRIFIED_CHORUS_TREE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:yellow_birch_tree",YELLOW_BIRCH_TREE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:black_birch_tree",BLACK_BIRCH_TREE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:eastern_hemlock_tree",EASTERN_HEMLOCK_TREE);
@@ -75,7 +76,7 @@ public class RankineFeatures {
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_evaporite",ORE_EVAPORITE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_intrusion", INTRUSION_FEATURE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:stone_gen", STONE_GEN);
-        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:soil_gen",SOIL_GEN);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:soil_gen", WORLD_REPLACER_GEN);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:snow_gen",SNOW_GEN);
 
 
@@ -240,6 +241,15 @@ public class RankineFeatures {
             .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING)
             .build();
 
+    public static final BaseTreeFeatureConfig PETRIFIED_CHORUS_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(RankineBlocks.PETRIFIED_CHORUS_LOG.get().getDefaultState()),
+            new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()),
+            new FancyFoliagePlacer(FeatureSpread.create(0, 0), FeatureSpread.create(0, 0), 0),
+            new FancyTrunkPlacer(6, 4, 5),
+            new TwoLayerFeature(3, 0, 0, OptionalInt.of(5))))
+            .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING)
+            .build();
+
     public static final BaseTreeFeatureConfig BLACK_WALNUT_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(RankineBlocks.BLACK_WALNUT_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(RankineBlocks.BLACK_WALNUT_LEAVES.get().getDefaultState()),
@@ -308,9 +318,9 @@ public class RankineFeatures {
     // LOCAL_MODIFICATIONS
     public static final ConfiguredFeature<?, ?> METEORITE = METEORITE_FEATURE.withConfiguration(new MeteoriteFeatureConfig(RankineBlocks.METEORITE.get().getDefaultState(), 1))
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(Config.MISC_WORLDGEN.METEORITE_CHANCE.get())));
-    public static final ConfiguredFeature<?, ?> DISK_WHITE_SAND = LAND_DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.WHITE_SAND.get().getDefaultState(), FeatureSpread.create(5, 4), 2, ImmutableList.of(Blocks.SAND.getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
+    public static final ConfiguredFeature<?, ?> DISK_WHITE_SAND = LAND_DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.WHITE_SAND.get().getDefaultState(), FeatureSpread.create(5, 4), 4, ImmutableList.of(Blocks.SAND.getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3)));
-    public static final ConfiguredFeature<?, ?> DISK_BLACK_SAND = LAND_DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.BLACK_SAND.get().getDefaultState(), FeatureSpread.create(4, 4), 2, ImmutableList.of(Blocks.SOUL_SOIL.getDefaultState(),Blocks.SOUL_SAND.getDefaultState())))
+    public static final ConfiguredFeature<?, ?> DISK_BLACK_SAND = LAND_DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.BLACK_SAND.get().getDefaultState(), FeatureSpread.create(4, 4), 4, ImmutableList.of(Blocks.SOUL_SOIL.getDefaultState(),Blocks.SOUL_SAND.getDefaultState())))
             .withPlacement(Placement.COUNT_MULTILAYER.configure(new FeatureSpreadConfig(1)));
     public static final ConfiguredFeature<?, ?> END_METEORITE = END_METEORITE_FEATURE.withConfiguration(new NoFeatureConfig());
     public static final ConfiguredFeature<?, ?> ANTIMATTER_BLOB = ANTIMATTER_BLOB_FEATURE.withConfiguration(new NoFeatureConfig());
@@ -338,6 +348,8 @@ public class RankineFeatures {
     public static final ConfiguredFeature<?, ?> BLACK_MORNING_GLORY_PATCH = Feature.RANDOM_PATCH.withConfiguration(BLACK_MORNING_GLORY_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);
 
 
+    public static final ConfiguredFeature<?, ?> PETRIFIED_CHORUS_TREE = Feature.TREE.withConfiguration(PETRIFIED_CHORUS_TREE_CONFIG)
+            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1)));
     public static final ConfiguredFeature<?, ?> YELLOW_BIRCH_TREE = Feature.TREE.withConfiguration(YELLOW_BIRCH_TREE_CONFIG)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
     public static final ConfiguredFeature<?, ?> BLACK_BIRCH_TREE = Feature.TREE.withConfiguration(BLACK_BIRCH_TREE_CONFIG)
@@ -388,7 +400,7 @@ public class RankineFeatures {
 
     public static final ConfiguredFeature<?, ?> STONE_GEN = STONE_REPLACER.withConfiguration(new NoFeatureConfig())
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
-    public static final ConfiguredFeature<?, ?> SOIL_GEN = WORLD_REPLACER_FEATURE.withConfiguration(new NoFeatureConfig())
+    public static final ConfiguredFeature<?, ?> WORLD_REPLACER_GEN = WORLD_REPLACER_FEATURE.withConfiguration(new NoFeatureConfig())
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?, ?> SNOW_GEN = SNOW_REPLACER.withConfiguration(new NoFeatureConfig())
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
