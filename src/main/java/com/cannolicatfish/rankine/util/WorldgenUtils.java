@@ -86,7 +86,7 @@ public class WorldgenUtils {
         }
 
         for (List<String> I : INTRUSION_LISTS) {
-            if (I.isEmpty()) {
+/*            if (I.isEmpty()) {
                 WeightedCollection<BlockState> col = new WeightedCollection<>();
 
                 INTRUSION_BLOCKS.add(Collections.singletonList(Blocks.AIR));
@@ -95,6 +95,8 @@ public class WorldgenUtils {
                 INTRUSION_ORE_CHANCES.add(Collections.singletonList(1.0f));
                 INTRUSION_COLLECTIONS.add(col.add(1,Blocks.AIR.getDefaultState()));
             }
+
+ */
             int ind = 0;
             WeightedCollection<BlockState> col = new WeightedCollection<>();
             List<Block> tempIB = new ArrayList<>();

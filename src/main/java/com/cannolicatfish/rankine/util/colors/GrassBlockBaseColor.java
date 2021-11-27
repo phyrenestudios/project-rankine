@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.util.colors;
 
 import com.cannolicatfish.rankine.blocks.GrassySoilBlock;
+import com.cannolicatfish.rankine.init.ClientConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.util.math.BlockPos;
@@ -14,24 +15,32 @@ import java.awt.*;
 public class GrassBlockBaseColor implements IBlockColor {
     @Override
     public int getColor(BlockState state, @Nullable IBlockDisplayReader reader, @Nullable BlockPos pos, int tint) {
-        if (state.getBlock() instanceof GrassySoilBlock && state.get(GrassySoilBlock.DEAD)) {
-            return reader != null && pos != null ? returnBlend(BiomeColors.getGrassColor(reader, pos),25) : returnBlend(GrassColors.get(0.5D, 1.0D),25);
+        if (ClientConfig.GENERAL.GRASS_TEMP.get()) {
+            if (state.getBlock() instanceof GrassySoilBlock && state.get(GrassySoilBlock.DEAD)) {
+                return reader != null && pos != null ? colorShift(BiomeColors.getGrassColor(reader, pos), 20, 5, 0) : colorShift(GrassColors.get(0.5D, 1.0D), 20, 5, 0);
+            } else {
+                return reader != null && pos != null ? colorShift(BiomeColors.getGrassColor(reader, pos),0, (int) (-3*(Math.floor(pos.getY()/10))), 0) : GrassColors.get(0.5D, 1.0D);
+            }
         } else {
-            return reader != null && pos != null ? BiomeColors.getGrassColor(reader, pos) : GrassColors.get(0.5D, 1.0D);
+            if (state.getBlock() instanceof GrassySoilBlock && state.get(GrassySoilBlock.DEAD)) {
+                return reader != null && pos != null ? colorShift(BiomeColors.getGrassColor(reader, pos), 20, 5, 0) : colorShift(GrassColors.get(0.5D, 1.0D), 20, 5, 0);
+            } else {
+                return reader != null && pos != null ? BiomeColors.getGrassColor(reader, pos) : GrassColors.get(0.5D, 1.0D);
+            }
         }
     }
 
-    private int returnBlend(int color, int shift) {
-        float r = shift;
-        float g = 0;
-        float b = 0;
+    private int colorShift(int color, int redShift, int greenShift, int blueShift) {
+        float r = redShift;
+        float g = greenShift;
+        float b = blueShift;
         Color col = new Color(color);
         r += (col.getRed());
         g += (col.getGreen());
         b += (col.getBlue());
         int rgb = Math.round(Math.min(r,255));
-        rgb = (rgb << 8) +  Math.round(g);
-        rgb = (rgb << 8) +  Math.round(b);
+        rgb = (rgb << 8) +  Math.round(Math.min(g,255));
+        rgb = (rgb << 8) +  Math.round(Math.min(b,255));
         return rgb;
     }
 }

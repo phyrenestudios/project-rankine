@@ -3,13 +3,12 @@ package com.cannolicatfish.rankine.entities;
 import com.cannolicatfish.rankine.init.RankineDamageSources;
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.block.AbstractFireBlock;
-import net.minecraft.entity.*;
-import com.cannolicatfish.rankine.entities.CannonballEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IRendersAsItem;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.DamagingProjectileEntity;
-import com.cannolicatfish.rankine.entities.CannonballEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
@@ -17,17 +16,20 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
+
+@OnlyIn(
+        value = Dist.CLIENT,
+        _interface = IRendersAsItem.class
+)
 
 public class CannonballEntity extends DamagingProjectileEntity implements IRendersAsItem {
     private static final DataParameter<ItemStack> STACK = EntityDataManager.createKey(CannonballEntity.class, DataSerializers.ITEMSTACK);
@@ -49,9 +51,9 @@ public class CannonballEntity extends DamagingProjectileEntity implements IRende
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public void setStack(ItemStack p_213898_1_) {
-        if (p_213898_1_.getItem() != RankineItems.CANNONBALL.get() || p_213898_1_.hasTag()) {
-            this.getDataManager().set(STACK, Util.make(p_213898_1_.copy(), (p_213897_0_) -> {
+    public void setStack(ItemStack stack) {
+        if (stack.getItem() != RankineItems.CANNONBALL.get() || stack.hasTag()) {
+            this.getDataManager().set(STACK, Util.make(stack.copy(), (p_213897_0_) -> {
                 p_213897_0_.setCount(1);
             }));
         }
