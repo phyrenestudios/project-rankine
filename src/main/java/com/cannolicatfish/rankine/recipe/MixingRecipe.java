@@ -98,11 +98,19 @@ public class MixingRecipe implements IRecipe<IInventory> {
 
     public ItemStack getMixingResult(IInventory inv, World worldIn) {
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
-        for (int i = 0; i < this.recipeOutputs.size(); i++) {
-            ItemStack curOut = this.recipeOutputs.get(i);
-            col.add(this.weights.get(i),new ItemStack(curOut.getItem(), this.maxes.get(i).equals(this.mins.get(i)) ? this.maxes.get(i) : worldIn.getRandom().nextInt(this.maxes.get(i) - this.mins.get(i)) + this.mins.get(i)));
+        ItemStack output;
+        if (this.recipeOutputs.size() == 0) {
+            return ItemStack.EMPTY;
+        } else if (this.recipeOutputs.size() == 1) {
+            output = new ItemStack(this.recipeOutputs.get(0).getItem(),this.maxes.get(0).equals(this.mins.get(0)) ? this.maxes.get(0) : worldIn.getRandom().nextInt(this.maxes.get(0) - this.mins.get(0)) + this.mins.get(0));
+        } else {
+            for (int i = 0; i < this.recipeOutputs.size(); i++) {
+                ItemStack curOut = this.recipeOutputs.get(i);
+                col.add(this.weights.get(i),new ItemStack(curOut.getItem(), this.maxes.get(i).equals(this.mins.get(i)) ? this.maxes.get(i) : worldIn.getRandom().nextInt(this.maxes.get(i) - this.mins.get(i)) + this.mins.get(i)));
+            }
+            output = col.getRandomElement().copy();
         }
-        ItemStack output = col.getRandomElement().copy();
+
         List<Integer> groupsUsed = new ArrayList<>();
         for (int s = 0; s < 4; s++) {
             ItemStack stack = inv.getStackInSlot(s);
@@ -299,7 +307,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
             }
 
             NonNullList<ItemStack> stacks = NonNullList.withSize(outT, ItemStack.EMPTY);
-            NonNullList<Float> weights = NonNullList.withSize(outT, 0f);
+            NonNullList<Float> weights = NonNullList.withSize(outT, 1f);
             NonNullList<Integer> mins = NonNullList.withSize(outT, 1);
             NonNullList<Integer> maxes = NonNullList.withSize(outT, 1);
             for (int i = 0; i < outT; i++) {

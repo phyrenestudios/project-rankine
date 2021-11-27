@@ -20,6 +20,8 @@ import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherContaine
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherTile;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelContainer;
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
@@ -302,6 +304,7 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(GasCondenserTile::new, RankineBlocks.GAS_CONDENSER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_condenser"));
             event.getRegistry().register(TileEntityType.Builder.create(GasVentTile::new, RankineBlocks.GAS_VENT.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_vent"));
             event.getRegistry().register(TileEntityType.Builder.create(RankineBoxTile::new, RankineBlocks.RANKINE_BOX.get()).build(null).setRegistryName(ProjectRankine.MODID,"rankine_box"));
+            event.getRegistry().register(TileEntityType.Builder.create(MixingBarrelTile::new, RankineBlocks.MIXING_BARREL.get()).build(null).setRegistryName(ProjectRankine.MODID,"mixing_barrel"));
             //event.getRegistry().register(TileEntityType.Builder.create(LaserQuarryTile::new, RankineBlocks.LASER_QUARRY.get()).build(null).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
             event.getRegistry().register(TileEntityType.Builder.create(AlloyBlockTile::new, RankineBlocks.BRONZE_BLOCK.get()).build(null).setRegistryName(ProjectRankine.MODID,"bronze_alloy_block"));
             //event.getRegistry().register(TileEntityType.Builder.create(SodiumVaporLampTile::new, RankineBlocks.SODIUM_VAPOR_LAMP.get()).build(null).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
@@ -406,6 +409,11 @@ public class ProjectRankine {
                 BlockPos pos = data.readBlockPos();
                 return new CrucibleContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"crucible"));
+
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new MixingBarrelContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
+            }).setRegistryName(ProjectRankine.MODID,"mixing_barrel"));
 
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();

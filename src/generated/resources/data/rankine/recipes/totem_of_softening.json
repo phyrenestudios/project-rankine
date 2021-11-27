@@ -7,13 +7,13 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:ingots/blue_gold"
+      "tag": "forge:ingots/purple_gold"
     },
     "R": {
-      "tag": "forge:storage_blocks/garnet"
+      "tag": "forge:storage_blocks/pearl"
     }
   },
   "result": {
-    "item": "rankine:totem_of_enduring"
+    "item": "rankine:totem_of_softening"
   }
 }
