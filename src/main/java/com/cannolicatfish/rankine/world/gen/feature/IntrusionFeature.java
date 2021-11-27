@@ -31,7 +31,7 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
         if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
             if (BIOME.getCategory() == Biome.Category.NETHER) {
 
-                if (WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())) == null) {
+                if (WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())) == null || !WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getEntries().isEmpty()) {
                     return false;
                 }
 
@@ -98,7 +98,7 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
                     return true;
                 }
             } else {
-                if (WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())) == null) {
+                if (WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())) == null || !WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getEntries().isEmpty()) {
                     return false;
                 }
                 BlockState INTRUSION = WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();

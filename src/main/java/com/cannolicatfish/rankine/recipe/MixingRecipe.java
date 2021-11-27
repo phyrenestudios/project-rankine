@@ -2,11 +2,7 @@ package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.items.alloys.AlloyData;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
-import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.google.gson.JsonArray;
@@ -28,7 +24,10 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class MixingRecipe implements IRecipe<IInventory> {
 
@@ -382,6 +381,8 @@ public class MixingRecipe implements IRecipe<IInventory> {
         public void write(PacketBuffer buffer, MixingRecipe recipe) {
             buffer.writeInt(recipe.getMixTime());
             buffer.writeInt(recipe.getIngredientTotal());
+            buffer.writeInt(recipe.getOutputTotal());
+            buffer.writeFluidStack(recipe.getFluid());
             for (int i = 0; i < 4; i++) {
                 if (i < recipe.getRequired().size()) {
                     buffer.writeBoolean(recipe.getRequired().get(i));
@@ -389,7 +390,6 @@ public class MixingRecipe implements IRecipe<IInventory> {
                     buffer.writeBoolean(false);
                 }
             }
-            buffer.writeFluidStack(recipe.getFluid());
             for (int i = 0; i < recipe.getIngredientTotal(); i++) {
                 recipe.getIngredients().get(i).write(buffer);
                 buffer.writeInt(recipe.getIngredientGroups().get(i));

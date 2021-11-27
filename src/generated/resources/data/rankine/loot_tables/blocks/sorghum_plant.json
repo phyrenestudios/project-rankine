@@ -15,7 +15,7 @@
                   "block": "rankine:sorghum_plant",
                   "properties": {
                     "age": "7",
-                    "half": "lower"
+                    "section": "bottom"
                   }
                 }
               ],
@@ -39,7 +39,7 @@
           "condition": "minecraft:block_state_property",
           "block": "rankine:sorghum_plant",
           "properties": {
-            "half": "lower"
+            "section": "bottom"
           }
         },
         {
@@ -57,7 +57,7 @@
               "condition": "minecraft:block_state_property",
               "block": "rankine:sorghum_plant",
               "properties": {
-                "half": "lower"
+                "section": "bottom"
               }
             }
           ],
