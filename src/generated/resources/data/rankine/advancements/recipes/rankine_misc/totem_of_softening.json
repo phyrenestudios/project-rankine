@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:cement_mix_quicklime"
+      "rankine:totem_of_softening"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:clay_balls"
+            "tag": "forge:ingots/purple_gold"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:cement_mix_quicklime"
+        "recipe": "rankine:totem_of_softening"
       }
     }
   },

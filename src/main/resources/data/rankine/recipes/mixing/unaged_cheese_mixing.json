@@ -1,6 +1,6 @@
 {
   "type": "rankine:mixing",
-  "mixTime": 20,
+  "mixTime": 60,
   "required": [true,true,true,false],
   "ingredientTotal": 5,
   "outputTotal": 1,

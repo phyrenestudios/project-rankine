@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
@@ -10,9 +10,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class MixingBarrelScreen extends ContainerScreen<CrucibleContainer> {
+public class MixingBarrelScreen extends ContainerScreen<MixingBarrelContainer> {
     private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/crucible.png");
-    public MixingBarrelScreen(CrucibleContainer container, PlayerInventory inv, ITextComponent name) {
+    public MixingBarrelScreen(MixingBarrelContainer container, PlayerInventory inv, ITextComponent name) {
         super(container, inv, name);
     }
 
@@ -42,7 +42,7 @@ public class MixingBarrelScreen extends ContainerScreen<CrucibleContainer> {
 
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Crucible", 88, 6, 0xffffff);
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Mixing Barrel", 88, 6, 0xffffff);
     }
 
 

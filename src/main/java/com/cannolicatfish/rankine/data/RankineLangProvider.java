@@ -678,7 +678,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("fluid.rankine.hydrobromic_acid", "Hydrobromic Acid");
         add("fluid.rankine.juglone", "Juglone");
         add("fluid.rankine.latex", "Latex");
-        add("fluid.rankine.liquid_mercury_block", "Liquid Mercury");
+        add("fluid.rankine.liquid_mercury", "Liquid Mercury");
         add("fluid.rankine.maple_sap", "Maple Sap");
         add("fluid.rankine.red_mud", "Red Mud");
         add("fluid.rankine.resin", "Resin");

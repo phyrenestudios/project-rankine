@@ -7,13 +7,13 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:ingots/blue_gold"
+      "tag": "forge:ingots/mischmetal"
     },
     "R": {
-      "tag": "forge:storage_blocks/garnet"
+      "tag": "forge:storage_blocks/peridot"
     }
   },
   "result": {
-    "item": "rankine:totem_of_enduring"
+    "item": "rankine:totem_of_infusing"
   }
 }
