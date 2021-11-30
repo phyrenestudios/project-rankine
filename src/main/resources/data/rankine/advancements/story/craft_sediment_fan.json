@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/make_cupronickel",
+  "display": {
+    "icon": {
+      "item": "rankine:sediment_fan"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_sediment_fan.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_sediment_fan.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:sediment_fan"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

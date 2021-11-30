@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "rankine:block/helium_gas_tube",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "rankine:block/helium_gas_tube"
+    },
+    "axis=z": {
+      "model": "rankine:block/helium_gas_tube",
+      "x": 90
+    }
+  }
+}

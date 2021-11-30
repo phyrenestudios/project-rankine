@@ -1,10 +1,16 @@
 {
   "variants": {
-    "brick_type=normal": {
+    "mode=0": {
       "model": "rankine:block/refractory_bricks"
     },
-    "brick_type=vertical_normal": {
+    "mode=1": {
       "model": "rankine:block/refractory_bricks_vertical"
+    },
+    "mode=2": {
+      "model": "rankine:block/refractory_bricks"
+    },
+    "mode=3": {
+      "model": "rankine:block/refractory_bricks"
     }
   }
 }

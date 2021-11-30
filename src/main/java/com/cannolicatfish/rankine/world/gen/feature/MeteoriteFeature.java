@@ -64,7 +64,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
 
 
         } else {
-            for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-4, -4, -4), pos.add(4, 5, 4))) {
+            for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-4, -4, -4), pos.add(4, 6, 4))) {
                 if (blockpos.distanceSq(pos) <= (2.75D)) {
                     if (rand.nextFloat() < 0.3F) {
                         reader.setBlockState(blockpos.down(1), ORE, 4);

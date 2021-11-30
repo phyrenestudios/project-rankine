@@ -60,6 +60,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.STONE_BRICKS,
                 RankineLists.POLISHED_STONES,
                 RankineLists.BRICKS,
+                RankineLists.GAS_TUBES,
                 RankineLists.ALLOY_PEDESTALS,
                 RankineLists.ALLOY_POLES,
                 RankineLists.ALLOY_BLOCKS,
@@ -67,7 +68,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.LEAF_LITTERS,
                 RankineLists.WOODS,
                 RankineLists.LOGS,
-                RankineLists.LEAVES,
                 RankineLists.PLANKS,
                 RankineLists.STRIPPED_WOODS,
                 RankineLists.STRIPPED_LOGS,
@@ -103,6 +103,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.DARK_GRAVEL.get(),
                 RankineBlocks.FIRE_CLAY.get(),
                 RankineBlocks.KAOLIN.get(),
+                RankineBlocks.COB.get(),
                 RankineBlocks.STICK_BLOCK.get(),
                 RankineBlocks.MYCELIUM_PATH.get(),
                 RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(),
@@ -340,7 +341,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
                 RankineBlocks.REACTION_CHAMBER_CORE.get(),
                 RankineBlocks.FUSION_FURNACE.get(),
-                RankineBlocks.MIXING_BARREL.get(),
                 RankineBlocks.BEEHIVE_OVEN_PIT.get(),
                 RankineBlocks.ALLOY_FURNACE.get(),
                 RankineBlocks.CHARCOAL_PIT.get(),
@@ -362,9 +362,13 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
         basicItem(RankineItems.CRUCIBLE.get());
 
+        for (Block LEAF : RankineLists.LEAVES) {
+            withExistingParent(LEAF.getRegistryName().getPath(), new ResourceLocation("rankine","block/"+LEAF.getRegistryName().getPath()+"age0"));
+        }
 
         withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/tilled_soil_loam"));
         withExistingParent(RankineBlocks.STUMP.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/stump0"));
+        withExistingParent(RankineBlocks.MIXING_BARREL.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/mixing_barrel0"));
 
         withExistingParent(RankineBlocks.ASPHALT_0.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/asphalt/asphalt0_age0_none"));
         withExistingParent(RankineBlocks.ASPHALT_1.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/asphalt/asphalt1_age0_none"));

@@ -225,7 +225,6 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue DISABLE_VANILLA_FEATURES;
         public final ForgeConfigSpec.BooleanValue RANKINE_FLORA;
         public final ForgeConfigSpec.BooleanValue RANKINE_TREES;
-        public final ForgeConfigSpec.BooleanValue FIRE_CLAY_GEN;
         public final ForgeConfigSpec.BooleanValue EVAPORITE_GEN;
         public final ForgeConfigSpec.BooleanValue FUMAROLE_GEN;
         public final ForgeConfigSpec.BooleanValue ALLUVIUM_GEN;
@@ -239,7 +238,6 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue BIG_METEORITE_CHANCE;
         public final ForgeConfigSpec.IntValue METEORITE_SIZE;
         public final ForgeConfigSpec.IntValue METEORITE_CHANCE;
-        public final ForgeConfigSpec.ConfigValue<List<? extends String>> ORE_STONES;
 
         public final ForgeConfigSpec.DoubleValue LAYER_WIDTH;
         public final ForgeConfigSpec.IntValue NOISE_SCALE;
@@ -254,13 +252,10 @@ public class Config {
 
         public MiscWorldGen(ForgeConfigSpec.Builder b) {
             b.comment("Here are miscellaneous worldgen features").push("misc");
-            ORE_STONES = b.comment("Textures of blocks for ores.")
-                    .defineList("oreTextures", Arrays.asList("minecraft:stone", "minecraft:granite", "minecraft:diorite", "minecraft:andesite", "minecraft:sandstone|minecraft:sandstone_bottom", "minecraft:red_sandstone|minecraft:red_sandstone_bottom", "minecraft:netherrack", "minecraft:blackstone", "minecraft:basalt|minecraft:basalt_top", "minecraft:end_stone", "minecraft:obsidian", "rankine:pegmatite", "rankine:gray_granite", "rankine:rhyolite", "rankine:comendite", "rankine:granodiorite", "rankine:red_porphyry", "rankine:purple_porphyry", "rankine:hornblende_andesite", "rankine:black_dacite", "rankine:red_dacite", "rankine:tholeiitic_basalt", "rankine:diabase","rankine:gabbro", "rankine:anorthosite", "rankine:peridotite", "rankine:troctolite", "rankine:kimberlite", "rankine:komatiite","rankine:shonkinite", "rankine:norite", "rankine:pyroxenite", "rankine:rose_marble", "rankine:white_marble", "rankine:gray_marble", "rankine:black_marble", "rankine:gneiss", "rankine:mica_schist", "rankine:phyllite", "rankine:slate", "rankine:quartzite","rankine:mariposite","rankine:eclogite","rankine:limestone", "rankine:dolostone", "rankine:chalk", "rankine:shale", "rankine:siltstone", "rankine:itacolumite", "rankine:arkose", "rankine:mudstone","rankine:serpentinite","rankine:eclogite", "rankine:marlstone", "rankine:soul_sandstone", "rankine:blueschist", "rankine:greenschist","rankine:sommanite","rankine:post_perovskite","rankine:bridgmanham","rankine:ringwoodine","rankine:wadsleyone","rankine:honeystone", "rankine:meteorite", "rankine:frozen_meteorite", "rankine:enstatite_chondrite"), Config.ELEMENT_VALIDATOR);
-
             FLAT_BEDROCK = b.comment("Generates the Overworld with a flat bedrock layer.")
-                    .define("flatBedrock",true);
+                    .define("flatBedrock",false);
             FLAT_BEDROCK_NETHER = b.comment("Generates the Nether with a flat bedrock layer.")
-                    .define("flatBedrockNether",true);
+                    .define("flatBedrockNether",false);
             SECRET_GEN = b.comment("Figure it out")
                     .define("secretGen",true);
             REPLACE_VANILLA_ORES = b.comment("If enabled, replaces vanilla ores with the Rankine counterparts which will mimic stones around them.")
@@ -273,15 +268,13 @@ public class Config {
                     .define("generateFlora",true);
             RANKINE_TREES = b.comment("Enable/Disable Project Rankine trees in world.")
                     .define("generateTrees",true);
-            FIRE_CLAY_GEN = b.comment("Enables the generation of fire clay disks in dirt.")
-                    .define("generateFireClay",true);
             EVAPORITE_GEN = b.comment("Enables the generation of evaporite disks.")
                     .define("generateEvaporite",true);
             FUMAROLE_GEN = b.comment("Enables the generation of fumaroles. More options to come.")
                     .define("generateFumaroles",true);
             ALLUVIUM_GEN = b.comment("Enables the generation of alluvium disks.")
                     .define("generateAlluvium",true);
-            WHITE_SAND_GEN = b.comment("Enables the generation of white sand disks in deserts.")
+            WHITE_SAND_GEN = b.comment("Enables the generation of white sand disks in beaches.")
                     .define("generateWhiteSand",true);
             BLACK_SAND_GEN = b.comment("Enables the generation of black sand disks in the Nether.")
                     .define("generateBlackSand",true);
@@ -519,7 +512,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue REFRESH_ALLOYS;
         public final ForgeConfigSpec.BooleanValue STARTING_BOOK;
         public final ForgeConfigSpec.BooleanValue DISABLE_WATER;
-        public final ForgeConfigSpec.ConfigValue<List<? extends String>> INFI_WATER_BIOMES;
+        public final ForgeConfigSpec.ConfigValue<List<? extends String>> FUEL_VALUES_LIST;
         public final ForgeConfigSpec.BooleanValue PENDANT_CURSE;
         public final ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
         public final ForgeConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
@@ -559,8 +552,8 @@ public class Config {
                             .define("rockDrill",true);
                     DISABLE_WATER = b.comment("No more infinite water")
                             .define("disableWater",true);
-                    INFI_WATER_BIOMES = b.comment("Biomes that have infinite water")
-                            .defineList("infiWaterBiomes", Arrays.asList("ocean","river"), o -> o instanceof String);
+                    FUEL_VALUES_LIST = b.comment("List of blocks and their respective burn time. Works with tags. NOT IMPLEMENTED YET")
+                            .defineList("fuelValues", Arrays.asList("#minecraft:oak_logs|410","#rankine:cedar_logs|410"), o -> o instanceof String);
                     FIRE_EXTINGUISHER_RANGE = b.comment("The range of the fire extinguisher.")
                             .defineInRange("fireExtinguisherRange", 16, 0, 64);
                     TRAMPOLINE_SIZE = b.comment("The maximum size of a trampoline. Jump factor depends on size. Set to 0 to have a fixed jump factor of 1.3 which is just enough to have the player gain height over time.")
@@ -1085,6 +1078,7 @@ public class Config {
             oreSettings.add(Arrays.asList("rankine:ironstone", Arrays.asList("desert","savanna","mesa"), "disk", 30, 70, 5, 1.0D, 1, 0.4));
 
             oreSettings.add(Arrays.asList("rankine:kaolin", Arrays.asList("swamp","jungle","mushroom"), "disk", 40, 70, 6, 1.0D, 1, 0.4));
+            oreSettings.add(Arrays.asList("rankine:fire_clay", Arrays.asList("all"), "disk", 40, 70, 4, 1.0D, 1, 0.4));
             oreSettings.add(Arrays.asList("rankine:phosphorite", Arrays.asList("all"), "disk", 20, 50, 4, 1.0D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:phosphorite", Arrays.asList("extreme_hills"), "disk", 70, 90, 4, 1.0D, 1, 0.2));
 
@@ -1107,7 +1101,7 @@ public class Config {
             oreSettings.add(Arrays.asList("rankine:monazite_ore", Arrays.asList("nether"), "sphere", 10, 40, 2, 0.5D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:interspinifex_ore", Arrays.asList("minecraft:crimson_forest"), "default", 50, 90, 6, 1.0D, 8, 1.0));
 
-            /*
+
             oreSettings.add(Arrays.asList("rankine:native_gallium_ore", Arrays.asList("the_end"), "default", 10, 60, 4, 1.0D, 15, 1.0));
             oreSettings.add(Arrays.asList("rankine:native_indium_ore", Arrays.asList("the_end"), "default", 10, 60, 4, 1.0D, 15, 1.0));
             oreSettings.add(Arrays.asList("rankine:native_selenium_ore", Arrays.asList("the_end"), "default", 10, 60, 4, 1.0D, 15, 1.0));
@@ -1118,7 +1112,7 @@ public class Config {
             oreSettings.add(Arrays.asList("rankine:greenockite_ore", Arrays.asList("the_end"), "sphere", 10, 60, 3, 0.6D, 1, 0.5));
 
 
-             */
+
 
 
 

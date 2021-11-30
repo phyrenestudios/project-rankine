@@ -34,6 +34,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MISC_STAIRS,
                 RankineLists.MISC_WALLS,
                 RankineLists.SHEETMETAL_SLABS,
+                RankineLists.GAS_TUBES,
                 RankineLists.HOLLOW_LOGS,
                 RankineLists.LEAF_LITTERS,
                 RankineLists.INFESTED_STONES,
@@ -129,9 +130,9 @@ public class RankineLangProvider extends LanguageProvider {
         }
 
         for (Block blk : Stream.of(
-                RankineLists.ALLOY_BLOCKS,
-        RankineLists.ELEMENT_BLOCKS,
-        RankineLists.MINERAL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            RankineLists.ALLOY_BLOCKS,
+            RankineLists.ELEMENT_BLOCKS,
+            RankineLists.MINERAL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             if (blk.matchesBlock(RankineBlocks.SODIUM_CHLORIDE_BLOCK.get())) {
                 add(blk, "Block of Salt (NaCl)");
             } else if (blk.matchesBlock(RankineBlocks.CALCIUM_CHLORIDE_BLOCK.get())) {
@@ -186,6 +187,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.WHITE_CLOVER.get(),
                 RankineBlocks.YELLOW_CLOVER.get(),
 
+                RankineBlocks.COB.get(),
                 RankineBlocks.SOD_BLOCK.get(),
                 RankineBlocks.SOD_BLOCK_WALL.get(),
                 RankineBlocks.SOD_BLOCK_STAIRS.get(),
@@ -202,6 +204,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.DARK_GRAVEL.get(),
                 RankineBlocks.FIRE_CLAY.get(),
                 RankineBlocks.KAOLIN.get(),
+                RankineBlocks.STUMP.get(),
                 RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(),
                 RankineBlocks.PORPHYRY_COPPER.get()
                 )) {
@@ -478,6 +481,7 @@ public class RankineLangProvider extends LanguageProvider {
 
 
 
+        add("item.rankine.building_tool.message", "Building Mode changed to %1$s");
 
 
         //Death Messages
@@ -689,130 +693,133 @@ public class RankineLangProvider extends LanguageProvider {
         add("fluid.rankine.green_liquor", "Green Liquor");
         add("fluid.rankine.white_liquor", "White Liquor");
 
+        //ADVANCEMENTS
         add("rankine.advancements.story.root.title", "Project Rankine");
-        add("rankine.advancements.story.root.description", "Begin delving into the changed world");
-        add("rankine.advancements.story.make_hardness_tester.title", "Strength in Knowledge");
-        add("rankine.advancements.story.make_hardness_tester.description", "Make a Hardness Tester to easily determine harvest level");
-        add("rankine.advancements.story.make_gold_pan.title", "Forager");
-        add("rankine.advancements.story.make_gold_pan.description", "Make a Gold Pan to sift through loose material");
-        add("rankine.advancements.story.make_prospecting_stick.title", "Help Wanted");
-        add("rankine.advancements.story.make_prospecting_stick.description", "Make a Prospecting Stick to point the way to ores");
-        add("rankine.advancements.story.gather_rope.title", "Knot Likely");
-        add("rankine.advancements.story.gather_rope.description", "Gather rope by obtaining a flint knife and harvesting grass");
-        add("rankine.advancements.story.get_flint_axe.title", "Hard Wood");
-        add("rankine.advancements.story.get_flint_axe.description", "Make a Flint Axe to harvest wood without punching trees");
-        add("rankine.advancements.story.make_charcoal_pit.title", "Buried Logs");
-        add("rankine.advancements.story.make_charcoal_pit.description", "Make a Charcoal Pit to help alleviate early fuel requirements and make large batches of charcoal");
-        add("rankine.advancements.story.get_flint_tools.title", "Sharp Beginnings");
-        add("rankine.advancements.story.get_flint_tools.description", "Construct a Flint Pickaxe to begin mining quickly");
-        add("rankine.advancements.story.get_flint_spear.title", "Getting the Point");
-        add("rankine.advancements.story.get_flint_spear.description", "Make a throwable Flint Spear to protect yourself");
-        add("rankine.advancements.story.make_refractory_brick.title", "Another Brick in the Wall");
-        add("rankine.advancements.story.make_refractory_brick.description", "Make Refractory Brick by finding clay and using mortar");
-        add("rankine.advancements.story.make_alloy_furnace.title", "Combined Strength");
-        add("rankine.advancements.story.make_alloy_furnace.description", "Make an Alloy Furnace by using sheetmetal and refractory bricks");
-        add("rankine.advancements.story.make_material_testing_table.title", "Knowledge of Strength");
-        add("rankine.advancements.story.make_material_testing_table.description", "Make a Material Testing Table to begin examining properties of elements and alloys");
-        add("rankine.advancements.story.make_template_table.title", "The Plan");
-        add("rankine.advancements.story.make_template_table.description", "Make an Alloy Template Table to automate the creation of alloys");
-        add("rankine.advancements.story.make_evaporation_tower.title", "Water Extraction");
-        add("rankine.advancements.story.make_evaporation_tower.description", "Construct an Evaporation Tower to generate resources from water in different biomes");
-        add("rankine.advancements.story.make_coal_forge.title", "Automated Tools");
-        add("rankine.advancements.story.make_coal_forge.description", "Make a Coal Forge to make alloy tools");
-        add("rankine.advancements.story.get_bronze_tools.title", "Timing is Everything");
-        add("rankine.advancements.story.get_bronze_tools.description", "Make a Pewter, Colored Gold, or Bronze Hammer to begin crushing ores and stones");
-        add("rankine.advancements.story.get_crowbar.title", "Lever Action");
-        add("rankine.advancements.story.get_crowbar.description", "Make a Crowbar to manipulate blocks");
-        add("rankine.advancements.story.make_templates.title", "The Plan");
-        add("rankine.advancements.story.make_templates.description", "Make templates to construct alloy tools at the coal forge");
-        add("rankine.advancements.story.make_blast_furnace.title", "Blast from the Past");
-        add("rankine.advancements.story.make_blast_furnace.description", "Make a Blast Furnace to begin smelting more complex ores");
-        add("rankine.advancements.story.find_meteorite.title", "Iron from Space");
-        add("rankine.advancements.story.find_meteorite.description", "Find a meteorite and crush the ore in it to get meteoric iron");
-        add("rankine.advancements.story.find_ironstone.title", "Iron in the Rough");
-        add("rankine.advancements.story.find_ironstone.description", "Find ironstone under the sands of a desert or mesa");
-        add("rankine.advancements.story.make_cast_iron_alloy.title", "Cooking Time");
-        add("rankine.advancements.story.make_cast_iron_alloy.description", "Make cast iron alloy by using a form of carbon and pig iron");
-        add("rankine.advancements.story.make_tree_tap.title", "Flowing Phloem");
-        add("rankine.advancements.story.make_tree_tap.description", "Make a tree tap to begin extracting liquids from trees");
-        add("rankine.advancements.story.make_bandage.title", "Quick Healing");
-        add("rankine.advancements.story.make_bandage.description", "Heal some minor damage with a bandage");
-        add("rankine.advancements.story.make_trampoline.title", "Boing!");
-        add("rankine.advancements.story.make_trampoline.description", "Make a trampoline to launch high into the air");
-        add("rankine.advancements.story.make_herbicide.title", "Weedkiller");
-        add("rankine.advancements.story.make_herbicide.description", "Produce herbicide from juglone to clear patches of grass and other plants");
-        add("rankine.advancements.story.make_piston_crusher.title", "Automatic Labor");
-        add("rankine.advancements.story.make_piston_crusher.description", "Make a piston crusher to automate crushing");
-        add("rankine.advancements.story.make_pulp.title", "Crushed to a Pulp");
-        add("rankine.advancements.story.make_pulp.description", "Make pulp from crushed logs");
-        add("rankine.advancements.story.make_quartz.title", "Overworld Quartz");
-        add("rankine.advancements.story.make_quartz.description", "Find or make quartz by crushing stones");
-        add("rankine.advancements.story.make_glass_cutter.title", "Transparent Carving");
-        add("rankine.advancements.story.make_glass_cutter.description", "Make a glass cutter to minimize losses");
-        add("rankine.advancements.story.make_pig_iron.title", "No Pigs Harmed");
-        add("rankine.advancements.story.make_pig_iron.description", "Make pig iron by smelting an iron ingot");
-        add("rankine.advancements.story.make_beehive_oven_pit.title", "No Bees Harmed");
-        add("rankine.advancements.story.make_beehive_oven_pit.description", "Build a beehive oven pit");
-        add("rankine.advancements.story.make_quicklime.title", "Limecraft");
-        add("rankine.advancements.story.make_quicklime.description", "Produce quicklime from combusting limestone with the beehive oven");
-        add("rankine.advancements.story.make_roman_concrete.title", "Roaming like the Romans");
-        add("rankine.advancements.story.make_roman_concrete.description", "Make roman concrete from pozzolanic mortar");
+        add("rankine.advancements.story.root.description", "The project starts here");
+        add("rankine.advancements.story.support.title", "We support Patchouli and JEI!");
+        add("rankine.advancements.story.support.description", "Be sure to download these mods if you want more information!");
+        add("rankine.advancements.story.get_flint.title", "Flintstones");
+        add("rankine.advancements.story.get_flint.description", "...");
+        add("rankine.advancements.story.craft_rope.title", "Knot Likely");
+        add("rankine.advancements.story.craft_rope.description", "Gather rope by obtaining a flint knife and harvesting grass");
+        add("rankine.advancements.story.get_cobblestone.title", "Cobble Cobble");
+        add("rankine.advancements.story.get_cobblestone.description", "...");
+        add("rankine.advancements.story.craft_prospecting_stick.title", "Help Wanted");
+        add("rankine.advancements.story.craft_prospecting_stick.description", "Make a Prospecting Stick to point the way to ores");
+        add("rankine.advancements.story.craft_ore_detector.title", "Help Granted");
+        add("rankine.advancements.story.craft_ore_detector.description", "Make an Ore Detector to replace that x-ray mod");
+        add("rankine.advancements.story.craft_hardness_tester.title", "Strength in Knowledge");
+        add("rankine.advancements.story.craft_hardness_tester.description", "Make a Hardness Tester to easily determine harvest level");
+        add("rankine.advancements.story.craft_wooden_gold_pan.title", "Forager");
+        add("rankine.advancements.story.craft_wooden_gold_pan.description", "Make a Wooden Gold Pan to sift through loose material");
+        add("rankine.advancements.story.craft_steel_gold_pan.title", "Direct Deposit");
+        add("rankine.advancements.story.craft_steel_gold_pan.description", "Make a Steel Gold Pan to sieve alluvium and black sand");
+        add("rankine.advancements.story.craft_flint_axe.title", "Hard Wood");
+        add("rankine.advancements.story.craft_flint_axe.description", "Make a Flint Axe (or stone) to harvest wood without punching trees");
+        add("rankine.advancements.story.craft_charcoal_pit.title", "Buried Logs");
+        add("rankine.advancements.story.craft_charcoal_pit.description", "Make a Charcoal Pit to help alleviate early fuel requirements and craft large batches of charcoal");
+        add("rankine.advancements.story.craft_flint_pickaxe.title", "Sharp Beginnings");
+        add("rankine.advancements.story.craft_flint_pickaxe.description", "Construct a Flint Pickaxe (or stone) to begin mining quickly");
+        add("rankine.advancements.story.craft_refractory_bricks.title", "Another Brick in the Wall");
+        add("rankine.advancements.story.craft_refractory_bricks.description", "Make Refractory Brick by finding clay and using mortar");
+        add("rankine.advancements.story.craft_high_refractory_bricks.title", "Another Other Brick in the Wall");
+        add("rankine.advancements.story.craft_high_refractory_bricks.description", "Make High Refractory Bricks to upgrade");
+        add("rankine.advancements.story.craft_alloy_furnace.title", "Combined Strength");
+        add("rankine.advancements.story.craft_alloy_furnace.description", "Make an Alloy Furnace by using sheetmetal and refractory bricks");
+        add("rankine.advancements.story.craft_material_testing_table.title", "Knowledge of Strength");
+        add("rankine.advancements.story.craft_material_testing_table.description", "Make a Material Testing Table to begin examining properties of elements and alloys");
+        add("rankine.advancements.story.craft_blast_furnace.title", "Blast from the Past");
+        add("rankine.advancements.story.craft_blast_furnace.description", "Make a Blast Furnace to begin smelting more complex ores");
+        add("rankine.advancements.story.craft_beehive_oven_pit.title", "No Bees Harmed");
+        add("rankine.advancements.story.craft_beehive_oven_pit.description", "Build a beehive oven pit");
+        add("rankine.advancements.story.craft_template_table.title", "The Plan");
+        add("rankine.advancements.story.craft_template_table.description", "Make an Alloy Template Table to automate the creation of alloys");
         add("rankine.advancements.story.make_magnesia.title", "Take the Heat");
         add("rankine.advancements.story.make_magnesia.description", "Make magnesia from cooking a magnesite block with the beehive oven");
         add("rankine.advancements.story.make_coke.title", "I cant believe it's not Coal!");
         add("rankine.advancements.story.make_coke.description", "Use a beehive oven to produce coke from bituminous and sub-bituminous coal blocks");
-        add("rankine.advancements.story.make_wrought_iron.title", "Acquire Harderware");
-        add("rankine.advancements.story.make_wrought_iron.description", "Make Wrought Iron by crushing bloom iron made from the Beehive Oven");
-        add("rankine.advancements.story.make_crucible.title", "Refractory Factory");
-        add("rankine.advancements.story.make_crucible.description", "Construct a crucible to make steel");
-        add("rankine.advancements.story.make_steel_alloy.title", "Steel Yourself");
-        add("rankine.advancements.story.make_steel_alloy.description", "Make Steel Alloy by using the Crucible or the Induction Furnace");
-        add("rankine.advancements.story.make_brigandine_armor.title", "Plate Up");
-        add("rankine.advancements.story.make_brigandine_armor.description", "Make a full set of Brigandine Armor");
-        add("rankine.advancements.story.make_induction_furnace.title", "Heating Up");
-        add("rankine.advancements.story.make_induction_furnace.description", "Make an Induction Furnace for more advanced alloys");
-        add("rankine.advancements.story.make_steel_gold_pan.title", "Direct Deposit");
-        add("rankine.advancements.story.make_steel_gold_pan.description", "Make a Steel Gold Pan to sieve alluvium and black sand");
-        add("rankine.advancements.story.make_nickel_superalloy.title", "Diving Checklist");
-        add("rankine.advancements.story.make_nickel_superalloy.description", "Make every available type of Nickel Superalloy tool");
-        add("rankine.advancements.story.make_stainless_steel.title", "Always Prepared");
-        add("rankine.advancements.story.make_stainless_steel.description", "Make every available type of Stainless Steel tool");
-        add("rankine.advancements.story.make_tungsten_heavy_alloy.title", "Bound to the Fire");
-        add("rankine.advancements.story.make_tungsten_heavy_alloy.description", "Make every available type of Tungsten Heavy Alloy tool");
-        add("rankine.advancements.story.make_cobalt_superalloy.title", "Lasting Impression");
-        add("rankine.advancements.story.make_cobalt_superalloy.description", "Make every available type of Cobalt Superalloy tool");
-        add("rankine.advancements.story.make_element_transmuter.title", "Fishy Science");
-        add("rankine.advancements.story.make_element_transmuter.description", "Create an Element Transmuter); a substance from otherworldly materials that can extract elements");
-        add("rankine.advancements.story.make_power_cell.title", "Fully Charged");
-        add("rankine.advancements.story.make_power_cell.description", "Make any power cell for use in advanced machines");
-        add("rankine.advancements.story.make_electromagnet.title", "Moving Metals");
-        add("rankine.advancements.story.make_electromagnet.description", "Make any type of Electromagnet Block");
-        add("rankine.advancements.story.make_gyratory_crusher.title", "Pressing Issue");
-        add("rankine.advancements.story.make_gyratory_crusher.description", "Make a Gyratory Crusher to automate crushing further");
-        add("rankine.advancements.story.make_rankine_box.title", "Atomic Dissonance");
-        add("rankine.advancements.story.make_rankine_box.description", "Make a Rankine Box to transmute elements");
-        add("rankine.advancements.story.make_laser_quarry.title", "Excavation Invigoration");
-        add("rankine.advancements.story.make_laser_quarry.description", "Construct a Laser Quarry to mine out large chunks of the world");
-        add("rankine.advancements.story.make_thorium_arrow.title", "Sounds of Thunder");
-        add("rankine.advancements.story.make_thorium_arrow.description", "Make Thorium Arrows to control the power of lightning with your bow");
-        add("rankine.advancements.story.get_pendant_template_title", "Secret Plan");
-        add("rankine.advancements.story.get_pendant_template_description", "Obtain a pendant template");
-        add("rankine.advancements.story.make_pendants.title", "Hidden Power");
-        add("rankine.advancements.story.make_pendants.description", "Make all of the 6 pendants");
-        add("rankine.advancements.story.support.title", "We support Patchouli and JEI!");
-        add("rankine.advancements.story.support.description", "Be sure to download these mods if you want more information!");
+        add("rankine.advancements.story.make_quicklime.title", "Limecraft");
+        add("rankine.advancements.story.make_quicklime.description", "Produce quicklime from combusting limestone with the beehive oven");
+        add("rankine.advancements.story.craft_crucible.title", "Refractory Factory");
+        add("rankine.advancements.story.craft_crucible.description", "Construct a crucible to form steel");
+        add("rankine.advancements.story.make_steel.title", "Steel Yourself");
+        add("rankine.advancements.story.make_steel.description", "Make Steel Alloy by using the Crucible or the Induction Furnace");
+        add("rankine.advancements.story.craft_brigandine_armor.title", "Plate Up");
+        add("rankine.advancements.story.craft_brigandine_armor.description", "Make a full set of Brigandine Armor");
+        add("rankine.advancements.story.craft_evaporation_tower.title", "Water Extraction");
+        add("rankine.advancements.story.craft_evaporation_tower.description", "Construct an Evaporation Tower to generate resources from water in different biomes");
+        add("rankine.advancements.story.craft_piston_crusher.title", "Automatic Labor");
+        add("rankine.advancements.story.craft_piston_crusher.description", "Make a piston crusher to automate crushing");
+        add("rankine.advancements.story.craft_power_cell.title", "Fully Charged");
+        add("rankine.advancements.story.craft_power_cell.description", "Make any power cell for use in advanced machines");
+        add("rankine.advancements.story.craft_electromagnet.title", "Moving Metals");
+        add("rankine.advancements.story.craft_electromagnet.description", "Make any type of Electromagnet Block");
+        add("rankine.advancements.story.craft_gyratory_crusher.title", "Pressing Issue");
+        add("rankine.advancements.story.craft_gyratory_crusher.description", "Make a Gyratory Crusher to automate crushing further");
+        add("rankine.advancements.story.craft_induction_furnace.title", "Heating Up");
+        add("rankine.advancements.story.craft_induction_furnace.description", "Make an Induction Furnace for more advanced alloys");
+        add("rankine.advancements.story.craft_tree_tap.title", "Flowing Phloem");
+        add("rankine.advancements.story.craft_tree_tap.description", "Make a tree tap to begin extracting liquids from trees");
+        add("rankine.advancements.story.craft_bandage.title", "Quick Healing");
+        add("rankine.advancements.story.craft_bandage.description", "Heal some minor damage with a bandage");
+        add("rankine.advancements.story.craft_trampoline.title", "Boing!");
+        add("rankine.advancements.story.craft_trampoline.description", "Make a trampoline to launch high into the air");
+        add("rankine.advancements.story.craft_herbicide.title", "Weedkiller");
+        add("rankine.advancements.story.craft_herbicide.description", "Produce herbicide from juglone to clear patches of grass and other plants");
+        add("rankine.advancements.story.get_meteoric_iron.title", "Iron from Space");
+        add("rankine.advancements.story.get_meteoric_iron.description", "Find a meteorite and crush the ore in it to get meteoric iron");
+        add("rankine.advancements.story.get_ironstone.title", "Iron in the Rough");
+        add("rankine.advancements.story.get_ironstone.description", "Find ironstone under the sands of a desert or mesa");
+        add("rankine.advancements.story.get_bog_iron.title", "Iron in the Flood");
+        add("rankine.advancements.story.get_bog_iron.description", "Find Bog Iron submerged in a swamp");
+        add("rankine.advancements.story.craft_element_indexer.title", "Elementary");
+        add("rankine.advancements.story.craft_element_indexer.description", "Use a device to examine element properties");
+
+
+
+
+
+
+
+        add("rankine.advancements.story.get_bronze_tools.title", "Timing is Everything");
+        add("rankine.advancements.story.get_bronze_tools.description", "Make a Pewter, Colored Gold, or Bronze Hammer to begin crushing ores and stones");
+        add("rankine.advancements.story.get_crowbar.title", "Lever Action");
+        add("rankine.advancements.story.get_crowbar.description", "Make a Crowbar to manipulate blocks");
+        add("rankine.advancements.story.craft_pulp.title", "Crushed to a Pulp");
+        add("rankine.advancements.story.craft_pulp.description", "Make pulp from crushed logs");
+        add("rankine.advancements.story.craft_quartz.title", "Overworld Quartz");
+        add("rankine.advancements.story.craft_quartz.description", "Find or craft quartz by crushing stones");
+        add("rankine.advancements.story.craft_glass_cutter.title", "Transparent Carving");
+        add("rankine.advancements.story.craft_glass_cutter.description", "Make a glass cutter to minimize losses");
+        add("rankine.advancements.story.craft_roman_concrete.title", "Roaming like the Romans");
+        add("rankine.advancements.story.craft_roman_concrete.description", "Make roman concrete from pozzolanic mortar");
+        add("rankine.advancements.story.craft_nickel_superalloy.title", "Diving Checklist");
+        add("rankine.advancements.story.craft_nickel_superalloy.description", "Make every available type of Nickel Superalloy tool");
+        add("rankine.advancements.story.craft_stainless_steel.title", "Always Prepared");
+        add("rankine.advancements.story.craft_stainless_steel.description", "Make every available type of Stainless Steel tool");
+        add("rankine.advancements.story.craft_tungsten_heavy_alloy.title", "Bound to the Fire");
+        add("rankine.advancements.story.craft_tungsten_heavy_alloy.description", "Make every available type of Tungsten Heavy Alloy tool");
+        add("rankine.advancements.story.craft_cobalt_superalloy.title", "Lasting Impression");
+        add("rankine.advancements.story.craft_cobalt_superalloy.description", "Make every available type of Cobalt Superalloy tool");
+        add("rankine.advancements.story.craft_laser_quarry.title", "Excavation Invigoration");
+        add("rankine.advancements.story.craft_laser_quarry.description", "Construct a Laser Quarry to mine out large chunks of the world");
+        add("rankine.advancements.story.craft_thorium_arrow.title", "Sounds of Thunder");
+        add("rankine.advancements.story.craft_thorium_arrow.description", "Make Thorium Arrows to control the power of lightning with your bow");
+
+
+
         add("rankine.advancements.challenges.root.title", "Project Rankine Challenges");
         add("rankine.advancements.challenges.root.description", "Complete your understanding of the changed world");
         add("rankine.advancements.challenges.rock_collector.title", "We Have the Rockiest Rocks");
         add("rankine.advancements.challenges.rock_collector.description", "Collect all the new types of rocks");
+        add("rankine.advancements.challenges.dirt_collector.title", "We Have the Dirtiest Dirt");
+        add("rankine.advancements.challenges.dirt_collector.description", "Collect all the new types of soil, not dirt");
         add("rankine.advancements.challenges.element_collector.title", "Periodic Collector");
         add("rankine.advancements.challenges.element_collector.description", "Collect every element in the Periodic Table");
         add("rankine.advancements.challenges.make_all_power_cells.title", "Energized");
         add("rankine.advancements.challenges.make_all_power_cells.description", "Make every type of Power Cell");
-        add("rankine.advancements.challenges.pendant_collector.title", "On the Other Hand");
-        add("rankine.advancements.challenges.pendant_collector.description", "Make every type of Colored Gold Pendant");
-        add("rankine.advancements.story.make_element_indexer.title", "Elementary");
-        add("rankine.advancements.story.make_element_indexer.description", "Use a device to examine element properties");
+        add("rankine.advancements.challenges.totem_collector.title", "On the Other Hand");
+        add("rankine.advancements.challenges.totem_collector.description", "Make every type of Totem");
         add("rankine.advancements.challenges.alloy_collector.title", "Worldmoulder");
         add("rankine.advancements.challenges.alloy_collector.description", "Create all of the different types of alloys");
         add("rankine.advancements.challenges.bronze_harvest.title", "Skipping Stones");
@@ -828,6 +835,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.challenges.geode_collector.title", "Gifts from the Earth");
         add("rankine.advancements.challenges.geode_collector.description", "Find all of the different types of geodes");
 
+
+        //SUBTITLES
         add("rankine.subtitle.shulker_gas_vacuum_absorb", "Shulker Gas Vacuum absorb");
         add("rankine.subtitle.shulker_gas_vacuum_release", "Shulker Gas Vacuum release");
     }

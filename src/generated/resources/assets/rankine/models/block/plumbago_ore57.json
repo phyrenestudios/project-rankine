@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/sommanite",
+    "background": "rankine:block/post_perovskite",
     "overlay": "rankine:block/plumbago_ore"
   }
 }

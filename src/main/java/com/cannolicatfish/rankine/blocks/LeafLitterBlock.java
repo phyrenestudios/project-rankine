@@ -53,7 +53,6 @@ public class LeafLitterBlock extends FallingBlock {
         return true;
     }
 
-
     @Override
     public boolean isReplaceable(BlockState state, Fluid fluid) {
         return super.isReplaceable(state, fluid);

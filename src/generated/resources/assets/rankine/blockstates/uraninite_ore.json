@@ -197,6 +197,15 @@
     },
     "type=65": {
       "model": "rankine:block/uraninite_ore65"
+    },
+    "type=66": {
+      "model": "rankine:block/uraninite_ore66"
+    },
+    "type=67": {
+      "model": "rankine:block/uraninite_ore67"
+    },
+    "type=68": {
+      "model": "rankine:block/uraninite_ore68"
     }
   }
 }

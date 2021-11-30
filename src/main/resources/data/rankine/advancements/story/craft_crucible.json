@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/craft_high_refractory_bricks",
+  "display": {
+    "icon": {
+      "item": "rankine:crucible"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_crucible.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_crucible.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:crucible"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_gas_tube",
+  "textures": {
+    "gas": "rankine:block/helium_gas_block"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "parent": "rankine:story/craft_alloy_furnace",
+  "display": {
+    "icon": {
+      "item": "rankine:alnico_magnet"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_magnet.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_magnet.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:alnico_magnet"
+          }
+        ]
+      }
+    },
+    "1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rare_earth_magnet"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0",
+      "1"
+    ]
+  ]
+}

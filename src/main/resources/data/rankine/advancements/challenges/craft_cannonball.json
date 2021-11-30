@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/rankine_challenges",
+  "display": {
+    "icon": {
+      "item": "rankine:cannonball"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_cannonball.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_cannonball.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cannonball"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "rankine:block/leaves_age5",
+  "textures": {
+    "leaves": "rankine:block/juniper_leaves",
+    "snowy_overlay": "rankine:block/snowy_leaves_overlay2",
+    "snowy_top_overlay": "rankine:block/snowy_leaves_top_overlay2"
+  }
+}

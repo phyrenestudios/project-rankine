@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:gabbro"
+    "item": "rankine:kimberlite"
   },
   "output1": {
     "item": "minecraft:cobblestone",

@@ -2,7 +2,7 @@
   "type": "rankine:sluicing",
   "total": 4,
   "input": {
-    "item": "rankine:sandy_loam"
+    "item": "rankine:sandy_clay_loam"
   },
   "tool": {
     "tag": "rankine:gold_pans"

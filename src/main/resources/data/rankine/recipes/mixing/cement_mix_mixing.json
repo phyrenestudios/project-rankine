@@ -8,7 +8,7 @@
     "fluid": "minecraft:water"
   },
   "input1": {
-    "tag": "minecraft:sand",
+    "tag": "rankine:construction_sand",
     "group": 0
   },
   "input2": {
@@ -44,6 +44,10 @@
   },
   "input9": {
     "item": "minecraft:flint"
+  },
+  "input10": {
+    "tag": "forge:dirt",
+    "mixMod": 20
   },
   "output1": {
     "item": "rankine:cement_mix"

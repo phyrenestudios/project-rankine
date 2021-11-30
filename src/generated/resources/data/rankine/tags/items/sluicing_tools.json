@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#rankine:gold_pans"
+    "#rankine:gold_pans",
+    "#forge:hammers"
   ]
 }

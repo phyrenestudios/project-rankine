@@ -1,13 +1,16 @@
 {
   "variants": {
-    "polish_type=normal": {
+    "mode=0": {
       "model": "rankine:block/polished_arkose"
     },
-    "polish_type=offset": {
+    "mode=1": {
       "model": "rankine:block/polished_arkose_offset"
     },
-    "polish_type=vertical_offset": {
-      "model": "rankine:block/polished_arkose_vertical_offset"
+    "mode=2": {
+      "model": "rankine:block/polished_arkose_offset_ns"
+    },
+    "mode=3": {
+      "model": "rankine:block/polished_arkose_offset_ew"
     }
   }
 }

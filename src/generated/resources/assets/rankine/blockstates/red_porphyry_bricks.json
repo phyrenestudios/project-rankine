@@ -1,10 +1,16 @@
 {
   "variants": {
-    "brick_type=large": {
+    "mode=0": {
       "model": "rankine:block/red_porphyry_bricks"
     },
-    "brick_type=vertical_large": {
+    "mode=1": {
       "model": "rankine:block/red_porphyry_bricks_vertical"
+    },
+    "mode=2": {
+      "model": "rankine:block/red_porphyry_bricks"
+    },
+    "mode=3": {
+      "model": "rankine:block/red_porphyry_bricks"
     }
   }
 }

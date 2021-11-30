@@ -1,10 +1,8 @@
 package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
-import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
@@ -95,12 +93,10 @@ public class AlloyFurnaceBlock extends Block {
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.matchesBlock(newState.getBlock())) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
-            if (tileentity instanceof AlloyFurnaceTile) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (AlloyFurnaceTile)tileentity);
-                //((AlloyFurnaceTile)tileentity).grantStoredRecipeExperience(worldIn, Vector3d.copyCentered(pos));
+            if (tileentity instanceof MixingBarrelTile) {
+                InventoryHelper.dropInventoryItems(worldIn, pos, (MixingBarrelTile)tileentity);
                 worldIn.updateComparatorOutputLevel(pos, this);
             }
-
             super.onReplaced(state, worldIn, pos, newState, isMoving);
         }
     }
@@ -114,7 +110,7 @@ public class AlloyFurnaceBlock extends Block {
     public boolean eventReceived(BlockState state, World worldIn, BlockPos pos, int id, int param) {
         super.eventReceived(state, worldIn, pos, id, param);
         TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity == null ? false : tileentity.receiveClientEvent(id, param);
+        return tileentity != null && tileentity.receiveClientEvent(id, param);
     }
 
     @Override

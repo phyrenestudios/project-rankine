@@ -87,6 +87,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
 
         for (Block blk : Arrays.asList(
                 RankineBlocks.SOD_BLOCK.get(),
+                RankineBlocks.COB.get(),
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
                 RankineBlocks.REACTION_CHAMBER_CORE.get(),
                 RankineBlocks.CHARCOAL_PIT.get(),

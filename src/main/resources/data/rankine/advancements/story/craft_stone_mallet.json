@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/get_cobblestone",
+  "display": {
+    "icon": {
+      "item": "rankine:stone_mallet"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_stone_mallet.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_stone_mallet.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:stone_mallet"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

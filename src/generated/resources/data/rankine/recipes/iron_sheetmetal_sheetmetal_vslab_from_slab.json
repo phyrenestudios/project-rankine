@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "sheetmetal_vslab_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:iron_sheetmetal_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:iron_sheetmetal_vertical_slab"
+  }
+}

@@ -1,7 +1,38 @@
 {
   "variants": {
-    "": {
-      "model": "rankine:block/eastern_hemlock_leaves"
-    }
+    "age=0": {
+      "model": "rankine:block/eastern_hemlock_leavesage0"
+    },
+    "age=1": {
+      "model": "rankine:block/eastern_hemlock_leavesage1"
+    },
+    "age=2": {
+      "model": "rankine:block/eastern_hemlock_leavesage2"
+    },
+    "age=3": {
+      "model": "rankine:block/eastern_hemlock_leavesage3"
+    },
+    "age=4": [
+      {
+        "model": "rankine:block/eastern_hemlock_leavessnowy0"
+      },
+      {
+        "model": "rankine:block/eastern_hemlock_leavessnowy1"
+      },
+      {
+        "model": "rankine:block/eastern_hemlock_leavessnowy2"
+      }
+    ],
+    "age=5": [
+      {
+        "model": "rankine:block/eastern_hemlock_leavessnowy_top0"
+      },
+      {
+        "model": "rankine:block/eastern_hemlock_leavessnowy_top1"
+      },
+      {
+        "model": "rankine:block/eastern_hemlock_leavessnowy_top2"
+      }
+    ]
   }
 }

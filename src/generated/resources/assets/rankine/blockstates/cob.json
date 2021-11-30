@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/cob"
+      },
+      {
+        "model": "rankine:block/cob",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/cob",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/cob",
+        "y": 270
+      }
+    ]
+  }
+}

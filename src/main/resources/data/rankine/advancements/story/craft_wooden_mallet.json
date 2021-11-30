@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/rankine",
+  "display": {
+    "icon": {
+      "item": "rankine:wooden_mallet"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_wooden_mallet.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_wooden_mallet.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:wooden_mallet"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

@@ -8,7 +8,6 @@ import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.gascondenser.GasCondensorScreen;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
-import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelContainer;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelScreen;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
@@ -111,6 +110,7 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_VERTICAL_SLAB.get(),
 
+                RankineBlocks.COB.get(),
                 RankineBlocks.CORN_STALK.get(),
                 RankineBlocks.SHORT_GRASS.get(),
                 RankineBlocks.GWIHABAITE_CRYSTAL.get(),
@@ -132,6 +132,8 @@ public class ClientProxy implements IProxy {
         addTranslucent(RankineLists.GAS_BLOCKS);
         addTranslucent(RankineLists.LIGHTNING_GLASSES);
         addTranslucent(Arrays.asList(
+                RankineBlocks.HELIUM_GAS_TUBE.get(),
+
                 RankineBlocks.HYDROGEN_GAS_BLOCK.get(),
                 RankineBlocks.HELIUM_GAS_BLOCK.get(),
                 RankineBlocks.NITROGEN_GAS_BLOCK.get(),

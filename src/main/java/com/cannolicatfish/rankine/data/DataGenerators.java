@@ -1,10 +1,10 @@
 package com.cannolicatfish.rankine.data;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
+
+import com.cannolicatfish.rankine.ProjectRankine;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
-import com.cannolicatfish.rankine.ProjectRankine;
 
 @Mod.EventBusSubscriber(modid = ProjectRankine.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {
@@ -20,6 +20,7 @@ public final class DataGenerators {
             gen.addProvider(new RankineEntityTypeTagsProvider(gen, event.getExistingFileHelper()));
 
             gen.addProvider(new RankineBlockLootTables(gen));
+            //gen.addProvider(new RankineAdvancementProvider(gen));
             gen.addProvider(new RankineRecipesProvider(gen));
 
         }

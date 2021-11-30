@@ -32,6 +32,7 @@ public final class RankineTags {
     public static final class Blocks {
         //MOD
         public static final ITag.INamedTag<Block> NUGGET_STONES = modBlock("nugget_stones");
+        public static final ITag.INamedTag<Block> CONSTRUCTION_SAND = modBlock("construction_sand");
         public static final ITag.INamedTag<Block> GEODES = modBlock("geodes");
         public static final ITag.INamedTag<Block> LEDS = modBlock("leds");
         public static final ITag.INamedTag<Block> LEAF_LITTERS = modBlock("leaf_litters");
@@ -372,6 +373,9 @@ public final class RankineTags {
     public static final class Items {
         public static final ITag.INamedTag<Item> GEODES = modItem("geodes");
         public static final ITag.INamedTag<Item> LEDS = modItem("leds");
+
+        public static final ITag.INamedTag<Item> CONSTRUCTION_SAND = modItem("construction_sand");
+
         public static final ITag.INamedTag<Item> CEDAR_LOGS = modItem("cedar_logs");
         public static final ITag.INamedTag<Item> PINYON_PINE_LOGS = modItem("pinyon_pine_logs");
         public static final ITag.INamedTag<Item> JUNIPER_LOGS = modItem("juniper_logs");
@@ -932,6 +936,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> PURPLE_GOLD_TOOLS = forgeItem("purple_gold_tools");
         public static final ITag.INamedTag<Item> BLUE_GOLD_TOOLS = forgeItem("blue_gold_tools");
         public static final ITag.INamedTag<Item> BLACK_GOLD_TOOLS = forgeItem("black_gold_tools");
+        public static final ITag.INamedTag<Item> OSMIRIDIUM_TOOLS = forgeItem("osmiridium_tools");
 
         public static final ITag.INamedTag<Item> AXES = forgeItem("axes");
         public static final ITag.INamedTag<Item> PICKAXES = forgeItem("pickaxes");

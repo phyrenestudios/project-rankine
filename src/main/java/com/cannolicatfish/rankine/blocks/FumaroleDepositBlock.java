@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
@@ -21,8 +22,8 @@ public class FumaroleDepositBlock extends Block {
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (random.nextFloat()<0.1 && worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR)) {
-            worldIn.setBlockState(pos.up(), RankineBlocks.GWIHABAITE_CRYSTAL.get().getDefaultState(),2);
+        if (random.nextFloat()<0.1 && worldIn.getBlockState(pos.down()).matchesBlock(Blocks.AIR)) {
+            worldIn.setBlockState(pos.down(), RankineBlocks.GWIHABAITE_CRYSTAL.get().getDefaultState().with(GwihabaiteBlock.FACING, Direction.DOWN),2);
         }
 
         super.randomTick(state, worldIn, pos, random);

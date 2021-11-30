@@ -1,8 +1,5 @@
 package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
-import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
-import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -30,7 +27,6 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nullable;
-import java.util.Optional;
 import java.util.Random;
 
 public class FusionFurnaceBlock extends Block {
@@ -124,10 +120,8 @@ public class FusionFurnaceBlock extends Block {
             TileEntity tileentity = worldIn.getTileEntity(pos);
             if (tileentity instanceof FusionFurnaceTile) {
                 InventoryHelper.dropInventoryItems(worldIn, pos, (FusionFurnaceTile)tileentity);
-                //((InductionFurnaceTile)tileentity).grantStoredRecipeExperience(worldIn, Vector3d.copyCentered(pos));
                 worldIn.updateComparatorOutputLevel(pos, this);
             }
-
             super.onReplaced(state, worldIn, pos, newState, isMoving);
         }
     }

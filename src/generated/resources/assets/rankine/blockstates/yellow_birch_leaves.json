@@ -1,7 +1,38 @@
 {
   "variants": {
-    "": {
-      "model": "rankine:block/yellow_birch_leaves"
-    }
+    "age=0": {
+      "model": "rankine:block/yellow_birch_leavesage0"
+    },
+    "age=1": {
+      "model": "rankine:block/yellow_birch_leavesage1"
+    },
+    "age=2": {
+      "model": "rankine:block/yellow_birch_leavesage2"
+    },
+    "age=3": {
+      "model": "rankine:block/yellow_birch_leavesage3"
+    },
+    "age=4": [
+      {
+        "model": "rankine:block/yellow_birch_leavessnowy0"
+      },
+      {
+        "model": "rankine:block/yellow_birch_leavessnowy1"
+      },
+      {
+        "model": "rankine:block/yellow_birch_leavessnowy2"
+      }
+    ],
+    "age=5": [
+      {
+        "model": "rankine:block/yellow_birch_leavessnowy_top0"
+      },
+      {
+        "model": "rankine:block/yellow_birch_leavessnowy_top1"
+      },
+      {
+        "model": "rankine:block/yellow_birch_leavessnowy_top2"
+      }
+    ]
   }
 }

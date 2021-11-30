@@ -33,9 +33,9 @@ public class EndMeteoriteFeature extends Feature<NoFeatureConfig> {
             BlockPos POS = new BlockPos(randX, randY, randZ);
 
 
-            int I1 = rand.nextInt(100)+2;
-            int I2 = rand.nextInt(100)+2;
-            int I3 = rand.nextInt(100)+2;
+            int I1 = rand.nextInt(80)+20;
+            int I2 = rand.nextInt(80)+20;
+            int I3 = rand.nextInt(80)+20;
             double d1 = 1/((double) I1);
             double d2 = 1/((double) I2);
             double d3 = 1/((double) I3);
@@ -59,7 +59,7 @@ public class EndMeteoriteFeature extends Feature<NoFeatureConfig> {
                             this.setBlockState(reader, blockpos1, RankineBlocks.LONSDALEITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
                         } else if (chance < 0.07) {
                             this.setBlockState(reader, blockpos1, ORE.with(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
-                        } else if (chance < 0.2) {
+                        } else if (chance < 0.3) {
                             this.setBlockState(reader, blockpos1, RankineBlocks.METEORIC_ICE.get().getDefaultState());
                         } else {
                             this.setBlockState(reader, blockpos1, BLOCK);
@@ -72,7 +72,7 @@ public class EndMeteoriteFeature extends Feature<NoFeatureConfig> {
                             this.setBlockState(reader, blockpos1, RankineBlocks.LONSDALEITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
                         } else if (chance < 0.07) {
                             this.setBlockState(reader, blockpos1, ORE.with(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
-                        } else if (chance < 0.2) {
+                        } else if (chance < 0.3) {
                             this.setBlockState(reader, blockpos1, TEKTITE);
                         } else {
                             this.setBlockState(reader, blockpos1, BLOCK);

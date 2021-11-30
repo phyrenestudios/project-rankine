@@ -16,7 +16,17 @@
     "background": "rankine:textures/gui/advancements/backgrounds/refractory.png"
   },
   "criteria": {
-    "get_flint": {
+    "2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:flint"
+          }
+        ]
+      }
+    },
+    "0": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -26,7 +36,7 @@
         ]
       }
     },
-    "crafting_table": {
+    "1": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -39,8 +49,9 @@
   },
   "requirements": [
     [
-      "get_flint",
-      "crafting_table"
+      "0",
+      "1",
+      "2"
     ]
   ]
 }

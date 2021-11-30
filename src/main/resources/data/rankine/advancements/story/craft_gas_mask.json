@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/craft_tree_tap",
+  "display": {
+    "icon": {
+      "item": "rankine:gas_mask"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_gas_mask.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_gas_mask.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:gas_mask"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}
