@@ -33,7 +33,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         //food items
-        for (Item item : Stream.of(RankineLists.JAMS,RankineLists.SEEDS,RankineLists.BREADS,RankineLists.GRAINS,RankineLists.GAS_BOTTLES,RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Item item : Stream.of(RankineLists.SEEDS,RankineLists.BREADS,RankineLists.GRAINS,RankineLists.GAS_BOTTLES,RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(item);
         }
 
@@ -256,7 +256,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.TOTEM_OF_TIMESAVING.get());
         basicItem(RankineItems.ELEMENT_INDEXER.get());
         basicItem(RankineItems.PIA.get());
-        basicItem(RankineItems.SHULKER_GAS_VACUUM.get());
         basicItem(RankineItems.BANDAGE.get());
         basicItem(RankineItems.GAS_MASK.get());
         basicItem(RankineItems.SANDALS.get());

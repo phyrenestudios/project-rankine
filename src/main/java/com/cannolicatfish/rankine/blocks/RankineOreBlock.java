@@ -87,7 +87,6 @@ public class RankineOreBlock extends Block {
                 }
                 count++;
             }
-            this.hlpath.add(s.toString());
             s.append("HL");
             this.hlpath.add(s.toString());
         }

@@ -123,7 +123,13 @@ public class MixingRecipe implements IRecipe<IInventory> {
             if (workingIndex == -1) {
                 return ItemStack.EMPTY;
             }
-            output.grow(this.getCountMod().get(workingIndex));
+            int countModCurrent = this.getCountMod().get(workingIndex);
+            if (countModCurrent < 0) {
+                output.shrink(-countModCurrent);
+            } else if (countModCurrent > 0) {
+                output.grow(countModCurrent);
+            }
+
             groupsUsed.add(this.getIngredientGroups().get(workingIndex));
             if (!(this.getIngredientGroups().get(workingIndex) == -1) && !(Collections.frequency(groupsUsed,this.getIngredientGroups().get(workingIndex)) <= 1)) {
                 return ItemStack.EMPTY;

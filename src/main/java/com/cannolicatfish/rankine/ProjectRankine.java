@@ -52,6 +52,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
@@ -292,6 +293,8 @@ public class ProjectRankine {
             event.getRegistry().register(TreetappingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"treetapping"));
             event.getRegistry().register(AirDistillationRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"air_distillation"));
             event.getRegistry().register(MixingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"mixing"));
+
+            event.getRegistry().register(JamRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crafting_special_jam"));
         }
 
         @SubscribeEvent

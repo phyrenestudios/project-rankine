@@ -2,7 +2,7 @@
   "type": "rankine:sluicing",
   "total": 9,
   "input": {
-    "item": "rankine:silty_clay_grass_path"
+    "item": "rankine:clay_loam_grass_path"
   },
   "tool": {
     "tag": "rankine:gold_pans"
@@ -13,15 +13,15 @@
   },
   "output2": {
     "item": "minecraft:sand",
-    "weight": 1.125
+    "weight": 4.875
   },
   "output3": {
     "item": "minecraft:clay_ball",
-    "weight": 7.125
+    "weight": 5.25
   },
   "output4": {
     "item": "rankine:silt",
-    "weight": 6.75
+    "weight": 4.875
   },
   "output5": {
     "item": "rankine:plant_fiber",

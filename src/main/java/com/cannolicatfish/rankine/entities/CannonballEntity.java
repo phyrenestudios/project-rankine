@@ -23,8 +23,8 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.network.NetworkHooks;
-import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(
         value = Dist.CLIENT,
@@ -42,12 +42,16 @@ public class CannonballEntity extends DamagingProjectileEntity implements IRende
         super(RankineEntityTypes.CANNONBALL, shooter, accelX, accelY, accelZ, worldIn);
     }
 
-    @OnlyIn(Dist.CLIENT)
     public CannonballEntity(World worldIn, double x, double y, double z, double accelX, double accelY, double accelZ) {
         super(RankineEntityTypes.CANNONBALL, x, y, z, accelX, accelY, accelZ, worldIn);
     }
 
-    public @NotNull IPacket<?> createSpawnPacket() {
+    @OnlyIn(Dist.CLIENT)
+    public CannonballEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world, EntityType<CannonballEntity> e) {
+        super(e, world);
+    }
+
+    public IPacket<?> createSpawnPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

@@ -467,6 +467,7 @@ public class RankineLangProvider extends LanguageProvider {
         //Alloy Rods
         add("item.rankine.alloy_rod_steel", "Steel Rod");
         add("item.rankine.alloy_rod_cast_iron", "Cast Iron Rod");
+        add("item.rankine.alloy_rod_cupronickel", "Cupronickel Rod");
         add("item.rankine.alloy_rod_ferrocerium", "Ferrocerium Rod");
         //Alloy Wires
         add("item.rankine.alloy_wire_cupronickel", "Cupronickel Wire");

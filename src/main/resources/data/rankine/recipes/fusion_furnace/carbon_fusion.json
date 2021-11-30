@@ -1,0 +1,22 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "forge:nuggets/galinstan"
+  },
+  "input2": {
+    "tag": "forge:nuggets/cerium"
+  },
+  "result1": {
+    "item": "rankine:carbon_nugget"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water"
+  },
+  "gasInput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}
