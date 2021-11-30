@@ -3218,7 +3218,7 @@ public class RankineItems {
     public static final RegistryObject<Item> ENDOSITUM_BLOCK = REGISTRY.register("endositum_block", () -> new BlockItem(RankineBlocks.ENDOSITUM_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
 
 
-    public static final RegistryObject<Item> HELIUM_GAS_TUBE = REGISTRY.register("hydrogen_gas_tube", () -> new BlockItem(RankineBlocks.HELIUM_GAS_TUBE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> HELIUM_GAS_TUBE = REGISTRY.register("helium_gas_tube", () -> new BlockItem(RankineBlocks.HELIUM_GAS_TUBE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> HYDROGEN_GAS_BLOCK = REGISTRY.register("hydrogen_gas_block", () -> new BlockItem(RankineBlocks.HYDROGEN_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> HELIUM_GAS_BLOCK = REGISTRY.register("helium_gas_block", () -> new BlockItem(RankineBlocks.HELIUM_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> NITROGEN_GAS_BLOCK = REGISTRY.register("nitrogen_gas_block", () -> new BlockItem(RankineBlocks.NITROGEN_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));

@@ -1,14 +1,7 @@
 package com.cannolicatfish.rankine.blocks.fluiddrain;
 
-import com.cannolicatfish.rankine.blocks.states.TapBarrelFluids;
-import com.cannolicatfish.rankine.blocks.tap.TapBarrelBlock;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.FLUID_DRAIN_TILE;
 

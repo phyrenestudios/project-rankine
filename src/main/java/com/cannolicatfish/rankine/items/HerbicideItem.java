@@ -58,6 +58,7 @@ public class HerbicideItem extends Item {
 
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void spawnParticles(World worldIn, BlockPos pos) {
         Random random = worldIn.getRandom();
         BasicParticleType basicparticletype = ParticleTypes.ASH;

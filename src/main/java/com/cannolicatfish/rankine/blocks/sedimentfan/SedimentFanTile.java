@@ -2,22 +2,32 @@ package com.cannolicatfish.rankine.blocks.sedimentfan;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineSoundEvents;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.util.RockGeneratorUtils;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.BlockParticleData;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.SEDIMENT_FAN_TILE;
 
@@ -28,8 +38,7 @@ public class SedimentFanTile extends TileEntity implements ITickableTileEntity {
     }
 
     public void tick() {
-        if (!world.isAreaLoaded(pos, 1)) return;
-        System.out.println("AAAAAAAAAAAA");
+        if (!world.isAreaLoaded(pos, 1) || world.getDayTime() % 4 != 0) return;
         List<Fluid> adjPos = Arrays.asList(world.getFluidState(pos.south().up()).getFluid(),world.getFluidState(pos.north().up()).getFluid(), world.getFluidState(pos.west().up()).getFluid(),world.getFluidState(pos.east().up()).getFluid());
         if (world.getFluidState(pos.up()).isSource()) {
             Direction dir = null;
@@ -67,13 +76,26 @@ public class SedimentFanTile extends TileEntity implements ITickableTileEntity {
                         ItemStack output = recipe.getRecipeOutput();
                         if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                             world.setBlockState(end, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
+                            world.playSound(null,end, SoundEvents.BLOCK_SAND_HIT, SoundCategory.BLOCKS,1.0f,1.0f);
+                            spawnParticles(world,end.up());
                         }
                     } else {
                         world.setBlockState(end, RankineBlocks.BRECCIA.get().getDefaultState(), 2);
+                        world.playSound(null,end, RankineSoundEvents.SEDIMENT_FAN_GEN.get(), SoundCategory.BLOCKS,1.0f,1.0f);
+                        spawnParticles(world,end.up());
                     }
                 }
             }
         }
     }
 
+
+    @OnlyIn(Dist.CLIENT)
+    public static void spawnParticles(World worldIn, BlockPos pos) {
+        Random random = worldIn.getRandom();
+        double d0 = (double)pos.getX() + random.nextDouble();
+        double d1 = (double)pos.getY() - 0.05D;
+        double d2 = (double)pos.getZ() + random.nextDouble();
+        worldIn.addParticle(new BlockParticleData(ParticleTypes.FALLING_DUST, Blocks.SAND.getDefaultState()), d0, d1+1, d2, 0.0D, 0.0D, 0.0D);
+    }
 }

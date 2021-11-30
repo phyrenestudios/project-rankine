@@ -2,7 +2,7 @@
   "type": "rankine:alloy_crafting",
   "pattern": [
     "RRR",
-    "  R"
+    "  B"
   ],
   "key": {
     "R": {
@@ -10,6 +10,9 @@
       "alloyRecipe": "rankine:alloying/cast_iron_alloying",
       "name": "item.rankine.alloy_rod_cast_iron",
       "color": 986895
+    },
+    "B": {
+      "item": "minecraft:bucket"
     }
   },
   "result": {

@@ -1,32 +1,22 @@
 package com.cannolicatfish.rankine.blocks.tap;
 
-import com.cannolicatfish.rankine.blocks.FloodGateBlock;
-import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
-import com.cannolicatfish.rankine.init.*;
 import net.minecraft.block.*;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.*;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
-import java.util.*;
 
 public class TreeTapBlock extends Block {
-    public static final EnumProperty<TreeTapFluids> FLUID = EnumProperty.create("fluid", TreeTapFluids.class);
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
     protected static final VoxelShape WEST_AABB = Block.makeCuboidShape(7.0D, 9.0D, 7.0D, 16.0D, 12.0D, 9.0D);
     protected static final VoxelShape EAST_AABB = Block.makeCuboidShape(0.0D, 9.0D, 7.0D, 9.0D, 12.0D, 9.0D);
@@ -37,46 +27,26 @@ public class TreeTapBlock extends Block {
     protected static final VoxelShape TAP_NORTH_AABB = Block.makeCuboidShape(4.0D, 0.0D, 5.0D, 12.0D, 13.0D, 16.0D);
     protected static final VoxelShape TAP_SOUTH_AABB = Block.makeCuboidShape(4.0D, 0.0D, 0.0D, 12.0D, 13.0D, 11.0D);
 
-    private int ticks = 0;
-
     public TreeTapBlock(AbstractBlock.Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(FLUID, TreeTapFluids.NONE).with(FACING, Direction.NORTH));
+        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        if (state.get(FLUID).equals(TreeTapFluids.NONE)) {
-            switch ((Direction) state.get(FACING)) {
-                case NORTH:
-                    return NORTH_AABB;
-                case SOUTH:
-                    return SOUTH_AABB;
-                case WEST:
-                    return WEST_AABB;
-                case EAST:
-                default:
-                    return EAST_AABB;
-            }
-        } else {
-            switch((Direction)state.get(FACING)) {
-                case NORTH:
-                    return TAP_NORTH_AABB;
-                case SOUTH:
-                    return TAP_SOUTH_AABB;
-                case WEST:
-                    return TAP_WEST_AABB;
-                case EAST:
-                default:
-                    return TAP_EAST_AABB;
-            }
+        switch(state.get(FACING)) {
+            case NORTH:
+                return TAP_NORTH_AABB;
+            case SOUTH:
+                return TAP_SOUTH_AABB;
+            case WEST:
+                return TAP_WEST_AABB;
+            case EAST:
+            default:
+                return TAP_EAST_AABB;
         }
     }
 
-    @Override
-    public boolean ticksRandomly(BlockState state) {
-        return true;
-    }
-
+    /*
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         ticks += 1;
@@ -125,7 +95,6 @@ public class TreeTapBlock extends Block {
                         worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.LAVA).with(FACING, state.get(FACING)),3);
                     }
 
-                     */
                 }
             }
             ticks = 0;
@@ -166,32 +135,7 @@ public class TreeTapBlock extends Block {
         }
     }
 
-    private boolean isTreeAlive(BlockPos pos, World worldIn) {
-        Set<BlockPos> checkedBlocks = new HashSet<>();
-        Stack<BlockPos> toCheck = new Stack<>();
 
-        toCheck.add(pos.offset(worldIn.getBlockState(pos).get(FACING).getOpposite()));
-        while (!toCheck.isEmpty()) {
-            BlockPos cp = toCheck.pop();
-            if (!checkedBlocks.contains(cp)) {
-                checkedBlocks.add(cp);
-                for (BlockPos b : BlockPos.getAllInBoxMutable(cp.add(-1,-1,-1), cp.add(1,1,1))) {
-                    BlockState target = worldIn.getBlockState(b.toImmutable());
-                   if (target.isIn(RankineTags.Blocks.TREE_LEAVES)) {
-                        if (!target.get(LeavesBlock.PERSISTENT)) {
-                            return true;
-                        }
-                    } else if (target.isIn(RankineTags.Blocks.TREE_LOGS)) {
-                        toCheck.add(b.toImmutable());
-                    }
-                }
-                if (toCheck.size() > 300) {
-                    break;
-                }
-            }
-        }
-        return false;
-    }
 
 
     @Override
@@ -241,6 +185,7 @@ public class TreeTapBlock extends Block {
 
     }
 
+    */
 
 
     private boolean canAttachTo(IBlockReader blockReader, BlockPos pos, Direction direction) {
@@ -255,7 +200,7 @@ public class TreeTapBlock extends Block {
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(FLUID, TreeTapFluids.NONE).with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+        return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
@@ -271,7 +216,7 @@ public class TreeTapBlock extends Block {
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FLUID, FACING);
+        builder.add(FACING);
     }
 
 }

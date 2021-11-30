@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "rankine:block/tree_tap",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "rankine:block/tree_tap"
+    },
+    "facing=west": {
+      "model": "rankine:block/tree_tap",
+      "y": 90
+    },
+    "facing=east": {
+      "model": "rankine:block/tree_tap",
+      "y": 270
+    }
+  }
+}

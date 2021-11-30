@@ -51,9 +51,9 @@ import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxContainer;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
 import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanBlock;
 import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
+import com.cannolicatfish.rankine.blocks.tap.TreeTapTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableBlock;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
-import com.cannolicatfish.rankine.blocks.tap.TapBarrelBlock;
 import com.cannolicatfish.rankine.blocks.tap.TapLineBlock;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
@@ -2213,7 +2213,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GAS_VENT = REGISTRY.register("gas_vent", () -> new GasVentBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CHARCOAL_PIT = REGISTRY.register("charcoal_pit", () -> new CharcoalPitBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TREE_TAP = REGISTRY.register("tree_tap", () -> new TreeTapBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0).notSolid()));
-    public static final RegistryObject<Block> TAP_BARREL = REGISTRY.register("tap_barrel", () -> new TapBarrelBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0).notSolid()));
     public static final RegistryObject<Block> TAP_LINE = REGISTRY.register("tap_line", () -> new TapLineBlock(0.125f, AbstractBlock.Properties.create(Material.MISCELLANEOUS).sound(SoundType.CLOTH).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(0.5F).harvestLevel(0).notSolid()));
 
 
@@ -2549,6 +2548,8 @@ public class RankineBlocks {
     public static TileEntityType<GasVentTile> GAS_VENT_TILE;
     @ObjectHolder("rankine:sediment_fan")
     public static TileEntityType<SedimentFanTile> SEDIMENT_FAN_TILE;
+    @ObjectHolder("rankine:tree_tap")
+    public static TileEntityType<TreeTapTile> TREE_TAP_TILE;
 
     @ObjectHolder("rankine:crucible")
     public static ContainerType<CrucibleContainer> CRUCIBLE_CONTAINER;

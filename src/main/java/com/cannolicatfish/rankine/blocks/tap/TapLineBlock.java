@@ -1,19 +1,14 @@
 package com.cannolicatfish.rankine.blocks.tap;
 
-import com.cannolicatfish.rankine.blocks.states.TapLineShapes;
-import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.google.common.collect.Maps;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -21,7 +16,6 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -116,7 +110,7 @@ public class TapLineBlock extends Block {
                 .with(EAST, block3 == this || block3 == RankineBlocks.FLOOD_GATE.get())
                 .with(SOUTH, block4 == this || block4 == RankineBlocks.FLOOD_GATE.get())
                 .with(WEST, block5 == this || block5 == RankineBlocks.FLOOD_GATE.get())
-                .with(UP, block1 == this || (block1 == RankineBlocks.TREE_TAP.get() && bs1 != RankineBlocks.TREE_TAP.get().getDefaultState().with(TreeTapBlock.FLUID, TreeTapFluids.NONE)));
+                .with(UP, block1 == this || (block1 == RankineBlocks.TREE_TAP.get()));
     }
 
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
@@ -128,7 +122,7 @@ public class TapLineBlock extends Block {
             Block fsb = facingState.getBlock();
             switch (facing) {
                 case UP:
-                    flag = fsb == this || (fsb == RankineBlocks.TREE_TAP.get() && facingState != RankineBlocks.TREE_TAP.get().getDefaultState().with(TreeTapBlock.FLUID, TreeTapFluids.NONE));
+                    flag = fsb == this || (fsb == RankineBlocks.TREE_TAP.get());
                     break;
                 case DOWN:
                 case NORTH:

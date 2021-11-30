@@ -1,6 +1,6 @@
 {
   "type": "rankine:sluicing",
-  "total": 3,
+  "total": 11,
   "input": {
     "item": "minecraft:soul_sand"
   },
@@ -9,14 +9,46 @@
   },
   "output1": {
     "item": "minecraft:sand",
-    "weight": 40
+    "weight": 120
   },
   "output2": {
     "item": "minecraft:quartz",
-    "weight": 1
+    "weight": 10
   },
   "output3": {
-    "item": "rankine:orthoclase_feldspar",
-    "weight": 4
+    "item": "rankine:pyroxene",
+    "weight": 30
+  },
+  "output4": {
+    "item": "rankine:olivine",
+    "weight": 30
+  },
+  "output5": {
+    "item": "minecraft:bone",
+    "weight": 10
+  },
+  "output6": {
+    "item": "rankine:ash",
+    "weight": 40
+  },
+  "output7": {
+    "item": "rankine:bone_ash",
+    "weight": 40
+  },
+  "output8": {
+    "item": "minecraft:nether_wart",
+    "weight": 8
+  },
+  "output9": {
+    "item": "minecraft:ghast_tear",
+    "weight": 1
+  },
+  "output10": {
+    "item": "minecraft:blaze_powder",
+    "weight": 1
+  },
+  "output11": {
+    "item": "minecraft:ender_pearl",
+    "weight": 2
   }
 }

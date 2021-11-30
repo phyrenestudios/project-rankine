@@ -51,6 +51,7 @@ public class FertilizerItem extends Item {
 
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void spawnParticles(World worldIn, BlockPos pos) {
         Random random = worldIn.getRandom();
         BasicParticleType basicparticletype = ParticleTypes.WHITE_ASH;

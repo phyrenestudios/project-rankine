@@ -10,6 +10,7 @@ import com.cannolicatfish.rankine.blocks.plants.RankineDoublePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
 import com.cannolicatfish.rankine.blocks.states.*;
+import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
@@ -523,6 +524,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         //MACHINES
         getVariantBuilder(RankineBlocks.GROUND_TAP.get())
                 .partialState().modelForState().modelFile(models().withExistingParent(RankineBlocks.GROUND_TAP.get().getRegistryName().getPath(), modLoc("block/template_ground_tap")).texture("side","block/metal_pipe")).addModel();
+        getVariantBuilder(RankineBlocks.TREE_TAP.get())
+                .forAllStates(state -> ConfiguredModel.builder().modelFile(models().getExistingFile(getBlockRSL("tree_tap"))).rotationY(((int) state.get(TreeTapBlock.FACING).getHorizontalAngle()+180)%360).build());
+
 
         //simpleBlock(RankineBlocks.LASER_QUARRY.get());
         directionalBlock(RankineBlocks.GAS_VENT.get(),models().cubeColumnHorizontal(RankineBlocks.GAS_VENT.get().getRegistryName().getPath(),getBlockRSL("gas_vent_side"),getBlockRSL("gas_vent_end")));
