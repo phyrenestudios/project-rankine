@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "rankine:block/coconut_palm_leaves"
+  }
+}

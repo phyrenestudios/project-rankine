@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.IntegerProperty;
@@ -27,7 +28,6 @@ import javax.annotation.Nullable;
 public class MixingBarrelBlock extends Block {
     //public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static IntegerProperty ANGLE = IntegerProperty.create("angle",0,3);
-    protected static final VoxelShape SHAPE = VoxelShapes.fullCube();
 
 
     public MixingBarrelBlock(Properties properties) {
@@ -41,7 +41,8 @@ public class MixingBarrelBlock extends Block {
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPE;
+        //return VoxelShapes.combineAndSimplify(makeCuboidShape(0,0,0,16,2,16),makeCuboidShape(2,2,2,14,16,14), IBooleanFunction.OR);
+        return VoxelShapes.fullCube();
     }
 
     @org.jetbrains.annotations.Nullable
@@ -83,7 +84,16 @@ public class MixingBarrelBlock extends Block {
         }
     }
 
-
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.matchesBlock(newState.getBlock())) {
+            TileEntity tileentity = worldIn.getTileEntity(pos);
+            if (tileentity instanceof MixingBarrelTile) {
+                InventoryHelper.dropInventoryItems(worldIn, pos, (MixingBarrelTile)tileentity);
+                worldIn.updateComparatorOutputLevel(pos, this);
+            }
+            super.onReplaced(state, worldIn, pos, newState, isMoving);
+        }
+    }
 
 
 }

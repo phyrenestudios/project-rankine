@@ -1,6 +1,8 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -9,7 +11,6 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -33,14 +34,10 @@ public class CrucibleBlock extends Block {
     private static final VoxelShape INSIDE = makeCuboidShape(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), VoxelShapes.or(makeCuboidShape(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), makeCuboidShape(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), IBooleanFunction.ONLY_FIRST);
 
-
     public CrucibleBlock(Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(FLUID, false));
-
     }
-
-
 
     @Override
     public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
@@ -123,7 +120,6 @@ public class CrucibleBlock extends Block {
             TileEntity tileentity = worldIn.getTileEntity(pos);
             if (tileentity instanceof CrucibleTile) {
                 InventoryHelper.dropInventoryItems(worldIn, pos, (CrucibleTile)tileentity);
-                //((CoalForgeTile)tileentity).grantStoredRecipeExperience(worldIn, Vector3d.copyCentered(pos));
                 worldIn.updateComparatorOutputLevel(pos, this);
             }
 

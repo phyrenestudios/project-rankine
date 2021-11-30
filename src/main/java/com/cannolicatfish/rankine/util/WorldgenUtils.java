@@ -42,14 +42,17 @@ public class WorldgenUtils {
     public static List<Block> GRAVELS = new ArrayList<>();
     public static List<Block> SANDS = new ArrayList<>();
     public static List<Block> SANDSTONES = new ArrayList<>();
+
     public static List<Block> ORE_STONES = new ArrayList<>();
     public static List<String> ORE_TEXTURES = new ArrayList<>();
 
+    public static List<String> ORES = Arrays.asList("minecraft:stone", "minecraft:granite", "minecraft:diorite", "minecraft:andesite", "minecraft:sandstone|minecraft:sandstone_bottom", "minecraft:red_sandstone|minecraft:red_sandstone_bottom", "minecraft:netherrack", "minecraft:blackstone", "minecraft:basalt|minecraft:basalt_top", "minecraft:end_stone", "minecraft:obsidian", "rankine:pegmatite", "rankine:gray_granite", "rankine:rhyolite", "rankine:comendite", "rankine:granodiorite", "rankine:red_porphyry", "rankine:purple_porphyry", "rankine:hornblende_andesite", "rankine:black_dacite", "rankine:red_dacite", "rankine:tholeiitic_basalt", "rankine:diabase","rankine:gabbro", "rankine:anorthosite", "rankine:peridotite", "rankine:troctolite", "rankine:kimberlite", "rankine:komatiite","rankine:shonkinite", "rankine:norite", "rankine:pyroxenite", "rankine:rose_marble", "rankine:white_marble", "rankine:gray_marble", "rankine:black_marble", "rankine:gneiss", "rankine:mica_schist", "rankine:phyllite", "rankine:slate", "rankine:quartzite","rankine:mariposite","rankine:eclogite","rankine:limestone", "rankine:dolostone", "rankine:chalk", "rankine:shale", "rankine:siltstone", "rankine:itacolumite", "rankine:arkose", "rankine:mudstone","rankine:serpentinite","rankine:eclogite", "rankine:marlstone", "rankine:blueschist", "rankine:greenschist","rankine:sommanite","rankine:post_perovskite","rankine:bridgmanham","rankine:ringwoodine","rankine:wadsleyone","rankine:honeystone", "rankine:meteorite", "rankine:frozen_meteorite", "rankine:enstatite_chondrite", "rankine:soul_sandstone|rankine:soul_sandstone_bottom", "rankine:white_sandstone|rankine:white_sandstone_bottom", "rankine:black_sandstone|rankine:black_sandstone_bottom", "rankine:desert_sandstone|rankine:desert_sandstone_bottom");
 
 
 
     public static void initOreTextures() {
-        for (String ORE : Config.MISC_WORLDGEN.ORE_STONES.get()) {
+
+        for (String ORE : ORES) {
             String[] ores = ORE.split("\\|");
             if (ores.length > 1) {
                 ORE_TEXTURES.add(ores[1]);
@@ -62,7 +65,7 @@ public class WorldgenUtils {
     }
     public static void initConfigs() {
 
-        for (String ORE : Config.MISC_WORLDGEN.ORE_STONES.get()) {
+        for (String ORE : ORES) {
             ORE_STONES.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(ORE.split("\\|")[0])));
         }
 
@@ -194,7 +197,7 @@ public class WorldgenUtils {
         Biome biome = worldIn.getBiome(pos);
         int surface = worldIn.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ());
 
-        return (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
+        return biome.getCategory() == Biome.Category.OCEAN || biome.getCategory() == Biome.Category.BEACH || biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.RIVER ? worldIn.getSeaLevel() : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
     }
 
     public static boolean inArea(BlockPos b, double radius, BlockPos... targets) {

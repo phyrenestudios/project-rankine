@@ -25,6 +25,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.PlantType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
@@ -33,11 +34,17 @@ public class RankineDoublePlantBlock extends BushBlock implements IGrowable {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_3;
     public static final EnumProperty<DoubleBlockHalf> SECTION = BlockStateProperties.DOUBLE_BLOCK_HALF;
     private int type;
-
-    public RankineDoublePlantBlock(Properties properties, int type) {
+    private PlantType plantType;
+    public RankineDoublePlantBlock(Properties properties, int type, PlantType plantType) {
         super(properties);
         this.type = type;
+        this.plantType = plantType;
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(SECTION, DoubleBlockHalf.LOWER));
+    }
+
+    @Override
+    public PlantType getPlantType(IBlockReader world, BlockPos pos) {
+        return plantType;
     }
 
     public IntegerProperty getAgeProperty() {

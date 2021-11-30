@@ -1,14 +1,10 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
@@ -37,22 +33,22 @@ public class HardnessTesterItem extends Item {
                         desc = " (None)";
                         break;
                     case 0:
-                        desc = " (Flint)";
+                        desc = " (Wood)";
                         break;
                     case 1:
-                        desc = " (Bronze)";
+                        desc = " (Stone/Flint/Pewter)";
                         break;
                     case 2:
-                        desc = " (Invar)";
+                        desc = " (Iron/Pewter/Bronze/Invar/Crucible Steel)";
                         break;
                     case 3:
-                        desc = " (Steel)";
+                        desc = " (Diamond/Advanced Alloys)";
                         break;
                     case 4:
-                        desc = " (Superalloy)";
+                        desc = " (Netherite/Advanced Alloys)";
                         break;
                     case 5:
-                        desc = " (Advanced)";
+                        desc = " (Advanced Alloys)";
                         break;
                 }
 
@@ -65,7 +61,7 @@ public class HardnessTesterItem extends Item {
                 }
             }
 
-            player.sendMessage(new StringTextComponent("Hardness: " + harvest + desc),player.getUniqueID());
+            player.sendMessage(new StringTextComponent("Harvest Level: " + harvest + desc),player.getUniqueID());
         }
 
 

@@ -1,10 +1,16 @@
 {
   "variants": {
-    "bookshelf_type=normal": {
+    "mode=0": {
       "model": "rankine:block/cedar_bookshelf"
     },
-    "bookshelf_type=vertical": {
+    "mode=1": {
       "model": "rankine:block/cedar_bookshelfvertical"
+    },
+    "mode=2": {
+      "model": "rankine:block/cedar_bookshelf"
+    },
+    "mode=3": {
+      "model": "rankine:block/cedar_bookshelf"
     }
   }
 }

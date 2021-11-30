@@ -1,0 +1,27 @@
+{
+  "name": "Metamorphic Stones",
+  "icon": "rankine:pumice",
+  "category": "stones",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Metamorphic stones are formed from existing stones that undergo intense heat and pressure."
+    },
+    {
+      "type": "text",
+      "text": "Metamorphic stones are generated using the vanilla stone generator, where lava flows onto water source blocks."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:obsidian",
+      "link_recipe": true,
+      "text": "Found in the traditional locations."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:crying_obsidian",
+      "link_recipe": true,
+      "text": "Not found yet."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:osmiridium_axe",
+    "rankine:osmiridium_pickaxe",
+    "rankine:osmiridium_hoe",
+    "rankine:osmiridium_shovel",
+    "rankine:osmiridium_sword",
+    "rankine:osmiridium_hammer",
+    "rankine:osmiridium_spear"
+  ]
+}

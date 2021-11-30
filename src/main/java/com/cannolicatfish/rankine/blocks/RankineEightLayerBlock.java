@@ -3,14 +3,10 @@ package com.cannolicatfish.rankine.blocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -18,11 +14,9 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public class RankineEightLayerBlock extends FallingBlock {
@@ -103,9 +97,10 @@ public class RankineEightLayerBlock extends FallingBlock {
         int i = state.get(LAYERS);
         if (player.getHeldItem(handIn).getItem() == state.getBlock().asItem() && i < 8 && !player.isSneaking()) {
             worldIn.setBlockState(pos, state.with(LAYERS, i+1));
+            worldIn.playSound(null,pos,state.getSoundType().getPlaceSound(), SoundCategory.BLOCKS,1.0f,1.0f);
             return ActionResultType.CONSUME;
         }
-        return ActionResultType.PASS;
+        return ActionResultType.FAIL;
     }
 
     /*

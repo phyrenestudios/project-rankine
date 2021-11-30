@@ -17,43 +17,52 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.PlantType;
+import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
 public class RankinePlantBlock extends BushBlock implements IGrowable {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_3;
-    private static final VoxelShape field_220126_b = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
-    private static final VoxelShape field_220127_c = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
+    private static final VoxelShape AGE0 = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
+    private static final VoxelShape AGE3 = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
     private int type;
-    public RankinePlantBlock(Properties p_i49971_1_, int type) {
+    private PlantType plantType;
+    public RankinePlantBlock(Properties p_i49971_1_, int type, PlantType plantType) {
         super(p_i49971_1_);
         this.type = type;
+        this.plantType = plantType;
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0));
+    }
+
+    @Override
+    public PlantType getPlantType(IBlockReader world, BlockPos pos) {
+        return plantType;
     }
 
     @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
         if (type == 7 || type == 8 || type == 10) {
-            return block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.SAND || block == Blocks.RED_SAND;
+            return block.isIn(Tags.Blocks.DIRT) || block.isIn(Tags.Blocks.SAND) || block == RankineBlocks.DESERT_SAND.get();
         }
-        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.FARMLAND;
+        return block.isIn(Tags.Blocks.DIRT);
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         if (state.get(AGE) == 0) {
-            return field_220126_b;
+            return AGE0;
         } else {
-            return state.get(AGE) < 3 ? field_220127_c : super.getShape(state, worldIn, pos, context);
+            return state.get(AGE) < 3 ? AGE3 : super.getShape(state, worldIn, pos, context);
         }
     }
 

@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/polished_stone_offset_ns",
+  "textures": {
+    "all": "rankine:block/polished_diabase"
+  }
+}

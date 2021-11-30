@@ -235,12 +235,13 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
             if (targetBiome.getCategory() == Biome.Category.NETHER) {
                 List<net.minecraft.block.Block> TOPS = Arrays.asList(Blocks.CRIMSON_NYLIUM,Blocks.WARPED_NYLIUM,Blocks.AIR);
                 if (TARGET_BS == Blocks.NETHERRACK.getDefaultState()) {
-                    if (targetBiome.getRegistryName() != Biomes.BASALT_DELTAS.getRegistryName()) {
-                        if (reader.getBlockState(TARGET_POS.up(1)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.up(2)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.up(3)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.up(4)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(1)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(2)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(3)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(4)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS)) {
-                            reader.setBlockState(TARGET_POS, RankineBlocks.SOUL_SANDSTONE.get().getDefaultState(), 2);
-                        } else if (!TOPS.contains(reader.getBlockState(TARGET_POS.up(1)).getBlock()) && !TOPS.contains(reader.getBlockState(TARGET_POS.up(2)).getBlock()) && !TOPS.contains(reader.getBlockState(TARGET_POS.up(3)).getBlock())) {
+                    if (targetBiome.getRegistryName() == Biomes.WARPED_FOREST.getRegistryName() || targetBiome.getRegistryName() == Biomes.CRIMSON_FOREST.getRegistryName()) {
+                        if (!TOPS.contains(reader.getBlockState(TARGET_POS.up(1)).getBlock()) && !TOPS.contains(reader.getBlockState(TARGET_POS.up(2)).getBlock()) && !TOPS.contains(reader.getBlockState(TARGET_POS.up(3)).getBlock())) {
                             reader.setBlockState(TARGET_POS, StoneBS, 2);
                         }
+                    }
+                    if (reader.getBlockState(TARGET_POS.up(1)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.up(2)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.up(3)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.up(4)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(1)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(2)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(3)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(4)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS)) {
+                        reader.setBlockState(TARGET_POS, RankineBlocks.SOUL_SANDSTONE.get().getDefaultState(), 2);
                     } else {
                         reader.setBlockState(TARGET_POS, StoneBS, 2);
                     }

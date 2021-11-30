@@ -1,0 +1,22 @@
+{
+  "type": "rankine:sluicing",
+  "total": 3,
+  "input": {
+    "item": "minecraft:soul_sand"
+  },
+  "tool": {
+    "item": "rankine:steel_gold_pan"
+  },
+  "output1": {
+    "item": "minecraft:sand",
+    "weight": 40
+  },
+  "output2": {
+    "item": "minecraft:quartz",
+    "weight": 1
+  },
+  "output3": {
+    "item": "rankine:orthoclase_feldspar",
+    "weight": 4
+  }
+}

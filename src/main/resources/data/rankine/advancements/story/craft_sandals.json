@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/info_movement",
+  "display": {
+    "icon": {
+      "item": "rankine:sandals"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_sandals.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_sandals.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:sandals"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

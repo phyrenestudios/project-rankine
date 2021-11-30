@@ -16,6 +16,6 @@ public class DesertSandBlock extends SandBlock {
 
     @Override
     public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
-        return plantable.getPlantType(world, pos.offset(facing)).equals(PlantType.DESERT);
+        return plantable.getPlantType(world, pos.offset(facing)).equals(PlantType.DESERT) || plantable.getPlantType(world, pos.offset(facing)).equals(PlantType.BEACH);
     }
 }

@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/make_cast_iron",
+  "display": {
+    "icon": {
+      "item": "rankine:tree_tap"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_tree_tap.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_tree_tap.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tree_tap"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

@@ -1,7 +1,38 @@
 {
   "variants": {
-    "": {
-      "model": "rankine:block/balsam_fir_leaves"
-    }
+    "age=0": {
+      "model": "rankine:block/balsam_fir_leavesage0"
+    },
+    "age=1": {
+      "model": "rankine:block/balsam_fir_leavesage1"
+    },
+    "age=2": {
+      "model": "rankine:block/balsam_fir_leavesage2"
+    },
+    "age=3": {
+      "model": "rankine:block/balsam_fir_leavesage3"
+    },
+    "age=4": [
+      {
+        "model": "rankine:block/balsam_fir_leavessnowy0"
+      },
+      {
+        "model": "rankine:block/balsam_fir_leavessnowy1"
+      },
+      {
+        "model": "rankine:block/balsam_fir_leavessnowy2"
+      }
+    ],
+    "age=5": [
+      {
+        "model": "rankine:block/balsam_fir_leavessnowy_top0"
+      },
+      {
+        "model": "rankine:block/balsam_fir_leavessnowy_top1"
+      },
+      {
+        "model": "rankine:block/balsam_fir_leavessnowy_top2"
+      }
+    ]
   }
 }

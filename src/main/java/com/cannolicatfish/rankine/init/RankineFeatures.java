@@ -28,7 +28,6 @@ import java.util.OptionalInt;
 public class RankineFeatures {
 
     public static void registerConfiguredFeatures() {
-        //WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:animal_spawner", ANIMAL_SPAWNER);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:disk_white_sand",DISK_WHITE_SAND);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:disk_white_sand",DISK_BLACK_SAND);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:meteorite",METEORITE);
@@ -75,7 +74,6 @@ public class RankineFeatures {
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_alluvium",ORE_ALLUVIUM);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_evaporite",ORE_EVAPORITE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_intrusion", INTRUSION_FEATURE);
-        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:stone_gen", STONE_GEN);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:soil_gen", WORLD_REPLACER_GEN);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:snow_gen",SNOW_GEN);
 
@@ -307,7 +305,6 @@ public class RankineFeatures {
     public static final Feature<NoFeatureConfig> FUMAROLE_FEATURE = new FumaroleFeature(NoFeatureConfig.CODEC);
     public static final Feature<ReplacerFeatureConfig> FLAT_BEDROCK_FEATURE = new FlatBedrockFeature(ReplacerFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> INTRUSION = new IntrusionFeature(NoFeatureConfig.CODEC);
-    public static final Feature<NoFeatureConfig> STONE_REPLACER = new StoneReplacerFeature(NoFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> WORLD_REPLACER_FEATURE = new WorldReplacerFeature(NoFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> SNOW_REPLACER = new SnowyPeaksFeature(NoFeatureConfig.CODEC);
 
@@ -320,8 +317,8 @@ public class RankineFeatures {
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(Config.MISC_WORLDGEN.METEORITE_CHANCE.get())));
     public static final ConfiguredFeature<?, ?> DISK_WHITE_SAND = LAND_DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.WHITE_SAND.get().getDefaultState(), FeatureSpread.create(5, 4), 4, ImmutableList.of(Blocks.SAND.getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3)));
-    public static final ConfiguredFeature<?, ?> DISK_BLACK_SAND = LAND_DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.BLACK_SAND.get().getDefaultState(), FeatureSpread.create(4, 4), 4, ImmutableList.of(Blocks.SOUL_SOIL.getDefaultState(),Blocks.SOUL_SAND.getDefaultState())))
-            .withPlacement(Placement.COUNT_MULTILAYER.configure(new FeatureSpreadConfig(1)));
+    public static final ConfiguredFeature<?, ?> DISK_BLACK_SAND = LAND_DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.BLACK_SAND.get().getDefaultState(), FeatureSpread.create(3, 4), 4, ImmutableList.of(Blocks.SOUL_SOIL.getDefaultState(),Blocks.SOUL_SAND.getDefaultState())))
+            .withPlacement(Placement.COUNT_MULTILAYER.configure(new FeatureSpreadConfig(1)).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3))));
     public static final ConfiguredFeature<?, ?> END_METEORITE = END_METEORITE_FEATURE.withConfiguration(new NoFeatureConfig());
     public static final ConfiguredFeature<?, ?> ANTIMATTER_BLOB = ANTIMATTER_BLOB_FEATURE.withConfiguration(new NoFeatureConfig());
     public static final ConfiguredFeature<?, ?> FUMAROLE = FUMAROLE_FEATURE.withConfiguration(new NoFeatureConfig())
@@ -397,9 +394,6 @@ public class RankineFeatures {
 
     public static final ConfiguredFeature<?, ?> INTRUSION_FEATURE = INTRUSION.withConfiguration(new NoFeatureConfig())
             .withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(1)));
-
-    public static final ConfiguredFeature<?, ?> STONE_GEN = STONE_REPLACER.withConfiguration(new NoFeatureConfig())
-            .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?, ?> WORLD_REPLACER_GEN = WORLD_REPLACER_FEATURE.withConfiguration(new NoFeatureConfig())
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?, ?> SNOW_GEN = SNOW_REPLACER.withConfiguration(new NoFeatureConfig())

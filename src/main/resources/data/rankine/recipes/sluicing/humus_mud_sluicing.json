@@ -1,0 +1,30 @@
+{
+  "type": "rankine:sluicing",
+  "total": 5,
+  "input": {
+    "item": "rankine:humus_mud"
+  },
+  "tool": {
+    "tag": "rankine:gold_pans"
+  },
+  "output1": {
+    "item": "minecraft:dirt",
+    "weight": 40
+  },
+  "output2": {
+    "item": "rankine:biomass",
+    "weight": 5
+  },
+  "output3": {
+    "item": "minecraft:sand",
+    "weight": 2
+  },
+  "output4": {
+    "item": "minecraft:clay_ball",
+    "weight": 1
+  },
+  "output5": {
+    "item": "rankine:silt",
+    "weight": 2
+  }
+}

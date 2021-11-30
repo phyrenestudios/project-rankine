@@ -50,6 +50,7 @@ import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxBlock;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxContainer;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
 import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanBlock;
+import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableBlock;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.blocks.tap.TapBarrelBlock;
@@ -66,6 +67,7 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -1289,6 +1291,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HYDROGEN_SULFIDE_GAS_BLOCK = REGISTRY.register("hydrogen_sulfide_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN_SULFIDE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> SULFUR_DIOXIDE_GAS_BLOCK = REGISTRY.register("sulfur_dioxide_gas_block", () -> new GasBlock(GasUtilsEnum.SULFUR_DIOXIDE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
 
+    public static final RegistryObject<Block> HELIUM_GAS_TUBE = REGISTRY.register("helium_gas_tube", () -> new GasTubeBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
+
+
     public static final RegistryObject<Block> SOD_BLOCK_SLAB = REGISTRY.register("sod_block_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
     public static final RegistryObject<Block> SOD_BLOCK_STAIRS = REGISTRY.register("sod_block_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
     public static final RegistryObject<Block> SOD_BLOCK_VERTICAL_SLAB = REGISTRY.register("sod_block_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
@@ -1381,7 +1386,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> DESERT_SAND = REGISTRY.register("desert_sand", () -> new DesertSandBlock(14865335, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> LEAD_GLASS = REGISTRY.register("lead_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(3.0F, 15.0F).sound(SoundType.GLASS).notSolid().harvestLevel(1)));
     public static final RegistryObject<Block> BOROSILICATE_GLASS = REGISTRY.register("borosilicate_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)));
-    //public static final RegistryObject<Block> COB = REGISTRY.register("cob", () -> new Block(DEF_STONE));
+    public static final RegistryObject<Block> COB = REGISTRY.register("cob", () -> new Block(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> PHOSPHORITE = REGISTRY.register("phosphorite", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> FUMAROLE_DEPOSIT = REGISTRY.register("fumarole_deposit", () -> new FumaroleDepositBlock(DEF_STONE.harvestLevel(3)));
     public static final RegistryObject<Block> IRONSTONE = REGISTRY.register("ironstone", () -> new Block(DEF_STONE.harvestLevel(1)));
@@ -1824,7 +1829,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CINNAMON_LEAVES = REGISTRY.register("cinnamon_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> ERYTHRINA_LEAVES = REGISTRY.register("erythrina_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
 
-
     public static final RegistryObject<Block> OAK_LEAF_LITTER = REGISTRY.register("oak_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> SPRUCE_LEAF_LITTER = REGISTRY.register("spruce_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> BIRCH_LEAF_LITTER = REGISTRY.register("birch_leaf_litter", LeafLitterBlock::new);
@@ -2120,6 +2124,7 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> ALUMINUM_SHEETMETAL = REGISTRY.register("aluminum_sheetmetal", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TITANIUM_SHEETMETAL = REGISTRY.register("titanium_sheetmetal", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> IRON_SHEETMETAL = REGISTRY.register("iron_sheetmetal", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> NICKEL_SHEETMETAL = REGISTRY.register("nickel_sheetmetal", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> COPPER_SHEETMETAL = REGISTRY.register("copper_sheetmetal", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> SILVER_SHEETMETAL = REGISTRY.register("silver_sheetmetal", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
@@ -2137,6 +2142,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STAINLESS_STEEL_SHEETMETAL = REGISTRY.register("stainless_steel_sheetmetal", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ALUMINUM_SHEETMETAL_SLAB = REGISTRY.register("aluminum_sheetmetal_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TITANIUM_SHEETMETAL_SLAB = REGISTRY.register("titanium_sheetmetal_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> IRON_SHEETMETAL_SLAB = REGISTRY.register("iron_sheetmetal_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> NICKEL_SHEETMETAL_SLAB = REGISTRY.register("nickel_sheetmetal_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> COPPER_SHEETMETAL_SLAB = REGISTRY.register("copper_sheetmetal_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> SILVER_SHEETMETAL_SLAB = REGISTRY.register("silver_sheetmetal_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
@@ -2154,6 +2160,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STAINLESS_STEEL_SHEETMETAL_SLAB = REGISTRY.register("stainless_steel_sheetmetal_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ALUMINUM_SHEETMETAL_VERTICAL_SLAB = REGISTRY.register("aluminum_sheetmetal_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TITANIUM_SHEETMETAL_VERTICAL_SLAB = REGISTRY.register("titanium_sheetmetal_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> IRON_SHEETMETAL_VERTICAL_SLAB = REGISTRY.register("iron_sheetmetal_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> NICKEL_SHEETMETAL_VERTICAL_SLAB = REGISTRY.register("nickel_sheetmetal_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> COPPER_SHEETMETAL_VERTICAL_SLAB = REGISTRY.register("copper_sheetmetal_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> SILVER_SHEETMETAL_VERTICAL_SLAB = REGISTRY.register("silver_sheetmetal_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
@@ -2181,7 +2188,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GWIHABAITE_CRYSTAL = REGISTRY.register("gwihabaite_crystal", () -> new GwihabaiteBlock(DEF_ORE));
 
     public static final RegistryObject<Block> BEEHIVE_OVEN_PIT = REGISTRY.register("beehive_oven_pit", () -> new BeehiveOvenPitBlock(REFRACTORY_BRICKS.get(), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> MIXING_BARREL = REGISTRY.register("mixing_barrel", () -> new MixingBarrelBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> MIXING_BARREL = REGISTRY.register("mixing_barrel", () -> new MixingBarrelBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).notSolid()));
     public static final RegistryObject<Block> CRUCIBLE_BLOCK = REGISTRY.register("crucible", () -> new CrucibleBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)));
     public static final RegistryObject<Block> MATERIAL_TESTING_TABLE = REGISTRY.register("material_testing_table", () -> new MaterialTestingTableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TEMPLATE_TABLE = REGISTRY.register("template_table", () -> new TemplateTableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
@@ -2230,17 +2237,17 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> UNAGED_CHEESE = REGISTRY.register("unaged_cheese", () -> new UnagedCheeseBlock(AbstractBlock.Properties.create(Material.CAKE).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
     public static final RegistryObject<Block> AGED_CHEESE = REGISTRY.register("aged_cheese", () -> new CakeBlock(AbstractBlock.Properties.create(Material.CAKE).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
-    public static final RegistryObject<Block> ELDERBERRY_BUSH = REGISTRY.register("elderberry_bush", () -> new RankineDoublePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 0));
-    public static final RegistryObject<Block> BLUEBERRY_BUSH = REGISTRY.register("blueberry_bush", () -> new RankineDoublePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 1));
-    public static final RegistryObject<Block> CRANBERRY_BUSH = REGISTRY.register("cranberry_bush", () -> new RankineDoublePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 2));
-    public static final RegistryObject<Block> POKEBERRY_BUSH = REGISTRY.register("pokeberry_bush", () -> new RankineDoublePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 3));
-    public static final RegistryObject<Block> SNOWBERRY_BUSH = REGISTRY.register("snowberry_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 1));
-    public static final RegistryObject<Block> RASPBERRY_BUSH = REGISTRY.register("raspberry_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 3));
-    public static final RegistryObject<Block> BLACKBERRY_BUSH = REGISTRY.register("blackberry_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 4));
-    public static final RegistryObject<Block> STRAWBERRY_BUSH = REGISTRY.register("strawberry_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 6));
-    public static final RegistryObject<Block> PINEAPPLE_BUSH = REGISTRY.register("pineapple_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 7));
-    public static final RegistryObject<Block> BANANA_YUCCA_BUSH = REGISTRY.register("banana_yucca_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 8));
-    public static final RegistryObject<Block> ALOE_PLANT = REGISTRY.register("aloe_plant", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 10));
+    public static final RegistryObject<Block> ELDERBERRY_BUSH = REGISTRY.register("elderberry_bush", () -> new RankineDoublePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 0, PlantType.PLAINS));
+    public static final RegistryObject<Block> BLUEBERRY_BUSH = REGISTRY.register("blueberry_bush", () -> new RankineDoublePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 1, PlantType.PLAINS));
+    public static final RegistryObject<Block> CRANBERRY_BUSH = REGISTRY.register("cranberry_bush", () -> new RankineDoublePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 2, PlantType.PLAINS));
+    public static final RegistryObject<Block> POKEBERRY_BUSH = REGISTRY.register("pokeberry_bush", () -> new RankineDoublePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 3, PlantType.PLAINS));
+    public static final RegistryObject<Block> SNOWBERRY_BUSH = REGISTRY.register("snowberry_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 1, PlantType.PLAINS));
+    public static final RegistryObject<Block> RASPBERRY_BUSH = REGISTRY.register("raspberry_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 3, PlantType.PLAINS));
+    public static final RegistryObject<Block> BLACKBERRY_BUSH = REGISTRY.register("blackberry_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 4, PlantType.PLAINS));
+    public static final RegistryObject<Block> STRAWBERRY_BUSH = REGISTRY.register("strawberry_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 6, PlantType.PLAINS));
+    public static final RegistryObject<Block> PINEAPPLE_BUSH = REGISTRY.register("pineapple_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 7, PlantType.DESERT));
+    public static final RegistryObject<Block> BANANA_YUCCA_BUSH = REGISTRY.register("banana_yucca_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 8, PlantType.DESERT));
+    public static final RegistryObject<Block> ALOE_PLANT = REGISTRY.register("aloe_plant", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH), 10, PlantType.DESERT));;
     public static final RegistryObject<Block> ASPARAGUS_PLANT = REGISTRY.register("asparagus_plant", () -> new AsparagusPlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.STEM)));
     public static final RegistryObject<Block> CORN_PLANT = REGISTRY.register("corn_plant", () -> new CornPlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.STEM)));
     public static final RegistryObject<Block> CORN_STALK = REGISTRY.register("corn_stalk", () -> new CornStalkBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().sound(SoundType.STEM)));
@@ -2540,6 +2547,8 @@ public class RankineBlocks {
     public static TileEntityType<GasCondenserTile> GAS_CONDENSER_TILE;
     @ObjectHolder("rankine:gas_vent")
     public static TileEntityType<GasVentTile> GAS_VENT_TILE;
+    @ObjectHolder("rankine:sediment_fan")
+    public static TileEntityType<SedimentFanTile> SEDIMENT_FAN_TILE;
 
     @ObjectHolder("rankine:crucible")
     public static ContainerType<CrucibleContainer> CRUCIBLE_CONTAINER;

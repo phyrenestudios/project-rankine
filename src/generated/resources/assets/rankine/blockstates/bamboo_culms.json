@@ -1,10 +1,16 @@
 {
   "variants": {
-    "planks_type=normal": {
+    "mode=0": {
       "model": "rankine:block/bamboo_culms"
     },
-    "planks_type=vertical": {
+    "mode=1": {
       "model": "rankine:block/bamboo_culms_vertical"
+    },
+    "mode=2": {
+      "model": "rankine:block/bamboo_culms"
+    },
+    "mode=3": {
+      "model": "rankine:block/bamboo_culms"
     }
   }
 }

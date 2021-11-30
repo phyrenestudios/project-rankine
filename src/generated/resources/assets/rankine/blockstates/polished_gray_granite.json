@@ -1,13 +1,16 @@
 {
   "variants": {
-    "polish_type=normal": {
+    "mode=0": {
       "model": "rankine:block/polished_gray_granite"
     },
-    "polish_type=offset": {
+    "mode=1": {
       "model": "rankine:block/polished_gray_granite_offset"
     },
-    "polish_type=vertical_offset": {
-      "model": "rankine:block/polished_gray_granite_vertical_offset"
+    "mode=2": {
+      "model": "rankine:block/polished_gray_granite_offset_ns"
+    },
+    "mode=3": {
+      "model": "rankine:block/polished_gray_granite_offset_ew"
     }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "type": "rankine:sluicing",
+  "total": 4,
+  "input": {
+    "item": "rankine:sandy_clay_loam_mud"
+  },
+  "tool": {
+    "tag": "rankine:gold_pans"
+  },
+  "output1": {
+    "item": "minecraft:dirt",
+    "weight": 40
+  },
+  "output2": {
+    "item": "minecraft:sand",
+    "weight": 6.5
+  },
+  "output3": {
+    "item": "minecraft:clay_ball",
+    "weight": 2.5
+  },
+  "output4": {
+    "item": "rankine:silt",
+    "weight": 1
+  }
+}

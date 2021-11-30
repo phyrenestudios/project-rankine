@@ -1,0 +1,108 @@
+{
+  "type": "rankine:sluicing",
+  "total": 21,
+  "input": {
+    "item": "rankine:black_sand"
+  },
+  "tool": {
+    "item": "rankine:steel_gold_pan"
+  },
+  "output1": {
+    "item": "minecraft:diamond",
+    "weight": 1
+  },
+  "output2": {
+    "item": "rankine:ilmenite",
+    "weight": 1
+  },
+  "output3": {
+    "item": "rankine:chromite",
+    "weight": 1
+  },
+  "output4": {
+    "item": "rankine:magnetite",
+    "weight": 1.5
+  },
+  "output5": {
+    "item": "rankine:ruby",
+    "weight": 1.5
+  },
+  "output6": {
+    "item": "rankine:sapphire",
+    "weight": 1.5
+  },
+  "output7": {
+    "item": "rankine:peridot",
+    "weight": 1.5
+  },
+  "output8": {
+    "item": "rankine:topaz",
+    "weight": 1.5
+  },
+  "output9": {
+    "item": "rankine:thorite",
+    "weight": 2
+  },
+  "output10": {
+    "item": "rankine:garnet",
+    "weight": 2
+  },
+  "output11": {
+    "item": "rankine:lanthanum_monazite",
+    "weight": 2
+  },
+  "output12": {
+    "item": "rankine:neodymium_monazite",
+    "weight": 2
+  },
+  "output13": {
+    "item": "rankine:zircon",
+    "weight": 2
+  },
+  "output14": {
+    "item": "minecraft:quartz",
+    "weight": 4,
+    "min": 1,
+    "max": 2
+  },
+  "output15": {
+    "item": "rankine:uranium_nugget",
+    "weight": 4,
+    "min": 2,
+    "max": 4
+  },
+  "output16": {
+    "item": "rankine:titanium_nugget",
+    "weight": 4,
+    "min": 2,
+    "max": 4
+  },
+  "output17": {
+    "item": "rankine:iridium_nugget",
+    "weight": 5,
+    "min": 2,
+    "max": 4
+  },
+  "output18": {
+    "item": "rankine:palladium_nugget",
+    "weight": 5,
+    "min": 2,
+    "max": 4
+  },
+  "output19": {
+    "item": "rankine:osmium_nugget",
+    "weight": 8,
+    "min": 2,
+    "max": 4
+  },
+  "output20": {
+    "item": "minecraft:iron_nugget",
+    "weight": 10,
+    "min": 4,
+    "max": 8
+  },
+  "output21": {
+    "item": "minecraft:sand",
+    "weight": 80
+  }
+}

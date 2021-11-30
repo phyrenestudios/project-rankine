@@ -1,10 +1,16 @@
 {
   "variants": {
-    "planks_type=normal": {
+    "mode=0": {
       "model": "rankine:block/maple_planks"
     },
-    "planks_type=vertical": {
+    "mode=1": {
       "model": "rankine:block/maple_planks_vertical"
+    },
+    "mode=2": {
+      "model": "rankine:block/maple_planks"
+    },
+    "mode=3": {
+      "model": "rankine:block/maple_planks"
     }
   }
 }

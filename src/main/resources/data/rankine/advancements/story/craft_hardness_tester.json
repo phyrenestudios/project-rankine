@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/craft_flint_pickaxe",
+  "display": {
+    "icon": {
+      "item": "rankine:hardness_tester"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_hardness_tester.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_hardness_tester.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:hardness_tester"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

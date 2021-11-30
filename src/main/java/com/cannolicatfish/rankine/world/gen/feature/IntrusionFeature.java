@@ -27,16 +27,16 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         Biome BIOME = reader.getBiome(pos);
-
         if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
-            if (BIOME.getCategory() == Biome.Category.NETHER) {
+            BlockState INTRUSION;
+            try {
+                INTRUSION = WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
+            } catch (Exception e) {
+                INTRUSION = Blocks.AIR.getDefaultState();
+            }
 
-                if (WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())) == null || !WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getEntries().isEmpty()) {
-                    return false;
-                }
-
-                BlockState INTRUSION = WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
-                if (!INTRUSION.matchesBlock(Blocks.AIR)) {
+            if (!INTRUSION.matchesBlock(Blocks.AIR)) {
+                if (BIOME.getCategory() == Biome.Category.NETHER) {
                     int radius = Config.MISC_WORLDGEN.NETHER_INTRUSION_RADIUS.get() + rand.nextInt(3);
                     int startY = 126;
                     int endY = 1;
@@ -58,7 +58,7 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
                         pos1 = pos1.add(shiftx, y - pos1.getY(), shiftz);
                         pos2 = pos2.add(shiftx, y - pos2.getY(), shiftz);
                         pos3 = pos3.add(shiftx, y - pos3.getY(), shiftz);
-                        posAvg = WorldgenUtils.averagePos(pos1,pos2,pos3);
+                        posAvg = WorldgenUtils.averagePos(pos1, pos2, pos3);
 
                         for (BlockPos b : BlockPos.getAllInBoxMutable(posAvg.add(-2 * radius, 0, -2 * radius), posAvg.add(2 * radius, 0, 2 * radius))) {
                             if (WorldgenUtils.inArea(b, radius, pos1, pos2, pos3)) {
@@ -80,36 +80,15 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
                             if (radius <= 0) {
                                 return true;
                             }
-                            /*
-                            int avgX = (x1+x2+x3+x4)/4;
-                            int avgZ = (z1+z2+z3+z4)/4;
-                            x1 = x1 < avgX ? x1 + 1 : x1 - 1;
-                            x2 = x2 < avgX ? x2 + 1 : x2 - 1;
-                            x3 = x3 < avgX ? x3 + 1 : x3 - 1;
-                            x4 = x4 < avgX ? x4 + 1 : x4 - 1;
-                            z1 = z1 < avgZ ? z1 + 1 : z1 - 1;
-                            z2 = z2 < avgZ ? z2 + 1 : z2 - 1;
-                            z3 = z3 < avgZ ? z3 + 1 : z3 - 1;
-                            z4 = z4 < avgZ ? z4 + 1 : z4 - 1;
-                            
-                             */
                         }
                     }
                     return true;
-                }
-            } else {
-                if (WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())) == null || !WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getEntries().isEmpty()) {
-                    return false;
-                }
-                BlockState INTRUSION = WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
-                if (!INTRUSION.matchesBlock(Blocks.AIR)) {
+                } else {
                     int radius = Config.MISC_WORLDGEN.OVERWORLD_INTRUSION_RADIUS.get() + rand.nextInt(3);
                     int startY = 1;
                     int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, pos.getX(), pos.getZ());
                     int shiftx = 0;
                     int shiftz = 0;
-
-
                     BlockPos pos1 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
                     BlockPos pos2 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
                     BlockPos pos3 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
@@ -126,7 +105,7 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
                         pos1 = pos1.add(shiftx, y - pos1.getY(), shiftz);
                         pos2 = pos2.add(shiftx, y - pos2.getY(), shiftz);
                         pos3 = pos3.add(shiftx, y - pos3.getY(), shiftz);
-                        posAvg = WorldgenUtils.averagePos(pos1,pos2,pos3);
+                        posAvg = WorldgenUtils.averagePos(pos1, pos2, pos3);
 
                         for (BlockPos b : BlockPos.getAllInBoxMutable(posAvg.add(-2 * radius, 0, -2 * radius), posAvg.add(2 * radius, 0, 2 * radius))) {
                             if (WorldgenUtils.inArea(b, radius, pos1, pos2, pos3)) {
@@ -136,7 +115,7 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
                                         if (ORE.getBlock() instanceof RankineOreBlock) {
                                             ORE = ORE.with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(INTRUSION.getBlock()));
                                         }
-                                        if (ORE.isIn(Tags.Blocks.ORES_DIAMOND) && y > endY*0.5) {
+                                        if (ORE.isIn(Tags.Blocks.ORES_DIAMOND) && y > endY * 0.5) {
                                             reader.setBlockState(b, INTRUSION, 2);
                                         } else {
                                             reader.setBlockState(b, ORE, 2);
@@ -152,24 +131,11 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
                             if (radius <= 0) {
                                 return true;
                             }
-                            /*
-                            int avgX = (x1+x2+x3+x4)/4;
-                            int avgZ = (z1+z2+z3+z4)/4;
-                            x1 = x1 < avgX ? x1 + 1 : x1 - 1;
-                            x2 = x2 < avgX ? x2 + 1 : x2 - 1;
-                            x3 = x3 < avgX ? x3 + 1 : x3 - 1;
-                            x4 = x4 < avgX ? x4 + 1 : x4 - 1;
-                            z1 = z1 < avgZ ? z1 + 1 : z1 - 1;
-                            z2 = z2 < avgZ ? z2 + 1 : z2 - 1;
-                            z3 = z3 < avgZ ? z3 + 1 : z3 - 1;
-                            z4 = z4 < avgZ ? z4 + 1 : z4 - 1;
-                            
-                             */
                         }
                     }
                     return true;
-                }
 
+                }
             }
         }
         return false;

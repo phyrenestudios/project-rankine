@@ -17,9 +17,9 @@ public class GrassBlockBaseColor implements IBlockColor {
     public int getColor(BlockState state, @Nullable IBlockDisplayReader reader, @Nullable BlockPos pos, int tint) {
         if (ClientConfig.GENERAL.GRASS_TEMP.get()) {
             if (state.getBlock() instanceof GrassySoilBlock && state.get(GrassySoilBlock.DEAD)) {
-                return reader != null && pos != null ? colorShift(BiomeColors.getGrassColor(reader, pos), 20, 5, 0) : colorShift(GrassColors.get(0.5D, 1.0D), 20, 5, 0);
+                return reader != null && pos != null ? colorShift(BiomeColors.getGrassColor(reader, pos), 20, (int) (-3*(Math.floor(pos.getY()/10)))+25, 0) : colorShift(GrassColors.get(0.5D, 1.0D), 20, 5, 0);
             } else {
-                return reader != null && pos != null ? colorShift(BiomeColors.getGrassColor(reader, pos),0, (int) (-3*(Math.floor(pos.getY()/10))), 0) : GrassColors.get(0.5D, 1.0D);
+                return reader != null && pos != null ? colorShift(BiomeColors.getGrassColor(reader, pos),0, (int) (-3*(Math.floor(pos.getY()/10)))+20, 0) : GrassColors.get(0.5D, 1.0D);
             }
         } else {
             if (state.getBlock() instanceof GrassySoilBlock && state.get(GrassySoilBlock.DEAD)) {
