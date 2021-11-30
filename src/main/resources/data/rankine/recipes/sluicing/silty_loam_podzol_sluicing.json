@@ -2,33 +2,33 @@
   "type": "rankine:sluicing",
   "total": 6,
   "input": {
-    "item": "rankine:silty_clay_mycelium"
+    "item": "rankine:silty_loam_podzol"
   },
   "tool": {
     "tag": "rankine:gold_pans"
   },
   "output1": {
     "item": "minecraft:dirt",
-    "weight": 40
+    "weight": 60
   },
   "output2": {
     "item": "minecraft:sand",
-    "weight": 0.75
+    "weight": 3
   },
   "output3": {
     "item": "minecraft:clay_ball",
-    "weight": 4.75
+    "weight": 1.5
   },
   "output4": {
     "item": "rankine:silt",
-    "weight": 4.5
+    "weight": 10.5
   },
   "output5": {
-    "item": "minecraft:brown_mushroom",
+    "item": "minecraft:stick",
     "weight": 2
   },
   "output6": {
-    "item": "minecraft:red_mushroom",
+    "tag": "minecraft:leaves",
     "weight": 2
   }
 }

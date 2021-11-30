@@ -295,6 +295,27 @@ public class AlloyTemplateItem extends Item {
         }
     }
 
+    public static Map<ElementRecipe,Integer> getElementList(World worldIn, ItemStack stack) {
+        if (!getStoredTemplate(stack).isEmpty()) {
+            Map<ElementRecipe,Integer> outMap = new HashMap<>();
+            ListNBT temp = getStoredTemplate(stack);
+            for (int i = 0; i < temp.size(); i++) {
+                CompoundNBT nbt = temp.getCompound(i);
+                ResourceLocation elem = new ResourceLocation(nbt.getString("id"));
+                int amount = nbt.getShort("amount");
+                if (worldIn != null) {
+                    IRecipe<?> recipe = worldIn.getRecipeManager().getRecipe(elem).orElse(null);
+                    if (recipe instanceof ElementRecipe) {
+                        outMap.put((ElementRecipe) recipe, amount);
+                    }
+                }
+            }
+            return outMap;
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
     private static boolean isTemplateInit(ItemStack stack) {
         return stack.getTag() != null && !getStoredTemplate(stack).isEmpty() && !getStoredInfo(stack).isEmpty();
     }

@@ -4,6 +4,8 @@ import com.cannolicatfish.rankine.recipe.*;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.SpecialRecipeSerializer;
+import net.minecraft.item.crafting.SuspiciousStewRecipe;
 import net.minecraft.world.World;
 
 import java.util.Optional;
