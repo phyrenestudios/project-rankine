@@ -6,22 +6,12 @@
   "pages": [
     {
       "type": "text",
-      "text": "The Tree Tap is a device that extracts various fluids from logs. The tap block is just a stick that protrudes from a log. Right click with an empty bucket to hang it on the tap. A tap with a bucket will eventually fill with liquid and can be retrieved by right clicking. The extracted fluid is defined by the group of #rankine:logs_* tags. Additional equipment can be used to automate the tapping process."
+      "text": "The Tree Tap is a device that extracts various fluids from logs. A tap with a bucket will eventually fill with liquid and can be retrieved by right clicking. Additional equipment can be used to automate the tapping process."
     },
     {
       "type": "crafting",
       "recipe": "rankine:tree_tap",
-      "text": "The tap operates on random ticks. By default it will extract every 3 ticks, but this can be adjusted in the config. Tree taps will not work if there is another one in any adjacent block. Also, the tree needs to be alive, meaning the tree must contained naturally spawned leaves."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:tap_barrel",
-      "text": "The tap barrel is a tank for any fluid produced by tree tapping. It can hold six buckets worth of fluid. Right click with empty or full buckets to use. Has a comparator output based off level."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:fluid_drain",
-      "text": "The fluid drain is like a hopper but for fluids. It will place a fluid block from a tap barrel above it. Useful for automating an evaporation tower setup."
+      "text": "Tree taps will not work if there is another one in any adjacent block. Also, the tree needs to be alive, meaning the tree must contained naturally spawned leaves."
     },
     {
       "type": "crafting",

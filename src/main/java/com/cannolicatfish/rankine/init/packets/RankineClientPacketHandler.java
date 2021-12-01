@@ -2,8 +2,8 @@ package com.cannolicatfish.rankine.init.packets;
 
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
+import com.cannolicatfish.rankine.blocks.tap.TreeTapTile;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
@@ -32,12 +32,12 @@ public class RankineClientPacketHandler {
                 if (tile != null) {
                     tile.getInputTank().setFluid(fluidStack);
                 }
-            } /*else if (worldIn.getTileEntity(pos) instanceof TreeTapTile) {
+            } else if (worldIn.getTileEntity(pos) instanceof TreeTapTile) {
                 TreeTapTile tile = ((TreeTapTile) worldIn.getTileEntity(pos));
                 if (tile != null) {
                     tile.getOutputTank().setFluid(fluidStack);
                 }
-            }*/
+            }
 
         }
     }

@@ -1,27 +1,30 @@
 package com.cannolicatfish.rankine.blocks.tap;
 
 import net.minecraft.block.*;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidActionResult;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nullable;
 
 public class TreeTapBlock extends Block {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-    protected static final VoxelShape WEST_AABB = Block.makeCuboidShape(7.0D, 9.0D, 7.0D, 16.0D, 12.0D, 9.0D);
-    protected static final VoxelShape EAST_AABB = Block.makeCuboidShape(0.0D, 9.0D, 7.0D, 9.0D, 12.0D, 9.0D);
-    protected static final VoxelShape NORTH_AABB = Block.makeCuboidShape(7.0D, 9.0D, 7.0D, 9.0D, 12.0D, 16.0D);
-    protected static final VoxelShape SOUTH_AABB = Block.makeCuboidShape(7.0D, 9.0D, 0.0D, 9.0D, 12.0D, 9.0D);
     protected static final VoxelShape TAP_WEST_AABB = Block.makeCuboidShape(5.0D, 0.0D, 4.0D, 16.0D, 13.0D, 12.0D);
     protected static final VoxelShape TAP_EAST_AABB = Block.makeCuboidShape(0.0D, 0.0D, 4.0D, 11.0D, 13.0D, 12.0D);
     protected static final VoxelShape TAP_NORTH_AABB = Block.makeCuboidShape(4.0D, 0.0D, 5.0D, 12.0D, 13.0D, 16.0D);
@@ -46,147 +49,35 @@ public class TreeTapBlock extends Block {
         }
     }
 
-    /*
+    @Nullable
     @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        ticks += 1;
-        if (!worldIn.isRemote() && ticks >= 3 && isTreeAlive(pos,worldIn)) {
-
-            //checks for other taps
-            List<BlockPos> sides = Arrays.asList(pos.up(), pos.down(), pos.north(), pos.south(), pos.west(), pos.east());
-            for (BlockPos s : sides) {
-                if (worldIn.getBlockState(s).getBlock() == RankineBlocks.TREE_TAP.get()) {
-                    return;
-                }
-            }
-
-            if (state.get(FLUID).equals(TreeTapFluids.EMPTY)) {
-                Block log = null;
-                switch (state.get(FACING)) {
-                    case NORTH:
-                        log = worldIn.getBlockState(pos.south()).getBlock();
-                        break;
-                    case SOUTH:
-                        log = worldIn.getBlockState(pos.north()).getBlock();
-                        break;
-                    case EAST:
-                        log = worldIn.getBlockState(pos.west()).getBlock();
-                        break;
-                    case WEST:
-                        log = worldIn.getBlockState(pos.east()).getBlock();
-                        break;
-                }
-                if (log != null) {
-                    //TREE TAPS BROKEN
-                    /*
-                    if (log.getTags().contains(new ResourceLocation("rankine:logs_sap")) && Config.MACHINES.TREE_TAP_SAP.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.SAP).with(FACING, state.get(FACING)),3);
-                    } else if (log.getTags().contains(new ResourceLocation("rankine:logs_maple_sap")) && Config.MACHINES.TREE_TAP_MAPLE_SAP.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.MAPLE_SAP).with(FACING, state.get(FACING)),3);
-                    } else if (log.getTags().contains(new ResourceLocation("rankine:logs_resin")) && Config.MACHINES.TREE_TAP_RESIN.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.RESIN).with(FACING, state.get(FACING)),3);
-                    } else if (log.getTags().contains(new ResourceLocation("rankine:logs_latex")) && Config.MACHINES.TREE_TAP_LATEX.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.LATEX).with(FACING, state.get(FACING)),3);
-                    } else if (log.getTags().contains(new ResourceLocation("rankine:logs_juglone")) && Config.MACHINES.TREE_TAP_JUGLONE.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.JUGLONE).with(FACING, state.get(FACING)),3);
-                    } else if (log.getTags().contains(new ResourceLocation("rankine:logs_water")) && Config.MACHINES.TREE_TAP_WATER.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.WATER).with(FACING, state.get(FACING)),3);
-                    } else if (log.getTags().contains(new ResourceLocation("rankine:logs_lava")) && Config.MACHINES.TREE_TAP_LAVA.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.LAVA).with(FACING, state.get(FACING)),3);
-                    }
-
-                }
-            }
-            ticks = 0;
-        }
-
-        if (!worldIn.isRemote() && !state.get(FLUID).equals(TreeTapFluids.NONE) && !state.get(FLUID).equals(TreeTapFluids.EMPTY) && worldIn.getBlockState(pos.down()).getBlock().matchesBlock(RankineBlocks.TAP_LINE.get())) {
-            BlockPos barrel = null;
-            Set<BlockPos> checkedBlocks = new HashSet<>();
-            Stack<BlockPos> toCheck = new Stack<>();
-            toCheck.add(pos.down());
-            while (!toCheck.isEmpty()) {
-                BlockPos cp = toCheck.pop();
-                if (!checkedBlocks.contains(cp)) {
-                    checkedBlocks.add(cp);
-                    if (worldIn.isBlockLoaded(cp)) {
-                        BlockState s = worldIn.getBlockState(cp);
-                        if (s.getBlock().matchesBlock(RankineBlocks.FLOOD_GATE.get())) {
-                                barrel = cp;
-                                break;
-                        } else if (s.getBlock().matchesBlock(RankineBlocks.TAP_LINE.get())) {
-                            toCheck.add(cp.north());
-                            toCheck.add(cp.east());
-                            toCheck.add(cp.south());
-                            toCheck.add(cp.west());
-                            toCheck.add(cp.down());
-                        }
-                    }
-                    if (checkedBlocks.size() > 200) {
-                        break;
-                    }
-                }
-            }
-
-            if (barrel != null && VanillaIntegration.tapFluids_map.get(state.get(FLUID)) != null) {
-                FloodGateBlock.placeFluid(worldIn, barrel, VanillaIntegration.tapFluids_map.get(state.get(FLUID)));
-                worldIn.setBlockState(pos,state.with(FLUID,TreeTapFluids.EMPTY));
-            }
-        }
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new TreeTapTile();
     }
 
-
-
-
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
-
-        switch (state.get(TreeTapBlock.FLUID)) {
-            case NONE:
-                ItemStack stack = player.getHeldItemMainhand();
-                if (stack.getItem() == Items.BUCKET) {
-                    worldIn.setBlockState(pos, state.with(TreeTapBlock.FLUID, TreeTapFluids.EMPTY).with(TreeTapBlock.FACING, state.get(TreeTapBlock.FACING)));
-                    worldIn.playSound((PlayerEntity) null, pos, SoundEvents.BLOCK_CHAIN_PLACE, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
-                    if (!player.abilities.isCreativeMode) {
-                        stack.shrink(1);
-                    }
-                    return ActionResultType.SUCCESS;
-                } else {
-                    return ActionResultType.FAIL;
-                }
-            case EMPTY:
-                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
-                break;
-            case WATER:
-                player.addItemStackToInventory(new ItemStack(Items.WATER_BUCKET, 1));
-                break;
-            case LAVA:
-                player.addItemStackToInventory(new ItemStack(Items.LAVA_BUCKET, 1));
-                break;
-            case SAP:
-                player.addItemStackToInventory(new ItemStack(RankineItems.SAP_BUCKET.get(), 1));
-                break;
-            case MAPLE_SAP:
-                player.addItemStackToInventory(new ItemStack(RankineItems.MAPLE_SAP_BUCKET.get(), 1));
-                break;
-            case RESIN:
-                player.addItemStackToInventory(new ItemStack(RankineItems.RESIN_BUCKET.get(), 1));
-                break;
-            case LATEX:
-                player.addItemStackToInventory(new ItemStack(RankineItems.LATEX_BUCKET.get(), 1));
-                break;
-            case JUGLONE:
-                player.addItemStackToInventory(new ItemStack(RankineItems.JUGLONE_BUCKET.get(), 1));
-                break;
-        }
-        worldIn.setBlockState(pos, state.with(TreeTapBlock.FLUID, TreeTapFluids.NONE).with(TreeTapBlock.FACING, state.get(TreeTapBlock.FACING)));
-        worldIn.playSound((PlayerEntity) null, pos, SoundEvents.BLOCK_CHAIN_HIT, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
-        return ActionResultType.SUCCESS;
-
+    public boolean hasTileEntity(BlockState state) {
+        return true;
     }
 
-    */
-
+    @Override
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+        if (!world.isRemote) {
+            LazyOptional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
+            TreeTapTile treeTapTile = (TreeTapTile) world.getTileEntity(pos);
+            if (item.isPresent() && treeTapTile != null) {
+                FluidActionResult fillContainerAndStowOutput = FluidUtil.tryFillContainerAndStow(player.getHeldItem(hand), treeTapTile.outputTank, new InvWrapper(player.inventory), treeTapTile.outputTank.getFluidAmount(), player, true);
+                if (fillContainerAndStowOutput.isSuccess()) {
+                    player.setHeldItem(hand, fillContainerAndStowOutput.getResult());
+                    world.markChunkDirty(pos, treeTapTile);
+                    return ActionResultType.CONSUME;
+                }
+            }
+            return ActionResultType.CONSUME;
+        } else {
+            return ActionResultType.FAIL;
+        }
+    }
 
     private boolean canAttachTo(IBlockReader blockReader, BlockPos pos, Direction direction) {
         BlockState blockstate = blockReader.getBlockState(pos);

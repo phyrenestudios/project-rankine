@@ -48,10 +48,10 @@ public class HerbicideItem extends Item {
                     worldIn.setBlockState(b, Blocks.DEAD_BUSH.getDefaultState(), 2);
                 } else if (blk instanceof GrassySoilBlock && b.distanceSq(pos) <= radius*radius) {
                     worldIn.setBlockState(b, blk.getDefaultState().with(GrassySoilBlock.DEAD, true), 2);
+                    spawnParticles(worldIn,b.up());
                 }
             }
         }
-        spawnParticles(worldIn,pos.up());
         worldIn.playSound(null,pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS,0.5f,0.3f);
         context.getItem().shrink(1);
         return ActionResultType.SUCCESS;

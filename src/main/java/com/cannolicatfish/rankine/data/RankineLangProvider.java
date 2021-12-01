@@ -889,6 +889,7 @@ public class RankineLangProvider extends LanguageProvider {
         //SUBTITLES
         add("rankine.subtitle.shulker_gas_vacuum_absorb", "Shulker Gas Vacuum absorb");
         add("rankine.subtitle.shulker_gas_vacuum_release", "Shulker Gas Vacuum release");
+        add("rankine.subtitle.sediment_fan_gen", "sedimentary block generation");
     }
 
     private String parseLangName(String registryName) {
