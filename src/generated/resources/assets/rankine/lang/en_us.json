@@ -3509,6 +3509,7 @@
   "rankine.jei.sluicing": "Gold Panning",
   "rankine.jei.treetapping": "Treetap",
   "rankine.jei.volcanic": "Volcanic Rock Generator",
+  "rankine.subtitle.sediment_fan_gen": "sedimentary block generation",
   "rankine.subtitle.shulker_gas_vacuum_absorb": "Shulker Gas Vacuum absorb",
   "rankine.subtitle.shulker_gas_vacuum_release": "Shulker Gas Vacuum release"
 }

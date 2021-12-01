@@ -44,19 +44,12 @@ public class FertilizerItem extends Item {
                 }
             }
         }
-        spawnParticles(worldIn,pos.up());
         worldIn.playSound(null,pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS,0.5f,1.2f);
         context.getItem().shrink(1);
         return ActionResultType.SUCCESS;
 
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static void spawnParticles(World worldIn, BlockPos pos) {
-        Random random = worldIn.getRandom();
-        BasicParticleType basicparticletype = ParticleTypes.WHITE_ASH;
-        worldIn.addOptionalParticle(basicparticletype,  true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.02D, 0.0D);
-    }
 
     @Override
     @OnlyIn(Dist.CLIENT)
