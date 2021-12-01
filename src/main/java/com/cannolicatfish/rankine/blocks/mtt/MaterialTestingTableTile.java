@@ -16,6 +16,7 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.GlassBottleItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -28,7 +29,7 @@ import javax.annotation.Nullable;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.MATERIAL_TESTING_TABLE_TILE;
 
-public class MaterialTestingTableTile extends TileEntity implements ISidedInventory, INamedContainerProvider {
+public class MaterialTestingTableTile extends TileEntity implements ISidedInventory, INamedContainerProvider, ITickableTileEntity {
     protected NonNullList<ItemStack> items = NonNullList.withSize(14, ItemStack.EMPTY);
     private static final int[] SLOTS_UP = new int[]{0,1};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3,4,5,6,7,8,9,10,11,12,13};
@@ -82,7 +83,7 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
     @Override
     @Nullable
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new MaterialTestingTableContainer(i, world,pos,playerInventory, playerEntity);
+        return new MaterialTestingTableContainer(i, world,pos,playerInventory, playerEntity, this);
     }
 
 
@@ -141,7 +142,7 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
             stack.setCount(this.getInventoryStackLimit());
         }
 
-        if (index == 0 && !flag) {
+        if (!flag) {
             this.markDirty();
         }
     }
@@ -166,5 +167,10 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
     @Override
     public void clear() {
         this.items.clear();
+    }
+
+    @Override
+    public void tick() {
+
     }
 }

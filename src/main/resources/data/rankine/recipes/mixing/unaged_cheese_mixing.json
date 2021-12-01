@@ -2,7 +2,7 @@
   "type": "rankine:mixing",
   "mixTime": 60,
   "required": [true,true,true,false],
-  "ingredientTotal": 5,
+  "ingredientTotal": 4,
   "outputTotal": 1,
   "fluidInput": {
     "fluid": "minecraft:milk"
@@ -12,7 +12,7 @@
     "group": 0
   },
   "input2": {
-    "tag": "forge:salt",
+    "item": "rankine:calcium_chloride",
     "group": 1
   },
   "input3": {
@@ -20,10 +20,7 @@
     "group": 2
   },
   "input4": {
-    "tag": "forge:salt"
-  },
-  "input5": {
-    "item": "rankine:cranberries"
+    "tag": "forge:berries"
   },
   "output1": {
     "item": "rankine:unaged_cheese"
