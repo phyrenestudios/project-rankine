@@ -23,6 +23,7 @@ import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelContainer;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableBlock;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
+import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableTile;
 import com.cannolicatfish.rankine.blocks.plants.*;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
@@ -2565,6 +2566,9 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:template_table")
     public static ContainerType<TemplateTableContainer> TEMPLATE_TABLE_CONTAINER;
+
+    @ObjectHolder("rankine:material_testing_table")
+    public static TileEntityType<MaterialTestingTableTile> MATERIAL_TESTING_TABLE_TILE;
 
     @ObjectHolder("rankine:material_testing_table")
     public static ContainerType<MaterialTestingTableContainer> MATERIAL_TESTING_TABLE_CONTAINER;

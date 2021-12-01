@@ -1,0 +1,16 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:blue_gold_block"
+    }
+  },
+  "result": {
+    "item": "rankine:blue_gold_ingot",
+    "count": 9
+  }
+}

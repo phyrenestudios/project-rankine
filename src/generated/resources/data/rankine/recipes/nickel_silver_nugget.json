@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:nickel_silver_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:nickel_silver_nugget",
+    "count": 9
+  }
+}

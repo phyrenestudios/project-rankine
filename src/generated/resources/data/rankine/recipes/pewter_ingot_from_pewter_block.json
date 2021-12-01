@@ -1,0 +1,16 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:pewter_block"
+    }
+  },
+  "result": {
+    "item": "rankine:pewter_ingot",
+    "count": 9
+  }
+}

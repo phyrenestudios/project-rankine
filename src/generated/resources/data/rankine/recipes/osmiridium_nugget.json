@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:osmiridium_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:osmiridium_nugget",
+    "count": 9
+  }
+}

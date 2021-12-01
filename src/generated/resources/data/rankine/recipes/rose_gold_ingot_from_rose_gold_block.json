@@ -1,0 +1,16 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:rose_gold_block"
+    }
+  },
+  "result": {
+    "item": "rankine:rose_gold_ingot",
+    "count": 9
+  }
+}

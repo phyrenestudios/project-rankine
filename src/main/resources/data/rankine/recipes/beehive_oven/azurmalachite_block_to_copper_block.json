@@ -1,9 +1,0 @@
-{
-  "type": "rankine:beehive_oven",
-  "input": {
-    "item": "rankine:azurmalachite_block"
-  },
-  "result": {
-    "block": "rankine:copper_block"
-  }
-}

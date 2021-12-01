@@ -8,7 +8,7 @@
     "fluid": "minecraft:water"
   },
   "input1": {
-    "tag": "rankine:construction_sand",
+    "tag": "forge:dirt",
     "group": 0
   },
   "input2": {
@@ -24,7 +24,6 @@
     "group": 3
   },
   "output1": {
-    "item": "rankine:cob",
-    "count": 2
+    "item": "rankine:cob"
   }
 }

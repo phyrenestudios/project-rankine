@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:green_gold_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:green_gold_nugget",
+    "count": 9
+  }
+}

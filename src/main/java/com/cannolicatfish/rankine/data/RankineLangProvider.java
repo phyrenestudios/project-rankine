@@ -585,6 +585,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.alloying", "Alloying");
         add("rankine.jei.induction_alloying", "Advanced Alloying");
         add("rankine.jei.sluicing", "Gold Panning");
+        add("rankine.jei.mixing", "Mixing");
         add("rankine.jei.evaporation", "Evaporation");
         add("rankine.jei.beeoven", "Beehive Oven");
         add("rankine.jei.fusion_furnace", "Fusion Furnace");
@@ -639,10 +640,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("block.rankine.material_testing_bench.exam.test", "Examination tests show the following,");
         add("block.rankine.material_testing_bench.exam", "Examination");
         add("block.rankine.material_testing_bench.exam.error", "Examination test inconclusive.");
-        add("element.rankine,elements/copper.preview", "Commonly used in early alloys.");
-        add("element.rankine,elements/copper.desc0", "Copper is a transition metal with an atomic number of 29.");
-        add("element.rankine,elements/copper.desc1", "Commonly used in electrical components and early alloys.");
-        add("element.rankine,elements/copper.desc2", "Commonly used in electrical components and early alloys.");
+        add("element.rankine:elements/copper.preview", "Commonly used in early alloys.");
+        add("element.rankine:elements/copper.desc0", "Copper is a transition metal with an atomic number of 29.");
+        add("element.rankine:elements/copper.desc1", "Commonly used in electrical components and early alloys.");
+        add("element.rankine:elements/copper.desc2", "Commonly used in electrical components and early alloys.");
 
         add("item.rankine.acanthite.tooltip0", "Ag2S");
         add("item.rankine.acanthite.tooltip1", "Used as a source of silver.");
@@ -699,11 +700,23 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.support.title", "We support Patchouli and JEI!");
         add("rankine.advancements.story.support.description", "Be sure to download these mods if you want more information!");
         add("rankine.advancements.story.get_flint.title", "Flintstones");
-        add("rankine.advancements.story.get_flint.description", "...");
+        add("rankine.advancements.story.get_flint.description", "Obtain flint from any source, now including rocks when using lower-tier tools");
         add("rankine.advancements.story.craft_rope.title", "Knot Likely");
         add("rankine.advancements.story.craft_rope.description", "Gather rope by obtaining a flint knife and harvesting grass");
+        add("rankine.advancements.story.craft_dowsing_rod.title", "Random Guess");
+        add("rankine.advancements.story.craft_dowsing_rod.description", "Make a Dowsing Rod to detect the water level of the area");
+        add("rankine.advancements.story.craft_wooden_mallet.title", "Time to Swing");
+        add("rankine.advancements.story.craft_wooden_mallet.description", "Make a Wooden Mallet to start swinging in rhythm at rocks and other materials");
+        add("rankine.advancements.story.craft_stone_mallet.title", "Stone to crush Stone");
+        add("rankine.advancements.story.craft_stone_mallet.description", "Construct a stronger mallet");
         add("rankine.advancements.story.get_cobblestone.title", "Cobble Cobble");
-        add("rankine.advancements.story.get_cobblestone.description", "...");
+        add("rankine.advancements.story.get_cobblestone.description", "Obtain cobblestone from crushing using a mallet or hammer");
+        add("rankine.advancements.story.craft_mixing_barrel.title", "Mix it Up");
+        add("rankine.advancements.story.craft_mixing_barrel.description", "Make a mixing barrel to start mixing materials with redstone signals");
+        add("rankine.advancements.story.craft_fire_extinguisher.title", "Only You Can Prevent Fires");
+        add("rankine.advancements.story.craft_fire_extinguisher.description", "Make a fire extinguisher to stop fires in their tracks");
+        add("rankine.advancements.story.craft_rock_drill.title", "Rock Sample");
+        add("rankine.advancements.story.craft_rock_drill.description", "Make a rock drill to detect rock layers");
         add("rankine.advancements.story.craft_prospecting_stick.title", "Help Wanted");
         add("rankine.advancements.story.craft_prospecting_stick.description", "Make a Prospecting Stick to point the way to ores");
         add("rankine.advancements.story.craft_ore_detector.title", "Help Granted");
@@ -738,6 +751,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.make_magnesia.description", "Make magnesia from cooking a magnesite block with the beehive oven");
         add("rankine.advancements.story.make_coke.title", "I cant believe it's not Coal!");
         add("rankine.advancements.story.make_coke.description", "Use a beehive oven to produce coke from bituminous and sub-bituminous coal blocks");
+        add("rankine.advancements.story.make_cast_iron.title", "Cast in Iron");
+        add("rankine.advancements.story.make_cast_iron.description", "Alloy iron into Cast Iron");
         add("rankine.advancements.story.make_quicklime.title", "Limecraft");
         add("rankine.advancements.story.make_quicklime.description", "Produce quicklime from combusting limestone with the beehive oven");
         add("rankine.advancements.story.craft_crucible.title", "Refractory Factory");
@@ -746,6 +761,14 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.make_steel.description", "Make Steel Alloy by using the Crucible or the Induction Furnace");
         add("rankine.advancements.story.craft_brigandine_armor.title", "Plate Up");
         add("rankine.advancements.story.craft_brigandine_armor.description", "Make a full set of Brigandine Armor");
+        add("rankine.advancements.story.craft_diving_armor.title", "Deeper Waters");
+        add("rankine.advancements.story.craft_diving_armor.description", "Make a full set of Diving Armor");
+        add("rankine.advancements.story.craft_conduit_diving_armor.title", "Into the Abyss");
+        add("rankine.advancements.story.craft_conduit_diving_armor.description", "Make a full set of Conduit Diving Armor");
+        add("rankine.advancements.story.craft_gas_mask.title", "Breathing In");
+        add("rankine.advancements.story.craft_gas_mask.description", "Make a gas mask to protect against hazardous gases");
+        add("rankine.advancements.story.craft_shulker_gas_vacuum.title", "Vacuum Sealed");
+        add("rankine.advancements.story.craft_shulker_gas_vacuum.description", "Make a shulker gas vacuum to transport gases");
         add("rankine.advancements.story.craft_evaporation_tower.title", "Water Extraction");
         add("rankine.advancements.story.craft_evaporation_tower.description", "Construct an Evaporation Tower to generate resources from water in different biomes");
         add("rankine.advancements.story.craft_piston_crusher.title", "Automatic Labor");
@@ -754,16 +777,36 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_power_cell.description", "Make any power cell for use in advanced machines");
         add("rankine.advancements.story.craft_electromagnet.title", "Moving Metals");
         add("rankine.advancements.story.craft_electromagnet.description", "Make any type of Electromagnet Block");
+        add("rankine.advancements.story.craft_saddle_tree.title", "A Horse");
+        add("rankine.advancements.story.craft_saddle_tree.description", "Craft a saddle tree to make horse-related equipment");
+        add("rankine.advancements.story.craft_fusion_furnace.title", "Complex Systems");
+        add("rankine.advancements.story.craft_fusion_furnace.description", "Make a Fusion Furnace to begin utilizing gases and liquids further");
+        add("rankine.advancements.story.get_mercury.title", "Amalgamation");
+        add("rankine.advancements.story.get_mercury.description", "Obtain mercury to make Amalgam alloys");
+        add("rankine.advancements.story.craft_distillation_tower.title", "Atmospheric Composition");
+        add("rankine.advancements.story.craft_distillation_tower.description", "Make a Distillation Tower to obtain gases from the air");
         add("rankine.advancements.story.craft_gyratory_crusher.title", "Pressing Issue");
         add("rankine.advancements.story.craft_gyratory_crusher.description", "Make a Gyratory Crusher to automate crushing further");
         add("rankine.advancements.story.craft_induction_furnace.title", "Heating Up");
         add("rankine.advancements.story.craft_induction_furnace.description", "Make an Induction Furnace for more advanced alloys");
+        add("rankine.advancements.story.craft_sediment_fan.title", "Spin Cycle");
+        add("rankine.advancements.story.craft_sediment_fan.description", "Make a Sediment Fan to generate Sedimentary Stones");
+        add("rankine.advancements.story.craft_magnet.title", "Attraction");
+        add("rankine.advancements.story.craft_magnet.description", "Make a handheld magnet to bring items closer to you");
         add("rankine.advancements.story.craft_tree_tap.title", "Flowing Phloem");
         add("rankine.advancements.story.craft_tree_tap.description", "Make a tree tap to begin extracting liquids from trees");
+        add("rankine.advancements.story.craft_ground_tap.title", "Water Reservoir");
+        add("rankine.advancements.story.craft_ground_tap.description", "Make a ground tap to bring water to the surface");
+        add("rankine.advancements.story.craft_battery.title", "Fully Charged");
+        add("rankine.advancements.story.craft_battery.description", "Make a battery to provide power to certain machines");
         add("rankine.advancements.story.craft_bandage.title", "Quick Healing");
         add("rankine.advancements.story.craft_bandage.description", "Heal some minor damage with a bandage");
+        add("rankine.advancements.story.craft_alloy_hammer.title", "Crushed");
+        add("rankine.advancements.story.craft_alloy_hammer.description", "Make a hammer with a harvest level of 2 or greater");
         add("rankine.advancements.story.craft_trampoline.title", "Boing!");
         add("rankine.advancements.story.craft_trampoline.description", "Make a trampoline to launch high into the air");
+        add("rankine.advancements.story.craft_fertilizer.title", "Weedhelper");
+        add("rankine.advancements.story.craft_fertilizer.description", "Produce fertilizer to restore patches of grass");
         add("rankine.advancements.story.craft_herbicide.title", "Weedkiller");
         add("rankine.advancements.story.craft_herbicide.description", "Produce herbicide from juglone to clear patches of grass and other plants");
         add("rankine.advancements.story.get_meteoric_iron.title", "Iron from Space");
@@ -774,9 +817,14 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.get_bog_iron.description", "Find Bog Iron submerged in a swamp");
         add("rankine.advancements.story.craft_element_indexer.title", "Elementary");
         add("rankine.advancements.story.craft_element_indexer.description", "Use a device to examine element properties");
-
-
-
+        add("rankine.advancements.story.info_movement.title", "A Primer on Movement");
+        add("rankine.advancements.story.info_movement.description", "Movement (by default) changes depending on what material you are walking on");
+        add("rankine.advancements.story.craft_sandals.title", "Sand Shifter");
+        add("rankine.advancements.story.craft_sandals.description", "Make sandals to move more efficiently on sand");
+        add("rankine.advancements.story.craft_ice_skates.title", "Ice Glider");
+        add("rankine.advancements.story.craft_ice_skates.description", "Make ice skates to move more efficiently on ice");
+        add("rankine.advancements.story.craft_snowshoes.title", "Snow Effort");
+        add("rankine.advancements.story.craft_snowshoes.description", "Make snowshoes to move more efficiently on snow");
 
 
 
@@ -818,6 +866,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.challenges.element_collector.description", "Collect every element in the Periodic Table");
         add("rankine.advancements.challenges.make_all_power_cells.title", "Energized");
         add("rankine.advancements.challenges.make_all_power_cells.description", "Make every type of Power Cell");
+        add("rankine.advancements.challenges.craft_cannonball.title", "Cannonball");
+        add("rankine.advancements.challenges.craft_cannonball.description", "Use a cannonball in a dispenser");
         add("rankine.advancements.challenges.totem_collector.title", "On the Other Hand");
         add("rankine.advancements.challenges.totem_collector.description", "Make every type of Totem");
         add("rankine.advancements.challenges.alloy_collector.title", "Worldmoulder");

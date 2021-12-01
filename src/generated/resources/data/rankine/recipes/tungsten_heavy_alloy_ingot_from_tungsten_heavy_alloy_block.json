@@ -1,0 +1,16 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:tungsten_heavy_alloy_block"
+    }
+  },
+  "result": {
+    "item": "rankine:tungsten_heavy_alloy_ingot",
+    "count": 9
+  }
+}

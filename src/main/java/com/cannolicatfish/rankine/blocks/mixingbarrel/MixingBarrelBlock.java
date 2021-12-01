@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +22,12 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidActionResult;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nullable;
 
@@ -71,6 +77,23 @@ public class MixingBarrelBlock extends Block {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (!worldIn.isRemote) {
+            LazyOptional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getHeldItem(handIn));
+            MixingBarrelTile mixingBarrelTile = (MixingBarrelTile) worldIn.getTileEntity(pos);
+            if (item.isPresent() && mixingBarrelTile != null) {
+                FluidActionResult emptyContainerAndStow = FluidUtil.tryEmptyContainerAndStow(player.getHeldItem(handIn), mixingBarrelTile.inputTank, new InvWrapper(player.inventory), mixingBarrelTile.inputTank.getCapacity(), player, true);
+                if (emptyContainerAndStow.isSuccess()) {
+                    player.setHeldItem(handIn, emptyContainerAndStow.getResult());
+                    worldIn.markChunkDirty(pos, mixingBarrelTile);
+                    return ActionResultType.CONSUME;
+                }
+
+                FluidActionResult fillContainerAndStowInput = FluidUtil.tryFillContainerAndStow(player.getHeldItem(handIn), mixingBarrelTile.inputTank, new InvWrapper(player.inventory), mixingBarrelTile.inputTank.getFluidAmount(), player, true);
+                if (fillContainerAndStowInput.isSuccess()) {
+                    player.setHeldItem(handIn, fillContainerAndStowInput.getResult());
+                    worldIn.markChunkDirty(pos, mixingBarrelTile);
+                    return ActionResultType.CONSUME;
+                }
+            }
             TileEntity tileEntity = worldIn.getTileEntity(pos);
             if (tileEntity instanceof INamedContainerProvider) {
                 NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());

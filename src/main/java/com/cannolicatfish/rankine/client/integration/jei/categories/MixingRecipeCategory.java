@@ -91,10 +91,10 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
         int index = 0;
         for (int i = 0; i < ingredients.getInputs(VanillaTypes.ITEM).size(); i++) {
             if (i < 4) {
-                recipeLayout.getItemStacks().init(i, false, 14 + 45*i, 44);
+                recipeLayout.getItemStacks().init(i, false, 14 + 18*i, 6);
             } else {
                 int floor = Math.floorDiv(i - 4 ,10);
-                recipeLayout.getItemStacks().init(i, true, ((i-4) - (10*floor)) * 18 + 2, 80 + (16*floor));
+                recipeLayout.getItemStacks().init(i, true, ((i-4) - (10*floor)) * 18 + 2, 40 + (16*floor));
             }
 
             if (!ingredients.getInputs(VanillaTypes.ITEM).get(i).contains(ItemStack.EMPTY) && ingredients.getInputs(VanillaTypes.ITEM).get(i).stream().noneMatch((s) -> s.getItem() == RankineItems.ELEMENT.get())) {
@@ -105,7 +105,7 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
         }
         for (List<FluidStack> s : ingredients.getInputs(VanillaTypes.FLUID)) {
             if (s.size() > 0 && !s.get(0).isEmpty()) {
-                recipeLayout.getFluidStacks().init(index,true,120,12);
+                recipeLayout.getFluidStacks().init(index,true,150,7);
                 recipeLayout.getFluidStacks().set(index,s);
             }
             index++;
@@ -122,7 +122,7 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
 */
         for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
             List<ItemStack> stacks = ingredients.getOutputs(VanillaTypes.ITEM).get(i);
-            recipeLayout.getItemStacks().init(index + i + 1, false, 69 + 25 * i, 10);
+            recipeLayout.getItemStacks().init(index + i + 1, false, 2 + 18 * i, 110);
             recipeLayout.getItemStacks().set(index + i + 1, stacks);
             index += 1;
         }

@@ -28,6 +28,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 import javax.annotation.Nullable;
@@ -150,6 +151,10 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
                             this.items.get(4).grow(smelting.getCount());
                         } else {
                             this.items.set(4, smelting);
+                        }
+
+                        if (!irecipe.getFluid().isEmpty()) {
+                            inputTank.drain(irecipe.getFluid(), IFluidHandler.FluidAction.EXECUTE);
                         }
                         this.mixTime = 0;
                         inputs[0].shrink(1);
