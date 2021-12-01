@@ -1094,7 +1094,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PACKED_SNOW_STAIRS = REGISTRY.register("packed_snow_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(PACKED_SNOW.get())));
     public static final RegistryObject<Block> PACKED_SNOW_WALL = REGISTRY.register("packed_snow_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(PACKED_SNOW.get())));
     public static final RegistryObject<Block> PACKED_SNOW_VERTICAL_SLAB = REGISTRY.register("packed_snow_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(PACKED_SNOW.get())));
-    public static final RegistryObject<Block> ICE_BRICKS = REGISTRY.register("ice_bricks", () -> new Block(AbstractBlock.Properties.create(Material.PACKED_ICE).slipperiness(0.98F).hardnessAndResistance(0.5F).sound(SoundType.GLASS)));
+    public static final RegistryObject<Block> ICE_BRICKS = REGISTRY.register("ice_bricks", () -> new Block(AbstractBlock.Properties.create(Material.PACKED_ICE).slipperiness(0.98F).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
     public static final RegistryObject<Block> ICE_BRICKS_SLAB = REGISTRY.register("ice_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ICE_BRICKS.get())));
     public static final RegistryObject<Block> ICE_BRICKS_STAIRS = REGISTRY.register("ice_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ICE_BRICKS.get())));
     public static final RegistryObject<Block> ICE_BRICKS_WALL = REGISTRY.register("ice_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ICE_BRICKS.get())));
@@ -2214,7 +2214,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GAS_VENT = REGISTRY.register("gas_vent", () -> new GasVentBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CHARCOAL_PIT = REGISTRY.register("charcoal_pit", () -> new CharcoalPitBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TREE_TAP = REGISTRY.register("tree_tap", () -> new TreeTapBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0).notSolid()));
-    public static final RegistryObject<Block> TAP_LINE = REGISTRY.register("tap_line", () -> new TapLineBlock(0.125f, AbstractBlock.Properties.create(Material.MISCELLANEOUS).sound(SoundType.CLOTH).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(0.5F).harvestLevel(0).notSolid()));
+    public static final RegistryObject<Block> TAP_LINE = REGISTRY.register("tap_line", () -> new TapLineBlock(0.125f, AbstractBlock.Properties.create(Material.WOOL).sound(SoundType.CLOTH).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(0.5F).harvestLevel(0).notSolid()));
 
 
     public static final RegistryObject<Block> RED_LED = REGISTRY.register("red_led", () -> new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F, 6.0F).sound(SoundType.METAL))));

@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:copper_ingot_from_azurmalachite_blasting"
+      "rankine:building_tool"
     ]
   },
   "criteria": {
-    "has_azurmalachite": {
+    "has_ingredient": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:azurmalachite"
+            "tag": "forge:stone"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:copper_ingot_from_azurmalachite_blasting"
+        "recipe": "rankine:building_tool"
       }
     }
   },
   "requirements": [
     [
-      "has_azurmalachite",
+      "has_ingredient",
       "has_the_recipe"
     ]
   ]

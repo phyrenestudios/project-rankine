@@ -133,6 +133,11 @@ public class ClientProxy implements IProxy {
         addTranslucent(RankineLists.LIGHTNING_GLASSES);
         addTranslucent(Arrays.asList(
                 RankineBlocks.HELIUM_GAS_TUBE.get(),
+                RankineBlocks.ICE_BRICKS.get(),
+                RankineBlocks.ICE_BRICKS_SLAB.get(),
+                RankineBlocks.ICE_BRICKS_STAIRS.get(),
+                RankineBlocks.ICE_BRICKS_VERTICAL_SLAB.get(),
+                RankineBlocks.ICE_BRICKS_WALL.get(),
 
                 RankineBlocks.HYDROGEN_GAS_BLOCK.get(),
                 RankineBlocks.HELIUM_GAS_BLOCK.get(),

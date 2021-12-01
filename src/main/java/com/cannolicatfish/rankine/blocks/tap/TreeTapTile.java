@@ -1,12 +1,21 @@
 package com.cannolicatfish.rankine.blocks.tap;
 
+import com.cannolicatfish.rankine.blocks.FloodGateBlock;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
+import com.cannolicatfish.rankine.recipe.TreetappingRecipe;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +24,7 @@ import java.util.Stack;
 import static com.cannolicatfish.rankine.init.RankineBlocks.TREE_TAP_TILE;
 
 public class TreeTapTile extends TileEntity implements ITickableTileEntity {
+    FluidTank outputTank = new FluidTank(1000);
 
     public TreeTapTile() {
         super(TREE_TAP_TILE);
@@ -22,7 +32,85 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
 
     public void tick() {
 
+        if (world.getDayTime()>2000 && world.getDayTime()<10000 && isTreeAlive(pos,world)) {
+            //for (BlockPos s : BlockPos.getAllInBoxMutable(pos.add(-1,-1,-1),pos.add(1,1,1))) {
+                //if (world.getBlockState(s).getBlock() == RankineBlocks.TREE_TAP.get() && pos != s) {
+                //    return;
+                //}
+            //}
+            Block log = world.getBlockState(pos.offset(this.getBlockState().get(TreeTapBlock.FACING).getOpposite())).getBlock();
+            TreetappingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.TREETAPPING, new Inventory(new ItemStack(log)), this.world).orElse(null);
+            if (irecipe != null && world.getDayTime()%irecipe.getTapTime() == 0) {
+                outputTank.fill(irecipe.getResult(), IFluidHandler.FluidAction.EXECUTE);
+            }
+
+            if (!world.isRemote() && outputTank.getFluidAmount() == 1000 && world.getBlockState(pos.down()).getBlock().matchesBlock(RankineBlocks.TAP_LINE.get())) {
+                BlockPos floodGate = null;
+                Set<BlockPos> checkedBlocks = new HashSet<>();
+                Stack<BlockPos> toCheck = new Stack<>();
+                toCheck.add(pos.down());
+                while (!toCheck.isEmpty()) {
+                    BlockPos cp = toCheck.pop();
+                    if (!checkedBlocks.contains(cp)) {
+                        checkedBlocks.add(cp);
+                        if (world.isBlockLoaded(cp)) {
+                            BlockState s = world.getBlockState(cp);
+                            if (s.getBlock().matchesBlock(RankineBlocks.FLOOD_GATE.get())) {
+                                floodGate = cp;
+                                break;
+                            } else if (s.getBlock().matchesBlock(RankineBlocks.TAP_LINE.get())) {
+                                toCheck.add(cp.north());
+                                toCheck.add(cp.east());
+                                toCheck.add(cp.south());
+                                toCheck.add(cp.west());
+                                toCheck.add(cp.down());
+                            }
+                        }
+                        if (checkedBlocks.size() > 200) {
+                            break;
+                        }
+                    }
+                }
+
+                if (floodGate != null && FloodGateBlock.placeFluid(world, floodGate, outputTank.getFluid().getFluid().getDefaultState().getBlockState())) {
+                    outputTank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+                }
+            }
+
+        }
+
     }
+
+    public FluidTank getOutputTank() {
+        return outputTank;
+    }
+
+    @Override
+    public void read(BlockState state, CompoundNBT nbt) {
+        super.read(state, nbt);
+        this.outputTank = this.outputTank.readFromNBT(nbt.getCompound("OutputTank"));
+    }
+
+    @Override
+    public CompoundNBT write(CompoundNBT compound) {
+        super.write(compound);
+        compound.put("OutputTank",this.outputTank.writeToNBT(new CompoundNBT()));
+
+        return compound;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -42,9 +130,7 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
                 for (BlockPos b : BlockPos.getAllInBoxMutable(cp.add(-1,-1,-1), cp.add(1,1,1))) {
                     BlockState target = worldIn.getBlockState(b.toImmutable());
                     if (target.isIn(RankineTags.Blocks.TREE_LEAVES)) {
-                        if (!target.get(LeavesBlock.PERSISTENT)) {
-                            return true;
-                        }
+                        return true;
                     } else if (target.isIn(RankineTags.Blocks.TREE_LOGS)) {
                         toCheck.add(b.toImmutable());
                     }

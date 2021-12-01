@@ -80,7 +80,7 @@ public class TreetappingRecipe implements IRecipe<IInventory> {
         return this.result;
     }
 
-    public int getCookTime() {
+    public int getTapTime() {
         return tapTime;
     }
 
@@ -139,7 +139,7 @@ public class TreetappingRecipe implements IRecipe<IInventory> {
         public void write(PacketBuffer buffer, TreetappingRecipe recipe) {
             recipe.getIngredient().write(buffer);
             buffer.writeFluidStack(recipe.getResult());
-            buffer.writeInt(recipe.getCookTime());
+            buffer.writeInt(recipe.getTapTime());
         }
     }
 
