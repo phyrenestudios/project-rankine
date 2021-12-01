@@ -48,7 +48,6 @@ public class HerbicideItem extends Item {
                     worldIn.setBlockState(b, Blocks.DEAD_BUSH.getDefaultState(), 2);
                 } else if (blk instanceof GrassySoilBlock && b.distanceSq(pos) <= radius*radius) {
                     worldIn.setBlockState(b, blk.getDefaultState().with(GrassySoilBlock.DEAD, true), 2);
-                    spawnParticles(worldIn,b.up());
                 }
             }
         }
@@ -58,12 +57,6 @@ public class HerbicideItem extends Item {
 
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static void spawnParticles(World worldIn, BlockPos pos) {
-        Random random = worldIn.getRandom();
-        BasicParticleType basicparticletype = ParticleTypes.ASH;
-        worldIn.addOptionalParticle(basicparticletype,  true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.02D, 0.0D);
-    }
 
     @Override
     @OnlyIn(Dist.CLIENT)

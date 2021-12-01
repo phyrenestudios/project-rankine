@@ -5,10 +5,10 @@
       "item": "rankine:cannonball"
     },
     "title": {
-      "translate": "rankine.advancements.story.craft_cannonball.title"
+      "translate": "rankine.advancements.challenges.craft_cannonball.title"
     },
     "description": {
-      "translate": "rankine.advancements.story.craft_cannonball.description"
+      "translate": "rankine.advancements.challenges.craft_cannonball.description"
     },
     "frame": "task",
     "show_toast": true,
