@@ -3,6 +3,166 @@
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
 ## Project Rankine Version 1.3 Alpha Changelog [2021-10-26]
+### Alpha 3 [2021-11-30]
+
+### BLOCKS
+- Added Mixing Barrel, a new tile entity used to make products similiar to the Crucible
+- Added Hydrogen Fluoride Gas Block
+- Added Hollow Logs for all logs
+- Added Leaf Litters for all leaves
+- Added Desert Sand
+- Added White Sandstone, Black Sandstone, Desert Sandstone and associated variants
+- Added Iron Sheetmetal and slab variants
+- Added Gas Condenser (bottles gas blocks)
+- Added Gas Vent (moves gas blocks)
+- Added Red Lightning Glass, Soul Lightning Glass, Black Lightning Glass, White Lightning Glass
+- Added Hematite Ore and Block
+- Converted Material Testing Table to a TileEntity and added slots for tools
+- Harvest Level of Sperrylite Ore and Phosphorite changed to HL1
+- Removed Polished Soul Sandstone and Soul Sandstone Bricks and variants
+- Mud blocks are hoeable
+- Dead Grass Blocks cannot be bonemealed
+- Both vanilla and rankine plants can be placed on appropriate ground blocks
+- Added snowy variants for rankine Leaves
+- Added Cob
+- Building Tool appropritely affects blocks with modes; Planks, Stone Bricks, Bricks
+- Removed Tap Barrel
+- Converted Tree Tap to a tile entity with json recipe support
+
+### ITEMS
+#### --- Additions ---
+- Added Osmiridium Toolset (Pickaxe, Axe, Shovel, Sword, Hoe, Hammer, Knife, Crowbar)
+- Added Americium RTG, Curium RTG, Plutonium RTG, Polonium RTG, and Strontium RTG
+- Added Totem of Enduring, Totem of Hastening, Totem of Levitating, Totem of Promising, Totem of Repulsing, and Totem of Timesaving
+- Added buckets for Gray Mud, Hexaflurosilicic Acid, Carbon Disulfide
+- Added Silicon-Germanium Thermocouple
+- Added Cannonball
+- Added Hematite related items
+- Implemented Building Tool
+- Reduced Jams to a single item
+- Added Rye, Oats, Barley, Millet, Sorghum, Soybean (not implemented yet)
+- Added Rye Seeds, Oat  Seeds, Barley Seeds, Millet Seeds, Sorghum Seeds, Soybean Seeds (not implemented yet)
+- Added Rye Grain, Oat  Grain, Barley Grain, Millet Grain, Sorghum Grain (not implemented yet)
+- Added Tofu and Soy Milk (not implemented yet)
+#### --- Changes ---
+- Alloy tools can now be repairable in an anvil by ingots that have the same alloy recipe and alloy composition
+- Crowbars now have adjusted stats
+- Packaged Tools can now be forced to give a certain tool by providing NBT (ex. forceTool: "pickaxe")
+- Jams are now using recipe type similar to fireworks (1x Glass Bottle + 2x Sugar + 6x Any Berry)
+- Drink-type food items now use the drink ActionType
+#### --- Removals ---
+- Removed Pendants (replaced by Totems)
+
+### RECIPES
+#### --- Additions ---
+- Added Mixing and TreeTapping json recipe types
+- Added Fusion Furnace recipe to convert Ilmenite into Rutile
+- Added an alternative Shulker Gas Vacuum Recipe that uses rubidium
+- Added alternative recipes for Silver-Zinc Battery, Magnesium Battery, and Lead-Acid Battery that uses vulcanized rubber
+- Added crushing recipes to Beryl Ore
+- Added Sodium Fluorosilicate to Fumarole Deposit crushing
+- Added Fusion Furnace recipes relating to the Kraft Process
+- Added Fusion Furnace recipes for producing Alkali Cellulose, Carbon Nugget, Carbon Disulfide, Cryolite, Fertilzer, Hydrogen Fluoride, Lithium Cobalt Oxide, Phantom Membrane, Slimeball, Sodium Fluorosilicate, Sodium Sulfide, Sponge 
+- Added Fusion Furnace smelting recipes for Celestine, Greenockite, Lautarite, Thortveitite, Xenotime
+- Added crushing recipes for new sandstones
+- Added sedimentary stone generator recipes for new sandstones
+- Added alternative recipe for End Rod and Brewing Stand using Ferrocerium
+- Added alternative Flint and Steel recipe using Steel Nuggets
+- Added Muds, Myceliums, Podzols and Path blocks to Pan Sluicing
+- Added alloy crafting recipes for all Alloy Nuggets and Alloy Blocks (composition is now inherited)
+#### --- Changes ---
+- Added forceNBT arguement to Alloy Recipe JSON, which if set to true (false by default) causes the item to be given alloyData even if it is not an AlloyItem
+- Adjusted some outputs for Fusion Furnace recipes
+- Interspinifex ore now gives Iron Nuggets for HL1 Crushing
+- White dye recipe for Ilmenite changed to use Rutile instead
+- Modified recipes related with Hafnia and Zirconia
+- Sediment Fan now uses Brass instead of Aluminum
+- Fixed broken recipes
+#### --- Removals ---
+- Removed Blasting recipes for all Monazites, Thortveitite, Xenotime
+- Removed Beehive Oven recipes for all Monazite Blocks, Thortveitite Block, Xenotime Block
+- Removed Crushing recipes for Lepidolite, all Monazites
+- Removed crafting recipe for Slimeballs
+
+### FLUIDS
+- Added Gray Mud
+- Added Hexafluorosilicic Acid
+- Added Carbon Disulfide
+
+### TAGS
+- Added fluid tags
+- Added missing tool tags
+- Added #rankine:construction_sand (includes Desert Sand for building purposes)
+- Added blocks to Vanilla tags; mushroom_grow_blocks, bee_growables, enderman_holdable
+- Removed tree tapping log tags (replaced by recipes)
+
+### MISC
+- Added custom SoundEvents (for subtitles only currently)
+- Overhaul of advancements
+#### --- Changes ---
+- Added config options to disable various features
+- Added new config options for ore vein generation
+- Adjusted ore generation 
+- Gas Blocks now render an overlay when within them
+- Ores appropriately replace blocks with different texture names from the block (basalt and sandstones)
+- Tree felling makes lwess noise
+- Leaves in fast graphics mode render appropriately
+- Coke now has proper forge tags
+#### --- Config ---
+- Condensed settings into fewer categories
+- Added option to replace vanilla ores with Rankine versions for texturing (enabled by default)
+- Decreased chances for plant events to occur
+- Added client config, currently contains option to color grass based off elevation
+#### --- Fixes ---
+- Remade block localizations to be more consistent with Vanilla
+- Fixed ore harvest level configs
+- Grass Paths are appropriately replaced
+- Grass Blocks spreading to Dirt grow vanilla grass blocks
+- Packaged tool now ignores alloy recipes with no inputs (ex. Crucible Steel) and no longer produces debug info
+- Fixed issue where alloy armor items were not able to inherit stats from elements properly
+- Fixed Osmium and Iridium Enchantment formula
+- Fixed incompatibility with Quark Automatic Recipe Unlock Module
+- Machines with inventories drop items when broken
+#### --- Alloying ---
+##### Alloys
+- Alloys now use the same tool material, meaning that base stats for every alloy tool will now be the same before considering elements and bonus alloy stats
+- All gold alloys and Osmiridium now have an extra 50 durability
+- Amalgam now gives a random enchantment if enchantability conditions are met
+- Invar now confers +0.5 bonus damage
+- All Steels now have unique lang identifiers (Crucible Steel, Maraging Steel, Tool Steel)
+- Unified Maraging Steel into a single recipe and adjusted compositions
+- Potential compositions for Osmiridium have been adjusted
+- Added additional elements to Nitinol
+- Phosphorus and Bismuth can now be used in Brass
+- Iron and Manganese can now be used in Nickel Silver
+- Germanium can now be used in all Gold alloys
+- Gallium and Indium can be used in Pewter
+- Cesium can now be used in Galinstan and Pewter
+- Rubidium can now be used in all Gold alloys and Sodium-Potassium alloy
+- Removed post-actinoid elements from Amalgam and Ender Amalgam
+- Changed default enchantability bounds for alloys
+##### Elements
+- Added formulas for Cesium, Gallium, Indium, Rhodium, Rubidium, Ruthenium, Scandium
+- Manganese now has an adjusted harvest level formula
+- Significantly changed stats or added new stats for Osmium, Iridium
+- Iron now gives attack damage (max 2) as composition percentage increases
+- Copper now gives attack damage (max 1.2) as composition percentage increases
+- Netherite has a new attack damage max of 4 (from 2)
+- Vanadium has a new attack damage max of 2 (from 1)
+- Fixed Barium damage and attack speed formulas
+
+### COMPAT
+- Added Biomes O' Plenty, Biomes You Go, Botania, Immersive Engineering, Mekanism, Quark, Thermal Series, and Tinker's Construct as optional dependencies 
+- Added crushing recipes for Quark stones and cobblestones
+- Added alloying recipes for Thermal Series alloys
+- Added crucible recipes for Thermal Series glass
+- Added alloying recipes for Tinker's Construct alloys
+- Added alloying recipe for Andesite Alloy from Create
+- Added relevant elements for compatibility with certain alloys
+
+### COMMUNITY CONTRIBUTIONS
+- Added Russian (ru_ru) translation (liottan)
+
 ### Alpha 2 [2021-10-26]
 
 ### BLOCKS
