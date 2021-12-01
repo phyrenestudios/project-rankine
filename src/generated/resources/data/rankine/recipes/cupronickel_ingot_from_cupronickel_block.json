@@ -1,0 +1,16 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:cupronickel_block"
+    }
+  },
+  "result": {
+    "item": "rankine:cupronickel_ingot",
+    "count": 9
+  }
+}

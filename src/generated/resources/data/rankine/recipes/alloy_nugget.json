@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:alloy_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_nugget",
+    "count": 9
+  }
+}

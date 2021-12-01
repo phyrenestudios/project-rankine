@@ -39,7 +39,7 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
     private AlloyingRecipe alloy = null;
     public MaterialTestingTableScreen(MaterialTestingTableContainer container, PlayerInventory inv, ITextComponent name) {
         super(container, inv, name);
-        this.xSize = 230;
+        this.xSize = 256;
         this.ySize = 256;
         this.textureXSize = 256;
         this.textureYSize = 256;
@@ -96,7 +96,7 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
                 }
 
                 drawString(matrixStack,Minecraft.getInstance().fontRenderer,element.getName().toUpperCase(Locale.ROOT) + " (" + element.getSymbol() + ")",32,10,0xffffff);
-                drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("element."+ element.getId() +".preview"),32,20,0xffffff);
+                //drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("element."+ element.getId() +".preview"),32,20,0xffffff);
             } else if (stat == 10) {
                 drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("block.rankine.material_testing_bench.enchantments.test"),12,32,0xffffff);
                 int ymod = 0;
@@ -120,7 +120,7 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
             }
 
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,element.getName().toUpperCase(Locale.ROOT) + " (" + element.getSymbol() + ")",32,10,0xffffff);
-            drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("element."+ element.getId() +".preview"),32,20,0xffffff);
+            //drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("element."+ element.getId() +".preview"),32,20,0xffffff);
         } else if (alloy != null) {
             int stat = this.container.getToolItem(worldIn);
             if (stat >= 0 && stat <= 9) {
@@ -136,7 +136,7 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
                 }
 
                 drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent(stack.getTranslationKey()).getString().toUpperCase(Locale.ROOT),32,10,0xffffff);
-                drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("alloy."+ alloy.getId() +".preview"),32,20,0xffffff);
+                //drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("alloy."+ alloy.getId() +".preview"),32,20,0xffffff);
             }
         }
     }

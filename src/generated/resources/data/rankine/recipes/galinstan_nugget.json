@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:galinstan_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:galinstan_nugget",
+    "count": 9
+  }
+}

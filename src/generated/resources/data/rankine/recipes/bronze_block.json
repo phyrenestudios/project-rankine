@@ -1,6 +1,7 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "rankine:alloy_crafting",
   "group": "rankine",
+  "inherit": true,
   "pattern": [
     "###",
     "###",

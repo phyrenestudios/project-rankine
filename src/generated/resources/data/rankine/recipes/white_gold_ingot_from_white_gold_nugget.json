@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine",
+  "inherit": true,
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:white_gold_nugget"
+    }
+  },
+  "result": {
+    "item": "rankine:white_gold_ingot"
+  }
+}

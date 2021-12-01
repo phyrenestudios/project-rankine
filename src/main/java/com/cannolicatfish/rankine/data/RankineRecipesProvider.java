@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.data;
 
+import com.cannolicatfish.rankine.data.builders.AlloyCraftingRecipeBuilder;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.recipe.JamRecipe;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
@@ -515,7 +516,6 @@ public class RankineRecipesProvider extends RecipeProvider {
         }
         OneToX(consumer, RankineItems.NETHERITE_NUGGET.get(), Items.NETHERITE_INGOT, 9, "has_ingredient", Items.NETHERITE_INGOT);
         threeXthree(consumer, Items.NETHERITE_INGOT, RankineItems.NETHERITE_NUGGET.get(), 1, "has_ingredient", Items.NETHERITE_INGOT, "netherite_ingot_from_netherite_nugget");
-
         //Misc Blocks
         OneToX(consumer, RankineItems.VULCANIZED_RUBBER.get(), RankineItems.VULCANIZED_RUBBER_BLOCK.get(), 9, "has_ingredient", RankineItems.VULCANIZED_RUBBER.get(), "vulcanized_rubber_from_block");
         threeXthree(consumer, RankineItems.VULCANIZED_RUBBER_BLOCK.get(), RankineItems.VULCANIZED_RUBBER.get(), 1, "has_ingredient", RankineItems.VULCANIZED_RUBBER.get());
@@ -695,10 +695,15 @@ public class RankineRecipesProvider extends RecipeProvider {
         CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RankineItems.STIBNITE_ORE.get()), RankineItems.ANTIMONY.get(), 0.5F, 100).addCriterion("has_ingredient", hasItem(RankineBlocks.STIBNITE_ORE.get().asItem())).build(consumer, "rankine:antimony_ingot_from_stibnite_ore_blasting");
 
         //ALLOY STUFFS
-        for (Block ALLOY_BLOCK : RankineLists.ALLOY_BLOCKS) {
-            Item ALLOY = RankineLists.ALLOY_INGOTS.get(RankineLists.ALLOY_BLOCKS.indexOf(ALLOY_BLOCK));
-            if (!ALLOY.equals(RankineItems.SOLDER.get())) {
-                threeXthree(consumer, ALLOY_BLOCK.asItem(), ALLOY, 1, "has_ingredient", ALLOY);
+        for (Item NUGGET : RankineLists.ALLOY_NUGGETS) {
+            Block BLOCK = RankineLists.ALLOY_BLOCKS.get(RankineLists.ALLOY_NUGGETS.indexOf(NUGGET));
+            Item INGOT = RankineLists.ALLOY_INGOTS.get(RankineLists.ALLOY_NUGGETS.indexOf(NUGGET));
+
+            if (!INGOT.equals(RankineItems.SOLDER.get())) {
+                threeXthreeAlloy(consumer, BLOCK.asItem(), INGOT, 1, "has_ingredient", INGOT);
+                threeXthreeAlloy(consumer, INGOT, NUGGET, 1, "has_ingredient", NUGGET, INGOT.getRegistryName().getPath()+"_from_"+NUGGET.getRegistryName().getPath());
+                OneToXAlloy(consumer, INGOT, BLOCK.asItem(), 9, "has_ingredient", BLOCK.asItem(), INGOT.getRegistryName().getPath()+"_from_"+BLOCK.getRegistryName().getPath());
+                OneToXAlloy(consumer, NUGGET, INGOT, 9, "has_ingredient", INGOT);
             }
         }
         for (Block ALLOY_PEDESTAL : RankineLists.ALLOY_PEDESTALS) {
@@ -1005,6 +1010,28 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer);
     }
+
+    private void threeXthreeAlloy(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true)
+                .patternLine("###")
+                .patternLine("###")
+                .patternLine("###")
+                .key('#', input)
+                .setGroup("rankine")
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer, new ResourceLocation("rankine",name));
+    }
+    private void threeXthreeAlloy(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true)
+                .patternLine("###")
+                .patternLine("###")
+                .patternLine("###")
+                .key('#', input)
+                .setGroup("rankine")
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer);
+    }
+
     private void twoXtwo(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
         ShapedRecipeBuilder.shapedRecipe(output, count)
                 .patternLine("##")
@@ -1037,6 +1064,24 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer);
     }
+
+    private void OneToXAlloy(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true)
+                .patternLine("#")
+                .key('#', input)
+                //.setGroup("rankine")
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer, new ResourceLocation("rankine",name));
+    }
+    private void OneToXAlloy(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true)
+                .patternLine("#")
+                .key('#', input)
+                .setGroup("rankine")
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer);
+    }
+
     private void OneToXTag(Consumer<IFinishedRecipe> consumer, Item output, String group, ITag<Item> input, int count, String triggerName, Item trigger) {
         ShapelessRecipeBuilder.shapelessRecipe(output, count)
                 .addIngredient(input)

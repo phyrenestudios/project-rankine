@@ -6,9 +6,7 @@
   ],
   "key": {
     "R": {
-      "item": "rankine:steel_nugget",
-      "alloyRecipe": "rankine:alloying/steel_alloying",
-      "name": "item.rankine.steel_alloying"
+      "item": "rankine:steel_nugget"
     },
     "F": {
       "item": "minecraft:flint"

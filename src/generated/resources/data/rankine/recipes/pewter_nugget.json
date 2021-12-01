@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:pewter_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:pewter_nugget",
+    "count": 9
+  }
+}

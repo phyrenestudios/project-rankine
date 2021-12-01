@@ -1,7 +1,10 @@
 package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
+import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.packets.FluidStackPacket;
+import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.recipe.MixingRecipe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -19,6 +22,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -56,7 +61,7 @@ public class MixingBarrelContainer extends Container {
         this.addSlot(new Slot(furnaceInventory, 3, 106,23));
         this.addSlot(new Slot(furnaceInventory, 4, 79,53));
 
-        layoutPlayerInventorySlots(8, 84);
+        layoutPlayerInventorySlots(10, 86);
 
         this.trackIntArray(furnaceData);
     }
@@ -82,6 +87,18 @@ public class MixingBarrelContainer extends Container {
         return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.MIXING_BARREL.get());
     }
 
+    public FluidTank getInputTank() {
+        MixingBarrelTile mixingBarrelTile = (MixingBarrelTile) tileEntity;
+        return mixingBarrelTile.getInputTank();
+    }
+
+    @Override
+    public void detectAndSendChanges() {
+        super.detectAndSendChanges();
+        MixingBarrelTile mixingBarrelTile = (MixingBarrelTile) tileEntity;
+        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new FluidStackPacket(mixingBarrelTile.getInputTank().getFluid(),tileEntity.getPos(),true));
+    }
+
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
@@ -95,10 +112,8 @@ public class MixingBarrelContainer extends Container {
                 }
                 slot.onSlotChange(stack, itemstack);
             } else if (index > 4) {
-                if (hasRecipe(stack)) {
-                    if (!this.mergeItemStack(stack, 0, 3, false)) {
-                        return ItemStack.EMPTY;
-                    }
+                if (!this.mergeItemStack(stack, 0, 3, false)) {
+                    return ItemStack.EMPTY;
                 }
                 else if (index < 32) {
                     if (!this.mergeItemStack(stack, 32, 41, false)) {

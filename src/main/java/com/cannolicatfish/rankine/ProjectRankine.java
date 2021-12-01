@@ -23,6 +23,7 @@ import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelContainer;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
+import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxContainer;
@@ -316,6 +317,7 @@ public class ProjectRankine {
             //event.getRegistry().register(TileEntityType.Builder.create(SodiumVaporLampTile::new, RankineBlocks.SODIUM_VAPOR_LAMP.get()).build(null).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
             event.getRegistry().register(TileEntityType.Builder.create(FluidDrainTile::new, RankineBlocks.TILLED_SOIL.get()).build(null).setRegistryName(ProjectRankine.MODID,"tilled_soil"));
             event.getRegistry().register(TileEntityType.Builder.create(GroundTapTile::new, RankineBlocks.GROUND_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"ground_tap"));
+            event.getRegistry().register(TileEntityType.Builder.create(MaterialTestingTableTile::new, RankineBlocks.MATERIAL_TESTING_TABLE.get()).build(null).setRegistryName(ProjectRankine.MODID,"material_testing_table"));
             event.getRegistry().register(TileEntityType.Builder.create(BeehiveOvenTile::new, RankineBlocks.BEEHIVE_OVEN_PIT.get()).build(null).setRegistryName(ProjectRankine.MODID,"beehive_oven"));
             event.getRegistry().register(TileEntityType.Builder.create(DistillationTowerTile::new, RankineBlocks.DISTILLATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"distillation_tower"));
         }
@@ -451,12 +453,14 @@ public class ProjectRankine {
             }).setRegistryName(ProjectRankine.MODID,"rankine_box"));
 
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new MaterialTestingTableContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
+            }).setRegistryName(ProjectRankine.MODID,"material_testing_table"));
+
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 return new TemplateTableContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"template_table"));
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
-                return new MaterialTestingTableContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"material_testing_table"));
 
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 return new ElementIndexerContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());

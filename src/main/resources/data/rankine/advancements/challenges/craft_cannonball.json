@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/rankine_challenges",
+  "parent": "rankine:challenges/rankine_challenges",
   "display": {
     "icon": {
       "item": "rankine:cannonball"

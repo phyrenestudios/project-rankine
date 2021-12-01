@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:duralumin_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:duralumin_nugget",
+    "count": 9
+  }
+}

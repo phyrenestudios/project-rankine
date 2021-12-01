@@ -1,0 +1,16 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:sterling_silver_block"
+    }
+  },
+  "result": {
+    "item": "rankine:sterling_silver_ingot",
+    "count": 9
+  }
+}

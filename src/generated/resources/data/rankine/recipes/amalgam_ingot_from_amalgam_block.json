@@ -1,0 +1,16 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:amalgam_block"
+    }
+  },
+  "result": {
+    "item": "rankine:amalgam_ingot",
+    "count": 9
+  }
+}

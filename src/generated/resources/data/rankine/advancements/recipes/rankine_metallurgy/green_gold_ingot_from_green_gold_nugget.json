@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:thorium_arrow"
+      "rankine:green_gold_ingot_from_green_gold_nugget"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/thorium"
+            "item": "rankine:green_gold_nugget"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:thorium_arrow"
+        "recipe": "rankine:green_gold_ingot_from_green_gold_nugget"
       }
     }
   },

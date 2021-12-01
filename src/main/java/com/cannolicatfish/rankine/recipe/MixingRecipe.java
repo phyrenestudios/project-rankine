@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
@@ -92,7 +93,13 @@ public class MixingRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        return !getMixingResult(inv,worldIn).isEmpty();
+        boolean fluidInCheck;
+        if (inv instanceof MixingBarrelTile) {
+            fluidInCheck = ((MixingBarrelTile)inv).getInputTank().getFluid().containsFluid(this.fluid);
+        } else {
+            fluidInCheck = true;
+        }
+        return fluidInCheck && !getMixingResult(inv,worldIn).isEmpty();
     }
 
     public ItemStack getMixingResult(IInventory inv, World worldIn) {
