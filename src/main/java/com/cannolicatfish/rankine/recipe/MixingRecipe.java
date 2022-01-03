@@ -37,6 +37,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
     private final int mixTime;
     private final int ingredientTotal;
     private final int outputTotal;
+    private final NonNullList<Integer> ingredientCounts;
     private final NonNullList<Integer> ingredientGroups;
     private final NonNullList<Boolean> required;
     private final NonNullList<Integer> countMod;
@@ -49,10 +50,11 @@ public class MixingRecipe implements IRecipe<IInventory> {
 
     public static final MixingRecipe.Serializer SERIALIZER = new MixingRecipe.Serializer();
 
-    public MixingRecipe(ResourceLocation idIn, int mixTimeIn, int ingredientTotalIn, int outputTotalIn, FluidStack fluidIn, NonNullList<Ingredient> recipeItemsIn, NonNullList<Integer> ingredientGroupsIn, NonNullList<Boolean> requiredIn, NonNullList<Integer> countModIn,
+    public MixingRecipe(ResourceLocation idIn, int mixTimeIn, int ingredientTotalIn, int outputTotalIn, FluidStack fluidIn, NonNullList<Ingredient> recipeItemsIn, NonNullList<Integer> ingredientCountsIn, NonNullList<Integer> ingredientGroupsIn, NonNullList<Boolean> requiredIn, NonNullList<Integer> countModIn,
                         NonNullList<Integer> mixTimeModIn, NonNullList<ItemStack> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn) {
         this.id = idIn;
         this.fluid = fluidIn;
+        this.ingredientCounts = ingredientCountsIn;
         this.ingredientGroups = ingredientGroupsIn;
         this.mixTime = mixTimeIn;
         this.ingredientTotal = ingredientTotalIn;
@@ -121,8 +123,11 @@ public class MixingRecipe implements IRecipe<IInventory> {
         for (int s = 0; s < 4; s++) {
             ItemStack stack = inv.getStackInSlot(s);
             int workingIndex = -1;
+            if (stack.isEmpty()) {
+                continue;
+            }
             for (int i = 0; i < this.getIngredients().size(); i++) {
-                if (this.getIngredients().get(i).test(stack)) {
+                if (this.getIngredients().get(i).test(stack) && stack.getCount() >= this.getIngredientCounts().get(i)) {
                     workingIndex = i;
                     break;
                 }
@@ -139,6 +144,12 @@ public class MixingRecipe implements IRecipe<IInventory> {
 
             groupsUsed.add(this.getIngredientGroups().get(workingIndex));
             if (!(this.getIngredientGroups().get(workingIndex) == -1) && !(Collections.frequency(groupsUsed,this.getIngredientGroups().get(workingIndex)) <= 1)) {
+                return ItemStack.EMPTY;
+            }
+        }
+
+        for (int j = 0; j < getRequired().size(); j++) {
+            if (getRequired().get(j) && (Collections.frequency(groupsUsed,j) == 0)) {
                 return ItemStack.EMPTY;
             }
         }
@@ -164,6 +175,9 @@ public class MixingRecipe implements IRecipe<IInventory> {
         int mix = this.getMixTime();
         for (int s = 0; s < 4; s++) {
             ItemStack stack = inv.getStackInSlot(s);
+            if (stack.isEmpty()) {
+                continue;
+            }
             int workingIndex = -1;
             for (int i = 0; i < this.getIngredients().size(); i++) {
                 if (this.getIngredients().get(i).test(stack)) {
@@ -239,6 +253,10 @@ public class MixingRecipe implements IRecipe<IInventory> {
         return ingredients;
     }
 
+    public NonNullList<Integer> getIngredientCounts() {
+        return ingredientCounts;
+    }
+
     public NonNullList<Integer> getIngredientGroups() {
         return ingredientGroups;
     }
@@ -283,6 +301,15 @@ public class MixingRecipe implements IRecipe<IInventory> {
         return RankineRecipeTypes.MIXING;
     }
 
+    public int getShrinkAmount(ItemStack input) {
+        for (int i = 0; i < this.getIngredients().size(); i++) {
+            if (this.getIngredients().get(i).test(input)) {
+                return this.getIngredientCounts().get(i);
+            }
+        }
+        return 1;
+    }
+
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<MixingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "mixing");
         public MixingRecipe read(ResourceLocation recipeId, JsonObject json) {
@@ -293,6 +320,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
             NonNullList<Boolean> requiredbool = NonNullList.withSize(4,false);
 
             NonNullList<Ingredient> ingredients = NonNullList.withSize(ingT,Ingredient.EMPTY);
+            NonNullList<Integer> ingCounts = NonNullList.withSize(ingT,1);
             NonNullList<Integer> groups = NonNullList.withSize(ingT,-1);
             NonNullList<Integer> countMods = NonNullList.withSize(ingT,0);
             NonNullList<Integer> mixTimeMods = NonNullList.withSize(ingT,0);
@@ -306,6 +334,9 @@ public class MixingRecipe implements IRecipe<IInventory> {
                 if (json.has(input)) {
                     JsonObject object = JSONUtils.getJsonObject(json, input);
                     ingredients.set(i, AlloyIngredientHelper.deserialize(object,null,null,null));
+                    if (object.has("count")) {
+                        ingCounts.set(i,object.get("count").getAsInt());
+                    }
                     if (object.has("group")) {
                         groups.set(i,object.get("group").getAsInt());
                     }
@@ -348,7 +379,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
 
                 }
             }
-            return new MixingRecipe(recipeId,mixT,ingT,outT,fluidInput,ingredients, groups, requiredbool, countMods, mixTimeMods, stacks, weights, mins,maxes);
+            return new MixingRecipe(recipeId,mixT,ingT,outT,fluidInput,ingredients, ingCounts, groups, requiredbool, countMods, mixTimeMods, stacks, weights, mins,maxes);
         }
 
         public MixingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
@@ -359,6 +390,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
             NonNullList<Boolean> req = NonNullList.withSize(4, false);
 
             NonNullList<Ingredient> ingredients = NonNullList.withSize(ingT, Ingredient.EMPTY);
+            NonNullList<Integer> counts = NonNullList.withSize(ingT,1);
             NonNullList<Integer> groups = NonNullList.withSize(ingT,-1);
             NonNullList<Integer> countMods = NonNullList.withSize(ingT,0);
             NonNullList<Integer> mixTimeMods = NonNullList.withSize(ingT,0);
@@ -369,6 +401,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
 
             for (int i = 0; i < ingT; i++) {
                 ingredients.set(i,Ingredient.read(buffer));
+                counts.set(i,buffer.readInt());
                 groups.set(i,buffer.readInt());
                 countMods.set(i,buffer.readInt());
                 mixTimeMods.set(i,buffer.readInt());
@@ -396,7 +429,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
                 maxes.set(k, buffer.readInt());
             }
 
-            return new MixingRecipe(recipeId,mixT,ingT,resT,input,ingredients, groups, req, countMods, mixTimeMods, stacks, weights, mins,maxes);
+            return new MixingRecipe(recipeId,mixT,ingT,resT,input,ingredients, counts, groups, req, countMods, mixTimeMods, stacks, weights, mins,maxes);
         }
 
         public void write(PacketBuffer buffer, MixingRecipe recipe) {
@@ -413,6 +446,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
             }
             for (int i = 0; i < recipe.getIngredientTotal(); i++) {
                 recipe.getIngredients().get(i).write(buffer);
+                buffer.writeInt(recipe.getIngredientCounts().get(i));
                 buffer.writeInt(recipe.getIngredientGroups().get(i));
                 buffer.writeInt(recipe.getCountMod().get(i));
                 buffer.writeInt(recipe.getMixMod().get(i));

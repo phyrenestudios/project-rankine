@@ -94,4 +94,11 @@ public class RankineRecipeTypes {
             return recipe.matches(inv, worldIn) ? Optional.of((MixingRecipe) recipe) : Optional.empty();
         }
     };
+
+    public static final IRecipeType<AlloyModifierRecipe> ALLOY_MODIFIER = new IRecipeType<AlloyModifierRecipe>() {
+        @Override
+        public <C extends IInventory> Optional<AlloyModifierRecipe> matches(IRecipe<C> recipe, World worldIn, C inv) {
+            return recipe.matches(inv, worldIn) ? Optional.of((AlloyModifierRecipe) recipe) : Optional.empty();
+        }
+    };
 }

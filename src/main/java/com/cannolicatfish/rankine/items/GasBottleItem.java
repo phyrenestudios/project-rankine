@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -67,6 +68,18 @@ public class GasBottleItem extends Item {
                 return RankineBlocks.RADON_GAS_BLOCK.get();
             case OGANESSON:
                 return RankineBlocks.OGANESSON_GAS_BLOCK.get();
+            case AMMONIA:
+                return RankineBlocks.AMMONIA_GAS_BLOCK.get();
+            case CARBON_DIOXIDE:
+                return RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get();
+            case HYDROGEN_CHLORIDE:
+                return RankineBlocks.HYDROGEN_CHLORIDE_GAS_BLOCK.get();
+            case HYDROGEN_FLUORIDE:
+                return RankineBlocks.HYDROGEN_FLUORIDE_GAS_BLOCK.get();
+            case HYDROGEN_SULFIDE:
+                return RankineBlocks.HYDROGEN_SULFIDE_GAS_BLOCK.get();
+            case SULFUR_DIOXIDE:
+                return RankineBlocks.SULFUR_DIOXIDE_GAS_BLOCK.get();
             default:
                 return Blocks.AIR;
         }

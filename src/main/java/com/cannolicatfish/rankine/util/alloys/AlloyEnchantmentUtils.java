@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.util.alloys;
 
+import com.cannolicatfish.rankine.items.BlunderbussItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
@@ -131,6 +132,8 @@ public class AlloyEnchantmentUtils {
                 return enchantment.canApply(stack) && (stack.getItem() instanceof FishingRodItem);
             case BOW:
                 return enchantment.canApply(stack) && (stack.getItem() instanceof BowItem);
+            case BLUNDERBUSS:
+                return enchantment.canApply(stack) && (stack.getItem() instanceof BlunderbussItem);
             default:
                 return enchantment.canApply(stack);
         }
@@ -155,7 +158,8 @@ public class AlloyEnchantmentUtils {
         BOOTS,
         SHIELD,
         FISHING_ROD,
-        BOW
+        BOW,
+        BLUNDERBUSS
 
     }
 }

@@ -2,15 +2,13 @@ package com.cannolicatfish.rankine.commands;
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.*;
+import com.cannolicatfish.rankine.recipe.AlloyModifierRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
-import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.FunctionManager;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
@@ -39,26 +37,32 @@ public class CreateAlloyCommand {
         return ISuggestionProvider.func_212476_a(collection.stream().map(AlloyingRecipe::getId), p_198477_1_);
     };
 
+    public static final SuggestionProvider<CommandSource> MODIFIER_RECIPE_SUGGESTER = (p_198477_0_, p_198477_1_) -> {
+        Collection<AlloyModifierRecipe> collection = p_198477_0_.getSource().getServer().getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOY_MODIFIER);
+        return ISuggestionProvider.func_212476_a(collection.stream().map(AlloyModifierRecipe::getId), p_198477_1_);
+    };
 
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(Commands.literal("givealloy").requires((p_198496_0_) -> {
             return p_198496_0_.hasPermissionLevel(2);
         }).then(Commands.argument("targets", EntityArgument.players()).then(Commands.argument("item", ItemArgument.item()).executes((p_198492_0_) -> {
             Item in = ItemArgument.getItem(p_198492_0_, "item").getItem();
-            return giveItem(p_198492_0_.getSource(), ItemArgument.getItem(p_198492_0_, "item"),in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultComposition() : "", in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : new ResourceLocation(""), EntityArgument.getPlayers(p_198492_0_, "targets"), 1,16777215);
+            return giveItem(p_198492_0_.getSource(), ItemArgument.getItem(p_198492_0_, "item"),in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultComposition() : "", in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : new ResourceLocation(""), EntityArgument.getPlayers(p_198492_0_, "targets"), 1, null,16777215);
         }).then(Commands.argument("composition", StringArgumentType.string()).executes((p_198493_0_) -> {
             Item in = ItemArgument.getItem(p_198493_0_, "item").getItem();
-            return giveItem(p_198493_0_.getSource(), ItemArgument.getItem(p_198493_0_, "item"), StringArgumentType.getString(p_198493_0_, "composition"), in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : new ResourceLocation(""),  EntityArgument.getPlayers(p_198493_0_, "targets"), 1,16777215);
+            return giveItem(p_198493_0_.getSource(), ItemArgument.getItem(p_198493_0_, "item"), StringArgumentType.getString(p_198493_0_, "composition"), in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : new ResourceLocation(""),  EntityArgument.getPlayers(p_198493_0_, "targets"), 1, null,16777215);
         }).then(Commands.argument("recipe", ResourceLocationArgument.resourceLocation()).suggests(ALLOY_RECIPE_SUGGESTER).executes((p_198494_0_) -> {
-            return giveItem(p_198494_0_.getSource(), ItemArgument.getItem(p_198494_0_, "item"), StringArgumentType.getString(p_198494_0_, "composition"), ResourceLocationArgument.getResourceLocation(p_198494_0_, "recipe"), EntityArgument.getPlayers(p_198494_0_, "targets"), 1,16777215);
+            return giveItem(p_198494_0_.getSource(), ItemArgument.getItem(p_198494_0_, "item"), StringArgumentType.getString(p_198494_0_, "composition"), ResourceLocationArgument.getResourceLocation(p_198494_0_, "recipe"), EntityArgument.getPlayers(p_198494_0_, "targets"), 1, null,16777215);
         }).then(Commands.argument("count", IntegerArgumentType.integer(1)).executes((p_198495_0_) -> {
-            return giveItem(p_198495_0_.getSource(), ItemArgument.getItem(p_198495_0_, "item"), StringArgumentType.getString(p_198495_0_, "composition"), ResourceLocationArgument.getResourceLocation(p_198495_0_, "recipe"), EntityArgument.getPlayers(p_198495_0_, "targets"), IntegerArgumentType.getInteger(p_198495_0_, "count"),16777215);
-        }).then(Commands.argument("color", IntegerArgumentType.integer(1)).executes((p_198495_0_) -> {
-            return giveItem(p_198495_0_.getSource(), ItemArgument.getItem(p_198495_0_, "item"), StringArgumentType.getString(p_198495_0_, "composition"), ResourceLocationArgument.getResourceLocation(p_198495_0_, "recipe"), EntityArgument.getPlayers(p_198495_0_, "targets"), IntegerArgumentType.getInteger(p_198495_0_, "count"), IntegerArgumentType.getInteger(p_198495_0_, "color"));
-        }))))))));
+            return giveItem(p_198495_0_.getSource(), ItemArgument.getItem(p_198495_0_, "item"), StringArgumentType.getString(p_198495_0_, "composition"), ResourceLocationArgument.getResourceLocation(p_198495_0_, "recipe"), EntityArgument.getPlayers(p_198495_0_, "targets"), IntegerArgumentType.getInteger(p_198495_0_, "count"), null,16777215);
+        }).then(Commands.argument("modifier", ResourceLocationArgument.resourceLocation()).suggests(MODIFIER_RECIPE_SUGGESTER).executes((p_198496_0_) -> {
+            return giveItem(p_198496_0_.getSource(), ItemArgument.getItem(p_198496_0_, "item"), StringArgumentType.getString(p_198496_0_, "composition"), ResourceLocationArgument.getResourceLocation(p_198496_0_, "recipe"), EntityArgument.getPlayers(p_198496_0_, "targets"), IntegerArgumentType.getInteger(p_198496_0_, "count"), ResourceLocationArgument.getResourceLocation(p_198496_0_, "modifier"), 16777215);
+        }).then(Commands.argument("color", IntegerArgumentType.integer(1)).executes((p_198497_0_) -> {
+            return giveItem(p_198497_0_.getSource(), ItemArgument.getItem(p_198497_0_, "item"), StringArgumentType.getString(p_198497_0_, "composition"), ResourceLocationArgument.getResourceLocation(p_198497_0_, "recipe"), EntityArgument.getPlayers(p_198497_0_, "targets"), IntegerArgumentType.getInteger(p_198497_0_, "count"), ResourceLocationArgument.getResourceLocation(p_198497_0_, "modifier"), IntegerArgumentType.getInteger(p_198497_0_, "color"));
+        })))))))));
     }
 
-    private static int giveItem(CommandSource source, ItemInput itemIn, String data, ResourceLocation recipe, Collection<ServerPlayerEntity> targets, int count, int color) throws CommandSyntaxException {
+    private static int giveItem(CommandSource source, ItemInput itemIn, String data, ResourceLocation recipe, Collection<ServerPlayerEntity> targets, int count, ResourceLocation modifier, int color) throws CommandSyntaxException {
         for(ServerPlayerEntity serverplayerentity : targets) {
             int i = count;
 
@@ -87,6 +91,12 @@ public class CreateAlloyCommand {
                     }
 
                     if (itemstack.getItem() instanceof IAlloyTool) {
+                        if (modifier != null) {
+                            Optional<? extends IRecipe<?>> modR = serverplayerentity.getEntityWorld().getRecipeManager().getRecipe(modifier);
+                            if (modR.isPresent() && modR.get() instanceof AlloyModifierRecipe) {
+                                ((IAlloyTool) itemstack.getItem()).applyModifiersFromRecipe(itemstack,((AlloyModifierRecipe) modR.get()));
+                            }
+                        }
                         ((IAlloyTool) itemstack.getItem()).applyAlloyEnchantments(itemstack,serverplayerentity.world);
                     } else if (itemstack.getItem() instanceof IAlloyArmor) {
                         //((IAlloyArmor) itemstack.getItem()).applyAlloyEnchantments(itemstack,serverplayerentity.world);

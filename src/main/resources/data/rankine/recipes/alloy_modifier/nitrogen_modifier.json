@@ -1,0 +1,9 @@
+{
+  "type": "rankine:alloy_modifier",
+  "input": {
+    "item": "rankine:nitrogen_gas_bottle"
+  },
+  "modifiers":["HEAT_RESISTANCE"],
+  "modifierTypes":["MAX"],
+  "values":[1]
+}

@@ -98,4 +98,8 @@ public class RankineEnchantments {
 
     @ObjectHolder("rankine:lift")
     public static Enchantment LIFT;
+
+
+    @ObjectHolder("rankine:accuracy")
+    public static Enchantment ACCURACY;
 }

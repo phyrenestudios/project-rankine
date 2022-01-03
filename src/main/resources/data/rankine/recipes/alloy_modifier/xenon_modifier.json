@@ -1,0 +1,9 @@
+{
+  "type": "rankine:alloy_modifier",
+  "input": {
+    "item": "rankine:xenon_gas_bottle"
+  },
+  "modifiers":["TOUGHNESS"],
+  "modifierTypes":["ADDITIVE"],
+  "values":[0.1]
+}

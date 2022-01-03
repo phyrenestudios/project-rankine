@@ -38,7 +38,7 @@ public class RankineAttributes {
     public static final UUID KNIFE_REACH_MODIFIER = UUID.fromString("3c4a1c57-ed5a-482e-946e-fb0b00fe9bb0");
 
     public static final Attribute REACH_DISTANCE = ForgeMod.REACH_DISTANCE.get();
-
+    public static final Attribute GRAVITY = ForgeMod.ENTITY_GRAVITY.get();
 
 }
 

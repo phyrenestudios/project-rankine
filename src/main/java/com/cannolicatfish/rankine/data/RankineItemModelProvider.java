@@ -216,6 +216,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.HARD_CARBON_ELECTRODE.get());
         basicItem(RankineItems.SADDLE_TREE.get());
         basicItem(RankineItems.CANNONBALL.get());
+        basicItem(RankineItems.CARCASS.get());
         basicItem(RankineItems.PUMICE_SOAP.get());
         basicItem(RankineItems.REFRACTORY_BRICK.get());
         basicItem(RankineItems.HIGH_REFRACTORY_BRICK.get());
@@ -225,6 +226,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.METAL_PIPE.get());
         basicItem(RankineItems.TREE_TAP.get());
         basicItem(RankineItems.LODESTONE.get());
+        basicItem(RankineItems.EMERGENCY_FLOTATION_DEVICE.get());
         basicItem(RankineItems.ELEMENT.get());
         basicItem(RankineItems.BUILDING_TOOL.get());
         basicItem(RankineItems.ORE_DETECTOR.get());

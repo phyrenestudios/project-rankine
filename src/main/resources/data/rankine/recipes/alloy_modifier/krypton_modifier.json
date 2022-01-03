@@ -1,0 +1,9 @@
+{
+  "type": "rankine:alloy_modifier",
+  "input": {
+    "item": "rankine:krypton_gas_bottle"
+  },
+  "modifiers":["KNOCKBACK_RESISTANCE"],
+  "modifierTypes":["MAX"],
+  "values":[1]
+}

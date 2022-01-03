@@ -474,6 +474,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue MOVEMENT_SNOW;
         public final ForgeConfigSpec.DoubleValue MOVEMENT_MUD;
 
+        public final ForgeConfigSpec.BooleanValue SLUICING_COOLDOWN;
         public final ForgeConfigSpec.BooleanValue CROWBAR_FROM_ABOVE;
         public final ForgeConfigSpec.BooleanValue PLAYER_PRYING_ENCHANTMENT;
 
@@ -570,6 +571,8 @@ public class Config {
                             .define("pendantCurse",true);
                     MANDATORY_AXE = b.comment("Makes axes required to harvest logs.")
                             .define("axesOnly",false);
+                    SLUICING_COOLDOWN = b.comment("Enables cooldown on items used for sluicing recipes.")
+                            .define("sluicingCooldown",true);
                     CROWBAR_FROM_ABOVE = b.comment("Allows crowbars to move blocks below where the player is standing.")
                             .define("crowbarFromAbove",true);
                     FUEL_VALUES = b.comment("Change the fuel values of items for realism.")

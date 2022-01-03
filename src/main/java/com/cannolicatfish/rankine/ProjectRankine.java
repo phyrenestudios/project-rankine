@@ -294,6 +294,7 @@ public class ProjectRankine {
             event.getRegistry().register(TreetappingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"treetapping"));
             event.getRegistry().register(AirDistillationRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"air_distillation"));
             event.getRegistry().register(MixingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"mixing"));
+            event.getRegistry().register(AlloyModifierRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloy_modifier"));
 
             event.getRegistry().register(JamRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crafting_special_jam"));
         }
@@ -352,6 +353,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineEntityTypes.ALLOY_ARROW);
             event.getRegistry().register(RankineEntityTypes.REACTIVE_ITEM.setRegistryName(ProjectRankine.MODID,"reactive_item"));
             event.getRegistry().register(RankineEntityTypes.CANNONBALL.setRegistryName(ProjectRankine.MODID,"cannonball"));
+            event.getRegistry().register(RankineEntityTypes.CARCASS.setRegistryName(ProjectRankine.MODID,"carcass"));
             event.getRegistry().register(RankineEntityTypes.MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"mantle_golem"));
             event.getRegistry().register(RankineEntityTypes.DIAMOND_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"diamond_mantle_golem"));
             event.getRegistry().register(RankineEntityTypes.PERIDOT_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"peridot_mantle_golem"));
@@ -400,6 +402,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.MAGNESIUM_ARROW,MagnesiumArrowRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ALLOY_ARROW,AlloyArrowRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.CANNONBALL, CannonballRenderer::new);
+            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.CARCASS, CarcassRenderer::new);
         }
         @SubscribeEvent
         public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event) {
@@ -589,6 +592,13 @@ public class ProjectRankine {
                     map.remap(itemRemappings.get(map.key));
                 }
             }
+
+            Map<ResourceLocation, Block> blockRemappings = RankineRemappings.getBlockRemappings();
+            for (RegistryEvent.MissingMappings.Mapping<Item> map : mappings) {
+                if (blockRemappings.containsKey(map.key)) {
+                    map.remap(blockRemappings.get(map.key).asItem());
+                }
+            }
         }
 
         @SubscribeEvent
@@ -647,6 +657,9 @@ public class ProjectRankine {
             event.getRegistry().register(new PryingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"prying"));
             event.getRegistry().register(new LiftEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"lift"));
             event.getRegistry().register(new RetrievalEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"retrieval"));
+
+            event.getRegistry().register(new AccuracyEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"accuracy"));
+
         }
 
     }

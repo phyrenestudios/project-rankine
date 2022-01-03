@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,6 +9,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
@@ -96,14 +98,28 @@ public class MixingBarrelBlock extends Block {
             }
             TileEntity tileEntity = worldIn.getTileEntity(pos);
             if (tileEntity instanceof INamedContainerProvider) {
-                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+                    if (player.isCrouching()) {
+                        CompoundNBT nbt = tileEntity.getTileData();
+                        /*int mixTime = nbt.getInt("MixTime");
+                        int mixTimeTotal = nbt.getInt("MixTimeTotal");
+                        System.out.println(mixTime + "/" + mixTimeTotal);
+                        nbt.putInt("MixTime",Math.min(mixTime+8,mixTimeTotal));
+                        nbt.putInt("RedstonePower",8);*/
+                        int angle = worldIn.getBlockState(pos).get(MixingBarrelBlock.ANGLE);
+                        if (angle == 3) {
+                            worldIn.setBlockState(pos, RankineBlocks.MIXING_BARREL.get().getDefaultState().with(MixingBarrelBlock.ANGLE,0),3);
+                        } else {
+                            worldIn.setBlockState(pos, RankineBlocks.MIXING_BARREL.get().getDefaultState().with(MixingBarrelBlock.ANGLE,angle+1),3);
+                        }
+                    } else {
+                        NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+                    }
+                } else {
+                    throw new IllegalStateException("Our named container provider is missing!");
+                }
+                return ActionResultType.CONSUME;
             } else {
-                throw new IllegalStateException("Our named container provider is missing!");
-            }
-            return ActionResultType.CONSUME;
-        } else
-        {
-            return ActionResultType.SUCCESS;
+                return ActionResultType.SUCCESS;
         }
     }
 

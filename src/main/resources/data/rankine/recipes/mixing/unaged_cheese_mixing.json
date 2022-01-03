@@ -9,6 +9,7 @@
   },
   "input1": {
     "tag": "forge:salt",
+    "count": 2,
     "group": 0
   },
   "input2": {

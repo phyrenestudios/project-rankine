@@ -1,0 +1,9 @@
+{
+  "type": "rankine:alloy_modifier",
+  "input": {
+    "item": "rankine:oxygen_gas_bottle"
+  },
+  "modifiers":["DURABILITY"],
+  "modifierTypes":["ADDITIVE"],
+  "values":[350]
+}
