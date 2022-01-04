@@ -239,6 +239,9 @@ public class Config {
         public final ForgeConfigSpec.IntValue METEORITE_SIZE;
         public final ForgeConfigSpec.IntValue METEORITE_CHANCE;
 
+        public final ForgeConfigSpec.BooleanValue COLUMN_GEN;
+        public final ForgeConfigSpec.DoubleValue COLUMN_CHANCE;
+        public final ForgeConfigSpec.DoubleValue COLUMN_FREQUENCY;
         public final ForgeConfigSpec.DoubleValue LAYER_WIDTH;
         public final ForgeConfigSpec.IntValue NOISE_SCALE;
         public final ForgeConfigSpec.IntValue NOISE_OFFSET;
@@ -299,6 +302,15 @@ public class Config {
                     .defineInRange("noiseScale", 110, 1, 1000);
             NOISE_OFFSET = b.comment("This determines how close the overlap of noise layers is. A value of 0 means all layers are shaped identically.")
                     .defineInRange("noiseOffset", 256, 0, 16*64);
+            b.pop();
+
+            b.comment("Settings for stone columns").push("columns");
+            COLUMN_GEN = b.comment("Enables the generation of stone columns.")
+                    .define("generateColumns",true);
+            COLUMN_CHANCE = b.comment("Determines the chance per x,z coordinate for columns to generate.")
+                    .defineInRange("columnChance", 0.15D, 0.0D, 1.0D);
+            COLUMN_FREQUENCY = b.comment("The chance for columns to generate as full columns instead of stalactites.")
+                    .defineInRange("columnFrequency", 0.1D, 0.0D, 1.0D);
             b.pop();
 
             b.comment("Settings for intrusions").push("intrusions");
@@ -497,7 +509,6 @@ public class Config {
         public final ForgeConfigSpec.IntValue PATH_CREATION_TIME;
         public final ForgeConfigSpec.BooleanValue PATH_CREATION;
         public final ForgeConfigSpec.BooleanValue COLOR_WORLD;
-        public final ForgeConfigSpec.BooleanValue FUEL_VALUES;
         public final ForgeConfigSpec.BooleanValue FLINT_FIRE;
         public final ForgeConfigSpec.BooleanValue STUMP_CREATION;
         public final ForgeConfigSpec.BooleanValue STRIPPABLES_CORK;
@@ -514,6 +525,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue STARTING_BOOK;
         public final ForgeConfigSpec.BooleanValue DISABLE_WATER;
         public final ForgeConfigSpec.ConfigValue<List<? extends String>> FUEL_VALUES_LIST;
+        public final ForgeConfigSpec.BooleanValue LIGHTNING_CONVERSION;
         public final ForgeConfigSpec.BooleanValue PENDANT_CURSE;
         public final ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
         public final ForgeConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
@@ -553,8 +565,10 @@ public class Config {
                             .define("rockDrill",true);
                     DISABLE_WATER = b.comment("No more infinite water")
                             .define("disableWater",true);
+                    LIGHTNING_CONVERSION = b.comment("Lightning strikes creating fulgurite and glasses")
+                            .define("enableLightningConversion",true);
                     FUEL_VALUES_LIST = b.comment("List of blocks and their respective burn time. Works with tags. NOT IMPLEMENTED YET")
-                            .defineList("fuelValues", Arrays.asList("#minecraft:oak_logs|410","#rankine:cedar_logs|410"), o -> o instanceof String);
+                            .defineList("fuelValues", Arrays.asList("#forge:rods/wooden|50","#minecraft:saplings|100","#minecraft:wooden_doors|200","#minecraft:wooden_trapdoors|300","#minecraft:wooden_fence_gates|400","#minecraft:wooden_fences|150","#minecraft:wooden_pressure_plates|200","#minecraft:wooden_stairs|75","#minecraft:wooden_slabs|50","#minecraft:wooden_buttons|100","#minecraft:planks|100","#minecraft:oak_logs|520","#minecraft:acacia_logs|500","#minecraft:birch_logs|450","#minecraft:spruce_logs|410","#minecraft:jungle_logs|450","#minecraft:dark_oak_logs|520","#rankine:magnolia_logs|450","#rankine:balsam_fir_logs|390","#rankine:eastern_hemlock_logs|440","#rankine:juniper_logs|480","#rankine:black_birch_logs|470","#rankine:yellow_birch_logs|490","#rankine:pinyon_pine_logs|520","#rankine:maple_logs|500","#rankine:cedar_logs|410","#rankine:black_walnut_logs|470","#rankine:cedar_logs|410","#rankine:coconut_palm_logs|450","#rankine:sharinga_logs|450","#rankine:cork_oak_logs|480","#rankine:erythrina_logs|550","#rankine:cinnamon_logs|500","#rankine:charred_logs|400","#rankine:petrified_chorus_logs|450","minecraft:charcoal|800"), o -> o instanceof String);
                     FIRE_EXTINGUISHER_RANGE = b.comment("The range of the fire extinguisher.")
                             .defineInRange("fireExtinguisherRange", 16, 0, 64);
                     TRAMPOLINE_SIZE = b.comment("The maximum size of a trampoline. Jump factor depends on size. Set to 0 to have a fixed jump factor of 1.3 which is just enough to have the player gain height over time.")
@@ -575,8 +589,6 @@ public class Config {
                             .define("sluicingCooldown",true);
                     CROWBAR_FROM_ABOVE = b.comment("Allows crowbars to move blocks below where the player is standing.")
                             .define("crowbarFromAbove",true);
-                    FUEL_VALUES = b.comment("Change the fuel values of items for realism.")
-                            .define("fuelValuesChange",true);
                     FLINT_DROP_CHANCE = b.comment("Chance for a stone block to drop a flint")
                             .defineInRange("flintDropChance", 0.15D, 0.00D, 1.00D);
                     FORAGING_CHANCE = b.comment("Chance for a dirt block to drop a vegetable/seed")
@@ -733,8 +745,6 @@ public class Config {
     public static class Machines {
 
         public final ForgeConfigSpec.IntValue GROUND_TAP_SPEED;
-        public final ForgeConfigSpec.IntValue SEDIMENT_FAN_SPEED;
-
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_SPEED;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
@@ -745,6 +755,7 @@ public class Config {
         public final ForgeConfigSpec.IntValue BEEHIVE_OVEN_SKYLIGHT;
         public final ForgeConfigSpec.IntValue LASER_QUARRY_RANGE;
         public final ForgeConfigSpec.IntValue LASER_QUARRY_SPEED;
+        public final ForgeConfigSpec.IntValue GAS_BOTTLER_SPEED;
         public final ForgeConfigSpec.IntValue GYRATORY_CRUSHER_POWER;
         public final ForgeConfigSpec.IntValue INDUCTION_FURNACE_POWER;
 
@@ -753,14 +764,12 @@ public class Config {
 
         public Machines(ForgeConfigSpec.Builder b) {
             b.comment("Settings for machines").push("machines");
-                b.comment("RSettings for the Distillation Tower").push("distillationTower");
                 AIR_DISTILLATION_SPEED = b.comment("Processing speed of the air distillation tower")
                         .defineInRange("airDistillationSpeed", 100, 10, Integer.MAX_VALUE);
-                b.pop();
                 GROUND_TAP_SPEED = b.comment("The number of ticks it takes the Ground Tap to process")
                         .defineInRange("groundTapSpeed", 600, 0, 100000);
-                SEDIMENT_FAN_SPEED = b.comment("The number of ticks it takes the Sediment Fan to process")
-                        .defineInRange("sedimentFanSpeed", 300, 0, 100000);
+                GAS_BOTTLER_SPEED = b.comment("The number of ticks it takes the Gas Bottler to process")
+                        .defineInRange("gasBottlerSpeed", 60, 0, 100000);
                 CHARCOAL_PIT_RADIUS = b.comment("Maximum radius the charcoal pit can convert logs.")
                         .defineInRange("charcoalPitRadius", 7, 3, 15);
                 CHARCOAL_PIT_SPEED = b.comment("The number of random ticks it takes the Charcoal Pit to process")
@@ -869,7 +878,7 @@ public class Config {
             biomeSettings.add(Arrays.asList("minecraft:nether_wastes",
                     Arrays.asList(),
                     Arrays.asList("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
-                    Arrays.asList("minecraft:netherrack"),
+                    Arrays.asList(),
                     Arrays.asList(),
                     "rankine:dark_gravel",
                     "minecraft:air",

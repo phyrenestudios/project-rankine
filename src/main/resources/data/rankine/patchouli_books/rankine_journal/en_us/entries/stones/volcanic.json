@@ -22,6 +22,48 @@
       "item": "minecraft:crying_obsidian",
       "link_recipe": true,
       "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pumice",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:scoria",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:andesitic_tuff",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:basaltic_tuff",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rhyolitic_tuff",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:kimberlitic_tuff",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:komatiitic_tuff",
+      "link_recipe": true,
+      "text": "Not found yet."
     }
   ]
 }

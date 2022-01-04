@@ -1,6 +1,6 @@
 {
-  "name": "Tools",
-  "description": "",
+  "name": "rankine.journal.cat_tools.name",
+  "description": "rankine.journal.cat_tools.desc",
   "icon": "rankine:building_tool",
   "sortnum": 1
 }

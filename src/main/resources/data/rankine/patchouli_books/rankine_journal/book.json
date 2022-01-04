@@ -1,6 +1,6 @@
 {
   "name": "Rankine Journal",
-  "landing_text": "A collection of my discoveries. Signed, yourself",
+  "landing_text": "rankine.journal.landing_text",
   "version": 10,
   "model": "rankine:rankine_journal",
   "book_texture": "rankine:textures/gui/rankine_journal.png",

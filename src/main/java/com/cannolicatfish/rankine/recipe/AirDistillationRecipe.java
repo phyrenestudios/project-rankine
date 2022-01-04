@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine.recipe;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
-import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
@@ -142,17 +141,34 @@ public class AirDistillationRecipe implements IRecipe<IInventory> {
         return list;
     }
 
-    public ItemStack getDistillationResult(World worldIn, int level, ResourceLocation biome, ResourceLocation dim) {
-        if (this.getBiomeList().isEmpty()) {
-            return recipeOutputs.get(level);
+    public boolean matchesDistillationRecipe(ResourceLocation biome, ResourceLocation dim) {
+        if (this.getBiomeList().isEmpty() && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
+            return true;
         } else {
             for (Biome b : getBiomeList()) {
                 if (b.getRegistryName() != null && b.getRegistryName().equals(biome) && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
-                    return recipeOutputs.get(level);
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public ItemStack getDistillationResult(int level, ResourceLocation biome, ResourceLocation dim) {
+        if (this.getBiomeList().isEmpty() && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
+            return recipeOutputs.get(level-1);
+        } else {
+            for (Biome b : getBiomeList()) {
+                if (b.getRegistryName() != null && b.getRegistryName().equals(biome) && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
+                    return recipeOutputs.get(level-1);
                 }
             }
             return ItemStack.EMPTY;
         }
+    }
+
+    public ItemStack getDistillationWithChances(World worldIn, int level, ResourceLocation biome, ResourceLocation dim) {
+        return worldIn.getRandom().nextFloat() < chances.get(level-1) ? getDistillationResult(level, biome, dim) : ItemStack.EMPTY;
     }
 
     @Override

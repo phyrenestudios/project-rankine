@@ -532,16 +532,16 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         getOrCreateBuilder(BlockTags.WALLS).addTag(RankineTags.Blocks.BRICKS_WALL).addTag(RankineTags.Blocks.STONE_WALL).addTag(RankineTags.Blocks.POLISHED_STONE_WALL).addTag(RankineTags.Blocks.STONE_BRICKS_WALL);
         getOrCreateBuilder(BlockTags.SLABS).addTag(RankineTags.Blocks.BRICKS_SLAB).addTag(RankineTags.Blocks.STONE_SLAB).addTag(RankineTags.Blocks.POLISHED_STONE_SLAB).addTag(RankineTags.Blocks.STONE_BRICKS_SLAB);
         getOrCreateBuilder(RankineTags.Blocks.VERTICAL_SLABS).addTag(RankineTags.Blocks.BRICKS_VERTICAL_SLAB).addTag(RankineTags.Blocks.WOODEN_VERTICAL_SLABS).addTag(RankineTags.Blocks.SHEETMETAL_VERTICAL_SALBS).addTag(RankineTags.Blocks.STONE_VERTICAL_SLAB).addTag(RankineTags.Blocks.POLISHED_STONE_VERTICAL_SLAB).addTag(RankineTags.Blocks.STONE_BRICKS_VERTICAL_SLAB);
-        for (Block blk : RankineLists.MISC_VERTICAL_SLABS) {
+        for (Block blk : Stream.of(RankineLists.MISC_VERTICAL_SLABS,RankineLists.CONCRETE_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             getOrCreateBuilder(RankineTags.Blocks.VERTICAL_SLABS).add(blk);
         }
-        for (Block blk : RankineLists.MISC_SLABS) {
+        for (Block blk : Stream.of(RankineLists.MISC_SLABS,RankineLists.QUARTER_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             getOrCreateBuilder(BlockTags.SLABS).add(blk);
         }
-        for (Block blk : RankineLists.MISC_STAIRS) {
+        for (Block blk : Stream.of(RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             getOrCreateBuilder(BlockTags.STAIRS).add(blk);
         }
-        for (Block blk : RankineLists.MISC_WALLS) {
+        for (Block blk : Stream.of(RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             getOrCreateBuilder(BlockTags.WALLS).add(blk);
         }
 

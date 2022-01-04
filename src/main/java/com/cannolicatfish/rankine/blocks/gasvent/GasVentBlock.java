@@ -1,10 +1,8 @@
 package com.cannolicatfish.rankine.blocks.gasvent;
 
-import com.cannolicatfish.rankine.blocks.gascondenser.GasCondenserTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
-import net.minecraft.block.ObserverBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;

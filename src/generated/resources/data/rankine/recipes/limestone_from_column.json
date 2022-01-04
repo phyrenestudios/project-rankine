@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_from_stone_column",
+  "ingredients": [
+    {
+      "item": "rankine:limestone_column"
+    },
+    {
+      "item": "rankine:limestone_column"
+    },
+    {
+      "item": "rankine:limestone_column"
+    },
+    {
+      "item": "rankine:limestone_column"
+    }
+  ],
+  "result": {
+    "item": "rankine:limestone"
+  }
+}

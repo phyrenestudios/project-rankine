@@ -1,0 +1,219 @@
+{
+  "name": "rankine.journal.cat_stones.igneous.name",
+  "icon": "rankine:anorthosite",
+  "category": "stones",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_stones.igneous.text1"
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_stones.igneous.text2"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:stone",
+      "link_recipe": true,
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:granite",
+      "link_recipe": true,
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:diorite",
+      "link_recipe": true,
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:andesite",
+      "link_recipe": true,
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:basalt",
+      "link_recipe": true,
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:blackstone",
+      "link_recipe": true,
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:netherrack",
+      "link_recipe": true,
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:end_stone",
+      "link_recipe": true,
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pegmatite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:gray_granite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rhyolite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:comendite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:granodiorite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:red_porphyry",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:purple_porphyry",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_dacite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:red_dacite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:hornblende_andesite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:shonkinite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:anorthosite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:norite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:troctolite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:gabbro",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:diabase",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tholeiitic_basalt",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pyroxenite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:peridotite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:komatiite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:kimberlite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sommanite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:ringwoodine",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:wadsleyone",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bridgmanham",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:post_perovskite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    }
+  ]
+}

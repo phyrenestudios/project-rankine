@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_from_stone_column",
+  "ingredients": [
+    {
+      "item": "rankine:sommanite_column"
+    },
+    {
+      "item": "rankine:sommanite_column"
+    },
+    {
+      "item": "rankine:sommanite_column"
+    },
+    {
+      "item": "rankine:sommanite_column"
+    }
+  ],
+  "result": {
+    "item": "rankine:sommanite"
+  }
+}

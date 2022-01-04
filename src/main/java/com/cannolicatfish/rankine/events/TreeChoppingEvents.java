@@ -80,6 +80,9 @@ public class TreeChoppingEvents {
             boolean alive = false;
             int forceBreak = Config.GENERAL.FORCE_BREAK.get();
 
+
+
+
             toCheck.add(pos);
             while (!toCheck.isEmpty()) {
                 BlockPos cp = toCheck.pop();
@@ -122,6 +125,7 @@ public class TreeChoppingEvents {
                     }
 
                 }
+
                 for (BlockPos b : leaves) {
                     BlockState LEAF = worldIn.getBlockState(b);
                     LeavesBlock.spawnDrops(LEAF,worldIn,pos);
@@ -133,9 +137,6 @@ public class TreeChoppingEvents {
                 worldIn.playSound(null,pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS,1.0f,0.8f);
 
 
-                if (Config.GENERAL.STUMP_CREATION.get() && worldIn.getBlockState(pos.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
-                    worldIn.setBlockState(pos, RankineBlocks.STUMP.get().getDefaultState(),2);
-                }
             }
 
             if (state.getBlockHardness(worldIn, pos) != 0.0F) {
@@ -144,7 +145,10 @@ public class TreeChoppingEvents {
                 });
             }
 
+            event.setCanceled(true);
         }
+
+
     }
 
 

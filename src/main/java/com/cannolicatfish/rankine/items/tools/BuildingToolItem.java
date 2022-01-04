@@ -10,7 +10,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class BuildingToolItem extends Item {
-
+    private int maxModes = 8;
     public BuildingToolItem(Properties properties) {
         super(properties);
     }
@@ -21,8 +21,8 @@ public class BuildingToolItem extends Item {
         if (playerIn.isSneaking()) {
             ItemStack heldItem = playerIn.getHeldItem(handIn);
             int mode = getBuildingMode(heldItem);
-            heldItem.getOrCreateTag().putShort("buildingMode", (short) ((mode + 1) % 4));
-            playerIn.sendStatusMessage(new TranslationTextComponent("item.rankine.building_tool.message", (mode + 1) % 4).mergeStyle(TextFormatting.GRAY), true);
+            heldItem.getOrCreateTag().putShort("buildingMode", (short) ((mode + 1) % maxModes));
+            playerIn.sendStatusMessage(new TranslationTextComponent("item.rankine.building_tool.message", (mode + 1) % maxModes).mergeStyle(TextFormatting.WHITE), true);
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }

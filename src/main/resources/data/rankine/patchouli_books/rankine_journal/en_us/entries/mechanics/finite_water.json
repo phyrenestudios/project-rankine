@@ -1,0 +1,31 @@
+{
+  "name": "rankine.journal.cat_mechanics.finite_water.name",
+  "icon": "minecraft:water_bucket",
+  "category": "mechanics",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_mechanics.finite_water.text1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:dowsing_rod",
+      "text": "rankine.journal.cat_mechanics.finite_water.text2"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:ground_tap",
+      "text": "rankine.journal.cat_mechanics.finite_water.text3"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:metal_pipe",
+      "text": "rankine.journal.cat_mechanics.finite_water.text4"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:flood_gate",
+      "text": "rankine.journal.cat_mechanics.finite_water.text5"
+    }
+  ]
+}

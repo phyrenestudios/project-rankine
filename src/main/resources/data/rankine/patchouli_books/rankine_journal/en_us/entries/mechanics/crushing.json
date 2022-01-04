@@ -1,6 +1,6 @@
 {
   "name": "Crushing",
-  "icon": "rankine:stone_hammer",
+  "icon": "rankine:wooden_mallet",
   "category": "mechanics",
   "pages": [
     {
@@ -24,8 +24,28 @@
       "text": "Each output has two types of chances. The innate chance represents the chance you obtain the drop provided your harvest level is greater than or equal to the crushing level of the drop. The additional chance is a bonus chance that is added if your harvest level is equal to the crushing level of the drop."
     },
     {
+      "type": "crafting",
+      "recipe": "rankine:piston_crusher",
+      "text": "If you want to automate the crushing process, there are currently two machines that you can use"
+    },
+    {
+    "type": "text",
+    "anchor": "piston_crusher",
+    "text": "Crushing materials is the best method of obtaining resources for refinement. Simply place materials into the input slot and fuel the machine. The Piston Crusher acts as an automated Iron Hammer and is considered to have a crushing level of 3 (Invar)."
+    },
+    {
       "type": "text",
-      "text": "If you want to automate the crushing process, there are currently two machines that you can use, which are the $(l:machines/piston_crusher)Piston Crusher$() and the $(l:machines/gyratory_crusher)Gyratory Crusher$()."
+      "text": "This means that the Piston Crusher can only obtain up to three drops from the block. The Piston Crusher can crush blocks with a crushing level greater than 3, but only the outputs requiring a crushing level equal to or less than 3 can be obtained."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:gyratory_crusher",
+      "text": "Crushing outputs can be seen via JEI."
+    },
+    {
+      "type": "text",
+      "anchor": "gyratory_crusher",
+      "text": "Similar to the Piston Crusher, simply place materials into the middle slot and ensure the installation of a power cell. The tier of the power cell will determine the crushing level of the machine."
     }
   ]
 }

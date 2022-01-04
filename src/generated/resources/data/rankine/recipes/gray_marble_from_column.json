@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_from_stone_column",
+  "ingredients": [
+    {
+      "item": "rankine:gray_marble_column"
+    },
+    {
+      "item": "rankine:gray_marble_column"
+    },
+    {
+      "item": "rankine:gray_marble_column"
+    },
+    {
+      "item": "rankine:gray_marble_column"
+    }
+  ],
+  "result": {
+    "item": "rankine:gray_marble"
+  }
+}

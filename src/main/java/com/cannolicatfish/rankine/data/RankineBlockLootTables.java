@@ -50,6 +50,8 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.SANDSTONES,
                 RankineLists.SANDSTONE_STAIRS,
                 RankineLists.SANDSTONE_WALLS,
+                RankineLists.STONE_COLUMNS,
+                RankineLists.MINERAL_COLUMNS,
                 RankineLists.BRICKS,
                 RankineLists.BRICKS_STAIRS,
                 RankineLists.BRICKS_WALL,
@@ -75,17 +77,20 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.METAL_LADDERS,
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.ALLOY_PEDESTALS,
-                RankineLists.ALLOY_POLES,
                 RankineLists.MINERAL_BLOCKS,
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.ROTATION_BLOCKS,
                 RankineLists.ELEMENT_BLOCKS,
+                RankineLists.QUARTER_SLABS,
+                RankineLists.LANTERNS,
                 RankineLists.SAPLINGS
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(blk, createBlockLootTable(blk));
         }
 
         for (Block blk : Arrays.asList(
+                RankineBlocks.ORNAMENT.get(),
+                RankineBlocks.CEMENT.get(),
                 RankineBlocks.SOD_BLOCK.get(),
                 RankineBlocks.COB.get(),
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
@@ -152,6 +157,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,
                 RankineLists.CUT_SANDSTONE_VERTICAL_SLABS,
                 RankineLists.MISC_VERTICAL_SLABS,
+                RankineLists.CONCRETE_VERTICAL_SLABS,
                 RankineLists.WOODEN_VERTICAL_SLABS
         ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(blk, verticalSlabBlockLootTable(blk));
@@ -209,7 +215,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.RANKINE_BOX.get(), droppingWithName(RankineBlocks.RANKINE_BOX.get()));
         lootTables.put(RankineBlocks.TEMPLATE_TABLE.get(), droppingWithName(RankineBlocks.TEMPLATE_TABLE.get()));
         lootTables.put(RankineBlocks.INDUCTION_FURNACE.get(), droppingWithName(RankineBlocks.INDUCTION_FURNACE.get()));
-        lootTables.put(RankineBlocks.GAS_CONDENSER.get(), droppingWithName(RankineBlocks.GAS_CONDENSER.get()));
+        lootTables.put(RankineBlocks.GAS_BOTTLER.get(), droppingWithName(RankineBlocks.GAS_BOTTLER.get()));
 
         for (Block ORE : RankineLists.CRUSHING_ORES) {
             lootTables.put(ORE, fortunableOreOreBlockLootTable(ORE, ForgeRegistries.ITEMS.getValue(new ResourceLocation(ORE.getRegistryName().toString().replace("_ore","")))));
@@ -242,6 +248,10 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.WOODEN_DOORS
         ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(BLK, droppingWhen(BLK, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
+        }
+
+        for (Block BLK : RankineLists.ALLOY_POLES) {
+            lootTables.put(BLK, metalPole(BLK));
         }
 
         lootTables.put(RankineBlocks.RICE_PLANT.get(), singleCrop(RankineBlocks.RICE_PLANT.get(), RankineItems.RICE.get(), RankineItems.RICE_SEEDS.get()));

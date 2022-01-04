@@ -27,6 +27,90 @@
       "item": "minecraft:red_sandstone",
       "link_recipe": true,
       "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:soul_sandstone",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:desert_sandstone",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_sandstone",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_sandstone",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:limestone",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:dolostone",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:chalk",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:marlstone",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:shale",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:mudstone",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:siltstone",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:itacolumite",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:arkose",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:honeystone",
+      "link_recipe": true,
+      "text": "Not found yet."
     }
   ]
 }

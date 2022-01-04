@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_column",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:bridgmanham"
+    }
+  },
+  "result": {
+    "item": "rankine:bridgmanham_column",
+    "count": 8
+  }
+}

@@ -1,27 +1,22 @@
 package com.cannolicatfish.rankine.blocks.distillationtower;
 
-import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
+import com.cannolicatfish.rankine.recipe.AirDistillationRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.ITag;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.*;
 
@@ -47,16 +42,34 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
     public void tick() {
         if (!world.isAreaLoaded(pos, 1)) return;
         int LAYERS = structureCheck(world,pos);
-        if (LAYERS > 0) {
+        if (!world.isRemote && LAYERS > 0) {
             ++proccessTime;
             if (proccessTime >= Config.MACHINES.AIR_DISTILLATION_SPEED.get()) {
-                for (int i = 3; i < LAYERS*3 + 2; i++) {
-                    if (world.getBlockState(pos.up(i)).matchesBlock(Blocks.AIR)) {
-                        world.setBlockState(pos.up(i), NITROGEN_GAS_BLOCK.get().getDefaultState());
+                System.out.println(world.getDimensionKey().getLocation());
+                AirDistillationRecipe recipe =  getRecipe(world,world.getBiome(pos).getRegistryName(),world.getDimensionKey().getLocation());
+                if (recipe != null) {
+                    for (int i = 4; i < LAYERS * 3 + 2; i+=3) {
+                        if (world.getBlockState(pos.up(i)).matchesBlock(Blocks.AIR)) {
+                            ItemStack result = recipe.getDistillationWithChances(world, Math.floorDiv(i,3), world.getBiome(pos).getRegistryName(), world.getDimensionKey().getLocation());
+                            if (result.getItem() instanceof BlockItem) {
+                                world.setBlockState(pos.up(i), ((BlockItem) result.getItem()).getBlock().getDefaultState());
+                            }
+                        }
                     }
+                    System.out.println("CCCC");
                 }
+                proccessTime = 0;
             }
         }
+    }
+
+    private AirDistillationRecipe getRecipe(World worldIn, ResourceLocation biome, ResourceLocation dim) {
+        for (AirDistillationRecipe recipe : worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.AIR_DISTILLATION)) {
+            if (recipe.matchesDistillationRecipe(biome, dim)){
+                return recipe;
+            }
+        }
+        return null;
     }
 
     private int structureCheck(World worldIn, BlockPos pos) {
@@ -111,7 +124,7 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
                     break;
                 }
             }
-            if (top > 5) {
+            if (top >= 5) {
                 int layers = 0;
                 for (int i = 1; i<=top; i++) {
                     if (worldIn.getBlockState(pos.add(0,i*3,0)).matchesBlock(AIR_DISTILLATION_PACKING.get()) &&
@@ -125,7 +138,7 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
                         (worldIn.getBlockState(pos.add(0,i*3+1,1)).isIn(RankineTags.Blocks.SHEETMETAL) || worldIn.getBlockState(pos.add(0,i*3+1,1)).matchesBlock(GAS_VENT.get())) &&
                         (worldIn.getBlockState(pos.add(1,i*3+1,0)).isIn(RankineTags.Blocks.SHEETMETAL) || worldIn.getBlockState(pos.add(1,i*3+1,0)).matchesBlock(GAS_VENT.get())) &&
                         (worldIn.getBlockState(pos.add(-1,i*3+1,0)).isIn(RankineTags.Blocks.SHEETMETAL) || worldIn.getBlockState(pos.add(-1,i*3+1,0)).matchesBlock(GAS_VENT.get())) &&
-                        worldIn.getBlockState(pos.add(0, i*3 + 2, 0)).matchesBlock(AIR_DISTILLATION_PACKING.get()) &&
+                        (worldIn.getBlockState(pos.add(0, i*3 + 2, 0)).matchesBlock(AIR_DISTILLATION_PACKING.get()) || worldIn.getBlockState(pos.add(0, i*3 + 2, 0)).isIn(RankineTags.Blocks.SHEETMETAL)) &&
                         getRing(worldIn, pos.up(i*3 + 2), RankineTags.Blocks.SHEETMETAL)) {
                             layers = i;
                     } else {

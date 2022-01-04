@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_column",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:pyroxenite"
+    }
+  },
+  "result": {
+    "item": "rankine:pyroxenite_column",
+    "count": 8
+  }
+}
