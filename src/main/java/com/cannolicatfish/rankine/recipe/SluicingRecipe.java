@@ -186,7 +186,7 @@ public class SluicingRecipe implements IRecipe<IInventory> {
 
                 }
             }
-            int ticks = json.has("cooldown") ? json.get("cooldown").getAsInt() : 60;
+            int ticks = json.has("cooldown") ? json.get("cooldown").getAsInt() : 10;
             return new SluicingRecipe(recipeId, t, ingredient, it, stacks, weights, mins,maxes,ticks);
         }
 
