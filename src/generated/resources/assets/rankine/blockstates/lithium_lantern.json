@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/lithium_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/lithium_lantern_hanging"
+    }
+  }
+}

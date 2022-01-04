@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_column",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:red_porphyry"
+    }
+  },
+  "result": {
+    "item": "rankine:red_porphyry_column",
+    "count": 8
+  }
+}

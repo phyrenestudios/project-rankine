@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:fire_clay_bricks"
+  },
+  "result": "rankine:fire_clay_bricks_vertical_slab",
+  "count": 2
+}

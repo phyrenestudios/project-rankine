@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_column",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:diabase"
+    }
+  },
+  "result": {
+    "item": "rankine:diabase_column",
+    "count": 8
+  }
+}

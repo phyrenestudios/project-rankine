@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.data;
 
+import com.cannolicatfish.rankine.blocks.MetalPoleBlock;
 import com.cannolicatfish.rankine.blocks.RankineEightLayerBlock;
 import com.cannolicatfish.rankine.blocks.RankineVerticalSlabBlock;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
@@ -8,6 +9,7 @@ import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
 import com.cannolicatfish.rankine.blocks.states.VerticalSlabStates;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -244,7 +246,16 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
 
 
     //BASE LOOTTABLES
-
+    protected LootTable.Builder metalPole(Block BLK) {
+        return LootTable.builder()
+                .addLootPool(LootPool.builder()
+                        .rolls(ConstantRange.of(1))
+                        .addEntry(AlternativesLootEntry.builder(
+                                ItemLootEntry.builder(RankineItems.GARLAND.get())
+                                        .acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(MetalPoleBlock.STYLE, 1))),
+                                ItemLootEntry.builder(BLK)))
+                        .acceptCondition(SurvivesExplosion.builder()));
+    }
     protected LootTable.Builder singleCrop(Block CROP, Item DROP, Item SEED) {
         return LootTable.builder()
                 .addLootPool(LootPool.builder()

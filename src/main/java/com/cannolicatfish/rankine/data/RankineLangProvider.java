@@ -33,8 +33,14 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MISC_VERTICAL_SLABS,
                 RankineLists.MISC_STAIRS,
                 RankineLists.MISC_WALLS,
+
+                RankineLists.CONCRETE_VERTICAL_SLABS,
+                RankineLists.CONCRETE_STAIRS,
+                RankineLists.CONCRETE_WALLS,
                 RankineLists.SHEETMETAL_SLABS,
-                RankineLists.GAS_TUBES,
+                //RankineLists.GAS_TUBES,
+                RankineLists.STONE_COLUMNS,
+                RankineLists.MINERAL_COLUMNS,
                 RankineLists.HOLLOW_LOGS,
                 RankineLists.LEAF_LITTERS,
                 RankineLists.INFESTED_STONES,
@@ -123,6 +129,8 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.PODZOL_BLOCKS,
                 RankineLists.MYCELIUM_BLOCKS,
                 RankineLists.PATH_BLOCKS,
+                RankineLists.LANTERNS,
+                RankineLists.QUARTER_SLABS,
                 RankineLists.NATIVE_ORES,
                 RankineLists.CRUSHING_ORES,
                 RankineLists.SPECIAL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -144,9 +152,10 @@ public class RankineLangProvider extends LanguageProvider {
 
         // Misc Blocks
         for (Block blk : Arrays.asList(
-                RankineBlocks.GAS_CONDENSER.get(),
+                RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
+                RankineBlocks.ORNAMENT.get(),
                 RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get(),
                 RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get(),
                 RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get(),
@@ -244,7 +253,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MINERAL_ITEMS,
                 RankineLists.JAMS,
                 RankineLists.SEEDS,
-                RankineLists.BREADS,
                 RankineLists.GRAINS).flatMap(Collection::stream).collect(Collectors.toList())) {
 
             if (item == RankineItems.SODIUM_CHLORIDE.get()) {
@@ -328,6 +336,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.METEORIC_IRON.get(),
             RankineItems.OSMIRIDIUM.get(),
             RankineItems.COMPOST.get(),
+            RankineItems.GARLAND.get(),
             RankineItems.BIOMASS.get(),
             RankineItems.COMPRESSED_BIOMASS.get(),
             RankineItems.DRIED_BAMBOO.get(),
@@ -444,6 +453,8 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.CRUSHING_HEAD_HL5.get())) {
             add(item, parseLangName(item.getRegistryName().getPath()));
         }
+        add(RankineItems.GF_BREAD.get(),"Bread (Gluten Free)");
+
         //Alloy Ingots
         add("item.rankine.crucible_steel_alloying", "Crucible Steel Ingot");
         add("item.rankine.steel_alloying", "Tool Steel Ingot");
@@ -890,6 +901,65 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.subtitle.shulker_gas_vacuum_absorb", "Shulker Gas Vacuum absorb");
         add("rankine.subtitle.shulker_gas_vacuum_release", "Shulker Gas Vacuum release");
         add("rankine.subtitle.sediment_fan_gen", "sedimentary block generation");
+
+
+        //JOURNAL
+        add("rankine.journal.landing_text", "A mere collection of discoveries, awaiting application.");
+
+        add("rankine.journal.cat_tools.name", "Tools");
+        add("rankine.journal.cat_tools.desc", "Various implements use to manipulate the world.");
+
+        add("rankine.journal.cat_elements.name", "Elements");
+        add("rankine.journal.cat_elements.desc", "The foundation of the universe");
+        add("rankine.journal.cat_elements.gasses.name", "Gas Blocks");
+        add("rankine.journal.cat_elements.gasses.text1", "");
+        add("rankine.journal.cat_elements.gasses.text2", "");
+        add("rankine.journal.cat_elements.gasses.text3", "");
+        add("rankine.journal.cat_elements.gasses.text4", "");
+        add("rankine.journal.cat_elements.gasses.text5", "");
+
+
+
+        add("rankine.journal.cat_sediments.name", "Sediments");
+        add("rankine.journal.cat_sediments.desc", "Dirt is too simple of a term to describe the complex matrix of organic material and pulverized rocks. A better term is soil, but there are more small particles than just that.");
+
+
+        add("rankine.journal.cat_mechanics.name", "Mechanics");
+        add("rankine.journal.cat_mechanics.desc", "");
+        add("rankine.journal.cat_mechanics.finite_water.name", "Finite Water");
+        add("rankine.journal.cat_mechanics.finite_water.text1", "A config enabled by default, which makes water slightly less renewable. Infinite water sources can only be created below the local water table height. A mechanical way of bringing water to the surface is described in the latter pages.");
+        add("rankine.journal.cat_mechanics.finite_water.text2", "The Dowsing Rod is used to detect the local water height. Right clicking the ground will display a message above the hotbar.");
+        add("rankine.journal.cat_mechanics.finite_water.text3", "The Ground Tap will generate a source block of water when connected to an appropriate pipe network. That network consists of a Flood Gate placed below the water table height and connected through Metal Pipes. Multiple taps can be on the same pipe line.");
+        add("rankine.journal.cat_mechanics.finite_water.text4", "");
+        add("rankine.journal.cat_mechanics.finite_water.text5", "");
+        add("rankine.journal.cat_mechanics.sluicing.name", "Sluicing");
+        add("rankine.journal.cat_mechanics.sluicing.text1", "Sluicing is a general term for the act of sifting through material under a stream of water. Components can be separated from parent material in a more manual way too.");
+        add("rankine.journal.cat_mechanics.sluicing.text2", "");
+        add("rankine.journal.cat_mechanics.sluicing.text3", "");
+        add("rankine.journal.cat_mechanics.sluicing.text4", "");
+
+
+
+
+        add("rankine.journal.cat_orientation.name", "Orientation");
+        add("rankine.journal.cat_orientation.desc", "Notes from very brief orientation to the Project. These are all I have to look over for now.");
+
+        add("rankine.journal.cat_stones.name", "Stones");
+        add("rankine.journal.cat_stones.desc", "");
+        add("rankine.journal.cat_stones.igneous.name", "Igneous Stones");
+        add("rankine.journal.cat_stones.igneous.text1", "");
+        add("rankine.journal.cat_stones.igneous.text2", "");
+        add("rankine.journal.cat_stones.igneous.text3", "");
+        add("rankine.journal.cat_stones.igneous.text4", "");
+        add("rankine.journal.cat_stones.igneous.text5", "");
+
+
+
+        add("rankine.journal.cat_machines.name", "Machines");
+        add("rankine.journal.cat_machines.desc", "");
+
+
+
     }
 
     private String parseLangName(String registryName) {

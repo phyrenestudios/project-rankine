@@ -31,20 +31,22 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
     }
 
     public void tick() {
-
-        if (world.getDayTime()>2000 && world.getDayTime()<10000 && isTreeAlive(pos,world)) {
-            //for (BlockPos s : BlockPos.getAllInBoxMutable(pos.add(-1,-1,-1),pos.add(1,1,1))) {
-                //if (world.getBlockState(s).getBlock() == RankineBlocks.TREE_TAP.get() && pos != s) {
-                //    return;
-                //}
-            //}
-            Block log = world.getBlockState(pos.offset(this.getBlockState().get(TreeTapBlock.FACING).getOpposite())).getBlock();
+        if (world.getDayTime()>2000 && world.getDayTime()<10000 && isTreeAlive(pos,world) && !world.isRemote()) {
+            BlockPos logPos = pos.offset(this.getBlockState().get(TreeTapBlock.FACING).getOpposite());
+            for (BlockPos s : BlockPos.getAllInBoxMutable(logPos.add(-1,-2,-1),logPos.add(1,2,1))) {
+                BlockPos stupidPos = s.toImmutable();
+                if (!stupidPos.equals(pos) && world.getBlockState(stupidPos).matchesBlock(RankineBlocks.TREE_TAP.get())) {
+                    System.out.println("AAAAA crowded");
+                    return;
+                }
+            }
+            Block log = world.getBlockState(logPos).getBlock();
             TreetappingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.TREETAPPING, new Inventory(new ItemStack(log)), this.world).orElse(null);
             if (irecipe != null && world.getDayTime()%irecipe.getTapTime() == 0) {
                 outputTank.fill(irecipe.getResult(), IFluidHandler.FluidAction.EXECUTE);
             }
 
-            if (!world.isRemote() && outputTank.getFluidAmount() == 1000 && world.getBlockState(pos.down()).getBlock().matchesBlock(RankineBlocks.TAP_LINE.get())) {
+            if (outputTank.getFluidAmount() == 1000 && world.getBlockState(pos.down()).getBlock().matchesBlock(RankineBlocks.TAP_LINE.get())) {
                 BlockPos floodGate = null;
                 Set<BlockPos> checkedBlocks = new HashSet<>();
                 Stack<BlockPos> toCheck = new Stack<>();
@@ -78,8 +80,10 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
             }
 
         }
-
     }
+
+
+
 
     public FluidTank getOutputTank() {
         return outputTank;
@@ -98,25 +102,6 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
 
         return compound;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private boolean isTreeAlive(BlockPos pos, World worldIn) {
         Set<BlockPos> checkedBlocks = new HashSet<>();

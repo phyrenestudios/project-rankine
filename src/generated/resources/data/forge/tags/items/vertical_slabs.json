@@ -11,13 +11,13 @@
     "rankine:breccia_vertical_slab",
     "rankine:packed_snow_vertical_slab",
     "rankine:ice_bricks_vertical_slab",
-    "rankine:cement_vertical_slab",
-    "rankine:concrete_vertical_slab",
-    "rankine:roman_concrete_bricks_vertical_slab",
-    "rankine:polished_roman_concrete_vertical_slab",
-    "rankine:roman_concrete_vertical_slab",
     "rankine:cast_iron_support_vertical_slab",
     "rankine:fiber_block_vertical_slab",
-    "rankine:checkered_marble_vertical_slab"
+    "rankine:checkered_marble_vertical_slab",
+    "rankine:concrete_vertical_slab",
+    "rankine:cement_vertical_slab",
+    "rankine:roman_concrete_vertical_slab",
+    "rankine:polished_roman_concrete_vertical_slab",
+    "rankine:roman_concrete_bricks_vertical_slab"
   ]
 }

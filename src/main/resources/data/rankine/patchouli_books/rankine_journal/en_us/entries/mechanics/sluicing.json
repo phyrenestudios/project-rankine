@@ -1,15 +1,24 @@
 {
-  "name": "Sluicing",
+  "name": "rankine.journal.cat_mechanics.sluicing.name",
   "icon": "rankine:steel_gold_pan",
   "category": "mechanics",
   "pages": [
     {
       "type": "text",
-      "text": "Sluicing is a general term for the act of sifting through ground material in order to separate out components."
+      "text": "rankine.journal.cat_mechanics.sluicing.text1"
     },
     {
       "type": "text",
-      "text": ""
+      "text": "rankine.journal.cat_mechanics.sluicing.text2"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:wooden_gold_pan",
+      "text": "rankine.journal.cat_mechanics.sluicing.text3"
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_mechanics.sluicing.text4"
     }
   ]
 }

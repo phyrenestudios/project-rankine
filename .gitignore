@@ -5,6 +5,7 @@
 /gradle/
 /py_scripts/
 *.py
+*.bak
 *.zip
 src/generated/resources/.cache/cache
 /src/generated/resources/.cache/

@@ -1,13 +1,22 @@
 {
   "variants": {
-    "type=top": {
-      "model": "rankine:block/concrete_slab_top"
+    "pole=false,size=1": {
+      "model": "rankine:block/concrete_slab_size1"
     },
-    "type=bottom": {
-      "model": "rankine:block/concrete_slab"
+    "pole=true,size=1": {
+      "model": "rankine:block/concrete_slab_pole_size1"
     },
-    "type=double": {
-      "model": "rankine:block/concrete"
+    "pole=false,size=2": {
+      "model": "rankine:block/concrete_slab_size2"
+    },
+    "pole=true,size=2": {
+      "model": "rankine:block/concrete_slab_pole_size2"
+    },
+    "pole=false,size=3": {
+      "model": "rankine:block/concrete_slab_size3"
+    },
+    "pole=true,size=3": {
+      "model": "rankine:block/concrete_slab_pole_size3"
     }
   }
 }

@@ -1,48 +1,10 @@
 {
-  "multipart": [
-    {
-      "apply": {
-        "model": "rankine:block/sodium_potassium_alloy_pole"
-      }
+  "variants": {
+    "style=0": {
+      "model": "rankine:block/sodium_potassium_alloy_pole"
     },
-    {
-      "when": {
-        "north": "true"
-      },
-      "apply": {
-        "model": "rankine:block/sodium_potassium_alloy_pole_pole_side",
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "south": "true"
-      },
-      "apply": {
-        "model": "rankine:block/sodium_potassium_alloy_pole_pole_side",
-        "y": 180,
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "west": "true"
-      },
-      "apply": {
-        "model": "rankine:block/sodium_potassium_alloy_pole_pole_side",
-        "y": 270,
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "east": "true"
-      },
-      "apply": {
-        "model": "rankine:block/sodium_potassium_alloy_pole_pole_side",
-        "y": 90,
-        "uvlock": true
-      }
+    "style=1": {
+      "model": "rankine:block/sodium_potassium_alloy_pole_garland"
     }
-  ]
+  }
 }

@@ -1,22 +1,17 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraftforge.common.Tags;
 
 import java.util.Random;
 
@@ -54,19 +49,16 @@ public class FumaroleFeature extends Feature<NoFeatureConfig> {
         }
 
         BlockPos POS = new BlockPos(randX, yHeight, randZ);
-        reader.setBlockState(POS, FUMAROLE.getDefaultState(), 2);
-        reader.setBlockState(POS.east(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-        reader.setBlockState(POS.north(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-        reader.setBlockState(POS.south(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-        reader.setBlockState(POS.west(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
+        reader.setBlockState(POS, FUMAROLE.getDefaultState(), 3);
+        reader.setBlockState(POS.down(), Blocks.MAGMA_BLOCK.getDefaultState(), 3);
         for (BlockPos blockpos : BlockPos.getAllInBoxMutable(POS.add(-2,-2,-2),POS.add(2,0,2))) {
-            if (reader.getBlockState(blockpos).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && blockpos.distanceSq(POS)<4) {
-                reader.setBlockState(blockpos, RankineBlocks.FUMAROLE_DEPOSIT.get().getDefaultState(), 2);
+            if (rand.nextFloat() < 0.5 && reader.getBlockState(blockpos).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && blockpos.distanceSq(POS)<9) {
+                reader.setBlockState(blockpos, RankineBlocks.FUMAROLE_DEPOSIT.get().getDefaultState(), 3);
             }
         }
         for (BlockPos blockpos : BlockPos.getAllInBoxMutable(POS.add(-2,1,-2),POS.add(2,3,2))) {
             if (reader.getBlockState(blockpos).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && blockpos.distanceSq(POS)<9) {
-                reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 2);
+                reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 3);
             }
         }
 

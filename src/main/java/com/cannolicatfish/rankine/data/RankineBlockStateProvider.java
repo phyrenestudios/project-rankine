@@ -94,13 +94,13 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : Stream.of(RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS,RankineLists.SHEETMETAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabBlock(blk);
         }
-        for (Block blk : Stream.of(RankineLists.CUT_SANDSTONE_VERTICAL_SLABS,RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,RankineLists.SANDSTONE_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.MISC_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.CUT_SANDSTONE_VERTICAL_SLABS,RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,RankineLists.SANDSTONE_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.MISC_VERTICAL_SLABS,RankineLists.CONCRETE_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             verticalSlabBlock(blk);
         }
-        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_WALLS,RankineLists.SANDSTONE_WALLS,RankineLists.BRICKS_WALL,RankineLists.MISC_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_WALLS,RankineLists.SANDSTONE_WALLS,RankineLists.BRICKS_WALL,RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             wallBlock(blk);
         }
-        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.MISC_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsBlock(blk);
         }
         for (Block blk : RankineLists.POLISHED_STONES) {
@@ -125,7 +125,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         sixSideCrossBlock(RankineBlocks.GWIHABAITE_CRYSTAL.get());
         crossBlock(RankineBlocks.STINGING_NETTLE.get());
         axisBlock((RotatedPillarBlock) RankineBlocks.BONE_CHAR_BLOCK.get());
-        //axisBlock((RotatedPillarBlock) RankineBlocks.GRAY_GRANITE_PILLAR.get());
+
+        for (Block BLK : RankineLists.LANTERNS) {
+            lanternBlock(BLK);
+        }
         //getVariantBuilder(RankineBlocks.ENDER_SHIRO.get()).partialState().modelForState().modelFile(models().cubeBottomTop(RankineBlocks.ENDER_SHIRO.get().getRegistryName().getPath(), getRSL("ender_shiro_side"), getRSL("minecraft","end_stone"), getRSL("ender_shiro_top"))).addModel();
 
         getVariantBuilder(RankineBlocks.TILLED_SOIL.get()).forAllStates(state -> {
@@ -208,6 +211,43 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                                 .end()).build(); });
         }
 
+        /*
+        for (Block BLOCK : RankineLists.STONE_PILLARS) {
+            String NAME = BLOCK.getRegistryName().getPath();
+            ResourceLocation texture = new ResourceLocation("rankine","block/"+NAME);
+            getVariantBuilder(BLOCK).forAllStatesExcept(state -> {
+                int i = state.get(PillarBlock.SIZE);
+                return ConfiguredModel.builder()
+                        .modelFile(models().withExistingParent(NAME+(i),mcLoc("block/block"))
+                                .texture("particle", texture)
+                                .texture("side", texture)
+                                .texture("end", new ResourceLocation("rankine","block/"+NAME+"_end"))
+                                .element().from(8-i,0,8-i).to(8+i,16,8+i)
+                                .face(Direction.NORTH).uvs(8-i,0, 8+i, 16).texture("#side").end()
+                                .face(Direction.EAST).uvs(8-i, 0, 8+i, 16).texture("#side").end()
+                                .face(Direction.SOUTH).uvs(8-i, 0, 8+i, 16).texture("#side").end()
+                                .face(Direction.WEST).uvs(8-i, 0, 8+i, 16).texture("#side").end()
+                                .face(Direction.UP).uvs(8-i, 8-i, 8+i, 8+i).texture("#end").cullface(Direction.UP).end()
+                                .face(Direction.DOWN).uvs(8-i, 8-i, 8+i, 8+i).texture("#end").cullface(Direction.DOWN).end()
+                                .end()).rotationY(state.get(PillarBlock.AXIS).equals(Direction.Axis.Z) ? 90 : 0).rotationX(state.get(PillarBlock.AXIS).isHorizontal() ? 90 : 0).build();
+                },PillarBlock.WATERLOGGED);
+        }
+
+         */
+
+
+        for (Block BLOCK : RankineLists.STONE_COLUMNS) {
+            String NAME = BLOCK.getRegistryName().getPath();
+            columnBlock(BLOCK,new ResourceLocation("rankine","block/"+NAME.replace("_column","")));
+        }
+        columnBlock(RankineBlocks.CALCITE_COLUMN.get(),new ResourceLocation("rankine","block/calcite_block"));
+        columnBlock(RankineBlocks.DOLOMITE_COLUMN.get(),new ResourceLocation("rankine","block/dolomite_block"));
+        columnBlock(RankineBlocks.SALT_COLUMN.get(),new ResourceLocation("rankine","block/sodium_chloride_block"));
+        columnBlock(RankineBlocks.PINK_SALT_COLUMN.get(),new ResourceLocation("rankine","block/pink_salt_block"));
+        columnBlock(RankineBlocks.OPAL_COLUMN.get(),new ResourceLocation("rankine","block/opal_column"));
+        columnBlock(RankineBlocks.QUARTZ_COLUMN.get(),new ResourceLocation("rankine","block/quartz_column"));
+
+
 
 
         for (Block CROP : RankineLists.CROPS_SINGLE) {
@@ -270,6 +310,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
 
 
+        for (Block blk : RankineLists.QUARTER_SLABS) {
+            quarterSlab(blk);
+        }
         for (Block blk : RankineLists.SAPLINGS) {
             String name = blk.getRegistryName().getPath();
             simpleBlock(blk, models().cross(name, modLoc("block/"+name)));
@@ -295,6 +338,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X)
                     .modelForState().modelFile(MODEL).rotationX(90).rotationY(90).addModel();
         }
+        /*
         for (Block blk : RankineLists.GAS_TUBES) {
             String PATH = blk.getRegistryName().getPath();
             ModelFile MODEL = models().withExistingParent(PATH, modLoc("block/template_gas_tube")).texture("gas", getBlockRSL(PATH.replace("tube","block")));
@@ -306,6 +350,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X)
                     .modelForState().modelFile(MODEL).rotationX(90).rotationY(90).addModel();
         }
+
+         */
         for (Block BLK : RankineLists.LEAF_LITTERS) {
             String PATH = BLK.getRegistryName().getPath();
             String nameSpace;
@@ -466,7 +512,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             pedestalBlock(blk);
         }
         for (Block blk : RankineLists.ALLOY_POLES) {
-            metalPoleBlock((MetalPoleBlock) blk,modLoc("block/"+blk.getRegistryName().getPath().replace("pole","block")));
+            metalPoleBlock(blk);
         }
 
 
@@ -530,8 +576,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         //simpleBlock(RankineBlocks.LASER_QUARRY.get());
         directionalBlock(RankineBlocks.GAS_VENT.get(),models().cubeColumnHorizontal(RankineBlocks.GAS_VENT.get().getRegistryName().getPath(),getBlockRSL("gas_vent_side"),getBlockRSL("gas_vent_end")));
-        directionalBlock(RankineBlocks.GAS_CONDENSER.get(),models().orientableVertical(RankineBlocks.GAS_CONDENSER.get().getRegistryName().getPath(),getBlockRSL("gas_condenser_end"),getBlockRSL("gas_condenser_end")));
+        directionalBlock(RankineBlocks.GAS_BOTTLER.get(),models().orientableVertical(RankineBlocks.GAS_BOTTLER.get().getRegistryName().getPath(),getBlockRSL("gas_bottler_side"),getBlockRSL("gas_bottler_end")));
         cobBlock(RankineBlocks.COB.get());
+        ornamentBlock(RankineBlocks.ORNAMENT.get());
         simpleBlock(RankineBlocks.RANKINE_BOX.get());
         simpleBlock(RankineBlocks.DISTILLATION_TOWER.get());
         simpleBlock(RankineBlocks.AIR_DISTILLATION_PACKING.get());
@@ -595,26 +642,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#side").cullface(Direction.DOWN).end()
                 .end()).addModel();
 
-        getVariantBuilder(RankineBlocks.CEMENT_POLE.get()).partialState().modelForState().modelFile(models().withExistingParent(RankineBlocks.CEMENT_POLE.get().getRegistryName().getPath(), mcLoc("block/block"))
-                .texture("particle", getBlockRSL("cement"))
-                .texture("all", getBlockRSL("cement"))
-                .element().from(0.0f,0.0f,0.0f).to(16.0f,8.0f,16.0f)
-                .face(Direction.NORTH).uvs(0,8, 16, 16).texture("#all").end()
-                .face(Direction.EAST).uvs(0, 8, 16, 16).texture("#all").end()
-                .face(Direction.SOUTH).uvs(0, 8, 16, 16).texture("#all").end()
-                .face(Direction.WEST).uvs(0, 8, 16, 16).texture("#all").end()
-                .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").end()
-                .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.DOWN).end()
-                .end()
-                .element().from(4.0f,8.0f,12.0f).to(4.0f,16.0f,12.0f)
-                .face(Direction.NORTH).uvs(4,0,12,8).texture("#all").end()
-                .face(Direction.EAST).uvs(4,0,12,8).texture("#all").end()
-                .face(Direction.SOUTH).uvs(4,0,12,8).texture("#all").end()
-                .face(Direction.WEST).uvs(4,0,12,8).texture("#all").end()
-                .face(Direction.UP).uvs(4,0,12,8).texture("#all").end()
-                .face(Direction.DOWN).uvs(4,0,12,8).texture("#all").end()
-                .end()).addModel();
-
         getVariantBuilder(RankineBlocks.STUMP.get())
                 .partialState().with(StumpBlock.AGE, 0).modelForState().modelFile(models().withExistingParent("stump0", modLoc("block/template_stump")).texture("side", getBlockRSL("stump_side0")).texture("top", getBlockRSL("stump_top0"))).addModel()
                 .partialState().with(StumpBlock.AGE, 1).modelForState().modelFile(models().withExistingParent("stump1", modLoc("block/template_stump")).texture("side", getBlockRSL("stump_side1")).texture("top", getBlockRSL("stump_top1"))).addModel()
@@ -641,10 +668,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
     }
 
-    private ResourceLocation getBlockRSL(String textureName) {
+    public static ResourceLocation getBlockRSL(String textureName) {
         return new ResourceLocation("rankine","block/"+textureName);
     }
-    private ResourceLocation getBlockRSL(String namespace, String textureName) {
+    public static ResourceLocation getBlockRSL(String namespace, String textureName) {
         return new ResourceLocation(namespace,"block/"+textureName);
     }
 
@@ -657,6 +684,50 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
 
+    public void quarterSlab(Block BLK) {
+        String path = BLK.getRegistryName().getPath();
+        getVariantBuilder(BLK).forAllStates(state -> {
+            int SIZE = state.get(QuarterSlabBlock.SIZE);
+
+            return ConfiguredModel.builder()
+                    .modelFile(
+                    !state.get(QuarterSlabPoleBlock.POLE) ?
+                        models().withExistingParent("block/"+path+"_size"+SIZE, mcLoc("block/block"))
+                        .texture("particle", getBlockRSL(path.replace("_slab","")))
+                        .texture("all", getBlockRSL(path.replace("_slab","")))
+                        .element().from(0.0f,0.0f,0.0f).to(16.0f,4*SIZE,16.0f)
+                            .face(Direction.NORTH).uvs(0,16-4*SIZE, 16, 16).texture("#all").cullface(Direction.NORTH).end()
+                            .face(Direction.EAST).uvs(0, 16-4*SIZE, 16, 16).texture("#all").cullface(Direction.EAST).end()
+                            .face(Direction.SOUTH).uvs(0, 16-4*SIZE, 16, 16).texture("#all").cullface(Direction.SOUTH).end()
+                            .face(Direction.WEST).uvs(0, 16-4*SIZE, 16, 16).texture("#all").cullface(Direction.WEST).end()
+                            .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.DOWN).end()
+                            .end() :
+                    models().withExistingParent("block/"+path+"_pole_size"+SIZE, mcLoc("block/block"))
+                        .texture("particle", getBlockRSL(path.replace("_slab","")))
+                        .texture("all", getBlockRSL(path.replace("_slab","")))
+                        .element().from(0.0f,0.0f,0.0f).to(16.0f,4*SIZE,16.0f)
+                            .face(Direction.NORTH).uvs(0,16-4*SIZE, 16, 16).texture("#all").cullface(Direction.NORTH).end()
+                            .face(Direction.EAST).uvs(0, 16-4*SIZE, 16, 16).texture("#all").cullface(Direction.EAST).end()
+                            .face(Direction.SOUTH).uvs(0, 16-4*SIZE, 16, 16).texture("#all").cullface(Direction.SOUTH).end()
+                            .face(Direction.WEST).uvs(0, 16-4*SIZE, 16, 16).texture("#all").cullface(Direction.WEST).end()
+                            .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").end()
+                            .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.DOWN).end()
+                            .end()
+                        .element().from(3.0f,4*SIZE,3.0f).to(13.0f,16.0f,13.0f)
+                            .face(Direction.NORTH).uvs(3,0, 13, 16-4*SIZE).texture("#all").cullface(Direction.NORTH).end()
+                            .face(Direction.EAST).uvs(3, 0, 13, 16-4*SIZE).texture("#all").cullface(Direction.EAST).end()
+                            .face(Direction.SOUTH).uvs(3, 0, 13, 16-4*SIZE).texture("#all").cullface(Direction.SOUTH).end()
+                            .face(Direction.WEST).uvs(3, 0, 13, 16-4*SIZE).texture("#all").cullface(Direction.WEST).end()
+                            .face(Direction.UP).uvs(3, 4, 13, 13).texture("#all").end()
+                            .face(Direction.DOWN).uvs(3, 4, 13, 13).texture("#all").cullface(Direction.DOWN).end()
+                            .end()
+                    )
+                    .build();
+        });
+
+
+    }
 
 
 
@@ -802,6 +873,19 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .partialState().modelForState().modelFile(model).rotationY(0).nextModel().modelFile(model).rotationY(90).nextModel().modelFile(model).rotationY(180).nextModel().modelFile(model).rotationY(270).addModel();
     }
 
+    public void ornamentBlock(Block blk) {
+        getVariantBuilder(blk).forAllStatesExcept(state -> {
+            int style = state.get(OrnamentBlock.STYLE);
+            ModelFile model = models().getExistingFile(getBlockRSL("ornament"+style));
+            return ConfiguredModel.builder()
+                .modelFile(model).rotationY(0).nextModel().modelFile(model).rotationY(90).nextModel().modelFile(model).rotationY(180).nextModel().modelFile(model).rotationY(270)
+                .build();
+        },BlockStateProperties.WATERLOGGED);
+
+
+
+    }
+
     public ModelBuilder<BlockModelBuilder> rankineOre(String name, String mod, String background, String overlay) {
         if (WorldgenUtils.ORE_TEXTURES.contains(background)) {
             return models().withExistingParent(name, modLoc("block/template_rankine_ore")).texture("background", mod+":block/"+background).texture("overlay", "block/"+overlay);
@@ -843,6 +927,16 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(blk.getRegistryName().getPath(), modLoc("block/template_path_block")).texture("top", top).texture("side", side).texture("bottom", bottom)).addModel();
     }
 
+    public void metalPoleBlock(Block BLK) {
+        String path = BLK.getRegistryName().getPath();
+
+        getVariantBuilder(BLK)
+                .partialState().with(MetalPoleBlock.STYLE,0).modelForState().modelFile(models().withExistingParent(path, modLoc("block/template_metal_pole")).texture("side", getBlockRSL(path.replace("pole","block")))).addModel()
+                .partialState().with(MetalPoleBlock.STYLE,1).modelForState().modelFile(models().withExistingParent(path+"_garland", modLoc("block/metal_pole_garland")).texture("side", getBlockRSL(path.replace("pole","block")))).addModel();
+
+    }
+
+/*
     public void metalPoleBlock(MetalPoleBlock blk, ResourceLocation texture) {
         fourWayBlock(blk, metalPole(blk.getRegistryName().getPath(), texture), metalPoleSide(blk.getRegistryName().getPath() + "_pole_side", texture));
     }
@@ -857,6 +951,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     public ModelBuilder<BlockModelBuilder> metalPoleSide(String name, ResourceLocation texture) {
         return models().withExistingParent(name, modLoc("block/template_metal_pole_side")).texture("side", texture);
     }
+
+ */
 
 
     @Override
@@ -1179,6 +1275,33 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .partialState().with(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM)
                 .modelForState().modelFile(models().withExistingParent(name+"_bottom", mcLoc("block/cross")).texture("cross", "block/"+name+"_bottom")).addModel();
     }
+    public void columnBlock(Block BLK, ResourceLocation texture) {
+        String NAME = BLK.getRegistryName().getPath();
+        getVariantBuilder(BLK).forAllStatesExcept(state -> {
+            int i = state.get(StoneColumnBlock.SIZE);
+            return ConfiguredModel.builder()
+                    .modelFile(models().withExistingParent(NAME+(i),mcLoc("block/block"))
+                            .texture("particle", texture)
+                            .texture("all", texture)
+                            .element().from(8-i,0,8-i).to(8+i,16,8+i)
+                            .face(Direction.NORTH).uvs(8-i,0, 8+i, 16).texture("#all").end()
+                            .face(Direction.EAST).uvs(8-i, 0, 8+i, 16).texture("#all").end()
+                            .face(Direction.SOUTH).uvs(8-i, 0, 8+i, 16).texture("#all").end()
+                            .face(Direction.WEST).uvs(8-i, 0, 8+i, 16).texture("#all").end()
+                            .face(Direction.UP).uvs(8-i, 8-i, 8+i, 8+i).texture("#all").cullface(Direction.UP).end()
+                            .face(Direction.DOWN).uvs(8-i, 8-i, 8+i, 8+i).texture("#all").cullface(Direction.DOWN).end()
+                            .end()).build();
+        },StoneColumnBlock.WATERLOGGED);
+    }
+
+    public void lanternBlock(Block BLK) {
+        String NAME = BLK.getRegistryName().getPath();
+        getVariantBuilder(BLK)
+                .partialState().with(LanternBlock.HANGING,false).modelForState().modelFile(models().withExistingParent(NAME,getBlockRSL("minecraft","template_lantern")).texture("lantern",blockTexture(BLK))).addModel()
+                .partialState().with(LanternBlock.HANGING,true).modelForState().modelFile(models().withExistingParent(NAME+"_hanging",getBlockRSL("minecraft","template_hanging_lantern")).texture("lantern",blockTexture(BLK))).addModel();
+
+    }
+
 
     
     public void slabBlock(Block BLK) {

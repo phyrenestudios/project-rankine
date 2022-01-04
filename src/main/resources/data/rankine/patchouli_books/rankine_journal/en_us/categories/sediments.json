@@ -1,6 +1,6 @@
 {
-  "name": "Sediments",
-  "description": "Dirt is too simple of a term to describe the complex matrix of organic material and pulverized rocks. A better term is soil, but there are more small particles than just those.",
+  "name": "rankine.journal.cat_sediments.name",
+  "description": "rankine.journal.cat_sediments.desc",
   "icon": "rankine:loam",
   "sortnum": 3
 }

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:smooth_white_sandstone"
+  },
+  "result": "rankine:smooth_white_sandstone_wall",
+  "count": 1
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "rankine:block/roman_concrete_bricks",
-    "bottom": "rankine:block/roman_concrete_bricks",
-    "top": "rankine:block/roman_concrete_bricks"
-  }
-}

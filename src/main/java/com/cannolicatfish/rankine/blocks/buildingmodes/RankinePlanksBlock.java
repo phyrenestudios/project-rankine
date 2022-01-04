@@ -28,7 +28,7 @@ public class RankinePlanksBlock extends Block {
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         ItemStack heldItem = context.getPlayer().getHeldItemOffhand();
         if (heldItem.getItem() == RankineItems.BUILDING_TOOL.get()) {
-            return this.getDefaultState().with(MODE, BuildingToolItem.getBuildingMode(heldItem));
+            return this.getDefaultState().with(MODE, Math.min(BuildingToolItem.getBuildingMode(heldItem),3));
         }
         return this.getDefaultState();
     }

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:desert_sandstone"
+  },
+  "result": "rankine:desert_sandstone_vertical_slab",
+  "count": 2
+}
