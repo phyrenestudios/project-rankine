@@ -1,7 +1,10 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.blocks.FumaroleBlock;
+import com.cannolicatfish.rankine.blocks.GasBlock;
 import com.cannolicatfish.rankine.entities.ReactiveItemEntity;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -62,6 +65,15 @@ public class ElementItem extends Item {
                                 entityIn.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.Mode.BREAK);
                             } else {
                                 entityIn.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.Mode.NONE);
+                            }
+                            for (int i = 0; i < Math.round(this.waterReactive); i++) {
+                                BlockPos close = BlockPos.getClosestMatchingPosition(pos,3,3,B -> worldIn.isAirBlock(B) && !(worldIn.getBlockState(B).getBlock() instanceof GasBlock)
+                                        && BlockPos.getClosestMatchingPosition(B,1,1,P -> worldIn.getBlockState(P).getBlock() instanceof GasBlock || worldIn.getBlockState(P).getBlock() instanceof FumaroleBlock).orElse(null) != null).orElse(null);
+                                if (close == null) {
+                                    break;
+                                } else {
+                                    worldIn.setBlockState(close, RankineBlocks.HYDROGEN_GAS_BLOCK.get().getDefaultState(),3);
+                                }
                             }
                         }
                     }

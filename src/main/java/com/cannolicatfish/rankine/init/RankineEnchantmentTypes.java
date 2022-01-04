@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.items.BlunderbussItem;
 import com.cannolicatfish.rankine.items.alloys.AlloySwordItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyArmor;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
@@ -36,6 +37,9 @@ public class RankineEnchantmentTypes {
 
     public static EnchantmentType PEWTER = EnchantmentType.create("pewter", (itemIn) -> {
         return itemIn instanceof IAlloyTool; });
+
+    public static EnchantmentType BLUNDERBUSS = EnchantmentType.create("blunderbuss", (itemIn) -> {
+        return itemIn instanceof BlunderbussItem; });
 
     public static EnchantmentType STAINLESS_STEEL_SWORD = EnchantmentType.create("stainless_steel_sword", (itemIn) -> {
         return itemIn instanceof AlloySwordItem; });

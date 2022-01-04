@@ -19,6 +19,7 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -37,6 +38,7 @@ public class CannonballEntity extends DamagingProjectileEntity implements IRende
     public CannonballEntity(EntityType<? extends CannonballEntity> p_i50147_1_, World p_i50147_2_) {
         super(p_i50147_1_, p_i50147_2_);
     }
+
 
     public CannonballEntity(World worldIn, LivingEntity shooter, double accelX, double accelY, double accelZ) {
         super(RankineEntityTypes.CANNONBALL, shooter, accelX, accelY, accelZ, worldIn);
@@ -110,7 +112,10 @@ public class CannonballEntity extends DamagingProjectileEntity implements IRende
             if (flag && entity1 instanceof LivingEntity) {
                 this.applyEnchantments((LivingEntity)entity1, entity);
             }
-
+            Vector3d vector3d = this.getMotion().mul(1.0D, 0.0D, 1.0D).normalize().scale((double)1.6D);
+            if (vector3d.lengthSquared() > 0.0D) {
+                entity.addVelocity(vector3d.x, 0.1D, vector3d.z);
+            }
         }
     }
 

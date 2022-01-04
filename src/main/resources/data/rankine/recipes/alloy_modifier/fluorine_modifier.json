@@ -1,0 +1,9 @@
+{
+  "type": "rankine:alloy_modifier",
+  "input": {
+    "item": "rankine:fluorine_gas_bottle"
+  },
+  "modifiers":["CORROSION_RESISTANCE"],
+  "modifierTypes":["MAX"],
+  "values":[1]
+}

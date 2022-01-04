@@ -1,37 +1,90 @@
 package com.cannolicatfish.rankine.util.alloys;
 
+import com.cannolicatfish.rankine.items.alloys.IAlloyArmor;
+import com.cannolicatfish.rankine.items.alloys.IAlloySimpleTool;
+import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
+import net.minecraft.item.Item;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+
 public class AlloyModifier {
-    private String name;
-    private ModifierType type;
-    private float value;
-    private boolean isAdditive;
 
-    public AlloyModifier(String name, ModifierType type, float value, boolean additive) {
-        this.name = name;
-        this.type = type;
-        this.value = value;
-        this.isAdditive = additive;
-    }
+    private final String name;
+    private final ModifierType type;
+    private final float value;
+    private final ModifierCondition condition;
 
-    public String getName() {
-        return this.name;
-    }
+    private final static List<ModifierType> toolStats = Arrays.asList(ModifierType.DURABILITY,ModifierType.ENCHANTABILITY,ModifierType.MINING_SPEED,ModifierType.HARVEST_LEVEL,
+            ModifierType.ATTACK_SPEED,ModifierType.ATTACK_DAMAGE,ModifierType.CORROSION_RESISTANCE, ModifierType.HEAT_RESISTANCE, ModifierType.TOUGHNESS);
+    private final static List<ModifierType> otherStats = Arrays.asList(ModifierType.DURABILITY,ModifierType.ENCHANTABILITY,ModifierType.HARVEST_LEVEL,
+            ModifierType.CORROSION_RESISTANCE, ModifierType.HEAT_RESISTANCE, ModifierType.TOUGHNESS);
 
-    public ModifierType getType() {
-        return this.type;
-    }
-
-    public float getValue() {
-        return this.value;
-    }
-
-    public float returnModification(float original) {
-        if (this.isAdditive) {
-            return original + this.getValue();
-        } else {
-            return original * this.getValue();
+        public AlloyModifier(String name, ModifierType type, ModifierCondition condition, float value) {
+            this.name = name;
+            this.type = type;
+            this.value = value;
+            this.condition = condition;
         }
+
+    public AlloyModifier(String name, String type, String condition, float value) {
+        this.name = name;
+        this.type = ModifierType.valueOf(type);
+        this.value = value;
+        this.condition = ModifierCondition.valueOf(condition);
     }
+
+        public String getName() {
+            return this.name;
+        }
+
+
+        public ModifierType getType() {
+            return this.type;
+        }
+
+        public ModifierCondition getCondition() {
+            return condition;
+        }
+
+        public float getValue() {
+                return this.value;
+            }
+
+        public boolean canApplyModification(Item item) {
+            if (item instanceof IAlloyTool) {
+                return toolStats.contains(this.getType());
+            } else if (item instanceof IAlloyArmor || item instanceof IAlloySimpleTool) {
+                return otherStats.contains(this.getType());
+            } else {
+                return false;
+            }
+        }
+
+        public float returnModification(float original, boolean shouldRound) {
+            float val = original;
+            switch (this.getCondition()) {
+                case ADDITIVE:
+                    val = original + this.value;
+                    break;
+                case MAX:
+                    val = Math.max(original,this.value);
+                    break;
+                case MIN:
+                    val = Math.min(original,this.value);
+                    break;
+                case MULTIPLICATIVE:
+                    val = original * this.value;
+                    break;
+            }
+            return shouldRound ? Math.round(val) : val;
+        }
+
+        public float returnModification (float original) {
+            return returnModification(original,false);
+    }
+
 
     public enum ModifierType {
         DURABILITY,
@@ -44,5 +97,12 @@ public class AlloyModifier {
         HEAT_RESISTANCE,
         KNOCKBACK_RESISTANCE,
         TOUGHNESS
+    }
+
+    public enum ModifierCondition {
+        ADDITIVE,
+        MULTIPLICATIVE,
+        MIN,
+        MAX
     }
 }

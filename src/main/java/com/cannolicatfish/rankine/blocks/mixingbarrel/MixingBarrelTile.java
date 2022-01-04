@@ -129,7 +129,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
                 flag1 = false;
             }
             ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2), this.items.get(3)};
-            if ((!this.getNeedsRefresh() && flag) && !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(3).isEmpty()) {
+            if ((!this.getNeedsRefresh() && flag) && (!this.items.get(0).isEmpty() || !this.items.get(1).isEmpty() || !this.items.get(2).isEmpty() || !this.items.get(3).isEmpty())) {
                 int angle = this.getBlockState().get(MixingBarrelBlock.ANGLE);
                 if (angle == 3) {
                     world.setBlockState(this.pos, RankineBlocks.MIXING_BARREL.get().getDefaultState().with(MixingBarrelBlock.ANGLE,0),3);
@@ -157,10 +157,10 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
                             inputTank.drain(irecipe.getFluid(), IFluidHandler.FluidAction.EXECUTE);
                         }
                         this.mixTime = 0;
-                        inputs[0].shrink(1);
-                        inputs[1].shrink(1);
-                        inputs[2].shrink(1);
-                        inputs[3].shrink(1);
+                        inputs[0].shrink(irecipe.getShrinkAmount(inputs[0]));
+                        inputs[1].shrink(irecipe.getShrinkAmount(inputs[1]));
+                        inputs[2].shrink(irecipe.getShrinkAmount(inputs[2]));
+                        inputs[3].shrink(irecipe.getShrinkAmount(inputs[3]));
                         return;
                     }
                 } else {

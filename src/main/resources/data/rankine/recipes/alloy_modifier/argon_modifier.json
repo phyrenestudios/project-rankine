@@ -1,0 +1,9 @@
+{
+  "type": "rankine:alloy_modifier",
+  "input": {
+    "item": "rankine:argon_gas_bottle"
+  },
+  "modifiers":["HARVEST_LEVEL"],
+  "modifierTypes":["ADDITIVE"],
+  "values":[1]
+}

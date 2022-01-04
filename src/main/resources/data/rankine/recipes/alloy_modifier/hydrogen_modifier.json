@@ -1,0 +1,9 @@
+{
+  "type": "rankine:alloy_modifier",
+  "input": {
+    "item": "rankine:hydrogen_gas_bottle"
+  },
+  "modifiers":["MINING_SPEED"],
+  "modifierTypes":["ADDITIVE"],
+  "values":[5]
+}

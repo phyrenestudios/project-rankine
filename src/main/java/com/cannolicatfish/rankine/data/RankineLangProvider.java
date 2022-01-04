@@ -348,6 +348,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.HARD_CARBON_ELECTRODE.get(),
             RankineItems.SADDLE_TREE.get(),
             RankineItems.CANNONBALL.get(),
+            RankineItems.CARCASS.get(),
             RankineItems.PUMICE_SOAP.get(),
             RankineItems.REFRACTORY_BRICK.get(),
             RankineItems.HIGH_REFRACTORY_BRICK.get(),
@@ -355,6 +356,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.TAP_LINE.get(),
             RankineItems.TREE_TAP.get(),
             RankineItems.LODESTONE.get(),
+            RankineItems.EMERGENCY_FLOTATION_DEVICE.get(),
             RankineItems.ELEMENT.get(),
             RankineItems.ALLOY_TEMPLATE.get(),
             RankineItems.BUILDING_TOOL.get(),
@@ -579,6 +581,20 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.grafting.desc", "Guarantees a sapling drop from leaves.");
         add("enchantment.rankine.shape_memory", "Shape Memory");
         add("enchantment.rankine.shape_memory.desc", "Restores durability in high-temperature environments.");
+        add("enchantment.rankine.accuracy", "Accuracy");
+        add("enchantment.rankine.accuracy.desc", "Reduces the inaccuracy penalty of the Blunderbuss and the spread of cannonballs that split.");
+        add("enchantment.rankine.breath_of_the_dragon", "Breath of the Dragon");
+        add("enchantment.rankine.breath_of_the_dragon.desc", "Carcass Cannonballs fired from the Blunderbuss now lay down a field of Dragon's Breath.");
+        add("enchantment.rankine.burst", "Burst");
+        add("enchantment.rankine.burst.desc", "Increases velocity of the cannonballs fired from the Blunderbuss and increases damage inversely with time in the air.");
+        add("enchantment.rankine.explosion_aspect", "Explosion Aspect");
+        add("enchantment.rankine.explosion_aspect.desc", "Increases radius and power of explosions of Cannonballs shot from the Blunderbuss.");
+        add("enchantment.rankine.spread", "Spread");
+        add("enchantment.rankine.spread.desc", "Increases the inaccuracy penalty of the Blunderbuss and the spread of cannonballs that split. An additional cannonball is also fired with the opposite inaccuracy penalty.");
+        add("enchantment.rankine.shatter", "Shatter");
+        add("enchantment.rankine.shatter.desc", "Enemies hit by cannonballs fired from the Blunderbuss take increased damage from other sources for a limited time.");
+        add("enchantment.rankine.vacuum", "Vacuum Shot");
+        add("enchantment.rankine.vacuum.desc", "Charging the Blunderbuss now also sucks enemies toward you. On firing, do minor damage and knockback to enemies in front of you.");
         add("jei.description.crushing_basic", "Can be obtained by crushing ores using a machine or a Bronze Hammer.");
         add("rankine.jei.crushing", "Crushing");
         add("rankine.jei.crucible", "Crucible");

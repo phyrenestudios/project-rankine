@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.advancements.HarvestLevelPredicate;
 import com.cannolicatfish.rankine.advancements.IncludesCompositionPredicate;
 import com.cannolicatfish.rankine.advancements.AlloyEnchantabilityPredicate;
 import com.cannolicatfish.rankine.entities.CannonballEntity;
+import com.cannolicatfish.rankine.entities.CarcassEntity;
 import com.cannolicatfish.rankine.items.GasBottleItem;
 import com.cannolicatfish.rankine.potion.RankinePotions;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
@@ -102,6 +103,30 @@ public class RankineRecipes {
         }
     };
 
+
+    private static final IDispenseItemBehavior carcassItemBehavior = new DefaultDispenseItemBehavior() {
+        /**
+         * Dispense the specified stack, play the dispense sound and spawn particles.
+         */
+        public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+            Direction direction = source.getBlockState().get(DispenserBlock.FACING);
+            IPosition iposition = DispenserBlock.getDispensePosition(source);
+            double d0 = iposition.getX() + (double) ((float) direction.getXOffset() * 0.3F);
+            double d1 = iposition.getY() + (double) ((float) direction.getYOffset() * 0.3F);
+            double d2 = iposition.getZ() + (double) ((float) direction.getZOffset() * 0.3F);
+            World world = source.getWorld();
+            Random random = world.rand;
+            double d3 = random.nextGaussian() * 0.05D + (double) direction.getXOffset();
+            double d4 = random.nextGaussian() * 0.05D + (double) direction.getYOffset();
+            double d5 = random.nextGaussian() * 0.05D + (double) direction.getZOffset();
+            world.addEntity(Util.make(new CarcassEntity(world, d0, d1, d2, d3, d4, d5), (fireball) -> {
+                fireball.setStack(stack);
+            }));
+            stack.shrink(1);
+            return stack;
+        }
+    };
+
         /**
          * Play the dispense sound from the specified block.
          */
@@ -136,6 +161,7 @@ public class RankineRecipes {
         DispenserBlock.registerDispenseBehavior(RankineItems.WHITE_LIQUOR_BUCKET.get(),bucketItemBehavior);
 
         DispenserBlock.registerDispenseBehavior(RankineItems.CANNONBALL.get(),cannonballItemBehavior);
+        DispenserBlock.registerDispenseBehavior(RankineItems.CARCASS.get(),carcassItemBehavior);
     }
 
     public static void registerPredicates() {

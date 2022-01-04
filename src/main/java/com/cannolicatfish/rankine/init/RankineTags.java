@@ -373,6 +373,7 @@ public final class RankineTags {
     public static final class Items {
         public static final ITag.INamedTag<Item> GEODES = modItem("geodes");
         public static final ITag.INamedTag<Item> LEDS = modItem("leds");
+        public static final ITag.INamedTag<Item> CANNONBALLS = modItem("cannonballs");
 
         public static final ITag.INamedTag<Item> CONSTRUCTION_SAND = modItem("construction_sand");
 
@@ -946,6 +947,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> HAMMERS = forgeItem("hammers");
         public static final ITag.INamedTag<Item> SPEARS = forgeItem("spears");
         public static final ITag.INamedTag<Item> KNIVES = forgeItem("knives");
+        public static final ITag.INamedTag<Item> BLUNDERBUSSES = forgeItem("knives");
         public static final ITag.INamedTag<Item> CROWBARS = forgeItem("crowbars");
         public static final ITag.INamedTag<Item> FISHING_RODS = forgeItem("fishing_rods");
         public static final ITag.INamedTag<Item> BOWS = forgeItem("bows");

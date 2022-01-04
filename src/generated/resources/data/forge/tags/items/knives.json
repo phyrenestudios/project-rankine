@@ -18,6 +18,23 @@
     "rankine:purple_gold_knife",
     "rankine:black_gold_knife",
     "rankine:amalgam_knife",
-    "rankine:ender_amalgam_knife"
+    "rankine:ender_amalgam_knife",
+    "rankine:pewter_blunderbuss",
+    "rankine:alloy_blunderbuss",
+    "rankine:bronze_blunderbuss",
+    "rankine:invar_blunderbuss",
+    "rankine:steel_blunderbuss",
+    "rankine:stainless_steel_blunderbuss",
+    "rankine:nickel_superalloy_blunderbuss",
+    "rankine:cobalt_superalloy_blunderbuss",
+    "rankine:tungsten_heavy_alloy_blunderbuss",
+    "rankine:rose_gold_blunderbuss",
+    "rankine:blue_gold_blunderbuss",
+    "rankine:green_gold_blunderbuss",
+    "rankine:white_gold_blunderbuss",
+    "rankine:purple_gold_blunderbuss",
+    "rankine:black_gold_blunderbuss",
+    "rankine:amalgam_blunderbuss",
+    "rankine:ender_amalgam_blunderbuss"
   ]
 }

@@ -1,0 +1,23 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    "##f",
+    "tt#",
+    "  t"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:osmiridium_ingot"
+    },
+    "f": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "t": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "rankine:osmiridium_blunderbuss",
+    "count": 1        }
+}

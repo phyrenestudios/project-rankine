@@ -7,7 +7,7 @@
   ],
   "key": {
     "T": {
-      "tag": "forge:ingots/stainless_steel"
+      "tag": "forge:ingots/thorium"
     },
     "S": {
       "item": "rankine:alloy_rod",
@@ -20,7 +20,7 @@
     }
   },
   "result": {
-    "item": "rankine:alloy_arrow",
+    "item": "rankine:thorium_arrow",
     "count": 4
   }
 }

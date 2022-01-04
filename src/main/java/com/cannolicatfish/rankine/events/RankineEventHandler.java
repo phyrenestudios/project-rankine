@@ -1929,7 +1929,10 @@ public class RankineEventHandler {
                     ItemEntity itementity = new ItemEntity(world, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, out);
                     itementity.setDefaultPickupDelay();
                     world.addEntity(itementity);
-                    player.getCooldownTracker().setCooldown(stack.getItem(), recipe.getCooldownTicks());
+                    if (Config.GENERAL.SLUICING_COOLDOWN.get()) {
+                        player.getCooldownTracker().setCooldown(stack.getItem(), recipe.getCooldownTicks());
+                    }
+
                     if (stack.getItem().isDamageable()) {
                         player.getHeldItemMainhand().damageItem(1, player, (p_220038_0_) -> {
                             p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
