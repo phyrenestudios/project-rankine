@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.util.alloys;
 
 import com.cannolicatfish.rankine.items.BlunderbussItem;
-import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;

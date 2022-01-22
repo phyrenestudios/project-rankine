@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.blocks.GasBlock;
 import com.cannolicatfish.rankine.entities.ReactiveItemEntity;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -100,8 +101,8 @@ public class ElementItem extends Item {
 
     @Override
     public Entity createEntity(World world, Entity location, ItemStack itemstack) {
-        if (Config.HARD_MODE.WATER_REACTIVE.get()) {
-            ReactiveItemEntity result = new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive, this.canBreakBlocks, itemstack);
+        if (waterReactive > 0.0f) {
+            ReactiveItemEntity result = getResult(location,itemstack);
             result.setPickupDelay(40);
             result.setMotion(location.getMotion());
             return result;
@@ -109,6 +110,31 @@ public class ElementItem extends Item {
             return null;
         }
 
+    }
+
+    public ReactiveItemEntity getResult(Entity location, ItemStack itemstack) {
+        switch (this.getRegistryName().toString()) {
+            case "rankine:lithium_ingot":
+                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive,
+                        this.canBreakBlocks, itemstack, RankineItems.LITHIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());
+            case "rankine:sodium_ingot":
+                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive,
+                        this.canBreakBlocks, itemstack, RankineItems.SODIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());
+            case "rankine:potassium_ingot":
+                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive,
+                        this.canBreakBlocks, itemstack, RankineItems.POTASSIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());
+            case "rankine:rubidium_ingot":
+                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive,
+                        this.canBreakBlocks, itemstack, RankineItems.RUBIDIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());
+            case "rankine:cesium_ingot":
+                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive,
+                        this.canBreakBlocks, itemstack, RankineItems.CESIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());
+            case "rankine:francium_ingot":
+                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive,
+                        this.canBreakBlocks, itemstack, RankineItems.FRANCIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());
+            default:
+                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), itemstack);
+        }
     }
 
 }

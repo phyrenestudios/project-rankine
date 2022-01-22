@@ -479,7 +479,10 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             } else {
                 c = 16777215;
             }
-            boolean n = json.has("genName") && json.get("genName").getAsBoolean();
+            boolean n = true;
+            if (json.has("genName")) {
+                n = json.get("genName").getAsBoolean();
+            }
             boolean force = json.has("forceNBT") && json.get("forceNBT").getAsBoolean();
 
             String s1 = JSONUtils.getString(json, "result");

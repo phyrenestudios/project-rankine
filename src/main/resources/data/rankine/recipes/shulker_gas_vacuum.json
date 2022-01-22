@@ -19,10 +19,7 @@
       "item": "minecraft:piston"
     },
     "l": {
-      "item": "rankine:alloy_ingot",
-      "alloyRecipe": "rankine:alloying/stabil_alloy_alloying",
-      "color": 11848920,
-      "name": "NEG Alloy Ingot"
+      "item": "rankine:zirconium_alloy_ingot"
     },
     "#": {
       "item": "minecraft:shulker_shell"

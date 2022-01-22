@@ -17,6 +17,7 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.ToolItem;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -104,6 +105,25 @@ public class CrowbarItem extends ToolItem {
                 });
                 return ActionResultType.SUCCESS;
             }
+        }
+        if (worldIn.getBlockState(blockpos).getBlock() instanceof DoorBlock && bs.hasProperty(DoorBlock.OPEN)) {
+            worldIn.setBlockState(blockpos,bs.with(DoorBlock.OPEN,!bs.get(DoorBlock.OPEN)),3);
+            if (bs.hasProperty(DoorBlock.HALF)) {
+                if (bs.get(DoorBlock.HALF).equals(DoubleBlockHalf.LOWER)) {
+                    BlockState upper = worldIn.getBlockState(blockpos.up());
+                    worldIn.setBlockState(blockpos.up(),upper.with(DoorBlock.OPEN,!bs.get(DoorBlock.OPEN)),3);
+                } else {
+                    BlockState down = worldIn.getBlockState(blockpos.down());
+                    worldIn.setBlockState(blockpos.down(),down.with(DoorBlock.OPEN,!bs.get(DoorBlock.OPEN)),3);
+                }
+            }
+            if (bs.hasProperty(DoorBlock.POWERED)) {
+                worldIn.playSound(blockpos.getX(),blockpos.getY(),blockpos.getZ(), !bs.get(DoorBlock.OPEN) ? SoundEvents.BLOCK_IRON_DOOR_CLOSE : SoundEvents.BLOCK_IRON_DOOR_OPEN, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.1F + 0.9F, false);
+            } else {
+                worldIn.playSound(blockpos.getX(),blockpos.getY(),blockpos.getZ(), !bs.get(DoorBlock.OPEN) ? SoundEvents.BLOCK_WOODEN_DOOR_CLOSE : SoundEvents.BLOCK_WOODEN_DOOR_OPEN, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.1F + 0.9F, false);
+            }
+
+
         }
         if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.LIFT,stack) >= 1 && player != null && !player.isOnGround() && face != Direction.UP && face != Direction.DOWN &&
                 worldIn.getBlockState(blockpos.up()).isAir() && worldIn.getBlockState(blockpos.up(2)).isAir() ) {

@@ -2,13 +2,9 @@ package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.items.alloys.AlloyData;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
+import com.cannolicatfish.rankine.items.alloys.IAlloyToolOld;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
-import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -23,7 +19,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -131,8 +126,8 @@ public class PackagedToolItem extends Item {
         if (alloy.getColor() != 16777215) {
             ret.getOrCreateTag().putInt("color",alloy.getColor());
         }
-        if (ret.getItem() instanceof IAlloyTool) {
-            ((IAlloyTool) ret.getItem()).applyAlloyEnchantments(ret,worldIn);
+        if (ret.getItem() instanceof IAlloyToolOld) {
+            ((IAlloyToolOld) ret.getItem()).applyAlloyEnchantments(ret,worldIn);
         }
         return ret;
     }

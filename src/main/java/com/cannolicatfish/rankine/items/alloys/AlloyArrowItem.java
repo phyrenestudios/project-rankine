@@ -26,7 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class AlloyArrowItem extends ArrowItem implements IAlloyArrow {
+public class AlloyArrowItem extends ArrowItem implements IAlloyProjectile {
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
     public AlloyArrowItem(String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn, Item.Properties builder) {
@@ -35,6 +35,18 @@ public class AlloyArrowItem extends ArrowItem implements IAlloyArrow {
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
     }
 
+    @Override
+    public ITextComponent getDisplayName(ItemStack stack) {
+        if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
+            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
+        }
+        TranslationTextComponent translation = new TranslationTextComponent(this.getTranslationKey(stack));
+        if (translation.getString().contains("%1$s")) {
+            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent("item.rankine.custom_alloy_default"));
+        } else {
+            return super.getDisplayName(stack);
+        }
+    }
 
     @Override
     public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {

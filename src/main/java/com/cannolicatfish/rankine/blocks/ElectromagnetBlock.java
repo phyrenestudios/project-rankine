@@ -76,8 +76,8 @@ public class ElectromagnetBlock extends DirectionalBlock {
                                     for (LivingEntity i : entitiesOnBlock) {
                                         i.setPositionAndUpdate(blockpos.getX() - (b.getX() - i.getPosX()),blockpos.getY() + 1,blockpos.getZ() - (b.getZ() - i.getPosZ()));
                                     }
-                                    worldIn.setBlockState(blockpos,worldIn.getBlockState(b),2);
-                                    worldIn.setBlockState(b,Blocks.AIR.getDefaultState(),2);
+                                    worldIn.setBlockState(blockpos,worldIn.getBlockState(b),3);
+                                    worldIn.setBlockState(b,Blocks.AIR.getDefaultState(),3);
 
                                 }
                                 break;
