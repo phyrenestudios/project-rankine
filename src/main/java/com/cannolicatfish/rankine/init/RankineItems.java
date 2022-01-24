@@ -2281,7 +2281,7 @@ public class RankineItems {
 
 
 
-
+    public static final RegistryObject<Item> YELLOWCAKE = REGISTRY.register("yellowcake", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ASBESTOS = REGISTRY.register("asbestos", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     //public static final RegistryObject<Item> STISHOVITE = REGISTRY.register("stishovite", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> TRONA = REGISTRY.register("trona", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -2716,6 +2716,7 @@ public class RankineItems {
     public static final RegistryObject<Item> LEATHER_CANTEEN = REGISTRY.register("leather_canteen", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> STAINLESS_STEEL_CANTEEN = REGISTRY.register("stainless_steel_canteen", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
+    public static final RegistryObject<Item> MAGNETOMETER = REGISTRY.register("magnetometer", () -> new MagnetometerItem(Config.GENERAL.PROSPECTING_STICK_RANGE.get(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> THERMOMETER = REGISTRY.register("thermometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ALTIMETER = REGISTRY.register("altimeter", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PHOTOMETER = REGISTRY.register("photometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));

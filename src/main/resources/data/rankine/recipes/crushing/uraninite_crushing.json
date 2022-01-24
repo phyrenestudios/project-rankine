@@ -1,0 +1,36 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:uraninite"
+  },
+  "output1": {
+    "item": "rankine:yellowcake",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:lead_nugget",
+    "count": 3,
+    "chance": 0.55,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "minecraft:gold_nugget",
+    "count": 3,
+    "chance": 0.25,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "rankine:fluorite",
+    "chance": 0.08,
+    "additional": 0.1
+  },
+  "output5": {
+    "item": "minecraft:galena",
+    "chance": 0.05,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "rankine:technetium_nugget",
+    "chance": 0.02
+  }
+}

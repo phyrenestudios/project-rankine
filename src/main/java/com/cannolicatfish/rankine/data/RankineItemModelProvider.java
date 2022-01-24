@@ -178,6 +178,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.BORON_TRIOXIDE.get());
         basicItem(RankineItems.VANADIUM_PENTOXIDE.get());
         basicItem(RankineItems.SODIUM_FLUOROSILICATE.get());
+        basicItem(RankineItems.YELLOWCAKE.get());
         basicItem(RankineItems.ASBESTOS.get());
         basicItem(RankineItems.THENARDITE.get());
         basicItem(RankineItems.BORAX.get());
@@ -250,6 +251,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.FIRE_EXTINGUISHER.get());
         basicItem(RankineItems.ROCK_DRILL.get());
         basicItem(RankineItems.SPARK_LIGHTER.get());
+        basicItem(RankineItems.MAGNETOMETER.get());
         basicItem(RankineItems.THERMOMETER.get());
         basicItem(RankineItems.HARDNESS_TESTER.get());
         basicItem(RankineItems.TOTEM_OF_BLAZING.get());
