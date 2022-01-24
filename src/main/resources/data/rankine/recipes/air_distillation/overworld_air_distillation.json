@@ -1,0 +1,36 @@
+{
+  "type": "rankine:air_distillation",
+  "dimensions": ["minecraft:overworld"],
+  "output1": {
+    "item": "rankine:nitrogen_gas_block",
+    "chance": 0.7808
+  },
+  "output2": {
+    "item": "rankine:oxygen_gas_block",
+    "chance": 0.2095
+  },
+  "output3": {
+    "item": "rankine:carbon_dioxide_gas_block",
+    "chance": 0.004
+  },
+  "output4": {
+    "item": "rankine:argon_gas_block",
+    "chance": 0.018
+  },
+  "output5": {
+    "item": "rankine:neon_gas_block",
+    "chance": 0.002
+  },
+  "output7": {
+    "item": "rankine:helium_gas_block",
+    "chance": 0.0016
+  },
+  "output9": {
+    "item": "rankine:krypton_gas_block",
+    "chance": 0.0008
+  },
+  "output10": {
+    "item": "rankine:hydrogen_gas_block",
+    "chance": 0.0004
+  }
+}

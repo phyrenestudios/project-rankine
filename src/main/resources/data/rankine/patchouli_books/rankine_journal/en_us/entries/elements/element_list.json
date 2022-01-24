@@ -1,0 +1,16 @@
+{
+  "name": "Elements",
+  "icon": "rankine:element",
+  "category": "elements",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "text",
+      "text": ""
+    }
+  ]
+}

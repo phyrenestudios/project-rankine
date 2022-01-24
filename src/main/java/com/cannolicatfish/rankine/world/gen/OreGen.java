@@ -1,9 +1,10 @@
 package com.cannolicatfish.rankine.world.gen;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.init.RankineFeatures;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineFeatures;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
+import com.cannolicatfish.rankine.world.RankineBiomeFeatures;
 import com.cannolicatfish.rankine.world.gen.feature.ores.RankineOreFeatureConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -29,19 +30,19 @@ public class OreGen {
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getBedraockFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?, ?>, List<ResourceLocation>>> BedrockFeatures = new ArrayList<>();
 
-        if (Config.MISC_WORLDGEN.FLAT_BEDROCK.get()) { BedrockFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FLAT_BEDROCK, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.NETHER, Biome.Category.THEEND), false))); }
-        if (Config.MISC_WORLDGEN.FLAT_BEDROCK_NETHER.get()) { BedrockFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FLAT_BEDROCK_NETHER, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.NETHER), true))); }
+        if (Config.MISC_WORLDGEN.FLAT_BEDROCK.get()) { BedrockFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.FLAT_BEDROCK, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.NETHER, Biome.Category.THEEND), false))); }
+        if (Config.MISC_WORLDGEN.FLAT_BEDROCK_NETHER.get()) { BedrockFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.FLAT_BEDROCK_NETHER, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.NETHER), true))); }
 
         return BedrockFeatures;
     }
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getAllOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?, ?>, List<ResourceLocation>>> AllOreFeatures = new ArrayList<>();
-        AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.WORLD_REPLACER_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
-        AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.INTRUSION_FEATURE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.WORLD_REPLACER_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.INTRUSION_FEATURE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
 
-        if (Config.MISC_WORLDGEN.WHITE_SAND_GEN.get()) { AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.DISK_WHITE_SAND, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.BEACH), true))); }
-        if (Config.MISC_WORLDGEN.ALLUVIUM_GEN.get()) { AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_ALLUVIUM, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER), true))); }
-        if (Config.MISC_WORLDGEN.EVAPORITE_GEN.get()) { AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EVAPORITE, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH), false))); }
+        if (Config.MISC_WORLDGEN.WHITE_SAND_GEN.get()) { AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.DISK_WHITE_SAND, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.BEACH), true))); }
+        if (Config.MISC_WORLDGEN.ALLUVIUM_GEN.get()) { AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.ORE_ALLUVIUM, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER), true))); }
+        if (Config.MISC_WORLDGEN.EVAPORITE_GEN.get()) { AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.ORE_EVAPORITE, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH), false))); }
 
         return AllOreFeatures;
     }
@@ -49,7 +50,8 @@ public class OreGen {
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getOverworldOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?, ?>, List<ResourceLocation>>> OverworldFeatures = new ArrayList<>();
 
-        if (Config.MISC_WORLDGEN.FUMAROLE_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FUMAROLE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))); }
+        if (Config.MISC_WORLDGEN.FUMAROLE_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.FUMAROLE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))); }
+        if (Config.MISC_WORLDGEN.COLUMN_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.COLUMN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))); }
 
         return OverworldFeatures;
     }
@@ -57,8 +59,8 @@ public class OreGen {
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getNetherOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> NetherFeatures = new ArrayList<>();
 
-        if (Config.MISC_WORLDGEN.FUMAROLE_GEN.get()) { NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FUMAROLE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true))); }
-        if (Config.MISC_WORLDGEN.BLACK_SAND_GEN.get()) { NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.DISK_BLACK_SAND, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.NETHER), true))); }
+        if (Config.MISC_WORLDGEN.FUMAROLE_GEN.get()) { NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.FUMAROLE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true))); }
+        if (Config.MISC_WORLDGEN.BLACK_SAND_GEN.get()) { NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.DISK_BLACK_SAND, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.NETHER), true))); }
 
         return NetherFeatures;
     }
@@ -67,16 +69,16 @@ public class OreGen {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> EndFeatures = new ArrayList<>();
 
         if (Config.MISC_WORLDGEN.END_METEORITE_GEN.get()) {
-            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.END_METEORITE, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"),ResourceLocation.tryCreate("minecraft:small_end_islands"))));
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.END_METEORITE, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"),ResourceLocation.tryCreate("minecraft:small_end_islands"))));
         }
         if (Config.MISC_WORLDGEN.SECRET_GEN.get()) {
-            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ANTIMATTER_BLOB, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"))));
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.ANTIMATTER_BLOB, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"))));
         }
 
         return EndFeatures;
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void addOreGenFeatures(final BiomeLoadingEvent event) {
         if (event.getName() != null) {
             //---Disable vanilla features---
@@ -133,13 +135,13 @@ public class OreGen {
                 ConfiguredFeature<?,?> oreFeature;
 
                 if (type.equals("sphere")) {
-                    oreFeature = RankineFeatures.SPHERE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, density, chance))
+                    oreFeature = RankineFeatures.SPHERE_ORE.get().withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, density, chance))
                         .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(minHeight, minHeight, maxeight))).square().count(count);
                 } else if (type.equals("disk")) {
-                    oreFeature = RankineFeatures.DISK_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, density, chance))
+                    oreFeature = RankineFeatures.DISK_ORE.get().withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, density, chance))
                         .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(minHeight, minHeight, maxeight))).square().count(count);
                 } else {
-                    oreFeature = RankineFeatures.DEFAULT_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, density, chance))
+                    oreFeature = RankineFeatures.DEFAULT_ORE.get().withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, density, chance))
                             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(minHeight, minHeight, maxeight))).square().count(count);
                 }
 

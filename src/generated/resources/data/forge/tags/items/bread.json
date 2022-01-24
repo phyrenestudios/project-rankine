@@ -1,14 +1,8 @@
 {
   "replace": false,
   "values": [
-    "rankine:barley_bread",
-    "rankine:oat_bread",
-    "rankine:corn_bread",
-    "rankine:sorghum_bread",
-    "rankine:millet_bread",
-    "rankine:rye_bread",
-    "rankine:rice_bread",
     "minecraft:bread",
+    "rankine:gf_bread",
     "minecraft:bread"
   ]
 }

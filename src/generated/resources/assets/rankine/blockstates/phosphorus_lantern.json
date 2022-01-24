@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/phosphorus_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/phosphorus_lantern_hanging"
+    }
+  }
+}

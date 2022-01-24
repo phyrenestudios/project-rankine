@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_column",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:peridotite"
+    }
+  },
+  "result": {
+    "item": "rankine:peridotite_column",
+    "count": 8
+  }
+}

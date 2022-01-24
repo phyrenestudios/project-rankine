@@ -1,0 +1,55 @@
+{
+  "variants": {
+    "style=0": [
+      {
+        "model": "rankine:block/ornament0"
+      },
+      {
+        "model": "rankine:block/ornament0",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/ornament0",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/ornament0",
+        "y": 270
+      }
+    ],
+    "style=1": [
+      {
+        "model": "rankine:block/ornament1"
+      },
+      {
+        "model": "rankine:block/ornament1",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/ornament1",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/ornament1",
+        "y": 270
+      }
+    ],
+    "style=2": [
+      {
+        "model": "rankine:block/ornament2"
+      },
+      {
+        "model": "rankine:block/ornament2",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/ornament2",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/ornament2",
+        "y": 270
+      }
+    ]
+  }
+}

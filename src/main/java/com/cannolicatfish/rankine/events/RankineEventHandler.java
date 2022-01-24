@@ -55,6 +55,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -416,7 +417,7 @@ public class RankineEventHandler {
             LightningBoltEntity entity = (LightningBoltEntity) event.getEntity();
             World worldIn = event.getWorld();
             BlockPos startPos = entity.getPosition().down();
-            if (!worldIn.isRemote) {
+            if (!worldIn.isRemote && Config.GENERAL.LIGHTNING_CONVERSION.get()) {
                 Iterable<BlockPos> positions = BlockPos.getProximitySortedBoxPositionsIterator(startPos,2,2,2);
                 for (BlockPos pos : positions) {
                     double rand;
@@ -608,134 +609,43 @@ public class RankineEventHandler {
 
     @SubscribeEvent
     public static void fuelValues(FurnaceFuelBurnTimeEvent event) {
-        if (Config.GENERAL.FUEL_VALUES.get()) {
+        if (!Config.GENERAL.FUEL_VALUES_LIST.get().isEmpty()) {
             Item Fuel = event.getItemStack().getItem();
-            String path = Fuel.getRegistryName().getPath();
-            if (Fuel.getTags().contains(new ResourceLocation("minecraft:logs_that_burn"))) {
-                if (path.contains("douglas_fir")) {
-                    event.setBurnTime(460);
-                } else if (path.contains("ancient")) {
-                    event.setBurnTime(400);
-                } else if (path.contains("archwood")) {
-                    event.setBurnTime(400);
-                } else if (path.contains("dead")) {
-                    event.setBurnTime(300);
-                } else if (path.contains("pinyon_pine")) {
-                    event.setBurnTime(520);
-                } else if (path.contains("redwood")) {
-                    event.setBurnTime(440);
-                } else if (path.contains("alder")) {
-                    event.setBurnTime(420);
-                } else if (path.contains("apple")) {
-                    event.setBurnTime(520);
-                } else if (path.contains("ash")) {
-                    event.setBurnTime(470);
-                } else if (path.contains("aspen")) {
-                    event.setBurnTime(430);
-                } else if (path.contains("basswood")) {
-                    event.setBurnTime(390);
-                } else if (path.contains("beech")) {
-                    event.setBurnTime(530);
-                } else if (path.contains("elder")) {
-                    event.setBurnTime(430);
-                } else if (path.contains("cherry")) {
-                    event.setBurnTime(450);
-                } else if (path.contains("chestnut")) {
-                    event.setBurnTime(430);
-                } else if (path.contains("black_birch")) {
-                    event.setBurnTime(470);
-                } else if (path.contains("yellow_birch")) {
-                    event.setBurnTime(490);
-                } else if (path.contains("birch")) {
-                    event.setBurnTime(450);
-                } else if (path.contains("dogwood")) {
-                    event.setBurnTime(600);
-                } else if (path.contains("elm")) {
-                    event.setBurnTime(450);
-                } else if (path.contains("cottonwood")) {
-                    event.setBurnTime(410);
-                } else if (path.contains("fir")) {
-                    event.setBurnTime(390);
-                } else if (path.contains("silver_maple")) {
-                    event.setBurnTime(440);
-                } else if (path.contains("mulberry")) {
-                    event.setBurnTime(510);
-                } else if (path.contains("poplar")) {
-                    event.setBurnTime(350);
-                } else if (path.contains("maple")) {
-                    event.setBurnTime(500);
-                } else if (path.contains("cedar")) {
-                    event.setBurnTime(410);
-                } else if (path.contains("white_pine")) {
-                    event.setBurnTime(410);
-                } else if (path.contains("spruce")) {
-                    event.setBurnTime(410);
-                } else if (path.contains("white_oak")) {
-                    event.setBurnTime(540);
-                } else if (path.contains("red_oak")) {
-                    event.setBurnTime(500);
-                } else if (path.contains("oak")) {
-                    event.setBurnTime(520);
-                } else if (path.contains("jungle")) {
-                    event.setBurnTime(450);
-                } else if (path.contains("walnut")) {
-                    event.setBurnTime(470);
-                } else if (path.contains("pine")) {
-                    event.setBurnTime(420);
-                } else if (path.contains("willow")) {
-                    event.setBurnTime(420);
-                } else if (path.contains("sycamore")) {
-                    event.setBurnTime(440);
-                } else if (path.contains("hickory")) {
-                    event.setBurnTime(530);
-                } else if (path.contains("coconut")) {
-                    event.setBurnTime(450);
-                } else if (path.contains("juniper")) {
-                    event.setBurnTime(480);
-                } else if (path.contains("acacia")) {
-                    event.setBurnTime(500);
-                } else if (path.contains("magnolia")) {
-                    event.setBurnTime(450);
-                } else if (path.contains("hemlock")) {
-                    event.setBurnTime(440);
-                } else if (path.contains("larch")) {
-                    event.setBurnTime(440);
-                } else if (path.contains("robinia")) {
-                    event.setBurnTime(550);
-                } else if (path.contains("eucalyptus")) {
-                    event.setBurnTime(570);
-                } else if (path.contains("ironwood")) {
-                    event.setBurnTime(510);
-                } else if (path.contains("locust")) {
-                    event.setBurnTime(550);
-                } else {
-                    event.setBurnTime(300);
+            for (String s : Config.GENERAL.FUEL_VALUES_LIST.get()) {
+                if (Arrays.asList(s.split("\\|")).size() == 2) {
+                    String RS;
+                    int burnTime;
+                    try {
+                        RS = s.split("\\|")[0];
+                    }
+                    catch(Exception e) {
+                        System.out.println(e.getLocalizedMessage() + " " + s + " is an invalid entry");
+                        continue;
+                    }
+                    try {
+                        burnTime = Integer.parseInt(s.split("\\|")[1]);
+                    }
+                    catch(Exception e) {
+                        System.out.println(e.getLocalizedMessage() + " " + s + " is an invalid entry");
+                        continue;
+                    }
+
+                    if (RS.contains("#")) {
+                        if (Fuel.getTags().contains(ResourceLocation.tryCreate(RS.replace("#","")))) {
+                            event.setBurnTime(burnTime);
+                            break;
+                        }
+                    } else if (RS.equals(Fuel.getRegistryName().toString())) {
+                        event.setBurnTime(burnTime);
+                        break;
+                    } else if (Fuel.isIn(ItemTags.LOGS_THAT_BURN)) {
+                        event.setBurnTime(300);
+                        break;
+                    }
                 }
-            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:planks"))) {
-                event.setBurnTime(100);
-            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_buttons"))) {
-                event.setBurnTime(100);
-            } else if (Fuel.getTags().contains(new ResourceLocation("forge:rods/wooden"))) {
-                event.setBurnTime(50);
-            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_slabs"))) {
-                event.setBurnTime(50);
-            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_stairs"))) {
-                event.setBurnTime(75);
-            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_pressure_plates"))) {
-                event.setBurnTime(200);
-            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_fences"))) {
-                event.setBurnTime(167);
-            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_fence_gates"))) {
-                event.setBurnTime(400);
-            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_trapdoors"))) {
-                event.setBurnTime(300);
-            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_doors"))) {
-                event.setBurnTime(200);
-            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:saplings"))) {
-                event.setBurnTime(100);
-            } else if (Fuel.getItem() == Items.CHARCOAL) {
-                event.setBurnTime(800);
+
             }
+
         }
     }
 

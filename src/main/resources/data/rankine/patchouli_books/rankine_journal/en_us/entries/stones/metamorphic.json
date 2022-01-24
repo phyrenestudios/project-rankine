@@ -13,13 +13,85 @@
     },
     {
       "type": "spotlight",
-      "item": "minecraft:obsidian",
+      "item": "rankine:black_marble",
       "link_recipe": true,
       "text": "Found in the traditional locations."
     },
     {
       "type": "spotlight",
-      "item": "minecraft:crying_obsidian",
+      "item": "rankine:gray_marble",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_marble",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rose_marble",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:slate",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:phyllite",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:mica_schist",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blueschist",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:greenschist",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:gneiss",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:quartzite",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:serpentinite",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:mariposite",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:eclogite",
       "link_recipe": true,
       "text": "Not found yet."
     }

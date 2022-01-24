@@ -5,8 +5,26 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "rankine:purple_gold_pole"
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:purple_gold_pole",
+                  "properties": {
+                    "style": "1"
+                  }
+                }
+              ],
+              "name": "rankine:garland"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "rankine:purple_gold_pole"
+            }
+          ]
         }
       ],
       "conditions": [

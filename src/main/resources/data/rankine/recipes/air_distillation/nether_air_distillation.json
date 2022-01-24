@@ -1,0 +1,40 @@
+{
+  "type": "rankine:air_distillation",
+  "dimensions": ["minecraft:the_nether"],
+  "output1": {
+    "item": "rankine:sulfur_dioxide_gas_block",
+    "chance": 0.4
+  },
+  "output2": {
+    "item": "rankine:ammonia_gas_block",
+    "chance": 0.2
+  },
+  "output3": {
+    "item": "rankine:fluorine_gas_block",
+    "chance": 0.1
+  },
+  "output4": {
+    "item": "rankine:chlorine_gas_block",
+    "chance": 0.1
+  },
+  "output5": {
+    "item": "rankine:hydrogen_fluoride_gas_block",
+    "chance": 0.05
+  },
+  "output6": {
+    "item": "rankine:hydrogen_chloride_gas_block",
+    "chance": 0.05
+  },
+  "output8": {
+    "item": "rankine:xenon_gas_block",
+    "chance": 0.008
+  },
+  "output9": {
+    "item": "rankine:radon_gas_block",
+    "chance": 0.004
+  },
+  "output10": {
+    "item": "rankine:oganesson_gas_block",
+    "chance": 0.001
+  }
+}

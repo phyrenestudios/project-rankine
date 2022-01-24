@@ -3,15 +3,12 @@ package com.cannolicatfish.rankine.init;
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
 import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
 import net.minecraft.block.*;
-import net.minecraft.item.Item;
 import net.minecraft.util.IItemProvider;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class VanillaIntegration {
-
-    public static Map<Block, Item> gasCondenserMap = new HashMap<Block, Item>();
     public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
     public static Map<Block, Block> pathBlocks_map = new HashMap<Block, Block>();
     public static Map<Block, TilledSoilTypes> hoeables_map = new HashMap<Block, TilledSoilTypes>();
@@ -193,19 +190,6 @@ public class VanillaIntegration {
         tapFluids_map.put(TreeTapFluids.RESIN, RankineBlocks.RESIN.get().getDefaultState());
         tapFluids_map.put(TreeTapFluids.LATEX, RankineBlocks.LATEX.get().getDefaultState());
 
-
-        gasCondenserMap.put(RankineBlocks.HYDROGEN_GAS_BLOCK.get(), RankineItems.HYDROGEN_NUGGET.get());
-        gasCondenserMap.put(RankineBlocks.OXYGEN_GAS_BLOCK.get(), RankineItems.OXYGEN_NUGGET.get());
-        gasCondenserMap.put(RankineBlocks.NITROGEN_GAS_BLOCK.get(), RankineItems.NITROGEN_NUGGET.get());
-        gasCondenserMap.put(RankineBlocks.HELIUM_GAS_BLOCK.get(), RankineItems.HELIUM_NUGGET.get());
-        gasCondenserMap.put(RankineBlocks.CHLORINE_GAS_BLOCK.get(), RankineItems.CHLORINE_NUGGET.get());
-        gasCondenserMap.put(RankineBlocks.FLUORINE_GAS_BLOCK.get(), RankineItems.FLUORINE_NUGGET.get());
-        gasCondenserMap.put(RankineBlocks.ARGON_GAS_BLOCK.get(), RankineItems.ARGON_NUGGET.get());
-        gasCondenserMap.put(RankineBlocks.NEON_GAS_BLOCK.get(), RankineItems.NEON_NUGGET.get());
-        gasCondenserMap.put(RankineBlocks.KRYPTON_GAS_BLOCK.get(), RankineItems.KRYPTON_NUGGET.get());
-        gasCondenserMap.put(RankineBlocks.RADON_GAS_BLOCK.get(), RankineItems.RADON_NUGGET.get());
-        gasCondenserMap.put(RankineBlocks.XENON_GAS_BLOCK.get(), RankineItems.XENON_NUGGET.get());
-        gasCondenserMap.put(RankineBlocks.OGANESSON_GAS_BLOCK.get(), RankineItems.OGANESSON_NUGGET.get());
 
     }
 

@@ -5,7 +5,7 @@ import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceScreen;
-import com.cannolicatfish.rankine.blocks.gascondenser.GasCondensorScreen;
+import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerScreen;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelScreen;
@@ -75,7 +75,7 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(RankineBlocks.ALLOY_FURNACE_CONTAINER, AlloyFurnaceScreen::new);
         ScreenManager.registerFactory(RankineBlocks.PISTON_CRUSHER_CONTAINER, PistonCrusherScreen::new);
         ScreenManager.registerFactory(RankineBlocks.EVAPORATION_TOWER_CONTAINER, EvaporationTowerScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.GAS_CONDENSER_CONTAINER, GasCondensorScreen::new);
+        ScreenManager.registerFactory(RankineBlocks.GAS_CONDENSER_CONTAINER, GasBottlerScreen::new);
         ScreenManager.registerFactory(RankineItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
         ScreenManager.registerFactory(RankineBlocks.TEMPLATE_TABLE_CONTAINER, TemplateTableScreen::new);
         ScreenManager.registerFactory(RankineBlocks.MATERIAL_TESTING_TABLE_CONTAINER, MaterialTestingTableScreen::new);
@@ -90,6 +90,7 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.WOODEN_TRAPDOORS);
         addCutout(RankineLists.METAL_TRAPDOORS);
         addCutout(RankineLists.METAL_LADDERS);
+        addCutout(RankineLists.ALLOY_POLES);
         addCutout(RankineLists.LEAVES);
         addCutout(RankineLists.LEAF_LITTERS);
         addCutout(RankineLists.SAPLINGS);
@@ -98,6 +99,7 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.SPECIAL_ORES);
         addCutout(Arrays.asList(
                 RankineBlocks.FLOOD_GATE.get(),
+                RankineBlocks.ORNAMENT.get(),
                 RankineBlocks.LEAD_GLASS.get(),
                 RankineBlocks.BOROSILICATE_GLASS.get(),
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
@@ -120,6 +122,7 @@ public class ClientProxy implements IProxy {
         addCutoutMipped(RankineLists.BUSH_PLANTS);
         addCutoutMipped(RankineLists.DOUBLE_BUSH_PLANTS);
         addCutoutMipped(RankineLists.TALL_FLOWERS);
+        addCutoutMipped(RankineLists.LANTERNS);
         addCutoutMipped(Arrays.asList(
                 RankineBlocks.CAST_IRON_BARS.get(),
                 RankineBlocks.CAST_IRON_SUPPORT.get(),
@@ -149,7 +152,11 @@ public class ClientProxy implements IProxy {
         addTranslucent(RankineLists.GAS_BLOCKS);
         addTranslucent(RankineLists.LIGHTNING_GLASSES);
         addTranslucent(Arrays.asList(
-                RankineBlocks.HELIUM_GAS_TUBE.get(),
+                //RankineBlocks.HELIUM_GAS_TUBE.get(),
+                RankineBlocks.SALT_COLUMN.get(),
+                RankineBlocks.SODIUM_CHLORIDE_BLOCK.get(),
+                RankineBlocks.PINK_SALT_COLUMN.get(),
+                RankineBlocks.PINK_SALT_BLOCK.get(),
                 RankineBlocks.ICE_BRICKS.get(),
                 RankineBlocks.ICE_BRICKS_SLAB.get(),
                 RankineBlocks.ICE_BRICKS_STAIRS.get(),

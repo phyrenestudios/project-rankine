@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:oak_leaf_litter"
+            "item": "minecraft:air"
           }
         ]
       }

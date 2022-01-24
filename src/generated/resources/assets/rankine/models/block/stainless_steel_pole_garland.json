@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/metal_pole_garland",
+  "textures": {
+    "side": "rankine:block/stainless_steel_block"
+  }
+}

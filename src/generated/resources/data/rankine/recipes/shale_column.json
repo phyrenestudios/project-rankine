@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_column",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:shale"
+    }
+  },
+  "result": {
+    "item": "rankine:shale_column",
+    "count": 8
+  }
+}

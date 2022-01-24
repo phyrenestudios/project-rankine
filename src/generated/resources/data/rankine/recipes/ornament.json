@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    "NGN",
+    " N "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:chain"
+    },
+    "G": {
+      "tag": "forge:glass"
+    },
+    "N": {
+      "tag": "rankine:crafting_metal_nuggets"
+    }
+  },
+  "result": {
+    "item": "rankine:ornament",
+    "count": 8
+  }
+}

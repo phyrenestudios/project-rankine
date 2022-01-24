@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_column",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:sommanite"
+    }
+  },
+  "result": {
+    "item": "rankine:sommanite_column",
+    "count": 8
+  }
+}

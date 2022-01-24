@@ -9,11 +9,10 @@ import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
 import com.cannolicatfish.rankine.blocks.distillationtower.DistillationTowerTile;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
-import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
-import com.cannolicatfish.rankine.blocks.gascondenser.GasCondenserContainer;
-import com.cannolicatfish.rankine.blocks.gascondenser.GasCondenserTile;
+import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerContainer;
+import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerTile;
 import com.cannolicatfish.rankine.blocks.gasvent.GasVentTile;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherContainer;
@@ -31,6 +30,7 @@ import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
 import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
+import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilTile;
 import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.enchantment.*;
 import com.cannolicatfish.rankine.entities.*;
@@ -44,6 +44,7 @@ import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.POIFixer;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
+import com.cannolicatfish.rankine.world.RankineBiomeFeatures;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowingFluidBlock;
@@ -62,7 +63,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.PointOfInterestType;
-import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -112,6 +112,7 @@ public class ProjectRankine {
 
         RankineBlocks.REGISTRY.register(Bus);
         RankineItems.REGISTRY.register(Bus);
+        RankineFeatures.REGISTRY.register(Bus);
         RankineSoundEvents.REGISTRY.register(Bus);
         //Bus.addListener(this::construct);
 
@@ -138,7 +139,7 @@ public class ProjectRankine {
             RankineRecipes.registerPredicates();
             RankineRecipes.registerPotionRecipes();
             RankineRecipes.registerDispenserBehaviors();
-            RankineFeatures.registerConfiguredFeatures();
+            RankineBiomeFeatures.registerConfiguredFeatures();
             //WoodType.register(RankineBlocks.CEDAR);
         });
 
@@ -216,6 +217,7 @@ public class ProjectRankine {
             for (Block b : RankineLists.GRASS_BLOCKS) {
                 event.getBlockColors().register(new GrassBlockBaseColor(), b);
             }
+            event.getBlockColors().register(new OrnamentColor(), RankineBlocks.ORNAMENT.get());
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SHORT_GRASS.get());
 
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK.get());
@@ -253,25 +255,8 @@ public class ProjectRankine {
 
         @SubscribeEvent
         public static void onPlacementRegistry(final RegistryEvent.Register<Placement<?>> event) {
-            event.getRegistry().register(RankineFeatures.REPLACER_PLACEMENT.setRegistryName(ProjectRankine.MODID,"replacer_placement"));
-            event.getRegistry().register(RankineFeatures.INTRUSION_PLACEMENT.setRegistryName(ProjectRankine.MODID,"intrusion_placement"));
-        }
-
-        @SubscribeEvent
-        public static void onFeatureRegistry(final RegistryEvent.Register<Feature<?>> event) {
-            event.getRegistry().register(RankineFeatures.DEFAULT_ORE.setRegistryName(ProjectRankine.MODID,"default_ore"));
-            event.getRegistry().register(RankineFeatures.SPHERE_ORE.setRegistryName(ProjectRankine.MODID,"sphere_ore"));
-            event.getRegistry().register(RankineFeatures.DISK_ORE.setRegistryName(ProjectRankine.MODID,"disk_ore"));
-            event.getRegistry().register(RankineFeatures.LAND_DISK.setRegistryName(ProjectRankine.MODID,"land_disk"));
-            event.getRegistry().register(RankineFeatures.METEORITE_FEATURE.setRegistryName(ProjectRankine.MODID,"meteorite_feature"));
-            event.getRegistry().register(RankineFeatures.END_METEORITE_FEATURE.setRegistryName(ProjectRankine.MODID,"end_meteorite_feature"));
-            event.getRegistry().register(RankineFeatures.ANTIMATTER_BLOB_FEATURE.setRegistryName(ProjectRankine.MODID,"antimatter_blob_feature"));
-            event.getRegistry().register(RankineFeatures.FUMAROLE_FEATURE.setRegistryName(ProjectRankine.MODID,"fumarole_feature"));
-            event.getRegistry().register(RankineFeatures.FLAT_BEDROCK_FEATURE.setRegistryName(ProjectRankine.MODID,"flat_bedrock_feature"));
-            event.getRegistry().register(RankineFeatures.INTRUSION.setRegistryName(ProjectRankine.MODID,"intrusion"));
-            event.getRegistry().register(RankineFeatures.WORLD_REPLACER_FEATURE.setRegistryName(ProjectRankine.MODID,"soil_replacer"));
-            event.getRegistry().register(RankineFeatures.SNOW_REPLACER.setRegistryName(ProjectRankine.MODID,"snow_replacer"));
-
+            //event.getRegistry().register(RankineBiomeFeatures.REPLACER_PLACEMENT.setRegistryName(ProjectRankine.MODID,"replacer_placement"));
+            //event.getRegistry().register(RankineBiomeFeatures.INTRUSION_PLACEMENT.setRegistryName(ProjectRankine.MODID,"intrusion_placement"));
         }
 
         @SubscribeEvent
@@ -312,7 +297,7 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(FusionFurnaceTile::new, RankineBlocks.FUSION_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"fusion_furnace"));
             event.getRegistry().register(TileEntityType.Builder.create(GyratoryCrusherTile::new, RankineBlocks.GYRATORY_CRUSHER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gyratory_crusher"));
             event.getRegistry().register(TileEntityType.Builder.create(EvaporationTowerTile::new, RankineBlocks.EVAPORATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
-            event.getRegistry().register(TileEntityType.Builder.create(GasCondenserTile::new, RankineBlocks.GAS_CONDENSER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_condenser"));
+            event.getRegistry().register(TileEntityType.Builder.create(GasBottlerTile::new, RankineBlocks.GAS_BOTTLER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_condenser"));
             event.getRegistry().register(TileEntityType.Builder.create(GasVentTile::new, RankineBlocks.GAS_VENT.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_vent"));
             event.getRegistry().register(TileEntityType.Builder.create(TreeTapTile::new, RankineBlocks.TREE_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"tree_tap"));
             event.getRegistry().register(TileEntityType.Builder.create(SedimentFanTile::new, RankineBlocks.SEDIMENT_FAN.get()).build(null).setRegistryName(ProjectRankine.MODID,"sediment_fan"));
@@ -321,7 +306,7 @@ public class ProjectRankine {
             //event.getRegistry().register(TileEntityType.Builder.create(LaserQuarryTile::new, RankineBlocks.LASER_QUARRY.get()).build(null).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
             event.getRegistry().register(TileEntityType.Builder.create(AlloyBlockTile::new, RankineBlocks.BRONZE_BLOCK.get()).build(null).setRegistryName(ProjectRankine.MODID,"bronze_alloy_block"));
             //event.getRegistry().register(TileEntityType.Builder.create(SodiumVaporLampTile::new, RankineBlocks.SODIUM_VAPOR_LAMP.get()).build(null).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
-            event.getRegistry().register(TileEntityType.Builder.create(FluidDrainTile::new, RankineBlocks.TILLED_SOIL.get()).build(null).setRegistryName(ProjectRankine.MODID,"tilled_soil"));
+            event.getRegistry().register(TileEntityType.Builder.create(TilledSoilTile::new, RankineBlocks.TILLED_SOIL.get()).build(null).setRegistryName(ProjectRankine.MODID,"tilled_soil"));
             event.getRegistry().register(TileEntityType.Builder.create(GroundTapTile::new, RankineBlocks.GROUND_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"ground_tap"));
             event.getRegistry().register(TileEntityType.Builder.create(MaterialTestingTableTile::new, RankineBlocks.MATERIAL_TESTING_TABLE.get()).build(null).setRegistryName(ProjectRankine.MODID,"material_testing_table"));
             event.getRegistry().register(TileEntityType.Builder.create(BeehiveOvenTile::new, RankineBlocks.BEEHIVE_OVEN_PIT.get()).build(null).setRegistryName(ProjectRankine.MODID,"beehive_oven"));
@@ -452,7 +437,7 @@ public class ProjectRankine {
 
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
-                return new GasCondenserContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
+                return new GasBottlerContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"gas_condenser"));
 
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {

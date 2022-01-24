@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/metal_pole_garland",
+  "textures": {
+    "side": "rankine:block/pewter_block"
+  }
+}

@@ -7,13 +7,12 @@ import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
 import com.cannolicatfish.rankine.blocks.buildingmodes.*;
 import com.cannolicatfish.rankine.blocks.distillationtower.DistillationTowerBlock;
 import com.cannolicatfish.rankine.blocks.distillationtower.DistillationTowerTile;
-import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
-import com.cannolicatfish.rankine.blocks.gascondenser.GasCondenserBlock;
-import com.cannolicatfish.rankine.blocks.gascondenser.GasCondenserContainer;
-import com.cannolicatfish.rankine.blocks.gascondenser.GasCondenserTile;
+import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerBlock;
+import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerContainer;
+import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerTile;
 import com.cannolicatfish.rankine.blocks.gasvent.GasVentBlock;
 import com.cannolicatfish.rankine.blocks.gasvent.GasVentTile;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapBlock;
@@ -123,6 +122,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PEGMATITE_PRESSURE_PLATE = REGISTRY.register("pegmatite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> PEGMATITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("pegmatite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> PEGMATITE_BUTTON = REGISTRY.register("pegmatite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> PEGMATITE_PILLAR = REGISTRY.register("pegmatite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(PEGMATITE.get())));
+    public static final RegistryObject<Block> PEGMATITE_COLUMN = REGISTRY.register("pegmatite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(PEGMATITE.get())));
     public static final RegistryObject<Block> GRAY_GRANITE = REGISTRY.register("gray_granite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_GRAY_GRANITE = REGISTRY.register("polished_gray_granite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> GRAY_GRANITE_BRICKS = REGISTRY.register("gray_granite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -141,6 +142,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GRAY_GRANITE_PRESSURE_PLATE = REGISTRY.register("gray_granite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GRAY_GRANITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("gray_granite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GRAY_GRANITE_BUTTON = REGISTRY.register("gray_granite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> GRAY_GRANITE_PILLAR = REGISTRY.register("gray_granite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(GRAY_GRANITE.get())));
+    public static final RegistryObject<Block> GRAY_GRANITE_COLUMN = REGISTRY.register("gray_granite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(GRAY_GRANITE.get())));
     public static final RegistryObject<Block> RHYOLITE = REGISTRY.register("rhyolite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_RHYOLITE = REGISTRY.register("polished_rhyolite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> RHYOLITE_BRICKS = REGISTRY.register("rhyolite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -159,6 +162,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RHYOLITE_PRESSURE_PLATE = REGISTRY.register("rhyolite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> RHYOLITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("rhyolite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> RHYOLITE_BUTTON = REGISTRY.register("rhyolite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> RHYOLITE_PILLAR = REGISTRY.register("rhyolite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(RHYOLITE.get())));
+    public static final RegistryObject<Block> RHYOLITE_COLUMN = REGISTRY.register("rhyolite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(RHYOLITE.get())));
     public static final RegistryObject<Block> COMENDITE = REGISTRY.register("comendite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_COMENDITE = REGISTRY.register("polished_comendite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> COMENDITE_BRICKS = REGISTRY.register("comendite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -177,6 +182,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> COMENDITE_PRESSURE_PLATE = REGISTRY.register("comendite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> COMENDITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("comendite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> COMENDITE_BUTTON = REGISTRY.register("comendite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> COMENDITE_PILLAR = REGISTRY.register("comendite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(COMENDITE.get())));
+    public static final RegistryObject<Block> COMENDITE_COLUMN = REGISTRY.register("comendite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(COMENDITE.get())));
     public static final RegistryObject<Block> GRANODIORITE = REGISTRY.register("granodiorite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_GRANODIORITE = REGISTRY.register("polished_granodiorite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> GRANODIORITE_BRICKS = REGISTRY.register("granodiorite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -195,6 +202,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GRANODIORITE_PRESSURE_PLATE = REGISTRY.register("granodiorite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GRANODIORITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("granodiorite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GRANODIORITE_BUTTON = REGISTRY.register("granodiorite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> GRANODIORITE_PILLAR = REGISTRY.register("granodiorite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(GRANODIORITE.get())));
+    public static final RegistryObject<Block> GRANODIORITE_COLUMN = REGISTRY.register("granodiorite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(GRANODIORITE.get())));
     public static final RegistryObject<Block> RED_PORPHYRY = REGISTRY.register("red_porphyry", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_RED_PORPHYRY = REGISTRY.register("polished_red_porphyry", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> RED_PORPHYRY_BRICKS = REGISTRY.register("red_porphyry_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -213,6 +222,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RED_PORPHYRY_PRESSURE_PLATE = REGISTRY.register("red_porphyry_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> RED_PORPHYRY_BRICKS_PRESSURE_PLATE = REGISTRY.register("red_porphyry_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> RED_PORPHYRY_BUTTON = REGISTRY.register("red_porphyry_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> RED_PORPHYRY_PILLAR = REGISTRY.register("red_porphyry_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(RED_PORPHYRY.get())));
+    public static final RegistryObject<Block> RED_PORPHYRY_COLUMN = REGISTRY.register("red_porphyry_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(RED_PORPHYRY.get())));
     public static final RegistryObject<Block> PURPLE_PORPHYRY = REGISTRY.register("purple_porphyry", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_PURPLE_PORPHYRY = REGISTRY.register("polished_purple_porphyry", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> PURPLE_PORPHYRY_BRICKS = REGISTRY.register("purple_porphyry_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -231,6 +242,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PURPLE_PORPHYRY_PRESSURE_PLATE = REGISTRY.register("purple_porphyry_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> PURPLE_PORPHYRY_BRICKS_PRESSURE_PLATE = REGISTRY.register("purple_porphyry_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> PURPLE_PORPHYRY_BUTTON = REGISTRY.register("purple_porphyry_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> PURPLE_PORPHYRY_PILLAR = REGISTRY.register("purple_porphyry_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(PURPLE_PORPHYRY.get())));
+    public static final RegistryObject<Block> PURPLE_PORPHYRY_COLUMN = REGISTRY.register("purple_porphyry_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(PURPLE_PORPHYRY.get())));
     public static final RegistryObject<Block> BLACK_DACITE = REGISTRY.register("black_dacite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_BLACK_DACITE = REGISTRY.register("polished_black_dacite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> BLACK_DACITE_BRICKS = REGISTRY.register("black_dacite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -249,6 +262,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_DACITE_PRESSURE_PLATE = REGISTRY.register("black_dacite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> BLACK_DACITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("black_dacite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> BLACK_DACITE_BUTTON = REGISTRY.register("black_dacite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> BLACK_DACITE_PILLAR = REGISTRY.register("black_dacite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(BLACK_DACITE.get())));
+    public static final RegistryObject<Block> BLACK_DACITE_COLUMN = REGISTRY.register("black_dacite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(BLACK_DACITE.get())));
     public static final RegistryObject<Block> RED_DACITE = REGISTRY.register("red_dacite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_RED_DACITE = REGISTRY.register("polished_red_dacite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> RED_DACITE_BRICKS = REGISTRY.register("red_dacite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -267,6 +282,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RED_DACITE_PRESSURE_PLATE = REGISTRY.register("red_dacite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> RED_DACITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("red_dacite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> RED_DACITE_BUTTON = REGISTRY.register("red_dacite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> RED_DACITE_PILLAR = REGISTRY.register("red_dacite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(RED_DACITE.get())));
+    public static final RegistryObject<Block> RED_DACITE_COLUMN = REGISTRY.register("red_dacite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(RED_DACITE.get())));
     public static final RegistryObject<Block> HORNBLENDE_ANDESITE = REGISTRY.register("hornblende_andesite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_HORNBLENDE_ANDESITE = REGISTRY.register("polished_hornblende_andesite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> HORNBLENDE_ANDESITE_BRICKS = REGISTRY.register("hornblende_andesite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -285,6 +302,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HORNBLENDE_ANDESITE_PRESSURE_PLATE = REGISTRY.register("hornblende_andesite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> HORNBLENDE_ANDESITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("hornblende_andesite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> HORNBLENDE_ANDESITE_BUTTON = REGISTRY.register("hornblende_andesite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> HORNBLENDE_ANDESITE_PILLAR = REGISTRY.register("hornblende_andesite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(HORNBLENDE_ANDESITE.get())));
+    public static final RegistryObject<Block> HORNBLENDE_ANDESITE_COLUMN = REGISTRY.register("hornblende_andesite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(HORNBLENDE_ANDESITE.get())));
     public static final RegistryObject<Block> SHONKINITE = REGISTRY.register("shonkinite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_SHONKINITE = REGISTRY.register("polished_shonkinite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> SHONKINITE_BRICKS = REGISTRY.register("shonkinite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -303,6 +322,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SHONKINITE_PRESSURE_PLATE = REGISTRY.register("shonkinite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SHONKINITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("shonkinite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SHONKINITE_BUTTON = REGISTRY.register("shonkinite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> SHONKINITE_PILLAR = REGISTRY.register("shonkinite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(SHONKINITE.get())));
+    public static final RegistryObject<Block> SHONKINITE_COLUMN = REGISTRY.register("shonkinite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(SHONKINITE.get())));
     public static final RegistryObject<Block> ANORTHOSITE = REGISTRY.register("anorthosite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_ANORTHOSITE = REGISTRY.register("polished_anorthosite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> ANORTHOSITE_BRICKS = REGISTRY.register("anorthosite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -321,6 +342,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ANORTHOSITE_PRESSURE_PLATE = REGISTRY.register("anorthosite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ANORTHOSITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("anorthosite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ANORTHOSITE_BUTTON = REGISTRY.register("anorthosite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> ANORTHOSITE_PILLAR = REGISTRY.register("anorthosite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(ANORTHOSITE.get())));
+    public static final RegistryObject<Block> ANORTHOSITE_COLUMN = REGISTRY.register("anorthosite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(ANORTHOSITE.get())));
     public static final RegistryObject<Block> NORITE = REGISTRY.register("norite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_NORITE = REGISTRY.register("polished_norite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> NORITE_BRICKS = REGISTRY.register("norite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -339,6 +362,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> NORITE_PRESSURE_PLATE = REGISTRY.register("norite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> NORITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("norite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> NORITE_BUTTON = REGISTRY.register("norite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> NORITE_PILLAR = REGISTRY.register("norite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(NORITE.get())));
+    public static final RegistryObject<Block> NORITE_COLUMN = REGISTRY.register("norite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(NORITE.get())));
     public static final RegistryObject<Block> TROCTOLITE = REGISTRY.register("troctolite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_TROCTOLITE = REGISTRY.register("polished_troctolite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> TROCTOLITE_BRICKS = REGISTRY.register("troctolite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -357,6 +382,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TROCTOLITE_PRESSURE_PLATE = REGISTRY.register("troctolite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> TROCTOLITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("troctolite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> TROCTOLITE_BUTTON = REGISTRY.register("troctolite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> TROCTOLITE_PILLAR = REGISTRY.register("troctolite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(TROCTOLITE.get())));
+    public static final RegistryObject<Block> TROCTOLITE_COLUMN = REGISTRY.register("troctolite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(TROCTOLITE.get())));
     public static final RegistryObject<Block> GABBRO = REGISTRY.register("gabbro", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_GABBRO = REGISTRY.register("polished_gabbro", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> GABBRO_BRICKS = REGISTRY.register("gabbro_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -375,6 +402,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GABBRO_PRESSURE_PLATE = REGISTRY.register("gabbro_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GABBRO_BRICKS_PRESSURE_PLATE = REGISTRY.register("gabbro_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GABBRO_BUTTON = REGISTRY.register("gabbro_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> GABBRO_PILLAR = REGISTRY.register("gabbro_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(GABBRO.get())));
+    public static final RegistryObject<Block> GABBRO_COLUMN = REGISTRY.register("gabbro_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(GABBRO.get())));
     public static final RegistryObject<Block> DIABASE = REGISTRY.register("diabase", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_DIABASE = REGISTRY.register("polished_diabase", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> DIABASE_BRICKS = REGISTRY.register("diabase_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -393,6 +422,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> DIABASE_PRESSURE_PLATE = REGISTRY.register("diabase_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> DIABASE_BRICKS_PRESSURE_PLATE = REGISTRY.register("diabase_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> DIABASE_BUTTON = REGISTRY.register("diabase_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> DIABASE_PILLAR = REGISTRY.register("diabase_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(DIABASE.get())));
+    public static final RegistryObject<Block> DIABASE_COLUMN = REGISTRY.register("diabase_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(DIABASE.get())));
     public static final RegistryObject<Block> THOLEIITIC_BASALT = REGISTRY.register("tholeiitic_basalt", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_THOLEIITIC_BASALT = REGISTRY.register("polished_tholeiitic_basalt", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> THOLEIITIC_BASALT_BRICKS = REGISTRY.register("tholeiitic_basalt_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -411,6 +442,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> THOLEIITIC_BASALT_PRESSURE_PLATE = REGISTRY.register("tholeiitic_basalt_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> THOLEIITIC_BASALT_BRICKS_PRESSURE_PLATE = REGISTRY.register("tholeiitic_basalt_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> THOLEIITIC_BASALT_BUTTON = REGISTRY.register("tholeiitic_basalt_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> THOLEIITIC_BASALT_PILLAR = REGISTRY.register("tholeiitic_basalt_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(THOLEIITIC_BASALT.get())));
+    public static final RegistryObject<Block> THOLEIITIC_BASALT_COLUMN = REGISTRY.register("tholeiitic_basalt_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(THOLEIITIC_BASALT.get())));
     public static final RegistryObject<Block> PYROXENITE = REGISTRY.register("pyroxenite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_PYROXENITE = REGISTRY.register("polished_pyroxenite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> PYROXENITE_BRICKS = REGISTRY.register("pyroxenite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -429,6 +462,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PYROXENITE_PRESSURE_PLATE = REGISTRY.register("pyroxenite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> PYROXENITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("pyroxenite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> PYROXENITE_BUTTON = REGISTRY.register("pyroxenite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> PYROXENITE_PILLAR = REGISTRY.register("pyroxenite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(PYROXENITE.get())));
+    public static final RegistryObject<Block> PYROXENITE_COLUMN = REGISTRY.register("pyroxenite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(PYROXENITE.get())));
     public static final RegistryObject<Block> PERIDOTITE = REGISTRY.register("peridotite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_PERIDOTITE = REGISTRY.register("polished_peridotite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> PERIDOTITE_BRICKS = REGISTRY.register("peridotite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -447,6 +482,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PERIDOTITE_PRESSURE_PLATE = REGISTRY.register("peridotite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> PERIDOTITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("peridotite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> PERIDOTITE_BUTTON = REGISTRY.register("peridotite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> PERIDOTITE_PILLAR = REGISTRY.register("peridotite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(PERIDOTITE.get())));
+    public static final RegistryObject<Block> PERIDOTITE_COLUMN = REGISTRY.register("peridotite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(PERIDOTITE.get())));
     public static final RegistryObject<Block> KOMATIITE = REGISTRY.register("komatiite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_KOMATIITE = REGISTRY.register("polished_komatiite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> KOMATIITE_BRICKS = REGISTRY.register("komatiite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -465,6 +502,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> KOMATIITE_PRESSURE_PLATE = REGISTRY.register("komatiite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> KOMATIITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("komatiite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> KOMATIITE_BUTTON = REGISTRY.register("komatiite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> KOMATIITE_PILLAR = REGISTRY.register("komatiite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(KOMATIITE.get())));
+    public static final RegistryObject<Block> KOMATIITE_COLUMN = REGISTRY.register("komatiite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(KOMATIITE.get())));
     public static final RegistryObject<Block> KIMBERLITE = REGISTRY.register("kimberlite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_KIMBERLITE = REGISTRY.register("polished_kimberlite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> KIMBERLITE_BRICKS = REGISTRY.register("kimberlite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -483,6 +522,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> KIMBERLITE_PRESSURE_PLATE = REGISTRY.register("kimberlite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> KIMBERLITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("kimberlite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> KIMBERLITE_BUTTON = REGISTRY.register("kimberlite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> KIMBERLITE_PILLAR = REGISTRY.register("kimberlite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(KIMBERLITE.get())));
+    public static final RegistryObject<Block> KIMBERLITE_COLUMN = REGISTRY.register("kimberlite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(KIMBERLITE.get())));
     public static final RegistryObject<Block> SOMMANITE = REGISTRY.register("sommanite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_SOMMANITE = REGISTRY.register("polished_sommanite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> SOMMANITE_BRICKS = REGISTRY.register("sommanite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -501,6 +542,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SOMMANITE_PRESSURE_PLATE = REGISTRY.register("sommanite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SOMMANITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("sommanite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SOMMANITE_BUTTON = REGISTRY.register("sommanite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> SOMMANITE_PILLAR = REGISTRY.register("sommanite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(SOMMANITE.get())));
+    public static final RegistryObject<Block> SOMMANITE_COLUMN = REGISTRY.register("sommanite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(SOMMANITE.get())));
     public static final RegistryObject<Block> RINGWOODINE = REGISTRY.register("ringwoodine", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_RINGWOODINE = REGISTRY.register("polished_ringwoodine", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> RINGWOODINE_BRICKS = REGISTRY.register("ringwoodine_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -519,6 +562,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RINGWOODINE_PRESSURE_PLATE = REGISTRY.register("ringwoodine_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> RINGWOODINE_BRICKS_PRESSURE_PLATE = REGISTRY.register("ringwoodine_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> RINGWOODINE_BUTTON = REGISTRY.register("ringwoodine_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> RINGWOODINE_PILLAR = REGISTRY.register("ringwoodine_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(RINGWOODINE.get())));
+    public static final RegistryObject<Block> RINGWOODINE_COLUMN = REGISTRY.register("ringwoodine_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(RINGWOODINE.get())));
     public static final RegistryObject<Block> WADSLEYONE = REGISTRY.register("wadsleyone", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_WADSLEYONE = REGISTRY.register("polished_wadsleyone", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> WADSLEYONE_BRICKS = REGISTRY.register("wadsleyone_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -537,6 +582,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> WADSLEYONE_PRESSURE_PLATE = REGISTRY.register("wadsleyone_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> WADSLEYONE_BRICKS_PRESSURE_PLATE = REGISTRY.register("wadsleyone_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> WADSLEYONE_BUTTON = REGISTRY.register("wadsleyone_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> WADSLEYONE_PILLAR = REGISTRY.register("wadsleyone_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(WADSLEYONE.get())));
+    public static final RegistryObject<Block> WADSLEYONE_COLUMN = REGISTRY.register("wadsleyone_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(WADSLEYONE.get())));
     public static final RegistryObject<Block> BRIDGMANHAM = REGISTRY.register("bridgmanham", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_BRIDGMANHAM = REGISTRY.register("polished_bridgmanham", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> BRIDGMANHAM_BRICKS = REGISTRY.register("bridgmanham_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -555,6 +602,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BRIDGMANHAM_PRESSURE_PLATE = REGISTRY.register("bridgmanham_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> BRIDGMANHAM_BRICKS_PRESSURE_PLATE = REGISTRY.register("bridgmanham_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> BRIDGMANHAM_BUTTON = REGISTRY.register("bridgmanham_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> BRIDGMANHAM_PILLAR = REGISTRY.register("bridgmanham_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(BRIDGMANHAM.get())));
+    public static final RegistryObject<Block> BRIDGMANHAM_COLUMN = REGISTRY.register("bridgmanham_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(BRIDGMANHAM.get())));
     public static final RegistryObject<Block> POST_PEROVSKITE = REGISTRY.register("post_perovskite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_POST_PEROVSKITE = REGISTRY.register("polished_post_perovskite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> POST_PEROVSKITE_BRICKS = REGISTRY.register("post_perovskite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -573,6 +622,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> POST_PEROVSKITE_PRESSURE_PLATE = REGISTRY.register("post_perovskite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> POST_PEROVSKITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("post_perovskite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> POST_PEROVSKITE_BUTTON = REGISTRY.register("post_perovskite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> POST_PEROVSKITE_PILLAR = REGISTRY.register("post_perovskite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(POST_PEROVSKITE.get())));
+    public static final RegistryObject<Block> POST_PEROVSKITE_COLUMN = REGISTRY.register("post_perovskite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(POST_PEROVSKITE.get())));
     public static final RegistryObject<Block> BLACK_MARBLE = REGISTRY.register("black_marble", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_BLACK_MARBLE = REGISTRY.register("polished_black_marble", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> BLACK_MARBLE_BRICKS = REGISTRY.register("black_marble_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -591,6 +642,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_MARBLE_PRESSURE_PLATE = REGISTRY.register("black_marble_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> BLACK_MARBLE_BRICKS_PRESSURE_PLATE = REGISTRY.register("black_marble_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> BLACK_MARBLE_BUTTON = REGISTRY.register("black_marble_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> BLACK_MARBLE_PILLAR = REGISTRY.register("black_marble_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(BLACK_MARBLE.get())));
+    public static final RegistryObject<Block> BLACK_MARBLE_COLUMN = REGISTRY.register("black_marble_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(BLACK_MARBLE.get())));
     public static final RegistryObject<Block> GRAY_MARBLE = REGISTRY.register("gray_marble", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_GRAY_MARBLE = REGISTRY.register("polished_gray_marble", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> GRAY_MARBLE_BRICKS = REGISTRY.register("gray_marble_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -609,6 +662,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GRAY_MARBLE_PRESSURE_PLATE = REGISTRY.register("gray_marble_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GRAY_MARBLE_BRICKS_PRESSURE_PLATE = REGISTRY.register("gray_marble_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GRAY_MARBLE_BUTTON = REGISTRY.register("gray_marble_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> GRAY_MARBLE_PILLAR = REGISTRY.register("gray_marble_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(GRAY_MARBLE.get())));
+    public static final RegistryObject<Block> GRAY_MARBLE_COLUMN = REGISTRY.register("gray_marble_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(GRAY_MARBLE.get())));
     public static final RegistryObject<Block> WHITE_MARBLE = REGISTRY.register("white_marble", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_WHITE_MARBLE = REGISTRY.register("polished_white_marble", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> WHITE_MARBLE_BRICKS = REGISTRY.register("white_marble_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -627,6 +682,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> WHITE_MARBLE_PRESSURE_PLATE = REGISTRY.register("white_marble_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> WHITE_MARBLE_BRICKS_PRESSURE_PLATE = REGISTRY.register("white_marble_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> WHITE_MARBLE_BUTTON = REGISTRY.register("white_marble_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> WHITE_MARBLE_PILLAR = REGISTRY.register("white_marble_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(WHITE_MARBLE.get())));
+    public static final RegistryObject<Block> WHITE_MARBLE_COLUMN = REGISTRY.register("white_marble_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(WHITE_MARBLE.get())));
     public static final RegistryObject<Block> ROSE_MARBLE = REGISTRY.register("rose_marble", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_ROSE_MARBLE = REGISTRY.register("polished_rose_marble", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> ROSE_MARBLE_BRICKS = REGISTRY.register("rose_marble_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -645,6 +702,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ROSE_MARBLE_PRESSURE_PLATE = REGISTRY.register("rose_marble_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ROSE_MARBLE_BRICKS_PRESSURE_PLATE = REGISTRY.register("rose_marble_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ROSE_MARBLE_BUTTON = REGISTRY.register("rose_marble_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> ROSE_MARBLE_PILLAR = REGISTRY.register("rose_marble_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(ROSE_MARBLE.get())));
+    public static final RegistryObject<Block> ROSE_MARBLE_COLUMN = REGISTRY.register("rose_marble_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(ROSE_MARBLE.get())));
     public static final RegistryObject<Block> SLATE = REGISTRY.register("slate", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_SLATE = REGISTRY.register("polished_slate", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> SLATE_BRICKS = REGISTRY.register("slate_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -663,6 +722,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SLATE_PRESSURE_PLATE = REGISTRY.register("slate_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SLATE_BRICKS_PRESSURE_PLATE = REGISTRY.register("slate_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SLATE_BUTTON = REGISTRY.register("slate_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> SLATE_PILLAR = REGISTRY.register("slate_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(SLATE.get())));
+    public static final RegistryObject<Block> SLATE_COLUMN = REGISTRY.register("slate_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(SLATE.get())));
     public static final RegistryObject<Block> PHYLLITE = REGISTRY.register("phyllite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_PHYLLITE = REGISTRY.register("polished_phyllite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> PHYLLITE_BRICKS = REGISTRY.register("phyllite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -681,6 +742,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PHYLLITE_PRESSURE_PLATE = REGISTRY.register("phyllite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> PHYLLITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("phyllite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> PHYLLITE_BUTTON = REGISTRY.register("phyllite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> PHYLLITE_PILLAR = REGISTRY.register("phyllite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(PHYLLITE.get())));
+    public static final RegistryObject<Block> PHYLLITE_COLUMN = REGISTRY.register("phyllite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(PHYLLITE.get())));
     public static final RegistryObject<Block> MICA_SCHIST = REGISTRY.register("mica_schist", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_MICA_SCHIST = REGISTRY.register("polished_mica_schist", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> MICA_SCHIST_BRICKS = REGISTRY.register("mica_schist_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -699,6 +762,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MICA_SCHIST_PRESSURE_PLATE = REGISTRY.register("mica_schist_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> MICA_SCHIST_BRICKS_PRESSURE_PLATE = REGISTRY.register("mica_schist_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> MICA_SCHIST_BUTTON = REGISTRY.register("mica_schist_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> MICA_SCHIST_PILLAR = REGISTRY.register("mica_schist_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(MICA_SCHIST.get())));
+    public static final RegistryObject<Block> MICA_SCHIST_COLUMN = REGISTRY.register("mica_schist_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(MICA_SCHIST.get())));
     public static final RegistryObject<Block> BLUESCHIST = REGISTRY.register("blueschist", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_BLUESCHIST = REGISTRY.register("polished_blueschist", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> BLUESCHIST_BRICKS = REGISTRY.register("blueschist_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -717,6 +782,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLUESCHIST_PRESSURE_PLATE = REGISTRY.register("blueschist_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> BLUESCHIST_BRICKS_PRESSURE_PLATE = REGISTRY.register("blueschist_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> BLUESCHIST_BUTTON = REGISTRY.register("blueschist_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> BLUESCHIST_PILLAR = REGISTRY.register("blueschist_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(BLUESCHIST.get())));
+    public static final RegistryObject<Block> BLUESCHIST_COLUMN = REGISTRY.register("blueschist_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(BLUESCHIST.get())));
     public static final RegistryObject<Block> GREENSCHIST = REGISTRY.register("greenschist", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_GREENSCHIST = REGISTRY.register("polished_greenschist", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> GREENSCHIST_BRICKS = REGISTRY.register("greenschist_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -735,6 +802,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GREENSCHIST_PRESSURE_PLATE = REGISTRY.register("greenschist_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GREENSCHIST_BRICKS_PRESSURE_PLATE = REGISTRY.register("greenschist_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GREENSCHIST_BUTTON = REGISTRY.register("greenschist_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> GREENSCHIST_PILLAR = REGISTRY.register("greenschist_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(GREENSCHIST.get())));
+    public static final RegistryObject<Block> GREENSCHIST_COLUMN = REGISTRY.register("greenschist_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(GREENSCHIST.get())));
     public static final RegistryObject<Block> GNEISS = REGISTRY.register("gneiss", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_GNEISS = REGISTRY.register("polished_gneiss", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> GNEISS_BRICKS = REGISTRY.register("gneiss_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -753,6 +822,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GNEISS_PRESSURE_PLATE = REGISTRY.register("gneiss_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GNEISS_BRICKS_PRESSURE_PLATE = REGISTRY.register("gneiss_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GNEISS_BUTTON = REGISTRY.register("gneiss_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> GNEISS_PILLAR = REGISTRY.register("gneiss_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(GNEISS.get())));
+    public static final RegistryObject<Block> GNEISS_COLUMN = REGISTRY.register("gneiss_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(GNEISS.get())));
     public static final RegistryObject<Block> QUARTZITE = REGISTRY.register("quartzite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_QUARTZITE = REGISTRY.register("polished_quartzite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> QUARTZITE_BRICKS = REGISTRY.register("quartzite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -771,6 +842,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> QUARTZITE_PRESSURE_PLATE = REGISTRY.register("quartzite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> QUARTZITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("quartzite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> QUARTZITE_BUTTON = REGISTRY.register("quartzite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> QUARTZITE_PILLAR = REGISTRY.register("quartzite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(QUARTZITE.get())));
+    public static final RegistryObject<Block> QUARTZITE_COLUMN = REGISTRY.register("quartzite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(QUARTZITE.get())));
     public static final RegistryObject<Block> SERPENTINITE = REGISTRY.register("serpentinite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_SERPENTINITE = REGISTRY.register("polished_serpentinite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> SERPENTINITE_BRICKS = REGISTRY.register("serpentinite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -789,6 +862,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SERPENTINITE_PRESSURE_PLATE = REGISTRY.register("serpentinite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SERPENTINITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("serpentinite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SERPENTINITE_BUTTON = REGISTRY.register("serpentinite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> SERPENTINITE_PILLAR = REGISTRY.register("serpentinite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(SERPENTINITE.get())));
+    public static final RegistryObject<Block> SERPENTINITE_COLUMN = REGISTRY.register("serpentinite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(SERPENTINITE.get())));
     public static final RegistryObject<Block> MARIPOSITE = REGISTRY.register("mariposite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_MARIPOSITE = REGISTRY.register("polished_mariposite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> MARIPOSITE_BRICKS = REGISTRY.register("mariposite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -807,6 +882,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MARIPOSITE_PRESSURE_PLATE = REGISTRY.register("mariposite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> MARIPOSITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("mariposite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> MARIPOSITE_BUTTON = REGISTRY.register("mariposite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> MARIPOSITE_PILLAR = REGISTRY.register("mariposite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(MARIPOSITE.get())));
+    public static final RegistryObject<Block> MARIPOSITE_COLUMN = REGISTRY.register("mariposite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(MARIPOSITE.get())));
     public static final RegistryObject<Block> ECLOGITE = REGISTRY.register("eclogite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_ECLOGITE = REGISTRY.register("polished_eclogite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> ECLOGITE_BRICKS = REGISTRY.register("eclogite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -825,6 +902,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ECLOGITE_PRESSURE_PLATE = REGISTRY.register("eclogite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ECLOGITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("eclogite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ECLOGITE_BUTTON = REGISTRY.register("eclogite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> ECLOGITE_PILLAR = REGISTRY.register("eclogite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(ECLOGITE.get())));
+    public static final RegistryObject<Block> ECLOGITE_COLUMN = REGISTRY.register("eclogite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(ECLOGITE.get())));
     public static final RegistryObject<Block> LIMESTONE = REGISTRY.register("limestone", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_LIMESTONE = REGISTRY.register("polished_limestone", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> LIMESTONE_BRICKS = REGISTRY.register("limestone_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -843,6 +922,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> LIMESTONE_PRESSURE_PLATE = REGISTRY.register("limestone_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> LIMESTONE_BRICKS_PRESSURE_PLATE = REGISTRY.register("limestone_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> LIMESTONE_BUTTON = REGISTRY.register("limestone_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> LIMESTONE_PILLAR = REGISTRY.register("limestone_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(LIMESTONE.get())));
+    public static final RegistryObject<Block> LIMESTONE_COLUMN = REGISTRY.register("limestone_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(LIMESTONE.get())));
     public static final RegistryObject<Block> DOLOSTONE = REGISTRY.register("dolostone", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_DOLOSTONE = REGISTRY.register("polished_dolostone", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> DOLOSTONE_BRICKS = REGISTRY.register("dolostone_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -861,6 +942,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> DOLOSTONE_PRESSURE_PLATE = REGISTRY.register("dolostone_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> DOLOSTONE_BRICKS_PRESSURE_PLATE = REGISTRY.register("dolostone_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> DOLOSTONE_BUTTON = REGISTRY.register("dolostone_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> DOLOSTONE_PILLAR = REGISTRY.register("dolostone_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(DOLOSTONE.get())));
+    public static final RegistryObject<Block> DOLOSTONE_COLUMN = REGISTRY.register("dolostone_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(DOLOSTONE.get())));
     public static final RegistryObject<Block> CHALK = REGISTRY.register("chalk", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_CHALK = REGISTRY.register("polished_chalk", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> CHALK_BRICKS = REGISTRY.register("chalk_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -879,6 +962,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CHALK_PRESSURE_PLATE = REGISTRY.register("chalk_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> CHALK_BRICKS_PRESSURE_PLATE = REGISTRY.register("chalk_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> CHALK_BUTTON = REGISTRY.register("chalk_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> CHALK_PILLAR = REGISTRY.register("chalk_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(CHALK.get())));
+    public static final RegistryObject<Block> CHALK_COLUMN = REGISTRY.register("chalk_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(CHALK.get())));
     public static final RegistryObject<Block> MARLSTONE = REGISTRY.register("marlstone", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_MARLSTONE = REGISTRY.register("polished_marlstone", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> MARLSTONE_BRICKS = REGISTRY.register("marlstone_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -897,6 +982,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MARLSTONE_PRESSURE_PLATE = REGISTRY.register("marlstone_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> MARLSTONE_BRICKS_PRESSURE_PLATE = REGISTRY.register("marlstone_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> MARLSTONE_BUTTON = REGISTRY.register("marlstone_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> MARLSTONE_PILLAR = REGISTRY.register("marlstone_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(MARLSTONE.get())));
+    public static final RegistryObject<Block> MARLSTONE_COLUMN = REGISTRY.register("marlstone_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(MARLSTONE.get())));
     public static final RegistryObject<Block> SHALE = REGISTRY.register("shale", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_SHALE = REGISTRY.register("polished_shale", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> SHALE_BRICKS = REGISTRY.register("shale_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -915,6 +1002,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SHALE_PRESSURE_PLATE = REGISTRY.register("shale_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SHALE_BRICKS_PRESSURE_PLATE = REGISTRY.register("shale_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SHALE_BUTTON = REGISTRY.register("shale_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> SHALE_PILLAR = REGISTRY.register("shale_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(SHALE.get())));
+    public static final RegistryObject<Block> SHALE_COLUMN = REGISTRY.register("shale_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(SHALE.get())));
     public static final RegistryObject<Block> MUDSTONE = REGISTRY.register("mudstone", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_MUDSTONE = REGISTRY.register("polished_mudstone", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> MUDSTONE_BRICKS = REGISTRY.register("mudstone_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -933,6 +1022,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MUDSTONE_PRESSURE_PLATE = REGISTRY.register("mudstone_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> MUDSTONE_BRICKS_PRESSURE_PLATE = REGISTRY.register("mudstone_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> MUDSTONE_BUTTON = REGISTRY.register("mudstone_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> MUDSTONE_PILLAR = REGISTRY.register("mudstone_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(MUDSTONE.get())));
+    public static final RegistryObject<Block> MUDSTONE_COLUMN = REGISTRY.register("mudstone_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(MUDSTONE.get())));
     public static final RegistryObject<Block> SILTSTONE = REGISTRY.register("siltstone", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_SILTSTONE = REGISTRY.register("polished_siltstone", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> SILTSTONE_BRICKS = REGISTRY.register("siltstone_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -951,6 +1042,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SILTSTONE_PRESSURE_PLATE = REGISTRY.register("siltstone_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SILTSTONE_BRICKS_PRESSURE_PLATE = REGISTRY.register("siltstone_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SILTSTONE_BUTTON = REGISTRY.register("siltstone_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> SILTSTONE_PILLAR = REGISTRY.register("siltstone_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(SILTSTONE.get())));
+    public static final RegistryObject<Block> SILTSTONE_COLUMN = REGISTRY.register("siltstone_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(SILTSTONE.get())));
     public static final RegistryObject<Block> ITACOLUMITE = REGISTRY.register("itacolumite", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_ITACOLUMITE = REGISTRY.register("polished_itacolumite", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> ITACOLUMITE_BRICKS = REGISTRY.register("itacolumite_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -969,6 +1062,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ITACOLUMITE_PRESSURE_PLATE = REGISTRY.register("itacolumite_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ITACOLUMITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("itacolumite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ITACOLUMITE_BUTTON = REGISTRY.register("itacolumite_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> ITACOLUMITE_PILLAR = REGISTRY.register("itacolumite_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(ITACOLUMITE.get())));
+    public static final RegistryObject<Block> ITACOLUMITE_COLUMN = REGISTRY.register("itacolumite_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(ITACOLUMITE.get())));
     public static final RegistryObject<Block> ARKOSE = REGISTRY.register("arkose", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_ARKOSE = REGISTRY.register("polished_arkose", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> ARKOSE_BRICKS = REGISTRY.register("arkose_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -987,6 +1082,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ARKOSE_PRESSURE_PLATE = REGISTRY.register("arkose_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ARKOSE_BRICKS_PRESSURE_PLATE = REGISTRY.register("arkose_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ARKOSE_BUTTON = REGISTRY.register("arkose_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> ARKOSE_PILLAR = REGISTRY.register("arkose_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(ARKOSE.get())));
+    public static final RegistryObject<Block> ARKOSE_COLUMN = REGISTRY.register("arkose_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(ARKOSE.get())));
     public static final RegistryObject<Block> HONEYSTONE = REGISTRY.register("honeystone", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_HONEYSTONE = REGISTRY.register("polished_honeystone", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> HONEYSTONE_BRICKS = REGISTRY.register("honeystone_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
@@ -1005,6 +1102,13 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HONEYSTONE_PRESSURE_PLATE = REGISTRY.register("honeystone_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> HONEYSTONE_BRICKS_PRESSURE_PLATE = REGISTRY.register("honeystone_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> HONEYSTONE_BUTTON = REGISTRY.register("honeystone_button", RankineStoneButton::new);
+    //public static final RegistryObject<Block> HONEYSTONE_PILLAR = REGISTRY.register("honeystone_pillar", () -> new PillarBlock(AbstractBlock.Properties.from(HONEYSTONE.get())));
+    public static final RegistryObject<Block> HONEYSTONE_COLUMN = REGISTRY.register("honeystone_column", () -> new StoneColumnBlock(AbstractBlock.Properties.from(HONEYSTONE.get())));
+
+
+
+
+
 
     public static final RegistryObject<Block> SOUL_SANDSTONE = REGISTRY.register("soul_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BROWN).setRequiresTool().hardnessAndResistance(0.8F)));
     public static final RegistryObject<Block> SOUL_SANDSTONE_SLAB = REGISTRY.register("soul_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SOUL_SANDSTONE.get())));
@@ -1293,7 +1397,83 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HYDROGEN_SULFIDE_GAS_BLOCK = REGISTRY.register("hydrogen_sulfide_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN_SULFIDE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> SULFUR_DIOXIDE_GAS_BLOCK = REGISTRY.register("sulfur_dioxide_gas_block", () -> new GasBlock(GasUtilsEnum.SULFUR_DIOXIDE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
 
-    public static final RegistryObject<Block> HELIUM_GAS_TUBE = REGISTRY.register("helium_gas_tube", () -> new GasTubeBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
+    //public static final RegistryObject<Block> HELIUM_GAS_TUBE = REGISTRY.register("helium_gas_tube", () -> new GasTubeBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
+
+    public static Block.Properties LANTERN_PROP = AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3.5F).sound(SoundType.LANTERN).setLightLevel((state) -> 15).notSolid();
+    public static final RegistryObject<Block> LITHIUM_LANTERN = REGISTRY.register("lithium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> BERYLLIUM_LANTERN = REGISTRY.register("beryllium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> BORON_LANTERN = REGISTRY.register("boron_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> CARBON_LANTERN = REGISTRY.register("carbon_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> SODIUM_LANTERN = REGISTRY.register("sodium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> MAGNESIUM_LANTERN = REGISTRY.register("magnesium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> ALUMINUM_LANTERN = REGISTRY.register("aluminum_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> SILICON_LANTERN = REGISTRY.register("silicon_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> PHOSPHORUS_LANTERN = REGISTRY.register("phosphorus_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> SULFUR_LANTERN = REGISTRY.register("sulfur_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> POTASSIUM_LANTERN = REGISTRY.register("potassium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> CALCIUM_LANTERN = REGISTRY.register("calcium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> SCANDIUM_LANTERN = REGISTRY.register("scandium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> TITANIUM_LANTERN = REGISTRY.register("titanium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> VANADIUM_LANTERN = REGISTRY.register("vanadium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> CHROMIUM_LANTERN = REGISTRY.register("chromium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> MANGANESE_LANTERN = REGISTRY.register("manganese_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> COBALT_LANTERN = REGISTRY.register("cobalt_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> NICKEL_LANTERN = REGISTRY.register("nickel_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> COPPER_LANTERN = REGISTRY.register("copper_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> ZINC_LANTERN = REGISTRY.register("zinc_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> GALLIUM_LANTERN = REGISTRY.register("gallium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> GERMANIUM_LANTERN = REGISTRY.register("germanium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> ARSENIC_LANTERN = REGISTRY.register("arsenic_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> SELENIUM_LANTERN = REGISTRY.register("selenium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> BROMINE_LANTERN = REGISTRY.register("bromine_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> KRYPTON_LANTERN = REGISTRY.register("krypton_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> RUBIDIUM_LANTERN = REGISTRY.register("rubidium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> STRONTIUM_LANTERN = REGISTRY.register("strontium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> YTTRIUM_LANTERN = REGISTRY.register("yttrium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> ZIRCONIUM_LANTERN = REGISTRY.register("zirconium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> NIOBIUM_LANTERN = REGISTRY.register("niobium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> MOLYBDENUM_LANTERN = REGISTRY.register("molybdenum_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> TECHNETIUM_LANTERN = REGISTRY.register("technetium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> RUTHENIUM_LANTERN = REGISTRY.register("ruthenium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> RHODIUM_LANTERN = REGISTRY.register("rhodium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> PALLADIUM_LANTERN = REGISTRY.register("palladium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> SILVER_LANTERN = REGISTRY.register("silver_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> CADMIUM_LANTERN = REGISTRY.register("cadmium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> INDIUM_LANTERN = REGISTRY.register("indium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> TIN_LANTERN = REGISTRY.register("tin_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> ANTIMONY_LANTERN = REGISTRY.register("antimony_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> TELLURIUM_LANTERN = REGISTRY.register("tellurium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> IODINE_LANTERN = REGISTRY.register("iodine_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> XENON_LANTERN = REGISTRY.register("xenon_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> CESIUM_LANTERN = REGISTRY.register("cesium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> BARIUM_LANTERN = REGISTRY.register("barium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> LANTHANUM_LANTERN = REGISTRY.register("lanthanum_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> CERIUM_LANTERN = REGISTRY.register("cerium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> PRASEODYMIUM_LANTERN = REGISTRY.register("praseodymium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> NEODYMIUM_LANTERN = REGISTRY.register("neodymium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> PROMETHIUM_LANTERN = REGISTRY.register("promethium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> SAMARIUM_LANTERN = REGISTRY.register("samarium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> EUROPIUM_LANTERN = REGISTRY.register("europium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> GADOLINIUM_LANTERN = REGISTRY.register("gadolinium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> TERBIUM_LANTERN = REGISTRY.register("terbium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> DYSPROSIUM_LANTERN = REGISTRY.register("dysprosium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> HOLMIUM_LANTERN = REGISTRY.register("holmium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> ERBIUM_LANTERN = REGISTRY.register("erbium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> THULIUM_LANTERN = REGISTRY.register("thulium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> YTTERBIUM_LANTERN = REGISTRY.register("ytterbium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> LUTETIUM_LANTERN = REGISTRY.register("lutetium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> HAFNIUM_LANTERN = REGISTRY.register("hafnium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> TANTALUM_LANTERN = REGISTRY.register("tantalum_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> TUNGSTEN_LANTERN = REGISTRY.register("tungsten_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> RHENIUM_LANTERN = REGISTRY.register("rhenium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> OSMIUM_LANTERN = REGISTRY.register("osmium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> IRIDIUM_LANTERN = REGISTRY.register("iridium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> PLATINUM_LANTERN = REGISTRY.register("platinum_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> MERCURY_LANTERN = REGISTRY.register("mercury_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> THALLIUM_LANTERN = REGISTRY.register("thallium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> LEAD_LANTERN = REGISTRY.register("lead_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> BISMUTH_LANTERN = REGISTRY.register("bismuth_lantern", () -> new LanternBlock(LANTERN_PROP));
+    public static final RegistryObject<Block> ENDOSITUM_LANTERN = REGISTRY.register("endositum_lantern", () -> new LanternBlock(LANTERN_PROP));
 
 
     public static final RegistryObject<Block> SOD_BLOCK_SLAB = REGISTRY.register("sod_block_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
@@ -1404,33 +1584,36 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RHYOLITIC_TUFF = REGISTRY.register("rhyolitic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> KIMBERLITIC_TUFF = REGISTRY.register("kimberlitic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> KOMATIITIC_TUFF = REGISTRY.register("komatiitic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
-    public static final RegistryObject<Block> CONCRETE = REGISTRY.register("concrete", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)));
-    public static final RegistryObject<Block> CONCRETE_SLAB = REGISTRY.register("concrete_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> CONCRETE_STAIRS = REGISTRY.register("concrete_stairs", () -> new RankineStairsBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> CONCRETE_VERTICAL_SLAB = REGISTRY.register("concrete_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> CONCRETE_WALL = REGISTRY.register("concrete_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> CEMENT = REGISTRY.register("cement", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)));
-    public static final RegistryObject<Block> CEMENT_SLAB = REGISTRY.register("cement_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> CEMENT_STAIRS = REGISTRY.register("cement_stairs", () -> new RankineStairsBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> CEMENT_VERTICAL_SLAB = REGISTRY.register("cement_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> CEMENT_WALL = REGISTRY.register("cement_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> CEMENT_POLE = REGISTRY.register("cement_pole", () -> new CementPoleBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
 
-    public static final RegistryObject<Block> ROMAN_CONCRETE = REGISTRY.register("roman_concrete", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> ROMAN_CONCRETE_SLAB = REGISTRY.register("roman_concrete_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> ROMAN_CONCRETE_STAIRS = REGISTRY.register("roman_concrete_stairs", () -> new RankineStairsBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> ROMAN_CONCRETE_VERTICAL_SLAB = REGISTRY.register("roman_concrete_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> ROMAN_CONCRETE_WALL = REGISTRY.register("roman_concrete_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE = REGISTRY.register("polished_roman_concrete", () -> new RankinePolishedStoneBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_SLAB = REGISTRY.register("polished_roman_concrete_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_STAIRS = REGISTRY.register("polished_roman_concrete_stairs", () -> new RankineStairsBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_VERTICAL_SLAB = REGISTRY.register("polished_roman_concrete_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_WALL = REGISTRY.register("polished_roman_concrete_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS = REGISTRY.register("roman_concrete_bricks", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_SLAB = REGISTRY.register("roman_concrete_bricks_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_STAIRS = REGISTRY.register("roman_concrete_bricks_stairs", () -> new RankineStairsBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_VERTICAL_SLAB = REGISTRY.register("roman_concrete_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_WALL = REGISTRY.register("roman_concrete_bricks_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
+
+    public static final RegistryObject<Block> CONCRETE = REGISTRY.register("concrete", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(4).harvestLevel(0)));
+    public static final RegistryObject<Block> CONCRETE_SLAB = REGISTRY.register("concrete_slab", () -> new QuarterSlabPoleBlock(Block.Properties.from(CONCRETE.get()).notSolid()));
+    public static final RegistryObject<Block> CONCRETE_STAIRS = REGISTRY.register("concrete_stairs", () -> new RankineStairsBlock(Block.Properties.from(CONCRETE.get())));
+    public static final RegistryObject<Block> CONCRETE_VERTICAL_SLAB = REGISTRY.register("concrete_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.from(CONCRETE.get())));
+    public static final RegistryObject<Block> CONCRETE_WALL = REGISTRY.register("concrete_wall", () -> new RankineWallBlock(Block.Properties.from(CONCRETE.get())));
+    public static final RegistryObject<Block> CEMENT = REGISTRY.register("cement", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(4).harvestLevel(0)));
+    public static final RegistryObject<Block> CEMENT_SLAB = REGISTRY.register("cement_slab", () -> new QuarterSlabPoleBlock(Block.Properties.from(CEMENT.get()).notSolid()));
+    public static final RegistryObject<Block> CEMENT_STAIRS = REGISTRY.register("cement_stairs", () -> new RankineStairsBlock(Block.Properties.from(CEMENT.get())));
+    public static final RegistryObject<Block> CEMENT_VERTICAL_SLAB = REGISTRY.register("cement_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.from(CEMENT.get())));
+    public static final RegistryObject<Block> CEMENT_WALL = REGISTRY.register("cement_wall", () -> new RankineWallBlock(Block.Properties.from(CEMENT.get())));
+    public static final RegistryObject<Block> ROMAN_CONCRETE = REGISTRY.register("roman_concrete", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(4).harvestLevel(0)));
+    public static final RegistryObject<Block> ROMAN_CONCRETE_SLAB = REGISTRY.register("roman_concrete_slab", () -> new QuarterSlabPoleBlock(Block.Properties.from(ROMAN_CONCRETE.get()).notSolid()));
+    public static final RegistryObject<Block> ROMAN_CONCRETE_STAIRS = REGISTRY.register("roman_concrete_stairs", () -> new RankineStairsBlock(Block.Properties.from(ROMAN_CONCRETE.get())));
+    public static final RegistryObject<Block> ROMAN_CONCRETE_VERTICAL_SLAB = REGISTRY.register("roman_concrete_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.from(ROMAN_CONCRETE.get())));
+    public static final RegistryObject<Block> ROMAN_CONCRETE_WALL = REGISTRY.register("roman_concrete_wall", () -> new RankineWallBlock(Block.Properties.from(ROMAN_CONCRETE.get())));
+    public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE = REGISTRY.register("polished_roman_concrete", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(4).harvestLevel(0)));
+    public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_SLAB = REGISTRY.register("polished_roman_concrete_slab", () -> new QuarterSlabPoleBlock(Block.Properties.from(POLISHED_ROMAN_CONCRETE.get()).notSolid()));
+    public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_STAIRS = REGISTRY.register("polished_roman_concrete_stairs", () -> new RankineStairsBlock(Block.Properties.from(POLISHED_ROMAN_CONCRETE.get())));
+    public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_VERTICAL_SLAB = REGISTRY.register("polished_roman_concrete_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.from(POLISHED_ROMAN_CONCRETE.get())));
+    public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_WALL = REGISTRY.register("polished_roman_concrete_wall", () -> new RankineWallBlock(Block.Properties.from(POLISHED_ROMAN_CONCRETE.get())));
+    public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS = REGISTRY.register("roman_concrete_bricks", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(4).harvestLevel(0)));
+    public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_SLAB = REGISTRY.register("roman_concrete_bricks_slab", () -> new QuarterSlabPoleBlock(Block.Properties.from(ROMAN_CONCRETE_BRICKS.get()).notSolid()));
+    public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_STAIRS = REGISTRY.register("roman_concrete_bricks_stairs", () -> new RankineStairsBlock(Block.Properties.from(ROMAN_CONCRETE_BRICKS.get())));
+    public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_VERTICAL_SLAB = REGISTRY.register("roman_concrete_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.from(ROMAN_CONCRETE_BRICKS.get())));
+    public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_WALL = REGISTRY.register("roman_concrete_bricks_wall", () -> new RankineWallBlock(Block.Properties.from(ROMAN_CONCRETE_BRICKS.get())));
+
+
+
     //public static final RegistryObject<Block> QUARRY_BARRIER = REGISTRY.register("quarry_barrier", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(5.0F, 20.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> BONE_CHAR_BLOCK = REGISTRY.register("bone_char_block", () -> new RotatedPillarBlock(Block.Properties.create(Material.ROCK).sound(SoundType.BONE).hardnessAndResistance(2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> FIRE_CLAY = REGISTRY.register("fire_clay", () -> new Block(Block.Properties.create(Material.CLAY).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(1.0F, 3.0F).harvestLevel(0)));
@@ -2211,7 +2394,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> REACTION_CHAMBER_CORE = REGISTRY.register("reaction_chamber_core", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> REACTION_CHAMBER_CELL = REGISTRY.register("reaction_chamber_cell", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)));
 
-    public static final RegistryObject<Block> GAS_CONDENSER = REGISTRY.register("gas_condenser", () -> new GasCondenserBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> GAS_BOTTLER = REGISTRY.register("gas_bottler", () -> new GasBottlerBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> GAS_VENT = REGISTRY.register("gas_vent", () -> new GasVentBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CHARCOAL_PIT = REGISTRY.register("charcoal_pit", () -> new CharcoalPitBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TREE_TAP = REGISTRY.register("tree_tap", () -> new TreeTapBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0).notSolid()));
@@ -2271,6 +2454,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BRASS_LADDER = REGISTRY.register("brass_ladder", () -> new MetalLadderBlock(false, false, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
     public static final RegistryObject<Block> CUPRONICKEL_LADDER = REGISTRY.register("cupronickel_ladder", () -> new MetalLadderBlock(false, true, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
 
+    public static final RegistryObject<Block> ORNAMENT = REGISTRY.register("ornament", () -> new OrnamentBlock(Block.Properties.create(Material.IRON).sound(SoundType.GLASS).hardnessAndResistance(1.0F).notSolid()));
+
     public static final RegistryObject<Block> PEWTER_POLE = REGISTRY.register("pewter_pole", () -> new MetalPoleBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
     public static final RegistryObject<Block> BRONZE_POLE = REGISTRY.register("bronze_pole", () -> new MetalPoleBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
     public static final RegistryObject<Block> BRASS_POLE = REGISTRY.register("brass_pole", () -> new MetalPoleBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
@@ -2302,6 +2487,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLUE_GOLD_POLE = REGISTRY.register("blue_gold_pole", () -> new MetalPoleBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
     public static final RegistryObject<Block> PURPLE_GOLD_POLE = REGISTRY.register("purple_gold_pole", () -> new MetalPoleBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
     public static final RegistryObject<Block> BLACK_GOLD_POLE = REGISTRY.register("black_gold_pole", () -> new MetalPoleBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
+    //public static final RegistryObject<Block> CANDY_CANE_POLE = REGISTRY.register("candy_cane_pole", () -> new MetalPoleBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.CORAL).notSolid()));
 
     public static final RegistryObject<Block> PEWTER_PEDESTAL = REGISTRY.register("pewter_pedestal", () -> new PedestalBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> BRONZE_PEDESTAL = REGISTRY.register("bronze_pedestal", () -> new PedestalBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 10.0F).harvestLevel(0)));
@@ -2485,6 +2671,13 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> SODIUM_VAPOR_LAMP = REGISTRY.register("sodium_vapor_lamp", () -> new SodiumVaporLampBlock(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3.5F).sound(SoundType.LANTERN).setLightLevel((state) -> 15).notSolid()));
 
+    public static final RegistryObject<Block> CALCITE_COLUMN = REGISTRY.register("calcite_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(CALCITE_BLOCK.get())));
+    public static final RegistryObject<Block> DOLOMITE_COLUMN = REGISTRY.register("dolomite_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(DOLOMITE_BLOCK.get())));
+    public static final RegistryObject<Block> SALT_COLUMN = REGISTRY.register("salt_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(SODIUM_CHLORIDE_BLOCK.get())));
+    public static final RegistryObject<Block> PINK_SALT_COLUMN = REGISTRY.register("pink_salt_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(PINK_SALT_BLOCK.get())));
+    public static final RegistryObject<Block> OPAL_COLUMN = REGISTRY.register("opal_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(OPAL_BLOCK.get())));
+    public static final RegistryObject<Block> QUARTZ_COLUMN = REGISTRY.register("quartz_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(Blocks.QUARTZ_BLOCK)));
+
 
     //OTHER STUFFS
 
@@ -2542,10 +2735,10 @@ public class RankineBlocks {
     public static TileEntityType<EvaporationTowerTile> EVAPORATION_TOWER_TILE;
 
     @ObjectHolder("rankine:gas_condenser")
-    public static ContainerType<GasCondenserContainer> GAS_CONDENSER_CONTAINER;
+    public static ContainerType<GasBottlerContainer> GAS_CONDENSER_CONTAINER;
 
     @ObjectHolder("rankine:gas_condenser")
-    public static TileEntityType<GasCondenserTile> GAS_CONDENSER_TILE;
+    public static TileEntityType<GasBottlerTile> GAS_CONDENSER_TILE;
     @ObjectHolder("rankine:gas_vent")
     public static TileEntityType<GasVentTile> GAS_VENT_TILE;
     @ObjectHolder("rankine:sediment_fan")
@@ -2582,9 +2775,6 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:distillation_tower")
     public static TileEntityType<DistillationTowerTile> DISTILLATION_TOWER_TILE;
-
-    @ObjectHolder("rankine:fluid_drain")
-    public static TileEntityType<FluidDrainTile> FLUID_DRAIN_TILE;
 
     @ObjectHolder("rankine:tilled_soil")
     public static TileEntityType<TilledSoilTile> TILLED_SOIL_TILE;

@@ -16,10 +16,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class WorldgenUtils {
 
@@ -191,6 +188,34 @@ public class WorldgenUtils {
             }
         }
         return false;
+    }
+
+    public static Direction randomHorizontalDirection(Random rand) {
+        List<Direction> dirs = Arrays.asList(Direction.NORTH,Direction.EAST,Direction.WEST,Direction.SOUTH);
+        return dirs.get(rand.nextInt(dirs.size()));
+    }
+
+    public static BlockPos eightBlockDirection(BlockPos pos, int i) {
+        switch (i) {
+            case 0:
+                return pos.add(-1,0,-1);
+            case 1:
+                return pos.add(-1,0,0);
+            case 2:
+                return pos.add(-1,0,1);
+            case 3:
+                return pos.add(0,0,-1);
+            case 4:
+                return pos.add(0,0,1);
+            case 5:
+                return pos.add(1,0,-1);
+            case 6:
+                return pos.add(1,0,0);
+            case 7:
+                return pos.add(1,0,1);
+            default:
+                return pos;
+        }
     }
 
     public static int waterTableHeight(World worldIn, BlockPos pos) {

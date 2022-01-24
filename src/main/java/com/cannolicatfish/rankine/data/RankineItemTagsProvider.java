@@ -740,10 +740,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         for (Item ITEM : RankineLists.GRAINS) {
             getOrCreateBuilder(RankineTags.Items.FLOUR).add(ITEM);
         }
-        for (Item ITEM : RankineLists.BREADS) {
-            getOrCreateBuilder(RankineTags.Items.BREAD).add(ITEM);
-        }
-        getOrCreateBuilder(RankineTags.Items.BREAD).add(Items.BREAD);
+        getOrCreateBuilder(RankineTags.Items.BREAD).add(Items.BREAD,RankineItems.GF_BREAD.get());
 
         getOrCreateBuilder(RankineTags.Items.FELDSPAR).add(RankineItems.ORTHOCLASE_FELDSPAR.get(),RankineItems.ORTHOCLASE_FELDSPAR.get());
         getOrCreateBuilder(RankineTags.Items.SALT).add(RankineItems.SODIUM_CHLORIDE.get(),RankineItems.PINK_SALT.get());

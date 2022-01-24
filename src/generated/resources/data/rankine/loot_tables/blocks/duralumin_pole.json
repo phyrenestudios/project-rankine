@@ -5,8 +5,26 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "rankine:duralumin_pole"
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:duralumin_pole",
+                  "properties": {
+                    "style": "1"
+                  }
+                }
+              ],
+              "name": "rankine:garland"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "rankine:duralumin_pole"
+            }
+          ]
         }
       ],
       "conditions": [
