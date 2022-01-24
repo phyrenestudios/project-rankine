@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group": "rankine:leaf_litters",
   "pattern": [
     "##"
   ],
@@ -9,6 +10,7 @@
     }
   },
   "result": {
-    "item": "rankine:cinnamon_leaf_litter"
+    "item": "rankine:cinnamon_leaf_litter",
+    "count": 4
   }
 }

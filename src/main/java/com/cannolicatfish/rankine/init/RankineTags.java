@@ -43,10 +43,14 @@ public final class RankineTags {
         public static final ITag.INamedTag<Block> COCONUT_PALM_LOGS = modBlock("coconut_palm_logs");
         public static final ITag.INamedTag<Block> BALSAM_FIR_LOGS = modBlock("balsam_fir_logs");
         public static final ITag.INamedTag<Block> EASTERN_HEMLOCK_LOGS = modBlock("eastern_hemlock_logs");
+        public static final ITag.INamedTag<Block> WESTERN_HEMLOCK_LOGS = modBlock("western_hemlock_logs");
         public static final ITag.INamedTag<Block> MAPLE_LOGS = modBlock("maple_logs");
         public static final ITag.INamedTag<Block> BLACK_BIRCH_LOGS = modBlock("black_birch_logs");
         public static final ITag.INamedTag<Block> YELLOW_BIRCH_LOGS = modBlock("yellow_birch_logs");
+        public static final ITag.INamedTag<Block> RED_BIRCH_LOGS = modBlock("red_birch_logs");
         public static final ITag.INamedTag<Block> SHARINGA_LOGS = modBlock("sharinga_logs");
+        public static final ITag.INamedTag<Block> WEEPING_WILLOW_LOGS = modBlock("weeping_willow_logs");
+        public static final ITag.INamedTag<Block> HONEY_LOCUST_LOGS = modBlock("honey_locust_logs");
         public static final ITag.INamedTag<Block> CORK_OAK_LOGS = modBlock("cork_oak_logs");
         public static final ITag.INamedTag<Block> CINNAMON_LOGS = modBlock("cinnamon_logs");
         public static final ITag.INamedTag<Block> BLACK_WALNUT_LOGS = modBlock("black_walnut_logs");
@@ -73,13 +77,13 @@ public final class RankineTags {
 
         //FORGE
         public static final ITag.INamedTag<Block> BOOKSHELVES = forgeBlock("bookshelves");
-        public static final ITag.INamedTag<Block> ICE = forgeBlock("ice");
         public static final ITag.INamedTag<Block> CLAY = forgeBlock("clay");
         public static final ITag.INamedTag<Block> FARMLAND = forgeBlock("farmland");
         public static final ITag.INamedTag<Block> GRASS_BLOCKS = forgeBlock("grass_blocks");
         public static final ITag.INamedTag<Block> GRASS = forgeBlock("grass");
         public static final ITag.INamedTag<Block> PATH_BLOCKS = forgeBlock("path_blocks");
         public static final ITag.INamedTag<Block> MUD = forgeBlock("mud");
+        public static final ITag.INamedTag<Block> COARSE_DIRT = forgeBlock("coarse_dirt");
         public static final ITag.INamedTag<Block> PODZOL = forgeBlock("podzol");
         public static final ITag.INamedTag<Block> MYCELIUM = forgeBlock("mycelium");
         public static final ITag.INamedTag<Block> HARDENED_GLASS = forgeBlock("hardened_glass");
@@ -383,10 +387,14 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> COCONUT_PALM_LOGS = modItem("coconut_palm_logs");
         public static final ITag.INamedTag<Item> BALSAM_FIR_LOGS = modItem("balsam_fir_logs");
         public static final ITag.INamedTag<Item> EASTERN_HEMLOCK_LOGS = modItem("eastern_hemlock_logs");
+        public static final ITag.INamedTag<Item> WESTERN_HEMLOCK_LOGS = modItem("western_hemlock_logs");
         public static final ITag.INamedTag<Item> MAPLE_LOGS = modItem("maple_logs");
         public static final ITag.INamedTag<Item> BLACK_BIRCH_LOGS = modItem("black_birch_logs");
         public static final ITag.INamedTag<Item> YELLOW_BIRCH_LOGS = modItem("yellow_birch_logs");
+        public static final ITag.INamedTag<Item> RED_BIRCH_LOGS = modItem("red_birch_logs");
         public static final ITag.INamedTag<Item> SHARINGA_LOGS = modItem("sharinga_logs");
+        public static final ITag.INamedTag<Item> WEEPING_WILLOW_LOGS = modItem("weeping_willow_logs");
+        public static final ITag.INamedTag<Item> HONEY_LOCUST_LOGS = modItem("honey_locust_logs");
         public static final ITag.INamedTag<Item> CORK_OAK_LOGS = modItem("cork_oak_logs");
         public static final ITag.INamedTag<Item> CINNAMON_LOGS = modItem("cinnamon_logs");
         public static final ITag.INamedTag<Item> BLACK_WALNUT_LOGS = modItem("black_walnut_logs");
@@ -981,6 +989,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> BERRIES_POKEBERRY = forgeItem("berries/pokeberry");
         public static final ITag.INamedTag<Item> BERRIES_SWEET_BERRY = forgeItem("berries/sweet_berry");
         public static final ITag.INamedTag<Item> BERRIES = forgeItem("berries");
+        public static final ITag.INamedTag<Item> NUTS = forgeItem("nuts");
 
 
 
@@ -1003,6 +1012,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> CHEESE = forgeItem("cheese");
         public static final ITag.INamedTag<Item> BREAD = forgeItem("bread");
         public static final ITag.INamedTag<Item> FLOUR = forgeItem("flour");
+        public static final ITag.INamedTag<Item> FLOUR_GF = forgeItem("flour_gf");
         public static final ITag.INamedTag<Item> CLAY_BALLS = forgeItem("clay_balls");
         public static final ITag.INamedTag<Item> RODS_GRAPHITE = forgeItem("rods/graphite");
         public static final ITag.INamedTag<Item> RODS_CARBON = forgeItem("rods/carbon");
@@ -1015,6 +1025,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> GRASS_BLOCKS = forgeItem("grass_blocks");
         public static final ITag.INamedTag<Item> PATH_BLOCKS = forgeItem("path_blocks");
         public static final ITag.INamedTag<Item> MUD = forgeItem("mud");
+        public static final ITag.INamedTag<Item> COARSE_DIRT = forgeItem("coarse_dirt");
         public static final ITag.INamedTag<Item> HARDENED_GLASS = forgeItem("hardened_glass");
         public static final ITag.INamedTag<Item> TUFF = forgeItem("tuff");
         public static final ITag.INamedTag<Item> TERRACOTTA = forgeItem("terracotta");

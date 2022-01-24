@@ -1,0 +1,57 @@
+{
+  "variants": {
+    "facing=north": [
+      {
+        "model": "rankine:block/lions_mane_mushroom1",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/lions_mane_mushroom2",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/lions_mane_mushroom3",
+        "y": 180
+      }
+    ],
+    "facing=south": [
+      {
+        "model": "rankine:block/lions_mane_mushroom1"
+      },
+      {
+        "model": "rankine:block/lions_mane_mushroom2"
+      },
+      {
+        "model": "rankine:block/lions_mane_mushroom3"
+      }
+    ],
+    "facing=west": [
+      {
+        "model": "rankine:block/lions_mane_mushroom1",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/lions_mane_mushroom2",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/lions_mane_mushroom3",
+        "y": 90
+      }
+    ],
+    "facing=east": [
+      {
+        "model": "rankine:block/lions_mane_mushroom1",
+        "y": 270
+      },
+      {
+        "model": "rankine:block/lions_mane_mushroom2",
+        "y": 270
+      },
+      {
+        "model": "rankine:block/lions_mane_mushroom3",
+        "y": 270
+      }
+    ]
+  }
+}

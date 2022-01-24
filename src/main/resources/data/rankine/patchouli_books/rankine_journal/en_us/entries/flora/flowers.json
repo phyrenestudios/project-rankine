@@ -1,0 +1,53 @@
+{
+  "name": "rankine.journal.cat_flora.flowers.name",
+  "icon": "rankine:blue_morning_glory",
+  "category": "flora",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_flora.trees.text1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blue_morning_glory",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:purple_morning_glory",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_morning_glory",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:goldenrod",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_lily",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:orange_lily",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:red_lily",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    }
+  ]
+}

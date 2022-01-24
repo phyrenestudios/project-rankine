@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "rankine:red_birch_logs"
+    }
+  ],
+  "result": {
+    "item": "rankine:red_birch_planks",
+    "count": 4
+  }
+}

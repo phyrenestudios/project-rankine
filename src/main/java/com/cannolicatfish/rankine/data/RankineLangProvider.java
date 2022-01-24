@@ -115,6 +115,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.CROPS_SINGLE,
                 RankineLists.CROPS_DOUBLE,
                 RankineLists.CROPS_TRIPLE,
+                RankineLists.WALL_MUSHROOMS,
                 RankineLists.BUSH_PLANTS,
                 RankineLists.DOUBLE_BUSH_PLANTS,
                 RankineLists.EIGHT_LAYER_BLOCKS,
@@ -123,6 +124,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.ROTATION_BLOCKS,
                 RankineLists.LIGHTNING_GLASSES,
+                RankineLists.COARSE_SOIL_BLOCKS,
                 RankineLists.SOIL_BLOCKS,
                 RankineLists.MUD_BLOCKS,
                 RankineLists.GRASS_BLOCKS,
@@ -156,6 +158,8 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
                 RankineBlocks.ORNAMENT.get(),
+                RankineBlocks.COBBLE.get(),
+                RankineBlocks.LOCUST_SPINE.get(),
                 RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get(),
                 RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get(),
                 RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get(),
@@ -190,6 +194,8 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.CAST_IRON_BARS.get(),
                 RankineBlocks.SHORT_GRASS.get(),
                 RankineBlocks.STINGING_NETTLE.get(),
+                RankineBlocks.WILLOW_BRANCHLET.get(),
+                RankineBlocks.WILLOW_BRANCHLET_PLANT.get(),
 
                 RankineBlocks.RED_CLOVER.get(),
                 RankineBlocks.CRIMSON_CLOVER.get(),
@@ -456,6 +462,7 @@ public class RankineLangProvider extends LanguageProvider {
             add(item, parseLangName(item.getRegistryName().getPath()));
         }
         add(RankineItems.GF_BREAD.get(),"Bread (Gluten Free)");
+        add(RankineItems.DOUGH_GF.get(),"Dough (Gluten Free)");
 
         //Alloy Ingots
         add("item.rankine.crucible_steel_alloying", "Crucible Steel Ingot");
@@ -938,6 +945,14 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.journal.cat_sediments.name", "Sediments");
         add("rankine.journal.cat_sediments.desc", "Dirt is too simple of a term to describe the complex matrix of organic material and pulverized rocks. A better term is soil, but there are more small particles than just that.");
+
+
+        add("rankine.journal.cat_flora.name", "Flora");
+        add("rankine.journal.cat_flora.desc", "Plants be cool.");
+        add("rankine.journal.cat_flora.trees.text1", "Trees be cool.");
+        add("rankine.journal.cat_flora.trees.text2", "Cedar");
+        add("rankine.journal.cat_flora.trees.text3", "Balsam Fir");
+
 
 
         add("rankine.journal.cat_mechanics.name", "Mechanics");

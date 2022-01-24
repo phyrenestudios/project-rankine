@@ -505,6 +505,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue TREE_CHOP_SPEED;
         public final ForgeConfigSpec.DoubleValue LEAF_LITTER_GEN;
         public final ForgeConfigSpec.DoubleValue LEAF_LITTER_GEN_TREES;
+        public final ForgeConfigSpec.DoubleValue SAPLING_GROW;
 
         public final ForgeConfigSpec.IntValue PATH_CREATION_TIME;
         public final ForgeConfigSpec.BooleanValue PATH_CREATION;
@@ -632,6 +633,8 @@ public class Config {
                             .define("createStumps",true);
                     FORCE_BREAK = b.comment("The range to force break leaves.")
                             .defineInRange("forceBreakRange", 3, 0, 10);
+                    SAPLING_GROW = b.comment("Chance for a sapling to grow. Affects bonemeal.")
+                            .defineInRange("saplingGrowChance", 0.9D, 0.0D, 1.0D);
                 b.pop();
 
                 b.comment("Movement speed modifiers").push("movementModifiers");
@@ -980,7 +983,7 @@ public class Config {
                     "minecraft:air",
                     "minecraft:air"));
             biomeSettings.add(Arrays.asList(Biome.Category.ICY.getName(),
-                    Arrays.asList("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam","rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:silty_clay"),
+                    Arrays.asList("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:permafrost","rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:permafrost"),
                     Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","rankine:pegmatite|1|rankine:petalite_ore|0.02","rankine:granodiorite|2|rankine:magnetite_ore|0.02","minecraft:stone|1|minecraft:redstone_ore|0.01"),
                     Arrays.asList("rankine:pyroxenite","rankine:comendite","minecraft:andesite","rankine:chalk"),
                     Arrays.asList("rankine:short_grass|70","minecraft:fern|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),

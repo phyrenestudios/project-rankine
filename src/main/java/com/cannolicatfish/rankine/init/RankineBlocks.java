@@ -23,6 +23,7 @@ import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableBlock;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableTile;
+import com.cannolicatfish.rankine.blocks.mushrooms.RankineWallMushroomBlock;
 import com.cannolicatfish.rankine.blocks.plants.*;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
@@ -1400,14 +1401,18 @@ public class RankineBlocks {
 
     public static Block.Properties LANTERN_PROP = AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3.5F).sound(SoundType.LANTERN).setLightLevel((state) -> 15).notSolid();
     public static final RegistryObject<Block> LITHIUM_LANTERN = REGISTRY.register("lithium_lantern", () -> new LanternBlock(LANTERN_PROP));
+    /*
     public static final RegistryObject<Block> BERYLLIUM_LANTERN = REGISTRY.register("beryllium_lantern", () -> new LanternBlock(LANTERN_PROP));
     public static final RegistryObject<Block> BORON_LANTERN = REGISTRY.register("boron_lantern", () -> new LanternBlock(LANTERN_PROP));
     public static final RegistryObject<Block> CARBON_LANTERN = REGISTRY.register("carbon_lantern", () -> new LanternBlock(LANTERN_PROP));
     public static final RegistryObject<Block> SODIUM_LANTERN = REGISTRY.register("sodium_lantern", () -> new LanternBlock(LANTERN_PROP));
     public static final RegistryObject<Block> MAGNESIUM_LANTERN = REGISTRY.register("magnesium_lantern", () -> new LanternBlock(LANTERN_PROP));
     public static final RegistryObject<Block> ALUMINUM_LANTERN = REGISTRY.register("aluminum_lantern", () -> new LanternBlock(LANTERN_PROP));
+
     public static final RegistryObject<Block> SILICON_LANTERN = REGISTRY.register("silicon_lantern", () -> new LanternBlock(LANTERN_PROP));
+     */
     public static final RegistryObject<Block> PHOSPHORUS_LANTERN = REGISTRY.register("phosphorus_lantern", () -> new LanternBlock(LANTERN_PROP));
+    /*
     public static final RegistryObject<Block> SULFUR_LANTERN = REGISTRY.register("sulfur_lantern", () -> new LanternBlock(LANTERN_PROP));
     public static final RegistryObject<Block> POTASSIUM_LANTERN = REGISTRY.register("potassium_lantern", () -> new LanternBlock(LANTERN_PROP));
     public static final RegistryObject<Block> CALCIUM_LANTERN = REGISTRY.register("calcium_lantern", () -> new LanternBlock(LANTERN_PROP));
@@ -1475,6 +1480,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ENDOSITUM_LANTERN = REGISTRY.register("endositum_lantern", () -> new LanternBlock(LANTERN_PROP));
 
 
+     */
+
     public static final RegistryObject<Block> SOD_BLOCK_SLAB = REGISTRY.register("sod_block_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
     public static final RegistryObject<Block> SOD_BLOCK_STAIRS = REGISTRY.register("sod_block_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
     public static final RegistryObject<Block> SOD_BLOCK_VERTICAL_SLAB = REGISTRY.register("sod_block_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
@@ -1482,6 +1489,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SOD_BLOCK = REGISTRY.register("sod_block", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
 
     public static final RegistryObject<Block> SILT = REGISTRY.register("silt", () -> new SandBlock(00000000, Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> PERMAFROST = REGISTRY.register("permafrost", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)));
 
     public static final RegistryObject<Block> HUMUS = REGISTRY.register("humus", SoilBlock::new);
     public static final RegistryObject<Block> LOAM = REGISTRY.register("loam", SoilBlock::new);
@@ -1493,6 +1501,16 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SILTY_CLAY_LOAM = REGISTRY.register("silty_clay_loam", SoilBlock::new);
     public static final RegistryObject<Block> SANDY_CLAY = REGISTRY.register("sandy_clay", SoilBlock::new);
     public static final RegistryObject<Block> SILTY_CLAY = REGISTRY.register("silty_clay", SoilBlock::new);
+    public static final RegistryObject<Block> COARSE_HUMUS = REGISTRY.register("coarse_humus", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+    public static final RegistryObject<Block> COARSE_LOAM = REGISTRY.register("coarse_loam", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+    public static final RegistryObject<Block> COARSE_SILTY_LOAM = REGISTRY.register("coarse_silty_loam", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+    public static final RegistryObject<Block> COARSE_LOAMY_SAND = REGISTRY.register("coarse_loamy_sand", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+    public static final RegistryObject<Block> COARSE_SANDY_LOAM = REGISTRY.register("coarse_sandy_loam", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+    public static final RegistryObject<Block> COARSE_CLAY_LOAM = REGISTRY.register("coarse_clay_loam", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+    public static final RegistryObject<Block> COARSE_SANDY_CLAY_LOAM = REGISTRY.register("coarse_sandy_clay_loam", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+    public static final RegistryObject<Block> COARSE_SILTY_CLAY_LOAM = REGISTRY.register("coarse_silty_clay_loam", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+    public static final RegistryObject<Block> COARSE_SANDY_CLAY = REGISTRY.register("coarse_sandy_clay", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+    public static final RegistryObject<Block> COARSE_SILTY_CLAY = REGISTRY.register("coarse_silty_clay", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
     public static final RegistryObject<Block> HUMUS_MUD = REGISTRY.register("humus_mud", MudBlock::new);
     public static final RegistryObject<Block> LOAM_MUD = REGISTRY.register("loam_mud", MudBlock::new);
     public static final RegistryObject<Block> SILTY_LOAM_MUD = REGISTRY.register("silty_loam_mud", MudBlock::new);
@@ -1777,6 +1795,20 @@ public class RankineBlocks {
     public static final RegistryObject<Block> EASTERN_HEMLOCK_DOOR = REGISTRY.register("eastern_hemlock_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> EASTERN_HEMLOCK_TRAPDOOR = REGISTRY.register("eastern_hemlock_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> EASTERN_HEMLOCK_BUTTON = REGISTRY.register("eastern_hemlock_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_LOG = REGISTRY.register("western_hemlock_log", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_WOOD = REGISTRY.register("western_hemlock_wood", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> STRIPPED_WESTERN_HEMLOCK_LOG = REGISTRY.register("stripped_western_hemlock_log", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> STRIPPED_WESTERN_HEMLOCK_WOOD = REGISTRY.register("stripped_western_hemlock_wood", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_PLANKS = REGISTRY.register("western_hemlock_planks", () -> new RankinePlanksBlock(DEF_WOOD));
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_SLAB = REGISTRY.register("western_hemlock_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_STAIRS = REGISTRY.register("western_hemlock_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_VERTICAL_SLAB = REGISTRY.register("western_hemlock_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_FENCE = REGISTRY.register("western_hemlock_fence", () -> new RankineWoodenFence(DEF_WOOD));
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_FENCE_GATE = REGISTRY.register("western_hemlock_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_PRESSURE_PLATE = REGISTRY.register("western_hemlock_pressure_plate", RankineWoodenPressurePlate::new);
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_DOOR = REGISTRY.register("western_hemlock_door", RankineWoodenDoor::new);
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_TRAPDOOR = REGISTRY.register("western_hemlock_trapdoor", RankineWoodenTrapDoor::new);
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_BUTTON = REGISTRY.register("western_hemlock_button", RankineWoodenButton::new);
     public static final RegistryObject<Block> YELLOW_BIRCH_LOG = REGISTRY.register("yellow_birch_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> YELLOW_BIRCH_WOOD = REGISTRY.register("yellow_birch_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_YELLOW_BIRCH_LOG = REGISTRY.register("stripped_yellow_birch_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -1805,6 +1837,20 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_BIRCH_DOOR = REGISTRY.register("black_birch_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> BLACK_BIRCH_TRAPDOOR = REGISTRY.register("black_birch_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> BLACK_BIRCH_BUTTON = REGISTRY.register("black_birch_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> RED_BIRCH_LOG = REGISTRY.register("red_birch_log", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> RED_BIRCH_WOOD = REGISTRY.register("red_birch_wood", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> STRIPPED_RED_BIRCH_LOG = REGISTRY.register("stripped_red_birch_log", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> STRIPPED_RED_BIRCH_WOOD = REGISTRY.register("stripped_red_birch_wood", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> RED_BIRCH_PLANKS = REGISTRY.register("red_birch_planks", () -> new RankinePlanksBlock(DEF_WOOD));
+    public static final RegistryObject<Block> RED_BIRCH_SLAB = REGISTRY.register("red_birch_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
+    public static final RegistryObject<Block> RED_BIRCH_STAIRS = REGISTRY.register("red_birch_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
+    public static final RegistryObject<Block> RED_BIRCH_VERTICAL_SLAB = REGISTRY.register("red_birch_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
+    public static final RegistryObject<Block> RED_BIRCH_FENCE = REGISTRY.register("red_birch_fence", () -> new RankineWoodenFence(DEF_WOOD));
+    public static final RegistryObject<Block> RED_BIRCH_FENCE_GATE = REGISTRY.register("red_birch_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
+    public static final RegistryObject<Block> RED_BIRCH_PRESSURE_PLATE = REGISTRY.register("red_birch_pressure_plate", RankineWoodenPressurePlate::new);
+    public static final RegistryObject<Block> RED_BIRCH_DOOR = REGISTRY.register("red_birch_door", RankineWoodenDoor::new);
+    public static final RegistryObject<Block> RED_BIRCH_TRAPDOOR = REGISTRY.register("red_birch_trapdoor", RankineWoodenTrapDoor::new);
+    public static final RegistryObject<Block> RED_BIRCH_BUTTON = REGISTRY.register("red_birch_button", RankineWoodenButton::new);
     public static final RegistryObject<Block> MAPLE_LOG = REGISTRY.register("maple_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAPLE_WOOD = REGISTRY.register("maple_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_MAPLE_LOG = REGISTRY.register("stripped_maple_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -1903,6 +1949,34 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ERYTHRINA_DOOR = REGISTRY.register("erythrina_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> ERYTHRINA_TRAPDOOR = REGISTRY.register("erythrina_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> ERYTHRINA_BUTTON = REGISTRY.register("erythrina_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> WEEPING_WILLOW_LOG = REGISTRY.register("weeping_willow_log", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> WEEPING_WILLOW_WOOD = REGISTRY.register("weeping_willow_wood", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> STRIPPED_WEEPING_WILLOW_LOG = REGISTRY.register("stripped_weeping_willow_log", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> STRIPPED_WEEPING_WILLOW_WOOD = REGISTRY.register("stripped_weeping_willow_wood", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> WEEPING_WILLOW_PLANKS = REGISTRY.register("weeping_willow_planks", () -> new RankinePlanksBlock(DEF_WOOD));
+    public static final RegistryObject<Block> WEEPING_WILLOW_SLAB = REGISTRY.register("weeping_willow_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
+    public static final RegistryObject<Block> WEEPING_WILLOW_STAIRS = REGISTRY.register("weeping_willow_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
+    public static final RegistryObject<Block> WEEPING_WILLOW_VERTICAL_SLAB = REGISTRY.register("weeping_willow_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
+    public static final RegistryObject<Block> WEEPING_WILLOW_FENCE = REGISTRY.register("weeping_willow_fence", () -> new RankineWoodenFence(DEF_WOOD));
+    public static final RegistryObject<Block> WEEPING_WILLOW_FENCE_GATE = REGISTRY.register("weeping_willow_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
+    public static final RegistryObject<Block> WEEPING_WILLOW_PRESSURE_PLATE = REGISTRY.register("weeping_willow_pressure_plate", RankineWoodenPressurePlate::new);
+    public static final RegistryObject<Block> WEEPING_WILLOW_DOOR = REGISTRY.register("weeping_willow_door", RankineWoodenDoor::new);
+    public static final RegistryObject<Block> WEEPING_WILLOW_TRAPDOOR = REGISTRY.register("weeping_willow_trapdoor", RankineWoodenTrapDoor::new);
+    public static final RegistryObject<Block> WEEPING_WILLOW_BUTTON = REGISTRY.register("weeping_willow_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> HONEY_LOCUST_LOG = REGISTRY.register("honey_locust_log", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> HONEY_LOCUST_WOOD = REGISTRY.register("honey_locust_wood", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> STRIPPED_HONEY_LOCUST_LOG = REGISTRY.register("stripped_honey_locust_log", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> STRIPPED_HONEY_LOCUST_WOOD = REGISTRY.register("stripped_honey_locust_wood", () -> new RankineLogBlock(DEF_WOOD));
+    public static final RegistryObject<Block> HONEY_LOCUST_PLANKS = REGISTRY.register("honey_locust_planks", () -> new RankinePlanksBlock(DEF_WOOD));
+    public static final RegistryObject<Block> HONEY_LOCUST_SLAB = REGISTRY.register("honey_locust_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
+    public static final RegistryObject<Block> HONEY_LOCUST_STAIRS = REGISTRY.register("honey_locust_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
+    public static final RegistryObject<Block> HONEY_LOCUST_VERTICAL_SLAB = REGISTRY.register("honey_locust_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
+    public static final RegistryObject<Block> HONEY_LOCUST_FENCE = REGISTRY.register("honey_locust_fence", () -> new RankineWoodenFence(DEF_WOOD));
+    public static final RegistryObject<Block> HONEY_LOCUST_FENCE_GATE = REGISTRY.register("honey_locust_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
+    public static final RegistryObject<Block> HONEY_LOCUST_PRESSURE_PLATE = REGISTRY.register("honey_locust_pressure_plate", RankineWoodenPressurePlate::new);
+    public static final RegistryObject<Block> HONEY_LOCUST_DOOR = REGISTRY.register("honey_locust_door", RankineWoodenDoor::new);
+    public static final RegistryObject<Block> HONEY_LOCUST_TRAPDOOR = REGISTRY.register("honey_locust_trapdoor", RankineWoodenTrapDoor::new);
+    public static final RegistryObject<Block> HONEY_LOCUST_BUTTON = REGISTRY.register("honey_locust_button", RankineWoodenButton::new);
     public static final RegistryObject<Block> CHARRED_LOG = REGISTRY.register("charred_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> CHARRED_WOOD = REGISTRY.register("charred_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CHARRED_LOG = REGISTRY.register("stripped_charred_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -1935,15 +2009,19 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HOLLOW_BALSAM_FIR_LOG = REGISTRY.register("hollow_balsam_fir_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HOLLOW_MAGNOLIA_LOG = REGISTRY.register("hollow_magnolia_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HOLLOW_EASTERN_HEMLOCK_LOG = REGISTRY.register("hollow_eastern_hemlock_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_WESTERN_HEMLOCK_LOG = REGISTRY.register("hollow_western_hemlock_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HOLLOW_YELLOW_BIRCH_LOG = REGISTRY.register("hollow_yellow_birch_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HOLLOW_BLACK_BIRCH_LOG = REGISTRY.register("hollow_black_birch_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_RED_BIRCH_LOG = REGISTRY.register("hollow_red_birch_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HOLLOW_MAPLE_LOG = REGISTRY.register("hollow_maple_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HOLLOW_SHARINGA_LOG = REGISTRY.register("hollow_sharinga_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HOLLOW_BLACK_WALNUT_LOG = REGISTRY.register("hollow_black_walnut_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HOLLOW_CORK_OAK_LOG = REGISTRY.register("hollow_cork_oak_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HOLLOW_CINNAMON_LOG = REGISTRY.register("hollow_cinnamon_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> HOLLOW_PETRIFIED_CHORUS_LOG = REGISTRY.register("hollow_petrified_chorus_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HOLLOW_ERYTHRINA_LOG = REGISTRY.register("hollow_erythrina_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_WEEPING_WILLOW_LOG = REGISTRY.register("hollow_weeping_willow_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_HONEY_LOCUST_LOG = REGISTRY.register("hollow_honey_locust_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_PETRIFIED_CHORUS_LOG = REGISTRY.register("hollow_petrified_chorus_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HOLLOW_CHARRED_LOG = REGISTRY.register("hollow_charred_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
 
     /*
@@ -1957,6 +2035,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> EASTERN_HEMLOCK_BOOKSHELF = REGISTRY.register("eastern_hemlock_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> YELLOW_BIRCH_BOOKSHELF = REGISTRY.register("yellow_birch_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> BLACK_BIRCH_BOOKSHELF = REGISTRY.register("black_birch_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> RED_BIRCH_BOOKSHELF = REGISTRY.register("red_birch_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> MAPLE_BOOKSHELF = REGISTRY.register("maple_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> SHARINGA_BOOKSHELF = REGISTRY.register("sharinga_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> BLACK_WALNUT_BOOKSHELF = REGISTRY.register("black_walnut_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
@@ -1971,7 +2050,7 @@ public class RankineBlocks {
 
 
 
-    public static final RegistryObject<Block> STUMP = REGISTRY.register("stump", () -> new StumpBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(16.0F, 9.0F).harvestLevel(3)));
+    public static final RegistryObject<Block> STUMP = REGISTRY.register("stump", () -> new StumpBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(30.0F, 9.0F).harvestLevel(2)));
 
 
     public static final RegistryObject<Block> BRASS_DOOR = REGISTRY.register("brass_door", RankineMetalDoor::new);
@@ -1996,6 +2075,18 @@ public class RankineBlocks {
     public static final RegistryObject<Block> WHITE_CLOVER = REGISTRY.register("white_clover", () -> new CloverBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static final RegistryObject<Block> RED_CLOVER = REGISTRY.register("red_clover", () -> new CloverBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static final RegistryObject<Block> CRIMSON_CLOVER = REGISTRY.register("crimson_clover", () -> new CloverBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> WILLOW_BRANCHLET = REGISTRY.register("willow_branchlet", () -> new WillowBranchletTopBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.GRASS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.VINE)));
+    public static final RegistryObject<Block> WILLOW_BRANCHLET_PLANT = REGISTRY.register("willow_branchlet_plant", () -> new WillowBranchletBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.GRASS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.VINE)));
+    public static final RegistryObject<Block> LOCUST_SPINE = REGISTRY.register("locust_spine", () -> new LocustSpineBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WOOD).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> OYSTER_MUSHROOM = REGISTRY.register("oyster_mushroom", () -> new RankineWallMushroomBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WHITE_TERRACOTTA).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> LIONS_MANE_MUSHROOM = REGISTRY.register("lions_mane_mushroom", () -> new RankineWallMushroomBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WHITE_TERRACOTTA).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> SULFUR_SHELF_MUSHROOM = REGISTRY.register("sulfur_shelf_mushroom", () -> new RankineWallMushroomBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WHITE_TERRACOTTA).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> HONEY_MUSHROOM = REGISTRY.register("honey_mushroom", () -> new RankineWallMushroomBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WHITE_TERRACOTTA).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> ARTIST_CONK_MUSHROOM = REGISTRY.register("artist_conk_mushroom", () -> new RankineWallMushroomBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WHITE_TERRACOTTA).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> TINDER_CONK_MUSHROOM = REGISTRY.register("tinder_conk_mushroom", () -> new RankineWallMushroomBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WHITE_TERRACOTTA).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> TURKEY_TAIL_MUSHROOM = REGISTRY.register("turkey_tail_mushroom", () -> new RankineWallMushroomBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WHITE_TERRACOTTA).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> CINNABAR_POLYPORE_MUSHROOM = REGISTRY.register("cinnabar_polypore_mushroom", () -> new RankineWallMushroomBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.WHITE_TERRACOTTA).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+
 
     public static final RegistryObject<Block> CEDAR_LEAVES = REGISTRY.register("cedar_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> COCONUT_PALM_LEAVES = REGISTRY.register("coconut_palm_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
@@ -2004,14 +2095,18 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BALSAM_FIR_LEAVES = REGISTRY.register("balsam_fir_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> MAGNOLIA_LEAVES = REGISTRY.register("magnolia_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> EASTERN_HEMLOCK_LEAVES = REGISTRY.register("eastern_hemlock_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_LEAVES = REGISTRY.register("western_hemlock_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> YELLOW_BIRCH_LEAVES = REGISTRY.register("yellow_birch_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> BLACK_BIRCH_LEAVES = REGISTRY.register("black_birch_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> RED_BIRCH_LEAVES = REGISTRY.register("red_birch_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> MAPLE_LEAVES = REGISTRY.register("maple_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> SHARINGA_LEAVES = REGISTRY.register("sharinga_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> BLACK_WALNUT_LEAVES = REGISTRY.register("black_walnut_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> CORK_OAK_LEAVES = REGISTRY.register("cork_oak_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> CINNAMON_LEAVES = REGISTRY.register("cinnamon_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> ERYTHRINA_LEAVES = REGISTRY.register("erythrina_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> WEEPING_WILLOW_LEAVES = REGISTRY.register("weeping_willow_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> HONEY_LOCUST_LEAVES = REGISTRY.register("honey_locust_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
 
     public static final RegistryObject<Block> OAK_LEAF_LITTER = REGISTRY.register("oak_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> SPRUCE_LEAF_LITTER = REGISTRY.register("spruce_leaf_litter", LeafLitterBlock::new);
@@ -2026,31 +2121,39 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BALSAM_FIR_LEAF_LITTER = REGISTRY.register("balsam_fir_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> MAGNOLIA_LEAF_LITTER = REGISTRY.register("magnolia_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> EASTERN_HEMLOCK_LEAF_LITTER = REGISTRY.register("eastern_hemlock_leaf_litter", LeafLitterBlock::new);
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_LEAF_LITTER = REGISTRY.register("western_hemlock_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> YELLOW_BIRCH_LEAF_LITTER = REGISTRY.register("yellow_birch_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> BLACK_BIRCH_LEAF_LITTER = REGISTRY.register("black_birch_leaf_litter", LeafLitterBlock::new);
+    public static final RegistryObject<Block> RED_BIRCH_LEAF_LITTER = REGISTRY.register("red_birch_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> MAPLE_LEAF_LITTER = REGISTRY.register("maple_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> SHARINGA_LEAF_LITTER = REGISTRY.register("sharinga_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> BLACK_WALNUT_LEAF_LITTER = REGISTRY.register("black_walnut_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> CORK_OAK_LEAF_LITTER = REGISTRY.register("cork_oak_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> CINNAMON_LEAF_LITTER = REGISTRY.register("cinnamon_leaf_litter", LeafLitterBlock::new);
     public static final RegistryObject<Block> ERYTHRINA_LEAF_LITTER = REGISTRY.register("erythrina_leaf_litter", LeafLitterBlock::new);
+    public static final RegistryObject<Block> WEEPING_WILLOW_LEAF_LITTER = REGISTRY.register("weeping_willow_leaf_litter", LeafLitterBlock::new);
+    public static final RegistryObject<Block> HONEY_LOCUST_LEAF_LITTER = REGISTRY.register("honey_locust_leaf_litter", LeafLitterBlock::new);
 
     private static final Block.Properties DEF_SAPLING = Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT);
-    public static final RegistryObject<Block> CEDAR_SAPLING = REGISTRY.register("cedar_sapling", () -> new RankineSaplingBlock(new CedarTree(), DEF_SAPLING, 3));
+    public static final RegistryObject<Block> CEDAR_SAPLING = REGISTRY.register("cedar_sapling", () -> new RankineSaplingBlock(new CedarTree(), DEF_SAPLING, 2));
     public static final RegistryObject<Block> COCONUT_PALM_SAPLING = REGISTRY.register("coconut_palm_sapling", () -> new RankineSaplingBlock(new CoconutPalmTree(), DEF_SAPLING, 3));
     public static final RegistryObject<Block> PINYON_PINE_SAPLING = REGISTRY.register("pinyon_pine_sapling", () -> new RankineSaplingBlock(new PinyonPineTree(), DEF_SAPLING, 3));
     public static final RegistryObject<Block> JUNIPER_SAPLING = REGISTRY.register("juniper_sapling", () -> new RankineSaplingBlock(new JuniperTree(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> BALSAM_FIR_SAPLING = REGISTRY.register("balsam_fir_sapling", () -> new RankineSaplingBlock(new BalsamFirTree(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> MAGNOLIA_SAPLING = REGISTRY.register("magnolia_sapling", () -> new RankineSaplingBlock(new MagnoliaTree(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> EASTERN_HEMLOCK_SAPLING = REGISTRY.register("eastern_hemlock_sapling", () -> new RankineSaplingBlock(new EasternHemlockTree(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> YELLOW_BIRCH_SAPLING = REGISTRY.register("yellow_birch_sapling", () -> new RankineSaplingBlock(new YellowBirchTree(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> BLACK_BIRCH_SAPLING = REGISTRY.register("black_birch_sapling", () -> new RankineSaplingBlock(new BlackBirchTree(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> MAPLE_SAPLING = REGISTRY.register("maple_sapling", () -> new RankineSaplingBlock(new MapleTree(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> SHARINGA_SAPLING = REGISTRY.register("sharinga_sapling", () -> new RankineSaplingBlock(new SharingaTree(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> BLACK_WALNUT_SAPLING = REGISTRY.register("black_walnut_sapling", () -> new RankineSaplingBlock(new BlackWalnutTree(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> CORK_OAK_SAPLING = REGISTRY.register("cork_oak_sapling", () -> new RankineSaplingBlock(new CorkOakTree(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> CINNAMON_SAPLING = REGISTRY.register("cinnamon_sapling", () -> new RankineSaplingBlock(new CinnamonTree(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> ERYTHRINA_SAPLING = REGISTRY.register("erythrina_sapling", () -> new RankineSaplingBlock(new ErythrinaTree(), DEF_SAPLING, 3));
+    public static final RegistryObject<Block> BALSAM_FIR_SAPLING = REGISTRY.register("balsam_fir_sapling", () -> new RankineSaplingBlock(new BalsamFirTree(), DEF_SAPLING, 2));
+    public static final RegistryObject<Block> MAGNOLIA_SAPLING = REGISTRY.register("magnolia_sapling", () -> new RankineSaplingBlock(new MagnoliaTree(), DEF_SAPLING, 1));
+    public static final RegistryObject<Block> EASTERN_HEMLOCK_SAPLING = REGISTRY.register("eastern_hemlock_sapling", () -> new RankineSaplingBlock(new EasternHemlockTree(), DEF_SAPLING, 2));
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_SAPLING = REGISTRY.register("western_hemlock_sapling", () -> new RankineSaplingBlock(new WesternHemlockTree(), DEF_SAPLING, 2));
+    public static final RegistryObject<Block> YELLOW_BIRCH_SAPLING = REGISTRY.register("yellow_birch_sapling", () -> new RankineSaplingBlock(new YellowBirchTree(), DEF_SAPLING, 1));
+    public static final RegistryObject<Block> BLACK_BIRCH_SAPLING = REGISTRY.register("black_birch_sapling", () -> new RankineSaplingBlock(new BlackBirchTree(), DEF_SAPLING, 1));
+    public static final RegistryObject<Block> RED_BIRCH_SAPLING = REGISTRY.register("red_birch_sapling", () -> new RankineSaplingBlock(new RedBirchTree(), DEF_SAPLING, 1));
+    public static final RegistryObject<Block> MAPLE_SAPLING = REGISTRY.register("maple_sapling", () -> new RankineSaplingBlock(new MapleTree(), DEF_SAPLING, 1));
+    public static final RegistryObject<Block> SHARINGA_SAPLING = REGISTRY.register("sharinga_sapling", () -> new RankineSaplingBlock(new SharingaTree(), DEF_SAPLING, 1));
+    public static final RegistryObject<Block> BLACK_WALNUT_SAPLING = REGISTRY.register("black_walnut_sapling", () -> new RankineSaplingBlock(new BlackWalnutTree(), DEF_SAPLING, 1));
+    public static final RegistryObject<Block> CORK_OAK_SAPLING = REGISTRY.register("cork_oak_sapling", () -> new RankineSaplingBlock(new CorkOakTree(), DEF_SAPLING, 1));
+    public static final RegistryObject<Block> CINNAMON_SAPLING = REGISTRY.register("cinnamon_sapling", () -> new RankineSaplingBlock(new CinnamonTree(), DEF_SAPLING, 1));
+    public static final RegistryObject<Block> ERYTHRINA_SAPLING = REGISTRY.register("erythrina_sapling", () -> new RankineSaplingBlock(new ErythrinaTree(), DEF_SAPLING, 1));
+    public static final RegistryObject<Block> WEEPING_WILLOW_SAPLING = REGISTRY.register("weeping_willow_sapling", () -> new RankineSaplingBlock(new WeepingWillowTree(), DEF_SAPLING, 1));
+    public static final RegistryObject<Block> HONEY_LOCUST_SAPLING = REGISTRY.register("honey_locust_sapling", () -> new RankineSaplingBlock(new HoneyLocustTree(), DEF_SAPLING, 1));
 
     public static final RegistryObject<Block> POTTED_CEDAR_SAPLING = REGISTRY.register("potted_cedar_sapling", () -> new FlowerPotBlock(null, CEDAR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_PINYON_PINE_SAPLING = REGISTRY.register("potted_pinyon_pine_sapling", () -> new FlowerPotBlock(null, PINYON_PINE_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
@@ -2059,14 +2162,18 @@ public class RankineBlocks {
     public static final RegistryObject<Block> POTTED_BALSAM_FIR_SAPLING = REGISTRY.register("potted_balsam_fir_sapling", () -> new FlowerPotBlock(null, BALSAM_FIR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_MAGNOLIA_SAPLING = REGISTRY.register("potted_magnolia_sapling", () -> new FlowerPotBlock(null, MAGNOLIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_EASTERN_HEMLOCK_SAPLING = REGISTRY.register("potted_eastern_hemlock_sapling", () -> new FlowerPotBlock(null, EASTERN_HEMLOCK_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final RegistryObject<Block> POTTED_WESTERN_HEMLOCK_SAPLING = REGISTRY.register("potted_western_hemlock_sapling", () -> new FlowerPotBlock(null, WESTERN_HEMLOCK_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_YELLOW_BIRCH_SAPLING = REGISTRY.register("potted_yellow_birch_sapling", () -> new FlowerPotBlock(null, YELLOW_BIRCH_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_BLACK_BIRCH_SAPLING = REGISTRY.register("potted_black_birch_sapling", () -> new FlowerPotBlock(null, BLACK_BIRCH_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final RegistryObject<Block> POTTED_RED_BIRCH_SAPLING = REGISTRY.register("potted_red_birch_sapling", () -> new FlowerPotBlock(null, RED_BIRCH_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_MAPLE_SAPLING = REGISTRY.register("potted_maple_sapling", () -> new FlowerPotBlock(null, MAPLE_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_SHARINGA_SAPLING = REGISTRY.register("potted_sharinga_sapling", () -> new FlowerPotBlock(null, SHARINGA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_BLACK_WALNUT_SAPLING = REGISTRY.register("potted_black_walnut_sapling", () -> new FlowerPotBlock(null, BLACK_WALNUT_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_CORK_OAK_SAPLING = REGISTRY.register("potted_cork_oak_sapling", () -> new FlowerPotBlock(null, CORK_OAK_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_CINNAMON_SAPLING = REGISTRY.register("potted_cinnamon_sapling", () -> new FlowerPotBlock(null, CINNAMON_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_ERYTHRINA_SAPLING = REGISTRY.register("potted_erythrina_sapling", () -> new FlowerPotBlock(null, CINNAMON_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final RegistryObject<Block> POTTED_WEEPING_WILLOW_SAPLING = REGISTRY.register("potted_weeping_willow_sapling", () -> new FlowerPotBlock(null, WEEPING_WILLOW_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final RegistryObject<Block> POTTED_HONEY_LOCUST_SAPLING = REGISTRY.register("potted_honey_locust_sapling", () -> new FlowerPotBlock(null, HONEY_LOCUST_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
 
 
     //ALLOY BLOCKS
@@ -2445,6 +2552,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SORGHUM_PLANT = REGISTRY.register("sorghum_plant", () -> new SorghumPlantBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
     public static final RegistryObject<Block> MILLET_PLANT = REGISTRY.register("millet_plant", () -> new MilletPlantBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
     public static final RegistryObject<Block> SOYBEAN_PLANT = REGISTRY.register("soybean_plant", () -> new SoybeanPlantBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
+    public static final RegistryObject<Block> COBBLE = REGISTRY.register("cobble", () -> new CobbleBlock(AbstractBlock.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(0.5F, 3.0F).harvestLevel(0)));
 
 
     public static final RegistryObject<Block> DURALUMIN_LADDER = REGISTRY.register("duralumin_ladder", () -> new MetalLadderBlock(true, false, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));

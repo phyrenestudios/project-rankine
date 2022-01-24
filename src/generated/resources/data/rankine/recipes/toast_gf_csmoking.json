@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "rankine:gf_bread"
+  },
+  "result": "rankine:toast",
+  "experience": 0.35,
+  "cookingtime": 600
+}

@@ -283,7 +283,6 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.BANDAGE.get(),6).addIngredient(RankineItems.RESIN_BUCKET.get()).addIngredient(RankineItems.ALOE.get()).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addCriterion("has_ingredient", hasItem(RankineItems.ALOE.get())).setGroup("bandage").build(consumer, "rankine:bandage_from_cotton");
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.BANDAGE.get(),12).addIngredient(RankineItems.RESIN_BUCKET.get()).addIngredient(RankineItems.ALOE.get()).addIngredient(RankineItems.STINGING_NETTLE.get()).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addCriterion("has_ingredient", hasItem(RankineItems.ALOE.get())).setGroup("bandage").build(consumer, "rankine:bandage_from_nettle");
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.GUN_COTTON.get(),8).addIngredient(RankineTags.Items.SALTPETER).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addCriterion("has_ingredient", hasItem(RankineTags.Items.SALTPETER)).build(consumer);
-        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.DOUGH.get(),2).addIngredient(Items.WATER_BUCKET).addIngredient(RankineTags.Items.FLOUR).addIngredient(RankineTags.Items.SALT).addIngredient(Items.SUGAR).addCriterion("has_ingredient", hasItem(RankineTags.Items.FLOUR)).build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.CINNAMON_TOAST.get(),1).addIngredient(RankineItems.TOAST.get()).addIngredient(RankineItems.CINNAMON.get()).addIngredient(Items.SUGAR).addCriterion("has_ingredient", hasItem(RankineItems.TOAST.get())).build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PINA_COLADA.get(),1).addIngredient(RankineTags.Items.ICE).addIngredient(RankineItems.COCONUT.get()).addIngredient(RankineTags.Items.PINEAPPLE).addCriterion("has_ingredient", hasItem(RankineItems.PINEAPPLE.get())).build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PULP.get(),1).addIngredient(Items.WATER_BUCKET).addIngredient(RankineTags.Items.CLAY_BALLS).addIngredient(RankineTags.Items.SAWDUST).addIngredient(RankineTags.Items.SAWDUST).addIngredient(RankineTags.Items.SAWDUST).addIngredient(RankineTags.Items.SAWDUST).addCriterion("has_ingredient", hasItem(RankineTags.Items.SAWDUST)).build(consumer);
@@ -526,23 +525,27 @@ public class RankineRecipesProvider extends RecipeProvider {
             }
             Block LOG = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(nameSpace+":"+PATH.replace("hollow_","")));
             if (LOG != null) {
-                ShapedRecipeBuilder.shapedRecipe(HOLLOW.asItem(), 16).patternLine("###").patternLine("# #").patternLine("###").key('#', LOG).addCriterion("has_ingredient", hasItem(LOG)).build(consumer);
+                ShapedRecipeBuilder.shapedRecipe(HOLLOW.asItem(), 16).patternLine("###").patternLine("# #").patternLine("###").key('#', LOG).setGroup("rankine:hollow_logs").addCriterion("has_ingredient", hasItem(LOG)).build(consumer);
             }
         }
         for (Block BLK : RankineLists.LEAF_LITTERS) {
             String PATH = BLK.getRegistryName().getPath();
             String nameSpace;
-            if (Arrays.asList("hollow_oak_log","hollow_birch_log","hollow_spruce_log","hollow_acacia_log","hollow_jungle_log","hollow_dark_oak_log","hollow_crimson_stem","hollow_warped_stem").contains(PATH)) {
+            if (Arrays.asList("oak_leaf_litter","birch_leaf_litter","spruce_leaf_litter","acacia_leaf_litter","jungle_leaf_litter","dark_oak_leaf_litter","crimson_leaf_litter","warped_leaf_litter").contains(PATH)) {
                 nameSpace = "minecraft";
             } else {
                 nameSpace = "rankine";
             }
             Block LEAF = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(nameSpace+":"+PATH.replace("leaf_litter","leaves")));
             if (LEAF != null) {
-                ShapedRecipeBuilder.shapedRecipe(BLK.asItem(), 1).patternLine("##").key('#', LEAF).addCriterion("has_ingredient", hasItem(LEAF)).build(consumer);
+                ShapedRecipeBuilder.shapedRecipe(BLK.asItem(), 4).patternLine("##").key('#', LEAF).setGroup("rankine:leaf_litters").addCriterion("has_ingredient", hasItem(LEAF)).build(consumer);
             }
         }
+        for (Block COARSE_SOIL : RankineLists.COARSE_SOIL_BLOCKS) {
+            Block SOIL = RankineLists.SOIL_BLOCKS.get(RankineLists.COARSE_SOIL_BLOCKS.indexOf(COARSE_SOIL));
+            ShapedRecipeBuilder.shapedRecipe(COARSE_SOIL.asItem(), 4).patternLine("#G").patternLine("G#").key('#', SOIL).key('G', Tags.Items.GRAVEL).setGroup("rankine:coarse_soil").addCriterion("has_ingredient", hasItem(SOIL)).build(consumer);
 
+        }
 
         for (Item MINERAL_ITEM : RankineLists.MINERAL_ITEMS) {
             Item MINERAL_BLOCK = RankineLists.MINERAL_BLOCKS.get(RankineLists.MINERAL_ITEMS.indexOf(MINERAL_ITEM)).asItem();
@@ -583,8 +586,10 @@ public class RankineRecipesProvider extends RecipeProvider {
         OneToXTag(consumer,RankineItems.PINYON_PINE_PLANKS.get(),"planks",RankineTags.Items.PINYON_PINE_LOGS,4,"has_log",RankineItems.PINYON_PINE_LOG.get());
         OneToXTag(consumer,RankineItems.MAGNOLIA_PLANKS.get(),"planks",RankineTags.Items.MAGNOLIA_LOGS,4,"has_log",RankineItems.MAGNOLIA_LOG.get());
         OneToXTag(consumer,RankineItems.EASTERN_HEMLOCK_PLANKS.get(),"planks",RankineTags.Items.EASTERN_HEMLOCK_LOGS,4,"has_log",RankineItems.EASTERN_HEMLOCK_LOG.get());
+        OneToXTag(consumer,RankineItems.WESTERN_HEMLOCK_PLANKS.get(),"planks",RankineTags.Items.WESTERN_HEMLOCK_LOGS,4,"has_log",RankineItems.WESTERN_HEMLOCK_LOG.get());
         OneToXTag(consumer,RankineItems.YELLOW_BIRCH_PLANKS.get(),"planks",RankineTags.Items.YELLOW_BIRCH_LOGS,4,"has_log",RankineItems.YELLOW_BIRCH_LOG.get());
         OneToXTag(consumer,RankineItems.BLACK_BIRCH_PLANKS.get(),"planks",RankineTags.Items.BLACK_BIRCH_LOGS,4,"has_log",RankineItems.BLACK_BIRCH_LOG.get());
+        OneToXTag(consumer,RankineItems.RED_BIRCH_PLANKS.get(),"planks",RankineTags.Items.RED_BIRCH_LOGS,4,"has_log",RankineItems.RED_BIRCH_LOG.get());
         OneToXTag(consumer,RankineItems.SHARINGA_PLANKS.get(),"planks",RankineTags.Items.SHARINGA_LOGS,4,"has_log",RankineItems.SHARINGA_LOG.get());
         OneToXTag(consumer,RankineItems.BLACK_WALNUT_PLANKS.get(),"planks",RankineTags.Items.BLACK_WALNUT_LOGS,4,"has_log",RankineItems.BLACK_WALNUT_LOG.get());
         OneToXTag(consumer,RankineItems.CINNAMON_PLANKS.get(),"planks",RankineTags.Items.CINNAMON_LOGS,4,"has_log",RankineItems.CINNAMON_LOG.get());
@@ -592,6 +597,8 @@ public class RankineRecipesProvider extends RecipeProvider {
         OneToXTag(consumer,RankineItems.ERYTHRINA_PLANKS.get(),"planks",RankineTags.Items.ERYTHRINA_LOGS,4,"has_log",RankineItems.ERYTHRINA_LOG.get());
         OneToXTag(consumer,RankineItems.CHARRED_PLANKS.get(),"planks",RankineTags.Items.CHARRED_LOGS,4,"has_log",RankineItems.CHARRED_LOG.get());
         OneToXTag(consumer,RankineItems.MAPLE_PLANKS.get(),"planks",RankineTags.Items.MAPLE_LOGS,4,"has_log",RankineItems.MAPLE_LOG.get());
+        OneToXTag(consumer,RankineItems.HONEY_LOCUST_PLANKS.get(),"planks",RankineTags.Items.HONEY_LOCUST_LOGS,4,"has_log",RankineItems.HONEY_LOCUST_LOG.get());
+        OneToXTag(consumer,RankineItems.WEEPING_WILLOW_PLANKS.get(),"planks",RankineTags.Items.WEEPING_WILLOW_LOGS,4,"has_log",RankineItems.WEEPING_WILLOW_LOG.get());
         OneToXTag(consumer,RankineItems.PETRIFIED_CHORUS_PLANKS.get(),"planks",RankineTags.Items.PETRIFIED_CHORUS_LOGS,4,"has_log",RankineItems.PETRIFIED_CHORUS_LOG.get());
 
         for (Block PLANK : RankineLists.PLANKS) {
@@ -819,6 +826,9 @@ public class RankineRecipesProvider extends RecipeProvider {
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.BLACK_WALNUT.get()), RankineItems.ROASTED_WALNUT.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.BLACK_WALNUT.get())).build(consumer, "rankine:roasted_walnut_campfire_cooking");
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.COCONUT.get()), RankineItems.TOASTED_COCONUT.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.COCONUT.get())).build(consumer, "rankine:toasted_coconut_campfire_cooking");
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.BREAD), RankineItems.TOAST.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineTags.Items.BREAD)).build(consumer, "rankine:toast_campfire_cooking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.GF_BREAD.get()), RankineItems.TOAST.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineTags.Items.BREAD)).build(consumer, "rankine:toast_gf_campfire_cooking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.DOUGH.get()), Items.BREAD, 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineTags.Items.FLOUR)).build(consumer, "rankine:bread_campfire_cooking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.DOUGH_GF.get()), RankineItems.GF_BREAD.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineTags.Items.FLOUR_GF)).build(consumer, "rankine:gf_bread_campfire_cooking");
         //Smoking
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.PANCAKE_BATTER.get()), RankineItems.PANCAKE.get(), 0.35F, 100, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineItems.PANCAKE_BATTER.get())).build(consumer, "rankine:pancake_smoking");
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.CORN_EAR.get()), RankineItems.POPCORN.get(), 0.35F, 100, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineItems.CORN_EAR.get())).build(consumer, "rankine:popcorn_smoking");
@@ -826,7 +836,9 @@ public class RankineRecipesProvider extends RecipeProvider {
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.BLACK_WALNUT.get()), RankineItems.ROASTED_WALNUT.get(), 0.35F, 100, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineItems.BLACK_WALNUT.get())).build(consumer, "rankine:roasted_walnut_smoking");
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.COCONUT.get()), RankineItems.TOASTED_COCONUT.get(), 0.35F, 100, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineItems.COCONUT.get())).build(consumer, "rankine:toasted_coconut_smoking");
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.BREAD), RankineItems.TOAST.get(), 0.35F, 100, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineTags.Items.BREAD)).build(consumer, "rankine:toast_smoking");
-
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.GF_BREAD.get()), RankineItems.TOAST.get(), 0.35F, 600, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineTags.Items.BREAD)).build(consumer, "rankine:toast_gf_csmoking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.DOUGH.get()), Items.BREAD, 0.35F, 600, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineTags.Items.FLOUR)).build(consumer, "rankine:bread_smoking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.DOUGH_GF.get()), RankineItems.GF_BREAD.get(), 0.35F, 600, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineTags.Items.FLOUR_GF)).build(consumer, "rankine:gf_bread_smoking");
 
 
 

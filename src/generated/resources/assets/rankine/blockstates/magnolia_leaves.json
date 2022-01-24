@@ -14,7 +14,7 @@
     },
     "age=4": [
       {
-        "model": "rankine:block/magnolia_leavessnowy0"
+        "model": "rankine:block/magnolia_leavessnowy3"
       },
       {
         "model": "rankine:block/magnolia_leavessnowy1"
@@ -25,7 +25,7 @@
     ],
     "age=5": [
       {
-        "model": "rankine:block/magnolia_leavessnowy_top0"
+        "model": "rankine:block/magnolia_leavessnowy_top3"
       },
       {
         "model": "rankine:block/magnolia_leavessnowy_top1"

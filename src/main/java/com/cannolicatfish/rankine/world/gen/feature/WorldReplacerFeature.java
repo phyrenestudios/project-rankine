@@ -1,14 +1,15 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
-import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineLists;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SnowyDirtBlock;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -20,7 +21,6 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
@@ -46,6 +46,7 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
                 int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
+                /*
                 for (int y = 0; y < endY; ++y) {
                     BlockPos TARGET_POS = new BlockPos(x, y, z);
                     Block TARGET = reader.getBlockState(TARGET_POS).getBlock();
@@ -99,9 +100,9 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
                             reader.setBlockState(TARGET_POS, RankineLists.MYCELIUM_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(Alayer)).getDefaultState(), 2);
                         } else if (TARGET.matchesBlock(Blocks.PODZOL) && RankineLists.SOIL_BLOCKS.contains(Alayer)) {
                             reader.setBlockState(TARGET_POS, RankineLists.PODZOL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(Alayer)).getDefaultState(), 2);
-                        }
-                        //COARSE DIRT
-                        else if (TARGET.matchesBlock(Blocks.GRAVEL)) {
+                        } else if (TARGET.matchesBlock(Blocks.COARSE_DIRT) && RankineLists.SOIL_BLOCKS.contains(Alayer)) {
+                            reader.setBlockState(TARGET_POS, RankineLists.COARSE_SOIL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(Alayer)).getDefaultState(), 2);
+                        } else if (TARGET.matchesBlock(Blocks.GRAVEL)) {
                             if (WorldgenUtils.GRAVELS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)) != Blocks.AIR) {
                                 reader.setBlockState(TARGET_POS, WorldgenUtils.GRAVELS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)).getDefaultState(), 2);
                             }
@@ -137,6 +138,7 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
 
 
                 }
+                */
 
                 //STONE REPLACER
                 Biome BIOME = reader.getBiome(new BlockPos(x, 0, z));

@@ -33,8 +33,7 @@ public class BirchTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
-        int trunkHeight = rand.nextInt(10) + 10;
-
+        int trunkHeight = config.trunkPlacer.getHeight(rand);
         boolean flag = true;
         if (pos.getY() >= 1 && pos.getY() + trunkHeight + 1 <= reader.getHeight()) {
             for(int j = pos.getY(); j <= pos.getY() + 1 + trunkHeight; ++j) {
@@ -63,25 +62,25 @@ public class BirchTreeFeature extends Feature<BaseTreeFeatureConfig> {
                 }
             }
 
+            //build tree
             if (!flag) {
                 return false;
             } else if (isValidGround(reader, pos.down()) && pos.getY() < reader.getHeight() - trunkHeight - 1) {
                 setDirtAt(reader, pos.down());
-                Direction dir = WorldgenUtils.randomHorizontalDirection(rand);
-                int j = 0;
-                boolean dead = false;
+                int branchCount = 3;
+                int dir = rand.nextInt(8);
                 for(int i = 0; i <= trunkHeight; ++i) {
                     if (isAirOrLeaves(reader, pos.up(i))) {
-                        this.placeLogAt(reader, pos.up(i).offset(dir,j), rand, config, Direction.Axis.Y);
+                        this.placeLogAt(reader, pos.up(i), rand, config, Direction.Axis.Y);
                     }
-                    if ((trunkHeight - i) % 2 == 0) balsamBranch(reader,pos.up(i).offset(dir,j),rand,config,dead,i<trunkHeight);
-                    if (i > trunkHeight/2f && rand.nextFloat() < 0.3) j = 1;
-                    if (rand.nextFloat() < 0.075) dead = true;
+                    if (branchCount > 0 && i > trunkHeight*0.4f && i < trunkHeight*0.8f) {
+                        birchBranch(reader,pos.up(i),rand,config, trunkHeight-i,dir);
+                        dir = (dir + rand.nextInt(2)+2) % 8;
+                        branchCount--;
+                    }
 
                 }
-                if (isAirOrLeaves(reader, pos.up(trunkHeight+1).offset(dir,j))) {
-                    this.placeLeafAt(reader, pos.up(trunkHeight+1).offset(dir,j), rand, config);
-                }
+                birchLeaves(reader, pos.up(trunkHeight), rand, config);
 
                 return true;
             }
@@ -94,30 +93,47 @@ public class BirchTreeFeature extends Feature<BaseTreeFeatureConfig> {
         }
     }
 
-    private void balsamBranch(ISeedReader reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config, boolean dead, boolean top) {
+    private void birchLeaves(ISeedReader reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config) {
         List<BlockPos> leaves = new ArrayList<>();
-        for (Direction dir : Direction.values()) {
-            if (dir.getAxis().equals(Direction.Axis.Y)) continue;
-            if (rand.nextFloat() < 0.3 && !top) {
-                if (isAirOrLeaves(reader, pos.offset(dir))) {
-                    placeLogAt(reader,pos.offset(dir),rand,config,dir.getAxis());
-                    if (!dead) {
-                        leaves.add(pos.offset(dir).offset(dir));
-                        leaves.add(pos.offset(dir).offset(dir.rotateY()));
-                        leaves.add(pos.offset(dir).offset(dir.rotateYCCW()));
-                    }
-                }
-            } else {
-                if (!dead) {
-                    leaves.add(pos.offset(dir));
-                }
-            }
+
+        for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-1,-1,-1),pos.add(1,1,1))) {
+            leaves.add(b.toImmutable());
         }
+        leaves.add(pos.down(2));
+        leaves.add(pos.down(2).north());
+        leaves.add(pos.down(2).east());
+        leaves.add(pos.down(2).west());
+        leaves.add(pos.down(2).south());
+        leaves.add(pos.up(3));
+        leaves.add(pos.up(2));
+        leaves.add(pos.up(2).south());
+        leaves.add(pos.up(2).east());
+        leaves.add(pos.up(2).west());
+        leaves.add(pos.up(2).north());
+
         for (BlockPos b : leaves) {
             if (isAirOrLeaves(reader, b)) {
                 this.placeLeafAt(reader, b, rand, config);
             }
         }
+    }
+
+    private void birchBranch(ISeedReader reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config, int branchHeight, int dir) {
+
+        if (isAirOrLeaves(reader, WorldgenUtils.eightBlockDirection(pos,dir,1))) {
+            placeLogAt(reader,WorldgenUtils.eightBlockDirection(pos,dir,1),rand,config, Direction.Axis.Y);
+        }
+        if (isAirOrLeaves(reader, WorldgenUtils.eightBlockDirection(pos,dir,1).up())) {
+            placeLogAt(reader,WorldgenUtils.eightBlockDirection(pos,dir,1).up(),rand,config, Direction.Axis.Y);
+        }
+        int topHeight = rand.nextInt(branchHeight)+3;
+        for (int i = 1; i<topHeight; ++i) {
+            if (isAirOrLeaves(reader, WorldgenUtils.eightBlockDirection(pos,dir,2).up(i))) {
+                placeLogAt(reader,WorldgenUtils.eightBlockDirection(pos,dir,2).up(i),rand,config, Direction.Axis.Y);
+            }
+        }
+        birchLeaves(reader, WorldgenUtils.eightBlockDirection(pos,dir,2).up(topHeight), rand, config);
+
     }
 
 

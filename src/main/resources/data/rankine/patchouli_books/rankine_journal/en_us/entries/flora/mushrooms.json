@@ -1,0 +1,59 @@
+{
+  "name": "rankine.journal.cat_flora.trees.name",
+  "icon": "rankine:oyster_mushroom",
+  "category": "flora",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_flora.trees.text1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:oyster_mushroom",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sulfur_shelf_mushroom",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:honey_mushroom",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lions_mane_mushroom",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:artist_conk_mushroom",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tinder_conk_mushroom",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cinnabar_polypore_mushroom",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:turkey_tail_mushroom",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "rankine:dough_gf"
+  },
+  "result": "rankine:gf_bread",
+  "experience": 0.35,
+  "cookingtime": 600
+}

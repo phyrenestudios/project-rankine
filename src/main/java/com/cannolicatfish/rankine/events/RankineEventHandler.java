@@ -65,6 +65,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -88,6 +89,7 @@ import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.SaplingGrowTreeEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -257,6 +259,19 @@ public class RankineEventHandler {
         }
 
     }
+
+    @SubscribeEvent
+    public static void onSaplingGrow(SaplingGrowTreeEvent event) {
+        if (event.getRand().nextFloat() < 1-Config.GENERAL.SAPLING_GROW.get()) {
+            event.setResult(Event.Result.DENY);
+        }
+        BlockPos pos = event.getPos();
+        IWorld worldIn = event.getWorld();
+        if (worldIn.getBlockState(pos).matchesBlock(Blocks.SPRUCE_SAPLING)) {
+
+        }
+    }
+
     @SubscribeEvent
     public static void onCropTrample(BlockEvent.FarmlandTrampleEvent event) {
         if (event.getEntity() instanceof PlayerEntity) {
@@ -273,7 +288,7 @@ public class RankineEventHandler {
         BlockPos pos = player.isSneaking() ? player.getPosition() : player.getPosition().up();
 
         // Tools
-        if (world.getDayTime()%5==0 && !world.isRemote()) {
+        if (world.getGameTime()%5==0 && !world.isRemote()) {
             if (!Config.TOOLS.DISABLE_COMPASS.get() && (player.getHeldItemOffhand().getItem() == Items.COMPASS || player.getHeldItemMainhand().getItem() == Items.COMPASS)) {
                 switch (player.getHorizontalFacing()) {
                     case NORTH:
@@ -330,7 +345,7 @@ public class RankineEventHandler {
                 player.sendStatusMessage(new StringTextComponent("Biome = " + new TranslationTextComponent(Util.makeTranslationKey("biome",world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(pos)))).getString()).mergeStyle(TextFormatting.GOLD), true);
             }
         }
-        if (!Config.TOOLS.DISABLE_SPEEDOMETER.get() && world.isRemote() && world.getDayTime()%5==0 && (player.getHeldItemOffhand().getItem() == RankineItems.SPEEDOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.SPEEDOMETER.get())) {
+        if (!Config.TOOLS.DISABLE_SPEEDOMETER.get() && world.isRemote() && world.getGameTime()%5==0 && (player.getHeldItemOffhand().getItem() == RankineItems.SPEEDOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.SPEEDOMETER.get())) {
             Entity ent = player;
             if (player.getRidingEntity() != null) {
                 ent = player.getRidingEntity();
@@ -1930,7 +1945,7 @@ public class RankineEventHandler {
                 });
                 player.swingArm(event.getHand());
                 event.setResult(Event.Result.ALLOW);
-            } else if (b instanceof DoubleCropsBlock && !Creative) {
+            } else if (b instanceof DoubleCropsBlock && item instanceof AlloyHoeItem) {
                 if (targetBS.get(DoubleCropsBlock.AGE) == 7) {
                     if (targetBS.get(DoubleCropsBlock.SECTION) == DoubleBlockHalf.LOWER) {
                         world.destroyBlock(pos,true);
@@ -1940,7 +1955,7 @@ public class RankineEventHandler {
                         world.setBlockState(pos.down(),b.getDefaultState().with(CropsBlock.AGE, 0));
                     }
                 }
-            } else if (b instanceof TripleCropsBlock && !Creative) {
+            } else if (b instanceof TripleCropsBlock && item instanceof AlloyHoeItem) {
                 if (targetBS.get(DoubleCropsBlock.AGE) == 7) {
                     if (targetBS.get(TripleCropsBlock.SECTION) == TripleBlockSection.BOTTOM) {
                         world.destroyBlock(pos,true);
@@ -1953,7 +1968,7 @@ public class RankineEventHandler {
                         world.setBlockState(pos.down(2),b.getDefaultState().with(CropsBlock.AGE, 0));
                     }
                 }
-            } else if (b instanceof CropsBlock && !Creative) {
+            } else if (b instanceof CropsBlock && item instanceof AlloyHoeItem) {
                 if (targetBS.get(CropsBlock.AGE) == 7) {
                     world.destroyBlock(pos,true);
                     world.setBlockState(pos,b.getDefaultState().with(CropsBlock.AGE, 0));
@@ -1980,7 +1995,7 @@ public class RankineEventHandler {
         }
 
          */
-        if (event.getPos().getY() > WorldgenUtils.waterTableHeight((World) event.getWorld(), event.getPos())) {
+        if (Config.GENERAL.DISABLE_WATER.get() && event.getPos().getY() > WorldgenUtils.waterTableHeight((World) event.getWorld(), event.getPos())) {
             event.setResult(Event.Result.DENY);
         }
 

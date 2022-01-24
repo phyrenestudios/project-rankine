@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:honey_locust_stairs"
+    },
+    {
+      "item": "rankine:honey_locust_stairs"
+    },
+    {
+      "item": "rankine:honey_locust_stairs"
+    },
+    {
+      "item": "rankine:honey_locust_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:honey_locust_planks",
+    "count": 6
+  }
+}

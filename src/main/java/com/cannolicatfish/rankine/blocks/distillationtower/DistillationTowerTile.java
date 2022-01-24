@@ -11,6 +11,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -73,7 +74,7 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
     }
 
     private int structureCheck(World worldIn, BlockPos pos) {
-        if (getRing(worldIn,pos,RankineTags.Blocks.ICE) &&
+        if (getRing(worldIn,pos, BlockTags.ICE) &&
             worldIn.getBlockState(pos.add(2,0,-1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
             worldIn.getBlockState(pos.add(2,0,0)).isIn(RankineTags.Blocks.SHEETMETAL) &&
             worldIn.getBlockState(pos.add(2,0,1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
@@ -87,7 +88,7 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
             worldIn.getBlockState(pos.add(0,0,-2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
             worldIn.getBlockState(pos.add(1,0,-2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
 
-            getRing(worldIn,pos.up(),RankineTags.Blocks.ICE) &&
+            getRing(worldIn,pos.up(),BlockTags.ICE) &&
             worldIn.getBlockState(pos.add(2,1,-1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
             worldIn.getBlockState(pos.add(2,1,0)).isIn(RankineTags.Blocks.SHEETMETAL) &&
             worldIn.getBlockState(pos.add(2,1,1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
@@ -102,7 +103,7 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
             worldIn.getBlockState(pos.add(1,1,-2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
             worldIn.getBlockState(pos.add(0,1,0)).matchesBlock(RankineBlocks.AIR_DISTILLATION_PACKING.get()) &&
 
-            getRing(worldIn,pos.up(2),RankineTags.Blocks.ICE) &&
+            getRing(worldIn,pos.up(2),BlockTags.ICE) &&
             worldIn.getBlockState(pos.add(2,2,-1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
             worldIn.getBlockState(pos.add(2,2,0)).isIn(RankineTags.Blocks.SHEETMETAL) &&
             worldIn.getBlockState(pos.add(2,2,1)).isIn(RankineTags.Blocks.SHEETMETAL) &&

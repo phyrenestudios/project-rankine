@@ -1,14 +1,15 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
+import net.minecraftforge.common.Tags;
 
 public class RankineSaplingBlock extends SaplingBlock {
     public static final IntegerProperty STAGE = BlockStateProperties.STAGE_0_1;
@@ -24,15 +25,15 @@ public class RankineSaplingBlock extends SaplingBlock {
     @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
-        if (type == 2)
-        {
-            return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.SAND || block == Blocks.RED_SAND ||  block == Blocks.COARSE_DIRT;
+        switch (type) {
+            case 3:
+                return block.isIn(Tags.Blocks.DIRT) || block.isIn(Tags.Blocks.SAND) || block.isIn(RankineTags.Blocks.COARSE_DIRT);
+            case 2:
+                return block.isIn(Tags.Blocks.DIRT) || block.isIn(RankineTags.Blocks.COARSE_DIRT);
+            case 1:
+            default:
+                return block.isIn(Tags.Blocks.DIRT);
         }
-        if (type == 3)
-        {
-            return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL;
-        }
-        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.SAND || block == Blocks.RED_SAND;
     }
 
 }
