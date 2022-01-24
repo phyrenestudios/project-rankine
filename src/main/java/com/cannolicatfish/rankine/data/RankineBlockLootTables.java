@@ -58,6 +58,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.SHEETMETALS,
                 RankineLists.GEODES,
                 RankineLists.LEDS,
+                RankineLists.COARSE_SOIL_BLOCKS,
                 RankineLists.MUD_BLOCKS,
                 RankineLists.MINERAL_WOOL,
                 RankineLists.FIBER_BLOCK,
@@ -240,7 +241,11 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
         for (Block LEAF : RankineLists.LEAVES) {
             Block SAPLING = RankineLists.SAPLINGS.get(RankineLists.LEAVES.indexOf(LEAF));
-            lootTables.put(LEAF, droppingWithChancesAndSticks(LEAF, SAPLING, DEFAULT_SAPLING_DROP_RATES));
+            if (LEAF.matchesBlock(RankineBlocks.COCONUT_PALM_LEAVES.get()) || LEAF.matchesBlock(RankineBlocks.BALSAM_FIR_LEAVES.get())) {
+                lootTables.put(LEAF, droppingWithChancesAndSticks(LEAF, SAPLING, DOUBLE_SAPLING_DROP_RATES));
+            } else {
+                lootTables.put(LEAF, droppingWithChancesAndSticks(LEAF, SAPLING, DEFAULT_SAPLING_DROP_RATES));
+            }
         }
         for (Block BLK : Stream.of(
                 RankineLists.TALL_FLOWERS,

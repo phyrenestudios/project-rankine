@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine:hollow_logs",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:weeping_willow_log"
+    }
+  },
+  "result": {
+    "item": "rankine:hollow_weeping_willow_log",
+    "count": 16
+  }
+}

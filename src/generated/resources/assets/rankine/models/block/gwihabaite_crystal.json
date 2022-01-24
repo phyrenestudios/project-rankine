@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cross",
+  "parent": "rankine:block/template_cross",
   "textures": {
-    "cross": "rankine:block/gwihabaite_crystal"
+    "all": "rankine:block/gwihabaite_crystal"
   }
 }

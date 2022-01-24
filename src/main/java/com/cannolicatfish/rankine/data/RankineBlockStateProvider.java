@@ -5,11 +5,14 @@ import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.BaseAsphaltBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.*;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelBlock;
+import com.cannolicatfish.rankine.blocks.mushrooms.RankineWallMushroomBlock;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankineDoublePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
-import com.cannolicatfish.rankine.blocks.states.*;
+import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
+import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
+import com.cannolicatfish.rankine.blocks.states.VerticalSlabStates;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
@@ -17,7 +20,9 @@ import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.state.properties.*;
+import net.minecraft.state.properties.AttachFace;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.*;
@@ -103,6 +108,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsBlock(blk);
         }
+        for (Block blk : Stream.of(RankineLists.MUD_BLOCKS,RankineLists.SOIL_BLOCKS,RankineLists.COARSE_SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            rotationBlock(blk);
+        }
         for (Block blk : RankineLists.POLISHED_STONES) {
             fancyPolishedBlock(blk);
         }
@@ -122,6 +130,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             leavesBlock(blk);
         }
 
+        sixSideCrossBlock(RankineBlocks.LOCUST_SPINE.get());
         sixSideCrossBlock(RankineBlocks.GWIHABAITE_CRYSTAL.get());
         crossBlock(RankineBlocks.STINGING_NETTLE.get());
         axisBlock((RotatedPillarBlock) RankineBlocks.BONE_CHAR_BLOCK.get());
@@ -473,13 +482,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
         mixingBarrelBlock(RankineBlocks.MIXING_BARREL.get());
-        //Soil blocks
-        for (Block SOIL : RankineLists.SOIL_BLOCKS) {
-            rotationBlock(SOIL);
-        }
-        for (Block MUD : RankineLists.MUD_BLOCKS) {
-            rotationBlock(MUD);
-        }
         //grassy soils
         for (Block GRASS : RankineLists.GRASS_BLOCKS) {
             Block SOIL = RankineLists.SOIL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(GRASS));
@@ -554,7 +556,12 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .modelFile(models().withExistingParent(RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"1", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"1")).weight(2).nextModel()
                 .modelFile(models().withExistingParent(RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"2", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"2")).weight(1).addModel();
 
+        for (Block blk : RankineLists.WALL_MUSHROOMS) {
+            wallMushroom(blk);
+        }
 
+        squareCross(RankineBlocks.WILLOW_BRANCHLET.get());
+        squareCross(RankineBlocks.WILLOW_BRANCHLET_PLANT.get());
         doublePlant(RankineBlocks.ORANGE_LILY.get());
         doublePlant(RankineBlocks.WHITE_LILY.get());
         doublePlant(RankineBlocks.RED_LILY.get());
@@ -608,6 +615,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         electroMagnet(RankineBlocks.ALNICO_ELECTROMAGNET.get());
         electroMagnet(RankineBlocks.RARE_EARTH_ELECTROMAGNET.get());
         SVLBlock((SodiumVaporLampBlock) RankineBlocks.SODIUM_VAPOR_LAMP.get());
+        cobble(RankineBlocks.COBBLE.get());
 
         asphaltBlock(RankineBlocks.ASPHALT_0.get(), 16.0f);
         asphaltBlock(RankineBlocks.ASPHALT_1.get(), 12.0f);
@@ -684,6 +692,16 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
 
+    public void cobble(Block BLK) {
+        ModelFile model = models().withExistingParent("cobble", modLoc("block/template_cobble1")).texture("all", getBlockRSL("gneiss"));
+        getVariantBuilder(RankineBlocks.COBBLE.get()).partialState().modelForState()
+                .modelFile(model).rotationY(0).nextModel()
+                .modelFile(model).rotationY(90).nextModel()
+                .modelFile(model).rotationY(180).nextModel()
+                .modelFile(model).rotationY(270).addModel();
+
+    }
+
     public void quarterSlab(Block BLK) {
         String path = BLK.getRegistryName().getPath();
         getVariantBuilder(BLK).forAllStates(state -> {
@@ -756,19 +774,53 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .rotationY(rot).build();
         });
     }
+    public void wallMushroom(Block BLK) {
+        ModelFile Mush1 = new ModelFile.ExistingModelFile(getBlockRSL(BLK.getRegistryName().getPath()+"1"), models().existingFileHelper);
+        ModelFile Mush2 = new ModelFile.ExistingModelFile(getBlockRSL(BLK.getRegistryName().getPath()+"2"), models().existingFileHelper);
+        ModelFile Mush3 = new ModelFile.ExistingModelFile(getBlockRSL(BLK.getRegistryName().getPath()+"3"), models().existingFileHelper);
+        getVariantBuilder(BLK).forAllStates(blockState -> {
+            Direction dir = blockState.get(RankineWallMushroomBlock.HORIZONTAL_FACING);
+            int rotY = (int) dir.getHorizontalAngle();
+            return ConfiguredModel.builder()
+                    .modelFile(Mush1).rotationY(rotY).nextModel()
+                    .modelFile(Mush2).rotationY(rotY).nextModel()
+                    .modelFile(Mush3).rotationY(rotY).build();
+        });
+        /*
+        ModelFile Mush1 = new ModelFile.ExistingModelFile(getBlockRSL(BLK.getRegistryName().getPath()+"1"), models().existingFileHelper);
+        ModelFile Mush2 = new ModelFile.ExistingModelFile(getBlockRSL(BLK.getRegistryName().getPath()+"2"), models().existingFileHelper);
+        ModelFile Mush3 = new ModelFile.ExistingModelFile(getBlockRSL(BLK.getRegistryName().getPath()+"3"), models().existingFileHelper);
+        getVariantBuilder(BLK).forAllStates(blockState -> {
+            Direction dir = blockState.get(RankineWallMushroomBlock.FACING);
+            int rotY = dir.getHorizontalIndex() == -1 ? 0 : (int) dir.getHorizontalAngle();
+            int rotX = dir.equals(Direction.UP) ? -90 : blockState.get(RankineWallMushroomBlock.FACING).equals(Direction.DOWN) ? 90 : 0;
+            return ConfiguredModel.builder()
+                    .modelFile(Mush1).rotationX(rotX).rotationY(rotY).nextModel()
+                    .modelFile(Mush2).rotationX(rotX).rotationY(rotY).nextModel()
+                    .modelFile(Mush3).rotationX(rotX).rotationY(rotY).build();
+        });
+
+         */
+    }
 
     public void sixSideCrossBlock(Block BLK) {
-        ModelFile CROSS = models().withExistingParent(BLK.getRegistryName().getPath(), mcLoc("block/cross")).texture("cross", "block/"+BLK.getRegistryName().getPath());
+        ModelFile CROSS = models().withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/template_cross")).texture("all", "block/"+BLK.getRegistryName().getPath());
         getVariantBuilder(BLK)
-                .partialState().with(GwihabaiteBlock.FACING, Direction.UP).modelForState().modelFile(CROSS).addModel()
-                .partialState().with(GwihabaiteBlock.FACING, Direction.DOWN).modelForState().modelFile(CROSS).rotationX(180).addModel()
-                .partialState().with(GwihabaiteBlock.FACING, Direction.NORTH).modelForState().modelFile(CROSS).rotationY(0).rotationX(90).addModel()
-                .partialState().with(GwihabaiteBlock.FACING, Direction.EAST).modelForState().modelFile(CROSS).rotationY(90).rotationX(90).addModel()
-                .partialState().with(GwihabaiteBlock.FACING, Direction.SOUTH).modelForState().modelFile(CROSS).rotationY(180).rotationX(90).addModel()
-                .partialState().with(GwihabaiteBlock.FACING, Direction.WEST).modelForState().modelFile(CROSS).rotationY(270).rotationX(90).addModel();
+                .partialState().with(BlockStateProperties.FACING, Direction.UP).modelForState().modelFile(CROSS).addModel()
+                .partialState().with(BlockStateProperties.FACING, Direction.DOWN).modelForState().modelFile(CROSS).rotationX(180).addModel()
+                .partialState().with(BlockStateProperties.FACING, Direction.NORTH).modelForState().modelFile(CROSS).rotationY(0).rotationX(90).addModel()
+                .partialState().with(BlockStateProperties.FACING, Direction.EAST).modelForState().modelFile(CROSS).rotationY(90).rotationX(90).addModel()
+                .partialState().with(BlockStateProperties.FACING, Direction.SOUTH).modelForState().modelFile(CROSS).rotationY(180).rotationX(90).addModel()
+                .partialState().with(BlockStateProperties.FACING, Direction.WEST).modelForState().modelFile(CROSS).rotationY(270).rotationX(90).addModel();
     }
     public void crossBlock(Block BLK) {
         getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), mcLoc("block/cross")).texture("cross", "block/"+BLK.getRegistryName().getPath())).addModel();
+    }
+    public void squareCross(Block BLK) {
+        getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/template_square")).texture("all", "block/"+BLK.getRegistryName().getPath())).addModel();
+    }
+    public void cropBlock(Block BLK) {
+        getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), mcLoc("block/crop")).texture("crop", "block/"+BLK.getRegistryName().getPath())).addModel();
     }
     public void tintedCrossBlock(Block BLK, ResourceLocation base, ResourceLocation overlay) {
         getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), getBlockRSL("template_tinted_cross_overlay")).texture("cross",base).texture("overlay", overlay)).addModel();
@@ -781,11 +833,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             .partialState().with(RankineLeavesBlock.AGE, 2).modelForState().modelFile(models().withExistingParent(PATH +"age2", getBlockRSL("minecraft","leaves")).texture("all", getBlockRSL(PATH))).addModel()
             .partialState().with(RankineLeavesBlock.AGE, 3).modelForState().modelFile(models().withExistingParent(PATH +"age3", getBlockRSL("minecraft","leaves")).texture("all", getBlockRSL(PATH))).addModel()
             .partialState().with(RankineLeavesBlock.AGE, 4).modelForState()
-                .modelFile(models().withExistingParent(PATH +"snowy0", getBlockRSL("leaves_age4")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay0"))).nextModel()
+                .modelFile(models().withExistingParent(PATH +"snowy3", getBlockRSL("leaves_age4")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay3"))).nextModel()
                 .modelFile(models().withExistingParent(PATH +"snowy1", getBlockRSL("leaves_age4")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay1"))).nextModel()
                 .modelFile(models().withExistingParent(PATH +"snowy2", getBlockRSL("leaves_age4")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay2"))).addModel()
             .partialState().with(RankineLeavesBlock.AGE, 5).modelForState()
-                .modelFile(models().withExistingParent(PATH +"snowy_top0", getBlockRSL("leaves_age5")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay0")).texture("snowy_top_overlay", getBlockRSL("snowy_leaves_top_overlay0"))).nextModel()
+                .modelFile(models().withExistingParent(PATH +"snowy_top3", getBlockRSL("leaves_age5")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay3")).texture("snowy_top_overlay", getBlockRSL("snowy_leaves_top_overlay3"))).nextModel()
                 .modelFile(models().withExistingParent(PATH +"snowy_top1", getBlockRSL("leaves_age5")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay1")).texture("snowy_top_overlay", getBlockRSL("snowy_leaves_top_overlay1"))).nextModel()
                 .modelFile(models().withExistingParent(PATH +"snowy_top2", getBlockRSL("leaves_age5")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay2")).texture("snowy_top_overlay", getBlockRSL("snowy_leaves_top_overlay2"))).addModel();
     }

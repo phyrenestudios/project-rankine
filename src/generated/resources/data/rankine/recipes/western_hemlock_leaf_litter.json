@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine:leaf_litters",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:western_hemlock_leaves"
+    }
+  },
+  "result": {
+    "item": "rankine:western_hemlock_leaf_litter",
+    "count": 4
+  }
+}

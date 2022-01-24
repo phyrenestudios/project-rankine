@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "mode=0": {
+      "model": "rankine:block/honey_locust_planks"
+    },
+    "mode=1": {
+      "model": "rankine:block/honey_locust_planks_vertical"
+    },
+    "mode=2": {
+      "model": "rankine:block/honey_locust_planks"
+    },
+    "mode=3": {
+      "model": "rankine:block/honey_locust_planks"
+    }
+  }
+}

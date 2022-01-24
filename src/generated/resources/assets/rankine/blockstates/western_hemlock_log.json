@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "rankine:block/western_hemlock_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "rankine:block/western_hemlock_log"
+    },
+    "axis=z": {
+      "model": "rankine:block/western_hemlock_log_horizontal",
+      "x": 90
+    }
+  }
+}

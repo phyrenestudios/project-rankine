@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "minecraft:bread",
-    "rankine:gf_bread",
-    "minecraft:bread"
+    "rankine:gf_bread"
   ]
 }

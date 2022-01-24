@@ -4,16 +4,23 @@ import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
+import net.minecraft.world.IWorldWriter;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.IWorldGenerationBaseReader;
+import net.minecraft.world.gen.IWorldGenerationReader;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
@@ -195,24 +202,24 @@ public class WorldgenUtils {
         return dirs.get(rand.nextInt(dirs.size()));
     }
 
-    public static BlockPos eightBlockDirection(BlockPos pos, int i) {
-        switch (i) {
+    public static BlockPos eightBlockDirection(BlockPos pos, int type, int mult) {
+        switch (type % 8) {
             case 0:
-                return pos.add(-1,0,-1);
+                return pos.add(-1*mult,0,-1*mult);
             case 1:
-                return pos.add(-1,0,0);
+                return pos.add(-1*mult,0,0);
             case 2:
-                return pos.add(-1,0,1);
-            case 3:
-                return pos.add(0,0,-1);
-            case 4:
-                return pos.add(0,0,1);
-            case 5:
-                return pos.add(1,0,-1);
-            case 6:
-                return pos.add(1,0,0);
+                return pos.add(-1*mult,0, mult);
             case 7:
-                return pos.add(1,0,1);
+                return pos.add(0,0,-1*mult);
+            case 3:
+                return pos.add(0,0, mult);
+            case 6:
+                return pos.add(mult,0,-1*mult);
+            case 5:
+                return pos.add(mult,0,0);
+            case 4:
+                return pos.add(mult,0, mult);
             default:
                 return pos;
         }
@@ -222,7 +229,7 @@ public class WorldgenUtils {
         Biome biome = worldIn.getBiome(pos);
         int surface = worldIn.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ());
 
-        return biome.getCategory() == Biome.Category.OCEAN || biome.getCategory() == Biome.Category.BEACH || biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.RIVER ? worldIn.getSeaLevel() : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
+        return biome.getCategory() == Biome.Category.OCEAN || biome.getCategory() == Biome.Category.BEACH || biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.RIVER ? worldIn.getSeaLevel() + 1 : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
     }
 
     public static boolean inArea(BlockPos b, double radius, BlockPos... targets) {
@@ -256,6 +263,50 @@ public class WorldgenUtils {
             ++i;
         }
         return Blocks.AIR;
+    }
+
+
+
+    public static boolean inRadiusCenter(BlockPos center, BlockPos checkPos, double radius) {
+        return center.distanceSq(checkPos.getX()+0.5D,checkPos.getY()+0.5D,checkPos.getZ()+0.5D,true) < radius*radius;
+    }
+
+    public static void checkLog(ISeedReader reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config, Direction.Axis axis) {
+        if (isAirOrLeaves(reader, pos)) {
+            placeLogAt(reader, pos, rand, config, axis);
+        }
+    }
+
+    public static void placeLogAt(IWorldWriter reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config, Direction.Axis axis) {
+        setLogState(reader, pos, config.trunkProvider.getBlockState(rand, pos).with(BlockStateProperties.AXIS, axis));
+    }
+
+    public static void setLogState(IWorldWriter reader, BlockPos pos, BlockState state) {
+        reader.setBlockState(pos, state, 18);
+    }
+
+    public static void placeLeafAt(IWorldGenerationReader world, BlockPos pos, Random rand, BaseTreeFeatureConfig config) {
+        if (isAirOrLeaves(world, pos)) {
+            setLogState(world, pos, config.leavesProvider.getBlockState(rand, pos).with(LeavesBlock.DISTANCE, 1));
+        }
+    }
+
+    public static boolean isAirOrLeaves(IWorldGenerationBaseReader reader, BlockPos pos) {
+        if (reader instanceof net.minecraft.world.IWorldReader) {
+            return reader.hasBlockState(pos, state -> state.canBeReplacedByLeaves((net.minecraft.world.IWorldReader) reader, pos));
+        }
+        return reader.hasBlockState(pos, (state) -> {
+            return state.isAir() || state.isIn(BlockTags.LEAVES);
+        });
+    }
+
+    public static boolean isAir(IWorldGenerationBaseReader reader, BlockPos pos) {
+        if (!(reader instanceof net.minecraft.world.IBlockReader)) {
+            return reader.hasBlockState(pos, BlockState::isAir);
+        }
+        else {
+            return reader.hasBlockState(pos, state -> state.isAir((net.minecraft.world.IBlockReader) reader, pos));
+        }
     }
 
 }

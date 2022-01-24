@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine:hollow_logs",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:honey_locust_log"
+    }
+  },
+  "result": {
+    "item": "rankine:hollow_honey_locust_log",
+    "count": 16
+  }
+}

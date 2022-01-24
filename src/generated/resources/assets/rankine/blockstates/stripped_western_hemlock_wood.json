@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "rankine:block/stripped_western_hemlock_wood_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "rankine:block/stripped_western_hemlock_wood"
+    },
+    "axis=z": {
+      "model": "rankine:block/stripped_western_hemlock_wood_horizontal",
+      "x": 90
+    }
+  }
+}

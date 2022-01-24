@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "rankine:weeping_willow_planks"
+    }
+  ],
+  "result": {
+    "item": "rankine:weeping_willow_button"
+  }
+}

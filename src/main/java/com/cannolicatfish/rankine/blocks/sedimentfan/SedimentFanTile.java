@@ -35,7 +35,7 @@ public class SedimentFanTile extends TileEntity implements ITickableTileEntity {
     }
 
     public void tick() {
-        if (!world.isAreaLoaded(pos, 1) || world.getDayTime() % 20 != 0) return;
+        if (!world.isAreaLoaded(pos, 1) || world.getGameTime() % 20 != 0) return;
         List<Fluid> adjPos = Arrays.asList(world.getFluidState(pos.south().up()).getFluid(),world.getFluidState(pos.north().up()).getFluid(), world.getFluidState(pos.west().up()).getFluid(),world.getFluidState(pos.east().up()).getFluid());
         if (world.getFluidState(pos.up()).isSource()) {
             Direction dir = null;
@@ -72,11 +72,11 @@ public class SedimentFanTile extends TileEntity implements ITickableTileEntity {
                     if (recipe != null) {
                         ItemStack output = recipe.getRecipeOutput();
                         if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
-                            world.setBlockState(end, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
+                            world.setBlockState(end, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 19);
                             world.playSound(null,end, SoundEvents.BLOCK_SAND_HIT, SoundCategory.BLOCKS,1.0f,1.0f);
                         }
                     } else {
-                        world.setBlockState(end, RankineBlocks.BRECCIA.get().getDefaultState(), 2);
+                        world.setBlockState(end, RankineBlocks.BRECCIA.get().getDefaultState(), 19);
                         world.playSound(null,end, SoundEvents.BLOCK_SAND_HIT, SoundCategory.BLOCKS,1.0f,1.0f);
                     }
                 }

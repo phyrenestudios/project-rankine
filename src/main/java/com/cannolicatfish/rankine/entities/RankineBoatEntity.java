@@ -109,6 +109,12 @@ public class RankineBoatEntity extends BoatEntity {
                 return RankineItems.ERYTHRINA_BOAT.get();
             case CHARRED:
                 return RankineItems.CHARRED_BOAT.get();
+            case RED_BIRCH:
+                return RankineItems.CHARRED_BOAT.get();
+            case WEEPING_WILLOW:
+                return RankineItems.CHARRED_BOAT.get();
+            case HONEY_LOCUST:
+                return RankineItems.CHARRED_BOAT.get();
         }
     }
 
@@ -138,8 +144,11 @@ public class RankineBoatEntity extends BoatEntity {
         MAPLE(RankineBlocks.MAPLE_PLANKS.get(), "maple"),
         BLACK_BIRCH(RankineBlocks.BLACK_BIRCH_PLANKS.get(), "black_birch"),
         YELLOW_BIRCH(RankineBlocks.YELLOW_BIRCH_PLANKS.get(), "yellow_birch"),
+        RED_BIRCH(RankineBlocks.YELLOW_BIRCH_PLANKS.get(), "red_birch"),
         BLACK_WALNUT(RankineBlocks.BLACK_WALNUT_PLANKS.get(), "black_walnut"),
         SHARINGA(RankineBlocks.SHARINGA_PLANKS.get(), "sharinga"),
+        HONEY_LOCUST(RankineBlocks.SHARINGA_PLANKS.get(), "honey_locust"),
+        WEEPING_WILLOW(RankineBlocks.SHARINGA_PLANKS.get(), "weeping_willow"),
         CORK_OAK(RankineBlocks.CORK_OAK_PLANKS.get(), "cork_oak"),
         CINNAMON(RankineBlocks.CINNAMON_PLANKS.get(), "cinnamon"),
         BAMBOO(RankineBlocks.BAMBOO_PLANKS.get(), "bamboo"),

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:artist_conk_mushroom",
+    "rankine:oyster_mushroom",
+    "rankine:tinder_conk_mushroom",
+    "rankine:lions_mane_mushroom",
+    "rankine:sulfur_shelf_mushroom",
+    "rankine:honey_mushroom",
+    "rankine:turkey_tail_mushroom",
+    "rankine:cinnabar_polypore_mushroom"
+  ]
+}

@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.advancements;
 
 import com.cannolicatfish.rankine.items.alloys.IAlloyToolOld;
+import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.item.ItemStack;

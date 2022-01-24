@@ -48,19 +48,19 @@ public class CornPlantBlock extends TripleCropsBlock {
             }
             switch (state.get(SECTION)) {
                 case BOTTOM:
-                    worldIn.setBlockState(pos, RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.BOTTOM), 2);
-                    worldIn.setBlockState(pos.up(1), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.MIDDLE), 2);
-                    worldIn.setBlockState(pos.up(2), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.TOP), 2);
+                    worldIn.setBlockState(pos, RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.BOTTOM), 19);
+                    worldIn.setBlockState(pos.up(1), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.MIDDLE), 19);
+                    worldIn.setBlockState(pos.up(2), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.TOP), 19);
                     break;
                 case MIDDLE:
-                    worldIn.setBlockState(pos.down(), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.BOTTOM), 2);
-                    worldIn.setBlockState(pos, RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.MIDDLE), 2);
-                    worldIn.setBlockState(pos.up(), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.TOP), 2);
+                    worldIn.setBlockState(pos.down(), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.BOTTOM), 19);
+                    worldIn.setBlockState(pos, RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.MIDDLE), 19);
+                    worldIn.setBlockState(pos.up(), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.TOP), 19);
                     break;
                 case TOP:
-                    worldIn.setBlockState(pos.down(2), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.BOTTOM), 2);
-                    worldIn.setBlockState(pos.down(1), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.MIDDLE), 2);
-                    worldIn.setBlockState(pos, RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.TOP), 2);
+                    worldIn.setBlockState(pos.down(2), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.BOTTOM), 19);
+                    worldIn.setBlockState(pos.down(1), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.MIDDLE), 19);
+                    worldIn.setBlockState(pos, RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.TOP), 19);
                     break;
             }
         }

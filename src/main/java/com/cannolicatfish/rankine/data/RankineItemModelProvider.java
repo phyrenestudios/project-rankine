@@ -76,6 +76,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.FIBER_MAT,
                 RankineLists.SOIL_BLOCKS,
                 RankineLists.MUD_BLOCKS,
+                RankineLists.COARSE_SOIL_BLOCKS,
                 RankineLists.GRASS_BLOCKS,
                 RankineLists.PODZOL_BLOCKS,
                 RankineLists.MYCELIUM_BLOCKS,
@@ -148,6 +149,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.GARLAND.get());
         basicItem(RankineItems.POPCORN.get());
         basicItem(RankineItems.DOUGH.get());
+        basicItem(RankineItems.DOUGH_GF.get());
         basicItem(RankineItems.TOAST.get());
         basicItem(RankineItems.CINNAMON.get());
         basicItem(RankineItems.CINNAMON_TOAST.get());
@@ -165,7 +167,10 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItemAltTexture(RankineItems.AGED_CHEESE.get(), modLoc("item/aged_cheese_wheel"));
         basicItemAltTexture(RankineItems.UNAGED_CHEESE.get(), modLoc("item/unaged_cheese_wheel"));
         basicItemAltTexture(RankineItems.GEODE.get(), modLoc("item/geode"));
+        basicItemAltTexture(RankineItems.COBBLE.get(), modLoc("item/cobble"));
         basicItemAltTexture(RankineItems.GF_BREAD.get(), mcLoc("item/bread"));
+        basicItemAltTexture(RankineItems.WILLOW_BRANCHLET.get(), modLoc("block/willow_branchlet_plant"));
+        basicItemAltTexture(RankineItems.LOCUST_SPINE.get(), modLoc("block/locust_spine"));
         basicItemHandheld(RankineItems.DOWSING_ROD.get());
 
         basicItem(RankineItems.VULCANIZED_RUBBER.get());
@@ -403,7 +408,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
         withExistingParent(RankineBlocks.ASPHALT_3.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/asphalt/asphalt3_age0_none"));
         withExistingParent(RankineBlocks.POTHOLE.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/pothole"));
 
-
+        for (Block blk : RankineLists.WALL_MUSHROOMS) {
+            basicItemAltTexture(blk.asItem(), modLoc("item/" + blk.getRegistryName().getPath()));
+        }
         basicItemAltTexture(RankineItems.ORNAMENT.get(), modLoc("block/" + "ornament"));
         basicItemAltTexture(RankineItems.CRIMSON_CLOVER.get(), modLoc("block/" + "crimson_clover"));
         basicItemAltTexture(RankineItems.RED_CLOVER.get(), modLoc("block/" + "red_clover"));

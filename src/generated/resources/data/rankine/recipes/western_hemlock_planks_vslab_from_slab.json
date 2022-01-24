@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks_vslab_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:western_hemlock_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:western_hemlock_vertical_slab"
+  }
+}

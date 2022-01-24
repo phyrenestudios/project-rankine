@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top",
+  "textures": {
+    "bottom": "rankine:block/honey_locust_door_bottom",
+    "top": "rankine:block/honey_locust_door_top"
+  }
+}

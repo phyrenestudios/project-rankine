@@ -1,12 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group": "rankine:leaf_litters",
   "pattern": [
     "##"
   ],
   "key": {
-    "#": []
+    "#": {
+      "item": "minecraft:oak_leaves"
+    }
   },
   "result": {
-    "item": "rankine:oak_leaf_litter"
+    "item": "rankine:oak_leaf_litter",
+    "count": 4
   }
 }

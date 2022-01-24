@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:honey_locust_planks"
+    }
+  },
+  "result": {
+    "item": "rankine:honey_locust_trapdoor",
+    "count": 2
+  }
+}

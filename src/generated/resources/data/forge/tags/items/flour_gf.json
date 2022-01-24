@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:corn_grain",
+    "rankine:oat_grain",
+    "rankine:millet_grain",
+    "rankine:rice_grain",
+    "rankine:sorghum_grain"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "rankine:red_birch_planks"
+    }
+  ],
+  "result": {
+    "item": "rankine:red_birch_button"
+  }
+}

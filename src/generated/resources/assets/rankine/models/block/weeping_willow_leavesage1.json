@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "rankine:block/weeping_willow_leaves"
+  }
+}

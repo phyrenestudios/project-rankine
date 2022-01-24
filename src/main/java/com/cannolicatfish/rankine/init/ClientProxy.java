@@ -107,6 +107,8 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.ASPHALT_1.get(),
                 RankineBlocks.ASPHALT_2.get(),
                 RankineBlocks.ASPHALT_3.get(),
+                RankineBlocks.WILLOW_BRANCHLET.get(),
+                RankineBlocks.WILLOW_BRANCHLET_PLANT.get(),
 
                 RankineBlocks.TREE_TAP.get(),
                 RankineBlocks.TAP_LINE.get(),
@@ -133,6 +135,7 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.COB.get(),
                 RankineBlocks.CORN_STALK.get(),
                 RankineBlocks.SHORT_GRASS.get(),
+                RankineBlocks.LOCUST_SPINE.get(),
                 RankineBlocks.GWIHABAITE_CRYSTAL.get(),
                 RankineBlocks.STINGING_NETTLE.get(),
                 RankineBlocks.RED_CLOVER.get(),

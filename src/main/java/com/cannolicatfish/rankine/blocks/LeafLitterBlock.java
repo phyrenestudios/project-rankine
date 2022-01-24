@@ -45,7 +45,7 @@ public class LeafLitterBlock extends FallingBlock {
 
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return state.isSolidSide(worldIn,pos,Direction.DOWN) && super.isValidPosition(state, worldIn, pos);
+        return worldIn.getBlockState(pos.down()).isNormalCube(worldIn,pos.down());
     }
 
     @Override

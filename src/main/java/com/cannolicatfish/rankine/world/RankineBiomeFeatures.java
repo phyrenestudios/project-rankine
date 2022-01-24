@@ -13,6 +13,7 @@ import com.cannolicatfish.rankine.world.gen.placement.RankineDoublePlantPlacer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -22,55 +23,41 @@ import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.foliageplacer.*;
+import net.minecraft.world.gen.foliageplacer.AcaciaFoliagePlacer;
+import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.NoPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.trunkplacer.*;
+import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.ForkyTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
 import java.util.OptionalInt;
+import java.util.Set;
 
 public class RankineBiomeFeatures {
 
-    public static final BaseTreeFeatureConfig TEST_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.BALSAM_FIR_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.BALSAM_FIR_LEAVES.get().getDefaultState()), null, null, null)).setIgnoreVines().build();
-    public static final BaseTreeFeatureConfig COCONUT_PALM_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.COCONUT_PALM_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.COCONUT_PALM_LEAVES.get().getDefaultState()),null, null, null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig HONEY_LOCUST_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.HONEY_LOCUST_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.HONEY_LOCUST_LEAVES.get().getDefaultState()), null, new StraightTrunkPlacer(8, 3, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig WEEPING_WILLOW_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.WEEPING_WILLOW_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.WEEPING_WILLOW_LEAVES.get().getDefaultState()), null, new StraightTrunkPlacer(8, 3, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig JUNIPER_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.JUNIPER_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.JUNIPER_LEAVES.get().getDefaultState()), null, new StraightTrunkPlacer(3, 1, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig PINYON_PINE_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.PINYON_PINE_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.PINYON_PINE_LEAVES.get().getDefaultState()), null, new StraightTrunkPlacer(6, 4, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig RED_CEDAR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.CEDAR_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.CEDAR_LEAVES.get().getDefaultState()), null, new StraightTrunkPlacer(8, 5, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig MAGNOLIA_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.MAGNOLIA_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.MAGNOLIA_LEAVES.get().getDefaultState()), null, new StraightTrunkPlacer(4, 2, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig ERYTHRINA_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.ERYTHRINA_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.ERYTHRINA_LEAVES.get().getDefaultState()), null, new StraightTrunkPlacer(6, 3, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig BLACK_WALNUT_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.BLACK_WALNUT_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.BLACK_WALNUT_LEAVES.get().getDefaultState()), null, new StraightTrunkPlacer(10, 5, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig EASTERN_HEMLOCK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.EASTERN_HEMLOCK_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.EASTERN_HEMLOCK_LEAVES.get().getDefaultState()), null, new StraightTrunkPlacer(15, 10, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig WESTERN_HEMLOCK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.WESTERN_HEMLOCK_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.WESTERN_HEMLOCK_LEAVES.get().getDefaultState()), null, new StraightTrunkPlacer(25, 10, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig BALSAM_FIR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.BALSAM_FIR_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.BALSAM_FIR_LEAVES.get().getDefaultState()), null, new StraightTrunkPlacer(10, 10, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig SHORT_BALSAM_FIR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.BALSAM_FIR_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.BALSAM_FIR_LEAVES.get().getDefaultState()), null, new StraightTrunkPlacer(5, 4, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig COCONUT_PALM_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.COCONUT_PALM_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.COCONUT_PALM_LEAVES.get().getDefaultState()),null, new StraightTrunkPlacer(7, 10, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig RED_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.RED_BIRCH_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.RED_BIRCH_LEAVES.get().getDefaultState()),null, new StraightTrunkPlacer(4, 3, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig BLACK_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.BLACK_BIRCH_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.BLACK_BIRCH_LEAVES.get().getDefaultState()),null, new StraightTrunkPlacer(4, 6, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig YELLOW_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.YELLOW_BIRCH_LOG.get().getDefaultState()), new SimpleBlockStateProvider(RankineBlocks.YELLOW_BIRCH_LEAVES.get().getDefaultState()),null, new StraightTrunkPlacer(6, 6, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.BIRCH_LOG.getDefaultState()), new SimpleBlockStateProvider(Blocks.BIRCH_LEAVES.getDefaultState()),null, new StraightTrunkPlacer(6, 6, 0), null)).setIgnoreVines().build();
+    public static final BaseTreeFeatureConfig PETRIFIED_CHORUS_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.PETRIFIED_CHORUS_LOG.get().getDefaultState()), null,null, null, null)).setIgnoreVines().build();
 
-    public static final BaseTreeFeatureConfig CEDAR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.CEDAR_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(RankineBlocks.CEDAR_LEAVES.get().getDefaultState()),
-            new SpruceFoliagePlacer(FeatureSpread.create(2, 1), FeatureSpread.create(0, 2), FeatureSpread.create(1, 1)),
-            new StraightTrunkPlacer(7, 4, 1),
-            new TwoLayerFeature(2, 0, 2)))
-            .setIgnoreVines()
-            .build();
 
-    public static final BaseTreeFeatureConfig BALSAM_FIR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.BALSAM_FIR_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(RankineBlocks.BALSAM_FIR_LEAVES.get().getDefaultState()),
-            new SpruceFoliagePlacer(FeatureSpread.create(1, 0), FeatureSpread.create(0, 2), FeatureSpread.create(1, 1)),
-            new StraightTrunkPlacer(8, 5, 0),
-            new TwoLayerFeature(2, 0, 2)))
-            .setIgnoreVines()
-            .build();
-
-    public static final BaseTreeFeatureConfig LARGE_EASTERN_HEMLOCK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.EASTERN_HEMLOCK_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(RankineBlocks.EASTERN_HEMLOCK_LEAVES.get().getDefaultState()),
-            new MegaPineFoliagePlacer(FeatureSpread.create(0, 0), FeatureSpread.create(0, 0), FeatureSpread.create(5, 8)),
-            new GiantTrunkPlacer(8, 2, 6),
-            new TwoLayerFeature(1, 1, 2)))
-            .setIgnoreVines()
-            .build();
-
-    public static final BaseTreeFeatureConfig MAGNOLIA_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.MAGNOLIA_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(RankineBlocks.MAGNOLIA_LEAVES.get().getDefaultState()),
-            new AcaciaFoliagePlacer(FeatureSpread.create(1, 0), FeatureSpread.create(0, 0)),
-            new ForkyTrunkPlacer(4, 2, 2),
-            new TwoLayerFeature(1, 0, 2)))
-            .setIgnoreVines()
-            .build();
 
     public static final BaseTreeFeatureConfig CINNAMON_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(RankineBlocks.CINNAMON_LOG.get().getDefaultState()),
@@ -80,89 +67,12 @@ public class RankineBiomeFeatures {
             new TwoLayerFeature(1, 0, 2)))
             .setIgnoreVines()
             .build();
-
-    public static final BaseTreeFeatureConfig PINYON_PINE_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.PINYON_PINE_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(RankineBlocks.PINYON_PINE_LEAVES.get().getDefaultState()),
-            new DarkOakFoliagePlacer(FeatureSpread.create(0), FeatureSpread.create(0)),
-            new DarkOakTrunkPlacer(5, 2, 2),
-            new ThreeLayerFeature(1, 2, 1, 1, 2, OptionalInt.empty())))
-            .setHeightmap(Heightmap.Type.MOTION_BLOCKING).setIgnoreVines()
-            .build();
-
-    public static final BaseTreeFeatureConfig JUNIPER_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.JUNIPER_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(RankineBlocks.JUNIPER_LEAVES.get().getDefaultState()),
-            new AcaciaFoliagePlacer(FeatureSpread.create(1, 0), FeatureSpread.create(1, 0)),
-            new ForkyTrunkPlacer(1, 1, 1),
-            new TwoLayerFeature(1, 1, 2)))
-            .setIgnoreVines()
-            .build();
-
-    public static final BaseTreeFeatureConfig ERYTHRINA_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.ERYTHRINA_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(RankineBlocks.ERYTHRINA_LEAVES.get().getDefaultState()),
-            new AcaciaFoliagePlacer(FeatureSpread.create(1, 0), FeatureSpread.create(0, 0)),
-            new FancyTrunkPlacer(4, 4, 2),
-            new ThreeLayerFeature(0, 0,0,0, 0, OptionalInt.of(4))))
-            .setIgnoreVines()
-            .build();
-
-
-
-
-    //OTHER TREE CONFIGS
-    public static final BaseTreeFeatureConfig DEAD_BALSAM_FIR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.BALSAM_FIR_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()),
-            new SpruceFoliagePlacer(FeatureSpread.create(1, 0), FeatureSpread.create(0, 2), FeatureSpread.create(1, 1)),
-            new StraightTrunkPlacer(5, 2, 1),
-            new TwoLayerFeature(2, 0, 2)))
-            .setIgnoreVines()
-            .build();
-
     public static final BaseTreeFeatureConfig MAPLE_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(RankineBlocks.MAPLE_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(RankineBlocks.MAPLE_LEAVES.get().getDefaultState()),
             new FancyFoliagePlacer(FeatureSpread.create(3, 0), FeatureSpread.create(4, 0), 4),
             new FancyTrunkPlacer(8, 4, 0),
             new TwoLayerFeature(0, 0, 0, OptionalInt.of(4))))
-            .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING)
-            .build();
-
-    public static final BaseTreeFeatureConfig YELLOW_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.YELLOW_BIRCH_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(RankineBlocks.YELLOW_BIRCH_LEAVES.get().getDefaultState()),
-            new FancyFoliagePlacer(FeatureSpread.create(2, 1), FeatureSpread.create(2, 0), 2),
-            new FancyTrunkPlacer(6, 2, 4),
-            new TwoLayerFeature(0, 0, 0, OptionalInt.of(4))))
-            .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING)
-            .build();
-
-    public static final BaseTreeFeatureConfig BLACK_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.BLACK_BIRCH_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(RankineBlocks.BLACK_BIRCH_LEAVES.get().getDefaultState()),
-            new FancyFoliagePlacer(FeatureSpread.create(2, 1), FeatureSpread.create(2, 0), 1),
-            new FancyTrunkPlacer(6, 2, 4),
-            new TwoLayerFeature(0, 0, 0, OptionalInt.of(4))))
-            .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING)
-            .build();
-
-    public static final BaseTreeFeatureConfig PETRIFIED_CHORUS_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.PETRIFIED_CHORUS_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()),
-            new FancyFoliagePlacer(FeatureSpread.create(0, 0), FeatureSpread.create(0, 0), 0),
-            new FancyTrunkPlacer(6, 4, 5),
-            new TwoLayerFeature(3, 0, 0, OptionalInt.of(5))))
-            .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING)
-            .build();
-
-    public static final BaseTreeFeatureConfig BLACK_WALNUT_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.BLACK_WALNUT_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(RankineBlocks.BLACK_WALNUT_LEAVES.get().getDefaultState()),
-            new FancyFoliagePlacer(FeatureSpread.create(2, 1), FeatureSpread.create(3, 0), 3),
-            new FancyTrunkPlacer(8, 2, 5),
-            new TwoLayerFeature(2, 0, 0, OptionalInt.of(4))))
             .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING)
             .build();
 
@@ -205,6 +115,9 @@ public class RankineBiomeFeatures {
     public static final BlockClusterFeatureConfig BLACK_MORNING_GLORY_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.BLACK_MORNING_GLORY.get().getDefaultState()), DoublePlantBlockPlacer.PLACER)).tries(32).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT)).preventProjection().build();
     public static final BlockClusterFeatureConfig BLUE_MORNING_GLORY_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.BLUE_MORNING_GLORY.get().getDefaultState()), DoublePlantBlockPlacer.PLACER)).tries(32).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT)).preventProjection().build();
 
+
+
+
     private static <FC extends IFeatureConfig> void CFregister(String name, ConfiguredFeature<FC, ?> configuredFeature) {
         Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(ProjectRankine.MODID, name), configuredFeature);
     }
@@ -217,6 +130,7 @@ public class RankineBiomeFeatures {
         CFregister("antimatter_blob",ANTIMATTER_BLOB);
         CFregister("fumarole",FUMAROLE);
         CFregister("column",COLUMN);
+        CFregister("wall_mushrooms",MUSHROOMS);
         CFregister("elderberry_bush",ELDERBERRY_BUSH);
         CFregister("elderberry_bush",POKEBERRY_BUSH);
         CFregister("snowberry_bush",SNOWBERRY_BUSH);
@@ -235,30 +149,15 @@ public class RankineBiomeFeatures {
         CFregister("red_lily_patch",RED_LILY_PATCH);
         CFregister("orange_lily_patch",ORANGE_LILY_PATCH);
         CFregister("white_lily_patch",WHITE_LILY_PATCH);
-        CFregister("petrified_chorus_tree",PETRIFIED_CHORUS_TREE);
-        CFregister("yellow_birch_tree",YELLOW_BIRCH_TREE);
-        CFregister("black_birch_tree",BLACK_BIRCH_TREE);
-        CFregister("eastern_hemlock_tree",EASTERN_HEMLOCK_TREE);
-        CFregister("cedar_tree",CEDAR_TREE);
-        CFregister("pinyon_pine_tree",PINYON_PINE_TREE);
-        CFregister("balsam_fir_tree",BALSAM_FIR_TREE);
-        CFregister("dead_balsam_fir_tree",DEAD_BALSAM_FIR_TREE);
-        CFregister("magnolia_tree",MAGNOLIA_TREE);
-        CFregister("juniper_tree",JUNIPER_TREE);
-        CFregister("erythrina_tree",ERYTHRINA_TREE);
-        CFregister("maple_tree",MAPLE_TREE);
-        CFregister("black_walnut_tree",BLACK_WALNUT_TREE);
-        CFregister("cork_oak_tree",CORK_OAK_TREE);
-        CFregister("sharinga_tree",SHARINGA_TREE);
-        CFregister("cinnamon_tree",CINNAMON_TREE);
+        CFregister("cobble_patch",COBBLE_PATCH);
         CFregister("flat_bedrock",FLAT_BEDROCK);
         CFregister("flat_bedrock_nether",FLAT_BEDROCK_NETHER);
         CFregister("ore_alluvium",ORE_ALLUVIUM);
         CFregister("ore_evaporite",ORE_EVAPORITE);
         CFregister("ore_intrusion", INTRUSION_FEATURE);
-        CFregister("soil_gen", WORLD_REPLACER_GEN);
+        CFregister("rock_gen", WORLD_REPLACER_GEN);
+        CFregister("soil_gen", POST_WORLD_REPLACER_GEN);
         CFregister("snow_gen",SNOW_GEN);
-        //CFregister("test_tree",TEST_TREE_CF);
 
     }
 
@@ -279,6 +178,8 @@ public class RankineBiomeFeatures {
             .withPlacement(Placement.CHANCE.configure(new ChanceConfig(40)));
     public static final ConfiguredFeature<?, ?> COLUMN = RankineFeatures.COLUMN_FEATURE.get().withConfiguration(new NoFeatureConfig())
             .withPlacement(Placement.CHANCE.configure(new ChanceConfig(1)));
+    public static final ConfiguredFeature<?, ?> MUSHROOMS = RankineFeatures.WALL_MUSHROOMS.get().withConfiguration(new NoFeatureConfig())
+            .withPlacement(Placement.CHANCE.configure(new ChanceConfig(3)));
 
     // VEGETAL_DECORATION
     public static final ConfiguredFeature<?, ?> ELDERBERRY_BUSH = Feature.RANDOM_PATCH.withConfiguration(RankineBiomeFeatures.ELDERBERRY_BUSH_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);
@@ -300,40 +201,8 @@ public class RankineBiomeFeatures {
     public static final ConfiguredFeature<?, ?> BLUE_MORNING_GLORY_PATCH= Feature.RANDOM_PATCH.withConfiguration(RankineBiomeFeatures.BLUE_MORNING_GLORY_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);
     public static final ConfiguredFeature<?, ?> BLACK_MORNING_GLORY_PATCH = Feature.RANDOM_PATCH.withConfiguration(RankineBiomeFeatures.BLACK_MORNING_GLORY_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);
 
-
-    public static final ConfiguredFeature<?, ?> PETRIFIED_CHORUS_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.PETRIFIED_CHORUS_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1)));
-    public static final ConfiguredFeature<?, ?> YELLOW_BIRCH_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.YELLOW_BIRCH_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
-    public static final ConfiguredFeature<?, ?> BLACK_BIRCH_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.BLACK_BIRCH_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
-    public static final ConfiguredFeature<?, ?> EASTERN_HEMLOCK_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.LARGE_EASTERN_HEMLOCK_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1)));
-    public static final ConfiguredFeature<?, ?> CEDAR_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.CEDAR_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
-    public static final ConfiguredFeature<?, ?> PINYON_PINE_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.PINYON_PINE_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
-    public static final ConfiguredFeature<?, ?> DEAD_BALSAM_FIR_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.DEAD_BALSAM_FIR_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1)));
-    public static final ConfiguredFeature<?, ?> MAGNOLIA_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.MAGNOLIA_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3)));
-    public static final ConfiguredFeature<?, ?> JUNIPER_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.JUNIPER_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
-    public static final ConfiguredFeature<?, ?> ERYTHRINA_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.ERYTHRINA_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1)));
-    public static final ConfiguredFeature<?, ?> MAPLE_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.MAPLE_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(11)));
-    public static final ConfiguredFeature<?, ?> BLACK_WALNUT_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.BLACK_WALNUT_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
-    public static final ConfiguredFeature<?, ?> CORK_OAK_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.CORK_OAK_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3)));
-    public static final ConfiguredFeature<?, ?> SHARINGA_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.SHARINGA_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1)));
-    public static final ConfiguredFeature<?, ?> CINNAMON_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.CINNAMON_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1)));
-
-    public static final ConfiguredFeature<?, ?> BALSAM_FIR_TREE = Feature.TREE.withConfiguration(RankineBiomeFeatures.BALSAM_FIR_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
+    public static Set<Block> blks = ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT, Blocks.STONE);
+    public static final ConfiguredFeature<?, ?> COBBLE_PATCH = Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.COBBLE.get().getDefaultState()), SimpleBlockPlacer.PLACER)).tries(64).whitelist(blks).preventProjection().build()).withPlacement(Features.Placements.PATCH_PLACEMENT);
 
     // UNDERGROUND_ORES
     public static final ConfiguredFeature<?, ?> FLAT_BEDROCK = RankineFeatures.FLAT_BEDROCK_FEATURE.get().withConfiguration(
@@ -348,6 +217,8 @@ public class RankineBiomeFeatures {
     public static final ConfiguredFeature<?, ?> INTRUSION_FEATURE = RankineFeatures.INTRUSION.get().withConfiguration(new NoFeatureConfig())
             .withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(1)));
     public static final ConfiguredFeature<?, ?> WORLD_REPLACER_GEN = RankineFeatures.WORLD_REPLACER_FEATURE.get().withConfiguration(new NoFeatureConfig())
+            .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+    public static final ConfiguredFeature<?, ?> POST_WORLD_REPLACER_GEN = RankineFeatures.POST_WORLD_REPLACER_FEATURE.get().withConfiguration(new NoFeatureConfig())
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?, ?> SNOW_GEN = RankineFeatures.SNOW_REPLACER.get().withConfiguration(new NoFeatureConfig())
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
