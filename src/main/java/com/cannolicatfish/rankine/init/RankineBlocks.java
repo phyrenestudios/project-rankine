@@ -58,6 +58,7 @@ import com.cannolicatfish.rankine.blocks.tap.TapLineBlock;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilTile;
+import com.cannolicatfish.rankine.fluids.CarbonDisulfideFlowingFluidBlock;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import com.cannolicatfish.rankine.world.trees.*;
 import net.minecraft.block.*;
@@ -2538,7 +2539,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RESIN = REGISTRY.register("resin", () -> new FlowingFluidBlock(() -> RankineFluids.RESIN, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> JUGLONE = REGISTRY.register("juglone", () -> new FlowingFluidBlock(() -> RankineFluids.JUGLONE, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> AQUA_REGIA = REGISTRY.register("aqua_regia", () -> new FlowingFluidBlock(()-> RankineFluids.AQUA_REGIA,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
-    public static final RegistryObject<Block> CARBON_DISULFIDE = REGISTRY.register("carbon_disulfide", () -> new FlowingFluidBlock(()-> RankineFluids.CARBON_DISULFIDE,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<Block> CARBON_DISULFIDE = REGISTRY.register("carbon_disulfide", () -> new CarbonDisulfideFlowingFluidBlock(()-> RankineFluids.CARBON_DISULFIDE,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> HEXAFLUOROSILICIC_ACID = REGISTRY.register("hexafluorosilicic_acid", () -> new FlowingFluidBlock(()-> RankineFluids.HEXAFLUOROSILICIC_ACID,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> HYDROBROMIC_ACID = REGISTRY.register("hydrobromic_acid", () -> new FlowingFluidBlock(()-> RankineFluids.HYDROBROMIC_ACID,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> GRAY_MUD = REGISTRY.register("gray_mud", () -> new FlowingFluidBlock(()-> RankineFluids.GRAY_MUD,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));

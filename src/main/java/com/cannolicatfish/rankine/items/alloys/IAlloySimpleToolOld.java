@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public interface IAlloySimpleTool extends IAlloyItem {
+public interface IAlloySimpleToolOld extends IAlloyItem {
     @Override
     default void createAlloyNBT(ItemStack stack, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
         if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {

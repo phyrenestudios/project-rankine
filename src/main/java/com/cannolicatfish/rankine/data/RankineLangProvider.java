@@ -225,7 +225,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.ARROWS,
                 RankineLists.WOODEN_TOOLS,
                 RankineLists.STONE_TOOLS,
-                RankineLists.ALLOY_TOOLS,
                 RankineLists.FLINT_TOOLS,
                 RankineLists.BRONZE_TOOLS,
                 RankineLists.PEWTER_TOOLS,
@@ -253,6 +252,9 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MINERAL_ITEMS,
                 RankineLists.JAMS,
                 RankineLists.SEEDS,
+                RankineLists.BREADS,
+                RankineLists.RAW_FISH,
+                RankineLists.COOKED_FISH,
                 RankineLists.GRAINS).flatMap(Collection::stream).collect(Collectors.toList())) {
 
             if (item == RankineItems.SODIUM_CHLORIDE.get()) {
@@ -262,6 +264,13 @@ public class RankineLangProvider extends LanguageProvider {
             } else {
                 add(item, parseLangName(item.getRegistryName().getPath()));
             }
+        }
+
+        for (Item item : RankineLists.ALLOY_TOOLS) {
+            add(item, parseLangNameCustom(item.getRegistryName().getPath()));
+        }
+        for (Item item : Arrays.asList(RankineItems.ALLOY_NUGGET.get(),RankineItems.ALLOY_INGOT.get(),RankineItems.ALLOY_BLOCK.get())) {
+            add(item, parseLangNameCustom(item.getRegistryName().getPath()));
         }
 
         for (Item item : Arrays.asList(
@@ -322,11 +331,17 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.BORON_TRIOXIDE.get(),
             RankineItems.VANADIUM_PENTOXIDE.get(),
             RankineItems.SODIUM_FLUOROSILICATE.get(),
+            RankineItems.YELLOWCAKE.get(),
             RankineItems.ASBESTOS.get(),
             RankineItems.THENARDITE.get(),
             RankineItems.BORAX.get(),
             RankineItems.SODIUM_SULFIDE.get(),
+            RankineItems.LITHIUM_HYDROXIDE.get(),
             RankineItems.SODIUM_HYDROXIDE.get(),
+            RankineItems.POTASSIUM_HYDROXIDE.get(),
+            RankineItems.RUBIDIUM_HYDROXIDE.get(),
+            RankineItems.CESIUM_HYDROXIDE.get(),
+            RankineItems.FRANCIUM_HYDROXIDE.get(),
             RankineItems.BETA_ALUMINA_SOLID_ELECTROLYTE.get(),
             RankineItems.LITHIUM_COBALT_OXIDE.get(),
             RankineItems.SODIUM_CARBONATE.get(),
@@ -386,6 +401,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.FIRE_EXTINGUISHER.get(),
             RankineItems.ROCK_DRILL.get(),
             RankineItems.SPARK_LIGHTER.get(),
+            RankineItems.MAGNETOMETER.get(),
             RankineItems.THERMOMETER.get(),
             RankineItems.HARDNESS_TESTER.get(),
             RankineItems.TOTEM_OF_BLAZING.get(),
@@ -455,12 +471,58 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.CRUSHING_HEAD_HL5.get())) {
             add(item, parseLangName(item.getRegistryName().getPath()));
         }
+      
         add(RankineItems.GF_BREAD.get(),"Bread (Gluten Free)");
-
+      
+        //Alloy Lang
+        add("item.rankine.custom_alloy_default","Alloy");
+      
         //Alloy Ingots
-        add("item.rankine.crucible_steel_alloying", "Crucible Steel Ingot");
-        add("item.rankine.steel_alloying", "Tool Steel Ingot");
-        add("item.rankine.maraging_steel_alloying", "Maraging Steel Ingot");
+        add("item.rankine.alnico_alloying", "Alnico");
+        add("item.rankine.aluminum_bronze_alloying", "Aluminum Bronze");
+        add("item.rankine.amalgam_alloying", "Amalgam");
+        add("item.rankine.black_gold_alloying", "Black Gold");
+        add("item.rankine.black_gold_nr_alloying", "Black Netherite");
+        add("item.rankine.blue_gold_alloying", "Blue Gold");
+        add("item.rankine.blue_gold_nr_alloying", "Blue Netherite");
+        add("item.rankine.brass_alloying", "Brass");
+        add("item.rankine.bronze_alloying", "Bronze");
+        add("item.rankine.cast_iron_alloying", "Cast Iron");
+        add("item.rankine.cobalt_superalloy_alloying", "Cobalt Superalloy");
+        add("item.rankine.crucible_steel_alloying", "Crucible Steel");
+        add("item.rankine.cupronickel_alloying", "Cupronickel");
+        add("item.rankine.duralumin_alloying", "Duralumin");
+        add("item.rankine.ender_amalgam_alloying", "Ender Amalgam");
+        add("item.rankine.ferrocerium_alloying", "Ferrocerium");
+        add("item.rankine.galinstan_alloying", "Galinstan");
+        add("item.rankine.green_gold_alloying", "Green Gold");
+        add("item.rankine.green_gold_nr_alloying", "Green Netherite");
+        add("item.rankine.invar_alloying", "Invar");
+        add("item.rankine.magnesium_alloy_alloying", "Magnesium Alloy");
+        add("item.rankine.maraging_steel_alloying", "Maraging Steel");
+        add("item.rankine.mischmetal_alloying", "Mischmetal");
+        add("item.rankine.nickel_silver_alloying", "Nickel Silver");
+        add("item.rankine.nickel_superalloy_alloying", "Nickel Superalloy");
+        add("item.rankine.niobium_alloy_alloying", "Niobium Alloy");
+        add("item.rankine.nitinol_alloying", "Nitinol");
+        add("item.rankine.osmiridium_alloying", "Osmiridium");
+        add("item.rankine.pewter_alloying", "Pewter");
+        add("item.rankine.purple_gold_alloying", "Purple Gold");
+        add("item.rankine.purple_gold_nr_alloying", "Purple Netherite");
+        add("item.rankine.rose_gold_alloying", "Rose Gold");
+        add("item.rankine.rose_gold_nr_alloying", "Rose Netherite");
+        add("item.rankine.sodium_potassium_alloy_alloying", "Sodium Potassium Alloy");
+        add("item.rankine.solder_ag_alloying", "Solder");
+        add("item.rankine.solder_pb_alloying", "Solder");
+        add("item.rankine.stainless_steel_alloying", "Stainless Steel");
+        add("item.rankine.steel_alloying", "Tool Steel");
+        add("item.rankine.sterling_silver_alloying", "Sterling Silver");
+        add("item.rankine.titanium_alloy_alloying", "Titanium Alloy");
+        add("item.rankine.tungsten_heavy_alloy_alloying", "Tungsten Heavy Alloy");
+        add("item.rankine.white_gold_alloying", "White Gold");
+        add("item.rankine.white_gold_nr_alloying", "White Netherite");
+        add("item.rankine.zirconium_alloy_alloying", "Zirconium Alloy");
+
         //Alloy Plates
         add("item.rankine.alloy_plate_bronze", "Bronze Plate");
         add("item.rankine.alloy_plate_brass", "Brass Plate");
@@ -988,6 +1050,23 @@ public class RankineLangProvider extends LanguageProvider {
             }
         }
         return LangName;
+    }
+
+    private String parseLangNameCustom(String registryName) {
+        StringBuilder LangName = new StringBuilder();
+        for (String s : registryName.split("_")) {
+            if (LangName.toString().equals("")) {
+                String base = s.substring(0, 1).toUpperCase() + s.substring(1);
+                if (base.equals("Alloy")) {
+                    LangName = new StringBuilder("%1$s");
+                } else {
+                    LangName = new StringBuilder(base);
+                }
+            } else {
+                LangName.append(" ").append(s.substring(0, 1).toUpperCase()).append(s.substring(1));
+            }
+        }
+        return LangName.toString();
     }
 
 

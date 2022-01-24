@@ -1,13 +1,12 @@
 package com.cannolicatfish.rankine.util.alloys;
 
-import com.cannolicatfish.rankine.items.alloys.IAlloyArmor;
-import com.cannolicatfish.rankine.items.alloys.IAlloySimpleTool;
-import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
+import com.cannolicatfish.rankine.items.alloys.IAlloyArmorOld;
+import com.cannolicatfish.rankine.items.alloys.IAlloySimpleToolOld;
+import com.cannolicatfish.rankine.items.alloys.IAlloyToolOld;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 public class AlloyModifier {
 
@@ -53,9 +52,9 @@ public class AlloyModifier {
             }
 
         public boolean canApplyModification(Item item) {
-            if (item instanceof IAlloyTool) {
+            if (item instanceof IAlloyToolOld) {
                 return toolStats.contains(this.getType());
-            } else if (item instanceof IAlloyArmor || item instanceof IAlloySimpleTool) {
+            } else if (item instanceof IAlloyArmorOld || item instanceof IAlloySimpleToolOld) {
                 return otherStats.contains(this.getType());
             } else {
                 return false;

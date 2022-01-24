@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.*;
 
-public interface IAlloyArmor extends IAlloyItem {
+public interface IAlloyArmorOld extends IAlloyItem {
 
     PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
 

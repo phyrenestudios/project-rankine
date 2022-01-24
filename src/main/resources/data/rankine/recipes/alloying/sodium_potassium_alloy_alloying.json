@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 3,
+  "total": 4,
   "color": 12564673,
   "input1": {
     "element": "rankine:elements/potassium",
@@ -15,6 +15,11 @@
     "required": true
   },
   "input3": {
+    "element": "rankine:elements/cesium",
+    "min": 0.0,
+    "max": 0.45
+  },
+  "input4": {
     "element": "rankine:elements/rubidium",
     "min": 0.0,
     "max": 0.1

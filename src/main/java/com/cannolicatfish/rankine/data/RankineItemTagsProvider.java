@@ -782,6 +782,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.RODS_CARBON).add(RankineItems.HARD_CARBON_ELECTRODE.get());
         getOrCreateBuilder(Tags.Items.RODS).addTags(RankineTags.Items.RODS_GRAPHITE,RankineTags.Items.RODS_CARBON).add(RankineItems.ALLOY_ROD.get());
 
+        getOrCreateBuilder(RankineTags.Items.ALKALI_HYDROXIDES).add(RankineItems.LITHIUM_HYDROXIDE.get(),RankineItems.SODIUM_HYDROXIDE.get(),RankineItems.POTASSIUM_HYDROXIDE.get(),RankineItems.RUBIDIUM_HYDROXIDE.get(),RankineItems.CESIUM_HYDROXIDE.get(),RankineItems.FRANCIUM_HYDROXIDE.get());
+
         copy(RankineTags.Blocks.HARDENED_GLASS, RankineTags.Items.HARDENED_GLASS);
         copy(RankineTags.Blocks.CLAY, RankineTags.Items.CLAY);
         copy(RankineTags.Blocks.ICE, RankineTags.Items.ICE);

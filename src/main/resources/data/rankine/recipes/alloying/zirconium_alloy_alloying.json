@@ -1,0 +1,148 @@
+{
+  "type": "rankine:alloying",
+  "total": 28,
+  "color": 11848920,
+  "name": "Zirconium Alloy",
+  "input1": {
+    "element": "rankine:elements/zirconium",
+    "min": 0.50,
+    "max": 0.95,
+    "required": true
+  },
+  "input2": {
+    "element": "rankine:elements/vanadium",
+    "min": 0.20,
+    "max": 0.25
+  },
+  "input3": {
+    "element": "rankine:elements/beryllium",
+    "min": 0.20,
+    "max": 0.30
+  },
+  "input4": {
+    "element": "rankine:elements/titanium",
+    "min": 0.0,
+    "max": 0.16
+  },
+  "input5": {
+    "element": "rankine:elements/cobalt",
+    "min": 0.0,
+    "max": 0.16
+  },
+  "input6": {
+    "element": "rankine:elements/aluminum",
+    "min": 0.0,
+    "max": 0.16
+  },
+  "input7": {
+    "element": "rankine:elements/chromium",
+    "min": 0.0,
+    "max": 0.16
+  },
+  "input8": {
+    "element": "rankine:elements/iron",
+    "min": 0.00,
+    "max": 0.06
+  },
+  "input9": {
+    "element": "rankine:elements/nickel",
+    "min": 0.00,
+    "max": 0.06
+  },
+  "input10": {
+    "element": "rankine:elements/tin",
+    "min": 0.00,
+    "max": 0.06
+  },
+  "input11": {
+    "element": "rankine:elements/niobium",
+    "min": 0.00,
+    "max": 0.06
+  },
+  "input12": {
+    "element": "rankine:elements/tantalum",
+    "min": 0.00,
+    "max": 0.06
+  },
+  "input13": {
+    "element": "rankine:elements/hafnium",
+    "min": 0.00,
+    "max": 0.06
+  },
+  "input14": {
+    "element": "rankine:elements/cerium",
+    "min": 0.00,
+    "max": 0.06
+  },
+  "input15": {
+    "element": "rankine:elements/lanthanum",
+    "min": 0.00,
+    "max": 0.06
+  },
+  "input16": {
+    "element": "rankine:elements/neodymium",
+    "min": 0.00,
+    "max": 0.06
+  },
+  "input17": {
+    "element": "rankine:elements/praseodymium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input18": {
+    "element": "rankine:elements/promethium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input19": {
+    "element": "rankine:elements/samarium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input20": {
+    "element": "rankine:elements/europium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input21": {
+    "element": "rankine:elements/gadolinium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input22": {
+    "element": "rankine:elements/terbium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input23": {
+    "element": "rankine:elements/dysprosium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input24": {
+    "element": "rankine:elements/holmium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input25": {
+    "element": "rankine:elements/erbium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input26": {
+    "element": "rankine:elements/thulium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input27": {
+    "element": "rankine:elements/ytterbium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input28": {
+    "element": "rankine:elements/lutetium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "result": "rankine:zirconium_alloy_ingot"
+}

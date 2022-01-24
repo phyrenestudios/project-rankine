@@ -13,6 +13,7 @@ import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxScreen;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableScreen;
+import com.cannolicatfish.rankine.items.alloys.AlloySurfRodItem;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -20,7 +21,9 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.ItemModelsProperties;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -51,6 +54,20 @@ public class ClientProxy implements IProxy {
         ItemModelsProperties.registerProperty(RankineItems.SHULKER_GAS_VACUUM.get(),
                 new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living) ->
                         stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F);
+
+        ItemModelsProperties.registerProperty(RankineItems.ALLOY_SURF_ROD.get(), new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_) -> {
+            if (p_239422_2_ == null) {
+                return 0.0F;
+            } else {
+                boolean flag = p_239422_2_.getHeldItemMainhand() == p_239422_0_;
+                boolean flag1 = p_239422_2_.getHeldItemOffhand() == p_239422_0_;
+                if (p_239422_2_.getHeldItemMainhand().getItem() instanceof AlloySurfRodItem) {
+                    flag1 = false;
+                }
+
+                return (flag || flag1) && p_239422_2_ instanceof PlayerEntity && ((PlayerEntity)p_239422_2_).fishingBobber != null ? 1.0F : 0.0F;
+            }
+        });
     }
     @Override
     public void init() {

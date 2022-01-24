@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -32,6 +33,19 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool, IAlloyNeeds
         super(tier, (int) attackDamageIn, attackSpeedIn, builderIn);
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
+    }
+
+    @Override
+    public ITextComponent getDisplayName(ItemStack stack) {
+        if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
+            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
+        }
+        TranslationTextComponent translation = new TranslationTextComponent(this.getTranslationKey(stack));
+        if (translation.getString().contains("%1$s")) {
+            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent("item.rankine.custom_alloy_default"));
+        } else {
+            return super.getDisplayName(stack);
+        }
     }
 
 
@@ -73,73 +87,12 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool, IAlloyNeeds
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
-            p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
-        });
-        if (this.isAlloyInit(stack))
-        {
-            if (!Screen.hasShiftDown())
-            {
-                tooltip.add((new StringTextComponent("Hold shift for details...")).mergeStyle(TextFormatting.GRAY));
-            }
-            if (Screen.hasShiftDown())
-            {
-                if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
-                    tooltip.add((new StringTextComponent("Any Composition").mergeStyle(TextFormatting.GOLD)));
-                } else {
-                    tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD)));
-                }
-
-                if (!IAlloyItem.needsRefresh(stack)) {
-                    float eff = getAlloyEfficiency(stack);
-
-                    tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(stack) - getDamage(stack)) + "/" + getAlloyDurability(stack))).mergeStyle(TextFormatting.DARK_GREEN));
-                    tooltip.add((new StringTextComponent("Harvest Level: " + (getAlloyHarvestLevel(stack)))).mergeStyle(TextFormatting.GRAY));
-                    tooltip.add((new StringTextComponent("Mining Speed: " + df.format(eff))).mergeStyle(TextFormatting.GRAY));
-                    tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(stack))).mergeStyle(TextFormatting.GRAY));
-                    if (Config.ALLOYS.ALLOY_CORROSION.get())
-                    {
-                        tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
-                    }
-                    if (Config.ALLOYS.ALLOY_HEAT.get())
-                    {
-                        tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
-                    }
-                    if (Config.ALLOYS.ALLOY_TOUGHNESS.get())
-                    {
-                        tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
-                    }
-                }
-
-                if (flagIn.isAdvanced()) {
-                    if (IAlloyItem.getAlloyRecipe(stack) != null) {
-                        tooltip.add((new StringTextComponent("Recipe: " + (IAlloyItem.getAlloyRecipe(stack))).mergeStyle(TextFormatting.LIGHT_PURPLE)));
-                    } else {
-                        tooltip.add((new StringTextComponent("No Recipe Defined").mergeStyle(TextFormatting.LIGHT_PURPLE)));
-                    }
-
-                }
-            }
+        addAlloyInformation(stack,worldIn,tooltip,flagIn);
+        if (flagIn.isAdvanced()) {
+            addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
         }
     }
 
-    /*
-        @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
-        CompoundNBT nbt = stack.getTag();
-        if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au") && nbt != null && !nbt.getString("nameAdd").isEmpty() && !nbt.getString("nameAdd").equals("false")) {
-            String name = new TranslationTextComponent(this.getTranslationKey(stack)).getString();
-            String[] sp = name.split(" ");
-            if (sp.length > 0) {
-                name = sp[sp.length - 1];
-            }
-            return new StringTextComponent(stack.getTag().getString("nameAdd") + " " + name);
-        }
-        return super.getDisplayName(stack);
-    }
-
-
-     */
 
     @Override
     public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
@@ -152,9 +105,11 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool, IAlloyNeeds
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (!this.isAlloyInit(stack)) {
             this.createAlloyNBT(stack,worldIn,this.defaultComposition,this.defaultAlloyRecipe,null);
+            this.initStats(stack,getElementMap(this.defaultComposition,worldIn),getAlloyingRecipe(this.defaultAlloyRecipe,worldIn),null);
             this.applyAlloyEnchantments(stack,worldIn);
-        } else if (IAlloyItem.needsRefresh(stack)) {
+        } else if (this.needsRefresh(stack)) {
             this.createAlloyNBT(stack,worldIn,IAlloyItem.getAlloyComposition(stack),IAlloyItem.getAlloyRecipe(stack),null);
+            this.initStats(stack,getElementMap(IAlloyItem.getAlloyComposition(stack),worldIn),getAlloyingRecipe(IAlloyItem.getAlloyRecipe(stack),worldIn),null);
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }

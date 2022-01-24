@@ -52,28 +52,23 @@ public class AlloyItem extends Item implements IAlloyItem {
     @Override
     public ITextComponent getDisplayName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new TranslationTextComponent(IAlloyItem.getNameOverride(stack));
+            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
         }
-        return super.getDisplayName(stack);
+        TranslationTextComponent translation = new TranslationTextComponent(this.getTranslationKey(stack));
+        if (translation.getString().contains("%1$s")) {
+            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent("item.rankine.custom_alloy_default"));
+        } else {
+            return super.getDisplayName(stack);
+        }
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        if (this.isAlloyInit(stack)) {
-            if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
-                tooltip.add((new StringTextComponent("Any Composition").mergeStyle(TextFormatting.GOLD)));
-            } else {
-                tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD)));
-            }
-            if (flagIn.isAdvanced()) {
-                if (IAlloyItem.getAlloyRecipe(stack) != null) {
-                    tooltip.add((new StringTextComponent("Recipe: " + (IAlloyItem.getAlloyRecipe(stack))).mergeStyle(TextFormatting.LIGHT_PURPLE)));
-                } else {
-                    tooltip.add((new StringTextComponent("No Recipe Defined").mergeStyle(TextFormatting.LIGHT_PURPLE)));
-                }
 
-            }
+        addAlloyInformation(stack,worldIn,tooltip,flagIn);
+        if (flagIn.isAdvanced()) {
+            addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
         }
     }
 
@@ -81,7 +76,7 @@ public class AlloyItem extends Item implements IAlloyItem {
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (!this.isAlloyInit(stack)) {
             this.createAlloyNBT(stack,worldIn,this.defaultComposition,this.defaultAlloyRecipe,null);
-        } else if (IAlloyItem.needsRefresh(stack)) {
+        } else if (this.needsRefresh(stack)) {
             this.createAlloyNBT(stack,worldIn,IAlloyItem.getAlloyComposition(stack),IAlloyItem.getAlloyRecipe(stack),null);
         }
     }

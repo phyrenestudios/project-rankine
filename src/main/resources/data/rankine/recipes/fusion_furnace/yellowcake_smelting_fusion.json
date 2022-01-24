@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:yellowcake"
+  },
+  "input2": {
+    "item": "rankine:yellowcake"
+  },
+  "fluidInput": {
+    "fluid": "rankine:sulfuric_acid"
+  },
+  "result1": {
+    "item": "rankine:uranium_ingot"
+  },
+  "result2": {
+    "item": "rankine:uranium_ingot"
+  }
+}

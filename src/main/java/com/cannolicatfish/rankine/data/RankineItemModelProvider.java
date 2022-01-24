@@ -33,7 +33,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         //food items
-        for (Item item : Stream.of(RankineLists.SEEDS,RankineLists.GRAINS,RankineLists.GAS_BOTTLES,RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Item item : Stream.of(RankineLists.SEEDS,RankineLists.BREADS,RankineLists.GRAINS,RankineLists.RAW_FISH,RankineLists.COOKED_FISH,RankineLists.GAS_BOTTLES,RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(item);
         }
 
@@ -181,11 +181,17 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.BORON_TRIOXIDE.get());
         basicItem(RankineItems.VANADIUM_PENTOXIDE.get());
         basicItem(RankineItems.SODIUM_FLUOROSILICATE.get());
+        basicItem(RankineItems.YELLOWCAKE.get());
         basicItem(RankineItems.ASBESTOS.get());
         basicItem(RankineItems.THENARDITE.get());
         basicItem(RankineItems.BORAX.get());
         basicItem(RankineItems.SODIUM_SULFIDE.get());
+        basicItem(RankineItems.LITHIUM_HYDROXIDE.get());
         basicItem(RankineItems.SODIUM_HYDROXIDE.get());
+        basicItem(RankineItems.POTASSIUM_HYDROXIDE.get());
+        basicItem(RankineItems.RUBIDIUM_HYDROXIDE.get());
+        basicItem(RankineItems.CESIUM_HYDROXIDE.get());
+        basicItem(RankineItems.FRANCIUM_HYDROXIDE.get());
         basicItem(RankineItems.BETA_ALUMINA_SOLID_ELECTROLYTE.get());
         basicItem(RankineItems.LITHIUM_COBALT_OXIDE.get());
         basicItem(RankineItems.SODIUM_CARBONATE.get());
@@ -248,6 +254,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.FIRE_EXTINGUISHER.get());
         basicItem(RankineItems.ROCK_DRILL.get());
         basicItem(RankineItems.SPARK_LIGHTER.get());
+        basicItem(RankineItems.MAGNETOMETER.get());
         basicItem(RankineItems.THERMOMETER.get());
         basicItem(RankineItems.HARDNESS_TESTER.get());
         basicItem(RankineItems.TOTEM_OF_BLAZING.get());

@@ -401,6 +401,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> CRAFTING_METAL_NUGGETS = modItem("crafting_metal_nuggets");
         public static final ITag.INamedTag<Item> CRAFTING_METAL_INGOTS = modItem("crafting_metal_ingots");
         public static final ITag.INamedTag<Item> CRAFTING_METAL_BLOCKS = modItem("crafting_metal_blocks");
+        public static final ITag.INamedTag<Item> ALKALI_HYDROXIDES = modItem("alkali_hydroxides");
 
         public static final ITag.INamedTag<Item> COLORED_GOLD_INGOTS = modItem("colored_gold_ingots");
         public static final ITag.INamedTag<Item> COLORED_GOLD_TOOLS = modItem("colored_gold_tools");
