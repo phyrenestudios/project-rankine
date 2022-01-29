@@ -7,10 +7,10 @@
       "model": "rankine:block/purple_porphyry_bricks_vertical"
     },
     "mode=2": {
-      "model": "rankine:block/purple_porphyry_bricks"
+      "model": "rankine:block/purple_porphyry_bricks_mossy"
     },
     "mode=3": {
-      "model": "rankine:block/purple_porphyry_bricks"
+      "model": "rankine:block/purple_porphyry_bricks_snowy"
     }
   }
 }

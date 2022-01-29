@@ -1,0 +1,26 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:sorghum"
+  },
+  "output1": {
+    "item": "rankine:sorghum_grain",
+    "count": 1,
+    "chance": 1.0
+  },
+  "output2": {
+    "item": "rankine:plant_fiber",
+    "count": 2,
+    "chance": 1.0
+  },
+  "output3": {
+    "item": "rankine:sorghum_seeds",
+    "count": 1,
+    "chance": 0.5
+  },
+  "output4": {
+    "item": "rankine:sorghum_grain",
+    "count": 1,
+    "chance": 0.2
+  }
+}

@@ -1,0 +1,128 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"particle": "#all"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 5],
+			"to": [10, 4, 11],
+			"faces": {
+				"north": {"uv": [0, 0, 5, 4], "texture": "#all"},
+				"east": {"uv": [0, 0, 6, 4], "texture": "#all"},
+				"south": {"uv": [0, 0, 5, 4], "texture": "#all"},
+				"west": {"uv": [0, 0, 6, 4], "texture": "#all"},
+				"up": {"uv": [0, 0, 5, 6], "texture": "#all"},
+				"down": {"uv": [0, 0, 5, 6], "texture": "#all"}
+			}
+		},
+		{
+			"from": [5, 4, 6],
+			"to": [10, 5, 10],
+			"faces": {
+				"north": {"uv": [0, 0, 5, 1], "texture": "#all"},
+				"east": {"uv": [0, 0, 4, 1], "texture": "#all"},
+				"south": {"uv": [0, 0, 5, 1], "texture": "#all"},
+				"west": {"uv": [0, 0, 4, 1], "texture": "#all"},
+				"up": {"uv": [0, 0, 5, 4], "texture": "#all"},
+				"down": {"uv": [0, 0, 5, 4], "texture": "#all"}
+			}
+		},
+		{
+			"from": [6, 5, 7],
+			"to": [9, 6, 10],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 1], "texture": "#all"},
+				"east": {"uv": [0, 0, 3, 1], "texture": "#all"},
+				"south": {"uv": [0, 0, 3, 1], "texture": "#all"},
+				"west": {"uv": [0, 0, 3, 1], "texture": "#all"},
+				"up": {"uv": [0, 0, 3, 3], "texture": "#all"},
+				"down": {"uv": [0, 0, 3, 3], "texture": "#all"}
+			}
+		},
+		{
+			"from": [4, 0, 6],
+			"to": [5, 3, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 1, 3], "texture": "#all"},
+				"east": {"uv": [0, 0, 3, 3], "texture": "#all"},
+				"south": {"uv": [0, 0, 1, 3], "texture": "#all"},
+				"west": {"uv": [0, 0, 3, 3], "texture": "#all"},
+				"up": {"uv": [0, 0, 1, 3], "texture": "#all"},
+				"down": {"uv": [0, 0, 1, 3], "texture": "#all"}
+			}
+		},
+		{
+			"from": [10, 0, 8],
+			"to": [11, 4, 11],
+			"faces": {
+				"north": {"uv": [0, 0, 1, 4], "texture": "#all"},
+				"east": {"uv": [0, 0, 3, 4], "texture": "#all"},
+				"south": {"uv": [0, 0, 1, 4], "texture": "#all"},
+				"west": {"uv": [0, 0, 3, 4], "texture": "#all"},
+				"up": {"uv": [0, 0, 1, 3], "texture": "#all"},
+				"down": {"uv": [0, 0, 1, 3], "texture": "#all"}
+			}
+		},
+		{
+			"from": [10, 0, 5],
+			"to": [12, 3, 8],
+			"faces": {
+				"north": {"uv": [0, 0, 2, 3], "texture": "#all"},
+				"east": {"uv": [0, 0, 3, 3], "texture": "#all"},
+				"south": {"uv": [0, 0, 2, 3], "texture": "#all"},
+				"west": {"uv": [0, 0, 3, 3], "texture": "#all"},
+				"up": {"uv": [0, 0, 2, 3], "texture": "#all"},
+				"down": {"uv": [0, 0, 2, 3], "texture": "#all"}
+			}
+		},
+		{
+			"from": [6, 0, 3],
+			"to": [11, 2, 5],
+			"faces": {
+				"north": {"uv": [0, 0, 5, 2], "texture": "#all"},
+				"east": {"uv": [0, 0, 2, 2], "texture": "#all"},
+				"south": {"uv": [0, 0, 5, 2], "texture": "#all"},
+				"west": {"uv": [0, 0, 2, 2], "texture": "#all"},
+				"up": {"uv": [0, 0, 5, 2], "texture": "#all"},
+				"down": {"uv": [0, 0, 5, 2], "texture": "#all"}
+			}
+		},
+		{
+			"from": [6, 0, 11],
+			"to": [10, 3, 12],
+			"faces": {
+				"north": {"uv": [0, 0, 4, 3], "texture": "#all"},
+				"east": {"uv": [0, 0, 1, 3], "texture": "#all"},
+				"south": {"uv": [0, 0, 4, 3], "texture": "#all"},
+				"west": {"uv": [0, 0, 1, 3], "texture": "#all"},
+				"up": {"uv": [0, 0, 4, 1], "texture": "#all"},
+				"down": {"uv": [0, 0, 4, 1], "texture": "#all"}
+			}
+		},
+		{
+			"from": [7, 2, 4],
+			"to": [10, 3, 5],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 1], "texture": "#all"},
+				"east": {"uv": [0, 0, 1, 1], "texture": "#all"},
+				"south": {"uv": [0, 0, 3, 1], "texture": "#all"},
+				"west": {"uv": [0, 0, 1, 1], "texture": "#all"},
+				"up": {"uv": [0, 0, 3, 1], "texture": "#all"},
+				"down": {"uv": [0, 0, 3, 1], "texture": "#all"}
+			}
+		},
+		{
+			"from": [6, 4, 5],
+			"to": [9, 5, 6],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 1], "texture": "#all"},
+				"east": {"uv": [0, 0, 1, 1], "texture": "#all"},
+				"south": {"uv": [0, 0, 3, 1], "texture": "#all"},
+				"west": {"uv": [0, 0, 1, 1], "texture": "#all"},
+				"up": {"uv": [0, 0, 3, 1], "texture": "#all"},
+				"down": {"uv": [0, 0, 3, 1], "texture": "#all"}
+			}
+		}
+	]
+}

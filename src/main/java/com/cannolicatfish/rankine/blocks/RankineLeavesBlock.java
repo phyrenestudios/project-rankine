@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -45,7 +46,8 @@ public class RankineLeavesBlock extends LeavesBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get() && (worldIn.getBlockState(pos.down()).matchesBlock(Blocks.AIR) || worldIn.getBlockState(pos.down()).isReplaceable(Fluids.WATER))) {
+        BlockState bs = worldIn.getBlockState(pos.down());
+        if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get() && (bs.matchesBlock(Blocks.AIR) || bs.isReplaceable(Fluids.WATER)) && !bs.matchesBlock(RankineBlocks.WILLOW_BRANCHLET.get())) {
                 worldIn.setBlockState(pos.down(), RankineLists.LEAF_LITTERS.get(RankineLists.LEAVES.indexOf(state.getBlock())).getDefaultState(),2);
         }
         if (worldIn.getBlockState(pos.up()).matchesBlock(Blocks.SNOW)) {

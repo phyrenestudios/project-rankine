@@ -7,10 +7,10 @@
       "model": "rankine:block/phyllite_bricks_vertical"
     },
     "mode=2": {
-      "model": "rankine:block/phyllite_bricks"
+      "model": "rankine:block/phyllite_bricks_mossy"
     },
     "mode=3": {
-      "model": "rankine:block/phyllite_bricks"
+      "model": "rankine:block/phyllite_bricks_snowy"
     }
   }
 }

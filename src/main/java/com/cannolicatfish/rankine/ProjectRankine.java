@@ -113,7 +113,8 @@ public class ProjectRankine {
         RankineBlocks.REGISTRY.register(Bus);
         RankineItems.REGISTRY.register(Bus);
         RankineFeatures.REGISTRY.register(Bus);
-        RankineSoundEvents.REGISTRY.register(Bus);
+        RankineSoundEvents.SOUNDS.register(Bus);
+        RankineBlockPlacerType.BLOCK_PLACERS.register(Bus);
         //Bus.addListener(this::construct);
 
         Bus.addListener(this::LoadComplete);

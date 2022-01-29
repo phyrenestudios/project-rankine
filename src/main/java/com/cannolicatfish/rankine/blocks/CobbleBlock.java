@@ -1,9 +1,7 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.IWaterLoggable;
+import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
@@ -23,13 +21,13 @@ import javax.annotation.Nullable;
 public class CobbleBlock extends Block implements IWaterLoggable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public CobbleBlock(Properties builder) {
-        super(builder);
+    public CobbleBlock() {
+        super(AbstractBlock.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1.5F, 3.0F).harvestLevel(0));
         this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, Boolean.FALSE));
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 8.0D, 10.0D, 8.0D);
+        return Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 4.0D, 12.0D);
     }
 
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
@@ -59,8 +57,13 @@ public class CobbleBlock extends Block implements IWaterLoggable {
         return null;
     }
 
+    @Override
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        return worldIn.getBlockState(pos.down()).isNormalCube(worldIn,pos.down());
+    }
+
     public OffsetType getOffsetType() {
-        return OffsetType.XZ;
+        return OffsetType.XYZ;
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

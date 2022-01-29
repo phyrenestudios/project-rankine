@@ -1,15 +1,17 @@
 package com.cannolicatfish.rankine.world;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
+import com.cannolicatfish.rankine.blocks.plants.RankineCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
+import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineFeatures;
 import com.cannolicatfish.rankine.world.gen.feature.MeteoriteFeatureConfig;
 import com.cannolicatfish.rankine.world.gen.feature.ReplacerFeatureConfig;
 import com.cannolicatfish.rankine.world.gen.feature.ReplacerPlacement;
-import com.cannolicatfish.rankine.world.gen.placement.IntrusionPlacement;
-import com.cannolicatfish.rankine.world.gen.placement.RankineDoublePlantPlacer;
+import com.cannolicatfish.rankine.world.gen.placers.*;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -116,8 +118,6 @@ public class RankineBiomeFeatures {
     public static final BlockClusterFeatureConfig BLUE_MORNING_GLORY_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.BLUE_MORNING_GLORY.get().getDefaultState()), DoublePlantBlockPlacer.PLACER)).tries(32).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT)).preventProjection().build();
 
 
-
-
     private static <FC extends IFeatureConfig> void CFregister(String name, ConfiguredFeature<FC, ?> configuredFeature) {
         Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(ProjectRankine.MODID, name), configuredFeature);
     }
@@ -130,6 +130,7 @@ public class RankineBiomeFeatures {
         CFregister("antimatter_blob",ANTIMATTER_BLOB);
         CFregister("fumarole",FUMAROLE);
         CFregister("column",COLUMN);
+        CFregister("cobble_patch",COBBLE_PATCH);
         CFregister("wall_mushrooms",MUSHROOMS);
         CFregister("elderberry_bush",ELDERBERRY_BUSH);
         CFregister("elderberry_bush",POKEBERRY_BUSH);
@@ -149,7 +150,6 @@ public class RankineBiomeFeatures {
         CFregister("red_lily_patch",RED_LILY_PATCH);
         CFregister("orange_lily_patch",ORANGE_LILY_PATCH);
         CFregister("white_lily_patch",WHITE_LILY_PATCH);
-        CFregister("cobble_patch",COBBLE_PATCH);
         CFregister("flat_bedrock",FLAT_BEDROCK);
         CFregister("flat_bedrock_nether",FLAT_BEDROCK_NETHER);
         CFregister("ore_alluvium",ORE_ALLUVIUM);
@@ -158,6 +158,24 @@ public class RankineBiomeFeatures {
         CFregister("rock_gen", WORLD_REPLACER_GEN);
         CFregister("soil_gen", POST_WORLD_REPLACER_GEN);
         CFregister("snow_gen",SNOW_GEN);
+        CFregister("tinder_conk_mushroom",TINDER_CONK_MUSHROOM);
+        CFregister("lions_mane_mushroom",LIONS_MANE_MUSHROOM);
+        CFregister("turkey_tail_mushroom",TURKEY_TAIL_MUSHROOM);
+        CFregister("sulfur_shelf_mushroom",SULFUR_SHELF_MUSHROOM);
+        CFregister("honey_mushroom",HONEY_MUSHROOM);
+        CFregister("artist_conk_mushroom",ARTIST_CONK_MUSHROOM);
+        CFregister("oyster_mushroom",OYSTER_MUSHROOM);
+        CFregister("cinnabar_polypore_mushroom",CINNABAR_POLYPORE_MUSHROOM);
+        CFregister("oat_plant_patch",OAT_PLANT_PATCH);
+        CFregister("rice_plant_patch",RICE_PLANT_PATCH);
+        CFregister("millet_plant_patch",MILLET_PLANT_PATCH);
+        CFregister("rye_plant_patch",RYE_PLANT_PATCH);
+        CFregister("barley_plant_patch",BARLEY_PLANT_PATCH);
+        CFregister("cotton_plant_patch",COTTON_PLANT_PATCH);
+        CFregister("asparagus_plant_patch",ASPARAGUS_PLANT_PATCH);
+        CFregister("corn_plant_patch",CORN_PLANT_PATCH);
+        CFregister("sorghum_plant_patch",SORGHUM_PLANT_PATCH);
+        CFregister("jute_plant_patch",JUTE_PLANT_PATCH);
 
     }
 
@@ -201,8 +219,32 @@ public class RankineBiomeFeatures {
     public static final ConfiguredFeature<?, ?> BLUE_MORNING_GLORY_PATCH= Feature.RANDOM_PATCH.withConfiguration(RankineBiomeFeatures.BLUE_MORNING_GLORY_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);
     public static final ConfiguredFeature<?, ?> BLACK_MORNING_GLORY_PATCH = Feature.RANDOM_PATCH.withConfiguration(RankineBiomeFeatures.BLACK_MORNING_GLORY_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);
 
-    public static Set<Block> blks = ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT, Blocks.STONE);
-    public static final ConfiguredFeature<?, ?> COBBLE_PATCH = Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.COBBLE.get().getDefaultState()), SimpleBlockPlacer.PLACER)).tries(64).whitelist(blks).preventProjection().build()).withPlacement(Features.Placements.PATCH_PLACEMENT);
+
+    public static final ConfiguredFeature<?, ?> TINDER_CONK_MUSHROOM = RankineFeatures.TINDER_CONK_FEATURE.get().withConfiguration(new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(RankineBlocks.TINDER_CONK_MUSHROOM_BLOCK.get().getDefaultState())));
+    public static final ConfiguredFeature<?, ?> LIONS_MANE_MUSHROOM = RankineFeatures.LIONS_MANE_FEATURE.get().withConfiguration(new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(RankineBlocks.TINDER_CONK_MUSHROOM_BLOCK.get().getDefaultState())));
+    public static final ConfiguredFeature<?, ?> TURKEY_TAIL_MUSHROOM = RankineFeatures.TURKEY_TAIL_FEATURE.get().withConfiguration(new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(RankineBlocks.TURKEY_TAIL_MUSHROOM_BLOCK.get().getDefaultState())));
+    public static final ConfiguredFeature<?, ?> HONEY_MUSHROOM = RankineFeatures.HONEY_FEATURE.get().withConfiguration(new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(RankineBlocks.HONEY_MUSHROOM_BLOCK.get().getDefaultState())));
+    public static final ConfiguredFeature<?, ?> SULFUR_SHELF_MUSHROOM = RankineFeatures.SULFUR_SHELF_FEATURE.get().withConfiguration(new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(RankineBlocks.SULFUR_SHELF_MUSHROOM_BLOCK.get().getDefaultState())));
+    public static final ConfiguredFeature<?, ?> CINNABAR_POLYPORE_MUSHROOM = RankineFeatures.CINNABAR_POLYPORE_FEATURE.get().withConfiguration(new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(RankineBlocks.CINNABAR_POLYPORE_MUSHROOM_BLOCK.get().getDefaultState())));
+    public static final ConfiguredFeature<?, ?> ARTIST_CONK_MUSHROOM = RankineFeatures.ARTIST_CONK_FEATURE.get().withConfiguration(new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(RankineBlocks.ARTIST_CONK_MUSHROOM_BLOCK.get().getDefaultState())));
+    public static final ConfiguredFeature<?, ?> OYSTER_MUSHROOM = RankineFeatures.OYSTER_FEATURE.get().withConfiguration(new BlockStateProvidingFeatureConfig(new SimpleBlockStateProvider(RankineBlocks.OYSTER_MUSHROOM_BLOCK.get().getDefaultState())));
+
+    public static Set<Block> blks = ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT);
+    public static final ConfiguredFeature<?, ?> OAT_PLANT_PATCH = Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.OAT_PLANT.get().getDefaultState().with(RankineCropsBlock.AGE,7)), CropsBlockPlacer.PLACER)).tries(20).whitelist(blks).preventProjection().build()).withPlacement(Features.Placements.PATCH_PLACEMENT);
+    public static final ConfiguredFeature<?, ?> MILLET_PLANT_PATCH = Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.MILLET_PLANT.get().getDefaultState().with(RankineCropsBlock.AGE,7)), CropsBlockPlacer.PLACER)).tries(20).whitelist(blks).preventProjection().build()).withPlacement(Features.Placements.PATCH_PLACEMENT);
+    public static final ConfiguredFeature<?, ?> RICE_PLANT_PATCH = Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.RICE_PLANT.get().getDefaultState().with(RankineCropsBlock.AGE,7)), CropsBlockPlacer.PLACER)).tries(20).whitelist(blks).preventProjection().build()).withPlacement(Features.Placements.PATCH_PLACEMENT);
+    public static final ConfiguredFeature<?, ?> RYE_PLANT_PATCH = Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.RYE_PLANT.get().getDefaultState().with(DoubleCropsBlock.AGE,7)), DoubleCropsBlockPlacer.PLACER)).tries(20).whitelist(blks).preventProjection().build()).withPlacement(Features.Placements.PATCH_PLACEMENT);
+    public static final ConfiguredFeature<?, ?> BARLEY_PLANT_PATCH = Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.BARLEY_PLANT.get().getDefaultState().with(DoubleCropsBlock.AGE,7)), DoubleCropsBlockPlacer.PLACER)).tries(20).whitelist(blks).preventProjection().build()).withPlacement(Features.Placements.PATCH_PLACEMENT);
+    public static final ConfiguredFeature<?, ?> COTTON_PLANT_PATCH = Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.COTTON_PLANT.get().getDefaultState().with(DoubleCropsBlock.AGE,7)), DoubleCropsBlockPlacer.PLACER)).tries(20).whitelist(blks).preventProjection().build()).withPlacement(Features.Placements.PATCH_PLACEMENT);
+    public static final ConfiguredFeature<?, ?> ASPARAGUS_PLANT_PATCH = Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.ASPARAGUS_PLANT.get().getDefaultState().with(DoubleCropsBlock.AGE,7)), DoubleCropsBlockPlacer.PLACER)).tries(20).whitelist(blks).preventProjection().build()).withPlacement(Features.Placements.PATCH_PLACEMENT);
+    public static final ConfiguredFeature<?, ?> CORN_PLANT_PATCH = Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.CORN_PLANT.get().getDefaultState().with(TripleCropsBlock.AGE,7)), TripleCropsBlockPlacer.PLACER)).tries(20).whitelist(blks).preventProjection().build()).withPlacement(Features.Placements.PATCH_PLACEMENT);
+    public static final ConfiguredFeature<?, ?> SORGHUM_PLANT_PATCH = Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.SORGHUM_PLANT.get().getDefaultState().with(TripleCropsBlock.AGE,7)), TripleCropsBlockPlacer.PLACER)).tries(20).whitelist(blks).preventProjection().build()).withPlacement(Features.Placements.PATCH_PLACEMENT);
+    public static final ConfiguredFeature<?, ?> JUTE_PLANT_PATCH = Feature.RANDOM_PATCH.withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.JUTE_PLANT.get().getDefaultState().with(TripleCropsBlock.AGE,7)), TripleCropsBlockPlacer.PLACER)).tries(20).whitelist(blks).preventProjection().build()).withPlacement(Features.Placements.PATCH_PLACEMENT);
+
+    public static final ConfiguredFeature<?, ?> COBBLE_PATCH = RankineFeatures.COBBLE_PATCH.get().withConfiguration((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.PEGMATITE_COBBLE.get().getDefaultState()), SimpleBlockPlacer.PLACER)).tries(30).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT, Blocks.MYCELIUM, Blocks.SAND, Blocks.STONE)).preventProjection().build())
+            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1)));
+
+
 
     // UNDERGROUND_ORES
     public static final ConfiguredFeature<?, ?> FLAT_BEDROCK = RankineFeatures.FLAT_BEDROCK_FEATURE.get().withConfiguration(

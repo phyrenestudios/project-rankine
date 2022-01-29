@@ -80,6 +80,10 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(Items.LEATHER,1).addIngredient(RankineItems.SYNTHETIC_LEATHER.get()).addIngredient(RankineItems.SYNTHETIC_LEATHER.get()).addIngredient(RankineItems.SYNTHETIC_LEATHER.get()).addIngredient(RankineItems.SYNTHETIC_LEATHER.get()).addCriterion("has_ingredient", hasItem(RankineItems.SYNTHETIC_LEATHER.get())).build(consumer, "rankine:leather_from_synthetic_leather");
         ShapelessRecipeBuilder.shapelessRecipe(Items.LEATHER,1).addIngredient(RankineItems.BEAVER_PELT.get()).addIngredient(RankineItems.BEAVER_PELT.get()).addIngredient(RankineItems.BEAVER_PELT.get()).addIngredient(RankineItems.BEAVER_PELT.get()).addCriterion("has_ingredient", hasItem(RankineItems.BEAVER_PELT.get())).build(consumer, "rankine:leather_from_beaver_pelt");
 
+        ShapelessRecipeBuilder.shapelessRecipe(Items.MUSHROOM_STEW,1).addIngredient(RankineTags.Items.EDIBLE_MUSHROOMS).addIngredient(RankineTags.Items.EDIBLE_MUSHROOMS).addIngredient(RankineTags.Items.EDIBLE_MUSHROOMS).addIngredient(Items.BOWL).addCriterion("has_ingredient", hasItem(RankineTags.Items.EDIBLE_MUSHROOMS)).build(consumer, "rankine:mushroom_stew_from_edible_mushrooms");
+        ShapelessRecipeBuilder.shapelessRecipe(Items.RABBIT_STEW,1).addIngredient(Items.BAKED_POTATO).addIngredient(Items.COOKED_RABBIT).addIngredient(Items.BOWL).addIngredient(Items.CARROT).addIngredient(RankineTags.Items.EDIBLE_MUSHROOMS).addCriterion("has_ingredient", hasItem(Items.COOKED_RABBIT)).build(consumer, "rankine:rabbit_stew_from_edible_mushrooms");
+
+
         ShapelessRecipeBuilder.shapelessRecipe(Items.SUGAR,2).addIngredient(RankineItems.BONE_CHAR.get()).addIngredient(Items.SUGAR_CANE).addCriterion("has_ingredient", hasItem(RankineItems.BONE_CHAR.get())).build(consumer, "rankine:sugar_from_bone_char");
         ShapelessRecipeBuilder.shapelessRecipe(Items.SUGAR,2).addIngredient(RankineItems.MAPLE_SYRUP.get()).addCriterion("has_ingredient", hasItem(RankineItems.MAPLE_SYRUP.get())).build(consumer, "rankine:sugar_from_maple_syrup");
         ShapelessRecipeBuilder.shapelessRecipe(Items.BONE_MEAL,4).addIngredient(Items.WATER_BUCKET).addIngredient(RankineItems.ASH.get()).addIngredient(RankineItems.ASH.get()).addIngredient(RankineTags.Items.SULFUR).addCriterion("has_ingredient", hasItem(RankineTags.Items.SULFUR)).build(consumer, "rankine:bonemeal_from_ash");
@@ -261,6 +265,14 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(Items.FERN).addCriterion("has_ingredient", hasItem(Items.STICK)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_fern");
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(RankineItems.SHORT_GRASS.get()).addIngredient(RankineItems.SHORT_GRASS.get()).addCriterion("has_ingredient", hasItem(Items.STICK)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_short_grass");
 
+        ShapedRecipeBuilder.shapedRecipe(RankineItems.GF_BREAD.get(), 1).patternLine("###").key('#', RankineItems.MILLET.get()).setGroup("gf_bread").addCriterion("has_ingredient", hasItem(RankineItems.MILLET.get())).build(consumer,"rankine:gf_bread_from_millet");
+        ShapedRecipeBuilder.shapedRecipe(RankineItems.GF_BREAD.get(), 1).patternLine("###").key('#', RankineItems.OATS.get()).setGroup("gf_bread").addCriterion("has_ingredient", hasItem(RankineItems.OATS.get())).build(consumer,"rankine:gf_bread_from_oats");
+        ShapedRecipeBuilder.shapedRecipe(RankineItems.GF_BREAD.get(), 1).patternLine("###").key('#', RankineItems.SORGHUM.get()).setGroup("gf_bread").addCriterion("has_ingredient", hasItem(RankineItems.SORGHUM.get())).build(consumer,"rankine:gf_bread_from_sorghum");
+        ShapedRecipeBuilder.shapedRecipe(RankineItems.GF_BREAD.get(), 1).patternLine("###").key('#', RankineItems.RICE.get()).setGroup("gf_bread").addCriterion("has_ingredient", hasItem(RankineItems.RICE.get())).build(consumer,"rankine:gf_bread_from_rice");
+        ShapedRecipeBuilder.shapedRecipe(Items.BREAD, 1).patternLine("###").key('#', RankineItems.RYE.get()).setGroup("bread").addCriterion("has_ingredient", hasItem(RankineItems.RYE.get())).build(consumer,"rankine:bread_from_rye");
+        ShapedRecipeBuilder.shapedRecipe(Items.BREAD, 1).patternLine("###").key('#', RankineItems.BARLEY.get()).setGroup("bread").addCriterion("has_ingredient", hasItem(RankineItems.BARLEY.get())).build(consumer,"rankine:bread_from_barley");
+
+
         //pumice soap recipes
         ShapelessRecipeBuilder.shapelessRecipe(Items.COBBLESTONE,1).addIngredient(Items.MOSSY_COBBLESTONE).addIngredient(RankineItems.PUMICE_SOAP.get()).addCriterion("has_ingredient", hasItem(RankineItems.PUMICE_SOAP.get())).build(consumer, "rankine:cobblestone_from_pumice_soap");
         ShapelessRecipeBuilder.shapelessRecipe(Items.STONE_BRICKS,1).addIngredient(Items.MOSSY_STONE_BRICKS).addIngredient(RankineItems.PUMICE_SOAP.get()).addCriterion("has_ingredient", hasItem(RankineItems.PUMICE_SOAP.get())).build(consumer, "rankine:stone_bricks_from_pumice_soap");
@@ -277,7 +289,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shapedRecipe(RankineBlocks.PACKED_SNOW.get(), 2).patternLine("B#").patternLine("#B").key('#', Items.SNOW_BLOCK).key('B', Items.SNOWBALL).addCriterion("has_ingredient", hasItem(Items.SNOWBALL)).build(consumer);
         ShapedRecipeBuilder.shapedRecipe(RankineBlocks.ICE_BRICKS.get(), 2).patternLine("B#").patternLine("#B").key('#', RankineTags.Items.ICE).key('B', Items.SNOWBALL).addCriterion("has_ingredient", hasItem(Items.SNOWBALL)).build(consumer);
 
-        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.ASPHALT_0.get(),6).addIngredient(RankineItems.BITUMEN.get()).addIngredient(Items.GRAVEL).addIngredient(Items.GRAVEL).addIngredient(Items.SAND).addCriterion("has_ingredient", hasItem(RankineItems.BITUMEN.get())).build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.ASPHALT.get(),6).addIngredient(RankineItems.BITUMEN.get()).addIngredient(Items.GRAVEL).addIngredient(Items.GRAVEL).addIngredient(Items.SAND).addCriterion("has_ingredient", hasItem(RankineItems.BITUMEN.get())).build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.ROMAN_CONCRETE.get(),8).addIngredient(RankineTags.Items.TUFF).addIngredient(RankineTags.Items.TUFF).addIngredient(RankineTags.Items.TUFF).addIngredient(RankineTags.Items.TUFF).addIngredient(RankineItems.ALUMINA.get()).addIngredient(Tags.Items.GEMS_QUARTZ).addIngredient(RankineItems.CEMENT_MIX.get()).addIngredient(RankineItems.CEMENT_MIX.get()).addCriterion("has_ingredient", hasItem(RankineTags.Items.TUFF)).build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.BANDAGE.get(),3).addIngredient(RankineItems.RESIN_BUCKET.get()).addIngredient(RankineItems.ALOE.get()).addIngredient(Items.PAPER).addIngredient(Items.PAPER).addIngredient(Items.PAPER).addCriterion("has_ingredient", hasItem(RankineItems.ALOE.get())).setGroup("bandage").build(consumer, "rankine:bandage_from_paper");
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.BANDAGE.get(),6).addIngredient(RankineItems.RESIN_BUCKET.get()).addIngredient(RankineItems.ALOE.get()).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addIngredient(RankineTags.Items.CROPS_COTTON).addCriterion("has_ingredient", hasItem(RankineItems.ALOE.get())).setGroup("bandage").build(consumer, "rankine:bandage_from_cotton");
@@ -362,7 +374,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         //Machines
         ShapedRecipeBuilder.shapedRecipe(RankineBlocks.BEEHIVE_OVEN_PIT.get(), 1).patternLine(" S ").patternLine("SLS").patternLine(" S ").key('S', RankineBlocks.REFRACTORY_BRICKS.get()).key('L', Tags.Items.STORAGE_BLOCKS_COAL).addCriterion("has_ingredient", hasItem(RankineItems.REFRACTORY_BRICKS.get())).build(consumer);
         ShapedRecipeBuilder.shapedRecipe(RankineBlocks.ALLOY_FURNACE.get(), 1).patternLine("BSB").patternLine("BSB").patternLine("BCB").key('B', RankineBlocks.REFRACTORY_BRICKS.get()).key('S', RankineTags.Items.SHEETMETAL).key('C', RankineTags.Items.CAMPFIRES).addCriterion("has_ingredient", hasItem(RankineItems.REFRACTORY_BRICKS.get())).build(consumer);
-        ShapedRecipeBuilder.shapedRecipe(RankineBlocks.MIXING_BARREL.get(), 1).patternLine("L").patternLine("B").patternLine("S").key('B', Blocks.BARREL).key('S', RankineTags.Items.STONE_SLAB).key('L', Items.LEVER).addCriterion("has_ingredient", hasItem(Items.BARREL)).build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(RankineBlocks.MIXING_BARREL.get(), 1).patternLine("R").patternLine("B").patternLine("S").key('B', Blocks.BARREL).key('S', ItemTags.WOODEN_SLABS).key('R', Tags.Items.RODS_WOODEN).addCriterion("has_ingredient", hasItem(Items.BARREL)).build(consumer);
         ShapedRecipeBuilder.shapedRecipe(RankineBlocks.CHARCOAL_PIT.get(), 1).patternLine(" S ").patternLine("SLS").patternLine(" S ").key('S', Tags.Items.RODS_WOODEN).key('L', ItemTags.LOGS_THAT_BURN).addCriterion("has_ingredient", hasItem(ItemTags.LOGS_THAT_BURN)).build(consumer);
         ShapedRecipeBuilder.shapedRecipe(RankineBlocks.GAS_BOTTLER.get(), 1).patternLine("XSX").patternLine("S S").patternLine("XSX").key('X', RankineTags.Items.SHEETMETAL).key('S', RankineTags.Items.INGOTS_BRASS).addCriterion("has_ingredient", hasItem(RankineTags.Items.INGOTS_BRASS)).build(consumer);
         ShapedRecipeBuilder.shapedRecipe(RankineBlocks.GAS_VENT.get(), 1).patternLine("XSX").patternLine("SBS").patternLine("XSX").key('X', RankineTags.Items.SHEETMETAL).key('S', RankineItems.BOROSILICATE_GLASS.get()).key('B', Items.GLASS_BOTTLE).addCriterion("has_ingredient", hasItem(RankineTags.Items.INGOTS_BRASS)).build(consumer);
@@ -601,6 +613,8 @@ public class RankineRecipesProvider extends RecipeProvider {
         OneToXTag(consumer,RankineItems.HONEY_LOCUST_PLANKS.get(),"planks",RankineTags.Items.HONEY_LOCUST_LOGS,4,"has_log",RankineItems.HONEY_LOCUST_LOG.get());
         OneToXTag(consumer,RankineItems.WEEPING_WILLOW_PLANKS.get(),"planks",RankineTags.Items.WEEPING_WILLOW_LOGS,4,"has_log",RankineItems.WEEPING_WILLOW_LOG.get());
         OneToXTag(consumer,RankineItems.PETRIFIED_CHORUS_PLANKS.get(),"planks",RankineTags.Items.PETRIFIED_CHORUS_LOGS,4,"has_log",RankineItems.PETRIFIED_CHORUS_LOG.get());
+        ShapedRecipeBuilder.shapedRecipe(RankineBlocks.BAMBOO_CULMS.get(), 1).patternLine("##").patternLine("##").key('#', Items.BAMBOO).addCriterion("has_ingredient", hasItem(Items.BAMBOO)).build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(RankineBlocks.BAMBOO_PLANKS.get(), 1).patternLine("##").patternLine("##").key('#', RankineItems.DRIED_BAMBOO.get()).addCriterion("has_ingredient", hasItem(RankineItems.DRIED_BAMBOO.get())).build(consumer);
 
         for (Block PLANK : RankineLists.PLANKS) {
             String baseName = PLANK.getRegistryName().getPath();
@@ -633,6 +647,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         
         for (Block STONE : RankineLists.STONES) {
             String baseStone = STONE.getRegistryName().getPath();
+            Block COBBLE = RankineLists.STONE_COBBLES.get(RankineLists.STONES.indexOf(STONE));
             Block COLUMN = RankineLists.STONE_COLUMNS.get(RankineLists.STONES.indexOf(STONE));
             Block POLISHED_STONE = RankineLists.POLISHED_STONES.get(RankineLists.STONES.indexOf(STONE));
             Block STONE_BRICKS = RankineLists.STONE_BRICKS.get(RankineLists.STONES.indexOf(STONE));
@@ -660,6 +675,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .addCriterion("has_ingredient", InventoryChangeTrigger.Instance.forItems(STONE))
                     .build(consumer);
             ShapelessRecipeBuilder.shapelessRecipe(STONE).addIngredient(COLUMN).addIngredient(COLUMN).addIngredient(COLUMN).addIngredient(COLUMN).setGroup("stone_from_stone_column").addCriterion("has_ingredient", hasItem(COLUMN)).build(consumer,"rankine:"+STONE.getRegistryName().getPath()+"_from_column");
+            ShapelessRecipeBuilder.shapelessRecipe(STONE).addIngredient(COBBLE).addIngredient(COBBLE).addIngredient(COBBLE).addIngredient(COBBLE).setGroup("stone_from_cobble").addCriterion("has_ingredient", hasItem(COBBLE)).build(consumer,"rankine:"+STONE.getRegistryName().getPath()+"_from_cobble");
 
 
             ShapedRecipeBuilder.shapedRecipe(POLISHED_STONE, 4)

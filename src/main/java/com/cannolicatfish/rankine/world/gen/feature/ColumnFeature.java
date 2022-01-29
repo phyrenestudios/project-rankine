@@ -70,7 +70,8 @@ public class ColumnFeature extends Feature<NoFeatureConfig> {
     }
 
     public static void createStalactite(ISeedReader reader, BlockPos topPos, BlockPos bottomPos) {
-        float length = reader.getRandom().nextInt(Math.round((topPos.getY() - bottomPos.getY())/2f)) + 1f;
+        float length = reader.getRandom().nextInt((int) Math.round(2*Math.sqrt(topPos.getY() - bottomPos.getY()))) + 1f;
+        if (length > 12) return;
         int maxSize = reader.getRandom().nextInt(2) + Math.round(length/2f);
         for (int i = 1; i <= length; ++i) {
             int SIZE = Math.max(Math.round(maxSize * (1 - (i / (length)))), 0);
@@ -82,6 +83,7 @@ public class ColumnFeature extends Feature<NoFeatureConfig> {
 
     public static void createColumn(ISeedReader reader, BlockPos topPos, BlockPos bottomPos) {
         float length = topPos.getY() - bottomPos.getY();
+        if (length > 32) return;
         int maxSize = reader.getRandom().nextInt(2) + Math.round(length/2f);
         float usedLength = length - reader.getRandom().nextInt(Math.round(length/2f));
         for (int i = 1; i < length; ++i) {

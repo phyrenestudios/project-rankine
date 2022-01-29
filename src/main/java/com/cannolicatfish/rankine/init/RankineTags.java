@@ -1011,6 +1011,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> SALTPETER = forgeItem("saltpeter");
         public static final ITag.INamedTag<Item> ROPE = forgeItem("rope");
         public static final ITag.INamedTag<Item> CHEESE = forgeItem("cheese");
+        public static final ITag.INamedTag<Item> EDIBLE_MUSHROOMS = forgeItem("edible_mushrooms");
         public static final ITag.INamedTag<Item> BREAD = forgeItem("bread");
         public static final ITag.INamedTag<Item> FLOUR = forgeItem("flour");
         public static final ITag.INamedTag<Item> FLOUR_GF = forgeItem("flour_gf");

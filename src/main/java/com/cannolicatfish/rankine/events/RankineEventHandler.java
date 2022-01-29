@@ -1944,7 +1944,7 @@ public class RankineEventHandler {
         } else if (item instanceof HoeItem) {
             if (VanillaIntegration.hoeables_map.get(b) != null) {
                 world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                world.setBlockState(pos, RankineBlocks.TILLED_SOIL.get().getDefaultState().with(TilledSoilBlock.MOISTURE, 0).with(TilledSoilBlock.SOIL_TYPE, VanillaIntegration.hoeables_map.get(b)), 2);
+                world.setBlockState(pos, RankineBlocks.TILLED_SOIL.get().getDefaultState().with(TilledSoilBlock.MOISTURE, 0).with(TilledSoilBlock.SOIL_TYPE, VanillaIntegration.hoeables_map.get(b)), 3);
                 stack.damageItem(1, player, (entity) -> {
                     entity.sendBreakAnimation(event.getHand());
                 });

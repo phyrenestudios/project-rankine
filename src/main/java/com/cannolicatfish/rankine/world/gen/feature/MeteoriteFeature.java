@@ -54,7 +54,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
 
             for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-5, -4, -5), pos.add(5, 2, 5))) {
                 if (blockpos.distanceSq(pos.up(2)) <= 25.0) {
-                    reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 4);
+                    reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 3);
                 }
             }
             buildMeteor(reader, rand, pos, ORE, TEKTITE);
@@ -67,12 +67,12 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
             for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-4, -4, -4), pos.add(4, 6, 4))) {
                 if (blockpos.distanceSq(pos) <= (2.75D)) {
                     if (rand.nextFloat() < 0.3F) {
-                        reader.setBlockState(blockpos.down(1), ORE, 4);
+                        reader.setBlockState(blockpos.down(1), ORE, 3);
                     } else {
                         reader.setBlockState(blockpos.down(1), RankineBlocks.METEORITE.get().getDefaultState(), 4);
                     }
                 } else if (blockpos.distanceSq(pos.up(2)) <= (16.0D)) {
-                    reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 4);
+                    reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 3);
                 }
             }
         }
@@ -87,11 +87,11 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
         for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-j, -k, -l), pos.add(j, k, l))) {
             if (blockpos.distanceSq(pos) <= (double)(f * f)) {
                 if (rand.nextFloat() < 0.2F) {
-                    reader.setBlockState(blockpos.down(1), TEKTITE, 4);
+                    reader.setBlockState(blockpos.down(1), TEKTITE, 3);
                 } else if (rand.nextFloat() < 0.4F) {
-                    reader.setBlockState(blockpos.down(1), ORE, 4);
+                    reader.setBlockState(blockpos.down(1), ORE, 3);
                 } else {
-                    reader.setBlockState(blockpos.down(1), RankineBlocks.METEORITE.get().getDefaultState(), 4);
+                    reader.setBlockState(blockpos.down(1), RankineBlocks.METEORITE.get().getDefaultState(), 3);
                 }
             }
         }

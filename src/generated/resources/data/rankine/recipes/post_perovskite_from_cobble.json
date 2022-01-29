@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:post_perovskite_cobble"
+    },
+    {
+      "item": "rankine:post_perovskite_cobble"
+    },
+    {
+      "item": "rankine:post_perovskite_cobble"
+    },
+    {
+      "item": "rankine:post_perovskite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:post_perovskite"
+  }
+}

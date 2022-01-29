@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rankine:block/artist_conk_mushroom_block"
+  }
+}

@@ -4,7 +4,6 @@ import net.minecraft.util.IStringSerializable;
 
 public enum TilledSoilTypes implements IStringSerializable {
     DIRT("dirt"),
-    COARSE_DIRT("coarse_dirt"),
     SOUL_SOIL("soul_soil"),
     LOAM("loam"),
     HUMUS("humus"),

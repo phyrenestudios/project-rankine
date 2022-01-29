@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.entities.CannonballEntity;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.items.tools.BuildingToolItem;
 import net.minecraft.block.Block;
@@ -8,6 +9,7 @@ import net.minecraft.block.FallingBlock;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.item.FallingBlockEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
@@ -20,6 +22,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -76,22 +79,19 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
     @Override
     public BlockState updatePostPlacement(BlockState state, Direction direction, BlockState p_196271_3_, IWorld worldIn, BlockPos pos, BlockPos p_196271_6_) {
         if (direction.equals(Direction.UP) || direction.equals(Direction.DOWN)) {
-            int i = 0;
-            while (worldIn.getBlockState(pos.down(i)).matchesBlock(this)) {
-                ++i;
-            }
-            if (!isValidPosition(state, worldIn, pos.down(i-1))) {
-                BlockPos.Mutable blockpos$mutableblockpos = pos.down(i-1).toMutable();
-                while (worldIn.getBlockState(blockpos$mutableblockpos).matchesBlock(this)) {
-                    spawnFallingBlock((World) worldIn, blockpos$mutableblockpos);
-                    blockpos$mutableblockpos.move(Direction.UP);
-                }
-
-            }
+            updateColumn(state, (World) worldIn,pos);
         }
         return super.updatePostPlacement(state, direction, p_196271_3_, worldIn, pos, p_196271_6_);
     }
 
+    @Override
+    public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
+        if (projectile instanceof CannonballEntity) {
+            worldIn.removeBlock(hit.getPos(),false);
+            updateColumn(state, worldIn,hit.getPos().down());
+        }
+        super.onProjectileCollision(worldIn, state, hit, projectile);
+    }
 
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
@@ -101,6 +101,20 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
     } // (worldIn.isAirBlock(pos.down()) || canFallThrough(worldIn.getBlockState(pos.down()))) &&
 
 
+    private void updateColumn(BlockState state, World worldIn, BlockPos pos) {
+        int i = 0;
+        while (worldIn.getBlockState(pos.down(i)).matchesBlock(this)) {
+            ++i;
+        }
+        if (!isValidPosition(state, worldIn, pos.down(i-1))) {
+            BlockPos.Mutable blockpos$mutableblockpos = pos.down(i-1).toMutable();
+            while (worldIn.getBlockState(blockpos$mutableblockpos).matchesBlock(this)) {
+                spawnFallingBlock(worldIn, blockpos$mutableblockpos);
+                blockpos$mutableblockpos.move(Direction.UP);
+            }
+
+        }
+    }
 
     private void spawnFallingBlock(World worldIn, BlockPos pos) {
         FallingBlockEntity fallingblockentity = new FallingBlockEntity(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, worldIn.getBlockState(pos));

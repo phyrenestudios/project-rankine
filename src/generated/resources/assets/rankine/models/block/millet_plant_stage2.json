@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cross",
+  "parent": "minecraft:block/crop",
   "textures": {
-    "cross": "rankine:block/millet_plant_stage2"
+    "crop": "rankine:block/millet_plant_stage2"
   }
 }

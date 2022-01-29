@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:itacolumite_cobble"
+    },
+    {
+      "item": "rankine:itacolumite_cobble"
+    },
+    {
+      "item": "rankine:itacolumite_cobble"
+    },
+    {
+      "item": "rankine:itacolumite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:itacolumite"
+  }
+}

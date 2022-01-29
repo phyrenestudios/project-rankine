@@ -7,10 +7,10 @@
       "model": "rankine:block/mariposite_bricks_vertical"
     },
     "mode=2": {
-      "model": "rankine:block/mariposite_bricks"
+      "model": "rankine:block/mariposite_bricks_mossy"
     },
     "mode=3": {
-      "model": "rankine:block/mariposite_bricks"
+      "model": "rankine:block/mariposite_bricks_snowy"
     }
   }
 }

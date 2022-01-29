@@ -11,6 +11,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -20,6 +21,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
 
@@ -106,7 +108,15 @@ public class TilledSoilBlock extends Block {
     }
 
     public static void turnToDirt(BlockState state, World worldIn, BlockPos pos) {
-        worldIn.setBlockState(pos, nudgeEntitiesWithNewState(state, Blocks.DIRT.getDefaultState(), worldIn, pos));
+        Block SOIL;
+        if (state.get(SOIL_TYPE).equals(TilledSoilTypes.DIRT)) {
+            SOIL = Blocks.DIRT;
+        } else if (state.get(SOIL_TYPE).equals(TilledSoilTypes.SOUL_SOIL)) {
+            SOIL = Blocks.SOUL_SOIL;
+        } else {
+            SOIL = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate("rankine:"+state.get(SOIL_TYPE).getString()));
+        }
+        worldIn.setBlockState(pos, nudgeEntitiesWithNewState(state, SOIL.getDefaultState(), worldIn, pos));
     }
 
     private boolean hasCrops(IBlockReader worldIn, BlockPos pos) {

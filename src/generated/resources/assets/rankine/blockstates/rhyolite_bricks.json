@@ -7,10 +7,10 @@
       "model": "rankine:block/rhyolite_bricks_vertical"
     },
     "mode=2": {
-      "model": "rankine:block/rhyolite_bricks"
+      "model": "rankine:block/rhyolite_bricks_mossy"
     },
     "mode=3": {
-      "model": "rankine:block/rhyolite_bricks"
+      "model": "rankine:block/rhyolite_bricks_snowy"
     }
   }
 }

@@ -2,21 +2,17 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.world.gen.feature.*;
+import com.cannolicatfish.rankine.world.gen.feature.mushrooms.*;
 import com.cannolicatfish.rankine.world.gen.feature.ores.DefaultOreVeinFeature;
 import com.cannolicatfish.rankine.world.gen.feature.ores.DiskOreVeinFeature;
 import com.cannolicatfish.rankine.world.gen.feature.ores.RankineOreFeatureConfig;
 import com.cannolicatfish.rankine.world.gen.feature.ores.SphericalOreVeinFeature;
 import com.cannolicatfish.rankine.world.gen.feature.trees.*;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.SphereReplaceConfig;
+import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RankineFeatures {
     public static final DeferredRegister<Feature<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.FEATURES, ProjectRankine.MODID);
 
@@ -35,6 +31,7 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<NoFeatureConfig>> WORLD_REPLACER_FEATURE = REGISTRY.register("world_replacer_feature", () -> new WorldReplacerFeature(NoFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> POST_WORLD_REPLACER_FEATURE = REGISTRY.register("post_world_replacer_feature", () -> new PostWorldReplacerFeature(NoFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> SNOW_REPLACER = REGISTRY.register("snow_replacer_feature", () -> new SnowyPeaksFeature(NoFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BlockClusterFeatureConfig>> COBBLE_PATCH = REGISTRY.register("cobble_patch_feature", () -> new CobblePatchFeature(BlockClusterFeatureConfig.CODEC));
     //public static final RegistryObject<Feature<NoFeatureConfig>> WILLOW_BRANCHLET_FEATURE = REGISTRY.register("willow_branchlet_feature", () -> new WillowBranchletFeature(NoFeatureConfig.CODEC));
 
     public static final RegistryObject<Feature<BaseTreeFeatureConfig>> EASTERN_HEMLOCK_TREE = REGISTRY.register("eastern_hemlock_tree", () -> new EasternHemlockTreeFeature(BaseTreeFeatureConfig.CODEC));
@@ -51,6 +48,21 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<BaseTreeFeatureConfig>> PINYON_PINE_TREE = REGISTRY.register("pinyon_pine_tree_feature", () -> new PinyonPineTreeFeature(BaseTreeFeatureConfig.CODEC));
     public static final RegistryObject<Feature<BaseTreeFeatureConfig>> WEEPING_WILLOW_TREE = REGISTRY.register("weeping_willow_tree_feature", () -> new WeepingWillowTreeFeature(BaseTreeFeatureConfig.CODEC));
     public static final RegistryObject<Feature<BaseTreeFeatureConfig>> HONEY_LOCUST_TREE = REGISTRY.register("honey_locust_tree_feature", () -> new HoneyLocustTreeFeature(BaseTreeFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BaseTreeFeatureConfig>> MAPLE_TREE = REGISTRY.register("maple_tree_feature", () -> new TreeFeature(BaseTreeFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BaseTreeFeatureConfig>> SHARINGA_TREE = REGISTRY.register("sharinga_tree_feature", () -> new TreeFeature(BaseTreeFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BaseTreeFeatureConfig>> CORK_OAK_TREE = REGISTRY.register("cork_oak_tree_feature", () -> new TreeFeature(BaseTreeFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BaseTreeFeatureConfig>> CINNAMON_TREE = REGISTRY.register("cinnamon_tree_feature", () -> new TreeFeature(BaseTreeFeatureConfig.CODEC));
+
+
+    public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> TINDER_CONK_FEATURE = REGISTRY.register("tinder_conk_feature", () -> new TinderConkMushroomFeature(BlockStateProvidingFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> LIONS_MANE_FEATURE = REGISTRY.register("lions_mane_feature", () -> new LionsManeMushroomFeature(BlockStateProvidingFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> TURKEY_TAIL_FEATURE = REGISTRY.register("turkey_tail_feature", () -> new TurkeyTailMushroomFeature(BlockStateProvidingFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> SULFUR_SHELF_FEATURE = REGISTRY.register("sulfur_shelf_feature", () -> new SulfurShelfMushroomFeature(BlockStateProvidingFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> HONEY_FEATURE = REGISTRY.register("honey_feature", () -> new HoneyMushroomFeature(BlockStateProvidingFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> ARTIST_CONK_FEATURE = REGISTRY.register("artist_conk_feature", () -> new ArtistsConkMushroomFeature(BlockStateProvidingFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> OYSTER_FEATURE = REGISTRY.register("oyster_feature", () -> new OysterMushroomFeature(BlockStateProvidingFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> CINNABAR_POLYPORE_FEATURE = REGISTRY.register("cinnabar_polypore_feature", () -> new CinnbarPolyporeMushroomFeature(BlockStateProvidingFeatureConfig.CODEC));
+
 
 
 
