@@ -1,55 +1,46 @@
 {
   "type": "rankine:mixing",
-  "mixTime": 120,
-  "required": [true,true,true,false],
-  "ingredientTotal": 9,
-  "outputTotal": 1,
+  "mixTime": 40,
+  "ingredientTotal": 6,
+  "matScale": 1,
   "fluidInput": {
-    "fluid": "minecraft:water"
+    "fluid": "minecraft:water",
+    "amount": 50
   },
   "input1": {
     "tag": "rankine:construction_sand",
-    "group": 0
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
   },
   "input2": {
     "tag": "forge:clay_balls",
-    "group": 1
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
   },
   "input3": {
-    "tag": "forge:ash",
-    "group": 1
+    "tag": "forge:stones/limestone",
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
   },
   "input4": {
-    "item": "rankine:perlite",
-    "group": 1,
-    "countMod": 1,
-    "mixMod": 6
+    "tag": "forge:ash",
+    "min": 0,
+    "max": 0.40
   },
   "input5": {
-    "tag": "forge:stones/limestone",
-    "group": 2
+    "item": "minecraft:flint",
+    "min": 0,
+    "max": 0.40
   },
   "input6": {
-    "tag": "forge:stones/dolomite",
-    "group": 2
-  },
-  "input7": {
-    "item": "rankine:quicklime",
-    "countMod": 2,
-    "group": 2
-  },
-  "input8": {
-    "tag": "forge:slag",
-    "countMod": 1
-  },
-  "input9": {
-    "item": "minecraft:flint"
-  },
-  "input10": {
     "tag": "forge:dirt",
-    "mixMod": 20
+    "min": 0,
+    "max": 0.40
   },
-  "output1": {
+  "result": {
     "item": "rankine:cement_mix"
   }
 }

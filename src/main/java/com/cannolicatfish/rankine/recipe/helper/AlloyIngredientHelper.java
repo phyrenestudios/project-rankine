@@ -1,9 +1,6 @@
 package com.cannolicatfish.rankine.recipe.helper;
 
-import com.cannolicatfish.rankine.items.alloys.AlloyData;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import com.cannolicatfish.rankine.items.alloys.IAlloyToolOld;
+import com.cannolicatfish.rankine.items.alloys.*;
 import com.google.gson.*;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.item.Item;
@@ -150,7 +147,7 @@ public class AlloyIngredientHelper {
             String alloyComp = json.has("alloyComp") ? JSONUtils.getString(json, "alloyComp") : "";
             String alloyRecipe = json.has("alloyRecipe") ? JSONUtils.getString(json, "alloyRecipe") : "";
             //System.out.println("AlloyData detected in recipe!: " + JSONUtils.getString(json, "alloyData"));
-            IAlloyItem.createDirectAlloyNBT(ret,alloyComp,alloyRecipe,null,ret.getItem() instanceof IAlloyToolOld);
+            IAlloyItem.createDirectAlloyNBT(ret,alloyComp,alloyRecipe,null,ret.getItem() instanceof IAlloyTool);
         }
         return ret;
     }

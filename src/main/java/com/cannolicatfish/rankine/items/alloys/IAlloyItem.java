@@ -231,6 +231,16 @@ public interface IAlloyItem {
         }
     }
 
+    default String generateLangFromRecipe(ResourceLocation recipe) {
+        if (recipe == null) {
+            return "item.rankine.custom_alloy_default";
+        } else {
+            String[] s = recipe.getPath().split("/");
+            return "item." + recipe.getNamespace() + "." + s[s.length-1];
+        }
+    }
+
+
     String getDefaultComposition();
 
     ResourceLocation getDefaultRecipe();

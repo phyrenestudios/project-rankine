@@ -1,29 +1,31 @@
 {
   "type": "rankine:mixing",
-  "mixTime": 400,
-  "required": [true,true,true,true],
+  "mixTime": 40,
   "ingredientTotal": 4,
-  "outputTotal": 1,
+  "matScale": 1,
   "fluidInput": {
-    "fluid": "minecraft:water"
+    "fluid": "minecraft:water",
+    "amount": 50
   },
   "input1": {
     "tag": "forge:dirt",
-    "group": 0
+    "required": true,
+    "min": 0.40,
+    "max": 0.60
   },
   "input2": {
     "tag": "rankine:construction_sand",
-    "group": 1
+    "required": true,
+    "min": 0.40,
+    "max": 0.60
   },
   "input3": {
-    "tag": "forge:clay_balls",
-    "group": 2
-  },
-  "input4": {
     "item": "rankine:plant_fiber",
-    "group": 3
+    "required": true,
+    "min": 0.05,
+    "max": 0.25
   },
-  "output1": {
+  "result": {
     "item": "rankine:cob"
   }
 }

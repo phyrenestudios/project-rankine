@@ -154,13 +154,13 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
                         }
 
                         if (!irecipe.getFluid().isEmpty()) {
-                            inputTank.drain(irecipe.getFluid(), IFluidHandler.FluidAction.EXECUTE);
+                            inputTank.drain(irecipe.getOutputFluidReq(this), IFluidHandler.FluidAction.EXECUTE);
                         }
                         this.mixTime = 0;
-                        inputs[0].shrink(irecipe.getShrinkAmount(inputs[0]));
-                        inputs[1].shrink(irecipe.getShrinkAmount(inputs[1]));
-                        inputs[2].shrink(irecipe.getShrinkAmount(inputs[2]));
-                        inputs[3].shrink(irecipe.getShrinkAmount(inputs[3]));
+                        inputs[0].setCount(0);
+                        inputs[1].setCount(0);
+                        inputs[2].setCount(0);
+                        inputs[3].setCount(0);
                         return;
                     }
                 } else {
@@ -186,7 +186,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     public int getMixTime() {
         MixingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.MIXING, this, this.world).orElse(null);
         if (irecipe != null) {
-            return irecipe.getRecipeMixTime(this);
+            return irecipe.getOutputMixTime(this);
         } else {
             return 3200;
         }
@@ -227,7 +227,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
             {
                 ItemStack output = this.items.get(4);
                 if(output.isEmpty()) {
-                    this.mixTimeTotal = recipeIn.getRecipeMixTime(inv);
+                    this.mixTimeTotal = recipeIn.getOutputMixTime(inv);
                     return true;
                 } else {
                     return false;

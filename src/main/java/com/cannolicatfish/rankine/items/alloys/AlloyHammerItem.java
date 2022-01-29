@@ -51,12 +51,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool, IAlloyNee
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
             return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
         }
-        TranslationTextComponent translation = new TranslationTextComponent(this.getTranslationKey(stack));
-        if (translation.getString().contains("%1$s")) {
-            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent("item.rankine.custom_alloy_default"));
-        } else {
-            return super.getDisplayName(stack);
-        }
+        return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {

@@ -1,0 +1,31 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 60,
+  "ingredientTotal": 4,
+  "matScale": 2,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 50
+  },
+  "input1": {
+    "tag": "rankine:construction_sand",
+    "required": true,
+    "min": 0.60,
+    "max": 0.75
+  },
+  "input2": {
+    "tag": "forge:clay_balls",
+    "required": true,
+    "min": 0.05,
+    "max": 0.20
+  },
+  "input3": {
+    "item": "rankine:plant_fiber",
+    "required": true,
+    "min": 0.20,
+    "max": 0.50
+  },
+  "result": {
+    "item": "rankine:cob"
+  }
+}

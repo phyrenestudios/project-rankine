@@ -78,12 +78,12 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
     @Override
     public void setIngredients(MixingRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
-        for (Ingredient i : recipe.getCondensedIngredients()) {
+        for (Ingredient i : recipe.getIngredients()) {
             builder.add(Arrays.asList(i.getMatchingStacks()));
         }
         iIngredients.setInput(VanillaTypes.FLUID,recipe.getFluid());
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutputs(VanillaTypes.ITEM, recipe.getOutputs());
+        iIngredients.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
     }
 
     @Override

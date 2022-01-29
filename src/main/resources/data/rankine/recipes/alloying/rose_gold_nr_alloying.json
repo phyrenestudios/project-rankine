@@ -37,6 +37,6 @@
   },
   "result": "rankine:rose_gold_ingot",
   "durability": 50,
-  "enchantments": ["minecraft:efficiency","rankine:swing","minecraft:efficiency","minecraft:efficiency","minecraft:efficiency","rankine:puncture","minecraft:sharpness","rankine:backstab","rankine:swing","minecraft:protection"],
-  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"]
+  "enchantments": ["minecraft:efficiency","rankine:swing","minecraft:efficiency","minecraft:efficiency","minecraft:efficiency","rankine:puncture","minecraft:sharpness","rankine:backstab","rankine:swing","minecraft:lure","rankine:accuracy","minecraft:protection"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","FISHING_ROD","BLUNDERBUSS","ARMOR"]
 }

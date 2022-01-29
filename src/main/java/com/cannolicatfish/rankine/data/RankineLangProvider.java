@@ -140,7 +140,6 @@ public class RankineLangProvider extends LanguageProvider {
         }
 
         for (Block blk : Stream.of(
-            RankineLists.ALLOY_BLOCKS,
             RankineLists.ELEMENT_BLOCKS,
             RankineLists.MINERAL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             if (blk.matchesBlock(RankineBlocks.SODIUM_CHLORIDE_BLOCK.get())) {
@@ -150,6 +149,10 @@ public class RankineLangProvider extends LanguageProvider {
             } else {
                 add(blk, parseLangName("block_of_"+blk.getRegistryName().getPath().replace("_block","")));
             }
+        }
+
+        for (Block blk : RankineLists.ALLOY_BLOCKS) {
+            add(blk,parseLangNameCustomBlock(blk.getRegistryName().getPath()));
         }
 
         // Misc Blocks
@@ -232,28 +235,8 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.WOODEN_TOOLS,
                 RankineLists.STONE_TOOLS,
                 RankineLists.FLINT_TOOLS,
-                RankineLists.BRONZE_TOOLS,
-                RankineLists.PEWTER_TOOLS,
-                RankineLists.INVAR_TOOLS,
-                RankineLists.STEEL_TOOLS,
-                RankineLists.STAINLESS_STEEL_TOOLS,
-                RankineLists.COBALT_SUPERALLOY_TOOLS,
-                RankineLists.NICKEL_SUPERALLOY_TOOLS,
-                RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS,
-                RankineLists.ROSE_GOLD_TOOLS,
-                RankineLists.WHITE_GOLD_TOOLS,
-                RankineLists.BLUE_GOLD_TOOLS,
-                RankineLists.GREEN_GOLD_TOOLS,
-                RankineLists.BLACK_GOLD_TOOLS,
-                RankineLists.PURPLE_GOLD_TOOLS,
-                RankineLists.OSMIRIDIUM_TOOLS,
-                RankineLists.AMALGAM_TOOLS,
-                RankineLists.ENDER_AMALGAM_TOOLS,
-                RankineLists.TITANIUM_ALLOY_TOOLS,
                 RankineLists.ELEMENT_INGOTS,
                 RankineLists.ELEMENT_NUGGETS,
-                RankineLists.ALLOY_NUGGETS,
-                RankineLists.ALLOY_INGOTS,
                 RankineLists.GAS_BOTTLES,
                 RankineLists.MINERAL_ITEMS,
                 RankineLists.JAMS,
@@ -271,7 +254,27 @@ public class RankineLangProvider extends LanguageProvider {
             }
         }
 
-        for (Item item : RankineLists.ALLOY_TOOLS) {
+        for (Item item : Stream.of(
+                RankineLists.ALLOY_NUGGETS,
+                RankineLists.ALLOY_INGOTS,
+                RankineLists.ALLOY_TOOLS, RankineLists.BRONZE_TOOLS,
+                RankineLists.PEWTER_TOOLS,
+                RankineLists.INVAR_TOOLS,
+                RankineLists.STEEL_TOOLS,
+                RankineLists.STAINLESS_STEEL_TOOLS,
+                RankineLists.COBALT_SUPERALLOY_TOOLS,
+                RankineLists.NICKEL_SUPERALLOY_TOOLS,
+                RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS,
+                RankineLists.ROSE_GOLD_TOOLS,
+                RankineLists.WHITE_GOLD_TOOLS,
+                RankineLists.BLUE_GOLD_TOOLS,
+                RankineLists.GREEN_GOLD_TOOLS,
+                RankineLists.BLACK_GOLD_TOOLS,
+                RankineLists.PURPLE_GOLD_TOOLS,
+                RankineLists.OSMIRIDIUM_TOOLS,
+                RankineLists.AMALGAM_TOOLS,
+                RankineLists.ENDER_AMALGAM_TOOLS,
+                RankineLists.TITANIUM_ALLOY_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             add(item, parseLangNameCustom(item.getRegistryName().getPath()));
         }
         for (Item item : Arrays.asList(RankineItems.ALLOY_NUGGET.get(),RankineItems.ALLOY_INGOT.get(),RankineItems.ALLOY_BLOCK.get())) {
@@ -482,8 +485,6 @@ public class RankineLangProvider extends LanguageProvider {
 
         //Alloy Lang
         add("item.rankine.custom_alloy_default","Alloy");
-
-        //Alloy Ingots
         add("item.rankine.alnico_alloying", "Alnico");
         add("item.rankine.aluminum_bronze_alloying", "Aluminum Bronze");
         add("item.rankine.amalgam_alloying", "Amalgam");
@@ -1065,7 +1066,7 @@ public class RankineLangProvider extends LanguageProvider {
         }
         return LangName;
     }
-
+/*
     private String parseLangNameCustom(String registryName) {
         StringBuilder LangName = new StringBuilder();
         for (String s : registryName.split("_")) {
@@ -1081,6 +1082,20 @@ public class RankineLangProvider extends LanguageProvider {
             }
         }
         return LangName.toString();
+    }*/
+
+    private String parseLangNameCustom(String registryName) {
+        String[] list = registryName.split("_");
+        if (registryName.contains("surf_rod")) {
+            return "%1$s " + "Surf Rod";
+        } else {
+            return "%1$s " + list[list.length-1].substring(0, 1).toUpperCase() + list[list.length-1].substring(1);
+        }
+
+    }
+
+    private String parseLangNameCustomBlock(String registryName) {
+        return "Block of %1$s";
     }
 
 

@@ -61,6 +61,6 @@
   },
   "result": "rankine:white_gold_ingot",
   "durability": 50,
-  "enchantments": ["minecraft:fortune","rankine:atomize","minecraft:fortune","minecraft:fortune","minecraft:fortune","minecraft:impaling","minecraft:looting","rankine:preparation","rankine:leverage","rankine:guard"],
-  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"]
+  "enchantments": ["minecraft:fortune","rankine:atomize","minecraft:fortune","minecraft:fortune","minecraft:fortune","minecraft:impaling","minecraft:looting","rankine:preparation","rankine:leverage","minecraft:luck_of_the_sea","rankine:guard"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","FISHING_ROD","ARMOR"]
 }
