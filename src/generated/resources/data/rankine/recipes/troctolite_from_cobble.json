@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:troctolite_cobble"
+    },
+    {
+      "item": "rankine:troctolite_cobble"
+    },
+    {
+      "item": "rankine:troctolite_cobble"
+    },
+    {
+      "item": "rankine:troctolite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:troctolite"
+  }
+}

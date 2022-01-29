@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GrassColors;
 import net.minecraft.world.IBlockDisplayReader;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeColors;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,10 +17,15 @@ public class GrassBlockBaseColor implements IBlockColor {
     @Override
     public int getColor(BlockState state, @Nullable IBlockDisplayReader reader, @Nullable BlockPos pos, int tint) {
         if (ClientConfig.GENERAL.GRASS_TEMP.get()) {
-            if (state.getBlock() instanceof GrassySoilBlock && state.get(GrassySoilBlock.DEAD)) {
-                return reader != null && pos != null ? colorShift(BiomeColors.getGrassColor(reader, pos), 20, (int) (-3*(Math.floor(pos.getY()/10)))+25, 0) : colorShift(GrassColors.get(0.5D, 1.0D), 20, 5, 0);
+            if (state.getBlock() instanceof GrassySoilBlock) {
+                if (state.get(GrassySoilBlock.DEAD)) {
+                    return reader != null && pos != null ? colorShift(BiomeColors.getGrassColor(reader, pos), 20, (int) (-3*(Math.floor(pos.getY()/10)))+25, 0) : colorShift(GrassColors.get(0.5D, 1.0D), 20, 5, 0);
+                } else {
+                    double noise = pos != null ? Biome.INFO_NOISE.noiseAt(pos.getX()/20f, pos.getZ()/20f, false) : 0;
+                    return reader != null && pos != null ? colorShift(BiomeColors.getGrassColor(reader, pos), noise > 0 ? 8 : 0, (int) (-3 * (Math.floor(pos.getY() / 10))) + 20, 0) : GrassColors.get(0.5D, 1.0D);
+                }
             } else {
-                return reader != null && pos != null ? colorShift(BiomeColors.getGrassColor(reader, pos),0, (int) (-3*(Math.floor(pos.getY()/10)))+20, 0) : GrassColors.get(0.5D, 1.0D);
+                return reader != null && pos != null ? BiomeColors.getGrassColor(reader, pos) : GrassColors.get(0.5D, 1.0D);
             }
         } else {
             if (state.getBlock() instanceof GrassySoilBlock && state.get(GrassySoilBlock.DEAD)) {

@@ -9,13 +9,18 @@
     "chance": 1.0
   },
   "output2": {
-    "item": "rankine:corn_seeds",
-    "count": 1,
+    "item": "rankine:plant_fiber",
+    "count": 2,
     "chance": 1.0
   },
   "output3": {
     "item": "rankine:corn_seeds",
     "count": 1,
     "chance": 0.5
+  },
+  "output4": {
+    "item": "rankine:corn_grain",
+    "count": 1,
+    "chance": 0.2
   }
 }

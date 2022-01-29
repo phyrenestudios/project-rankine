@@ -51,6 +51,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.SANDSTONE_STAIRS,
                 RankineLists.SANDSTONE_WALLS,
                 RankineLists.STONE_COLUMNS,
+                RankineLists.STONE_COBBLES,
                 RankineLists.MINERAL_COLUMNS,
                 RankineLists.BRICKS,
                 RankineLists.BRICKS_STAIRS,
@@ -84,6 +85,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.ELEMENT_BLOCKS,
                 RankineLists.QUARTER_SLABS,
                 RankineLists.LANTERNS,
+                RankineLists.WALL_MUSHROOMS,
                 RankineLists.SAPLINGS
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(blk, createBlockLootTable(blk));
@@ -112,6 +114,9 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
         for (Block blk : RankineLists.INFESTED_STONES) {
             lootTables.put(blk, droppingWithSilkTouch(blk, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(blk.getRegistryName().getPath().replace("infested_","")))));
+        }
+        for (Block blk : RankineLists.ASPHALT_BLOCKS) {
+            lootTables.put(blk, createBlockLootTable(RankineBlocks.ASPHALT.get()));
         }
 
         for (Block SOIL : Stream.of(RankineLists.SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -235,6 +240,9 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
         for (Block BLK : RankineLists.HOLLOW_LOGS) {
             lootTables.put(BLK, droppingWithSilkTouchOrRandomly(BLK, Items.STICK, RandomValueRange.of(2.0F, 6.0F)));
+        }
+        for (Block BLK : RankineLists.MUSHROOM_BLOCKS) {
+            lootTables.put(BLK, droppingItemRarely(BLK, RankineLists.WALL_MUSHROOMS.get(RankineLists.MUSHROOM_BLOCKS.indexOf(BLK)).asItem()));
         }
         for (Block BLK : RankineLists.LEAF_LITTERS) {
             lootTables.put(BLK, withShears(BLK));

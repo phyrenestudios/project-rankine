@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:blueschist_cobble"
+    },
+    {
+      "item": "rankine:blueschist_cobble"
+    },
+    {
+      "item": "rankine:blueschist_cobble"
+    },
+    {
+      "item": "rankine:blueschist_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:blueschist"
+  }
+}

@@ -2,6 +2,6 @@
   "parent": "minecraft:block/template_farmland",
   "textures": {
     "dirt": "rankine:block/loamy_sand",
-    "top": "minecraft:block/farmland_moist"
+    "top": "rankine:block/loamy_sand_farmland_moist"
   }
 }

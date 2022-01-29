@@ -21,9 +21,7 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.ItemModelsProperties;
-import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -94,19 +92,17 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.LEAVES);
         addCutout(RankineLists.LEAF_LITTERS);
         addCutout(RankineLists.SAPLINGS);
+        addCutout(RankineLists.STONE_BRICKS);
         addCutout(RankineLists.NATIVE_ORES);
         addCutout(RankineLists.CRUSHING_ORES);
         addCutout(RankineLists.SPECIAL_ORES);
+        addCutout(RankineLists.ASPHALT_BLOCKS);
         addCutout(Arrays.asList(
                 RankineBlocks.FLOOD_GATE.get(),
                 RankineBlocks.ORNAMENT.get(),
                 RankineBlocks.LEAD_GLASS.get(),
                 RankineBlocks.BOROSILICATE_GLASS.get(),
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
-                RankineBlocks.ASPHALT_0.get(),
-                RankineBlocks.ASPHALT_1.get(),
-                RankineBlocks.ASPHALT_2.get(),
-                RankineBlocks.ASPHALT_3.get(),
                 RankineBlocks.WILLOW_BRANCHLET.get(),
                 RankineBlocks.WILLOW_BRANCHLET_PLANT.get(),
 

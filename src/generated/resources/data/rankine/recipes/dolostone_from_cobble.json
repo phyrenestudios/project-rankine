@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:dolostone_cobble"
+    },
+    {
+      "item": "rankine:dolostone_cobble"
+    },
+    {
+      "item": "rankine:dolostone_cobble"
+    },
+    {
+      "item": "rankine:dolostone_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:dolostone"
+  }
+}

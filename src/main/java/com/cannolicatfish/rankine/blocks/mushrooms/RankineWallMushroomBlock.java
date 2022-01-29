@@ -1,6 +1,10 @@
 package com.cannolicatfish.rankine.blocks.mushrooms;
 
 import com.cannolicatfish.rankine.blocks.HollowLogBlock;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
+import com.cannolicatfish.rankine.world.RankineBiomeFeatures;
+import com.cannolicatfish.rankine.world.gen.feature.mushrooms.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
@@ -15,8 +19,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Features;
+import net.minecraft.world.gen.feature.BlockStateProvidingFeatureConfig;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -40,20 +43,22 @@ public class RankineWallMushroomBlock extends BushBlock implements IGrowable{
 
     public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-
     public RankineWallMushroomBlock(AbstractBlock.Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.SOUTH));
-
     }
+
+    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_FACING);
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPES[state.get(HORIZONTAL_FACING).getHorizontalIndex()];
     }
 
+    @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (random.nextInt(50) == 0) {
             BlockState log = worldIn.getBlockState(pos.offset(state.get(HORIZONTAL_FACING).getOpposite()));
@@ -61,18 +66,10 @@ public class RankineWallMushroomBlock extends BushBlock implements IGrowable{
                 worldIn.setBlockState(pos.offset(state.get(HORIZONTAL_FACING).getOpposite()), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate("rankine:hollow_"+log.getBlock().getRegistryName().getPath())).getDefaultState().with(HollowLogBlock.AXIS,log.get(RotatedPillarBlock.AXIS)));
             }
         }
-    }
+        if (random.nextInt(15) == 0) {
+            int i = 6;
 
-        /**
-         * Performs a random tick on a block.
-         */
-    /*
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (random.nextInt(25) == 0) {
-            int i = 5;
-            int j = 4;
-
-            for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-4, -1, -4), pos.add(4, 1, 4))) {
+            for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-3, -3, -3), pos.add(3, 3, 3))) {
                 if (worldIn.getBlockState(blockpos).matchesBlock(this)) {
                     --i;
                     if (i <= 0) {
@@ -81,65 +78,87 @@ public class RankineWallMushroomBlock extends BushBlock implements IGrowable{
                 }
             }
 
-            BlockPos blockpos1 = pos.add(random.nextInt(3) - 1, random.nextInt(2) - random.nextInt(2), random.nextInt(3) - 1);
-
-            for(int k = 0; k < 4; ++k) {
-                if (worldIn.isAirBlock(blockpos1) && state.isValidPosition(worldIn, blockpos1)) {
-                    pos = blockpos1;
+            BlockPos blockpos1 = pos.add(random.nextInt(3) - 1, random.nextInt(5) - random.nextInt(2), random.nextInt(3) - 1);
+            if (worldIn.getBlockState(blockpos1).getMaterial().equals(Material.WOOD)) {
+                Direction dir = WorldgenUtils.randomHorizontalDirection(random);
+                if (state.with(HORIZONTAL_FACING,dir).isValidPosition(worldIn, blockpos1.offset(dir))) {
+                    worldIn.setBlockState(blockpos1.offset(dir), state.with(HORIZONTAL_FACING,dir), 2);
                 }
-
-                blockpos1 = pos.add(random.nextInt(3) - 1, random.nextInt(2) - random.nextInt(2), random.nextInt(3) - 1);
             }
 
-            if (worldIn.isAirBlock(blockpos1) && state.isValidPosition(worldIn, blockpos1)) {
-                worldIn.setBlockState(blockpos1, state, 2);
-            }
+
         }
-
     }
 
-     */
+    @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         Direction direction = context.getFace();
         if (direction.getAxis().isVertical()) return Blocks.AIR.getDefaultState();
         return this.getDefaultState().with(HORIZONTAL_FACING, direction);
     }
 
+    @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return state.isOpaqueCube(worldIn, pos);
     }
 
+    @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         BlockPos blockpos = pos.offset(state.get(HORIZONTAL_FACING).getOpposite());
         BlockState blockstate = worldIn.getBlockState(blockpos);
         return blockstate.getMaterial().equals(Material.WOOD) && blockstate.isSolidSide(worldIn,blockpos,state.get(HORIZONTAL_FACING));
     }
 
+
     public boolean grow(ServerWorld world, BlockPos pos, BlockState state, Random rand) {
         world.removeBlock(pos, false);
-        ConfiguredFeature<?, ?> configuredfeature;
-        if (this == Blocks.BROWN_MUSHROOM) {
-            configuredfeature = Features.HUGE_BROWN_MUSHROOM;
-        } else {
-            if (this != Blocks.RED_MUSHROOM) {
+        if (this == RankineBlocks.TINDER_CONK_MUSHROOM.get()) {
+            if (!TinderConkMushroomFeature.growMushroom(world,rand,pos, (BlockStateProvidingFeatureConfig) RankineBiomeFeatures.TINDER_CONK_MUSHROOM.getConfig(),state.get(HORIZONTAL_FACING))) {
                 world.setBlockState(pos, state, 3);
                 return false;
             }
-
-            configuredfeature = Features.HUGE_RED_MUSHROOM;
-        }
-
-        if (configuredfeature.generate(world, world.getChunkProvider().getChunkGenerator(), rand, pos)) {
-            return true;
+        } else if (this == RankineBlocks.LIONS_MANE_MUSHROOM.get()) {
+            if (!LionsManeMushroomFeature.growMushroom(world,rand,pos, (BlockStateProvidingFeatureConfig) RankineBiomeFeatures.LIONS_MANE_MUSHROOM.getConfig(),state.get(HORIZONTAL_FACING))) {
+                world.setBlockState(pos, state, 3);
+                return false;
+            }
+        } else if (this == RankineBlocks.TURKEY_TAIL_MUSHROOM.get()) {
+            if (!TurkeyTailMushroomFeature.growMushroom(world,rand,pos, (BlockStateProvidingFeatureConfig) RankineBiomeFeatures.TURKEY_TAIL_MUSHROOM.getConfig(),state.get(HORIZONTAL_FACING))) {
+                world.setBlockState(pos, state, 3);
+                return false;
+            }
+        } else if (this == RankineBlocks.SULFUR_SHELF_MUSHROOM.get()) {
+            if (!SulfurShelfMushroomFeature.growMushroom(world,rand,pos, (BlockStateProvidingFeatureConfig) RankineBiomeFeatures.SULFUR_SHELF_MUSHROOM.getConfig(),state.get(HORIZONTAL_FACING))) {
+                world.setBlockState(pos, state, 3);
+                return false;
+            }
+        } else if (this == RankineBlocks.CINNABAR_POLYPORE_MUSHROOM.get()) {
+            if (!CinnbarPolyporeMushroomFeature.growMushroom(world,rand,pos, (BlockStateProvidingFeatureConfig) RankineBiomeFeatures.CINNABAR_POLYPORE_MUSHROOM.getConfig(),state.get(HORIZONTAL_FACING))) {
+                world.setBlockState(pos, state, 3);
+                return false;
+            }
+        } else if (this == RankineBlocks.HONEY_MUSHROOM.get()) {
+            if (!HoneyMushroomFeature.growMushroom(world,rand,pos, (BlockStateProvidingFeatureConfig) RankineBiomeFeatures.HONEY_MUSHROOM.getConfig(),state.get(HORIZONTAL_FACING))) {
+                world.setBlockState(pos, state, 3);
+                return false;
+            }
+        } else if (this == RankineBlocks.OYSTER_MUSHROOM.get()) {
+            if (!OysterMushroomFeature.growMushroom(world,rand,pos, (BlockStateProvidingFeatureConfig) RankineBiomeFeatures.OYSTER_MUSHROOM.getConfig(),state.get(HORIZONTAL_FACING))) {
+                world.setBlockState(pos, state, 3);
+                return false;
+            }
+        } else if (this == RankineBlocks.ARTIST_CONK_MUSHROOM.get()) {
+            if (!ArtistsConkMushroomFeature.growMushroom(world,rand,pos, (BlockStateProvidingFeatureConfig) RankineBiomeFeatures.ARTIST_CONK_MUSHROOM.getConfig(),state.get(HORIZONTAL_FACING))) {
+                world.setBlockState(pos, state, 3);
+                return false;
+            }
         } else {
             world.setBlockState(pos, state, 3);
             return false;
         }
+        return true;
     }
 
-    /**
-     * Whether this IGrowable can grow
-     */
     public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
         return true;
     }

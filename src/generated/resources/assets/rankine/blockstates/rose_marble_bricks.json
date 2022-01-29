@@ -7,10 +7,10 @@
       "model": "rankine:block/rose_marble_bricks_vertical"
     },
     "mode=2": {
-      "model": "rankine:block/rose_marble_bricks"
+      "model": "rankine:block/rose_marble_bricks_mossy"
     },
     "mode=3": {
-      "model": "rankine:block/rose_marble_bricks"
+      "model": "rankine:block/rose_marble_bricks_snowy"
     }
   }
 }

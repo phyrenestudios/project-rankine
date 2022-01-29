@@ -34,6 +34,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MISC_STAIRS,
                 RankineLists.MISC_WALLS,
 
+                RankineLists.MUSHROOM_BLOCKS,
                 RankineLists.CONCRETE_VERTICAL_SLABS,
                 RankineLists.CONCRETE_STAIRS,
                 RankineLists.CONCRETE_WALLS,
@@ -121,6 +122,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.EIGHT_LAYER_BLOCKS,
                 RankineLists.FLUID_BLOCKS,
                 RankineLists.GAS_BLOCKS,
+                RankineLists.STONE_COBBLES,
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.ROTATION_BLOCKS,
                 RankineLists.LIGHTNING_GLASSES,
@@ -133,6 +135,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.PATH_BLOCKS,
                 RankineLists.LANTERNS,
                 RankineLists.QUARTER_SLABS,
+                RankineLists.ASPHALT_BLOCKS,
                 RankineLists.NATIVE_ORES,
                 RankineLists.CRUSHING_ORES,
                 RankineLists.SPECIAL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -156,9 +159,9 @@ public class RankineLangProvider extends LanguageProvider {
         for (Block blk : Arrays.asList(
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
+                RankineBlocks.TILLED_SOIL.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
                 RankineBlocks.ORNAMENT.get(),
-                RankineBlocks.COBBLE.get(),
                 RankineBlocks.LOCUST_SPINE.get(),
                 RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get(),
                 RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get(),
@@ -256,7 +259,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.ALLOY_INGOTS,
                 RankineLists.GAS_BOTTLES,
                 RankineLists.MINERAL_ITEMS,
-                RankineLists.JAMS,
                 RankineLists.SEEDS,
                 RankineLists.RAW_FISH,
                 RankineLists.COOKED_FISH,
@@ -279,6 +281,7 @@ public class RankineLangProvider extends LanguageProvider {
         }
 
         for (Item item : Arrays.asList(
+            RankineItems.FRUIT_JAM.get(),
             RankineItems.BLACK_WALNUT.get(),
             RankineItems.COCONUT.get(),
             RankineItems.ALOE.get(),
@@ -989,6 +992,11 @@ public class RankineLangProvider extends LanguageProvider {
 
         //JOURNAL
         add("rankine.journal.landing_text", "A mere collection of discoveries, awaiting application.");
+
+        add("rankine.journal.cat_tools.name", "Tools");
+        add("rankine.journal.cat_tools.desc", "Various implements use to manipulate the world.");
+
+
 
         add("rankine.journal.cat_tools.name", "Tools");
         add("rankine.journal.cat_tools.desc", "Various implements use to manipulate the world.");

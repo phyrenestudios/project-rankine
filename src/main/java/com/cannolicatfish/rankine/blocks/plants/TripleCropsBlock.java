@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.Tags;
 
 import java.util.Random;
 
@@ -66,7 +67,11 @@ public class TripleCropsBlock extends CropsBlock {
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         switch (state.get(SECTION)) {
+            default:
             case BOTTOM:
+                if (state.get(AGE) == 7) {
+                    return worldIn.getBlockState(pos.down()).isIn(Tags.Blocks.DIRT) || super.isValidPosition(state, worldIn, pos);
+                }
                 return super.isValidPosition(state, worldIn, pos);
             case MIDDLE:
                 BlockState blockstate1 = worldIn.getBlockState(pos.down());
@@ -77,7 +82,6 @@ public class TripleCropsBlock extends CropsBlock {
                 if (state.getBlock() != this) return super.isValidPosition(state, worldIn, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
                 return blockstate2.matchesBlock(this) && blockstate2.get(SECTION) == TripleBlockSection.MIDDLE;
         }
-        return super.isValidPosition(state, worldIn, pos);
     }
 
     @Override
@@ -193,6 +197,12 @@ public class TripleCropsBlock extends CropsBlock {
     @OnlyIn(Dist.CLIENT)
     public long getPositionRandom(BlockState state, BlockPos pos) {
         return MathHelper.getCoordinateRandom(pos.getX(), pos.down(state.get(SECTION) == TripleBlockSection.BOTTOM ? 0 : 1).getY(), pos.getZ());
+    }
+
+    public void placeAt(IWorld worldIn, BlockPos pos, int flags) {
+        worldIn.setBlockState(pos, this.getDefaultState().with(AGE, 7).with(SECTION, TripleBlockSection.BOTTOM), flags);
+        worldIn.setBlockState(pos.up(), this.getDefaultState().with(AGE, 7).with(SECTION, TripleBlockSection.MIDDLE), flags);
+        worldIn.setBlockState(pos.up(2), this.getDefaultState().with(AGE, 7).with(SECTION, TripleBlockSection.TOP), flags);
     }
 
 }

@@ -225,6 +225,9 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue DISABLE_VANILLA_FEATURES;
         public final ForgeConfigSpec.BooleanValue RANKINE_FLORA;
         public final ForgeConfigSpec.BooleanValue RANKINE_TREES;
+        public final ForgeConfigSpec.BooleanValue WILD_CROPS;
+        public final ForgeConfigSpec.BooleanValue MUSHROOMS;
+        public final ForgeConfigSpec.BooleanValue COBBLES_GEN;
         public final ForgeConfigSpec.BooleanValue EVAPORITE_GEN;
         public final ForgeConfigSpec.BooleanValue FUMAROLE_GEN;
         public final ForgeConfigSpec.BooleanValue ALLUVIUM_GEN;
@@ -271,6 +274,12 @@ public class Config {
                     .define("generateFlora",true);
             RANKINE_TREES = b.comment("Enable/Disable Project Rankine trees in world.")
                     .define("generateTrees",true);
+            WILD_CROPS = b.comment("Enable/Disable Project Rankine wild crops in world.")
+                    .define("generateWildCrops",true);
+            MUSHROOMS = b.comment("Enable/Disable Project Rankine mushrooms in world.")
+                    .define("generateMushrooms",true);
+            COBBLES_GEN = b.comment("Enable/Disable Project Rankine cobbles in world.")
+                    .define("generateCobbles",true);
             EVAPORITE_GEN = b.comment("Enables the generation of evaporite disks.")
                     .define("generateEvaporite",true);
             FUMAROLE_GEN = b.comment("Enables the generation of fumaroles. More options to come.")

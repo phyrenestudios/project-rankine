@@ -5,6 +5,7 @@
     "#forge:stone",
     "#forge:dirt",
     "#minecraft:sand",
-    "#forge:terracotta"
+    "#forge:terracotta",
+    "#forge:path_blocks"
   ]
 }

@@ -70,24 +70,31 @@ public class OreGen {
             VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.BLACK_MORNING_GLORY_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.JUNGLE),true)));
             VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.BLUE_MORNING_GLORY_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.JUNGLE),true)));
             VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.PURPLE_MORNING_GLORY_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.TAIGA),true)));
-
+        }
+        if (Config.MISC_WORLDGEN.MUSHROOMS.get()) {
             VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.MUSHROOMS, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
         }
-        VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.COBBLE_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(),false)));
-
         if (Config.MISC_WORLDGEN.RANKINE_TREES.get()) {
-            /*
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.MAPLE_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.CORK_OAK_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.MUSHROOM), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.SHARINGA_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.CINNAMON_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)));
-
-             */
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.RICE_PLANT_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.OAT_PLANT_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.PLAINS), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.MILLET_PLANT_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.SAVANNA), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.BARLEY_PLANT_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.PLAINS), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.RYE_PLANT_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.SAVANNA), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.COTTON_PLANT_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.PLAINS), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.ASPARAGUS_PLANT_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.BEACH), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.CORN_PLANT_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.PLAINS), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.JUTE_PLANT_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.JUNGLE), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.SORGHUM_PLANT_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.PLAINS, Biome.Category.SAVANNA), true)));
+        }
+        if (Config.MISC_WORLDGEN.COBBLES_GEN.get()) {
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.COBBLE_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        }
+        if (Config.MISC_WORLDGEN.RANKINE_TREES.get()) {
             VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BALSAM_FIR_TREE.get().withConfiguration(RankineBiomeFeatures.BALSAM_FIR_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2))),
                     Collections.singletonList(ResourceLocation.tryCreate("minecraft:wooded_mountains"))));
             VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BALSAM_FIR_TREE.get().withConfiguration(RankineBiomeFeatures.SHORT_BALSAM_FIR_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.COCONUT_PALM_TREE.get().withConfiguration(RankineBiomeFeatures.COCONUT_PALM_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT.configure(new FeatureSpreadConfig(2))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.COCONUT_PALM_TREE.get().withConfiguration(RankineBiomeFeatures.COCONUT_PALM_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT.configure(new FeatureSpreadConfig(1))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.BEACH), true)));
             VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BLACK_WALNUT_TREE.get().withConfiguration(RankineBiomeFeatures.BLACK_WALNUT_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2))),
                     Arrays.asList(ResourceLocation.tryCreate("minecraft:dark_forest"),ResourceLocation.tryCreate("minecraft:dark_forest_hills"))));
@@ -121,10 +128,20 @@ public class OreGen {
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true)));
             VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.WEEPING_WILLOW_TREE.get().withConfiguration(RankineBiomeFeatures.WEEPING_WILLOW_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(4))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.MAPLE_TREE.get().withConfiguration(RankineBiomeFeatures.MAPLE_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(4))),
+                    WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.SHARINGA_TREE.get().withConfiguration(RankineBiomeFeatures.SHARINGA_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3))),
+                    WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.CORK_OAK_TREE.get().withConfiguration(RankineBiomeFeatures.CORK_OAK_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3))),
+                    WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.CINNAMON_TREE.get().withConfiguration(RankineBiomeFeatures.CINNAMON_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3))),
+                    WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)));
         }
 
         return VegetalDecor;
     }
+
+
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getAllUndDecFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?, ?>, List<ResourceLocation>>> AllOreFeatures = new ArrayList<>();
         AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.WORLD_REPLACER_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));

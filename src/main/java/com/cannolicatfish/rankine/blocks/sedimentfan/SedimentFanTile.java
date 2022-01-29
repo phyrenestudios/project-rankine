@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.sedimentfan;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineSoundEvents;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.util.RockGeneratorUtils;
 import net.minecraft.block.Block;
@@ -73,11 +74,11 @@ public class SedimentFanTile extends TileEntity implements ITickableTileEntity {
                         ItemStack output = recipe.getRecipeOutput();
                         if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                             world.setBlockState(end, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 19);
-                            world.playSound(null,end, SoundEvents.BLOCK_SAND_HIT, SoundCategory.BLOCKS,1.0f,1.0f);
+                            world.playSound(null,end, RankineSoundEvents.SEDIMENT_FAN_GEN.get(), SoundCategory.BLOCKS,1.0f,1.0f);
                         }
                     } else {
                         world.setBlockState(end, RankineBlocks.BRECCIA.get().getDefaultState(), 19);
-                        world.playSound(null,end, SoundEvents.BLOCK_SAND_HIT, SoundCategory.BLOCKS,1.0f,1.0f);
+                        world.playSound(null, end, SoundEvents.BLOCK_SAND_HIT, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     }
                 }
             }

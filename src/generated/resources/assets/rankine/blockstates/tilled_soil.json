@@ -24,30 +24,6 @@
     "moisture=7,soil_type=dirt": {
       "model": "rankine:block/tilled_soil_dirt_moist"
     },
-    "moisture=0,soil_type=coarse_dirt": {
-      "model": "rankine:block/tilled_soil_coarse_dirt"
-    },
-    "moisture=1,soil_type=coarse_dirt": {
-      "model": "rankine:block/tilled_soil_coarse_dirt"
-    },
-    "moisture=2,soil_type=coarse_dirt": {
-      "model": "rankine:block/tilled_soil_coarse_dirt"
-    },
-    "moisture=3,soil_type=coarse_dirt": {
-      "model": "rankine:block/tilled_soil_coarse_dirt"
-    },
-    "moisture=4,soil_type=coarse_dirt": {
-      "model": "rankine:block/tilled_soil_coarse_dirt"
-    },
-    "moisture=5,soil_type=coarse_dirt": {
-      "model": "rankine:block/tilled_soil_coarse_dirt"
-    },
-    "moisture=6,soil_type=coarse_dirt": {
-      "model": "rankine:block/tilled_soil_coarse_dirt"
-    },
-    "moisture=7,soil_type=coarse_dirt": {
-      "model": "rankine:block/tilled_soil_coarse_dirt_moist"
-    },
     "moisture=0,soil_type=soul_soil": {
       "model": "rankine:block/tilled_soil_soul_soil"
     },

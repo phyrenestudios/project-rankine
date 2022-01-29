@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"0": "rankine:block/cinnabar_polypore",
-		"particle": "rankine:block/cinnabar_polypore"
+		"0": "rankine:block/cinnabar_polypore_mushroom",
+		"particle": "rankine:block/cinnabar_polypore_mushroom"
 	},
 	"elements": [
 		{
