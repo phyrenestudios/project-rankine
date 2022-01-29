@@ -467,8 +467,8 @@ public class RankineEventHandler {
             for (int i = 0; i < player.inventory.armorInventory.size(); ++i) {
                 ItemStack s = player.inventory.armorInventory.get(i);
                 if (!event.getSource().isProjectile() || EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOBIOTIC,s) == 0) {
-                    if (s.getItem() instanceof IAlloyArmorOld) {
-                        IAlloyArmorOld armor = (IAlloyArmorOld) s.getItem();
+                    if (s.getItem() instanceof AlloyArmorItem) {
+                        AlloyArmorItem armor = (AlloyArmorItem) s.getItem();
                         if (worldIn.getRandom().nextFloat() > armor.getHeatResist(s) && (player.isInLava() || player.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
                             int finalI = i;
                             s.damageItem(1,player,(entity) -> {
@@ -486,8 +486,8 @@ public class RankineEventHandler {
                         double d0 = player.getPosX();
                         double d1 = player.getPosY();
                         double d2 = player.getPosZ();
-                        if (s.getItem() instanceof IAlloyArmorOld) {
-                            IAlloyArmorOld armor = (IAlloyArmorOld) s.getItem();
+                        if (s.getItem() instanceof AlloyArmorItem) {
+                            AlloyArmorItem armor = (AlloyArmorItem) s.getItem();
                             if ((worldIn.getRandom().nextFloat() > armor.getCorrResist(s) && player.isWet())) {
                                 int finalI1 = i;
                                 s.damageItem(1 + EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOBIOTIC,s)*3,player,(entity) -> {
@@ -1038,7 +1038,7 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onItemAttributeModification(ItemAttributeModifierEvent event) {
         ItemStack stack = event.getItemStack();
-        if (stack.getItem() instanceof IAlloyTool && event.getSlotType() == EquipmentSlotType.MAINHAND)
+        if (stack.getItem() instanceof IAlloyTool && event.getSlotType() == EquipmentSlotType.MAINHAND && ((IAlloyTool) stack.getItem()).isAlloyInit(stack))
         {
 
             IAlloyTool alloyTool = (IAlloyTool) stack.getItem();
@@ -1260,9 +1260,9 @@ public class RankineEventHandler {
             }
 
             for (ItemStack armor : event.getEntityLiving().getArmorInventoryList()) {
-                if (armor.getItem() instanceof IAlloyArmorOld) {
+                if (armor.getItem() instanceof AlloyArmorItem) {
                     EquipmentSlotType slot = armor.getEquipmentSlot() != null ? armor.getEquipmentSlot() : EquipmentSlotType.HEAD;
-                    int i = ((IAlloyArmorOld) armor.getItem()).calcDurabilityLoss(armor,event.getEntity().getEntityWorld(),event.getEntityLiving(),true);
+                    int i = ((AlloyArmorItem) armor.getItem()).calcDurabilityLoss(armor,event.getEntity().getEntityWorld(),event.getEntityLiving(),true);
                     armor.damageItem(i,player, (p_220287_1_) -> {
                         p_220287_1_.sendBreakAnimation(slot);
                     });

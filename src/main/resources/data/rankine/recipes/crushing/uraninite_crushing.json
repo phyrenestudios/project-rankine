@@ -25,7 +25,7 @@
     "additional": 0.1
   },
   "output5": {
-    "item": "minecraft:galena",
+    "item": "rankine:galena",
     "chance": 0.05,
     "additional": 0.05
   },

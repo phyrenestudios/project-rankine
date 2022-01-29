@@ -1,29 +1,37 @@
 {
   "type": "rankine:mixing",
-  "mixTime": 1500,
-  "required": [true,true,true,true],
+  "mixTime": 120,
   "ingredientTotal": 4,
-  "outputTotal": 1,
+  "matScale": 0.25,
   "fluidInput": {
-    "fluid": "minecraft:water"
+    "fluid": "minecraft:water",
+    "amount": 100
   },
   "input1": {
     "item": "rankine:alumina",
-    "group": 0
+    "required": true,
+    "min": 0.25,
+    "max": 0.25
   },
   "input2": {
     "item": "rankine:magnesia",
-    "group": 1
+    "required": true,
+    "min": 0.25,
+    "max": 0.25
   },
   "input3": {
     "item": "rankine:sodium_carbonate",
-    "group": 2
+    "required": true,
+    "min": 0.25,
+    "max": 0.25
   },
   "input4": {
     "item": "rankine:spinel",
-    "group": 3
+    "required": true,
+    "min": 0.25,
+    "max": 0.25
   },
-  "output1": {
+  "result": {
     "item": "rankine:beta_alumina_solid_electrolyte"
   }
 }

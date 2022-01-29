@@ -1,8 +1,6 @@
 package com.cannolicatfish.rankine.util.alloys;
 
-import com.cannolicatfish.rankine.items.alloys.IAlloyArmorOld;
-import com.cannolicatfish.rankine.items.alloys.IAlloySimpleToolOld;
-import com.cannolicatfish.rankine.items.alloys.IAlloyToolOld;
+import com.cannolicatfish.rankine.items.alloys.*;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
@@ -52,10 +50,8 @@ public class AlloyModifier {
             }
 
         public boolean canApplyModification(Item item) {
-            if (item instanceof IAlloyToolOld) {
-                return toolStats.contains(this.getType());
-            } else if (item instanceof IAlloyArmorOld || item instanceof IAlloySimpleToolOld) {
-                return otherStats.contains(this.getType());
+            if (item instanceof IAlloySpecialItem) {
+                return ((IAlloySpecialItem) item).getDefaultStats().contains(this.getType());
             } else {
                 return false;
             }

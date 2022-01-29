@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.items;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import com.cannolicatfish.rankine.items.alloys.IAlloyToolOld;
+import com.cannolicatfish.rankine.items.alloys.IAlloyTieredItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -122,12 +122,16 @@ public class PackagedToolItem extends Item {
         //System.out.println(alloy.getId());
         //System.out.println(alloy.generateRandomResult(worldIn));
 
-        ((IAlloyItem) ret.getItem()).createAlloyNBT(ret, worldIn, alloy.generateRandomResult(worldIn), alloy.getId(), !alloy.getLocalName().isEmpty() ? alloy.getLocalName() : null);
+
+        String comp = alloy.generateRandomResult(worldIn);
+        ((IAlloyItem) ret.getItem()).createAlloyNBT(ret, worldIn, comp, alloy.getId(), !alloy.getLocalName().isEmpty() ? alloy.getLocalName() : null);
         if (alloy.getColor() != 16777215) {
             ret.getOrCreateTag().putInt("color",alloy.getColor());
         }
-        if (ret.getItem() instanceof IAlloyToolOld) {
-            ((IAlloyToolOld) ret.getItem()).applyAlloyEnchantments(ret,worldIn);
+        if (ret.getItem() instanceof IAlloyTieredItem) {
+            IAlloyTieredItem tieredItem = ((IAlloyTieredItem) ret.getItem());
+            ((IAlloyTieredItem) ret.getItem()).initStats(ret,tieredItem.getElementMap(comp,worldIn),tieredItem.getAlloyingRecipe(alloy.getId(),worldIn),null);
+            ((IAlloyTieredItem) ret.getItem()).applyAlloyEnchantments(ret,worldIn);
         }
         return ret;
     }

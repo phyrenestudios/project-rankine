@@ -43,12 +43,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
             return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
         }
-        TranslationTextComponent translation = new TranslationTextComponent(this.getTranslationKey(stack));
-        if (translation.getString().contains("%1$s")) {
-            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent("item.rankine.custom_alloy_default"));
-        } else {
-            return super.getDisplayName(stack);
-        }
+        return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
     @Override
     public void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier) {
@@ -89,6 +84,43 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
     @Override
     public int getItemEnchantability(ItemStack stack) {
         return this.getAlloyEnchantability(stack);
+    }
+
+    @Override
+    public void addAlloyInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
+            p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
+        });
+        if (this.isAlloyInit(stack)) {
+            if (!Screen.hasShiftDown()) {
+                tooltip.add((new StringTextComponent("Hold shift for details...")).mergeStyle(TextFormatting.GRAY));
+            }
+            if (Screen.hasShiftDown()) {
+                if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
+                    tooltip.add((new StringTextComponent("Any Composition").mergeStyle(TextFormatting.GOLD)));
+                } else {
+                    tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD)));
+                }
+
+                if (!IAlloyItem.getAlloyModifiers(stack).isEmpty()) {
+                    tooltip.add((new StringTextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).mergeStyle(TextFormatting.AQUA)));
+                } else {
+                    tooltip.add((new StringTextComponent("No Modifiers Present").mergeStyle(TextFormatting.AQUA)));
+                }
+
+                if (!this.needsRefresh(stack)) {
+
+                    tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(stack) - stack.getDamage()) + "/" + getAlloyDurability(stack))).mergeStyle(TextFormatting.DARK_GREEN));
+                    tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(stack))).mergeStyle(TextFormatting.GRAY));
+                    if (Config.ALLOYS.ALLOY_CORROSION.get()) {
+                        tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    }
+                    if (Config.ALLOYS.ALLOY_HEAT.get()) {
+                        tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    }
+                }
+            }
+        }
     }
 
     @Override

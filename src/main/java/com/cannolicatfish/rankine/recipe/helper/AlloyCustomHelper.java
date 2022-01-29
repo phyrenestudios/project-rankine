@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.recipe.helper;
 
-import com.cannolicatfish.rankine.items.alloys.IAlloyToolOld;
+import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
@@ -88,8 +88,8 @@ public class AlloyCustomHelper {
 
     public static ItemStack getItemstackForSearching(Item item, @Nullable World worldIn) {
         ItemStack list = ALLOY_SEARCH_LISTS.get(item);
-        if (list == null && item instanceof IAlloyToolOld) {
-            IAlloyToolOld tool = (IAlloyToolOld) item;
+        if (list == null && item instanceof IAlloyTool) {
+            IAlloyTool tool = (IAlloyTool) item;
             list = new ItemStack(item);
             tool.createAlloyNBT(list,worldIn,tool.getDefaultComposition(),tool.getDefaultRecipe(),null);
             ALLOY_SEARCH_LISTS.put(item, list);

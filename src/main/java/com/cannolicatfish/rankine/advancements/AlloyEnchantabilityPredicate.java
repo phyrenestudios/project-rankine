@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.advancements;
 
-import com.cannolicatfish.rankine.items.alloys.IAlloyToolOld;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.ItemPredicate;
@@ -23,8 +22,8 @@ public class AlloyEnchantabilityPredicate extends ItemPredicate {
 
     @Override
     public boolean test(ItemStack stack) {
-        if (stack.getItem() instanceof IAlloyToolOld && stack.getItem().getTags().contains(tag)) {
-            return ((IAlloyToolOld) stack.getItem()).getAlloyEnchantability(stack) >= ench;
+        if (stack.getItem() instanceof IAlloyTool && stack.getItem().getTags().contains(tag)) {
+            return ((IAlloyTool) stack.getItem()).getAlloyEnchantability(stack) >= ench;
         }
 
 

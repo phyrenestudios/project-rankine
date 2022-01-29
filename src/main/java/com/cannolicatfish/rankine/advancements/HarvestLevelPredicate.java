@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.advancements;
 
-import com.cannolicatfish.rankine.items.alloys.IAlloyToolOld;
+import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.item.Item;
@@ -23,8 +23,8 @@ public class HarvestLevelPredicate extends ItemPredicate {
 
     @Override
     public boolean test(ItemStack stack) {
-        if (stack.getItem() instanceof IAlloyToolOld && stack.getItem() == item) {
-            return ((IAlloyToolOld) stack.getItem()).getAlloyHarvestLevel(stack) == level;
+        if (stack.getItem() instanceof IAlloyTool && stack.getItem() == item) {
+            return ((IAlloyTool) stack.getItem()).getAlloyHarvestLevel(stack) == level;
         }
         return false;
     }

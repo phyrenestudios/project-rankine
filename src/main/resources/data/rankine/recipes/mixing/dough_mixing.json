@@ -1,35 +1,41 @@
 {
   "type": "rankine:mixing",
-  "mixTime": 60,
-  "required": [true,true,true,false],
+  "mixTime": 40,
   "ingredientTotal": 5,
-  "outputTotal": 1,
+  "matScale": 0.25,
   "fluidInput": {
-    "fluid": "minecraft:water"
+    "fluid": "minecraft:water",
+    "amount": 50
   },
   "input1": {
     "tag": "forge:flour",
-    "group": 0
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
   },
   "input2": {
     "item": "minecraft:sugar",
-    "group": 1
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
   },
   "input3": {
     "tag": "forge:salt",
-    "group": 2
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
   },
   "input4": {
     "tag": "forge:nuts",
-    "countMod": 1,
-    "mixMod": 20
+    "min": 0.20,
+    "max": 0.40
   },
   "input5": {
     "tag": "forge:berries",
-    "countMod": 1,
-    "mixMod": 20
+    "min": 0.20,
+    "max": 0.40
   },
-  "output1": {
+  "result": {
     "item": "rankine:dough"
   }
 }

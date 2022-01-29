@@ -91,15 +91,7 @@ public class CreateAlloyCommand {
 
                     }
 
-                    if (itemstack.getItem() instanceof IAlloyToolOld) {
-                        if (modifier != null) {
-                            Optional<? extends IRecipe<?>> modR = serverplayerentity.getEntityWorld().getRecipeManager().getRecipe(modifier);
-                            if (modR.isPresent() && modR.get() instanceof AlloyModifierRecipe) {
-                                ((IAlloyToolOld) itemstack.getItem()).applyModifiersFromRecipe(itemstack,((AlloyModifierRecipe) modR.get()));
-                            }
-                        }
-                        ((IAlloyToolOld) itemstack.getItem()).applyAlloyEnchantments(itemstack,serverplayerentity.world);
-                    } else if (itemstack.getItem() instanceof IAlloyTieredItem) {
+                    if (itemstack.getItem() instanceof IAlloyTieredItem) {
                         IAlloyTieredItem tieredItem = ((IAlloyTieredItem) itemstack.getItem());
                         AlloyModifierRecipe mod = null;
                         if (modifier != null) {
@@ -109,12 +101,10 @@ public class CreateAlloyCommand {
                             }
                         }
                         tieredItem.initStats(itemstack,tieredItem.getElementMap(data,serverplayerentity.world),tieredItem.getAlloyingRecipe(recipe,serverplayerentity.world),mod);
-                        //((IAlloyArmor) itemstack.getItem()).applyAlloyEnchantments(itemstack,serverplayerentity.world);
+                        tieredItem.applyAlloyEnchantments(itemstack,serverplayerentity.world);
                     }
 
-                } else {
-                    AlloyItem.addAlloy(itemstack,new AlloyData(data));
-                }
+                } 
 
                 boolean flag = serverplayerentity.inventory.addItemStackToInventory(itemstack);
                 if (flag && itemstack.isEmpty()) {

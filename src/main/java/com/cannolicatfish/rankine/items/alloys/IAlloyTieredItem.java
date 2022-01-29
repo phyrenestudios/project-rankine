@@ -159,12 +159,12 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         float asmin = 0;
         float asmax = 0;
         for (Map.Entry<ElementRecipe,Integer> set : elementMap.entrySet()) {
-            float as = set.getKey().getMiningLevel(set.getValue());
+            float as = set.getKey().getAttackSpeed(set.getValue());
             asmin = Math.min(as,asmin);
             asmax = Math.max(as,asmax);
         }
         if (alloy != null) {
-            float as = alloy.getBonusMiningLevel();
+            float as = alloy.getBonusAttackSpeed();
             asmin = Math.min(asmin,asmin+as);
             asmax = Math.max(asmax,asmax+as);
         }
@@ -179,12 +179,12 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         float dmgmin = 0;
         float dmgmax = 0;
         for (Map.Entry<ElementRecipe,Integer> set : elementMap.entrySet()) {
-            float dmg = set.getKey().getMiningLevel(set.getValue());
+            float dmg = set.getKey().getDamage(set.getValue());
             dmgmin = Math.min(dmg,dmgmin);
             dmgmax = Math.max(dmg,dmgmax);
         }
         if (alloy != null) {
-            float dmg = alloy.getBonusMiningLevel();
+            float dmg = alloy.getBonusDamage();
             dmgmin = Math.min(dmgmin,dmgmin+dmg);
             dmgmax = Math.max(dmgmax,dmgmax+dmg);
         }
