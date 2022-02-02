@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:pegmatite"
+  },
+  "result": "rankine:polished_pegmatite",
+  "count": 1
+}

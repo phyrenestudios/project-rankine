@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:slate"
+  },
+  "result": "rankine:polished_slate",
+  "count": 1
+}

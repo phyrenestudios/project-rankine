@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.world.gen.feature;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
@@ -25,7 +26,14 @@ public class CobblePatchFeature extends Feature<BlockClusterFeatureConfig> {
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockClusterFeatureConfig config) {
         List<String> rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(reader.getBiome(pos).getRegistryName()));
-        BlockState blockstate = RankineLists.STONE_COBBLES.get(RankineLists.STONES.indexOf(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(rockList.get(rand.nextInt(rockList.size())))))).getDefaultState();
+        if (rockList.size() < 1) return false;
+        Block stoneBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(rockList.get(rand.nextInt(rockList.size()))));
+        if (!RankineLists.STONES.contains(stoneBlock)) {
+            return false;
+        }
+        BlockState blockstate = RankineLists.STONE_COBBLES.get(RankineLists.STONES.indexOf(stoneBlock)).getDefaultState();
+
+
         BlockPos blockpos;
         if (config.project) {
             blockpos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos);

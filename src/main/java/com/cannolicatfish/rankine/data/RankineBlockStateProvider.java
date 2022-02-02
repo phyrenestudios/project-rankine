@@ -536,6 +536,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
         geodeBlock(RankineBlocks.GEODE.get());
 
+        for (Block blk : RankineLists.ELECTROMAGNETS) {
+            electroMagnet(blk);
+        }
         for (Block blk : RankineLists.LEDS) {
             onOffBlock(blk);
         }
@@ -630,8 +633,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         rotateableMachineBlock(RankineBlocks.GYRATORY_CRUSHER.get(), models().orientable(RankineBlocks.GYRATORY_CRUSHER.get().getRegistryName().getPath(), getBlockRSL("gyratory_crusher_side"), getBlockRSL("gyratory_crusher_front"), getBlockRSL("gyratory_crusher_top")), models().orientable(RankineBlocks.GYRATORY_CRUSHER.get().getRegistryName().getPath()+"_on", getBlockRSL("gyratory_crusher_side"), getBlockRSL("gyratory_crusher_front"), getBlockRSL("gyratory_crusher_top_on")));
 
 
-        electroMagnet(RankineBlocks.ALNICO_ELECTROMAGNET.get());
-        electroMagnet(RankineBlocks.RARE_EARTH_ELECTROMAGNET.get());
         SVLBlock((SodiumVaporLampBlock) RankineBlocks.SODIUM_VAPOR_LAMP.get());
 
 
@@ -866,16 +867,16 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .modelFile(models().withExistingParent(PATH +"snowy_top2", getBlockRSL("leaves_age5")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay2")).texture("snowy_top_overlay", getBlockRSL("snowy_leaves_top_overlay2"))).addModel();
     }
     public void layerBlock(Block BLK) {
-        getVariantBuilder(BLK).partialState().modelForState()
-                .modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), mcLoc("block/block"))
+        ModelFile model = models().withExistingParent(BLK.getRegistryName().getPath(), mcLoc("block/block"))
                 .texture("particle", getBlockRSL(BLK.getRegistryName().getPath()))
                 .texture("layer", getBlockRSL(BLK.getRegistryName().getPath()))
                 .element().from(0.0f,0.25f,0.0f).to(16.0f,0.25f,16.0f)
-                    .face(Direction.UP).uvs(16, 16, 0,0).texture("#layer").end()
-                    .face(Direction.DOWN).uvs(16, 0, 0, 16).texture("#layer").end()
-                    .end())
-                .addModel();
+                .face(Direction.UP).uvs(16, 16, 0,0).texture("#layer").end()
+                .face(Direction.DOWN).uvs(16, 0, 0, 16).texture("#layer").end()
+                .end();
+        getVariantBuilder(BLK).partialState().modelForState().modelFile(model).rotationY(0).nextModel().modelFile(model).rotationY(90).nextModel().modelFile(model).rotationY(180).nextModel().modelFile(model).rotationY(270).addModel();
     }
+
 
 
     public void electroMagnet(Block block) {

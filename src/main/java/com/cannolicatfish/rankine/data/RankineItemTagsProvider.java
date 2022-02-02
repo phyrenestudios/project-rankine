@@ -706,7 +706,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STONE_BRICKS_VERTICAL_SLAB, RankineTags.Items.STONE_BRICKS_VERTICAL_SLAB);
         copy(BlockTags.STONE_PRESSURE_PLATES, RankineTags.Items.STONE_PRESSURE_PLATES);
 
-
+        copy(RankineTags.Blocks.COBBLES, RankineTags.Items.COBBLES);
 
         //plants
         for (Block blk : RankineLists.WALL_MUSHROOMS) {
@@ -719,7 +719,13 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.SEEDS_RICE).add(RankineItems.RICE_SEEDS.get());
         getOrCreateBuilder(RankineTags.Items.SEEDS_JUTE).add(RankineItems.JUTE_SEEDS.get());
         getOrCreateBuilder(RankineTags.Items.SEEDS_CAMPHOR_BASIL).add(RankineItems.CAMPHOR_BASIL_SEEDS.get());
-        getOrCreateBuilder(Tags.Items.SEEDS).addTags(RankineTags.Items.SEEDS_FLOWER,RankineTags.Items.SEEDS_ASPARAGUS,RankineTags.Items.SEEDS_CORN,RankineTags.Items.SEEDS_COTTON,RankineTags.Items.SEEDS_RICE,RankineTags.Items.SEEDS_JUTE,RankineTags.Items.SEEDS_CAMPHOR_BASIL);
+        getOrCreateBuilder(RankineTags.Items.SEEDS_BARLEY).add(RankineItems.BARLEY_SEEDS.get());
+        getOrCreateBuilder(RankineTags.Items.SEEDS_RYE).add(RankineItems.RYE_SEEDS.get());
+        getOrCreateBuilder(RankineTags.Items.SEEDS_SORGHUM).add(RankineItems.SORGHUM_SEEDS.get());
+        getOrCreateBuilder(RankineTags.Items.SEEDS_MILLET).add(RankineItems.MILLET_SEEDS.get());
+        getOrCreateBuilder(RankineTags.Items.SEEDS_OATS).add(RankineItems.OAT_SEEDS.get());
+        getOrCreateBuilder(RankineTags.Items.SEEDS_SOYBEAN).add(RankineItems.OAT_SEEDS.get());
+        getOrCreateBuilder(Tags.Items.SEEDS).addTags(RankineTags.Items.SEEDS_FLOWER,RankineTags.Items.SEEDS_ASPARAGUS,RankineTags.Items.SEEDS_CORN,RankineTags.Items.SEEDS_COTTON,RankineTags.Items.SEEDS_RICE,RankineTags.Items.SEEDS_JUTE,RankineTags.Items.SEEDS_CAMPHOR_BASIL,RankineTags.Items.SEEDS_BARLEY,RankineTags.Items.SEEDS_RYE,RankineTags.Items.SEEDS_SORGHUM,RankineTags.Items.SEEDS_OATS,RankineTags.Items.SEEDS_MILLET,RankineTags.Items.SEEDS_SOYBEAN);
 
         getOrCreateBuilder(RankineTags.Items.CROPS_ASPARAGUS).add(RankineItems.ASPARAGUS.get());
         getOrCreateBuilder(RankineTags.Items.CROPS_CORN).add(RankineItems.CORN_EAR.get());
@@ -727,8 +733,12 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.CROPS_RICE).add(RankineItems.RICE.get());
         getOrCreateBuilder(RankineTags.Items.CROPS_JUTE).add(RankineItems.JUTE.get());
         getOrCreateBuilder(RankineTags.Items.CROPS_CAMPHOR_BASIL).add(RankineItems.CAMPHOR_BASIL_LEAF.get());
-        getOrCreateBuilder(Tags.Items.CROPS).addTags(RankineTags.Items.CROPS_ASPARAGUS,RankineTags.Items.CROPS_CORN,RankineTags.Items.CROPS_COTTON,RankineTags.Items.CROPS_RICE,RankineTags.Items.CROPS_JUTE,RankineTags.Items.CROPS_CAMPHOR_BASIL);
-
+        getOrCreateBuilder(RankineTags.Items.CROPS_BARLEY).add(RankineItems.BARLEY.get());
+        getOrCreateBuilder(RankineTags.Items.CROPS_RYE).add(RankineItems.RYE.get());
+        getOrCreateBuilder(RankineTags.Items.CROPS_SORGHUM).add(RankineItems.SORGHUM.get());
+        getOrCreateBuilder(RankineTags.Items.CROPS_MILLET).add(RankineItems.MILLET.get());
+        getOrCreateBuilder(RankineTags.Items.CROPS_OATS).add(RankineItems.OATS.get());
+        getOrCreateBuilder(RankineTags.Items.CROPS_SOYBEAN).add(RankineItems.SOYBEANS.get());
 
         getOrCreateBuilder(RankineTags.Items.PINEAPPLE).add(RankineItems.PINEAPPLE.get());
 
@@ -744,6 +754,19 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.BERRIES_SWEET_BERRY).add(Items.SWEET_BERRIES);
         getOrCreateBuilder(RankineTags.Items.BERRIES).addTags(RankineTags.Items.BERRIES_BLACKBERRY,RankineTags.Items.BERRIES_BLUEBERRY,RankineTags.Items.BERRIES_CRANBERRY,RankineTags.Items.BERRIES_ELDERBERRY,RankineTags.Items.BERRIES_JUNIPER,RankineTags.Items.BERRIES_RASPBERRY,RankineTags.Items.BERRIES_SNOWBERRY,RankineTags.Items.BERRIES_SWEET_BERRY,RankineTags.Items.BERRIES_POKEBERRY,RankineTags.Items.BERRIES_STRAWBERRY);
         getOrCreateBuilder(RankineTags.Items.NUTS).add(RankineItems.BLACK_WALNUT.get(),RankineItems.COCONUT.get());
+
+        //getOrCreateBuilder(RankineTags.Items.FISH).add(Items.SALMON,Items.SALMON,RankineItems.TUNA.get());
+
+
+
+        getOrCreateBuilder(RankineTags.Items.BREEDABLES_COW).addTags(RankineTags.Items.CROPS_BARLEY,RankineTags.Items.CROPS_RYE,RankineTags.Items.CROPS_SORGHUM,RankineTags.Items.CROPS_MILLET,RankineTags.Items.CROPS_OATS,Tags.Items.CROPS_WHEAT,RankineTags.Items.CROPS_CORN);
+        getOrCreateBuilder(RankineTags.Items.BREEDABLES_SHEEP).addTags(RankineTags.Items.CROPS_BARLEY,RankineTags.Items.CROPS_RYE,RankineTags.Items.CROPS_SORGHUM,RankineTags.Items.CROPS_MILLET,RankineTags.Items.CROPS_OATS,Tags.Items.CROPS_WHEAT,RankineTags.Items.CROPS_CORN);
+        getOrCreateBuilder(RankineTags.Items.BREEDABLES_PIG).addTags(RankineTags.Items.CROPS_SOYBEAN,RankineTags.Items.CROPS_ASPARAGUS,RankineTags.Items.CROPS_CORN,Tags.Items.CROPS_BEETROOT,Tags.Items.CROPS_POTATO,Tags.Items.CROPS_CARROT);
+        getOrCreateBuilder(RankineTags.Items.BREEDABLES_CHICKEN).addTags(Tags.Items.SEEDS);
+        getOrCreateBuilder(RankineTags.Items.BREEDABLES_FOX).addTags(RankineTags.Items.BERRIES);
+        getOrCreateBuilder(RankineTags.Items.BREEDABLES_CAT).add(Items.SALMON,Items.COD,RankineItems.TUNA.get());
+        getOrCreateBuilder(RankineTags.Items.BREEDABLES_HORSE).add(Items.GOLDEN_APPLE,Items.ENCHANTED_GOLDEN_APPLE,Items.GOLDEN_CARROT);
+        getOrCreateBuilder(RankineTags.Items.BREEDABLES_RABBIT).add(Items.DANDELION,Items.CARROT,Items.GOLDEN_CARROT);
 
 
         getOrCreateBuilder(RankineTags.Items.FLOUR).add(RankineItems.WHEAT_GRAIN.get(),RankineItems.BARLEY_GRAIN.get(),RankineItems.RYE_GRAIN.get());
@@ -862,10 +885,15 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
 
 
+
+
+
+
         //MINECRAFT
         getOrCreateBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(RankineItems.SKARN.get(),RankineItems.BRECCIA.get());
         //getOrCreateBuilder(ItemTags.BEACON_PAYMENT_ITEMS).addTags();
 
+        getOrCreateBuilder(ItemTags.FISHES).add(RankineItems.TUNA.get(),RankineItems.COOKED_TUNA.get());
         getOrCreateBuilder(ItemTags.ARROWS).add(RankineItems.ROPE_COIL_ARROW.get(),RankineItems.THORIUM_ARROW.get(),RankineItems.MAGNESIUM_ARROW.get(),RankineItems.ALLOY_ARROW.get());
         //getOrCreateBuilder(EntityTypeTags.ARROWS).add(RankineEntityTypes.THORIUM_ARROW,RankineEntityTypes.MAGNESIUM_ARROW,RankineEntityTypes.ALLOY_ARROW);
         getOrCreateBuilder(ItemTags.COALS).add(RankineItems.LIGNITE.get(),RankineItems.SUBBITUMINOUS_COAL.get(),RankineItems.BITUMINOUS_COAL.get(),RankineItems.ANTHRACITE_COAL.get());

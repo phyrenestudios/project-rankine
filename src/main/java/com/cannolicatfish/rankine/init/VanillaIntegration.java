@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.item.Item;
 import net.minecraft.util.IItemProvider;
 
 import java.util.HashMap;
@@ -22,7 +23,13 @@ public class VanillaIntegration {
         for (Block blk : RankineLists.LEAVES) {
             registerCompostable(0.3F, blk);
         }
+        for (Block blk : RankineLists.LEAF_LITTERS) {
+            registerCompostable(0.1F, blk);
+        }
         for (Block blk : RankineLists.SAPLINGS) {
+            registerCompostable(0.3F, blk);
+        }
+        for (Item blk : RankineLists.SEEDS) {
             registerCompostable(0.3F, blk);
         }
         registerCompostable(0.5F, RankineItems.COMPOST.get());
@@ -50,7 +57,6 @@ public class VanillaIntegration {
         registerCompostable(0.3F, RankineItems.JUNIPER_BERRIES.get());
         registerCompostable(0.3F, RankineItems.BLACK_WALNUT.get());
         registerCompostable(0.3F, RankineItems.COCONUT.get());
-        registerCompostable(0.3F, RankineItems.FLOWER_SEEDS.get());
 
         for (Block GRASS : RankineLists.GRASS_BLOCKS)  {
             pathBlocks_map.put(GRASS, RankineLists.PATH_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(GRASS)));
@@ -65,13 +71,16 @@ public class VanillaIntegration {
             pathBlocks_map.put(GRASS, RankineBlocks.MYCELIUM_PATH.get());
         }
 
-
+        /*
         hoeables_map.put(Blocks.DIRT, TilledSoilTypes.DIRT);
         hoeables_map.put(Blocks.COARSE_DIRT, TilledSoilTypes.DIRT);
         hoeables_map.put(Blocks.GRASS_BLOCK, TilledSoilTypes.DIRT);
         hoeables_map.put(Blocks.GRASS_PATH, TilledSoilTypes.DIRT);
         hoeables_map.put(Blocks.MYCELIUM, TilledSoilTypes.DIRT);
         hoeables_map.put(Blocks.PODZOL, TilledSoilTypes.DIRT);
+
+         */
+
         hoeables_map.put(Blocks.SOUL_SOIL, TilledSoilTypes.SOUL_SOIL);
         hoeables_map.put(RankineBlocks.LOAM.get(), TilledSoilTypes.LOAM);
         hoeables_map.put(RankineBlocks.COARSE_LOAM.get(), TilledSoilTypes.LOAM);

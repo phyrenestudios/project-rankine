@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:comendite"
+  },
+  "result": "rankine:comendite_bricks",
+  "count": 1
+}

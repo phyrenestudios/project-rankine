@@ -40,12 +40,12 @@ public class LeafLitterBlock extends FallingBlock {
 
     public static boolean canFallThrough(BlockState state) {
         Material material = state.getMaterial();
-        return state.isAir() || state.isIn(BlockTags.FIRE) || material.isLiquid() || (material.isReplaceable() && !(state.getBlock() instanceof LeafLitterBlock));
+        return state.isAir() || state.isIn(BlockTags.FIRE) || material.isLiquid() || material.isReplaceable() || state.getBlock() instanceof LeafLitterBlock;
     }
 
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.down()).isNormalCube(worldIn,pos.down());
+        return worldIn.getBlockState(pos.down()).isNormalCube(worldIn,pos.down()) && worldIn.getBlockState(pos.down()).getBlock() != this;
     }
 
     @Override

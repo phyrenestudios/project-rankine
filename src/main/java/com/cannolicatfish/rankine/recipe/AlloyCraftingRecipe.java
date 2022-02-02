@@ -1,9 +1,8 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.items.alloys.*;
+import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
+import com.cannolicatfish.rankine.items.alloys.IAlloySpecialItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
-import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -14,8 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ICraftingRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
@@ -251,7 +248,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
                 //System.out.println("No matching compositions for inheritRecipe " + workingRecipe);
                 return ItemStack.EMPTY;
             } else {
-                IAlloyItem.createDirectAlloyNBT(res,workingComposition,workingRecipe,null,res.getItem() instanceof IAlloyNeedsRegenerate);
+                IAlloyItem.createDirectAlloyNBT(res,workingComposition,workingRecipe,null,res.getItem() instanceof IAlloySpecialItem);
             }
         }
         if (this.getColor() != 16777215) {

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:post_perovskite"
+  },
+  "result": "rankine:polished_post_perovskite",
+  "count": 1
+}

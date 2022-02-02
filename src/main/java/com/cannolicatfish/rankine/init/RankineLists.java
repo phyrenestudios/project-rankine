@@ -175,6 +175,7 @@ public class RankineLists {
     public static List<Block> LIGHTNING_GLASSES = Arrays.asList(RankineBlocks.LIGHTNING_GLASS.get(),RankineBlocks.RED_LIGHTNING_GLASS.get(),RankineBlocks.SOUL_LIGHTNING_GLASS.get(),RankineBlocks.BLACK_LIGHTNING_GLASS.get(),RankineBlocks.WHITE_LIGHTNING_GLASS.get());
     
     public static List<Block> ASPHALT_BLOCKS = Arrays.asList(RankineBlocks.ASPHALT.get(),RankineBlocks.ASPHALT_YL.get(),RankineBlocks.ASPHALT_YDL.get(),RankineBlocks.ASPHALT_YDBL.get(),RankineBlocks.ASPHALT_DDBL.get(),RankineBlocks.ASPHALT_WL.get(),RankineBlocks.ASPHALT_WDL.get(),RankineBlocks.ASPHALT_CW.get(),RankineBlocks.ASPHALT_S.get());
+    public static List<Block> ELECTROMAGNETS = Arrays.asList(RankineBlocks.SIMPLE_ELECTROMAGNET.get(),RankineBlocks.ALNICO_ELECTROMAGNET.get(),RankineBlocks.RARE_EARTH_ELECTROMAGNET.get());
 
     public static List<Block> QUARTER_SLABS = Arrays.asList(RankineBlocks.CONCRETE_SLAB.get(),RankineBlocks.CEMENT_SLAB.get(),RankineBlocks.ROMAN_CONCRETE_SLAB.get(),RankineBlocks.POLISHED_ROMAN_CONCRETE_SLAB.get(),RankineBlocks.ROMAN_CONCRETE_BRICKS_SLAB.get());
     public static List<Block> CONCRETE_STAIRS = Arrays.asList(RankineBlocks.CONCRETE_STAIRS.get(),RankineBlocks.CEMENT_STAIRS.get(),RankineBlocks.ROMAN_CONCRETE_STAIRS.get(),RankineBlocks.POLISHED_ROMAN_CONCRETE_STAIRS.get(),RankineBlocks.ROMAN_CONCRETE_BRICKS_STAIRS.get());

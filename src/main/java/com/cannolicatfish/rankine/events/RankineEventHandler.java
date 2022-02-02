@@ -37,17 +37,19 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.goal.EatGrassGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -759,7 +761,7 @@ public class RankineEventHandler {
             }
         }
         if (ground == Blocks.ICE) {
-            if (new Random().nextFloat() < Config.GENERAL.ICE_BREAK.get() && !(EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SPEED_SKATER, player) > 0)) {
+            if (world.rand.nextFloat() < Config.GENERAL.ICE_BREAK.get() && !(EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SPEED_SKATER, player) > 0)) {
                 for (BlockPos B : BlockPos.getAllInBoxMutable(pos.add(-2, -1, -2), pos.add(2, -1, 2))) {
                     if (world.getBlockState(B).getBlock() == Blocks.ICE) {
                         world.setBlockState(B, Blocks.FROSTED_ICE.getDefaultState().with(FrostedIceBlock.AGE, 2));
@@ -1360,7 +1362,7 @@ public class RankineEventHandler {
             {
                 Pair<ItemStack, Float[]> p = PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(world.getBlockState(end).getBlock()));
                 float f = 0.5F;
-                Random rand = new Random();
+                Random rand = rand;
                 double d0 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
                 double d1 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
                 double d2 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
@@ -1388,7 +1390,7 @@ public class RankineEventHandler {
             worldIn.playSound(d0, d1, d2, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
             worldIn.removeBlock(new BlockPos(hit),false);
             float f = 0.5F;
-            Random rand = new Random();
+            Random rand = rand;
             double e0 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
             double e1 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
             double e2 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
@@ -1745,41 +1747,42 @@ public class RankineEventHandler {
         if (Config.GENERAL.FLINT_FIRE.get() && event.getFace() != null) {
             BlockPos pos = event.getPos();
             World world = event.getWorld();
+            Random rand = world.rand;
             PlayerEntity player = event.getPlayer();
             BlockPos blockpos1 = event.getPos().offset(event.getFace());
             if (player.getHeldItemMainhand().getItem() == Items.FLINT && player.getHeldItemOffhand().getItem() == Items.FLINT) {
-                if (world.getBlockState(pos) == RankineBlocks.CHARCOAL_PIT.get().getDefaultState().with(CharcoalPitBlock.LIT, false)) {
+                if (world.getBlockState(pos) == RankineBlocks.CHARCOAL_PIT.get().getDefaultState().with(CharcoalPitBlock.LIT, false) && !world.isRemote) {
                     for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(0, -Config.MACHINES.CHARCOAL_PIT_HEIGHT.get(), 0), pos.add(0, Config.MACHINES.CHARCOAL_PIT_HEIGHT.get(), 0))) {
-                        if (world.getBlockState(blockpos).getBlock() == RankineBlocks.CHARCOAL_PIT.get() && !world.isRemote) {
-                            world.setBlockState(blockpos, world.getBlockState(blockpos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
+                        if (world.getBlockState(blockpos).getBlock() == RankineBlocks.CHARCOAL_PIT.get()) {
+                            world.setBlockState(blockpos, world.getBlockState(blockpos).with(BlockStateProperties.LIT, Boolean.TRUE), 3);
                         }
                     }
                     player.swingArm(Hand.MAIN_HAND);
-                    if (new Random().nextFloat() < Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
+                    if (rand.nextFloat() < Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
                         player.getHeldItem(Hand.MAIN_HAND).shrink(1);
                         player.getHeldItem(Hand.OFF_HAND).shrink(1);
                     }
-                    world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
+                    world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
                 } else if (world.getBlockState(pos) == RankineBlocks.BEEHIVE_OVEN_PIT.get().getDefaultState().with(BlockStateProperties.LIT, false)) {
                     if (!world.isRemote()) {
-                        world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
+                        world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 3);
                         player.swingArm(Hand.MAIN_HAND);
-                        if (new Random().nextFloat() < Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
+                        if (rand.nextFloat() < Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
                             player.getHeldItem(Hand.MAIN_HAND).shrink(1);
                             player.getHeldItem(Hand.OFF_HAND).shrink(1);
                         }
                     }
-                    world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
+                    world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
                 } else if (AbstractFireBlock.canLightBlock(world, blockpos1, event.getFace()) && !world.isRemote && !(world.getBlockState(pos).getBlock() instanceof BeehiveOvenPitBlock) &&
-                        world.getBlockState(pos) != RankineBlocks.CHARCOAL_PIT.get().getDefaultState().with(CharcoalPitBlock.LIT, true)) {
+                    world.getBlockState(pos) != RankineBlocks.CHARCOAL_PIT.get().getDefaultState().with(CharcoalPitBlock.LIT, true)) {
                     world.setBlockState(blockpos1, AbstractFireBlock.getFireForPlacement(world, blockpos1), 11);
                     player.swingArm(Hand.MAIN_HAND);
-                    if (new Random().nextFloat() < Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
+                    if (rand.nextFloat() < Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
                         player.getHeldItem(Hand.MAIN_HAND).shrink(1);
                         player.getHeldItem(Hand.OFF_HAND).shrink(1);
                     }
                 }
-                world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
+                world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
             }
         }
     }
@@ -2009,6 +2012,7 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void blockBreakingEvents(BlockEvent.BreakEvent event) {
         ServerWorld worldIn = (ServerWorld) event.getWorld();
+        Random rand = worldIn.rand;
         PlayerEntity player = event.getPlayer();
         BlockPos pos = event.getPos();
         Block target = worldIn.getBlockState(pos).getBlock();
@@ -2021,7 +2025,7 @@ public class RankineEventHandler {
             //Luck Pendant
             if (offHandItem == RankineItems.TOTEM_OF_PROMISING.get()) {
                 if (event.getState().isIn(RankineTags.Blocks.LUCK_PENDANT)) {
-                    if (new Random().nextFloat() < 0.2f) {
+                    if (rand.nextFloat() < 0.2f) {
                         for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld(), event.getPos(), null)) {
                             spawnAsEntity(worldIn, pos, new ItemStack(i.getItem(), 1));
                         }
@@ -2070,7 +2074,7 @@ public class RankineEventHandler {
                         } else if (worldIn.getBlockState(pos.west(x)).getBlock() instanceof RankineOreBlock) {
                             foundPos = pos.west(x);
                         }
-                        if (foundPos != null && new Random().nextFloat() < Config.GENERAL.NUGGET_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
+                        if (foundPos != null && rand.nextFloat() < Config.GENERAL.NUGGET_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
                             Block b = worldIn.getBlockState(foundPos).getBlock();
                             ItemStack nug = ItemStack.EMPTY;
                             if (b == RankineBlocks.MAGNETITE_ORE.get() || b == RankineBlocks.HEMATITE_ORE.get()) {
@@ -2237,9 +2241,27 @@ public class RankineEventHandler {
     public static void onSheepJoinWorld(EntityJoinWorldEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof SheepEntity) {
-            SheepEntity sheepEntity = (SheepEntity) entity;
-            sheepEntity.goalSelector.removeGoal(new EatGrassGoal(sheepEntity));
-            sheepEntity.goalSelector.addGoal(5,new EatGrassGoalModified(sheepEntity));
+            SheepEntity ent = (SheepEntity) entity;
+            ent.goalSelector.removeGoal(new EatGrassGoal(ent));
+            ent.goalSelector.addGoal(5,new EatGrassGoalModified(ent));
+            ent.goalSelector.removeGoal(new TemptGoal(ent, 1.1D, Ingredient.fromItems(Items.WHEAT), false));
+            ent.goalSelector.addGoal(3,new TemptGoal(ent, 1.1D, Ingredient.fromTag(RankineTags.Items.BREEDABLES_SHEEP), false));
+        } else if (entity instanceof CowEntity) {
+            CowEntity ent = (CowEntity) entity;
+            //ent.goalSelector.removeGoal(new TemptGoal(ent, 1.1D, Ingredient.fromItems(Items.WHEAT), false));
+            ent.goalSelector.addGoal(3,new TemptGoal(ent, 1.25D, Ingredient.fromTag(RankineTags.Items.BREEDABLES_COW), false));
+        } else if (entity instanceof PigEntity) {
+            PigEntity ent = (PigEntity) entity;
+            //ent.goalSelector.removeGoal(new TemptGoal(ent, 1.1D, Ingredient.fromItems(Items.WHEAT), false));
+            ent.goalSelector.addGoal(4,new TemptGoal(ent, 1.2D, Ingredient.fromTag(RankineTags.Items.BREEDABLES_PIG), false));
+        } else if (entity instanceof ChickenEntity) {
+            ChickenEntity ent = (ChickenEntity) entity;
+            //ent.goalSelector.removeGoal(new TemptGoal(ent, 1.1D, Ingredient.fromItems(Items.WHEAT), false));
+            ent.goalSelector.addGoal(3,new TemptGoal(ent, 1.0D, Ingredient.fromTag(RankineTags.Items.BREEDABLES_CHICKEN), false));
+        } else if (entity instanceof RabbitEntity) {
+            RabbitEntity ent = (RabbitEntity) entity;
+            //ent.goalSelector.removeGoal(new TemptGoal(ent, 1.1D, Ingredient.fromItems(Items.WHEAT), false));
+            ent.goalSelector.addGoal(3,new TemptGoal(ent, 1.0D, Ingredient.fromTag(RankineTags.Items.BREEDABLES_RABBIT), false));
         }
     }
 
@@ -2261,5 +2283,59 @@ public class RankineEventHandler {
         }
     }
 
+
+    @SubscribeEvent
+    public static void onBreedEvent(PlayerInteractEvent.EntityInteract event) {
+        PlayerEntity player = event.getPlayer();
+        Entity ent = event.getTarget();
+        ItemStack itemStack = event.getItemStack();
+
+        if (ent instanceof AnimalEntity) {
+            AnimalEntity entA = (AnimalEntity) ent;
+            EntityType<?> type = ent.getType();
+            boolean flag = false;
+            if (type.equals(EntityType.PIG) && itemStack.getItem().isIn(RankineTags.Items.BREEDABLES_PIG)) {
+                flag = true;
+            } else if (type.equals(EntityType.COW) || type.equals(EntityType.MOOSHROOM) && itemStack.getItem().isIn(RankineTags.Items.BREEDABLES_COW)) {
+                flag = true;
+            } else if (type.equals(EntityType.SHEEP) && itemStack.getItem().isIn(RankineTags.Items.BREEDABLES_SHEEP)) {
+                flag = true;
+            } else if (type.equals(EntityType.CHICKEN) && itemStack.getItem().isIn(RankineTags.Items.BREEDABLES_CHICKEN)) {
+                flag = true;
+            } else if (type.equals(EntityType.FOX) && itemStack.getItem().isIn(RankineTags.Items.BREEDABLES_FOX)) {
+                flag = true;
+            } else if (type.equals(EntityType.RABBIT) && itemStack.getItem().isIn(RankineTags.Items.BREEDABLES_RABBIT)) {
+                flag = true;
+            } else if (type.equals(EntityType.CAT) && itemStack.getItem().isIn(RankineTags.Items.BREEDABLES_CAT)) {
+                flag = true;
+            } else if (type.equals(EntityType.HORSE) || type.equals(EntityType.DONKEY) && itemStack.getItem().isIn(RankineTags.Items.BREEDABLES_HORSE)) {
+                flag = true;
+            }
+
+            if (flag) {
+                int i = entA.getGrowingAge();
+                if (!entA.world.isRemote && i == 0 && entA.canFallInLove()) {
+                    if (!player.abilities.isCreativeMode) {
+                        itemStack.shrink(1);
+                    }
+                    entA.setInLove(player);
+                    event.setResult(Event.Result.ALLOW);
+                }
+
+                if (entA.isChild()) {
+                    if (!player.abilities.isCreativeMode) {
+                        itemStack.shrink(1);
+                    }
+                    entA.ageUp((int) ((float) (-i / 20) * 0.1F), true);
+                    event.setResult(Event.Result.ALLOW);
+                }
+
+                if (entA.world.isRemote) {
+                    event.setResult(Event.Result.ALLOW);
+                }
+            }
+        }
+
+    }
 
 }

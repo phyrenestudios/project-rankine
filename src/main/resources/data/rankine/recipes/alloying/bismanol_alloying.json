@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloying",
+  "total": 2,
+  "color": 11574435,
+  "input1": {
+    "element": "rankine:elements/bismuth",
+    "min": 0.40,
+    "max": 0.60,
+    "required": true
+  },
+  "input2": {
+    "element": "rankine:elements/manganese",
+    "min": 0.40,
+    "max": 0.60,
+    "required": true
+  },
+  "result": "rankine:rose_metal_ingot"
+}

@@ -133,6 +133,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.PODZOL_BLOCKS,
                 RankineLists.MYCELIUM_BLOCKS,
                 RankineLists.PATH_BLOCKS,
+                RankineLists.ELECTROMAGNETS,
                 RankineLists.LANTERNS,
                 RankineLists.QUARTER_SLABS,
                 RankineLists.ASPHALT_BLOCKS,
@@ -190,8 +191,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.DISTILLATION_TOWER.get(),
                 RankineBlocks.AIR_DISTILLATION_PACKING.get(),
                 RankineBlocks.REACTION_CHAMBER_CORE.get(),
-                RankineBlocks.RARE_EARTH_ELECTROMAGNET.get(),
-                RankineBlocks.ALNICO_ELECTROMAGNET.get(),
                 RankineBlocks.TRAMPOLINE.get(),
                 RankineBlocks.RANKINE_BOX.get(),
                 RankineBlocks.CHARCOAL_PIT.get(),
@@ -289,6 +288,11 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.COCONUT.get(),
             RankineItems.ALOE.get(),
             RankineItems.RICE.get(),
+            RankineItems.BARLEY.get(),
+            RankineItems.RYE.get(),
+            RankineItems.SORGHUM.get(),
+            RankineItems.MILLET.get(),
+            RankineItems.OATS.get(),
             RankineItems.ASPARAGUS.get(),
             RankineItems.CORN_EAR.get(),
             RankineItems.COTTON.get(),
@@ -399,6 +403,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.PROSPECTING_STICK.get(),
             RankineItems.DOWSING_ROD.get(),
             RankineItems.PACKAGED_TOOL.get(),
+            RankineItems.SIMPLE_MAGNET.get(),
             RankineItems.ALNICO_MAGNET.get(),
             RankineItems.RARE_EARTH_MAGNET.get(),
             RankineItems.WOODEN_GOLD_PAN.get(),
@@ -486,11 +491,17 @@ public class RankineLangProvider extends LanguageProvider {
         add(RankineItems.GF_BREAD.get(),"Bread (Gluten Free)");
         add(RankineItems.DOUGH_GF.get(),"Dough (Gluten Free)");
 
+
+
+
+
+
         //Alloy Lang
         add("item.rankine.custom_alloy_default","Alloy");
         add("item.rankine.alnico_alloying", "Alnico");
         add("item.rankine.aluminum_bronze_alloying", "Aluminum Bronze");
         add("item.rankine.amalgam_alloying", "Amalgam");
+        add("item.rankine.bismanol_alloying", "Bismanol");
         add("item.rankine.black_gold_alloying", "Black Gold");
         add("item.rankine.black_gold_nr_alloying", "Black Netherite");
         add("item.rankine.blue_gold_alloying", "Blue Gold");
@@ -508,6 +519,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.rankine.green_gold_alloying", "Green Gold");
         add("item.rankine.green_gold_nr_alloying", "Green Netherite");
         add("item.rankine.invar_alloying", "Invar");
+        add("item.rankine.permalloy_alloying", "Permalloy");
         add("item.rankine.magnesium_alloy_alloying", "Magnesium Alloy");
         add("item.rankine.maraging_steel_alloying", "Maraging Steel");
         add("item.rankine.mischmetal_alloying", "Mischmetal");
@@ -521,6 +533,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.rankine.purple_gold_nr_alloying", "Purple Netherite");
         add("item.rankine.rose_gold_alloying", "Rose Gold");
         add("item.rankine.rose_gold_nr_alloying", "Rose Netherite");
+        add("item.rankine.rose_metal_alloying", "Rose Metal");
         add("item.rankine.sodium_potassium_alloy_alloying", "Sodium Potassium Alloy");
         add("item.rankine.solder_ag_alloying", "Solder");
         add("item.rankine.solder_pb_alloying", "Solder");
@@ -533,25 +546,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.rankine.white_gold_nr_alloying", "White Netherite");
         add("item.rankine.zirconium_alloy_alloying", "Zirconium Alloy");
 
-        //Alloy Plates
-        add("item.rankine.alloy_plate_bronze", "Bronze Plate");
-        add("item.rankine.alloy_plate_brass", "Brass Plate");
-        add("item.rankine.alloy_plate_invar", "Invar Plate");
-        add("item.rankine.alloy_plate_steel", "Steel Plate");
-        add("item.rankine.alloy_plate_stainless_steel", "Stainless Steel Plate");
-        add("item.rankine.alloy_plate_cupronickel", "Cupronickel Plate");
-        add("item.rankine.alloy_plate_aluminum", "Aluminum Plate");
-        add("item.rankine.alloy_plate_copper", "Copper Plate");
-        add("item.rankine.alloy_plate_bismuth", "Bismuth Plate");
-        add("item.rankine.alloy_plate_lead", "Lead Plate");
-        add("item.rankine.alloy_plate_iron", "Iron Plate");
-        add("item.rankine.alloy_plate_silver", "Silver Plate");
-        add("item.rankine.alloy_plate_gold", "Gold Plate");
-        add("item.rankine.alloy_plate_platinum", "Platinum Plate");
-        add("item.rankine.alloy_plate_nickel", "Nickel Plate");
-        add("item.rankine.alloy_plate_titanium", "Titanium Plate");
-        add("item.rankine.alloy_plate_tin", "Tin Plate");
-        add("item.rankine.alloy_plate_tungsten", "Tungsten Plate");
+
+        //Alloy Gears
+        add("item.rankine.alloy_gear_cupronickel", "Cupronickel Gear");
+        add("item.rankine.alloy_gear_bronze", "Bronze Gear");
         //Alloy Rods
         add("item.rankine.alloy_rod_steel", "Steel Rod");
         add("item.rankine.alloy_rod_cast_iron", "Cast Iron Rod");
@@ -566,6 +564,8 @@ public class RankineLangProvider extends LanguageProvider {
 
 
 
+
+
         add("item.rankine.building_tool.message", "Building Mode changed to %1$s");
 
 
@@ -574,6 +574,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("death.attack.suffocating.player", "%1$s suffocated in a gas cloud whilst trying to escape %2$s");
         add("death.attack.cannonball", "%1$s was struck by a cannonball");
         add("death.attack.cannonball.player", "%1$s was struck by a cannonball whilst trying to escape %2$s");
+        add("death.attack.columns", "%1$s was squished by a falling column");
+        add("death.attack.columns.player", "%1$s was squished by a falling column whilst trying to escape %2$s");
 
 
 
@@ -993,11 +995,6 @@ public class RankineLangProvider extends LanguageProvider {
 
         //JOURNAL
         add("rankine.journal.landing_text", "A mere collection of discoveries, awaiting application.");
-
-        add("rankine.journal.cat_tools.name", "Tools");
-        add("rankine.journal.cat_tools.desc", "Various implements use to manipulate the world.");
-
-
 
         add("rankine.journal.cat_tools.name", "Tools");
         add("rankine.journal.cat_tools.desc", "Various implements use to manipulate the world.");

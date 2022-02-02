@@ -6,7 +6,7 @@
   "output1": {
     "item": "rankine:meteoric_iron",
     "alloyComp": "80Fe-20Ni",
-    "alloyRecipe": "rankine:alloying/invar_alloy_alloying",
+    "alloyRecipe": "rankine:alloying/invar_alloying",
     "chance": 1
   },
   "output2": {

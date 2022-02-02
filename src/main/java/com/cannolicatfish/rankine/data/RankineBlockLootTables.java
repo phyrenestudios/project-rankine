@@ -84,6 +84,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.ROTATION_BLOCKS,
                 RankineLists.ELEMENT_BLOCKS,
                 RankineLists.QUARTER_SLABS,
+                RankineLists.ELECTROMAGNETS,
                 RankineLists.LANTERNS,
                 RankineLists.WALL_MUSHROOMS,
                 RankineLists.SAPLINGS
@@ -101,13 +102,15 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineBlocks.CHARCOAL_PIT.get(),
                 RankineBlocks.TREE_TAP.get(),
                 RankineBlocks.BOTANIST_STATION.get(),
+                RankineBlocks.MATERIAL_TESTING_TABLE.get(),
                 RankineBlocks.DIAMOND_ANVIL_CELL.get(),
                 RankineBlocks.BEEHIVE_OVEN_PIT.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
                 RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.GEODE.get(),
-                RankineBlocks.ALNICO_ELECTROMAGNET.get(),
-                RankineBlocks.RARE_EARTH_ELECTROMAGNET.get(),
+                RankineBlocks.TRAMPOLINE.get(),
+                RankineBlocks.METAL_PIPE.get(),
+                RankineBlocks.GROUND_TAP.get(),
                 RankineBlocks.AIR_DISTILLATION_PACKING.get()
         )) {
             lootTables.put(blk, createBlockLootTable(blk));

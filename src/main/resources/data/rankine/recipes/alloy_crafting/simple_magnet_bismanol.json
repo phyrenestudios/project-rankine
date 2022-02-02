@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "I I",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "rankine:rose_metal_ingot",
+      "alloyRecipe": "rankine:alloying/bismanol_alloying"
+    }
+  },
+  "result": {
+    "item": "rankine:simple_magnet",
+    "count": 1
+  }
+}

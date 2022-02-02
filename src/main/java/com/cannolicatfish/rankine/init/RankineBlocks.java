@@ -2457,10 +2457,10 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ENSTATITE_CHONDRITE_BRICKS = REGISTRY.register("enstatite_chondrite_bricks", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> FROZEN_METEORITE = REGISTRY.register("frozen_meteorite", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> FROZEN_METEORITE_BRICKS = REGISTRY.register("frozen_meteorite_bricks", () -> new Block(DEF_STONE.harvestLevel(1)));
-    public static final RegistryObject<Block> GREEN_TEKTITE = REGISTRY.register("green_tektite", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(5.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
-    public static final RegistryObject<Block> GRAY_TEKTITE = REGISTRY.register("gray_tektite", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(5.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
-    public static final RegistryObject<Block> BLACK_TEKTITE = REGISTRY.register("black_tektite", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(5.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
-    public static final RegistryObject<Block> BROWN_TEKTITE = REGISTRY.register("brown_tektite", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(5.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
+    public static final RegistryObject<Block> GREEN_TEKTITE = REGISTRY.register("green_tektite", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(5.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestTool(ToolType.PICKAXE).setRequiresTool().harvestLevel(0)));
+    public static final RegistryObject<Block> GRAY_TEKTITE = REGISTRY.register("gray_tektite", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(5.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestTool(ToolType.PICKAXE).setRequiresTool().harvestLevel(0)));
+    public static final RegistryObject<Block> BLACK_TEKTITE = REGISTRY.register("black_tektite", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(5.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestTool(ToolType.PICKAXE).setRequiresTool().harvestLevel(0)));
+    public static final RegistryObject<Block> BROWN_TEKTITE = REGISTRY.register("brown_tektite", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(5.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestTool(ToolType.PICKAXE).setRequiresTool().harvestLevel(0)));
     public static final RegistryObject<Block> ANTIMATTER = REGISTRY.register("antimatter", () -> new AntimatterBlock(Block.Properties.create(Material.BARRIER).hardnessAndResistance(-1.0F, 3600000.8F)));
     public static final RegistryObject<Block> UNAMED_EXPLOSIVE = REGISTRY.register("unamed_explosive", () -> new UnamedExplosiveBlock(Block.Properties.create(Material.BARRIER).hardnessAndResistance(20.0F, 50.0F)));
 
@@ -2686,14 +2686,15 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> ROPE = REGISTRY.register("rope", () -> new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()));
     public static final RegistryObject<Block> GROUND_TAP = REGISTRY.register("ground_tap", () -> new GroundTapBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE)));
-    public static final RegistryObject<Block> METAL_PIPE = REGISTRY.register("metal_pipe", () -> new MetalPipeBlock(0.25f, Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE)));
+    public static final RegistryObject<Block> METAL_PIPE = REGISTRY.register("metal_pipe", () -> new MetalPipeBlock(0.25f, Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F)));
     public static final RegistryObject<Block> BOTANIST_STATION = REGISTRY.register("botanist_station", () -> new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
 
     public static final RegistryObject<Block> SEDIMENT_FAN = REGISTRY.register("sediment_fan", () -> new SedimentFanBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 6.0F)));
     //public static final RegistryObject<Block> FLUID_DRAIN = REGISTRY.register("fluid_drain", () -> new FluidDrainBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F)));
 
-    public static final RegistryObject<Block> ALNICO_ELECTROMAGNET = REGISTRY.register("alnico_electromagnet", () -> new ElectromagnetBlock(1, Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 6.0F)));
-    public static final RegistryObject<Block> RARE_EARTH_ELECTROMAGNET = REGISTRY.register("rare_earth_electromagnet", () -> new ElectromagnetBlock(2, Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 6.0F)));
+    public static final RegistryObject<Block> SIMPLE_ELECTROMAGNET = REGISTRY.register("simple_electromagnet", () -> new ElectromagnetBlock(1));
+    public static final RegistryObject<Block> ALNICO_ELECTROMAGNET = REGISTRY.register("alnico_electromagnet", () -> new ElectromagnetBlock(2));
+    public static final RegistryObject<Block> RARE_EARTH_ELECTROMAGNET = REGISTRY.register("rare_earth_electromagnet", () -> new ElectromagnetBlock(3));
 
     public static final RegistryObject<Block> LIQUID_MERCURY = REGISTRY.register("liquid_mercury", () -> new FlowingFluidBlock(() -> RankineFluids.LIQUID_MERCURY, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> SAP = REGISTRY.register("sap", () -> new FlowingFluidBlock(() -> RankineFluids.SAP, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
