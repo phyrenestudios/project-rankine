@@ -203,10 +203,11 @@ public class OreGen {
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void addOreGenFeatures(final BiomeLoadingEvent event) {
         if (event.getName() != null) {
+            GenerationStage.Decoration ugDecorationStage = GenerationStage.Decoration.UNDERGROUND_ORES;
             //---Disable vanilla features---
-            final List<Supplier<ConfiguredFeature<?, ?>>> ORES = event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES);
+            final List<Supplier<ConfiguredFeature<?, ?>>> ORES = event.getGeneration().getFeatures(ugDecorationStage);
             disableGenerators(ORES, event.getName(), Arrays.asList(Blocks.DIRT.getDefaultState(),Blocks.ANDESITE.getDefaultState(),Blocks.DIORITE.getDefaultState(),Blocks.GRANITE.getDefaultState(),Blocks.IRON_ORE.getDefaultState(),Blocks.COAL_ORE.getDefaultState(),Blocks.GOLD_ORE.getDefaultState(),Blocks.DIAMOND_ORE.getDefaultState(),Blocks.EMERALD_ORE.getDefaultState(),Blocks.LAPIS_ORE.getDefaultState(),Blocks.REDSTONE_ORE.getDefaultState()));
-            //event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).removeIf(featureSupplier -> featureSupplier.toString().contains("net.minecraft.util.registry.WorldSettingsImport"));
+            //event.getGeneration().getFeatures(ugDecorationStage).removeIf(featureSupplier -> featureSupplier.toString().contains("net.minecraft.util.registry.WorldSettingsImport"));
 
             List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> OVERWORLD_FEATURES = new ArrayList<>();
             List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> NETHER_FEATURES = new ArrayList<>();
@@ -282,46 +283,46 @@ public class OreGen {
 
             for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : getBedraockFeatures()) {
                 if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                    event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
                 }
             }
             for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : getAllOreFeatures()) {
                 if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                    event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
                 }
             }
 
             if (event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.THEEND) {
                 for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : getOverworldOreFeatures()) {
                     if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                        event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
                     }
                 }
                 for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : OVERWORLD_FEATURES) {
                     if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                        event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
                     }
                 }
             } else if (event.getCategory() == Biome.Category.NETHER) {
                 for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : getNetherOreFeatures()) {
                     if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                        event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
                     }
                 }
                 for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : NETHER_FEATURES) {
                     if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                        event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
                     }
                 }
             } else if (event.getCategory() == Biome.Category.THEEND) {
                 for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : getEndOreFeatures()) {
                     if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                        event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
                     }
                 }
                 for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : END_FEATURES) {
                     if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                        event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
                     }
                 }
             }

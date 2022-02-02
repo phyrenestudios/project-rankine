@@ -49,7 +49,7 @@ public class GrassySoilBlock extends GrassBlock {
             } else {
                 worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
             }
-        } else if (worldIn.getBlockState(pos.up()).getBlock() instanceof LeafLitterBlock && random.nextFloat() < Config.GENERAL.PODZOL_GROW_CHANCE.get()) {
+        } else if (random.nextFloat() < Config.GENERAL.PODZOL_GROW_CHANCE.get() && worldIn.getBlockState(pos.up()).getBlock() instanceof LeafLitterBlock) {
             worldIn.setBlockState(pos,RankineLists.PODZOL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(state.getBlock())).getDefaultState(),2);
             worldIn.removeBlock(pos.up(),false);
         } else if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get()) {
@@ -65,29 +65,26 @@ public class GrassySoilBlock extends GrassBlock {
             if (ceillingBlock instanceof LeavesBlock && !(ceillingBlock instanceof RankineLeavesBlock) && (worldIn.getBlockState(pos.up(i - 1)).isReplaceable(Fluids.WATER) || worldIn.getBlockState(pos.up(i - 1)).matchesBlock(Blocks.AIR))) {
                 worldIn.setBlockState(pos.up(i - 1), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate("rankine:"+ceillingBlock.getRegistryName().getPath().toString().replace("leaves", "leaf_litter"))).getDefaultState(), 3);
             }
-        } else {
-            if (worldIn.getLight(pos.up()) >= 9) {
-                BlockState blockstate = this.getDefaultState();
-                for(int i = 0; i < 4; ++i) {
-                    BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-                    if (worldIn.getBlockState(blockpos).matchesBlock(Blocks.DIRT) && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
-                        worldIn.setBlockState(blockpos, Blocks.GRASS_BLOCK.getDefaultState().with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)));
-                    } else if (RankineLists.SOIL_BLOCKS.contains(worldIn.getBlockState(blockpos).getBlock()) && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
-                        worldIn.setBlockState(blockpos, RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(worldIn.getBlockState(blockpos).getBlock())).getDefaultState().with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)).with(DEAD, blockstate.get(DEAD)));
-                    }
+        } else if (worldIn.getLight(pos.up()) >= 9) {
+            BlockState blockstate = this.getDefaultState();
+            for (int i = 0; i < 4; ++i) {
+                BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
+                if (worldIn.getBlockState(blockpos).matchesBlock(Blocks.DIRT) && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
+                    worldIn.setBlockState(blockpos, Blocks.GRASS_BLOCK.getDefaultState().with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)));
+                } else if (RankineLists.SOIL_BLOCKS.contains(worldIn.getBlockState(blockpos).getBlock()) && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
+                    worldIn.setBlockState(blockpos, RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(worldIn.getBlockState(blockpos).getBlock())).getDefaultState().with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)).with(DEAD, blockstate.get(DEAD)));
                 }
-                if (!state.get(DEAD) && worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR) && random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get()) {
-                    Biome BIOME = worldIn.getBiome(pos);
-                    BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
-                    worldIn.setBlockState(pos.up(),BLOCK,3);
-                }
+            }
+            if (random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get() && !state.get(DEAD) && worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR)) {
+                Biome BIOME = worldIn.getBiome(pos);
+                BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
+                worldIn.setBlockState(pos.up(), BLOCK, 3);
             }
         }
     }
 
     private static boolean isSnowyAndNotUnderwater(BlockState state, IWorldReader worldReader, BlockPos pos) {
-        BlockPos blockpos = pos.up();
-        return isSnowyConditions(state, worldReader, pos) && !worldReader.getFluidState(blockpos).isTagged(FluidTags.WATER);
+        return isSnowyConditions(state, worldReader, pos) && !worldReader.getFluidState(pos.up()).isTagged(FluidTags.WATER);
     }
     private static boolean isSnowyConditions(BlockState state, IWorldReader worldReader, BlockPos pos) {
         BlockPos blockpos = pos.up();

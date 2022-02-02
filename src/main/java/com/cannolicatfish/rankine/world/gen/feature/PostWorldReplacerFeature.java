@@ -41,6 +41,8 @@ public class PostWorldReplacerFeature extends Feature<NoFeatureConfig> {
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
                 int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
+                double noise = Biome.INFO_NOISE.noiseAt((double) x / 70, (double) z / 70, false);
+
                 for (int y = 0; y < endY; ++y) {
                     BlockPos TARGET_POS = new BlockPos(x, y, z);
                     Block TARGET = reader.getBlockState(TARGET_POS).getBlock();
@@ -50,16 +52,17 @@ public class PostWorldReplacerFeature extends Feature<NoFeatureConfig> {
                         Block Olayer;
                         Block Alayer;
                         Block Blayer;
-                        if (Biome.INFO_NOISE.noiseAt((double) x / 70, (double) z / 70, false) > 0.3) {
-                            Olayer = WorldgenUtils.O1.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
-                            Alayer = WorldgenUtils.A1.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
-                            Blayer = WorldgenUtils.B1.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
+                        int genBiomesIndex = WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME);
+                        boolean dirtFlag = TARGET.matchesBlock(Blocks.DIRT);
+                        if (noise > 0.3) {
+                            Olayer = TARGET.matchesBlock(Blocks.GRASS_BLOCK) || TARGET.matchesBlock(Blocks.GRASS_PATH) ? WorldgenUtils.O1.get(genBiomesIndex) : Blocks.AIR;
+                            Alayer = (dirtFlag && !reader.getBlockState(TARGET_POS.down()).isIn(Tags.Blocks.STONE)) || TARGET.matchesBlock(Blocks.MYCELIUM) || TARGET.matchesBlock(Blocks.PODZOL) || TARGET.matchesBlock(Blocks.COARSE_DIRT) ? WorldgenUtils.A1.get(genBiomesIndex) : Blocks.AIR;
+                            Blayer = dirtFlag && reader.getBlockState(TARGET_POS.down()).isIn(Tags.Blocks.STONE) ? WorldgenUtils.B1.get(genBiomesIndex) : Blocks.AIR;
                         } else {
-                            Olayer = WorldgenUtils.O2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
-                            Alayer = WorldgenUtils.A2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
-                            Blayer = WorldgenUtils.B2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
+                            Olayer = TARGET.matchesBlock(Blocks.GRASS_BLOCK) || TARGET.matchesBlock(Blocks.GRASS_PATH) ? WorldgenUtils.O2.get(genBiomesIndex) : Blocks.AIR;
+                            Alayer = (dirtFlag && !reader.getBlockState(TARGET_POS.down()).isIn(Tags.Blocks.STONE)) || TARGET.matchesBlock(Blocks.MYCELIUM) || TARGET.matchesBlock(Blocks.PODZOL) || TARGET.matchesBlock(Blocks.COARSE_DIRT) ? WorldgenUtils.A2.get(genBiomesIndex) : Blocks.AIR;
+                            Blayer = dirtFlag && reader.getBlockState(TARGET_POS.down()).isIn(Tags.Blocks.STONE) ? WorldgenUtils.B2.get(genBiomesIndex) : Blocks.AIR;
                         }
-
                         if (TARGET.matchesBlock(Blocks.GRASS_BLOCK)) {
                             if (Olayer instanceof SnowyDirtBlock) {
                                 if (reader.getBlockState(TARGET_POS).get(BlockStateProperties.SNOWY)) {
@@ -72,7 +75,7 @@ public class PostWorldReplacerFeature extends Feature<NoFeatureConfig> {
                             } else {
                                 reader.setBlockState(TARGET_POS, Olayer.getDefaultState(), 2);
                             }
-                        } else if (TARGET.matchesBlock(Blocks.DIRT)) {
+                        } else if (dirtFlag) {
                             if (reader.getBlockState(TARGET_POS.down()).isIn(Tags.Blocks.STONE)) {
                                 if (RankineLists.SOIL_BLOCKS.contains(Blayer) && WorldgenUtils.isWet(reader,TARGET_POS)) {
                                     reader.setBlockState(TARGET_POS,RankineLists.MUD_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(Blayer)).getDefaultState(),2);
@@ -97,16 +100,16 @@ public class PostWorldReplacerFeature extends Feature<NoFeatureConfig> {
                         } else if (TARGET.matchesBlock(Blocks.COARSE_DIRT) && RankineLists.SOIL_BLOCKS.contains(Alayer)) {
                             reader.setBlockState(TARGET_POS, RankineLists.COARSE_SOIL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(Alayer)).getDefaultState(), 2);
                         } else if (TARGET.matchesBlock(Blocks.GRAVEL)) {
-                            if (WorldgenUtils.GRAVELS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)) != Blocks.AIR) {
-                                reader.setBlockState(TARGET_POS, WorldgenUtils.GRAVELS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)).getDefaultState(), 2);
+                            if (WorldgenUtils.GRAVELS.get(genBiomesIndex) != Blocks.AIR) {
+                                reader.setBlockState(TARGET_POS, WorldgenUtils.GRAVELS.get(genBiomesIndex).getDefaultState(), 2);
                             }
                         } else if (TARGET.matchesBlock(Blocks.SAND)) {
-                            if (WorldgenUtils.SANDS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)) != Blocks.AIR) {
-                                reader.setBlockState(TARGET_POS, WorldgenUtils.SANDS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)).getDefaultState(), 2);
+                            if (WorldgenUtils.SANDS.get(genBiomesIndex) != Blocks.AIR) {
+                                reader.setBlockState(TARGET_POS, WorldgenUtils.SANDS.get(genBiomesIndex).getDefaultState(), 2);
                             }
                         } else if (TARGET.matchesBlock(Blocks.SANDSTONE)) {
-                            if (WorldgenUtils.SANDSTONES.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)) != Blocks.AIR) {
-                                reader.setBlockState(TARGET_POS, WorldgenUtils.SANDSTONES.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)).getDefaultState(), 2);
+                            if (WorldgenUtils.SANDSTONES.get(genBiomesIndex) != Blocks.AIR) {
+                                reader.setBlockState(TARGET_POS, WorldgenUtils.SANDSTONES.get(genBiomesIndex).getDefaultState(), 2);
                             }
                         }
 

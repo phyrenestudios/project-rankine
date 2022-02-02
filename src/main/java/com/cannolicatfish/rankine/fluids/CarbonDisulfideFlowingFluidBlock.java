@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
-public class CarbonDisulfideFlowingFluidBlock extends FlowingFluidBlock {
+public class CarbonDisulfideFlowingFluidBlock extends RankineFlowingFluidBlock {
     public CarbonDisulfideFlowingFluidBlock(Supplier<? extends FlowingFluid> supplier, Properties properties) {
         super(supplier, properties);
     }
@@ -64,4 +64,6 @@ public class CarbonDisulfideFlowingFluidBlock extends FlowingFluidBlock {
         }
         super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
     }
+
+
 }

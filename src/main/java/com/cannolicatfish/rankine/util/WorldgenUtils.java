@@ -189,8 +189,7 @@ public class WorldgenUtils {
 
     public static boolean isWet(ISeedReader reader, BlockPos pos) {
         for(BlockPos POS : BlockPos.getAllInBoxMutable(pos.add(-2,0,-2),pos.add(2,2,2))) {
-            FluidState fluidstate = reader.getFluidState(POS);
-            if (fluidstate.isTagged(FluidTags.WATER)) {
+            if (reader.getFluidState(POS).isTagged(FluidTags.WATER)) {
                 return true;
             }
         }
