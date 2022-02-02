@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -30,6 +31,55 @@ public interface IAlloySpecialItem extends IAlloyItem {
         }
         return null;
     }
+
+    // Used for applying an alloy modifier after a tool has already been created (ex. Smithing Table)
+    /*
+    default void applyAlloyModifier(ItemStack stack, AlloyModifierRecipe modifier) {
+        if (stack.getTag() != null && (!stack.getTag().contains("AlloyModifiers") || !stack.getTag().getCompound("AlloyModifiers").contains(modifier.getName()))) {
+            if (!stack.getTag().contains("AlloyModifiers")) {
+                stack.getTag().put("AlloyModifiers",new CompoundNBT());
+            }
+            switch (modifier.getType()) {
+                case DURABILITY:
+                    stack.getTag().getCompound("StoredAlloy").putInt("durability", (int) modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putInt(modifier.getName(), (int) modifier.getValue());
+                    return;
+                case HARVEST_LEVEL:
+                    stack.getTag().getCompound("StoredAlloy").putInt("harvestLevel", (int) modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putInt(modifier.getName(), (int) modifier.getValue());
+                    return;
+                case ENCHANTABILITY:
+                    stack.getTag().getCompound("StoredAlloy").putInt("enchantability", (int) modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putInt(modifier.getName(), (int) modifier.getValue());
+                    return;
+                case MINING_SPEED:
+                    stack.getTag().getCompound("StoredAlloy").putFloat("miningSpeed", modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
+                    return;
+                case ATTACK_DAMAGE:
+                    stack.getTag().getCompound("StoredAlloy").putFloat("attackDamage", modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
+                    return;
+                case ATTACK_SPEED:
+                    stack.getTag().getCompound("StoredAlloy").putFloat("attackSpeed", modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
+                    return;
+                case CORROSION_RESISTANCE:
+                    stack.getTag().getCompound("StoredAlloy").putFloat("corrResist", modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
+                    return;
+                case HEAT_RESISTANCE:
+                    stack.getTag().getCompound("StoredAlloy").putFloat("heatResist", modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
+                    return;
+                case TOUGHNESS:
+                    stack.getTag().getCompound("StoredAlloy").putFloat("toughness", modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
+            }
+
+        }
+
+    }*/
 
     @Override
     default boolean isAlloyInit(ItemStack stack) {

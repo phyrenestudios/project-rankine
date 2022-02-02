@@ -695,6 +695,8 @@ public class Config {
     }
 
     public static class Alloys {
+        public final ForgeConfigSpec.IntValue ALLOY_MODIFIERS_MAX;
+
         public final ForgeConfigSpec.BooleanValue ALLOY_CORROSION;
         public final ForgeConfigSpec.IntValue ALLOY_CORROSION_AMT;
         public final ForgeConfigSpec.BooleanValue ALLOY_HEAT;
@@ -715,6 +717,8 @@ public class Config {
 
         public Alloys(ForgeConfigSpec.Builder b) {
             b.comment("Settings for alloys and alloy tools").push("alloys");
+                ALLOY_MODIFIERS_MAX = b.comment("Sets the maximum number of unique modifiers that can be applied at the smithing table.")
+                        .defineInRange("alloyModifiersMax", 1, 0, 5);
                 ALLOY_CORROSION = b.comment("Enables the corrosion negative modifier for alloy tools (chance to consume extra points of durability in water and rain)")
                         .define("alloyCorrosion",true);
                 ALLOY_CORROSION_AMT = b.comment("If enabled, modifies the amount of durability damage taken in wet environments.")
