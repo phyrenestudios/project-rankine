@@ -50,11 +50,11 @@ public class RankineLeavesBlock extends LeavesBlock {
         if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get() && (bs.matchesBlock(Blocks.AIR) || bs.isReplaceable(Fluids.WATER)) && !bs.matchesBlock(RankineBlocks.WILLOW_BRANCHLET.get())) {
                 worldIn.setBlockState(pos.down(), RankineLists.LEAF_LITTERS.get(RankineLists.LEAVES.indexOf(state.getBlock())).getDefaultState(),3);
         }
-        if (worldIn.getBlockState(pos.up()).matchesBlock(Blocks.SNOW)) {
+        if (worldIn.getBlockState(pos.up()).matchesBlock(Blocks.SNOW) && !state.get(AGE).equals(5)) {
             worldIn.setBlockState(pos, state.with(AGE, 5),2);
-        } else if (worldIn.getBiome(pos).getPrecipitation() == Biome.RainType.SNOW || worldIn.getBiome(pos).getTemperature(pos) < 0.15) {
+        } else if ((worldIn.getBiome(pos).getPrecipitation() == Biome.RainType.SNOW || worldIn.getBiome(pos).getTemperature(pos) < 0.15) && !state.get(AGE).equals(4)) {
             worldIn.setBlockState(pos, state.with(AGE, 4),2);
-        } else {
+        } else if (!state.get(AGE).equals(0)) {
             worldIn.setBlockState(pos, state.with(AGE, 0),2);
         }
         super.randomTick(state, worldIn, pos, random);

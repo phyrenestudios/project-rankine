@@ -196,31 +196,35 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
             BlockState TARGET_BS = reader.getBlockState(TARGET_POS);
             Block TARGET_BLOCK = TARGET_BS.getBlock();
 
-            if (targetBiome.getCategory() == Biome.Category.NETHER) {
-                List<net.minecraft.block.Block> TOPS = Arrays.asList(Blocks.CRIMSON_NYLIUM,Blocks.WARPED_NYLIUM,Blocks.AIR);
-                if (TARGET_BS == Blocks.NETHERRACK.getDefaultState()) {
-                    if (reader.getBlockState(TARGET_POS.up(1)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.up(2)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.up(3)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(1)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(2)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(3)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS)) {
-                        reader.setBlockState(TARGET_POS, RankineBlocks.SOUL_SANDSTONE.get().getDefaultState(), 3);
-                    } else if (targetBiome.getRegistryName().toString().equals(Biomes.WARPED_FOREST.getLocation().toString()) || targetBiome.getRegistryName().toString().equals(Biomes.CRIMSON_FOREST.getLocation().toString())) {
-                        if (!TOPS.contains(reader.getBlockState(TARGET_POS.up(1)).getBlock()) && !TOPS.contains(reader.getBlockState(TARGET_POS.up(2)).getBlock()) && !TOPS.contains(reader.getBlockState(TARGET_POS.up(3)).getBlock())) {
+            switch (targetBiome.getCategory()) {
+                case NETHER:
+                    List<net.minecraft.block.Block> TOPS = Arrays.asList(Blocks.CRIMSON_NYLIUM,Blocks.WARPED_NYLIUM,Blocks.AIR);
+                    if (TARGET_BS == Blocks.NETHERRACK.getDefaultState()) {
+                        if (reader.getBlockState(TARGET_POS.up(1)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.up(2)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.up(3)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(1)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(2)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(TARGET_POS.down(3)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS)) {
+                            reader.setBlockState(TARGET_POS, RankineBlocks.SOUL_SANDSTONE.get().getDefaultState(), 3);
+                        } else if (targetBiome.getRegistryName().toString().equals(Biomes.WARPED_FOREST.getLocation().toString()) || targetBiome.getRegistryName().toString().equals(Biomes.CRIMSON_FOREST.getLocation().toString())) {
+                            if (!TOPS.contains(reader.getBlockState(TARGET_POS.up(1)).getBlock()) && !TOPS.contains(reader.getBlockState(TARGET_POS.up(2)).getBlock()) && !TOPS.contains(reader.getBlockState(TARGET_POS.up(3)).getBlock())) {
+                                reader.setBlockState(TARGET_POS, StoneBS, 3);
+                            }
+                        } else {
                             reader.setBlockState(TARGET_POS, StoneBS, 3);
                         }
-                    } else {
+                    }
+                    break;
+                case THEEND:
+                    if (reader.getBlockState(TARGET_POS).isIn(RankineTags.Blocks.BASE_STONE_END)) {
                         reader.setBlockState(TARGET_POS, StoneBS, 3);
                     }
-                }
-            } else if (targetBiome.getCategory() == Biome.Category.THEEND) {
-                if (reader.getBlockState(TARGET_POS).isIn(RankineTags.Blocks.BASE_STONE_END)) {
-                    reader.setBlockState(TARGET_POS, StoneBS, 3);
-                }
-            } else {
-                if (TARGET_BLOCK instanceof RankineOreBlock && TARGET_BS.get(RankineOreBlock.TYPE) == 0 && WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
-                    reader.setBlockState(TARGET_POS, TARGET_BLOCK.getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock())), 2);
-                } else if (TARGET_BLOCK.isIn(BlockTags.BASE_STONE_OVERWORLD)) {
-                    reader.setBlockState(TARGET_POS, StoneBS, 3);
-                } else if (TARGET_BLOCK.matchesBlock(Blocks.INFESTED_STONE) && RankineLists.STONES.contains(StoneBS.getBlock())) {
-                    reader.setBlockState(TARGET_POS, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate("rankine:infested_"+StoneBS.getBlock().getRegistryName().getPath())).getDefaultState(), 3);
-                }
+                    break;
+                default:
+                    if (TARGET_BLOCK instanceof RankineOreBlock && TARGET_BS.get(RankineOreBlock.TYPE) == 0 && WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
+                        reader.setBlockState(TARGET_POS, TARGET_BLOCK.getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock())), 2);
+                    } else if (TARGET_BLOCK.isIn(BlockTags.BASE_STONE_OVERWORLD)) {
+                        reader.setBlockState(TARGET_POS, StoneBS, 3);
+                    } else if (TARGET_BLOCK.matchesBlock(Blocks.INFESTED_STONE) && RankineLists.STONES.contains(StoneBS.getBlock())) {
+                        reader.setBlockState(TARGET_POS, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate("rankine:infested_"+StoneBS.getBlock().getRegistryName().getPath())).getDefaultState(), 3);
+                    }
+                    break;
             }
         }
     }

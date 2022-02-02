@@ -561,34 +561,9 @@ public class RankineEventHandler {
 
     @SubscribeEvent
     public static void onEnvironmentEffect(LivingEvent.LivingUpdateEvent event) {
-        LivingEntity ent = event.getEntityLiving();
-        World world = ent.getEntityWorld();
-        FluidState fluidstate = world.getFluidState(ent.getPosition());
-        boolean flag = (ent instanceof PlayerEntity && ((PlayerEntity) ent).isCreative());
-        ModifiableAttributeInstance maxHealth = ent.getAttribute(Attributes.MAX_HEALTH);
-        ModifiableAttributeInstance movementSpeed = ent.getAttribute(Attributes.MOVEMENT_SPEED);
-        if (fluidstate.getFluid().getRegistryName() != null && fluidstate.getFluid().getRegistryName().getNamespace().equals("rankine")) {
-            Entity entity = ent.isBeingRidden() && ent.getControllingPassenger() != null ? ent.getControllingPassenger() : ent;
-            float f = entity == ent ? 0.35F : 0.4F;
-            Vector3d v = (FluidHelper.handleFluidAcceleration(ent,0.114D));
-            float f1 = MathHelper.sqrt(v.x * v.x * (double)0.2F + v.y * v.y + v.z * v.z * (double)0.2F) * f;
-            if (f1 > 1.0F) {
-                f1 = 1.0F;
-            }
-            entity.playSound(SoundEvents.ENTITY_GENERIC_SWIM, f1, 1.0F + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.4F);
-            entity.getMotion().add(v);
-        }
-        if (fluidstate.getFluid() == RankineFluids.LIQUID_MERCURY || fluidstate.getFluid() == RankineFluids.LIQUID_MERCURY_FLOWING) {
-            if (!flag) {
-                EffectInstance cur = ent.getActivePotionEffect(RankineEffects.MERCURY_POISONING);
-                ent.addPotionEffect(new EffectInstance(RankineEffects.MERCURY_POISONING, Math.min(1600,cur == null ? 5 : cur.getDuration() + 5), 0, false, false, true));
-                if (cur != null && cur.getDuration() >= 1600 && maxHealth != null && !maxHealth.hasModifier(RankineAttributes.MERCURY_HEALTH)) {
-                    maxHealth.applyNonPersistentModifier(RankineAttributes.MERCURY_HEALTH);
-                }
-            }
-        }
-
         if (Config.HARD_MODE.RADIOACTIVE.get()) {
+            LivingEntity ent = event.getEntityLiving();
+            ModifiableAttributeInstance maxHealth = ent.getAttribute(Attributes.MAX_HEALTH);
             EffectInstance rad = ent.getActivePotionEffect(RankineEffects.RADIATION_POISONING);
             if (rad != null) {
                 int duration = rad.getDuration();

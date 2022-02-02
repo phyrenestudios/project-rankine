@@ -29,7 +29,7 @@
     "subtitle": "rankine.subtitle.sediment_fan_gen",
     "sounds": [
       {
-        "name": "minecraft:block/sand/hit",
+        "name": "minecraft:step/sand1",
         "volume": 1.0
       }
     ]
