@@ -1,0 +1,27 @@
+{
+  "type": "rankine:alloying",
+  "total": 3,
+  "color": 13028546,
+  "input1": {
+    "element": "rankine:elements/nickel",
+    "min": 0.75,
+    "max": 0.90,
+    "required": true
+  },
+  "input2": {
+    "element": "rankine:elements/iron",
+    "min": 0.10,
+    "max": 0.25,
+    "required": true
+  },
+  "input3": {
+    "element": "rankine:elements/molybdenum",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "result": "rankine:invar_ingot",
+  "durability": -100,
+  "miningSpeed": -2.0,
+  "damage": 0.5,
+  "heatresist": 0.25
+}

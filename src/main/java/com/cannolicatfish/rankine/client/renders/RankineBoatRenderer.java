@@ -44,7 +44,10 @@ public class RankineBoatRenderer extends EntityRenderer<RankineBoatEntity> {
             new ResourceLocation("rankine:textures/entity/boat/bamboo_culms.png"),
             new ResourceLocation("rankine:textures/entity/boat/petrified_chorus.png"),
             new ResourceLocation("rankine:textures/entity/boat/erythrina.png"),
-            new ResourceLocation("rankine:textures/entity/boat/charred.png")
+            new ResourceLocation("rankine:textures/entity/boat/charred.png"),
+            new ResourceLocation("rankine:textures/entity/boat/red_birch.png"),
+            new ResourceLocation("rankine:textures/entity/boat/weeping_willow.png"),
+            new ResourceLocation("rankine:textures/entity/boat/honey_locust.png")
 
     };
     protected final BoatModel modelBoat = new BoatModel();

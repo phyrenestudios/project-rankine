@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/alnico"
+            "item": "rankine:rare_earth_magnet"
           }
         ]
       }

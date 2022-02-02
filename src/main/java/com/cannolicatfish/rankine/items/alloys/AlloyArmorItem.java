@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem, IDyeableArmorItem, IAlloyNeedsRegenerate {
+public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem, IDyeableArmorItem {
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
     public AlloyArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn, Properties builderIn) {

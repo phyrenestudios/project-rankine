@@ -48,7 +48,7 @@ public class RankineLeavesBlock extends LeavesBlock {
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         BlockState bs = worldIn.getBlockState(pos.down());
         if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get() && (bs.matchesBlock(Blocks.AIR) || bs.isReplaceable(Fluids.WATER)) && !bs.matchesBlock(RankineBlocks.WILLOW_BRANCHLET.get())) {
-                worldIn.setBlockState(pos.down(), RankineLists.LEAF_LITTERS.get(RankineLists.LEAVES.indexOf(state.getBlock())).getDefaultState(),2);
+                worldIn.setBlockState(pos.down(), RankineLists.LEAF_LITTERS.get(RankineLists.LEAVES.indexOf(state.getBlock())).getDefaultState(),3);
         }
         if (worldIn.getBlockState(pos.up()).matchesBlock(Blocks.SNOW)) {
             worldIn.setBlockState(pos, state.with(AGE, 5),2);

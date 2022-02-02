@@ -113,4 +113,5 @@ public class HollowLogBlock extends RotatedPillarBlock implements IWaterLoggable
     public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
     }
+
 }

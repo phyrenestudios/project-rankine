@@ -63,7 +63,7 @@ public class GrassySoilBlock extends GrassBlock {
                 ++i;
             }
             if (ceillingBlock instanceof LeavesBlock && !(ceillingBlock instanceof RankineLeavesBlock) && (worldIn.getBlockState(pos.up(i - 1)).isReplaceable(Fluids.WATER) || worldIn.getBlockState(pos.up(i - 1)).matchesBlock(Blocks.AIR))) {
-                worldIn.setBlockState(pos.up(i - 1), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate("rankine:"+ceillingBlock.getRegistryName().getPath().toString().replace("leaves", "leaf_litter"))).getDefaultState(), 2);
+                worldIn.setBlockState(pos.up(i - 1), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate("rankine:"+ceillingBlock.getRegistryName().getPath().toString().replace("leaves", "leaf_litter"))).getDefaultState(), 3);
             }
         } else {
             if (worldIn.getLight(pos.up()) >= 9) {
@@ -79,7 +79,7 @@ public class GrassySoilBlock extends GrassBlock {
                 if (!state.get(DEAD) && worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR) && random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get()) {
                     Biome BIOME = worldIn.getBiome(pos);
                     BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
-                    worldIn.setBlockState(pos.up(),BLOCK,2);
+                    worldIn.setBlockState(pos.up(),BLOCK,3);
                 }
             }
         }

@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "WBW",
+    "WMW"
+  ],
+  "key": {
+    "M": {
+      "item": "rankine:simple_magnet"
+    },
+    "B": {
+      "item": "rankine:silver_zinc_battery"
+    },
+    "W": {
+      "item": "rankine:alloy_wire"
+    }
+  },
+  "result": {
+    "item": "rankine:simple_electromagnet",
+    "count": 1
+  }
+}

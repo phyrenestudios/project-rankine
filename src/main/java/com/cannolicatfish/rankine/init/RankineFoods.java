@@ -27,6 +27,6 @@ public class RankineFoods {
     public static final Food PANCAKE_BATTER = (new Food.Builder()).hunger(1).saturation(0.1F).effect(new EffectInstance(Effects.POISON, 5 * 20, 0),.1f).build();
     public static final Food PANCAKE = (new Food.Builder()).hunger(3).saturation(0.3F).build();
     public static final Food PANCAKE_BREAKFAST = (new Food.Builder()).hunger(12).saturation(1.2F).effect(new EffectInstance(Effects.SATURATION, 7, 0),1.0f).build();
-    public static final Food TUNA = (new Food.Builder()).hunger(3).saturation(0.3F).build();
-    public static final Food COOKED_TUNA = (new Food.Builder()).hunger(8).saturation(8F).build();
+    public static final Food TUNA = (new Food.Builder()).hunger(3).saturation(0.3F).meat().build();
+    public static final Food COOKED_TUNA = (new Food.Builder()).hunger(8).saturation(8F).meat().build();
 }

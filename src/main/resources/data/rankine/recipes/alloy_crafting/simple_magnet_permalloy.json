@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "I I",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "rankine:invar_ingot",
+      "alloyRecipe": "rankine:alloying/permalloy_alloying"
+    }
+  },
+  "result": {
+    "item": "rankine:simple_magnet",
+    "count": 1
+  }
+}

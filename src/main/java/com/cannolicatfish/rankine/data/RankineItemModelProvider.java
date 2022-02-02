@@ -4,7 +4,7 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
-import com.cannolicatfish.rankine.init.RankineTags;
+import com.cannolicatfish.rankine.items.alloys.AlloyCrowbarItem;
 import com.cannolicatfish.rankine.items.alloys.AlloySpearItem;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
@@ -92,6 +92,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.ROTATION_BLOCKS,
                 RankineLists.LIGHTNING_GLASSES,
                 RankineLists.WOODEN_BOOKSHELVES,
+                RankineLists.ELECTROMAGNETS,
                 RankineLists.SHEETMETALS
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
             withExistingParent(BLOCK);
@@ -247,6 +248,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.ORE_DETECTOR.get());
         basicItem(RankineItems.PROSPECTING_STICK.get());
         basicItem(RankineItems.PACKAGED_TOOL.get());
+        basicItem(RankineItems.SIMPLE_MAGNET.get());
         basicItem(RankineItems.ALNICO_MAGNET.get());
         basicItem(RankineItems.RARE_EARTH_MAGNET.get());
         basicItem(RankineItems.WOODEN_GOLD_PAN.get());
@@ -365,8 +367,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.GYRATORY_CRUSHER.get(),
                 RankineBlocks.PISTON_CRUSHER.get(),
                 RankineBlocks.INDUCTION_FURNACE.get(),
-                RankineBlocks.ALNICO_ELECTROMAGNET.get(),
-                RankineBlocks.RARE_EARTH_ELECTROMAGNET.get(),
                 RankineBlocks.TRAMPOLINE.get(),
                 RankineBlocks.SODIUM_VAPOR_LAMP.get(),
                 RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get(),
@@ -435,7 +435,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         wallParent(RankineBlocks.SOD_BLOCK_WALL.get());
         
         for (Item TOOL : Stream.of(RankineLists.WOODEN_TOOLS,RankineLists.STONE_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.OSMIRIDIUM_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            if (TOOL.isIn(RankineTags.Items.CROWBARS) || TOOL.equals(RankineItems.ALLOY_SURF_ROD.get())) {
+            if (TOOL instanceof AlloyCrowbarItem || TOOL.equals(RankineItems.ALLOY_SURF_ROD.get())) {
                 basicItemHandheldRod(TOOL);
             } else if (TOOL instanceof AlloySpearItem) {
                 basicItemHandheld(TOOL);

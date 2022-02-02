@@ -604,7 +604,7 @@ public class Config {
                     FORAGING_CHANCE = b.comment("Chance for a dirt block to drop a vegetable/seed")
                             .defineInRange("foragingChance", 0.10D, 0.00D, 1.00D);
                     GRASS_GROW_CHANCE = b.comment("Chance for a grass block to grow something on a random tick")
-                            .defineInRange("grassGrowChance", 0.005D, 0.00D, 1.00D);
+                            .defineInRange("grassGrowChance", 0.0005D, 0.00D, 1.00D);
                     PODZOL_GROW_CHANCE = b.comment("Chance for a podzol block to grow on grass")
                             .defineInRange("podzolGrowChance", 0.0005D, 0.00D, 1.00D);
                     ROCK_GENERATOR_REMOVAL_CHANCE = b.comment("Chance for a mineral block to be removed from any rock generator process.")
@@ -633,9 +633,9 @@ public class Config {
                     MAX_TREE = b.comment("Maximum blocks to be considered a tree. Set to 0 to disable tree capitation.")
                         .defineInRange("maxTree", 256, 0, 1024);
                     TREE_CHOP_SPEED = b.comment("Speed factor for chopping trees after size is accounted for.")
-                            .defineInRange("treeChopSpeedFactor", 0.7D, 0.0D, 2.0D);
+                            .defineInRange("treeChopSpeedFactor", 0.9D, 0.0D, 2.0D);
                     LEAF_LITTER_GEN = b.comment("Chance for leaves to drop leaf litter on a random tick")
-                            .defineInRange("leafLitterChance", 0.01D, 0.0D, 1.0D);
+                            .defineInRange("leafLitterChance", 0.005D, 0.0D, 1.0D);
                     LEAF_LITTER_GEN_TREES = b.comment("Chance for leaves to drop leaf litter on break from chopping")
                             .defineInRange("leafLitterChanceChop", 0.1D, 0.0D, 1.0D);
                     STUMP_CREATION = b.comment("Creates stumps when tree chopping.")
@@ -652,11 +652,11 @@ public class Config {
                     MOVEMENT_SAND = b.comment("Movement speed modifier for walking on Sand blocks.")
                             .defineInRange("movementSand", -0.02D, -1.0D, 1.0D);
                     MOVEMENT_BRICKS = b.comment("Movement speed modifier for walking on Brick / Stone Bricks and variants.")
-                            .defineInRange("movementBricks", 0.05D, -1.0D, 1.0D);
+                            .defineInRange("movementBricks", 0.02D, -1.0D, 1.0D);
                     MOVEMENT_GRASS_PATH = b.comment("Movement speed modifier for walking on Grass Paths.")
                             .defineInRange("movementGrassPath", 0.00D, -1.0D, 1.0D);
                     MOVEMENT_ROMAN_CONCRETE = b.comment("Movement speed modifier for walking on Roman Cooncrete.")
-                            .defineInRange("movementRomanConcrete", 0.1D, -1.0D, 1.0D);
+                            .defineInRange("movementRomanConcrete", 0.5D, -1.0D, 1.0D);
                     MOVEMENT_DIRT = b.comment("Movement speed modifier for walking on Dirt / Grass blocks.")
                             .defineInRange("movementDirt", -0.01D, -1.0D, 1.0D);
                     MOVEMENT_POLISHED_STONE = b.comment("Movement speed modifier for walking on #forge:polished_stone blocks.")
@@ -664,7 +664,7 @@ public class Config {
                     MOVEMENT_WOODEN = b.comment("Movement speed modifier for walking on Planks and wooden variants.")
                             .defineInRange("movementWooden", 0.00D, -1.0D, 1.0D);
                     MOVEMENT_CONCRETE = b.comment("Movement speed modifier for walking on Concrete / Gravel Concrete.")
-                            .defineInRange("movementConcrete", 0.05D, -1.0D, 1.0D);
+                            .defineInRange("movementConcrete", 0.03D, -1.0D, 1.0D);
                     MOVEMENT_SNOW = b.comment("Movement speed modifier for walking on Snow.")
                             .defineInRange("movementSnow", -0.02D, -1.0D, 1.0D);
                     MOVEMENT_MUD = b.comment("Movement speed modifier for walking on Mud.")
@@ -673,7 +673,7 @@ public class Config {
 
                 b.comment("Ore Detection").push("oreDetection");
                     PROSPECTING_STICK_RANGE = b.comment("Number of blocks away that the Prospecting Stick can detect ore.")
-                            .defineInRange("prospectingStickRange", 16, 0, 64);
+                            .defineInRange("prospectingStickRange", 6, 0, 64);
                     ORE_DETECTOR_RANGE = b.comment("Number of blocks away that the Ore Detector can detect ore.")
                             .defineInRange("oreDetectorRange", 32, 0, 64);
                     ORE_DETECTOR_MSG = b.comment("Set to false to disable the ore detector from outputting the block found.")
@@ -765,8 +765,8 @@ public class Config {
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
         public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_RANGE;
-        public final ForgeConfigSpec.IntValue ALNICO_MAGNET_RANGE;
-        public final ForgeConfigSpec.IntValue RARE_MAGNET_RANGE;
+        public final ForgeConfigSpec.IntValue ELECTROMAGNET_RANGE;
+        public final ForgeConfigSpec.IntValue MAGNET_RANGE;
         public final ForgeConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
         public final ForgeConfigSpec.IntValue BEEHIVE_OVEN_SKYLIGHT;
         public final ForgeConfigSpec.IntValue LASER_QUARRY_RANGE;
@@ -794,10 +794,10 @@ public class Config {
                         .defineInRange("charcoalPitHeight", 5, 1, 10);
                 EVAPORATION_TOWER_RANGE = b.comment("Maximum height of the evaporation tower. Height affects yields. Set to 0 to disable functionality.")
                         .defineInRange("evaporationTowerHeight", 15, 0, 30);
-                ALNICO_MAGNET_RANGE = b.comment("Range for the Alnico Magnet's pickup radius and the Alnico Electromagnet range.")
-                        .defineInRange("alnicoMagnetRange",5,1,10);
-                RARE_MAGNET_RANGE = b.comment("Range for the Rare Earth Magnet's pickup radius and the Rare Earth Electromagnet range.")
-                        .defineInRange("rareEarthMagnetRange",10,1,15);
+                MAGNET_RANGE = b.comment("Range for the Simple Magnet. The Alnico and Rare Earth versions scale at x2 and x3 respectively.")
+                        .defineInRange("magnetRange",3,1,8);
+                ELECTROMAGNET_RANGE = b.comment("Range for the Simple Electromagnet. The Alnico and Rare Earth versions scale at x2 and x3 respectively.")
+                        .defineInRange("electromagnetRange",5,1,10);
                 ELECTROMAGNET_MATERIAL_REQ = b.comment("Require the material of the block to be Material.IRON in order for the electromagnet to pull the block. If disabled, it will pick up any block as long as it is not a FluidBlock, Tile Entity, or in the rankine:magnet_banned tag (these blocks are also banned if this value is true).")
                         .define("electromagnetMaterialReq",true);
                 BEEHIVE_OVEN_SKYLIGHT = b.comment("If disabled, the beehive ovens will not require sky access.")
@@ -1079,8 +1079,8 @@ public class Config {
             oreSettings.add(Arrays.asList("rankine:bituminous_ore", Arrays.asList("all"), "sphere", 5, 25, 4, 1.0D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:halite_ore", Arrays.asList("river","ocean","desert","mesa"), "default", 30, 60, 5, 1.0D, 2, 1.0));
 
-            oreSettings.add(Arrays.asList("rankine:hematite_ore", Arrays.asList("all"), "sphere", 30, 60, 4, 0.6D, 1, 0.1));
-            oreSettings.add(Arrays.asList("rankine:hematite_ore", Arrays.asList("all"), "sphere", 70, 120, 4, 0.6D, 1, 0.1));
+            oreSettings.add(Arrays.asList("rankine:hematite_ore", Arrays.asList("all"), "sphere", 30, 60, 4, 0.6D, 1, 0.2));
+            oreSettings.add(Arrays.asList("rankine:hematite_ore", Arrays.asList("all"), "sphere", 70, 120, 4, 0.6D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:chalcocite_ore", Arrays.asList("all"), "sphere", 40, 60, 4, 0.6D, 1, 0.1));
             oreSettings.add(Arrays.asList("rankine:chalcocite_ore", Arrays.asList("all"), "sphere", 70, 120, 4, 0.6D, 1, 0.1));
             oreSettings.add(Arrays.asList("rankine:magnesite_ore", Arrays.asList("all"), "sphere", 10, 30, 4, 0.6D, 1, 0.1));

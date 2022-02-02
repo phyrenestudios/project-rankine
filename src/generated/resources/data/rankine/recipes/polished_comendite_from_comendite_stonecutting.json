@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:comendite"
+  },
+  "result": "rankine:polished_comendite",
+  "count": 1
+}

@@ -1,9 +1,7 @@
 package com.cannolicatfish.rankine.items.alloys;
 
-import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -15,20 +13,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.List;
-import java.util.Locale;
 
-public class AlloyKnifeItem extends KnifeItem implements IAlloyTool, IAlloyNeedsRegenerate{
+public class AlloyKnifeItem extends KnifeItem implements IAlloyTool {
 
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;

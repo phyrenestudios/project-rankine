@@ -13,9 +13,9 @@
     "additional": 0.15
   },
   "output3": {
-    "item": "rankine:pyroxene",
-    "chance": 0.5,
-    "additional": 0.2
+    "item": "rankine:cinnabar",
+    "chance": 0.04,
+    "additional": 0.02
   },
   "output4": {
     "item": "minecraft:bone",

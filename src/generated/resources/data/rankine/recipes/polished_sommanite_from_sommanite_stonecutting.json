@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:sommanite"
+  },
+  "result": "rankine:polished_sommanite",
+  "count": 1
+}

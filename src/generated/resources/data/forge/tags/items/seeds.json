@@ -7,6 +7,12 @@
     "#forge:seeds/cotton",
     "#forge:seeds/rice",
     "#forge:seeds/jute",
-    "#forge:seeds/camphor_basil"
+    "#forge:seeds/camphor_basil",
+    "#forge:seeds/barley",
+    "#forge:seeds/rye",
+    "#forge:seeds/sorghum",
+    "#forge:seeds/oats",
+    "#forge:seeds/millet",
+    "#forge:seeds/soybean"
   ]
 }

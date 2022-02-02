@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "L",
+    "R",
     "B",
     "S"
   ],
@@ -10,10 +10,10 @@
       "item": "minecraft:barrel"
     },
     "S": {
-      "tag": "forge:stone_slabs"
+      "tag": "minecraft:wooden_slabs"
     },
-    "L": {
-      "item": "minecraft:lever"
+    "R": {
+      "tag": "forge:rods/wooden"
     }
   },
   "result": {

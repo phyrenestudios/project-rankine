@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_top",
+  "textures": {
+    "side": "rankine:block/simple_electromagnet_side",
+    "top": "rankine:block/simple_electromagnet"
+  }
+}

@@ -8,11 +8,14 @@ public class ClientConfig {
 
     public static class General {
         public final ForgeConfigSpec.BooleanValue GRASS_TEMP;
+        public final ForgeConfigSpec.BooleanValue GRASS_NOISE;
         public General(ForgeConfigSpec.Builder b) {
             b.comment("Settings for general mechanics").push("general");
 
             GRASS_TEMP = b.comment("Enable grass coloring based of temperature. WIP")
                     .define("grassTempColor", true);
+            GRASS_NOISE = b.comment("Enable grass color variation within a biome.")
+                    .define("grassColorNoise", true);
         }
 
 

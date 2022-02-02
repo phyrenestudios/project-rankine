@@ -16,7 +16,7 @@
       "item": "rankine:ultra_high_refractory_bricks"
     },
     "E": {
-      "item": "rankine:alnico_electromagnet"
+      "tag": "rankine:electromagnets"
     },
     "W": {
       "item": "rankine:alloy_wire",

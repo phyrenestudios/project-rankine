@@ -11,6 +11,16 @@
     "rankine:loamy_sand",
     "rankine:sandy_clay_loam",
     "rankine:silty_clay_loam",
+    "rankine:coarse_humus",
+    "rankine:coarse_loam",
+    "rankine:coarse_silty_clay",
+    "rankine:coarse_sandy_clay",
+    "rankine:coarse_silty_loam",
+    "rankine:coarse_clay_loam",
+    "rankine:coarse_sandy_loam",
+    "rankine:coarse_loamy_sand",
+    "rankine:coarse_sandy_clay_loam",
+    "rankine:coarse_silty_clay_loam",
     "rankine:humus_podzol",
     "rankine:loam_podzol",
     "rankine:silty_clay_podzol",
@@ -50,6 +60,7 @@
     "rankine:sandy_loam_grass_block",
     "rankine:loamy_sand_grass_block",
     "rankine:sandy_clay_loam_grass_block",
-    "rankine:silty_clay_loam_grass_block"
+    "rankine:silty_clay_loam_grass_block",
+    "rankine:permafrost"
   ]
 }

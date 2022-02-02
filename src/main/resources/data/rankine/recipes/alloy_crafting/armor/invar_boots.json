@@ -1,0 +1,20 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "genName": true,
+  "color": 13028546,
+  "pattern": [
+    "   ",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:invar_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_boots",
+    "count": 1
+  }
+}

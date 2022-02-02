@@ -95,7 +95,7 @@ public class RankineEightLayerBlock extends FallingBlock {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         int i = state.get(LAYERS);
-        if (player.getHeldItem(handIn).getItem() == state.getBlock().asItem() && i < 8 && !player.isSneaking()) {
+        if (!player.getHeldItem(handIn).isEmpty() && player.getHeldItem(handIn).getItem() == state.getBlock().asItem() && i < 8 && !player.isSneaking()) {
             worldIn.setBlockState(pos, state.with(LAYERS, i+1));
             worldIn.playSound(null,pos,state.getSoundType().getPlaceSound(), SoundCategory.BLOCKS,1.0f,1.0f);
             return ActionResultType.CONSUME;

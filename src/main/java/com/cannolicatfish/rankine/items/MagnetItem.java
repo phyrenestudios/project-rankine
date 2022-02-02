@@ -22,8 +22,8 @@ public class MagnetItem extends Item {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        if (type != 3) {
-            float radius = type == 1 ? Config.MACHINES.ALNICO_MAGNET_RANGE.get() : Config.MACHINES.RARE_MAGNET_RANGE.get();
+        if (type != 4) {
+            float radius = type * Config.MACHINES.MAGNET_RANGE.get();
             List<ItemEntity> items = worldIn.getEntitiesWithinAABB(ItemEntity.class, playerIn.getBoundingBox().grow(radius, radius, radius));
             for (ItemEntity i : items) {
                 i.setPickupDelay(0);
@@ -42,7 +42,7 @@ public class MagnetItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (entityIn instanceof PlayerEntity && type == 3){
+        if (entityIn instanceof PlayerEntity && type == 4){
             PlayerEntity player = (PlayerEntity) entityIn;
             List<ItemEntity> items = worldIn.getEntitiesWithinAABB(ItemEntity.class, entityIn.getBoundingBox().grow(2, 2, 2));
             for (ItemEntity i : items) {
