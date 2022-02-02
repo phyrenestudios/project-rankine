@@ -31,7 +31,6 @@ public interface IAlloyItem {
 
         CompoundNBT listnbt = new CompoundNBT();
         ListNBT elements = new ListNBT();
-        ListNBT modifiers = new ListNBT();
         for (Map.Entry<ElementRecipe, Integer> entry : elementMap.entrySet()) {
             int perc = entry.getValue();
             CompoundNBT compoundnbt = new CompoundNBT();
@@ -85,6 +84,14 @@ public interface IAlloyItem {
     static ListNBT getAlloyNBT(ItemStack stack) {
         CompoundNBT compoundnbt = stack.getTag();
         return compoundnbt != null ? compoundnbt.getList("StoredAlloy", 10) : new ListNBT();
+    }
+
+    default String getAlloyCompositionString(ItemStack stack) {
+        return stack.getTag() != null ? stack.getTag().getCompound("StoredAlloy").getString("comp") : "";
+    }
+
+    default String getAlloyRecipeString(ItemStack stack) {
+        return stack.getTag() != null ? stack.getTag().getCompound("StoredAlloy").getString("recipe") : "";
     }
 
     static ListNBT getElementNBT(ItemStack stack) {
