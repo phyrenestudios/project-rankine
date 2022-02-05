@@ -23,7 +23,6 @@ public class PedestalTile extends ItemDisplayEntity implements IInventory {
     private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> new InvWrapper(this));
     public float frames;
     public ItemEntity entity;
-    public ItemStack stack;
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
 
     public PedestalTile() {
@@ -51,36 +50,37 @@ public class PedestalTile extends ItemDisplayEntity implements IInventory {
 
     @Override
     public boolean isEmpty() {
-        return stack == null || stack.isEmpty();
+        return this.items.get(0) == null || this.items.get(0).isEmpty();
     }
 
     @Override
     public ItemStack getStackInSlot(int slot) {
-        return stack == null ? ItemStack.EMPTY : stack;
+        return this.items.get(slot);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count) {
-        ItemStack toReturn = getStackInSlot(0).copy();
-        stack.shrink(1);
-        updateBlock();
-        return toReturn;
+        return ItemStackHelper.getAndSplit(this.items, index, count);
     }
 
     @Override
     public ItemStack removeStackFromSlot(int index) {
-        ItemStack toReturn = getStackInSlot(0).copy();
-        stack.shrink(1);
-        updateBlock();
-        return toReturn;
+        return ItemStackHelper.getAndRemove(this.items, index);
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack s) {
-        if(stack == null || stack.isEmpty()) {
-            stack = s;
-            updateBlock();
+    public void setInventorySlotContents(int index, ItemStack stack) {
+        ItemStack itemstack = this.items.get(index);
+        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        this.items.set(index, stack);
+        if (stack.getCount() > this.getInventoryStackLimit()) {
+            stack.setCount(this.getInventoryStackLimit());
         }
+
+        if (!flag) {
+            this.markDirty();
+        }
+        updateBlock();
     }
 
     @Override
@@ -90,7 +90,7 @@ public class PedestalTile extends ItemDisplayEntity implements IInventory {
 
     @Override
     public void clear() {
-        this.stack = ItemStack.EMPTY;
+        this.items.clear();
     }
 
     @Nonnull
