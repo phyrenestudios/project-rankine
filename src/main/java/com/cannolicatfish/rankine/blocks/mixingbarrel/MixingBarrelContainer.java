@@ -55,10 +55,10 @@ public class MixingBarrelContainer extends Container {
         this.playerInventory = new InvWrapper(playerInventory);
         this.world = playerEntity.world;
 
-        this.addSlot(new Slot(furnaceInventory, 0, 53, 23));
-        this.addSlot(new Slot(furnaceInventory, 1, 71,16));
-        this.addSlot(new Slot(furnaceInventory, 2, 88,16));
-        this.addSlot(new Slot(furnaceInventory, 3, 106,23));
+        this.addSlot(new Slot(furnaceInventory, 0, 40, 16));
+        this.addSlot(new Slot(furnaceInventory, 1, 66,16));
+        this.addSlot(new Slot(furnaceInventory, 2, 92,16));
+        this.addSlot(new Slot(furnaceInventory, 3, 118,16));
         this.addSlot(new Slot(furnaceInventory, 4, 79,53));
 
         layoutPlayerInventorySlots(10, 86);
@@ -193,6 +193,15 @@ public class MixingBarrelContainer extends Container {
         return j != 0 && i != 0 ? i * pixels / j : 0;
     }
 
+    public String[] getSlotPercentages() {
+        int slot1 = furnaceInventory.getStackInSlot(0).getCount();
+        int slot2 = furnaceInventory.getStackInSlot(1).getCount();
+        int slot3 = furnaceInventory.getStackInSlot(2).getCount();
+        int slot4 = furnaceInventory.getStackInSlot(3).getCount();
+        float sum = slot1 + slot2 + slot3 + slot4;
+        return new String[]{Math.round(slot1/sum * 100f) + "%", Math.round(slot2/sum * 100f)+ "%", Math.round(slot3/sum * 100f)+ "%", Math.round(slot4/sum * 100f)+ "%"};
+
+    }
 
 
 }

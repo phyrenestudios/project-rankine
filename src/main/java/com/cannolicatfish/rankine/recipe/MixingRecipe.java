@@ -68,7 +68,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
     }
 
     public FluidStack getFluid() {
-        return fluid;
+        return this.fluid.copy();
     }
 
     @Override
@@ -83,7 +83,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getRecipeOutput() {
-        return ItemStack.EMPTY;
+        return this.recipeOutput.copy();
     }
 
     public int getMixTime() {

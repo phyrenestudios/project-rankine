@@ -19,6 +19,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.Arrays;
@@ -37,7 +38,7 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
         localizedName = I18n.format("rankine.jei.mixing");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/mixing_jei.png"),
                 0, 15, 180, 141);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.CRUCIBLE_BLOCK.get()));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.MIXING_BARREL.get()));
     }
 
     @Override
@@ -89,12 +90,13 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, MixingRecipe recipe, IIngredients ingredients) {
         int index = 0;
+        int amtReq = (int) recipe.getRequired().stream().filter(aBoolean -> aBoolean).count();
         for (int i = 0; i < ingredients.getInputs(VanillaTypes.ITEM).size(); i++) {
-            if (i < 4) {
+            if (i < amtReq) {
                 recipeLayout.getItemStacks().init(i, false, 14 + 18*i, 6);
             } else {
-                int floor = Math.floorDiv(i - 4 ,10);
-                recipeLayout.getItemStacks().init(i, true, ((i-4) - (10*floor)) * 18 + 2, 40 + (16*floor));
+                int floor = Math.floorDiv(i - amtReq,10);
+                recipeLayout.getItemStacks().init(i, true, ((i - amtReq) - (10*floor)) * 18 + 2, 40 + (16*floor));
             }
 
             if (!ingredients.getInputs(VanillaTypes.ITEM).get(i).contains(ItemStack.EMPTY) && ingredients.getInputs(VanillaTypes.ITEM).get(i).stream().noneMatch((s) -> s.getItem() == RankineItems.ELEMENT.get())) {
@@ -110,16 +112,16 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
             }
             index++;
         }
-        /*
-        int endIndex = ingredients.getInputs(VanillaTypes.ITEM).size();
 
+        int endIndex = index;
         recipeLayout.getItemStacks().addTooltipCallback((i, b, stack, list) -> {
             if (i < endIndex) {
                 list.add(new StringTextComponent("Min: " + Math.round(recipe.getMins().get(i) * 100) + "%"));
+                list.add(new StringTextComponent("Max: " + Math.round(recipe.getMaxes().get(i) * 100) + "%"));
             }
 
         });
-*/
+
         for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
             List<ItemStack> stacks = ingredients.getOutputs(VanillaTypes.ITEM).get(i);
             recipeLayout.getItemStacks().init(index + i + 1, false, 2 + 18 * i, 110);

@@ -39,6 +39,7 @@ import com.cannolicatfish.rankine.fluids.*;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
+import com.cannolicatfish.rankine.loot.SurfRodModifier;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.potion.RankinePotions;
 import com.cannolicatfish.rankine.recipe.*;
@@ -71,6 +72,7 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.extensions.IForgeContainerType;
+import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -288,6 +290,11 @@ public class ProjectRankine {
             event.getRegistry().register(AlloyModifierRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloy_modifier"));
 
             event.getRegistry().register(JamRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crafting_special_jam"));
+        }
+
+        @SubscribeEvent
+        public static void onGlobalLootModifierSerializersRegistry(final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
+            event.getRegistry().register(SurfRodModifier.SERIALIZER.setRegistryName(ProjectRankine.MODID,"surf_rod_modifier"));
         }
 
         @SubscribeEvent

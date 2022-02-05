@@ -23,6 +23,8 @@ public final class DataGenerators {
             //gen.addProvider(new RankineAdvancementProvider(gen));
             gen.addProvider(new RankineRecipesProvider(gen));
 
+            gen.addProvider(new RankineLootModifierProvider(gen));
+
         }
         if (event.includeClient()) {
             gen.addProvider(new RankineBlockStateProvider(gen, event.getExistingFileHelper()));
