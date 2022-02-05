@@ -12,6 +12,7 @@ import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.commands.GiveTagCommand;
 import com.cannolicatfish.rankine.compatibility.Patchouli;
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.entities.goals.EatGrassGoalModified;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.InformationItem;
@@ -75,6 +76,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BasicTrade;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
@@ -687,6 +689,7 @@ public class RankineEventHandler {
 
 
         ModifiableAttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
+        ModifiableAttributeInstance swimSpeed = player.getAttribute(ForgeMod.SWIM_SPEED.get());
 
         //movementSpeed.applyNonPersistentModifier(new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb5"), "rankine:block_ms", 0.0D, AttributeModifier.Operation.ADDITION));
 
@@ -761,7 +764,7 @@ public class RankineEventHandler {
             }
         }
         if (ground == Blocks.ICE) {
-            if (world.rand.nextFloat() < Config.GENERAL.ICE_BREAK.get() && !(EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SPEED_SKATER, player) > 0)) {
+            if (world.rand.nextFloat() < Config.GENERAL.ICE_BREAK.get() && !(RankineEnchantmentHelper.hasSpeedSkater(player))) {
                 for (BlockPos B : BlockPos.getAllInBoxMutable(pos.add(-2, -1, -2), pos.add(2, -1, 2))) {
                     if (world.getBlockState(B).getBlock() == Blocks.ICE) {
                         world.setBlockState(B, Blocks.FROSTED_ICE.getDefaultState().with(FrostedIceBlock.AGE, 2));
@@ -769,12 +772,12 @@ public class RankineEventHandler {
                 }
             }
         }
-        if (EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.DUNE_WALKER, player) > 0 || player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.SANDALS.get()) {
+        if (RankineEnchantmentHelper.hasDuneWalker(player) || player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.SANDALS.get()) {
             if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && !movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
                 movementSpeed.applyNonPersistentModifier(RankineAttributes.DUNE_WALKER);
                 player.stepHeight = 1.0f;
             }
-        } else if (EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.DUNE_WALKER, player) <= 0 && player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() != RankineItems.SANDALS.get() && movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
+        } else if (!RankineEnchantmentHelper.hasDuneWalker(player) && player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() != RankineItems.SANDALS.get() && movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
             movementSpeed.removeModifier(RankineAttributes.DUNE_WALKER);
             player.stepHeight = 0.5f;
         }
@@ -782,12 +785,12 @@ public class RankineEventHandler {
             movementSpeed.removeModifier(RankineAttributes.DUNE_WALKER);
             player.stepHeight = 0.5f;
         }
-        if (EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SNOW_DRIFTER, player) > 0 || player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.SNOWSHOES.get()) {
+        if (RankineEnchantmentHelper.hasSnowDrifter(player) || player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.SNOWSHOES.get()) {
             if ((world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) || world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && !movementSpeed.hasModifier(RankineAttributes.SNOW_DRIFTER)) {
                 movementSpeed.applyNonPersistentModifier(RankineAttributes.SNOW_DRIFTER);
                 player.stepHeight = 1.0f;
             }
-        } else  if (EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SNOW_DRIFTER, player) <= 0 && player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() != RankineItems.SNOWSHOES.get() && movementSpeed.hasModifier(RankineAttributes.SNOW_DRIFTER)) {
+        } else if (!RankineEnchantmentHelper.hasSnowDrifter(player) && player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() != RankineItems.SNOWSHOES.get() && movementSpeed.hasModifier(RankineAttributes.SNOW_DRIFTER)) {
             movementSpeed.removeModifier(RankineAttributes.SNOW_DRIFTER);
             player.stepHeight = 0.5f;
         }
@@ -795,12 +798,12 @@ public class RankineEventHandler {
             movementSpeed.removeModifier(RankineAttributes.SNOW_DRIFTER);
             player.stepHeight = 0.5f;
         }
-        if (EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SPEED_SKATER, player) > 0 || player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.ICE_SKATES.get()) {
+        if (RankineEnchantmentHelper.hasSpeedSkater(player) || player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.ICE_SKATES.get()) {
             if ((world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/ice")) || world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/ice"))) && !movementSpeed.hasModifier(RankineAttributes.SPEED_SKATER)) {
                 movementSpeed.applyNonPersistentModifier(RankineAttributes.SPEED_SKATER);
                 player.stepHeight = 1.0f;
             }
-        } else  if (EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SPEED_SKATER, player) <= 0 && player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() != RankineItems.ICE_SKATES.get() && movementSpeed.hasModifier(RankineAttributes.SPEED_SKATER)) {
+        } else if (!RankineEnchantmentHelper.hasSpeedSkater(player) && player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() != RankineItems.ICE_SKATES.get() && movementSpeed.hasModifier(RankineAttributes.SPEED_SKATER)) {
             movementSpeed.removeModifier(RankineAttributes.SPEED_SKATER);
             player.stepHeight = 0.5f;
         }
@@ -808,7 +811,21 @@ public class RankineEventHandler {
             movementSpeed.removeModifier(RankineAttributes.SPEED_SKATER);
             player.stepHeight = 0.5f;
         }
-
+        if (RankineEnchantmentHelper.hasFlippers(player) || player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.FINS.get()) {
+            if (player.isSwimming() && !swimSpeed.hasModifier(RankineAttributes.FLIPPERS)) {
+                swimSpeed.applyNonPersistentModifier(RankineAttributes.FLIPPERS);
+            }
+        } else if (!RankineEnchantmentHelper.hasFlippers(player) && player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() != RankineItems.FINS.get() && swimSpeed.hasModifier(RankineAttributes.FLIPPERS)) {
+            swimSpeed.removeModifier(RankineAttributes.FLIPPERS);
+        }
+        if (!player.isSwimming() && swimSpeed.hasModifier(RankineAttributes.FLIPPERS)) {
+            swimSpeed.removeModifier(RankineAttributes.FLIPPERS);
+        }
+        if (player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.GOGGLES.get() && player.areEyesInFluid(FluidTags.WATER) && !swimSpeed.hasModifier(RankineAttributes.WATER_VISION)) {
+            swimSpeed.applyNonPersistentModifier(RankineAttributes.WATER_VISION);
+        } else if ((player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() != RankineItems.GOGGLES.get() || !player.areEyesInFluid(FluidTags.WATER)) && swimSpeed.hasModifier(RankineAttributes.WATER_VISION)) {
+            swimSpeed.removeModifier(RankineAttributes.WATER_VISION);
+        }
     }
 
 
@@ -2022,6 +2039,19 @@ public class RankineEventHandler {
 
 
         if (!player.abilities.isCreativeMode) {
+
+            if (target.matchesBlock(Blocks.GLOWSTONE) && !worldIn.isRemote) {
+                Block gas = Arrays.asList(RankineBlocks.ARGON_GAS_BLOCK.get(),RankineBlocks.NEON_GAS_BLOCK.get(),RankineBlocks.KRYPTON_GAS_BLOCK.get()).get(rand.nextInt(3));
+                if (worldIn.getBiome(pos).getCategory() == Biome.Category.NETHER && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()) {
+                    worldIn.setBlockState(pos, gas.getDefaultState(),3);
+                } else if (worldIn.getBiome(pos).getCategory() == Biome.Category.THEEND && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()*5) {
+                    worldIn.setBlockState(pos, gas.getDefaultState(),3);
+                } else if (rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()/5f) {
+                    worldIn.setBlockState(pos, gas.getDefaultState(),3);
+                }
+            }
+
+
             //Luck Pendant
             if (offHandItem == RankineItems.TOTEM_OF_PROMISING.get()) {
                 if (event.getState().isIn(RankineTags.Blocks.LUCK_PENDANT)) {

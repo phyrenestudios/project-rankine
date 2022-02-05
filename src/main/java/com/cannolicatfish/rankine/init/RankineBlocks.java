@@ -24,6 +24,8 @@ import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableBlock;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableTile;
 import com.cannolicatfish.rankine.blocks.mushrooms.RankineWallMushroomBlock;
+import com.cannolicatfish.rankine.blocks.pedestal.PedestalBlock;
+import com.cannolicatfish.rankine.blocks.pedestal.PedestalTile;
 import com.cannolicatfish.rankine.blocks.plants.*;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
@@ -1630,8 +1632,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_SAND = REGISTRY.register("black_sand", () -> new SandBlock(00000000, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> WHITE_SAND = REGISTRY.register("white_sand", () -> new SandBlock(16777215, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> DESERT_SAND = REGISTRY.register("desert_sand", () -> new DesertSandBlock(14865335, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
-    public static final RegistryObject<Block> LEAD_GLASS = REGISTRY.register("lead_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(3.0F, 15.0F).sound(SoundType.GLASS).notSolid().harvestLevel(1)));
-    public static final RegistryObject<Block> BOROSILICATE_GLASS = REGISTRY.register("borosilicate_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)));
+    public static final RegistryObject<Block> LEAD_GLASS = REGISTRY.register("lead_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(3.0F, 15.0F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
+    public static final RegistryObject<Block> BOROSILICATE_GLASS = REGISTRY.register("borosilicate_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
+    public static final RegistryObject<Block> CVD_GLASS = REGISTRY.register("cvd_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(12.0F, 60.0F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
     public static final RegistryObject<Block> COB = REGISTRY.register("cob", () -> new Block(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> PHOSPHORITE = REGISTRY.register("phosphorite", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> FUMAROLE_DEPOSIT = REGISTRY.register("fumarole_deposit", () -> new FumaroleDepositBlock(DEF_STONE.harvestLevel(3)));
@@ -2942,6 +2945,8 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:tilled_soil")
     public static TileEntityType<TilledSoilTile> TILLED_SOIL_TILE;
+    @ObjectHolder("rankine:pedestal")
+    public static TileEntityType<PedestalTile> PEDESTAL_TILE;
 
 
     public static Block getBlock(String name) {

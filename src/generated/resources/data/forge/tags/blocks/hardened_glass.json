@@ -3,6 +3,7 @@
   "values": [
     "rankine:lead_glass",
     "rankine:borosilicate_glass",
+    "rankine:cvd_glass",
     "rankine:reaction_chamber_cell"
   ]
 }

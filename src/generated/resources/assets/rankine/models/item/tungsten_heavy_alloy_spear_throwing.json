@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:item/spear_throwing",
+  "textures": {
+    "layer0": "rankine:item/tungsten_heavy_alloy_spear"
+  }
+}

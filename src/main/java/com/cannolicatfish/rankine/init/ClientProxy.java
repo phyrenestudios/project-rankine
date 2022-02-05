@@ -15,18 +15,23 @@ import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxScreen;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableScreen;
 import com.cannolicatfish.rankine.items.alloys.AlloySurfRodItem;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
+import com.cannolicatfish.rankine.items.tools.SpearItem;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ClientProxy implements IProxy {
 
@@ -49,6 +54,13 @@ public class ClientProxy implements IProxy {
     }
 
     public static void registerItemProperties() {
+        for (Item ITEM : Stream.of(RankineLists.WOODEN_TOOLS,RankineLists.STONE_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.OSMIRIDIUM_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            if (ITEM instanceof SpearItem) {
+                ItemModelsProperties.registerProperty(ITEM, new ResourceLocation("throwing"), (stack, world, living) ->
+                        living != null && living.isHandActive() && living.getActiveItemStack() == stack ? 1.0F : 0.0F);
+            }
+        }
+
         ItemModelsProperties.registerProperty(RankineItems.SHULKER_GAS_VACUUM.get(),
                 new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living) ->
                         stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F);
@@ -102,6 +114,7 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.ORNAMENT.get(),
                 RankineBlocks.LEAD_GLASS.get(),
                 RankineBlocks.BOROSILICATE_GLASS.get(),
+                RankineBlocks.CVD_GLASS.get(),
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
                 RankineBlocks.WILLOW_BRANCHLET.get(),
                 RankineBlocks.WILLOW_BRANCHLET_PLANT.get(),

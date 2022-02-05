@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:item/spear_throwing",
+  "textures": {
+    "layer0": "rankine:item/rose_gold_spear"
+  }
+}

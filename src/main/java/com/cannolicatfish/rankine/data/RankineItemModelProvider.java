@@ -5,7 +5,7 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.items.alloys.AlloyCrowbarItem;
-import com.cannolicatfish.rankine.items.alloys.AlloySpearItem;
+import com.cannolicatfish.rankine.items.tools.SpearItem;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
@@ -282,6 +282,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.SANDALS.get());
         basicItem(RankineItems.ICE_SKATES.get());
         basicItem(RankineItems.SNOWSHOES.get());
+        basicItem(RankineItems.GOGGLES.get());
+        basicItem(RankineItems.FINS.get());
         basicItem(RankineItems.BRIGADINE_CHESTPLATE.get());
         basicItem(RankineItems.BRIGADINE_LEGGINGS.get());
         basicItem(RankineItems.BRIGADINE_HELMET.get());
@@ -437,8 +439,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Item TOOL : Stream.of(RankineLists.WOODEN_TOOLS,RankineLists.STONE_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.OSMIRIDIUM_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             if (TOOL instanceof AlloyCrowbarItem || TOOL.equals(RankineItems.ALLOY_SURF_ROD.get())) {
                 basicItemHandheldRod(TOOL);
-            } else if (TOOL instanceof AlloySpearItem) {
-                basicItemHandheld(TOOL);
+            } else if (TOOL instanceof SpearItem) {
+                spearItem(TOOL);
             } else {
                 basicItemHandheld(TOOL);
             }
@@ -534,9 +536,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder basicItemHandheldRod(Item name) {
         return getBuilder(name.getRegistryName().getPath()).parent(getExistingFile(mcLoc("item/handheld_rod"))).texture("layer0", "item/" + name.getRegistryName().getPath());
     }
-    private ItemModelBuilder spearItem(Item name) {
-        return getBuilder(name.getRegistryName().getPath()).parent(getExistingFile(modLoc("item/template_spear"))).texture("layer0", "item/" + name.getRegistryName().getPath());
-    }
     private ItemModelBuilder basicItem(Block name) {
         return getBuilder(name.getRegistryName().getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "item/" + name.getRegistryName().getPath());
     }
@@ -555,6 +554,14 @@ public class RankineItemModelProvider extends ItemModelProvider {
     }    
     private ItemModelBuilder wallParent(Block BLK) {
         return withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/" + BLK.getRegistryName().getPath()+"_inventory"));
+    }
+
+
+    private void spearItem(Item item) {
+        String Path = item.getRegistryName().getPath();
+        getBuilder(Path).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "item/" + Path);
+        getBuilder(Path+"_throwing").parent(getExistingFile(modLoc("item/spear_throwing"))).texture("layer0", "item/" + Path);
+        getBuilder(Path).parent(getExistingFile(modLoc("item/spear_in_hand"))).texture("layer0", "item/" + Path).override().predicate(new ResourceLocation("throwing"), 1.0f).model(getExistingFile(modLoc("item/"+Path+"_throwing")));
     }
     
 }

@@ -1,6 +1,14 @@
 {
-  "parent": "minecraft:item/handheld",
+  "parent": "rankine:item/spear_in_hand",
   "textures": {
     "layer0": "rankine:item/steel_spear"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "minecraft:throwing": 1.0
+      },
+      "model": "rankine:item/steel_spear_throwing"
+    }
+  ]
 }
