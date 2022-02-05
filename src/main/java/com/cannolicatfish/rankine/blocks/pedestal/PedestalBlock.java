@@ -1,11 +1,14 @@
 package com.cannolicatfish.rankine.blocks.pedestal;
 
+import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableTile;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -44,21 +47,23 @@ public class PedestalBlock extends Block {
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(handIn != Hand.MAIN_HAND)
             return ActionResultType.PASS;
-        if(!world.isRemote) {
-            PedestalTile tile = (PedestalTile) world.getTileEntity(pos);
-            if (tile.stack != null && player.getHeldItem(handIn).isEmpty()) {
+        PedestalTile tile = (PedestalTile) world.getTileEntity(pos);
+        if(!world.isRemote && tile != null) {
+
+            if (tile.getStackInSlot(0) != null && player.getHeldItem(handIn).isEmpty()) {
                 if(world.getBlockState(pos.up()).getMaterial() != Material.AIR)
                     return ActionResultType.SUCCESS;
-                ItemEntity item = new ItemEntity(world, player.getPosX(), player.getPosY(), player.getPosZ(), tile.stack);
+                ItemEntity item = new ItemEntity(world, player.getPosX(), player.getPosY(), player.getPosZ(), tile.getStackInSlot(0));
                 world.addEntity(item);
-                tile.stack = null;
+                tile.clear();
             } else if (!player.inventory.getCurrentItem().isEmpty()) {
-                if(tile.stack != null){
-                    ItemEntity item = new ItemEntity(world, player.getPosX(), player.getPosY(), player.getPosZ(), tile.stack);
+                if(tile.getStackInSlot(0) != null){
+                    ItemEntity item = new ItemEntity(world, player.getPosX(), player.getPosY(), player.getPosZ(), tile.getStackInSlot(0));
                     world.addEntity(item);
                 }
-
-                tile.stack = player.getHeldItem(handIn);
+                ItemStack stack = player.getHeldItem(handIn).copy();
+                stack.setCount(1);
+                tile.setInventorySlotContents(0,stack);
                 player.getHeldItem(handIn).shrink(1);
             }
             world.notifyBlockUpdate(pos, state, state, 2);
@@ -66,11 +71,14 @@ public class PedestalBlock extends Block {
         return  ActionResultType.SUCCESS;
     }
 
-    @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        super.onBlockHarvested(worldIn, pos, state, player);
-        if(worldIn.getTileEntity(pos) instanceof PedestalTile && ((PedestalTile) worldIn.getTileEntity(pos)).stack != null){
-            worldIn.addEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), ((PedestalTile) worldIn.getTileEntity(pos)).stack));
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.matchesBlock(newState.getBlock())) {
+            TileEntity tileentity = worldIn.getTileEntity(pos);
+            if (tileentity instanceof PedestalTile) {
+                InventoryHelper.dropInventoryItems(worldIn, pos, (PedestalTile)tileentity);
+                worldIn.updateComparatorOutputLevel(pos, this);
+            }
+            super.onReplaced(state, worldIn, pos, newState, isMoving);
         }
     }
 

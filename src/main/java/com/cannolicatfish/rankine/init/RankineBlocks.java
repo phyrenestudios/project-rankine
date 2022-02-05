@@ -2947,6 +2947,7 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:tilled_soil")
     public static TileEntityType<TilledSoilTile> TILLED_SOIL_TILE;
+
     @ObjectHolder("rankine:pedestal")
     public static TileEntityType<PedestalTile> PEDESTAL_TILE;
 

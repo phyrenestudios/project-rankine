@@ -320,9 +320,7 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(MaterialTestingTableTile::new, RankineBlocks.MATERIAL_TESTING_TABLE.get()).build(null).setRegistryName(ProjectRankine.MODID,"material_testing_table"));
             event.getRegistry().register(TileEntityType.Builder.create(BeehiveOvenTile::new, RankineBlocks.BEEHIVE_OVEN_PIT.get()).build(null).setRegistryName(ProjectRankine.MODID,"beehive_oven"));
             event.getRegistry().register(TileEntityType.Builder.create(DistillationTowerTile::new, RankineBlocks.DISTILLATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"distillation_tower"));
-            for (Block BLK : RankineLists.ALLOY_PEDESTALS) {
-                event.getRegistry().register(TileEntityType.Builder.create(PedestalTile::new, BLK).build(null).setRegistryName(BLK.getRegistryName()));
-            }
+            event.getRegistry().register(TileEntityType.Builder.create(PedestalTile::new, RankineLists.ALLOY_PEDESTALS.toArray(new Block[0])).build(null).setRegistryName(ProjectRankine.MODID,"pedestal"));
         }
 
         @SubscribeEvent
