@@ -58,6 +58,11 @@ public class MixingBarrelScreen extends ContainerScreen<MixingBarrelContainer> {
         if (!this.container.getInputTank().isEmpty()) {
             drawFluidTank(p_230451_1_,this.container.getInputTank(),4,12); //60
         }
+        String[] percents = container.getSlotPercentages();
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, percents[0], 48, 34, 0xffffff);
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, percents[1], 74, 34, 0xffffff);
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, percents[2], 100, 34, 0xffffff);
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, percents[3], 126, 34, 0xffffff);
     }
 
     protected void drawFluidTank(MatrixStack ms, FluidTank tankIn, int x, int y) {
