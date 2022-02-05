@@ -540,6 +540,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
         public final ForgeConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
         public final ForgeConfigSpec.DoubleValue ROCK_GENERATOR_REMOVAL_CHANCE;
+        public final ForgeConfigSpec.DoubleValue GLOWSTONE_GAS_CHANCE;
         public final ForgeConfigSpec.BooleanValue IGNEOUS_COBBLE_GEN;
         public final ForgeConfigSpec.BooleanValue METAMORPHIC_STONE_GEN;
         public final ForgeConfigSpec.DoubleValue GLOBAL_BREAK_EXHAUSTION;
@@ -587,6 +588,8 @@ public class Config {
                             .defineInRange("cheeseAgeChance", 0.04D, 0.0D, 1.0D);
                     GEODE_CHANCE = b.comment("Chance for a geode to be found in stone.")
                             .defineInRange("geodeChance", 0.0005D, 0.0D, 1.0D);
+                    GLOWSTONE_GAS_CHANCE = b.comment("Chance for a glowstone to spawn gas block when broken. The chance is for the Nether and the End is 5x more likely.")
+                            .defineInRange("glowstoneGasChance", 0.01D, 0.0D, 1.0D);
                     STARTING_BOOK = b.comment("Enables the Rankine Journal (a guide to the mod, requires Patchouli)")
                             .define("startingBook",true);
                     REFRESH_ALLOYS = b.comment("If enabled, alloy-related content in the player's inventory will always refresh on world join. Useful for modifying element recipes and quickly determining changes.")

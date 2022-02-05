@@ -40,6 +40,8 @@ public class RankineEnchantments {
 
     @ObjectHolder("rankine:speed_skater")
     public static Enchantment SPEED_SKATER;
+    @ObjectHolder("rankine:flippers")
+    public static Enchantment FLIPPERS;
 
     @ObjectHolder("rankine:gas_protection")
     public static Enchantment GAS_PROTECTION;

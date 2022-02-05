@@ -438,6 +438,8 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.SANDALS.get(),
             RankineItems.ICE_SKATES.get(),
             RankineItems.SNOWSHOES.get(),
+            RankineItems.GOGGLES.get(),
+            RankineItems.FINS.get(),
             RankineItems.BRIGADINE_CHESTPLATE.get(),
             RankineItems.BRIGADINE_LEGGINGS.get(),
             RankineItems.BRIGADINE_HELMET.get(),
