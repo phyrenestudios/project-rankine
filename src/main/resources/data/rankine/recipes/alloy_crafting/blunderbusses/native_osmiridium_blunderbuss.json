@@ -1,0 +1,24 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    "##f",
+    "tt#",
+    "  t"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:osmiridium"
+    },
+    "f": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "t": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:osmiridium_blunderbuss",
+    "count": 1
+  }
+}

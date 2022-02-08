@@ -251,7 +251,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_BRASS = forgeBlock("storage_blocks/brass");
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_CAST_IRON = forgeBlock("storage_blocks/cast_iron");
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_INVAR = forgeBlock("storage_blocks/invar");
-        public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_CUPRONICKEL = forgeBlock("storage_blocks/cupronickel");
+        public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_CUPRONICKEL = forgeBlock("storage_blocks/constantan");
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_DURALUMIN = forgeBlock("storage_blocks/duralumin");
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_MAGNESIUM_ALLOY = forgeBlock("storage_blocks/magnesium_alloy");
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_STERLING_SILVER = forgeBlock("storage_blocks/sterling_silver");
@@ -269,7 +269,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_AMALGAM = forgeBlock("storage_blocks/amalgam");
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_ENDER_AMALGAM = forgeBlock("storage_blocks/ender_amalgam");
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_ROSE_GOLD = forgeBlock("storage_blocks/rose_gold");
-        public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_GREEN_GOLD = forgeBlock("storage_blocks/green_gold");
+        public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_GREEN_GOLD = forgeBlock("storage_blocks/electrum");
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_PURPLE_GOLD = forgeBlock("storage_blocks/purple_gold");
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_WHITE_GOLD = forgeBlock("storage_blocks/white_gold");
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS_BLUE_GOLD = forgeBlock("storage_blocks/blue_gold");
@@ -578,7 +578,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> NUGGETS_BRASS = forgeItem("nuggets/brass");
         public static final Tags.IOptionalNamedTag<Item> NUGGETS_CAST_IRON = forgeItem("nuggets/cast_iron");
         public static final Tags.IOptionalNamedTag<Item> NUGGETS_INVAR = forgeItem("nuggets/invar");
-        public static final Tags.IOptionalNamedTag<Item> NUGGETS_CUPRONICKEL = forgeItem("nuggets/cupronickel");
+        public static final Tags.IOptionalNamedTag<Item> NUGGETS_CUPRONICKEL = forgeItem("nuggets/constantan");
         public static final Tags.IOptionalNamedTag<Item> NUGGETS_DURALUMIN = forgeItem("nuggets/duralumin");
         public static final Tags.IOptionalNamedTag<Item> NUGGETS_MAGNESIUM_ALLOY = forgeItem("nuggets/magnesium_alloy");
         public static final Tags.IOptionalNamedTag<Item> NUGGETS_STERLING_SILVER = forgeItem("nuggets/sterling_silver");
@@ -596,7 +596,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> NUGGETS_AMALGAM = forgeItem("nuggets/amalgam");
         public static final Tags.IOptionalNamedTag<Item> NUGGETS_ENDER_AMALGAM = forgeItem("nuggets/ender_amalgam");
         public static final Tags.IOptionalNamedTag<Item> NUGGETS_ROSE_GOLD = forgeItem("nuggets/rose_gold");
-        public static final Tags.IOptionalNamedTag<Item> NUGGETS_GREEN_GOLD = forgeItem("nuggets/green_gold");
+        public static final Tags.IOptionalNamedTag<Item> NUGGETS_GREEN_GOLD = forgeItem("nuggets/electrum");
         public static final Tags.IOptionalNamedTag<Item> NUGGETS_PURPLE_GOLD = forgeItem("nuggets/purple_gold");
         public static final Tags.IOptionalNamedTag<Item> NUGGETS_WHITE_GOLD = forgeItem("nuggets/white_gold");
         public static final Tags.IOptionalNamedTag<Item> NUGGETS_BLUE_GOLD = forgeItem("nuggets/blue_gold");
@@ -730,7 +730,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> INGOTS_BRASS = forgeItem("ingots/brass");
         public static final Tags.IOptionalNamedTag<Item> INGOTS_CAST_IRON = forgeItem("ingots/cast_iron");
         public static final Tags.IOptionalNamedTag<Item> INGOTS_INVAR = forgeItem("ingots/invar");
-        public static final Tags.IOptionalNamedTag<Item> INGOTS_CUPRONICKEL = forgeItem("ingots/cupronickel");
+        public static final Tags.IOptionalNamedTag<Item> INGOTS_CUPRONICKEL = forgeItem("ingots/constantan");
         public static final Tags.IOptionalNamedTag<Item> INGOTS_DURALUMIN = forgeItem("ingots/duralumin");
         public static final Tags.IOptionalNamedTag<Item> INGOTS_MAGNESIUM_ALLOY = forgeItem("ingots/magnesium_alloy");
         public static final Tags.IOptionalNamedTag<Item> INGOTS_STERLING_SILVER = forgeItem("ingots/sterling_silver");
@@ -748,7 +748,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> INGOTS_AMALGAM = forgeItem("ingots/amalgam");
         public static final Tags.IOptionalNamedTag<Item> INGOTS_ENDER_AMALGAM = forgeItem("ingots/ender_amalgam");
         public static final Tags.IOptionalNamedTag<Item> INGOTS_ROSE_GOLD = forgeItem("ingots/rose_gold");
-        public static final Tags.IOptionalNamedTag<Item> INGOTS_GREEN_GOLD = forgeItem("ingots/green_gold");
+        public static final Tags.IOptionalNamedTag<Item> INGOTS_GREEN_GOLD = forgeItem("ingots/electrum");
         public static final Tags.IOptionalNamedTag<Item> INGOTS_PURPLE_GOLD = forgeItem("ingots/purple_gold");
         public static final Tags.IOptionalNamedTag<Item> INGOTS_WHITE_GOLD = forgeItem("ingots/white_gold");
         public static final Tags.IOptionalNamedTag<Item> INGOTS_BLUE_GOLD = forgeItem("ingots/blue_gold");
@@ -897,7 +897,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_BRASS = forgeItem("storage_blocks/brass");
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_CAST_IRON = forgeItem("storage_blocks/cast_iron");
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_INVAR = forgeItem("storage_blocks/invar");
-        public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_CUPRONICKEL = forgeItem("storage_blocks/cupronickel");
+        public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_CUPRONICKEL = forgeItem("storage_blocks/constantan");
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_DURALUMIN = forgeItem("storage_blocks/duralumin");
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_MAGNESIUM_ALLOY = forgeItem("storage_blocks/magnesium_alloy");
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_STERLING_SILVER = forgeItem("storage_blocks/sterling_silver");
@@ -915,7 +915,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_AMALGAM = forgeItem("storage_blocks/amalgam");
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_ENDER_AMALGAM = forgeItem("storage_blocks/ender_amalgam");
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_ROSE_GOLD = forgeItem("storage_blocks/rose_gold");
-        public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_GREEN_GOLD = forgeItem("storage_blocks/green_gold");
+        public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_GREEN_GOLD = forgeItem("storage_blocks/electrum");
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_PURPLE_GOLD = forgeItem("storage_blocks/purple_gold");
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_WHITE_GOLD = forgeItem("storage_blocks/white_gold");
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS_BLUE_GOLD = forgeItem("storage_blocks/blue_gold");
@@ -959,7 +959,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> TUNGSTEN_HEAVY_ALLOY_TOOLS = forgeItem("tungsten_heavy_alloy_tools");
         public static final Tags.IOptionalNamedTag<Item> ROSE_GOLD_TOOLS = forgeItem("rose_gold_tools");
         public static final Tags.IOptionalNamedTag<Item> WHITE_GOLD_TOOLS = forgeItem("white_gold_tools");
-        public static final Tags.IOptionalNamedTag<Item> GREEN_GOLD_TOOLS = forgeItem("green_gold_tools");
+        public static final Tags.IOptionalNamedTag<Item> GREEN_GOLD_TOOLS = forgeItem("electrum_tools");
         public static final Tags.IOptionalNamedTag<Item> PURPLE_GOLD_TOOLS = forgeItem("purple_gold_tools");
         public static final Tags.IOptionalNamedTag<Item> BLUE_GOLD_TOOLS = forgeItem("blue_gold_tools");
         public static final Tags.IOptionalNamedTag<Item> BLACK_GOLD_TOOLS = forgeItem("black_gold_tools");
