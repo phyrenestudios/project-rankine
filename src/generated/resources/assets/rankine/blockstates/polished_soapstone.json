@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "mode=0": {
+      "model": "rankine:block/polished_soapstone"
+    },
+    "mode=1": {
+      "model": "rankine:block/polished_soapstone_offset"
+    },
+    "mode=2": {
+      "model": "rankine:block/polished_soapstone_offset_ns"
+    },
+    "mode=3": {
+      "model": "rankine:block/polished_soapstone_offset_ew"
+    }
+  }
+}

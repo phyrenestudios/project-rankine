@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:granite_bricks_stairs"
+    },
+    {
+      "item": "rankine:granite_bricks_stairs"
+    },
+    {
+      "item": "rankine:granite_bricks_stairs"
+    },
+    {
+      "item": "rankine:granite_bricks_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:granite_bricks",
+    "count": 6
+  }
+}

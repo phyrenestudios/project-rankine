@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_column",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:graywacke"
+    }
+  },
+  "result": {
+    "item": "rankine:graywacke_column",
+    "count": 8
+  }
+}

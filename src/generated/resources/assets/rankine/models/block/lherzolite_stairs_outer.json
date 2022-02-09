@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "rankine:block/lherzolite",
+    "bottom": "rankine:block/lherzolite",
+    "top": "rankine:block/lherzolite"
+  }
+}

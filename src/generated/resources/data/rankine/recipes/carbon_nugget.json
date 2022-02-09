@@ -1,13 +1,16 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "rankine",
-  "ingredients": [
-    {
-      "item": "rankine:carbon"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
   ],
+  "key": {
+    "#": {
+      "item": "minecraft:charcoal"
+    }
+  },
   "result": {
     "item": "rankine:carbon_nugget",
-    "count": 9
+    "count": 4
   }
 }

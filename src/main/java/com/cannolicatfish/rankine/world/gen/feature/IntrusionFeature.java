@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
@@ -26,7 +27,8 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        Biome BIOME = reader.getBiome(pos);
+        BlockPos posShift = pos.add(8,0,8);
+        Biome BIOME = reader.getBiome(posShift);
         if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
             BlockState INTRUSION;
             try {
@@ -42,9 +44,9 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
                     int endY = 1;
                     int shiftx = 0;
                     int shiftz = 0;
-                    BlockPos pos1 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
-                    BlockPos pos2 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
-                    BlockPos pos3 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
+                    BlockPos pos1 = posShift.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
+                    BlockPos pos2 = posShift.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
+                    BlockPos pos3 = posShift.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
                     BlockPos posAvg;
 
                     for (int y = startY; y >= endY; --y) {
@@ -86,18 +88,18 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
                 } else {
                     int radius = Config.MISC_WORLDGEN.OVERWORLD_INTRUSION_RADIUS.get() + rand.nextInt(3);
                     int startY = 1;
-                    int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, pos.getX(), pos.getZ());
+                    int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, posShift.getX(), posShift.getZ());
                     int shiftx = 0;
                     int shiftz = 0;
-                    BlockPos pos1 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
-                    BlockPos pos2 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
-                    BlockPos pos3 = pos.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
+                    BlockPos pos1 = posShift.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
+                    BlockPos pos2 = posShift.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
+                    BlockPos pos3 = posShift.add(rand.nextInt(radius) - radius / 2, 0, rand.nextInt(radius) - radius / 2);
                     BlockPos posAvg;
 
                     for (int y = startY; y <= endY; ++y) {
                         if (rand.nextFloat() < Config.MISC_WORLDGEN.OVERWORLD_INTRUSION_SHIFT.get()) {
-                            shiftx += rand.nextInt(3) - 1;
-                            shiftz += rand.nextInt(3) - 1;
+                            shiftx += rand.nextInt(2);
+                            shiftz += rand.nextInt(2);
                         } else {
                             shiftx = 0;
                             shiftz = 0;
@@ -116,12 +118,14 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
                                             ORE = ORE.with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(INTRUSION.getBlock()));
                                         }
                                         if (ORE.isIn(Tags.Blocks.ORES_DIAMOND) && y > endY * 0.5) {
-                                            reader.setBlockState(b, INTRUSION, 2);
+                                            reader.setBlockState(b, INTRUSION, 3);
                                         } else {
-                                            reader.setBlockState(b, ORE, 2);
+                                            reader.setBlockState(b, ORE, 3);
                                         }
+                                    } else if (rand.nextFloat() < 0.025) {
+                                        reader.setBlockState(b, RankineBlocks.CINNABAR_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(INTRUSION.getBlock())), 3);
                                     } else {
-                                        reader.setBlockState(b, INTRUSION, 2);
+                                        reader.setBlockState(b, INTRUSION, 3);
                                     }
                                 }
                             }

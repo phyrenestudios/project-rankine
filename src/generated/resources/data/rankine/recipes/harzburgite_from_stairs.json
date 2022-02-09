@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:harzburgite_stairs"
+    },
+    {
+      "item": "rankine:harzburgite_stairs"
+    },
+    {
+      "item": "rankine:harzburgite_stairs"
+    },
+    {
+      "item": "rankine:harzburgite_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:harzburgite",
+    "count": 6
+  }
+}

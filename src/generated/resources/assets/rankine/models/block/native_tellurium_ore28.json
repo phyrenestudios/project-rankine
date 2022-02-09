@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/komatiite",
+    "background": "rankine:block/wehrlite",
     "overlay": "rankine:block/native_tellurium_ore"
   }
 }

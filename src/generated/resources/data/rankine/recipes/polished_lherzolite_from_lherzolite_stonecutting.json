@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:lherzolite"
+  },
+  "result": "rankine:polished_lherzolite",
+  "count": 1
+}

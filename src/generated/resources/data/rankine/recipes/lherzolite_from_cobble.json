@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:lherzolite_cobble"
+    },
+    {
+      "item": "rankine:lherzolite_cobble"
+    },
+    {
+      "item": "rankine:lherzolite_cobble"
+    },
+    {
+      "item": "rankine:lherzolite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:lherzolite"
+  }
+}

@@ -3,10 +3,10 @@
   "group": "stone_slab_from_vslab",
   "ingredients": [
     {
-      "item": "rankine:polished_eclogite_vertical_slab"
+      "item": "rankine:polished_mariposite_vertical_slab"
     }
   ],
   "result": {
-    "item": "rankine:polished_eclogite_slab"
+    "item": "rankine:polished_mariposite_slab"
   }
 }

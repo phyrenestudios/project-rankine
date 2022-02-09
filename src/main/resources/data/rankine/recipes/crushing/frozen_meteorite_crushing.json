@@ -4,7 +4,7 @@
     "item": "rankine:frozen_meteorite"
   },
   "output1": {
-    "item": "rankine:silicon",
+    "item": "minecraft:quartz",
     "chance": 1
   },
   "output2": {

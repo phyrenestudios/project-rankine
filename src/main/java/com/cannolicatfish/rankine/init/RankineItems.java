@@ -31,7 +31,6 @@ public class RankineItems {
 
     public static Item.Properties DEF_BUILDING = new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld);
 
-    //Stone Blocks
     public static final RegistryObject<Item> PEGMATITE = REGISTRY.register("pegmatite", () -> new BlockItem(RankineBlocks.PEGMATITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_PEGMATITE = REGISTRY.register("polished_pegmatite", () -> new BlockItem(RankineBlocks.POLISHED_PEGMATITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PEGMATITE_BRICKS = REGISTRY.register("pegmatite_bricks", () -> new BlockItem(RankineBlocks.PEGMATITE_BRICKS.get(), DEF_BUILDING));
@@ -53,6 +52,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> PEGMATITE_PILLAR = REGISTRY.register("pegmatite_pillar", () -> new BlockItem(RankineBlocks.PEGMATITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PEGMATITE_COLUMN = REGISTRY.register("pegmatite_column", () -> new BlockItem(RankineBlocks.PEGMATITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PEGMATITE_COBBLE = REGISTRY.register("pegmatite_cobble", () -> new BlockItem(RankineBlocks.PEGMATITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_PEGMATITE = REGISTRY.register("infested_pegmatite", () -> new BlockItem(RankineBlocks.INFESTED_PEGMATITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRAY_GRANITE = REGISTRY.register("gray_granite", () -> new BlockItem(RankineBlocks.GRAY_GRANITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_GRAY_GRANITE = REGISTRY.register("polished_gray_granite", () -> new BlockItem(RankineBlocks.POLISHED_GRAY_GRANITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRAY_GRANITE_BRICKS = REGISTRY.register("gray_granite_bricks", () -> new BlockItem(RankineBlocks.GRAY_GRANITE_BRICKS.get(), DEF_BUILDING));
@@ -74,6 +74,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> GRAY_GRANITE_PILLAR = REGISTRY.register("gray_granite_pillar", () -> new BlockItem(RankineBlocks.GRAY_GRANITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRAY_GRANITE_COLUMN = REGISTRY.register("gray_granite_column", () -> new BlockItem(RankineBlocks.GRAY_GRANITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRAY_GRANITE_COBBLE = REGISTRY.register("gray_granite_cobble", () -> new BlockItem(RankineBlocks.GRAY_GRANITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_GRAY_GRANITE = REGISTRY.register("infested_gray_granite", () -> new BlockItem(RankineBlocks.INFESTED_GRAY_GRANITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RHYOLITE = REGISTRY.register("rhyolite", () -> new BlockItem(RankineBlocks.RHYOLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_RHYOLITE = REGISTRY.register("polished_rhyolite", () -> new BlockItem(RankineBlocks.POLISHED_RHYOLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RHYOLITE_BRICKS = REGISTRY.register("rhyolite_bricks", () -> new BlockItem(RankineBlocks.RHYOLITE_BRICKS.get(), DEF_BUILDING));
@@ -95,6 +96,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> RHYOLITE_PILLAR = REGISTRY.register("rhyolite_pillar", () -> new BlockItem(RankineBlocks.RHYOLITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RHYOLITE_COLUMN = REGISTRY.register("rhyolite_column", () -> new BlockItem(RankineBlocks.RHYOLITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RHYOLITE_COBBLE = REGISTRY.register("rhyolite_cobble", () -> new BlockItem(RankineBlocks.RHYOLITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_RHYOLITE = REGISTRY.register("infested_rhyolite", () -> new BlockItem(RankineBlocks.INFESTED_RHYOLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> COMENDITE = REGISTRY.register("comendite", () -> new BlockItem(RankineBlocks.COMENDITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_COMENDITE = REGISTRY.register("polished_comendite", () -> new BlockItem(RankineBlocks.POLISHED_COMENDITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> COMENDITE_BRICKS = REGISTRY.register("comendite_bricks", () -> new BlockItem(RankineBlocks.COMENDITE_BRICKS.get(), DEF_BUILDING));
@@ -116,6 +118,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> COMENDITE_PILLAR = REGISTRY.register("comendite_pillar", () -> new BlockItem(RankineBlocks.COMENDITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> COMENDITE_COLUMN = REGISTRY.register("comendite_column", () -> new BlockItem(RankineBlocks.COMENDITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> COMENDITE_COBBLE = REGISTRY.register("comendite_cobble", () -> new BlockItem(RankineBlocks.COMENDITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_COMENDITE = REGISTRY.register("infested_comendite", () -> new BlockItem(RankineBlocks.INFESTED_COMENDITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRANODIORITE = REGISTRY.register("granodiorite", () -> new BlockItem(RankineBlocks.GRANODIORITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_GRANODIORITE = REGISTRY.register("polished_granodiorite", () -> new BlockItem(RankineBlocks.POLISHED_GRANODIORITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRANODIORITE_BRICKS = REGISTRY.register("granodiorite_bricks", () -> new BlockItem(RankineBlocks.GRANODIORITE_BRICKS.get(), DEF_BUILDING));
@@ -137,6 +140,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> GRANODIORITE_PILLAR = REGISTRY.register("granodiorite_pillar", () -> new BlockItem(RankineBlocks.GRANODIORITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRANODIORITE_COLUMN = REGISTRY.register("granodiorite_column", () -> new BlockItem(RankineBlocks.GRANODIORITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRANODIORITE_COBBLE = REGISTRY.register("granodiorite_cobble", () -> new BlockItem(RankineBlocks.GRANODIORITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_GRANODIORITE = REGISTRY.register("infested_granodiorite", () -> new BlockItem(RankineBlocks.INFESTED_GRANODIORITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RED_PORPHYRY = REGISTRY.register("red_porphyry", () -> new BlockItem(RankineBlocks.RED_PORPHYRY.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_RED_PORPHYRY = REGISTRY.register("polished_red_porphyry", () -> new BlockItem(RankineBlocks.POLISHED_RED_PORPHYRY.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RED_PORPHYRY_BRICKS = REGISTRY.register("red_porphyry_bricks", () -> new BlockItem(RankineBlocks.RED_PORPHYRY_BRICKS.get(), DEF_BUILDING));
@@ -158,6 +162,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> RED_PORPHYRY_PILLAR = REGISTRY.register("red_porphyry_pillar", () -> new BlockItem(RankineBlocks.RED_PORPHYRY_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RED_PORPHYRY_COLUMN = REGISTRY.register("red_porphyry_column", () -> new BlockItem(RankineBlocks.RED_PORPHYRY_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RED_PORPHYRY_COBBLE = REGISTRY.register("red_porphyry_cobble", () -> new BlockItem(RankineBlocks.RED_PORPHYRY_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_RED_PORPHYRY = REGISTRY.register("infested_red_porphyry", () -> new BlockItem(RankineBlocks.INFESTED_RED_PORPHYRY.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PURPLE_PORPHYRY = REGISTRY.register("purple_porphyry", () -> new BlockItem(RankineBlocks.PURPLE_PORPHYRY.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_PURPLE_PORPHYRY = REGISTRY.register("polished_purple_porphyry", () -> new BlockItem(RankineBlocks.POLISHED_PURPLE_PORPHYRY.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PURPLE_PORPHYRY_BRICKS = REGISTRY.register("purple_porphyry_bricks", () -> new BlockItem(RankineBlocks.PURPLE_PORPHYRY_BRICKS.get(), DEF_BUILDING));
@@ -179,6 +184,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> PURPLE_PORPHYRY_PILLAR = REGISTRY.register("purple_porphyry_pillar", () -> new BlockItem(RankineBlocks.PURPLE_PORPHYRY_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PURPLE_PORPHYRY_COLUMN = REGISTRY.register("purple_porphyry_column", () -> new BlockItem(RankineBlocks.PURPLE_PORPHYRY_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PURPLE_PORPHYRY_COBBLE = REGISTRY.register("purple_porphyry_cobble", () -> new BlockItem(RankineBlocks.PURPLE_PORPHYRY_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_PURPLE_PORPHYRY = REGISTRY.register("infested_purple_porphyry", () -> new BlockItem(RankineBlocks.INFESTED_PURPLE_PORPHYRY.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BLACK_DACITE = REGISTRY.register("black_dacite", () -> new BlockItem(RankineBlocks.BLACK_DACITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_BLACK_DACITE = REGISTRY.register("polished_black_dacite", () -> new BlockItem(RankineBlocks.POLISHED_BLACK_DACITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BLACK_DACITE_BRICKS = REGISTRY.register("black_dacite_bricks", () -> new BlockItem(RankineBlocks.BLACK_DACITE_BRICKS.get(), DEF_BUILDING));
@@ -200,6 +206,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> BLACK_DACITE_PILLAR = REGISTRY.register("black_dacite_pillar", () -> new BlockItem(RankineBlocks.BLACK_DACITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BLACK_DACITE_COLUMN = REGISTRY.register("black_dacite_column", () -> new BlockItem(RankineBlocks.BLACK_DACITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BLACK_DACITE_COBBLE = REGISTRY.register("black_dacite_cobble", () -> new BlockItem(RankineBlocks.BLACK_DACITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_BLACK_DACITE = REGISTRY.register("infested_black_dacite", () -> new BlockItem(RankineBlocks.INFESTED_BLACK_DACITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RED_DACITE = REGISTRY.register("red_dacite", () -> new BlockItem(RankineBlocks.RED_DACITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_RED_DACITE = REGISTRY.register("polished_red_dacite", () -> new BlockItem(RankineBlocks.POLISHED_RED_DACITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RED_DACITE_BRICKS = REGISTRY.register("red_dacite_bricks", () -> new BlockItem(RankineBlocks.RED_DACITE_BRICKS.get(), DEF_BUILDING));
@@ -221,6 +228,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> RED_DACITE_PILLAR = REGISTRY.register("red_dacite_pillar", () -> new BlockItem(RankineBlocks.RED_DACITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RED_DACITE_COLUMN = REGISTRY.register("red_dacite_column", () -> new BlockItem(RankineBlocks.RED_DACITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RED_DACITE_COBBLE = REGISTRY.register("red_dacite_cobble", () -> new BlockItem(RankineBlocks.RED_DACITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_RED_DACITE = REGISTRY.register("infested_red_dacite", () -> new BlockItem(RankineBlocks.INFESTED_RED_DACITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> HORNBLENDE_ANDESITE = REGISTRY.register("hornblende_andesite", () -> new BlockItem(RankineBlocks.HORNBLENDE_ANDESITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_HORNBLENDE_ANDESITE = REGISTRY.register("polished_hornblende_andesite", () -> new BlockItem(RankineBlocks.POLISHED_HORNBLENDE_ANDESITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> HORNBLENDE_ANDESITE_BRICKS = REGISTRY.register("hornblende_andesite_bricks", () -> new BlockItem(RankineBlocks.HORNBLENDE_ANDESITE_BRICKS.get(), DEF_BUILDING));
@@ -242,6 +250,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> HORNBLENDE_ANDESITE_PILLAR = REGISTRY.register("hornblende_andesite_pillar", () -> new BlockItem(RankineBlocks.HORNBLENDE_ANDESITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> HORNBLENDE_ANDESITE_COLUMN = REGISTRY.register("hornblende_andesite_column", () -> new BlockItem(RankineBlocks.HORNBLENDE_ANDESITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> HORNBLENDE_ANDESITE_COBBLE = REGISTRY.register("hornblende_andesite_cobble", () -> new BlockItem(RankineBlocks.HORNBLENDE_ANDESITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_HORNBLENDE_ANDESITE = REGISTRY.register("infested_hornblende_andesite", () -> new BlockItem(RankineBlocks.INFESTED_HORNBLENDE_ANDESITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SHONKINITE = REGISTRY.register("shonkinite", () -> new BlockItem(RankineBlocks.SHONKINITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_SHONKINITE = REGISTRY.register("polished_shonkinite", () -> new BlockItem(RankineBlocks.POLISHED_SHONKINITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SHONKINITE_BRICKS = REGISTRY.register("shonkinite_bricks", () -> new BlockItem(RankineBlocks.SHONKINITE_BRICKS.get(), DEF_BUILDING));
@@ -263,6 +272,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> SHONKINITE_PILLAR = REGISTRY.register("shonkinite_pillar", () -> new BlockItem(RankineBlocks.SHONKINITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SHONKINITE_COLUMN = REGISTRY.register("shonkinite_column", () -> new BlockItem(RankineBlocks.SHONKINITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SHONKINITE_COBBLE = REGISTRY.register("shonkinite_cobble", () -> new BlockItem(RankineBlocks.SHONKINITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_SHONKINITE = REGISTRY.register("infested_shonkinite", () -> new BlockItem(RankineBlocks.INFESTED_SHONKINITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ANORTHOSITE = REGISTRY.register("anorthosite", () -> new BlockItem(RankineBlocks.ANORTHOSITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_ANORTHOSITE = REGISTRY.register("polished_anorthosite", () -> new BlockItem(RankineBlocks.POLISHED_ANORTHOSITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ANORTHOSITE_BRICKS = REGISTRY.register("anorthosite_bricks", () -> new BlockItem(RankineBlocks.ANORTHOSITE_BRICKS.get(), DEF_BUILDING));
@@ -284,6 +294,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> ANORTHOSITE_PILLAR = REGISTRY.register("anorthosite_pillar", () -> new BlockItem(RankineBlocks.ANORTHOSITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ANORTHOSITE_COLUMN = REGISTRY.register("anorthosite_column", () -> new BlockItem(RankineBlocks.ANORTHOSITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ANORTHOSITE_COBBLE = REGISTRY.register("anorthosite_cobble", () -> new BlockItem(RankineBlocks.ANORTHOSITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_ANORTHOSITE = REGISTRY.register("infested_anorthosite", () -> new BlockItem(RankineBlocks.INFESTED_ANORTHOSITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> NORITE = REGISTRY.register("norite", () -> new BlockItem(RankineBlocks.NORITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_NORITE = REGISTRY.register("polished_norite", () -> new BlockItem(RankineBlocks.POLISHED_NORITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> NORITE_BRICKS = REGISTRY.register("norite_bricks", () -> new BlockItem(RankineBlocks.NORITE_BRICKS.get(), DEF_BUILDING));
@@ -305,6 +316,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> NORITE_PILLAR = REGISTRY.register("norite_pillar", () -> new BlockItem(RankineBlocks.NORITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> NORITE_COLUMN = REGISTRY.register("norite_column", () -> new BlockItem(RankineBlocks.NORITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> NORITE_COBBLE = REGISTRY.register("norite_cobble", () -> new BlockItem(RankineBlocks.NORITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_NORITE = REGISTRY.register("infested_norite", () -> new BlockItem(RankineBlocks.INFESTED_NORITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> TROCTOLITE = REGISTRY.register("troctolite", () -> new BlockItem(RankineBlocks.TROCTOLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_TROCTOLITE = REGISTRY.register("polished_troctolite", () -> new BlockItem(RankineBlocks.POLISHED_TROCTOLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> TROCTOLITE_BRICKS = REGISTRY.register("troctolite_bricks", () -> new BlockItem(RankineBlocks.TROCTOLITE_BRICKS.get(), DEF_BUILDING));
@@ -326,6 +338,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> TROCTOLITE_PILLAR = REGISTRY.register("troctolite_pillar", () -> new BlockItem(RankineBlocks.TROCTOLITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> TROCTOLITE_COLUMN = REGISTRY.register("troctolite_column", () -> new BlockItem(RankineBlocks.TROCTOLITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> TROCTOLITE_COBBLE = REGISTRY.register("troctolite_cobble", () -> new BlockItem(RankineBlocks.TROCTOLITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_TROCTOLITE = REGISTRY.register("infested_troctolite", () -> new BlockItem(RankineBlocks.INFESTED_TROCTOLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GABBRO = REGISTRY.register("gabbro", () -> new BlockItem(RankineBlocks.GABBRO.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_GABBRO = REGISTRY.register("polished_gabbro", () -> new BlockItem(RankineBlocks.POLISHED_GABBRO.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GABBRO_BRICKS = REGISTRY.register("gabbro_bricks", () -> new BlockItem(RankineBlocks.GABBRO_BRICKS.get(), DEF_BUILDING));
@@ -347,6 +360,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> GABBRO_PILLAR = REGISTRY.register("gabbro_pillar", () -> new BlockItem(RankineBlocks.GABBRO_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GABBRO_COLUMN = REGISTRY.register("gabbro_column", () -> new BlockItem(RankineBlocks.GABBRO_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GABBRO_COBBLE = REGISTRY.register("gabbro_cobble", () -> new BlockItem(RankineBlocks.GABBRO_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_GABBRO = REGISTRY.register("infested_gabbro", () -> new BlockItem(RankineBlocks.INFESTED_GABBRO.get(), DEF_BUILDING));
     public static final RegistryObject<Item> DIABASE = REGISTRY.register("diabase", () -> new BlockItem(RankineBlocks.DIABASE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_DIABASE = REGISTRY.register("polished_diabase", () -> new BlockItem(RankineBlocks.POLISHED_DIABASE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> DIABASE_BRICKS = REGISTRY.register("diabase_bricks", () -> new BlockItem(RankineBlocks.DIABASE_BRICKS.get(), DEF_BUILDING));
@@ -368,6 +382,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> DIABASE_PILLAR = REGISTRY.register("diabase_pillar", () -> new BlockItem(RankineBlocks.DIABASE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> DIABASE_COLUMN = REGISTRY.register("diabase_column", () -> new BlockItem(RankineBlocks.DIABASE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> DIABASE_COBBLE = REGISTRY.register("diabase_cobble", () -> new BlockItem(RankineBlocks.DIABASE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_DIABASE = REGISTRY.register("infested_diabase", () -> new BlockItem(RankineBlocks.INFESTED_DIABASE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> THOLEIITIC_BASALT = REGISTRY.register("tholeiitic_basalt", () -> new BlockItem(RankineBlocks.THOLEIITIC_BASALT.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_THOLEIITIC_BASALT = REGISTRY.register("polished_tholeiitic_basalt", () -> new BlockItem(RankineBlocks.POLISHED_THOLEIITIC_BASALT.get(), DEF_BUILDING));
     public static final RegistryObject<Item> THOLEIITIC_BASALT_BRICKS = REGISTRY.register("tholeiitic_basalt_bricks", () -> new BlockItem(RankineBlocks.THOLEIITIC_BASALT_BRICKS.get(), DEF_BUILDING));
@@ -389,6 +404,95 @@ public class RankineItems {
     //public static final RegistryObject<Item> THOLEIITIC_BASALT_PILLAR = REGISTRY.register("tholeiitic_basalt_pillar", () -> new BlockItem(RankineBlocks.THOLEIITIC_BASALT_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> THOLEIITIC_BASALT_COLUMN = REGISTRY.register("tholeiitic_basalt_column", () -> new BlockItem(RankineBlocks.THOLEIITIC_BASALT_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> THOLEIITIC_BASALT_COBBLE = REGISTRY.register("tholeiitic_basalt_cobble", () -> new BlockItem(RankineBlocks.THOLEIITIC_BASALT_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_THOLEIITIC_BASALT = REGISTRY.register("infested_tholeiitic_basalt", () -> new BlockItem(RankineBlocks.INFESTED_THOLEIITIC_BASALT.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE = REGISTRY.register("dunite", () -> new BlockItem(RankineBlocks.DUNITE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_DUNITE = REGISTRY.register("polished_dunite", () -> new BlockItem(RankineBlocks.POLISHED_DUNITE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_BRICKS = REGISTRY.register("dunite_bricks", () -> new BlockItem(RankineBlocks.DUNITE_BRICKS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_SLAB = REGISTRY.register("dunite_slab", () -> new BlockItem(RankineBlocks.DUNITE_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_DUNITE_SLAB = REGISTRY.register("polished_dunite_slab", () -> new BlockItem(RankineBlocks.POLISHED_DUNITE_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_BRICKS_SLAB = REGISTRY.register("dunite_bricks_slab", () -> new BlockItem(RankineBlocks.DUNITE_BRICKS_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_STAIRS = REGISTRY.register("dunite_stairs", () -> new BlockItem(RankineBlocks.DUNITE_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_DUNITE_STAIRS = REGISTRY.register("polished_dunite_stairs", () -> new BlockItem(RankineBlocks.POLISHED_DUNITE_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_BRICKS_STAIRS = REGISTRY.register("dunite_bricks_stairs", () -> new BlockItem(RankineBlocks.DUNITE_BRICKS_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_WALL = REGISTRY.register("dunite_wall", () -> new BlockItem(RankineBlocks.DUNITE_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_DUNITE_WALL = REGISTRY.register("polished_dunite_wall", () -> new BlockItem(RankineBlocks.POLISHED_DUNITE_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_BRICKS_WALL = REGISTRY.register("dunite_bricks_wall", () -> new BlockItem(RankineBlocks.DUNITE_BRICKS_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_VERTICAL_SLAB = REGISTRY.register("dunite_vertical_slab", () -> new BlockItem(RankineBlocks.DUNITE_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_DUNITE_VERTICAL_SLAB = REGISTRY.register("polished_dunite_vertical_slab", () -> new BlockItem(RankineBlocks.POLISHED_DUNITE_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("dunite_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.DUNITE_BRICKS_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_PRESSURE_PLATE = REGISTRY.register("dunite_pressure_plate", () -> new BlockItem(RankineBlocks.DUNITE_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("dunite_bricks_pressure_plate", () -> new BlockItem(RankineBlocks.DUNITE_BRICKS_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_BUTTON = REGISTRY.register("dunite_button", () -> new BlockItem(RankineBlocks.DUNITE_BUTTON.get(), DEF_BUILDING));
+    //public static final RegistryObject<Item> DUNITE_PILLAR = REGISTRY.register("dunite_pillar", () -> new BlockItem(RankineBlocks.DUNITE_PILLAR.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_COLUMN = REGISTRY.register("dunite_column", () -> new BlockItem(RankineBlocks.DUNITE_COLUMN.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> DUNITE_COBBLE = REGISTRY.register("dunite_cobble", () -> new BlockItem(RankineBlocks.DUNITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_DUNITE = REGISTRY.register("infested_dunite", () -> new BlockItem(RankineBlocks.INFESTED_DUNITE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE = REGISTRY.register("harzburgite", () -> new BlockItem(RankineBlocks.HARZBURGITE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_HARZBURGITE = REGISTRY.register("polished_harzburgite", () -> new BlockItem(RankineBlocks.POLISHED_HARZBURGITE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_BRICKS = REGISTRY.register("harzburgite_bricks", () -> new BlockItem(RankineBlocks.HARZBURGITE_BRICKS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_SLAB = REGISTRY.register("harzburgite_slab", () -> new BlockItem(RankineBlocks.HARZBURGITE_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_HARZBURGITE_SLAB = REGISTRY.register("polished_harzburgite_slab", () -> new BlockItem(RankineBlocks.POLISHED_HARZBURGITE_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_BRICKS_SLAB = REGISTRY.register("harzburgite_bricks_slab", () -> new BlockItem(RankineBlocks.HARZBURGITE_BRICKS_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_STAIRS = REGISTRY.register("harzburgite_stairs", () -> new BlockItem(RankineBlocks.HARZBURGITE_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_HARZBURGITE_STAIRS = REGISTRY.register("polished_harzburgite_stairs", () -> new BlockItem(RankineBlocks.POLISHED_HARZBURGITE_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_BRICKS_STAIRS = REGISTRY.register("harzburgite_bricks_stairs", () -> new BlockItem(RankineBlocks.HARZBURGITE_BRICKS_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_WALL = REGISTRY.register("harzburgite_wall", () -> new BlockItem(RankineBlocks.HARZBURGITE_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_HARZBURGITE_WALL = REGISTRY.register("polished_harzburgite_wall", () -> new BlockItem(RankineBlocks.POLISHED_HARZBURGITE_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_BRICKS_WALL = REGISTRY.register("harzburgite_bricks_wall", () -> new BlockItem(RankineBlocks.HARZBURGITE_BRICKS_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_VERTICAL_SLAB = REGISTRY.register("harzburgite_vertical_slab", () -> new BlockItem(RankineBlocks.HARZBURGITE_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_HARZBURGITE_VERTICAL_SLAB = REGISTRY.register("polished_harzburgite_vertical_slab", () -> new BlockItem(RankineBlocks.POLISHED_HARZBURGITE_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("harzburgite_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.HARZBURGITE_BRICKS_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_PRESSURE_PLATE = REGISTRY.register("harzburgite_pressure_plate", () -> new BlockItem(RankineBlocks.HARZBURGITE_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("harzburgite_bricks_pressure_plate", () -> new BlockItem(RankineBlocks.HARZBURGITE_BRICKS_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_BUTTON = REGISTRY.register("harzburgite_button", () -> new BlockItem(RankineBlocks.HARZBURGITE_BUTTON.get(), DEF_BUILDING));
+    //public static final RegistryObject<Item> HARZBURGITE_PILLAR = REGISTRY.register("harzburgite_pillar", () -> new BlockItem(RankineBlocks.HARZBURGITE_PILLAR.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_COLUMN = REGISTRY.register("harzburgite_column", () -> new BlockItem(RankineBlocks.HARZBURGITE_COLUMN.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> HARZBURGITE_COBBLE = REGISTRY.register("harzburgite_cobble", () -> new BlockItem(RankineBlocks.HARZBURGITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_HARZBURGITE = REGISTRY.register("infested_harzburgite", () -> new BlockItem(RankineBlocks.INFESTED_HARZBURGITE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE = REGISTRY.register("lherzolite", () -> new BlockItem(RankineBlocks.LHERZOLITE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_LHERZOLITE = REGISTRY.register("polished_lherzolite", () -> new BlockItem(RankineBlocks.POLISHED_LHERZOLITE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_BRICKS = REGISTRY.register("lherzolite_bricks", () -> new BlockItem(RankineBlocks.LHERZOLITE_BRICKS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_SLAB = REGISTRY.register("lherzolite_slab", () -> new BlockItem(RankineBlocks.LHERZOLITE_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_LHERZOLITE_SLAB = REGISTRY.register("polished_lherzolite_slab", () -> new BlockItem(RankineBlocks.POLISHED_LHERZOLITE_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_BRICKS_SLAB = REGISTRY.register("lherzolite_bricks_slab", () -> new BlockItem(RankineBlocks.LHERZOLITE_BRICKS_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_STAIRS = REGISTRY.register("lherzolite_stairs", () -> new BlockItem(RankineBlocks.LHERZOLITE_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_LHERZOLITE_STAIRS = REGISTRY.register("polished_lherzolite_stairs", () -> new BlockItem(RankineBlocks.POLISHED_LHERZOLITE_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_BRICKS_STAIRS = REGISTRY.register("lherzolite_bricks_stairs", () -> new BlockItem(RankineBlocks.LHERZOLITE_BRICKS_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_WALL = REGISTRY.register("lherzolite_wall", () -> new BlockItem(RankineBlocks.LHERZOLITE_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_LHERZOLITE_WALL = REGISTRY.register("polished_lherzolite_wall", () -> new BlockItem(RankineBlocks.POLISHED_LHERZOLITE_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_BRICKS_WALL = REGISTRY.register("lherzolite_bricks_wall", () -> new BlockItem(RankineBlocks.LHERZOLITE_BRICKS_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_VERTICAL_SLAB = REGISTRY.register("lherzolite_vertical_slab", () -> new BlockItem(RankineBlocks.LHERZOLITE_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_LHERZOLITE_VERTICAL_SLAB = REGISTRY.register("polished_lherzolite_vertical_slab", () -> new BlockItem(RankineBlocks.POLISHED_LHERZOLITE_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("lherzolite_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.LHERZOLITE_BRICKS_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_PRESSURE_PLATE = REGISTRY.register("lherzolite_pressure_plate", () -> new BlockItem(RankineBlocks.LHERZOLITE_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("lherzolite_bricks_pressure_plate", () -> new BlockItem(RankineBlocks.LHERZOLITE_BRICKS_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_BUTTON = REGISTRY.register("lherzolite_button", () -> new BlockItem(RankineBlocks.LHERZOLITE_BUTTON.get(), DEF_BUILDING));
+    //public static final RegistryObject<Item> LHERZOLITE_PILLAR = REGISTRY.register("lherzolite_pillar", () -> new BlockItem(RankineBlocks.LHERZOLITE_PILLAR.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_COLUMN = REGISTRY.register("lherzolite_column", () -> new BlockItem(RankineBlocks.LHERZOLITE_COLUMN.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> LHERZOLITE_COBBLE = REGISTRY.register("lherzolite_cobble", () -> new BlockItem(RankineBlocks.LHERZOLITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_LHERZOLITE = REGISTRY.register("infested_lherzolite", () -> new BlockItem(RankineBlocks.INFESTED_LHERZOLITE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE = REGISTRY.register("wehrlite", () -> new BlockItem(RankineBlocks.WEHRLITE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_WEHRLITE = REGISTRY.register("polished_wehrlite", () -> new BlockItem(RankineBlocks.POLISHED_WEHRLITE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_BRICKS = REGISTRY.register("wehrlite_bricks", () -> new BlockItem(RankineBlocks.WEHRLITE_BRICKS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_SLAB = REGISTRY.register("wehrlite_slab", () -> new BlockItem(RankineBlocks.WEHRLITE_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_WEHRLITE_SLAB = REGISTRY.register("polished_wehrlite_slab", () -> new BlockItem(RankineBlocks.POLISHED_WEHRLITE_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_BRICKS_SLAB = REGISTRY.register("wehrlite_bricks_slab", () -> new BlockItem(RankineBlocks.WEHRLITE_BRICKS_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_STAIRS = REGISTRY.register("wehrlite_stairs", () -> new BlockItem(RankineBlocks.WEHRLITE_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_WEHRLITE_STAIRS = REGISTRY.register("polished_wehrlite_stairs", () -> new BlockItem(RankineBlocks.POLISHED_WEHRLITE_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_BRICKS_STAIRS = REGISTRY.register("wehrlite_bricks_stairs", () -> new BlockItem(RankineBlocks.WEHRLITE_BRICKS_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_WALL = REGISTRY.register("wehrlite_wall", () -> new BlockItem(RankineBlocks.WEHRLITE_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_WEHRLITE_WALL = REGISTRY.register("polished_wehrlite_wall", () -> new BlockItem(RankineBlocks.POLISHED_WEHRLITE_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_BRICKS_WALL = REGISTRY.register("wehrlite_bricks_wall", () -> new BlockItem(RankineBlocks.WEHRLITE_BRICKS_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_VERTICAL_SLAB = REGISTRY.register("wehrlite_vertical_slab", () -> new BlockItem(RankineBlocks.WEHRLITE_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_WEHRLITE_VERTICAL_SLAB = REGISTRY.register("polished_wehrlite_vertical_slab", () -> new BlockItem(RankineBlocks.POLISHED_WEHRLITE_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("wehrlite_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.WEHRLITE_BRICKS_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_PRESSURE_PLATE = REGISTRY.register("wehrlite_pressure_plate", () -> new BlockItem(RankineBlocks.WEHRLITE_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("wehrlite_bricks_pressure_plate", () -> new BlockItem(RankineBlocks.WEHRLITE_BRICKS_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_BUTTON = REGISTRY.register("wehrlite_button", () -> new BlockItem(RankineBlocks.WEHRLITE_BUTTON.get(), DEF_BUILDING));
+    //public static final RegistryObject<Item> WEHRLITE_PILLAR = REGISTRY.register("wehrlite_pillar", () -> new BlockItem(RankineBlocks.WEHRLITE_PILLAR.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_COLUMN = REGISTRY.register("wehrlite_column", () -> new BlockItem(RankineBlocks.WEHRLITE_COLUMN.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WEHRLITE_COBBLE = REGISTRY.register("wehrlite_cobble", () -> new BlockItem(RankineBlocks.WEHRLITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_WEHRLITE = REGISTRY.register("infested_wehrlite", () -> new BlockItem(RankineBlocks.INFESTED_WEHRLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PYROXENITE = REGISTRY.register("pyroxenite", () -> new BlockItem(RankineBlocks.PYROXENITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_PYROXENITE = REGISTRY.register("polished_pyroxenite", () -> new BlockItem(RankineBlocks.POLISHED_PYROXENITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PYROXENITE_BRICKS = REGISTRY.register("pyroxenite_bricks", () -> new BlockItem(RankineBlocks.PYROXENITE_BRICKS.get(), DEF_BUILDING));
@@ -410,27 +514,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> PYROXENITE_PILLAR = REGISTRY.register("pyroxenite_pillar", () -> new BlockItem(RankineBlocks.PYROXENITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PYROXENITE_COLUMN = REGISTRY.register("pyroxenite_column", () -> new BlockItem(RankineBlocks.PYROXENITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PYROXENITE_COBBLE = REGISTRY.register("pyroxenite_cobble", () -> new BlockItem(RankineBlocks.PYROXENITE_COBBLE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE = REGISTRY.register("peridotite", () -> new BlockItem(RankineBlocks.PERIDOTITE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> POLISHED_PERIDOTITE = REGISTRY.register("polished_peridotite", () -> new BlockItem(RankineBlocks.POLISHED_PERIDOTITE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_BRICKS = REGISTRY.register("peridotite_bricks", () -> new BlockItem(RankineBlocks.PERIDOTITE_BRICKS.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_SLAB = REGISTRY.register("peridotite_slab", () -> new BlockItem(RankineBlocks.PERIDOTITE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> POLISHED_PERIDOTITE_SLAB = REGISTRY.register("polished_peridotite_slab", () -> new BlockItem(RankineBlocks.POLISHED_PERIDOTITE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_BRICKS_SLAB = REGISTRY.register("peridotite_bricks_slab", () -> new BlockItem(RankineBlocks.PERIDOTITE_BRICKS_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_STAIRS = REGISTRY.register("peridotite_stairs", () -> new BlockItem(RankineBlocks.PERIDOTITE_STAIRS.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> POLISHED_PERIDOTITE_STAIRS = REGISTRY.register("polished_peridotite_stairs", () -> new BlockItem(RankineBlocks.POLISHED_PERIDOTITE_STAIRS.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_BRICKS_STAIRS = REGISTRY.register("peridotite_bricks_stairs", () -> new BlockItem(RankineBlocks.PERIDOTITE_BRICKS_STAIRS.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_WALL = REGISTRY.register("peridotite_wall", () -> new BlockItem(RankineBlocks.PERIDOTITE_WALL.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> POLISHED_PERIDOTITE_WALL = REGISTRY.register("polished_peridotite_wall", () -> new BlockItem(RankineBlocks.POLISHED_PERIDOTITE_WALL.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_BRICKS_WALL = REGISTRY.register("peridotite_bricks_wall", () -> new BlockItem(RankineBlocks.PERIDOTITE_BRICKS_WALL.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_VERTICAL_SLAB = REGISTRY.register("peridotite_vertical_slab", () -> new BlockItem(RankineBlocks.PERIDOTITE_VERTICAL_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> POLISHED_PERIDOTITE_VERTICAL_SLAB = REGISTRY.register("polished_peridotite_vertical_slab", () -> new BlockItem(RankineBlocks.POLISHED_PERIDOTITE_VERTICAL_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("peridotite_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.PERIDOTITE_BRICKS_VERTICAL_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_PRESSURE_PLATE = REGISTRY.register("peridotite_pressure_plate", () -> new BlockItem(RankineBlocks.PERIDOTITE_PRESSURE_PLATE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("peridotite_bricks_pressure_plate", () -> new BlockItem(RankineBlocks.PERIDOTITE_BRICKS_PRESSURE_PLATE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_BUTTON = REGISTRY.register("peridotite_button", () -> new BlockItem(RankineBlocks.PERIDOTITE_BUTTON.get(), DEF_BUILDING));
-    //public static final RegistryObject<Item> PERIDOTITE_PILLAR = REGISTRY.register("peridotite_pillar", () -> new BlockItem(RankineBlocks.PERIDOTITE_PILLAR.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_COLUMN = REGISTRY.register("peridotite_column", () -> new BlockItem(RankineBlocks.PERIDOTITE_COLUMN.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> PERIDOTITE_COBBLE = REGISTRY.register("peridotite_cobble", () -> new BlockItem(RankineBlocks.PERIDOTITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_PYROXENITE = REGISTRY.register("infested_pyroxenite", () -> new BlockItem(RankineBlocks.INFESTED_PYROXENITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> KOMATIITE = REGISTRY.register("komatiite", () -> new BlockItem(RankineBlocks.KOMATIITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_KOMATIITE = REGISTRY.register("polished_komatiite", () -> new BlockItem(RankineBlocks.POLISHED_KOMATIITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> KOMATIITE_BRICKS = REGISTRY.register("komatiite_bricks", () -> new BlockItem(RankineBlocks.KOMATIITE_BRICKS.get(), DEF_BUILDING));
@@ -452,6 +536,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> KOMATIITE_PILLAR = REGISTRY.register("komatiite_pillar", () -> new BlockItem(RankineBlocks.KOMATIITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> KOMATIITE_COLUMN = REGISTRY.register("komatiite_column", () -> new BlockItem(RankineBlocks.KOMATIITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> KOMATIITE_COBBLE = REGISTRY.register("komatiite_cobble", () -> new BlockItem(RankineBlocks.KOMATIITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_KOMATIITE = REGISTRY.register("infested_komatiite", () -> new BlockItem(RankineBlocks.INFESTED_KOMATIITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> KIMBERLITE = REGISTRY.register("kimberlite", () -> new BlockItem(RankineBlocks.KIMBERLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_KIMBERLITE = REGISTRY.register("polished_kimberlite", () -> new BlockItem(RankineBlocks.POLISHED_KIMBERLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> KIMBERLITE_BRICKS = REGISTRY.register("kimberlite_bricks", () -> new BlockItem(RankineBlocks.KIMBERLITE_BRICKS.get(), DEF_BUILDING));
@@ -473,6 +558,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> KIMBERLITE_PILLAR = REGISTRY.register("kimberlite_pillar", () -> new BlockItem(RankineBlocks.KIMBERLITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> KIMBERLITE_COLUMN = REGISTRY.register("kimberlite_column", () -> new BlockItem(RankineBlocks.KIMBERLITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> KIMBERLITE_COBBLE = REGISTRY.register("kimberlite_cobble", () -> new BlockItem(RankineBlocks.KIMBERLITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_KIMBERLITE = REGISTRY.register("infested_kimberlite", () -> new BlockItem(RankineBlocks.INFESTED_KIMBERLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SOMMANITE = REGISTRY.register("sommanite", () -> new BlockItem(RankineBlocks.SOMMANITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_SOMMANITE = REGISTRY.register("polished_sommanite", () -> new BlockItem(RankineBlocks.POLISHED_SOMMANITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SOMMANITE_BRICKS = REGISTRY.register("sommanite_bricks", () -> new BlockItem(RankineBlocks.SOMMANITE_BRICKS.get(), DEF_BUILDING));
@@ -494,6 +580,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> SOMMANITE_PILLAR = REGISTRY.register("sommanite_pillar", () -> new BlockItem(RankineBlocks.SOMMANITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SOMMANITE_COLUMN = REGISTRY.register("sommanite_column", () -> new BlockItem(RankineBlocks.SOMMANITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SOMMANITE_COBBLE = REGISTRY.register("sommanite_cobble", () -> new BlockItem(RankineBlocks.SOMMANITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_SOMMANITE = REGISTRY.register("infested_sommanite", () -> new BlockItem(RankineBlocks.INFESTED_SOMMANITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RINGWOODINE = REGISTRY.register("ringwoodine", () -> new BlockItem(RankineBlocks.RINGWOODINE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_RINGWOODINE = REGISTRY.register("polished_ringwoodine", () -> new BlockItem(RankineBlocks.POLISHED_RINGWOODINE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RINGWOODINE_BRICKS = REGISTRY.register("ringwoodine_bricks", () -> new BlockItem(RankineBlocks.RINGWOODINE_BRICKS.get(), DEF_BUILDING));
@@ -515,6 +602,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> RINGWOODINE_PILLAR = REGISTRY.register("ringwoodine_pillar", () -> new BlockItem(RankineBlocks.RINGWOODINE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RINGWOODINE_COLUMN = REGISTRY.register("ringwoodine_column", () -> new BlockItem(RankineBlocks.RINGWOODINE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> RINGWOODINE_COBBLE = REGISTRY.register("ringwoodine_cobble", () -> new BlockItem(RankineBlocks.RINGWOODINE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_RINGWOODINE = REGISTRY.register("infested_ringwoodine", () -> new BlockItem(RankineBlocks.INFESTED_RINGWOODINE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> WADSLEYONE = REGISTRY.register("wadsleyone", () -> new BlockItem(RankineBlocks.WADSLEYONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_WADSLEYONE = REGISTRY.register("polished_wadsleyone", () -> new BlockItem(RankineBlocks.POLISHED_WADSLEYONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> WADSLEYONE_BRICKS = REGISTRY.register("wadsleyone_bricks", () -> new BlockItem(RankineBlocks.WADSLEYONE_BRICKS.get(), DEF_BUILDING));
@@ -536,6 +624,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> WADSLEYONE_PILLAR = REGISTRY.register("wadsleyone_pillar", () -> new BlockItem(RankineBlocks.WADSLEYONE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> WADSLEYONE_COLUMN = REGISTRY.register("wadsleyone_column", () -> new BlockItem(RankineBlocks.WADSLEYONE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> WADSLEYONE_COBBLE = REGISTRY.register("wadsleyone_cobble", () -> new BlockItem(RankineBlocks.WADSLEYONE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_WADSLEYONE = REGISTRY.register("infested_wadsleyone", () -> new BlockItem(RankineBlocks.INFESTED_WADSLEYONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BRIDGMANHAM = REGISTRY.register("bridgmanham", () -> new BlockItem(RankineBlocks.BRIDGMANHAM.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_BRIDGMANHAM = REGISTRY.register("polished_bridgmanham", () -> new BlockItem(RankineBlocks.POLISHED_BRIDGMANHAM.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BRIDGMANHAM_BRICKS = REGISTRY.register("bridgmanham_bricks", () -> new BlockItem(RankineBlocks.BRIDGMANHAM_BRICKS.get(), DEF_BUILDING));
@@ -557,6 +646,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> BRIDGMANHAM_PILLAR = REGISTRY.register("bridgmanham_pillar", () -> new BlockItem(RankineBlocks.BRIDGMANHAM_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BRIDGMANHAM_COLUMN = REGISTRY.register("bridgmanham_column", () -> new BlockItem(RankineBlocks.BRIDGMANHAM_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BRIDGMANHAM_COBBLE = REGISTRY.register("bridgmanham_cobble", () -> new BlockItem(RankineBlocks.BRIDGMANHAM_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_BRIDGMANHAM = REGISTRY.register("infested_bridgmanham", () -> new BlockItem(RankineBlocks.INFESTED_BRIDGMANHAM.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POST_PEROVSKITE = REGISTRY.register("post_perovskite", () -> new BlockItem(RankineBlocks.POST_PEROVSKITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_POST_PEROVSKITE = REGISTRY.register("polished_post_perovskite", () -> new BlockItem(RankineBlocks.POLISHED_POST_PEROVSKITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POST_PEROVSKITE_BRICKS = REGISTRY.register("post_perovskite_bricks", () -> new BlockItem(RankineBlocks.POST_PEROVSKITE_BRICKS.get(), DEF_BUILDING));
@@ -578,6 +668,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> POST_PEROVSKITE_PILLAR = REGISTRY.register("post_perovskite_pillar", () -> new BlockItem(RankineBlocks.POST_PEROVSKITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POST_PEROVSKITE_COLUMN = REGISTRY.register("post_perovskite_column", () -> new BlockItem(RankineBlocks.POST_PEROVSKITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POST_PEROVSKITE_COBBLE = REGISTRY.register("post_perovskite_cobble", () -> new BlockItem(RankineBlocks.POST_PEROVSKITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_POST_PEROVSKITE = REGISTRY.register("infested_post_perovskite", () -> new BlockItem(RankineBlocks.INFESTED_POST_PEROVSKITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BLACK_MARBLE = REGISTRY.register("black_marble", () -> new BlockItem(RankineBlocks.BLACK_MARBLE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_BLACK_MARBLE = REGISTRY.register("polished_black_marble", () -> new BlockItem(RankineBlocks.POLISHED_BLACK_MARBLE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BLACK_MARBLE_BRICKS = REGISTRY.register("black_marble_bricks", () -> new BlockItem(RankineBlocks.BLACK_MARBLE_BRICKS.get(), DEF_BUILDING));
@@ -599,6 +690,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> BLACK_MARBLE_PILLAR = REGISTRY.register("black_marble_pillar", () -> new BlockItem(RankineBlocks.BLACK_MARBLE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BLACK_MARBLE_COLUMN = REGISTRY.register("black_marble_column", () -> new BlockItem(RankineBlocks.BLACK_MARBLE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BLACK_MARBLE_COBBLE = REGISTRY.register("black_marble_cobble", () -> new BlockItem(RankineBlocks.BLACK_MARBLE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_BLACK_MARBLE = REGISTRY.register("infested_black_marble", () -> new BlockItem(RankineBlocks.INFESTED_BLACK_MARBLE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRAY_MARBLE = REGISTRY.register("gray_marble", () -> new BlockItem(RankineBlocks.GRAY_MARBLE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_GRAY_MARBLE = REGISTRY.register("polished_gray_marble", () -> new BlockItem(RankineBlocks.POLISHED_GRAY_MARBLE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRAY_MARBLE_BRICKS = REGISTRY.register("gray_marble_bricks", () -> new BlockItem(RankineBlocks.GRAY_MARBLE_BRICKS.get(), DEF_BUILDING));
@@ -620,6 +712,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> GRAY_MARBLE_PILLAR = REGISTRY.register("gray_marble_pillar", () -> new BlockItem(RankineBlocks.GRAY_MARBLE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRAY_MARBLE_COLUMN = REGISTRY.register("gray_marble_column", () -> new BlockItem(RankineBlocks.GRAY_MARBLE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRAY_MARBLE_COBBLE = REGISTRY.register("gray_marble_cobble", () -> new BlockItem(RankineBlocks.GRAY_MARBLE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_GRAY_MARBLE = REGISTRY.register("infested_gray_marble", () -> new BlockItem(RankineBlocks.INFESTED_GRAY_MARBLE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> WHITE_MARBLE = REGISTRY.register("white_marble", () -> new BlockItem(RankineBlocks.WHITE_MARBLE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_WHITE_MARBLE = REGISTRY.register("polished_white_marble", () -> new BlockItem(RankineBlocks.POLISHED_WHITE_MARBLE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> WHITE_MARBLE_BRICKS = REGISTRY.register("white_marble_bricks", () -> new BlockItem(RankineBlocks.WHITE_MARBLE_BRICKS.get(), DEF_BUILDING));
@@ -641,6 +734,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> WHITE_MARBLE_PILLAR = REGISTRY.register("white_marble_pillar", () -> new BlockItem(RankineBlocks.WHITE_MARBLE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> WHITE_MARBLE_COLUMN = REGISTRY.register("white_marble_column", () -> new BlockItem(RankineBlocks.WHITE_MARBLE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> WHITE_MARBLE_COBBLE = REGISTRY.register("white_marble_cobble", () -> new BlockItem(RankineBlocks.WHITE_MARBLE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_WHITE_MARBLE = REGISTRY.register("infested_white_marble", () -> new BlockItem(RankineBlocks.INFESTED_WHITE_MARBLE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ROSE_MARBLE = REGISTRY.register("rose_marble", () -> new BlockItem(RankineBlocks.ROSE_MARBLE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_ROSE_MARBLE = REGISTRY.register("polished_rose_marble", () -> new BlockItem(RankineBlocks.POLISHED_ROSE_MARBLE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ROSE_MARBLE_BRICKS = REGISTRY.register("rose_marble_bricks", () -> new BlockItem(RankineBlocks.ROSE_MARBLE_BRICKS.get(), DEF_BUILDING));
@@ -662,6 +756,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> ROSE_MARBLE_PILLAR = REGISTRY.register("rose_marble_pillar", () -> new BlockItem(RankineBlocks.ROSE_MARBLE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ROSE_MARBLE_COLUMN = REGISTRY.register("rose_marble_column", () -> new BlockItem(RankineBlocks.ROSE_MARBLE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ROSE_MARBLE_COBBLE = REGISTRY.register("rose_marble_cobble", () -> new BlockItem(RankineBlocks.ROSE_MARBLE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_ROSE_MARBLE = REGISTRY.register("infested_rose_marble", () -> new BlockItem(RankineBlocks.INFESTED_ROSE_MARBLE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SLATE = REGISTRY.register("slate", () -> new BlockItem(RankineBlocks.SLATE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_SLATE = REGISTRY.register("polished_slate", () -> new BlockItem(RankineBlocks.POLISHED_SLATE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SLATE_BRICKS = REGISTRY.register("slate_bricks", () -> new BlockItem(RankineBlocks.SLATE_BRICKS.get(), DEF_BUILDING));
@@ -683,6 +778,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> SLATE_PILLAR = REGISTRY.register("slate_pillar", () -> new BlockItem(RankineBlocks.SLATE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SLATE_COLUMN = REGISTRY.register("slate_column", () -> new BlockItem(RankineBlocks.SLATE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SLATE_COBBLE = REGISTRY.register("slate_cobble", () -> new BlockItem(RankineBlocks.SLATE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_SLATE = REGISTRY.register("infested_slate", () -> new BlockItem(RankineBlocks.INFESTED_SLATE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PHYLLITE = REGISTRY.register("phyllite", () -> new BlockItem(RankineBlocks.PHYLLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_PHYLLITE = REGISTRY.register("polished_phyllite", () -> new BlockItem(RankineBlocks.POLISHED_PHYLLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PHYLLITE_BRICKS = REGISTRY.register("phyllite_bricks", () -> new BlockItem(RankineBlocks.PHYLLITE_BRICKS.get(), DEF_BUILDING));
@@ -704,6 +800,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> PHYLLITE_PILLAR = REGISTRY.register("phyllite_pillar", () -> new BlockItem(RankineBlocks.PHYLLITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PHYLLITE_COLUMN = REGISTRY.register("phyllite_column", () -> new BlockItem(RankineBlocks.PHYLLITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> PHYLLITE_COBBLE = REGISTRY.register("phyllite_cobble", () -> new BlockItem(RankineBlocks.PHYLLITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_PHYLLITE = REGISTRY.register("infested_phyllite", () -> new BlockItem(RankineBlocks.INFESTED_PHYLLITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MICA_SCHIST = REGISTRY.register("mica_schist", () -> new BlockItem(RankineBlocks.MICA_SCHIST.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_MICA_SCHIST = REGISTRY.register("polished_mica_schist", () -> new BlockItem(RankineBlocks.POLISHED_MICA_SCHIST.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MICA_SCHIST_BRICKS = REGISTRY.register("mica_schist_bricks", () -> new BlockItem(RankineBlocks.MICA_SCHIST_BRICKS.get(), DEF_BUILDING));
@@ -725,6 +822,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> MICA_SCHIST_PILLAR = REGISTRY.register("mica_schist_pillar", () -> new BlockItem(RankineBlocks.MICA_SCHIST_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MICA_SCHIST_COLUMN = REGISTRY.register("mica_schist_column", () -> new BlockItem(RankineBlocks.MICA_SCHIST_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MICA_SCHIST_COBBLE = REGISTRY.register("mica_schist_cobble", () -> new BlockItem(RankineBlocks.MICA_SCHIST_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_MICA_SCHIST = REGISTRY.register("infested_mica_schist", () -> new BlockItem(RankineBlocks.INFESTED_MICA_SCHIST.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BLUESCHIST = REGISTRY.register("blueschist", () -> new BlockItem(RankineBlocks.BLUESCHIST.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_BLUESCHIST = REGISTRY.register("polished_blueschist", () -> new BlockItem(RankineBlocks.POLISHED_BLUESCHIST.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BLUESCHIST_BRICKS = REGISTRY.register("blueschist_bricks", () -> new BlockItem(RankineBlocks.BLUESCHIST_BRICKS.get(), DEF_BUILDING));
@@ -746,6 +844,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> BLUESCHIST_PILLAR = REGISTRY.register("blueschist_pillar", () -> new BlockItem(RankineBlocks.BLUESCHIST_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BLUESCHIST_COLUMN = REGISTRY.register("blueschist_column", () -> new BlockItem(RankineBlocks.BLUESCHIST_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> BLUESCHIST_COBBLE = REGISTRY.register("blueschist_cobble", () -> new BlockItem(RankineBlocks.BLUESCHIST_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_BLUESCHIST = REGISTRY.register("infested_blueschist", () -> new BlockItem(RankineBlocks.INFESTED_BLUESCHIST.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GREENSCHIST = REGISTRY.register("greenschist", () -> new BlockItem(RankineBlocks.GREENSCHIST.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_GREENSCHIST = REGISTRY.register("polished_greenschist", () -> new BlockItem(RankineBlocks.POLISHED_GREENSCHIST.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GREENSCHIST_BRICKS = REGISTRY.register("greenschist_bricks", () -> new BlockItem(RankineBlocks.GREENSCHIST_BRICKS.get(), DEF_BUILDING));
@@ -767,6 +866,29 @@ public class RankineItems {
     //public static final RegistryObject<Item> GREENSCHIST_PILLAR = REGISTRY.register("greenschist_pillar", () -> new BlockItem(RankineBlocks.GREENSCHIST_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GREENSCHIST_COLUMN = REGISTRY.register("greenschist_column", () -> new BlockItem(RankineBlocks.GREENSCHIST_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GREENSCHIST_COBBLE = REGISTRY.register("greenschist_cobble", () -> new BlockItem(RankineBlocks.GREENSCHIST_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_GREENSCHIST = REGISTRY.register("infested_greenschist", () -> new BlockItem(RankineBlocks.INFESTED_GREENSCHIST.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST = REGISTRY.register("whiteschist", () -> new BlockItem(RankineBlocks.WHITESCHIST.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_WHITESCHIST = REGISTRY.register("polished_whiteschist", () -> new BlockItem(RankineBlocks.POLISHED_WHITESCHIST.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_BRICKS = REGISTRY.register("whiteschist_bricks", () -> new BlockItem(RankineBlocks.WHITESCHIST_BRICKS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_SLAB = REGISTRY.register("whiteschist_slab", () -> new BlockItem(RankineBlocks.WHITESCHIST_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_WHITESCHIST_SLAB = REGISTRY.register("polished_whiteschist_slab", () -> new BlockItem(RankineBlocks.POLISHED_WHITESCHIST_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_BRICKS_SLAB = REGISTRY.register("whiteschist_bricks_slab", () -> new BlockItem(RankineBlocks.WHITESCHIST_BRICKS_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_STAIRS = REGISTRY.register("whiteschist_stairs", () -> new BlockItem(RankineBlocks.WHITESCHIST_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_WHITESCHIST_STAIRS = REGISTRY.register("polished_whiteschist_stairs", () -> new BlockItem(RankineBlocks.POLISHED_WHITESCHIST_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_BRICKS_STAIRS = REGISTRY.register("whiteschist_bricks_stairs", () -> new BlockItem(RankineBlocks.WHITESCHIST_BRICKS_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_WALL = REGISTRY.register("whiteschist_wall", () -> new BlockItem(RankineBlocks.WHITESCHIST_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_WHITESCHIST_WALL = REGISTRY.register("polished_whiteschist_wall", () -> new BlockItem(RankineBlocks.POLISHED_WHITESCHIST_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_BRICKS_WALL = REGISTRY.register("whiteschist_bricks_wall", () -> new BlockItem(RankineBlocks.WHITESCHIST_BRICKS_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_VERTICAL_SLAB = REGISTRY.register("whiteschist_vertical_slab", () -> new BlockItem(RankineBlocks.WHITESCHIST_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_WHITESCHIST_VERTICAL_SLAB = REGISTRY.register("polished_whiteschist_vertical_slab", () -> new BlockItem(RankineBlocks.POLISHED_WHITESCHIST_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_BRICKS_VERTICAL_SLAB = REGISTRY.register("whiteschist_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.WHITESCHIST_BRICKS_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_PRESSURE_PLATE = REGISTRY.register("whiteschist_pressure_plate", () -> new BlockItem(RankineBlocks.WHITESCHIST_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_BRICKS_PRESSURE_PLATE = REGISTRY.register("whiteschist_bricks_pressure_plate", () -> new BlockItem(RankineBlocks.WHITESCHIST_BRICKS_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_BUTTON = REGISTRY.register("whiteschist_button", () -> new BlockItem(RankineBlocks.WHITESCHIST_BUTTON.get(), DEF_BUILDING));
+    //public static final RegistryObject<Item> WHITESCHIST_PILLAR = REGISTRY.register("whiteschist_pillar", () -> new BlockItem(RankineBlocks.WHITESCHIST_PILLAR.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_COLUMN = REGISTRY.register("whiteschist_column", () -> new BlockItem(RankineBlocks.WHITESCHIST_COLUMN.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> WHITESCHIST_COBBLE = REGISTRY.register("whiteschist_cobble", () -> new BlockItem(RankineBlocks.WHITESCHIST_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_WHITESCHIST = REGISTRY.register("infested_whiteschist", () -> new BlockItem(RankineBlocks.INFESTED_WHITESCHIST.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GNEISS = REGISTRY.register("gneiss", () -> new BlockItem(RankineBlocks.GNEISS.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_GNEISS = REGISTRY.register("polished_gneiss", () -> new BlockItem(RankineBlocks.POLISHED_GNEISS.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GNEISS_BRICKS = REGISTRY.register("gneiss_bricks", () -> new BlockItem(RankineBlocks.GNEISS_BRICKS.get(), DEF_BUILDING));
@@ -788,6 +910,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> GNEISS_PILLAR = REGISTRY.register("gneiss_pillar", () -> new BlockItem(RankineBlocks.GNEISS_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GNEISS_COLUMN = REGISTRY.register("gneiss_column", () -> new BlockItem(RankineBlocks.GNEISS_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GNEISS_COBBLE = REGISTRY.register("gneiss_cobble", () -> new BlockItem(RankineBlocks.GNEISS_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_GNEISS = REGISTRY.register("infested_gneiss", () -> new BlockItem(RankineBlocks.INFESTED_GNEISS.get(), DEF_BUILDING));
     public static final RegistryObject<Item> QUARTZITE = REGISTRY.register("quartzite", () -> new BlockItem(RankineBlocks.QUARTZITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_QUARTZITE = REGISTRY.register("polished_quartzite", () -> new BlockItem(RankineBlocks.POLISHED_QUARTZITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> QUARTZITE_BRICKS = REGISTRY.register("quartzite_bricks", () -> new BlockItem(RankineBlocks.QUARTZITE_BRICKS.get(), DEF_BUILDING));
@@ -809,6 +932,29 @@ public class RankineItems {
     //public static final RegistryObject<Item> QUARTZITE_PILLAR = REGISTRY.register("quartzite_pillar", () -> new BlockItem(RankineBlocks.QUARTZITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> QUARTZITE_COLUMN = REGISTRY.register("quartzite_column", () -> new BlockItem(RankineBlocks.QUARTZITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> QUARTZITE_COBBLE = REGISTRY.register("quartzite_cobble", () -> new BlockItem(RankineBlocks.QUARTZITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_QUARTZITE = REGISTRY.register("infested_quartzite", () -> new BlockItem(RankineBlocks.INFESTED_QUARTZITE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE = REGISTRY.register("soapstone", () -> new BlockItem(RankineBlocks.SOAPSTONE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_SOAPSTONE = REGISTRY.register("polished_soapstone", () -> new BlockItem(RankineBlocks.POLISHED_SOAPSTONE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_BRICKS = REGISTRY.register("soapstone_bricks", () -> new BlockItem(RankineBlocks.SOAPSTONE_BRICKS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_SLAB = REGISTRY.register("soapstone_slab", () -> new BlockItem(RankineBlocks.SOAPSTONE_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_SOAPSTONE_SLAB = REGISTRY.register("polished_soapstone_slab", () -> new BlockItem(RankineBlocks.POLISHED_SOAPSTONE_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_BRICKS_SLAB = REGISTRY.register("soapstone_bricks_slab", () -> new BlockItem(RankineBlocks.SOAPSTONE_BRICKS_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_STAIRS = REGISTRY.register("soapstone_stairs", () -> new BlockItem(RankineBlocks.SOAPSTONE_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_SOAPSTONE_STAIRS = REGISTRY.register("polished_soapstone_stairs", () -> new BlockItem(RankineBlocks.POLISHED_SOAPSTONE_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_BRICKS_STAIRS = REGISTRY.register("soapstone_bricks_stairs", () -> new BlockItem(RankineBlocks.SOAPSTONE_BRICKS_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_WALL = REGISTRY.register("soapstone_wall", () -> new BlockItem(RankineBlocks.SOAPSTONE_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_SOAPSTONE_WALL = REGISTRY.register("polished_soapstone_wall", () -> new BlockItem(RankineBlocks.POLISHED_SOAPSTONE_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_BRICKS_WALL = REGISTRY.register("soapstone_bricks_wall", () -> new BlockItem(RankineBlocks.SOAPSTONE_BRICKS_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_VERTICAL_SLAB = REGISTRY.register("soapstone_vertical_slab", () -> new BlockItem(RankineBlocks.SOAPSTONE_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_SOAPSTONE_VERTICAL_SLAB = REGISTRY.register("polished_soapstone_vertical_slab", () -> new BlockItem(RankineBlocks.POLISHED_SOAPSTONE_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_BRICKS_VERTICAL_SLAB = REGISTRY.register("soapstone_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.SOAPSTONE_BRICKS_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_PRESSURE_PLATE = REGISTRY.register("soapstone_pressure_plate", () -> new BlockItem(RankineBlocks.SOAPSTONE_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_BRICKS_PRESSURE_PLATE = REGISTRY.register("soapstone_bricks_pressure_plate", () -> new BlockItem(RankineBlocks.SOAPSTONE_BRICKS_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_BUTTON = REGISTRY.register("soapstone_button", () -> new BlockItem(RankineBlocks.SOAPSTONE_BUTTON.get(), DEF_BUILDING));
+    //public static final RegistryObject<Item> SOAPSTONE_PILLAR = REGISTRY.register("soapstone_pillar", () -> new BlockItem(RankineBlocks.SOAPSTONE_PILLAR.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_COLUMN = REGISTRY.register("soapstone_column", () -> new BlockItem(RankineBlocks.SOAPSTONE_COLUMN.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> SOAPSTONE_COBBLE = REGISTRY.register("soapstone_cobble", () -> new BlockItem(RankineBlocks.SOAPSTONE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_SOAPSTONE = REGISTRY.register("infested_soapstone", () -> new BlockItem(RankineBlocks.INFESTED_SOAPSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SERPENTINITE = REGISTRY.register("serpentinite", () -> new BlockItem(RankineBlocks.SERPENTINITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_SERPENTINITE = REGISTRY.register("polished_serpentinite", () -> new BlockItem(RankineBlocks.POLISHED_SERPENTINITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SERPENTINITE_BRICKS = REGISTRY.register("serpentinite_bricks", () -> new BlockItem(RankineBlocks.SERPENTINITE_BRICKS.get(), DEF_BUILDING));
@@ -830,6 +976,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> SERPENTINITE_PILLAR = REGISTRY.register("serpentinite_pillar", () -> new BlockItem(RankineBlocks.SERPENTINITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SERPENTINITE_COLUMN = REGISTRY.register("serpentinite_column", () -> new BlockItem(RankineBlocks.SERPENTINITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SERPENTINITE_COBBLE = REGISTRY.register("serpentinite_cobble", () -> new BlockItem(RankineBlocks.SERPENTINITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_SERPENTINITE = REGISTRY.register("infested_serpentinite", () -> new BlockItem(RankineBlocks.INFESTED_SERPENTINITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MARIPOSITE = REGISTRY.register("mariposite", () -> new BlockItem(RankineBlocks.MARIPOSITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_MARIPOSITE = REGISTRY.register("polished_mariposite", () -> new BlockItem(RankineBlocks.POLISHED_MARIPOSITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MARIPOSITE_BRICKS = REGISTRY.register("mariposite_bricks", () -> new BlockItem(RankineBlocks.MARIPOSITE_BRICKS.get(), DEF_BUILDING));
@@ -851,6 +998,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> MARIPOSITE_PILLAR = REGISTRY.register("mariposite_pillar", () -> new BlockItem(RankineBlocks.MARIPOSITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MARIPOSITE_COLUMN = REGISTRY.register("mariposite_column", () -> new BlockItem(RankineBlocks.MARIPOSITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MARIPOSITE_COBBLE = REGISTRY.register("mariposite_cobble", () -> new BlockItem(RankineBlocks.MARIPOSITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_MARIPOSITE = REGISTRY.register("infested_mariposite", () -> new BlockItem(RankineBlocks.INFESTED_MARIPOSITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ECLOGITE = REGISTRY.register("eclogite", () -> new BlockItem(RankineBlocks.ECLOGITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_ECLOGITE = REGISTRY.register("polished_eclogite", () -> new BlockItem(RankineBlocks.POLISHED_ECLOGITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ECLOGITE_BRICKS = REGISTRY.register("eclogite_bricks", () -> new BlockItem(RankineBlocks.ECLOGITE_BRICKS.get(), DEF_BUILDING));
@@ -872,6 +1020,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> ECLOGITE_PILLAR = REGISTRY.register("eclogite_pillar", () -> new BlockItem(RankineBlocks.ECLOGITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ECLOGITE_COLUMN = REGISTRY.register("eclogite_column", () -> new BlockItem(RankineBlocks.ECLOGITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ECLOGITE_COBBLE = REGISTRY.register("eclogite_cobble", () -> new BlockItem(RankineBlocks.ECLOGITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_ECLOGITE = REGISTRY.register("infested_eclogite", () -> new BlockItem(RankineBlocks.INFESTED_ECLOGITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> LIMESTONE = REGISTRY.register("limestone", () -> new BlockItem(RankineBlocks.LIMESTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_LIMESTONE = REGISTRY.register("polished_limestone", () -> new BlockItem(RankineBlocks.POLISHED_LIMESTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> LIMESTONE_BRICKS = REGISTRY.register("limestone_bricks", () -> new BlockItem(RankineBlocks.LIMESTONE_BRICKS.get(), DEF_BUILDING));
@@ -893,6 +1042,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> LIMESTONE_PILLAR = REGISTRY.register("limestone_pillar", () -> new BlockItem(RankineBlocks.LIMESTONE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> LIMESTONE_COLUMN = REGISTRY.register("limestone_column", () -> new BlockItem(RankineBlocks.LIMESTONE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> LIMESTONE_COBBLE = REGISTRY.register("limestone_cobble", () -> new BlockItem(RankineBlocks.LIMESTONE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_LIMESTONE = REGISTRY.register("infested_limestone", () -> new BlockItem(RankineBlocks.INFESTED_LIMESTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> DOLOSTONE = REGISTRY.register("dolostone", () -> new BlockItem(RankineBlocks.DOLOSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_DOLOSTONE = REGISTRY.register("polished_dolostone", () -> new BlockItem(RankineBlocks.POLISHED_DOLOSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> DOLOSTONE_BRICKS = REGISTRY.register("dolostone_bricks", () -> new BlockItem(RankineBlocks.DOLOSTONE_BRICKS.get(), DEF_BUILDING));
@@ -914,6 +1064,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> DOLOSTONE_PILLAR = REGISTRY.register("dolostone_pillar", () -> new BlockItem(RankineBlocks.DOLOSTONE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> DOLOSTONE_COLUMN = REGISTRY.register("dolostone_column", () -> new BlockItem(RankineBlocks.DOLOSTONE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> DOLOSTONE_COBBLE = REGISTRY.register("dolostone_cobble", () -> new BlockItem(RankineBlocks.DOLOSTONE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_DOLOSTONE = REGISTRY.register("infested_dolostone", () -> new BlockItem(RankineBlocks.INFESTED_DOLOSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> CHALK = REGISTRY.register("chalk", () -> new BlockItem(RankineBlocks.CHALK.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_CHALK = REGISTRY.register("polished_chalk", () -> new BlockItem(RankineBlocks.POLISHED_CHALK.get(), DEF_BUILDING));
     public static final RegistryObject<Item> CHALK_BRICKS = REGISTRY.register("chalk_bricks", () -> new BlockItem(RankineBlocks.CHALK_BRICKS.get(), DEF_BUILDING));
@@ -935,6 +1086,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> CHALK_PILLAR = REGISTRY.register("chalk_pillar", () -> new BlockItem(RankineBlocks.CHALK_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> CHALK_COLUMN = REGISTRY.register("chalk_column", () -> new BlockItem(RankineBlocks.CHALK_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> CHALK_COBBLE = REGISTRY.register("chalk_cobble", () -> new BlockItem(RankineBlocks.CHALK_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_CHALK = REGISTRY.register("infested_chalk", () -> new BlockItem(RankineBlocks.INFESTED_CHALK.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MARLSTONE = REGISTRY.register("marlstone", () -> new BlockItem(RankineBlocks.MARLSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_MARLSTONE = REGISTRY.register("polished_marlstone", () -> new BlockItem(RankineBlocks.POLISHED_MARLSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MARLSTONE_BRICKS = REGISTRY.register("marlstone_bricks", () -> new BlockItem(RankineBlocks.MARLSTONE_BRICKS.get(), DEF_BUILDING));
@@ -956,6 +1108,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> MARLSTONE_PILLAR = REGISTRY.register("marlstone_pillar", () -> new BlockItem(RankineBlocks.MARLSTONE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MARLSTONE_COLUMN = REGISTRY.register("marlstone_column", () -> new BlockItem(RankineBlocks.MARLSTONE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MARLSTONE_COBBLE = REGISTRY.register("marlstone_cobble", () -> new BlockItem(RankineBlocks.MARLSTONE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_MARLSTONE = REGISTRY.register("infested_marlstone", () -> new BlockItem(RankineBlocks.INFESTED_MARLSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SHALE = REGISTRY.register("shale", () -> new BlockItem(RankineBlocks.SHALE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_SHALE = REGISTRY.register("polished_shale", () -> new BlockItem(RankineBlocks.POLISHED_SHALE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SHALE_BRICKS = REGISTRY.register("shale_bricks", () -> new BlockItem(RankineBlocks.SHALE_BRICKS.get(), DEF_BUILDING));
@@ -977,6 +1130,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> SHALE_PILLAR = REGISTRY.register("shale_pillar", () -> new BlockItem(RankineBlocks.SHALE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SHALE_COLUMN = REGISTRY.register("shale_column", () -> new BlockItem(RankineBlocks.SHALE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SHALE_COBBLE = REGISTRY.register("shale_cobble", () -> new BlockItem(RankineBlocks.SHALE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_SHALE = REGISTRY.register("infested_shale", () -> new BlockItem(RankineBlocks.INFESTED_SHALE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MUDSTONE = REGISTRY.register("mudstone", () -> new BlockItem(RankineBlocks.MUDSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_MUDSTONE = REGISTRY.register("polished_mudstone", () -> new BlockItem(RankineBlocks.POLISHED_MUDSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MUDSTONE_BRICKS = REGISTRY.register("mudstone_bricks", () -> new BlockItem(RankineBlocks.MUDSTONE_BRICKS.get(), DEF_BUILDING));
@@ -998,6 +1152,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> MUDSTONE_PILLAR = REGISTRY.register("mudstone_pillar", () -> new BlockItem(RankineBlocks.MUDSTONE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MUDSTONE_COLUMN = REGISTRY.register("mudstone_column", () -> new BlockItem(RankineBlocks.MUDSTONE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> MUDSTONE_COBBLE = REGISTRY.register("mudstone_cobble", () -> new BlockItem(RankineBlocks.MUDSTONE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_MUDSTONE = REGISTRY.register("infested_mudstone", () -> new BlockItem(RankineBlocks.INFESTED_MUDSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SILTSTONE = REGISTRY.register("siltstone", () -> new BlockItem(RankineBlocks.SILTSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_SILTSTONE = REGISTRY.register("polished_siltstone", () -> new BlockItem(RankineBlocks.POLISHED_SILTSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SILTSTONE_BRICKS = REGISTRY.register("siltstone_bricks", () -> new BlockItem(RankineBlocks.SILTSTONE_BRICKS.get(), DEF_BUILDING));
@@ -1019,6 +1174,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> SILTSTONE_PILLAR = REGISTRY.register("siltstone_pillar", () -> new BlockItem(RankineBlocks.SILTSTONE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SILTSTONE_COLUMN = REGISTRY.register("siltstone_column", () -> new BlockItem(RankineBlocks.SILTSTONE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> SILTSTONE_COBBLE = REGISTRY.register("siltstone_cobble", () -> new BlockItem(RankineBlocks.SILTSTONE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_SILTSTONE = REGISTRY.register("infested_siltstone", () -> new BlockItem(RankineBlocks.INFESTED_SILTSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ITACOLUMITE = REGISTRY.register("itacolumite", () -> new BlockItem(RankineBlocks.ITACOLUMITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_ITACOLUMITE = REGISTRY.register("polished_itacolumite", () -> new BlockItem(RankineBlocks.POLISHED_ITACOLUMITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ITACOLUMITE_BRICKS = REGISTRY.register("itacolumite_bricks", () -> new BlockItem(RankineBlocks.ITACOLUMITE_BRICKS.get(), DEF_BUILDING));
@@ -1040,6 +1196,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> ITACOLUMITE_PILLAR = REGISTRY.register("itacolumite_pillar", () -> new BlockItem(RankineBlocks.ITACOLUMITE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ITACOLUMITE_COLUMN = REGISTRY.register("itacolumite_column", () -> new BlockItem(RankineBlocks.ITACOLUMITE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ITACOLUMITE_COBBLE = REGISTRY.register("itacolumite_cobble", () -> new BlockItem(RankineBlocks.ITACOLUMITE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_ITACOLUMITE = REGISTRY.register("infested_itacolumite", () -> new BlockItem(RankineBlocks.INFESTED_ITACOLUMITE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ARKOSE = REGISTRY.register("arkose", () -> new BlockItem(RankineBlocks.ARKOSE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_ARKOSE = REGISTRY.register("polished_arkose", () -> new BlockItem(RankineBlocks.POLISHED_ARKOSE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ARKOSE_BRICKS = REGISTRY.register("arkose_bricks", () -> new BlockItem(RankineBlocks.ARKOSE_BRICKS.get(), DEF_BUILDING));
@@ -1061,6 +1218,29 @@ public class RankineItems {
     //public static final RegistryObject<Item> ARKOSE_PILLAR = REGISTRY.register("arkose_pillar", () -> new BlockItem(RankineBlocks.ARKOSE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ARKOSE_COLUMN = REGISTRY.register("arkose_column", () -> new BlockItem(RankineBlocks.ARKOSE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> ARKOSE_COBBLE = REGISTRY.register("arkose_cobble", () -> new BlockItem(RankineBlocks.ARKOSE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_ARKOSE = REGISTRY.register("infested_arkose", () -> new BlockItem(RankineBlocks.INFESTED_ARKOSE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE = REGISTRY.register("graywacke", () -> new BlockItem(RankineBlocks.GRAYWACKE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_GRAYWACKE = REGISTRY.register("polished_graywacke", () -> new BlockItem(RankineBlocks.POLISHED_GRAYWACKE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_BRICKS = REGISTRY.register("graywacke_bricks", () -> new BlockItem(RankineBlocks.GRAYWACKE_BRICKS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_SLAB = REGISTRY.register("graywacke_slab", () -> new BlockItem(RankineBlocks.GRAYWACKE_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_GRAYWACKE_SLAB = REGISTRY.register("polished_graywacke_slab", () -> new BlockItem(RankineBlocks.POLISHED_GRAYWACKE_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_BRICKS_SLAB = REGISTRY.register("graywacke_bricks_slab", () -> new BlockItem(RankineBlocks.GRAYWACKE_BRICKS_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_STAIRS = REGISTRY.register("graywacke_stairs", () -> new BlockItem(RankineBlocks.GRAYWACKE_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_GRAYWACKE_STAIRS = REGISTRY.register("polished_graywacke_stairs", () -> new BlockItem(RankineBlocks.POLISHED_GRAYWACKE_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_BRICKS_STAIRS = REGISTRY.register("graywacke_bricks_stairs", () -> new BlockItem(RankineBlocks.GRAYWACKE_BRICKS_STAIRS.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_WALL = REGISTRY.register("graywacke_wall", () -> new BlockItem(RankineBlocks.GRAYWACKE_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_GRAYWACKE_WALL = REGISTRY.register("polished_graywacke_wall", () -> new BlockItem(RankineBlocks.POLISHED_GRAYWACKE_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_BRICKS_WALL = REGISTRY.register("graywacke_bricks_wall", () -> new BlockItem(RankineBlocks.GRAYWACKE_BRICKS_WALL.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_VERTICAL_SLAB = REGISTRY.register("graywacke_vertical_slab", () -> new BlockItem(RankineBlocks.GRAYWACKE_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> POLISHED_GRAYWACKE_VERTICAL_SLAB = REGISTRY.register("polished_graywacke_vertical_slab", () -> new BlockItem(RankineBlocks.POLISHED_GRAYWACKE_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_BRICKS_VERTICAL_SLAB = REGISTRY.register("graywacke_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.GRAYWACKE_BRICKS_VERTICAL_SLAB.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_PRESSURE_PLATE = REGISTRY.register("graywacke_pressure_plate", () -> new BlockItem(RankineBlocks.GRAYWACKE_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_BRICKS_PRESSURE_PLATE = REGISTRY.register("graywacke_bricks_pressure_plate", () -> new BlockItem(RankineBlocks.GRAYWACKE_BRICKS_PRESSURE_PLATE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_BUTTON = REGISTRY.register("graywacke_button", () -> new BlockItem(RankineBlocks.GRAYWACKE_BUTTON.get(), DEF_BUILDING));
+    //public static final RegistryObject<Item> GRAYWACKE_PILLAR = REGISTRY.register("graywacke_pillar", () -> new BlockItem(RankineBlocks.GRAYWACKE_PILLAR.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_COLUMN = REGISTRY.register("graywacke_column", () -> new BlockItem(RankineBlocks.GRAYWACKE_COLUMN.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> GRAYWACKE_COBBLE = REGISTRY.register("graywacke_cobble", () -> new BlockItem(RankineBlocks.GRAYWACKE_COBBLE.get(), DEF_BUILDING));
+    public static final RegistryObject<Item> INFESTED_GRAYWACKE = REGISTRY.register("infested_graywacke", () -> new BlockItem(RankineBlocks.INFESTED_GRAYWACKE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> HONEYSTONE = REGISTRY.register("honeystone", () -> new BlockItem(RankineBlocks.HONEYSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> POLISHED_HONEYSTONE = REGISTRY.register("polished_honeystone", () -> new BlockItem(RankineBlocks.POLISHED_HONEYSTONE.get(), DEF_BUILDING));
     public static final RegistryObject<Item> HONEYSTONE_BRICKS = REGISTRY.register("honeystone_bricks", () -> new BlockItem(RankineBlocks.HONEYSTONE_BRICKS.get(), DEF_BUILDING));
@@ -1082,7 +1262,7 @@ public class RankineItems {
     //public static final RegistryObject<Item> HONEYSTONE_PILLAR = REGISTRY.register("honeystone_pillar", () -> new BlockItem(RankineBlocks.HONEYSTONE_PILLAR.get(), DEF_BUILDING));
     public static final RegistryObject<Item> HONEYSTONE_COLUMN = REGISTRY.register("honeystone_column", () -> new BlockItem(RankineBlocks.HONEYSTONE_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> HONEYSTONE_COBBLE = REGISTRY.register("honeystone_cobble", () -> new BlockItem(RankineBlocks.HONEYSTONE_COBBLE.get(), DEF_BUILDING));
-
+    public static final RegistryObject<Item> INFESTED_HONEYSTONE = REGISTRY.register("infested_honeystone", () -> new BlockItem(RankineBlocks.INFESTED_HONEYSTONE.get(), DEF_BUILDING));
 
 
 
@@ -1191,63 +1371,6 @@ public class RankineItems {
     public static final RegistryObject<Item> PINK_SALT_COLUMN = REGISTRY.register("pink_salt_column", () -> new BlockItem(RankineBlocks.PINK_SALT_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> OPAL_COLUMN = REGISTRY.register("opal_column", () -> new BlockItem(RankineBlocks.OPAL_COLUMN.get(), DEF_BUILDING));
     public static final RegistryObject<Item> QUARTZ_COLUMN = REGISTRY.register("quartz_column", () -> new BlockItem(RankineBlocks.QUARTZ_COLUMN.get(), DEF_BUILDING));
-
-
-    public static final RegistryObject<Item> INFESTED_PEGMATITE = REGISTRY.register("infested_pegmatite", () -> new BlockItem(RankineBlocks.INFESTED_PEGMATITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_GRAY_GRANITE = REGISTRY.register("infested_gray_granite", () -> new BlockItem(RankineBlocks.INFESTED_GRAY_GRANITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_RHYOLITE = REGISTRY.register("infested_rhyolite", () -> new BlockItem(RankineBlocks.INFESTED_RHYOLITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_COMENDITE = REGISTRY.register("infested_comendite", () -> new BlockItem(RankineBlocks.INFESTED_COMENDITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_GRANODIORITE = REGISTRY.register("infested_granodiorite", () -> new BlockItem(RankineBlocks.INFESTED_GRANODIORITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_RED_PORPHYRY = REGISTRY.register("infested_red_porphyry", () -> new BlockItem(RankineBlocks.INFESTED_RED_PORPHYRY.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_PURPLE_PORPHYRY = REGISTRY.register("infested_purple_porphyry", () -> new BlockItem(RankineBlocks.INFESTED_PURPLE_PORPHYRY.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_BLACK_DACITE = REGISTRY.register("infested_black_dacite", () -> new BlockItem(RankineBlocks.INFESTED_BLACK_DACITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_RED_DACITE = REGISTRY.register("infested_red_dacite", () -> new BlockItem(RankineBlocks.INFESTED_RED_DACITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_HORNBLENDE_ANDESITE = REGISTRY.register("infested_hornblende_andesite", () -> new BlockItem(RankineBlocks.INFESTED_HORNBLENDE_ANDESITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_SHONKINITE = REGISTRY.register("infested_shonkinite", () -> new BlockItem(RankineBlocks.INFESTED_SHONKINITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_ANORTHOSITE = REGISTRY.register("infested_anorthosite", () -> new BlockItem(RankineBlocks.INFESTED_ANORTHOSITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_NORITE = REGISTRY.register("infested_norite", () -> new BlockItem(RankineBlocks.INFESTED_NORITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_TROCTOLITE = REGISTRY.register("infested_troctolite", () -> new BlockItem(RankineBlocks.INFESTED_TROCTOLITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_GABBRO = REGISTRY.register("infested_gabbro", () -> new BlockItem(RankineBlocks.INFESTED_GABBRO.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_DIABASE = REGISTRY.register("infested_diabase", () -> new BlockItem(RankineBlocks.INFESTED_DIABASE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_THOLEIITIC_BASALT = REGISTRY.register("infested_tholeiitic_basalt", () -> new BlockItem(RankineBlocks.INFESTED_THOLEIITIC_BASALT.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_PYROXENITE = REGISTRY.register("infested_pyroxenite", () -> new BlockItem(RankineBlocks.INFESTED_PYROXENITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_PERIDOTITE = REGISTRY.register("infested_peridotite", () -> new BlockItem(RankineBlocks.INFESTED_PERIDOTITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_KOMATIITE = REGISTRY.register("infested_komatiite", () -> new BlockItem(RankineBlocks.INFESTED_KOMATIITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_KIMBERLITE = REGISTRY.register("infested_kimberlite", () -> new BlockItem(RankineBlocks.INFESTED_KIMBERLITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_SOMMANITE = REGISTRY.register("infested_sommanite", () -> new BlockItem(RankineBlocks.INFESTED_SOMMANITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_RINGWOODINE = REGISTRY.register("infested_ringwoodine", () -> new BlockItem(RankineBlocks.INFESTED_RINGWOODINE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_WADSLEYONE = REGISTRY.register("infested_wadsleyone", () -> new BlockItem(RankineBlocks.INFESTED_WADSLEYONE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_BRIDGMANHAM = REGISTRY.register("infested_bridgmanham", () -> new BlockItem(RankineBlocks.INFESTED_BRIDGMANHAM.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_POST_PEROVSKITE = REGISTRY.register("infested_post_perovskite", () -> new BlockItem(RankineBlocks.INFESTED_POST_PEROVSKITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_BLACK_MARBLE = REGISTRY.register("infested_black_marble", () -> new BlockItem(RankineBlocks.INFESTED_BLACK_MARBLE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_GRAY_MARBLE = REGISTRY.register("infested_gray_marble", () -> new BlockItem(RankineBlocks.INFESTED_GRAY_MARBLE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_WHITE_MARBLE = REGISTRY.register("infested_white_marble", () -> new BlockItem(RankineBlocks.INFESTED_WHITE_MARBLE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_ROSE_MARBLE = REGISTRY.register("infested_rose_marble", () -> new BlockItem(RankineBlocks.INFESTED_ROSE_MARBLE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_SLATE = REGISTRY.register("infested_slate", () -> new BlockItem(RankineBlocks.INFESTED_SLATE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_PHYLLITE = REGISTRY.register("infested_phyllite", () -> new BlockItem(RankineBlocks.INFESTED_PHYLLITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_MICA_SCHIST = REGISTRY.register("infested_mica_schist", () -> new BlockItem(RankineBlocks.INFESTED_MICA_SCHIST.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_BLUESCHIST = REGISTRY.register("infested_blueschist", () -> new BlockItem(RankineBlocks.INFESTED_BLUESCHIST.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_GREENSCHIST = REGISTRY.register("infested_greenschist", () -> new BlockItem(RankineBlocks.INFESTED_GREENSCHIST.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_GNEISS = REGISTRY.register("infested_gneiss", () -> new BlockItem(RankineBlocks.INFESTED_GNEISS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_QUARTZITE = REGISTRY.register("infested_quartzite", () -> new BlockItem(RankineBlocks.INFESTED_QUARTZITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_SERPENTINITE = REGISTRY.register("infested_serpentinite", () -> new BlockItem(RankineBlocks.INFESTED_SERPENTINITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_MARIPOSITE = REGISTRY.register("infested_mariposite", () -> new BlockItem(RankineBlocks.INFESTED_MARIPOSITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_ECLOGITE = REGISTRY.register("infested_eclogite", () -> new BlockItem(RankineBlocks.INFESTED_ECLOGITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_LIMESTONE = REGISTRY.register("infested_limestone", () -> new BlockItem(RankineBlocks.INFESTED_LIMESTONE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_DOLOSTONE = REGISTRY.register("infested_dolostone", () -> new BlockItem(RankineBlocks.INFESTED_DOLOSTONE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_CHALK = REGISTRY.register("infested_chalk", () -> new BlockItem(RankineBlocks.INFESTED_CHALK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_MARLSTONE = REGISTRY.register("infested_marlstone", () -> new BlockItem(RankineBlocks.INFESTED_MARLSTONE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_SHALE = REGISTRY.register("infested_shale", () -> new BlockItem(RankineBlocks.INFESTED_SHALE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_MUDSTONE = REGISTRY.register("infested_mudstone", () -> new BlockItem(RankineBlocks.INFESTED_MUDSTONE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_SILTSTONE = REGISTRY.register("infested_siltstone", () -> new BlockItem(RankineBlocks.INFESTED_SILTSTONE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_ITACOLUMITE = REGISTRY.register("infested_itacolumite", () -> new BlockItem(RankineBlocks.INFESTED_ITACOLUMITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_ARKOSE = REGISTRY.register("infested_arkose", () -> new BlockItem(RankineBlocks.INFESTED_ARKOSE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_HONEYSTONE = REGISTRY.register("infested_honeystone", () -> new BlockItem(RankineBlocks.INFESTED_HONEYSTONE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_SKARN = REGISTRY.register("infested_skarn", () -> new BlockItem(RankineBlocks.INFESTED_SKARN.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_BRECCIA = REGISTRY.register("infested_breccia", () -> new BlockItem(RankineBlocks.INFESTED_BRECCIA.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_PUMICE = REGISTRY.register("infested_pumice", () -> new BlockItem(RankineBlocks.INFESTED_PUMICE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> INFESTED_SCORIA = REGISTRY.register("infested_scoria", () -> new BlockItem(RankineBlocks.INFESTED_SCORIA.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-
 
 
     public static final RegistryObject<Item> ANDESITIC_TUFF = REGISTRY.register("andesitic_tuff", () -> new BlockItem(RankineBlocks.ANDESITIC_TUFF.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
@@ -1764,6 +1887,7 @@ public class RankineItems {
     public static final RegistryObject<Item> EVAPORITE = REGISTRY.register("evaporite", () -> new BlockItem(RankineBlocks.EVAPORITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> FULGURITE = REGISTRY.register("fulgurite", () -> new BlockItem(RankineBlocks.FULGURITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> PHOSPHORITE = REGISTRY.register("phosphorite", () -> new BlockItem(RankineBlocks.PHOSPHORITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> SYLVINITE = REGISTRY.register("sylvinite", () -> new BlockItem(RankineBlocks.SYLVINITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> IRONSTONE = REGISTRY.register("ironstone", () -> new BlockItem(RankineBlocks.IRONSTONE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BOG_IRON = REGISTRY.register("bog_iron", () -> new BlockItem(RankineBlocks.BOG_IRON.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> FUMAROLE_DEPOSIT = REGISTRY.register("fumarole_deposit", () -> new BlockItem(RankineBlocks.FUMAROLE_DEPOSIT.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
@@ -2396,6 +2520,8 @@ public class RankineItems {
     public static final RegistryObject<Item> IRON_CHLORIDE_BLOCK = REGISTRY.register("iron_chloride_block", () -> new BlockItem(RankineBlocks.IRON_CHLORIDE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ILMENITE = REGISTRY.register("ilmenite", () -> new SimpleTooltipItem(Arrays.asList("Composition: TiO2", "Used as a source for titanium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ILMENITE_BLOCK = REGISTRY.register("ilmenite_block", () -> new BlockItem(RankineBlocks.ILMENITE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> KYANITE = REGISTRY.register("kyanite", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> KYANITE_BLOCK = REGISTRY.register("kyanite_block", () -> new BlockItem(RankineBlocks.KYANITE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> LABRADORITE = REGISTRY.register("labradorite", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> LABRADORITE_BLOCK = REGISTRY.register("labradorite_block", () -> new BlockItem(RankineBlocks.LABRADORITE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> LANTHANUM_MONAZITE = REGISTRY.register("lanthanum_monazite", () -> new SimpleTooltipItem(Arrays.asList("Composition: LaPO4", "Used as a source for lanthanum"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -2981,7 +3107,7 @@ public class RankineItems {
     public static final RegistryObject<Item> BIOMETER = REGISTRY.register("biometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
   
     public static final RegistryObject<Item> DOWSING_ROD = REGISTRY.register("dowsing_rod", () -> new DowsingRodItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> PROSPECTING_STICK = REGISTRY.register("prospecting_stick", () -> new OreDetectorItem(Config.GENERAL.PROSPECTING_STICK_RANGE.get(), new Item.Properties().maxStackSize(1).maxDamage(5).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> PROSPECTING_STICK = REGISTRY.register("prospecting_stick", () -> new OreDetectorItem(Config.GENERAL.PROSPECTING_STICK_RANGE.get(), new Item.Properties().maxStackSize(1).maxDamage(7).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ORE_DETECTOR = REGISTRY.register("ore_detector", () -> new OreDetectorItem(Config.GENERAL.ORE_DETECTOR_RANGE.get(), new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ROCK_DRILL = REGISTRY.register("rock_drill", () -> new RockDrillItem(new Item.Properties().maxStackSize(1).maxDamage(15).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> FIRE_EXTINGUISHER = REGISTRY.register("fire_extinguisher", () -> new FireExtinguisherItem(new Item.Properties().maxStackSize(1).maxDamage(15).group(ProjectRankine.setup.rankineTools)));
@@ -3071,6 +3197,7 @@ public class RankineItems {
     
     public static final RegistryObject<Item> DRIED_BAMBOO = REGISTRY.register("dried_bamboo", () -> new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools), 50));
     public static final RegistryObject<Item> BLEACH = REGISTRY.register("bleach", () -> new BleachItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> ICE_MELT = REGISTRY.register("ice_melt", () -> new IceMeltItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> HERBICIDE = REGISTRY.register("herbicide", () -> new HerbicideItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> FERTILIZER = REGISTRY.register("fertilizer", () -> new FertilizerItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> DRY_RUBBER = REGISTRY.register("dry_rubber", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));

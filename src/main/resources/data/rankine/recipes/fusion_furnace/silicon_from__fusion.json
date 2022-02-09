@@ -1,0 +1,18 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "rankine:silicon_dioxide_blocks"
+  },
+  "input2": {
+    "tag": "forge:ingots/aluminum"
+  },
+  "result1": {
+    "item":"rankine:silicon",
+    "count": 1
+  },
+  "result2": {
+    "item":"rankine:alumina",
+    "count": 1
+  }
+}

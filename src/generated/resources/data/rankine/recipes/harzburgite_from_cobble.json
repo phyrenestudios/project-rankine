@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:harzburgite_cobble"
+    },
+    {
+      "item": "rankine:harzburgite_cobble"
+    },
+    {
+      "item": "rankine:harzburgite_cobble"
+    },
+    {
+      "item": "rankine:harzburgite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:harzburgite"
+  }
+}

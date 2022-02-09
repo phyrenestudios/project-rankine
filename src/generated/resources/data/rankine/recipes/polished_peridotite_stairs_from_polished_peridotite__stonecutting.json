@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_peridotite"
-  },
-  "result": "rankine:polished_peridotite_stairs",
-  "count": 1
-}

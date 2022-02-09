@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "rankine:block/peridotite",
-    "bottom": "rankine:block/peridotite",
-    "top": "rankine:block/peridotite"
-  }
-}

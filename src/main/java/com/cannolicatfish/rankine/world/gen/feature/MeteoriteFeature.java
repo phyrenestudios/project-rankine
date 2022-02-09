@@ -22,8 +22,8 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, MeteoriteFeatureConfig config) {
-
-        if (!RankineTags.Blocks.METEORITE_REPLACEABLE.contains(reader.getBlockState(pos.down()).getBlock())) {
+        BlockPos posShift = pos.add(8,0,8);
+        if (!RankineTags.Blocks.METEORITE_REPLACEABLE.contains(reader.getBlockState(posShift.down()).getBlock())) {
             return false;
         }
         BlockState ORE;
@@ -52,7 +52,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
                 TEKTITE = RankineBlocks.BLACK_TEKTITE.get().getDefaultState();
             }
 
-            for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-5, -4, -5), pos.add(5, 2, 5))) {
+            for(BlockPos blockpos : BlockPos.getAllInBoxMutable(posShift.add(-5, -4, -5), posShift.add(5, 2, 5))) {
                 if (blockpos.distanceSq(pos.up(2)) <= 25.0) {
                     reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 3);
                 }
@@ -64,7 +64,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
 
 
         } else {
-            for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-4, -4, -4), pos.add(4, 6, 4))) {
+            for(BlockPos blockpos : BlockPos.getAllInBoxMutable(posShift.add(-4, -4, -4), posShift.add(4, 6, 4))) {
                 if (blockpos.distanceSq(pos) <= (2.75D)) {
                     if (rand.nextFloat() < 0.3F) {
                         reader.setBlockState(blockpos.down(1), ORE, 3);

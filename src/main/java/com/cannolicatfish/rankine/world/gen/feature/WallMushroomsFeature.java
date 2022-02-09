@@ -26,8 +26,9 @@ public class WallMushroomsFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+        BlockPos posShift = pos.add(8,0,8);
         Block MUSH = RankineLists.WALL_MUSHROOMS.get(rand.nextInt(RankineLists.WALL_MUSHROOMS.size()));
-        BlockPos surface = new BlockPos(pos.getX(), reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, pos.getX(), pos.getZ()), pos.getZ());
+        BlockPos surface = new BlockPos(posShift.getX(), reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, posShift.getX(), posShift.getZ()), posShift.getZ());
         for (BlockPos bp : BlockPos.getAllInBoxMutable(surface.add(-5,-3,-5),surface.add(5,3,5))) {
             if (reader.getBlockState(bp).isIn(BlockTags.LOGS) && rand.nextFloat()<0.5) {
                 Direction dir = WorldgenUtils.randomHorizontalDirection(rand);

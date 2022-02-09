@@ -63,6 +63,12 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.STONE_PRESSURE_PLATES,
                 RankineLists.STONE_BRICKS_PRESSURE_PLATES,
                 RankineLists.STONE_BUTTONS,
+                RankineLists.VANILLA_BRICKS,
+                RankineLists.VANILLA_BRICKS_SLABS,
+                RankineLists.VANILLA_BRICKS_VERTICAL_SLABS,
+                RankineLists.VANILLA_BRICKS_WALLS,
+                RankineLists.VANILLA_BRICKS_STAIRS,
+                RankineLists.VANILLA_BRICKS_PRESSURE_PLATES,
                 RankineLists.BRICKS,
                 RankineLists.BRICKS_SLAB,
                 RankineLists.BRICKS_STAIRS,
@@ -373,6 +379,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.BEAVER_PELT.get(),
             RankineItems.ROPE.get(),
             RankineItems.BLEACH.get(),
+            RankineItems.ICE_MELT.get(),
             RankineItems.HERBICIDE.get(),
             RankineItems.FERTILIZER.get(),
             RankineItems.SYNTHETIC_LEATHER.get(),
@@ -995,12 +1002,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.subtitle.sediment_fan_gen", "sedimentary block generation");
 
 
-        //JOURNAL
+        //JOURNAL==============================================================================
         add("rankine.journal.landing_text", "A mere collection of discoveries, awaiting application.");
 
-        add("rankine.journal.cat_tools.name", "Tools");
-        add("rankine.journal.cat_tools.desc", "Various implements use to manipulate the world.");
-
+        //Elements
         add("rankine.journal.cat_elements.name", "Elements");
         add("rankine.journal.cat_elements.desc", "The foundation of the universe");
         add("rankine.journal.cat_elements.gasses.name", "Gas Blocks");
@@ -1010,20 +1015,18 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_elements.gasses.text4", "");
         add("rankine.journal.cat_elements.gasses.text5", "");
 
-
-
-        add("rankine.journal.cat_sediments.name", "Sediments");
-        add("rankine.journal.cat_sediments.desc", "Dirt is too simple of a term to describe the complex matrix of organic material and pulverized rocks. A better term is soil, but there are more small particles than just that.");
-
-
+        //Flora
         add("rankine.journal.cat_flora.name", "Flora");
         add("rankine.journal.cat_flora.desc", "Plants be cool.");
         add("rankine.journal.cat_flora.trees.text1", "Trees be cool.");
         add("rankine.journal.cat_flora.trees.text2", "Cedar");
         add("rankine.journal.cat_flora.trees.text3", "Balsam Fir");
 
+        //Machines
+        add("rankine.journal.cat_machines.name", "Machines");
+        add("rankine.journal.cat_machines.desc", "");
 
-
+        //Mechanics
         add("rankine.journal.cat_mechanics.name", "Mechanics");
         add("rankine.journal.cat_mechanics.desc", "");
         add("rankine.journal.cat_mechanics.finite_water.name", "Finite Water");
@@ -1038,12 +1041,24 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mechanics.sluicing.text3", "");
         add("rankine.journal.cat_mechanics.sluicing.text4", "");
 
+        //Mineralogy
+        add("rankine.journal.cat_mineralogy.name", "Mineralogy");
+        add("rankine.journal.cat_mineralogy.desc", "Shiny things");
 
+        add("rankine.journal.cat_mineralogy.native_ores.name", "Native Ores");
+        add("rankine.journal.cat_mineralogy.native_ores.text1", "");
+        add("rankine.journal.cat_mineralogy.native_ores.text2", "");
+        add("rankine.journal.cat_mineralogy.native_ores.text3", "");
+        add("rankine.journal.cat_mineralogy.native_ores.text4", "");
+        add("rankine.journal.cat_mineralogy.native_ores.text5", "");
+        add("rankine.journal.cat_mineralogy.native_ores.text6", "");
+        add("rankine.journal.cat_mineralogy.native_ores.text7", "");
 
-
+        //Orientation
         add("rankine.journal.cat_orientation.name", "Orientation");
         add("rankine.journal.cat_orientation.desc", "Notes from very brief orientation to the Project. These are all I have to look over for now.");
 
+        //Stones
         add("rankine.journal.cat_stones.name", "Stones");
         add("rankine.journal.cat_stones.desc", "");
         add("rankine.journal.cat_stones.igneous.name", "Igneous Stones");
@@ -1055,8 +1070,15 @@ public class RankineLangProvider extends LanguageProvider {
 
 
 
-        add("rankine.journal.cat_machines.name", "Machines");
-        add("rankine.journal.cat_machines.desc", "");
+        //Sediments
+        add("rankine.journal.cat_sediments.name", "Sediments");
+        add("rankine.journal.cat_sediments.desc", "Dirt is too simple of a term to describe the complex matrix of organic material and pulverized rocks. A better term is soil, but there are more small particles than just that.");
+
+
+
+        //Tools
+        add("rankine.journal.cat_tools.name", "Tools");
+        add("rankine.journal.cat_tools.desc", "Various implements use to manipulate the world.");
 
 
 

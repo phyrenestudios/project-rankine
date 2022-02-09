@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_wehrlite"
+  },
+  "result": "rankine:polished_wehrlite_wall",
+  "count": 1
+}

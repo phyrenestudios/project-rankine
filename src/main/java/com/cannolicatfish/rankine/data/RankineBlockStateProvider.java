@@ -81,7 +81,24 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         )) {
             simpleBlock(blk);
         }
-
+        for (Block blk : RankineLists.POLISHED_STONES) {
+            fancyPolishedBlock(blk);
+        }
+        for (Block blk : Stream.of(RankineLists.STONE_BRICKS,RankineLists.VANILLA_BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            fancyStoneBricksBlock(blk);
+        }
+        for (Block blk : RankineLists.BRICKS) {
+            fancyBricksBlock(blk);
+        }
+        for (Block blk : RankineLists.PLANKS) {
+            fancyPlanksBlock(blk);
+        }
+        for (Block blk : RankineLists.WOODEN_BOOKSHELVES) {
+            fancyBookshelvesBlock(blk);
+        }
+        for (Block blk : RankineLists.LEAVES) {
+            leavesBlock(blk);
+        }
         for (Block INFESTED_STONE : RankineLists.INFESTED_STONES) {
             simpleBlock(INFESTED_STONE,models().withExistingParent(INFESTED_STONE.getRegistryName().getPath(), getBlockRSL(INFESTED_STONE.getRegistryName().getPath().replace("infested_",""))));
         }
@@ -97,39 +114,22 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             String pathName = SANDSTONE.getRegistryName().getPath();
             simpleBlock(SANDSTONE,models().cubeColumn(pathName,blockTexture(SANDSTONE),getBlockRSL(pathName.replace("chiseled","smooth"))));
         }
-        for (Block blk : Stream.of(RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS,RankineLists.SHEETMETAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_SLABS,RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS,RankineLists.SHEETMETAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabBlock(blk);
         }
-        for (Block blk : Stream.of(RankineLists.CUT_SANDSTONE_VERTICAL_SLABS,RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,RankineLists.SANDSTONE_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.MISC_VERTICAL_SLABS,RankineLists.CONCRETE_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_VERTICAL_SLABS,RankineLists.CUT_SANDSTONE_VERTICAL_SLABS,RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,RankineLists.SANDSTONE_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.MISC_VERTICAL_SLABS,RankineLists.CONCRETE_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             verticalSlabBlock(blk);
         }
-        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_WALLS,RankineLists.SANDSTONE_WALLS,RankineLists.BRICKS_WALL,RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_WALLS,RankineLists.SMOOTH_SANDSTONE_WALLS,RankineLists.SANDSTONE_WALLS,RankineLists.BRICKS_WALL,RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             wallBlock(blk);
         }
-        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_STAIRS,RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsBlock(blk);
         }
         for (Block blk : Stream.of(RankineLists.MUD_BLOCKS,RankineLists.SOIL_BLOCKS,RankineLists.COARSE_SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             rotationBlock(blk);
         }
-        for (Block blk : RankineLists.POLISHED_STONES) {
-            fancyPolishedBlock(blk);
-        }
-        for (Block blk : RankineLists.STONE_BRICKS) {
-            fancyStoneBricksBlock(blk);
-        }
-        for (Block blk : RankineLists.BRICKS) {
-            fancyBricksBlock(blk);
-        }
-        for (Block blk : RankineLists.PLANKS) {
-            fancyPlanksBlock(blk);
-        }
-        for (Block blk : RankineLists.WOODEN_BOOKSHELVES) {
-            fancyBookshelvesBlock(blk);
-        }
-        for (Block blk : RankineLists.LEAVES) {
-            leavesBlock(blk);
-        }
+
 
         sixSideCrossBlock(RankineBlocks.LOCUST_SPINE.get());
         sixSideCrossBlock(RankineBlocks.GWIHABAITE_CRYSTAL.get());
@@ -477,7 +477,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             String baseStone = Arrays.asList(name.split("_vertical_slab")).get(0);
             verticalSlabBlock((RankineVerticalSlabBlock) blk, new ResourceLocation("rankine", "block/" + baseStone));
         }
-        for (Block blk : Stream.of(RankineLists.STONE_PRESSURE_PLATES, RankineLists.STONE_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.STONE_PRESSURE_PLATES, RankineLists.STONE_BRICKS_PRESSURE_PLATES, RankineLists.VANILLA_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
             String baseStone = Arrays.asList(name.split("_pressure_plate")).get(0);
             pressurePlateBlock((RankineStonePressurePlate) blk, new ResourceLocation("rankine", "block/" + baseStone));
