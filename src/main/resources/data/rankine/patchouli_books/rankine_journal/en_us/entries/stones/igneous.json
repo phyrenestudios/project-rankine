@@ -169,7 +169,7 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:peridotite",
+      "item": "rankine:dunite",
       "link_recipe": true,
       "text": "rankine.journal.cat_stones.igneous.text"
     },

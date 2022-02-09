@@ -19,12 +19,14 @@ public class DiskOreVeinFeature extends Feature<RankineOreFeatureConfig> {
 
 
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, RankineOreFeatureConfig config) {
+        BlockPos posShift = pos.add(8,0,8);
+
         if (rand.nextFloat() < 1 - config.chance) {
             return false;
         }
-        for (BlockPos BP : BlockPos.getAllInBoxMutable(pos.add(-config.size, -config.size/2, -config.size), pos.add(config.size, config.size/2, config.size))) {
+        for (BlockPos BP : BlockPos.getAllInBoxMutable(posShift.add(-config.size, -config.size/2, -config.size), posShift.add(config.size, config.size/2, config.size))) {
             if (rand.nextFloat() < config.density * (rand.nextFloat() / 2 + 0.75)) {
-                double ElipDist = Math.pow(BP.getX() - pos.getX(), 2) + 9*Math.pow(BP.getY() - pos.getY(), 2) + Math.pow(BP.getZ() - pos.getZ(), 2);
+                double ElipDist = Math.pow(BP.getX() - posShift.getX(), 2) + 9*Math.pow(BP.getY() - posShift.getY(), 2) + Math.pow(BP.getZ() - posShift.getZ(), 2);
                 double RadiusEffect = 1 - ElipDist / Math.pow(config.size,2);
                 if (RadiusEffect > 0 && rand.nextDouble() < RadiusEffect) {
                     if (config.target.getPredicate().test(reader.getBlockState(BP))) {

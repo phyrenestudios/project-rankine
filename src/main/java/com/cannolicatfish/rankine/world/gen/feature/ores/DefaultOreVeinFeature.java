@@ -23,20 +23,22 @@ public class DefaultOreVeinFeature extends Feature<RankineOreFeatureConfig> {
 
 
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, RankineOreFeatureConfig config) {
+        BlockPos posShift = pos.add(8,0,8);
+
         if (rand.nextFloat() < config.chance) {
             float f = rand.nextFloat() * (float) Math.PI;
             float f1 = (float) config.size / 8.0F;
             int i = MathHelper.ceil(((float) config.size / 16.0F * 2.0F + 1.0F) / 2.0F);
-            double d0 = (double) ((float) pos.getX() + MathHelper.sin(f) * f1);
-            double d1 = (double) ((float) pos.getX() - MathHelper.sin(f) * f1);
-            double d2 = (double) ((float) pos.getZ() + MathHelper.cos(f) * f1);
-            double d3 = (double) ((float) pos.getZ() - MathHelper.cos(f) * f1);
+            double d0 = (double) ((float) posShift.getX() + MathHelper.sin(f) * f1);
+            double d1 = (double) ((float) posShift.getX() - MathHelper.sin(f) * f1);
+            double d2 = (double) ((float) posShift.getZ() + MathHelper.cos(f) * f1);
+            double d3 = (double) ((float) posShift.getZ() - MathHelper.cos(f) * f1);
             int j = 2;
-            double d4 = (double) (pos.getY() + rand.nextInt(3) - 2);
-            double d5 = (double) (pos.getY() + rand.nextInt(3) - 2);
-            int k = pos.getX() - MathHelper.ceil(f1) - i;
-            int l = pos.getY() - 2 - i;
-            int i1 = pos.getZ() - MathHelper.ceil(f1) - i;
+            double d4 = (double) (posShift.getY() + rand.nextInt(3) - 2);
+            double d5 = (double) (posShift.getY() + rand.nextInt(3) - 2);
+            int k = posShift.getX() - MathHelper.ceil(f1) - i;
+            int l = posShift.getY() - 2 - i;
+            int i1 = posShift.getZ() - MathHelper.ceil(f1) - i;
             int j1 = 2 * (MathHelper.ceil(f1) + i);
             int k1 = 2 * (2 + i);
 

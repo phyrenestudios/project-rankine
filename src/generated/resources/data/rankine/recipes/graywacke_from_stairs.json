@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:graywacke_stairs"
+    },
+    {
+      "item": "rankine:graywacke_stairs"
+    },
+    {
+      "item": "rankine:graywacke_stairs"
+    },
+    {
+      "item": "rankine:graywacke_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:graywacke",
+    "count": 6
+  }
+}

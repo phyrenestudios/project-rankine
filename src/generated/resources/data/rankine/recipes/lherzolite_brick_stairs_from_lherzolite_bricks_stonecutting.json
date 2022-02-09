@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:lherzolite_bricks"
+  },
+  "result": "rankine:lherzolite_bricks_stairs",
+  "count": 1
+}

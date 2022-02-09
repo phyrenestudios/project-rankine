@@ -24,8 +24,8 @@ public class FumaroleFeature extends Feature<NoFeatureConfig> {
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
 
         IChunk chunk = reader.getChunk(pos);
-        int randX = chunk.getPos().getXStart() + rand.nextInt(16);
-        int randZ = chunk.getPos().getZStart() + rand.nextInt(16);
+        int randX = chunk.getPos().getXStart() + rand.nextInt(16) + 8;
+        int randZ = chunk.getPos().getZStart() + rand.nextInt(16) + 8;
         int yHeight;
         Block FUMAROLE;
         if (reader.getBiome(new BlockPos(randX,0,randZ)).getCategory() == Biome.Category.NETHER) {

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_pressure_plate",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:harzburgite"
+    }
+  },
+  "result": {
+    "item": "rankine:harzburgite_pressure_plate"
+  }
+}

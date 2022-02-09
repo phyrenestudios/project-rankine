@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:whiteschist"
+  },
+  "result": "rankine:whiteschist_pressure_plate",
+  "count": 1
+}

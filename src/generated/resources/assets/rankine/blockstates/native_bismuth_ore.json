@@ -206,6 +206,24 @@
     },
     "type=68": {
       "model": "rankine:block/native_bismuth_ore68"
+    },
+    "type=69": {
+      "model": "rankine:block/native_bismuth_ore69"
+    },
+    "type=70": {
+      "model": "rankine:block/native_bismuth_ore70"
+    },
+    "type=71": {
+      "model": "rankine:block/native_bismuth_ore71"
+    },
+    "type=72": {
+      "model": "rankine:block/native_bismuth_ore72"
+    },
+    "type=73": {
+      "model": "rankine:block/native_bismuth_ore73"
+    },
+    "type=74": {
+      "model": "rankine:block/native_bismuth_ore74"
     }
   }
 }

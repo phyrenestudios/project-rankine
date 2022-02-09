@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:soapstone_bricks"
+    }
+  },
+  "result": {
+    "item": "rankine:soapstone_bricks_slab",
+    "count": 6
+  }
+}

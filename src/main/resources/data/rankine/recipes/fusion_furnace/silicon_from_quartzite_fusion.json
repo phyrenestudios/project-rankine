@@ -1,0 +1,20 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "rankine:silicon_dioxide_blocks"
+  },
+  "input2": {
+    "tag": "forge:nuggets/carbon"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result1": {
+    "item":"rankine:silicon",
+    "count": 1
+  },
+  "gasOutput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  }
+}

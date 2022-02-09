@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:dunite_stairs"
+    },
+    {
+      "item": "rankine:dunite_stairs"
+    },
+    {
+      "item": "rankine:dunite_stairs"
+    },
+    {
+      "item": "rankine:dunite_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:dunite",
+    "count": 6
+  }
+}

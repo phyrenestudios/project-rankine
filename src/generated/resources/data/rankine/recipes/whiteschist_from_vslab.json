@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:whiteschist_vertical_slab"
+    },
+    {
+      "item": "rankine:whiteschist_vertical_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:whiteschist"
+  }
+}

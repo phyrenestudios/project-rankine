@@ -19,13 +19,15 @@ public class SphericalOreVeinFeature extends Feature<RankineOreFeatureConfig> {
 
 
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, RankineOreFeatureConfig config) {
+        BlockPos posShift = pos.add(8,0,8);
+
         if (rand.nextFloat() < 1 - config.chance) {
             return false;
         }
 
-        for (BlockPos BP : BlockPos.getAllInBoxMutable(pos.add(-config.size, -config.size, -config.size), pos.add(config.size, config.size, config.size))) {
+        for (BlockPos BP : BlockPos.getAllInBoxMutable(posShift.add(-config.size, -config.size, -config.size), posShift.add(config.size, config.size, config.size))) {
             if (rand.nextFloat() < config.density * (rand.nextFloat() / 2 + 0.75)) {
-                float Dist = (float) Math.sqrt(BP.add(0.5,0.5,0.5).distanceSq(pos.getX(), pos.getY(), pos.getZ(), true));
+                float Dist = (float) Math.sqrt(BP.add(0.5,0.5,0.5).distanceSq(posShift.getX(), posShift.getY(), posShift.getZ(), true));
                 float RadiusEffect = (float) (1 - Math.pow(Dist-1,2) / Math.pow(config.size-0.5,2));
                 if (RadiusEffect > 0 && rand.nextFloat() < RadiusEffect) {
                     if (config.target.getPredicate().test(reader.getBlockState(BP))) {

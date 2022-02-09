@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:basalt_bricks"
+    }
+  },
+  "result": {
+    "item": "rankine:basalt_bricks_wall",
+    "count": 6
+  }
+}

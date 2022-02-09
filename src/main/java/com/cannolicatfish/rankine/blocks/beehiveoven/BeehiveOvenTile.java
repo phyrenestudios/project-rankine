@@ -49,6 +49,7 @@ public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
             if (this.getBlockState().get(BeehiveOvenPitBlock.LIT)) {
                 proccessTime += 1;
                 if (proccessTime >= nextRecipe) {
+                    boolean flag = true;
                     for (BlockPos p: BlockPos.getAllInBoxMutable(pos.add(-1,1,-1),pos.add(1,2,1))) {
                         BeehiveOvenRecipe recipe = world.getRecipeManager().getRecipe(RankineRecipeTypes.BEEHIVE, new Inventory(new ItemStack(world.getBlockState(p).getBlock())), world).orElse(null);
                         if (recipe != null) {
@@ -57,13 +58,13 @@ public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
                                 if (output.getItem() instanceof BlockItem) {
                                     world.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
                                     proccessTime = 0;
+                                    flag = false;
                                     break;
                                 }
                             }
-                        } else {
-                            world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 3);
                         }
                     }
+                    if (flag) world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 3);
                     nextRecipe = world.getRandom().nextInt(structureCheck(world, pos)) + 100;
                 }
             }

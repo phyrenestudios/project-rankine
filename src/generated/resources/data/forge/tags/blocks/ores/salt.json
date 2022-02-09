@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "rankine:halite_ore"
+    "rankine:halite_ore",
+    "rankine:sylvinite"
   ]
 }

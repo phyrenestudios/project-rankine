@@ -5,9 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class RankineRemappings {
@@ -391,6 +389,26 @@ public class RankineRemappings {
         blockRemappings.put(new ResourceLocation("rankine:wadsleyite_pressure_plate"),RankineBlocks.WADSLEYONE_PRESSURE_PLATE.get());
         blockRemappings.put(new ResourceLocation("rankine:wadsleyite_bricks_pressure_plate"),RankineBlocks.WADSLEYONE_BRICKS_PRESSURE_PLATE.get());
         blockRemappings.put(new ResourceLocation("rankine:wadsleyite_button"),RankineBlocks.WADSLEYONE_BUTTON.get());
+
+
+        blockRemappings.put(new ResourceLocation("rankine:peridodite"),RankineBlocks.DUNITE.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_peridodite"),RankineBlocks.POLISHED_DUNITE.get());
+        blockRemappings.put(new ResourceLocation("rankine:peridodite_bricks"),RankineBlocks.DUNITE_BRICKS.get());
+        blockRemappings.put(new ResourceLocation("rankine:peridodite_slab"),RankineBlocks.DUNITE_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_peridodite_slab"),RankineBlocks.POLISHED_DUNITE_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:peridodite_bricks_slab"),RankineBlocks.DUNITE_BRICKS_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:peridodite_stairs"),RankineBlocks.DUNITE_STAIRS.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_peridodite_stairs"),RankineBlocks.POLISHED_DUNITE_STAIRS.get());
+        blockRemappings.put(new ResourceLocation("rankine:peridodite_bricks_stairs"),RankineBlocks.DUNITE_BRICKS_STAIRS.get());
+        blockRemappings.put(new ResourceLocation("rankine:peridodite_wall"),RankineBlocks.DUNITE_WALL.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_peridodite_wall"),RankineBlocks.POLISHED_DUNITE_WALL.get());
+        blockRemappings.put(new ResourceLocation("rankine:peridodite_bricks_wall"),RankineBlocks.DUNITE_BRICKS_WALL.get());
+        blockRemappings.put(new ResourceLocation("rankine:peridodite_vertical_slab"),RankineBlocks.DUNITE_VERTICAL_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_peridodite_vertical_slab"),RankineBlocks.POLISHED_DUNITE_VERTICAL_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:peridodite_bricks_vertical_slab"),RankineBlocks.DUNITE_BRICKS_VERTICAL_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:peridodite_pressure_plate"),RankineBlocks.DUNITE_PRESSURE_PLATE.get());
+        blockRemappings.put(new ResourceLocation("rankine:peridodite_bricks_pressure_plate"),RankineBlocks.DUNITE_BRICKS_PRESSURE_PLATE.get());
+        blockRemappings.put(new ResourceLocation("rankine:peridodite_button"),RankineBlocks.DUNITE_BUTTON.get());
 
         return blockRemappings;
     }

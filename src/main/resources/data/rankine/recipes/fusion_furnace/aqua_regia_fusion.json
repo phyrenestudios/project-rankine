@@ -2,16 +2,16 @@
   "type": "rankine:fusion_furnace",
   "cookTime": 400,
   "input1": {
-    "tag": "forge:ingots/platinum"
+    "tag": "forge:saltpeter"
   },
   "fluidInput": {
-    "fluid": "minecraft:water"
+    "fluid": "rankine:sulfuric_acid"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_chloride_gas_bottle"
   },
   "fluidOutput": {
     "fluid": "rankine:aqua_regia"
-  },
-  "gasInput": {
-    "item": "rankine:ammonia_gas_bottle"
   },
   "gasOutput": {
     "item": "minecraft:glass_bottle"

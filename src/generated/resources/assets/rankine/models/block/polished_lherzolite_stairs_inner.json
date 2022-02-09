@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "rankine:block/polished_lherzolite",
+    "bottom": "rankine:block/polished_lherzolite",
+    "top": "rankine:block/polished_lherzolite"
+  }
+}

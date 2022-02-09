@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:graywacke_bricks_slab"
+    },
+    {
+      "item": "rankine:graywacke_bricks_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:graywacke_bricks"
+  }
+}

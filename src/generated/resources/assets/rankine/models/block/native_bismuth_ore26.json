@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/troctolite",
+    "background": "rankine:block/harzburgite",
     "overlay": "rankine:block/native_bismuth_ore"
   }
 }

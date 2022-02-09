@@ -9,6 +9,7 @@
     "#forge:stones/slate",
     "#forge:stones/serpetinite",
     "#forge:stones/eclogite",
-    "#forge:stones/quartzite"
+    "#forge:stones/quartzite",
+    "#forge:stones/soapstone"
   ]
 }

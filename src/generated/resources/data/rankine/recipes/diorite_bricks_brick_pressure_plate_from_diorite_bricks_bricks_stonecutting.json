@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:diorite_bricks"
+  },
+  "result": "rankine:diorite_bricks_pressure_plate",
+  "count": 1
+}

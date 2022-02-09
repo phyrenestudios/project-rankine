@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "rankine:block/wehrlite_bricks_pressure_plate_up"
+    },
+    "powered=true": {
+      "model": "rankine:block/wehrlite_bricks_pressure_plate_down"
+    }
+  }
+}

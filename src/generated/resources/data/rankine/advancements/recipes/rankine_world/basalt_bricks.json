@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:basalt_bricks"
+    ]
+  },
+  "criteria": {
+    "has_mortar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:mortar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:basalt_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mortar",
+      "has_the_recipe"
+    ]
+  ]
+}

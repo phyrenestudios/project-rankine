@@ -62,6 +62,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Block> CHARRED_LOGS = modBlock("charred_logs");
         public static final Tags.IOptionalNamedTag<Block> ERYTHRINA_LOGS = modBlock("erythrina_logs");
 
+        public static final Tags.IOptionalNamedTag<Block> NETHER_TOPS = modBlock("nether_tops");
         public static final Tags.IOptionalNamedTag<Block> LIGHTNING_VITRIFIED = modBlock("lightning_vitrified");
         public static final Tags.IOptionalNamedTag<Block> METEORITE_REPLACEABLE = modBlock("meteorite_replaceable");
         public static final Tags.IOptionalNamedTag<Block> INTRUSION_PASSABLE = modBlock("intrusion_passable");
@@ -356,6 +357,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Block> STONES_LIMESTONE = forgeBlock("stones/limestone");
         public static final Tags.IOptionalNamedTag<Block> STONES_DOLOMITE = forgeBlock("stones/dolomite");
         public static final Tags.IOptionalNamedTag<Block> STONES_CHALK = forgeBlock("stones/chalk");
+        public static final Tags.IOptionalNamedTag<Block> STONES_SOAPSTONE = forgeBlock("stones/soapstone");
         public static final Tags.IOptionalNamedTag<Block> STONES_SHALE = forgeBlock("stones/shale");
         public static final Tags.IOptionalNamedTag<Block> STONES_SILTSTONE = forgeBlock("stones/siltstone");
         public static final Tags.IOptionalNamedTag<Block> STONES_BRECCIA = forgeBlock("stones/breccia");
@@ -407,6 +409,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> CRAFTING_METAL_INGOTS = modItem("crafting_metal_ingots");
         public static final Tags.IOptionalNamedTag<Item> CRAFTING_METAL_BLOCKS = modItem("crafting_metal_blocks");
         public static final Tags.IOptionalNamedTag<Item> ALKALI_HYDROXIDES = modItem("alkali_hydroxides");
+        public static final Tags.IOptionalNamedTag<Item> ELECTROMAGNETS = modItem("electromagnets");
 
 
 
@@ -423,6 +426,8 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> TREE_CHOPPERS = modItem("tree_choppers");
         public static final Tags.IOptionalNamedTag<Item> GOLD_PANS = modItem("gold_pans");
         public static final Tags.IOptionalNamedTag<Item> SLUICING_TOOLS = modItem("sluicing_tools");
+
+        public static final Tags.IOptionalNamedTag<Item> SILICON_DIOXIDE_BLOCKS = modItem("silicon_dioxide_blocks");
 
         public static final Tags.IOptionalNamedTag<Item> MTT_TOOLS = modItem("mtt_tools");
         public static final Tags.IOptionalNamedTag<Item> MTT_DURABILITY_TOOLS = modItem("mtt_durability_tools");
@@ -1162,6 +1167,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> STONES_LIMESTONE = forgeItem("stones/limestone");
         public static final Tags.IOptionalNamedTag<Item> STONES_DOLOMITE = forgeItem("stones/dolomite");
         public static final Tags.IOptionalNamedTag<Item> STONES_CHALK = forgeItem("stones/chalk");
+        public static final Tags.IOptionalNamedTag<Item> STONES_SOAPSTONE = forgeItem("stones/soapstone");
         public static final Tags.IOptionalNamedTag<Item> STONES_SHALE = forgeItem("stones/shale");
         public static final Tags.IOptionalNamedTag<Item> STONES_SILTSTONE = forgeItem("stones/siltstone");
         public static final Tags.IOptionalNamedTag<Item> STONES_BRECCIA = forgeItem("stones/breccia");

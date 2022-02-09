@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/enstatite_chondrite",
+    "background": "rankine:block/bridgmanham",
     "overlay": "rankine:block/nether_quartz_ore"
   }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:whiteschist"
+    }
+  },
+  "result": {
+    "item": "rankine:whiteschist_wall",
+    "count": 6
+  }
+}

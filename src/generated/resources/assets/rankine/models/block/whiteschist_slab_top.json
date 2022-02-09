@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "rankine:block/whiteschist",
+    "bottom": "rankine:block/whiteschist",
+    "top": "rankine:block/whiteschist"
+  }
+}
