@@ -47,10 +47,10 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
     private final String inheritRecipe;
     public static final AlloyCraftingRecipe.Serializer SERIALIZER = new AlloyCraftingRecipe.Serializer();
     private final int color;
-    private final boolean localName;
+    private final String localName;
 
     public AlloyCraftingRecipe(ResourceLocation idIn, String groupIn, int recipeWidthIn, int recipeHeightIn, NonNullList<Ingredient> recipeItemsIn, ItemStack recipeOutputIn, boolean inherit,
-                               String inheritRecipeIn, boolean nameIn, int colorIn) {
+                               String inheritRecipeIn, String nameIn, int colorIn) {
         this.id = idIn;
         this.group = groupIn;
         this.recipeWidth = recipeWidthIn;
@@ -83,11 +83,17 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
     }
 
     public String getLocalName() {
-        if (!this.localName) {
+        if (this.localName.isEmpty()) {
             return "";
-        } else {
+        } else if (!this.inheritRecipe.isEmpty()){
+            ResourceLocation rs = new ResourceLocation(this.inheritRecipe);
+            String[] s = rs.getPath().split("/");
+            return "item." + rs.getNamespace() + "." + s[s.length-1];
+        } else if (this.localName.equals("def")){
             String[] s = this.id.getPath().split("/");
             return "item." + this.id.getNamespace() + "." + s[s.length-1];
+        } else {
+            return this.localName;
         }
 
     }
@@ -448,7 +454,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             } else {
                 c = 16777215;
             }
-            boolean n = json.has("genName") && json.get("genName").getAsBoolean();
+            String n = json.has("langName") ? json.get("langName").getAsString() : "";
             Map<String, Ingredient> map = AlloyCraftingRecipe.deserializeKey(JSONUtils.getJsonObject(json, "key"));
             String[] astring = AlloyCraftingRecipe.shrink(AlloyCraftingRecipe.patternFromJson(JSONUtils.getJsonArray(json, "pattern")));
             int i = astring[0].length();
@@ -473,7 +479,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             ItemStack itemstack = buffer.readItemStack();
             boolean in = buffer.readBoolean();
             String inR = buffer.readString();
-            boolean n = buffer.readBoolean();
+            String n = buffer.readString();
             int c = buffer.readInt();
             return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, in, inR,n,c);
         }
@@ -490,7 +496,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             buffer.writeItemStack(recipe.recipeOutput);
             buffer.writeBoolean(recipe.inherit);
             buffer.writeString(recipe.inheritRecipe);
-            buffer.writeBoolean(recipe.localName);
+            buffer.writeString(recipe.localName);
             buffer.writeInt(recipe.color);
         }
     }

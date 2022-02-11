@@ -18,8 +18,8 @@
     "additional": 0.2
   },
   "output4": {
-    "item": "rankine:magnetite",
-    "chance": 0.15,
+    "item": "rankine:thortveitite",
+    "chance": 0.10,
     "additional": 0.15
   },
   "output5": {

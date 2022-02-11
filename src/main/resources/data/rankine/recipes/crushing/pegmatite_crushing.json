@@ -18,12 +18,12 @@
     "additional": 0.2
   },
   "output4": {
-    "item": "rankine:plagioclase_feldspar",
-    "chance": 0.25,
+    "item": "rankine:fluorite",
+    "chance": 0.10,
     "additional": 0.15
   },
   "output5": {
-    "item": "rankine:spodumene",
+    "item": "rankine:thortveitite",
     "chance": 0.02,
     "additional": 0.02
   },

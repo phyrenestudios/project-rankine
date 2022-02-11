@@ -1146,6 +1146,17 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .build(consumer);
     }
 
+    private void rodAlloy(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true)
+                .patternLine("  #")
+                .patternLine(" # ")
+                .patternLine("#  ")
+                .key('#', input)
+                .setGroup("rankine")
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer);
+    }
+
     private void twoXtwo(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
         ShapedRecipeBuilder.shapedRecipe(output, count)
                 .patternLine("##")
