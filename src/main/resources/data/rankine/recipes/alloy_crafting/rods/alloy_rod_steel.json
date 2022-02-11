@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
-  "genName": true,
+  "langName": "item.rankine.steel_alloying",
   "inheritRecipe": "rankine:alloying/steel_alloying",
   "color": 3291714,
   "pattern": [

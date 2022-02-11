@@ -8,8 +8,8 @@
     "chance": 1
   },
   "output2": {
-    "item": "rankine:mica",
-    "chance": 0.75,
+    "item": "rankine:fluorite",
+    "chance": 0.25,
     "additional": 0.15
   },
   "output3": {
@@ -18,12 +18,12 @@
     "additional": 0.2
   },
   "output4": {
-    "item": "minecraft:quartz",
+    "item": "rankine:mica",
     "chance": 0.25,
     "additional": 0.15
   },
   "output5": {
-    "item": "rankine:fluorite",
+    "item": "rankine:spodumene",
     "chance": 0.10,
     "additional": 0.05
   },

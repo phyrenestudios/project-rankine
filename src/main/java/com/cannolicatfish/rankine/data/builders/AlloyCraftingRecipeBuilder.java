@@ -38,11 +38,13 @@ public class AlloyCraftingRecipeBuilder {
     private final Map<Character, Ingredient> key = Maps.newLinkedHashMap();
     private final Advancement.Builder advancementBuilder = Advancement.Builder.builder();
     private String group;
+    private final String langName;
 
-    public AlloyCraftingRecipeBuilder(IItemProvider resultIn, int countIn, boolean inheritIn) {
+    public AlloyCraftingRecipeBuilder(IItemProvider resultIn, int countIn, boolean inheritIn, String langNameIn) {
         this.result = resultIn.asItem();
         this.count = countIn;
         this.inherit = inheritIn;
+        this.langName = langNameIn;
     }
 
     /**
@@ -56,11 +58,15 @@ public class AlloyCraftingRecipeBuilder {
      * Creates a new builder for a shaped recipe.
      */
     public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn, int countIn) {
-        return shapedRecipe(resultIn, countIn, false);
+        return shapedRecipe(resultIn, countIn, false, "");
     }
 
     public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn, int countIn, boolean inheritIn) {
-        return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn);
+        return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, "");
+    }
+
+    public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn, int countIn, boolean inheritIn, String langNameIn) {
+        return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, langNameIn);
     }
 
     /**
@@ -142,7 +148,7 @@ public class AlloyCraftingRecipeBuilder {
     public void build(Consumer<IFinishedRecipe> consumerIn, ResourceLocation id) {
         this.validate(id);
         this.advancementBuilder.withParentId(new ResourceLocation("recipes/root")).withCriterion("has_the_recipe", RecipeUnlockedTrigger.create(id)).withRewards(AdvancementRewards.Builder.recipe(id)).withRequirementsStrategy(IRequirementsStrategy.OR);
-        consumerIn.accept(new AlloyCraftingRecipeBuilder.Result(id, this.result, this.count, this.inherit,this.group == null ? "" : this.group, this.pattern, this.key, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getGroup().getPath() + "/" + id.getPath())));
+        consumerIn.accept(new AlloyCraftingRecipeBuilder.Result(id, this.result, this.count, this.inherit,this.group == null ? "" : this.group, this.pattern, this.key, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getGroup().getPath() + "/" + id.getPath()),this.langName));
     }
 
     /**
@@ -181,11 +187,12 @@ public class AlloyCraftingRecipeBuilder {
         private final boolean inherit;
         private final String group;
         private final List<String> pattern;
+        private String langName;
         private final Map<Character, Ingredient> key;
         private final Advancement.Builder advancementBuilder;
         private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation idIn, Item resultIn, int countIn, boolean inheritIn, String groupIn, List<String> patternIn, Map<Character, Ingredient> keyIn, Advancement.Builder advancementBuilderIn, ResourceLocation advancementIdIn) {
+        public Result(ResourceLocation idIn, Item resultIn, int countIn, boolean inheritIn, String groupIn, List<String> patternIn, Map<Character, Ingredient> keyIn, Advancement.Builder advancementBuilderIn, ResourceLocation advancementIdIn, String langNameIn) {
             this.id = idIn;
             this.result = resultIn;
             this.count = countIn;
@@ -195,6 +202,7 @@ public class AlloyCraftingRecipeBuilder {
             this.key = keyIn;
             this.advancementBuilder = advancementBuilderIn;
             this.advancementId = advancementIdIn;
+            this.langName = langNameIn;
         }
 
         public void serialize(JsonObject json) {
@@ -203,7 +211,7 @@ public class AlloyCraftingRecipeBuilder {
             }
 
             json.addProperty("inherit", this.inherit);
-
+            json.addProperty("langName", this.langName);
             JsonArray jsonarray = new JsonArray();
 
             for(String s : this.pattern) {
