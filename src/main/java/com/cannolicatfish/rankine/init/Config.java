@@ -70,7 +70,6 @@ public class Config {
         public final ForgeConfigSpec.IntValue XENOTIME_ORE_HL;
         public final ForgeConfigSpec.IntValue BADDELEYITE_ORE_HL;
         public final ForgeConfigSpec.IntValue COLTAN_ORE_HL;
-        public final ForgeConfigSpec.IntValue HALITE_ORE_HL;
         public final ForgeConfigSpec.IntValue INTERSPINIFEX_ORE_HL;
         public final ForgeConfigSpec.IntValue PETALITE_ORE_HL;
         public final ForgeConfigSpec.IntValue COBALTITE_ORE_HL;
@@ -130,7 +129,7 @@ public class Config {
             CINNABAR_ORE_HL = b.comment("Harvest Level of Cinnabar Ore.")
                     .defineInRange("cinnabarOreHL", 2, 0, 4);
             MAGNETITE_ORE_HL = b.comment("Harvest Level of Magnetite Ore.")
-                    .defineInRange("magnetiteOreHL", 4, 0, 4);
+                    .defineInRange("magnetiteOreHL", 3, 0, 4);
             HEMATITE_ORE_HL = b.comment("Harvest Level of Hematite Ore.")
                     .defineInRange("hematiteOreHL", 2, 0, 4);
             PENTLANDITE_ORE_HL = b.comment("Harvest Level of Pentlandite Ore.")
@@ -152,7 +151,7 @@ public class Config {
             ILMENITE_ORE_HL = b.comment("Harvest Level of Ilmenite Ore.")
                     .defineInRange("ilmeniteOreHL", 3, 0, 4);
             WOLFRAMITE_ORE_HL = b.comment("Harvest Level of Wolframite Ore.")
-                    .defineInRange("wolframiteOreHL", 4, 0, 4);
+                    .defineInRange("wolframiteOreHL", 3, 0, 4);
             RHENIITE_ORE_HL = b.comment("Harvest Level of Rheniite Ore.")
                     .defineInRange("rheniiteOreHL", 4, 0, 4);
             PLUMBAGO_ORE_HL = b.comment("Harvest Level of Plumbago Ore.")
@@ -184,17 +183,15 @@ public class Config {
             XENOTIME_ORE_HL = b.comment("Harvest Level of Xenotime Ore.")
                     .defineInRange("xenotimeOreHL", 4, 0, 4);
             BADDELEYITE_ORE_HL = b.comment("Harvest Level of Baddeleyite Ore.")
-                    .defineInRange("baddeleyiteOreHL", 4, 0, 4);
-            HALITE_ORE_HL = b.comment("Harvest Level of Halite Ore.")
-                    .defineInRange("haliteOreHL", 0, 0, 4);
+                    .defineInRange("baddeleyiteOreHL", 2, 0, 4);
             INTERSPINIFEX_ORE_HL = b.comment("Harvest Level of Interspinifex Ore.")
                     .defineInRange("interspinifexOreHL", 3, 0, 4);
             PETALITE_ORE_HL = b.comment("Harvest Level of Petalite Ore.")
                     .defineInRange("petaliteOreHL", 3, 0, 4);
             COBALTITE_ORE_HL = b.comment("Harvest Level of Cobaltite Ore.")
-                    .defineInRange("cobaltiteOreHL", 4, 0, 4);
+                    .defineInRange("cobaltiteOreHL", 3, 0, 4);
             CRYOLITE_ORE_HL = b.comment("Harvest Level of Cryolite Ore.")
-                    .defineInRange("cryoliteOreHL", 4, 0, 4);
+                    .defineInRange("cryoliteOreHL", 2, 0, 4);
             COLTAN_ORE_HL = b.comment("Harvest Level of Coltan Ore.")
                     .defineInRange("coltanOreHL", 4, 0, 4);
             PYRITE_ORE_HL = b.comment("Harvest Level of Pyrite Ore.")
@@ -250,7 +247,8 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue LAYER_WIDTH;
         public final ForgeConfigSpec.IntValue LAYER_THICKNESS;
         public final ForgeConfigSpec.IntValue NOISE_SCALE;
-        public final ForgeConfigSpec.IntValue NOISE_OFFSET;
+        public final ForgeConfigSpec.IntValue SOIL_NOISE_SCALE;
+        //public final ForgeConfigSpec.IntValue NOISE_OFFSET;
 
         public final ForgeConfigSpec.IntValue OVERWORLD_INTRUSION_RADIUS;
         public final ForgeConfigSpec.DoubleValue OVERWORLD_INTRUSION_SHRINK;
@@ -265,12 +263,15 @@ public class Config {
                     .define("flatBedrock",false);
             FLAT_BEDROCK_NETHER = b.comment("Generates the Nether with a flat bedrock layer.")
                     .define("flatBedrockNether",false);
+            BEDROCK_LAYERS = b.comment("Layers of bedrock to generate if flatBedrock is true")
+                    .defineInRange("bedrockLayers", 1, 0, 5);
+
+            SOIL_NOISE_SCALE = b.comment("This determines how mixed the two types of soil are per biome. Larger numbers mean larger patches.")
+                    .defineInRange("soilNoiseScale", 60, 1, Integer.MAX_VALUE);
             SECRET_GEN = b.comment("Figure it out")
                     .define("secretGen",true);
             REPLACE_VANILLA_ORES = b.comment("If enabled, replaces vanilla ores with the Rankine counterparts which will mimic stones around them.")
-                    .define("replaceVanillaOres",true);
-            BEDROCK_LAYERS = b.comment("Layers of bedrock to generate if flatBedrock is true")
-                    .defineInRange("bedrockLayers", 1, 0, 5);
+                    .define("replaceVanillaOres",false);
             DISABLE_VANILLA_FEATURES = b.comment("Disable vanilla features in the overworld. Works by replacing the listed blocks in #rankine:vanilla_override with stones")
                     .define("disableVanillaOres",true);
             RANKINE_FLORA = b.comment("Enable/Disable Project Rankine flowers and berry bushes in world.")
@@ -318,8 +319,8 @@ public class Config {
                     .defineInRange("layerThickness", 13, 1, Integer.MAX_VALUE);
             NOISE_SCALE = b.comment("This determines how wide stone layers generate. Smaller values means it will look more like bedrock. Default value is 125.")
                     .defineInRange("noiseScale", 100, 1, Integer.MAX_VALUE);
-            NOISE_OFFSET = b.comment("This determines how close the overlap of noise layers is. A value of 0 means all layers are shaped identically.")
-                    .defineInRange("noiseOffset", 0, 0, Integer.MAX_VALUE);
+           // NOISE_OFFSET = b.comment("This determines how close the overlap of noise layers is. A value of 0 means all layers are shaped identically.")
+            //        .defineInRange("noiseOffset", 0, 0, Integer.MAX_VALUE);
             b.pop();
 
             b.comment("Settings for stone columns").push("columns");
@@ -1027,7 +1028,7 @@ public class Config {
                     "minecraft:air",
                     "minecraft:air"));
             biomeSettings.add(Arrays.asList(Biome.Category.JUNGLE.getName(),
-                    Arrays.asList("rankine:humus_grass_block","rankine:humus","rankine:clay_loam","rankine:clay_loam_grass_block","rankine:clay_loam","rankine:clay_loam"),
+                    Arrays.asList("rankine:humus_grass_block","rankine:humus","rankine:laterite","rankine:clay_loam_grass_block","rankine:clay_loam","rankine:laterite"),
                     Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","rankine:pegmatite|3|rankine:petalite_ore|0.02","minecraft:stone|1|minecraft:coal_ore|0.01"),
                     Arrays.asList("rankine:whiteschist","rankine:eclogite","rankine:gneiss","rankine:mica_schist","rankine:phyllite","rankine:slate","rankine:mudstone"),
                     Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:crimson_clover|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
@@ -1092,7 +1093,6 @@ public class Config {
 
             oreSettings.add(Arrays.asList("rankine:subbituminous_ore", Arrays.asList("all"), "sphere", 20, 60, 3, 1.0D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:bituminous_ore", Arrays.asList("all"), "sphere", 5, 30, 3, 1.0D, 1, 0.2));
-            oreSettings.add(Arrays.asList("rankine:halite_ore", Arrays.asList("river","ocean","desert","mesa"), "default", 30, 60, 5, 1.0D, 2, 1.0));
 
             oreSettings.add(Arrays.asList("rankine:hematite_ore", Arrays.asList("all"), "sphere", 30, 60, 3, 0.6D, 1, 0.5));
             oreSettings.add(Arrays.asList("rankine:hematite_ore", Arrays.asList("all"), "sphere", 70, 120, 3, 0.6D, 1, 0.5));
@@ -1100,7 +1100,7 @@ public class Config {
             oreSettings.add(Arrays.asList("rankine:chalcocite_ore", Arrays.asList("all"), "sphere", 70, 120, 3, 0.6D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:magnesite_ore", Arrays.asList("all"), "sphere", 10, 30, 3, 0.6D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:chromite_ore", Arrays.asList("all"), "sphere", 5, 20, 3, 0.4D, 1, 0.2));
-            oreSettings.add(Arrays.asList("rankine:cryolite_ore", Arrays.asList("extreme_hills","taiga","icy"), "sphere", 5, 20, 3, 0.6D, 1, 0.1));
+            oreSettings.add(Arrays.asList("rankine:cryolite_ore", Arrays.asList("extreme_hills","taiga","icy"), "sphere", 5, 20, 3, 0.6D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:bauxite_ore", Arrays.asList("jungle","swamp","plains","forest","taiga"), "sphere", 30, 60, 3, 0.6D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:celestine_ore", Arrays.asList("jungle","swamp","plains","forest","taiga"), "sphere", 10, 40, 3, 0.6D, 1, 0.1));
             oreSettings.add(Arrays.asList("rankine:sphalerite_ore", Arrays.asList("desert","mesa","savanna","plains"), "sphere", 30, 60, 3, 0.6D, 1, 0.2));
@@ -1113,13 +1113,15 @@ public class Config {
             //oreSettings.add(Arrays.asList("rankine:cinnabar_ore", Arrays.asList("all"), "sphere", 5, 30, 4, 0.6D, 1, 0.1));
             oreSettings.add(Arrays.asList("rankine:sperrylite_ore", Arrays.asList("all"), "default", 6, 10, 10, 1.0D, 1, 1.0));
 
-            oreSettings.add(Arrays.asList("rankine:bog_iron", Arrays.asList("swamp","jungle"), "disk", 40, 65, 4, 0.7D, 1, 1.0));
-            oreSettings.add(Arrays.asList("rankine:ironstone", Arrays.asList("desert","savanna","mesa"), "disk", 40, 65, 4, 0.7D, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:bog_iron", Arrays.asList("swamp","jungle"), "disk", 40, 65, 4, 0.7D, 2, 1.0));
+            oreSettings.add(Arrays.asList("rankine:ironstone", Arrays.asList("desert","savanna","mesa"), "disk", 40, 65, 4, 0.7D, 2, 1.0));
             oreSettings.add(Arrays.asList("rankine:kaolin", Arrays.asList("swamp","jungle","mushroom"), "disk", 40, 70, 4, 0.7D, 1, 0.4));
             oreSettings.add(Arrays.asList("rankine:fire_clay", Arrays.asList("all"), "disk", 55, 70, 3, 0.8D, 1, 0.8));
-            oreSettings.add(Arrays.asList("rankine:sylvinite", Arrays.asList("beach","ocean","desert"), "disk", 30, 50, 4, 0.6D, 1, 0.4));
+            oreSettings.add(Arrays.asList("rankine:sylvinite", Arrays.asList("beach","ocean","desert"), "disk", 30, 50, 4, 0.6D, 1, 0.5));
             oreSettings.add(Arrays.asList("rankine:phosphorite", Arrays.asList("beach","ocean","desert"), "disk", 30, 50, 4, 0.6D, 1, 0.4));
             oreSettings.add(Arrays.asList("rankine:phosphorite", Arrays.asList("extreme_hills"), "disk", 70, 100, 4, 0.6D, 1, 0.5));
+            oreSettings.add(Arrays.asList("rankine:sodium_chloride_block", Arrays.asList("river","ocean","desert","mesa"), "disk", 30, 60, 5, 0.6D, 1, 0.4));
+            oreSettings.add(Arrays.asList("rankine:pink_salt_block", Arrays.asList("extreme_hills"), "disk", 70, 100, 3, 0.6D, 1, 0.3));
 
             oreSettings.add(Arrays.asList("rankine:basaltic_tuff", Arrays.asList("ocean","beach","mushroom","none"), "disk", 20, 50, 6, 1.0D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:andesitic_tuff", Arrays.asList("extreme_hills"), "disk", 70, 100, 6, 1.0D, 1, 0.2));

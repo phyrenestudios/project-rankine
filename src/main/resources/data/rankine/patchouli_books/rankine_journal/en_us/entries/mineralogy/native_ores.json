@@ -1,6 +1,6 @@
 {
   "name": "rankine.journal.cat_mineralogy.native_ores.name",
-  "icon": "rankine:native_gold_ore",
+  "icon": "rankine:native_bismuth_ore",
   "category": "mineralogy",
   "pages": [
     {
@@ -8,14 +8,10 @@
       "text": "rankine.journal.cat_mineralogy.native_ores.text1"
     },
     {
-      "type": "text",
-      "text": "rankine.journal.cat_mineralogy.native_ores.text2"
-    },
-    {
       "type": "spotlight",
       "item": "rankine:native_tin_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.native_ores.tex3t"
+      "text": "rankine.journal.cat_mineralogy.native_ores.text3"
     },
     {
       "type": "spotlight",
@@ -43,42 +39,6 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:native_sulfur_ore",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.native_ores.text7"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:native_arsenic_ore",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.native_ores.text7"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:native_indium_ore",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.native_ores.text7"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:native_gallium_ore",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.native_ores.text7"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:native_tellurium_ore",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.native_ores.text7"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:native_selenium_ore",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.native_ores.text7"
-    },
-    {
-      "type": "spotlight",
       "item": "rankine:stibnite_ore",
       "link_recipe": true,
       "text": "rankine.journal.cat_mineralogy.native_ores.text8"
@@ -88,6 +48,42 @@
       "item": "rankine:porphyry_copper",
       "link_recipe": true,
       "text": "rankine.journal.cat_mineralogy.native_ores.text9"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:native_sulfur_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.native_ores.text10"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:native_arsenic_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.native_ores.text11"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:native_indium_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.native_ores.text12"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:native_gallium_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.native_ores.text13"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:native_tellurium_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.native_ores.text14"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:native_selenium_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.native_ores.text15"
     }
   ]
 }

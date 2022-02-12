@@ -221,9 +221,6 @@
     },
     "type=73": {
       "model": "rankine:block/pyrite_ore73"
-    },
-    "type=74": {
-      "model": "rankine:block/pyrite_ore74"
     }
   }
 }

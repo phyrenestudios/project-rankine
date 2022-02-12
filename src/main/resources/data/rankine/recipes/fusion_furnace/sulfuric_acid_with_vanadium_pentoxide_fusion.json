@@ -11,7 +11,7 @@
     "fluid": "rankine:sulfuric_acid"
   },
   "result1": {
-    "item": "rankine:vanadium_nugget"
+    "item": "rankine:vanadium_ingot"
   },
   "gasInput": {
     "item": "rankine:sulfur_dioxide_gas_bottle"

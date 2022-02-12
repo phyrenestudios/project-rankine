@@ -1028,9 +1028,19 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> BERRIES_SWEET_BERRY = forgeItem("berries/sweet_berry");
         public static final Tags.IOptionalNamedTag<Item> BERRIES = forgeItem("berries");
         public static final Tags.IOptionalNamedTag<Item> NUTS = forgeItem("nuts");
+        public static final Tags.IOptionalNamedTag<Item> GRAIN = forgeItem("grain");
+        public static final Tags.IOptionalNamedTag<Item> CARBS = forgeItem("carbs");
+        public static final Tags.IOptionalNamedTag<Item> FLOUR_PLANTS = forgeItem("flour_plants");
+        public static final Tags.IOptionalNamedTag<Item> FIBER = forgeItem("fiber");
+        public static final Tags.IOptionalNamedTag<Item> FIBER_JUTE = forgeItem("fiber/jute");
+        public static final Tags.IOptionalNamedTag<Item> VEGETABLES = forgeItem("vegetables");
+        public static final Tags.IOptionalNamedTag<Item> VEGETABLES_SOYBEANS = forgeItem("vegetables/soybeans");
+        //public static final Tags.IOptionalNamedTag<Item> VINEGAR = forgeItem("vinegar");
+        public static final Tags.IOptionalNamedTag<Item> SOYMILK = forgeItem("soymilk");
+        public static final Tags.IOptionalNamedTag<Item> FIRMTOFU = forgeItem("firmtofu");
+        public static final Tags.IOptionalNamedTag<Item> JELLIES = forgeItem("jellies");
 
 
-        //public static final Tags.IOptionalNamedTag<Item> BREEDABLES_COW = forgeItem("nuts");
 
 
 

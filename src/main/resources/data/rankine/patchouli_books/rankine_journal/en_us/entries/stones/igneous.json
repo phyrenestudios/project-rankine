@@ -175,6 +175,24 @@
     },
     {
       "type": "spotlight",
+      "item": "rankine:harzburgite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lherzolite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:wehrlite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.igneous.text"
+    },
+    {
+      "type": "spotlight",
       "item": "rankine:komatiite",
       "link_recipe": true,
       "text": "rankine.journal.cat_stones.igneous.text"

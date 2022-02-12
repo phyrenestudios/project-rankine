@@ -19,12 +19,11 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
 
 public class PostWorldReplacerFeature extends Feature<NoFeatureConfig> {
-    public static final int NOISE_SCALE = Config.MISC_WORLDGEN.NOISE_SCALE.get();
-    public static final int NOISE_OFFSET = Config.MISC_WORLDGEN.NOISE_OFFSET.get();
     public PostWorldReplacerFeature(Codec<NoFeatureConfig> configFactoryIn) {
         super(configFactoryIn);
     }
@@ -33,15 +32,10 @@ public class PostWorldReplacerFeature extends Feature<NoFeatureConfig> {
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
 
         IChunk chunk = reader.getChunk(pos);
-        int startX = chunk.getPos().getXStart();
-        int startZ = chunk.getPos().getZStart();
-        int endX = chunk.getPos().getXEnd();
-        int endZ = chunk.getPos().getZEnd();
-
-        for (int x = startX; x <= endX; ++x) {
-            for (int z = startZ; z <= endZ; ++z) {
+        for (int x = chunk.getPos().getXStart(); x <= chunk.getPos().getXEnd(); ++x) {
+            for (int z = chunk.getPos().getZStart(); z <= chunk.getPos().getZEnd(); ++z) {
                 int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
-                double noise = Biome.INFO_NOISE.noiseAt((double) x / 70, (double) z / 70, false);
+                double noise = Biome.INFO_NOISE.noiseAt((double) x / Config.MISC_WORLDGEN.SOIL_NOISE_SCALE.get(), (double) z / Config.MISC_WORLDGEN.SOIL_NOISE_SCALE.get(), false);
 
                 for (int y = 0; y < endY; ++y) {
                     BlockPos TARGET_POS = new BlockPos(x, y, z);
@@ -110,6 +104,10 @@ public class PostWorldReplacerFeature extends Feature<NoFeatureConfig> {
                         } else if (TARGET.matchesBlock(Blocks.SANDSTONE)) {
                             if (WorldgenUtils.SANDSTONES.get(genBiomesIndex) != Blocks.AIR) {
                                 reader.setBlockState(TARGET_POS, WorldgenUtils.SANDSTONES.get(genBiomesIndex).getDefaultState(), 2);
+                            }
+                        } else if (TARGET.matchesBlock(Blocks.SMOOTH_SANDSTONE) || TARGET.matchesBlock(Blocks.SMOOTH_RED_SANDSTONE)) {
+                            if (WorldgenUtils.SANDSTONES.get(genBiomesIndex) != Blocks.AIR && ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(WorldgenUtils.SANDSTONES.get(genBiomesIndex).getRegistryName().toString().replace(":",":smooth_"))) != null) {
+                                reader.setBlockState(TARGET_POS, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(WorldgenUtils.SANDSTONES.get(genBiomesIndex).getRegistryName().toString().replace(":",":smooth_"))).getDefaultState(), 2);
                             }
                         }
 

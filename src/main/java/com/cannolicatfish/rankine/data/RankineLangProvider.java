@@ -189,6 +189,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.PISTON_CRUSHER.get(),
                 RankineBlocks.BOTANIST_STATION.get(),
                 RankineBlocks.DIAMOND_ANVIL_CELL.get(),
+                RankineBlocks.PARTICLE_ACCELERATOR.get(),
                 RankineBlocks.GYRATORY_CRUSHER.get(),
                 RankineBlocks.EVAPORATION_TOWER.get(),
                 //RankineBlocks.LASER_PYLON_BASE.get(),
@@ -1045,22 +1046,58 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mineralogy.name", "Mineralogy");
         add("rankine.journal.cat_mineralogy.desc", "Shiny things");
 
+        add("rankine.journal.cat_mineralogy.meteorites.name", "Meteorites");
+        add("rankine.journal.cat_mineralogy.meteorites.text1","");
+
+
+        add("rankine.journal.cat_mineralogy.fumaroles.name", "Fumaroles");
+        add("rankine.journal.cat_mineralogy.fumaroles.text1","");
+        add("rankine.journal.cat_mineralogy.fumaroles.text2","Generates low in the Overworld.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text3","Generates low in the Nether.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text4","Generates low in the Nether.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text5","Generates low in the Overworld.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text6","A mineral rich stone derived from the outgassing of deep-world materials. Important source of Vanadium Pentoxide and minerals for Beryllium production.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text7","A crystallized form of ammonia compounds. Used for ammonia production and complex metal reactions. Crystals form on the underside of fumarole deposit blocks that have water above them.");
+
+        add("rankine.journal.cat_mineralogy.gem_ores.name", "Gem Ores");
+        add("rankine.journal.cat_mineralogy.gem_ores.text1", "Gem ores refer to stones that directly drop their respective item when mined. Most can also be crushed for additional resources.");
+
+        add("rankine.journal.cat_mineralogy.mineral_ores.name", "Mineral Ores");
+        add("rankine.journal.cat_mineralogy.mineral_ores.text1", "Mineral ores are rocks containing more complex compounds that may not be directly usable. They are often of higher harvest level, drop their raw mineral when mined and additional resources when crushed.");
+
+
         add("rankine.journal.cat_mineralogy.native_ores.name", "Native Ores");
-        add("rankine.journal.cat_mineralogy.native_ores.text1", "");
-        add("rankine.journal.cat_mineralogy.native_ores.text2", "");
-        add("rankine.journal.cat_mineralogy.native_ores.text3", "");
-        add("rankine.journal.cat_mineralogy.native_ores.text4", "");
-        add("rankine.journal.cat_mineralogy.native_ores.text5", "");
-        add("rankine.journal.cat_mineralogy.native_ores.text6", "");
-        add("rankine.journal.cat_mineralogy.native_ores.text7", "");
+        add("rankine.journal.cat_mineralogy.native_ores.text1", "Native is a term used to describe elements that exist in their pure form in nature. The following blocks can be mined at a low harvest level to obtain pure metal samples.");
+        //add("rankine.journal.cat_mineralogy.native_ores.text2", "");
+        add("rankine.journal.cat_mineralogy.native_ores.text3", "Source of Tin. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.text4", "Source of Lead. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.text5", "Source of Bismuth. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.text6", "Source of Silver. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.text7", "Source of Gold. $(br2)Found scattered across the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.text8", "Source of Antimony. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.text9", "Source of Copper. $(br2)Found in porphyry intrusions.");
+        add("rankine.journal.cat_mineralogy.native_ores.text10", "Source of Sulfur. $(br2)Found scattered across the Nether.");;
+        add("rankine.journal.cat_mineralogy.native_ores.text11", "Source of Arsenic. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.native_ores.text12", "Source of Indium. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.native_ores.text13", "Source of Gallium. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.native_ores.text14", "Source of Tellurium. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.native_ores.text15", "Source of Selenium. $(br2)Found scattered across the End.");
 
         //Orientation
         add("rankine.journal.cat_orientation.name", "Orientation");
         add("rankine.journal.cat_orientation.desc", "Notes from very brief orientation to the Project. These are all I have to look over for now.");
+        add("rankine.journal.cat_orientation.foundation.name", "Foundation");
+        add("rankine.journal.cat_orientation.foundation.text1", "Worldgen");
+        add("rankine.journal.cat_orientation.foundation.text2", "");
+        add("rankine.journal.cat_orientation.foundation.text3", "Harvest Levels");
+        add("rankine.journal.cat_orientation.foundation.text4", "Harvest level is the tier at which tools can mine certain blocks. The vanilla numbers are: $(li)0: Wooden $(li)1: Stone $(li)2: Iron $(li)3: Diamond $(li)4: Netherite $(li)0: Golden");
+        add("rankine.journal.cat_orientation.foundation.text5", "Project Rankine tools are added to all harvest levels to provide a wider breadth of options and catering to local mineral depositions.");
+
 
         //Stones
         add("rankine.journal.cat_stones.name", "Stones");
         add("rankine.journal.cat_stones.desc", "");
+
         add("rankine.journal.cat_stones.igneous.name", "Igneous Stones");
         add("rankine.journal.cat_stones.igneous.text1", "");
         add("rankine.journal.cat_stones.igneous.text2", "");
@@ -1079,6 +1116,14 @@ public class RankineLangProvider extends LanguageProvider {
         //Tools
         add("rankine.journal.cat_tools.name", "Tools");
         add("rankine.journal.cat_tools.desc", "Various implements use to manipulate the world.");
+
+
+        add("rankine.journal.cat_tools.debug_tools.name", "XX Tools");
+        add("rankine.journal.cat_tools.debug_tools.text1", "");
+        add("rankine.journal.cat_tools.debug_tools.text2", "Swords");
+        add("rankine.journal.cat_tools.debug_tools.text3", "Shovels");
+        add("rankine.journal.cat_tools.debug_tools.text4", "Pixaxes");
+        add("rankine.journal.cat_tools.debug_tools.text5", "Axes");
 
 
 

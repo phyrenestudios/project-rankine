@@ -1,0 +1,22 @@
+{
+  "name": "rankine.journal.cat_tools.standard_tools.name",
+  "icon": "rankine:bronze_pickaxe",
+  "category": "tools",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_tools.standard_tools.text1"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_tools.standard_tools.text2",
+      "text": "rankine.journal.cat_tools.standard_tools.text3"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_tools.standard_tools.text4",
+      "text": "rankine.journal.cat_tools.standard_tools.text5"
+    }
+  ]
+}

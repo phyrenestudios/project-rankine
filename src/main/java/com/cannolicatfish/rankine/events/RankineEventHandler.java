@@ -9,6 +9,7 @@ import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
+import com.cannolicatfish.rankine.commands.BlockWallCommand;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.commands.GiveTagCommand;
 import com.cannolicatfish.rankine.compatibility.Patchouli;
@@ -25,7 +26,6 @@ import com.cannolicatfish.rankine.items.totems.SofteningTotemItem;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;
-import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
 import com.cannolicatfish.rankine.util.RankineVillagerTrades;
 import com.cannolicatfish.rankine.util.RockGeneratorUtils;
@@ -46,7 +46,6 @@ import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
@@ -62,7 +61,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -128,6 +126,7 @@ public class RankineEventHandler {
     public static void registerCommands(RegisterCommandsEvent event) {
         CreateAlloyCommand.register(event.getDispatcher());
         GiveTagCommand.register(event.getDispatcher());
+        BlockWallCommand.register(event.getDispatcher());
     }
 
     @SubscribeEvent

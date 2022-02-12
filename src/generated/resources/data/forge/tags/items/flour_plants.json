@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:barley",
+    "rankine:oats",
+    "rankine:corn_ear",
+    "rankine:sorghum",
+    "rankine:millet",
+    "rankine:rye",
+    "rankine:rice"
+  ]
+}

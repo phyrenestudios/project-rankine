@@ -24,6 +24,7 @@ import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableBlock;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableTile;
 import com.cannolicatfish.rankine.blocks.mushrooms.RankineWallMushroomBlock;
+import com.cannolicatfish.rankine.blocks.particleaccelerator.ParticleAcceleratorBlock;
 import com.cannolicatfish.rankine.blocks.pedestal.PedestalBlock;
 import com.cannolicatfish.rankine.blocks.pedestal.PedestalTile;
 import com.cannolicatfish.rankine.blocks.plants.*;
@@ -88,19 +89,19 @@ public class RankineBlocks {
 
 
     //Base Properties
-    public static Block.Properties IGNEOUS_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.5F, 6.0F).harvestLevel(0);
-    public static Block.Properties POLISHED_IGNEOUS_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.5F * Config.BLOCK_PROPERTIES.POLISHED_HARDNESS_MULT.get().floatValue(), 6.0F * Config.BLOCK_PROPERTIES.POLISHED_RESISTANCE_MULT.get().floatValue()).harvestLevel(0);
-    public static Block.Properties IGNEOUS_STONE_BRICKS = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.5F * Config.BLOCK_PROPERTIES.BRICKS_HARDNESS_MULT.get().floatValue(), 6.0F * Config.BLOCK_PROPERTIES.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(0);
-    public static Block.Properties METAMORPHIC_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.5F, 6.0F).harvestLevel(0);
-    public static Block.Properties POLISHED_METAMORPHIC_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.5F * Config.BLOCK_PROPERTIES.POLISHED_HARDNESS_MULT.get().floatValue(), 6.0F * Config.BLOCK_PROPERTIES.POLISHED_RESISTANCE_MULT.get().floatValue()).harvestLevel(0);
-    public static Block.Properties METAMORPHIC_STONE_BRICKS = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.5F * Config.BLOCK_PROPERTIES.BRICKS_HARDNESS_MULT.get().floatValue(), 6.0F * Config.BLOCK_PROPERTIES.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(0);
-    public static Block.Properties SEDIMENTARY_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 4.0F).harvestLevel(0);
-    public static Block.Properties POLISHED_SEDIMENTARY_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F * Config.BLOCK_PROPERTIES.POLISHED_HARDNESS_MULT.get().floatValue(), 4.0F * Config.BLOCK_PROPERTIES.POLISHED_RESISTANCE_MULT.get().floatValue()).harvestLevel(0);
-    public static Block.Properties SEDIMENTARY_STONE_BRICKS = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F * Config.BLOCK_PROPERTIES.BRICKS_HARDNESS_MULT.get().floatValue(), 4.0F * Config.BLOCK_PROPERTIES.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(0);
+    public static Block.Properties IGNEOUS_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 6.0F).harvestLevel(0);
+    public static Block.Properties POLISHED_IGNEOUS_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F * Config.BLOCK_PROPERTIES.POLISHED_HARDNESS_MULT.get().floatValue(), 6.0F * Config.BLOCK_PROPERTIES.POLISHED_RESISTANCE_MULT.get().floatValue()).harvestLevel(0);
+    public static Block.Properties IGNEOUS_STONE_BRICKS = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F * Config.BLOCK_PROPERTIES.BRICKS_HARDNESS_MULT.get().floatValue(), 6.0F * Config.BLOCK_PROPERTIES.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(0);
+    public static Block.Properties METAMORPHIC_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 6.0F).harvestLevel(0);
+    public static Block.Properties POLISHED_METAMORPHIC_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F * Config.BLOCK_PROPERTIES.POLISHED_HARDNESS_MULT.get().floatValue(), 6.0F * Config.BLOCK_PROPERTIES.POLISHED_RESISTANCE_MULT.get().floatValue()).harvestLevel(0);
+    public static Block.Properties METAMORPHIC_STONE_BRICKS = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F * Config.BLOCK_PROPERTIES.BRICKS_HARDNESS_MULT.get().floatValue(), 6.0F * Config.BLOCK_PROPERTIES.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(0);
+    public static Block.Properties SEDIMENTARY_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F, 4.0F).harvestLevel(0);
+    public static Block.Properties POLISHED_SEDIMENTARY_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F * Config.BLOCK_PROPERTIES.POLISHED_HARDNESS_MULT.get().floatValue(), 4.0F * Config.BLOCK_PROPERTIES.POLISHED_RESISTANCE_MULT.get().floatValue()).harvestLevel(0);
+    public static Block.Properties SEDIMENTARY_STONE_BRICKS = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F * Config.BLOCK_PROPERTIES.BRICKS_HARDNESS_MULT.get().floatValue(), 4.0F * Config.BLOCK_PROPERTIES.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(0);
 
 
     public static Block.Properties DEF_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F);
-    public static Block.Properties DEF_ORE = Block.Properties.create(Material.ROCK).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 3.0F);
+    public static Block.Properties DEF_ORE = Block.Properties.create(Material.ROCK).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.5F, 4.0F);
     public static Block.Properties DEF_METAL_BLOCK = Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 6.0F).harvestLevel(0);
     public static Block.Properties DEF_WOOD = Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F, 3.0F).harvestLevel(0);
     public static Block.Properties DEF_LEAVES = Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid();
@@ -1763,12 +1764,13 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CVD_GLASS = REGISTRY.register("cvd_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(12.0F, 60.0F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
     public static final RegistryObject<Block> COB = REGISTRY.register("cob", () -> new Block(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> PHOSPHORITE = REGISTRY.register("phosphorite", () -> new Block(DEF_STONE.harvestLevel(1)));
+    public static final RegistryObject<Block> LATERITE = REGISTRY.register("laterite", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.0F).sound(SoundType.GROUND)));
     public static final RegistryObject<Block> SYLVINITE = REGISTRY.register("sylvinite", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> FUMAROLE_DEPOSIT = REGISTRY.register("fumarole_deposit", () -> new FumaroleDepositBlock(DEF_STONE.harvestLevel(3)));
     public static final RegistryObject<Block> IRONSTONE = REGISTRY.register("ironstone", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> BOG_IRON = REGISTRY.register("bog_iron", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> PORPHYRY_COPPER = REGISTRY.register("porphyry_copper", () -> new Block(DEF_STONE.harvestLevel(1)));
-    public static final RegistryObject<Block> KIMBERLITIC_DIAMOND_ORE = REGISTRY.register("kimberlitic_diamond_ore", () -> new Block(DEF_STONE.harvestLevel(4)));
+    public static final RegistryObject<Block> KIMBERLITIC_DIAMOND_ORE = REGISTRY.register("kimberlitic_diamond_ore", () -> new Block(DEF_STONE.harvestLevel(3)));
     public static final RegistryObject<Block> QUICKLIME_BLOCK = REGISTRY.register("quicklime_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> MAGNESITE_BLOCK = REGISTRY.register("magnesite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> MAGNESIA_BLOCK = REGISTRY.register("magnesia_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
@@ -2560,7 +2562,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PLUMBAGO_ORE = REGISTRY.register("plumbago_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.PLUMBAGO_ORE_HL.get())));
     public static final RegistryObject<Block> SPERRYLITE_ORE = REGISTRY.register("sperrylite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.SPERRYLITE_ORE_HL.get())));
     public static final RegistryObject<Block> CINNABAR_ORE = REGISTRY.register("cinnabar_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.CINNABAR_ORE_HL.get())));
-    public static final RegistryObject<Block> HALITE_ORE = REGISTRY.register("halite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.HALITE_ORE_HL.get())));
     public static final RegistryObject<Block> CRYOLITE_ORE = REGISTRY.register("cryolite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.CRYOLITE_ORE_HL.get())));
     public static final RegistryObject<Block> PYRITE_ORE = REGISTRY.register("pyrite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.PYRITE_ORE_HL.get())));
     public static final RegistryObject<Block> KAMACITE_ORE = REGISTRY.register("kamacite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.KAMACITE_ORE_HL.get())));
@@ -2678,6 +2679,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GYRATORY_CRUSHER = REGISTRY.register("gyratory_crusher", () -> new GyratoryCrusherBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> EVAPORATION_TOWER = REGISTRY.register("evaporation_tower", () -> new EvaporationTowerBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> DIAMOND_ANVIL_CELL = REGISTRY.register("diamond_anvil_cell", () -> new DiamondAnvilCellBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> PARTICLE_ACCELERATOR = REGISTRY.register("particle_accelerator", () -> new ParticleAcceleratorBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> RANKINE_BOX = REGISTRY.register("rankine_box", () -> new RankineBoxBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> FUSION_FURNACE = REGISTRY.register("fusion_furnace", () -> new FusionFurnaceBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     //public static final RegistryObject<Block> LASER_QUARRY = REGISTRY.register("laser_quarry", () -> new LaserQuarryBlock(DEF_METAL_BLOCK));

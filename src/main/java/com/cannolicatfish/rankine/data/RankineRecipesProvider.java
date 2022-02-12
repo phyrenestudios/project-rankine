@@ -283,6 +283,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(Items.GLASS,1).addIngredient(Tags.Items.GLASS).addIngredient(RankineItems.BLEACH.get()).addCriterion("has_ingredient", hasItem(Tags.Items.GLASS)).build(consumer, "rankine:glass_from_colors");
         //
 
+        ShapedRecipeBuilder.shapedRecipe(RankineItems.EMERGENCY_FLOTATION_DEVICE.get(), 1).patternLine(" # ").patternLine("#C#").patternLine(" # ").key('C', RankineItems.CARBON_DIOXIDE_GAS_BOTTLE.get()).key('#', RankineTags.Items.RUBBER).addCriterion("has_ingredient", hasItem(RankineTags.Items.RUBBER)).build(consumer);
         ShapedRecipeBuilder.shapedRecipe(Blocks.COBBLESTONE, 1).patternLine("###").patternLine("###").patternLine("###").key('#', RankineTags.Items.COBBLES).addCriterion("has_ingredient", hasItem(RankineTags.Items.COBBLES)).build(consumer,"rankine:cobblestone_from_cobbles");
         ShapedRecipeBuilder.shapedRecipe(RankineBlocks.SOD_BLOCK.get(), 4).patternLine("##").patternLine("##").key('#', RankineTags.Items.GRASS_BLOCKS).addCriterion("has_ingredient", hasItem(RankineTags.Items.GRASS_BLOCKS)).build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.CARBON_NUGGET.get(),1).addIngredient(RankineTags.Items.COKE).addCriterion("has_ingredient", hasItem(RankineTags.Items.COKE)).setGroup("carbon_nugget").build(consumer, "rankine:carbon_from_coke");

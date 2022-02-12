@@ -103,7 +103,8 @@ public class RankineRemappings {
         blockRemappings.put(new ResourceLocation("rankine:native_aluminum_ore"), Blocks.STONE);
         blockRemappings.put(new ResourceLocation("rankine:native_copper_ore"), Blocks.STONE);
         blockRemappings.put(new ResourceLocation("rankine:opal_ore"), Blocks.STONE);
-        blockRemappings.put(new ResourceLocation("rankine:pink_halite_ore"), RankineBlocks.HALITE_ORE.get());
+        blockRemappings.put(new ResourceLocation("rankine:pink_halite_ore"), RankineBlocks.SYLVINITE.get());
+        blockRemappings.put(new ResourceLocation("rankine:halite_ore"), RankineBlocks.SYLVINITE.get());
         blockRemappings.put(new ResourceLocation("rankine:quartz_ore"), RankineBlocks.NETHER_QUARTZ_ORE.get());
         blockRemappings.put(new ResourceLocation("rankine:tantalite_ore"), RankineBlocks.COLTAN_ORE.get());
         blockRemappings.put(new ResourceLocation("rankine:vanadinite_ore"), RankineBlocks.GALENA_ORE.get());

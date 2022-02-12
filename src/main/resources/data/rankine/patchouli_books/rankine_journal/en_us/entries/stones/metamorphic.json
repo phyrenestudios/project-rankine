@@ -79,6 +79,12 @@
     },
     {
       "type": "spotlight",
+      "item": "rankine:soapstone",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
       "item": "rankine:serpentinite",
       "link_recipe": true,
       "text": "Not found yet."
