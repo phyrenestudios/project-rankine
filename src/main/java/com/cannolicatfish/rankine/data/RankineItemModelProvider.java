@@ -362,6 +362,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.PCF.get(),
                 RankineBlocks.RANKINE_BOX.get(),
                 RankineBlocks.DIAMOND_ANVIL_CELL.get(),
+                RankineBlocks.PARTICLE_ACCELERATOR.get(),
                 RankineBlocks.TEMPLATE_TABLE.get(),
                 RankineBlocks.MATERIAL_TESTING_TABLE.get(),
                 RankineBlocks.BOTANIST_STATION.get(),

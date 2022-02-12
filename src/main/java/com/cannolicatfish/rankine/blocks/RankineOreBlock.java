@@ -101,7 +101,7 @@ public class RankineOreBlock extends Block {
     }
 
     protected int getExperience(Random rand) {
-        if (this == RankineBlocks.LIGNITE_ORE.get()  || this == RankineBlocks.SUBBITUMINOUS_ORE.get() || this == RankineBlocks.NATIVE_TIN_ORE.get() || this == RankineBlocks.NATIVE_SILVER_ORE.get() || this == RankineBlocks.NATIVE_LEAD_ORE.get()|| this == RankineBlocks.NATIVE_GOLD_ORE.get() || this == RankineBlocks.HALITE_ORE.get() || this == RankineBlocks.STIBNITE_ORE.get()) {
+        if (this == RankineBlocks.LIGNITE_ORE.get()  || this == RankineBlocks.SUBBITUMINOUS_ORE.get() || this == RankineBlocks.NATIVE_TIN_ORE.get() || this == RankineBlocks.NATIVE_SILVER_ORE.get() || this == RankineBlocks.NATIVE_LEAD_ORE.get()|| this == RankineBlocks.NATIVE_GOLD_ORE.get() || this == RankineBlocks.STIBNITE_ORE.get()) {
             return MathHelper.nextInt(rand, 0, 2);
         } else if (this == RankineBlocks.PORPHYRY_COPPER.get() || this == RankineBlocks.NATIVE_SULFUR_ORE.get() || this == RankineBlocks.NATIVE_BISMUTH_ORE.get() || this == RankineBlocks.NATIVE_ARSENIC_ORE.get()) {
             return MathHelper.nextInt(rand, 1, 4);

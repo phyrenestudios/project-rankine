@@ -28,7 +28,7 @@ import java.util.Random;
 
 public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
     public static final int NOISE_SCALE = Config.MISC_WORLDGEN.NOISE_SCALE.get();
-    public static final int NOISE_OFFSET = Config.MISC_WORLDGEN.NOISE_OFFSET.get();
+    //public static final int NOISE_OFFSET = Config.MISC_WORLDGEN.NOISE_OFFSET.get();
     public static final int LAYER_THICKNESS = Config.MISC_WORLDGEN.LAYER_THICKNESS.get();
     public static List<ResourceLocation> GEN_BIOMES = WorldgenUtils.GEN_BIOMES;
     public static List<List<String>> LAYER_LISTS = WorldgenUtils.LAYER_LISTS;
@@ -72,7 +72,7 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
     }
 
     private static int getLayerHeights(int x, int z, int index) {
-        double noise = Biome.INFO_NOISE.noiseAt(((double)x + index * NOISE_OFFSET) / NOISE_SCALE, ((double)z + index * NOISE_OFFSET) / NOISE_SCALE, false);
+        double noise = Biome.INFO_NOISE.noiseAt(((double)x) / NOISE_SCALE, ((double)z) / NOISE_SCALE, false);
         return (int) Math.round(noise/Config.MISC_WORLDGEN.LAYER_WIDTH.get());
     }
 
@@ -88,7 +88,7 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
                         if (!leaveNetherrack(reader,TARGET_POS,targetBiome)) {
                             if (placeSandstone(reader,TARGET_POS)) {
                                 reader.setBlockState(TARGET_POS, RankineBlocks.SOUL_SANDSTONE.get().getDefaultState(), 3);
-                            } else if (TARGET_BLOCK instanceof RankineOreBlock && TARGET_BS.get(RankineOreBlock.TYPE) == 0 && WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
+                            } else if (TARGET_BLOCK instanceof RankineOreBlock && /*TARGET_BS.get(RankineOreBlock.TYPE) == 0 &&*/ WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
                                 reader.setBlockState(TARGET_POS, TARGET_BLOCK.getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock())), 3);
                             } else if (TARGET_BLOCK.isIn(BlockTags.BASE_STONE_NETHER)) {
                                 reader.setBlockState(TARGET_POS, StoneBS, 3);
@@ -97,14 +97,14 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
                     }
                     break;
                 case THEEND:
-                    if (TARGET_BLOCK instanceof RankineOreBlock && TARGET_BS.get(RankineOreBlock.TYPE) == 0 && WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
+                    if (TARGET_BLOCK instanceof RankineOreBlock && /*TARGET_BS.get(RankineOreBlock.TYPE) == 0 &&*/ WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
                         reader.setBlockState(TARGET_POS, TARGET_BLOCK.getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock())), 3);
                     } else if (TARGET_BLOCK.isIn(RankineTags.Blocks.BASE_STONE_END)) {
                         reader.setBlockState(TARGET_POS, StoneBS, 3);
                     }
                     break;
                 default:
-                    if (TARGET_BLOCK instanceof RankineOreBlock && TARGET_BS.get(RankineOreBlock.TYPE) == 0 && WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
+                    if (TARGET_BLOCK instanceof RankineOreBlock && /*TARGET_BS.get(RankineOreBlock.TYPE) == 0 &&*/ WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
                         reader.setBlockState(TARGET_POS, TARGET_BLOCK.getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock())), 3);
                     } else if (TARGET_BLOCK.isIn(BlockTags.BASE_STONE_OVERWORLD)) {
                         reader.setBlockState(TARGET_POS, StoneBS, 3);

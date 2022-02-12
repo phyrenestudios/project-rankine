@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:fiber/jute",
+    "rankine:plant_fiber"
+  ]
+}

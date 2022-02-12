@@ -754,7 +754,17 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.BERRIES_POKEBERRY).add(RankineItems.POKEBERRIES.get());
         getOrCreateBuilder(RankineTags.Items.BERRIES_SWEET_BERRY).add(Items.SWEET_BERRIES);
         getOrCreateBuilder(RankineTags.Items.BERRIES).addTags(RankineTags.Items.BERRIES_BLACKBERRY,RankineTags.Items.BERRIES_BLUEBERRY,RankineTags.Items.BERRIES_CRANBERRY,RankineTags.Items.BERRIES_ELDERBERRY,RankineTags.Items.BERRIES_JUNIPER,RankineTags.Items.BERRIES_RASPBERRY,RankineTags.Items.BERRIES_SNOWBERRY,RankineTags.Items.BERRIES_SWEET_BERRY,RankineTags.Items.BERRIES_POKEBERRY,RankineTags.Items.BERRIES_STRAWBERRY);
-        getOrCreateBuilder(RankineTags.Items.NUTS).add(RankineItems.BLACK_WALNUT.get(),RankineItems.COCONUT.get());
+        getOrCreateBuilder(RankineTags.Items.GRAIN).add(RankineItems.BARLEY.get(),RankineItems.OATS.get(),RankineItems.CORN_EAR.get(),RankineItems.SORGHUM.get(),RankineItems.MILLET.get(),RankineItems.RYE.get(),RankineItems.RICE.get());
+        getOrCreateBuilder(RankineTags.Items.CARBS).add(RankineItems.BARLEY.get(),RankineItems.OATS.get(),RankineItems.CORN_EAR.get(),RankineItems.SORGHUM.get(),RankineItems.MILLET.get(),RankineItems.RYE.get(),RankineItems.RICE.get());
+        getOrCreateBuilder(RankineTags.Items.FLOUR_PLANTS).add(RankineItems.BARLEY.get(),RankineItems.OATS.get(),RankineItems.CORN_EAR.get(),RankineItems.SORGHUM.get(),RankineItems.MILLET.get(),RankineItems.RYE.get(),RankineItems.RICE.get());
+        getOrCreateBuilder(RankineTags.Items.FIBER_JUTE).add(RankineItems.JUTE.get());
+        getOrCreateBuilder(RankineTags.Items.FIBER).addTag(RankineTags.Items.FIBER_JUTE).add(RankineItems.PLANT_FIBER.get());
+        getOrCreateBuilder(RankineTags.Items.VEGETABLES_SOYBEANS).add(RankineItems.SOYBEANS.get());
+        getOrCreateBuilder(RankineTags.Items.VEGETABLES).addTag(RankineTags.Items.VEGETABLES_SOYBEANS);
+        getOrCreateBuilder(RankineTags.Items.FIRMTOFU).add(RankineItems.TOFU.get());
+        getOrCreateBuilder(RankineTags.Items.SOYMILK).add(RankineItems.SOY_MILK.get());
+        //getOrCreateBuilder(RankineTags.Items.VINEGAR).add(RankineItems.COCONUT.get());
+        getOrCreateBuilder(RankineTags.Items.JELLIES).add(RankineItems.FRUIT_JAM.get());
 
         //getOrCreateBuilder(RankineTags.Items.FISH).add(Items.SALMON,Items.SALMON,RankineItems.TUNA.get());
 

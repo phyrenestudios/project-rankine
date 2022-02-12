@@ -1,0 +1,65 @@
+{
+  "name": "rankine.journal.cat_mineralogy.gem_ores.name",
+  "icon": "rankine:beryl_ore",
+  "category": "mineralogy",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_mineralogy.gem_ores.text1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lignite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:subbituminous_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bituminous_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:anthracite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:plumbago_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lazurite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cinnabar_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:beryl_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:kimberlitic_diamond_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+    }
+  ]
+}

@@ -22,8 +22,8 @@ public class FumaroleDepositBlock extends Block {
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (random.nextFloat()<0.1 && worldIn.getBlockState(pos.down()).matchesBlock(Blocks.AIR)) {
-            worldIn.setBlockState(pos.down(), RankineBlocks.GWIHABAITE_CRYSTAL.get().getDefaultState().with(GwihabaiteBlock.FACING, Direction.DOWN),2);
+        if (random.nextFloat()<0.1 && worldIn.getBlockState(pos.down()).matchesBlock(Blocks.AIR) && worldIn.getBlockState(pos.down()).matchesBlock(Blocks.WATER)) {
+            worldIn.setBlockState(pos.down(), RankineBlocks.GWIHABAITE_CRYSTAL.get().getDefaultState().with(GwihabaiteBlock.FACING, Direction.DOWN),3);
         }
 
         super.randomTick(state, worldIn, pos, random);

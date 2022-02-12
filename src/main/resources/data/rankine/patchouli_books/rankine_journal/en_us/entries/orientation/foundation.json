@@ -1,0 +1,26 @@
+{
+  "name": "rankine.journal.cat_orientation.foundation.name",
+  "icon": "minecraft:flint",
+  "category": "orientation",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "text",
+      "text": "JEI is a cheatsheet, but it doesn't tell the whole story. Some general points are summarized here."
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_orientation.foundation.text1",
+      "text": "rankine.journal.cat_orientation.foundation.text2"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_orientation.foundation.text3",
+      "text": "rankine.journal.cat_orientation.foundation.text4"
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_orientation.foundation.text5"
+    }
+  ]
+}

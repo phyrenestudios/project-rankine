@@ -612,6 +612,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         simpleBlock(RankineBlocks.AIR_DISTILLATION_PACKING.get());
         simpleBlock(RankineBlocks.REACTION_CHAMBER_CORE.get());
         simpleBlock(RankineBlocks.DIAMOND_ANVIL_CELL.get());
+        simpleBlock(RankineBlocks.PARTICLE_ACCELERATOR.get());
         simpleBlock(RankineBlocks.SEDIMENT_FAN.get());
         simpleBlock(RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get());
         simpleBlock(RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get());

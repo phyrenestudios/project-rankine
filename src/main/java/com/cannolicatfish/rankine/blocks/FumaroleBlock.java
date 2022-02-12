@@ -45,13 +45,13 @@ public class FumaroleBlock extends Block {
                     if (close == null) {
                         break;
                     } else {
-                        worldIn.setBlockState(close,getGas().getDefaultState(),2);
+                        worldIn.setBlockState(close,getGas().getDefaultState(),3);
                     }
                 }
                 if (random.nextFloat() < 0.05) {
                     BlockPos deposit = new BlockPos(pos.getX()+random.nextInt(5)-2,pos.getY()+random.nextInt(5)-3,pos.getZ()+random.nextInt(5)-2);
                     if (worldIn.getBlockState(deposit).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT)) {
-                        worldIn.setBlockState(deposit,RankineBlocks.FUMAROLE_DEPOSIT.get().getDefaultState(),2);
+                        worldIn.setBlockState(deposit,RankineBlocks.FUMAROLE_DEPOSIT.get().getDefaultState(),3);
                     }
                 }
             }
