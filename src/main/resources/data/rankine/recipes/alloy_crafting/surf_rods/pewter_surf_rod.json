@@ -1,6 +1,7 @@
 {
       "type": "rankine:alloy_crafting",
       "inherit": "true",
+      "langName": "item.rankine.pewter_alloying",
       "pattern": [
         "  #",
         " #t",

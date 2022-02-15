@@ -5,14 +5,11 @@ import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -81,6 +78,13 @@ public interface IAlloyItem {
         stack.getOrCreateTag().putInt("color",color);
     }
 
+    static int getColorNBT(ItemStack stack) {
+        if (stack.getTag() != null && stack.getTag().contains("color")) {
+            return stack.getTag().getInt("color");
+        }
+        return 16777215;
+    }
+
     static ListNBT getAlloyNBT(ItemStack stack) {
         CompoundNBT compoundnbt = stack.getTag();
         return compoundnbt != null ? compoundnbt.getList("StoredAlloy", 10) : new ListNBT();
@@ -111,6 +115,34 @@ public interface IAlloyItem {
         if (stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty()) {
             stack.getTag().putBoolean("RegenerateAlloy",true);
         }
+    }
+
+    default boolean checkCompositionRequirement(ItemStack stack, World worldIn, ElementRecipe element, String operand, int percentage) {
+        Map<ElementRecipe,Integer> elementMap = this.getElementMap(getAlloyComposition(stack),worldIn);
+        if (elementMap.containsKey(element)) {
+            if (percentage == -1) {
+                switch (operand){
+                    case "==":
+                    case "=":
+                        return true;
+                    case "!=":
+                        return false;
+                }
+            } else {
+                switch (operand) {
+                    case "==":
+                    case "=":
+                        return elementMap.get(element) == percentage;
+                    case ">=":
+                        return elementMap.get(element) >= percentage;
+                    case "<=":
+                        return elementMap.get(element) <= percentage;
+                    case "!=":
+                        return elementMap.get(element) != percentage;
+                }
+            }
+        }
+        return false;
     }
 
     static String getAlloyComposition(ItemStack stack)

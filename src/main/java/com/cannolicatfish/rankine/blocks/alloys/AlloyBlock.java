@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks.alloys;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
@@ -45,26 +46,21 @@ public class AlloyBlock extends Block {
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @org.jetbrains.annotations.Nullable LivingEntity placer, ItemStack stack) {
         if (AlloyItem.getComposition(stack).size() > 0) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
-            INBT nbt = AlloyItem.getComposition(stack).getCompound(0).get("comp");
-            if (tileentity instanceof AlloyBlockTile && nbt != null) {
-                ((AlloyBlockTile)tileentity).setComp(nbt.getString());
+            String comp = IAlloyItem.getAlloyComposition(stack);
+            int col = IAlloyItem.getColorNBT(stack);
+            if (tileentity instanceof AlloyBlockTile && stack.getTag() != null) {
+                ((AlloyBlockTile)tileentity).write(stack.getTag());
             }
         }
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
     }
-/*
+
     public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
         if (tileentity instanceof AlloyBlockTile) {
             AlloyBlockTile alloyBlockTile = (AlloyBlockTile)tileentity;
             if (!worldIn.isRemote && !player.isCreative() && canHarvestBlock(state,worldIn,pos,player)) {
-                //ItemStack itemstack = getColoredItemStack(this.getColor());
                 ItemStack itemstack = new ItemStack(this);
-                String composition = alloyBlockTile.getComp();
-                System.out.println(composition);
-                if (!composition.isEmpty()) {
-                    AlloyItem.addAlloy(itemstack,new AlloyData(composition));
-                }
 
                 ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemstack);
                 itementity.setDefaultPickupDelay();
@@ -73,5 +69,5 @@ public class AlloyBlock extends Block {
         }
 
         super.onBlockHarvested(worldIn, pos, state, player);
-    }*/
+    }
 }

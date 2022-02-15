@@ -62,5 +62,8 @@
     "b": [0],
     "modifiers": ["NONE"],
     "limit": [0]
-  }
+  },
+  "enchantments": ["minecraft:knockback"],
+  "enchantmentTypes": ["SWORD"],
+  "enchantmentFactors": [0.1]
 }

@@ -7,7 +7,8 @@
   "key": {
     "I": {
       "item": "rankine:invar_ingot",
-      "alloyRecipe": "rankine:alloying/permalloy_alloying"
+      "alloyRecipe": "rankine:alloying/permalloy_alloying",
+      "name": "item.rankine.permalloy_alloying"
     }
   },
   "result": {

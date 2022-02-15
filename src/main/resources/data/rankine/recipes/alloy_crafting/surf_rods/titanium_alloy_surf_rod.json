@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": "true",
+  "langName": "item.rankine.titanium_alloy_alloying",
   "pattern": [
     "  #",
     " #t",
@@ -8,7 +9,7 @@
   ],
   "key": {
     "#": {
-      "item": "rankine:nitinol_ingot"
+      "item": "rankine:titanium_alloy_ingot"
     },
     "t": {
       "tag": "forge:string"
@@ -16,6 +17,5 @@
   },
   "result": {
     "item": "rankine:alloy_surf_rod",
-    "count": 1
-  }
+    "count": 1        }
 }

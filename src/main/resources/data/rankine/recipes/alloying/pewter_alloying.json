@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 10,
+  "total": 13,
   "color": 11711154,
   "input1": {
     "element": "rankine:elements/tin",
@@ -40,26 +40,31 @@
     "max": 0.13
   },
   "input8": {
-    "element": "rankine:elements/arsenic",
+    "element": "rankine:elements/calcium",
     "min": 0.0,
     "max": 0.13
   },
   "input9": {
-    "element": "rankine:elements/cadmium",
+    "element": "rankine:elements/arsenic",
     "min": 0.0,
     "max": 0.13
   },
   "input10": {
-    "element": "rankine:elements/gallium",
+    "element": "rankine:elements/cadmium",
     "min": 0.0,
     "max": 0.13
   },
   "input11": {
-    "element": "rankine:elements/indium",
+    "element": "rankine:elements/gallium",
     "min": 0.0,
     "max": 0.13
   },
   "input12": {
+    "element": "rankine:elements/indium",
+    "min": 0.0,
+    "max": 0.13
+  },
+  "input13": {
     "element": "rankine:elements/cesium",
     "min": 0.0,
     "max": 0.13

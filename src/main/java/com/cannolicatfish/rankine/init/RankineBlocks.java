@@ -3008,7 +3008,7 @@ public class RankineBlocks {
     @ObjectHolder("rankine:fusion_furnace")
     public static TileEntityType<FusionFurnaceTile> FUSION_FURNACE_TILE;
 
-    @ObjectHolder("rankine:bronze_alloy_block")
+    @ObjectHolder("rankine:alloy_block")
     public static TileEntityType<AlloyBlockTile> ALLOY_BLOCK_TILE;
     /*
         @ObjectHolder("rankine:laser_quarry")

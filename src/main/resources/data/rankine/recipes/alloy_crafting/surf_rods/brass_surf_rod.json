@@ -1,7 +1,7 @@
 {
       "type": "rankine:alloy_crafting",
       "inherit": "true",
-      "inheritRecipe": "rankine:alloying/tungsten_heavy_alloy_alloying",
+      "langName": "item.rankine.brass_alloying",
       "pattern": [
         "  #",
         " #t",
@@ -9,7 +9,7 @@
       ],
       "key": {
         "#": {
-            "item": "rankine:tungsten_heavy_alloy_ingot"
+            "item": "rankine:brass_ingot"
             },
         "t": {
           "tag": "forge:string"

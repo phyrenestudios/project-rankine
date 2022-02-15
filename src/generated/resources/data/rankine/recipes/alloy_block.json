@@ -1,0 +1,19 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine",
+  "inherit": true,
+  "langName": "",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:alloy_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_block"
+  }
+}

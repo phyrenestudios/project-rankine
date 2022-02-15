@@ -87,5 +87,7 @@
     "max": 0.20
   },
   "result": "rankine:cobalt_superalloy_ingot",
-  "durability": 600
+  "durability": 600,
+  "enchantments": ["minecraft:protection"],
+  "enchantmentTypes": ["ARMOR"]
 }

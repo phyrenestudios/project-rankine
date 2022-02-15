@@ -1,7 +1,7 @@
 {
       "type": "rankine:alloy_crafting",
       "inherit": "true",
-      "inheritRecipe": "rankine:alloying/nickel_superalloy_alloying",
+      "langName": "item.rankine.blue_gold_alloying",
       "pattern": [
         "  #",
         " #t",
@@ -9,7 +9,7 @@
       ],
       "key": {
         "#": {
-            "item": "rankine:nickel_superalloy_ingot"
+            "item": "rankine:blue_gold_ingot"
             },
         "t": {
           "tag": "forge:string"

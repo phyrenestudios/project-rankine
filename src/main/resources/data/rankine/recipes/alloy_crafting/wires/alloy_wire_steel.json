@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
-  "genName": true,
+  "langName": "item.rankine.steel_alloying",
   "inheritRecipe": "rankine:alloying/steel_alloying",
   "color": 3291714,
   "pattern": [
@@ -12,7 +12,8 @@
   "key": {
     "I": {
       "tag": "forge:ingots/steel",
-      "alloyRecipe": "rankine:alloying/steel_alloying"
+      "alloyRecipe": "rankine:alloying/steel_alloying",
+      "langName": "item.rankine.steel_alloying"
     },
     "S": {
       "tag": "forge:solder"

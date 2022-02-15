@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
-  "genName": true,
+  "langName": "item.rankine.ferrocerium_alloying",
   "inheritRecipe": "rankine:alloying/ferrocerium_alloying",
   "color": 16750232,
   "pattern": [

@@ -1,13 +1,16 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -101,5 +104,15 @@ public class AlloySurfRodItem extends FishingRodItem implements IAlloyTieredItem
             return !s.isEmpty() && s.equals(r) && s2.equals(r2);
         }
         return false;
+    }
+
+    @Override
+    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+        if (this.isInGroup(group) && this.defaultAlloyRecipe == null) {
+            items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
+            items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
+        } else if (this.isInGroup(group)) {
+            super.fillItemGroup(group,items);
+        }
     }
 }

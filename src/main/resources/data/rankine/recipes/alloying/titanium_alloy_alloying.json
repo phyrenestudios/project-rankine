@@ -108,5 +108,7 @@
     "min": 0.0,
     "max": 0.02
   },
-  "result": "rankine:titanium_alloy_ingot"
+  "result": "rankine:titanium_alloy_ingot",
+  "enchantments": ["minecraft:projectile_protection"],
+  "enchantmentTypes": ["ARMOR"]
 }

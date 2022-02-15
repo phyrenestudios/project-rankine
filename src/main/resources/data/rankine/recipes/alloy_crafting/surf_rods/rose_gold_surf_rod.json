@@ -1,6 +1,7 @@
 {
       "type": "rankine:alloy_crafting",
       "inherit": "true",
+  "langName": "item.rankine.rose_gold_alloying",
       "pattern": [
         "  #",
         " #t",
@@ -8,7 +9,7 @@
       ],
       "key": {
         "#": {
-            "item": "rankine:blue_gold_ingot"
+            "item": "rankine:rose_gold_ingot"
             },
         "t": {
           "tag": "forge:string"

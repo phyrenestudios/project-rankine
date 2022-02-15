@@ -12,7 +12,7 @@
     "t": {
       "item": "rankine:alloy_rod",
       "alloyRecipe": "rankine:alloying/steel_alloying",
-      "name": "Steel Rod",
+      "name": "item.rankine.steel_alloying",
       "color": 3291714
     }
   },

@@ -185,7 +185,7 @@ public class ProjectRankine {
 
             event.getItemColors().register(new LeavesItemBaseColor(), RankineBlocks.BIRCH_LEAF_LITTER.get(), RankineBlocks.SPRUCE_LEAF_LITTER.get(), RankineBlocks.ACACIA_LEAF_LITTER.get(), RankineBlocks.JUNGLE_LEAF_LITTER.get(), RankineBlocks.DARK_OAK_LEAF_LITTER.get(), RankineBlocks.OAK_LEAF_LITTER.get());
 
-
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_BLOCK::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_GEAR::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_DUST::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_INGOT::get);
@@ -221,6 +221,9 @@ public class ProjectRankine {
             for (Block b : RankineLists.GRASS_BLOCKS) {
                 event.getBlockColors().register(new GrassBlockBaseColor(), b);
             }
+
+            event.getBlockColors().register(new AlloyBlockColor(), RankineBlocks.ALLOY_BLOCK.get());
+
             event.getBlockColors().register(new OrnamentColor(), RankineBlocks.ORNAMENT.get());
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SHORT_GRASS.get());
 
@@ -313,7 +316,7 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(RankineBoxTile::new, RankineBlocks.RANKINE_BOX.get()).build(null).setRegistryName(ProjectRankine.MODID,"rankine_box"));
             event.getRegistry().register(TileEntityType.Builder.create(MixingBarrelTile::new, RankineBlocks.MIXING_BARREL.get()).build(null).setRegistryName(ProjectRankine.MODID,"mixing_barrel"));
             //event.getRegistry().register(TileEntityType.Builder.create(LaserQuarryTile::new, RankineBlocks.LASER_QUARRY.get()).build(null).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
-            event.getRegistry().register(TileEntityType.Builder.create(AlloyBlockTile::new, RankineBlocks.BRONZE_BLOCK.get()).build(null).setRegistryName(ProjectRankine.MODID,"bronze_alloy_block"));
+            event.getRegistry().register(TileEntityType.Builder.create(AlloyBlockTile::new, RankineLists.ALLOY_BLOCKS.toArray(new Block[0])).build(null).setRegistryName(ProjectRankine.MODID,"alloy_block"));
             //event.getRegistry().register(TileEntityType.Builder.create(SodiumVaporLampTile::new, RankineBlocks.SODIUM_VAPOR_LAMP.get()).build(null).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
             event.getRegistry().register(TileEntityType.Builder.create(TilledSoilTile::new, RankineBlocks.TILLED_SOIL.get()).build(null).setRegistryName(ProjectRankine.MODID,"tilled_soil"));
             event.getRegistry().register(TileEntityType.Builder.create(GroundTapTile::new, RankineBlocks.GROUND_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"ground_tap"));

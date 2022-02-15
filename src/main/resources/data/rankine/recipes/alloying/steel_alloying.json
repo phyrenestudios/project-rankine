@@ -93,5 +93,7 @@
   },
   "result": "rankine:steel_ingot",
   "durability": 450,
-  "mininglevel": 1
+  "mininglevel": 1,
+  "enchantments": ["minecraft:blast_protection"],
+  "enchantmentTypes": ["ARMOR"]
 }

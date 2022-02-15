@@ -12,7 +12,7 @@
     "W": {
       "item": "rankine:alloy_rod",
       "alloyRecipe": "rankine:alloying/ferrocerium_alloying",
-      "name": "item.rankine.alloy_rod_ferrocerium",
+      "name": "item.rankine.ferrocerium_alloying",
       "color": 16750232
     }
   },

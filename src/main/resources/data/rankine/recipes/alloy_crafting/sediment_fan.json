@@ -9,7 +9,7 @@
     "G": {
       "item": "rankine:alloy_gear",
       "alloyRecipe": "rankine:alloying/cupronickel_alloying",
-      "name": "item.rankine.alloy_gear_cupronickel",
+      "name": "item.rankine.cupronickel_alloying",
       "color": 11946807
     },
     "a": {

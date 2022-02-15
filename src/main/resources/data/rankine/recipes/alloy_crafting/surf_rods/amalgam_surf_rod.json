@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": "true",
+  "langName": "item.rankine.amalgam_alloying",
   "pattern": [
     "  #",
     " #t",
