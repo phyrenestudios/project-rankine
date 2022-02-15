@@ -149,8 +149,12 @@ public class OreGen {
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getAllUndDecFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?, ?>, List<ResourceLocation>>> AllOreFeatures = new ArrayList<>();
-        AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.INTRUSION_FEATURE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
-        if (Config.MISC_WORLDGEN.COLUMN_GEN.get()) { AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.COLUMN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))); }
+        if (Config.MISC_WORLDGEN.INTRUSION_GEN.get()) {
+            AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.INTRUSION_FEATURE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        }
+        if (Config.MISC_WORLDGEN.COLUMN_GEN.get()) {
+            AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.COLUMN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        }
 
         return AllOreFeatures;
     }
@@ -164,7 +168,9 @@ public class OreGen {
     }
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getAllOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?, ?>, List<ResourceLocation>>> AllOreFeatures = new ArrayList<>();
-        AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.WORLD_REPLACER_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        if (Config.MISC_WORLDGEN.LAYER_GEN.get() != 0) {
+            AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.WORLD_REPLACER_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        }
 
         //AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.WORLD_REPLACER_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
         //AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.INTRUSION_FEATURE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));

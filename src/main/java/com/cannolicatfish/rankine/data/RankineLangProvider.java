@@ -1093,11 +1093,16 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_orientation.name", "Orientation");
         add("rankine.journal.cat_orientation.desc", "Notes from very brief orientation to the Project. These are all I have to look over for now.");
         add("rankine.journal.cat_orientation.foundation.name", "Foundation");
+        add("rankine.journal.cat_orientation.foundation.text0", "The advancements serve as a guide from what other Project members have found successful. Utilize the recipes provided in JEI and the remainder of this journal to acquire all of the resources needed for our work. Be advised by the following entries for general understanding.");
         add("rankine.journal.cat_orientation.foundation.text1", "Worldgen");
         add("rankine.journal.cat_orientation.foundation.text2", "");
         add("rankine.journal.cat_orientation.foundation.text3", "Harvest Levels");
-        add("rankine.journal.cat_orientation.foundation.text4", "Harvest level is the tier at which tools can mine certain blocks. The vanilla numbers are: $(li)0: Wooden $(li)1: Stone $(li)2: Iron $(li)3: Diamond $(li)4: Netherite $(li)0: Golden");
-        add("rankine.journal.cat_orientation.foundation.text5", "Project Rankine tools are added to all harvest levels to provide a wider breadth of options and catering to local mineral depositions.");
+        add("rankine.journal.cat_orientation.foundation.text4", "Harvest level is the tier at which tools can mine certain blocks. The vanilla numbers are: $(li)0: Wooden $(li)1: Stone $(li)2: Iron $(li)3: Diamond $(li)4: Netherite $(li)0: Golden$() While vanilla tools are available, new tool tiers expand the current abilities.");
+        add("rankine.journal.cat_orientation.foundation.text5", "Project Rankine tools are added to all harvest levels to provide a wider breadth of options and catering to local mineral depositions. .....");
+        add("rankine.journal.cat_orientation.foundation.text6", "Movement Speed");
+        add("rankine.journal.cat_orientation.foundation.text7", "Even familiar blocks in this new environment have changed. Walking on certain earthen blocks slow the player, and some manufactured materials can speed the player up. Investigate the $(l:tools/equipment)equipment$() section to learn how to combat these and other environmental forces.");
+        add("rankine.journal.cat_orientation.foundation.text8", "");
+        add("rankine.journal.cat_orientation.foundation.text9", "");
 
 
         //Stones
@@ -1124,12 +1129,44 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.desc", "Various implements use to manipulate the world.");
 
 
-        add("rankine.journal.cat_tools.debug_tools.name", "XX Tools");
-        add("rankine.journal.cat_tools.debug_tools.text1", "");
-        add("rankine.journal.cat_tools.debug_tools.text2", "Swords");
-        add("rankine.journal.cat_tools.debug_tools.text3", "Shovels");
-        add("rankine.journal.cat_tools.debug_tools.text4", "Pixaxes");
-        add("rankine.journal.cat_tools.debug_tools.text5", "Axes");
+        add("rankine.journal.cat_tools.ore_detection.name", "Ore Detection");
+        add("rankine.journal.cat_tools.ore_detection.text1", "");
+        add("rankine.journal.cat_tools.ore_detection.text2", "Determines the harvest level of a block. $(br2)Use by right clicking a block to see its mining level.Testable material only include those affected by a pickaxe/hammer.");
+        add("rankine.journal.cat_tools.ore_detection.text3", "Detects ores in a straight line behind the face that was clicked. Displays the harvest level of the ore found.");
+        add("rankine.journal.cat_tools.ore_detection.text4", "");
+        add("rankine.journal.cat_tools.ore_detection.text5", "A device capable of sensing ores, even non-metallic ones. $(br)Use by right clicking a block. The device searches in a straight line behind the face that was clicked (range adjustable in config). Displays which ore is found and dings.");
+
+
+        add("rankine.journal.cat_tools.equipment.name", "Equipment");
+        add("rankine.journal.cat_tools.equipment.text1", "");
+        add("rankine.journal.cat_tools.equipment.text2", "Sandals are worn on the feet and provide increased movemet speed on sand. Combine boots of any type with sandals in an anvil to apply the $(l:mechanics/enchantments#dune_walker)Dune Walker$() enchantment.");
+        add("rankine.journal.cat_tools.equipment.text3", "Snowshoes are worn on the feet and provide increased movemet speed on snow. Combine boots of any type with snowshoes in an anvil to apply the $(l:mechanics/enchantments#snow_drifter)Snow Drifter$() enchantment.");
+        add("rankine.journal.cat_tools.equipment.text4", "Ice Skates are worn on the feet and provide increased movemet speed on ice. Combine boots of any type with ice skates in an anvil to apply the $(l:mechanics/enchantments#speed_skater)Speed Skater$() enchantment.");
+        add("rankine.journal.cat_tools.equipment.text5", "Fins are worn on the feet and provide increased movemet speed in water. Combine boots of any type with fins in an anvil to apply the $(l:mechanics/enchantments#flippers)Flippers$() enchantment.");
+        add("rankine.journal.cat_tools.equipment.text6", "Goggles are worn on the head and provide better vision and movemet speed in water. Combine a helmet of any type with goggles in an anvil to apply the TBD");
+        add("rankine.journal.cat_tools.equipment.text7", "A Gas Mask are worn on the head and protects against suffocation in gas blocks. Combine helmet of any type with a gas mask in an anvil to apply the $(l:mechanics/enchantments#gas_protection)Gas Protection$() enchantment.");
+
+
+        add("rankine.journal.cat_tools.standard_tools.name", "XX Tools");
+        add("rankine.journal.cat_tools.standard_tools.text1", "");
+        add("rankine.journal.cat_tools.standard_tools.text2", "Swords");
+        add("rankine.journal.cat_tools.standard_tools.text3", "Swords");
+        add("rankine.journal.cat_tools.standard_tools.text4", "Shovels");
+        add("rankine.journal.cat_tools.standard_tools.text5", "Shovels");
+        add("rankine.journal.cat_tools.standard_tools.text6", "Pixaxes");
+        add("rankine.journal.cat_tools.standard_tools.text7", "Pixaxes");
+        add("rankine.journal.cat_tools.standard_tools.text8", "Axes");
+        add("rankine.journal.cat_tools.standard_tools.text9", "Axes");
+        add("rankine.journal.cat_tools.standard_tools.text10", "Hoes");
+        add("rankine.journal.cat_tools.standard_tools.text11", "Hoes");
+        add("rankine.journal.cat_tools.standard_tools.text12", "Hammers");
+        add("rankine.journal.cat_tools.standard_tools.text13", "Hammers");
+        add("rankine.journal.cat_tools.standard_tools.text14", "Knives");
+        add("rankine.journal.cat_tools.standard_tools.text15", "Knives");
+        add("rankine.journal.cat_tools.standard_tools.text16", "Crowbars");
+        add("rankine.journal.cat_tools.standard_tools.text17", "Crowbars");
+        add("rankine.journal.cat_tools.standard_tools.text18", "Surf Rods");
+        add("rankine.journal.cat_tools.standard_tools.text19", "Axes");
 
 
 

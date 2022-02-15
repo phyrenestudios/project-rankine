@@ -4,7 +4,7 @@
     "#forge:tuff",
     "#minecraft:leaves",
     "#minecraft:logs",
-    "#minecraft:sand",
+    "#rankine:construction_sand",
     "#forge:dirt",
     "#forge:gravel",
     "#forge:stone",
@@ -16,6 +16,8 @@
     "minecraft:soul_soil",
     "minecraft:lava",
     "minecraft:water",
-    "minecraft:obsidian"
+    "minecraft:bubble_column",
+    "minecraft:obsidian",
+    "minecraft:kelp"
   ]
 }

@@ -765,6 +765,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.SOYMILK).add(RankineItems.SOY_MILK.get());
         //getOrCreateBuilder(RankineTags.Items.VINEGAR).add(RankineItems.COCONUT.get());
         getOrCreateBuilder(RankineTags.Items.JELLIES).add(RankineItems.FRUIT_JAM.get());
+        getOrCreateBuilder(RankineTags.Items.NUTS).add(RankineItems.COCONUT.get(),RankineItems.BLACK_WALNUT.get());
 
         //getOrCreateBuilder(RankineTags.Items.FISH).add(Items.SALMON,Items.SALMON,RankineItems.TUNA.get());
 

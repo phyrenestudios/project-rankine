@@ -1,12 +1,18 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.item.FallingBlockEntity;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -14,12 +20,12 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 
-import java.util.Random;
+import javax.annotation.Nullable;
 
-public class RankineEightLayerBlock extends FallingBlock {
+public class RankineEightLayerBlock extends Block {
 
     public static final IntegerProperty LAYERS = IntegerProperty.create("layers", 1, 8);
     protected static final VoxelShape[] SHAPES = new VoxelShape[]{VoxelShapes.empty(),
@@ -36,6 +42,11 @@ public class RankineEightLayerBlock extends FallingBlock {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(LAYERS, 1));
     }
+
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(LAYERS);
+    }
+
 
     public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
         switch(type) {
@@ -70,7 +81,6 @@ public class RankineEightLayerBlock extends FallingBlock {
         return true;
     }
 
-    /*
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         BlockState blockstate = worldIn.getBlockState(pos.down());
         if (!blockstate.matchesBlock(Blocks.HONEY_BLOCK) && !blockstate.matchesBlock(Blocks.SOUL_SAND)) {
@@ -80,16 +90,15 @@ public class RankineEightLayerBlock extends FallingBlock {
         }
     }
 
-     */
-
-    /**
-     * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-     * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
-     * returns its solidified counterpart.
-     * Note that this method should ideally consider only the specific face passed in.
-     */
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        if (!stateIn.isValidPosition(worldIn, currentPos)) {
+            spawnDrops(stateIn, (World) worldIn, currentPos);
+            worldIn.removeBlock(currentPos, false);
+            return Blocks.AIR.getDefaultState();
+        } else {
+            super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        }
+        return stateIn;
     }
 
     @Override
@@ -103,23 +112,19 @@ public class RankineEightLayerBlock extends FallingBlock {
         return ActionResultType.FAIL;
     }
 
-    /*
     public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
         int i = state.get(LAYERS);
-        if (useContext.getItem().getItem() == state.getBlock().asItem() && i < 8) {
+        if (useContext.getItem().getItem() == this.asItem() && i < 8) {
             if (useContext.replacingClickedOnBlock()) {
                 return useContext.getFace() == Direction.UP;
             } else {
-                return false;
+                return true;
             }
         } else {
-            return false;
+            return i == 1;
         }
     }
 
-     */
-
-/*
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockState blockstate = context.getWorld().getBlockState(context.getPos());
@@ -128,61 +133,6 @@ public class RankineEightLayerBlock extends FallingBlock {
             return blockstate.with(LAYERS, Math.min(8, i + 1));
         } else {
             return super.getStateForPlacement(context);
-        }
-    }
-
- */
-
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(LAYERS);
-    }
-
-    @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (worldIn.getBlockState(pos.down()).matchesBlock(state.getBlock())) {
-            int i = worldIn.getBlockState(pos.down()).get(LAYERS);
-            int j = state.get(LAYERS);
-            if (i+j<=8) {
-                worldIn.setBlockState(pos.down(), state.with(LAYERS,i+j));
-                worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
-            } else {
-                worldIn.setBlockState(pos.down(), state.with(LAYERS,8));
-                worldIn.setBlockState(pos, state.with(LAYERS, (i+j)-8 ));
-            }
-        } else if (worldIn.isAirBlock(pos.down()) || canFallThrough(worldIn.getBlockState(pos.down())) && pos.getY() >= 0) {
-            FallingBlockEntity fallingblockentity = new FallingBlockEntity(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, worldIn.getBlockState(pos));
-            this.onStartFalling(fallingblockentity);
-            worldIn.addEntity(fallingblockentity);
-        }
-    }
-
-    @Override
-    public void onEndFalling(World worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, FallingBlockEntity fallingBlock) {
-        if (hitState.getBlock().equals(fallingState.getBlock())) {
-            int i = hitState.get(LAYERS);
-            int j = fallingState.get(LAYERS);
-
-            if (i+j<=8) {
-                worldIn.setBlockState(pos.down(), fallingState.with(LAYERS,i+j));
-                worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
-            } else {
-                worldIn.setBlockState(pos.down(), fallingState.with(LAYERS,8));
-                worldIn.setBlockState(pos, fallingState.with(LAYERS, (i+j)-8 ));
-            }
-        }
-        super.onEndFalling(worldIn, pos, fallingState, hitState, fallingBlock);
-    }
-
-    public void addLayers(World worldIn, BlockPos botPos, BlockPos topPos, BlockState bottom, BlockState top) {
-        int i = top.get(LAYERS);
-        int j = bottom.get(LAYERS);
-
-        if (i+j<=8) {
-            worldIn.setBlockState(botPos, bottom.with(LAYERS,i+j));
-            worldIn.setBlockState(topPos, Blocks.AIR.getDefaultState());
-        } else {
-            worldIn.setBlockState(botPos, bottom.with(LAYERS,8));
-            worldIn.setBlockState(botPos.up(), bottom.with(LAYERS, (i+j)-8 ));
         }
     }
 

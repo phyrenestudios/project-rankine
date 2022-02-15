@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:item/spear_throwing",
-  "textures": {
-    "layer0": "rankine:item/nickel_superalloy_spear"
-  }
-}

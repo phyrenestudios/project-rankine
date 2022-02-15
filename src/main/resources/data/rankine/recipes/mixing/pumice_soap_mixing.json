@@ -1,0 +1,25 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 40,
+  "ingredientTotal": 2,
+  "matScale": 5,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 20
+  },
+  "input1": {
+    "tag": "forge:stones/pumice",
+    "required": true,
+    "min": 0.90,
+    "max": 0.95
+  },
+  "input2": {
+    "tag": "rankine:alkali_hydroxides",
+    "required": true,
+    "min": 0.05,
+    "max": 0.10
+  },
+  "result": {
+    "item": "rankine:pumice_soap"
+  }
+}

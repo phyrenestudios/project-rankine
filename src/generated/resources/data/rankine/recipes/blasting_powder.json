@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#R",
+    "R#"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gunpowder"
+    },
+    "R": {
+      "tag": "forge:rope"
+    }
+  },
+  "result": {
+    "item": "rankine:blasting_powder"
+  }
+}
