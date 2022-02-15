@@ -231,10 +231,16 @@ public class WorldgenUtils {
         return biome.getCategory() == Biome.Category.OCEAN || biome.getCategory() == Biome.Category.BEACH || biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.RIVER ? worldIn.getSeaLevel() + 1 : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
     }
 
-    public static boolean inArea(BlockPos b, double radius, BlockPos... targets) {
+    public static boolean inArea(BlockPos b, double radius, boolean center, BlockPos... targets) {
         for (BlockPos target : targets) {
-            if (b.distanceSq(target) < Math.pow(radius,2)+0.5) {
-                return true;
+            if (center) {
+                if (b.add(0.5,0.5,0.5).distanceSq(target) < Math.pow(radius, 2) + 0.5) {
+                    return true;
+                }
+            } else {
+                if (b.distanceSq(target) < Math.pow(radius, 2) + 0.5) {
+                    return true;
+                }
             }
         }
         return false;

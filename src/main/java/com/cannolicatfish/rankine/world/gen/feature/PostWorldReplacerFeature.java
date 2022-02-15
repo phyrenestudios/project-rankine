@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
@@ -108,6 +109,10 @@ public class PostWorldReplacerFeature extends Feature<NoFeatureConfig> {
                         } else if (TARGET.matchesBlock(Blocks.SMOOTH_SANDSTONE) || TARGET.matchesBlock(Blocks.SMOOTH_RED_SANDSTONE)) {
                             if (WorldgenUtils.SANDSTONES.get(genBiomesIndex) != Blocks.AIR && ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(WorldgenUtils.SANDSTONES.get(genBiomesIndex).getRegistryName().toString().replace(":",":smooth_"))) != null) {
                                 reader.setBlockState(TARGET_POS, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(WorldgenUtils.SANDSTONES.get(genBiomesIndex).getRegistryName().toString().replace(":",":smooth_"))).getDefaultState(), 2);
+                            }
+                        } else if (TARGET.isIn(Tags.Blocks.ORES_COAL)) {
+                            if (reader.getBlockState(TARGET_POS.down()).isIn(Tags.Blocks.STONE) && rand.nextFloat()<0.8) {
+                                reader.setBlockState(TARGET_POS.down(), RankineBlocks.FIRE_CLAY.get().getDefaultState(), 2);
                             }
                         }
 

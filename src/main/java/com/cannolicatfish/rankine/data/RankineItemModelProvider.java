@@ -449,7 +449,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
             if (TOOL instanceof AlloyCrowbarItem || TOOL.equals(RankineItems.ALLOY_SURF_ROD.get())) {
                 basicItemHandheldRod(TOOL);
             } else if (TOOL instanceof SpearItem) {
-                spearItem(TOOL);
+                basicItemHandheld(TOOL);
             } else {
                 basicItemHandheld(TOOL);
             }

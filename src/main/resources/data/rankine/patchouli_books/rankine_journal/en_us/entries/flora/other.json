@@ -1,0 +1,17 @@
+{
+  "name": "rankine.journal.cat_flora.crops.name",
+  "icon": "rankine:stinging_nettle",
+  "category": "flora",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_flora.crops.text1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:stinging_nettle",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.crops.text2"
+    }
+  ]
+}

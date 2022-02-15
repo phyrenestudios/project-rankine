@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "JEI is a cheatsheet, but it doesn't tell the whole story. Some general points are summarized here."
+      "text": "rankine.journal.cat_orientation.foundation.text0"
     },
     {
       "type": "text",
@@ -21,6 +21,11 @@
     {
       "type": "text",
       "text": "rankine.journal.cat_orientation.foundation.text5"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_orientation.foundation.text6",
+      "text": "rankine.journal.cat_orientation.foundation.text7"
     }
   ]
 }

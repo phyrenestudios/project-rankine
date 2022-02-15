@@ -48,6 +48,30 @@
       "item": "rankine:red_lily",
       "link_recipe": true,
       "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:crimson_clover",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:red_clover",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:yellow_clover",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_clover",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_flora.trees.text3"
     }
   ]
 }

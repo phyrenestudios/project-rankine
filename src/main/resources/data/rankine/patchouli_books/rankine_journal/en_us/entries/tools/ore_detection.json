@@ -1,0 +1,31 @@
+{
+  "name": "rankine.journal.cat_tools.ore_detection.name",
+  "icon": "rankine:ore_detector",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_tools.ore_detection.text1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:hardness_tester",
+      "text": "rankine.journal.cat_tools.ore_detection.text2"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:prospecting_stick",
+      "text": "rankine.journal.cat_tools.ore_detection.text3"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:magnometer",
+      "text": "rankine.journal.cat_tools.ore_detection.text4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:ore_detector",
+      "text": "rankine.journal.cat_tools.ore_detection.text5"
+    }
+  ]
+}

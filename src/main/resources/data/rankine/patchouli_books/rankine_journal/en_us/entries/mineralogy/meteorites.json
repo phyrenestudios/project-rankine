@@ -51,25 +51,25 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:kamacite",
+      "item": "rankine:kamacite_ore",
       "link_recipe": true,
       "text": "rankine.journal.cat_mineralogy.meteorites.text3"
     },
     {
       "type": "spotlight",
-      "item": "rankine:antitaenite",
+      "item": "rankine:antitaenite_ore",
       "link_recipe": true,
       "text": "rankine.journal.cat_mineralogy.meteorites.text3"
     },
     {
       "type": "spotlight",
-      "item": "rankine:taenite",
+      "item": "rankine:taenite_ore",
       "link_recipe": true,
       "text": "rankine.journal.cat_mineralogy.meteorites.text3"
     },
     {
       "type": "spotlight",
-      "item": "rankine:tetrataenite",
+      "item": "rankine:tetrataenite_ore",
       "link_recipe": true,
       "text": "rankine.journal.cat_mineralogy.meteorites.text3"
     },

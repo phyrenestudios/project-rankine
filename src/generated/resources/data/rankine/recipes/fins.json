@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "L  ",
+    "LRR"
+  ],
+  "key": {
+    "L": {
+      "tag": "forge:leather"
+    },
+    "R": {
+      "tag": "forge:rubber"
+    }
+  },
+  "result": {
+    "item": "rankine:fins"
+  }
+}

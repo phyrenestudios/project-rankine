@@ -6,12 +6,18 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.item.Item;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class VanillaIntegration {
+    public static Map<Item, Integer> fuelValueMap = new HashMap<Item, Integer>();
     public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
     public static Map<Block, Block> pathBlocks_map = new HashMap<Block, Block>();
     public static Map<Block, TilledSoilTypes> hoeables_map = new HashMap<Block, TilledSoilTypes>();
@@ -216,10 +222,51 @@ public class VanillaIntegration {
         addFlowerPot(RankineBlocks.WEEPING_WILLOW_SAPLING.get(), RankineBlocks.POTTED_WEEPING_WILLOW_SAPLING.get());
         addFlowerPot(RankineBlocks.HONEY_LOCUST_SAPLING.get(), RankineBlocks.POTTED_HONEY_LOCUST_SAPLING.get());
 
-        
     }
 
+    public static void populateFuelMap() {
+        if (!Config.GENERAL.FUEL_VALUES_LIST.get().isEmpty()) {
+            for (String s : Config.GENERAL.FUEL_VALUES_LIST.get()) {
+                if (Arrays.asList(s.split("\\|")).size() == 2) {
+                    String RS;
+                    int burnTime;
+                    try {
+                        RS = s.split("\\|")[0];
+                    }
+                    catch(Exception e) {
+                        System.out.println(e.getLocalizedMessage() + " " + s + " is an invalid entry");
+                        continue;
+                    }
+                    try {
+                        burnTime = Integer.parseInt(s.split("\\|")[1]);
+                    }
+                    catch(Exception e) {
+                        System.out.println(e.getLocalizedMessage() + " " + s + " is an invalid entry");
+                        continue;
+                    }
 
+                    if (RS.contains("#")) {
+                        ResourceLocation newRS = ResourceLocation.tryCreate(RS.replace("#",""));
+                        ITag<Item> tag = TagCollectionManager.getManager().getItemTags().get(newRS);
+                        if (tag != null) {
+                            for (Item item : tag.getAllElements()) {
+                                if (item != null && !fuelValueMap.containsKey(item)) {
+                                    fuelValueMap.put(item, burnTime);
+                                }
+                            }
+                        }
+                    } else {
+                        Item item = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(RS));
+                        if (item != null && !fuelValueMap.containsKey(item)) {
+                            fuelValueMap.put(item,burnTime);
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
 
     public static void registerCompostable(float chance, IItemProvider itemIn) {
         ComposterBlock.CHANCES.put(itemIn.asItem(), chance);

@@ -39,6 +39,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Block> LEDS = modBlock("leds");
         public static final Tags.IOptionalNamedTag<Block> COBBLES = modBlock("cobbles");
         public static final Tags.IOptionalNamedTag<Block> LEAF_LITTERS = modBlock("leaf_litters");
+        public static final Tags.IOptionalNamedTag<Block> HEAT_SOURCES = modBlock("heat_sources");
 
         public static final Tags.IOptionalNamedTag<Block> CEDAR_LOGS = modBlock("cedar_logs");
         public static final Tags.IOptionalNamedTag<Block> PINYON_PINE_LOGS = modBlock("pinyon_pine_logs");

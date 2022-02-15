@@ -2,7 +2,6 @@
   "name": "rankine.journal.cat_tools.standard_tools.name",
   "icon": "rankine:bronze_pickaxe",
   "category": "tools",
-  "sortnum": 2,
   "pages": [
     {
       "type": "text",
@@ -17,6 +16,31 @@
       "type": "text",
       "title": "rankine.journal.cat_tools.standard_tools.text4",
       "text": "rankine.journal.cat_tools.standard_tools.text5"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_tools.standard_tools.text6",
+      "text": "rankine.journal.cat_tools.standard_tools.text7"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_tools.standard_tools.text8",
+      "text": "rankine.journal.cat_tools.standard_tools.text9"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_tools.standard_tools.text10",
+      "text": "rankine.journal.cat_tools.standard_tools.text11"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_tools.standard_tools.text12",
+      "text": "rankine.journal.cat_tools.standard_tools.text13"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_tools.standard_tools.text14",
+      "text": "rankine.journal.cat_tools.standard_tools.text15"
     }
   ]
 }

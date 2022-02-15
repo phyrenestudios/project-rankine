@@ -1,0 +1,41 @@
+{
+  "name": "rankine.journal.cat_tools.equipment.name",
+  "icon": "rankine:snowshoes",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_tools.equipment.text1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:sandals",
+      "text": "rankine.journal.cat_tools.equipment.text2"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:snowshoes",
+      "text": "rankine.journal.cat_tools.equipment.text3"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:ice_skates",
+      "text": "rankine.journal.cat_tools.equipment.text4"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:fins",
+      "text": "rankine.journal.cat_tools.equipment.text5"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:goggles",
+      "text": "rankine.journal.cat_tools.equipment.text6"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:gas_mask",
+      "text": "rankine.journal.cat_tools.equipment.text7"
+    }
+  ]
+}
