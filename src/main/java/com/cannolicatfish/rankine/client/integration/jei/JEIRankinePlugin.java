@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.client.integration.jei.categories.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
@@ -44,7 +45,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registration.addRecipeClickArea(GyratoryCrusherScreen.class, 55, 58, 24, 16, CrushingRecipeCategory.UID);
         registration.addRecipeClickArea(EvaporationTowerScreen.class, 76, 50, 24, 16, EvaporationRecipeCategory.UID);
         registration.addRecipeClickArea(CrucibleScreen.class, 109, 46, 7, 26, CrucibleRecipeCategory.UID);
-
+        registration.addRecipeClickArea(MixingBarrelScreen.class, 109, 46, 7, 26, MixingRecipeCategory.UID);
 
     }
 
@@ -80,6 +81,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getSedimentaryGeneratorRecipes()), SedimentaryGeneratorRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getMetamorphicGeneratorRecipes()), MetamorphicGeneratorRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()), VolcanicGeneratorRecipeCategory.UID);
+        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getAirDistillationRecipes()), AirDistillationRecipeCategory.UID);
         registry.addIngredientInfo(new ItemStack(RankineItems.COKE.get()), VanillaTypes.ITEM, "Coke can be obtained by cooking Bituminous Coal Blocks in a beehive oven.",
                 "See Beehive Oven Pit for more details.");
         registry.addIngredientInfo(new ItemStack(RankineItems.QUICKLIME.get()), VanillaTypes.ITEM, "Quicklime can be obtained by cooking Limestone in a beehive oven.",
@@ -119,12 +121,14 @@ public class JEIRankinePlugin implements IModPlugin {
     public void registerItemSubtypes(ISubtypeRegistration registration) {
         registration.registerSubtypeInterpreter(RankineItems.ALLOY_DUST.get(), IAlloyItem::getSubtype);
         registration.registerSubtypeInterpreter(RankineItems.ALLOY_GEAR.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_BLOCK.get(), IAlloyItem::getSubtype);
         registration.registerSubtypeInterpreter(RankineItems.ALLOY_INGOT.get(), IAlloyItem::getSubtype);
         registration.registerSubtypeInterpreter(RankineItems.ALLOY_NUGGET.get(), IAlloyItem::getSubtype);
         registration.registerSubtypeInterpreter(RankineItems.ALLOY_PLATE.get(), IAlloyItem::getSubtype);
         registration.registerSubtypeInterpreter(RankineItems.ALLOY_ROD.get(), IAlloyItem::getSubtype);
         registration.registerSubtypeInterpreter(RankineItems.ALLOY_WIRE.get(), IAlloyItem::getSubtype);
 
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SURF_ROD.get(), IAlloyItem::getSubtype);
     }
 
     @Override
@@ -145,7 +149,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCategories(new SedimentaryGeneratorRecipeCategory(guiHelper));
         registry.addRecipeCategories(new MetamorphicGeneratorRecipeCategory(guiHelper));
         registry.addRecipeCategories(new VolcanicGeneratorRecipeCategory(guiHelper));
-
+        registry.addRecipeCategories(new AirDistillationRecipeCategory(guiHelper));
     }
 
     @Override
@@ -166,6 +170,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BRECCIA.get()), SedimentaryGeneratorRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.SKARN.get()), MetamorphicGeneratorRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(Blocks.OBSIDIAN), VolcanicGeneratorRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.DISTILLATION_TOWER.get()), AirDistillationRecipeCategory.UID);
     }
 
 }

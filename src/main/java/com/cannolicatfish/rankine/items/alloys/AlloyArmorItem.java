@@ -9,8 +9,10 @@ import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
@@ -28,6 +30,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem, IDyeableArmorItem {
     private final String defaultComposition;
@@ -279,6 +282,17 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
     @Override
     public void setColor(ItemStack stack, int color) {
         stack.getOrCreateTag().putInt("color", color);
+    }
+
+    @Override
+    public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
+        World world = wearer.getEntityWorld();
+        Optional<? extends IRecipe<?>> gold = world.getRecipeManager().getRecipe(new ResourceLocation("rankine:elements/gold"));
+        if (gold.isPresent() && gold.get() instanceof ElementRecipe) {
+            ElementRecipe g = (ElementRecipe) gold.get();
+            return this.checkCompositionRequirement(stack,world,g,">=",60);
+        }
+        return super.makesPiglinsNeutral(stack,wearer);
     }
 
     @Override

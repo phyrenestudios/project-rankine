@@ -64,6 +64,10 @@ public class RankineJEIRecipes {
         return recipeManager.getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC))).collect(Collectors.toList());
     }
 
+    public List<AirDistillationRecipe> getAirDistillationRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.AIR_DISTILLATION);
+    }
+
     public List<BeehiveOvenRecipe> getBeehiveRecipes() {
         return recipeManager.getRecipesForType(RankineRecipeTypes.BEEHIVE);
     }

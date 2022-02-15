@@ -12,7 +12,7 @@
     "S": {
       "item": "rankine:alloy_rod",
       "alloyRecipe": "rankine:alloying/cupronickel_alloying",
-      "name": "item.rankine.alloy_rod_cupronickel",
+      "name": "item.rankine.cupronickel_alloying",
       "color": 11946807
     },
     "F": {

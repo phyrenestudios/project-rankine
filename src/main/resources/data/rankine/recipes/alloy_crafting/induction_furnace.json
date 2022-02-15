@@ -21,7 +21,7 @@
     "W": {
       "item": "rankine:alloy_wire",
       "alloyRecipe": "rankine:alloying/cupronickel_alloying",
-      "name": "item.rankine.alloy_wire_cupronickel",
+      "name": "item.rankine.cupronickel_alloying",
       "color": 11946807
     }
   },

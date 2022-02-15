@@ -136,12 +136,12 @@
         ]
       }
     },
-    "rankine:peridotite": {
+    "rankine:dunite": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:peridotite"
+            "item": "rankine:dunite"
           }
         ]
       }
@@ -391,7 +391,7 @@
     ["rankine:red_porphyry"],
     ["rankine:purple_porphyry"],
     ["rankine:pegmatite"],
-    ["rankine:peridotite"],
+    ["rankine:dunite"],
     ["rankine:troctolite"],
     ["rankine:kimberlite"],
     ["rankine:komatiite"],

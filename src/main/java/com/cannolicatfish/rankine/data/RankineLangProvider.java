@@ -162,7 +162,9 @@ public class RankineLangProvider extends LanguageProvider {
         }
 
         for (Block blk : RankineLists.ALLOY_BLOCKS) {
-            add(blk,parseLangNameCustomBlock(blk.getRegistryName().getPath()));
+            if (blk != RankineBlocks.ALLOY_BLOCK.get()) {
+                add(blk,parseLangNameCustomBlock(blk.getRegistryName().getPath()));
+            }
         }
 
         // Misc Blocks
@@ -282,11 +284,14 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.AMALGAM_TOOLS,
                 RankineLists.ENDER_AMALGAM_TOOLS,
                 RankineLists.TITANIUM_ALLOY_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            if (item != RankineItems.ALLOY_NUGGET.get() && item != RankineItems.ALLOY_INGOT.get()) {
+                add(item, parseLangNameCustom(item.getRegistryName().getPath()));
+            }
+        }
+        for (Item item : Arrays.asList(RankineItems.ALLOY_NUGGET.get(),RankineItems.ALLOY_INGOT.get())) {
             add(item, parseLangNameCustom(item.getRegistryName().getPath()));
         }
-        for (Item item : Arrays.asList(RankineItems.ALLOY_NUGGET.get(),RankineItems.ALLOY_INGOT.get(),RankineItems.ALLOY_BLOCK.get())) {
-            add(item, parseLangNameCustom(item.getRegistryName().getPath()));
-        }
+        add(RankineItems.ALLOY_BLOCK.get(), parseLangNameCustomBlock(RankineItems.ALLOY_BLOCK.get().getRegistryName().getPath()));
 
         for (Item item : Arrays.asList(
             RankineItems.FRUIT_JAM.get(),
@@ -705,6 +710,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.sedimentary", "Sedimentary Rock Generator");
         add("rankine.jei.metamorphic", "Metamorphic Rock Generator");
         add("rankine.jei.volcanic", "Volcanic Rock Generator");
+        add("rankine.jei.air_distillation", "Air Distillation");
         add("rankine.jei.treetapping", "Treetap");
         add("itemGroup.rankine_world", "Project Rankine Building");
         add("itemGroup.rankine_metallurgy", "Project Rankine Metallurgy");

@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
-  "genName": true,
+  "langName": "item.rankine.bronze_alloying",
   "color": 12622179,
   "pattern": [
     " I ",

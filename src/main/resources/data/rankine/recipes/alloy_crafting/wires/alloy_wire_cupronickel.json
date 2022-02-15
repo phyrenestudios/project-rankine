@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
-  "genName": true,
+  "langName": "item.rankine.cupronickel_alloying",
   "inheritRecipe": "rankine:alloying/cupronickel_alloying",
   "color": 11946807,
   "pattern": [
@@ -11,8 +11,9 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:ingots/cupronickel",
-      "alloyRecipe": "rankine:alloying/cupronickel_alloying"
+      "tag": "forge:ingots/constantan",
+      "alloyRecipe": "rankine:alloying/cupronickel_alloying",
+      "name": "item.rankine.cupronickel_alloying"
     },
     "S": {
       "tag": "forge:solder"

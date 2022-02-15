@@ -74,6 +74,14 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
         overlay.draw(ms, 0, 4);
         RenderSystem.disableBlend();
         RenderSystem.disableAlphaTest();
+
+        float matScale = recipe.getMatScale();
+        if (matScale < 1) {
+            font.drawString(ms,   Math.round(1/matScale) + ":" + 1, (float)151, 26, 0x000000);
+        } else {
+            font.drawString(ms, 1 + ":" + Math.round(matScale), (float)151, 26, 0x000000);
+        }
+
     }
 
     @Override

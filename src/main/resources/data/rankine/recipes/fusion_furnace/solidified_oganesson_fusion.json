@@ -1,0 +1,17 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 800,
+  "input1": {
+    "item": "rankine:endositum_ingot"
+  },
+  "result1": {
+    "item":"rankine:oganesson_ingot",
+    "count": 1
+  },
+  "gasInput": {
+    "item": "rankine:oganesson_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}

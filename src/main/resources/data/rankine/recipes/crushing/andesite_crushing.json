@@ -19,8 +19,8 @@
   },
   "output4": {
     "item": "rankine:zircon",
-    "chance": 0.25,
-    "additional": 0.15
+    "chance": 0.06,
+    "additional": 0.06
   },
   "output5": {
     "item": "rankine:apatite",
