@@ -1,0 +1,46 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 40,
+  "ingredientTotal": 6,
+  "matScale": 1,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 50
+  },
+  "input1": {
+    "tag": "rankine:construction_sand",
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
+  },
+  "input2": {
+    "tag": "forge:clay_balls",
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
+  },
+  "input3": {
+    "tag": "forge:stones/dolomite",
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
+  },
+  "input4": {
+    "tag": "forge:ash",
+    "min": 0,
+    "max": 0.40
+  },
+  "input5": {
+    "item": "minecraft:flint",
+    "min": 0,
+    "max": 0.40
+  },
+  "input6": {
+    "tag": "forge:dirt",
+    "min": 0,
+    "max": 0.40
+  },
+  "result": {
+    "item": "rankine:cement_mix"
+  }
+}

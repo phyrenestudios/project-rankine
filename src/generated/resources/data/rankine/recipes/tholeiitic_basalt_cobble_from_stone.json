@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cobble_from_stone",
+  "ingredients": [
+    {
+      "item": "rankine:tholeiitic_basalt"
+    },
+    {
+      "tag": "forge:cobblestone"
+    }
+  ],
+  "result": {
+    "item": "rankine:tholeiitic_basalt_cobble",
+    "count": 8
+  }
+}

@@ -15,6 +15,7 @@ import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -25,7 +26,11 @@ public class CobblePatchFeature extends Feature<BlockClusterFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockClusterFeatureConfig config) {
-        List<String> rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(reader.getBiome(pos).getRegistryName()));
+        List<String> rockList = new ArrayList<String>();
+        if (WorldgenUtils.GEN_BIOMES.contains(reader.getBiome(pos).getRegistryName())) {
+            rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(reader.getBiome(pos).getRegistryName()));
+        }
+
         if (rockList.size() < 1) return false;
         Block stoneBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(rockList.get(rand.nextInt(rockList.size()))));
         if (!RankineLists.STONES.contains(stoneBlock)) {

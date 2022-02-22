@@ -417,13 +417,13 @@ public class RankineEventHandler {
         }
 
         ModifiableAttributeInstance att = player.getAttribute(Attributes.MOVEMENT_SPEED);
-        if (player.getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_TIMESAVING.get() && att != null && !att.hasModifier(RankineAttributes.SPEED_PENDANT_MS)) {
-            att.applyNonPersistentModifier(RankineAttributes.SPEED_PENDANT_MS);
+        if (player.getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_TIMESAVING.get() && att != null && !att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM)) {
+            att.applyNonPersistentModifier(RankineAttributes.SWIFTNESS_TOTEM);
         }
 
         ModifiableAttributeInstance att2 = player.getAttribute(Attributes.MAX_HEALTH);
-        if (player.getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_ENDURING.get() && att2 != null && !att2.hasModifier(RankineAttributes.HEALTH_PENDANT)) {
-            att2.applyNonPersistentModifier(RankineAttributes.HEALTH_PENDANT);
+        if (player.getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_ENDURING.get() && att2 != null && !att2.hasModifier(RankineAttributes.ENDURING_TOTEM)) {
+            att2.applyNonPersistentModifier(RankineAttributes.ENDURING_TOTEM);
         }
     }
 
@@ -2006,15 +2006,15 @@ public class RankineEventHandler {
             //Luck Pendant
             if (offHandItem == RankineItems.TOTEM_OF_PROMISING.get()) {
                 if (event.getState().isIn(RankineTags.Blocks.LUCK_PENDANT)) {
-                    if (rand.nextFloat() < 0.2f) {
-                        for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld(), event.getPos(), null)) {
-                            spawnAsEntity(worldIn, pos, new ItemStack(i.getItem(), 1));
-                        }
+                    if (rand.nextFloat() < Config.GENERAL.TOTEM_PROMISING_CHANCE.get()) {
+                        Block.spawnDrops(worldIn.getBlockState(pos),worldIn,pos);
+                        //for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld(), event.getPos(), null)) {
+                        //    spawnAsEntity(worldIn, pos, new ItemStack(i.getItem(), 1));
+                        //}
                     }
                 }
             } else if (offHandItem == RankineItems.TOTEM_OF_SOFTENING.get()) {
-                if ((player.getHeldItemMainhand().isEmpty() && worldIn.getBlockState(pos).canHarvestBlock(worldIn,pos,player) && worldIn.getTileEntity(pos) == null && worldIn.getFluidState(pos).isEmpty()) && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots)
-                {
+                if ((player.getHeldItemMainhand().isEmpty() && worldIn.getBlockState(pos).canHarvestBlock(worldIn,pos,player) && worldIn.getTileEntity(pos) == null && worldIn.getFluidState(pos).isEmpty()) && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
                     double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
                     double d1 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
                     double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;

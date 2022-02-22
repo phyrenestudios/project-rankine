@@ -4,8 +4,7 @@
     "item": "rankine:phosphorite"
   },
   "output1": {
-    "item": "rankine:apatite",
-    "count": 3,
+    "item": "rankine:phosphorus",
     "chance": 1.0
   },
   "output2": {
@@ -14,7 +13,8 @@
     "additional": 0.2
   },
   "output3": {
-    "item": "rankine:phosphorus",
+    "item": "rankine:apatite",
+    "count": 3,
     "chance": 0.3,
     "additional": 0.2
   },

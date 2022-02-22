@@ -1,13 +1,10 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
 
-import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.init.RankineRecipes;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -16,16 +13,12 @@ import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.FurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
@@ -35,7 +28,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -186,12 +178,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     private boolean isHeated(BlockPos pos, World worldIn) {
         List<BlockPos> positions = Arrays.asList(pos.down(),pos.east(),pos.north(),pos.west(),pos.south());
         for (BlockPos p : positions) {
-            if (worldIn.getBlockState(p).getBlock() == Blocks.MAGMA_BLOCK || worldIn.getBlockState(p).getBlock() == Blocks.LAVA)
-            {
-                heatPower = 1;
-                return true;
-            } else if (p == pos.down() && worldIn.getBlockState(p).getBlock() == Blocks.FIRE)
-            {
+            if (worldIn.getBlockState(p).isIn(RankineTags.Blocks.HEAT_SOURCES)) {
                 heatPower = 1;
                 return true;
             }

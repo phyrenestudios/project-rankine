@@ -1,0 +1,130 @@
+{
+  "name": "rankine.journal.cat_biota.trees.name",
+  "icon": "rankine:cedar_sapling",
+  "category": "biota",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_biota.trees.text1"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.cedar.title",
+      "item": "rankine:cedar_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.cedar"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.balsam_fir.title",
+      "item": "rankine:balsam_fir_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.balsam_fir"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.eastern_hemlock.title",
+      "item": "rankine:eastern_hemlock_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.eastern_hemlock"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.western_hemlock.title",
+      "item": "rankine:western_hemlock_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.western_hemlock"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.pinyon_pine.title",
+      "item": "rankine:pinyon_pine_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.pinyon_pine"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.juniper.title",
+      "item": "rankine:juniper_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.juniper"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.black_birch.title",
+      "item": "rankine:black_birch_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.black_birch"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.yellow_birch.title",
+      "item": "rankine:yellow_birch_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.yellow_birch"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.red_birch.title",
+      "item": "rankine:red_birch_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.red_birch"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.maple.title",
+      "item": "rankine:maple_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.maple"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.black_walnut.title",
+      "item": "rankine:black_walnut_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.black_walnut"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.coconut_palm.title",
+      "item": "rankine:coconut_palm_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.coconut_palm"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.cork_oak.title",
+      "item": "rankine:cork_oak_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.cork_oak"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.sharinga.title",
+      "item": "rankine:sharinga_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.sharinga"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.cinnamon.title",
+      "item": "rankine:cinnamon_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.cinnamon"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.honey_locust.title",
+      "item": "rankine:honey_locust_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.honey_locust"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.weeping_willow.title",
+      "item": "rankine:weeping_willow_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.weeping_willow"
+    }
+  ]
+}

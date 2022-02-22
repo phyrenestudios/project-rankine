@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " # ",
-    "#C#",
-    " # "
+    "###",
+    "###",
+    "###"
   ],
   "key": {
-    "C": {
-      "item": "rankine:carbon_dioxide_gas_bottle"
-    },
     "#": {
-      "tag": "forge:rubber"
+      "tag": "rankine:cobbles"
     }
   },
   "result": {
-    "item": "rankine:emergency_flotation_device"
+    "item": "minecraft:cobblestone"
   }
 }

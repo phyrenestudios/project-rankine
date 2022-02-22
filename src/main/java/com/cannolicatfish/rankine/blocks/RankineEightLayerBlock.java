@@ -4,24 +4,18 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
@@ -90,26 +84,13 @@ public class RankineEightLayerBlock extends Block {
         }
     }
 
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (!stateIn.isValidPosition(worldIn, currentPos)) {
-            spawnDrops(stateIn, (World) worldIn, currentPos);
-            worldIn.removeBlock(currentPos, false);
-            return Blocks.AIR.getDefaultState();
-        } else {
-            super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-        }
-        return stateIn;
-    }
-
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        int i = state.get(LAYERS);
-        if (!player.getHeldItem(handIn).isEmpty() && player.getHeldItem(handIn).getItem() == state.getBlock().asItem() && i < 8 && !player.isSneaking()) {
-            worldIn.setBlockState(pos, state.with(LAYERS, i+1));
-            worldIn.playSound(null,pos,state.getSoundType().getPlaceSound(), SoundCategory.BLOCKS,1.0f,1.0f);
-            return ActionResultType.CONSUME;
+    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (facing == Direction.DOWN && !stateIn.isValidPosition(worldIn, currentPos) && !worldIn.isRemote()) {
+            //spawnDrops(stateIn, (World) worldIn, currentPos);
+            return Blocks.AIR.getDefaultState();
         }
-        return ActionResultType.FAIL;
+        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {

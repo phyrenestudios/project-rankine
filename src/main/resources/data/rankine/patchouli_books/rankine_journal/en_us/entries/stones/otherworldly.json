@@ -1,0 +1,58 @@
+{
+  "name": "rankine.journal.cat_stones.otherworldly.name",
+  "icon": "rankine:ringwoodine",
+  "category": "stones",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_stones.otherworldly.text1"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_stones.otherworldly.text2",
+      "text": "rankine.journal.cat_stones.otherworldly.text3"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:end_stone",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.otherworldly.end_stone"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:whiteschist",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.otherworldly.whiteschist"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sommanite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.otherworldly.sommanite"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:ringwoodine",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.otherworldly.ringwoodine"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:wadsleyone",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.otherworldly.wadsleyone"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bridgmanham",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.otherworldly.bridgmanham"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:post_perovskite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.otherworldly.post_perovskite"
+    }
+  ]
+}

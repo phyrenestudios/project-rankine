@@ -72,10 +72,9 @@ public class CharcoalPitBlock extends Block {
             flag = true;
         }
         if (flag) {
-            for (int i = 0; i <= MAX_HEIGHT; ++i) {
-                if (!worldIn.getBlockState(pos.up(i+1)).matchesBlock(RankineBlocks.CHARCOAL_PIT.get())) {
+            for (int i = -MAX_HEIGHT; i <= MAX_HEIGHT; ++i) {
+                if (worldIn.getBlockState(pos.up(i)).matchesBlock(RankineBlocks.CHARCOAL_PIT.get())) {
                     worldIn.setBlockState(pos.up(i), RankineBlocks.CHARCOAL_PIT.get().getDefaultState().with(BlockStateProperties.LIT, Boolean.TRUE), 3);
-                    break;
                 }
             }
             return ActionResultType.SUCCESS;

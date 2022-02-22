@@ -1,47 +1,53 @@
 {
-  "name": "Sands",
+  "name": "rankine.journal.cat_sediments.sands.name",
   "icon": "minecraft:sand",
   "category": "sediments",
   "pages": [
     {
       "type": "text",
-      "text": "Sand is a class of middle sized particle and affected by gravity. $(l:mechanics/sluicing)Sluicing$() with a gold pan will yield various products depending on the type."
+      "text": "rankine.journal.cat_sediments.sands.text1"
     },
     {
       "type": "spotlight",
       "item": "minecraft:sand",
       "link_recipe": true,
-      "text": "Normally found along beaches and rivers. Used as a construction material in default and new recipes."
+      "text": "rankine.journal.cat_sediments.sands.sand"
     },
     {
       "type": "spotlight",
       "item": "minecraft:red_sand",
       "link_recipe": true,
-      "text": "Normally found at surface level in Mesa biomes. Used as a construction material in default and new recipes."
+      "text": "rankine.journal.cat_sediments.sands.red_sand"
     },
     {
       "type": "spotlight",
       "item": "minecraft:soul_sand",
       "link_recipe": true,
-      "text": "Main sediment component of the Soul Sand Valley biome."
+      "text": "rankine.journal.cat_sediments.sands.soul_sand"
     },
     {
       "type": "spotlight",
       "item": "rankine:black_sand",
       "link_recipe": true,
-      "text": "Normally found scattered along beaches. Used as a construction material in default and new recipes."
+      "text": "rankine.journal.cat_sediments.sands.black_sand"
     },
     {
       "type": "spotlight",
       "item": "rankine:white_sand",
       "link_recipe": true,
-      "text": "Normally found scattered along beaches. Used as a construction material in default and new recipes."
+      "text": "rankine.journal.cat_sediments.sands.white_sand"
     },
     {
       "type": "spotlight",
       "item": "rankine:desert_sand",
       "link_recipe": true,
-      "text": "Normally found in Desert biomes. Unlike other sands, this type has limited uses."
+      "text": "rankine.journal.cat_sediments.sands.desert_sand"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:silt",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.sands.silt"
     }
   ]
 }

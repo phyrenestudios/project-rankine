@@ -575,9 +575,23 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
         for (Block blk : RankineLists.ASPHALT_BLOCKS) {
             if (blk.matchesBlock(RankineBlocks.ASPHALT.get())) {
-                asphaltBlock(blk, getBlockRSL("asphalt"));
+                asphaltBlock(blk, getBlockRSL("asphalt"), getBlockRSL("asphalt"));
             } else {
-                asphaltBlock(blk, getBlockRSL(blk.getRegistryName().getPath()));
+                asphaltBlock(blk, getBlockRSL("asphalt"), getBlockRSL(blk.getRegistryName().getPath()));
+            }
+        }
+        for (Block blk : RankineLists.RED_ASPHALT_BLOCKS) {
+            if (blk.matchesBlock(RankineBlocks.RED_ASPHALT.get())) {
+                asphaltBlock(blk, getBlockRSL("red_asphalt"),getBlockRSL("red_asphalt"));
+            } else {
+                asphaltBlock(blk, getBlockRSL("red_asphalt"),getBlockRSL(blk.getRegistryName().getPath().replace("red_","")));
+            }
+        }
+        for (Block blk : RankineLists.GRAY_ASPHALT_BLOCKS) {
+            if (blk.matchesBlock(RankineBlocks.GRAY_ASPHALT.get())) {
+                asphaltBlock(blk, getBlockRSL("gray_asphalt"),getBlockRSL("gray_asphalt"));
+            } else {
+                asphaltBlock(blk, getBlockRSL("gray_asphalt"),getBlockRSL(blk.getRegistryName().getPath().replace("gray_","")));
             }
         }
 
@@ -607,7 +621,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         directionalBlock(RankineBlocks.GAS_BOTTLER.get(),models().orientableVertical(RankineBlocks.GAS_BOTTLER.get().getRegistryName().getPath(),getBlockRSL("gas_bottler_side"),getBlockRSL("gas_bottler_end")));
         cobBlock(RankineBlocks.COB.get());
         ornamentBlock(RankineBlocks.ORNAMENT.get());
-        simpleBlock(RankineBlocks.RANKINE_BOX.get());
         simpleBlock(RankineBlocks.DISTILLATION_TOWER.get());
         simpleBlock(RankineBlocks.AIR_DISTILLATION_PACKING.get());
         simpleBlock(RankineBlocks.REACTION_CHAMBER_CORE.get());
@@ -771,7 +784,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
 
-    public void asphaltBlock(Block blk, ResourceLocation textOverlay) {
+    public void asphaltBlock(Block blk, ResourceLocation textureBase, ResourceLocation textureOverlay) {
         String path = blk.getRegistryName().getPath();
         getVariantBuilder(blk).forAllStates(state -> {
             int rot = (int) state.get(HorizontalBlock.HORIZONTAL_FACING).getHorizontalAngle();
@@ -779,9 +792,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
             return ConfiguredModel.builder()
                 .modelFile(models().withExistingParent("block/"+path+"_size"+SIZE, mcLoc("block/block"))
-                .texture("particle", getBlockRSL("asphalt"))
-                .texture("all", getBlockRSL("asphalt"))
-                .texture("overlay", textOverlay)
+                .texture("particle", textureBase)
+                .texture("all", textureBase)
+                .texture("overlay", textureOverlay)
                     .element().from(0.0f,0.0f,0.0f).to(16.0f,4*SIZE,16.0f)
                     .face(Direction.NORTH).uvs(0,16-4*SIZE, 16, 16).texture("#all").cullface(Direction.NORTH).end()
                     .face(Direction.EAST).uvs(0, 16-4*SIZE, 16, 16).texture("#all").cullface(Direction.EAST).end()

@@ -1,0 +1,27 @@
+{
+  "name": "rankine.journal.cat_orientation.survival_guide.name",
+  "icon": "minecraft:flint",
+  "category": "orientation",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_orientation.survival_guide.text0"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_orientation.survival_guide.text1",
+      "text": "rankine.journal.cat_orientation.survival_guide.text2"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_orientation.survival_guide.text3",
+      "text": "rankine.journal.cat_orientation.survival_guide.text4"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_orientation.foundation.text8",
+      "text": "rankine.journal.cat_orientation.foundation.text9"
+    }
+  ]
+}

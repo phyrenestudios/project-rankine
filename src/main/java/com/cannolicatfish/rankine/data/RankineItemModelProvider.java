@@ -159,7 +159,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.GARLAND.get());
         basicItem(RankineItems.POPCORN.get());
         basicItem(RankineItems.DOUGH.get());
-        basicItem(RankineItems.DOUGH_GF.get());
         basicItem(RankineItems.TOAST.get());
         basicItem(RankineItems.CINNAMON.get());
         basicItem(RankineItems.CINNAMON_TOAST.get());
@@ -177,7 +176,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItemAltTexture(RankineItems.AGED_CHEESE.get(), modLoc("item/aged_cheese_wheel"));
         basicItemAltTexture(RankineItems.UNAGED_CHEESE.get(), modLoc("item/unaged_cheese_wheel"));
         basicItemAltTexture(RankineItems.GEODE.get(), modLoc("item/geode"));
-        basicItemAltTexture(RankineItems.GF_BREAD.get(), mcLoc("item/bread"));
         basicItemAltTexture(RankineItems.WILLOW_BRANCHLET.get(), modLoc("block/willow_branchlet_plant"));
         basicItemAltTexture(RankineItems.LOCUST_SPINE.get(), modLoc("block/locust_spine"));
         basicItemHandheld(RankineItems.DOWSING_ROD.get());
@@ -360,7 +358,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.PCF.get(),
-                RankineBlocks.RANKINE_BOX.get(),
                 RankineBlocks.DIAMOND_ANVIL_CELL.get(),
                 RankineBlocks.PARTICLE_ACCELERATOR.get(),
                 RankineBlocks.TEMPLATE_TABLE.get(),
@@ -418,6 +415,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
         withExistingParent(RankineBlocks.ROMAN_CONCRETE_BRICKS_SLAB.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/roman_concrete_bricks_slab_size2"));
 
         withExistingParent(RankineBlocks.ASPHALT.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/asphalt_size4"));
+        withExistingParent(RankineBlocks.RED_ASPHALT.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/red_asphalt_size4"));
+        withExistingParent(RankineBlocks.GRAY_ASPHALT.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/gray_asphalt_size4"));
 
         for (Block blk : RankineLists.WALL_MUSHROOMS) {
             basicItemAltTexture(blk.asItem(), modLoc("item/" + blk.getRegistryName().getPath()));
@@ -515,6 +514,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
             basicItem(blk.asItem());
         }
 
+        filledTagItem(RankineItems.PENNING_TRAP.get());
+
     }
 
     private ItemModelBuilder withExistingParent(Block blk) {
@@ -558,6 +559,12 @@ public class RankineItemModelProvider extends ItemModelProvider {
         getBuilder(Path).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "item/" + Path);
         getBuilder(Path+"_throwing").parent(getExistingFile(modLoc("item/spear_throwing"))).texture("layer0", "item/" + Path);
         getBuilder(Path).parent(getExistingFile(modLoc("item/spear_in_hand"))).texture("layer0", "item/" + Path).override().predicate(new ResourceLocation("throwing"), 1.0f).model(getExistingFile(modLoc("item/"+Path+"_throwing")));
+    }
+
+    private void filledTagItem(Item item) {
+        String Path = item.getRegistryName().getPath();
+        getBuilder(Path+"_filled").parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + Path+"_filled");
+        getBuilder(Path).parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + Path).override().predicate(new ResourceLocation("rankine:filled"), 1).model(getExistingFile(modLoc("item/"+Path+"_filled")));
     }
     
 }

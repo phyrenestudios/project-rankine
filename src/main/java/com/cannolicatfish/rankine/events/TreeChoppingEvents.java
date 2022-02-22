@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.util.ResourceLocation;
@@ -13,14 +14,15 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Stack;
 
 
 @Mod.EventBusSubscriber
@@ -118,8 +120,8 @@ public class TreeChoppingEvents {
 
             if (alive) {
                 for (BlockPos b : logs) {
-                    if (Config.GENERAL.STUMP_CREATION.get() && worldIn.getBlockState(b.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
-                        worldIn.setBlockState(b, RankineBlocks.STUMP.get().getDefaultState(),2);
+                    if (Config.GENERAL.STUMP_CREATION.get() && worldIn.getBlockState(b.down()).getMaterial().equals(Material.EARTH)) {
+                        worldIn.setBlockState(b, RankineBlocks.STUMP.get().getDefaultState(),3);
                     } else {
                         worldIn.destroyBlock(b, true);
                     }

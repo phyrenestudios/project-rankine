@@ -1,69 +1,82 @@
 {
-  "name": "Volcanic Stones",
-  "icon": "rankine:pumice",
+  "name": "rankine.journal.cat_stones.volcanic.name",
+  "icon": "rankine:limestone",
   "category": "stones",
   "pages": [
     {
       "type": "text",
-      "text": "Volcanic stones are those that come straight from lava almost immediately. "
+      "text": "rankine.journal.cat_stones.volcanic.text1"
     },
     {
       "type": "text",
-      "text": "Volcanic stones are generated using the vanilla obsidian generator, where water flows onto lava source blocks."
+      "title": "rankine.journal.cat_stones.volcanic.text2",
+      "text": "rankine.journal.cat_stones.volcanic.text3"
     },
     {
       "type": "spotlight",
       "item": "minecraft:obsidian",
       "link_recipe": true,
-      "text": "Found in the traditional locations."
+      "text": "rankine.journal.cat_stones.volcanic.obsidian"
     },
     {
       "type": "spotlight",
       "item": "minecraft:crying_obsidian",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.volcanic.crying_obsidian"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:snowflake_obsidian",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.volcanic.snowflake_obsidian"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blood_obsidian",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_stones.volcanic.blood_obsidian"
     },
     {
       "type": "spotlight",
       "item": "rankine:pumice",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.volcanic.pumice"
     },
     {
       "type": "spotlight",
       "item": "rankine:scoria",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.volcanic.scoria"
     },
     {
       "type": "spotlight",
       "item": "rankine:andesitic_tuff",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.volcanic.andesitic_tuff"
     },
     {
       "type": "spotlight",
       "item": "rankine:basaltic_tuff",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.volcanic.basaltic_tuff"
     },
     {
       "type": "spotlight",
       "item": "rankine:rhyolitic_tuff",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.volcanic.rhyolitic_tuff"
     },
     {
       "type": "spotlight",
       "item": "rankine:kimberlitic_tuff",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.volcanic.kimberlitic_tuff"
     },
     {
       "type": "spotlight",
       "item": "rankine:komatiitic_tuff",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.volcanic.komatiitic_tuff"
     }
   ]
 }

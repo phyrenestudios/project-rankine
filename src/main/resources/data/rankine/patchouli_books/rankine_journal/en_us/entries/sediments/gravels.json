@@ -1,29 +1,29 @@
 {
-  "name": "Gravels",
+  "name": "rankine.journal.cat_sediments.gravels.name",
   "icon": "minecraft:gravel",
   "category": "sediments",
   "pages": [
     {
       "type": "text",
-      "text": "Gravel is a large particle, about flint sized, but small enough to be affected by gravity. $(l:mechanics/sluicing)Sluicing$() with a gold pan will yield other gravel types and flint."
+      "text": "rankine.journal.cat_sediments.gravels.text1"
     },
     {
       "type": "spotlight",
       "item": "minecraft:gravel",
       "link_recipe": true,
-      "text": "Found throughout the overworld in the standard locations."
+      "text": "rankine.journal.cat_sediments.gravels.gravel"
     },
     {
       "type": "spotlight",
       "item": "rankine:light_gravel",
       "link_recipe": true,
-      "text": "Replacement of gravel in some warmer biomes."
+      "text": "rankine.journal.cat_sediments.gravels.light_gravel"
     },
     {
       "type": "spotlight",
       "item": "rankine:dark_gravel",
       "link_recipe": true,
-      "text": "Replacement of gravel in the Nether.."
+      "text": "rankine.journal.cat_sediments.gravels.dark_gravel"
     }
   ]
 }

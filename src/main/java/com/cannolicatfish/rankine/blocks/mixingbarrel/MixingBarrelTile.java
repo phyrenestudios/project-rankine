@@ -4,9 +4,9 @@ package com.cannolicatfish.rankine.blocks.mixingbarrel;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.MixingRecipe;
-import com.cannolicatfish.rankine.recipe.MixingRecipe;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -21,18 +21,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.MIXING_BARREL_TILE;
@@ -136,6 +133,11 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
                 } else {
                     world.setBlockState(this.pos, RankineBlocks.MIXING_BARREL.get().getDefaultState().with(MixingBarrelBlock.ANGLE,angle+1),3);
                 }
+                List<LivingEntity> entitiesOnBlock = world.getEntitiesWithinAABB(LivingEntity.class, new AxisAlignedBB(pos, pos.up()).expand(1, 1, 1), (e) -> e instanceof MobEntity || e instanceof PlayerEntity);
+                for (LivingEntity i : entitiesOnBlock) {
+                    i.setPositionAndRotation(i.getPosX(),i.getPosY()+2,i.getPosZ(),i.getRotationYawHead() + 22.5F,i.getPitchYaw().y);
+                }
+
                 this.needsRefresh = 1;
 
 

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cobble_from_stone",
+  "ingredients": [
+    {
+      "item": "rankine:kimberlite"
+    },
+    {
+      "tag": "forge:cobblestone"
+    }
+  ],
+  "result": {
+    "item": "rankine:kimberlite_cobble",
+    "count": 8
+  }
+}

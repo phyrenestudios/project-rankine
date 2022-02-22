@@ -1,4 +1,26 @@
 {
+  "penning_trap_absorb": {
+    "subtitle": "rankine.subtitle.penning_trap_absorb",
+    "sounds": [
+      {
+        "name": "minecraft:entity/pufferfish/blow_up1",
+        "volume": 0.45
+      },
+      {
+        "name": "minecraft:entity/pufferfish/blow_up2",
+        "volume": 0.45
+      }
+    ]
+  },
+  "totem_of_enduring_use": {
+    "subtitle": "rankine.subtitle.totem_of_enduring_use",
+    "sounds": [
+      {
+        "name": "minecraft:item.totem.use",
+        "volume": 0.2
+      }
+    ]
+  },
   "shulker_gas_vacuum_absorb": {
     "subtitle": "rankine.subtitle.shulker_gas_vacuum_absorb",
     "sounds": [

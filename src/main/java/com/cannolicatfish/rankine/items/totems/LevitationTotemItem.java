@@ -12,7 +12,6 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -38,7 +37,7 @@ public class LevitationTotemItem extends Item{
         if (entityIn instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entityIn;
             if (player.getHeldItemOffhand().getItem() == this && !player.isSneaking()) {
-                entityIn.setMotion(entityIn.getMotion().x, 0.0D, entityIn.getMotion().z);
+                entityIn.setMotion(entityIn.getMotion().mul(1.1D,0.0D,1.1D));
             }
         }
     }

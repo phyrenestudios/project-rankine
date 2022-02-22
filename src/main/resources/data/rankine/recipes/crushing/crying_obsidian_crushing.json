@@ -4,11 +4,12 @@
     "item": "minecraft:crying_obsidian"
   },
   "output1": {
-    "item": "minecraft:quartz",
+    "item": "rankine:plagioclase_feldspar",
+    "count": 2,
     "chance": 1
   },
   "output2": {
-    "item": "rankine:plagioclase_feldspar",
+    "item": "minecraft:quartz",
     "chance": 0.75,
     "additional": 0.15
   },
@@ -29,6 +30,6 @@
   },
   "output6": {
     "item": "rankine:hedenbergite",
-    "chance": 0.02
+    "chance": 0.05
   }
 }

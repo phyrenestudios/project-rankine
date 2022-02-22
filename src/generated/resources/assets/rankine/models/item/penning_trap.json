@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "rankine:item/penning_trap"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:filled": 1.0
+      },
+      "model": "rankine:item/penning_trap_filled"
+    }
+  ]
+}

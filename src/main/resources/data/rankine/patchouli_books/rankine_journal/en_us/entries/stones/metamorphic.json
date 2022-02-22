@@ -1,105 +1,106 @@
 {
-  "name": "Metamorphic Stones",
-  "icon": "rankine:pumice",
+  "name": "rankine.journal.cat_stones.metamorphic.name",
+  "icon": "rankine:gneiss",
   "category": "stones",
   "pages": [
     {
       "type": "text",
-      "text": "Metamorphic stones are formed from existing stones that undergo intense heat and pressure."
+      "text": "rankine.journal.cat_stones.metamorphic.text1"
     },
     {
       "type": "text",
-      "text": "Metamorphic stones are generated using the vanilla stone generator, where lava flows onto water source blocks."
+      "title": "rankine.journal.cat_stones.metamorphic.text2",
+      "text": "rankine.journal.cat_stones.metamorphic.text3"
     },
     {
       "type": "spotlight",
       "item": "rankine:black_marble",
       "link_recipe": true,
-      "text": "Found in the traditional locations."
+      "text": "rankine.journal.cat_stones.metamorphic.black_marble"
     },
     {
       "type": "spotlight",
       "item": "rankine:gray_marble",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.gray_marble"
     },
     {
       "type": "spotlight",
       "item": "rankine:white_marble",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.white_marble"
     },
     {
       "type": "spotlight",
       "item": "rankine:rose_marble",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.rose_marble"
     },
     {
       "type": "spotlight",
       "item": "rankine:slate",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.slate"
     },
     {
       "type": "spotlight",
       "item": "rankine:phyllite",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.phyllite"
     },
     {
       "type": "spotlight",
       "item": "rankine:mica_schist",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.mica_schist"
     },
     {
       "type": "spotlight",
       "item": "rankine:blueschist",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.blueschist"
     },
     {
       "type": "spotlight",
       "item": "rankine:greenschist",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.greenschist"
     },
     {
       "type": "spotlight",
       "item": "rankine:gneiss",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.gneiss"
     },
     {
       "type": "spotlight",
       "item": "rankine:quartzite",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.quartzite"
     },
     {
       "type": "spotlight",
       "item": "rankine:soapstone",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.soapstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:serpentinite",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.serpentinite"
     },
     {
       "type": "spotlight",
       "item": "rankine:mariposite",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.mariposite"
     },
     {
       "type": "spotlight",
       "item": "rankine:eclogite",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.metamorphic.eclogite"
     }
   ]
 }

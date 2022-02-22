@@ -3,6 +3,11 @@
   "values": [
     "rankine:wheat_grain",
     "rankine:barley_grain",
-    "rankine:rye_grain"
+    "rankine:rye_grain",
+    "rankine:corn_grain",
+    "rankine:oat_grain",
+    "rankine:millet_grain",
+    "rankine:rice_grain",
+    "rankine:sorghum_grain"
   ]
 }

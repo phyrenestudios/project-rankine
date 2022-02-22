@@ -1,0 +1,29 @@
+{
+  "name": "rankine.journal.cat_mineralogy.mineral_stones.name",
+  "icon": "rankine:phosphorite",
+  "category": "mineralogy",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_mineralogy.mineral_stones.text1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:phosphorite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_stones.phosphorite"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sylvinite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_stones.sylvinite"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:evaporite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_stones.evaporite"
+    }
+  ]
+}

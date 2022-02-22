@@ -1,11 +1,16 @@
 package com.cannolicatfish.rankine.items.totems;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -37,10 +42,12 @@ public class CobblingTotemItem extends Item {
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
         World worldIn = context.getWorld();
-        BlockPos pos = context.getPos();
         Direction opp = context.getFace();
-        if (context.getPlayer() != null && context.getItem().getDamage() < context.getItem().getMaxDamage() - 1) {
-            worldIn.setBlockState(pos.offset(opp), Blocks.COBBLESTONE.getDefaultState());
+        BlockPos pos = context.getPos().offset(opp);
+        if ((worldIn.getBlockState(pos).isAir() || worldIn.getBlockState(pos).isReplaceable(new BlockItemUseContext(context))) && context.getPlayer() != null && context.getItem().getDamage() < context.getItem().getMaxDamage() - 1) {
+            worldIn.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState(),3);
+            SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
+            worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getBreakSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
             if (context.getItem().getDamage() < context.getItem().getMaxDamage()) {
                 context.getItem().damageItem(1,context.getPlayer(),(p_220040_1_) -> {
                     p_220040_1_.sendBreakAnimation(context.getHand());

@@ -8,165 +8,155 @@
           "type": "minecraft:alternatives",
           "children": [
             {
-              "type": "minecraft:alternatives",
-              "children": [
+              "type": "minecraft:item",
+              "conditions": [
                 {
-                  "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "condition": "minecraft:block_state_property",
-                      "block": "rankine:bone_ash",
-                      "properties": {
-                        "layers": "1"
-                      }
-                    }
-                  ],
-                  "name": "rankine:bone_ash"
-                },
-                {
-                  "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "condition": "minecraft:block_state_property",
-                      "block": "rankine:bone_ash",
-                      "properties": {
-                        "layers": "2"
-                      }
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "function": "minecraft:set_count",
-                      "count": 2
-                    }
-                  ],
-                  "name": "rankine:bone_ash"
-                },
-                {
-                  "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "condition": "minecraft:block_state_property",
-                      "block": "rankine:bone_ash",
-                      "properties": {
-                        "layers": "3"
-                      }
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "function": "minecraft:set_count",
-                      "count": 3
-                    }
-                  ],
-                  "name": "rankine:bone_ash"
-                },
-                {
-                  "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "condition": "minecraft:block_state_property",
-                      "block": "rankine:bone_ash",
-                      "properties": {
-                        "layers": "4"
-                      }
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "function": "minecraft:set_count",
-                      "count": 4
-                    }
-                  ],
-                  "name": "rankine:bone_ash"
-                },
-                {
-                  "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "condition": "minecraft:block_state_property",
-                      "block": "rankine:bone_ash",
-                      "properties": {
-                        "layers": "5"
-                      }
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "function": "minecraft:set_count",
-                      "count": 5
-                    }
-                  ],
-                  "name": "rankine:bone_ash"
-                },
-                {
-                  "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "condition": "minecraft:block_state_property",
-                      "block": "rankine:bone_ash",
-                      "properties": {
-                        "layers": "6"
-                      }
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "function": "minecraft:set_count",
-                      "count": 6
-                    }
-                  ],
-                  "name": "rankine:bone_ash"
-                },
-                {
-                  "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "condition": "minecraft:block_state_property",
-                      "block": "rankine:bone_ash",
-                      "properties": {
-                        "layers": "7"
-                      }
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "function": "minecraft:set_count",
-                      "count": 7
-                    }
-                  ],
-                  "name": "rankine:bone_ash"
-                },
-                {
-                  "type": "minecraft:item",
-                  "conditions": [
-                    {
-                      "condition": "minecraft:block_state_property",
-                      "block": "rankine:bone_ash",
-                      "properties": {
-                        "layers": "8"
-                      }
-                    }
-                  ],
-                  "functions": [
-                    {
-                      "function": "minecraft:set_count",
-                      "count": 8
-                    }
-                  ],
-                  "name": "rankine:bone_ash"
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:bone_ash",
+                  "properties": {
+                    "layers": "1"
+                  }
                 }
-              ]
+              ],
+              "name": "rankine:bone_ash"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:bone_ash",
+                  "properties": {
+                    "layers": "2"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 2
+                }
+              ],
+              "name": "rankine:bone_ash"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:bone_ash",
+                  "properties": {
+                    "layers": "3"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 3
+                }
+              ],
+              "name": "rankine:bone_ash"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:bone_ash",
+                  "properties": {
+                    "layers": "4"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 4
+                }
+              ],
+              "name": "rankine:bone_ash"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:bone_ash",
+                  "properties": {
+                    "layers": "5"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 5
+                }
+              ],
+              "name": "rankine:bone_ash"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:bone_ash",
+                  "properties": {
+                    "layers": "6"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 6
+                }
+              ],
+              "name": "rankine:bone_ash"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:bone_ash",
+                  "properties": {
+                    "layers": "7"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 7
+                }
+              ],
+              "name": "rankine:bone_ash"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:bone_ash",
+                  "properties": {
+                    "layers": "8"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 8
+                }
+              ],
+              "name": "rankine:bone_ash"
             }
           ]
         }
       ],
       "conditions": [
-        {
-          "condition": "minecraft:entity_properties",
-          "predicate": {},
-          "entity": "this"
-        },
         {
           "condition": "minecraft:survives_explosion"
         }
