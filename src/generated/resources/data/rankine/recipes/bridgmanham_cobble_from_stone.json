@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cobble_from_stone",
+  "ingredients": [
+    {
+      "item": "rankine:bridgmanham"
+    },
+    {
+      "tag": "forge:cobblestone"
+    }
+  ],
+  "result": {
+    "item": "rankine:bridgmanham_cobble",
+    "count": 8
+  }
+}

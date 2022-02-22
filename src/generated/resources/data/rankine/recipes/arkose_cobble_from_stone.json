@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cobble_from_stone",
+  "ingredients": [
+    {
+      "item": "rankine:arkose"
+    },
+    {
+      "tag": "forge:cobblestone"
+    }
+  ],
+  "result": {
+    "item": "rankine:arkose_cobble",
+    "count": 8
+  }
+}

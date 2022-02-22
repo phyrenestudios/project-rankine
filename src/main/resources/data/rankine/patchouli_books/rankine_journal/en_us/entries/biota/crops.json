@@ -1,0 +1,149 @@
+{
+  "name": "rankine.journal.cat_biota.crops.name",
+  "icon": "rankine:stinging_nettle",
+  "category": "biota",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_biota.crops.text1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:barley",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.barley"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rice",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.rice"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:millet",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.millet"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rye",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.rye"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:oats",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.oats"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sorghum",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.sorghum"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:corn_ear",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.corn_ear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:soybeans",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.soybeans"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:asparagus",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.asparagus"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:jute",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.jute"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cotton",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.cotton"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blueberries",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.blueberries"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cranberries",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.cranberries"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:elderberries",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.elderberries"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pokeberries",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.pokeberries"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:strawberries",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.strawberries"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:snowberries",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.snowberries"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:raspberries",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.raspberries"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blackberries",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.blackberries"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pineapple",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.pineapple"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:aloe",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.aloe"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:banana_yucca",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.banana_yucca"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:camphor_basil_leaf",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.crops.camphor_basil"
+    }
+  ]
+}

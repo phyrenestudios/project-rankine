@@ -111,7 +111,7 @@ public class PostWorldReplacerFeature extends Feature<NoFeatureConfig> {
                                 reader.setBlockState(TARGET_POS, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(WorldgenUtils.SANDSTONES.get(genBiomesIndex).getRegistryName().toString().replace(":",":smooth_"))).getDefaultState(), 2);
                             }
                         } else if (TARGET.isIn(Tags.Blocks.ORES_COAL)) {
-                            if (reader.getBlockState(TARGET_POS.down()).isIn(Tags.Blocks.STONE) && rand.nextFloat()<0.8) {
+                            if (reader.getBlockState(TARGET_POS.down()).isIn(Tags.Blocks.STONE) && rand.nextFloat()<0.7) {
                                 reader.setBlockState(TARGET_POS.down(), RankineBlocks.FIRE_CLAY.get().getDefaultState(), 2);
                             }
                         }

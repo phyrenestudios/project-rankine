@@ -1,23 +1,89 @@
 {
-  "name": "Soils",
+  "name": "rankine.journal.cat_sediments.soils.name",
   "icon": "minecraft:dirt",
   "category": "sediments",
   "pages": [
     {
       "type": "text",
-      "text": "A broader term for the material we call dirt is soil. Soils are comprised of a few base sediments (clay, silt, and sand) and organic material. New Soils replace dirt across much of the world."
+      "text": "rankine.journal.cat_sediments.soils.text1"
     },
     {
       "type": "spotlight",
       "item": "minecraft:dirt",
       "link_recipe": true,
-      "text": "Rarely found in world. Can be obtained by $(l:mechanics/sluicing)sluicing$() other soils."
+      "text": "rankine.journal.cat_sediments.soils.dirt"
     },
     {
       "type": "spotlight",
       "item": "rankine:humus",
       "link_recipe": true,
-      "text": ""
+      "text": "rankine.journal.cat_sediments.soils.humus"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:loam",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.soils.loam"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:clay_loam",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.soils.clay_loam"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sandy_loam",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.soils.sandy_loam"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:silty_loam",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.soils.silty_loam"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sandy_clay_loam",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.soils.sandy_clay_loam"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:silty_clay_loam",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.soils.silty_clay_loam"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:loamy_sand",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.soils.loamy_sand"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sandy_clay",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.soils.sandy_clay"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:silty_clay",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.soils.silty_clay"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:permafrost",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.soils.permafrost"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:laterite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.soils.laterite"
     }
   ]
 }

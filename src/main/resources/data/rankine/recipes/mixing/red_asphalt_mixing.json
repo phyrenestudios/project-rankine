@@ -1,0 +1,37 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 100,
+  "ingredientTotal": 4,
+  "matScale": 2,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 50
+  },
+  "input1": {
+    "tag": "forge:gravel",
+    "required": true,
+    "min": 0.40,
+    "max": 0.60
+  },
+  "input2": {
+    "tag": "forge:sand",
+    "required": true,
+    "min": 0.20,
+    "max": 0.30
+  },
+  "input3": {
+    "item": "rankine:bitumen",
+    "required": true,
+    "min": 0.10,
+    "max": 0.20
+  },
+  "input4": {
+    "tag": "forge:stones/granite",
+    "required": true,
+    "min": 0.10,
+    "max": 0.20
+  },
+  "result": {
+    "item": "rankine:red_asphalt"
+  }
+}

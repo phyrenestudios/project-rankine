@@ -1,122 +1,118 @@
 {
-  "name": "Sedimentary Stones",
+  "name": "rankine.journal.cat_stones.sedimentary.name",
   "icon": "rankine:limestone",
   "category": "stones",
   "pages": [
     {
       "type": "text",
-      "text": "Sedimentary stones are ones formed from the compaction and cementing of various sediments. In the world, most of these types of stones are found closer to the surface due to more recent water action. We can speed up the sedimentation process by using an artificial generator."
+      "text": "rankine.journal.cat_stones.sedimentary.text1"
     },
     {
       "type": "crafting",
       "recipe": "rankine:sediment_fan",
-      "text": "Usage of the Sediment Fan is illustrated on the next page. JEI can be used to see the associated stone generation recipes."
-    },
-    {
-      "type": "text",
-      "text": ""
+      "text": "rankine.journal.cat_stones.sedimentary.text2"
     },
     {
       "type": "spotlight",
       "item": "minecraft:sandstone",
       "link_recipe": true,
-      "text": "Found in the traditional locations."
+      "text": "rankine.journal.cat_stones.sedimentary.sandstone"
     },
     {
       "type": "spotlight",
       "item": "minecraft:red_sandstone",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.red_sandstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:soul_sandstone",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.soul_sandstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:desert_sandstone",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.desert_sandstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:white_sandstone",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.white_sandstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:black_sandstone",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.black_sandstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:limestone",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.limestone"
     },
     {
       "type": "spotlight",
       "item": "rankine:dolostone",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.dolostone"
     },
     {
       "type": "spotlight",
       "item": "rankine:chalk",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.chalk"
     },
     {
       "type": "spotlight",
       "item": "rankine:marlstone",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.marlstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:shale",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.shale"
     },
     {
       "type": "spotlight",
       "item": "rankine:mudstone",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.mudstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:siltstone",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.siltstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:itacolumite",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.itacolumite"
     },
     {
       "type": "spotlight",
       "item": "rankine:arkose",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.arkose"
     },
     {
       "type": "spotlight",
       "item": "rankine:graywacke",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.graywacke"
     },
     {
       "type": "spotlight",
       "item": "rankine:honeystone",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "rankine.journal.cat_stones.sedimentary.honeystone"
     }
   ]
 }

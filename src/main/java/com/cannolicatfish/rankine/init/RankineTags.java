@@ -1063,9 +1063,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> ROPE = forgeItem("rope");
         public static final Tags.IOptionalNamedTag<Item> CHEESE = forgeItem("cheese");
         public static final Tags.IOptionalNamedTag<Item> EDIBLE_MUSHROOMS = forgeItem("edible_mushrooms");
-        public static final Tags.IOptionalNamedTag<Item> BREAD = forgeItem("bread");
         public static final Tags.IOptionalNamedTag<Item> FLOUR = forgeItem("flour");
-        public static final Tags.IOptionalNamedTag<Item> FLOUR_GF = forgeItem("flour_gf");
         public static final Tags.IOptionalNamedTag<Item> CLAY_BALLS = forgeItem("clay_balls");
         public static final Tags.IOptionalNamedTag<Item> RODS_GRAPHITE = forgeItem("rods/graphite");
         public static final Tags.IOptionalNamedTag<Item> RODS_CARBON = forgeItem("rods/carbon");

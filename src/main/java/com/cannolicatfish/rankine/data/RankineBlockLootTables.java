@@ -124,6 +124,12 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         for (Block blk : RankineLists.ASPHALT_BLOCKS) {
             lootTables.put(blk, createBlockLootTable(RankineBlocks.ASPHALT.get()));
         }
+        for (Block blk : RankineLists.RED_ASPHALT_BLOCKS) {
+            lootTables.put(blk, createBlockLootTable(RankineBlocks.RED_ASPHALT.get()));
+        }
+        for (Block blk : RankineLists.GRAY_ASPHALT_BLOCKS) {
+            lootTables.put(blk, createBlockLootTable(RankineBlocks.GRAY_ASPHALT.get()));
+        }
 
         for (Block SOIL : Stream.of(RankineLists.SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             Block GRASS = RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(SOIL));
@@ -226,7 +232,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.GYRATORY_CRUSHER.get(), droppingWithName(RankineBlocks.GYRATORY_CRUSHER.get()));
         lootTables.put(RankineBlocks.CRUCIBLE_BLOCK.get(), droppingWithName(RankineBlocks.CRUCIBLE_BLOCK.get()));
         lootTables.put(RankineBlocks.EVAPORATION_TOWER.get(), droppingWithName(RankineBlocks.EVAPORATION_TOWER.get()));
-        lootTables.put(RankineBlocks.RANKINE_BOX.get(), droppingWithName(RankineBlocks.RANKINE_BOX.get()));
         lootTables.put(RankineBlocks.TEMPLATE_TABLE.get(), droppingWithName(RankineBlocks.TEMPLATE_TABLE.get()));
         lootTables.put(RankineBlocks.INDUCTION_FURNACE.get(), droppingWithName(RankineBlocks.INDUCTION_FURNACE.get()));
         lootTables.put(RankineBlocks.GAS_BOTTLER.get(), droppingWithName(RankineBlocks.GAS_BOTTLER.get()));

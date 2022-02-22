@@ -31,7 +31,7 @@ public class FumaroleFeature extends Feature<NoFeatureConfig> {
         if (reader.getBiome(new BlockPos(randX,0,randZ)).getCategory() == Biome.Category.NETHER) {
             yHeight = 30;
             for (int y = 80; y>=yHeight; --y) {
-                if (reader.getBlockState(new BlockPos(randX, y + 1, randZ)).matchesBlock(Blocks.AIR)) {
+                if (reader.getBlockState(new BlockPos(randX, y, randZ)).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && reader.getBlockState(new BlockPos(randX, y + 1, randZ)).matchesBlock(Blocks.AIR)) {
                     yHeight=y;
                     break;
                 }
@@ -40,7 +40,7 @@ public class FumaroleFeature extends Feature<NoFeatureConfig> {
         } else {
             yHeight = 11;
             for (int y = 40; y>=yHeight; --y) {
-                if (reader.getBlockState(new BlockPos(randX, y + 1, randZ)).matchesBlock(Blocks.AIR)) {
+                if (reader.getBlockState(new BlockPos(randX, y, randZ)).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && reader.getBlockState(new BlockPos(randX, y + 1, randZ)).matchesBlock(Blocks.AIR)) {
                     yHeight=y;
                     break;
                 }

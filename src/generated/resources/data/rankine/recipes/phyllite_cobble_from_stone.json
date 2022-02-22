@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cobble_from_stone",
+  "ingredients": [
+    {
+      "item": "rankine:phyllite"
+    },
+    {
+      "tag": "forge:cobblestone"
+    }
+  ],
+  "result": {
+    "item": "rankine:phyllite_cobble",
+    "count": 8
+  }
+}

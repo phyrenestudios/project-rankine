@@ -1,29 +1,35 @@
 {
-  "name": "Cobblestones",
+  "name": "rankine.journal.cat_sediments.cobblestones.name",
   "icon": "minecraft:cobblestone",
   "category": "sediments",
   "pages": [
     {
       "type": "text",
-      "text": "Cobbles are very large particles that can come from any parent stone when $(l:mechanics/crushing)crushed$()."
+      "text": "rankine.journal.cat_sediments.cobblestones.text1"
     },
     {
       "type": "spotlight",
       "item": "minecraft:cobblestone",
       "link_recipe": true,
-      "text": "The base material upon crushing any Igneous stone. Can also be obtained normally from stone."
+      "text": "rankine.journal.cat_sediments.cobblestones.cobblestone"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:blackstone",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_sediments.cobblestones.blackstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:skarn",
       "link_recipe": true,
-      "text": "The base material upon crushing any Metamorphic stone."
+      "text": "rankine.journal.cat_sediments.cobblestones.skarn"
     },
     {
       "type": "spotlight",
       "item": "rankine:breccia",
       "link_recipe": true,
-      "text": "The base material upon crushing any Sedimentary stone."
+      "text": "rankine.journal.cat_sediments.cobblestones.breccia"
     }
   ]
 }

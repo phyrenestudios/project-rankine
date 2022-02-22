@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,size=1": {
+      "model": "rankine:block/red_asphalt_crosswalk_size1",
+      "y": 180
+    },
+    "facing=south,size=1": {
+      "model": "rankine:block/red_asphalt_crosswalk_size1"
+    },
+    "facing=west,size=1": {
+      "model": "rankine:block/red_asphalt_crosswalk_size1",
+      "y": 90
+    },
+    "facing=east,size=1": {
+      "model": "rankine:block/red_asphalt_crosswalk_size1",
+      "y": 270
+    },
+    "facing=north,size=2": {
+      "model": "rankine:block/red_asphalt_crosswalk_size2",
+      "y": 180
+    },
+    "facing=south,size=2": {
+      "model": "rankine:block/red_asphalt_crosswalk_size2"
+    },
+    "facing=west,size=2": {
+      "model": "rankine:block/red_asphalt_crosswalk_size2",
+      "y": 90
+    },
+    "facing=east,size=2": {
+      "model": "rankine:block/red_asphalt_crosswalk_size2",
+      "y": 270
+    },
+    "facing=north,size=3": {
+      "model": "rankine:block/red_asphalt_crosswalk_size3",
+      "y": 180
+    },
+    "facing=south,size=3": {
+      "model": "rankine:block/red_asphalt_crosswalk_size3"
+    },
+    "facing=west,size=3": {
+      "model": "rankine:block/red_asphalt_crosswalk_size3",
+      "y": 90
+    },
+    "facing=east,size=3": {
+      "model": "rankine:block/red_asphalt_crosswalk_size3",
+      "y": 270
+    },
+    "facing=north,size=4": {
+      "model": "rankine:block/red_asphalt_crosswalk_size4",
+      "y": 180
+    },
+    "facing=south,size=4": {
+      "model": "rankine:block/red_asphalt_crosswalk_size4"
+    },
+    "facing=west,size=4": {
+      "model": "rankine:block/red_asphalt_crosswalk_size4",
+      "y": 90
+    },
+    "facing=east,size=4": {
+      "model": "rankine:block/red_asphalt_crosswalk_size4",
+      "y": 270
+    }
+  }
+}

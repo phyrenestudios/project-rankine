@@ -2,7 +2,7 @@
   "type": "rankine:mixing",
   "mixTime": 40,
   "ingredientTotal": 5,
-  "matScale": 0.25,
+  "matScale": 0.5,
   "fluidInput": {
     "fluid": "minecraft:water",
     "amount": 50

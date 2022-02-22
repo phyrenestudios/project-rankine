@@ -11,7 +11,6 @@ import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelScreen;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
-import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxScreen;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableScreen;
 import com.cannolicatfish.rankine.items.alloys.AlloySurfRodItem;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
@@ -65,6 +64,10 @@ public class ClientProxy implements IProxy {
                 new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living) ->
                         stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F);
 
+        ItemModelsProperties.registerProperty(RankineItems.PENNING_TRAP.get(),
+                new ResourceLocation(ProjectRankine.MODID, "filled"), (stack, world, living) ->
+                        stack.getTag() != null && stack.getTag().getInt("filled") != 0 ? 1 : 0);
+
         ItemModelsProperties.registerProperty(RankineItems.ALLOY_SURF_ROD.get(), new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_) -> {
             if (p_239422_2_ == null) {
                 return 0.0F;
@@ -93,7 +96,6 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(RankineBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
         ScreenManager.registerFactory(RankineBlocks.FUSION_FURNACE_CONTAINER, FusionFurnaceScreen::new);
         ScreenManager.registerFactory(RankineBlocks.GYRATORY_CRUSHER_CONTAINER, GyratoryCrusherScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.RANKINE_BOX_CONTAINER, RankineBoxScreen::new);
 
         addCutout(RankineLists.WOODEN_DOORS);
         addCutout(RankineLists.METAL_DOORS);
@@ -110,6 +112,8 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.CRUSHING_ORES);
         addCutout(RankineLists.SPECIAL_ORES);
         addCutout(RankineLists.ASPHALT_BLOCKS);
+        addCutout(RankineLists.RED_ASPHALT_BLOCKS);
+        addCutout(RankineLists.GRAY_ASPHALT_BLOCKS);
         addCutout(Arrays.asList(
                 RankineBlocks.FLOOD_GATE.get(),
                 RankineBlocks.ORNAMENT.get(),

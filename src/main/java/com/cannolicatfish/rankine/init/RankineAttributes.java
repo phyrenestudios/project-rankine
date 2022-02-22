@@ -20,8 +20,8 @@ public class RankineAttributes {
     public static final AttributeModifier DUNE_WALKER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fa9"), "rankine:dune_walker", 0.05, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier SNOW_DRIFTER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb0"), "rankine:snowshoes", 0.05, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier SPEED_SKATER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb1"), "rankine:speed_skater", 0.1, AttributeModifier.Operation.ADDITION);
-    public static final AttributeModifier SPEED_PENDANT_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb2"), "rankine:speed_pendant_ms", 0.075, AttributeModifier.Operation.ADDITION);
-    public static final AttributeModifier HEALTH_PENDANT = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb3"), "rankine:health_pendant_ms", 10.0, AttributeModifier.Operation.ADDITION);
+    public static final AttributeModifier SWIFTNESS_TOTEM = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb2"), "rankine:speed_pendant_ms", 0.075, AttributeModifier.Operation.ADDITION);
+    public static final AttributeModifier ENDURING_TOTEM = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb3"), "rankine:health_pendant_ms", 10.0, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier MUD_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb4"), "rankine:mud_ms", Config.GENERAL.MOVEMENT_MUD.get(), AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier FLIPPERS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb5"), "rankine:flippers", 2.5, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier WATER_VISION = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb6"), "rankine:water_vision", 1.0, AttributeModifier.Operation.ADDITION);

@@ -9,10 +9,10 @@
     "chance": 1
   },
   "output2": {
-    "item": "rankine:tellurium_nugget",
+    "item": "rankine:copper_nugget",
     "count": 6,
-    "chance": 0.3,
-    "additional": 0.15
+    "chance": 0.5,
+    "additional": 0.2
   },
   "output3": {
     "item": "rankine:copper_nugget",
@@ -27,10 +27,10 @@
     "additional": 0.1
   },
   "output5": {
-    "item": "rankine:copper_nugget",
+    "item": "rankine:tellurium_nugget",
     "count": 6,
-    "chance": 0.5,
-    "additional": 0.2
+    "chance": 0.15,
+    "additional": 0.1
   },
   "output6": {
     "item": "rankine:molybdenum_nugget",

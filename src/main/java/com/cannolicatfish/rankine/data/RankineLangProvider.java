@@ -143,6 +143,8 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.LANTERNS,
                 RankineLists.QUARTER_SLABS,
                 RankineLists.ASPHALT_BLOCKS,
+                RankineLists.RED_ASPHALT_BLOCKS,
+                RankineLists.GRAY_ASPHALT_BLOCKS,
                 RankineLists.NATIVE_ORES,
                 RankineLists.CRUSHING_ORES,
                 RankineLists.SPECIAL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -201,7 +203,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.AIR_DISTILLATION_PACKING.get(),
                 RankineBlocks.REACTION_CHAMBER_CORE.get(),
                 RankineBlocks.TRAMPOLINE.get(),
-                RankineBlocks.RANKINE_BOX.get(),
                 RankineBlocks.CHARCOAL_PIT.get(),
                 RankineBlocks.GWIHABAITE_CRYSTAL.get(),
                 
@@ -401,6 +402,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.SADDLE_TREE.get(),
             RankineItems.CANNONBALL.get(),
             RankineItems.CARCASS.get(),
+            RankineItems.PENNING_TRAP.get(),
             RankineItems.PUMICE_SOAP.get(),
             RankineItems.REFRACTORY_BRICK.get(),
             RankineItems.HIGH_REFRACTORY_BRICK.get(),
@@ -502,9 +504,6 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.CRUSHING_HEAD_HL5.get())) {
             add(item, parseLangName(item.getRegistryName().getPath()));
         }
-      
-        add(RankineItems.GF_BREAD.get(),"Bread (Gluten Free)");
-        add(RankineItems.DOUGH_GF.get(),"Dough (Gluten Free)");
 
 
 
@@ -1004,6 +1003,8 @@ public class RankineLangProvider extends LanguageProvider {
 
 
         //SUBTITLES
+        add("rankine.subtitle.totem_of_enduring_use", "totem use");
+        add("rankine.subtitle.penning_trap_absorb", "Penning Trap absorb");
         add("rankine.subtitle.shulker_gas_vacuum_absorb", "Shulker Gas Vacuum absorb");
         add("rankine.subtitle.shulker_gas_vacuum_release", "Shulker Gas Vacuum release");
         add("rankine.subtitle.sediment_fan_gen", "sedimentary block generation");
@@ -1011,6 +1012,105 @@ public class RankineLangProvider extends LanguageProvider {
 
         //JOURNAL==============================================================================
         add("rankine.journal.landing_text", "A mere collection of discoveries, awaiting application.");
+
+
+        //Biota
+        add("rankine.journal.cat_biota.name", "Biota");
+        add("rankine.journal.cat_biota.desc", "Plants be cool.");
+
+        add("rankine.journal.cat_biota.trees.text1", "Trees be cool.");
+        add("rankine.journal.cat_biota.trees.text2", "Cedar");
+        add("rankine.journal.cat_biota.trees.text3", "Balsam Fir");
+
+
+        add("rankine.journal.cat_biota.mushrooms.name", "Mushrooms");
+        add("rankine.journal.cat_biota.mushrooms.text1", "New types of fungi populate the undergrowth of wooded ecosystems. Although they have a different growth pattern, some can be used similar to the common red and brown varieties.");
+        add("rankine.journal.cat_biota.mushrooms.oyster_mushroom", "");
+        add("rankine.journal.cat_biota.mushrooms.sulfur_shelf_mushroom", "");
+        add("rankine.journal.cat_biota.mushrooms.honey_mushroom", "");
+        add("rankine.journal.cat_biota.mushrooms.lions_mane_mushroom", "");
+        add("rankine.journal.cat_biota.mushrooms.artist_conk_mushroom", "");
+        add("rankine.journal.cat_biota.mushrooms.tinder_conk_mushroom", "");
+        add("rankine.journal.cat_biota.mushrooms.cinnabar_polypore_mushroom", "");
+        add("rankine.journal.cat_biota.mushrooms.turkey_tail_mushroom", "");
+
+        add("rankine.journal.cat_biota.ground_flora.name", "Ground Flora");
+        add("rankine.journal.cat_biota.ground_flora.text1",  "");
+        add("rankine.journal.cat_biota.ground_flora.blue_morning_glory", "");
+        add("rankine.journal.cat_biota.ground_flora.purple_morning_glory", "");
+        add("rankine.journal.cat_biota.ground_flora.black_morning_glory", "");
+        add("rankine.journal.cat_biota.ground_flora.goldenrod", "");
+        add("rankine.journal.cat_biota.ground_flora.white_lily", "");
+        add("rankine.journal.cat_biota.ground_flora.orange_lily", "");
+        add("rankine.journal.cat_biota.ground_flora.red_lily", "");
+        add("rankine.journal.cat_biota.ground_flora.crimson_clover", "");
+        add("rankine.journal.cat_biota.ground_flora.red_clover", "");
+        add("rankine.journal.cat_biota.ground_flora.yellow_clover", "");
+        add("rankine.journal.cat_biota.ground_flora.white_clover", "");
+        add("rankine.journal.cat_biota.ground_flora.stinging_nettle", "");
+
+        add("rankine.journal.cat_biota.trees.name", "Trees");
+        add("rankine.journal.cat_biota.trees.cedar.title", "");
+        add("rankine.journal.cat_biota.trees.cedar", "");
+        add("rankine.journal.cat_biota.trees.balsam_fir.title", "");
+        add("rankine.journal.cat_biota.trees.balsam_fir", "");
+        add("rankine.journal.cat_biota.trees.eastern_hemlock.title", "");
+        add("rankine.journal.cat_biota.trees.eastern_hemlock", "");
+        add("rankine.journal.cat_biota.trees.western_hemlock.title", "");
+        add("rankine.journal.cat_biota.trees.western_hemlock", "");
+        add("rankine.journal.cat_biota.trees.pinyon_pine.title", "");
+        add("rankine.journal.cat_biota.trees.pinyon_pine", "");
+        add("rankine.journal.cat_biota.trees.juniper.title", "");
+        add("rankine.journal.cat_biota.trees.juniper", "");
+        add("rankine.journal.cat_biota.trees.black_birch.title", "");
+        add("rankine.journal.cat_biota.trees.black_birch", "");
+        add("rankine.journal.cat_biota.trees.yellow_birch.title", "");
+        add("rankine.journal.cat_biota.trees.yellow_birch", "");
+        add("rankine.journal.cat_biota.trees.red_birch.title", "");
+        add("rankine.journal.cat_biota.trees.red_birch", "");
+        add("rankine.journal.cat_biota.trees.maple.title", "");
+        add("rankine.journal.cat_biota.trees.maple", "");
+        add("rankine.journal.cat_biota.trees.black_walnut.title", "");
+        add("rankine.journal.cat_biota.trees.black_walnut", "");
+        add("rankine.journal.cat_biota.trees.coconut_palm.title", "");
+        add("rankine.journal.cat_biota.trees.coconut_palm", "");
+        add("rankine.journal.cat_biota.trees.cork_oak.title", "");
+        add("rankine.journal.cat_biota.trees.cork_oak", "");
+        add("rankine.journal.cat_biota.trees.sharinga.title", "");
+        add("rankine.journal.cat_biota.trees.sharinga", "");
+        add("rankine.journal.cat_biota.trees.cinnamon.title", "");
+        add("rankine.journal.cat_biota.trees.cinnamon", "");
+        add("rankine.journal.cat_biota.trees.honey_locust.title", "");
+        add("rankine.journal.cat_biota.trees.honey_locust", "");
+        add("rankine.journal.cat_biota.trees.weeping_willow.title", "");
+        add("rankine.journal.cat_biota.trees.weeping_willow", "");
+
+        add("rankine.journal.cat_biota.crops.name", "Crops");
+        add("rankine.journal.cat_biota.crops.text1", "");
+        add("rankine.journal.cat_biota.crops.barley", "");
+        add("rankine.journal.cat_biota.crops.rice", "");
+        add("rankine.journal.cat_biota.crops.millet", "");
+        add("rankine.journal.cat_biota.crops.rye", "");
+        add("rankine.journal.cat_biota.crops.oats", "");
+        add("rankine.journal.cat_biota.crops.sorghum", "");
+        add("rankine.journal.cat_biota.crops.corn_ear", "");
+        add("rankine.journal.cat_biota.crops.soybeans", "");
+        add("rankine.journal.cat_biota.crops.asparagus", "");
+        add("rankine.journal.cat_biota.crops.jute", "");
+        add("rankine.journal.cat_biota.crops.cotton", "");
+        add("rankine.journal.cat_biota.crops.blueberries", "");
+        add("rankine.journal.cat_biota.crops.cranberries", "");
+        add("rankine.journal.cat_biota.crops.elderberries", "");
+        add("rankine.journal.cat_biota.crops.pokeberries", "");
+        add("rankine.journal.cat_biota.crops.strawberries", "");
+        add("rankine.journal.cat_biota.crops.snowberries", "");
+        add("rankine.journal.cat_biota.crops.raspberries", "");
+        add("rankine.journal.cat_biota.crops.blackberries", "");
+        add("rankine.journal.cat_biota.crops.pineapple", "");
+        add("rankine.journal.cat_biota.crops.aloe", "");
+        add("rankine.journal.cat_biota.crops.banana_yucca", "");
+        add("rankine.journal.cat_biota.crops.camphor_basil_leaf", "");
+
 
         //Elements
         add("rankine.journal.cat_elements.name", "Elements");
@@ -1022,16 +1122,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_elements.gasses.text4", "");
         add("rankine.journal.cat_elements.gasses.text5", "");
 
-        //Flora
-        add("rankine.journal.cat_flora.name", "Flora");
-        add("rankine.journal.cat_flora.desc", "Plants be cool.");
-        add("rankine.journal.cat_flora.trees.text1", "Trees be cool.");
-        add("rankine.journal.cat_flora.trees.text2", "Cedar");
-        add("rankine.journal.cat_flora.trees.text3", "Balsam Fir");
 
-        //Machines
-        add("rankine.journal.cat_machines.name", "Machines");
-        add("rankine.journal.cat_machines.desc", "");
+
 
         //Mechanics
         add("rankine.journal.cat_mechanics.name", "Mechanics");
@@ -1055,6 +1147,12 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mineralogy.meteorites.name", "Meteorites");
         add("rankine.journal.cat_mineralogy.meteorites.text1","");
 
+        add("rankine.journal.cat_mineralogy.mineral_stones.name", "Mineral Stones");
+        add("rankine.journal.cat_mineralogy.mineral_stones.text1","");
+        add("rankine.journal.cat_mineralogy.mineral_stones.phosphorite","");
+        add("rankine.journal.cat_mineralogy.mineral_stones.sylvinite","");
+        add("rankine.journal.cat_mineralogy.mineral_stones.evaporite","");
+
 
         add("rankine.journal.cat_mineralogy.fumaroles.name", "Fumaroles");
         add("rankine.journal.cat_mineralogy.fumaroles.text1","");
@@ -1074,24 +1172,24 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.journal.cat_mineralogy.native_ores.name", "Native Ores");
         add("rankine.journal.cat_mineralogy.native_ores.text1", "Native is a term used to describe elements that exist in their pure form in nature. The following blocks can be mined at a low harvest level to obtain pure metal samples.");
-        //add("rankine.journal.cat_mineralogy.native_ores.text2", "");
-        add("rankine.journal.cat_mineralogy.native_ores.text3", "Source of Tin. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.text4", "Source of Lead. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.text5", "Source of Bismuth. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.text6", "Source of Silver. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.text7", "Source of Gold. $(br2)Found scattered across the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.text8", "Source of Antimony. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.text9", "Source of Copper. $(br2)Found in porphyry intrusions.");
-        add("rankine.journal.cat_mineralogy.native_ores.text10", "Source of Sulfur. $(br2)Found scattered across the Nether.");;
-        add("rankine.journal.cat_mineralogy.native_ores.text11", "Source of Arsenic. $(br2)Found scattered across the Nether.");
-        add("rankine.journal.cat_mineralogy.native_ores.text12", "Source of Indium. $(br2)Found scattered across the End.");
-        add("rankine.journal.cat_mineralogy.native_ores.text13", "Source of Gallium. $(br2)Found scattered across the End.");
-        add("rankine.journal.cat_mineralogy.native_ores.text14", "Source of Tellurium. $(br2)Found scattered across the End.");
-        add("rankine.journal.cat_mineralogy.native_ores.text15", "Source of Selenium. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_tin_ore", "Source of Tin. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_lead_ore", "Source of Lead. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_bismuth_ore", "Source of Bismuth. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_silver_ore", "Source of Silver. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_gold_ore", "Source of Gold. $(br2)Found scattered across the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.stibnite_ore", "Source of Antimony. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.porphyry_copper", "Source of Copper. $(br2)Found in porphyry intrusions.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_sulfur_ore", "Source of Sulfur. $(br2)Found scattered across the Nether.");;
+        add("rankine.journal.cat_mineralogy.native_ores.native_arsenic_ore", "Source of Arsenic. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_indium_ore", "Source of Indium. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_gallium_ore", "Source of Gallium. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_tellurium_ore", "Source of Tellurium. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_selenium_ore", "Source of Selenium. $(br2)Found scattered across the End.");
 
         //Orientation
         add("rankine.journal.cat_orientation.name", "Orientation");
         add("rankine.journal.cat_orientation.desc", "Notes from very brief orientation to the Project. These are all I have to look over for now.");
+
         add("rankine.journal.cat_orientation.foundation.name", "Foundation");
         add("rankine.journal.cat_orientation.foundation.text0", "The advancements serve as a guide from what other Project members have found successful. Utilize the recipes provided in JEI and the remainder of this journal to acquire all of the resources needed for our work. Be advised by the following entries for general understanding.");
         add("rankine.journal.cat_orientation.foundation.text1", "Worldgen");
@@ -1101,20 +1199,120 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_orientation.foundation.text5", "Project Rankine tools are added to all harvest levels to provide a wider breadth of options and catering to local mineral depositions. .....");
         add("rankine.journal.cat_orientation.foundation.text6", "Movement Speed");
         add("rankine.journal.cat_orientation.foundation.text7", "Even familiar blocks in this new environment have changed. Walking on certain earthen blocks slow the player, and some manufactured materials can speed the player up. Investigate the $(l:tools/equipment)equipment$() section to learn how to combat these and other environmental forces.");
-        add("rankine.journal.cat_orientation.foundation.text8", "");
+        add("rankine.journal.cat_orientation.foundation.text8", "Alloy Components");
         add("rankine.journal.cat_orientation.foundation.text9", "");
+
+        add("rankine.journal.cat_orientation.survival_guide.name", "Survival Guide");
+        add("rankine.journal.cat_orientation.survival_guide.text0", "");
+        add("rankine.journal.cat_orientation.survival_guide.text1", "");
+        add("rankine.journal.cat_orientation.survival_guide.text2", "");
+        add("rankine.journal.cat_orientation.survival_guide.text3", "");
+        add("rankine.journal.cat_orientation.survival_guide.text4", "");
+        add("rankine.journal.cat_orientation.survival_guide.text5", "");
+        add("rankine.journal.cat_orientation.survival_guide.text6", "");
+        add("rankine.journal.cat_orientation.survival_guide.text7", "");
+        add("rankine.journal.cat_orientation.survival_guide.text8", "");
+        add("rankine.journal.cat_orientation.survival_guide.text9", "");
+        add("rankine.journal.cat_orientation.survival_guide.text10", "");
+
 
 
         //Stones
         add("rankine.journal.cat_stones.name", "Stones");
         add("rankine.journal.cat_stones.desc", "");
 
+        add("rankine.journal.cat_stones.otherworldly.name", "Otherworldly Stones");
+        add("rankine.journal.cat_stones.otherworldly.text1", "Some stones can not form under standard environmental conditions. This class of stone is simply named Otherworldly, as they naturally occur in atypical locations.");
+        add("rankine.journal.cat_stones.otherworldly.text2", "Otherworldly Generator");
+        add("rankine.journal.cat_stones.otherworldly.text3", "Otherworldly Generator");
+        add("rankine.journal.cat_stones.otherworldly.end_stone", "");
+        add("rankine.journal.cat_stones.otherworldly.sommanite", "");
+        add("rankine.journal.cat_stones.otherworldly.wadsleyone", "");
+        add("rankine.journal.cat_stones.otherworldly.bridgmanham", "");
+        add("rankine.journal.cat_stones.otherworldly.ringwoodine", "");
+        add("rankine.journal.cat_stones.otherworldly.post_perovskite", "");
+        add("rankine.journal.cat_stones.otherworldly.whiteschist", "");
+
+        add("rankine.journal.cat_stones.volcanic.name", "Volcanic Stones");
+        add("rankine.journal.cat_stones.volcanic.text1", "Some stones can not form under standard environmental conditions. This class of stone is simply named Otherworldly, as they naturally occur in atypical locations.");
+        add("rankine.journal.cat_stones.volcanic.text3", "Volcanic stones are generated using the vanilla obsidian generator, where water flows onto lava source blocks.");
+        add("rankine.journal.cat_stones.volcanic.text2", "Volcanic Generator");
+        add("rankine.journal.cat_stones.volcanic.obsidian", "");
+        add("rankine.journal.cat_stones.volcanic.crying_obsidian", "");
+        add("rankine.journal.cat_stones.volcanic.snowflake_obsidian", "");
+        add("rankine.journal.cat_stones.volcanic.blood_obsidian", "");
+        add("rankine.journal.cat_stones.volcanic.pumice", "");
+        add("rankine.journal.cat_stones.volcanic.scoria", "");
+        add("rankine.journal.cat_stones.volcanic.andesitic_tuff", "");
+        add("rankine.journal.cat_stones.volcanic.basaltic_tuff", "");
+        add("rankine.journal.cat_stones.volcanic.rhyolitic_tuff", "");
+        add("rankine.journal.cat_stones.volcanic.kimberlitic_tuff", "");
+        add("rankine.journal.cat_stones.volcanic.komatiitic_tuff", "");
+
+        add("rankine.journal.cat_stones.sedimentary.name", "Sedimentary Stones");
+        add("rankine.journal.cat_stones.sedimentary.text1", "");
+        add("rankine.journal.cat_stones.sedimentary.text2", "Sedimentary Generator");
+        add("rankine.journal.cat_stones.sedimentary.sandstone", "");
+        add("rankine.journal.cat_stones.sedimentary.red_sandstone", "");
+        add("rankine.journal.cat_stones.sedimentary.soul_sandstone", "");
+        add("rankine.journal.cat_stones.sedimentary.desert_sandstone", "");
+        add("rankine.journal.cat_stones.sedimentary.white_sandstone", "");
+        add("rankine.journal.cat_stones.sedimentary.black_sandstone", "");
+        add("rankine.journal.cat_stones.sedimentary.limestone", "");
+        add("rankine.journal.cat_stones.sedimentary.dolostone", "");
+        add("rankine.journal.cat_stones.sedimentary.chalk", "");
+        add("rankine.journal.cat_stones.sedimentary.marlstone", "");
+        add("rankine.journal.cat_stones.sedimentary.shale", "");
+        add("rankine.journal.cat_stones.sedimentary.mudstone", "");
+        add("rankine.journal.cat_stones.sedimentary.siltstone", "");
+        add("rankine.journal.cat_stones.sedimentary.itacolumite", "");
+        add("rankine.journal.cat_stones.sedimentary.arkose", "");
+        add("rankine.journal.cat_stones.sedimentary.graywacke", "");
+        add("rankine.journal.cat_stones.sedimentary.honeystone", "");
+
+
+
+        add("rankine.journal.cat_stones.metamorphic.name", "Metamorphic Stones");
+        add("rankine.journal.cat_stones.metamorphic.text1", "");
+        add("rankine.journal.cat_stones.metamorphic.text2", "Metamorphic Generator");
+        add("rankine.journal.cat_stones.metamorphic.text3", "");
+        add("rankine.journal.cat_stones.metamorphic.black_marble", "");
+        add("rankine.journal.cat_stones.metamorphic.gray_marble", "");
+        add("rankine.journal.cat_stones.metamorphic.white_marble", "");
+        add("rankine.journal.cat_stones.metamorphic.rose_marble", "");
+        add("rankine.journal.cat_stones.metamorphic.slate", "");
+        add("rankine.journal.cat_stones.metamorphic.phyllite", "");
+        add("rankine.journal.cat_stones.metamorphic.mica_schist", "");
+        add("rankine.journal.cat_stones.metamorphic.blueschist", "");
+        add("rankine.journal.cat_stones.metamorphic.greenschist", "");
+        add("rankine.journal.cat_stones.metamorphic.gneiss", "");
+        add("rankine.journal.cat_stones.metamorphic.quartzite", "");
+        add("rankine.journal.cat_stones.metamorphic.soapstone", "");
+        add("rankine.journal.cat_stones.metamorphic.serpentinite", "");
+        add("rankine.journal.cat_stones.metamorphic.mariposite", "");
+        add("rankine.journal.cat_stones.metamorphic.eclogite", "");
+
+
+
+
         add("rankine.journal.cat_stones.igneous.name", "Igneous Stones");
         add("rankine.journal.cat_stones.igneous.text1", "");
-        add("rankine.journal.cat_stones.igneous.text2", "");
+        add("rankine.journal.cat_stones.igneous.text2", "Intrusive Stones");
         add("rankine.journal.cat_stones.igneous.text3", "");
-        add("rankine.journal.cat_stones.igneous.text4", "");
+        add("rankine.journal.cat_stones.igneous.text4", "Extrusive Stones");
         add("rankine.journal.cat_stones.igneous.text5", "");
+        add("rankine.journal.cat_stones.igneous.stone", "Stone in this world is generally found solely as an intrusion. Depending on the biome, it will contain a variety of the vanilla ores.");
+        add("rankine.journal.cat_stones.igneous.granite", "An intrusive stone found in plains and forest biomes. Associated ores include Malachite, and Cassiterite.");
+        add("rankine.journal.cat_stones.igneous.gray_granite", "An intrusive stone found in mountain, swamp, taiga, and icy biomes. Associated ores include Malachite, and Cassiterite.");
+        add("rankine.journal.cat_stones.igneous.diorite", "An intrusive stone found in mountain, icy, and taiga biomes. Associated ores include Plumbago, Magnetite, and Ilmenite.");
+        add("rankine.journal.cat_stones.igneous.granodiorite", "An intrusive stone found in savanna, forest and plains biomes. Associated ores include Magnetite, and Wolframite.");
+        add("rankine.journal.cat_stones.igneous.pegmatite", "An intrusive stone found in many parts of the Overworld. Associated ores include Beryl, Petalite, Baddeleyite, Coltan, and Uraninite.");
+        add("rankine.journal.cat_stones.igneous.norite", "An intrusive stone found in savanna and jungle biomes. Associated ores include Magnetite and Chromite.");
+        add("rankine.journal.cat_stones.igneous.diabase", "An intrusive stone found in ocean and beach biomes. Associated ores include Baddeleyite.");
+        add("rankine.journal.cat_stones.igneous.red_porphyry", "An intrusive stone found in desert, mesa, and ocean biomes. Associated ores include Porphyry Copper, Gold, and Molybdenite.");
+        add("rankine.journal.cat_stones.igneous.kimberite", "An intrusive stone found in many parts of the Overworld. Associated ores include Kimberlitic Diamond.");
+        add("rankine.journal.cat_stones.igneous.shonkinite", "An intrusive stone found in mountain and swamp biomes. Associated ores include Beryl, Plumbago, and Magnetite.");
+
 
 
 
@@ -1122,12 +1320,67 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_sediments.name", "Sediments");
         add("rankine.journal.cat_sediments.desc", "Dirt is too simple of a term to describe the complex matrix of organic material and pulverized rocks. A better term is soil, but there are more small particles than just that.");
 
+        add("rankine.journal.cat_sediments.cobblestones.name", "Cobblestones");
+        add("rankine.journal.cat_sediments.cobblestones.text1", "Cobbles are very large particles that can come from any parent stone when $(l:mechanics/crushing)crushed$().");
+        add("rankine.journal.cat_sediments.cobblestones.cobblestone",  "Derived from $(l:stones/igneous)Igneous Stones$().");
+        add("rankine.journal.cat_sediments.cobblestones.blackstone",  "Derived from $(l:stones/igneous)Igneous Stones$(), specifically mafic ones.");
+        add("rankine.journal.cat_sediments.cobblestones.skarn",  "Derived from $(l:stones/metamorphic)Metamorphic Stones$().");
+        add("rankine.journal.cat_sediments.cobblestones.breccia", "Derived from $(l:stones/sedimentary)Sedimentary Stones$().");
+
+        add("rankine.journal.cat_sediments.gravels.name", "Gravels");
+        add("rankine.journal.cat_sediments.gravels.text1", "");
+        add("rankine.journal.cat_sediments.gravels.gravel",  "");
+        add("rankine.journal.cat_sediments.gravels.light_gravel",  "");
+        add("rankine.journal.cat_sediments.gravels.dark_gravel",  "");
+
+        add("rankine.journal.cat_sediments.sands.name", "Sands");
+        add("rankine.journal.cat_sediments.sands.text1", "");
+        add("rankine.journal.cat_sediments.sands.sand",  "");
+        add("rankine.journal.cat_sediments.sands.red_sand",  "");
+        add("rankine.journal.cat_sediments.sands.soul_sand",  "");
+        add("rankine.journal.cat_sediments.sands.white_sand",  "");
+        add("rankine.journal.cat_sediments.sands.black_sand",  "");
+        add("rankine.journal.cat_sediments.sands.desert_sand",  "");
+        add("rankine.journal.cat_sediments.sands.silt",  "A smaller particle size than sand. It is used in many similar applications. Found along rivers.");
+
+        add("rankine.journal.cat_sediments.clays.name", "Clays");
+        add("rankine.journal.cat_sediments.clays.text1", "");
+        add("rankine.journal.cat_sediments.clays.clay",  "");
+        add("rankine.journal.cat_sediments.clays.fire_clay",  "");
+        add("rankine.journal.cat_sediments.clays.kaolin",  "");
+
+        add("rankine.journal.cat_sediments.soils.name", "Soils");
+        add("rankine.journal.cat_sediments.soils.text1", "");
+        add("rankine.journal.cat_sediments.soils.humus",  "");
+        add("rankine.journal.cat_sediments.soils.loam",  "");
+        add("rankine.journal.cat_sediments.soils.sandy_loam",  "");
+        add("rankine.journal.cat_sediments.soils.silty_loam",  "");
+        add("rankine.journal.cat_sediments.soils.sandy_clay_loam",  "");
+        add("rankine.journal.cat_sediments.soils.silty_clay_loam",  "");
+        add("rankine.journal.cat_sediments.soils.loamy_sand",  "");
+        add("rankine.journal.cat_sediments.soils.sandy_clay",  "");
+        add("rankine.journal.cat_sediments.soils.silty_clay",  "");
+        add("rankine.journal.cat_sediments.soils.laterite",  "");
+        add("rankine.journal.cat_sediments.soils.permafrost",  "");
 
 
         //Tools
         add("rankine.journal.cat_tools.name", "Tools");
         add("rankine.journal.cat_tools.desc", "Various implements use to manipulate the world.");
 
+
+        add("rankine.journal.cat_tools.totems.name", "Totems");
+        add("rankine.journal.cat_tools.totems.text1", "Totems are relics derived from the natural magics of the world. While in the offhand, they provide various effects.");
+        add("rankine.journal.cat_tools.totems.totem_of_blazing", "");
+        add("rankine.journal.cat_tools.totems.totem_of_cobbling", "Internally stores all types of stones up to 8 stacks. Can be used to place cobblestone.");
+        add("rankine.journal.cat_tools.totems.totem_of_enduring", "Increases the wearer's health capacity. Can be used every so often to apply regeneration.");
+        add("rankine.journal.cat_tools.totems.totem_of_hastening", "Applies efficiency to your arms, allowing you to mine all blocks quicker.");
+        add("rankine.journal.cat_tools.totems.totem_of_infusing", "");
+        add("rankine.journal.cat_tools.totems.totem_of_levitating", "While not sneaking, the wearer will not be able to fall.");
+        add("rankine.journal.cat_tools.totems.totem_of_promising", "Mining brings you fortune for many materials. There is a chance to receive an extra block.");
+        add("rankine.journal.cat_tools.totems.totem_of_repulsing", "Hostile mobs can no longer detect the wearer.");
+        add("rankine.journal.cat_tools.totems.totem_of_softening", "The delicacy of an open hand allows you to collect blocks that naturally require silk touch.");
+        add("rankine.journal.cat_tools.totems.totem_of_timesaving", "Provides additional movement speed across all solid terrain.");
 
         add("rankine.journal.cat_tools.ore_detection.name", "Ore Detection");
         add("rankine.journal.cat_tools.ore_detection.text1", "");

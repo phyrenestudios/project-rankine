@@ -4,11 +4,12 @@
     "item": "minecraft:obsidian"
   },
   "output1": {
-    "item": "minecraft:quartz",
+    "item": "rankine:orthoclase_feldspar",
+    "count": 2,
     "chance": 1
   },
   "output2": {
-    "item": "rankine:orthoclase_feldspar",
+    "item": "minecraft:quartz",
     "chance": 0.75,
     "additional": 0.15
   },

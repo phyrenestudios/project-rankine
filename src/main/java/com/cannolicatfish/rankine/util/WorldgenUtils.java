@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineLists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -313,5 +314,10 @@ public class WorldgenUtils {
             return reader.hasBlockState(pos, state -> state.isAir((net.minecraft.world.IBlockReader) reader, pos));
         }
     }
+
+    public static boolean isGasOrAir(World reader, BlockPos pos) {
+        return RankineLists.GAS_BLOCKS.contains(reader.getBlockState(pos).getBlock()) || reader.getBlockState(pos).isAir();
+    }
+
 
 }

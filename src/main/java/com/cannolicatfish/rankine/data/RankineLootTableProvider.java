@@ -373,17 +373,16 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
             ITEM = Items.CHARCOAL;
         }
         return LootTable.builder().addLootPool(LootPool.builder()
-                .acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS))
+                //.acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS))
                 .addEntry(AlternativesLootEntry.builder(
-                        AlternativesLootEntry.builder(
-                                ItemLootEntry.builder(ITEM).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 1))),
-                                ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(2))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 2))),
-                                ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(3))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 3))),
-                                ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(4))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 4))),
-                                ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(5))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 5))),
-                                ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(6))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 6))),
-                                ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(7))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 7))),
-                                ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(8))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 8))))))
+                    ItemLootEntry.builder(ITEM).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 1))),
+                    ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(2))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 2))),
+                    ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(3))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 3))),
+                    ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(4))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 4))),
+                    ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(5))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 5))),
+                    ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(6))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 6))),
+                    ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(7))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 7))),
+                    ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(8))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 8)))))
         .acceptCondition(SurvivesExplosion.builder()));
 
 

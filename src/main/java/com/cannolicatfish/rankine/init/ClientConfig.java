@@ -13,7 +13,7 @@ public class ClientConfig {
             b.comment("Settings for general mechanics").push("general");
 
             GRASS_TEMP = b.comment("Enable grass coloring based of temperature. WIP")
-                    .define("grassTempColor", true);
+                    .define("grassTempColor", false);
             GRASS_NOISE = b.comment("Enable grass color variation within a biome.")
                     .define("grassColorNoise", true);
         }

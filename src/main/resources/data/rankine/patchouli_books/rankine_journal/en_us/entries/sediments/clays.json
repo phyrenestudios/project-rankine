@@ -1,29 +1,29 @@
 {
-  "name": "Clays",
+  "name": "rankine.journal.cat_sediments.clays.name",
   "icon": "minecraft:clay",
   "category": "sediments",
   "pages": [
     {
       "type": "text",
-      "text": "Clay is the smallest particle size classification of sediments. The tight particle packing must account for the resistance to gravity."
+      "text": "rankine.journal.cat_sediments.clays.text1"
     },
     {
       "type": "spotlight",
       "item": "minecraft:clay",
       "link_recipe": true,
-      "text": "Normally found in River biomes. Used for a variety of construction recipes."
+      "text": "rankine.journal.cat_sediments.clays.clay"
     },
     {
       "type": "spotlight",
       "item": "rankine:fire_clay",
       "link_recipe": true,
-      "text": "Derived from leaching of coal veins into the stone below."
+      "text": "rankine.journal.cat_sediments.clays.fire_clay"
     },
     {
       "type": "spotlight",
       "item": "rankine:kaolin",
       "link_recipe": true,
-      "text": "Normally found in biomes of high organic ground content, such as Jungles and Swamps."
+      "text": "rankine.journal.cat_sediments.clays.kaolin"
     }
   ]
 }

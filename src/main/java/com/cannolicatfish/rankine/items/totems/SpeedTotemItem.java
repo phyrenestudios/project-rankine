@@ -15,7 +15,6 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -41,10 +40,10 @@ public class SpeedTotemItem extends Item{
         if (entityIn instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entityIn;
             ModifiableAttributeInstance att = player.getAttribute(Attributes.MOVEMENT_SPEED);
-            if (player.getHeldItemOffhand().getItem() == this && !att.hasModifier(RankineAttributes.SPEED_PENDANT_MS)) {
-                att.applyNonPersistentModifier(RankineAttributes.SPEED_PENDANT_MS);
-            } else if (player.getHeldItemOffhand().getItem() != this && att.hasModifier(RankineAttributes.SPEED_PENDANT_MS)) {
-                att.removeModifier(RankineAttributes.SPEED_PENDANT_MS);
+            if (player.getHeldItemOffhand().getItem() == this && !att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM)) {
+                att.applyNonPersistentModifier(RankineAttributes.SWIFTNESS_TOTEM);
+            } else if (player.getHeldItemOffhand().getItem() != this && att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM)) {
+                att.removeModifier(RankineAttributes.SWIFTNESS_TOTEM);
             }
         }
     }

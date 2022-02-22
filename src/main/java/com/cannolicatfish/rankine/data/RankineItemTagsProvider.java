@@ -781,10 +781,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.BREEDABLES_RABBIT).add(Items.DANDELION,Items.CARROT,Items.GOLDEN_CARROT);
 
 
-        getOrCreateBuilder(RankineTags.Items.FLOUR).add(RankineItems.WHEAT_GRAIN.get(),RankineItems.BARLEY_GRAIN.get(),RankineItems.RYE_GRAIN.get());
-        getOrCreateBuilder(RankineTags.Items.FLOUR_GF).add(RankineItems.CORN_GRAIN.get(),RankineItems.OAT_GRAIN.get(),RankineItems.MILLET_GRAIN.get(),RankineItems.RICE_GRAIN.get(),RankineItems.SORGHUM_GRAIN.get());
+        getOrCreateBuilder(RankineTags.Items.FLOUR).add(RankineItems.WHEAT_GRAIN.get(),RankineItems.BARLEY_GRAIN.get(),RankineItems.RYE_GRAIN.get(),RankineItems.CORN_GRAIN.get(),RankineItems.OAT_GRAIN.get(),RankineItems.MILLET_GRAIN.get(),RankineItems.RICE_GRAIN.get(),RankineItems.SORGHUM_GRAIN.get());
 
-        getOrCreateBuilder(RankineTags.Items.BREAD).add(Items.BREAD,RankineItems.GF_BREAD.get());
 
         getOrCreateBuilder(RankineTags.Items.FELDSPAR).add(RankineItems.ORTHOCLASE_FELDSPAR.get(),RankineItems.ORTHOCLASE_FELDSPAR.get());
         getOrCreateBuilder(RankineTags.Items.SALT).add(RankineItems.SODIUM_CHLORIDE.get(),RankineItems.PINK_SALT.get());
@@ -874,6 +872,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(BlockTags.STAIRS, ItemTags.STAIRS);
         copy(BlockTags.WALLS, ItemTags.WALLS);
         copy(BlockTags.SLABS, ItemTags.SLABS);
+        copy(BlockTags.SAND, ItemTags.SAND);
+        copy(Tags.Blocks.SAND, Tags.Items.SAND);
         copy(BlockTags.ICE, RankineTags.Items.ICE);
         copy(RankineTags.Blocks.POLISHED_STONE, RankineTags.Items.POLISHED_STONE);
         copy(Tags.Blocks.STONE, Tags.Items.STONE);

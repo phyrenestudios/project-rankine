@@ -1,41 +1,61 @@
 {
-  "name": "Pendants",
-  "icon": "rankine:luck_pendant",
+  "name": "rankine.journal.cat_tools.totems.name",
+  "icon": "rankine:totem_of_hastening",
   "category": "tools",
   "pages": [
     {
       "type": "text",
-      "text": "When held in the offhand these magical relics inflict the player with interesting and useful abilities. Only one can be held at a given time. On craft they will have Curse of Vanishing."
+      "text": "rankine.journal.cat_tools.totems.text1"
     },
     {
       "type": "crafting",
-      "recipe": "rankine:luck_pendant",
-      "text": "While held: $(li)Gives the wearer a chance to mine duplicate resources from the world. Affects blocks in #rankine:luck_pendant."
+      "recipe": "rankine:totem_of_blazing",
+      "text": "rankine.journal.cat_tools.totems.totem_of_blazing"
     },
     {
       "type": "crafting",
-      "recipe": "rankine:speed_pendant",
-      "text": "While held: $(li)Gives the wearer increased movement speed"
+      "recipe": "rankine:totem_of_cobbling",
+      "text": "rankine.journal.cat_tools.totems.totem_of_cobbling"
     },
     {
       "type": "crafting",
-      "recipe": "rankine:haste_pendant",
-      "text": "While held: $(li)Gives the wearer increased mining speed"
+      "recipe": "rankine:totem_of_enduring",
+      "text": "rankine.journal.cat_tools.totems.totem_of_enduring"
     },
     {
       "type": "crafting",
-      "recipe": "rankine:levitation_pendant",
-      "text": "While held: $(li)Stabilizes the player at a fixed y-level. Allows the player to walk (kind of slowly) through air. Unequip to descend."
+      "recipe": "rankine:totem_of_hastening",
+      "text": "rankine.journal.cat_tools.totems.totem_of_hastening"
     },
     {
       "type": "crafting",
-      "recipe": "rankine:health_pendant",
-      "text": "While held: $(li)Gives the wearer increased health by 20 hp."
+      "recipe": "rankine:totem_of_infusing",
+      "text": "rankine.journal.cat_tools.totems.totem_of_infusing"
     },
     {
       "type": "crafting",
-      "recipe": "rankine:repulsion_pendant",
-      "text": "While held: $(li)Protects the wearer from new mobs. Some enemies can detect the player after certain events that agro them, such as attacking."
+      "recipe": "rankine:totem_of_levitating",
+      "text": "rankine.journal.cat_tools.totems.totem_of_levitating"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:totem_of_promising",
+      "text": "rankine.journal.cat_tools.totems.totem_of_promising"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:totem_of_repulsing",
+      "text": "rankine.journal.cat_tools.totems.totem_of_repulsing"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:totem_of_softening",
+      "text": "rankine.journal.cat_tools.totems.totem_of_softening"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:totem_of_timesaving",
+      "text": "rankine.journal.cat_tools.totems.totem_of_timesaving"
     }
   ]
 }
