@@ -90,7 +90,7 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
         for (Ingredient i : recipe.getIngredients()) {
             builder.add(Arrays.asList(i.getMatchingStacks()));
         }
-        iIngredients.setInput(VanillaTypes.FLUID,recipe.getFluid());
+        iIngredients.setInput(VanillaTypes.FLUID,recipe.getFluidFilled());
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
         iIngredients.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
     }

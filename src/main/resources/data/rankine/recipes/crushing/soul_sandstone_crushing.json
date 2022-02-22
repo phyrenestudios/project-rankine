@@ -14,12 +14,12 @@
   },
   "output3": {
     "item": "minecraft:bone",
-    "chance": 0.5,
+    "chance": 0.15,
     "additional": 0.2
   },
   "output4": {
     "item": "rankine:ash",
-    "chance": 0.25,
+    "chance": 0.10,
     "additional": 0.15
   },
   "output5": {

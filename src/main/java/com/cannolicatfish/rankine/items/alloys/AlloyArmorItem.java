@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.recipe.AlloyModifierRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyColorHelper;
+import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
@@ -14,6 +15,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
@@ -209,24 +211,17 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
 
     }
 
-    /*@Override
+    @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
-            World worldIn = ProjectRankine.proxy.getClientWorld();
-            if (worldIn != null) {
-                List<ICraftingRecipe> s = worldIn.getRecipeManager().getRecipesForType(IRecipeType.CRAFTING).stream().filter(iCraftingRecipe -> iCraftingRecipe.getRecipeOutput().getItem() == this.getItem()).collect(Collectors.toList());
-                for (ICraftingRecipe recipe : s) {
-                    if (recipe instanceof AlloyCraftingRecipe && !items.contains(recipe.getRecipeOutput())) {
-                        items.add(recipe.getRecipeOutput());
-                    }
-                }
-            } else {
-                items.add(getAlloyItemStack(new AlloyData(this.alloy.getDefComposition()),this.getItem()));
-            }
-
-            items.add(getAlloyItemStack(new AlloyData(this.alloy.getDefComposition()),this.getItem()));
+        if (this.isInGroup(group) && this.defaultAlloyRecipe == null) {
+            items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
+            items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
+        } else if (this.isInGroup(group)) {
+            super.fillItemGroup(group,items);
         }
     }
+
+    /*
 
     @Override
     public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {

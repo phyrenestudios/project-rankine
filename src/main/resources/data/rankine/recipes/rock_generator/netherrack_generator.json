@@ -1,11 +1,8 @@
 {
   "type": "rankine:rock_generator",
-  "genType": "sedimentary",
+  "genType": "extrusive_igneous",
   "input1": {
-    "item": "rankine:mellite_block"
-  },
-  "input2": {
-    "item": "rankine:pyroxene_block"
+    "item": "rankine:montroydite_block"
   },
   "result": {
     "block": "minecraft:netherrack"

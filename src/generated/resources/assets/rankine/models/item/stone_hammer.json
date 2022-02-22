@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "rankine:item/wooden_mallet"
+    "layer0": "rankine:item/stone_hammer"
   }
 }

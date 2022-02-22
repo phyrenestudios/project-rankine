@@ -8,6 +8,8 @@ import com.cannolicatfish.rankine.entities.CannonballEntity;
 import com.cannolicatfish.rankine.entities.CarcassEntity;
 import com.cannolicatfish.rankine.items.GasBottleItem;
 import com.cannolicatfish.rankine.potion.RankinePotions;
+import com.cannolicatfish.rankine.recipe.ElementRecipe;
+import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.advancements.criterion.ItemPredicate;
@@ -27,6 +29,7 @@ import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Tuple;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -172,6 +175,32 @@ public class RankineRecipes {
     }
 
     public static String generateAlloyString(IInventory inv) {
+        List<ElementRecipe> currentElements = new ArrayList<>();
+        List<Integer> currentMaterial = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            ItemStack stack = inv.getStackInSlot(i);
+            if (!stack.isEmpty() && AlloyCustomHelper.hasElement(stack.getItem())) {
+                Tuple<ElementRecipe,Integer> entry = AlloyCustomHelper.getEntryForElementItem(stack.getItem());
+                if (!currentElements.contains(entry.getA())) {
+                    currentElements.add(entry.getA());
+                    currentMaterial.add(entry.getB());
+                }
+            }
+        }
+        int sum = currentMaterial.stream().mapToInt(Integer::intValue).sum();
+
+        List<Integer> percents = new ArrayList<>();
+        List<String> symbols = new ArrayList<>();
+        for (int j = 0; j < currentElements.size(); j++) {
+            ElementRecipe curEl = currentElements.get(j);
+            int curPer = Math.round(currentMaterial.get(j) * 100f/sum);
+            symbols.add(curEl.getSymbol());
+            percents.add(curPer);
+        }
+        return AlloyRecipeHelper.getDirectComposition(percents,symbols);
+    }
+
+    public static String generateAlloyStringOld(IInventory inv) {
         List<PeriodicTableUtils.Element> currentElements = new ArrayList<>();
         List<Integer> currentMaterial = new ArrayList<>();
         PeriodicTableUtils utils = new PeriodicTableUtils();

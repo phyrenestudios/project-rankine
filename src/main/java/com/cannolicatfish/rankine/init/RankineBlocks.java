@@ -1456,6 +1456,7 @@ public class RankineBlocks {
 
     //wierd mineral blocks
     public static final RegistryObject<Block> MELLITE_BLOCK = REGISTRY.register("mellite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> MONTROYDITE_BLOCK = REGISTRY.register("montroydite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> RINGWOODITE_BLOCK = REGISTRY.register("ringwoodite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> WADSLEYITE_BLOCK = REGISTRY.register("wadsleyite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> FORSTERITE_BLOCK = REGISTRY.register("forsterite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
@@ -1539,6 +1540,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RED_FIBER_MAT = REGISTRY.register("red_fiber_mat", () -> new FiberMatBlock(AbstractBlock.Properties.create(Material.CARPET, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
     public static final RegistryObject<Block> BLACK_FIBER_MAT = REGISTRY.register("black_fiber_mat", () -> new FiberMatBlock(AbstractBlock.Properties.create(Material.CARPET, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
 
+    public static final RegistryObject<Block> DRY_ICE = REGISTRY.register("dry_ice", () -> new BreakableBlock(AbstractBlock.Properties.create(Material.PACKED_ICE).hardnessAndResistance(3.5F).slipperiness(1.1F).sound(SoundType.GLASS)));
 
     public static final RegistryObject<Block> METEORIC_ICE = REGISTRY.register("meteoric_ice", () -> new BreakableBlock(AbstractBlock.Properties.create(Material.PACKED_ICE).hardnessAndResistance(3.5F).slipperiness(1.1F).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> DIAMOND_GEODE = REGISTRY.register("diamond_geode", () -> new GeodeBlock(DEF_STONE.harvestLevel(0)));

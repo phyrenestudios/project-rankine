@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "rankine:wooden_mallet",
-    "rankine:stone_mallet",
+    "rankine:wooden_hammer",
+    "rankine:stone_hammer",
     "rankine:pewter_hammer",
     "rankine:alloy_hammer",
     "rankine:bronze_hammer",

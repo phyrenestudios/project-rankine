@@ -19,5 +19,6 @@ public class RankinePacketHandler {
 
     public static void register() {
         INSTANCE.registerMessage(id++, FluidStackPacket.class, FluidStackPacket::encode, FluidStackPacket::new, FluidStackPacket::handle);
+        INSTANCE.registerMessage(id++, SelectAlloyPacket.class, SelectAlloyPacket::encode, SelectAlloyPacket::new, SelectAlloyPacket::handle);
     }
 }

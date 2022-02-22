@@ -8,6 +8,7 @@ import com.cannolicatfish.rankine.items.AlloyTemplateItemOld;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -151,7 +152,7 @@ public class InductionFurnaceContainer extends Container {
                 }
                 slot.onSlotChange(stack, itemstack);
             } else if (index > 8) {
-                if (PeriodicTableUtils.getInstance().hasElement(stack.getItem())) {
+                if (AlloyCustomHelper.hasElement(itemstack.getItem())) {
                     if (!this.mergeItemStack(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;
                     }

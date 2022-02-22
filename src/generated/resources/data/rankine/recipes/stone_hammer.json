@@ -7,13 +7,13 @@
   ],
   "key": {
     "P": {
-      "tag": "minecraft:planks"
+      "tag": "forge:cobblestone"
     },
     "S": {
       "tag": "forge:rods/wooden"
     }
   },
   "result": {
-    "item": "rankine:wooden_mallet"
+    "item": "rankine:stone_hammer"
   }
 }

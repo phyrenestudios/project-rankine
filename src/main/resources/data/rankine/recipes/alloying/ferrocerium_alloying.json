@@ -36,5 +36,7 @@
     "min": 0.0,
     "max": 0.04
   },
-  "result": "rankine:ferrocerium_ingot"
+  "result": "rankine:ferrocerium_ingot",
+  "enchantments": ["minecraft:fire_aspect"],
+  "enchantmentTypes": ["SWORD"]
 }

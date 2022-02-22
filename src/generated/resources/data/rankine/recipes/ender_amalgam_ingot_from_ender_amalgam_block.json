@@ -1,7 +1,6 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
-  "langName": "",
   "pattern": [
     "#"
   ],
