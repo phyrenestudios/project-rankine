@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
+import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -149,7 +150,7 @@ public class AlloyFurnaceContainer extends Container {
                 }
                 slot.onSlotChange(stack, itemstack);
             } else if (index > 8) {
-                if (PeriodicTableUtils.getInstance().hasElement(stack.getItem())) {
+                if (AlloyCustomHelper.hasElement(itemstack.getItem())) {
                     if (!this.mergeItemStack(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;
                     }

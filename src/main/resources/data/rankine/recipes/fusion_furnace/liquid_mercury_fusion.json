@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:montroydite_block"
+  },
+  "input2": {
+    "item": "rankine:montroydite_block"
+  },
+  "fluidOutput": {
+    "fluid": "rankine:liquid_mercury"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:oxygen_gas_bottle"
+  }
+}

@@ -85,7 +85,7 @@ public class RankineRemappings {
 
         itemRemappings.put(new ResourceLocation("rankine:metal_knife"),RankineItems.INVAR_KNIFE.get());
 
-        itemRemappings.put(new ResourceLocation("rankine:stone_hammer"),RankineItems.STONE_MALLET.get());
+        itemRemappings.put(new ResourceLocation("rankine:stone_hammer"),RankineItems.STONE_HAMMER.get());
         return itemRemappings;
     }
 

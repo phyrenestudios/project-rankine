@@ -5,7 +5,7 @@
     "item": "rankine:synthetic_leather"
   },
   "input2": {
-    "item": "rankine:synthetic_leather"
+    "item": "minecraft:rotten_flesh"
   },
   "fluidInput": {
     "fluid": "rankine:resin"

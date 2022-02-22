@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
@@ -19,6 +20,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Tuple;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,16 +37,18 @@ public class AlloyCraftingRecipeBuilder {
     private final int count;
     private final boolean inherit;
     private final List<String> pattern = Lists.newArrayList();
-    private final Map<Character, Ingredient> key = Maps.newLinkedHashMap();
+    private final Map<Character, AlloyIngredient> key = Maps.newLinkedHashMap();
     private final Advancement.Builder advancementBuilder = Advancement.Builder.builder();
     private String group;
     private final String langName;
+    private final int color;
 
-    public AlloyCraftingRecipeBuilder(IItemProvider resultIn, int countIn, boolean inheritIn, String langNameIn) {
+    public AlloyCraftingRecipeBuilder(IItemProvider resultIn, int countIn, boolean inheritIn, String langNameIn, int colorIn) {
         this.result = resultIn.asItem();
         this.count = countIn;
         this.inherit = inheritIn;
         this.langName = langNameIn;
+        this.color = colorIn;
     }
 
     /**
@@ -58,15 +62,19 @@ public class AlloyCraftingRecipeBuilder {
      * Creates a new builder for a shaped recipe.
      */
     public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn, int countIn) {
-        return shapedRecipe(resultIn, countIn, false, "");
+        return shapedRecipe(resultIn, countIn, false, "", 16777215);
     }
 
     public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn, int countIn, boolean inheritIn) {
-        return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, "");
+        return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, "", 16777215);
     }
 
     public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn, int countIn, boolean inheritIn, String langNameIn) {
-        return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, langNameIn);
+        return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, langNameIn, 16777215);
+    }
+
+    public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn, int countIn, boolean inheritIn, String langNameIn, int color) {
+        return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, langNameIn, color);
     }
 
     /**
@@ -83,16 +91,41 @@ public class AlloyCraftingRecipeBuilder {
         return this.key(symbol, Ingredient.fromItems(itemIn));
     }
 
+    public AlloyCraftingRecipeBuilder alloyKey(Character symbol, ITag<Item> tagIn, String compositionReqsIn, ResourceLocation alloyRecipeIn,String langNameIn,int colorIn) {
+        return this.key(symbol, new AlloyIngredient(Ingredient.fromTag(tagIn),compositionReqsIn,alloyRecipeIn,langNameIn,colorIn));
+    }
+
+    public AlloyCraftingRecipeBuilder alloyKey(Character symbol, IItemProvider itemIn, String compositionReqsIn, ResourceLocation alloyRecipeIn,String langNameIn,int colorIn) {
+        return this.key(symbol, new AlloyIngredient(Ingredient.fromItems(itemIn),compositionReqsIn,alloyRecipeIn,langNameIn,colorIn));
+    }
+
+    public AlloyCraftingRecipeBuilder directAlloyKey(Character symbol, AlloyIngredient alloyIngredientIn) {
+        return this.key(symbol, alloyIngredientIn);
+    }
+
+
+
     /**
      * Adds a key to the recipe pattern.
      */
-    public AlloyCraftingRecipeBuilder key(Character symbol, Ingredient ingredientIn) {
+    public AlloyCraftingRecipeBuilder key(Character symbol, AlloyIngredient ingredientIn) {
         if (this.key.containsKey(symbol)) {
             throw new IllegalArgumentException("Symbol '" + symbol + "' is already defined!");
         } else if (symbol == ' ') {
             throw new IllegalArgumentException("Symbol ' ' (whitespace) is reserved and cannot be defined");
         } else {
             this.key.put(symbol, ingredientIn);
+            return this;
+        }
+    }
+
+    public AlloyCraftingRecipeBuilder key(Character symbol, Ingredient ingredientIn) {
+        if (this.key.containsKey(symbol)) {
+            throw new IllegalArgumentException("Symbol '" + symbol + "' is already defined!");
+        } else if (symbol == ' ') {
+            throw new IllegalArgumentException("Symbol ' ' (whitespace) is reserved and cannot be defined");
+        } else {
+            this.key.put(symbol, new AlloyIngredient(ingredientIn,null,null,null,16777215));
             return this;
         }
     }
@@ -148,7 +181,7 @@ public class AlloyCraftingRecipeBuilder {
     public void build(Consumer<IFinishedRecipe> consumerIn, ResourceLocation id) {
         this.validate(id);
         this.advancementBuilder.withParentId(new ResourceLocation("recipes/root")).withCriterion("has_the_recipe", RecipeUnlockedTrigger.create(id)).withRewards(AdvancementRewards.Builder.recipe(id)).withRequirementsStrategy(IRequirementsStrategy.OR);
-        consumerIn.accept(new AlloyCraftingRecipeBuilder.Result(id, this.result, this.count, this.inherit,this.group == null ? "" : this.group, this.pattern, this.key, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getGroup().getPath() + "/" + id.getPath()),this.langName));
+        consumerIn.accept(new AlloyCraftingRecipeBuilder.Result(id, this.result, this.count, this.inherit,this.group == null ? "" : this.group, this.pattern, this.key, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getGroup().getPath() + "/" + id.getPath()),this.langName,this.color));
     }
 
     /**
@@ -187,12 +220,13 @@ public class AlloyCraftingRecipeBuilder {
         private final boolean inherit;
         private final String group;
         private final List<String> pattern;
-        private String langName;
-        private final Map<Character, Ingredient> key;
+        private final String langName;
+        private final int color;
+        private final Map<Character, AlloyIngredient> key;
         private final Advancement.Builder advancementBuilder;
         private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation idIn, Item resultIn, int countIn, boolean inheritIn, String groupIn, List<String> patternIn, Map<Character, Ingredient> keyIn, Advancement.Builder advancementBuilderIn, ResourceLocation advancementIdIn, String langNameIn) {
+        public Result(ResourceLocation idIn, Item resultIn, int countIn, boolean inheritIn, String groupIn, List<String> patternIn, Map<Character, AlloyIngredient> keyIn, Advancement.Builder advancementBuilderIn, ResourceLocation advancementIdIn, String langNameIn, int colorIn) {
             this.id = idIn;
             this.result = resultIn;
             this.count = countIn;
@@ -203,6 +237,7 @@ public class AlloyCraftingRecipeBuilder {
             this.advancementBuilder = advancementBuilderIn;
             this.advancementId = advancementIdIn;
             this.langName = langNameIn;
+            this.color = colorIn;
         }
 
         public void serialize(JsonObject json) {
@@ -211,7 +246,12 @@ public class AlloyCraftingRecipeBuilder {
             }
 
             json.addProperty("inherit", this.inherit);
-            json.addProperty("langName", this.langName);
+            if (color != 16777215) {
+                json.addProperty("color",this.color);
+            }
+            if(!this.langName.isEmpty()) {
+                json.addProperty("langName", this.langName);
+            }
             JsonArray jsonarray = new JsonArray();
 
             for(String s : this.pattern) {
@@ -221,8 +261,8 @@ public class AlloyCraftingRecipeBuilder {
             json.add("pattern", jsonarray);
             JsonObject jsonobject = new JsonObject();
 
-            for(Map.Entry<Character, Ingredient> entry : this.key.entrySet()) {
-                jsonobject.add(String.valueOf(entry.getKey()), entry.getValue().serialize());
+            for(Map.Entry<Character, AlloyIngredient> entry : this.key.entrySet()) {
+                jsonobject.add(String.valueOf(entry.getKey()), alloySerializer(entry.getValue().getIngredient().serialize(),entry.getValue()));
             }
 
             json.add("key", jsonobject);
@@ -233,6 +273,19 @@ public class AlloyCraftingRecipeBuilder {
             }
 
             json.add("result", jsonobject1);
+        }
+
+        private JsonElement alloySerializer(JsonElement array, AlloyIngredient ingredient) {
+            if (ingredient.getAlloyRecipe() != null) {
+                ((JsonObject) array).addProperty("alloyRecipe",ingredient.getAlloyRecipe().toString());
+            }
+            if (ingredient.getLangName() != null && !ingredient.getLangName().isEmpty()) {
+                ((JsonObject) array).addProperty("langName",ingredient.getLangName());
+            }
+            if (ingredient.getColor() != 16777215) {
+                ((JsonObject) array).addProperty("color",ingredient.getColor());
+            }
+            return array;
         }
 
         public IRecipeSerializer<?> getSerializer() {

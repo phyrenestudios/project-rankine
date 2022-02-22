@@ -128,7 +128,23 @@ public class JEIRankinePlugin implements IModPlugin {
         registration.registerSubtypeInterpreter(RankineItems.ALLOY_ROD.get(), IAlloyItem::getSubtype);
         registration.registerSubtypeInterpreter(RankineItems.ALLOY_WIRE.get(), IAlloyItem::getSubtype);
 
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_PICKAXE.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_AXE.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SHOVEL.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SWORD.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_HOE.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SPEAR.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_HAMMER.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_KNIFE.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_CROWBAR.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_BLUNDERBUSS.get(), IAlloyItem::getSubtype);
         registration.registerSubtypeInterpreter(RankineItems.ALLOY_SURF_ROD.get(), IAlloyItem::getSubtype);
+
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_HELMET.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_CHESTPLATE.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_LEGGINGS.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_BOOTS.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_ARROW.get(), IAlloyItem::getSubtype);
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.init.RankineRecipes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -16,6 +17,8 @@ import net.minecraft.inventory.container.*;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.MerchantOffers;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -27,6 +30,9 @@ import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 import java.util.AbstractMap;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.TEMPLATE_TABLE_CONTAINER;
 public class TemplateTableContainer extends Container {
@@ -53,15 +59,15 @@ public class TemplateTableContainer extends Container {
         this.worldPosCallable = wpos;
         this.player = player;
         this.world = player.world;
-        this.addSlot(new Slot(inputInventory,0,8,54));
-        this.addSlot(new Slot(inputInventory,1,8,73));
-        this.addSlot(new Slot(inputInventory,2,26,54));
-        this.addSlot(new Slot(inputInventory,3,26,73));
-        this.addSlot(new Slot(inputInventory,4,44,54));
-        this.addSlot(new Slot(inputInventory,5,44,73));
-        this.addSlot(new Slot(inputInventory,6,17,19));
-        this.addSlot(new Slot(inputInventory,7,35,19));
-        this.addSlot(new Slot(outputInventory,0,144,36) {
+        this.addSlot(new Slot(inputInventory,0,180,62));
+        this.addSlot(new Slot(inputInventory,1,198,62));
+        this.addSlot(new Slot(inputInventory,2,108,18));
+        this.addSlot(new Slot(inputInventory,3,134,18));
+        this.addSlot(new Slot(inputInventory,4,160,18));
+        this.addSlot(new Slot(inputInventory,5,186,18));
+        this.addSlot(new Slot(inputInventory,6,212,18));
+        this.addSlot(new Slot(inputInventory,7,238,18));
+        this.addSlot(new Slot(outputInventory,0,248,58) {
             public boolean isItemValid(ItemStack stack) {
                 return false;
             }
@@ -79,9 +85,12 @@ public class TemplateTableContainer extends Container {
             }
         });
         this.playerInventory = new InvWrapper(playerInventory);
-        layoutPlayerInventorySlots(8, 102);
+        layoutPlayerInventorySlots(108, 84);
     }
 
+    public World getWorld() {
+        return world;
+    }
 
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
@@ -99,7 +108,7 @@ public class TemplateTableContainer extends Container {
                 }
                 slot.onSlotChange(stack, itemstack);
             } else if (!(index < 8)) {
-                if (PeriodicTableUtils.getInstance().hasElement(stack.getItem())) {
+                if (AlloyCustomHelper.hasElement(itemstack.getItem())) {
                     if (!this.mergeItemStack(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -223,5 +232,41 @@ public class TemplateTableContainer extends Container {
         this.worldPosCallable.consume((p_217068_2_, p_217068_3_) -> {
             this.clearContainer(playerIn, p_217068_2_, this.inputInventory);
         });
+    }
+
+    public List<AlloyingRecipe> getAlloyRecipes() {
+        //&& !alloyingRecipe.cannotMake(player.inventory, this.world)
+        return world.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(this.world).isEmpty()).collect(Collectors.toList());
+    }
+
+    public void func_217046_g(int p_217046_1_) {
+        if (this.getAlloyRecipes().size() > p_217046_1_) {
+            ItemStack itemstack = this.inputInventory.getStackInSlot(0);
+            if (!itemstack.isEmpty()) {
+                if (!this.mergeItemStack(itemstack, 3, 39, true)) {
+                    return;
+                }
+
+                this.inputInventory.setInventorySlotContents(0, itemstack);
+            }
+
+            ItemStack itemstack1 = this.inputInventory.getStackInSlot(1);
+            if (!itemstack1.isEmpty()) {
+                if (!this.mergeItemStack(itemstack1, 3, 39, true)) {
+                    return;
+                }
+
+                this.inputInventory.setInventorySlotContents(1, itemstack1);
+            }
+
+            if (this.inputInventory.getStackInSlot(0).isEmpty() && this.inputInventory.getStackInSlot(1).isEmpty()) {
+
+            }
+
+        }
+    }
+
+    public void setCurrentRecipeIndex(int currentRecipeIndex) {
+
     }
 }

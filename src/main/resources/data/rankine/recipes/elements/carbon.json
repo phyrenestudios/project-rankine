@@ -5,8 +5,8 @@
   "color": 6513507,
   "atomic": 6,
   "potential": 0.52,
-  "items": ["T#forge:nuggets/carbon","T#forge:graphite","T#forge:carbon","T#forge:storage_blocks/graphite","T#forge:storage_blocks/carbon"],
-  "values": [1,3,9,27,81],
+  "items": ["T#forge:nuggets/carbon","T#forge:carbon","T#forge:storage_blocks/carbon"],
+  "values": [1,9,81],
   "durability": {
     "breaks": [100],
     "formulas": ["POWER"],

@@ -71,6 +71,12 @@ public class MixingRecipe implements IRecipe<IInventory> {
         return this.fluid.copy();
     }
 
+    public FluidStack getFluidFilled() {
+        FluidStack fluidStack = this.fluid.copy();
+        fluidStack.setAmount(1000);
+        return fluidStack;
+    }
+
     @Override
     public boolean matches(IInventory inv, World worldIn) {
         return !getMixingResult(inv,worldIn).isEmpty();

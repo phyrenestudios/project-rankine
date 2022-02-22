@@ -415,8 +415,8 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
                 {
                     alloyRecipe = JSONUtils.getString(entry.getValue().getAsJsonObject(), "alloyRecipe");
                 }
-                if (entry.getValue().getAsJsonObject().has("name")) {
-                    name = JSONUtils.getString(entry.getValue().getAsJsonObject(), "name");
+                if (entry.getValue().getAsJsonObject().has("langName")) {
+                    name = JSONUtils.getString(entry.getValue().getAsJsonObject(), "langName");
                 }
                 if (entry.getValue().getAsJsonObject().has("color")) {
                     color = Math.max(0,JSONUtils.getInt(entry.getValue().getAsJsonObject(), "color"));

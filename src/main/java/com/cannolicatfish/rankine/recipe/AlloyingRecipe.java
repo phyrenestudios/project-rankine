@@ -15,6 +15,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
@@ -150,6 +151,16 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             }
         }
         return ret;
+    }
+
+    public boolean cannotMake(PlayerInventory inv, World world) {
+        for (Ingredient i : this.getIngredientsList(world,true)) {
+            if (!inv.hasAny(Arrays.stream(i.getMatchingStacks()).map(ItemStack::getItem).collect(Collectors.toSet())))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ItemStack generateResult(World worldIn, IInventory inv, int type) {

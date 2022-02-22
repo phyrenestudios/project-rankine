@@ -7,6 +7,8 @@ import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -24,6 +26,7 @@ public class AlloyCustomHelper {
     private static final Map<Item, List<ItemStack>> CRAFTING_ITEM_LISTS = new HashMap<>();
     private static final Map<Item, List<ItemStack>> ALLOY_ITEM_LISTS = new HashMap<>();
     private static final Map<Item, ItemStack> ALLOY_SEARCH_LISTS = new HashMap<>();
+    private static Map<Item, Tuple<ElementRecipe,Integer>> ELEMENT_ITEM_LISTS = new HashMap<>();
 
     public static void setCraftingRecipes(List<AlloyCraftingRecipe> recipes) {
         CRAFTING_RECIPE_LIST = recipes;
@@ -37,6 +40,8 @@ public class AlloyCustomHelper {
 
     public static void setElementRecipes(List<ElementRecipe> recipes) {
         ELEMENT_RECIPE_LIST = recipes;
+        ELEMENT_ITEM_LISTS.clear();
+        setItemsFromElements();
     }
 
     public static List<ElementRecipe> getElementRecipeList() {
@@ -67,6 +72,32 @@ public class AlloyCustomHelper {
             CRAFTING_ITEM_LISTS.put(item, list);
         }
         return list;
+    }
+
+    public static void setItemsFromElements() {
+        for (ElementRecipe recipe :  ELEMENT_RECIPE_LIST) {
+            List<Ingredient> ing = recipe.getIngredients();
+            for (int x = 0; x < ing.size(); x++) {
+                ItemStack[] stacks = ing.get(x).getMatchingStacks();
+                for (ItemStack stack : stacks) {
+                    Item item = stack.getItem();
+                    if (ELEMENT_ITEM_LISTS.containsKey(item)) {
+                        System.out.println(item + " already exists in recipe " + ELEMENT_ITEM_LISTS.get(item).getA().getId() + "!");
+                    }
+                    ELEMENT_ITEM_LISTS.put(item, new Tuple<>(recipe, recipe.getValues().get(x)));
+                }
+
+            }
+
+        }
+    }
+
+    public static boolean hasElement(Item item) {
+        return ELEMENT_ITEM_LISTS.containsKey(item);
+    }
+
+    public static Tuple<ElementRecipe,Integer> getEntryForElementItem(Item item) {
+        return ELEMENT_ITEM_LISTS.get(item);
     }
 
     public static List<ItemStack> getItemsFromAlloying(Item item) {

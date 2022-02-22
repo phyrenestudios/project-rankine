@@ -1,0 +1,27 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:dolomite"
+  },
+  "input2": {
+    "item": "minecraft:quartz"
+  },
+  "result1": {
+    "item":"rankine:talc",
+    "count": 1
+  },
+  "result2": {
+    "item":"rankine:calcite",
+    "count": 1
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  }
+}

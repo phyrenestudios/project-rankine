@@ -1,0 +1,13 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:sodium_hydroxide"
+  },
+  "input2": {
+    "item": "rankine:sodium_sulfide"
+  },
+  "fluidOutput": {
+    "fluid": "rankine:white_liquor"
+  }
+}

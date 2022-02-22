@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
+import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -9,6 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -100,22 +102,16 @@ public class AlloyKnifeItem extends KnifeItem implements IAlloyTool {
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
-/*
+
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
-            ItemStack stack = getAlloyItemStack(new AlloyData(alloy.getDefComposition()),this.getItem());
-            for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
-            {
-                int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(stack));
-                if (enchLvl > 0) {
-                    stack.addEnchantment(e,enchLvl);
-                }
-            }
-            items.add(stack);
+        if (this.isInGroup(group) && this.defaultAlloyRecipe == null) {
+            items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
+            items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
+        } else if (this.isInGroup(group)) {
+            super.fillItemGroup(group,items);
         }
     }
-*/
 
     @Override
     public String getDefaultComposition() {

@@ -13,17 +13,17 @@
     "additional": 0.15
   },
   "output3": {
-    "item": "rankine:thenardite",
+    "item": "rankine:saltpeter",
     "chance": 0.5,
     "additional": 0.2
   },
   "output4": {
-    "item": "rankine:saltpeter",
+    "item": "rankine:borax",
     "chance": 0.25,
     "additional": 0.15
   },
   "output5": {
-    "item": "rankine:borax",
+    "item": "rankine:thenardite",
     "chance": 0.1,
     "additional": 0.05
   },

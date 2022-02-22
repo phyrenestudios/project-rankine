@@ -1,0 +1,17 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:dry_ice"
+  },
+  "input2": {
+    "item": "rankine:dry_ice"
+  },
+  "result1": {
+    "item":"rankine:mercury",
+    "count": 4
+  },
+  "fluidInput": {
+    "fluid": "rankine:liquid_mercury"
+  }
+}

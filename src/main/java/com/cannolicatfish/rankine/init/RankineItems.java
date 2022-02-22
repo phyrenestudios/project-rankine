@@ -1390,6 +1390,7 @@ public class RankineItems {
     public static final RegistryObject<Item> BLACK_TEKITE = REGISTRY.register("black_tektite", () -> new BlockItem(RankineBlocks.BLACK_TEKTITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BROWN_TEKITE = REGISTRY.register("brown_tektite", () -> new BlockItem(RankineBlocks.BROWN_TEKTITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
 
+    public static final RegistryObject<Item> DRY_ICE = REGISTRY.register("dry_ice", () -> new BlockItem(RankineBlocks.DRY_ICE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
 
 
     public static final RegistryObject<Item> CONCRETE = REGISTRY.register("concrete", () -> new BlockItem(RankineBlocks.CONCRETE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
@@ -2551,6 +2552,8 @@ public class RankineItems {
     public static final RegistryObject<Item> MALACHITE_BLOCK = REGISTRY.register("malachite_block", () -> new BlockItem(RankineBlocks.MALACHITE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> MELLITE = REGISTRY.register("mellite", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> MELLITE_BLOCK = REGISTRY.register("mellite_block", () -> new BlockItem(RankineBlocks.MELLITE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> MONTROYDITE = REGISTRY.register("montroydite", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> MONTROYDITE_BLOCK = REGISTRY.register("montroydite_block", () -> new BlockItem(RankineBlocks.MONTROYDITE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> MICA = REGISTRY.register("mica", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> MICA_BLOCK = REGISTRY.register("mica_block", () -> new BlockItem(RankineBlocks.MICA_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> MOLYBDENITE = REGISTRY.register("molybdenite", () -> new SimpleTooltipItem(Arrays.asList("Composition: MoS2", "Used as a source for molybdenum"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -2742,7 +2745,7 @@ public class RankineItems {
     public static final RegistryObject<Item> BLUE_GOLD_NUGGET = REGISTRY.register("blue_gold_nugget", () -> new AlloyItem("75Au-25Fe", new ResourceLocation("rankine:alloying/blue_gold_alloying"),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> PURPLE_GOLD_NUGGET = REGISTRY.register("purple_gold_nugget", () -> new AlloyItem("80Au-20Al",new ResourceLocation("rankine:alloying/purple_gold_alloying"),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BLACK_GOLD_NUGGET = REGISTRY.register("black_gold_nugget", () -> new AlloyItem("75Au-25Co",new ResourceLocation("rankine:alloying/black_gold_alloying"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> SODIUM_POTASSIUM_ALLOY_NUGGET = REGISTRY.register("sodium_potassium_alloy_nugget", () -> new AlloyItem("77K-23Na",new ResourceLocation("rankine:alloying/sodium_potassium_alloying"),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> SODIUM_POTASSIUM_ALLOY_NUGGET = REGISTRY.register("sodium_potassium_alloy_nugget", () -> new AlloyItem("77K-23Na",new ResourceLocation("rankine:alloying/sodium_potassium_alloy_alloying"),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
 
 
     //Alloy Ingots
@@ -2840,8 +2843,8 @@ public class RankineItems {
 //RANKINE MISC CREATIVE TAB --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //NORMAL TOOLS
-    public static final RegistryObject<Item> WOODEN_MALLET = REGISTRY.register("wooden_mallet", () -> new HammerItem(2, -3.2F, ItemTier.WOOD, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> STONE_MALLET = REGISTRY.register("stone_mallet", () -> new HammerItem(2, -3.2F, ItemTier.STONE, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> WOODEN_HAMMER = REGISTRY.register("wooden_hammer", () -> new HammerItem(2, -3.2F, ItemTier.WOOD, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> STONE_HAMMER = REGISTRY.register("stone_hammer", () -> new HammerItem(2, -3.2F, ItemTier.STONE, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
     public static final RegistryObject<Item> FLINT_PICKAXE = REGISTRY.register("flint_pickaxe", () -> new PickaxeItem(RankineToolMaterials.FLINT, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> FLINT_AXE = REGISTRY.register("flint_axe", () -> new AxeItem(RankineToolMaterials.FLINT, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
