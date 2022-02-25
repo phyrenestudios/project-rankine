@@ -30,11 +30,13 @@ public class OreGen {
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getTopLayernFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> topLayer = new ArrayList<>();
         //if (Config.MISC_WORLDGEN.METEORITE_GEN.get()) {
-        topLayer.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.POST_WORLD_REPLACER_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
 
         if (Config.MISC_WORLDGEN.METEORITE_GEN.get()) {
             topLayer.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.METEORITE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
         }
+        topLayer.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.POST_WORLD_REPLACER_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
+
+
 
         //}
 

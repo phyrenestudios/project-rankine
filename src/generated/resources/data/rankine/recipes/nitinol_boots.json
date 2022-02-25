@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_boots",
+  "inherit": true,
+  "color": 12882104,
+  "langName": "item.rankine.nitinol_alloying",
+  "pattern": [
+    "   ",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:nitinol_ingot",
+      "langName": "item.rankine.nitinol_alloying",
+      "color": 12882104
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_boots"
+  }
+}

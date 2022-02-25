@@ -53,7 +53,7 @@ public class ClientProxy implements IProxy {
     }
 
     public static void registerItemProperties() {
-        for (Item ITEM : Stream.of(RankineLists.WOODEN_TOOLS,RankineLists.STONE_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.OSMIRIDIUM_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Item ITEM : Stream.of(RankineLists.WOODEN_TOOLS,RankineLists.STONE_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.NIOBIUM_ALLOY_TOOLS, RankineLists.ZIRCONIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.OSMIRIDIUM_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             if (ITEM instanceof SpearItem) {
                 ItemModelsProperties.registerProperty(ITEM, new ResourceLocation("throwing"), (stack, world, living) ->
                         living != null && living.isHandActive() && living.getActiveItemStack() == stack ? 1.0F : 0.0F);
@@ -103,6 +103,7 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.METAL_TRAPDOORS);
         addCutout(RankineLists.METAL_LADDERS);
         addCutout(RankineLists.ALLOY_POLES);
+        addCutout(RankineLists.ALLOY_BARS);
         addCutout(RankineLists.LEAVES);
         addCutout(RankineLists.LEAF_LITTERS);
         addCutout(RankineLists.SAPLINGS);
@@ -114,6 +115,9 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.ASPHALT_BLOCKS);
         addCutout(RankineLists.RED_ASPHALT_BLOCKS);
         addCutout(RankineLists.GRAY_ASPHALT_BLOCKS);
+        addCutout(RankineLists.DARK_GRAY_ASPHALT_BLOCKS);
+        addCutout(RankineLists.BLUE_ASPHALT_BLOCKS);
+        addCutout(RankineLists.GREEN_ASPHALT_BLOCKS);
         addCutout(Arrays.asList(
                 RankineBlocks.FLOOD_GATE.get(),
                 RankineBlocks.ORNAMENT.get(),
@@ -140,7 +144,6 @@ public class ClientProxy implements IProxy {
         addCutoutMipped(RankineLists.TALL_FLOWERS);
         addCutoutMipped(RankineLists.LANTERNS);
         addCutoutMipped(Arrays.asList(
-                RankineBlocks.CAST_IRON_BARS.get(),
                 RankineBlocks.CAST_IRON_SUPPORT.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_SLAB.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get(),
@@ -169,10 +172,7 @@ public class ClientProxy implements IProxy {
         addTranslucent(RankineLists.GAS_BLOCKS);
         addTranslucent(RankineLists.LIGHTNING_GLASSES);
         addTranslucent(Arrays.asList(
-                //RankineBlocks.HELIUM_GAS_TUBE.get(),
-                RankineBlocks.SALT_COLUMN.get(),
                 RankineBlocks.SODIUM_CHLORIDE_BLOCK.get(),
-                RankineBlocks.PINK_SALT_COLUMN.get(),
                 RankineBlocks.PINK_SALT_BLOCK.get(),
                 RankineBlocks.ICE_BRICKS.get(),
                 RankineBlocks.ICE_BRICKS_SLAB.get(),

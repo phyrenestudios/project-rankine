@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:titanium_alloy_boots"
+    ]
+  },
+  "criteria": {
+    "has_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:titanium_alloy_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:titanium_alloy_boots"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_alloy",
+      "has_the_recipe"
+    ]
+  ]
+}

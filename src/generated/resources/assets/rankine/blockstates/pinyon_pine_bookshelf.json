@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "mode=0": {
+      "model": "rankine:block/pinyon_pine_bookshelf"
+    },
+    "mode=1": {
+      "model": "rankine:block/pinyon_pine_bookshelfvertical"
+    }
+  }
+}

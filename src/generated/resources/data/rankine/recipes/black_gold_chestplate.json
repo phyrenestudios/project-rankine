@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_chestplate",
+  "inherit": true,
+  "color": 3684408,
+  "langName": "item.rankine.black_gold_alloying",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:black_gold_ingot",
+      "langName": "item.rankine.black_gold_alloying",
+      "color": 3684408
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_chestplate"
+  }
+}

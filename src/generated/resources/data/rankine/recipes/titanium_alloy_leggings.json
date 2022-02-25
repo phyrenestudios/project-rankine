@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_leggings",
+  "inherit": true,
+  "color": 13750746,
+  "langName": "item.rankine.titanium_alloy_alloying",
+  "pattern": [
+    "###",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:titanium_alloy_ingot",
+      "langName": "item.rankine.titanium_alloy_alloying",
+      "color": 13750746
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_leggings"
+  }
+}

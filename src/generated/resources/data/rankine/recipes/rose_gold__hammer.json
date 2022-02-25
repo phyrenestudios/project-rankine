@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_hammers",
+  "inherit": true,
+  "pattern": [
+    "###",
+    "#s#",
+    " s "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:rose_gold_ingot"
+    },
+    "s": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:rose_gold_hammer"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 100,
+  "ingredientTotal": 4,
+  "matScale": 0.75,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 10
+  },
+  "input1": {
+    "item": "rankine:silt",
+    "required": true,
+    "min": 0.20,
+    "max": 0.80
+  },
+  "input2": {
+    "tag": "minecraft:sand",
+    "required": true,
+    "min": 0.20,
+    "max": 0.80
+  },
+  "input3": {
+    "tag": "forge:clay_balls",
+    "required": true,
+    "min": 0.10,
+    "max": 0.40
+  },
+  "input4": {
+    "tag": "forge:ice",
+    "required": true,
+    "min": 0.10,
+    "max": 0.20
+  },
+  "result": {
+    "item": "rankine:permafrost"
+  }
+}

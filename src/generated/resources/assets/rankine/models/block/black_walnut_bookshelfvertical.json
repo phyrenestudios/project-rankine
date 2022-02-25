@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rankine:block/black_walnut_planks",
+    "side": "rankine:block/black_walnut_bookshelf"
+  }
+}

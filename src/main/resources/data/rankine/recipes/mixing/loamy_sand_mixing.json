@@ -1,0 +1,31 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 100,
+  "ingredientTotal": 3,
+  "matScale": 1,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 10
+  },
+  "input1": {
+    "item": "rankine:silt",
+    "required": true,
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input2": {
+    "tag": "forge:sand",
+    "required": true,
+    "min": 0.80,
+    "max": 0.90
+  },
+  "input3": {
+    "tag": "forge:clay_balls",
+    "required": true,
+    "min": 0.0,
+    "max": 0.10
+  },
+  "result": {
+    "item": "rankine:loamy_sand"
+  }
+}

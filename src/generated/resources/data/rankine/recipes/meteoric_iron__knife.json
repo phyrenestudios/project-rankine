@@ -1,0 +1,20 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_knives",
+  "inherit": true,
+  "pattern": [
+    " #",
+    "s "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:meteoric_iron"
+    },
+    "s": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:invar_knife"
+  }
+}

@@ -33,6 +33,12 @@ public class AntimatterBlock extends Block {
         if (!worldIn.isRemote) {
             worldIn.createExplosion(null, pos.getX() + 0.5, pos.getY() + 2, pos.getZ() + 0.5, 15.0F, Explosion.Mode.BREAK);
             worldIn.removeBlock(pos, false);
+
+
+
+
+
+
         }
     }
 }

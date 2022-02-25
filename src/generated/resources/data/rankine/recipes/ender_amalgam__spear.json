@@ -1,0 +1,24 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_spears",
+  "inherit": true,
+  "pattern": [
+    " ##",
+    " s#",
+    "s  "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:ender_amalgam_ingot"
+    },
+    "s": {
+      "item": "rankine:alloy_rod",
+      "alloyRecipe": "rankine:alloying/steel_alloying",
+      "langName": "item.rankine.steel_alloying",
+      "color": 3291714
+    }
+  },
+  "result": {
+    "item": "rankine:ender_amalgam_spear"
+  }
+}

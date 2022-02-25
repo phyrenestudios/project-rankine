@@ -175,13 +175,15 @@ public class ProjectRankine {
             for (Block b : RankineLists.GRASS_BLOCKS) {
                 event.getItemColors().register(new GrassItemBaseColor(), b.asItem());
             }
+            for (Block b : RankineLists.ALLOY_POLES) {
+                event.getItemColors().register(new NonAlloyItemColor(), b);
+            }
+            for (Block b : RankineLists.ALLOY_BARS) {
+                event.getItemColors().register(new NonAlloyItemColor(), b);
+            }
             event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SHORT_GRASS.get());
 
             event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK.get());
-            event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK_SLAB.get());
-            event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK_VERTICAL_SLAB.get());
-            event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK_STAIRS.get());
-            event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK_WALL.get());
 
             event.getItemColors().register(new LeavesItemBaseColor(), RankineBlocks.BIRCH_LEAF_LITTER.get(), RankineBlocks.SPRUCE_LEAF_LITTER.get(), RankineBlocks.ACACIA_LEAF_LITTER.get(), RankineBlocks.JUNGLE_LEAF_LITTER.get(), RankineBlocks.DARK_OAK_LEAF_LITTER.get(), RankineBlocks.OAK_LEAF_LITTER.get());
 
@@ -221,20 +223,18 @@ public class ProjectRankine {
             for (Block b : RankineLists.GRASS_BLOCKS) {
                 event.getBlockColors().register(new GrassBlockBaseColor(), b);
             }
-
             event.getBlockColors().register(new AlloyBlockColor(), RankineBlocks.ALLOY_BLOCK.get());
-
             event.getBlockColors().register(new OrnamentColor(), RankineBlocks.ORNAMENT.get());
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SHORT_GRASS.get());
-
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK.get());
-            event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_SLAB.get());
-            event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_VERTICAL_SLAB.get());
-            event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_WALL.get());
-            event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_STAIRS.get());
-
             event.getBlockColors().register(new LeavesBlockBaseColor(), RankineBlocks.BIRCH_LEAF_LITTER.get(), RankineBlocks.SPRUCE_LEAF_LITTER.get(), RankineBlocks.ACACIA_LEAF_LITTER.get(), RankineBlocks.JUNGLE_LEAF_LITTER.get(), RankineBlocks.DARK_OAK_LEAF_LITTER.get(), RankineBlocks.OAK_LEAF_LITTER.get());
 
+            for (Block b : RankineLists.ALLOY_POLES) {
+                event.getBlockColors().register(new NonAlloyBlockColor(), b);
+            }
+            for (Block b : RankineLists.ALLOY_BARS) {
+                event.getBlockColors().register(new NonAlloyBlockColor(), b);
+            }
 
         }
 

@@ -27,7 +27,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -199,11 +198,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             rotationBlock(blk);
         }
 
-        slabBlock(RankineBlocks.SOD_BLOCK_SLAB.get());
-        verticalSlabBlock(RankineBlocks.SOD_BLOCK_VERTICAL_SLAB.get());
-        stairsBlock(RankineBlocks.SOD_BLOCK_STAIRS.get());
-        wallBlock(RankineBlocks.SOD_BLOCK_WALL.get());
-
 
         for (Block BLOCK : RankineLists.EIGHT_LAYER_BLOCKS) {
             String NAME = BLOCK.getRegistryName().getPath();
@@ -253,6 +247,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             String NAME = BLOCK.getRegistryName().getPath();
             columnBlock(BLOCK,new ResourceLocation("rankine","block/"+NAME.replace("_column","")));
         }
+        /*
         columnBlock(RankineBlocks.CALCITE_COLUMN.get(),new ResourceLocation("rankine","block/calcite_block"));
         columnBlock(RankineBlocks.DOLOMITE_COLUMN.get(),new ResourceLocation("rankine","block/dolomite_block"));
         columnBlock(RankineBlocks.SALT_COLUMN.get(),new ResourceLocation("rankine","block/sodium_chloride_block"));
@@ -260,6 +255,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         columnBlock(RankineBlocks.OPAL_COLUMN.get(),new ResourceLocation("rankine","block/opal_column"));
         columnBlock(RankineBlocks.QUARTZ_COLUMN.get(),new ResourceLocation("rankine","block/quartz_column"));
 
+
+         */
 
 
 
@@ -524,12 +521,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : RankineLists.ALLOY_POLES) {
             metalPoleBlock(blk);
         }
-
-
-        paneBlock((PaneBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine","cast_iron"+"_bars")), new ResourceLocation("rankine","block/"+"cast_iron"+"_bars"), new ResourceLocation("rankine","block/"+"cast_iron"+"_bars"));
-
-
-
+        for (Block blk : RankineLists.ALLOY_BARS) {
+            metalBarsBlock((PaneBlock) blk,getBlockRSL("alloy_bars1"),getBlockRSL("alloy_bars1"));
+        }
 
         for (Block blk : RankineLists.GEODES) {
             geodeBlock(blk);
@@ -592,6 +586,27 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 asphaltBlock(blk, getBlockRSL("gray_asphalt"),getBlockRSL("gray_asphalt"));
             } else {
                 asphaltBlock(blk, getBlockRSL("gray_asphalt"),getBlockRSL(blk.getRegistryName().getPath().replace("gray_","")));
+            }
+        }
+        for (Block blk : RankineLists.DARK_GRAY_ASPHALT_BLOCKS) {
+            if (blk.matchesBlock(RankineBlocks.DARK_GRAY_ASPHALT.get())) {
+                asphaltBlock(blk, getBlockRSL("dark_gray_asphalt"),getBlockRSL("dark_gray_asphalt"));
+            } else {
+                asphaltBlock(blk, getBlockRSL("dark_gray_asphalt"),getBlockRSL(blk.getRegistryName().getPath().replace("dark_gray_","")));
+            }
+        }
+        for (Block blk : RankineLists.BLUE_ASPHALT_BLOCKS) {
+            if (blk.matchesBlock(RankineBlocks.BLUE_ASPHALT.get())) {
+                asphaltBlock(blk, getBlockRSL("blue_asphalt"),getBlockRSL("blue_asphalt"));
+            } else {
+                asphaltBlock(blk, getBlockRSL("blue_asphalt"),getBlockRSL(blk.getRegistryName().getPath().replace("blue_","")));
+            }
+        }
+        for (Block blk : RankineLists.GREEN_ASPHALT_BLOCKS) {
+            if (blk.matchesBlock(RankineBlocks.GREEN_ASPHALT.get())) {
+                asphaltBlock(blk, getBlockRSL("green_asphalt"),getBlockRSL("green_asphalt"));
+            } else {
+                asphaltBlock(blk, getBlockRSL("green_asphalt"),getBlockRSL(blk.getRegistryName().getPath().replace("green_","")));
             }
         }
 
@@ -1022,11 +1037,63 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         String path = BLK.getRegistryName().getPath();
 
         getVariantBuilder(BLK)
-                .partialState().with(MetalPoleBlock.STYLE,0).modelForState().modelFile(models().withExistingParent(path, modLoc("block/template_metal_pole")).texture("side", getBlockRSL(path.replace("pole","block")))).addModel()
-                .partialState().with(MetalPoleBlock.STYLE,1).modelForState().modelFile(models().withExistingParent(path+"_garland", modLoc("block/metal_pole_garland")).texture("side", getBlockRSL(path.replace("pole","block")))).addModel();
+                .partialState().with(MetalPoleBlock.STYLE,0).modelForState().modelFile(models().withExistingParent(path, modLoc("block/template_metal_pole")).texture("side", getBlockRSL("template_pole"))).addModel()
+                .partialState().with(MetalPoleBlock.STYLE,1).modelForState().modelFile(models().withExistingParent(path+"_garland", modLoc("block/metal_pole_garland")).texture("side", getBlockRSL("template_pole"))).addModel();
 
     }
 
+    public void metalBarsBlock(PaneBlock block, ResourceLocation pane, ResourceLocation edge) {
+        metalBarsBlockInternal(block, block.getRegistryName().toString(), pane, edge);
+    }
+
+    private void metalBarsBlockInternal(PaneBlock block, String baseName, ResourceLocation pane, ResourceLocation edge) {
+        ModelFile post = tintedPanePost(baseName + "_post", pane, edge);
+        ModelFile side = tintedPaneSide(baseName + "_side", pane, edge);
+        ModelFile sideAlt = tintedPaneSideAlt(baseName + "_side_alt", pane, edge);
+        ModelFile noSide = tintedPaneNoSide(baseName + "_noside", pane);
+        ModelFile noSideAlt = tintedPaneNoSideAlt(baseName + "_noside_alt", pane);
+        metalBarsBlock(block, post, side, sideAlt, noSide, noSideAlt);
+    }
+
+    public void metalBarsBlock(PaneBlock block, ModelFile post, ModelFile side, ModelFile sideAlt, ModelFile noSide, ModelFile noSideAlt) {
+        MultiPartBlockStateBuilder builder = getMultipartBuilder(block)
+                .part().modelFile(post).addModel().end();
+        SixWayBlock.FACING_TO_PROPERTY_MAP.entrySet().forEach(e -> {
+            Direction dir = e.getKey();
+            if (dir.getAxis().isHorizontal()) {
+                boolean alt = dir == Direction.SOUTH;
+                builder.part().modelFile(alt || dir == Direction.WEST ? sideAlt : side).rotationY(dir.getAxis() == Direction.Axis.X ? 90 : 0).addModel()
+                        .condition(e.getValue(), true).end()
+                        .part().modelFile(alt || dir == Direction.EAST ? noSideAlt : noSide).rotationY(dir == Direction.WEST ? 270 : dir == Direction.SOUTH ? 90 : 0).addModel()
+                        .condition(e.getValue(), false);
+            }
+        });
+    }
+    private ModelFile tintedPane(String name, String parent, ResourceLocation pane, ResourceLocation edge) {
+        return models().withExistingParent(name, modLoc(parent))
+                .texture("pane", pane)
+                .texture("edge", edge);
+    }
+
+    public ModelFile tintedPanePost(String name, ResourceLocation pane, ResourceLocation edge) {
+        return tintedPane(name, "template_tinted_glass_pane_post", pane, edge);
+    }
+
+    public ModelFile tintedPaneSide(String name, ResourceLocation pane, ResourceLocation edge) {
+        return tintedPane(name, "template_tinted_glass_pane_side", pane, edge);
+    }
+
+    public ModelFile tintedPaneSideAlt(String name, ResourceLocation pane, ResourceLocation edge) {
+        return tintedPane(name, "template_tinted_glass_pane_side_alt", pane, edge);
+    }
+
+    public ModelFile tintedPaneNoSide(String name, ResourceLocation pane) {
+        return models().withExistingParent(name, getBlockRSL("template_tinted_glass_pane_noside")).texture("pane", pane);
+    }
+
+    public ModelFile tintedPaneNoSideAlt(String name, ResourceLocation pane) {
+        return models().withExistingParent(name, getBlockRSL("template_tinted_glass_pane_noside_alt")).texture("pane", pane);
+    }
 /*
     public void metalPoleBlock(MetalPoleBlock blk, ResourceLocation texture) {
         fourWayBlock(blk, metalPole(blk.getRegistryName().getPath(), texture), metalPoleSide(blk.getRegistryName().getPath() + "_pole_side", texture));
@@ -1340,11 +1407,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .partialState().with(RankineBookshelvesBlock.MODE, 0)
                     .modelForState().modelFile(models().withExistingParent(name, mcLoc("block/cube_column")).texture("end", getBlockRSL(plankName)).texture("side", getBlockRSL(name))).addModel()
                 .partialState().with(RankineBookshelvesBlock.MODE, 1)
-                    .modelForState().modelFile(models().withExistingParent(name+"vertical", mcLoc("block/cube_column")).texture("end", getBlockRSL(plankName)).texture("side", getBlockRSL(name))).addModel()
-                .partialState().with(RankineBookshelvesBlock.MODE, 2)
-                    .modelForState().modelFile(models().withExistingParent(name, mcLoc("block/cube_column")).texture("end", getBlockRSL(plankName)).texture("side", getBlockRSL(name))).addModel()
-                .partialState().with(RankineBookshelvesBlock.MODE, 3)
-                    .modelForState().modelFile(models().withExistingParent(name, mcLoc("block/cube_column")).texture("end", getBlockRSL(plankName)).texture("side", getBlockRSL(name))).addModel();
+                    .modelForState().modelFile(models().withExistingParent(name+"vertical", mcLoc("block/cube_column")).texture("end", getBlockRSL(plankName)).texture("side", getBlockRSL(name))).addModel();
+            //    .partialState().with(RankineBookshelvesBlock.MODE, 2)
+            //        .modelForState().modelFile(models().withExistingParent(name, mcLoc("block/cube_column")).texture("end", getBlockRSL(plankName)).texture("side", getBlockRSL(name))).addModel()
+            //    .partialState().with(RankineBookshelvesBlock.MODE, 3)
+            //        .modelForState().modelFile(models().withExistingParent(name, mcLoc("block/cube_column")).texture("end", getBlockRSL(plankName)).texture("side", getBlockRSL(name))).addModel();
 
     }
 

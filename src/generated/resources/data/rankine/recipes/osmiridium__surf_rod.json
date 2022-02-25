@@ -1,0 +1,23 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_surf_rods",
+  "inherit": true,
+  "color": 13212593,
+  "langName": "item.rankine.osmiridium_alloying",
+  "pattern": [
+    "  #",
+    " #s",
+    "# s"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:osmiridium_ingot"
+    },
+    "s": {
+      "tag": "forge:string"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_surf_rod"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:zirconium_alloy_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:zirconium_alloy_block"
+  }
+}

@@ -1,5 +1,6 @@
 {
   "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_nuggets",
   "inherit": true,
   "pattern": [
     "#"

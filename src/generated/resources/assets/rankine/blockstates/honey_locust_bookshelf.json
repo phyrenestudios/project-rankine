@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "mode=0": {
+      "model": "rankine:block/honey_locust_bookshelf"
+    },
+    "mode=1": {
+      "model": "rankine:block/honey_locust_bookshelfvertical"
+    }
+  }
+}

@@ -42,6 +42,27 @@ public class BlockWallCommand {
             serverworld.setBlockState(pos.up(5).north(2*i),BLK.getDefaultState());
             serverworld.setBlockState(pos.up(5).north(2*i+1),BLK.getDefaultState());
         }
+        for (Block BLK : RankineLists.LOGS) {
+            int i = RankineLists.LOGS.indexOf(BLK);
+            serverworld.setBlockState(pos.up(6).north(2*i),BLK.getDefaultState());
+            serverworld.setBlockState(pos.up(6).north(2*i+1),BLK.getDefaultState());
+            serverworld.setBlockState(pos.up(7).north(2*i),BLK.getDefaultState());
+            serverworld.setBlockState(pos.up(7).north(2*i+1),BLK.getDefaultState());
+        }
+        for (Block BLK : RankineLists.STRIPPED_LOGS) {
+            int i = RankineLists.STRIPPED_LOGS.indexOf(BLK);
+            serverworld.setBlockState(pos.up(8).north(2*i),BLK.getDefaultState());
+            serverworld.setBlockState(pos.up(8).north(2*i+1),BLK.getDefaultState());
+            serverworld.setBlockState(pos.up(9).north(2*i),BLK.getDefaultState());
+            serverworld.setBlockState(pos.up(9).north(2*i+1),BLK.getDefaultState());
+        }
+        for (Block BLK : RankineLists.PLANKS) {
+            int i = RankineLists.PLANKS.indexOf(BLK);
+            serverworld.setBlockState(pos.up(10).north(2*i),BLK.getDefaultState());
+            serverworld.setBlockState(pos.up(10).north(2*i+1),BLK.getDefaultState());
+            serverworld.setBlockState(pos.up(11).north(2*i),BLK.getDefaultState());
+            serverworld.setBlockState(pos.up(11).north(2*i+1),BLK.getDefaultState());
+        }
 
         return 1;
     }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "rankine:block/weeping_willow_planks",
+    "end": "rankine:block/cedar_planks",
     "side": "rankine:block/cedar_bookshelf"
   }
 }

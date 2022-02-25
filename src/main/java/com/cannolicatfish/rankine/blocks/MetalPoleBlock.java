@@ -1,9 +1,9 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.IWaterLoggable;
+import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -27,15 +27,22 @@ import javax.annotation.Nullable;
 public class MetalPoleBlock extends Block implements IWaterLoggable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final IntegerProperty STYLE = IntegerProperty.create("style",0,1);
+    int alloyColor;
 
-    public MetalPoleBlock(Properties properties) {
-        super(properties);
+    public MetalPoleBlock(int color) {
+        super(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(4.0F, 6.0F).sound(SoundType.METAL).notSolid());
+        this.alloyColor = color;
         this.setDefaultState(this.stateContainer.getBaseState().with(STYLE,0).with(WATERLOGGED, Boolean.FALSE));
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(STYLE,WATERLOGGED);
     }
+
+    public int getColor() {
+        return this.alloyColor;
+    }
+
 
     public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
         return false;
@@ -143,8 +150,10 @@ public class MetalPoleBlock extends Block implements IWaterLoggable {
                     newpos = newpos.west();
                 }
                 player.setPositionAndUpdate(newpos.getX() + .5f, newpos.getY(), newpos.getZ() + .5f);
-                worldIn.playSound(null,pos, SoundEvents.BLOCK_METAL_FALL, SoundCategory.BLOCKS,0.8f,1.0f);
-
+                player.playSound(SoundEvents.BLOCK_METAL_FALL, SoundCategory.BLOCKS,0.8f,1.0f);
+                if (n>5) {
+                    player.attackEntityFrom(DamageSource.FALL, 1.0F);
+                }
                 return ActionResultType.FAIL;
             }
         }

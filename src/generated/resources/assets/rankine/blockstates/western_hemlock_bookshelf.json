@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "mode=0": {
+      "model": "rankine:block/western_hemlock_bookshelf"
+    },
+    "mode=1": {
+      "model": "rankine:block/western_hemlock_bookshelfvertical"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:warped_stems",
+    "#minecraft:crimson_stems",
+    "#rankine:petrified_chorus_logs",
+    "#rankine:charred_logs",
+    "#rankine:erythrina_logs"
+  ]
+}

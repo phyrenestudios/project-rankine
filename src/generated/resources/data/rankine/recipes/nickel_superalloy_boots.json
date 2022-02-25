@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_boots",
+  "inherit": true,
+  "color": 12769246,
+  "langName": "item.rankine.nickel_superalloy_alloying",
+  "pattern": [
+    "   ",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:nickel_superalloy_ingot",
+      "langName": "item.rankine.nickel_superalloy_alloying",
+      "color": 12769246
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_boots"
+  }
+}

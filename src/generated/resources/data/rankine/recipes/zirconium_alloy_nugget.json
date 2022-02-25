@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_nuggets",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:zirconium_alloy_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:zirconium_alloy_nugget",
+    "count": 9
+  }
+}

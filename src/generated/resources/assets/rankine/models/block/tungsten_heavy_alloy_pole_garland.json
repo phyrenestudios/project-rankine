@@ -1,6 +1,6 @@
 {
   "parent": "rankine:block/metal_pole_garland",
   "textures": {
-    "side": "rankine:block/tungsten_heavy_alloy_block"
+    "side": "rankine:block/template_pole"
   }
 }

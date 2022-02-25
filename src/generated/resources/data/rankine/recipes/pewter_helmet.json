@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_helmets",
+  "inherit": true,
+  "color": 11711154,
+  "langName": "item.rankine.pewter_alloying",
+  "pattern": [
+    "###",
+    "# #",
+    "   "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:pewter_ingot",
+      "langName": "item.rankine.pewter_alloying",
+      "color": 11711154
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_helmet"
+  }
+}

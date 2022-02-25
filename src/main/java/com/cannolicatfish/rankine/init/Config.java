@@ -833,7 +833,7 @@ public class Config {
             METEORITE_SIZE = b.comment("Size parameter for meteorites. Higher number is bigger.")
                     .defineInRange("meteoriteSize", 1, 0, 5);
             METEORITE_CHANCE = b.comment("The chance a meteroite will spawn in the Overworld. Higher numbers increase rarity.")
-                    .defineInRange("meteoriteChance", 60, 0, Integer.MAX_VALUE);
+                    .defineInRange("meteoriteChance", 50, 0, Integer.MAX_VALUE);
             SOUL_SANDSTONE_LAYER_THICKNESS = b.comment("The number of blocks that Soul Sandstone will generate up or down from Soul Sand.")
                     .defineInRange("soulSandstoneLayerThickness", 3, 0, Integer.MAX_VALUE);
             BIG_METEORITE_CHANCE = b.comment("The chance a meteroite will be big.")

@@ -1,9 +1,8 @@
 package com.cannolicatfish.rankine.blocks.pedestal;
 
-import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableTile;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,13 +18,14 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
 public class PedestalBlock extends Block {
 
-    public PedestalBlock(AbstractBlock.Properties properties) {
-        super(properties);
+    public PedestalBlock() {
+        super(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 10.0F).harvestLevel(0));
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
