@@ -31,6 +31,7 @@ public final class RankineTags {
 
     public static final class Blocks {
         //MOD
+        public static final Tags.IOptionalNamedTag<Block> FIREPROOF_LOGS = modBlock("fireproof_logs");
         public static final Tags.IOptionalNamedTag<Block> ELECTROMAGNETS = modBlock("electromagnets");
         public static final Tags.IOptionalNamedTag<Block> MAGNET_BANNED = modBlock("magnet_banned");
         public static final Tags.IOptionalNamedTag<Block> NUGGET_STONES = modBlock("nugget_stones");
@@ -402,6 +403,9 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> PETRIFIED_CHORUS_LOGS = modItem("petrified_chorus_logs");
         public static final Tags.IOptionalNamedTag<Item> CHARRED_LOGS = modItem("charred_logs");
         public static final Tags.IOptionalNamedTag<Item> ERYTHRINA_LOGS = modItem("erythrina_logs");
+
+        public static final Tags.IOptionalNamedTag<Item> FIREPROOF_LOGS = modItem("fireproof_logs");
+        //public static final Tags.IOptionalNamedTag<Item> GREEN_STONES = modItem("green_stones");
 
         public static final Tags.IOptionalNamedTag<Item> MAGNETIC_NUGGETS = modItem("magnetic_nuggets");
         public static final Tags.IOptionalNamedTag<Item> MAGNETIC_INGOTS = modItem("magnetic_ingots");
@@ -1070,7 +1074,6 @@ public final class RankineTags {
 
         public static final Tags.IOptionalNamedTag<Item> CLAY = forgeItem("clay");
         public static final Tags.IOptionalNamedTag<Item> ICE = forgeItem("ice");
-        public static final Tags.IOptionalNamedTag<Item> BOOKSHELVES = forgeItem("bookshelves");
         public static final Tags.IOptionalNamedTag<Item> DIRT = forgeItem("dirt");
         public static final Tags.IOptionalNamedTag<Item> CAMPFIRES = forgeItem("campfires");
         public static final Tags.IOptionalNamedTag<Item> GRASS_BLOCKS = forgeItem("grass_blocks");

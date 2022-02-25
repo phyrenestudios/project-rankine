@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:white_gold__hammer"
+    ]
+  },
+  "criteria": {
+    "has_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:white_gold_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:white_gold__hammer"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_alloy",
+      "has_the_recipe"
+    ]
+  ]
+}

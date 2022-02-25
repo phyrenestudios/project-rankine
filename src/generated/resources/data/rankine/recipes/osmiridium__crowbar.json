@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_crowbars",
+  "inherit": true,
+  "pattern": [
+    " ##",
+    " # ",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:osmiridium_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:osmiridium_crowbar"
+  }
+}

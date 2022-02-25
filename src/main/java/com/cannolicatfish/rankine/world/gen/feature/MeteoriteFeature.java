@@ -22,7 +22,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, MeteoriteFeatureConfig config) {
-        BlockPos posShift = pos.add(4,0,4);
+        BlockPos posShift = pos;
         if (!RankineTags.Blocks.METEORITE_REPLACEABLE.contains(reader.getBlockState(posShift.down()).getBlock())) {
             return false;
         }

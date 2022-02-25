@@ -41,7 +41,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.SHEETMETAL_SLABS,
                 //RankineLists.GAS_TUBES,
                 RankineLists.STONE_COLUMNS,
-                RankineLists.MINERAL_COLUMNS,
                 RankineLists.HOLLOW_LOGS,
                 RankineLists.LEAF_LITTERS,
                 RankineLists.INFESTED_STONES,
@@ -119,6 +118,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.METAL_LADDERS,
                 RankineLists.ALLOY_PEDESTALS,
                 RankineLists.ALLOY_POLES,
+                RankineLists.ALLOY_BARS,
                 RankineLists.CROPS_SINGLE,
                 RankineLists.CROPS_DOUBLE,
                 RankineLists.CROPS_TRIPLE,
@@ -145,6 +145,9 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.ASPHALT_BLOCKS,
                 RankineLists.RED_ASPHALT_BLOCKS,
                 RankineLists.GRAY_ASPHALT_BLOCKS,
+                RankineLists.BLUE_ASPHALT_BLOCKS,
+                RankineLists.DARK_GRAY_ASPHALT_BLOCKS,
+                RankineLists.GREEN_ASPHALT_BLOCKS,
                 RankineLists.NATIVE_ORES,
                 RankineLists.CRUSHING_ORES,
                 RankineLists.SPECIAL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -205,8 +208,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.TRAMPOLINE.get(),
                 RankineBlocks.CHARCOAL_PIT.get(),
                 RankineBlocks.GWIHABAITE_CRYSTAL.get(),
-                
-                RankineBlocks.CAST_IRON_BARS.get(),
                 RankineBlocks.SHORT_GRASS.get(),
                 RankineBlocks.STINGING_NETTLE.get(),
                 RankineBlocks.WILLOW_BRANCHLET.get(),
@@ -219,12 +220,7 @@ public class RankineLangProvider extends LanguageProvider {
 
                 RankineBlocks.COB.get(),
                 RankineBlocks.SOD_BLOCK.get(),
-                RankineBlocks.SOD_BLOCK_WALL.get(),
-                RankineBlocks.SOD_BLOCK_STAIRS.get(),
-                RankineBlocks.SOD_BLOCK_SLAB.get(),
-                RankineBlocks.SOD_BLOCK_VERTICAL_SLAB.get(),
-                
-                
+
                 RankineBlocks.GROUND_TAP.get(),
                 RankineBlocks.METAL_PIPE.get(),
                 RankineBlocks.UNAMED_EXPLOSIVE.get(),
@@ -285,6 +281,8 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.OSMIRIDIUM_TOOLS,
                 RankineLists.AMALGAM_TOOLS,
                 RankineLists.ENDER_AMALGAM_TOOLS,
+                RankineLists.NIOBIUM_ALLOY_TOOLS,
+                RankineLists.ZIRCONIUM_ALLOY_TOOLS,
                 RankineLists.TITANIUM_ALLOY_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             if (item != RankineItems.ALLOY_NUGGET.get() && item != RankineItems.ALLOY_INGOT.get()) {
                 add(item, parseLangNameCustom(item.getRegistryName().getPath()));
@@ -1403,23 +1401,23 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.standard_tools.name", "XX Tools");
         add("rankine.journal.cat_tools.standard_tools.text1", "");
         add("rankine.journal.cat_tools.standard_tools.text2", "Swords");
-        add("rankine.journal.cat_tools.standard_tools.text3", "Swords");
+        add("rankine.journal.cat_tools.standard_tools.text3", "");
         add("rankine.journal.cat_tools.standard_tools.text4", "Shovels");
-        add("rankine.journal.cat_tools.standard_tools.text5", "Shovels");
+        add("rankine.journal.cat_tools.standard_tools.text5", "");
         add("rankine.journal.cat_tools.standard_tools.text6", "Pixaxes");
-        add("rankine.journal.cat_tools.standard_tools.text7", "Pixaxes");
+        add("rankine.journal.cat_tools.standard_tools.text7", "");
         add("rankine.journal.cat_tools.standard_tools.text8", "Axes");
-        add("rankine.journal.cat_tools.standard_tools.text9", "Axes");
+        add("rankine.journal.cat_tools.standard_tools.text9", "");
         add("rankine.journal.cat_tools.standard_tools.text10", "Hoes");
-        add("rankine.journal.cat_tools.standard_tools.text11", "Hoes");
+        add("rankine.journal.cat_tools.standard_tools.text11", "");
         add("rankine.journal.cat_tools.standard_tools.text12", "Hammers");
-        add("rankine.journal.cat_tools.standard_tools.text13", "Hammers");
+        add("rankine.journal.cat_tools.standard_tools.text13", "");
         add("rankine.journal.cat_tools.standard_tools.text14", "Knives");
-        add("rankine.journal.cat_tools.standard_tools.text15", "Knives");
+        add("rankine.journal.cat_tools.standard_tools.text15", "");
         add("rankine.journal.cat_tools.standard_tools.text16", "Crowbars");
-        add("rankine.journal.cat_tools.standard_tools.text17", "Crowbars");
+        add("rankine.journal.cat_tools.standard_tools.text17", "");
         add("rankine.journal.cat_tools.standard_tools.text18", "Surf Rods");
-        add("rankine.journal.cat_tools.standard_tools.text19", "Axes");
+        add("rankine.journal.cat_tools.standard_tools.text19", "");
 
 
 

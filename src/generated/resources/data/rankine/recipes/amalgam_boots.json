@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_boots",
+  "inherit": true,
+  "color": 13881539,
+  "langName": "item.rankine.amalgam_alloying",
+  "pattern": [
+    "   ",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:amalgam_ingot",
+      "langName": "item.rankine.amalgam_alloying",
+      "color": 13881539
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_boots"
+  }
+}

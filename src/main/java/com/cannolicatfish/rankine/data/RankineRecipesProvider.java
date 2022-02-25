@@ -2,8 +2,10 @@ package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.data.builders.AlloyCraftingRecipeBuilder;
 import com.cannolicatfish.rankine.data.builders.AlloyIngredient;
-import com.cannolicatfish.rankine.init.*;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineLists;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.JamRecipe;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.block.Block;
@@ -619,6 +621,7 @@ public class RankineRecipesProvider extends RecipeProvider {
             Block WOODEN_TRAPDOOR = RankineLists.WOODEN_TRAPDOORS.get(RankineLists.PLANKS.indexOf(PLANK));
             Block WOODEN_FENCE = RankineLists.WOODEN_FENCES.get(RankineLists.PLANKS.indexOf(PLANK));
             Block WOODEN_FENCE_GATE = RankineLists.WOODEN_FENCE_GATES.get(RankineLists.PLANKS.indexOf(PLANK));
+            Block WOODEN_BOOKSHELVES = RankineLists.WOODEN_BOOKSHELVES.get(RankineLists.PLANKS.indexOf(PLANK));
             Item WOODEN_BOAT = RankineLists.WOODEN_BOATS.get(RankineLists.PLANKS.indexOf(PLANK));
             slab(consumer, WOODEN_SLAB.asItem(), PLANK.asItem(), "wooden_slab");
             stairs(consumer, WOODEN_STAIRS.asItem(), PLANK.asItem(), "wooden_stairs");
@@ -627,6 +630,7 @@ public class RankineRecipesProvider extends RecipeProvider {
             trapdoor(consumer, WOODEN_TRAPDOOR.asItem(), PLANK.asItem(), "wooden_trapdoor",  "has_plank", PLANK.asItem());
             fence(consumer, WOODEN_FENCE.asItem(), PLANK.asItem(), "wooden_fence",  "has_plank", PLANK.asItem());
             fenceGate(consumer, WOODEN_FENCE_GATE.asItem(), PLANK.asItem(), "wooden_fence_gate",  "has_plank", PLANK.asItem());
+            bookshelf(consumer, WOODEN_BOOKSHELVES.asItem(), PLANK.asItem(), "wooden_bookshelves",  "has_plank", PLANK.asItem());
             boat(consumer, WOODEN_BOAT, PLANK.asItem(), "boat",  "has_plank", PLANK.asItem());
             ShapelessRecipeBuilder.shapelessRecipe(WOODEN_BUTTON).addIngredient(PLANK).setGroup("wooden_button").addCriterion("has_ingredient", hasItem(PLANK)).build(consumer);
             
@@ -826,127 +830,6 @@ public class RankineRecipesProvider extends RecipeProvider {
             }
         }
 
-        alloyHelmet(consumer,RankineItems.ALLOY_HELMET.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        null,
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
-        alloyChestplate(consumer,RankineItems.ALLOY_CHESTPLATE.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        null,
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(), 13212593,"item.rankine.osmiridium_alloying");
-
-        alloyLeggings(consumer,RankineItems.ALLOY_LEGGINGS.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        null,
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
-        alloyBoots(consumer,RankineItems.ALLOY_BOOTS.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        ((AlloyItem) RankineItems.OSMIRIDIUM_INGOT.get()).getDefaultRecipe(),
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
-        alloyCrowbar(consumer,RankineItems.OSMIRIDIUM_CROWBAR.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        ((AlloyItem) RankineItems.OSMIRIDIUM_INGOT.get()).getDefaultRecipe(),
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
-        alloyHammer(consumer,RankineItems.OSMIRIDIUM_HAMMER.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        ((AlloyItem) RankineItems.OSMIRIDIUM_INGOT.get()).getDefaultRecipe(),
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                new AlloyIngredient(Ingredient.fromTag(Tags.Items.RODS_WOODEN),null,null,null,16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
-        alloyBlunderbuss(consumer,RankineItems.OSMIRIDIUM_BLUNDERBUSS.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        ((AlloyItem) RankineItems.OSMIRIDIUM_INGOT.get()).getDefaultRecipe(),
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                new AlloyIngredient(Ingredient.fromTag(ItemTags.PLANKS),null,null,null,16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
-        alloyPickaxe(consumer,RankineItems.OSMIRIDIUM_PICKAXE.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        ((AlloyItem) RankineItems.OSMIRIDIUM_INGOT.get()).getDefaultRecipe(),
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                new AlloyIngredient(Ingredient.fromTag(Tags.Items.RODS_WOODEN),null,null,null,16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
-        alloyAxe(consumer,RankineItems.OSMIRIDIUM_AXE.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        ((AlloyItem) RankineItems.OSMIRIDIUM_INGOT.get()).getDefaultRecipe(),
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                new AlloyIngredient(Ingredient.fromTag(Tags.Items.RODS_WOODEN),null,null,null,16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
-        alloyHoe(consumer,RankineItems.OSMIRIDIUM_HOE.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        ((AlloyItem) RankineItems.OSMIRIDIUM_INGOT.get()).getDefaultRecipe(),
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                new AlloyIngredient(Ingredient.fromTag(Tags.Items.RODS_WOODEN),null,null,null,16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
-        alloyShovel(consumer,RankineItems.OSMIRIDIUM_SHOVEL.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        ((AlloyItem) RankineItems.OSMIRIDIUM_INGOT.get()).getDefaultRecipe(),
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                new AlloyIngredient(Ingredient.fromTag(Tags.Items.RODS_WOODEN),null,null,null,16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
-        alloySpear(consumer,RankineItems.OSMIRIDIUM_SPEAR.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        ((AlloyItem) RankineItems.OSMIRIDIUM_INGOT.get()).getDefaultRecipe(),
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                new AlloyIngredient(Ingredient.fromTag(Tags.Items.RODS_WOODEN),null,null,null,16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
-        alloySword(consumer,RankineItems.OSMIRIDIUM_SWORD.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        ((AlloyItem) RankineItems.OSMIRIDIUM_INGOT.get()).getDefaultRecipe(),
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                new AlloyIngredient(Ingredient.fromTag(Tags.Items.RODS_WOODEN),null,null,null,16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
-        alloyKnife(consumer,RankineItems.OSMIRIDIUM_KNIFE.get(),
-                new AlloyIngredient(Ingredient.fromItems(RankineItems.OSMIRIDIUM_INGOT.get()),
-                        "",
-                        ((AlloyItem) RankineItems.OSMIRIDIUM_INGOT.get()).getDefaultRecipe(),
-                        "item.rankine.osmiridium_alloying",
-                        16777215),
-                new AlloyIngredient(Ingredient.fromTag(Tags.Items.RODS_WOODEN),null,null,null,16777215),
-                1, "has_ingredient",RankineItems.OSMIRIDIUM_INGOT.get(),13212593,"item.rankine.osmiridium_alloying");
-
         door(consumer, RankineItems.BRASS_DOOR.get(), RankineItems.BRASS_INGOT.get(), "metal_door", "has_ingredient", RankineItems.BRASS_INGOT.get());
         door(consumer, RankineItems.BRONZE_DOOR.get(), RankineItems.BRONZE_INGOT.get(), "metal_door", "has_ingredient", RankineItems.BRONZE_INGOT.get());
         door(consumer, RankineItems.CUPRONICKEL_DOOR.get(), RankineItems.CUPRONICKEL_INGOT.get(), "metal_door", "has_ingredient", RankineItems.CUPRONICKEL_INGOT.get());
@@ -1009,8 +892,40 @@ public class RankineRecipesProvider extends RecipeProvider {
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.DOUGH.get()), Items.BREAD, 0.35F, 600, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineTags.Items.FLOUR)).build(consumer, "rankine:bread_smoking");
 
 
+        defaultToolRecipes(consumer,RankineItems.PEWTER_INGOT.get(), 11711154, "item.rankine.pewter_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.BRONZE_INGOT.get(), 15510384, "item.rankine.bronze_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.INVAR_INGOT.get(), 13028546, "item.rankine.invar_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.STEEL_INGOT.get(), 7634311, "item.rankine.steel_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.STAINLESS_STEEL_INGOT.get(), 13292499, "item.rankine.stainless_steel_alloying", true);
+        defaultToolRecipes(consumer,RankineItems.NICKEL_SUPERALLOY_INGOT.get(), 12769246, "item.rankine.nickel_superalloy_alloying", true);
+        defaultToolRecipes(consumer,RankineItems.COBALT_SUPERALLOY_INGOT.get(), 6534878, "item.rankine.cobalt_superalloy_alloying", true);
+        defaultToolRecipes(consumer,RankineItems.TUNGSTEN_HEAVY_ALLOY_INGOT.get(), 11113071, "item.rankine.tungsten_heavy_alloy_alloying", true);
+        defaultToolRecipes(consumer,RankineItems.ROSE_GOLD_INGOT.get(), 16756647, "item.rankine.rose_gold_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.WHITE_GOLD_INGOT.get(), 16777207, "item.rankine.white_gold_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.GREEN_GOLD_INGOT.get(), 15728547, "item.rankine.green_gold_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.BLUE_GOLD_INGOT.get(), 8695295, "item.rankine.blue_gold_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.PURPLE_GOLD_INGOT.get(), 11836415, "item.rankine.purple_gold_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.BLACK_GOLD_INGOT.get(), 3684408, "item.rankine.black_gold_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.AMALGAM_INGOT.get(), 13881539, "item.rankine.amalgam_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.ENDER_AMALGAM_INGOT.get(), 492385, "item.rankine.ender_amalgam_alloying", true);
+        defaultToolRecipes(consumer,RankineItems.OSMIRIDIUM_INGOT.get(), 13212593, "item.rankine.osmiridium_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.TITANIUM_ALLOY_INGOT.get(), 13750746, "item.rankine.titanium_alloy_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.NIOBIUM_ALLOY_INGOT.get(), 13750746, "item.rankine.niobium_alloy_alloying", false);
+        defaultToolRecipes(consumer,RankineItems.ZIRCONIUM_ALLOY_INGOT.get(), 13750746, "item.rankine.zirconium_alloy_alloying", false);
+
+        mimicToolRecipes(consumer, RankineItems.BRASS_INGOT.get(), RankineItems.BRONZE_INGOT.get(), 15510384, "item.rankine.brass_alloying", false, "rankine:brass_");
+        mimicToolRecipes(consumer, RankineItems.METEORIC_IRON.get(), RankineItems.INVAR_INGOT.get(), 13028546, "item.rankine.invar_alloying", false, "rankine:meteoric_iron_");
+        mimicToolRecipes(consumer, RankineItems.NITINOL_INGOT.get(), RankineItems.TITANIUM_ALLOY_INGOT.get(), 12882104, "item.rankine.nitinol_alloying", false, "rankine:nitinol_");
+        mimicToolRecipes(consumer, RankineItems.OSMIRIDIUM.get(), RankineItems.OSMIRIDIUM_INGOT.get(), 13212593, "item.rankine.osmiridium_alloying", false, "rankine:native_osmiridium_");
 
 
+        alloyGear(consumer, RankineItems.ALLOY_GEAR.get(), new AlloyIngredient(Ingredient.fromItems(RankineItems.BRONZE_INGOT.get()), "", null, null, 16777215),RankineItems.BRONZE_INGOT.get(),2236962, "item.rankine.bronze_alloying", "rankine:bronze_");
+        alloyGear(consumer, RankineItems.ALLOY_GEAR.get(), new AlloyIngredient(Ingredient.fromItems(RankineItems.CUPRONICKEL_INGOT.get()), "", null, null, 16777215),RankineItems.CUPRONICKEL_INGOT.get(),11946807, "item.rankine.cupronickel_alloying", "rankine:cupronickel_");
+
+        alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.fromItems(RankineItems.CAST_IRON_INGOT.get()), "", null, null, 16777215),RankineItems.CAST_IRON_INGOT.get(),2236962, "item.rankine.cast_iron_alloying", "rankine:cast_iron_");
+        alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.fromItems(RankineItems.CUPRONICKEL_INGOT.get()), "", null, null, 16777215),RankineItems.CUPRONICKEL_INGOT.get(),11946807, "item.rankine.cupronickel_alloying", "rankine:cupronickel_");
+        alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.fromItems(RankineItems.STEEL_INGOT.get()), "", null, null, 16777215),RankineItems.STEEL_INGOT.get(),7634311, "item.rankine.steel_alloying", "rankine:steel_");
+        alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.fromItems(RankineItems.FERROCERIUM_INGOT.get()), "", null, null, 16777215),RankineItems.FERROCERIUM_INGOT.get(),7433071, "item.rankine.ferrocerium_alloying", "rankine:ferrocerium_");
     }
 
     private void slab(Consumer<IFinishedRecipe> consumer, Item output, Item input) {
@@ -1204,6 +1119,17 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer);
     }
+    private void bookshelf(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
+        ShapedRecipeBuilder.shapedRecipe(output, 1)
+                .patternLine("###")
+                .patternLine("BBB")
+                .patternLine("###")
+                .key('#', input)
+                .key('B', Items.BOOK)
+                .setGroup(group)
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer);
+    }
 
     private void led(Consumer<IFinishedRecipe> consumer, Item output, ITag<Item> dye) {
         ShapedRecipeBuilder.shapedRecipe(output, 4)
@@ -1235,7 +1161,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .patternLine("###")
                 .patternLine("###")
                 .key('#', input)
-                .setGroup("rankine")
+                //.setGroup("rankine")
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer, new ResourceLocation("rankine",name));
     }
@@ -1245,7 +1171,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .patternLine("###")
                 .patternLine("###")
                 .key('#', input)
-                .setGroup("rankine")
+                //.setGroup("rankine")
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer);
     }
@@ -1256,7 +1182,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .patternLine("###")
                 .patternLine("###")
                 .key('#', input)
-                .setGroup("rankine")
+                .setGroup("rankine:alloy_blocks")
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer, new ResourceLocation("rankine",name));
     }
@@ -1266,197 +1192,269 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .patternLine("###")
                 .patternLine("###")
                 .key('#', input)
-                .setGroup("rankine")
+                .setGroup("rankine:alloy_blocks")
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer);
     }
 
-    private void alloyRod(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, int count, String triggerName, Item trigger,int color,@Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyArmorRecipes(Consumer<IFinishedRecipe> consumer, Item ingot, int alloyColor, ResourceLocation alloyRecipe, String alloyLang, String recipeName) {
+        alloyHelmet(consumer, RankineItems.ALLOY_HELMET.get(),
+                new AlloyIngredient(Ingredient.fromItems(ingot), "", alloyRecipe, alloyLang, alloyColor),
+                ingot, alloyColor, alloyLang, recipeName+"helmet");
+        alloyChestplate(consumer, RankineItems.ALLOY_CHESTPLATE.get(),
+                new AlloyIngredient(Ingredient.fromItems(ingot), "", alloyRecipe, alloyLang, alloyColor),
+                ingot, alloyColor, alloyLang, recipeName+"chestplate");
+        alloyLeggings(consumer, RankineItems.ALLOY_LEGGINGS.get(),
+                new AlloyIngredient(Ingredient.fromItems(ingot), "", alloyRecipe, alloyLang, alloyColor),
+                ingot, alloyColor, alloyLang, recipeName+"leggings");
+        alloyBoots(consumer, RankineItems.ALLOY_BOOTS.get(),
+                new AlloyIngredient(Ingredient.fromItems(ingot), "", alloyRecipe, alloyLang, alloyColor),
+                ingot, alloyColor, alloyLang, recipeName+"boots");
+    }
+
+    //private void defaultToolRecipes(Consumer<IFinishedRecipe> consumer, Item ingot, int alloyColor, ResourceLocation alloyRecipe, String alloyLang) {
+    private void defaultToolRecipes(Consumer<IFinishedRecipe> consumer, Item ingot, int alloyColor, String alloyLang, boolean steelRod) {
+        String rs = ingot.getRegistryName().toString();
+        AlloyIngredient alloyIngot = new AlloyIngredient(Ingredient.fromItems(ingot), "", null, null, 16777215);
+        AlloyIngredient rod = new AlloyIngredient(Ingredient.fromTag(Tags.Items.RODS_WOODEN), null, null, null, 16777215);
+        if (steelRod) {
+            rod = new AlloyIngredient(Ingredient.fromItems(RankineItems.ALLOY_ROD.get()), null, ResourceLocation.tryCreate("rankine:alloying/steel_alloying"), "item.rankine.steel_alloying", 3291714);
+        }
+        String recipeNamePart = "rankine:"+alloyLang.replace("item.rankine.","").replace("alloying","");
+        alloyArmorRecipes(consumer, ingot, alloyColor, null, alloyLang, recipeNamePart);
+
+        alloyCrowbar(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","crowbar"))), alloyIngot, ingot, 16777215, null, recipeNamePart);
+        alloyHammer(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","hammer"))), alloyIngot, rod, ingot, 16777215, null, recipeNamePart);
+        alloyBlunderbuss(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","blunderbuss"))), alloyIngot, ingot, 16777215, null, recipeNamePart);
+        alloyPickaxe(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","pickaxe"))), alloyIngot, rod, ingot, 16777215, null, recipeNamePart);
+        alloyAxe(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","axe"))), alloyIngot, rod, ingot, 16777215, null, recipeNamePart);
+        alloyHoe(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","hoe"))), alloyIngot, rod, ingot, 16777215, null, recipeNamePart);
+        alloyShovel(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","shovel"))), alloyIngot, rod, ingot, 16777215, null, recipeNamePart);
+        alloySpear(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","spear"))), alloyIngot, rod, ingot, 16777215, null, recipeNamePart);
+        alloySword(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","sword"))), alloyIngot, rod, ingot, 16777215, null, recipeNamePart);
+        alloyKnife(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","knife"))), alloyIngot, rod, ingot, 16777215, null, recipeNamePart);
+        alloySurfRod(consumer, RankineItems.ALLOY_SURF_ROD.get(), alloyIngot, ingot, alloyColor, alloyLang, recipeNamePart);
+    }
+
+    private void mimicToolRecipes(Consumer<IFinishedRecipe> consumer, Item ingot, Item mimic, int alloyColor, String alloyLang, boolean steelRod, String recipeName) {
+        String rs = mimic.getRegistryName().toString();
+        AlloyIngredient alloyIngot = new AlloyIngredient(Ingredient.fromItems(ingot), "", null, null, 16777215);
+        AlloyIngredient rod = new AlloyIngredient(Ingredient.fromTag(Tags.Items.RODS_WOODEN), null, null, null, 16777215);
+        if (steelRod) {
+            rod = new AlloyIngredient(Ingredient.fromItems(RankineItems.ALLOY_ROD.get()), null, ResourceLocation.tryCreate("rankine:alloying/steel_alloying"), "item.rankine.steel_alloying", 3291714);
+        }
+        alloyArmorRecipes(consumer, ingot, alloyColor, null, alloyLang, recipeName);
+        alloyCrowbar(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","crowbar"))), alloyIngot, ingot, 16777215, null, recipeName);
+        alloyHammer(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","hammer"))), alloyIngot, rod, ingot, 16777215, null, recipeName);
+        alloyBlunderbuss(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","blunderbuss"))), alloyIngot, ingot, 16777215, null, recipeName);
+        alloyPickaxe(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","pickaxe"))), alloyIngot, rod, ingot, 16777215, null, recipeName);
+        alloyAxe(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","axe"))), alloyIngot, rod, ingot, 16777215, null, recipeName);
+        alloyHoe(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","hoe"))), alloyIngot, rod, ingot, 16777215, null, recipeName);
+        alloyShovel(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","shovel"))), alloyIngot, rod, ingot, 16777215, null, recipeName);
+        alloySpear(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","spear"))), alloyIngot, rod, ingot, 16777215, null, recipeName);
+        alloySword(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","sword"))), alloyIngot, rod, ingot, 16777215, null, recipeName);
+        alloyKnife(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(rs.replace("ingot","knife"))), alloyIngot, rod, ingot, 16777215, null, recipeName);
+        alloySurfRod(consumer, RankineItems.ALLOY_SURF_ROD.get(), alloyIngot, ingot, alloyColor, alloyLang, recipeName);
+    }
+
+    private void alloyRod(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 4,true,langName == null ? "" : langName, color)
                 .patternLine("  #")
                 .patternLine(" # ")
                 .patternLine("#  ")
                 .directAlloyKey('#', input)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_rods")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_rod");
     }
 
-    private void alloyHelmet(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, int count, String triggerName, Item trigger, int color,@Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyGear(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
+                .patternLine(" # ")
+                .patternLine("#R#")
+                .patternLine(" # ")
+                .directAlloyKey('#', input)
+                .key('R', Tags.Items.RODS_WOODEN)
+                .setGroup("rankine:alloy_gears")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_gear");
+    }
+
+    private void alloyHelmet(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color,@Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine("###")
                 .patternLine("# #")
                 .patternLine("   ")
                 .directAlloyKey('#', input)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_helmets")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName);
     }
 
-    private void alloyChestplate(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, int count, String triggerName, Item trigger,int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyChestplate(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger,int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine("# #")
                 .patternLine("###")
                 .patternLine("###")
                 .directAlloyKey('#', input)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_chestplate")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName);
     }
 
-    private void alloyLeggings(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, int count, String triggerName, Item trigger, int color,@Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyLeggings(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color,@Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine("###")
                 .patternLine("# #")
                 .patternLine("# #")
                 .directAlloyKey('#', input)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_leggings")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName);
     }
 
-    private void alloyBoots(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, int count, String triggerName, Item trigger, int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyBoots(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine("   ")
                 .patternLine("# #")
                 .patternLine("# #")
                 .directAlloyKey('#', input)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_boots")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName);
     }
 
-    private void alloyCrowbar(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, int count, String triggerName, Item trigger, int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyCrowbar(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine(" ##")
                 .patternLine(" # ")
                 .patternLine("## ")
                 .directAlloyKey('#', input)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_crowbars")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_crowbar");
     }
 
-    private void alloySurfRod(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient string, int count, String triggerName, Item trigger, int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloySurfRod(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine("  #")
                 .patternLine(" #s")
                 .patternLine("# s")
                 .directAlloyKey('#', input)
-                .directAlloyKey('s', string)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .key('s', Tags.Items.STRING)
+                .setGroup("rankine:alloy_surf_rods")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_surf_rod");
     }
 
-    private void alloyBlunderbuss(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient planks, int count, String triggerName, Item trigger, int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyBlunderbuss(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine("##f")
                 .patternLine("ss#")
                 .patternLine("  s")
                 .directAlloyKey('#', input)
-                .directAlloyKey('s', planks)
+                .key('s', RankineTags.Items.FIREPROOF_LOGS)
                 .key('f', Items.FLINT_AND_STEEL)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_blunderbuss")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_blunderbuss");
     }
 
-    private void alloyPickaxe(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, int count, String triggerName, Item trigger, int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyPickaxe(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger, int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine("###")
                 .patternLine(" s ")
                 .patternLine(" s ")
                 .directAlloyKey('#', input)
                 .directAlloyKey('s', rod)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_pickaxes")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_pickaxe");
     }
 
-    private void alloyHoe(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, int count, String triggerName, Item trigger,  int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyHoe(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine("##")
                 .patternLine(" s")
                 .patternLine(" s")
                 .directAlloyKey('#', input)
                 .directAlloyKey('s', rod)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_hoes")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_hoe");
     }
 
-    private void alloyAxe(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, int count, String triggerName, Item trigger, int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyAxe(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger, int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine("##")
                 .patternLine("#s")
                 .patternLine(" s")
                 .directAlloyKey('#', input)
                 .directAlloyKey('s', rod)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_axes")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_axe");
     }
 
 
 
-    private void alloyShovel(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, int count, String triggerName, Item trigger,  int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyShovel(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine("#")
                 .patternLine("s")
                 .patternLine("s")
                 .directAlloyKey('#', input)
                 .directAlloyKey('s', rod)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_shovels")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_shovel");
     }
 
-    private void alloySword(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, int count, String triggerName, Item trigger,  int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloySword(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine("#")
                 .patternLine("#")
                 .patternLine("s")
                 .directAlloyKey('#', input)
                 .directAlloyKey('s', rod)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_swords")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_sword");
     }
 
-    private void alloyHammer(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, int count, String triggerName, Item trigger,  int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyHammer(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine("###")
                 .patternLine("#s#")
                 .patternLine(" s ")
                 .directAlloyKey('#', input)
                 .directAlloyKey('s', rod)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_hammers")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_hammer");
     }
 
-    private void alloyKnife(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, int count, String triggerName, Item trigger,  int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloyKnife(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine(" #")
                 .patternLine("s ")
                 .directAlloyKey('#', input)
                 .directAlloyKey('s', rod)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_knives")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_knife");
     }
 
-    private void alloySpear(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, int count, String triggerName, Item trigger,  int color, @Nullable String langName) {
-        AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,langName == null ? "" : langName, color)
+    private void alloySpear(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName) {
+        AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,langName == null ? "" : langName, color)
                 .patternLine(" ##")
                 .patternLine(" s#")
                 .patternLine("s  ")
                 .directAlloyKey('#', input)
                 .directAlloyKey('s', rod)
-                .setGroup("rankine")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
-                .build(consumer);
+                .setGroup("rankine:alloy_spears")
+                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer,recipeName+"_spear");
     }
 
     private void twoXtwo(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
@@ -1464,7 +1462,6 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .patternLine("##")
                 .patternLine("##")
                 .key('#', input)
-                .setGroup("rankine")
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer, new ResourceLocation("rankine",name));
     }
@@ -1473,7 +1470,6 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .patternLine("##")
                 .patternLine("##")
                 .key('#', input)
-                .setGroup("rankine")
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer);
     }
@@ -1487,7 +1483,6 @@ public class RankineRecipesProvider extends RecipeProvider {
     private void OneToX(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger) {
         ShapelessRecipeBuilder.shapelessRecipe(output, count)
                 .addIngredient(input)
-                .setGroup("rankine")
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer);
     }
@@ -1496,7 +1491,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true)
                 .patternLine("#")
                 .key('#', input)
-                //.setGroup("rankine")
+                .setGroup("rankine:alloy_nuggets")
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer, new ResourceLocation("rankine",name));
     }
@@ -1504,7 +1499,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true)
                 .patternLine("#")
                 .key('#', input)
-                .setGroup("rankine")
+                .setGroup("rankine:alloy_nuggets")
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer);
     }

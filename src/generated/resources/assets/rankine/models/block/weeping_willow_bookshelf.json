@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rankine:block/weeping_willow_planks",
+    "side": "rankine:block/weeping_willow_bookshelf"
+  }
+}

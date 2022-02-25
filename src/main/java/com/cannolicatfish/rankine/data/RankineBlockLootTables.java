@@ -54,7 +54,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.SANDSTONE_WALLS,
                 RankineLists.STONE_COLUMNS,
                 RankineLists.STONE_COBBLES,
-                RankineLists.MINERAL_COLUMNS,
                 RankineLists.BRICKS,
                 RankineLists.BRICKS_STAIRS,
                 RankineLists.BRICKS_WALL,
@@ -87,6 +86,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.ELEMENT_BLOCKS,
                 RankineLists.QUARTER_SLABS,
                 RankineLists.ELECTROMAGNETS,
+                RankineLists.ALLOY_BARS,
                 RankineLists.LANTERNS,
                 RankineLists.WALL_MUSHROOMS,
                 RankineLists.SAPLINGS
@@ -129,6 +129,15 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
         for (Block blk : RankineLists.GRAY_ASPHALT_BLOCKS) {
             lootTables.put(blk, createBlockLootTable(RankineBlocks.GRAY_ASPHALT.get()));
+        }
+        for (Block blk : RankineLists.DARK_GRAY_ASPHALT_BLOCKS) {
+            lootTables.put(blk, createBlockLootTable(RankineBlocks.DARK_GRAY_ASPHALT.get()));
+        }
+        for (Block blk : RankineLists.BLUE_ASPHALT_BLOCKS) {
+            lootTables.put(blk, createBlockLootTable(RankineBlocks.BLUE_ASPHALT.get()));
+        }
+        for (Block blk : RankineLists.GREEN_ASPHALT_BLOCKS) {
+            lootTables.put(blk, createBlockLootTable(RankineBlocks.GREEN_ASPHALT.get()));
         }
 
         for (Block SOIL : Stream.of(RankineLists.SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {

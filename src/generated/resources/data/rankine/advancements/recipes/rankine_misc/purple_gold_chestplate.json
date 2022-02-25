@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:purple_gold_chestplate"
+    ]
+  },
+  "criteria": {
+    "has_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:purple_gold_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:purple_gold_chestplate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_alloy",
+      "has_the_recipe"
+    ]
+  ]
+}

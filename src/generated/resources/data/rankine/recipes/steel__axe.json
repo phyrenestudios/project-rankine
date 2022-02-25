@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_axes",
+  "inherit": true,
+  "pattern": [
+    "##",
+    "#s",
+    " s"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:steel_ingot"
+    },
+    "s": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:steel_axe"
+  }
+}

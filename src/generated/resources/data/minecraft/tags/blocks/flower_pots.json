@@ -1,24 +1,24 @@
 {
   "replace": false,
   "values": [
-    "rankine:potted_weeping_willow_sapling",
-    "rankine:potted_honey_locust_sapling",
-    "rankine:potted_sharinga_sapling",
-    "rankine:potted_erythrina_sapling",
-    "rankine:potted_balsam_fir_sapling",
-    "rankine:potted_black_birch_sapling",
-    "rankine:potted_red_birch_sapling",
-    "rankine:potted_black_walnut_sapling",
     "rankine:potted_cedar_sapling",
-    "rankine:potted_cinnamon_sapling",
-    "rankine:potted_coconut_palm_sapling",
-    "rankine:potted_cork_oak_sapling",
+    "rankine:potted_balsam_fir_sapling",
     "rankine:potted_eastern_hemlock_sapling",
     "rankine:potted_western_hemlock_sapling",
-    "rankine:potted_juniper_sapling",
-    "rankine:potted_magnolia_sapling",
     "rankine:potted_pinyon_pine_sapling",
+    "rankine:potted_juniper_sapling",
+    "rankine:potted_black_birch_sapling",
     "rankine:potted_yellow_birch_sapling",
-    "rankine:potted_maple_sapling"
+    "rankine:potted_red_birch_sapling",
+    "rankine:potted_maple_sapling",
+    "rankine:potted_magnolia_sapling",
+    "rankine:potted_black_walnut_sapling",
+    "rankine:potted_coconut_palm_sapling",
+    "rankine:potted_cork_oak_sapling",
+    "rankine:potted_sharinga_sapling",
+    "rankine:potted_cinnamon_sapling",
+    "rankine:potted_honey_locust_sapling",
+    "rankine:potted_weeping_willow_sapling",
+    "rankine:potted_erythrina_sapling"
   ]
 }

@@ -1,6 +1,6 @@
 {
   "parent": "rankine:block/template_metal_pole",
   "textures": {
-    "side": "rankine:block/nickel_superalloy_block"
+    "side": "rankine:block/template_pole"
   }
 }

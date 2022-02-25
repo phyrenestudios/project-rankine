@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_chestplate",
+  "inherit": true,
+  "color": 492385,
+  "langName": "item.rankine.ender_amalgam_alloying",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:ender_amalgam_ingot",
+      "langName": "item.rankine.ender_amalgam_alloying",
+      "color": 492385
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_chestplate"
+  }
+}

@@ -828,7 +828,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
         copy(RankineTags.Blocks.HARDENED_GLASS, RankineTags.Items.HARDENED_GLASS);
         copy(RankineTags.Blocks.CLAY, RankineTags.Items.CLAY);
-        copy(RankineTags.Blocks.BOOKSHELVES, RankineTags.Items.BOOKSHELVES);
+        copy(RankineTags.Blocks.BOOKSHELVES, Tags.Items.BOOKSHELVES);
         copy(RankineTags.Blocks.CONSTRUCTION_SAND, RankineTags.Items.CONSTRUCTION_SAND);
         copy(RankineTags.Blocks.GRASS_BLOCKS, RankineTags.Items.GRASS_BLOCKS);
         copy(RankineTags.Blocks.PATH_BLOCKS, RankineTags.Items.PATH_BLOCKS);
@@ -876,6 +876,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(Tags.Blocks.SAND, Tags.Items.SAND);
         copy(BlockTags.ICE, RankineTags.Items.ICE);
         copy(RankineTags.Blocks.POLISHED_STONE, RankineTags.Items.POLISHED_STONE);
+        copy(RankineTags.Blocks.FIREPROOF_LOGS, RankineTags.Items.FIREPROOF_LOGS);
         copy(Tags.Blocks.STONE, Tags.Items.STONE);
         copy(Tags.Blocks.SAND, Tags.Items.SAND);
         copy(Tags.Blocks.GLASS, Tags.Items.GLASS);

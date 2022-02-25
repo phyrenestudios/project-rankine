@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "style=0": {
+      "model": "rankine:block/niobium_alloy_pole"
+    },
+    "style=1": {
+      "model": "rankine:block/niobium_alloy_pole_garland"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_blunderbuss",
+  "inherit": true,
+  "pattern": [
+    "##f",
+    "ss#",
+    "  s"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:black_gold_ingot"
+    },
+    "s": {
+      "tag": "rankine:fireproof_logs"
+    },
+    "f": {
+      "item": "minecraft:flint_and_steel"
+    }
+  },
+  "result": {
+    "item": "rankine:black_gold_blunderbuss"
+  }
+}

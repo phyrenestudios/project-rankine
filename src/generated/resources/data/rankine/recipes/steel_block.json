@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloy_crafting",
-  "group": "rankine",
+  "group": "rankine:alloy_blocks",
   "inherit": true,
   "pattern": [
     "###",
