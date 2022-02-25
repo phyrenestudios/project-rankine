@@ -82,6 +82,10 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
         return this.color;
     }
 
+    public String getInheritRecipe() {
+        return inheritRecipe;
+    }
+
     public String getLocalName() {
         if (this.localName.isEmpty()) {
             return "";

@@ -91,6 +91,11 @@ public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool {
     }
 
     @Override
+    public boolean canHarvestBlock(ItemStack stack, BlockState blockIn) {
+        return getAlloyHarvestLevel(stack) >= blockIn.getHarvestLevel();
+    }
+
+    @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         addAlloyInformation(stack,worldIn,tooltip,flagIn);

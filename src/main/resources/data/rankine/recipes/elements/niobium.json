@@ -15,6 +15,14 @@
     "modifiers": ["NONE"],
     "limit": [0]
   },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["POWER"],
+    "a": [1.03],
+    "b": [-4],
+    "modifiers": ["ABSOLUTE_VALUE"],
+    "limit": [0]
+  },
   "attackspeed": {
     "breaks": [100],
     "formulas": ["LINEAR"],

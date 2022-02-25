@@ -43,6 +43,8 @@ import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
+import net.minecraft.entity.monster.AbstractSkeletonEntity;
+import net.minecraft.entity.monster.BlazeEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -982,6 +984,9 @@ public class RankineEventHandler {
                         } else if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.RETREAT,stack) >= 1) {
                             player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY,60));
                         }
+                        stack.damageItem(1, player, (p_220045_0_) -> {
+                            p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                        });
                         event.setCanceled(true);
                     }
                 }
@@ -1193,6 +1198,13 @@ public class RankineEventHandler {
             if (Config.TOOLS.DISABLE_NETHERITE_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SHOVEL) { event.setAmount(1f); }
             if (Config.TOOLS.DISABLE_NETHERITE_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_PICKAXE) { event.setAmount(1f); }
             if (Config.TOOLS.DISABLE_NETHERITE_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_HOE) { event.setAmount(1f); }
+
+            if (player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof HammerItem && !player.world.isRemote) {
+                LivingEntity receiver = event.getEntityLiving();
+                if ((receiver instanceof BlazeEntity || receiver instanceof GolemEntity || receiver instanceof AbstractSkeletonEntity)) {
+                    event.setAmount(event.getAmount() + event.getAmount()/2f);
+                }
+            }
 
             if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.CLEANSE,player.getHeldItem(Hand.MAIN_HAND)) >= 1 && !player.world.isRemote) {
                 LivingEntity receiver = event.getEntityLiving();

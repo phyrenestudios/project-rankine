@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -159,6 +160,10 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
         super.onCreated(stack, worldIn, playerIn);
     }
 
+    @Override
+    public boolean canHarvestBlock(ItemStack stack, BlockState blockIn) {
+        return getAlloyHarvestLevel(stack) >= blockIn.getHarvestLevel();
+    }
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {

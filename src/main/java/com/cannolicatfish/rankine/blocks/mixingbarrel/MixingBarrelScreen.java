@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -16,6 +17,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
+import java.awt.*;
 import java.util.Arrays;
 
 public class MixingBarrelScreen extends ContainerScreen<MixingBarrelContainer> {
@@ -65,7 +67,8 @@ public class MixingBarrelScreen extends ContainerScreen<MixingBarrelContainer> {
         drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, percents[3], 126, 34, 0xffffff);
     }
 
-    protected void drawFluidTank(MatrixStack ms, FluidTank tankIn, int x, int y) {
+    protected void drawFluidTank(MatrixStack ms,FluidTank tankIn,int x,int y) {
+        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         FluidStack input = tankIn.getFluid();
         TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).apply(input.getFluid().getAttributes().getStillTexture());
 
@@ -76,9 +79,15 @@ public class MixingBarrelScreen extends ContainerScreen<MixingBarrelContainer> {
         int fluidAmount = (int) (scale * fluidTankHeight);
 
 
-        //Color color = new Color(input.getFluid().getAttributes().getColor());
-        this.minecraft.getTextureManager().bindTexture(new ResourceLocation(sprite.getName().getNamespace(),"textures/"+sprite.getName().getPath()+".png"));
-        blit(ms,x, y,0,16, fluidAmount,sprite);
+        Color color = new Color(input.getFluid().getAttributes().getColor());
+        //this.minecraft.getTextureManager().bindTexture(new ResourceLocation(sprite.getName().getNamespace(),"textures/"+sprite.getName().getPath()+".png"));
+        this.minecraft.getTextureManager().bindTexture(sprite.getAtlasTexture().getTextureLocation());
+        GlStateManager.color4f(color.getRed(),color.getGreen(),color.getBlue(),color.getAlpha());
+        if (tankIn.getFluid().getFluid().equals(Fluids.WATER)) {
+            GlStateManager.color4f(63,118,228,color.getAlpha());
+        }
+        blit(ms,x, y + (fluidTankHeight - fluidAmount),0,16, fluidAmount,sprite);
+
     }
 
 }

@@ -136,5 +136,9 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
             recipeLayout.getItemStacks().set(index + i + 1, stacks);
             index += 1;
         }
+
+        recipeLayout.getFluidStacks().addTooltipCallback((i, b, stack, list) -> {
+            list.add(new StringTextComponent(recipe.getFluid().getAmount() + "mb"));
+        });
     }
 }
