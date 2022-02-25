@@ -1,5 +1,7 @@
 package com.cannolicatfish.rankine.recipe.helper;
 
+import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
+import com.cannolicatfish.rankine.items.alloys.IAlloySpecialItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
@@ -8,6 +10,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.World;
 
@@ -64,6 +67,57 @@ public class AlloyCustomHelper {
             for (AlloyCraftingRecipe recipe :  CRAFTING_RECIPE_LIST) {
                 if (item.equals(recipe.getRecipeOutput().getItem())) {
                     ItemStack stack = recipe.getRecipeOutput().copy();
+                    String composition = null;
+                    String inherit = null;
+                    if (item instanceof IAlloyItem && ((IAlloyItem) item).getDefaultRecipe() == null) {
+                        if (!recipe.getInheritRecipe().isEmpty()) {
+                            inherit = recipe.getInheritRecipe();
+                            for (Ingredient s : recipe.getIngredients()) {
+                                if (s.getMatchingStacks().length > 0) {
+                                    ItemStack newStack = s.getMatchingStacks()[0];
+                                    ResourceLocation rs = IAlloyItem.getAlloyRecipe(newStack);
+                                    if (newStack.getItem() instanceof IAlloyItem && rs != null && rs.toString().equals(inherit)) {
+                                        if (!IAlloyItem.getAlloyComposition(newStack).isEmpty()) {
+                                            composition = IAlloyItem.getAlloyComposition(newStack);
+                                        } else {
+                                            composition = ((IAlloyItem) newStack.getItem()).getDefaultComposition();
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                        } else {
+                            for (Ingredient s : recipe.getIngredients()) {
+                                if (s.getMatchingStacks().length > 0) {
+                                    ItemStack newStack = s.getMatchingStacks()[0];
+                                    if (newStack.getItem() instanceof IAlloyItem) {
+                                        if (!IAlloyItem.getAlloyComposition(newStack).isEmpty()) {
+                                            composition = IAlloyItem.getAlloyComposition(newStack);
+                                        } else if (((IAlloyItem) newStack.getItem()).getDefaultComposition() != null) {
+                                            composition = ((IAlloyItem) newStack.getItem()).getDefaultComposition();
+                                        }
+
+                                        if (IAlloyItem.getAlloyRecipe(newStack) != null) {
+                                            inherit = IAlloyItem.getAlloyRecipe(newStack).toString();
+                                        } else if (((IAlloyItem) newStack.getItem()).getDefaultRecipe() != null) {
+                                            inherit = ((IAlloyItem) newStack.getItem()).getDefaultRecipe().toString();
+                                        }
+
+                                        if (inherit != null || composition != null) {
+                                            break;
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (composition == null || composition.isEmpty()) {
+                        composition = "80Hg-20Au";
+                    }
+                    if (stack.getItem() instanceof IAlloyItem) {
+                        IAlloyItem.createDirectAlloyNBT(stack,composition,inherit,null);
+                    }
                     stack.setCount(1);
                     builder.add(stack);
                 }
