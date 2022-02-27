@@ -3148,11 +3148,12 @@ public class RankineItems {
     public static final RegistryObject<Item> ICE_SKATES = REGISTRY.register("ice_skates", () -> new ArmorItem(ArmorMaterial.LEATHER, EquipmentSlotType.FEET, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> FINS = REGISTRY.register("fins", () -> new ArmorItem(RankineArmorMaterials.RUBBER, EquipmentSlotType.FEET, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
-    public static final RegistryObject<Item> TOTEM_OF_BLAZING = REGISTRY.register("totem_of_blazing", () -> new BlazingTotemItem(new Item.Properties().maxStackSize(1).rarity(Rarity.UNCOMMON).maxDamage(512).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> TOTEM_OF_BLAZING = REGISTRY.register("totem_of_blazing", () -> new BlazingTotemItem(new Item.Properties().maxStackSize(1).rarity(Rarity.UNCOMMON).maxDamage(512)));
     public static final RegistryObject<Item> TOTEM_OF_COBBLING = REGISTRY.register("totem_of_cobbling", () -> new CobblingTotemItem(new Item.Properties().maxStackSize(1).rarity(Rarity.UNCOMMON).maxDamage(512).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TOTEM_OF_ENDURING = REGISTRY.register("totem_of_enduring", () -> new EnduringTotemItem(new Item.Properties().maxStackSize(1).rarity(Rarity.UNCOMMON).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TOTEM_OF_HASTENING = REGISTRY.register("totem_of_hastening", () -> new HasteTotemItem(new Item.Properties().maxStackSize(1).rarity(Rarity.UNCOMMON).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> TOTEM_OF_INFUSING = REGISTRY.register("totem_of_infusing", () -> new InfusingTotemItem(new Item.Properties().maxStackSize(1).rarity(Rarity.UNCOMMON).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> TOTEM_OF_INFUSING = REGISTRY.register("totem_of_infusing", () -> new InfusingTotemItem(new Item.Properties().maxStackSize(1).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> TOTEM_OF_INVIGORATING = REGISTRY.register("totem_of_invigorating", () -> new InvigoratingTotemItem(new Item.Properties().maxStackSize(1).rarity(Rarity.UNCOMMON).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TOTEM_OF_LEVITATING = REGISTRY.register("totem_of_levitating", () -> new LevitationTotemItem(new Item.Properties().maxStackSize(1).rarity(Rarity.UNCOMMON).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TOTEM_OF_PROMISING = REGISTRY.register("totem_of_promising", () -> new LuckTotemItem(new Item.Properties().maxStackSize(1).rarity(Rarity.UNCOMMON).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TOTEM_OF_REPULSING = REGISTRY.register("totem_of_repulsing", () -> new RepulsionTotemItem(new Item.Properties().maxStackSize(1).rarity(Rarity.UNCOMMON).group(ProjectRankine.setup.rankineTools)));
@@ -3210,8 +3211,8 @@ public class RankineItems {
     public static final RegistryObject<Item> PEWTER_GOLD_PAN = REGISTRY.register("pewter_gold_pan", () -> new GoldPanItem(new Item.Properties().maxStackSize(1).maxDamage(36).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> STEEL_GOLD_PAN = REGISTRY.register("steel_gold_pan", () -> new GoldPanItem(new Item.Properties().maxStackSize(1).maxDamage(100).group(ProjectRankine.setup.rankineTools)));
 
-    public static final RegistryObject<Item> LEATHER_CANTEEN = REGISTRY.register("leather_canteen", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> STAINLESS_STEEL_CANTEEN = REGISTRY.register("stainless_steel_canteen", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> LEATHER_CANTEEN = REGISTRY.register("leather_canteen", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> STAINLESS_STEEL_CANTEEN = REGISTRY.register("stainless_steel_canteen", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> MAGNETOMETER = REGISTRY.register("magnetometer", () -> new MagnetometerItem(Config.GENERAL.PROSPECTING_STICK_RANGE.get(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> THERMOMETER = REGISTRY.register("thermometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));

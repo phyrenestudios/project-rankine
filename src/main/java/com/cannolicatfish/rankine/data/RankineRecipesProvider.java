@@ -352,7 +352,9 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shapedRecipe(RankineItems.TOTEM_OF_PROMISING.get(), 1).patternLine("III").patternLine("IRI").patternLine("III").key('I', RankineTags.Items.INGOTS_WHITE_GOLD).key('R', RankineTags.Items.STORAGE_BLOCKS_TOPAZ).addCriterion("has_ingredient", hasItem(RankineTags.Items.INGOTS_WHITE_GOLD)).build(consumer);
         ShapedRecipeBuilder.shapedRecipe(RankineItems.TOTEM_OF_SOFTENING.get(), 1).patternLine("III").patternLine("IRI").patternLine("III").key('I', RankineTags.Items.INGOTS_PURPLE_GOLD).key('R', RankineTags.Items.STORAGE_BLOCKS_PEARL).addCriterion("has_ingredient", hasItem(RankineTags.Items.INGOTS_PURPLE_GOLD)).build(consumer);
         ShapedRecipeBuilder.shapedRecipe(RankineItems.TOTEM_OF_LEVITATING.get(), 1).patternLine("III").patternLine("IRI").patternLine("III").key('I', RankineTags.Items.INGOTS_OSMIRIDIUM).key('R', RankineTags.Items.STORAGE_BLOCKS_OPAL).addCriterion("has_ingredient", hasItem(RankineTags.Items.INGOTS_OSMIRIDIUM)).build(consumer);
-        ShapedRecipeBuilder.shapedRecipe(RankineItems.TOTEM_OF_INFUSING.get(), 1).patternLine("III").patternLine("IRI").patternLine("III").key('I', RankineTags.Items.INGOTS_MISCHMETAL).key('R', RankineTags.Items.STORAGE_BLOCKS_PERIDOT).addCriterion("has_ingredient", hasItem(RankineTags.Items.INGOTS_MISCHMETAL)).build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(RankineItems.TOTEM_OF_INVIGORATING.get(), 1).patternLine("III").patternLine("IRI").patternLine("III").key('I', RankineTags.Items.INGOTS_GREEN_GOLD).key('R', RankineTags.Items.STORAGE_BLOCKS_TOURMALINE).addCriterion("has_ingredient", hasItem(RankineTags.Items.INGOTS_GREEN_GOLD)).build(consumer);
+
+        //ShapedRecipeBuilder.shapedRecipe(RankineItems.TOTEM_OF_INFUSING.get(), 1).patternLine("III").patternLine("IRI").patternLine("III").key('I', RankineTags.Items.INGOTS_MISCHMETAL).key('R', RankineTags.Items.STORAGE_BLOCKS_PERIDOT).addCriterion("has_ingredient", hasItem(RankineTags.Items.INGOTS_MISCHMETAL)).build(consumer);
 
 
 

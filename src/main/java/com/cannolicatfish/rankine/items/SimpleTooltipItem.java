@@ -38,13 +38,13 @@ public class SimpleTooltipItem extends Item {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-     //   if (Screen.hasShiftDown()) {
+     /*   if (Screen.hasShiftDown()) {
             for (int i = 0; i < tooltipCount; i++) {
                 tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".tooltip" + i).mergeStyle(TextFormatting.GRAY));
             }
     //    } else {
    //         tooltip.add(new StringTextComponent("Hold shift for information...").mergeStyle(TextFormatting.GRAY));
- //       }
-
+ //       }*/
+        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 }

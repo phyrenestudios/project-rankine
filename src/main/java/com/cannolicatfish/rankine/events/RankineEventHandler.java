@@ -22,6 +22,7 @@ import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
+import com.cannolicatfish.rankine.items.totems.InvigoratingTotemItem;
 import com.cannolicatfish.rankine.items.totems.SofteningTotemItem;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
@@ -45,6 +46,7 @@ import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.monster.BlazeEntity;
+import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -404,7 +406,7 @@ public class RankineEventHandler {
         ItemStack ghast = ItemStack.EMPTY;
         for(int i = 0; i < player.inventory.getSizeInventory(); ++i) {
             ItemStack itemstack = player.inventory.getStackInSlot(i);
-            if (!itemstack.isEmpty() && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.GHAST_REGENERATION, itemstack) > 0 && itemstack.getDamage() != 0) {
+            if (!itemstack.isEmpty() && itemstack.getDamage() != 0 && (player.getHeldItemMainhand().getItem() instanceof InvigoratingTotemItem || player.getHeldItemOffhand().getItem() instanceof InvigoratingTotemItem)) {
                 ghast = itemstack;
                 break;
             }
@@ -1206,6 +1208,13 @@ public class RankineEventHandler {
                 }
             }
 
+            if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOTOXIN,player.getHeldItem(Hand.MAIN_HAND)) >= 1 && !player.world.isRemote) {
+                LivingEntity receiver = event.getEntityLiving();
+                if ((receiver instanceof EndermanEntity || receiver.getEntityWorld().getDimensionKey().equals(World.THE_END))) {
+                    event.setAmount(event.getAmount() + 2.5f*EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOTOXIN,player.getHeldItem(Hand.MAIN_HAND)));
+                }
+            }
+
             if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.CLEANSE,player.getHeldItem(Hand.MAIN_HAND)) >= 1 && !player.world.isRemote) {
                 LivingEntity receiver = event.getEntityLiving();
                 float damage = EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.CLEANSE,player.getHeldItem(Hand.MAIN_HAND)) * receiver.getActivePotionEffects().size();
@@ -1234,10 +1243,10 @@ public class RankineEventHandler {
                 LivingEntity receiver = event.getEntityLiving();
                 float size = receiver.getSize(receiver.getPose()).height * receiver.getSize(receiver.getPose()).width;
                 int lvl = EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.LEVERAGE,stack);
-                System.out.println(size);
+                //System.out.println(size);
                 float mod = -2 + lvl;
                 float damage = event.getAmount() + Math.max(0,Math.min(size + mod,1.5f*EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.LEVERAGE,stack)));
-                System.out.println("damageOut: " + damage);
+                //System.out.println("damageOut: " + damage);
                 event.setAmount(damage);
             }
 

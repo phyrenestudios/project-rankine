@@ -28,6 +28,12 @@
     },
     {
       "type": "text",
+      "title": "Swift Swimmer",
+      "anchor": "swift_swimmer",
+      "text": "Applicable to Boots. $(br2)Swift Swimmer increases swim speed. Obtained by combining boots with Flippers in an anvil."
+    },
+    {
+      "type": "text",
       "title": "Gas Protection",
       "anchor": "gas_protection",
       "text": "Applicable to Helmets. $(br2)Gas Protection prevents harmful effects and suffocation while in a gas block. Obtained by combining a helmet with a $(l:tools/gas_mask)Gas Mask$() in an anvil."
@@ -48,7 +54,7 @@
       "type": "text",
       "title": "Puncture",
       "anchor": "puncture",
-      "text": "Puncture allows throwable tools to pierce armour. $(br2)Applicable to: $(li)$(l:tools/spears)Spears$() $(br)Levels: I-III"
+      "text": "Puncture allows throwable tools to pierce armour. $(br2)Applicable to: $(li)$(l:tools/standard_tools#spears)Spears$() $(br)Levels: I-III"
     },
     {
       "type": "text",
@@ -72,7 +78,7 @@
       "type": "text",
       "title": "Impact",
       "anchor": "impact",
-      "text": "Impact increases the knockback of thrown spears. $(br2)Applicable to: $(li)$(l:tools/spears)Spears$() $(br)Levels: I-V"
+      "text": "Impact increases the knockback of thrown spears. $(br2)Applicable to: $(li)$(l:tools/standard_tools#spears)Spears$() $(br)Levels: I-V"
     },
     {
       "type": "text",
@@ -108,13 +114,13 @@
       "type": "text",
       "title": "Endpoint",
       "anchor": "endpoint",
-      "text": "Endpoint teleports you to the end destination of your spear. Deals less damage as the level of the enchantment increases. $(br2)Only obtainable from the Endite element. $(br2)Applicable to: $(li)$(l:tools/spears)Spears$() $(br)Levels: I-III"
+      "text": "Endpoint teleports you to the end destination of your spear. Deals less damage as the level of the enchantment increases. $(br2)Only obtainable from the Endite element. $(br2)Applicable to: $(li)$(l:tools/standard_tools#spears)Spears$() $(br)Levels: I-III"
     },
     {
       "type": "text",
-      "title": "Ghastly Regeneration",
-      "anchor": "ghastly_regeneration",
-      "text": "Ghastly Regeneration causes tools to repair themselves while the owner is under the effect of Regeneration. $(br2)Only obtainable from the Ghastium element. $(br2)Applicable to: $(li)Any tool$() $(br)Levels: I"
+      "title": "Endotoxin",
+      "anchor": "endotoxin",
+      "text": "Endotoxin deals bonus damage to Enderman and mobs in the end. $(br2)Only obtainable for Ender Amalgam Crowbars. $(br2)Applicable to: $(li)$(l:tools/standard_tools#crowbars)Ender Amalgam Crowbar() $(br)Levels: I-III"
     },
     {
       "type": "text",
