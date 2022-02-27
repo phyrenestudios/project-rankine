@@ -24,17 +24,17 @@
     "limit": [1]
   },
   "mininglevel": {
-    "breaks": [4,100],
-    "formulas": ["CONSTANT","CONSTANT"],
-    "a": [1,2],
-    "b": [0,0],
-    "modifiers": ["NONE","NONE"],
-    "limit": [0,0]
+    "breaks": [4,39,100],
+    "formulas": ["CONSTANT","CONSTANT","CONSTANT"],
+    "a": [1,2,3],
+    "b": [0,0,0],
+    "modifiers": ["NONE","NONE","NONE"],
+    "limit": [0,0,0]
   },
   "enchantability": {
     "breaks": [100],
     "formulas": ["LINEAR"],
-    "a": [-0.04],
+    "a": [-0.06],
     "b": [0],
     "modifiers": ["MIN"],
     "limit": [0.5]

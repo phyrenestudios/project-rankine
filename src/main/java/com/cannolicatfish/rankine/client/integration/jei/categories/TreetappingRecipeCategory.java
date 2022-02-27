@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
+import com.cannolicatfish.rankine.recipe.TreetappingRecipe;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -16,14 +16,16 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class TreetappingRecipeCategory implements IRecipeCategory<BeehiveOvenRecipe> {
+public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "beeoven");
+    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "treetapping");
     private final IDrawable background;
     private final String localizedName;
     private final IDrawable overlay;
@@ -31,10 +33,10 @@ public class TreetappingRecipeCategory implements IRecipeCategory<BeehiveOvenRec
 
     public TreetappingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(145, 95);
-        localizedName = I18n.format("rankine.jei.beeoven");
-        overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"),
+        localizedName = I18n.format("rankine.jei.treetapping");
+        overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/treetapping_jei.png"),
                 0, 15, 140, 90);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get()));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.TREE_TAP.get()));
     }
 
     @Override
@@ -43,8 +45,8 @@ public class TreetappingRecipeCategory implements IRecipeCategory<BeehiveOvenRec
     }
 
     @Override
-    public Class<? extends BeehiveOvenRecipe> getRecipeClass() {
-        return BeehiveOvenRecipe.class;
+    public Class<? extends TreetappingRecipe> getRecipeClass() {
+        return TreetappingRecipe.class;
     }
 
     @Override
@@ -63,7 +65,7 @@ public class TreetappingRecipeCategory implements IRecipeCategory<BeehiveOvenRec
     }
 
     @Override
-    public void draw(BeehiveOvenRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
+    public void draw(TreetappingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -72,30 +74,34 @@ public class TreetappingRecipeCategory implements IRecipeCategory<BeehiveOvenRec
     }
 
     @Override
-    public void setIngredients(BeehiveOvenRecipe recipe, IIngredients iIngredients) {
+    public void setIngredients(TreetappingRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
             builder.add(Arrays.asList(i.getMatchingStacks()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getRecipeOutput()));
+        iIngredients.setOutput(VanillaTypes.FLUID, recipe.getFilledResult());
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, BeehiveOvenRecipe recipe, IIngredients ingredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, TreetappingRecipe recipe, IIngredients ingredients) {
         int index = 0, posX = 31;
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
-            recipeLayout.getItemStacks().init(index, true, posX, 21);
+            recipeLayout.getItemStacks().init(index, true, posX, 34);
             recipeLayout.getItemStacks().set(index, o);
             index++;
             posX += 18;
         }
 
-        for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
-            List<ItemStack> stacks = ingredients.getOutputs(VanillaTypes.ITEM).get(i);
-            recipeLayout.getItemStacks().init(index + i, false, 106, 34);
-            recipeLayout.getItemStacks().set(index + i, stacks);
+        for (int i = 0; i < ingredients.getOutputs(VanillaTypes.FLUID).size(); i++) {
+            List<FluidStack> stacks = ingredients.getOutputs(VanillaTypes.FLUID).get(i);
+            recipeLayout.getFluidStacks().init(index + i, false, 107, 35);
+            recipeLayout.getFluidStacks().set(index + i, stacks);
         }
+
+        recipeLayout.getFluidStacks().addTooltipCallback((i, b, stack, list) -> {
+            list.add(new StringTextComponent(recipe.getResult().getAmount() + "mb"));
+        });
     }
 }
 

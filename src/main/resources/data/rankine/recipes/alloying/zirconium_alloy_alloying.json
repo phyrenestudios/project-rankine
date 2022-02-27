@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 28,
+  "tier": 2,
   "color": 11848920,
   "name": "Zirconium Alloy",
   "input1": {
@@ -144,5 +145,7 @@
     "min": 0.0,
     "max": 0.06
   },
-  "result": "rankine:zirconium_alloy_ingot"
+  "result": "rankine:zirconium_alloy_ingot",
+  "enchantments": ["rankine:guard"],
+  "enchantmentTypes": ["ARMOR"]
 }
