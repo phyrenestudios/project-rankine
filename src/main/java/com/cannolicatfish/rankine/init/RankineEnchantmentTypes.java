@@ -45,6 +45,21 @@ public class RankineEnchantmentTypes {
     public static EnchantmentType ALLOYTOOL = EnchantmentType.create("alloytool", (itemIn) -> {
         return itemIn instanceof IAlloyTool && itemIn.isDamageable(); });
 
+    public static EnchantmentType ENDER_AMALGAM_HAMMER = EnchantmentType.create("ender_hammer", (itemIn) -> {
+        return itemIn == RankineItems.ENDER_AMALGAM_HAMMER.get(); });
+
+    public static EnchantmentType ENDER_AMALGAM_SWORD = EnchantmentType.create("ender_sword", (itemIn) -> {
+        return itemIn == RankineItems.ENDER_AMALGAM_SWORD.get(); });
+
+    public static EnchantmentType ENDER_AMALGAM_SHOVEL = EnchantmentType.create("ender_shovel", (itemIn) -> {
+        return itemIn == RankineItems.ENDER_AMALGAM_SPEAR.get(); });
+
+    public static EnchantmentType ENDER_AMALGAM_KNIFE = EnchantmentType.create("ender_knife", (itemIn) -> {
+        return itemIn == RankineItems.ENDER_AMALGAM_KNIFE.get(); });
+
+    public static EnchantmentType ENDER_AMALGAM_CROWBAR = EnchantmentType.create("ender_crowbar", (itemIn) -> {
+        return itemIn == RankineItems.ENDER_AMALGAM_CROWBAR.get(); });
+
     public static EnchantmentType ENDER_AMALGAM_SPEAR = EnchantmentType.create("ender_spear", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_SPEAR.get(); });
 

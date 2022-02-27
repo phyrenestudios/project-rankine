@@ -55,6 +55,8 @@ public class RankineEnchantments {
     @ObjectHolder("rankine:endobiotic")
     public static Enchantment ENDOBIOTIC;
 
+    @ObjectHolder("rankine:endotoxin")
+    public static Enchantment ENDOTOXIN;
 
     @ObjectHolder("rankine:endpoint")
     public static Enchantment ENDPOINT;

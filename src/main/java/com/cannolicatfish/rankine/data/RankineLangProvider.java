@@ -220,6 +220,9 @@ public class RankineLangProvider extends LanguageProvider {
 
                 RankineBlocks.COB.get(),
                 RankineBlocks.SOD_BLOCK.get(),
+                RankineBlocks.MYCELIUM_PATH.get(),
+                RankineBlocks.BONE_CHAR_BLOCK.get(),
+                RankineBlocks.STICK_BLOCK.get(),
 
                 RankineBlocks.GROUND_TAP.get(),
                 RankineBlocks.METAL_PIPE.get(),
@@ -438,6 +441,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.TOTEM_OF_ENDURING.get(),
             RankineItems.TOTEM_OF_HASTENING.get(),
             RankineItems.TOTEM_OF_INFUSING.get(),
+            RankineItems.TOTEM_OF_INVIGORATING.get(),
             RankineItems.TOTEM_OF_LEVITATING.get(),
             RankineItems.TOTEM_OF_PROMISING.get(),
             RankineItems.TOTEM_OF_REPULSING.get(),
@@ -654,6 +658,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.cleanse.desc", "Deals extra damage based on the number of potion effects the target has.");
         add("enchantment.rankine.endpoint", "Endpoint");
         add("enchantment.rankine.endpoint.desc", "Teleports the user to where the spear lands. Levels reduce the amount of damage taken.");
+        add("enchantment.rankine.endobiotic", "Endobiotic");
+        add("enchantment.rankine.endobiotic.desc", "Teleports the user when about to be hit by a projectile and negates damage. Uses extra durability.");
         add("enchantment.rankine.withering_curse", "Curse of Withering");
         add("enchantment.rankine.withering_curse.desc", "Taking damage (that isn't wither or magic related) causes you to receive the Wither effect for a short duration.");
         add("enchantment.rankine.ghast_regeneration", "Ghastly Regeneration");
@@ -786,6 +792,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.rankine.totem_of_enduring.tooltip", "Built in body shield");
         add("item.rankine.totem_of_hastening.tooltip", "Efficiency, but in your hands");
         add("item.rankine.totem_of_infusing.tooltip", "Symbiotic enchanting");
+        add("item.rankine.totem_of_invigorating.tooltip", "Regenerative equipment");
         add("item.rankine.totem_of_imitating.tooltip", "False promises");
         add("item.rankine.totem_of_levitating.tooltip", "For keeping your feet clean");
         add("item.rankine.totem_of_mending.tooltip", "Regenerate your losses");

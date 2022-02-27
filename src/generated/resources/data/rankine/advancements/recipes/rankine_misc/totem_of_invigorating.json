@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:totem_of_infusing"
+      "rankine:totem_of_invigorating"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/mischmetal"
+            "tag": "forge:ingots/electrum"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:totem_of_infusing"
+        "recipe": "rankine:totem_of_invigorating"
       }
     }
   },

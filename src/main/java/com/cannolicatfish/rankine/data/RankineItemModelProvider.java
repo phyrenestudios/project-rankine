@@ -276,6 +276,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.TOTEM_OF_ENDURING.get());
         basicItem(RankineItems.TOTEM_OF_HASTENING.get());
         basicItem(RankineItems.TOTEM_OF_INFUSING.get());
+        basicItem(RankineItems.TOTEM_OF_INVIGORATING.get());
         basicItem(RankineItems.TOTEM_OF_LEVITATING.get());
         basicItem(RankineItems.TOTEM_OF_PROMISING.get());
         basicItem(RankineItems.TOTEM_OF_REPULSING.get());

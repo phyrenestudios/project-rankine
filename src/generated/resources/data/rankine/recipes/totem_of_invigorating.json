@@ -7,13 +7,13 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:ingots/mischmetal"
+      "tag": "forge:ingots/electrum"
     },
     "R": {
-      "tag": "forge:storage_blocks/peridot"
+      "tag": "forge:storage_blocks/tourmaline"
     }
   },
   "result": {
-    "item": "rankine:totem_of_infusing"
+    "item": "rankine:totem_of_invigorating"
   }
 }
