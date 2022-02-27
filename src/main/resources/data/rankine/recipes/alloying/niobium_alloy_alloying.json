@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 10,
+  "tier": 2,
   "color": 13750746,
   "input1": {
     "element": "rankine:elements/niobium",

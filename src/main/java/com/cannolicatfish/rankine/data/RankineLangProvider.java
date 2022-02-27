@@ -636,6 +636,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.snow_drifter.desc", "Increases movement speed on snow.");
         add("enchantment.rankine.speed_skater", "Speed Skater");
         add("enchantment.rankine.speed_skater.desc", "Increases movement speed on ice.");
+        add("enchantment.rankine.flippers", "Swift Swimmer");
+        add("enchantment.rankine.flippers.desc", "Increases swim speed.");
+        add("enchantment.rankine.guard", "Guard");
+        add("enchantment.rankine.guard.desc", "Generates passive protection hearts over time.");
         add("enchantment.rankine.gas_protection", "Gas Protection");
         add("enchantment.rankine.gas_protection.desc", "Protects from harmful effects of gases.");
         add("enchantment.rankine.quake", "Quake");

@@ -26,18 +26,18 @@
   "enchantability": {
     "breaks": [100],
     "formulas": ["LINEAR"],
-    "a": [0.025],
-    "b": [0],
-    "modifiers": ["NONE"],
-    "limit": [0]
+    "a": [0.2],
+    "b": [-0.1],
+    "modifiers": ["MAX"],
+    "limit": [8]
   },
   "corrosionresist": {
     "breaks": [100],
     "formulas": ["LINEAR"],
     "a": [0.006],
     "b": [0],
-    "modifiers": ["NONE"],
-    "limit": [0]
+    "modifiers": ["MIN"],
+    "limit": [0.05]
   },
   "heatresist": {
     "breaks": [100],

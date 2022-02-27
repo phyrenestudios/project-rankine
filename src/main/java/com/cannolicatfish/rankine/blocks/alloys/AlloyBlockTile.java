@@ -12,18 +12,30 @@ import net.minecraftforge.common.ForgeHooks;
 import static com.cannolicatfish.rankine.init.RankineBlocks.ALLOY_BLOCK_TILE;
 
 public class AlloyBlockTile extends TileEntity {
+    private CompoundNBT alloyData = new CompoundNBT();
     public AlloyBlockTile() {
         super(ALLOY_BLOCK_TILE);
     }
 
-    @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
-    }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
-        return compound;
+        if (this.alloyData != null) compound.put("AlloyData", this.alloyData);
+        return super.write(compound);
+    }
+
+    @Override
+    public void read(BlockState state, CompoundNBT nbt) {
+        if (nbt.contains("AlloyData")) this.alloyData = nbt.getCompound("AlloyData");
+        super.read(state, nbt);
+    }
+
+    public CompoundNBT writeAlloyData(CompoundNBT compoundNBT) {
+        this.alloyData = compoundNBT;
+        return compoundNBT;
+    }
+
+    public CompoundNBT getAlloyData() {
+        return this.alloyData;
     }
 }

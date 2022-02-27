@@ -77,7 +77,13 @@ public class TreetappingRecipe implements IRecipe<IInventory> {
     }
 
     public FluidStack getResult() {
-        return this.result;
+        return this.result.copy();
+    }
+
+    public FluidStack getFilledResult() {
+        FluidStack res = this.result.copy();
+        res.setAmount(1000);
+        return res;
     }
 
     public int getTapTime() {
