@@ -8,22 +8,20 @@
       "text": "rankine.journal.cat_biota.ground_flora.text1"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:blue_morning_glory",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.ground_flora.blue_morning_glory"
+      "type": "rankine:item3",
+      "item1": "rankine:blue_morning_glory",
+      "item2": "rankine:purple_morning_glory",
+      "item3": "rankine:black_morning_glory",
+      "header": "rankine.journal.cat_biota.ground_flora.morning_glories_header",
+      "text": "rankine.journal.cat_biota.ground_flora.morning_glories"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:purple_morning_glory",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.ground_flora.purple_morning_glory"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:black_morning_glory",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.ground_flora.black_morning_glory"
+      "type": "rankine:item3",
+      "item1": "rankine:white_lily",
+      "item2": "rankine:orange_lily",
+      "item3": "rankine:red_lily",
+      "header": "rankine.journal.cat_biota.ground_flora.lilies_header",
+      "text": "rankine.journal.cat_biota.ground_flora.lilies"
     },
     {
       "type": "spotlight",
@@ -32,52 +30,25 @@
       "text": "rankine.journal.cat_biota.ground_flora.goldenrod"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:white_lily",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.ground_flora.white_lily"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:orange_lily",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.ground_flora.orange_lily"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:red_lily",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.ground_flora.red_lily"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:crimson_clover",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.ground_flora.crimson_clover"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:red_clover",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.ground_flora.red_clover"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:yellow_clover",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.ground_flora.yellow_clover"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:white_clover",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.ground_flora.white_clover"
+      "type": "rankine:item4",
+      "item1": "rankine:crimson_clover",
+      "item2": "rankine:red_clover",
+      "item3": "rankine:yellow_clover",
+      "item4": "rankine:white_clover",
+      "header": "rankine.journal.cat_biota.ground_flora.clovers_header",
+      "text": "rankine.journal.cat_biota.ground_flora.clovers"
     },
     {
       "type": "spotlight",
       "item": "rankine:stinging_nettle",
       "link_recipe": true,
       "text": "rankine.journal.cat_biota.ground_flora.stinging_nettle"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:short_grass",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.ground_flora.short_grass"
     }
   ]
 }

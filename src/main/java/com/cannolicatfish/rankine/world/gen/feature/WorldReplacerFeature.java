@@ -85,7 +85,9 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
                                 break;
                             default:
                                 if (TARGET_BLOCK instanceof RankineOreBlock && /*TARGET_BS.get(RankineOreBlock.TYPE) == 0 &&*/ WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
-                                    reader.setBlockState(TARGET_POS, TARGET_BLOCK.getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock())), 3);
+                                    if (TARGET_BS.get(RankineOreBlock.TYPE) != 67 && TARGET_BS.get(RankineOreBlock.TYPE) != 68 && TARGET_BS.get(RankineOreBlock.TYPE) != 69) {
+                                        reader.setBlockState(TARGET_POS, TARGET_BLOCK.getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock())), 3);
+                                    }
                                 } else if (canReplaceStone(TARGET_BLOCK)) {
                                     reader.setBlockState(TARGET_POS, StoneBS, 3);
                                 }

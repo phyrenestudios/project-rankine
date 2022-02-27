@@ -1,0 +1,30 @@
+{
+  "name": "rankine.journal.cat_orientation.foundation3.name",
+  "icon": "rankine:steel_ingot",
+  "category": "orientation",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_orientation.foundation3.text1"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_orientation.foundation3.text2",
+      "text": "rankine.journal.cat_orientation.foundation3.text3"
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_orientation.foundation3.text4"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_orientation.foundation3.text5",
+      "text": "rankine.journal.cat_orientation.foundation3.text6"
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_orientation.foundation3.text7"
+    }
+  ]
+}

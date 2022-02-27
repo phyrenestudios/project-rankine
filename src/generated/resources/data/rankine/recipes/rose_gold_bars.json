@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine:bars",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:rose_gold_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:rose_gold_bars",
+    "count": 16
+  }
+}

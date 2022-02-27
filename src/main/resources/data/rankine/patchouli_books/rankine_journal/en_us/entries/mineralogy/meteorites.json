@@ -8,82 +8,42 @@
       "text": "rankine.journal.cat_mineralogy.meteorites.text1"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:meteorite",
-      "link_recipe": true,
+      "type": "image",
+      "images": ["rankine:textures/patchouli/meteorite.png"],
+      "title": "rankine.journal.cat_mineralogy.meteorites.text2",
       "text": "rankine.journal.cat_mineralogy.meteorites.text3"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:frozen_meteorite",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
+      "type": "rankine:item3",
+      "item1": "rankine:meteorite",
+      "item2": "rankine:frozen_meteorite",
+      "item3": "rankine:enstatite_chondrite",
+      "heading": "rankine.journal.cat_mineralogy.meteorites.meteorites_header",
+      "text": "rankine.journal.cat_mineralogy.meteorites.meteorites"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:enstatite_chondrite",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
+      "type": "rankine:item4",
+      "item1": "rankine:green_tektite",
+      "item2": "rankine:gray_tektite",
+      "item3": "rankine:black_tektite",
+      "item4": "rankine:brown_tektite",
+      "heading": "rankine.journal.cat_mineralogy.meteorites.tektites_header",
+      "text": "rankine.journal.cat_mineralogy.meteorites.tektites"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:green_tektite",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:gray_tektite",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:black_tektite",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:brown_tektite",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:kamacite_ore",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:antitaenite_ore",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:taenite_ore",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:tetrataenite_ore",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:lonsdaleite_ore",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
+      "type": "rankine:item4",
+      "item1": "rankine:kamacite_ore",
+      "item2": "rankine:antitaenite_ore",
+      "item3": "rankine:tetrataenite_ore",
+      "item4": "rankine:taenite_ore",
+      "heading": "rankine.journal.cat_mineralogy.meteorites.ores_header",
+      "text": "rankine.journal.cat_mineralogy.meteorites.ores"
     },
     {
       "type": "spotlight",
       "item": "rankine:meteoric_ice",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
+      "text": "rankine.journal.cat_mineralogy.meteorites.meteoric_ice"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "name": "rankine.journal.cat_elements.name",
-  "description": "rankine.journal.cat_elements.desc",
+  "name": "rankine.journal.cat_materials.name",
+  "description": "rankine.journal.cat_materials.desc",
   "icon": "rankine:element",
   "sortnum": 4
 }

@@ -17,22 +17,7 @@
     {
       "type": "crafting",
       "recipe": "rankine:crucible",
-      "text": "Valid heat sources include: $(li)Fire$() $(li)Lava$() $(li)Magma Block$()"
-    },
-    {
-      "type": "text",
-      "anchor": "steel",
-      "text": "The Crucible Steel Process requires Iron and any form of coal, as well as two additional unique inputs. Valid fluxes include:  $(li)Sand/Glass/Quartz$()  $(li)Limestone/Quicklime/Dolomite$()  $(li)Saltpeter$()  $(li)Phosphorus$()  $(li)Fluorite$()  $(li)Trona$() $(li)Borax$()"
-    },
-    {
-      "type": "text",
-      "anchor": "glass",
-      "text": "The Crucible Glass Process requires Sand/Glass/Quartz, as well as three additional unique inputs. Valid fluxes include:  $(li)Galena$()  $(li)Alumina$()  $(li)Magnesia$()  $(li)Quicklime$()  $(li)Sodium Carbonate$()  $(li)Petalite$() $(li)Plagioclase/Orthoclase Feldspar$() $(li)Any Dye$()"
-    },
-    {
-      "type": "text",
-      "anchor": "redstone",
-      "text": "The Crucible Redstone Process requires Cinnabar, as well as three additional unique inputs. Valid fluxes include:  $(li)Phosphorus$()  $(li)Arsenic Ingot$()  $(li)Cobaltite$()  $(li)Cryolite$()  $(li)Alumina$()  $(li)Quartz$()"
+      "text": "Valid heat sources include: $(li)Fire$() $(li)Lava$() $(li)Magma Block$() $(li)Campfires()"
     }
   ]
 }

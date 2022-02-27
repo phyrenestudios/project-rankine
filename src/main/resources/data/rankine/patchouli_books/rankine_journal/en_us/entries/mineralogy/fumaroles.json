@@ -8,40 +8,24 @@
       "text": "rankine.journal.cat_mineralogy.fumaroles.text1"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:carbon_dioxide_fumarole",
-      "link_recipe": true,
+      "type": "rankine:item4",
+      "item1": "rankine:carbon_dioxide_fumarole",
+      "item2": "rankine:hydrogen_chloride_fumarole",
+      "item3": "rankine:hydrogen_sulfide_fumarole",
+      "item4": "rankine:sulfur_dioxide_fumarole",
       "text": "rankine.journal.cat_mineralogy.fumaroles.text2"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:hydrogen_chloride_fumarole",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.fumaroles.text3"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:hydrogen_sulfide_fumarole",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.fumaroles.text4"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:sulfur_dioxide_fumarole",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.fumaroles.text5"
     },
     {
       "type": "spotlight",
       "item": "rankine:fumarole_deposit",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.fumaroles.text6"
+      "text": "rankine.journal.cat_mineralogy.fumaroles.text3"
     },
     {
       "type": "spotlight",
       "item": "rankine:gwihabaite",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.fumaroles.text7"
+      "text": "rankine.journal.cat_mineralogy.fumaroles.text4"
     }
   ]
 }

@@ -9,46 +9,55 @@
     },
     {
       "type": "text",
+      "anchor": "swords",
       "title": "rankine.journal.cat_tools.standard_tools.text2",
       "text": "rankine.journal.cat_tools.standard_tools.text3"
     },
     {
       "type": "text",
+      "anchor": "shovels",
       "title": "rankine.journal.cat_tools.standard_tools.text4",
       "text": "rankine.journal.cat_tools.standard_tools.text5"
     },
     {
       "type": "text",
+      "anchor": "pickaxes",
       "title": "rankine.journal.cat_tools.standard_tools.text6",
       "text": "rankine.journal.cat_tools.standard_tools.text7"
     },
     {
       "type": "text",
+      "anchor": "axes",
       "title": "rankine.journal.cat_tools.standard_tools.text8",
       "text": "rankine.journal.cat_tools.standard_tools.text9"
     },
     {
       "type": "text",
+      "anchor": "hoes",
       "title": "rankine.journal.cat_tools.standard_tools.text10",
       "text": "rankine.journal.cat_tools.standard_tools.text11"
     },
     {
       "type": "text",
+      "anchor": "hammers",
       "title": "rankine.journal.cat_tools.standard_tools.text12",
       "text": "rankine.journal.cat_tools.standard_tools.text13"
     },
     {
       "type": "text",
+      "anchor": "knives",
       "title": "rankine.journal.cat_tools.standard_tools.text14",
       "text": "rankine.journal.cat_tools.standard_tools.text15"
     },
     {
       "type": "text",
+      "anchor": "crowbars",
       "title": "rankine.journal.cat_tools.standard_tools.text16",
       "text": "rankine.journal.cat_tools.standard_tools.text17"
     },
     {
       "type": "text",
+      "anchor": "surf_rods",
       "title": "rankine.journal.cat_tools.standard_tools.text18",
       "text": "rankine.journal.cat_tools.standard_tools.text19"
     }

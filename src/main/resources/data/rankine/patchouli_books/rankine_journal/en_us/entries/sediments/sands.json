@@ -42,12 +42,6 @@
       "item": "rankine:desert_sand",
       "link_recipe": true,
       "text": "rankine.journal.cat_sediments.sands.desert_sand"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:silt",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_sediments.sands.silt"
     }
   ]
 }

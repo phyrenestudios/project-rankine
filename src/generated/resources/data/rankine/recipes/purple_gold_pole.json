@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine:poles",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:purple_gold_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:purple_gold_pole",
+    "count": 8
+  }
+}

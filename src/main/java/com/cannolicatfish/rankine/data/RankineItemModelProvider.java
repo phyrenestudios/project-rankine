@@ -467,10 +467,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
             String name = ALLOY.getRegistryName().getPath();
             basicItem(name);
         }
-        getBuilder("cast_iron" + "_bars").parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "block/" + "cast_iron" + "_bars");
-
-
-
 
 
         //ORES

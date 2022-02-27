@@ -1022,6 +1022,44 @@ public class RankineLangProvider extends LanguageProvider {
         //JOURNAL==============================================================================
         add("rankine.journal.landing_text", "A mere collection of discoveries, awaiting application.");
 
+        //Orientation
+        add("rankine.journal.cat_orientation.name", "Orientation");
+        add("rankine.journal.cat_orientation.desc", "Notes from very brief orientation to the Project. These are all I have to look over for now.");
+
+        add("rankine.journal.cat_orientation.intro.name", "Greetings");
+        add("rankine.journal.cat_orientation.intro.text1", "$(o)If you find this journal, then I welcome to a new world. You may find it familiar to the standards that you are used to. However, this is a Rankine world. In short that means I've changed some things to make it a little bit more interesting. Enjoy. $(br2)But seriously, if you want to know what's going on, read the foundation entries series.");
+        add("rankine.journal.cat_orientation.intro.text2", "$(o)For more resources see the following pages.");
+
+        add("rankine.journal.cat_orientation.foundation1.name", "Foundation I");
+        add("rankine.journal.cat_orientation.foundation1.text1", "Lesson one, not all information can be shared via this journal. Some of it requires discovering it for yourself and utilizing JEI for many recipe related inquiries. The new changes are all about variety. There are more ground blocks, more ores, more processing mechanics, more ways to do stuff. Utilize this variety to bolster creativity or just to have pretty colors. Regardless, let's see some changes.");
+        add("rankine.journal.cat_orientation.foundation1.text2", "Very Early Game");
+        add("rankine.journal.cat_orientation.foundation1.text3", "The beginning is very similar to normal, unless you aren't allowed to punch wood. In addition to wooden and stone tools, a flint toolset is available to start your journey beyond your fists. While from the beginning you could avoid all Rankine tool content, that seems unlikely and you may wan the basic equipment to keep your journey running smoothly.");
+        add("rankine.journal.cat_orientation.foundation1.text4", "Use a $(tools/standard_tools)flint knife$() to gather plant fiber and wool and use a wooden gold pan to $(l:mechanics/sluicing)sluice$() earthy blocks for useful resources. $(br2)One of the new tool types added is $(l:tools/standard_tools)hammers$(). If you are trying to get cobblestone, that's how. Hammers don't simply convert a block into a less shapely version, they refine blocks by extracting additional materials through $(l:mechanics/crushing)crushing$(). It is an important tool and concept for later requirements, so be sure to always have a hammer ready.");
+        add("rankine.journal.cat_orientation.foundation1.text5", "Worldgen");
+        add("rankine.journal.cat_orientation.foundation1.text6", "A few changes that you are sure to notice are the additions to the natural world. A collection of $(l:sediments)soils$() and other sediments replace much of the original surface. Below the surface new $(l:stones)stones$() emerge from the depths of the mantle, creating vast layers across the biomes. A secondary form of stones is intrusions, large pillars of rock extending from bedrock to the surface.");
+        add("rankine.journal.cat_orientation.foundation1.text7", "Stones are generally found in one of these categories and contain mineral themselves, but are also home to the more common ore veins. Ores are explored further in the next foundation. Other aspects to note about the world include new biota. Various specimens of $(l:biota/trees)trees$(), $(l:biota/crops)crops$(), $(l:biota/ground_flora)ground plants$(), $(l:biota/mushrooms)mushrooms$() and perhaps some animals can be discovered across the world. Although they aren't tools, they are still key to your survival.");
+        add("rankine.journal.cat_orientation.foundation1.text8", "Even familiar blocks in this new environment have changed. Walking on certain earthen and constructed blocks affect movement speed. Using $(l:tools/equipment)equipment$() can combat these and other environmental forces. FORAGING");
+
+
+        add("rankine.journal.cat_orientation.foundation2.name", "Foundation II");
+        add("rankine.journal.cat_orientation.foundation2.text1", "This section details some of the nuances of the underground and how to get started with Rankine technology. Other important mechanics to note at this stage is that there is no $(mechanics/finite_water)infinite water$() at certain heights, fires can be created by using a flint in each hand, and stripping bark off trees can yeild additional resources.");
+        add("rankine.journal.cat_orientation.foundation2.text2", "Basic Machines");
+        add("rankine.journal.cat_orientation.foundation2.text3", "You may be looking to fuel your furnace. Without immediate access to coal substances, a great alternative is charcoal. It is not suggested that you burn planks or logs directly as $(l:mechanics/fuel)fuel values$() have changed. A free fuel option is campfires, which have a few additional non-food related recipes. And to save time long-term, upgrade to blast furnaces (alternative recipe available) as soon as possible, there will be a lot of ore to smelt. ");
+        add("rankine.journal.cat_orientation.foundation2.text4", "The two basic machines needed to produce early materials are the Mixing Barrel and the $(l:materials/beehive_oven)beehive oven$(). Learn how to use these well and even automate them as they produce required and niche recipes. If you don't like the more involved method of producing bricks, you can utilize the stone cutter later.");
+        add("rankine.journal.cat_orientation.foundation2.text5", "Ultimately one of the most important machines you will make is the alloy furnace. $(l:mechanics/alloying)Alloying$() is a spectrum of simple metal ratios to intricate tool materials. Invest yourself as much as desired into experimenting with the process to produce suitable tools as well as crafting components and building materials.");
+        add("rankine.journal.cat_orientation.foundation2.text6", "Oregen");
+        add("rankine.journal.cat_orientation.foundation2.text7", "After making a set of stone-like tools, you may be able to skip the long trip to bedrock. Look along exposed surface stones for $(l:mineralogy/native_ores)native ores$(). These are the source of early harvestable metals that will let you make the next tiers of tools. Other forms of ores include a mixed variety of $(l:mineralogy/mineral_ores)mineral ores$() and $(l:mineralogy/gem_ores)gem ores$() which are found across the dimensions.");
+        add("rankine.journal.cat_orientation.foundation2.text8", "Typical vein structure is as large clusters spaced out in the underground or as a dedicated deposit in a stone intrusion. If you need assistance finding ores, consider $(tools/ore_detection)prospecting equipment$().");
+
+        add("rankine.journal.cat_orientation.foundation3.name", "Foundation III");
+        add("rankine.journal.cat_orientation.foundation3.text1", "With alloys, a plethora of new capabilities are available. This section details some of the mid game advancements in technology and constructions.");
+        add("rankine.journal.cat_orientation.foundation3.text2", "Progression");
+        add("rankine.journal.cat_orientation.foundation3.text3", "Some common harvest level 2 tools depending on composition are bronze, pewter, invar, and iron. $(mineralogy/meteorites)Meteorites$() Meteorites are a source of native invar and occur across the world surface. $(br2)The standard method of obtaining harvest level 3 tools is by producing steel. This, along with other interesting products, is made in the $(materials/crucible)crucible$().");
+        add("rankine.journal.cat_orientation.foundation3.text4", "Steel allows for the creation of the $(materials/fusion_furnace)fusion furnace$(), a machine capable of reactions and recipes using three states of matter. Available recipes include advanced ore processing, extractions, and chemical conversions.");
+        add("rankine.journal.cat_orientation.foundation3.text5", "Other Machines");
+        add("rankine.journal.cat_orientation.foundation3.text6", "Two large scale machines can be constructed to passively produce resources. The $(l:materials/evaporation_tower)evaporation tower$() solidifies materials out of liquids. The smaller structure is an evaporation boiler which is used for more unique fluids that are product from tree tapping. $(materials/tree_tapping)Tree tapping$()) is a process of extracting fluid from trees with more or less minimal damage. Use this combination to make whole new product lines.");
+        add("rankine.journal.cat_orientation.foundation3.text7", "The other large structure is the air distillation tower. An uncommon block in their pure form, $(materials/gasses)gasses$() are useful in fusion furnace reactions and provide effects when breathed in instead of air.  $(br2)One final note is that you can build automated versions of hammers, the $(mechanics/crushing)piston crusher$() and the $(mechanics/crushing)gyratory crusher$().");
+
 
         //Biota
         add("rankine.journal.cat_biota.name", "Biota");
@@ -1034,29 +1072,22 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.journal.cat_biota.mushrooms.name", "Mushrooms");
         add("rankine.journal.cat_biota.mushrooms.text1", "New types of fungi populate the undergrowth of wooded ecosystems. Although they have a different growth pattern, some can be used similar to the common red and brown varieties.");
-        add("rankine.journal.cat_biota.mushrooms.oyster_mushroom", "");
-        add("rankine.journal.cat_biota.mushrooms.sulfur_shelf_mushroom", "");
-        add("rankine.journal.cat_biota.mushrooms.honey_mushroom", "");
-        add("rankine.journal.cat_biota.mushrooms.lions_mane_mushroom", "");
-        add("rankine.journal.cat_biota.mushrooms.artist_conk_mushroom", "");
-        add("rankine.journal.cat_biota.mushrooms.tinder_conk_mushroom", "");
-        add("rankine.journal.cat_biota.mushrooms.cinnabar_polypore_mushroom", "");
-        add("rankine.journal.cat_biota.mushrooms.turkey_tail_mushroom", "");
+        add("rankine.journal.cat_biota.mushrooms.edible_mushrooms_header", "Edible Mushrooms");
+        add("rankine.journal.cat_biota.mushrooms.edible_mushrooms", "");
+        add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms_header", "Inedible Mushrooms");
+        add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms", "");
 
         add("rankine.journal.cat_biota.ground_flora.name", "Ground Flora");
         add("rankine.journal.cat_biota.ground_flora.text1",  "");
-        add("rankine.journal.cat_biota.ground_flora.blue_morning_glory", "");
-        add("rankine.journal.cat_biota.ground_flora.purple_morning_glory", "");
-        add("rankine.journal.cat_biota.ground_flora.black_morning_glory", "");
+        add("rankine.journal.cat_biota.ground_flora.morning_glories_header", "Morning Glories");
+        add("rankine.journal.cat_biota.ground_flora.morning_glories", "");
         add("rankine.journal.cat_biota.ground_flora.goldenrod", "");
-        add("rankine.journal.cat_biota.ground_flora.white_lily", "");
-        add("rankine.journal.cat_biota.ground_flora.orange_lily", "");
-        add("rankine.journal.cat_biota.ground_flora.red_lily", "");
-        add("rankine.journal.cat_biota.ground_flora.crimson_clover", "");
-        add("rankine.journal.cat_biota.ground_flora.red_clover", "");
-        add("rankine.journal.cat_biota.ground_flora.yellow_clover", "");
-        add("rankine.journal.cat_biota.ground_flora.white_clover", "");
+        add("rankine.journal.cat_biota.ground_flora.lilies_header", "Lilies");
+        add("rankine.journal.cat_biota.ground_flora.lilies", "");
+        add("rankine.journal.cat_biota.ground_flora.clovers_header", "Clovers");
+        add("rankine.journal.cat_biota.ground_flora.clovers", "");
         add("rankine.journal.cat_biota.ground_flora.stinging_nettle", "");
+        add("rankine.journal.cat_biota.ground_flora.short_grass", "");
 
         add("rankine.journal.cat_biota.trees.name", "Trees");
         add("rankine.journal.cat_biota.trees.cedar.title", "");
@@ -1121,17 +1152,30 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.crops.camphor_basil_leaf", "");
 
 
-        //Elements
-        add("rankine.journal.cat_elements.name", "Elements");
-        add("rankine.journal.cat_elements.desc", "The foundation of the universe");
-        add("rankine.journal.cat_elements.gasses.name", "Gas Blocks");
-        add("rankine.journal.cat_elements.gasses.text1", "");
-        add("rankine.journal.cat_elements.gasses.text2", "");
-        add("rankine.journal.cat_elements.gasses.text3", "");
-        add("rankine.journal.cat_elements.gasses.text4", "");
-        add("rankine.journal.cat_elements.gasses.text5", "");
+        //Materials
+        add("rankine.journal.cat_materials.name", "Elements");
+        add("rankine.journal.cat_materials.desc", "The foundation of the universe");
 
+        add("rankine.journal.cat_materials.gasses.name", "Gas Blocks");
+        add("rankine.journal.cat_materials.gasses.text1", "");
+        add("rankine.journal.cat_materials.gasses.text2", "");
+        add("rankine.journal.cat_materials.gasses.text3", "");
+        add("rankine.journal.cat_materials.gasses.text4", "");
+        add("rankine.journal.cat_materials.gasses.text5", "");
 
+        add("rankine.journal.cat_materials.fusion_furnace.name", "Gas Blocks");
+        add("rankine.journal.cat_materials.fusion_furnace.text1", "");
+        add("rankine.journal.cat_materials.fusion_furnace.text2", "");
+        add("rankine.journal.cat_materials.fusion_furnace.batteries_header", "Batteries");
+        add("rankine.journal.cat_materials.fusion_furnace.batteries", "");
+        add("rankine.journal.cat_materials.fusion_furnace.rtg_header", "RTGs");
+        add("rankine.journal.cat_materials.fusion_furnace.rtg", "RTGs are radioactively powered batteries with a much higher capacity.");
+
+        add("rankine.journal.cat_materials.beehive_oven.name", "Beehive Oven");
+        add("rankine.journal.cat_materials.beehive_oven.text1", "The beehive oven is an in-world furnace that slowly converts blocks. It will convert blocks one at a time in a 3x3 ring for the two blocks above it (16 blocks total). The beehive oven pit must have access to the sky. Light the pit block with the conventional methods. The pit block will go off it doesn't detect a valid structure or no longer has blocks to process.");
+        add("rankine.journal.cat_materials.beehive_oven.text2", "The bricks used in the structure can be upgraded one at a time to the high and ultra high tiers to increase processing speed.");
+        add("rankine.journal.cat_materials.beehive_oven.text4", "The minimum requirements for an oven.");
+        add("rankine.journal.cat_materials.beehive_oven.text5", "The full structure for the oven.");
 
 
         //Mechanics
@@ -1155,6 +1199,15 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.journal.cat_mineralogy.meteorites.name", "Meteorites");
         add("rankine.journal.cat_mineralogy.meteorites.text1","");
+        add("rankine.journal.cat_mineralogy.meteorites.text2","Overworld Meteorite");
+        add("rankine.journal.cat_mineralogy.meteorites.text3","Meteorites spawn in the Overworld and End.");
+        add("rankine.journal.cat_mineralogy.meteorites.meteorites_header","Meteorite Blocks");
+        add("rankine.journal.cat_mineralogy.meteorites.meteorites","Core silica based blocks making up most of the meteorite.");
+        add("rankine.journal.cat_mineralogy.meteorites.tektites_header","Tektites");
+        add("rankine.journal.cat_mineralogy.meteorites.tektites","Tektite is a form of glass formed by meteorite impact with the surface.");
+        add("rankine.journal.cat_mineralogy.meteorites.ores_header","Meteorite Ores");
+        add("rankine.journal.cat_mineralogy.meteorites.ores","Meteoric ores have been found as a native source of Invar and accessible source of iron. Crushing the ores will yield meteoric iron chunks which can be used to make crude tools.");
+        add("rankine.journal.cat_mineralogy.meteorites.meteoric_ice","A rare form of ice only found in frozen meteorites. Like normal ice blocks, it is slippery and requires silk touch to harvest.");
 
         add("rankine.journal.cat_mineralogy.mineral_stones.name", "Mineral Stones");
         add("rankine.journal.cat_mineralogy.mineral_stones.text1","");
@@ -1164,13 +1217,10 @@ public class RankineLangProvider extends LanguageProvider {
 
 
         add("rankine.journal.cat_mineralogy.fumaroles.name", "Fumaroles");
-        add("rankine.journal.cat_mineralogy.fumaroles.text1","");
-        add("rankine.journal.cat_mineralogy.fumaroles.text2","Generates low in the Overworld.");
-        add("rankine.journal.cat_mineralogy.fumaroles.text3","Generates low in the Nether.");
-        add("rankine.journal.cat_mineralogy.fumaroles.text4","Generates low in the Nether.");
-        add("rankine.journal.cat_mineralogy.fumaroles.text5","Generates low in the Overworld.");
-        add("rankine.journal.cat_mineralogy.fumaroles.text6","A mineral rich stone derived from the outgassing of deep-world materials. Important source of Vanadium Pentoxide and minerals for Beryllium production.");
-        add("rankine.journal.cat_mineralogy.fumaroles.text7","A crystallized form of ammonia compounds. Used for ammonia production and complex metal reactions. Crystals form on the underside of fumarole deposit blocks that have water above them.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text1","Fumaroles are natural vents for gasses trapped inside the crust. They continuously output gas blocks into nearby air space.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text2","Generate low in the Overworld and Nether.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text3","A mineral rich stone derived from the outgassing of deep-world materials. Important source of Vanadium Pentoxide and minerals for Beryllium production.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text4","A crystallized form of ammonia compounds. Used for ammonia production and complex metal reactions. Crystals form on the underside of fumarole deposit blocks that have water above them.");
 
         add("rankine.journal.cat_mineralogy.gem_ores.name", "Gem Ores");
         add("rankine.journal.cat_mineralogy.gem_ores.text1", "Gem ores refer to stones that directly drop their respective item when mined. Most can also be crushed for additional resources.");
@@ -1194,35 +1244,6 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mineralogy.native_ores.native_gallium_ore", "Source of Gallium. $(br2)Found scattered across the End.");
         add("rankine.journal.cat_mineralogy.native_ores.native_tellurium_ore", "Source of Tellurium. $(br2)Found scattered across the End.");
         add("rankine.journal.cat_mineralogy.native_ores.native_selenium_ore", "Source of Selenium. $(br2)Found scattered across the End.");
-
-        //Orientation
-        add("rankine.journal.cat_orientation.name", "Orientation");
-        add("rankine.journal.cat_orientation.desc", "Notes from very brief orientation to the Project. These are all I have to look over for now.");
-
-        add("rankine.journal.cat_orientation.foundation.name", "Foundation");
-        add("rankine.journal.cat_orientation.foundation.text0", "The advancements serve as a guide from what other Project members have found successful. Utilize the recipes provided in JEI and the remainder of this journal to acquire all of the resources needed for our work. Be advised by the following entries for general understanding.");
-        add("rankine.journal.cat_orientation.foundation.text1", "Worldgen");
-        add("rankine.journal.cat_orientation.foundation.text2", "");
-        add("rankine.journal.cat_orientation.foundation.text3", "Harvest Levels");
-        add("rankine.journal.cat_orientation.foundation.text4", "Harvest level is the tier at which tools can mine certain blocks. The vanilla numbers are: $(li)0: Wooden $(li)1: Stone $(li)2: Iron $(li)3: Diamond $(li)4: Netherite $(li)0: Golden$() While vanilla tools are available, new tool tiers expand the current abilities.");
-        add("rankine.journal.cat_orientation.foundation.text5", "Project Rankine tools are added to all harvest levels to provide a wider breadth of options and catering to local mineral depositions. .....");
-        add("rankine.journal.cat_orientation.foundation.text6", "Movement Speed");
-        add("rankine.journal.cat_orientation.foundation.text7", "Even familiar blocks in this new environment have changed. Walking on certain earthen blocks slow the player, and some manufactured materials can speed the player up. Investigate the $(l:tools/equipment)equipment$() section to learn how to combat these and other environmental forces.");
-        add("rankine.journal.cat_orientation.foundation.text8", "Alloy Components");
-        add("rankine.journal.cat_orientation.foundation.text9", "");
-
-        add("rankine.journal.cat_orientation.survival_guide.name", "Survival Guide");
-        add("rankine.journal.cat_orientation.survival_guide.text0", "");
-        add("rankine.journal.cat_orientation.survival_guide.text1", "");
-        add("rankine.journal.cat_orientation.survival_guide.text2", "");
-        add("rankine.journal.cat_orientation.survival_guide.text3", "");
-        add("rankine.journal.cat_orientation.survival_guide.text4", "");
-        add("rankine.journal.cat_orientation.survival_guide.text5", "");
-        add("rankine.journal.cat_orientation.survival_guide.text6", "");
-        add("rankine.journal.cat_orientation.survival_guide.text7", "");
-        add("rankine.journal.cat_orientation.survival_guide.text8", "");
-        add("rankine.journal.cat_orientation.survival_guide.text9", "");
-        add("rankine.journal.cat_orientation.survival_guide.text10", "");
 
 
 
@@ -1350,7 +1371,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_sediments.sands.white_sand",  "");
         add("rankine.journal.cat_sediments.sands.black_sand",  "");
         add("rankine.journal.cat_sediments.sands.desert_sand",  "");
-        add("rankine.journal.cat_sediments.sands.silt",  "A smaller particle size than sand. It is used in many similar applications. Found along rivers.");
+
+        add("rankine.journal.cat_sediments.silts.name", "Silt");
+        add("rankine.journal.cat_sediments.silts.text1", "");
+        add("rankine.journal.cat_sediments.silts.silt",  "A smaller particle size than sand. It is used in many similar applications. Found along rivers.");
 
         add("rankine.journal.cat_sediments.clays.name", "Clays");
         add("rankine.journal.cat_sediments.clays.text1", "");
