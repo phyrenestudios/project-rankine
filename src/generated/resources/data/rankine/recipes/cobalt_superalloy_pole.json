@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine:poles",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:cobalt_superalloy_pole",
+    "count": 8
+  }
+}

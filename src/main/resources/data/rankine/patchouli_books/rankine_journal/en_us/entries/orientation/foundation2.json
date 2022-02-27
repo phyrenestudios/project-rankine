@@ -1,0 +1,34 @@
+{
+  "name": "rankine.journal.cat_orientation.foundation2.name",
+  "icon": "rankine:bismuth_nugget",
+  "category": "orientation",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_orientation.foundation2.text1"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_orientation.foundation2.text2",
+      "text": "rankine.journal.cat_orientation.foundation2.text3"
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_orientation.foundation2.text4"
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_orientation.foundation2.text5"
+    },
+    {
+      "type": "text",
+      "title": "rankine.journal.cat_orientation.foundation2.text6",
+      "text": "rankine.journal.cat_orientation.foundation2.text7"
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_orientation.foundation2.text8"
+    }
+  ]
+}

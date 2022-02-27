@@ -9,51 +9,17 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:oyster_mushroom",
+      "item": "rankine:oyster_mushroom,rankine:sulfur_shelf_mushroom,rankine:honey_mushroom,rankine:lions_mane_mushroom",
       "link_recipe": true,
-      "text": "rankine.journal.cat_biota.mushrooms.oyster_mushroom"
+      "title": "rankine.journal.cat_biota.mushrooms.edible_mushrooms_header",
+      "text": "rankine.journal.cat_biota.mushrooms.edible_mushrooms"
     },
     {
       "type": "spotlight",
-      "item": "rankine:sulfur_shelf_mushroom",
+      "item": "rankine:artist_conk_mushroom,rankine:tinder_conk_mushroom,rankine:cinnabar_polypore_mushroom,rankine:turkey_tail_mushroom",
       "link_recipe": true,
-      "text": "rankine.journal.cat_biota.mushrooms.sulfur_shelf_mushroom"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:honey_mushroom",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.mushrooms.honey_mushroom"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:lions_mane_mushroom",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.mushrooms.lions_mane_mushroom"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:artist_conk_mushroom",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.mushrooms.artist_conk_mushroom"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:tinder_conk_mushroom",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.mushrooms.tinder_conk_mushroom"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:cinnabar_polypore_mushroom",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.mushrooms.cinnabar_polypore_mushroom"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:turkey_tail_mushroom",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.mushrooms.turkey_tail_mushroom"
+      "title": "rankine.journal.cat_biota.mushrooms.edible_mushrooms_header",
+      "text": "rankine.journal.cat_biota.mushrooms.edible_mushrooms"
     }
   ]
 }

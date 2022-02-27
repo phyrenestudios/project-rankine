@@ -1,7 +1,7 @@
 {
   "name": "Rankine Journal",
   "landing_text": "rankine.journal.landing_text",
-  "version": 10,
+  "version": 11,
   "model": "rankine:rankine_journal",
   "book_texture": "rankine:textures/gui/rankine_journal.png",
   "filler_texture": "rankine:textures/gui/filler.png",

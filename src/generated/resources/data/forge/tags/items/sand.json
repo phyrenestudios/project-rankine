@@ -3,9 +3,7 @@
   "values": [
     "rankine:black_sand",
     "rankine:white_sand",
-    "rankine:silt",
     "rankine:black_sand",
-    "rankine:white_sand",
-    "rankine:silt"
+    "rankine:white_sand"
   ]
 }

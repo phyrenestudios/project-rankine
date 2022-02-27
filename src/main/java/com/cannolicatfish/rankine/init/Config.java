@@ -461,7 +461,7 @@ public class Config {
                             .define("disableWater",true);
                     LIGHTNING_CONVERSION = b.comment("Lightning strikes creating fulgurite and glasses")
                             .define("enableLightningConversion",true);
-                    FUEL_VALUES_LIST = b.comment("List of blocks and their respective burn time. Works with tags. NOT IMPLEMENTED YET")
+                    FUEL_VALUES_LIST = b.comment("List of blocks and their respective burn time. Works with tags.")
                             .defineList("fuelValues", Arrays.asList("#forge:rods/wooden|50","#minecraft:saplings|100","#minecraft:wooden_doors|200","#minecraft:wooden_trapdoors|300","#minecraft:wooden_fence_gates|400","#minecraft:wooden_fences|150","#minecraft:wooden_pressure_plates|200","#minecraft:wooden_stairs|75","#minecraft:wooden_slabs|50","#minecraft:wooden_buttons|100","#minecraft:planks|100","#minecraft:oak_logs|520","#minecraft:acacia_logs|500","#minecraft:birch_logs|450","#minecraft:spruce_logs|410","#minecraft:jungle_logs|450","#minecraft:dark_oak_logs|520","#rankine:magnolia_logs|450","#rankine:balsam_fir_logs|390","#rankine:eastern_hemlock_logs|440","#rankine:juniper_logs|480","#rankine:black_birch_logs|470","#rankine:yellow_birch_logs|490","#rankine:pinyon_pine_logs|520","#rankine:maple_logs|500","#rankine:cedar_logs|410","#rankine:black_walnut_logs|470","#rankine:cedar_logs|410","#rankine:coconut_palm_logs|450","#rankine:sharinga_logs|450","#rankine:cork_oak_logs|480","#rankine:erythrina_logs|550","#rankine:cinnamon_logs|500","#rankine:charred_logs|400","#rankine:petrified_chorus_logs|450","minecraft:charcoal|800"), o -> o instanceof String);
                     FIRE_EXTINGUISHER_RANGE = b.comment("The range of the fire extinguisher.")
                             .defineInRange("fireExtinguisherRange", 16, 0, 64);
@@ -680,7 +680,7 @@ public class Config {
                 CHARCOAL_PIT_RADIUS = b.comment("Maximum radius the charcoal pit can convert logs.")
                         .defineInRange("charcoalPitRadius", 7, 3, 15);
                 CHARCOAL_PIT_SPEED = b.comment("The number of ticks it takes the Charcoal Pit to process. There is some randomization.")
-                        .defineInRange("charcoalPitSpeed", 2400, 1, Integer.MAX_VALUE);
+                        .defineInRange("charcoalPitSpeed", 3600, 1, Integer.MAX_VALUE);
                 CHARCOAL_PIT_HEIGHT = b.comment("Maximum height a charcoal pile can be")
                         .defineInRange("charcoalPitHeight", 5, 1, 10);
                 EVAPORATION_TOWER_RANGE = b.comment("Maximum height of the evaporation tower. Height affects yields. Set to 0 to disable functionality.")
@@ -798,9 +798,9 @@ public class Config {
 
             SOIL_NOISE_SCALE = b.comment("This determines how mixed the two types of soil are per biome. Larger numbers mean larger patches.")
                     .defineInRange("soilNoiseScale", 60, 1, Integer.MAX_VALUE);
-            SECRET_GEN = b.comment("Figure it out")
-                    .define("secretGen",true);
-            REPLACE_VANILLA_ORES = b.comment("If enabled, replaces vanilla ores with the Rankine counterparts which will mimic stones around them.")
+            SECRET_GEN = b.comment("Generate antimatter in the End.")
+                    .define("antimatterGen",true);
+            REPLACE_VANILLA_ORES = b.comment("If enabled, replaces vanilla ores with the Rankine counterparts which will mimic stones around them. NOT IMPLEMENTED")
                     .define("replaceVanillaOres",false);
             DISABLE_VANILLA_FEATURES = b.comment("Disable vanilla features in the overworld. Works by replacing the listed blocks in #rankine:vanilla_override with stones")
                     .define("disableVanillaOres",true);
@@ -833,7 +833,7 @@ public class Config {
             METEORITE_SIZE = b.comment("Size parameter for meteorites. Higher number is bigger.")
                     .defineInRange("meteoriteSize", 1, 0, 5);
             METEORITE_CHANCE = b.comment("The chance a meteroite will spawn in the Overworld. Higher numbers increase rarity.")
-                    .defineInRange("meteoriteChance", 50, 0, Integer.MAX_VALUE);
+                    .defineInRange("meteoriteChance", 70, 0, Integer.MAX_VALUE);
             SOUL_SANDSTONE_LAYER_THICKNESS = b.comment("The number of blocks that Soul Sandstone will generate up or down from Soul Sand.")
                     .defineInRange("soulSandstoneLayerThickness", 3, 0, Integer.MAX_VALUE);
             BIG_METEORITE_CHANCE = b.comment("The chance a meteroite will be big.")
@@ -933,14 +933,6 @@ public class Config {
                     Arrays.asList(),
                     Arrays.asList(),
                     "rankine:dark_gravel",
-                    "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.Category.THEEND.getName(),
-                    Arrays.asList(),
-                    Arrays.asList(),
-                    Arrays.asList(),
-                    Arrays.asList(),
-                    "minecraft:air",
                     "minecraft:air",
                     "minecraft:air"));
             biomeSettings.add(Arrays.asList(Biome.Category.NONE.getName(),

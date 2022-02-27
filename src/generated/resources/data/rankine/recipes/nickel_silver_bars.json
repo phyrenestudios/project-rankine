@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine:bars",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:nickel_silver_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:nickel_silver_bars",
+    "count": 16
+  }
+}

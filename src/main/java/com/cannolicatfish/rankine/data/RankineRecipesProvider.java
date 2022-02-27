@@ -52,6 +52,8 @@ public class RankineRecipesProvider extends RecipeProvider {
 
 
         //ALTERNATIVE RECIPES
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(RankineItems.SILT.get()), Items.GLASS, 0.1F, 200).addCriterion("has_ingredient", hasItem(RankineBlocks.SILT.get().asItem())).build(consumer, "rankine:glass_from_silt_smelting");
+
         ShapedRecipeBuilder.shapedRecipe(Blocks.TORCH, 3).patternLine("C").patternLine("S").key('C', RankineItems.LIGNITE.get()).key('S', Tags.Items.RODS_WOODEN).addCriterion("has_ingredient", hasItem(RankineItems.LIGNITE.get())).setGroup("torch").build(consumer, "rankine:torch_from_lignite");
         ShapedRecipeBuilder.shapedRecipe(Blocks.TORCH, 4).patternLine("C").patternLine("S").key('C', RankineItems.SUBBITUMINOUS_COAL.get()).key('S', Tags.Items.RODS_WOODEN).addCriterion("has_ingredient", hasItem(RankineItems.SUBBITUMINOUS_COAL.get())).setGroup("torch").build(consumer, "rankine:torch_from_subbituminous_coal");
         ShapedRecipeBuilder.shapedRecipe(Blocks.TORCH, 6).patternLine("C").patternLine("S").key('C', RankineItems.BITUMINOUS_COAL.get()).key('S', Tags.Items.RODS_WOODEN).addCriterion("has_ingredient", hasItem(RankineItems.BITUMINOUS_COAL.get())).setGroup("torch").build(consumer, "rankine:torch_from_bituminous_coal");
@@ -823,11 +825,17 @@ public class RankineRecipesProvider extends RecipeProvider {
                 OneToXAlloy(consumer, NUGGET, INGOT, 9, "has_ingredient", INGOT);
             }
         }
-        for (Block ALLOY_PEDESTAL : RankineLists.ALLOY_PEDESTALS) {
-            Item ALLOY = RankineLists.ALLOY_INGOTS.get(RankineLists.ALLOY_PEDESTALS.indexOf(ALLOY_PEDESTAL));
-            if (!ALLOY.equals(RankineItems.SOLDER.get())) {
-                pedestal(consumer, ALLOY_PEDESTAL.asItem(), "pedestal", ALLOY, "has_ingredient", ALLOY);
-            }
+        for (Block BLK : RankineLists.ALLOY_PEDESTALS) {
+            Item ALLOY = RankineLists.ALLOY_INGOTS.get(RankineLists.ALLOY_PEDESTALS.indexOf(BLK));
+            pedestal(consumer, BLK.asItem(), "rankine:pedestals", ALLOY, "has_ingredient", ALLOY);
+        }
+        for (Block BLK : RankineLists.ALLOY_POLES) {
+            Item ALLOY = RankineLists.ALLOY_INGOTS.get(RankineLists.ALLOY_POLES.indexOf(BLK));
+            pole(consumer, BLK.asItem(), "rankine:poles", ALLOY, "has_ingredient", ALLOY);
+        }
+        for (Block BLK : RankineLists.ALLOY_BARS) {
+            Item ALLOY = RankineLists.ALLOY_INGOTS.get(RankineLists.ALLOY_BARS.indexOf(BLK));
+            bars(consumer, BLK.asItem(), "rankine:bars", ALLOY, "has_ingredient", ALLOY);
         }
 
         door(consumer, RankineItems.BRASS_DOOR.get(), RankineItems.BRASS_INGOT.get(), "metal_door", "has_ingredient", RankineItems.BRASS_INGOT.get());
@@ -1151,6 +1159,25 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .patternLine(" # ")
                 .key('#', input)
                 .key('P', RankineTags.Items.STONE_PRESSURE_PLATES)
+                .setGroup(group)
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer);
+    }
+    private void bars(Consumer<IFinishedRecipe> consumer, Item output, String group, Item input, String triggerName, Item trigger) {
+        ShapedRecipeBuilder.shapedRecipe(output,16)
+                .patternLine("###")
+                .patternLine("###")
+                .key('#', input)
+                .setGroup(group)
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer);
+    }
+    private void pole(Consumer<IFinishedRecipe> consumer, Item output, String group, Item input, String triggerName, Item trigger) {
+        ShapedRecipeBuilder.shapedRecipe(output,8)
+                .patternLine("#")
+                .patternLine("#")
+                .patternLine("#")
+                .key('#', input)
                 .setGroup(group)
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer);

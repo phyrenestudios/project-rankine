@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine:poles",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:brass_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:brass_pole",
+    "count": 8
+  }
+}

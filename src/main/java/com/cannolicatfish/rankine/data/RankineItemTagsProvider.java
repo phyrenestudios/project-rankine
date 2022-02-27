@@ -828,6 +828,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
         copy(RankineTags.Blocks.HARDENED_GLASS, RankineTags.Items.HARDENED_GLASS);
         copy(RankineTags.Blocks.CLAY, RankineTags.Items.CLAY);
+        copy(RankineTags.Blocks.SILT, RankineTags.Items.SILT);
         copy(RankineTags.Blocks.BOOKSHELVES, Tags.Items.BOOKSHELVES);
         copy(RankineTags.Blocks.CONSTRUCTION_SAND, RankineTags.Items.CONSTRUCTION_SAND);
         copy(RankineTags.Blocks.GRASS_BLOCKS, RankineTags.Items.GRASS_BLOCKS);

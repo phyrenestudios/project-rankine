@@ -84,6 +84,7 @@ public final class RankineTags {
         //FORGE
         public static final Tags.IOptionalNamedTag<Block> BOOKSHELVES = forgeBlock("bookshelves");
         public static final Tags.IOptionalNamedTag<Block> CLAY = forgeBlock("clay");
+        public static final Tags.IOptionalNamedTag<Block> SILT = forgeBlock("silt");
         public static final Tags.IOptionalNamedTag<Block> FARMLAND = forgeBlock("farmland");
         public static final Tags.IOptionalNamedTag<Block> GRASS_BLOCKS = forgeBlock("grass_blocks");
         public static final Tags.IOptionalNamedTag<Block> GRASS = forgeBlock("grass");
@@ -1073,6 +1074,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> RODS_CARBON = forgeItem("rods/carbon");
 
         public static final Tags.IOptionalNamedTag<Item> CLAY = forgeItem("clay");
+        public static final Tags.IOptionalNamedTag<Item> SILT = forgeItem("silt");
         public static final Tags.IOptionalNamedTag<Item> ICE = forgeItem("ice");
         public static final Tags.IOptionalNamedTag<Item> DIRT = forgeItem("dirt");
         public static final Tags.IOptionalNamedTag<Item> CAMPFIRES = forgeItem("campfires");
