@@ -419,6 +419,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.PROSPECTING_STICK.get(),
             RankineItems.DOWSING_ROD.get(),
             RankineItems.PACKAGED_TOOL.get(),
+            RankineItems.PACKAGED_ARMOR.get(),
             RankineItems.SIMPLE_MAGNET.get(),
             RankineItems.ALNICO_MAGNET.get(),
             RankineItems.RARE_EARTH_MAGNET.get(),
@@ -513,6 +514,7 @@ public class RankineLangProvider extends LanguageProvider {
 
 
         //Alloy Lang
+        add("rankine.alloys","Alloys");
         add("item.rankine.custom_alloy_default","Alloy");
         add("item.rankine.alnico_alloying", "Alnico");
         add("item.rankine.aluminum_bronze_alloying", "Aluminum Bronze");
@@ -998,7 +1000,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.challenges.alloy_collector.title", "Worldmoulder");
         add("rankine.advancements.challenges.alloy_collector.description", "Create all of the different types of alloys");
         add("rankine.advancements.challenges.bronze_harvest.title", "Skipping Stones");
-        add("rankine.advancements.challenges.bronze_harvest.description", "Make a Bronze Pickaxe with a Harvest Level of 2 (or Invar equivalent)");
+        add("rankine.advancements.challenges.bronze_harvest.description", "Make a Bronze Pickaxe with a Harvest Level of 3 (or Steel equivalent)");
         add("rankine.advancements.challenges.pewter_enchant.title", "Hidden Power");
         add("rankine.advancements.challenges.pewter_enchant.description", "Make a Pewter Tool with an Enchantability greater than or equal to 14");
         add("rankine.advancements.challenges.colored_gold_netherite.title", "Gold Standard");

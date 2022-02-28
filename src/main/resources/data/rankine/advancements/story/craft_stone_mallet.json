@@ -2,7 +2,7 @@
   "parent": "rankine:story/get_cobblestone",
   "display": {
     "icon": {
-      "item": "rankine:stone_mallet"
+      "item": "rankine:stone_hammer"
     },
     "title": {
       "translate": "rankine.advancements.story.craft_stone_mallet.title"

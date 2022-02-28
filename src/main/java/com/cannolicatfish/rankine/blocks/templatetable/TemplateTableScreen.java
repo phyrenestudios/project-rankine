@@ -104,11 +104,11 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
             }
 
             AlloyingRecipe alloy = alloyRecipes.get(k);
-            if (alloy.cannotMake(this.playerInventory,this.container.getWorld())) {
+            /*if (alloy.cannotMake(this.playerInventory,this.container.getWorld())) {
                 this.minecraft.getTextureManager().bindTexture(GUI);
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
                 blit(matrixStack, this.guiLeft + 215, this.guiTop + 61, this.getBlitOffset(), 311.0F, 0.0F, 28, 21, 256, 512);
-            }
+            }*/
         }
     }
 
@@ -169,9 +169,9 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
                 this.func_238839_a_(matrixStack, i, j, alloy1);
             }*/
 
-            if (alloy1.cannotMake(this.playerInventory,this.container.getWorld()) && this.isPointInRegion(215, 61, 22, 21, (double)mouseX, (double)mouseY)) {
+            /*if (alloy1.cannotMake(this.playerInventory,this.container.getWorld()) && this.isPointInRegion(215, 61, 22, 21, (double)mouseX, (double)mouseY)) {
                 this.renderTooltip(matrixStack, field_243353_D, mouseX, mouseY);
-            }
+            }*/
 
             for(AlloyButton alloyButton : this.field_214138_m) {
                 if (alloyButton.isHovered()) {

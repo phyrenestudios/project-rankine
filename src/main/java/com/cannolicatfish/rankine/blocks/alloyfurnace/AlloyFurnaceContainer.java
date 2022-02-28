@@ -87,7 +87,7 @@ public class AlloyFurnaceContainer extends Container {
                     }
                 }
             }
-            return new AbstractMap.SimpleEntry<>(new String[]{"Template: " + new TranslationTextComponent(AlloyTemplateItem.getResult(this.playerEntity.world, template).getItem().getTranslationKey()).getString(),
+            return new AbstractMap.SimpleEntry<>(new String[]{template.getItem().getDisplayName(template).getString(),
                     AlloyTemplateItem.getAlloyComp(template)},
                     correctInputs ? 0x55FF55 : 0xFF5555);
         }
