@@ -128,6 +128,13 @@ public class ElementRecipe implements IRecipe<IInventory> {
         return list;
     }
 
+    public String getIngredientFromCount(int count) {
+        if (getValues().contains(count)) {
+            return getItems().get(getValues().indexOf(count));
+        }
+        return "";
+    }
+
     @Override
     public IRecipeType<?> getType() {
         return RankineRecipeTypes.ELEMENT;

@@ -24,15 +24,15 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class PackagedToolItem extends Item {
-    public PackagedToolItem(Properties properties) {
+public class PackagedArmorItem extends Item {
+    public PackagedArmorItem(Properties properties) {
         super(properties);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add((new StringTextComponent("Contains a completely random tool. Results may vary.")).mergeStyle(TextFormatting.RED));
+        tooltip.add((new StringTextComponent("Contains a completely random armor item. Results may vary.")).mergeStyle(TextFormatting.RED));
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
@@ -49,82 +49,41 @@ public class PackagedToolItem extends Item {
 
     public ItemStack genRandomTool(ItemStack stack, World worldIn){
         ItemStack ret;
-        if (stack.hasTag() && !stack.getTag().getString("forceTool").isEmpty()) {
-            String s = stack.getTag().getString("forceTool");
+        if (stack.hasTag() && !stack.getTag().getString("forceArmor").isEmpty()) {
+            String s = stack.getTag().getString("forceArmor");
             switch (s.toUpperCase(Locale.ROOT)) {
-                case "AXE":
-                    ret = new ItemStack(RankineItems.ALLOY_AXE.get());
-                    break;
-                case "SHOVEL":
-                    ret = new ItemStack(RankineItems.ALLOY_SHOVEL.get());
-                    break;
-                case "HAMMER":
-                    ret = new ItemStack(RankineItems.ALLOY_HAMMER.get());
-                    break;
-                case "SWORD":
-                    ret = new ItemStack(RankineItems.ALLOY_SWORD.get());
-                    break;
-                case "SPEAR":
-                    ret = new ItemStack(RankineItems.ALLOY_SPEAR.get());
-                    break;
-                case "PICKAXE":
+                case "HELMET":
                 default:
-                    ret = new ItemStack(RankineItems.ALLOY_PICKAXE.get());
+                    ret = new ItemStack(RankineItems.ALLOY_HELMET.get());
                     break;
-                case "HOE":
-                    ret = new ItemStack(RankineItems.ALLOY_HOE.get());
+                case "CHESTPLATE":
+                    ret = new ItemStack(RankineItems.ALLOY_CHESTPLATE.get());
                     break;
-                case "KNIFE":
-                    ret = new ItemStack(RankineItems.ALLOY_KNIFE.get());
+                case "LEGGINGS":
+                    ret = new ItemStack(RankineItems.ALLOY_LEGGINGS.get());
                     break;
-                case "CROWBAR":
-                    ret = new ItemStack(RankineItems.ALLOY_CROWBAR.get());
+                case "BOOTS":
+                    ret = new ItemStack(RankineItems.ALLOY_BOOTS.get());
                     break;
-                case "BLUNDERBUSS":
-                    ret = new ItemStack(RankineItems.ALLOY_BLUNDERBUSS.get());
-                    break;
-                case "SURF_ROD":
-                    ret = new ItemStack(RankineItems.ALLOY_SURF_ROD.get());
-                    break;
+
             }
         } else {
             Random random = worldIn.getRandom();
 
-            switch(random.nextInt(11))
+            switch(random.nextInt(4))
             {
                 case 0:
-                    ret = new ItemStack(RankineItems.ALLOY_AXE.get());
+                default:
+                    ret = new ItemStack(RankineItems.ALLOY_HELMET.get());
                     break;
                 case 1:
-                    ret = new ItemStack(RankineItems.ALLOY_SHOVEL.get());
+                    ret = new ItemStack(RankineItems.ALLOY_CHESTPLATE.get());
                     break;
                 case 2:
-                    ret = new ItemStack(RankineItems.ALLOY_HAMMER.get());
+                    ret = new ItemStack(RankineItems.ALLOY_LEGGINGS.get());
                     break;
                 case 3:
-                    ret = new ItemStack(RankineItems.ALLOY_SWORD.get());
-                    break;
-                case 4:
-                    ret = new ItemStack(RankineItems.ALLOY_SPEAR.get());
-                    break;
-                case 5:
-                default:
-                    ret = new ItemStack(RankineItems.ALLOY_PICKAXE.get());
-                    break;
-                case 6:
-                    ret = new ItemStack(RankineItems.ALLOY_HOE.get());
-                    break;
-                case 7:
-                    ret = new ItemStack(RankineItems.ALLOY_KNIFE.get());
-                    break;
-                case 8:
-                    ret = new ItemStack(RankineItems.ALLOY_CROWBAR.get());
-                    break;
-                case 9:
-                    ret = new ItemStack(RankineItems.ALLOY_BLUNDERBUSS.get());
-                    break;
-                case 10:
-                    ret = new ItemStack(RankineItems.ALLOY_SURF_ROD.get());
+                    ret = new ItemStack(RankineItems.ALLOY_BOOTS.get());
                     break;
             }
         }
@@ -148,3 +107,4 @@ public class PackagedToolItem extends Item {
         return ret;
     }
 }
+

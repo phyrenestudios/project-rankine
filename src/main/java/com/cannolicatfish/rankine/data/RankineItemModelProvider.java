@@ -254,6 +254,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.ORE_DETECTOR.get());
         basicItem(RankineItems.PROSPECTING_STICK.get());
         basicItem(RankineItems.PACKAGED_TOOL.get());
+        basicItem(RankineItems.PACKAGED_ARMOR.get());
         basicItem(RankineItems.SIMPLE_MAGNET.get());
         basicItem(RankineItems.ALNICO_MAGNET.get());
         basicItem(RankineItems.RARE_EARTH_MAGNET.get());
