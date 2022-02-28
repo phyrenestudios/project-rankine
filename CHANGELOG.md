@@ -2,7 +2,221 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
+## Project Rankine Version 1.3 Changelog [27Feb2022]
+A new world is highly recomended/needed to support new/changed features. This changelog has been simplified to account for 8 months of changes and multiple alpha versions.
+
+### REGISTRY CHANGES
+- Some blocks/items have changed registry names. These should all be remapped to the appropriate new block/item
+
+### BLOCKS
+#### --- Removals ---
+- Removed all variants of Pumice and Scoria
+- Reduced the variants of Skarn and Breccia to just slab, vertical slab, stairs and walls
+- Removed Checkered Dacite and Checkered Porphyry and all variants
+- Removed Columbite Ore, Salt Ore, Pink Salt Ore, Tantalite Ore, Aquamarine Ore, Majorite Ore, Opal Ore, Vanadinite Ore, Native Aluminum Ore, Native Copper Ore, Moissanite Ore
+- Removed Mud (replaced by soil variants)
+- Removed Etched Glasses (replaced with other variants - WIP)
+- Removed Rope Coil (functionality was migrated to rope block)
+- Removed Aluminum Bars, Nickel Bars, and Magnesium Bars (replaced by alloy bars - WIP)
+- Removed Tap Barrel, Fluid Drain, Charred Wood, Laser Quarry, Laser Pylon Top, Laser Pylon Base, High Refractory Beehive Oven, Dacitic Tuff, Bamboo Wall and Banboo Culms Wall
+#### --- Additions ---
+- Added the following as new stones with variants: Rose Marble, Gray Marble, Serpetinite, Marlstone, Norite, Shonkinite, Pyroxenite, Soul Sandstone, Blueschist, Greenschist, Diabase, Eclogite, Honeystone, Whiteschist, Soapstone, Graywacke, Harzburgite, Lherzolite, Wehrlite
+- Added Infested Stone, Column and Cobble variant for Rankine stones
+- Added Clay Loam, Sandy Loam, Silty Loam, Loamy Sand, Sandy Clay Loam, Silty Clay Loam, Sandy Clay, Silty Clay, Loam, Humus as soil blocks
+- Added Graasy, Grass Path, Mycellium, Podzol, Mud, Coarse variants of Rankine soil blocks
+- Added Weeping Willow, Honey Locust, Red Birch, Western Hemlock, Erythrina as tree and wood variants
+- Added Petrified Chorus and Charred wood variants
+- Added Building Mode states to Rankine Stone Bricks, Bricks, Planks
+- Added Leaf Litters for all Rankine and Vanilla leaves
+- Added Hollow Logs for all Rankine and Vanilla Logs
+- Added Sulfur Dioxide Fumarole, Carbon Dioxide Fumarole, Hydrogen Chloride Fumarole, Hydrogen Sulfide Fumarole
+- Added Sulfur Dioxide Gas Block, Carbon Dioxide Gas Block, Hydrogen Chloride Gas Block, Hydrogen Sulfide Gas Block, Hydrogen Fluoride Gas Block, Ammonia Gas Block, and elemental gas blocks
+- Added Rheniite Ore, Coltan Ore, Chalcocite Ore, Hematite Ore and associated mineral and block
+- Added Tilled Soil (farmland block for all soils)
+- Added Goldenrod, Red Lily, Orange Lily, White Lily, Purple Morning Glory, Black Morning Glory, Blue Morning Glory as double block flowers
+- Added White Clover, Red Clover, Crimson Clover, and Yellow Clover as ground flowers
+- Added Green, Brown, Gray, and Black Tektite
+- Added garland blockstate to metal poles
+- Added an Ornament block (acess variants with building tool)
+- Added snowy variants for rankine Leaves
+- Added Cob and Refined Cob
+- Added Snoflake and Blood Obsidian
+- Added slab, stairs, vertical slab, and wall variant for various blocks without a complete set
+- Added Komatiitic Tuff, Kimberlitic Tuff
+- Added Grassy Soil version of each soil (grass blocks with additional functionality)
+- Added Cement, Fire Clay Bricks and Kaolin Bricks with variants
+- Added Light Gravel and Dark Gravel
+- Added Sod Block, White Sand and Silt
+- Added Flood Gate, Metal Pipe, Ground Tap
+- Added Pokeberry Bush
+- Added Short Grass, Stinging Nettle
+- Added Stump block
+- Added Mixing Barrel, a new tile entity used to make products similiar to the Crucible
+- Added Desert Sand
+- Added White Sandstone, Black Sandstone, Desert Sandstone and associated variants
+- Added Iron Sheetmetal and slab variants
+- Added Gas Bottler (bottles gas blocks)
+- Added Gas Vent (moves gas blocks)
+- Added Fulgurite, Lightning Glass, Red Lightning Glass, Soul Lightning Glass, Black Lightning Glass, White Lightning Glass
+- Added Rankine variant of the vanilla ores for texture adapting 
+- Added Bog Iron, Porphyry Copper, Kimberlitic Diamond Ore
+- Added Pedestal variants for Galinstan Alloy and Sodium Potassium Alloy
+- Added Frozen Meteorite and Frozen Meteorite Bricks
+- Added Meteoric Ice (more slippery than blue ice)
+- Added Metal Bars and Pole variants for all alloys
+- Added slab, stairs, vertical slab and wall variants for Fiber Block
+- Added the Fusion Furnace, a new tile entity that uses battery power for chemical reactions involving fluids, gases, and items
+- Added Invar Ladder
+- Added Distillation Tower and Air Distillation Packing
+- Added Borosilicate and CVD Glass
+- 
+#### --- Changes ---
+- Harvest level, hardness and resistance values adjusted for many blocks
+- Ores now drop their ore-related item by default and are affected by the Fortune enchantment (1.17 parity)
+- Added flamability to many blocks
+- Rankine Ore blocks will take the texture of the clicked block when placed
+- Tree Taps will place fluid in the world using a Flood Gate through a line of Tap Lines
+- Charcoal Pit produces Charcoal Blocks instead of Charred Wood
+- Beehive Oven has randomized cook times based off how upgraded the structure is
+- Berry bush lootables adjusted to match Sweet Berries
+
+
+### ITEMS
+#### --- Removals ---
+- Removed Metal Scraper
+- Removed Stone Hammer, Iron Hammer, Diamond Hammer, and Netherite Hammer
+- Removed Iron Spear, Diamond Spear and Netherite Spear
+- Removed Titanium Crowbar and changed Steel Crowbar to an alloy tool
+- Removed Steel Rod, Cast Iron Rod, YAG Rod
+- Removed Dry Mortar
+- Removed Element Transmuters
+
+#### --- Additions ---
+- Added toolsets for Osmiridium, Niobium Alloy, Zirconium Alloy, Ender Amalgam
+- Added Bismanol and Permalloy as alternative recipes to Rose Metal and Invar respectively
+- Added Gas Bottles
+- Added Cement Mix
+- Added Wooden Mallet 
+- Added Wooden Gold Pan and Pewter Gold Pan
+- Added nuggets for alloys
+- Added Alloy Knives to all existing Alloy toolsets
+- Added Alloy Crowbars to all existing Alloy toolsets
+- Added Rope Coil Arrow, which can deploy rope held in the off-hand
+- Minerals: Added bauxite, ringwoodite, wadsleyite, forsterite, mellite, bridgmanite, ferropericlase, apatite, laurite, realgar, gypsum, rutile, chlorite, diopside, azurmalachite, goethite, monazite (Gd), monazite (Y), pyrite, spodumene, cooperite, sanidine, hedenbergite, talc, stishovite, asbestos, serpentine, potash
+- Added Kaolinite
+- Added Pokeberries
+- Added Jams for each of the berries
+- Building Tool: hold in offhand to place vertical planks and bricks
+- Added Lorandite (Thallium ore mineral), Pollucite (Caesium/Rubidium ore mineral), Boron Trioxide, Sodium Fluorosilicate, Iron Chloride, Magnesium Chloride, Hafnia
+- Added Buckets for all added fluids
+- Added Ammonia Gas Bottle
+- Added Bleach
+- Added a Meteoric Iron-type item for natural Osmiridium
+- Added Silver-Zinc Battery
+- Implemented Vanadium Pentoxide, Gwihabaite, Stishovite, and Zirconia 
+- Added Osmiridium Toolset (Pickaxe, Axe, Shovel, Sword, Hoe, Hammer, Knife, Crowbar)
+- Added Americium RTG, Curium RTG, Plutonium RTG, Polonium RTG, and Strontium RTG
+- Added Totem of Enduring, Totem of Hastening, Totem of Levitating, Totem of Promising, Totem of Repulsing, and Totem of Timesaving
+- Added buckets for Gray Mud, Hexaflurosilicic Acid, Carbon Disulfide
+- Added Silicon-Germanium Thermocouple
+- Added Cannonball
+- Added Hematite related items
+- Implemented Building Tool
+- Reduced Jams to a single item
+- Added Rye, Oats, Barley, Millet, Sorghum, Soybean (not implemented yet)
+- Added Rye Seeds, Oat  Seeds, Barley Seeds, Millet Seeds, Sorghum Seeds, Soybean Seeds (not implemented yet)
+- Added Rye Grain, Oat  Grain, Barley Grain, Millet Grain, Sorghum Grain (not implemented yet)
+- Added Tofu and Soy Milk (not implemented yet)
+- Added the Alloy Blunderbuss, a new ranged weapon that uses cannonball-type items as ammo
+- Added the Alloy Surf Rod, a metallic fishing rod that uses different loot tables
+- Added Lithium Hydroxide, Potassium Hydroxide, Rubidium Hydroxide, Cesium Hydroxide, Francium Hydroxide
+- Added Yellowcake
+- Added new cannonball types (Carcass)
+- Added Emergency Flotation Device
+- Added Magnetometer
+- Added Ice Melt
+- Bandages can now heal other entities on right-click
+- Added Garland
+
+### FLUIDS
+- Added Sulfuric Acid
+- Added Hydrobromic Acid
+- Added Aqua Regia
+- Added Red Mud
+- Added Gray Mud
+- Added Hexafluorosilicic Acid
+- Added Carbon Disulfide
+
+### RECIPES
+- Added json recipe support for Elements
+- Added json recipe support for Tree Tapping
+- Added json recipe support for Air Distillation
+- Added json recipe support for Mixing Barrel
+- Added json recipe support for Fusion Furnace
+- Added json recipe support for Stone Generation
+- Overhauled Alloying and Alloy Crafting json recipes
+- Modifications to other json recipe types
+- Overhauled the ingredient requirements for various recipes
+
+### WORLDGEN
+- Major changes in generation with both block pallet and features
+- Smaller and more frequent intrusions
+- Wavier layers
+- Multiple types of ore veins
+
+### ADVANCEMENTS
+- Overhauled advancements
+
+### ENCHANTMENTS
+- Added many new enchantments. Use JEI / Enchantment Descriptions for info. Will be updated in journal and on wiki
+
+### CONFIG
+- Overhauled config file. Some options are still WIP
+- Major changes include merging into a single file and the addition of worldgen settings
+
+### TAGS
+- Added and removed many tags to better suit the needs of the mod. A full tag list and description will be available on the wiki soon
+
+### MISC
+- Journal overhaul, still WIP along with all other documentation
+- Added custom stone generators using a mix of vanilla an custom methods
+- Updated many textures
+- Russian lang (ru_ru) added by liottan
+- Added custom sound events for subtitles (more to come)
+- Updated Forge version to 36.2.20
+- Updated Patchouli version to 1.16.4-53.2
+- Updated JEI version to 1.16.5:7.7.1.150
+- Hammers now deal 1.5x damage to skeletons and golem-type mobs
+- Brass can now be used to make tools
+
+### COMPAT
+- Added Biomes O' Plenty, Biomes You Go, Botania, Immersive Engineering, Mekanism, Quark, Thermal Series, and Tinker's Construct as optional dependencies 
+- Added crushing recipes for Quark stones and cobblestones
+- Added alloying recipes for Thermal Series alloys
+- Added crucible recipes for Thermal Series glass
+- Added alloying recipes for Tinker's Construct alloys
+- Added alloying recipe for Andesite Alloy from Create
+- Added relevant elements for compatibility with certain alloys
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Project Rankine Version 1.3 Alpha Changelog [2021-10-26]
+
 ### Alpha 3 [2021-11-30]
 
 ### BLOCKS
@@ -52,6 +266,12 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - Drink-type food items now use the drink ActionType
 #### --- Removals ---
 - Removed Pendants (replaced by Totems)
+
+### ENCHANTMENTS
+#### ---Additions---
+- Added Accuracy, which decreases the spread of all projectiles fired from the Alloy Blunderbuss
+#### --- Changes ---
+
 
 ### RECIPES
 #### --- Additions ---
