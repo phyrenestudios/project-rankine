@@ -11,7 +11,7 @@
       "item": "#item1",
       "framed": "true",
       "link_recipe": true,
-      "x": 10,
+      "x": 20,
       "y": 15
     },
     {
@@ -19,7 +19,7 @@
       "item": "#item2",
       "framed": "true",
       "link_recipe": true,
-      "x": 30,
+      "x": 40,
       "y": 15
     },
     {
@@ -27,7 +27,7 @@
       "item": "#item3",
       "framed": "true",
       "link_recipe": true,
-      "x": 50,
+      "x": 60,
       "y": 15
     },
     {
@@ -35,7 +35,7 @@
       "item": "#item4",
       "framed": "true",
       "link_recipe": true,
-      "x": 70,
+      "x": 80,
       "y": 15
     },
     {
@@ -43,7 +43,7 @@
       "item": "#item5",
       "framed": "true",
       "link_recipe": true,
-      "x": 20,
+      "x": 30,
       "y": 35
     },
     {
@@ -51,7 +51,7 @@
       "item": "#item6",
       "framed": "true",
       "link_recipe": true,
-      "x": 40,
+      "x": 50,
       "y": 35
     },
     {
@@ -59,7 +59,7 @@
       "item": "#item7",
       "framed": "true",
       "link_recipe": true,
-      "x": 60,
+      "x": 70,
       "y": 35
     },
     {

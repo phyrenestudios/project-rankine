@@ -1,0 +1,19 @@
+{
+  "name": "rankine.journal.cat_materials.mixing_barrel.name",
+  "icon": "rankine:mixing_barrel",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_materials.mixing_barrel.text1"
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_materials.mixing_barrel.text2"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:mixing_barrel"
+    }
+  ]
+}

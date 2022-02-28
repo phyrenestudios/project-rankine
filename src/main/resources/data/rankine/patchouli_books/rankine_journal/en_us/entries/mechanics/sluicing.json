@@ -8,17 +8,12 @@
       "text": "rankine.journal.cat_mechanics.sluicing.text1"
     },
     {
-      "type": "text",
-      "text": "rankine.journal.cat_mechanics.sluicing.text2"
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:wooden_gold_pan",
-      "text": "rankine.journal.cat_mechanics.sluicing.text3"
-    },
-    {
-      "type": "text",
-      "text": "rankine.journal.cat_mechanics.sluicing.text4"
+      "type": "rankine:item3",
+      "heading": "rankine.journal.cat_mechanics.sluicing.text2",
+      "text": "rankine.journal.cat_mechanics.sluicing.text3",
+      "item1": "rankine:wooden_gold_pan",
+      "item2": "rankine:pewter_gold_pan",
+      "item3": "rankine:steel_gold_pan"
     }
   ]
 }

@@ -40,7 +40,7 @@
     {
       "type": "entity",
       "entity": "minecraft:villager{VillagerData:{profession:'rankine:rock_collector'}}",
-      "name": "Rod Collector",
+      "name": "Rock Collector",
       "text": "POI: Sediment Fan"
     }
   ]

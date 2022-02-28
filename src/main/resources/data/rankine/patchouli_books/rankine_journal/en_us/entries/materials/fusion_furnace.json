@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_materials.fusion_furnace.name",
   "icon": "rankine:fusion_furnace",
-  "category": "mechanics",
+  "category": "materials",
   "pages": [
     {
       "type": "text",
@@ -21,8 +21,8 @@
       "item2": "rankine:magnesium_battery",
       "item3": "rankine:lead_acid_battery",
       "item4": "rankine:vanadium_redox_battery",
-      "item5": "rankine:zinc_bromide_battery",
-      "item6": "rankine:sodium_sulfide_battery",
+      "item5": "rankine:zinc_bromine_battery",
+      "item6": "rankine:sodium_sulfur_battery",
       "item7": "rankine:lithium_ion_battery"
     },
     {

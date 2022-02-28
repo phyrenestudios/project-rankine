@@ -45,27 +45,13 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:crushing_head0"
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:crushing_head1"
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:crushing_head2"
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:crushing_head3"
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:crushing_head4"
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:crushing_head5"
+      "header": "Crushing Heads",
+      "item1": "rankine:crushing_head_h0",
+      "item2": "rankine:crushing_head_h1",
+      "item3": "rankine:crushing_head_h2",
+      "item4": "rankine:crushing_head_h3",
+      "item5": "rankine:crushing_head_h4",
+      "item6": "rankine:crushing_head_h5"
     }
   ]
 }

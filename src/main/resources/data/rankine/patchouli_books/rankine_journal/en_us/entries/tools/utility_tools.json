@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Too occupied to press F3? Or maybe it's disabled? Well, don't worry, various utility tools have been added to display information. Tools will display on the status bar while in your main hand or off hand. Default is head position, sneak for position at feet."
+      "text": "Various utility tools have been added to display information. Tools will display on the status bar while in your main hand or off hand. Default is head position, sneak for position at feet."
     },
     {
       "type": "crafting",

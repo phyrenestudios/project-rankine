@@ -123,6 +123,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Item item : Stream.of(RankineLists.WOODEN_BOATS,RankineLists.ELEMENT_INGOTS,RankineLists.ELEMENT_NUGGETS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(item);
         }
+        basicItem(RankineItems.SOLDER.get());
         basicItem(RankineItems.LEATHER_CANTEEN.get());
         basicItem(RankineItems.STAINLESS_STEEL_CANTEEN.get());
         basicItem(RankineItems.BLACK_WALNUT.get());

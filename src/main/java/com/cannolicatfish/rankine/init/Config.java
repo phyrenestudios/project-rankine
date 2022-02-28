@@ -424,6 +424,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue CHEESE_AGE_CHANCE;
         public final ForgeConfigSpec.DoubleValue ICE_BREAK;
         public final ForgeConfigSpec.DoubleValue GEODE_CHANCE;
+        public final ForgeConfigSpec.DoubleValue FUMAROLE_DEPOSIT_RATE;
         public final ForgeConfigSpec.IntValue HERBICIDE_RANGE;
         public final ForgeConfigSpec.IntValue ICEMELT_RANGE;
         public final ForgeConfigSpec.IntValue TRAMPOLINE_SIZE;
@@ -485,6 +486,8 @@ public class Config {
                             .define("sluicingCooldown",true);
                     CROWBAR_FROM_ABOVE = b.comment("Allows crowbars to move blocks below where the player is standing.")
                             .define("crowbarFromAbove",true);
+                    FUMAROLE_DEPOSIT_RATE = b.comment("Chance for a fumarole to convert blocks into fumarole deposits.")
+                            .defineInRange("fumaroleDepositChance", 0.1D, 0.00D, 1.00D);
                     FLINT_DROP_CHANCE = b.comment("Chance for a stone block to drop a flint")
                             .defineInRange("flintDropChance", 0.15D, 0.00D, 1.00D);
                     FORAGING_CHANCE = b.comment("Chance for a dirt block to drop a vegetable/seed")

@@ -297,6 +297,7 @@ public class RankineLangProvider extends LanguageProvider {
         add(RankineItems.ALLOY_BLOCK.get(), parseLangNameCustomBlock(RankineItems.ALLOY_BLOCK.get().getRegistryName().getPath()));
 
         for (Item item : Arrays.asList(
+            RankineItems.SOLDER.get(),
             RankineItems.FRUIT_JAM.get(),
             RankineItems.BLACK_WALNUT.get(),
             RankineItems.COCONUT.get(),
@@ -1031,34 +1032,34 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_orientation.intro.text2", "$(o)For more resources see the following pages.");
 
         add("rankine.journal.cat_orientation.foundation1.name", "Foundation I");
-        add("rankine.journal.cat_orientation.foundation1.text1", "Lesson one, not all information can be shared via this journal. Some of it requires discovering it for yourself and utilizing JEI for many recipe related inquiries. The new changes are all about variety. There are more ground blocks, more ores, more processing mechanics, more ways to do stuff. Utilize this variety to bolster creativity or just to have pretty colors. Regardless, let's see some changes.");
+        add("rankine.journal.cat_orientation.foundation1.text1", "Lesson one, not all information can be shared via this journal. Some of it requires discovering it for yourself and utilizing JEI for many recipe related inquiries. The new changes are all about variety. There are more ground blocks, more ores, more processing mechanics, more ways to achieve. Utilize this variety to bolster creativity or just to have pretty colors. Regardless, let's see some changes.");
         add("rankine.journal.cat_orientation.foundation1.text2", "Very Early Game");
-        add("rankine.journal.cat_orientation.foundation1.text3", "The beginning is very similar to normal, unless you aren't allowed to punch wood. In addition to wooden and stone tools, a flint toolset is available to start your journey beyond your fists. While from the beginning you could avoid all Rankine tool content, that seems unlikely and you may wan the basic equipment to keep your journey running smoothly.");
-        add("rankine.journal.cat_orientation.foundation1.text4", "Use a $(tools/standard_tools)flint knife$() to gather plant fiber and wool and use a wooden gold pan to $(l:mechanics/sluicing)sluice$() earthy blocks for useful resources. $(br2)One of the new tool types added is $(l:tools/standard_tools)hammers$(). If you are trying to get cobblestone, that's how. Hammers don't simply convert a block into a less shapely version, they refine blocks by extracting additional materials through $(l:mechanics/crushing)crushing$(). It is an important tool and concept for later requirements, so be sure to always have a hammer ready.");
+        add("rankine.journal.cat_orientation.foundation1.text3", "The beginning is very similar to normal, unless you aren't allowed to punch wood. In addition to wooden and stone tools, a flint toolset is available to start your journey beyond your fists. While from the beginning you could avoid all Rankine tool content, that seems unlikely and you may want the basic equipment to keep your journey running smoothly.");
+        add("rankine.journal.cat_orientation.foundation1.text4", "Use a $(l:tools/standard_tools)flint knife$() to gather plant fiber and wool and use a wooden gold pan to $(l:mechanics/sluicing)sluice$() earthy blocks for useful resources. $(br2)One of the new tool types added is $(l:tools/standard_tools)hammers$(). If you are trying to get cobblestone, that's how. Hammers don't simply convert a block into a less shapely version, they refine blocks by extracting additional materials through $(l:mechanics/crushing)crushing$(). It is an important tool and concept for later requirements, so be sure to always have a hammer ready.");
         add("rankine.journal.cat_orientation.foundation1.text5", "Worldgen");
-        add("rankine.journal.cat_orientation.foundation1.text6", "A few changes that you are sure to notice are the additions to the natural world. A collection of $(l:sediments)soils$() and other sediments replace much of the original surface. Below the surface new $(l:stones)stones$() emerge from the depths of the mantle, creating vast layers across the biomes. A secondary form of stones is intrusions, large pillars of rock extending from bedrock to the surface.");
+        add("rankine.journal.cat_orientation.foundation1.text6", "A few changes that you are sure to notice are the additions to the natural world. A collection of $(l:sediments/soils)soils$() and other sediments replace much of the original surface. Below the surface new $(l:stones)stones$() emerge from the depths of the mantle, creating vast layers across the biomes. A secondary form of stones is intrusions, large pillars of rock extending from bedrock to the surface.");
         add("rankine.journal.cat_orientation.foundation1.text7", "Stones are generally found in one of these categories and contain mineral themselves, but are also home to the more common ore veins. Ores are explored further in the next foundation. Other aspects to note about the world include new biota. Various specimens of $(l:biota/trees)trees$(), $(l:biota/crops)crops$(), $(l:biota/ground_flora)ground plants$(), $(l:biota/mushrooms)mushrooms$() and perhaps some animals can be discovered across the world. Although they aren't tools, they are still key to your survival.");
-        add("rankine.journal.cat_orientation.foundation1.text8", "Even familiar blocks in this new environment have changed. Walking on certain earthen and constructed blocks affect movement speed. Using $(l:tools/equipment)equipment$() can combat these and other environmental forces. FORAGING");
+        add("rankine.journal.cat_orientation.foundation1.text8", "Even familiar blocks in this new environment have changed. Walking on certain earthen and constructed blocks affect movement speed. Using $(l:tools/equipment)equipment$() can combat these and other environmental forces. Another note about the environment is that breaking dirt blocks with an open hand or with crude tools will $(l:mechanics/foraging)forage$() for random items.");
 
 
         add("rankine.journal.cat_orientation.foundation2.name", "Foundation II");
-        add("rankine.journal.cat_orientation.foundation2.text1", "This section details some of the nuances of the underground and how to get started with Rankine technology. Other important mechanics to note at this stage is that there is no $(mechanics/finite_water)infinite water$() at certain heights, fires can be created by using a flint in each hand, and stripping bark off trees can yeild additional resources.");
+        add("rankine.journal.cat_orientation.foundation2.text1", "This section details some of the nuances of the underground and how to get started with Rankine technology. Other important mechanics to note at this stage is that there is no $(l:mechanics/finite_water)infinite water$() at certain heights, fires can be created by using a flint in each hand, and stripping bark off trees can yield additional resources.");
         add("rankine.journal.cat_orientation.foundation2.text2", "Basic Machines");
         add("rankine.journal.cat_orientation.foundation2.text3", "You may be looking to fuel your furnace. Without immediate access to coal substances, a great alternative is charcoal. It is not suggested that you burn planks or logs directly as $(l:mechanics/fuel)fuel values$() have changed. A free fuel option is campfires, which have a few additional non-food related recipes. And to save time long-term, upgrade to blast furnaces (alternative recipe available) as soon as possible, there will be a lot of ore to smelt. ");
         add("rankine.journal.cat_orientation.foundation2.text4", "The two basic machines needed to produce early materials are the Mixing Barrel and the $(l:materials/beehive_oven)beehive oven$(). Learn how to use these well and even automate them as they produce required and niche recipes. If you don't like the more involved method of producing bricks, you can utilize the stone cutter later.");
         add("rankine.journal.cat_orientation.foundation2.text5", "Ultimately one of the most important machines you will make is the alloy furnace. $(l:mechanics/alloying)Alloying$() is a spectrum of simple metal ratios to intricate tool materials. Invest yourself as much as desired into experimenting with the process to produce suitable tools as well as crafting components and building materials.");
         add("rankine.journal.cat_orientation.foundation2.text6", "Oregen");
         add("rankine.journal.cat_orientation.foundation2.text7", "After making a set of stone-like tools, you may be able to skip the long trip to bedrock. Look along exposed surface stones for $(l:mineralogy/native_ores)native ores$(). These are the source of early harvestable metals that will let you make the next tiers of tools. Other forms of ores include a mixed variety of $(l:mineralogy/mineral_ores)mineral ores$() and $(l:mineralogy/gem_ores)gem ores$() which are found across the dimensions.");
-        add("rankine.journal.cat_orientation.foundation2.text8", "Typical vein structure is as large clusters spaced out in the underground or as a dedicated deposit in a stone intrusion. If you need assistance finding ores, consider $(tools/ore_detection)prospecting equipment$().");
+        add("rankine.journal.cat_orientation.foundation2.text8", "Typical vein structure is as large clusters spaced out in the underground or as a dedicated deposit in a stone intrusion. If you need assistance finding ores, consider $(l:tools/ore_detection)prospecting equipment$().");
 
         add("rankine.journal.cat_orientation.foundation3.name", "Foundation III");
         add("rankine.journal.cat_orientation.foundation3.text1", "With alloys, a plethora of new capabilities are available. This section details some of the mid game advancements in technology and constructions.");
         add("rankine.journal.cat_orientation.foundation3.text2", "Progression");
-        add("rankine.journal.cat_orientation.foundation3.text3", "Some common harvest level 2 tools depending on composition are bronze, pewter, invar, and iron. $(mineralogy/meteorites)Meteorites$() Meteorites are a source of native invar and occur across the world surface. $(br2)The standard method of obtaining harvest level 3 tools is by producing steel. This, along with other interesting products, is made in the $(materials/crucible)crucible$().");
-        add("rankine.journal.cat_orientation.foundation3.text4", "Steel allows for the creation of the $(materials/fusion_furnace)fusion furnace$(), a machine capable of reactions and recipes using three states of matter. Available recipes include advanced ore processing, extractions, and chemical conversions.");
+        add("rankine.journal.cat_orientation.foundation3.text3", "Some common harvest level 2 tools depending on composition are bronze, pewter, invar, osmiridium, and iron. $(l:mineralogy/meteorites)Meteorites$() are a source of native invar and occur across the world surface. $(br2)The standard method of obtaining harvest level 3 tools is by producing steel. This, along with other interesting products, is made in the $(l:materials/crucible)crucible$().");
+        add("rankine.journal.cat_orientation.foundation3.text4", "Steel allows for the creation of the $(l:materials/fusion_furnace)fusion furnace$(), a machine capable of reactions and recipes using three states of matter. Available recipes include advanced ore processing, extractions, and chemical conversions.");
         add("rankine.journal.cat_orientation.foundation3.text5", "Other Machines");
-        add("rankine.journal.cat_orientation.foundation3.text6", "Two large scale machines can be constructed to passively produce resources. The $(l:materials/evaporation_tower)evaporation tower$() solidifies materials out of liquids. The smaller structure is an evaporation boiler which is used for more unique fluids that are product from tree tapping. $(materials/tree_tapping)Tree tapping$()) is a process of extracting fluid from trees with more or less minimal damage. Use this combination to make whole new product lines.");
-        add("rankine.journal.cat_orientation.foundation3.text7", "The other large structure is the air distillation tower. An uncommon block in their pure form, $(materials/gasses)gasses$() are useful in fusion furnace reactions and provide effects when breathed in instead of air.  $(br2)One final note is that you can build automated versions of hammers, the $(mechanics/crushing)piston crusher$() and the $(mechanics/crushing)gyratory crusher$().");
+        add("rankine.journal.cat_orientation.foundation3.text6", "Two large scale machines can be constructed to passively produce resources. The $(l:materials/evaporation_tower)evaporation tower$() solidifies materials out of liquids. The smaller structure is an evaporation boiler which is used for more unique fluids that are product from tree tapping. $(l:materials/tree_tapping)Tree tapping$() is a process of extracting fluid from trees with more or less minimal damage. Use this combination to make whole new product lines.");
+        add("rankine.journal.cat_orientation.foundation3.text7", "The other large structure is the air distillation tower. An uncommon block in their pure form, $(l:materials/gasses)gasses$() are useful in fusion furnace reactions and provide effects when breathed in instead of air.  $(br2)One final note is that you can build automated versions of hammers, the $(l:mechanics/crushing)piston crusher$() and the $(l:mechanics/crushing)gyratory crusher$().");
 
 
         //Biota
@@ -1153,21 +1154,26 @@ public class RankineLangProvider extends LanguageProvider {
 
 
         //Materials
-        add("rankine.journal.cat_materials.name", "Elements");
-        add("rankine.journal.cat_materials.desc", "The foundation of the universe");
+        add("rankine.journal.cat_materials.name", "Materials");
+        add("rankine.journal.cat_materials.desc", "Useable materials come from all sorts of places. Some are simply harvested raw from the world, while others require some manufacturing and refinement to obtain.");
+
+        add("rankine.journal.cat_materials.mixing_barrel.name", "Mixing Barrel");
+        add("rankine.journal.cat_materials.mixing_barrel.text1", "The mixing barrel combines together materials and fluid of various composition. Place items in any of the four items slots and their relative compositions will be displayed. Add fluid to the barrel by right clicking with a bucket. When an appropriate recipe is in the barrel, supply redstone pulses to the block to begin spinning. Each recipe has a variable number of spins needed to complete based off the redstone signal strength.");
+        add("rankine.journal.cat_materials.mixing_barrel.text2", "A recipe is defined by ");
+
 
         add("rankine.journal.cat_materials.gasses.name", "Gas Blocks");
-        add("rankine.journal.cat_materials.gasses.text1", "");
-        add("rankine.journal.cat_materials.gasses.text2", "");
-        add("rankine.journal.cat_materials.gasses.text3", "");
-        add("rankine.journal.cat_materials.gasses.text4", "");
-        add("rankine.journal.cat_materials.gasses.text5", "");
+        add("rankine.journal.cat_materials.gasses.text1", "Gas blocks are similar to air in how you can't really interact wth them. When your head is inside a gas block, you become affected by various effects and may potentially suffocate. They rarely occur naturally except for from $(l:mineralogy/fumaroles)fumaroles$().");
+        add("rankine.journal.cat_materials.gasses.text2", "The shulker gas vacuum can store gasses internally by right clicking inside a gas block. Gasses can be placed in a new location in a likewise manner. If glass bottles are present in the offhand, the vacuum will fill the bottles.");
+        add("rankine.journal.cat_materials.gasses.text3", "The gas vent is an orientable block that moves gas blocks from one side to the opposite.");
+        add("rankine.journal.cat_materials.gasses.text4", "The gas bottler intakes gas block from the front side and bottles them using glass bottles from its inventory.");
+        add("rankine.journal.cat_materials.gasses.text5", "The air distillation tower intakes ambient air and separates out the gaseous components. The multiblock is shown on the next page. Pay careful attention to the internal column of the tower as there are air gaps. Gas vents can be substituted in place of sheetmetal to move gas from inside to out.");
 
-        add("rankine.journal.cat_materials.fusion_furnace.name", "Gas Blocks");
-        add("rankine.journal.cat_materials.fusion_furnace.text1", "");
-        add("rankine.journal.cat_materials.fusion_furnace.text2", "");
+        add("rankine.journal.cat_materials.fusion_furnace.name", "Fusion Furnace");
+        add("rankine.journal.cat_materials.fusion_furnace.text1", "The Fusion Furnace utilizes solids, liquids, and gases to make new outputs. Many recipes which involve gases will require Bottled Gases and Empty Bottles. You can acquire Bottled Gases using either the $(l:materials/gasses)Gas Bottler$() or the $(l:materials/gasses)Shulker Gas Vacuum$(). In order for a recipe to go through, you must have the required ingredients, fluid in the input fluid tank, and bottled gas in the slot adjacent to the tank.");
+        add("rankine.journal.cat_materials.fusion_furnace.text2", " This machine does not use coal, and must use electrical energy from items such as Batteries or RTGs.");
         add("rankine.journal.cat_materials.fusion_furnace.batteries_header", "Batteries");
-        add("rankine.journal.cat_materials.fusion_furnace.batteries", "");
+        add("rankine.journal.cat_materials.fusion_furnace.batteries", "Batteries are energy storage devices that fuel late game machines. Currently they are single use.");
         add("rankine.journal.cat_materials.fusion_furnace.rtg_header", "RTGs");
         add("rankine.journal.cat_materials.fusion_furnace.rtg", "RTGs are radioactively powered batteries with a much higher capacity.");
 
@@ -1180,7 +1186,12 @@ public class RankineLangProvider extends LanguageProvider {
 
         //Mechanics
         add("rankine.journal.cat_mechanics.name", "Mechanics");
-        add("rankine.journal.cat_mechanics.desc", "");
+        add("rankine.journal.cat_mechanics.desc", "Gameplay additions / changes.");
+        add("rankine.journal.cat_mechanics.foraging.name", "Foraging");
+        add("rankine.journal.cat_mechanics.foraging.text1", "There is a chance to find a variety of seeds and roots when breaking dirt and related blocks. This will only happen when using an open hand or crude tools. The foraging enchantment for hoes adds additional items that can be dropped.");
+
+
+
         add("rankine.journal.cat_mechanics.finite_water.name", "Finite Water");
         add("rankine.journal.cat_mechanics.finite_water.text1", "A config enabled by default, which makes water slightly less renewable. Infinite water sources can only be created below the local water table height. A mechanical way of bringing water to the surface is described in the latter pages.");
         add("rankine.journal.cat_mechanics.finite_water.text2", "The Dowsing Rod is used to detect the local water height. Right clicking the ground will display a message above the hotbar.");
@@ -1188,10 +1199,9 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mechanics.finite_water.text4", "");
         add("rankine.journal.cat_mechanics.finite_water.text5", "");
         add("rankine.journal.cat_mechanics.sluicing.name", "Sluicing");
-        add("rankine.journal.cat_mechanics.sluicing.text1", "Sluicing is a general term for the act of sifting through material under a stream of water. Components can be separated from parent material in a more manual way too.");
-        add("rankine.journal.cat_mechanics.sluicing.text2", "");
-        add("rankine.journal.cat_mechanics.sluicing.text3", "");
-        add("rankine.journal.cat_mechanics.sluicing.text4", "");
+        add("rankine.journal.cat_mechanics.sluicing.text1", "Sluicing is a general term for the act of sifting through material. Right click a block with the appropriate sluicing tool to receive an item.");
+        add("rankine.journal.cat_mechanics.sluicing.text2", "Gold Pans");
+        add("rankine.journal.cat_mechanics.sluicing.text3", "Other items can be used to perform the sluicing action. The required item is shown in JEI.");
 
         //Mineralogy
         add("rankine.journal.cat_mineralogy.name", "Mineralogy");
@@ -1432,8 +1442,9 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.equipment.text6", "Goggles are worn on the head and provide better vision and movemet speed in water. Combine a helmet of any type with goggles in an anvil to apply the TBD");
         add("rankine.journal.cat_tools.equipment.text7", "A Gas Mask are worn on the head and protects against suffocation in gas blocks. Combine helmet of any type with a gas mask in an anvil to apply the $(l:mechanics/enchantments#gas_protection)Gas Protection$() enchantment.");
 
+        add("rankine.journal.cat_tools.utility_tools.name", "Utility Tools");
 
-        add("rankine.journal.cat_tools.standard_tools.name", "XX Tools");
+        add("rankine.journal.cat_tools.standard_tools.name", "Standard Tools");
         add("rankine.journal.cat_tools.standard_tools.text1", "");
         add("rankine.journal.cat_tools.standard_tools.text2", "Swords");
         add("rankine.journal.cat_tools.standard_tools.text3", "");
