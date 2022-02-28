@@ -2,7 +2,7 @@
   "parent": "rankine:story/rankine",
   "display": {
     "icon": {
-      "item": "rankine:wooden_mallet"
+      "item": "rankine:wooden_hammer"
     },
     "title": {
       "translate": "rankine.advancements.story.craft_wooden_mallet.title"

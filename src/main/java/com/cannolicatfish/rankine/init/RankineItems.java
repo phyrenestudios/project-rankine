@@ -3336,6 +3336,7 @@ public class RankineItems {
     public static final RegistryObject<Item> CRUSHING_HEAD_HL5 = REGISTRY.register("crushing_head_hl5", () -> new CrushingHeadItem(5,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
     public static final RegistryObject<Item> PACKAGED_TOOL = REGISTRY.register("packaged_tool", () -> new PackagedToolItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> PACKAGED_ARMOR = REGISTRY.register("packaged_armor", () -> new PackagedArmorItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> MANTLE_GOLEM = REGISTRY.register("mantle_golem_egg", () -> new SpawnEggItem(RankineEntityTypes.MANTLE_GOLEM,0xB2B16A, 0x7A592E,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> DIAMOND_MANTLE_GOLEM = REGISTRY.register("diamond_mantle_golem_egg", () -> new SpawnEggItem(RankineEntityTypes.DIAMOND_MANTLE_GOLEM, 0x435184,0xA1FBE8,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PERIDOT_MANTLE_GOLEM = REGISTRY.register("peridot_mantle_golem_egg", () -> new SpawnEggItem(RankineEntityTypes.PERIDOT_MANTLE_GOLEM,0xFF423C, 0x6BBE1F,new Item.Properties().group(ProjectRankine.setup.rankineTools)));

@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.items.AlloyTemplateItemOld;
+import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.block.AbstractFurnaceBlock;
@@ -16,6 +16,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -32,9 +33,7 @@ import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.ALLOY_FURNACE_TILE;
 
@@ -161,15 +160,14 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
                         if (recipeMode)
                         {
                             ItemStack template = this.getStackInSlot(7);
-                            output = AlloyTemplateItemOld.getResult(template).copy();
+                            output = AlloyTemplateItem.getResult(world,template).copy();
 
-                            for (ItemStack input : AlloyTemplateItemOld.getInputStacks(template))
+                            for (Map.Entry<Ingredient,Short> input : AlloyTemplateItem.getInputStacks(template).entrySet())
                             {
                                 List<ItemStack> addIt = new ArrayList<>();
-                                Item tempItem = input.getItem();
-                                int count = input.getCount();
+                                int count = input.getValue();
                                 for (int i = 0; i < 6; i++) {
-                                    if (inputs[i].getItem() == tempItem) {
+                                    if (input.getKey().test(inputs[i])) {
                                         addIt.add(inputs[i]);
                                     }
                                 }
@@ -252,23 +250,26 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
 
     private boolean canSmelt(@Nullable AlloyingRecipe recipeIn, IInventory inv)
     {
-        if (recipeIn != null || inv.getStackInSlot(7).getItem() instanceof AlloyTemplateItemOld) {
-            recipeMode = inv.getStackInSlot(7).getItem() instanceof AlloyTemplateItemOld;
+        if (recipeIn != null || inv.getStackInSlot(7).getItem() instanceof AlloyTemplateItem) {
+            recipeMode = inv.getStackInSlot(7).getItem() instanceof AlloyTemplateItem;
             ItemStack template = inv.getStackInSlot(7);
             if (recipeMode) {
-                if ((AlloyTemplateItemOld.getTier(template) & 1) != 1) {
+                if ((AlloyTemplateItem.getAlloyTier(template) & 1) != 1) {
                     return false;
                 }
-                for (ItemStack input : AlloyTemplateItemOld.getInputStacks(template))
+                for (Map.Entry<Ingredient,Short> input : AlloyTemplateItem.getInputStacks(template).entrySet())
                 {
-                    Item tempItem = input.getItem();
-                    int count = input.getCount();
-                    if (inv.count(tempItem) < count) {
+                    int count = input.getValue();
+                    int itemCount = 0;
+                    for (ItemStack stack : input.getKey().getMatchingStacks()) {
+                        itemCount += inv.count(stack.getItem());
+                    }
+                    if (itemCount < count) {
                         return false;
                     }
                 }
             }
-            ItemStack stack = recipeMode ? AlloyTemplateItemOld.getResult(template) : recipeIn.generateResult(world,inv,1);
+            ItemStack stack = recipeMode ? AlloyTemplateItem.getResult(world,template) : recipeIn.generateResult(world,inv,1);
             if (stack.isEmpty()) {
                 return false;
             } else {
@@ -430,7 +431,7 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
             case 6:
                 return AbstractFurnaceTileEntity.isFuel(stack);
             case 7:
-                return stack.getItem() instanceof AlloyTemplateItemOld;
+                return stack.getItem() instanceof AlloyTemplateItem;
             case 8:
                 return true;
             default:

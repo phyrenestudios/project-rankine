@@ -59,14 +59,15 @@ public class TemplateTableContainer extends Container {
         this.worldPosCallable = wpos;
         this.player = player;
         this.world = player.world;
-        this.addSlot(new Slot(inputInventory,0,180,62));
-        this.addSlot(new Slot(inputInventory,1,198,62));
-        this.addSlot(new Slot(inputInventory,2,108,18));
-        this.addSlot(new Slot(inputInventory,3,134,18));
-        this.addSlot(new Slot(inputInventory,4,160,18));
-        this.addSlot(new Slot(inputInventory,5,186,18));
-        this.addSlot(new Slot(inputInventory,6,212,18));
-        this.addSlot(new Slot(inputInventory,7,238,18));
+
+        this.addSlot(new Slot(inputInventory,0,108,18));
+        this.addSlot(new Slot(inputInventory,1,134,18));
+        this.addSlot(new Slot(inputInventory,2,160,18));
+        this.addSlot(new Slot(inputInventory,3,186,18));
+        this.addSlot(new Slot(inputInventory,4,212,18));
+        this.addSlot(new Slot(inputInventory,5,238,18));
+        this.addSlot(new Slot(inputInventory,6,180,62));
+        this.addSlot(new Slot(inputInventory,7,198,62));
         this.addSlot(new Slot(outputInventory,0,248,58) {
             public boolean isItemValid(ItemStack stack) {
                 return false;
