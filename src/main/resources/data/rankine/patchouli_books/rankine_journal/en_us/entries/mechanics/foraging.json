@@ -5,11 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "rankine.journal.cat_mechanics.foraging.name"
-    },
-    {
-      "type": "text",
-      "text": "When digging through dirt and its variants, there is a chance to find potatoes, carrots, and beets. Only the open hand or Flint, Bronze, Pewter, and Colored Gold tools are delicate enough to harves such crops. Any higher tier tool will not forage successfully unless the $(l:mechanics/enchantments#foraging)Foraging$() enchantment is applied."
+      "text": "rankine.journal.cat_mechanics.foraging.text1"
     }
   ]
 }
