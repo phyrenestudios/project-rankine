@@ -366,6 +366,6 @@
   },
   "result": "rankine:ender_amalgam_ingot",
   "mininglevel": 1,
-  "enchantments": ["rankine:endpoint","rankine:endotoxin","rankine:endobiotic"],
-  "enchantmentTypes": ["SPEAR","CROWBAR","ARMOR"]
+  "enchantments": ["rankine:endothermic","rankine:endeavor","rankine:endospore","rankine:endless","rankine:endolithic","rankine:endpoint","rankine:endure","rankine:endgame","rankine:endotoxin","rankine:endobiotic"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"]
 }

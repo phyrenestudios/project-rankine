@@ -148,6 +148,9 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
                     }
                     this.mixTime += getRedstonePower();
                     if (this.mixTime >= this.mixTimeTotal) {
+                        if (!irecipe.getFluid().isEmpty()) {
+                            inputTank.drain(irecipe.getOutputFluidReq(this), IFluidHandler.FluidAction.EXECUTE);
+                        }
                         ItemStack smelting = irecipe.getMixingResult(this,world);
                         if (this.items.get(4).getCount() > 0) {
                             this.items.get(4).grow(smelting.getCount());
@@ -155,9 +158,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
                             this.items.set(4, smelting);
                         }
 
-                        if (!irecipe.getFluid().isEmpty()) {
-                            inputTank.drain(irecipe.getOutputFluidReq(this), IFluidHandler.FluidAction.EXECUTE);
-                        }
+
                         this.mixTime = 0;
                         inputs[0].setCount(0);
                         inputs[1].setCount(0);

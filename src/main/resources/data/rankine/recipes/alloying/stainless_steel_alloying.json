@@ -127,7 +127,8 @@
     "max": 0.02
   },
   "result": "rankine:stainless_steel_ingot",
-  "durability": 560,
+  "durability": 600,
+  "corrosionresist": 0.75,
   "enchantments": ["rankine:cleanse","minecraft:projectile_protection"],
   "enchantmentTypes": ["SWORD","ARMOR"]
 }

@@ -240,6 +240,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.SADDLE_TREE.get());
         basicItem(RankineItems.CANNONBALL.get());
         basicItem(RankineItems.CARCASS.get());
+        basicItem(RankineItems.ENDERBALL.get());
         basicItem(RankineItems.PUMICE_SOAP.get());
         basicItem(RankineItems.REFRACTORY_BRICK.get());
         basicItem(RankineItems.HIGH_REFRACTORY_BRICK.get());

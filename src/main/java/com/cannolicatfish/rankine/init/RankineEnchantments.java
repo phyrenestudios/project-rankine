@@ -61,6 +61,30 @@ public class RankineEnchantments {
     @ObjectHolder("rankine:endpoint")
     public static Enchantment ENDPOINT;
 
+    @ObjectHolder("rankine:endospore")
+    public static Enchantment ENDOSPORE;
+
+    @ObjectHolder("rankine:endure")
+    public static Enchantment ENDURE;
+
+    @ObjectHolder("rankine:endgame")
+    public static Enchantment ENDGAME;
+
+    @ObjectHolder("rankine:endolithic")
+    public static Enchantment ENDOLITHIC;
+
+    @ObjectHolder("rankine:endless")
+    public static Enchantment ENDLESS;
+
+    @ObjectHolder("rankine:endeavor")
+    public static Enchantment ENDEAVOR;
+
+    @ObjectHolder("rankine:endothermic")
+    public static Enchantment ENDOTHERMIC;
+
+    @ObjectHolder("rankine:endplay")
+    public static Enchantment ENDPLAY;
+
     @ObjectHolder("rankine:backstab")
     public static Enchantment BACKSTAB;
 
@@ -78,9 +102,6 @@ public class RankineEnchantments {
 
     @ObjectHolder("rankine:retreat")
     public static Enchantment RETREAT;
-
-    @ObjectHolder("rankine:ghast_regeneration")
-    public static Enchantment GHAST_REGENERATION;
 
     @ObjectHolder("rankine:withering_curse")
     public static Enchantment WITHERING_CURSE;

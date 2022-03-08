@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
+import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -73,7 +74,7 @@ public class MaterialTestingTableContainer extends Container {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
             if (!(index < 14)) {
-                if (PeriodicTableUtils.getInstance().hasElement(stack.getItem()) || stack.getItem() instanceof IAlloyItem) {
+                if (AlloyCustomHelper.hasElement(stack.getItem()) || stack.getItem() instanceof IAlloyItem) {
                     if (!this.mergeItemStack(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
