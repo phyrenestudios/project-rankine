@@ -406,6 +406,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.SADDLE_TREE.get(),
             RankineItems.CANNONBALL.get(),
             RankineItems.CARCASS.get(),
+            RankineItems.ENDERBALL.get(),
             RankineItems.PENNING_TRAP.get(),
             RankineItems.PUMICE_SOAP.get(),
             RankineItems.REFRACTORY_BRICK.get(),
@@ -514,8 +515,8 @@ public class RankineLangProvider extends LanguageProvider {
 
 
 
-
-
+        add("item.rankine.packaged_tool_desc","Contains a completely random tool. Results may vary.");
+        add("item.rankine.packaged_armor_desc","Contains a completely random armor item. Results may vary.");
         //Alloy Lang
         add("rankine.alloys","Alloys");
         add("item.rankine.custom_alloy_default","Alloy");
@@ -533,6 +534,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.rankine.cobalt_superalloy_alloying", "Cobalt Superalloy");
         add("item.rankine.crucible_steel_alloying", "Crucible Steel");
         add("item.rankine.cupronickel_alloying", "Cupronickel");
+        add("item.rankine.damascus_steel_alloying", "Damascus Steel");
         add("item.rankine.duralumin_alloying", "Duralumin");
         add("item.rankine.ender_amalgam_alloying", "Ender Amalgam");
         add("item.rankine.ferrocerium_alloying", "Ferrocerium");
@@ -669,6 +671,22 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.endpoint.desc", "Teleports the user to where the spear lands. Levels reduce the amount of damage taken.");
         add("enchantment.rankine.endobiotic", "Endobiotic");
         add("enchantment.rankine.endobiotic.desc", "Teleports the user when about to be hit by a projectile and negates damage. Uses extra durability.");
+        add("enchantment.rankine.endospore", "Endospore");
+        add("enchantment.rankine.endospore.desc", "On right-click harvesting a crop, has a chance of making a mature crop on a nearby empty farmland block. Chance influenced by luck.");
+        add("enchantment.rankine.endure", "Endure");
+        add("enchantment.rankine.endure.desc", "Nearby End Crystals heal the user.");
+        add("enchantment.rankine.endgame", "Endgame");
+        add("enchantment.rankine.endgame.desc", "On parry, teleport away. Has a small chance on generating an ender pearl on successful projectile parry, but consumes 5 levels of experience.");
+        add("enchantment.rankine.endolithic", "Endolithic");
+        add("enchantment.rankine.endolithic.desc", "On right-click, teleports you to the nearest empty space in the direction of the block you are facing. Will not teleport if there is no solid ground.");
+        add("enchantment.rankine.endless", "Endless");
+        add("enchantment.rankine.endless.desc", "Mined blocks go directly into your ender chest inventory (if space is available).");
+        add("enchantment.rankine.endeavor", "Endeavor");
+        add("enchantment.rankine.endeavor.desc", "Further increases the damage dealt to elemental enemies. Has a chance to cause them to drop items on hit.");
+        add("enchantment.rankine.endothermic", "Endothermic");
+        add("enchantment.rankine.endothermic.desc", "Harvested logs turn directly into charcoal.");
+        add("enchantment.rankine.endplay", "Endplay");
+        add("enchantment.rankine.endplay.desc", "Regular cannonballs are converted into Enderballs, which has a higher projectile speed and can spawn endermites that attack nearby mobs.");
         add("enchantment.rankine.withering_curse", "Curse of Withering");
         add("enchantment.rankine.withering_curse.desc", "Taking damage (that isn't wither or magic related) causes you to receive the Wither effect for a short duration.");
         add("enchantment.rankine.ghast_regeneration", "Ghastly Regeneration");
@@ -678,17 +696,17 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.retrieval", "Retrieval");
         add("enchantment.rankine.retrieval.desc", "Can harvest any block provided its harvest level matches or is less than the crowbar's harvest level. Cannot harvest blocks in #rankine,crowbar_resistant.");
         add("enchantment.rankine.fulcrum", "Fulcrum");
-        add("enchantment.rankine.fulcrum.desc", "When hitting a block that cannot be harvested); accelerate your current motion.");
+        add("enchantment.rankine.fulcrum.desc", "When hitting a block that cannot be harvested, accelerate your current motion.");
         add("enchantment.rankine.leverage", "Leverage");
         add("enchantment.rankine.leverage.desc", "Deal increased damage to entities based on their size.");
         add("enchantment.rankine.lift", "Lift");
-        add("enchantment.rankine.lift.desc", "When right-clicking a block in the air); bring yourself to the top of the block if there is no obstruction.");
+        add("enchantment.rankine.lift.desc", "When right-clicking a block in the air, bring yourself to the top of the block if there is no obstruction.");
         add("enchantment.rankine.preparation", "Preparation");
         add("enchantment.rankine.preparation.desc", "Increases parry time.");
         add("enchantment.rankine.retaliate", "Retaliate");
-        add("enchantment.rankine.retaliate.desc", "On successful parry); deal the damage you would have taken back to the enemy.");
+        add("enchantment.rankine.retaliate.desc", "On successful parry, deal the damage you would have taken back to the enemy.");
         add("enchantment.rankine.retreat", "Retreat");
-        add("enchantment.rankine.retreat.desc", "On successful parry); turn invisible for a brief amount of time.");
+        add("enchantment.rankine.retreat.desc", "On successful parry, turn invisible for a brief amount of time.");
         add("enchantment.rankine.backstab", "Backstab");
         add("enchantment.rankine.backstab.desc", "Deals a multiplier of your damage when hitting an enemy on their back.");
         add("enchantment.rankine.poison_aspect", "Poison Aspect");

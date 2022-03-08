@@ -63,6 +63,15 @@ public class RankineEnchantmentTypes {
     public static EnchantmentType ENDER_AMALGAM_SPEAR = EnchantmentType.create("ender_spear", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_SPEAR.get(); });
 
+    public static EnchantmentType ENDER_AMALGAM_AXE = EnchantmentType.create("ender_axe", (itemIn) -> {
+        return itemIn == RankineItems.ENDER_AMALGAM_AXE.get(); });
+
+    public static EnchantmentType ENDER_AMALGAM_PICKAXE = EnchantmentType.create("ender_pickaxe", (itemIn) -> {
+        return itemIn == RankineItems.ENDER_AMALGAM_PICKAXE.get(); });
+
+    public static EnchantmentType ENDER_AMALGAM_BLUNDERBUSS = EnchantmentType.create("ender_blunderbuss", (itemIn) -> {
+        return itemIn == RankineItems.ENDER_AMALGAM_BLUNDERBUSS.get(); });
+
     public static EnchantmentType ENDER_AMALGAM_ARMOR = EnchantmentType.create("ender_armor", (itemIn) -> {
         return itemIn instanceof AlloyArmorItem; });
 }

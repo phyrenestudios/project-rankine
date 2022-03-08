@@ -141,7 +141,7 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
         if (alloyComp.isEmpty()) {
             return output;
         } else {
-            AlloyItem.addAlloy(output,new AlloyData(returnAlloyDataMod(alloyCommands)));
+            IAlloyItem.createDirectAlloyNBT(output,returnAlloyDataMod(alloyCommands),"rankine:alloying/crucible_steel_alloying","item.rankine.crucible_steel_alloying");
             return output;
         }
     }
@@ -208,9 +208,14 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
         } else {
             ItemStack stack = this.recipeOutput.copy();
             if (stack.getItem() == RankineItems.STEEL_INGOT.get()) {
-                IAlloyItem.createDirectAlloyNBT(stack,alloyComp,"rankine:alloying/crucible_steel_alloy_alloying","Crucible Steel Ingot");
+                IAlloyItem.createDirectAlloyNBT(stack,alloyComp,"rankine:alloying/crucible_steel_alloying","item.rankine.crucible_steel_alloying");
             } else {
-                AlloyItem.addAlloy(stack,new AlloyData(alloyComp));
+                if (stack.getItem() instanceof IAlloyItem) {
+                    IAlloyItem.createDirectAlloyNBT(stack,alloyComp,((IAlloyItem)stack.getItem()).getDefaultRecipe().toString(),null);
+                } else {
+                    IAlloyItem.createDirectAlloyNBT(stack,alloyComp,null,null);
+                }
+
             }
 
             return stack;

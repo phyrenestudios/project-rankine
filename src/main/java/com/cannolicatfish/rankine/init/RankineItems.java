@@ -3395,6 +3395,7 @@ public class RankineItems {
     public static final RegistryObject<Item> SADDLE_TREE = REGISTRY.register("saddle_tree", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> CANNONBALL = REGISTRY.register("cannonball", () -> new CannonballItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> CARCASS = REGISTRY.register("carcass", () -> new CannonballItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> ENDERBALL = REGISTRY.register("enderball", () -> new CannonballItem(new Item.Properties().maxStackSize(64)));
     public static final RegistryObject<Item> SILVER_ZINC_BATTERY = REGISTRY.register("silver_zinc_battery", () -> new BatteryItem(new Item.Properties().maxDamage(32).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> MAGNESIUM_BATTERY = REGISTRY.register("magnesium_battery", () -> new BatteryItem(new Item.Properties().maxDamage(96).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> LEAD_ACID_BATTERY = REGISTRY.register("lead_acid_battery", () -> new BatteryItem(new Item.Properties().maxDamage(256).group(ProjectRankine.setup.rankineTools)));

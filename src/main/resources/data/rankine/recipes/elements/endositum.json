@@ -17,9 +17,9 @@
   },
   "enchantability": {
     "breaks": [100],
-    "formulas": ["CONSTANT"],
-    "a": [5],
-    "b": [0],
+    "formulas": ["LINEAR"],
+    "a": [0.15],
+    "b": [5],
     "modifiers": ["NONE"],
     "limit": [0]
   }

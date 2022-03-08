@@ -62,34 +62,6 @@ public class AlloyIngredientHelper {
         }
     }
 
-    public static Ingredient.IItemList deserializeItemList(JsonObject json) {
-        if (json.has("item") && json.has("tag")) {
-            throw new JsonParseException("An ingredient entry is either a tag or an item, not both");
-        } else if (json.has("item")) {
-            ResourceLocation resourcelocation1 = new ResourceLocation(JSONUtils.getString(json, "item"));
-            Item item = Registry.ITEM.getOptional(resourcelocation1).orElseThrow(() -> {
-                return new JsonSyntaxException("Unknown item '" + resourcelocation1 + "'");
-            });
-            ItemStack ret = new ItemStack(item);
-            if (json.has("alloyData"))
-            {
-                System.out.println("AlloyData detected in recipe!: " + JSONUtils.getString(json, "alloyData"));
-                AlloyItem.addAlloy(ret,new AlloyData(JSONUtils.getString(json, "alloyData")));
-            }
-            return new Ingredient.SingleItemList(ret);
-        } else if (json.has("tag")) {
-            ResourceLocation resourcelocation = new ResourceLocation(JSONUtils.getString(json, "tag"));
-            ITag<Item> itag = TagCollectionManager.getManager().getItemTags().get(resourcelocation);
-            if (itag == null) {
-                throw new JsonSyntaxException("Unknown item tag '" + resourcelocation + "'");
-            } else {
-                return new Ingredient.TagList(itag);
-            }
-        } else {
-            throw new JsonParseException("An ingredient entry needs either a tag or an item");
-        }
-    }
-
 
 
     public static ItemStack getItemStack(JsonObject json, boolean readNBT)

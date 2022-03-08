@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
@@ -406,7 +407,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
             case 3:
             case 4:
             case 5:
-                return PeriodicTableUtils.getInstance().hasElement(stack.getItem());
+                return AlloyCustomHelper.hasElement(stack.getItem());
             case 6:
                 return stack.getItem() instanceof BatteryItem;
             case 7:

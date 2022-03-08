@@ -886,7 +886,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(Tags.Blocks.COBBLESTONE, Tags.Items.COBBLESTONE);
         //copy(BlockTags.CAMPFIRES, RankineTags.Items.CAMPFIRES);
         getOrCreateBuilder(RankineTags.Items.CAMPFIRES).add(Items.CAMPFIRE,Items.SOUL_CAMPFIRE);
-        getOrCreateBuilder(RankineTags.Items.CANNONBALLS).add(Items.FIRE_CHARGE,RankineItems.CANNONBALL.get(),RankineItems.CARCASS.get());
+        getOrCreateBuilder(RankineTags.Items.CANNONBALLS).add(Items.FIRE_CHARGE,RankineItems.CANNONBALL.get(),RankineItems.CARCASS.get(),RankineItems.ENDERBALL.get());
         getOrCreateBuilder(RankineTags.Items.EDIBLE_MUSHROOMS).add(RankineItems.HONEY_MUSHROOM.get(),RankineItems.SULFUR_SHELF_MUSHROOM.get(),RankineItems.OYSTER_MUSHROOM.get(),RankineItems.LIONS_MANE_MUSHROOM.get(),Items.BROWN_MUSHROOM,Items.RED_MUSHROOM);
 
         getOrCreateBuilder(RankineTags.Items.CRAFTING_METAL_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN);
