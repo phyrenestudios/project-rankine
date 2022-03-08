@@ -4,7 +4,6 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineFeatures;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
-import com.cannolicatfish.rankine.world.RankineBiomeFeatures;
 import com.cannolicatfish.rankine.world.gen.feature.ores.RankineOreFeatureConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

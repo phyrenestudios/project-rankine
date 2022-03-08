@@ -1,0 +1,26 @@
+{
+  "name": "rankine.journal.cat_tools.common_tools.name",
+  "icon": "rankine:altimeter",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_tools.common_tools.text1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:glass_cutter",
+      "text": "rankine.journal.cat_tools.common_tools.glass_cutter"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rock_drill",
+      "text": "rankine.journal.cat_tools.common_tools.rock_drill"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:fire_extinguisher",
+      "text": "rankine.journal.cat_tools.common_tools.fire_extinguisher"
+    }
+  ]
+}

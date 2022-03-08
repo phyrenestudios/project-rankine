@@ -140,6 +140,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.COTTON.get());
         basicItem(RankineItems.JUTE.get());
         basicItem(RankineItems.TOFU.get());
+        basicItem(RankineItems.COOKED_TOFU.get());
+        basicItem(RankineItems.TOFU_CURRY.get());
         basicItem(RankineItems.SOYBEANS.get());
         basicItem(RankineItems.SOY_MILK.get());
         basicItem(RankineItems.BLUEBERRIES.get());
@@ -409,11 +411,11 @@ public class RankineItemModelProvider extends ItemModelProvider {
         withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/tilled_soil_loam"));
         withExistingParent(RankineBlocks.STUMP.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/stump0"));
         withExistingParent(RankineBlocks.MIXING_BARREL.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/mixing_barrel0"));
-        withExistingParent(RankineBlocks.CEMENT_SLAB.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/cement_slab_size2"));
-        withExistingParent(RankineBlocks.CONCRETE_SLAB.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/concrete_slab_size2"));
-        withExistingParent(RankineBlocks.ROMAN_CONCRETE_SLAB.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/roman_concrete_slab_size2"));
-        withExistingParent(RankineBlocks.POLISHED_ROMAN_CONCRETE_SLAB.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/polished_roman_concrete_slab_size2"));
-        withExistingParent(RankineBlocks.ROMAN_CONCRETE_BRICKS_SLAB.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/roman_concrete_bricks_slab_size2"));
+
+        for (Block BLK : RankineLists.QUARTER_SLABS) {
+            withExistingParent(BLK.getRegistryName().getPath(), new ResourceLocation("rankine:block/"+BLK.getRegistryName().getPath()+"_size2"));
+        }
+
 
         withExistingParent(RankineBlocks.ASPHALT.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/asphalt_size4"));
         withExistingParent(RankineBlocks.RED_ASPHALT.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/red_asphalt_size4"));

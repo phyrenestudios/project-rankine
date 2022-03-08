@@ -1,7 +1,7 @@
 {
-  "parent": "rankine:block/template_tinted_glass_pane_side",
+  "parent": "rankine:block/template_tinted_bars_side",
   "textures": {
-    "pane": "rankine:block/alloy_bars1",
-    "edge": "rankine:block/alloy_bars1"
+    "bars": "rankine:block/alloy_bars1",
+    "edge": "rankine:block/alloy_bars_edge"
   }
 }

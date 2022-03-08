@@ -291,11 +291,11 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
-        World world = player.world;
+        World worldIn = player.world;
         BlockPos pos = player.isSneaking() ? player.getPosition() : player.getPosition().up();
 
         // Tools
-        if (world.getGameTime()%5==0 && !world.isRemote()) {
+        if (worldIn.getGameTime()%5==0 && !worldIn.isRemote()) {
             if (!Config.TOOLS.DISABLE_COMPASS.get() && (player.getHeldItemOffhand().getItem() == Items.COMPASS || player.getHeldItemMainhand().getItem() == Items.COMPASS)) {
                 switch (player.getHorizontalFacing()) {
                     case NORTH:
@@ -312,11 +312,11 @@ public class RankineEventHandler {
                         break;
                 }
             } else if (!Config.TOOLS.DISABLE_CLOCK.get() && (player.getHeldItemOffhand().getItem() == Items.CLOCK || player.getHeldItemMainhand().getItem() == Items.CLOCK)) {
-                double hours = ((Math.floor(world.getDayTime() / 1000f)) + 6) % 24;
-                double minutes = ((world.getDayTime() / 1000f) % 1) * 60;
-                player.sendStatusMessage(new StringTextComponent("Time = " + new DecimalFormat("00").format(hours) + ":" + new DecimalFormat("00").format(minutes) + " (" + world.getDayTime() + ")").mergeStyle(TextFormatting.GOLD), true);
+                double hours = ((Math.floor(worldIn.getDayTime() / 1000f)) + 6) % 24;
+                double minutes = ((worldIn.getDayTime() / 1000f) % 1) * 60;
+                player.sendStatusMessage(new StringTextComponent("Time = " + new DecimalFormat("00").format(hours) + ":" + new DecimalFormat("00").format(minutes) + " (" + worldIn.getDayTime() + ")").mergeStyle(TextFormatting.GOLD), true);
             } else if (!Config.TOOLS.DISABLE_THERMOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.THERMOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.THERMOMETER.get())) {
-                float temp = world.getBiome(pos).getTemperature(pos);
+                float temp = worldIn.getBiome(pos).getTemperature(pos);
                 if (temp < 0.0) {
                     player.sendStatusMessage(new StringTextComponent("Temperature = " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.LIGHT_PURPLE, TextFormatting.BOLD), true);
                 } else if (temp < 0.15) {
@@ -340,19 +340,33 @@ public class RankineEventHandler {
                     player.sendStatusMessage(new StringTextComponent("Altitude: Y = " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.AQUA, TextFormatting.BOLD), true);
                 }
             } else if (!Config.TOOLS.DISABLE_PHOTOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.PHOTOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.PHOTOMETER.get())) {
-                int SLL = world.getLightFor(LightType.SKY,pos);
-                int BLL = world.getLightFor(LightType.BLOCK,pos);
+                int SLL = worldIn.getLightFor(LightType.SKY,pos);
+                int BLL = worldIn.getLightFor(LightType.BLOCK,pos);
 
-                if (world.getBlockState(player.getPosition()).getBlock().canCreatureSpawn(world.getBlockState(player.getPosition()), world, player.getPosition(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, EntityType.ZOMBIE)) {
+                if (worldIn.getBlockState(player.getPosition()).getBlock().canCreatureSpawn(worldIn.getBlockState(player.getPosition()), worldIn, player.getPosition(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, EntityType.ZOMBIE)) {
                     player.sendStatusMessage(new StringTextComponent("Light Levels: Sky = " + new DecimalFormat("##").format(SLL) + " Block = " + new DecimalFormat("##").format(BLL)).mergeStyle(TextFormatting.RED, TextFormatting.BOLD), true);
                 } else {
                     player.sendStatusMessage(new StringTextComponent("Light Levels: Sky = " + new DecimalFormat("##").format(SLL) + " Block = " + new DecimalFormat("##").format(BLL)).mergeStyle(TextFormatting.GREEN, TextFormatting.BOLD), true);
                 }
             } else if (!Config.TOOLS.DISABLE_BIOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.BIOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.BIOMETER.get())) {
-                player.sendStatusMessage(new StringTextComponent("Biome = " + new TranslationTextComponent(Util.makeTranslationKey("biome",world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(pos)))).getString()).mergeStyle(TextFormatting.GOLD), true);
+                player.sendStatusMessage(new StringTextComponent("Biome = " + new TranslationTextComponent(Util.makeTranslationKey("biome",worldIn.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(worldIn.getBiome(pos)))).getString()).mergeStyle(TextFormatting.GOLD), true);
+            } else if (!Config.TOOLS.DISABLE_BIOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.MAGNETOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.MAGNETOMETER.get())) {
+                double strength = 0.05D;
+                if (BlockPos.getClosestMatchingPosition(player.getPosition(), 5, 4, (p) -> worldIn.getBlockState(p).isIn(RankineTags.Blocks.ELECTROMAGNETS)).isPresent()) {
+                    strength = 3.00D;
+                } else if (BlockPos.getClosestMatchingPosition(player.getPosition(), 5, 4, (p) -> worldIn.getBlockState(p).matchesBlock(Blocks.OBSERVER)).isPresent()) {
+                    strength = 1.00D;
+                } else {
+                    Optional<BlockPos> b = BlockPos.getClosestMatchingPosition(player.getPosition(), Config.TOOLS.MAGNETOMETER_RANGE.get(), Config.TOOLS.MAGNETOMETER_RANGE.get(), (p) -> worldIn.getBlockState(p).isIn(Tags.Blocks.ORES));
+                    if (b.isPresent()) {
+                        strength = 0.5D/(player.getPosition().distanceSq(b.get())-1);
+                    }
+                }
+                player.sendStatusMessage(new TranslationTextComponent("item.rankine.magnetometer.message1", new DecimalFormat("#.##").format(strength)).mergeStyle(TextFormatting.GOLD, TextFormatting.BOLD), true);
+
             }
         }
-        if (!Config.TOOLS.DISABLE_SPEEDOMETER.get() && world.isRemote() && world.getGameTime()%5==0 && (player.getHeldItemOffhand().getItem() == RankineItems.SPEEDOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.SPEEDOMETER.get())) {
+        if (!Config.TOOLS.DISABLE_SPEEDOMETER.get() && worldIn.isRemote() && worldIn.getGameTime()%5==0 && (player.getHeldItemOffhand().getItem() == RankineItems.SPEEDOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.SPEEDOMETER.get())) {
             Entity ent = player;
             if (player.getRidingEntity() != null) {
                 ent = player.getRidingEntity();
@@ -656,23 +670,23 @@ public class RankineEventHandler {
                 for (AttributeModifier m : mods) {
                     movementSpeed.removeModifier(m);
                 }
-            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/grass_path")) && !movementSpeed.hasModifier(RankineAttributes.GRASS_PATH_MS)) {
+            } else if (RankineTags.Blocks.MOVEMENT_MODIFIERS_PATHS.contains(ground) && !movementSpeed.hasModifier(RankineAttributes.GRASS_PATH_MS)) {
                 if (!player.isCreative() && !player.isElytraFlying()) {
                     movementSpeed.applyNonPersistentModifier(RankineAttributes.GRASS_PATH_MS);
                 }
-            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/grass_path")) && movementSpeed.hasModifier(RankineAttributes.GRASS_PATH_MS)) {
+            } else if (!RankineTags.Blocks.MOVEMENT_MODIFIERS_PATHS.contains(ground) && movementSpeed.hasModifier(RankineAttributes.GRASS_PATH_MS)) {
                     movementSpeed.removeModifier(RankineAttributes.GRASS_PATH_MS);
-            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && !movementSpeed.hasModifier(RankineAttributes.SAND_MS)) {
+            } else if (RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND.contains(ground) && !movementSpeed.hasModifier(RankineAttributes.SAND_MS)) {
                 if (!player.isCreative() && !player.isElytraFlying()) {
                     movementSpeed.applyNonPersistentModifier(RankineAttributes.SAND_MS);
                 }
-            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && movementSpeed.hasModifier(RankineAttributes.SAND_MS) && ground != Blocks.AIR) {
+            } else if (!RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND.contains(ground) && movementSpeed.hasModifier(RankineAttributes.SAND_MS) && ground != Blocks.AIR) {
                     movementSpeed.removeModifier(RankineAttributes.SAND_MS);
-            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/mud")) && !movementSpeed.hasModifier(RankineAttributes.MUD_MS)) {
+            } else if (RankineTags.Blocks.MOVEMENT_MODIFIERS_MUD.contains(ground) && !movementSpeed.hasModifier(RankineAttributes.MUD_MS)) {
                 if (!player.isCreative() && !player.isElytraFlying()) {
                     movementSpeed.applyNonPersistentModifier(RankineAttributes.MUD_MS);
                 }
-            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/mud")) && movementSpeed.hasModifier(RankineAttributes.MUD_MS) && ground != Blocks.AIR) {
+            } else if (!RankineTags.Blocks.MOVEMENT_MODIFIERS_MUD.contains(ground) && movementSpeed.hasModifier(RankineAttributes.MUD_MS) && ground != Blocks.AIR) {
                     movementSpeed.removeModifier(RankineAttributes.MUD_MS);
             } else if ((world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) || world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && !movementSpeed.hasModifier(RankineAttributes.SNOW_MS)) {
                 if (!player.isCreative() && !player.isElytraFlying()) {
@@ -680,42 +694,42 @@ public class RankineEventHandler {
                 }
             } else if ((!world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) || !world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && movementSpeed.hasModifier(RankineAttributes.SNOW_MS) && ground != Blocks.AIR) {
                     movementSpeed.removeModifier(RankineAttributes.SNOW_MS);
-            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/dirt")) && !movementSpeed.hasModifier(RankineAttributes.DIRT_MS)) {
+            } else if (RankineTags.Blocks.MOVEMENT_MODIFIERS_DIRT.contains(ground) && !movementSpeed.hasModifier(RankineAttributes.DIRT_MS)) {
                 if (!player.isCreative() && !player.isElytraFlying()) {
                     movementSpeed.applyNonPersistentModifier(RankineAttributes.DIRT_MS);
                 }
-            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/dirt")) && movementSpeed.hasModifier(RankineAttributes.DIRT_MS) && ground != Blocks.AIR) {
+            } else if (!RankineTags.Blocks.MOVEMENT_MODIFIERS_DIRT.contains(ground) && movementSpeed.hasModifier(RankineAttributes.DIRT_MS) && ground != Blocks.AIR) {
                     movementSpeed.removeModifier(RankineAttributes.DIRT_MS);
-            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/wooden")) && !movementSpeed.hasModifier(RankineAttributes.WOODEN_MS)) {
+            } else if (RankineTags.Blocks.MOVEMENT_MODIFIERS_WOOD.contains(ground) && !movementSpeed.hasModifier(RankineAttributes.WOODEN_MS)) {
                 if (!player.isCreative() && !player.isElytraFlying()) {
                     movementSpeed.applyNonPersistentModifier(RankineAttributes.WOODEN_MS);
                 }
-            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/wooden")) && movementSpeed.hasModifier(RankineAttributes.WOODEN_MS) && ground != Blocks.AIR) {
+            } else if (!RankineTags.Blocks.MOVEMENT_MODIFIERS_WOOD.contains(ground) && movementSpeed.hasModifier(RankineAttributes.WOODEN_MS) && ground != Blocks.AIR) {
                     movementSpeed.removeModifier(RankineAttributes.WOODEN_MS);
-            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/polished_stone")) && !movementSpeed.hasModifier(RankineAttributes.POLISHED_STONE_MS)) {
+            } else if (RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED.contains(ground) && !movementSpeed.hasModifier(RankineAttributes.POLISHED_STONE_MS)) {
                 if (!player.isCreative() && !player.isElytraFlying()) {
                     movementSpeed.applyNonPersistentModifier(RankineAttributes.POLISHED_STONE_MS);
                 }
-            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/polished_stone")) && movementSpeed.hasModifier(RankineAttributes.POLISHED_STONE_MS) && ground != Blocks.AIR) {
+            } else if (!RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED.contains(ground) && movementSpeed.hasModifier(RankineAttributes.POLISHED_STONE_MS) && ground != Blocks.AIR) {
                     movementSpeed.removeModifier(RankineAttributes.POLISHED_STONE_MS);
-            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/bricks")) && !movementSpeed.hasModifier(RankineAttributes.BRICKS_MS)) {
+            } else if (RankineTags.Blocks.MOVEMENT_MODIFIERS_BRICKS.contains(ground) && !movementSpeed.hasModifier(RankineAttributes.BRICKS_MS)) {
                 if (!player.isCreative() && !player.isElytraFlying()) {
                     movementSpeed.applyNonPersistentModifier(RankineAttributes.BRICKS_MS);
                 }
-            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/bricks")) && movementSpeed.hasModifier(RankineAttributes.BRICKS_MS) && ground != Blocks.AIR) {
+            } else if (!RankineTags.Blocks.MOVEMENT_MODIFIERS_BRICKS.contains(ground) && movementSpeed.hasModifier(RankineAttributes.BRICKS_MS) && ground != Blocks.AIR) {
                     movementSpeed.removeModifier(RankineAttributes.BRICKS_MS);
-            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/concrete")) && !movementSpeed.hasModifier(RankineAttributes.CONCRETE_MS)) {
-                if (!player.isCreative() && !player.isElytraFlying()) {
-                    movementSpeed.applyNonPersistentModifier(RankineAttributes.CONCRETE_MS);
-                }
-            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/concrete")) && movementSpeed.hasModifier(RankineAttributes.CONCRETE_MS) && ground != Blocks.AIR) {
-                    movementSpeed.removeModifier(RankineAttributes.CONCRETE_MS);
-            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/roman_concrete")) && !movementSpeed.hasModifier(RankineAttributes.ROMAN_CONCRETE_MS)) {
+            } else if (RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN.contains(ground) && !movementSpeed.hasModifier(RankineAttributes.ROMAN_CONCRETE_MS)) {
                 if (!player.isCreative() && !player.isElytraFlying()) {
                     movementSpeed.applyNonPersistentModifier(RankineAttributes.ROMAN_CONCRETE_MS);
                 }
-            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/roman_concrete")) && movementSpeed.hasModifier(RankineAttributes.ROMAN_CONCRETE_MS) && ground != Blocks.AIR) {
-                    movementSpeed.removeModifier(RankineAttributes.ROMAN_CONCRETE_MS);
+            } else if (!RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN.contains(ground) && movementSpeed.hasModifier(RankineAttributes.ROMAN_CONCRETE_MS) && ground != Blocks.AIR) {
+                movementSpeed.removeModifier(RankineAttributes.ROMAN_CONCRETE_MS);
+            } else if (RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE.contains(ground) && !movementSpeed.hasModifier(RankineAttributes.CONCRETE_MS)) {
+                if (!player.isCreative() && !player.isElytraFlying()) {
+                    movementSpeed.applyNonPersistentModifier(RankineAttributes.CONCRETE_MS);
+                }
+            } else if (!RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE.contains(ground) && movementSpeed.hasModifier(RankineAttributes.CONCRETE_MS) && ground != Blocks.AIR) {
+                movementSpeed.removeModifier(RankineAttributes.CONCRETE_MS);
             }
         }
         if (ground == Blocks.ICE) {
@@ -728,7 +742,7 @@ public class RankineEventHandler {
             }
         }
         if (RankineEnchantmentHelper.hasDuneWalker(player) || feetEquipment == RankineItems.SANDALS.get()) {
-            if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && !movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
+            if (RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND.contains(ground) && !movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
                 movementSpeed.applyNonPersistentModifier(RankineAttributes.DUNE_WALKER);
                 player.stepHeight = 1.0f;
             }
@@ -736,7 +750,7 @@ public class RankineEventHandler {
             movementSpeed.removeModifier(RankineAttributes.DUNE_WALKER);
             player.stepHeight = 0.5f;
         }
-        if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && ground != Blocks.AIR && movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
+        if (!RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND.contains(ground) && ground != Blocks.AIR && movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
             movementSpeed.removeModifier(RankineAttributes.DUNE_WALKER);
             player.stepHeight = 0.5f;
         }
@@ -837,7 +851,7 @@ public class RankineEventHandler {
                 ItemStack output = recipe.getRecipeOutput();
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     event.setNewState(((BlockItem) output.getItem()).getBlock().getDefaultState());
-                    if (Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get() < worldIn.getRandom().nextFloat()) {
+                    if (worldIn.getRandom().nextFloat() < Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get()) {
                         BlockPos b = recipe.getRandomInput(posMap);
                         if (b != null) {
                             worldIn.removeBlock(b,false);
@@ -865,7 +879,7 @@ public class RankineEventHandler {
                 ItemStack output = recipe.getRecipeOutput();
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     event.setNewState(((BlockItem) output.getItem()).getBlock().getDefaultState());
-                    if (Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get() < worldIn.getRandom().nextFloat()) {
+                    if (worldIn.getRandom().nextFloat() < Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get()) {
                         BlockPos b = recipe.getRandomInput(posMap);
                         if (b != null) {
                             worldIn.removeBlock(b,false);
@@ -893,7 +907,7 @@ public class RankineEventHandler {
                 ItemStack output = recipe.getRecipeOutput();
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     event.setNewState(((BlockItem) output.getItem()).getBlock().getDefaultState());
-                    if (Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get() < worldIn.getRandom().nextFloat()) {
+                    if (worldIn.getRandom().nextFloat() < Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get()) {
                         BlockPos b = recipe.getRandomInput(posMap);
                         if (b != null) {
                             worldIn.removeBlock(b,false);
@@ -921,7 +935,7 @@ public class RankineEventHandler {
                 ItemStack output = recipe.getRecipeOutput();
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     event.setNewState(((BlockItem) output.getItem()).getBlock().getDefaultState());
-                    if (Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get() < worldIn.getRandom().nextFloat()) {
+                    if (worldIn.getRandom().nextFloat() < Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get()) {
                         BlockPos b = recipe.getRandomInput(posMap);
                         if (b != null) {
                             worldIn.removeBlock(b,false);
@@ -1066,6 +1080,11 @@ public class RankineEventHandler {
         if (stack.getItem() instanceof KnifeItem && event.getSlotType() == EquipmentSlotType.MAINHAND) {
             event.addModifier(RankineAttributes.REACH_DISTANCE, new AttributeModifier(RankineAttributes.KNIFE_REACH_MODIFIER,"Weapon modifier", -2, AttributeModifier.Operation.ADDITION));
         }
+        if (stack.getItem() == RankineItems.TOTEM_OF_PROMISING.get() && event.getSlotType() == EquipmentSlotType.OFFHAND) {
+            event.addModifier(Attributes.LUCK, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fd1"), "Rankine Totem modifier",
+                    2,
+                    AttributeModifier.Operation.ADDITION));
+        }
     }
     
     @SubscribeEvent
@@ -1103,8 +1122,8 @@ public class RankineEventHandler {
     }
 
     @SubscribeEvent
-    public static void onBreakSpeed(PlayerEvent.BreakSpeed event)
-    {
+    public static void onBreakSpeed(PlayerEvent.BreakSpeed event) {
+        BlockState targetBS = event.getState();
         Item heldItem = event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem();
 
         if (!(heldItem instanceof AxeItem) && event.getState().isIn(BlockTags.LOGS) && Config.GENERAL.MANDATORY_AXE.get()) { event.setNewSpeed(0f); }
@@ -1144,6 +1163,10 @@ public class RankineEventHandler {
 
         if (event.getPlayer().getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_HASTENING.get()) {
             event.setNewSpeed(event.getNewSpeed() + 3);
+        }
+
+        if (targetBS.isIn(RankineTags.Blocks.COBBLES) || targetBS.matchesBlock(RankineBlocks.STUMP.get())) {
+            event.setNewSpeed(event.getNewSpeed()/2f);
         }
 
         if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.QUAKE,event.getPlayer().getHeldItemMainhand()) > 0) {
@@ -1871,26 +1894,10 @@ public class RankineEventHandler {
         ItemStack stack = event.getItemStack();
         Item item = stack.getItem();
         World world = event.getWorld();
-        Direction direction = event.getFace();
         BlockPos pos = event.getPos();
         PlayerEntity player = event.getPlayer();
         BlockState targetBS = world.getBlockState(pos);
         Block b = targetBS.getBlock();
-        boolean Creative = player.isCreative();
-/*
-        if (item instanceof PotionUtils.) {
-            if (VanillaIntegration.pathBlocks_map.get(b) != null) {
-                world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                world.setBlockState(pos, VanillaIntegration.pathBlocks_map.get(b).getDefaultState(), 2);
-                stack.damageItem(1, player, (entity) -> {
-                    entity.sendBreakAnimation(event.getHand());
-                });
-                player.swingArm(event.getHand());
-                event.setResult(Event.Result.ALLOW);
-            }
-        }
-
- */
 
         if(item instanceof AxeItem) {
             ItemStack strip = null;
@@ -1946,29 +1953,41 @@ public class RankineEventHandler {
                 if (targetBS.get(DoubleCropsBlock.AGE) == 7) {
                     if (targetBS.get(DoubleCropsBlock.SECTION) == DoubleBlockHalf.LOWER) {
                         world.destroyBlock(pos,true);
-                        world.setBlockState(pos,b.getDefaultState().with(CropsBlock.AGE, 0));
+                        if (targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,pos)) {
+                            world.setBlockState(pos, b.getDefaultState().with(CropsBlock.AGE, 0));
+                        }
                     } else if (targetBS.get(DoubleCropsBlock.SECTION) == DoubleBlockHalf.UPPER) {
                         world.destroyBlock(pos.down(),true);
-                        world.setBlockState(pos.down(),b.getDefaultState().with(CropsBlock.AGE, 0));
+                        if (targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,pos.down())) {
+                            world.setBlockState(pos.down(), b.getDefaultState().with(CropsBlock.AGE, 0));
+                        }
                     }
                 }
             } else if (b instanceof TripleCropsBlock && item instanceof AlloyHoeItem) {
                 if (targetBS.get(DoubleCropsBlock.AGE) == 7) {
                     if (targetBS.get(TripleCropsBlock.SECTION) == TripleBlockSection.BOTTOM) {
                         world.destroyBlock(pos,true);
-                        world.setBlockState(pos,b.getDefaultState().with(CropsBlock.AGE, 0));
+                        if (targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,pos)) {
+                            world.setBlockState(pos, b.getDefaultState().with(CropsBlock.AGE, 0));
+                        }
                     } else if (targetBS.get(TripleCropsBlock.SECTION) == TripleBlockSection.MIDDLE) {
                         world.destroyBlock(pos.down(),true);
-                        world.setBlockState(pos.down(),b.getDefaultState().with(CropsBlock.AGE, 0));
+                        if (targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,pos.down())) {
+                            world.setBlockState(pos.down(), b.getDefaultState().with(CropsBlock.AGE, 0));
+                        }
                     } else if (targetBS.get(TripleCropsBlock.SECTION) == TripleBlockSection.TOP) {
                         world.destroyBlock(pos.down(2),true);
-                        world.setBlockState(pos.down(2),b.getDefaultState().with(CropsBlock.AGE, 0));
+                        if (targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,pos.down(2))) {
+                            world.setBlockState(pos.down(2), b.getDefaultState().with(CropsBlock.AGE, 0));
+                        }
                     }
                 }
             } else if (b instanceof CropsBlock && item instanceof AlloyHoeItem) {
                 if (targetBS.get(CropsBlock.AGE) == 7) {
                     world.destroyBlock(pos,true);
-                    world.setBlockState(pos,b.getDefaultState().with(CropsBlock.AGE, 0));
+                    if (targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,pos)) {
+                        world.setBlockState(pos,b.getDefaultState().with(CropsBlock.AGE, 0));
+                    }
                 }
             }
         }
@@ -2026,7 +2045,7 @@ public class RankineEventHandler {
 
             //Luck Pendant
             if (offHandItem == RankineItems.TOTEM_OF_PROMISING.get()) {
-                if (event.getState().isIn(RankineTags.Blocks.LUCK_PENDANT)) {
+                if (event.getState().isIn(RankineTags.Blocks.PROMISING_TOTEM_BLOCKS)) {
                     if (rand.nextFloat() < Config.GENERAL.TOTEM_PROMISING_CHANCE.get()) {
                         Block.spawnDrops(worldIn.getBlockState(pos),worldIn,pos);
                         //for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld(), event.getPos(), null)) {
@@ -2079,52 +2098,9 @@ public class RankineEventHandler {
                         if (foundPos != null && rand.nextFloat() < Config.GENERAL.NUGGET_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
                             Block b = worldIn.getBlockState(foundPos).getBlock();
                             ItemStack nug = ItemStack.EMPTY;
-                            if (b == RankineBlocks.MAGNETITE_ORE.get() || b == RankineBlocks.HEMATITE_ORE.get()) {
-                                nug = new ItemStack(Items.IRON_NUGGET);
-                            } else if (b == RankineBlocks.MALACHITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.COPPER_NUGGET.get());
-                            } else if (b == RankineBlocks.CHALCOCITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.COPPER_NUGGET.get());
-                            } else if (b == RankineBlocks.BAUXITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.ALUMINUM_NUGGET.get());
-                            } else if (b == RankineBlocks.CASSITERITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.TIN_NUGGET.get());
-                            } else if (b == RankineBlocks.SPHALERITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.ZINC_NUGGET.get());
-                            } else if (b == RankineBlocks.PENTLANDITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.NICKEL_NUGGET.get());
-                            } else if (b == RankineBlocks.INTERSPINIFEX_ORE.get()) {
-                                nug = new ItemStack(RankineItems.NICKEL_NUGGET.get());
-                            } else if (b == RankineBlocks.MAGNESITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.MAGNESIUM_NUGGET.get());
-                            } else if (b == RankineBlocks.ILMENITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.TITANIUM_NUGGET.get());
-                            } else if (b == RankineBlocks.GALENA_ORE.get()) {
-                                nug = new ItemStack(RankineItems.LEAD_NUGGET.get());
-                            } else if (b == RankineBlocks.BISMUTHINITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.BISMUTH_NUGGET.get());
-                            } else if (b == RankineBlocks.ACANTHITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.SILVER_NUGGET.get());
-                            } else if (b == RankineBlocks.MOLYBDENITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.MOLYBDENUM_NUGGET.get());
-                            } else if (b == RankineBlocks.PYROLUSITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.MANGANESE_NUGGET.get());
-                            } else if (b == RankineBlocks.CHROMITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.CHROMIUM_NUGGET.get());
-                            } else if (b == RankineBlocks.COLTAN_ORE.get()) {
-                                nug = new ItemStack(RankineItems.NIOBIUM_NUGGET.get());
-                            } else if (b == RankineBlocks.WOLFRAMITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.TUNGSTEN_NUGGET.get());
-                            } else if (b == RankineBlocks.GREENOCKITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.CADMIUM_NUGGET.get());
-                            } else if (b == RankineBlocks.XENOTIME_ORE.get()) {
-                                nug = new ItemStack(RankineItems.CERIUM_NUGGET.get());
-                            } else if (b == RankineBlocks.BADDELEYITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.ZIRCONIUM_NUGGET.get());
-                            } else if (b == RankineBlocks.URANINITE_ORE.get()) {
-                                nug = new ItemStack(RankineItems.URANIUM_NUGGET.get());
+                            if (VanillaIntegration.oreNuggetMap.containsKey(b)) {
+                                nug = new ItemStack(VanillaIntegration.oreNuggetMap.get(b));
                             }
-
                             if (!nug.isEmpty()) {
                                 spawnAsEntity(worldIn, pos, nug);
                                 break;

@@ -78,7 +78,7 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
 
     @Override
     public BlockState updatePostPlacement(BlockState state, Direction direction, BlockState p_196271_3_, IWorld worldIn, BlockPos pos, BlockPos p_196271_6_) {
-        if (direction.equals(Direction.UP) || direction.equals(Direction.DOWN) && worldIn instanceof World) {
+        if ((direction.equals(Direction.UP) || direction.equals(Direction.DOWN)) && worldIn instanceof World) {
             updateColumn(state, (World) worldIn, pos);
         }
         return super.updatePostPlacement(state, direction, p_196271_3_, worldIn, pos, p_196271_6_);

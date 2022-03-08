@@ -1,9 +1,9 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.particles.ParticleTypes;
@@ -13,8 +13,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class PumiceSoapItem extends Item {
@@ -24,6 +22,8 @@ public class PumiceSoapItem extends Item {
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
+        if (Config.GENERAL.PUMICE_SOAP.get()) return ActionResultType.FAIL;
+
         World worldIn = context.getWorld();
         Block block = worldIn.getBlockState(context.getPos()).getBlock();
         ResourceLocation rs = block.getRegistryName();

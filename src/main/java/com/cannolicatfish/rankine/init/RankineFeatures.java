@@ -30,9 +30,7 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<NoFeatureConfig>> INTRUSION = REGISTRY.register("intrusion_feature", () -> new IntrusionFeature(NoFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> WORLD_REPLACER_FEATURE = REGISTRY.register("world_replacer_feature", () -> new WorldReplacerFeature(NoFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> POST_WORLD_REPLACER_FEATURE = REGISTRY.register("post_world_replacer_feature", () -> new PostWorldReplacerFeature(NoFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<NoFeatureConfig>> SNOW_REPLACER = REGISTRY.register("snow_replacer_feature", () -> new SnowyPeaksFeature(NoFeatureConfig.CODEC));
     public static final RegistryObject<Feature<BlockClusterFeatureConfig>> COBBLE_PATCH = REGISTRY.register("cobble_patch_feature", () -> new CobblePatchFeature(BlockClusterFeatureConfig.CODEC));
-    //public static final RegistryObject<Feature<NoFeatureConfig>> WILLOW_BRANCHLET_FEATURE = REGISTRY.register("willow_branchlet_feature", () -> new WillowBranchletFeature(NoFeatureConfig.CODEC));
 
     public static final RegistryObject<Feature<BaseTreeFeatureConfig>> EASTERN_HEMLOCK_TREE = REGISTRY.register("eastern_hemlock_tree", () -> new EasternHemlockTreeFeature(BaseTreeFeatureConfig.CODEC));
     public static final RegistryObject<Feature<BaseTreeFeatureConfig>> WESTERN_HEMLOCK_TREE = REGISTRY.register("western_hemlock_tree", () -> new WesternHemlockTreeFeature(BaseTreeFeatureConfig.CODEC));
@@ -52,7 +50,6 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<BaseTreeFeatureConfig>> SHARINGA_TREE = REGISTRY.register("sharinga_tree_feature", () -> new TreeFeature(BaseTreeFeatureConfig.CODEC));
     public static final RegistryObject<Feature<BaseTreeFeatureConfig>> CORK_OAK_TREE = REGISTRY.register("cork_oak_tree_feature", () -> new TreeFeature(BaseTreeFeatureConfig.CODEC));
     public static final RegistryObject<Feature<BaseTreeFeatureConfig>> CINNAMON_TREE = REGISTRY.register("cinnamon_tree_feature", () -> new TreeFeature(BaseTreeFeatureConfig.CODEC));
-
 
     public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> TINDER_CONK_FEATURE = REGISTRY.register("tinder_conk_feature", () -> new TinderConkMushroomFeature(BlockStateProvidingFeatureConfig.CODEC));
     public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> LIONS_MANE_FEATURE = REGISTRY.register("lions_mane_feature", () -> new LionsManeMushroomFeature(BlockStateProvidingFeatureConfig.CODEC));

@@ -1,8 +1,6 @@
 {
 	"parent": "block/block",
 	"textures": {
-		"background": "#background",
-		"overlay": "#overlay",
 		"particle": "#background"
 	},
 	"elements": [

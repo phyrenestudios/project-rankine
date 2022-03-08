@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.sedimentfan;
 
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineSoundEvents;
@@ -79,6 +80,9 @@ public class SedimentFanTile extends TileEntity implements ITickableTileEntity {
                     } else {
                         world.setBlockState(end, RankineBlocks.BRECCIA.get().getDefaultState(), 19);
                         world.playSound(null, end, SoundEvents.BLOCK_SAND_HIT, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                    }
+                    if (world.getRandom().nextFloat() < Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get()) {
+                        world.removeBlock(pos.offset(dir,world.rand.nextBoolean() ? 1 : 2),false);
                     }
                 }
             }

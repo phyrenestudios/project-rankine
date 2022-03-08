@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cross",
+  "parent": "minecraft:block/crop",
   "textures": {
-    "cross": "rankine:block/jute_plant_top_age5"
+    "crop": "rankine:block/jute_plant_top_age5"
   }
 }

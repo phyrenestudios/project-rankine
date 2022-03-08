@@ -1,6 +1,6 @@
 {
   "type": "rankine:mixing",
-  "mixTime": 40,
+  "mixTime": 20,
   "ingredientTotal": 5,
   "matScale": 0.5,
   "fluidInput": {

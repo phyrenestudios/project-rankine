@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:purple_cement"
+    }
+  },
+  "result": {
+    "item": "rankine:purple_cement_wall",
+    "count": 6
+  }
+}

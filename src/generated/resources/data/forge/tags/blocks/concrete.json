@@ -16,6 +16,26 @@
     "minecraft:purple_concrete",
     "minecraft:red_concrete",
     "minecraft:white_concrete",
-    "minecraft:yellow_concrete"
+    "minecraft:yellow_concrete",
+    "rankine:black_cement",
+    "rankine:blue_cement",
+    "rankine:light_blue_cement",
+    "rankine:brown_cement",
+    "rankine:lime_cement",
+    "rankine:cyan_cement",
+    "rankine:gray_cement",
+    "rankine:green_cement",
+    "rankine:light_gray_cement",
+    "rankine:magenta_cement",
+    "rankine:orange_cement",
+    "rankine:pink_cement",
+    "rankine:purple_cement",
+    "rankine:red_cement",
+    "rankine:white_cement",
+    "rankine:yellow_cement",
+    "rankine:concrete",
+    "rankine:roman_concrete",
+    "rankine:polished_roman_concrete",
+    "rankine:roman_concrete_bricks"
   ]
 }

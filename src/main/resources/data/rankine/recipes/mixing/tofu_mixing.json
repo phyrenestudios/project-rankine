@@ -1,0 +1,25 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 20,
+  "ingredientTotal": 2,
+  "matScale": 0.3,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 100
+  },
+  "input1": {
+    "tag": "forge:crops/soybean",
+    "required": true,
+    "min": 0.90,
+    "max": 0.95
+  },
+  "input2": {
+    "item": "rankine:gypsum",
+    "required": true,
+    "min": 0.05,
+    "max": 0.10
+  },
+  "result": {
+    "item": "rankine:tofu"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:light_blue_cement_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:light_blue_cement_vertical_slab"
+  }
+}

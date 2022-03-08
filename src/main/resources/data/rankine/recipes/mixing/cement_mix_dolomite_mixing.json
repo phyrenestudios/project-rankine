@@ -1,6 +1,6 @@
 {
   "type": "rankine:mixing",
-  "mixTime": 40,
+  "mixTime": 10,
   "ingredientTotal": 6,
   "matScale": 1,
   "fluidInput": {
@@ -33,12 +33,12 @@
   "input5": {
     "item": "minecraft:flint",
     "min": 0,
-    "max": 0.40
+    "max": 0.20
   },
   "input6": {
     "tag": "forge:dirt",
     "min": 0,
-    "max": 0.40
+    "max": 0.10
   },
   "result": {
     "item": "rankine:cement_mix"

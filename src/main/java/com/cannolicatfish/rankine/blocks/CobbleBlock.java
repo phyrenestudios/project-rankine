@@ -58,6 +58,7 @@ public class CobbleBlock extends Block implements IWaterLoggable {
         return null;
     }
 
+
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         return worldIn.getBlockState(pos.down()).isNormalCube(worldIn,pos.down());

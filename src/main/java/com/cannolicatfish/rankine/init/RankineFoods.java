@@ -6,6 +6,9 @@ import net.minecraft.potion.Effects;
 
 public class RankineFoods {
     public static final Food TRAIL_MIX = (new Food.Builder()).hunger(5).saturation(1.0F).build();
+    public static final Food TOFU = (new Food.Builder()).hunger(4).saturation(0.4F).meat().build();
+    public static final Food COOKED_TOFU = (new Food.Builder()).hunger(6).saturation(0.6F).meat().build();
+    public static final Food TOFU_CURRY = (new Food.Builder()).hunger(10).saturation(0.6F).build();
     public static final Food TOAST = (new Food.Builder()).hunger(6).saturation(0.7F).build();
     public static final Food CINNAMON_TOAST = (new Food.Builder()).hunger(7).saturation(0.9F).build();
     public static final Food SIMPLE_FOOD = (new Food.Builder()).hunger(1).saturation(0.1F).build();

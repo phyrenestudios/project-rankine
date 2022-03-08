@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:gray_cement_slab"
+    },
+    {
+      "item": "rankine:gray_cement_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:gray_cement"
+  }
+}

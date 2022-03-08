@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:silt",
+    "#forge:sand",
+    "#forge:gems/quartz"
+  ]
+}

@@ -31,6 +31,20 @@ public final class RankineTags {
 
     public static final class Blocks {
         //MOD
+        public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS = modBlock("movement_modifiers");
+        public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS_DIRT = modBlock("movement_modifiers/dirt");
+        public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS_BRICKS = modBlock("movement_modifiers/bricks");
+        public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS_CONCRETE = modBlock("movement_modifiers/concrete");
+        public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS_PATHS = modBlock("movement_modifiers/paths");
+        public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS_ICE = modBlock("movement_modifiers/ice");
+        public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS_MUD = modBlock("movement_modifiers/mud");
+        public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS_POLISHED = modBlock("movement_modifiers/polished");
+        public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS_ROMAN = modBlock("movement_modifiers/roman");
+        public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS_SAND = modBlock("movement_modifiers/sand");
+        public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS_SNOW = modBlock("movement_modifiers/snow");
+        public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS_WOOD = modBlock("movement_modifiers/wood");
+
+
         public static final Tags.IOptionalNamedTag<Block> FIREPROOF_LOGS = modBlock("fireproof_logs");
         public static final Tags.IOptionalNamedTag<Block> ELECTROMAGNETS = modBlock("electromagnets");
         public static final Tags.IOptionalNamedTag<Block> MAGNET_BANNED = modBlock("magnet_banned");
@@ -41,6 +55,8 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Block> COBBLES = modBlock("cobbles");
         public static final Tags.IOptionalNamedTag<Block> LEAF_LITTERS = modBlock("leaf_litters");
         public static final Tags.IOptionalNamedTag<Block> HEAT_SOURCES = modBlock("heat_sources");
+        public static final Tags.IOptionalNamedTag<Block> CROWBAR_EFFECTIVE = modBlock("crowbar_effective");
+        public static final Tags.IOptionalNamedTag<Block> CROWBAR_RESISTANT = modBlock("crowbar_resistant");
 
         public static final Tags.IOptionalNamedTag<Block> CEDAR_LOGS = modBlock("cedar_logs");
         public static final Tags.IOptionalNamedTag<Block> PINYON_PINE_LOGS = modBlock("pinyon_pine_logs");
@@ -71,7 +87,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Block> FUMAROLE_DEPOSIT = modBlock("fumarole_deposit");
         public static final Tags.IOptionalNamedTag<Block> FLOWER_SEEDS = modBlock("flower_seeds");
         public static final Tags.IOptionalNamedTag<Block> HERBICIDAL = modBlock("herbicidal");
-        public static final Tags.IOptionalNamedTag<Block> LUCK_PENDANT = modBlock("luck_pendant");
+        public static final Tags.IOptionalNamedTag<Block> PROMISING_TOTEM_BLOCKS = modBlock("totem_of_promising_blocks");
         public static final Tags.IOptionalNamedTag<Block> GLASS_CUTTER = modBlock("glass_cutter");
         public static final Tags.IOptionalNamedTag<Block> TREE_LOGS = modBlock("tree_logs");
         public static final Tags.IOptionalNamedTag<Block> TREE_LEAVES = modBlock("tree_leaves");
@@ -82,6 +98,7 @@ public final class RankineTags {
 
 
         //FORGE
+        public static final Tags.IOptionalNamedTag<Block> METAL_BARS = forgeBlock("metal_bars");
         public static final Tags.IOptionalNamedTag<Block> BOOKSHELVES = forgeBlock("bookshelves");
         public static final Tags.IOptionalNamedTag<Block> CLAY = forgeBlock("clay");
         public static final Tags.IOptionalNamedTag<Block> SILT = forgeBlock("silt");
@@ -375,6 +392,9 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Block> SEDIMENTARY_STONES = forgeBlock("sedimentary_stones");
         public static final Tags.IOptionalNamedTag<Block> BASE_STONE_END = forgeBlock("base_stone_end");
         public static final Tags.IOptionalNamedTag<Block> WG_STONE = forgeBlock("wg_stone");
+        public static final Tags.IOptionalNamedTag<Block> WG_DIRT = forgeBlock("wg_dirt");
+        public static final Tags.IOptionalNamedTag<Block> WG_CLAY = forgeBlock("wg_clay");
+        public static final Tags.IOptionalNamedTag<Block> WG_SEDIMENT = forgeBlock("wg_sediment");
 
 
 
@@ -434,6 +454,8 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> SLUICING_TOOLS = modItem("sluicing_tools");
 
         public static final Tags.IOptionalNamedTag<Item> SILICON_DIOXIDE_BLOCKS = modItem("silicon_dioxide_blocks");
+        public static final Tags.IOptionalNamedTag<Item> GLASS_INPUTS = modItem("glass_inputs");
+        public static final Tags.IOptionalNamedTag<Item> FLUXES = modItem("fluxes");
 
         public static final Tags.IOptionalNamedTag<Item> MTT_TOOLS = modItem("mtt_tools");
         public static final Tags.IOptionalNamedTag<Item> MTT_DURABILITY_TOOLS = modItem("mtt_durability_tools");
@@ -1033,6 +1055,8 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> BERRIES_POKEBERRY = forgeItem("berries/pokeberry");
         public static final Tags.IOptionalNamedTag<Item> BERRIES_SWEET_BERRY = forgeItem("berries/sweet_berry");
         public static final Tags.IOptionalNamedTag<Item> BERRIES = forgeItem("berries");
+        public static final Tags.IOptionalNamedTag<Item> NUTS_COCONUT = forgeItem("nuts/coconut");
+        public static final Tags.IOptionalNamedTag<Item> NUTS_WALNUT = forgeItem("nuts/walnut");
         public static final Tags.IOptionalNamedTag<Item> NUTS = forgeItem("nuts");
         public static final Tags.IOptionalNamedTag<Item> GRAIN = forgeItem("grain");
         public static final Tags.IOptionalNamedTag<Item> CARBS = forgeItem("carbs");
@@ -1042,7 +1066,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> VEGETABLES = forgeItem("vegetables");
         public static final Tags.IOptionalNamedTag<Item> VEGETABLES_SOYBEANS = forgeItem("vegetables/soybeans");
         //public static final Tags.IOptionalNamedTag<Item> VINEGAR = forgeItem("vinegar");
-        public static final Tags.IOptionalNamedTag<Item> SOYMILK = forgeItem("soymilk");
+        //public static final Tags.IOptionalNamedTag<Item> SOYMILK = forgeItem("soymilk");
         public static final Tags.IOptionalNamedTag<Item> FIRMTOFU = forgeItem("firmtofu");
         public static final Tags.IOptionalNamedTag<Item> JELLIES = forgeItem("jellies");
 

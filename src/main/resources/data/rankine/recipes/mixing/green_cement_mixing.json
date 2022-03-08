@@ -1,0 +1,31 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 20,
+  "ingredientTotal": 3,
+  "matScale": 1.5,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 10
+  },
+  "input1": {
+    "tag": "forge:dyes/green",
+    "required": true,
+    "min": 0.05,
+    "max": 0.15
+  },
+  "input2": {
+    "item": "rankine:cement_mix",
+    "required": true,
+    "min": 0.65,
+    "max": 0.80
+  },
+  "input3": {
+    "tag": "forge:gravel",
+    "required": true,
+    "min": 0.10,
+    "max": 0.20
+  },
+  "result": {
+    "item": "rankine:green_cement"
+  }
+}

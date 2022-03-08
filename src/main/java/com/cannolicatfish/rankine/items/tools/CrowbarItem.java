@@ -2,16 +2,15 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
@@ -20,9 +19,6 @@ import net.minecraft.item.ToolItem;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
@@ -61,7 +57,7 @@ public class CrowbarItem extends ToolItem {
 
     public boolean canHarvestWithRetrieval(ItemStack stack, BlockState blockIn) {
         int i = this.getTier().getHarvestLevel();
-        if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.RETRIEVAL,stack) >= 1 && !blockIn.getBlock().getTags().contains(new ResourceLocation("rankine:crowbar_resistant"))) {
+        if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.RETRIEVAL,stack) >= 1 && !blockIn.isIn(RankineTags.Blocks.CROWBAR_RESISTANT)) {
             return i >= blockIn.getHarvestLevel();
         }
         return false;
@@ -70,7 +66,7 @@ public class CrowbarItem extends ToolItem {
     @Override
     public boolean canHarvestBlock(BlockState blockIn) {
         int i = this.getTier().getHarvestLevel();
-        if (blockIn.getBlock().getTags().contains(new ResourceLocation("rankine:crowbar")) && !blockIn.getBlock().getTags().contains(new ResourceLocation("rankine:crowbar_resistant"))) {
+        if (blockIn.isIn(RankineTags.Blocks.CROWBAR_EFFECTIVE) && !blockIn.isIn(RankineTags.Blocks.CROWBAR_RESISTANT)) {
             return i >= blockIn.getHarvestLevel();
         }
         return false;

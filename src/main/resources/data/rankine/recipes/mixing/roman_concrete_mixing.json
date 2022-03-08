@@ -1,0 +1,37 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 100,
+  "ingredientTotal": 4,
+  "matScale": 1,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 50
+  },
+  "input1": {
+    "item": "rankine:cement_mix",
+    "required": true,
+    "min": 0.30,
+    "max": 0.50
+  },
+  "input2": {
+    "tag": "forge:tuff",
+    "required": true,
+    "min": 0.30,
+    "max": 0.50
+  },
+  "input3": {
+    "item": "rankine:alumina",
+    "required": true,
+    "min": 0.05,
+    "max": 0.20
+  },
+  "input4": {
+    "tag": "forge:gems/quartz",
+    "required": true,
+    "min": 0.10,
+    "max": 0.20
+  },
+  "result": {
+    "item": "rankine:roman_concrete"
+  }
+}

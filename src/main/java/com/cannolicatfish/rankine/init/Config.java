@@ -257,27 +257,48 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue DISABLE_PHOTOMETER;
         public final ForgeConfigSpec.BooleanValue DISABLE_SPEEDOMETER;
         public final ForgeConfigSpec.BooleanValue DISABLE_BIOMETER;
+        public final ForgeConfigSpec.BooleanValue DISABLE_MAGNETOMETER;
+
+
+        public final ForgeConfigSpec.IntValue PROSPECTING_STICK_RANGE;
+        public final ForgeConfigSpec.IntValue MAGNETOMETER_RANGE;
+        public final ForgeConfigSpec.IntValue ORE_DETECTOR_RANGE;
+        public final ForgeConfigSpec.BooleanValue ROCK_DRILL;
+        public final ForgeConfigSpec.DoubleValue SAMPLE_CHANCE;
 
         public Tools(ForgeConfigSpec.Builder b) {
             b.comment("Settings for tools").push("tools");
 
             b.comment("Rankine Tools").push("rankineTools");
-            DISABLE_WOODEN_MALLET = b.comment("Disable the use of the wooden mallet (still allows crafting for other recipes). This is enabled by default for progression.")
-                    .define("disableWoodenMallet", true);
-            DISABLE_COMPASS = b.comment("Disable status bar message from compass.")
-                    .define("disableCompass",false);
-            DISABLE_CLOCK = b.comment("Disable status bar message from clock.")
-                    .define("disableClock",false);
-            DISABLE_ALTIMETER = b.comment("Disable status bar message from altimeter.")
-                    .define("disableAltimeter",false);
-            DISABLE_PHOTOMETER = b.comment("Disable status bar message from photometer.")
-                    .define("disablePhotmeter",false);
-            DISABLE_SPEEDOMETER = b.comment("Disable status bar message from speedometer.")
-                    .define("disableSpeedometer",false);
-            DISABLE_THERMOMETER = b.comment("Disable status bar message from thermometer.")
-                    .define("disableThermometer",false);
-            DISABLE_BIOMETER = b.comment("Disable status bar message from biometer.")
-                    .define("disableBiometer",false);
+
+                DISABLE_WOODEN_MALLET = b.comment("Disable the use of the wooden mallet (still allows crafting for other recipes). This is enabled by default for progression.")
+                        .define("disableWoodenMallet", true);
+                DISABLE_COMPASS = b.comment("Disable status bar message from compass.")
+                        .define("disableCompass",false);
+                DISABLE_CLOCK = b.comment("Disable status bar message from clock.")
+                        .define("disableClock",false);
+                DISABLE_ALTIMETER = b.comment("Disable status bar message from altimeter.")
+                        .define("disableAltimeter",false);
+                DISABLE_PHOTOMETER = b.comment("Disable status bar message from photometer.")
+                        .define("disablePhotmeter",false);
+                DISABLE_SPEEDOMETER = b.comment("Disable status bar message from speedometer.")
+                        .define("disableSpeedometer",false);
+                DISABLE_THERMOMETER = b.comment("Disable status bar message from thermometer.")
+                        .define("disableThermometer",false);
+                DISABLE_BIOMETER = b.comment("Disable status bar message from biometer.")
+                        .define("disableBiometer",false);
+                DISABLE_MAGNETOMETER = b.comment("Disable status bar message from magnetometer.")
+                        .define("disableMagnetometer",false);
+                PROSPECTING_STICK_RANGE = b.comment("Number of blocks away that the Prospecting Stick can detect ore.")
+                        .defineInRange("prospectingStickRange", 6, 0, 64);
+                SAMPLE_CHANCE = b.comment("Chance for the Prospecting Stick to return a sample. The chance for a sample to be returned from a stone cobble is half that.")
+                        .defineInRange("cobbleSampleChance", 0.8D, 0.0D, 1.0D);
+                MAGNETOMETER_RANGE = b.comment("Number of blocks away that the Magnetometer can detect ore. Square radius.")
+                        .defineInRange("magnetometerRange", 6, 0, 16);
+                ORE_DETECTOR_RANGE = b.comment("Number of blocks away that the Ore Detector can detect ore. Square radius.")
+                        .defineInRange("oreDetectorRange", 7, 0, 16);
+                ROCK_DRILL = b.comment("Enable the use of the rock drill.")
+                        .define("rockDrill",true);
             b.pop();
 
             b.comment("Vanilla Tools").push("vanillaTools");
@@ -378,10 +399,6 @@ public class Config {
 
         public final ForgeConfigSpec.DoubleValue NUGGET_CHANCE;
         public final ForgeConfigSpec.IntValue NUGGET_DISTANCE;
-        public final ForgeConfigSpec.IntValue PROSPECTING_STICK_RANGE;
-        public final ForgeConfigSpec.IntValue ORE_DETECTOR_RANGE;
-        public final ForgeConfigSpec.BooleanValue ORE_DETECTOR_MSG;
-        public final ForgeConfigSpec.BooleanValue ROCK_DRILL;
 
 
 
@@ -396,6 +413,7 @@ public class Config {
         public final ForgeConfigSpec.IntValue PATH_CREATION_TIME;
         public final ForgeConfigSpec.BooleanValue PATH_CREATION;
         public final ForgeConfigSpec.BooleanValue COLOR_WORLD;
+        public final ForgeConfigSpec.BooleanValue PUMICE_SOAP;
         public final ForgeConfigSpec.BooleanValue FLINT_FIRE;
         public final ForgeConfigSpec.BooleanValue STUMP_CREATION;
         public final ForgeConfigSpec.BooleanValue STRIPPABLES_CORK;
@@ -444,6 +462,8 @@ public class Config {
                             .define("pathCreation",true);
                     COLOR_WORLD = b.comment("If enabled, dyes can be used on blocks in-world to dye them (includes concrete, concrete powder, terracotta, glazed terracotta, stained glass, stained glass panes, leds, wool)")
                             .define("colorWorld",true);
+                    PUMICE_SOAP = b.comment("If enabled, pumice soap can repair mossy/cracked stone bricks and polish stones.")
+                            .define("pumiceSoapEnabled",true);
                     STRIPPABLES_CINNAMON = b.comment("If enabled, cinnamon will drop from cinnamon trees when stripped.")
                             .define("strippablesCinnamon",true);
                     STRIPPABLES_CORK = b.comment("If enabled, cork will drop from cork oak trees when stripped.")
@@ -456,8 +476,6 @@ public class Config {
                             .defineInRange("herbicideRange", 8, 0, 16);
                     ICEMELT_RANGE = b.comment("The radius at which Ice Melt will melt snow and ice.")
                             .defineInRange("iceMeltRange", 3, 0, 16);
-                    ROCK_DRILL = b.comment("Enable the use of the rock drill.")
-                            .define("rockDrill",true);
                     DISABLE_WATER = b.comment("No more infinite water")
                             .define("disableWater",true);
                     LIGHTNING_CONVERSION = b.comment("Lightning strikes creating fulgurite and glasses")
@@ -545,28 +563,22 @@ public class Config {
                     MOVEMENT_GRASS_PATH = b.comment("Movement speed modifier for walking on Grass Paths.")
                             .defineInRange("movementGrassPath", 0.00D, -1.0D, 1.0D);
                     MOVEMENT_ROMAN_CONCRETE = b.comment("Movement speed modifier for walking on Roman Cooncrete.")
-                            .defineInRange("movementRomanConcrete", 0.5D, -1.0D, 1.0D);
+                            .defineInRange("movementRomanConcrete", 0.07D, -1.0D, 1.0D);
                     MOVEMENT_DIRT = b.comment("Movement speed modifier for walking on Dirt / Grass blocks.")
                             .defineInRange("movementDirt", -0.01D, -1.0D, 1.0D);
-                    MOVEMENT_POLISHED_STONE = b.comment("Movement speed modifier for walking on #forge:polished_stone blocks.")
+                    MOVEMENT_POLISHED_STONE = b.comment("Movement speed modifier for walking on Polished Stone blocks.")
                             .defineInRange("movementPolishedStone", 0.00D, -1.0D, 1.0D);
                     MOVEMENT_WOODEN = b.comment("Movement speed modifier for walking on Planks and wooden variants.")
                             .defineInRange("movementWooden", 0.00D, -1.0D, 1.0D);
-                    MOVEMENT_CONCRETE = b.comment("Movement speed modifier for walking on Concrete / Gravel Concrete.")
-                            .defineInRange("movementConcrete", 0.03D, -1.0D, 1.0D);
+                    MOVEMENT_CONCRETE = b.comment("Movement speed modifier for walking on Concrete / Cement")
+                            .defineInRange("movementConcrete", 0.02D, -1.0D, 1.0D);
                     MOVEMENT_SNOW = b.comment("Movement speed modifier for walking on Snow.")
                             .defineInRange("movementSnow", -0.02D, -1.0D, 1.0D);
                     MOVEMENT_MUD = b.comment("Movement speed modifier for walking on Mud.")
-                            .defineInRange("movementMud", -0.02D, -1.0D, 1.0D);
+                            .defineInRange("movementMud", -0.03D, -1.0D, 1.0D);
                 b.pop();
 
                 b.comment("Ore Detection").push("oreDetection");
-                    PROSPECTING_STICK_RANGE = b.comment("Number of blocks away that the Prospecting Stick can detect ore.")
-                            .defineInRange("prospectingStickRange", 6, 0, 64);
-                    ORE_DETECTOR_RANGE = b.comment("Number of blocks away that the Ore Detector can detect ore.")
-                            .defineInRange("oreDetectorRange", 32, 0, 64);
-                    ORE_DETECTOR_MSG = b.comment("Set to false to disable the ore detector from outputting the block found.")
-                            .define("oreDetectorMessage",true);
                     NUGGET_CHANCE = b.comment("Chance for a block in #rankine:nugget_stones to drop a nugget of a nearby ore.")
                             .defineInRange("nuggetChance", 0.04D, 0.00D, 1.00D);
                     NUGGET_DISTANCE = b.comment("Distance from an ore block in which nuggets have a chance to drop from blocks.")

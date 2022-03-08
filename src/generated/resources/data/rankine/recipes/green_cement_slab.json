@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:green_cement"
+    }
+  },
+  "result": {
+    "item": "rankine:green_cement_slab",
+    "count": 6
+  }
+}

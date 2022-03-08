@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:brown_cement"
+  },
+  "result": "rankine:brown_cement_vertical_slab",
+  "count": 2
+}

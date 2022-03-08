@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:bricks",
+    "#forge:bricks_slabs",
+    "#forge:bricks_stairs",
+    "#minecraft:stone_bricks",
+    "#forge:stone_bricks_slabs",
+    "#forge:stone_bricks_slabs"
+  ]
+}

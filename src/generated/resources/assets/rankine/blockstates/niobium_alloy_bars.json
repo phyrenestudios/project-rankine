@@ -2,7 +2,64 @@
   "multipart": [
     {
       "apply": {
+        "model": "rankine:block/niobium_alloy_bars_post_ends"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "east": "false",
+        "west": "false",
+        "south": "false"
+      },
+      "apply": {
         "model": "rankine:block/niobium_alloy_bars_post"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "east": "false",
+        "west": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "rankine:block/niobium_alloy_bars_cap"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "east": "true",
+        "west": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "rankine:block/niobium_alloy_bars_cap",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "east": "false",
+        "west": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "rankine:block/niobium_alloy_bars_cap_alt"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "east": "false",
+        "west": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "rankine:block/niobium_alloy_bars_cap_alt",
+        "y": 90
       }
     },
     {
@@ -15,27 +72,10 @@
     },
     {
       "when": {
-        "north": "false"
-      },
-      "apply": {
-        "model": "rankine:block/niobium_alloy_bars_noside"
-      }
-    },
-    {
-      "when": {
         "south": "true"
       },
       "apply": {
         "model": "rankine:block/niobium_alloy_bars_side_alt"
-      }
-    },
-    {
-      "when": {
-        "south": "false"
-      },
-      "apply": {
-        "model": "rankine:block/niobium_alloy_bars_noside_alt",
-        "y": 90
       }
     },
     {
@@ -49,28 +89,11 @@
     },
     {
       "when": {
-        "west": "false"
-      },
-      "apply": {
-        "model": "rankine:block/niobium_alloy_bars_noside",
-        "y": 270
-      }
-    },
-    {
-      "when": {
         "east": "true"
       },
       "apply": {
         "model": "rankine:block/niobium_alloy_bars_side",
         "y": 90
-      }
-    },
-    {
-      "when": {
-        "east": "false"
-      },
-      "apply": {
-        "model": "rankine:block/niobium_alloy_bars_noside_alt"
       }
     }
   ]

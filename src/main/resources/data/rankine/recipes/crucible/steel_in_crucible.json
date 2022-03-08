@@ -56,7 +56,7 @@
     "shiftMod": ["-1Fe","1Si"]
   },
   "input10": {
-    "tag": "forge:stones/limestone",
+    "tag": "rankine:fluxes",
     "shiftMod": ["-S","Fe"]
   },
   "input11": {

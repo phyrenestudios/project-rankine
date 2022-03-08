@@ -46,7 +46,7 @@ import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.POIFixer;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
-import com.cannolicatfish.rankine.world.RankineBiomeFeatures;
+import com.cannolicatfish.rankine.world.gen.RankineBiomeFeatures;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowingFluidBlock;
@@ -116,6 +116,7 @@ public class ProjectRankine {
         RankineBlocks.REGISTRY.register(Bus);
         RankineItems.REGISTRY.register(Bus);
         RankineFeatures.REGISTRY.register(Bus);
+        RankinePlacements.REGISTRY.register(Bus);
         RankineSoundEvents.SOUNDS.register(Bus);
         RankineBlockPlacerType.BLOCK_PLACERS.register(Bus);
         //Bus.addListener(this::construct);
@@ -137,6 +138,7 @@ public class ProjectRankine {
         POIFixer.fixPOITypeBlockStates(RankinePOIs.GEM_CUTTER_POI);
         POIFixer.fixPOITypeBlockStates(RankinePOIs.ROCK_COLLECTOR_POI);
         proxy.init();
+
 
         DeferredWorkQueue.runLater(() -> {
             RankineRecipes.registerPredicates();

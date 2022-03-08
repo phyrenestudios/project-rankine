@@ -19,7 +19,7 @@
   },
   "output4": {
     "item": "rankine:gypsum",
-    "chance": 0.05,
+    "chance": 0.20,
     "additional": 0.10
   },
   "output5": {

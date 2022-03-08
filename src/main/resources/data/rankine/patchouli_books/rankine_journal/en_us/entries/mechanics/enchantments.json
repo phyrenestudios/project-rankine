@@ -40,9 +40,9 @@
     },
     {
       "type": "text",
-      "title": "Swing",
+      "title": "enchantment.rankine.swing",
       "anchor": "swing",
-      "text": "Swing increases attack speed of single click tools. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(li)$(l:tools/crowbars)Crowbars$() $(br)Levels: I-V"
+      "text": "enchantment.rankine.swing.desc"
     },
     {
       "type": "text",

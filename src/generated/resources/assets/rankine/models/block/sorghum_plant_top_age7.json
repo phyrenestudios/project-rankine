@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cross",
+  "parent": "minecraft:block/crop",
   "textures": {
-    "cross": "rankine:block/sorghum_plant_top_age7"
+    "crop": "rankine:block/sorghum_plant_top_age7"
   }
 }

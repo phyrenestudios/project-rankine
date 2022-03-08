@@ -292,7 +292,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 if (SECTION.equals(TripleBlockSection.TOP.toString()) && (AGE==0 || AGE==1 || AGE==2) || SECTION.equals(TripleBlockSection.MIDDLE.toString()) && (AGE==0 || AGE==1)) {
                     MODEL = models().withExistingParent("air",mcLoc("block/air"));
                 } else {
-                    MODEL = CROP.equals(RankineBlocks.JUTE_PLANT) ?
+                    MODEL = CROP.equals(RankineBlocks.JUTE_PLANT.get()) || CROP.equals(RankineBlocks.SORGHUM_PLANT.get()) ?
                             models().crop(CROP.getRegistryName().getPath()+"_"+SECTION+"_age"+AGE,modLoc("block/"+CROP.getRegistryName().getPath()+"_"+SECTION+"_age"+AGE)) :
                             models().cross(CROP.getRegistryName().getPath()+"_"+SECTION+"_age"+AGE,modLoc("block/"+CROP.getRegistryName().getPath()+"_"+SECTION+"_age"+AGE));
                 }
@@ -522,7 +522,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             metalPoleBlock(blk);
         }
         for (Block blk : RankineLists.ALLOY_BARS) {
-            metalBarsBlock((PaneBlock) blk,getBlockRSL("alloy_bars1"),getBlockRSL("alloy_bars1"));
+            tintedBarsBlock((PaneBlock) blk,getBlockRSL("alloy_bars1"),getBlockRSL("alloy_bars_edge"));
         }
 
         for (Block blk : RankineLists.GEODES) {
@@ -1042,20 +1042,68 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
     }
 
-    public void metalBarsBlock(PaneBlock block, ResourceLocation pane, ResourceLocation edge) {
-        metalBarsBlockInternal(block, block.getRegistryName().toString(), pane, edge);
+    public void tintedBarsBlock(PaneBlock block, ResourceLocation pane, ResourceLocation edge) {
+        tintedBarsBlockInternal(block, block.getRegistryName().toString(), pane, edge);
+    }
+    private void tintedBarsBlockInternal(PaneBlock block, String baseName, ResourceLocation pane, ResourceLocation edge) {
+        ModelFile post = tintedBarsPost(baseName + "_post", pane);
+        ModelFile postEnds = tintedBarsPostEnds(baseName + "_post_ends", edge);
+        ModelFile side = tintedBarsSide(baseName + "_side", pane, edge);
+        ModelFile sideAlt = tintedBarsSideAlt(baseName + "_side_alt", pane, edge);
+        ModelFile cap = tintedBarsCap(baseName + "_cap", pane);
+        ModelFile capAlt = tintedBarsCapAlt(baseName + "_cap_alt", pane);
+        tintetBarsBlock(block, post, postEnds, side, sideAlt, cap, capAlt);
+    }
+    public ModelFile tintedBarsPost(String name, ResourceLocation bars) {
+        return models().withExistingParent(name, getBlockRSL("template_tinted_bars_post")).texture("bars", bars);
+    }
+    public ModelFile tintedBarsPostEnds(String name, ResourceLocation edge) {
+        return models().withExistingParent(name, getBlockRSL("template_tinted_bars_post_ends")).texture("edge", edge);
+    }
+    public ModelFile tintedBarsSide(String name, ResourceLocation bars, ResourceLocation edge) {
+        return models().withExistingParent(name, getBlockRSL("template_tinted_bars_side")).texture("bars", bars).texture("edge", edge);
+    }
+    public ModelFile tintedBarsSideAlt(String name, ResourceLocation bars, ResourceLocation edge) {
+        return models().withExistingParent(name, getBlockRSL("template_tinted_bars_side_alt")).texture("bars", bars).texture("edge", edge);
+    }
+    public ModelFile tintedBarsCap(String name, ResourceLocation bars) {
+        return models().withExistingParent(name, getBlockRSL("template_tinted_bars_cap")).texture("bars", bars);
+    }
+    public ModelFile tintedBarsCapAlt(String name, ResourceLocation bars) {
+        return models().withExistingParent(name, getBlockRSL("template_tinted_bars_cap_alt")).texture("bars", bars);
+    }
+    public void tintetBarsBlock(PaneBlock block, ModelFile post, ModelFile postEnd, ModelFile side, ModelFile sideAlt, ModelFile cap, ModelFile capAlt) {
+        MultiPartBlockStateBuilder builder = getMultipartBuilder(block)
+                .part().modelFile(postEnd).addModel().end();
+
+        builder.part().modelFile(post).addModel().condition(BlockStateProperties.NORTH, false).condition(BlockStateProperties.EAST, false).condition(BlockStateProperties.WEST, false).condition(BlockStateProperties.SOUTH, false).end()
+                .part().modelFile(cap).addModel().condition(BlockStateProperties.NORTH, true).condition(BlockStateProperties.EAST, false).condition(BlockStateProperties.WEST, false).condition(BlockStateProperties.SOUTH, false).end()
+                .part().modelFile(cap).rotationY(90).addModel().condition(BlockStateProperties.NORTH, false).condition(BlockStateProperties.EAST, true).condition(BlockStateProperties.WEST, false).condition(BlockStateProperties.SOUTH, false).end()
+                .part().modelFile(capAlt).addModel().condition(BlockStateProperties.NORTH, false).condition(BlockStateProperties.EAST, false).condition(BlockStateProperties.WEST, false).condition(BlockStateProperties.SOUTH, true).end()
+                .part().modelFile(capAlt).rotationY(90).addModel().condition(BlockStateProperties.NORTH, false).condition(BlockStateProperties.EAST, false).condition(BlockStateProperties.WEST, true).condition(BlockStateProperties.SOUTH, false).end()
+                .part().modelFile(side).addModel().condition(BlockStateProperties.NORTH, true).end()
+                .part().modelFile(sideAlt).addModel().condition(BlockStateProperties.SOUTH, true).end()
+                .part().modelFile(sideAlt).rotationY(90).addModel().condition(BlockStateProperties.WEST, true).end()
+                .part().modelFile(side).rotationY(90).addModel().condition(BlockStateProperties.EAST, true).end();
+
     }
 
-    private void metalBarsBlockInternal(PaneBlock block, String baseName, ResourceLocation pane, ResourceLocation edge) {
+
+
+    public void tintedPaneBlock(PaneBlock block, ResourceLocation pane, ResourceLocation edge) {
+        tintedPaneBlockInternal(block, block.getRegistryName().toString(), pane, edge);
+    }
+
+    private void tintedPaneBlockInternal(PaneBlock block, String baseName, ResourceLocation pane, ResourceLocation edge) {
         ModelFile post = tintedPanePost(baseName + "_post", pane, edge);
         ModelFile side = tintedPaneSide(baseName + "_side", pane, edge);
         ModelFile sideAlt = tintedPaneSideAlt(baseName + "_side_alt", pane, edge);
         ModelFile noSide = tintedPaneNoSide(baseName + "_noside", pane);
         ModelFile noSideAlt = tintedPaneNoSideAlt(baseName + "_noside_alt", pane);
-        metalBarsBlock(block, post, side, sideAlt, noSide, noSideAlt);
+        tintedPaneBlock(block, post, side, sideAlt, noSide, noSideAlt);
     }
 
-    public void metalBarsBlock(PaneBlock block, ModelFile post, ModelFile side, ModelFile sideAlt, ModelFile noSide, ModelFile noSideAlt) {
+    public void tintedPaneBlock(PaneBlock block, ModelFile post, ModelFile side, ModelFile sideAlt, ModelFile noSide, ModelFile noSideAlt) {
         MultiPartBlockStateBuilder builder = getMultipartBuilder(block)
                 .part().modelFile(post).addModel().end();
         SixWayBlock.FACING_TO_PROPERTY_MAP.entrySet().forEach(e -> {

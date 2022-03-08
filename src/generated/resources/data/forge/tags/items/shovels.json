@@ -18,6 +18,10 @@
     "rankine:purple_gold_shovel",
     "rankine:black_gold_shovel",
     "rankine:amalgam_shovel",
-    "rankine:ender_amalgam_shovel"
+    "rankine:ender_amalgam_shovel",
+    "rankine:titanium_alloy_shovel",
+    "rankine:niobium_alloy_shovel",
+    "rankine:zirconium_alloy_shovel",
+    "rankine:osmiridium_shovel"
   ]
 }

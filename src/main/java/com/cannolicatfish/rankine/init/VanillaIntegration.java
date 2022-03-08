@@ -6,6 +6,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.util.IItemProvider;
@@ -18,11 +19,46 @@ import java.util.Map;
 
 public class VanillaIntegration {
     public static Map<Item, Integer> fuelValueMap = new HashMap<Item, Integer>();
+    public static Map<Block, Item> oreNuggetMap = new HashMap<Block, Item>();
     public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
     public static Map<Block, Block> pathBlocks_map = new HashMap<Block, Block>();
     public static Map<Block, TilledSoilTypes> hoeables_map = new HashMap<Block, TilledSoilTypes>();
 
     public static void init() {
+
+        oreNuggetMap.put(RankineBlocks.MALACHITE_ORE.get(),RankineItems.COPPER_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.CHALCOCITE_ORE.get(),RankineItems.COPPER_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.HEMATITE_ORE.get(), Items.IRON_NUGGET);
+        oreNuggetMap.put(RankineBlocks.MAGNETITE_ORE.get(), Items.IRON_NUGGET);
+        oreNuggetMap.put(RankineBlocks.PETALITE_ORE.get(),RankineItems.LITHIUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.MAGNESITE_ORE.get(),RankineItems.MAGNESIUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.BAUXITE_ORE.get(),RankineItems.ALUMINUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.ILMENITE_ORE.get(),RankineItems.TITANIUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.CHROMITE_ORE.get(),RankineItems.CHROMIUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.PYROLUSITE_ORE.get(),RankineItems.MANGANESE_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.SPHALERITE_ORE.get(),RankineItems.ZINC_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.CASSITERITE_ORE.get(),RankineItems.TIN_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.GALENA_ORE.get(),RankineItems.LEAD_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.BISMUTHINITE_ORE.get(),RankineItems.BISMUTH_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.COBALTITE_ORE.get(),RankineItems.COBALT_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.PENTLANDITE_ORE.get(),RankineItems.NICKEL_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.INTERSPINIFEX_ORE.get(),RankineItems.NICKEL_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.CELESTINE_ORE.get(),RankineItems.STRONTIUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.XENOTIME_ORE.get(),RankineItems.YTTRIUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.MOLYBDENITE_ORE.get(),RankineItems.MOLYBDENUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.SPERRYLITE_ORE.get(),RankineItems.PLATINUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.COLTAN_ORE.get(),RankineItems.NIOBIUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.ACANTHITE_ORE.get(),RankineItems.SILVER_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.GREENOCKITE_ORE.get(),RankineItems.CADMIUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.WOLFRAMITE_ORE.get(),RankineItems.TUNGSTEN_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.RHENIITE_ORE.get(),RankineItems.RHENIUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.URANINITE_ORE.get(),RankineItems.URANIUM_NUGGET.get());
+        oreNuggetMap.put(RankineBlocks.CRYOLITE_ORE.get(),RankineItems.SODIUM_NUGGET.get());
+
+
+
+
+
         for (Block blk : RankineLists.TALL_FLOWERS) {
             registerCompostable(0.65F, blk);
         }

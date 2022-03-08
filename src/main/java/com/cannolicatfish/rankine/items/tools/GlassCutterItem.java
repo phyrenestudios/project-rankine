@@ -2,16 +2,13 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
@@ -20,7 +17,6 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.ToolItem;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -33,7 +29,7 @@ public class GlassCutterItem extends ToolItem {
     private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(Blocks.GLASS);
 
     public GlassCutterItem(Properties properties) {
-        super(1.0f, -3.0f, RankineToolMaterials.FLINT, EFFECTIVE_ON, properties);
+        super(1.0f, -3.0f, RankineToolMaterials.PEWTER, EFFECTIVE_ON, properties);
     }
 
     /**

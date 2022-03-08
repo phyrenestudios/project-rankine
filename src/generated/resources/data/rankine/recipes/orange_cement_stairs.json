@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:orange_cement"
+    }
+  },
+  "result": {
+    "item": "rankine:orange_cement_stairs",
+    "count": 4
+  }
+}

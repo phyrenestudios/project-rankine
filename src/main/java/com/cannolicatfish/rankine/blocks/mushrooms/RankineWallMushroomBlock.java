@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.blocks.mushrooms;
 import com.cannolicatfish.rankine.blocks.HollowLogBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
-import com.cannolicatfish.rankine.world.RankineBiomeFeatures;
+import com.cannolicatfish.rankine.world.gen.RankineBiomeFeatures;
 import com.cannolicatfish.rankine.world.gen.feature.mushrooms.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;

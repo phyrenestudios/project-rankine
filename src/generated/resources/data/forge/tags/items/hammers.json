@@ -19,6 +19,10 @@
     "rankine:purple_gold_hammer",
     "rankine:black_gold_hammer",
     "rankine:amalgam_hammer",
-    "rankine:ender_amalgam_hammer"
+    "rankine:ender_amalgam_hammer",
+    "rankine:titanium_alloy_hammer",
+    "rankine:niobium_alloy_hammer",
+    "rankine:zirconium_alloy_hammer",
+    "rankine:osmiridium_hammer"
   ]
 }

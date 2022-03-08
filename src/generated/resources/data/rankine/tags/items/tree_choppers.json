@@ -19,6 +19,8 @@
     "rankine:amalgam_axe",
     "rankine:ender_amalgam_axe",
     "rankine:osmiridium_axe",
-    "rankine:titanium_alloy_axe"
+    "rankine:titanium_alloy_axe",
+    "rankine:niobium_alloy_axe",
+    "rankine:zirconium_alloy_axe"
   ]
 }

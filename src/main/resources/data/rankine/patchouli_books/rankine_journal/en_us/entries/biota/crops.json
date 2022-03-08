@@ -8,40 +8,15 @@
       "text": "rankine.journal.cat_biota.crops.text1"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:barley",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.barley"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:rice",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.rice"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:millet",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.millet"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:rye",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.rye"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:oats",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.oats"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:sorghum",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.sorghum"
+      "type": "rankine:item6",
+      "item1": "rankine:barley",
+      "item2": "rankine:millet",
+      "item3": "rankine:rye",
+      "item4": "rankine:rice",
+      "item5": "rankine:oats",
+      "item6": "rankine:sorghum",
+      "heading": "rankine.journal.cat_biota.crops.grains_heading",
+      "text": "rankine.journal.cat_biota.crops.grains"
     },
     {
       "type": "spotlight",
@@ -74,52 +49,17 @@
       "text": "rankine.journal.cat_biota.crops.cotton"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:blueberries",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.blueberries"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:cranberries",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.cranberries"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:elderberries",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.elderberries"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:pokeberries",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.pokeberries"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:strawberries",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.strawberries"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:snowberries",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.snowberries"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:raspberries",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.raspberries"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:blackberries",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_biota.crops.blackberries"
+      "type": "rankine:item8",
+      "item1": "rankine:blueberries",
+      "item2": "rankine:cranberries",
+      "item3": "rankine:elderberries",
+      "item4": "rankine:pokeberries",
+      "item5": "rankine:strawberries",
+      "item6": "rankine:snowberries",
+      "item7": "rankine:raspberries",
+      "item8": "rankine:blackberries",
+      "heading": "rankine.journal.cat_biota.crops.berries_heading",
+      "text": "rankine.journal.cat_biota.crops.berries"
     },
     {
       "type": "spotlight",

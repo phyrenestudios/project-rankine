@@ -18,6 +18,10 @@
     "rankine:purple_gold_pickaxe",
     "rankine:black_gold_pickaxe",
     "rankine:amalgam_pickaxe",
-    "rankine:ender_amalgam_pickaxe"
+    "rankine:ender_amalgam_pickaxe",
+    "rankine:titanium_alloy_pickaxe",
+    "rankine:niobium_alloy_pickaxe",
+    "rankine:zirconium_alloy_pickaxe",
+    "rankine:osmiridium_pickaxe"
   ]
 }

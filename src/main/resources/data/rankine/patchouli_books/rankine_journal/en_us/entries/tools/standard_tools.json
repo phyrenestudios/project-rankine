@@ -57,9 +57,15 @@
     },
     {
       "type": "text",
-      "anchor": "surf_rods",
+      "anchor": "spears",
       "title": "rankine.journal.cat_tools.standard_tools.text18",
       "text": "rankine.journal.cat_tools.standard_tools.text19"
+    },
+    {
+      "type": "text",
+      "anchor": "surf_rods",
+      "title": "rankine.journal.cat_tools.standard_tools.text20",
+      "text": "rankine.journal.cat_tools.standard_tools.text21"
     }
   ]
 }

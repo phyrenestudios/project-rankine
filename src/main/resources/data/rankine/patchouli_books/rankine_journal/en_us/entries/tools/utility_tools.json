@@ -10,37 +10,42 @@
     {
       "type": "crafting",
       "recipe": "minecraft:compass",
-      "text": "Displays direction and X,Z coordinates."
+      "text": "rankine.journal.cat_tools.utility_tools.compass"
     },
     {
       "type": "crafting",
       "recipe": "minecraft:clock",
-      "text": "Displays 24 hour clock time and world tick time."
+      "text": "rankine.journal.cat_tools.utility_tools.clock"
     },
     {
       "type": "crafting",
       "recipe": "rankine:altimeter",
-      "text": "Displays Y coordinate."
+      "text": "rankine.journal.cat_tools.utility_tools.altimeter"
     },
     {
       "type": "crafting",
       "recipe": "rankine:photometer",
-      "text": "Displays light level."
+      "text": "rankine.journal.cat_tools.utility_tools.photometer"
     },
     {
       "type": "crafting",
       "recipe": "rankine:speedometer",
-      "text": "Displays speed in blocks per second"
+      "text": "rankine.journal.cat_tools.utility_tools.speedometer"
     },
     {
       "type": "crafting",
       "recipe": "rankine:thermometer",
-      "text": "Displays block temperature."
+      "text": "rankine.journal.cat_tools.utility_tools.thermometer"
     },
     {
       "type": "crafting",
       "recipe": "rankine:biometer",
-      "text": "Displays current biome."
+      "text": "rankine.journal.cat_tools.utility_tools.biometer"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:magnetometer",
+      "text": "rankine.journal.cat_tools.utility_tools.magnetometer"
     }
   ]
 }

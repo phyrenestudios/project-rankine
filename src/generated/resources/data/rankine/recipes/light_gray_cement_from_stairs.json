@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:light_gray_cement_stairs"
+    },
+    {
+      "item": "rankine:light_gray_cement_stairs"
+    },
+    {
+      "item": "rankine:light_gray_cement_stairs"
+    },
+    {
+      "item": "rankine:light_gray_cement_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:light_gray_cement",
+    "count": 6
+  }
+}

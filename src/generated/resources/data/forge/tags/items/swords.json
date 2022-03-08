@@ -17,6 +17,10 @@
     "rankine:purple_gold_sword",
     "rankine:black_gold_sword",
     "rankine:amalgam_sword",
-    "rankine:ender_amalgam_sword"
+    "rankine:ender_amalgam_sword",
+    "rankine:titanium_alloy_sword",
+    "rankine:niobium_alloy_sword",
+    "rankine:zirconium_alloy_sword",
+    "rankine:osmiridium_sword"
   ]
 }

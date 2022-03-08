@@ -1,7 +1,11 @@
 package com.cannolicatfish.rankine.data;
 
+import net.minecraft.advancements.Advancement;
 import net.minecraft.data.AdvancementProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.function.Consumer;
 
 
 public class RankineAdvancementProvider extends AdvancementProvider {
@@ -14,6 +18,12 @@ public class RankineAdvancementProvider extends AdvancementProvider {
         return "Project Rankine - Advancements";
     }
 
+    @Override
+    protected void registerAdvancements(Consumer<Advancement> consumer, ExistingFileHelper fileHelper) {
 
+
+
+        super.registerAdvancements(consumer, fileHelper);
+    }
 
 }

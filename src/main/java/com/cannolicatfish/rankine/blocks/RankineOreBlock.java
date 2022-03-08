@@ -44,7 +44,8 @@ public class RankineOreBlock extends Block {
 
     @Override
     public boolean ticksRandomly(BlockState state) {
-        return state.get(TYPE) == 0;
+        return false;
+        //return state.get(TYPE) == 0;
     }
 
     @Override

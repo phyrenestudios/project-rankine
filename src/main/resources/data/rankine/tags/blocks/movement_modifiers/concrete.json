@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:concrete",
-    "rankine:concrete_slab",
-    "rankine:concrete_stairs",
-    "rankine:concrete_wall"
-  ]
-}

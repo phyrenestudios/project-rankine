@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:lime_cement_vertical_slab"
+    },
+    {
+      "item": "rankine:lime_cement_vertical_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:lime_cement"
+  }
+}

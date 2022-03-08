@@ -18,11 +18,6 @@
       "text": "rankine.journal.cat_tools.ore_detection.text3"
     },
     {
-      "type": "crafting",
-      "recipe": "rankine:magnometer",
-      "text": "rankine.journal.cat_tools.ore_detection.text4"
-    },
-    {
       "type": "spotlight",
       "item": "rankine:ore_detector",
       "text": "rankine.journal.cat_tools.ore_detection.text5"

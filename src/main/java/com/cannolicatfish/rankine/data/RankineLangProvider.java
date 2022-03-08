@@ -315,6 +315,8 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.SOYBEANS.get(),
             RankineItems.SOY_MILK.get(),
             RankineItems.TOFU.get(),
+            RankineItems.COOKED_TOFU.get(),
+            RankineItems.TOFU_CURRY.get(),
             RankineItems.BLUEBERRIES.get(),
             RankineItems.CRANBERRIES.get(),
             RankineItems.POKEBERRIES.get(),
@@ -586,6 +588,10 @@ public class RankineLangProvider extends LanguageProvider {
 
 
         add("item.rankine.building_tool.message", "Building Mode changed to %1$s");
+        add("item.rankine.prospecting_stick_cobbles.message", "Trace amounts of %1$s were detected");
+        add("item.rankine.prospecting_stick.message", "%1$s (HL:%2$s) was detected nearby");
+        add("item.rankine.ore_detector.message", "%1$s (HL:%2$s) was detected at x:%3$s y:%4$s z:%5$s");
+        add("item.rankine.magnetometer.message1", "Field Strength: %s");
 
 
         //Death Messages
@@ -632,7 +638,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.lightning_aspect", "Lightning Aspect");
         add("enchantment.rankine.lightning_aspect.desc", "Causes lightning to strike when attacking targets.");
         add("enchantment.rankine.swing", "Swing");
-        add("enchantment.rankine.swing.desc", "Decreases the cooldown of effects caused by swinging the hammer by 15% (additive).");
+        add("enchantment.rankine.swing.desc", "Decreases the cooldown of effects caused by swinging the hammer or crowbar by 15% (additive).");
         add("enchantment.rankine.excavate", "Excavate");
         add("enchantment.rankine.excavate.desc", "Increases the number of blocks broken by swinging the hammer.");
         add("enchantment.rankine.daze", "Daze");
@@ -1093,62 +1099,56 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.ground_flora.short_grass", "");
 
         add("rankine.journal.cat_biota.trees.name", "Trees");
-        add("rankine.journal.cat_biota.trees.cedar.title", "");
-        add("rankine.journal.cat_biota.trees.cedar", "");
-        add("rankine.journal.cat_biota.trees.balsam_fir.title", "");
-        add("rankine.journal.cat_biota.trees.balsam_fir", "");
-        add("rankine.journal.cat_biota.trees.eastern_hemlock.title", "");
-        add("rankine.journal.cat_biota.trees.eastern_hemlock", "");
-        add("rankine.journal.cat_biota.trees.western_hemlock.title", "");
-        add("rankine.journal.cat_biota.trees.western_hemlock", "");
-        add("rankine.journal.cat_biota.trees.pinyon_pine.title", "");
-        add("rankine.journal.cat_biota.trees.pinyon_pine", "");
-        add("rankine.journal.cat_biota.trees.juniper.title", "");
-        add("rankine.journal.cat_biota.trees.juniper", "");
-        add("rankine.journal.cat_biota.trees.black_birch.title", "");
-        add("rankine.journal.cat_biota.trees.black_birch", "");
-        add("rankine.journal.cat_biota.trees.yellow_birch.title", "");
-        add("rankine.journal.cat_biota.trees.yellow_birch", "");
-        add("rankine.journal.cat_biota.trees.red_birch.title", "");
-        add("rankine.journal.cat_biota.trees.red_birch", "");
-        add("rankine.journal.cat_biota.trees.maple.title", "");
-        add("rankine.journal.cat_biota.trees.maple", "");
-        add("rankine.journal.cat_biota.trees.black_walnut.title", "");
-        add("rankine.journal.cat_biota.trees.black_walnut", "");
-        add("rankine.journal.cat_biota.trees.coconut_palm.title", "");
-        add("rankine.journal.cat_biota.trees.coconut_palm", "");
-        add("rankine.journal.cat_biota.trees.cork_oak.title", "");
-        add("rankine.journal.cat_biota.trees.cork_oak", "");
-        add("rankine.journal.cat_biota.trees.sharinga.title", "");
-        add("rankine.journal.cat_biota.trees.sharinga", "");
-        add("rankine.journal.cat_biota.trees.cinnamon.title", "");
-        add("rankine.journal.cat_biota.trees.cinnamon", "");
-        add("rankine.journal.cat_biota.trees.honey_locust.title", "");
-        add("rankine.journal.cat_biota.trees.honey_locust", "");
-        add("rankine.journal.cat_biota.trees.weeping_willow.title", "");
-        add("rankine.journal.cat_biota.trees.weeping_willow", "");
+        add("rankine.journal.cat_biota.trees.cedar.title", "Cedar");
+        add("rankine.journal.cat_biota.trees.cedar", "Native to taiga biomes.");
+        add("rankine.journal.cat_biota.trees.balsam_fir.title", "Balsam Fir");
+        add("rankine.journal.cat_biota.trees.balsam_fir", "Native to mountain biomes.");
+        add("rankine.journal.cat_biota.trees.eastern_hemlock.title", "Eastern Hemlock");
+        add("rankine.journal.cat_biota.trees.eastern_hemlock", "Native to giant taiga biomes.");
+        add("rankine.journal.cat_biota.trees.western_hemlock.title", "Western Hemlock");
+        add("rankine.journal.cat_biota.trees.western_hemlock", "Native to giant taiga biomes.");
+        add("rankine.journal.cat_biota.trees.pinyon_pine.title", "Pinyon Pine");
+        add("rankine.journal.cat_biota.trees.pinyon_pine", "Native to savanna biomes.");
+        add("rankine.journal.cat_biota.trees.juniper.title", "Juniper");
+        add("rankine.journal.cat_biota.trees.juniper", "Native to savanna biomes.");
+        add("rankine.journal.cat_biota.trees.black_birch.title", "Black Birch");
+        add("rankine.journal.cat_biota.trees.black_birch", "Native to river biomes.");
+        add("rankine.journal.cat_biota.trees.yellow_birch.title", "Yellow Birch");
+        add("rankine.journal.cat_biota.trees.yellow_birch", "Native to forest biomes.");
+        add("rankine.journal.cat_biota.trees.red_birch.title", "Red Birch");
+        add("rankine.journal.cat_biota.trees.red_birch", "Native to mountain biomes.");
+        add("rankine.journal.cat_biota.trees.maple.title", "Maple");
+        add("rankine.journal.cat_biota.trees.maple", "Native to forest biomes.");
+        add("rankine.journal.cat_biota.trees.magnolia.title", "Magnolia");
+        add("rankine.journal.cat_biota.trees.magnolia", "Native to river biomes.");
+        add("rankine.journal.cat_biota.trees.black_walnut.title", "Black Walnut");
+        add("rankine.journal.cat_biota.trees.black_walnut", "Native to dark oak forests..");
+        add("rankine.journal.cat_biota.trees.coconut_palm.title", "Coconut Palm");
+        add("rankine.journal.cat_biota.trees.coconut_palm", "Native to beaches");
+        add("rankine.journal.cat_biota.trees.cork_oak.title", "Cork Oak");
+        add("rankine.journal.cat_biota.trees.cork_oak", "Native to jungle biomes.");
+        add("rankine.journal.cat_biota.trees.sharinga.title", "Sharinga");
+        add("rankine.journal.cat_biota.trees.sharinga", "Native to jungle biomes.");
+        add("rankine.journal.cat_biota.trees.cinnamon.title", "Cinnamon");
+        add("rankine.journal.cat_biota.trees.cinnamon", "Native to jungle biomes.");
+        add("rankine.journal.cat_biota.trees.erythrina.title", "Erythrina");
+        add("rankine.journal.cat_biota.trees.erythrina", "Native to badlands biomes.");
+        add("rankine.journal.cat_biota.trees.honey_locust.title", "Honey Locust");
+        add("rankine.journal.cat_biota.trees.honey_locust", "Native to plains biomes.");
+        add("rankine.journal.cat_biota.trees.weeping_willow.title", "Weeping Willow");
+        add("rankine.journal.cat_biota.trees.weeping_willow", "Native to sawmp biomes.");
 
         add("rankine.journal.cat_biota.crops.name", "Crops");
         add("rankine.journal.cat_biota.crops.text1", "");
-        add("rankine.journal.cat_biota.crops.barley", "");
-        add("rankine.journal.cat_biota.crops.rice", "");
-        add("rankine.journal.cat_biota.crops.millet", "");
-        add("rankine.journal.cat_biota.crops.rye", "");
-        add("rankine.journal.cat_biota.crops.oats", "");
-        add("rankine.journal.cat_biota.crops.sorghum", "");
+        add("rankine.journal.cat_biota.crops.grains_heading", "Grains");
+        add("rankine.journal.cat_biota.crops.grains", "A variety of grains have rooted across the plains and savannas. They are grown and used similar to wheat.");
         add("rankine.journal.cat_biota.crops.corn_ear", "");
         add("rankine.journal.cat_biota.crops.soybeans", "");
         add("rankine.journal.cat_biota.crops.asparagus", "");
         add("rankine.journal.cat_biota.crops.jute", "");
         add("rankine.journal.cat_biota.crops.cotton", "");
-        add("rankine.journal.cat_biota.crops.blueberries", "");
-        add("rankine.journal.cat_biota.crops.cranberries", "");
-        add("rankine.journal.cat_biota.crops.elderberries", "");
-        add("rankine.journal.cat_biota.crops.pokeberries", "");
-        add("rankine.journal.cat_biota.crops.strawberries", "");
-        add("rankine.journal.cat_biota.crops.snowberries", "");
-        add("rankine.journal.cat_biota.crops.raspberries", "");
-        add("rankine.journal.cat_biota.crops.blackberries", "");
+        add("rankine.journal.cat_biota.crops.berries_heading", "Berries");
+        add("rankine.journal.cat_biota.crops.berries", "Berries are a raw source of food that grow on bushes throughout the world. They can be used to craft Fruit Jam.");
         add("rankine.journal.cat_biota.crops.pineapple", "");
         add("rankine.journal.cat_biota.crops.aloe", "");
         add("rankine.journal.cat_biota.crops.banana_yucca", "");
@@ -1161,7 +1161,7 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.journal.cat_materials.mixing_barrel.name", "Mixing Barrel");
         add("rankine.journal.cat_materials.mixing_barrel.text1", "The mixing barrel combines together materials and fluid of various composition. Place items in any of the four items slots and their relative compositions will be displayed. Add fluid to the barrel by right clicking with a bucket. When an appropriate recipe is in the barrel, supply redstone pulses to the block to begin spinning. Each recipe has a variable number of spins needed to complete based off the redstone signal strength.");
-        add("rankine.journal.cat_materials.mixing_barrel.text2", "A recipe is defined by ");
+        add("rankine.journal.cat_materials.mixing_barrel.text2", "A recipe is defined by composition of ingredients needed to make the output. The actual quantity of input material can vary and this will determine the quantity of the output and the number of spins required. The material scale of the recipe (shown by the #:# in JEI) means some recipes are not 1 to 1, make sure your mixing batch doesn't go over 64.");
 
 
         add("rankine.journal.cat_materials.gasses.name", "Gas Blocks");
@@ -1222,10 +1222,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mineralogy.meteorites.meteoric_ice","A rare form of ice only found in frozen meteorites. Like normal ice blocks, it is slippery and requires silk touch to harvest.");
 
         add("rankine.journal.cat_mineralogy.mineral_stones.name", "Mineral Stones");
-        add("rankine.journal.cat_mineralogy.mineral_stones.text1","");
-        add("rankine.journal.cat_mineralogy.mineral_stones.phosphorite","");
-        add("rankine.journal.cat_mineralogy.mineral_stones.sylvinite","");
-        add("rankine.journal.cat_mineralogy.mineral_stones.evaporite","");
+        add("rankine.journal.cat_mineralogy.mineral_stones.text1","Some stones are more concentrated in specific minerals than the surrounding parent stone. The crystal formation is not as complete as a standard ore, and such these deposits are refered to as mineral stones.");
+        add("rankine.journal.cat_mineralogy.mineral_stones.phosphorite","A major source of potassium. Found in ocean, beach, desert and mountain biomes.");
+        add("rankine.journal.cat_mineralogy.mineral_stones.sylvinite","A major source of salt. Found in ocean, beach and desert biomes.");
+        add("rankine.journal.cat_mineralogy.mineral_stones.evaporite","A major source of sodium compounds. Found in ocean and beach biomes.");
 
 
         add("rankine.journal.cat_mineralogy.fumaroles.name", "Fumaroles");
@@ -1292,8 +1292,9 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_stones.volcanic.komatiitic_tuff", "");
 
         add("rankine.journal.cat_stones.sedimentary.name", "Sedimentary Stones");
-        add("rankine.journal.cat_stones.sedimentary.text1", "");
+        add("rankine.journal.cat_stones.sedimentary.text1", "Sedimentary stones are formed from compactions and cementing of sediments. See JEI for generator recipes.");
         add("rankine.journal.cat_stones.sedimentary.text2", "Sedimentary Generator");
+        add("rankine.journal.cat_stones.sedimentary.text3", "Must have a water source above the sediment fan and the two adjacent blocks under the stream determine the block generated.");
         add("rankine.journal.cat_stones.sedimentary.sandstone", "");
         add("rankine.journal.cat_stones.sedimentary.red_sandstone", "");
         add("rankine.journal.cat_stones.sedimentary.soul_sandstone", "");
@@ -1315,9 +1316,9 @@ public class RankineLangProvider extends LanguageProvider {
 
 
         add("rankine.journal.cat_stones.metamorphic.name", "Metamorphic Stones");
-        add("rankine.journal.cat_stones.metamorphic.text1", "");
+        add("rankine.journal.cat_stones.metamorphic.text1", "Metamorphic stones are formed by the conversion of existing stone under heat and pressure. See JEI for generator recipes.");
         add("rankine.journal.cat_stones.metamorphic.text2", "Metamorphic Generator");
-        add("rankine.journal.cat_stones.metamorphic.text3", "");
+        add("rankine.journal.cat_stones.metamorphic.text3", "The vanilla stone generator where lava falls onto water source blocks. The block under the water source determines the generated block.");
         add("rankine.journal.cat_stones.metamorphic.black_marble", "");
         add("rankine.journal.cat_stones.metamorphic.gray_marble", "");
         add("rankine.journal.cat_stones.metamorphic.white_marble", "");
@@ -1333,8 +1334,6 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_stones.metamorphic.serpentinite", "");
         add("rankine.journal.cat_stones.metamorphic.mariposite", "");
         add("rankine.journal.cat_stones.metamorphic.eclogite", "");
-
-
 
 
         add("rankine.journal.cat_stones.igneous.name", "Igneous Stones");
@@ -1427,6 +1426,19 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.totems.totem_of_softening", "The delicacy of an open hand allows you to collect blocks that naturally require silk touch.");
         add("rankine.journal.cat_tools.totems.totem_of_timesaving", "Provides additional movement speed across all solid terrain.");
 
+        add("rankine.journal.cat_tools.building_tool.name", "Building Tool");
+        add("rankine.journal.cat_tools.building_tool.text1", "A catch all tool for creating new blockstates from a given block. With the building tool in the offhand, shift-right click to change the mode from 0-7. Then place blocks to see if they have an affected build state.");
+        add("rankine.journal.cat_tools.building_tool.text2", "Currently affects Stone Bricks, Polished Stones, Bricks, Planks, Columns, Asphalt, Concrete/Cement, Ornament and Metal Bars blocks.");
+
+
+        add("rankine.journal.cat_tools.common_tools.name", "Other Tools");
+        add("rankine.journal.cat_tools.common_tools.text1", "");
+        add("rankine.journal.cat_tools.common_tools.glass_cutter", "A tool effective for breaking glass materials. Comes with silk touch by default. Right click glass blocks to convert them into glass panes.");
+        add("rankine.journal.cat_tools.common_tools.rock_drill", "Right click the ground to receive a sample report of all the stones located below.");
+        add("rankine.journal.cat_tools.common_tools.fire_extinguisher", "Right click to extinguish fires in a radius in front of you.");
+
+
+
         add("rankine.journal.cat_tools.ore_detection.name", "Ore Detection");
         add("rankine.journal.cat_tools.ore_detection.text1", "");
         add("rankine.journal.cat_tools.ore_detection.text2", "Determines the harvest level of a block. $(br2)Use by right clicking a block to see its mining level.Testable material only include those affected by a pickaxe/hammer.");
@@ -1445,27 +1457,38 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.equipment.text7", "A Gas Mask are worn on the head and protects against suffocation in gas blocks. Combine helmet of any type with a gas mask in an anvil to apply the $(l:mechanics/enchantments#gas_protection)Gas Protection$() enchantment.");
 
         add("rankine.journal.cat_tools.utility_tools.name", "Utility Tools");
+        add("rankine.journal.cat_tools.utility_tools.text1", "");
+        add("rankine.journal.cat_tools.utility_tools.altimeter", "Displays the current Y value.");
+        add("rankine.journal.cat_tools.utility_tools.photometer", "Displays the current light level.");
+        add("rankine.journal.cat_tools.utility_tools.compass", "Displays the current X and Z coordinates.");
+        add("rankine.journal.cat_tools.utility_tools.speedometer", "Displays the current speed in blocks per second.");
+        add("rankine.journal.cat_tools.utility_tools.thermometer", "Displays the current air temperature.");
+        add("rankine.journal.cat_tools.utility_tools.biometer", "Displays the current biome.");
+        add("rankine.journal.cat_tools.utility_tools.magnetometer", "Displays the current magnetic field strength. Field strength is dependent on nearby blocks.");
+
 
         add("rankine.journal.cat_tools.standard_tools.name", "Standard Tools");
         add("rankine.journal.cat_tools.standard_tools.text1", "");
         add("rankine.journal.cat_tools.standard_tools.text2", "Swords");
-        add("rankine.journal.cat_tools.standard_tools.text3", "");
+        add("rankine.journal.cat_tools.standard_tools.text3", "A familiar weapon used to damage mobs.");
         add("rankine.journal.cat_tools.standard_tools.text4", "Shovels");
-        add("rankine.journal.cat_tools.standard_tools.text5", "");
+        add("rankine.journal.cat_tools.standard_tools.text5", "A familiar tool used to break earthy blocks.");
         add("rankine.journal.cat_tools.standard_tools.text6", "Pixaxes");
-        add("rankine.journal.cat_tools.standard_tools.text7", "");
+        add("rankine.journal.cat_tools.standard_tools.text7", "A familiar tool used to break rocky blocks.");
         add("rankine.journal.cat_tools.standard_tools.text8", "Axes");
-        add("rankine.journal.cat_tools.standard_tools.text9", "");
+        add("rankine.journal.cat_tools.standard_tools.text9", "A familiar tool used to break wooden blocks. Additional items can be obtained from stripping logs. $(br2)Alloy axes have the bonus capability of chopping down entire trees.");
         add("rankine.journal.cat_tools.standard_tools.text10", "Hoes");
-        add("rankine.journal.cat_tools.standard_tools.text11", "");
+        add("rankine.journal.cat_tools.standard_tools.text11", "A familiar tool used to create farmland and break certain blocks. $(br2)Alloy hoes have the bonus capability of replanting crops when right clicked on them.");
         add("rankine.journal.cat_tools.standard_tools.text12", "Hammers");
-        add("rankine.journal.cat_tools.standard_tools.text13", "");
+        add("rankine.journal.cat_tools.standard_tools.text13", "A new tool for $(l:mechanics/crushing)crushing$() blocks. Left click a block when the attack indicator is off cooldown. Also functions as an effective weapon.");
         add("rankine.journal.cat_tools.standard_tools.text14", "Knives");
         add("rankine.journal.cat_tools.standard_tools.text15", "");
         add("rankine.journal.cat_tools.standard_tools.text16", "Crowbars");
         add("rankine.journal.cat_tools.standard_tools.text17", "");
-        add("rankine.journal.cat_tools.standard_tools.text18", "Surf Rods");
-        add("rankine.journal.cat_tools.standard_tools.text19", "");
+        add("rankine.journal.cat_tools.standard_tools.text18", "Spears");
+        add("rankine.journal.cat_tools.standard_tools.text19", "A new weapon similar to the trident.");
+        add("rankine.journal.cat_tools.standard_tools.text20", "Surf Rods");
+        add("rankine.journal.cat_tools.standard_tools.text21", "");
 
 
 

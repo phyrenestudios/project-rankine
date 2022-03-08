@@ -1,0 +1,31 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 80,
+  "ingredientTotal": 3,
+  "matScale": 1,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 50
+  },
+  "input1": {
+    "item": "rankine:cement_mix",
+    "required": true,
+    "min": 0.40,
+    "max": 0.60
+  },
+  "input2": {
+    "tag": "forge:sand",
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
+  },
+  "input3": {
+    "tag": "forge:gravel",
+    "required": true,
+    "min": 0.10,
+    "max": 0.20
+  },
+  "result": {
+    "item": "rankine:concrete"
+  }
+}

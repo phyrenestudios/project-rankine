@@ -79,6 +79,13 @@
     },
     {
       "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.magnolia.title",
+      "item": "rankine:magnolia_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.magnolia"
+    },
+    {
+      "type": "spotlight",
       "title": "rankine.journal.cat_biota.trees.black_walnut.title",
       "item": "rankine:black_walnut_sapling",
       "link_recipe": true,
@@ -118,6 +125,13 @@
       "item": "rankine:honey_locust_sapling",
       "link_recipe": true,
       "text": "rankine.journal.cat_biota.trees.honey_locust"
+    },
+    {
+      "type": "spotlight",
+      "title": "rankine.journal.cat_biota.trees.erythrina.title",
+      "item": "rankine:erythrina_sapling",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_biota.trees.erythrina"
     },
     {
       "type": "spotlight",

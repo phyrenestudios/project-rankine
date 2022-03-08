@@ -8,7 +8,8 @@
       "text": "rankine.journal.cat_stones.metamorphic.text1"
     },
     {
-      "type": "text",
+      "type": "image",
+      "images": ["rankine:textures/patchouli/metamorphic_gen.png"],
       "title": "rankine.journal.cat_stones.metamorphic.text2",
       "text": "rankine.journal.cat_stones.metamorphic.text3"
     },

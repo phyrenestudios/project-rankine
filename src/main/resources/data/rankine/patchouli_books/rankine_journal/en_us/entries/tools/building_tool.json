@@ -1,16 +1,16 @@
 {
-  "name": "Building Tool",
+  "name": "rankine.journal.cat_tools.building_tool.name",
   "icon": "rankine:building_tool",
   "category": "tools",
   "pages": [
     {
       "type": "text",
-      "text": "Like a chisel but in world. $(br)Use by shift right clicking in air to change building mode (0 to 3). When the building tool is in the offhand, blocks that have building modes will be placed with an alternative texture."
+      "text": "rankine.journal.cat_tools.building_tool.text1"
     },
     {
       "type": "crafting",
       "recipe": "rankine:building_tool",
-      "text": "Currently affects Rankine forms of Stone Bricks, Bricks, Planks and Polished Stones."
+      "text": "rankine.journal.cat_tools.building_tool.text2"
     }
   ]
 }

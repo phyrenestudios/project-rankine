@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.world.trees;
 
-import com.cannolicatfish.rankine.world.RankineBiomeFeatures;
+import com.cannolicatfish.rankine.world.gen.RankineBiomeFeatures;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;

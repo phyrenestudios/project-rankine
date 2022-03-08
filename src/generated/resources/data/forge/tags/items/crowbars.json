@@ -17,6 +17,10 @@
     "rankine:purple_gold_crowbar",
     "rankine:black_gold_crowbar",
     "rankine:amalgam_crowbar",
-    "rankine:ender_amalgam_crowbar"
+    "rankine:ender_amalgam_crowbar",
+    "rankine:titanium_alloy_crowbar",
+    "rankine:niobium_alloy_crowbar",
+    "rankine:zirconium_alloy_crowbar",
+    "rankine:osmiridium_crowbar"
   ]
 }
