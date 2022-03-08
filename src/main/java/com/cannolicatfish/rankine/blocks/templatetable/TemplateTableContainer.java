@@ -173,7 +173,7 @@ public class TemplateTableContainer extends Container {
         topRow += 58;
         addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
     }
-
+/*
     @OnlyIn(Dist.CLIENT)
     public AbstractMap.SimpleEntry<String[],Integer> getOutputString() {
         AlloyingRecipe recipe = world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, this.inputInventory, world).orElse(null);
@@ -189,7 +189,7 @@ public class TemplateTableContainer extends Container {
             String ret = RankineRecipes.generateAlloyString(this.inputInventory);
             return new AbstractMap.SimpleEntry<>(new String[]{"None", ret},0xFF5555);
         }
-    }
+    }*/
 
     public void onCraftMatrixChanged(IInventory inventoryIn) {
 

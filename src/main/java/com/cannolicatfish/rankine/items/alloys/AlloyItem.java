@@ -76,62 +76,6 @@ public class AlloyItem extends Item implements IAlloyItem {
         }
     }
 
-    public static ListNBT getComposition(ItemStack stack) {
-        CompoundNBT compoundnbt = stack.getTag();
-        return compoundnbt != null ? compoundnbt.getList("StoredComposition", 10) : new ListNBT();
-    }
-
-    public static void addAlloy(ItemStack p_92115_0_, AlloyData stack) {
-        ListNBT listnbt = getComposition(p_92115_0_);
-        boolean flag = true;
-
-
-        if (flag) {
-            CompoundNBT compoundnbt1 = new CompoundNBT();
-            compoundnbt1.putString("comp", stack.alloyComposition);
-            listnbt.add(compoundnbt1);
-        }
-
-        p_92115_0_.getOrCreateTag().put("StoredComposition", listnbt);
-    }
-
-
-    /**
-     * Returns the ItemStack of an enchanted version of this item.
-     */
-    public ItemStack getAlloyItemStack(AlloyData p_92111_0_) {
-        ItemStack itemstack = new ItemStack(this.getItem());
-        addAlloy(itemstack, p_92111_0_);
-        return itemstack;
-    }
-
-    public List<PeriodicTableUtils.Element> getElements(String c)
-    {
-        //String c = getComposition(stack).getCompound(0).get("comp").getString();
-        PeriodicTableUtils utils = new PeriodicTableUtils();
-        String[] comp = c.split("-");
-        List<PeriodicTableUtils.Element> list = new ArrayList<>();
-        for (String e: comp)
-        {
-            String str = e.replaceAll("[^A-Za-z]+", "");
-            list.add(utils.getElementBySymbol(str));
-        }
-        return list;
-    }
-
-    public List<Integer> getPercents(String c)
-    {
-        String[] comp = c.split("-");
-        List<Integer> list = new ArrayList<>();
-        for (String e: comp)
-        {
-            String str = e.replaceAll("\\D+", "");
-            list.add(Integer.parseInt(str));
-        }
-        return list;
-    }
-
-    @Override
     public String getDefaultComposition() {
         return this.defaultComposition;
     }

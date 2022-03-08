@@ -1,19 +1,17 @@
 package com.cannolicatfish.rankine.enchantment;
 
 import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
-import com.cannolicatfish.rankine.items.alloys.AlloyArmorItem;
+import com.cannolicatfish.rankine.items.alloys.AlloyKnifeItem;
+import com.cannolicatfish.rankine.items.alloys.AlloyPickaxeItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class EndobioticEnchantment extends Enchantment {
-    public EndobioticEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
-        super(p_i46721_1_, RankineEnchantmentTypes.ENDER_AMALGAM_ARMOR, p_i46721_2_);
+public class EndlessEnchantment extends Enchantment {
+    public EndlessEnchantment(Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
+        super(p_i46721_1_, RankineEnchantmentTypes.ENDER_AMALGAM_PICKAXE, p_i46721_2_);
     }
 
     public int getMinEnchantability(int p_77321_1_) {
@@ -32,16 +30,16 @@ public class EndobioticEnchantment extends Enchantment {
     public boolean canApply(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            return rs.equals(new ResourceLocation("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyArmorItem;
+            return rs.equals(new ResourceLocation("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyPickaxeItem;
         }
-        return RankineEnchantmentTypes.ENDER_AMALGAM_ARMOR.canEnchantItem(stack.getItem());
+        return RankineEnchantmentTypes.ENDER_AMALGAM_PICKAXE.canEnchantItem(stack.getItem());
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            return rs.equals(new ResourceLocation("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyArmorItem;
+            return rs.equals(new ResourceLocation("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyPickaxeItem;
         }
         return false;
     }

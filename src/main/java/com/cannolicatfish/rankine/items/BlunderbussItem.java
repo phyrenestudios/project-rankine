@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.entities.CarcassEntity;
+import com.cannolicatfish.rankine.entities.EnderballEntity;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -76,12 +77,18 @@ public class BlunderbussItem extends ShootableItem implements IVanishable {
 
                         DamagingProjectileEntity cannonball;
                         if (itemstack.getItem() == RankineItems.CANNONBALL.get()) {
-                           cannonball = new CannonballEntity(worldIn, playerentity,-d2, -d3, -d4);
+                            if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDPLAY,stack) > 0) {
+                                cannonball = new EnderballEntity(worldIn, playerentity,-d2*2, -d3*2, -d4*2);
+                            } else {
+                                cannonball = new CannonballEntity(worldIn, playerentity,-d2, -d3, -d4);
+                            }
                         } else if (itemstack.getItem() == RankineItems.CARCASS.get()) {
                             cannonball = new CarcassEntity(worldIn, playerentity,-d2, -d3, -d4);
                         } else if (itemstack.getItem() == Items.FIRE_CHARGE) {
                             cannonball = new SmallFireballEntity(worldIn, playerentity,-d2, -d3, -d4);
-                        } else {
+                        } else if (itemstack.getItem() == RankineItems.ENDERBALL.get()) {
+                            cannonball = new EnderballEntity(worldIn, playerentity,-d2*2, -d3*2, -d4*2);
+                        }else {
                             cannonball = new CannonballEntity(worldIn, playerentity,-d2, -d3, -d4);
                         }
                         cannonball.setPosition(playerentity.getPosX() + vector3d.x, playerentity.getPosYHeight(0.5D) + 0.5D, cannonball.getPosZ() + vector3d.z);

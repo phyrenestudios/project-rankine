@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.GasBottleItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
+import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -159,7 +160,7 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
         if (index == 0) {
-            return PeriodicTableUtils.getInstance().hasElement(stack.getItem()) || stack.getItem() instanceof IAlloyItem;
+            return AlloyCustomHelper.hasElement(stack.getItem())  || stack.getItem() instanceof IAlloyItem;
         }
         return (stack.getItem().isIn(RankineTags.Items.MTT_TOOLS));
     }

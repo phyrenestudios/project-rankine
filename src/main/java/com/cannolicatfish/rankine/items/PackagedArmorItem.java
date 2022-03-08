@@ -14,6 +14,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -32,7 +33,7 @@ public class PackagedArmorItem extends Item {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add((new StringTextComponent("Contains a completely random armor item. Results may vary.")).mergeStyle(TextFormatting.RED));
+        tooltip.add((new TranslationTextComponent("item.rankine.packaged_tool_armor_desc")).mergeStyle(TextFormatting.RED));
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
@@ -89,7 +90,8 @@ public class PackagedArmorItem extends Item {
         }
 
         List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING);
-        AlloyingRecipe alloy = recipes.stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty()).collect(Collectors.toList()).get(worldIn.getRandom().nextInt(recipes.size()));
+        List<AlloyingRecipe> newRecipes = recipes.stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty()).collect(Collectors.toList());
+        AlloyingRecipe alloy = newRecipes.get(worldIn.getRandom().nextInt(recipes.size()));
         //System.out.println(alloy.getId());
         //System.out.println(alloy.generateRandomResult(worldIn));
 

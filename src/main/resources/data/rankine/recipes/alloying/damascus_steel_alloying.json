@@ -1,0 +1,16 @@
+{
+  "type": "rankine:alloying",
+  "genName": true,
+  "tier": -1,
+  "total": 0,
+  "color": 7634311,
+  "result": "rankine:steel_ingot",
+  "durability": 550,
+  "mininglevel": 1,
+  "damage": 1.5,
+  "attackspeed": 0.5,
+  "corrosionresist": 0.65,
+  "enchantability": 4,
+  "enchantments": ["minecraft:sharpness"],
+  "enchantmentTypes": ["SWORD"]
+}

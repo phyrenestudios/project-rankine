@@ -357,6 +357,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineEntityTypes.REACTIVE_ITEM.setRegistryName(ProjectRankine.MODID,"reactive_item"));
             event.getRegistry().register(RankineEntityTypes.CANNONBALL.setRegistryName(ProjectRankine.MODID,"cannonball"));
             event.getRegistry().register(RankineEntityTypes.CARCASS.setRegistryName(ProjectRankine.MODID,"carcass"));
+            event.getRegistry().register(RankineEntityTypes.ENDERBALL.setRegistryName(ProjectRankine.MODID,"enderball"));
             event.getRegistry().register(RankineEntityTypes.MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"mantle_golem"));
             event.getRegistry().register(RankineEntityTypes.DIAMOND_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"diamond_mantle_golem"));
             event.getRegistry().register(RankineEntityTypes.PERIDOT_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"peridot_mantle_golem"));
@@ -405,6 +406,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.MAGNESIUM_ARROW,MagnesiumArrowRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ALLOY_ARROW,AlloyArrowRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.CANNONBALL, CannonballRenderer::new);
+            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ENDERBALL, EnderballRenderer::new);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.CARCASS, CarcassRenderer::new);
         }
         @SubscribeEvent
@@ -634,9 +636,18 @@ public class ProjectRankine {
             event.getRegistry().register(new AntiquatedEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"antiquated"));
             event.getRegistry().register(new CleanseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"cleanse"));
 
-            event.getRegistry().register(new EndpointEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endpoint"));
+
             event.getRegistry().register(new EndobioticEnchantment(Enchantment.Rarity.VERY_RARE, ARMOR_SLOTS).setRegistryName(ProjectRankine.MODID,"endobiotic"));
-            event.getRegistry().register(new EndotoxinEnchantment(Enchantment.Rarity.VERY_RARE, ARMOR_SLOTS).setRegistryName(ProjectRankine.MODID,"endotoxin"));
+            event.getRegistry().register(new EndotoxinEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endotoxin"));
+            event.getRegistry().register(new EndpointEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endpoint"));
+            event.getRegistry().register(new EndosporeEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endospore"));
+            event.getRegistry().register(new EndureEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endure"));
+            event.getRegistry().register(new EndgameEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"endgame"));
+            event.getRegistry().register(new EndolithicEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endolithic"));
+            event.getRegistry().register(new EndlessEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endless"));
+            event.getRegistry().register(new EndeavorEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endeavor"));
+            event.getRegistry().register(new EndothermicEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endothermic"));
+            event.getRegistry().register(new EndplayEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endplay"));
 
             event.getRegistry().register(new GhastRegenerationEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"ghast_regeneration"));
             event.getRegistry().register(new WitheringCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"withering_curse"));

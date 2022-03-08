@@ -59,7 +59,7 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getCraftingResult(IInventory inv) {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override

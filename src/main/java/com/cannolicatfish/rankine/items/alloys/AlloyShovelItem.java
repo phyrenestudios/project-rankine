@@ -1,16 +1,21 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.google.common.collect.*;
 import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -48,10 +53,26 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
         World world = context.getWorld();
         BlockPos blockpos = context.getPos();
         BlockState blockstate = world.getBlockState(blockpos);
-        if (context.getFace() == Direction.DOWN) {
+        Direction e = context.getFace();
+        PlayerEntity playerentity = context.getPlayer();
+        if (e == Direction.DOWN) {
+            if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOLITHIC,context.getItem()) > 0 && blockstate.getMaterial().equals(Material.ROCK) && playerentity != null) {
+                for (int x = 2; x <= 32; x++) {
+                    BlockPos newPos = blockpos.up(x);
+                    if (world.getBlockState(newPos).isAir() && world.getBlockState(newPos.up(1)).isAir() && world.getBlockState(newPos.down(1)).isSolid()){
+                        playerentity.setPositionAndUpdate(newPos.getX(), MathHelper.clamp(newPos.getY() + 0.5,0.0D, (double)(world.func_234938_ad_() - 1)),newPos.getZ());
+                        context.getItem().damageItem(calcDurabilityLoss(context.getItem(),context.getWorld(),playerentity,false) * 2, playerentity, (p_220040_1_) -> {
+                            p_220040_1_.sendBreakAnimation(context.getHand());
+                        });
+                        SoundEvent soundevent = SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
+                        world.playSound((PlayerEntity)null,blockpos.getX(), blockpos.getY(), blockpos.getZ(), soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                        playerentity.playSound(soundevent, 1.0F, 1.0F);
+                        return ActionResultType.func_233537_a_(world.isRemote);
+                    }
+                }
+            }
             return ActionResultType.PASS;
         } else {
-            PlayerEntity playerentity = context.getPlayer();
             BlockState blockstate1 = SHOVEL_LOOKUP.get(blockstate.getBlock());
             BlockState blockstate2 = null;
             if (blockstate1 != null && world.isAirBlock(blockpos.up())) {
@@ -64,6 +85,40 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
 
                 CampfireBlock.extinguish(world, blockpos, blockstate);
                 blockstate2 = blockstate.with(CampfireBlock.LIT, Boolean.FALSE);
+            } else if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOLITHIC,context.getItem()) > 0 && blockstate.getMaterial().equals(Material.ROCK) && playerentity != null) {
+                for (int x = 2; x <= 32; x++) {
+                    BlockPos newPos = blockpos;
+                    switch (e.getOpposite()) {
+                        case UP:
+                            newPos = blockpos.up(x);
+                            break;
+                        case DOWN:
+                            newPos = blockpos.down(x);
+                            break;
+                        case NORTH:
+                            newPos = blockpos.north(x);
+                            break;
+                        case SOUTH:
+                            newPos = blockpos.south(x);
+                            break;
+                        case EAST:
+                            newPos = blockpos.east(x);
+                            break;
+                        case WEST:
+                            newPos = blockpos.west(x);
+                            break;
+                    }
+                    if (world.getBlockState(newPos).isAir() && world.getBlockState(newPos.up(1)).isAir() && world.getBlockState(newPos.down(1)).isSolid()){
+                        playerentity.setPositionAndUpdate(newPos.getX(), MathHelper.clamp(newPos.getY() + 0.5,0.0D, (double)(world.func_234938_ad_() - 1)),newPos.getZ());
+                        context.getItem().damageItem(calcDurabilityLoss(context.getItem(),context.getWorld(),playerentity,false) * 2, playerentity, (p_220040_1_) -> {
+                            p_220040_1_.sendBreakAnimation(context.getHand());
+                        });
+                        SoundEvent soundevent = SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
+                        world.playSound((PlayerEntity)null,blockpos.getX(), blockpos.getY(), blockpos.getZ(), soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                        playerentity.playSound(soundevent, 1.0F, 1.0F);
+                        return ActionResultType.func_233537_a_(world.isRemote);
+                    }
+                }
             }
 
             if (blockstate2 != null) {
