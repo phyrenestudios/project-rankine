@@ -54,5 +54,8 @@
     "min": 0.0,
     "max": 0.1
   },
-  "result": "rankine:niobium_alloy_ingot"
+  "result": "rankine:niobium_alloy_ingot",
+  "durability": 600,
+  "miningspeed": 3,
+  "toughness": 0.1
 }

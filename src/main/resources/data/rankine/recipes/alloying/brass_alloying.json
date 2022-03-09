@@ -54,5 +54,7 @@
     "min": 0.0,
     "max": 0.10
   },
-  "result": "rankine:brass_ingot"
+  "result": "rankine:brass_ingot",
+  "enchantments": ["minecraft:depth_strider"],
+  "enchantmentTypes": ["BOOTS"]
 }

@@ -1,15 +1,21 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.item.EnderCrystalEntity;
+import net.minecraft.entity.monster.EndermiteEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -100,6 +106,19 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
         } else if (this.needsRefresh(stack)) {
             this.createAlloyNBT(stack,worldIn,IAlloyItem.getAlloyComposition(stack),IAlloyItem.getAlloyRecipe(stack),null);
             this.initStats(stack,getElementMap(IAlloyItem.getAlloyComposition(stack),worldIn),getAlloyingRecipe(IAlloyItem.getAlloyRecipe(stack),worldIn),null);
+        }
+
+        if (!worldIn.isRemote && isSelected && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDURE,stack) > 0 && entityIn instanceof LivingEntity) {
+            LivingEntity living = (LivingEntity) entityIn;
+            List<EnderCrystalEntity> list = worldIn.getEntitiesWithinAABB(EnderCrystalEntity.class, new AxisAlignedBB(living.getPosition()).grow(5, 5, 5));
+            for (EnderCrystalEntity enderCrystalEntity : list) {
+                if (living.ticksExisted % 100 == 0 && living.getHealth() < living.getMaxHealth()) {
+                    enderCrystalEntity.setBeamTarget(living.getPosition());
+                    living.setHealth(living.getHealth() + 1.0F);
+                } else {
+                    enderCrystalEntity.setBeamTarget(null);
+                }
+            }
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }

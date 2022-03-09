@@ -17,11 +17,19 @@
   },
   "miningspeed": {
     "breaks": [100],
-    "formulas": ["LINEAR"],
-    "a": [0.02],
+    "formulas": ["EXPONENTIAL"],
+    "a": [1.025],
     "b": [0],
     "modifiers": ["NONE"],
     "limit": [0]
+  },
+  "mininglevel": {
+    "breaks": [5,8,64,100],
+    "formulas": ["CONSTANT","CONSTANT","CONSTANT","CONSTANT"],
+    "a": [0,1,2,3],
+    "b": [0,0,0,3],
+    "modifiers": ["NONE","NONE","NONE","NONE"],
+    "limit": [0,0,0,0]
   },
   "enchantability": {
     "breaks": [100],
@@ -29,7 +37,7 @@
     "a": [0.2],
     "b": [-0.1],
     "modifiers": ["MAX"],
-    "limit": [8]
+    "limit": [12]
   },
   "corrosionresist": {
     "breaks": [100],
