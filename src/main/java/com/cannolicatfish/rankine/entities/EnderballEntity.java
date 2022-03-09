@@ -135,7 +135,7 @@ public class EnderballEntity extends DamagingProjectileEntity implements IRender
     protected void onImpact(RayTraceResult result) {
         super.onImpact(result);
         if (!this.world.isRemote) {
-            List<LivingEntity> list = world.getEntitiesWithinAABB(LivingEntity.class, new AxisAlignedBB(this.getPosition()).expand(5, 5, 5), (e) -> (e instanceof MobEntity || e instanceof PlayerEntity) && !(e instanceof EndermiteEntity));
+            List<LivingEntity> list = world.getEntitiesWithinAABB(LivingEntity.class, new AxisAlignedBB(this.getPosition()).grow(5, 5, 5), (e) -> (e instanceof MobEntity || e instanceof PlayerEntity) && !(e instanceof EndermiteEntity));
             for (int i = 0; i < 3; i++) {
                 EndermiteEntity endermiteEntity = new EndermiteEntity(EntityType.ENDERMITE,this.world);
                 endermiteEntity.setPosition(this.getPosX(),this.getPosY(),this.getPosZ());

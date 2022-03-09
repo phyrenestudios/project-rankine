@@ -66,6 +66,9 @@ public class RankineEnchantmentTypes {
     public static EnchantmentType ENDER_AMALGAM_AXE = EnchantmentType.create("ender_axe", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_AXE.get(); });
 
+    public static EnchantmentType ENDER_AMALGAM_HOE = EnchantmentType.create("ender_hoe", (itemIn) -> {
+        return itemIn == RankineItems.ENDER_AMALGAM_HOE.get(); });
+
     public static EnchantmentType ENDER_AMALGAM_PICKAXE = EnchantmentType.create("ender_pickaxe", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_PICKAXE.get(); });
 

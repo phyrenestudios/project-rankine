@@ -52,6 +52,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.loot.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -60,6 +61,7 @@ import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
@@ -1001,6 +1003,35 @@ public class RankineEventHandler {
                         } else if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.RETREAT,stack) >= 1) {
                             player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY,60));
                         }
+                        if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDGAME,stack) > 0) {
+                            List<LivingEntity> list = player.world.getEntitiesWithinAABB(LivingEntity.class, new AxisAlignedBB(player.getPosition()).grow(5, 5, 5), (e) -> (e instanceof MobEntity || e instanceof PlayerEntity) && !e.equals(player));
+                            for (LivingEntity entity : list) {
+                                ItemStack offhand = player.getHeldItemOffhand();
+                                ItemStack mainhand = player.getHeldItemMainhand();
+                                player.setItemStackToSlot(EquipmentSlotType.MAINHAND,offhand);
+                                player.setItemStackToSlot(EquipmentSlotType.OFFHAND,mainhand);
+                                player.attackTargetEntityWithCurrentItem(entity);
+                            }
+                            double d0 = player.getPosX();
+                            double d1 = player.getPosY();
+                            double d2 = player.getPosZ();
+
+                            for(int j = 0; j < 16; ++j) {
+                                double d3 = player.getPosX() + (player.getRNG().nextDouble() - 0.5D) * 16.0D;
+                                double d4 = MathHelper.clamp(player.getPosY() + (double)(player.getRNG().nextInt(16) - 8), 0.0D, (double)(player.world.func_234938_ad_() - 1));
+                                double d5 = player.getPosZ() + (player.getRNG().nextDouble() - 0.5D) * 16.0D;
+                                if (player.isPassenger()) {
+                                    player.stopRiding();
+                                }
+
+                                if (player.attemptTeleport(d3, d4, d5, true)) {
+                                    SoundEvent soundevent = SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
+                                    player.world.playSound((PlayerEntity)null, d0, d1, d2, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                                    player.playSound(soundevent, 1.0F, 1.0F);
+                                    break;
+                                }
+                            }
+                        }
                         stack.damageItem(1, player, (p_220045_0_) -> {
                             p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
                         });
@@ -1046,19 +1077,34 @@ public class RankineEventHandler {
         if (stack.getItem() instanceof AlloyArmorItem && ((AlloyArmorItem) stack.getItem()).isAlloyInit(stack) && stack.getItem() instanceof ArmorItem && event.getSlotType() == ((ArmorItem)stack.getItem()).getEquipmentSlot())
         {
             AlloyArmorItem alloyArmor = (AlloyArmorItem) stack.getItem();
-            int slot1 = event.getSlotType().getSlotIndex() * 3;
-            int slot2 = slot1 + 1;
-            int slot3 = slot2 + 1;
+            String character = "a";
+            switch (event.getSlotType().getSlotIndex()) {
+                case 0:
+                    character = "a";
+                    break;
+                case 1:
+                    character = "b";
+                    break;
+                case 2:
+                    character = "c";
+                    break;
+                case 3:
+                    character = "d";
+                    break;
+            }
+            String slot1 = character + "0";
+            String slot2 = character + "1";
+            String slot3 = character + "2";
             int tough = alloyArmor.getAlloyArmorToughness(stack);
             int def = alloyArmor.getAlloyDamageResistance(stack);
             float kr = alloyArmor.getKnockbackResistance(stack);
-            event.addModifier(Attributes.ARMOR_TOUGHNESS,new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1fa"+slot1), "Rankine Armor Toughness modifier",
+            event.addModifier(Attributes.ARMOR_TOUGHNESS,new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe2a"+slot1), "Rankine Armor Toughness modifier",
                     tough,
                     AttributeModifier.Operation.ADDITION));
-            event.addModifier(Attributes.ARMOR, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1fa"+slot2), "Rankine Armor modifier",
+            event.addModifier(Attributes.ARMOR, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe2a"+slot2), "Rankine Armor modifier",
                     def,
                     AttributeModifier.Operation.ADDITION));
-            event.addModifier(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1fa"+slot3), "Rankine Knockback Resist modifier",
+            event.addModifier(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe2a"+slot3), "Rankine Knockback Resist modifier",
                     kr,
                     AttributeModifier.Operation.ADDITION));
         }
@@ -1228,13 +1274,28 @@ public class RankineEventHandler {
             if (player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof HammerItem && !player.world.isRemote) {
                 LivingEntity receiver = event.getEntityLiving();
                 if ((receiver instanceof BlazeEntity || receiver instanceof GolemEntity || receiver instanceof AbstractSkeletonEntity || receiver instanceof GuardianEntity)) {
-                    event.setAmount(event.getAmount() + event.getAmount()/2f);
+                    int endLevel = EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDEAVOR,player.getHeldItem(Hand.MAIN_HAND));
+                    event.setAmount(event.getAmount() + event.getAmount()/2f + 1.5f*endLevel);
+                    if (endLevel > 0 && player.world.getRandom().nextFloat() < (0.15f*endLevel) && receiver.world.getServer() != null && player.world instanceof ServerWorld) {
+                        LootTable loot = receiver.world.getServer().getLootTableManager().getLootTableFromLocation(receiver.getLootTableResourceLocation());
+                        LootContext n = new LootContext.Builder((ServerWorld) player.world)
+                                .withParameter(LootParameters.THIS_ENTITY, receiver)
+                                .withParameter(LootParameters.ORIGIN, receiver.getPositionVec())
+                                .withParameter(LootParameters.DAMAGE_SOURCE, DamageSource.causePlayerDamage(player))
+                                .withParameter(LootParameters.LAST_DAMAGE_PLAYER,player).build(LootParameterSets.ENTITY);
+                        List<ItemStack> s = loot.generate(n);
+                        if (s.size() > 1) {
+                            receiver.entityDropItem(s.get(receiver.world.getRandom().nextInt(s.size())));
+                        } else if (s.size() == 1) {
+                            receiver.entityDropItem(s.get(0));
+                        }
+                    }
                 }
             }
 
             if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOTOXIN,player.getHeldItem(Hand.MAIN_HAND)) >= 1 && !player.world.isRemote) {
                 LivingEntity receiver = event.getEntityLiving();
-                if ((receiver instanceof EndermanEntity || receiver.getEntityWorld().getDimensionKey().equals(World.THE_END))) {
+                if ((receiver instanceof EndermanEntity || receiver instanceof ShulkerEntity || receiver instanceof EndermiteEntity || receiver.getEntityWorld().getDimensionKey().equals(World.THE_END))) {
                     event.setAmount(event.getAmount() + 2.5f*EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOTOXIN,player.getHeldItem(Hand.MAIN_HAND)));
                 }
             }
@@ -1938,7 +1999,7 @@ public class RankineEventHandler {
                 player.swingArm(event.getHand());
                 event.setResult(Event.Result.ALLOW);
             } else if (b instanceof DoubleCropsBlock && item instanceof AlloyHoeItem) {
-                if (targetBS.get(DoubleCropsBlock.AGE) == 7) {
+                if (targetBS.hasProperty(CropsBlock.AGE) && targetBS.get(DoubleCropsBlock.AGE) == 7) {
                     if (targetBS.get(DoubleCropsBlock.SECTION) == DoubleBlockHalf.LOWER) {
                         worldIn.destroyBlock(pos,true);
                         if (targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),worldIn,pos)) {
@@ -1950,9 +2011,13 @@ public class RankineEventHandler {
                             worldIn.setBlockState(pos.down(), b.getDefaultState().with(CropsBlock.AGE, 0));
                         }
                     }
+                    if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOSPORE,stack) > 0 && world.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
+                        Optional<BlockPos> bp = BlockPos.getClosestMatchingPosition(pos,3,3,blockPos ->!blockPos.equals(pos) && world.isAirBlock(blockPos) && targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,blockPos));
+                        bp.ifPresent(blockPos -> world.setBlockState(blockPos, b.getDefaultState().with(CropsBlock.AGE, CropsBlock.AGE.getAllowedValues().stream().max(Integer::compareTo).orElse(0))));
+                    }
                 }
             } else if (b instanceof TripleCropsBlock && item instanceof AlloyHoeItem) {
-                if (targetBS.get(DoubleCropsBlock.AGE) == 7) {
+                if (targetBS.hasProperty(CropsBlock.AGE) && targetBS.get(DoubleCropsBlock.AGE) == 7) {
                     if (targetBS.get(TripleCropsBlock.SECTION) == TripleBlockSection.BOTTOM) {
                         worldIn.destroyBlock(pos,true);
                         if (targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),worldIn,pos)) {
@@ -1969,12 +2034,21 @@ public class RankineEventHandler {
                             worldIn.setBlockState(pos.down(2), b.getDefaultState().with(CropsBlock.AGE, 0));
                         }
                     }
+                    if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOSPORE,stack) > 0 && world.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
+                        Optional<BlockPos> bp = BlockPos.getClosestMatchingPosition(pos,3,3,blockPos -> !blockPos.equals(pos) && world.isAirBlock(blockPos) && targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,blockPos));
+                        bp.ifPresent(blockPos -> world.setBlockState(blockPos, b.getDefaultState().with(CropsBlock.AGE, CropsBlock.AGE.getAllowedValues().stream().max(Integer::compareTo).orElse(0))));
+                    }
                 }
             } else if (b instanceof CropsBlock && item instanceof AlloyHoeItem) {
-                if (targetBS.get(CropsBlock.AGE) == 7) {
-                    worldIn.destroyBlock(pos,true);
-                    if (targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),worldIn,pos)) {
-                        worldIn.setBlockState(pos,b.getDefaultState().with(CropsBlock.AGE, 0));
+
+                if (targetBS.hasProperty(CropsBlock.AGE) && targetBS.get(CropsBlock.AGE) == 7) {
+                    world.destroyBlock(pos,true);
+                    if (targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,pos)) {
+                        world.setBlockState(pos,b.getDefaultState().with(CropsBlock.AGE, 0));
+                    }
+                    if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOSPORE,stack) > 0 && world.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
+                        Optional<BlockPos> bp = BlockPos.getClosestMatchingPosition(pos,3,3,blockPos -> !blockPos.equals(pos) && world.isAirBlock(blockPos) && targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,blockPos));
+                        bp.ifPresent(blockPos -> world.setBlockState(blockPos, b.getDefaultState().with(CropsBlock.AGE, CropsBlock.AGE.getAllowedValues().stream().max(Integer::compareTo).orElse(0))));
                     }
                 }
             }
