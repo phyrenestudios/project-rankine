@@ -1,0 +1,11 @@
+{
+  "type": "rankine:stripping",
+  "chance": 1.0,
+  "input": {
+    "item": "rankine:cinnamon_log"
+  },
+  "result": {
+    "item": "rankine:cinnamon",
+    "count": 1
+  }
+}

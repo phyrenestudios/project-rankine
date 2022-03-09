@@ -36,7 +36,6 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
             for (BlockPos s : BlockPos.getAllInBoxMutable(logPos.add(-1,-2,-1),logPos.add(1,2,1))) {
                 BlockPos stupidPos = s.toImmutable();
                 if (!stupidPos.equals(pos) && world.getBlockState(stupidPos).matchesBlock(RankineBlocks.TREE_TAP.get())) {
-                    System.out.println("AAAAA crowded");
                     return;
                 }
             }

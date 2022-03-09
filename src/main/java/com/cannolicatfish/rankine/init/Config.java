@@ -416,9 +416,6 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue PUMICE_SOAP;
         public final ForgeConfigSpec.BooleanValue FLINT_FIRE;
         public final ForgeConfigSpec.BooleanValue STUMP_CREATION;
-        public final ForgeConfigSpec.BooleanValue STRIPPABLES_CORK;
-        public final ForgeConfigSpec.BooleanValue STRIPPABLES_PAPER;
-        public final ForgeConfigSpec.BooleanValue STRIPPABLES_CINNAMON;
         public final ForgeConfigSpec.BooleanValue STRIPPABLES_STICKS;
         public final ForgeConfigSpec.DoubleValue FLINT_FIRE_CHANCE;
         public final ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
@@ -464,13 +461,7 @@ public class Config {
                             .define("colorWorld",true);
                     PUMICE_SOAP = b.comment("If enabled, pumice soap can repair mossy/cracked stone bricks and polish stones.")
                             .define("pumiceSoapEnabled",true);
-                    STRIPPABLES_CINNAMON = b.comment("If enabled, cinnamon will drop from cinnamon trees when stripped.")
-                            .define("strippablesCinnamon",true);
-                    STRIPPABLES_CORK = b.comment("If enabled, cork will drop from cork oak trees when stripped.")
-                            .define("strippablesCork",true);
-                    STRIPPABLES_PAPER = b.comment("If enabled, paper will drop from birch trees when stripped (30% chance).")
-                            .define("strippablesPaper",true);
-                    STRIPPABLES_STICKS = b.comment("If enabled, sticks will drop from all other trees when stripped (30% chance).")
+                    STRIPPABLES_STICKS = b.comment("If enabled, sticks will drop from logs when stripped (30% chance).")
                             .define("strippablesSticks",true);
                     HERBICIDE_RANGE = b.comment("The radius at which herbicide will kill plants.")
                             .defineInRange("herbicideRange", 8, 0, 16);
@@ -487,7 +478,7 @@ public class Config {
                     TRAMPOLINE_SIZE = b.comment("The maximum size of a trampoline. Jump factor depends on size. Set to 0 to have a fixed jump factor of 1.3 which is just enough to have the player gain height over time.")
                             .defineInRange("trampolineSize", 289, 0, 961);
                     CHEESE_AGE_CHANCE = b.comment("Chance for unaged cheese to age in a random tick.")
-                            .defineInRange("cheeseAgeChance", 0.04D, 0.0D, 1.0D);
+                            .defineInRange("cheeseAgeChance", 0.1D, 0.0D, 1.0D);
                     GEODE_CHANCE = b.comment("Chance for a geode to be found in stone.")
                             .defineInRange("geodeChance", 0.0005D, 0.0D, 1.0D);
                     GLOWSTONE_GAS_CHANCE = b.comment("Chance for a glowstone to spawn gas block when broken. The chance is for the Nether and the End is 5x more likely.")
@@ -815,8 +806,8 @@ public class Config {
                     .defineInRange("soilNoiseScale", 60, 1, Integer.MAX_VALUE);
             SECRET_GEN = b.comment("Generate antimatter in the End.")
                     .define("antimatterGen",true);
-            REPLACE_VANILLA_ORES = b.comment("If enabled, replaces vanilla ores with the Rankine counterparts which will mimic stones around them. NOT IMPLEMENTED")
-                    .define("replaceVanillaOres",false);
+            REPLACE_VANILLA_ORES = b.comment("If enabled, replaces vanilla ores with the Rankine counterparts (mostly for texture purposes). Results may vary due to the order of feature placements.")
+                    .define("replaceVanillaOres",true);
             DISABLE_VANILLA_FEATURES = b.comment("Disable vanilla features in the overworld. Works by replacing the listed blocks in #rankine:vanilla_override with stones")
                     .define("disableVanillaOres",true);
             RANKINE_FLORA = b.comment("Enable/Disable Project Rankine flowers and berry bushes in world.")

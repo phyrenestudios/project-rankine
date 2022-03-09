@@ -14,6 +14,7 @@
     }
   },
   "result": {
-    "item": "minecraft:glass_bottle"
+    "item": "minecraft:glass_bottle",
+    "count": 8
   }
 }

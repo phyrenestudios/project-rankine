@@ -97,7 +97,7 @@ public class CharcoalPitTile extends TileEntity implements ITickableTileEntity {
             for (int i = 0; i<=k; ++i) {
                 for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-RADIUS,i,-RADIUS),pos.add(RADIUS,i,RADIUS))) {
                     if (validLogs.contains(b.toImmutable())) {
-                        int layerCount = layerCount(world,world.getBlockState(b).getBlock());
+                        int layerCount = logLayerCount(world,world.getBlockState(b).getBlock());
                         if (layerCount == 0) continue;
                         int j = 1;
                         while (WorldgenUtils.isGasOrAir(world,b.down(j)) && j <= i) {
@@ -128,7 +128,7 @@ public class CharcoalPitTile extends TileEntity implements ITickableTileEntity {
         }
     }
 
-    private static int layerCount(World worldIn, Block target) {
+    public static int logLayerCount(World worldIn, Block target) {
         if (VanillaIntegration.fuelValueMap.containsKey(target.asItem())) {
             int value = VanillaIntegration.fuelValueMap.get(target.asItem());
             return (int) Math.floor(MathHelper.clamp(value/100D -2.0D + (worldIn.rand.nextFloat() < (value%100)/100D ? 1 : 0),1,8));
