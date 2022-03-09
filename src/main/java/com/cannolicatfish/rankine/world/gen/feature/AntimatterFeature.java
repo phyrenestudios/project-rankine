@@ -21,7 +21,7 @@ public class AntimatterFeature extends Feature<NoFeatureConfig> {
 
         IChunk chunk = reader.getChunk(pos);
 
-        if (rand.nextFloat()<0.05) {        //for (int i = 0; i <4; ++i) {
+        if (rand.nextFloat()<0.1) {        //for (int i = 0; i <4; ++i) {
             int randX = chunk.getPos().getXStart() + rand.nextInt(16);
             int randY = rand.nextInt(90);
             int randZ = chunk.getPos().getZEnd() + rand.nextInt(16);

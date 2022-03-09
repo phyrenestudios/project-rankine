@@ -4,8 +4,6 @@ import com.cannolicatfish.rankine.recipe.*;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.SpecialRecipeSerializer;
-import net.minecraft.item.crafting.SuspiciousStewRecipe;
 import net.minecraft.world.World;
 
 import java.util.Optional;
@@ -78,6 +76,13 @@ public class RankineRecipeTypes {
         @Override
         public <C extends IInventory> Optional<TreetappingRecipe> matches(IRecipe<C> recipe, World worldIn, C inv) {
             return recipe.matches(inv, worldIn) ? Optional.of((TreetappingRecipe) recipe) : Optional.empty();
+        }
+    };
+
+    public static final IRecipeType<StrippingRecipe> STRIPPING = new IRecipeType<StrippingRecipe>() {
+        @Override
+        public <C extends IInventory> Optional<StrippingRecipe> matches(IRecipe<C> recipe, World worldIn, C inv) {
+            return recipe.matches(inv, worldIn) ? Optional.of((StrippingRecipe) recipe) : Optional.empty();
         }
     };
 

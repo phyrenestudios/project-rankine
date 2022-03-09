@@ -156,6 +156,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.PINEAPPLE_SLEEVES.get());
         basicItem(RankineItems.BANANA_YUCCA.get());
         basicItem(RankineItems.JUNIPER_BERRIES.get());
+        basicItem(RankineItems.INNER_BARK.get());
         basicItem(RankineItems.ROASTED_ASPARAGUS.get());
         basicItem(RankineItems.ROASTED_WALNUT.get());
         basicItem(RankineItems.TOASTED_COCONUT.get());

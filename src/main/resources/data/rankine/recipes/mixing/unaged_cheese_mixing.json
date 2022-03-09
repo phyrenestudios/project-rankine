@@ -5,23 +5,21 @@
   "matScale": 0.25,
   "fluidInput": {
     "fluid": "minecraft:milk",
-    "amount": 50
+    "amount": 100
   },
   "input1": {
     "tag": "forge:salt",
     "required": true,
-    "min": 0.20,
-    "max": 0.40
+    "min": 0.40,
+    "max": 0.80
   },
   "input2": {
     "item": "rankine:calcium_chloride",
-    "required": true,
-    "min": 0.20,
-    "max": 0.40
+    "min": 0.10,
+    "max": 0.30
   },
   "input3": {
     "item": "rankine:stinging_nettle",
-    "required": true,
     "min": 0.20,
     "max": 0.40
   },

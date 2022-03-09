@@ -1,0 +1,11 @@
+{
+  "type": "rankine:stripping",
+  "chance": 1.0,
+  "input": {
+    "item": "rankine:cork_oak_log"
+  },
+  "result": {
+    "item": "rankine:cork",
+    "count": 1
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "rankine:stripping",
+  "chance": 0.3,
+  "input": {
+    "item": "rankine:black_birch_log"
+  },
+  "result": {
+    "item": "minecraft:paper",
+    "count": 1
+  }
+}

@@ -328,6 +328,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.PINEAPPLE.get(),
             RankineItems.PINEAPPLE_SLEEVES.get(),
             RankineItems.BANANA_YUCCA.get(),
+            RankineItems.INNER_BARK.get(),
             RankineItems.JUNIPER_BERRIES.get(),
             RankineItems.ROASTED_ASPARAGUS.get(),
             RankineItems.ROASTED_WALNUT.get(),
