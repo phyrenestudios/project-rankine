@@ -82,6 +82,7 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
             font.drawString(ms, 1 + ":" + Math.round(matScale), (float)151, 26, 0x000000);
         }
 
+        font.drawString(ms, String.valueOf(recipe.getMixTime()),  (float)151, 100, 0x7C3E3E);
     }
 
     @Override

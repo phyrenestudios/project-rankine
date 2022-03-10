@@ -62,8 +62,8 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
         for(int l = 0; l < 7; ++l) {
             this.field_214138_m[l] = this.addButton(new AlloyButton(i + 5, k, l, (p_214132_1_) -> {
                 if (p_214132_1_ instanceof AlloyButton) {
-                    this.selectedAlloyRecipe = ((AlloyButton)p_214132_1_).func_212937_a() + this.field_214139_n;
-                    this.setSelectedAlloyRecipe();
+                    /*this.selectedAlloyRecipe = ((AlloyButton)p_214132_1_).func_212937_a() + this.field_214139_n;
+                    this.setSelectedAlloyRecipe();*/
                 }
 
             }));

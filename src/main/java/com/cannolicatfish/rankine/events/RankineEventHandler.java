@@ -2011,9 +2011,9 @@ public class RankineEventHandler {
                             worldIn.setBlockState(pos.down(), b.getDefaultState().with(CropsBlock.AGE, 0));
                         }
                     }
-                    if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOSPORE,stack) > 0 && world.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
-                        Optional<BlockPos> bp = BlockPos.getClosestMatchingPosition(pos,3,3,blockPos ->!blockPos.equals(pos) && world.isAirBlock(blockPos) && targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,blockPos));
-                        bp.ifPresent(blockPos -> world.setBlockState(blockPos, b.getDefaultState().with(CropsBlock.AGE, CropsBlock.AGE.getAllowedValues().stream().max(Integer::compareTo).orElse(0))));
+                    if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOSPORE,stack) > 0 && worldIn.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
+                        Optional<BlockPos> bp = BlockPos.getClosestMatchingPosition(pos,3,3,blockPos ->!blockPos.equals(pos) && worldIn.isAirBlock(blockPos) && targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),worldIn,blockPos));
+                        bp.ifPresent(blockPos -> worldIn.setBlockState(blockPos, b.getDefaultState().with(CropsBlock.AGE, CropsBlock.AGE.getAllowedValues().stream().max(Integer::compareTo).orElse(0))));
                     }
                 }
             } else if (b instanceof TripleCropsBlock && item instanceof AlloyHoeItem) {
@@ -2034,21 +2034,21 @@ public class RankineEventHandler {
                             worldIn.setBlockState(pos.down(2), b.getDefaultState().with(CropsBlock.AGE, 0));
                         }
                     }
-                    if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOSPORE,stack) > 0 && world.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
-                        Optional<BlockPos> bp = BlockPos.getClosestMatchingPosition(pos,3,3,blockPos -> !blockPos.equals(pos) && world.isAirBlock(blockPos) && targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,blockPos));
-                        bp.ifPresent(blockPos -> world.setBlockState(blockPos, b.getDefaultState().with(CropsBlock.AGE, CropsBlock.AGE.getAllowedValues().stream().max(Integer::compareTo).orElse(0))));
+                    if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOSPORE,stack) > 0 && worldIn.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
+                        Optional<BlockPos> bp = BlockPos.getClosestMatchingPosition(pos,3,3,blockPos -> !blockPos.equals(pos) && worldIn.isAirBlock(blockPos) && targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),worldIn,blockPos));
+                        bp.ifPresent(blockPos -> worldIn.setBlockState(blockPos, b.getDefaultState().with(CropsBlock.AGE, CropsBlock.AGE.getAllowedValues().stream().max(Integer::compareTo).orElse(0))));
                     }
                 }
             } else if (b instanceof CropsBlock && item instanceof AlloyHoeItem) {
 
                 if (targetBS.hasProperty(CropsBlock.AGE) && targetBS.get(CropsBlock.AGE) == 7) {
-                    world.destroyBlock(pos,true);
-                    if (targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,pos)) {
-                        world.setBlockState(pos,b.getDefaultState().with(CropsBlock.AGE, 0));
+                    worldIn.destroyBlock(pos,true);
+                    if (targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),worldIn,pos)) {
+                        worldIn.setBlockState(pos,b.getDefaultState().with(CropsBlock.AGE, 0));
                     }
-                    if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOSPORE,stack) > 0 && world.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
-                        Optional<BlockPos> bp = BlockPos.getClosestMatchingPosition(pos,3,3,blockPos -> !blockPos.equals(pos) && world.isAirBlock(blockPos) && targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),world,blockPos));
-                        bp.ifPresent(blockPos -> world.setBlockState(blockPos, b.getDefaultState().with(CropsBlock.AGE, CropsBlock.AGE.getAllowedValues().stream().max(Integer::compareTo).orElse(0))));
+                    if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOSPORE,stack) > 0 && worldIn.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
+                        Optional<BlockPos> bp = BlockPos.getClosestMatchingPosition(pos,3,3,blockPos -> !blockPos.equals(pos) && worldIn.isAirBlock(blockPos) && targetBS.getBlock().isValidPosition(b.getDefaultState().with(CropsBlock.AGE, 0),worldIn,blockPos));
+                        bp.ifPresent(blockPos -> worldIn.setBlockState(blockPos, b.getDefaultState().with(CropsBlock.AGE, CropsBlock.AGE.getAllowedValues().stream().max(Integer::compareTo).orElse(0))));
                     }
                 }
             }

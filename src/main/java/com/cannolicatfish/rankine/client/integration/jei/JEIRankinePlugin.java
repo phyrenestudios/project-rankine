@@ -12,8 +12,10 @@ import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.client.integration.jei.categories.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
+import com.cannolicatfish.rankine.recipe.StrippingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -24,6 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nonnull;
 import java.util.Comparator;
@@ -77,6 +80,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getInductionFurnaceRecipes()), InductionAlloyingRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getFusionFurnaceRecipes()), FusionFurnaceRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getTreetappingRecipes()), TreetappingRecipeCategory.UID);
+        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getStrippingRecipes()), StrippingRecipeCategory.UID);
         registry.addRecipes(getSortedElementRecipes(), ElementRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getCrucibleRecipes()), CrucibleRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getIntrusiveGeneratorRecipes()), IntrusiveGeneratorRecipeCategory.UID);
@@ -168,6 +172,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCategories(new VolcanicGeneratorRecipeCategory(guiHelper));
         registry.addRecipeCategories(new AirDistillationRecipeCategory(guiHelper));
         registry.addRecipeCategories(new TreetappingRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new StrippingRecipeCategory(guiHelper));
     }
 
     @Override
@@ -190,6 +195,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(Blocks.OBSIDIAN), VolcanicGeneratorRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.DISTILLATION_TOWER.get()), AirDistillationRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.TREE_TAP.get()), TreetappingRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(Items.IRON_AXE), StrippingRecipeCategory.UID);
     }
 
 }
