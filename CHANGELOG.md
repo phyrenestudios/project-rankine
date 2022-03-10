@@ -2,6 +2,83 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
+## Project Rankine Version 1.3.1 Changelog [9Mar2022]
+
+### BLOCKS
+- Blocks under a stone cobble or stump take twice as long to mine
+- Added colored versions of cement
+- Cement remapped to light gray cement
+
+
+### ITEMS
+- Removed Soy Milk
+- Added hunger value to Tofu
+- Added Cooked Tofu and Tofu Curry as foods
+- Added Inner Bark as a food item dropped from stripping certain logs
+- Prospecting Stick has a chance to detect an ore sample from stone cobbles
+- Prospecting Stick message now displays ore name and harvest level
+- Ore Detector functionality changed to return the name and position of the closest ore
+- While held, the Magnetometer reads a magnetic field strength based on surrounding blocks
+- Hammers now also deal 1.5x damage to Guardians
+- Totem of Promising increase luck attribute
+
+### ENCHANTING
+- Changed enchantment requirements to be based on alloy recipe rather than item to allow alloy-specific enchantments to be applied at Enchanting Tables
+- Added Endospore, an enchantment for an Ender Amalgam Hoe which can cause a mature crop block to grow near a harvested crop block if space is available
+- Added Endure, an enchantment for an Ender Amalgam Sword which heals the user when standing nearby End Crystals
+- Added Endolithic, an enchantment for an Ender Amalgam Shovel which allows right-clicking stone blocks to teleport to the nearest empty space in the direction of the block you are facing
+- Added Endless, an enchantment for an Ender Amalgam Pickaxe which applies or extends a random beneficial potion effect when mining ores
+- Added Endeavor, an enchantment for an Ender Amalgam Hammer which further increases the damage dealt to elemental-type enemies and adds a chance for those enemies to drop items on hit
+- Added Endothermic, an enchantment for an Ender Amalgam Axe which causes harvested logs to turn into charcoal
+- Added Endplay, an enchantment for an Ender Amalgam Blundberbuss which converts normal cannonballs into Enderballs that have increased veolcity and spawns Endermites which attack targets in the impact area
+
+### ALLOYING
+- Added Damascus Steel as a special steel variant available from Villagers
+- Added new enchantments to Ender Amalgam
+- Added Depth Strider enchantment to Brass
+- Added bonus corrosion resistance to Stainless Steel and slightly modified bonus stats
+- Added bonus stats to Niobium Alloy
+- Modified mining speed, harvest level, and enchantability formulas for Zirconium
+- Zirconium Alloy can now be made in the Alloy Furnace
+- Modified enchantability formula for Endositum
+
+### CONFIG
+- Config added to disable pumice soap right click ability
+- Implemented replaceVanillaOres config
+
+### TAGS
+- Added blocks to Terraforged tags
+- Added new toolsets to appropriate tags
+
+### RECIPES
+- Added "stripping" json recipe type for spawning extra items when an axe right clicks a block
+- Fixed recipe name typos
+- Decreased the number of spins for most mixing barrel recipes
+- Fixed recipe errors that caused incompatibilities with certain mods
+- Added missing recipes for blocks and items
+- Adjusted unaged_cheese_mixing recipe
+- Added smelting/blasting recipes for rankine vanilla ores
+
+### MISC
+- Added textures for miscellaneous items with placeholder textures
+- Added additional details to JEI recipes
+- Added chance for sediments in the sedimentary generator to be removed
+- Added various status messages as Lang entries
+- Fixed Mixing Barrel GUI not showing progress
+- Fixed incorrect Mixing Barrel fluid requirements
+- Fixed tile entities using old conditions for checking for elements
+- Fixed blunderbusses being included in the "forge:knives" tag
+- Fixed out of bounds error for Packaged Tool and Packaged Armor
+- Fixed unregistered placements
+- Fixed worldgen crash regarding stone columns
+- Fixed issue with stone generators always removing accesory mineral blocks
+- Fixed issues with tree chopping
+- Fixed tree tap not working past the first day
+- Fixed Crucible Steel to use composition modifiers in Crucible recipe
+- Updated Rankine Journal
+- Removed depreciated/unused code
+
+
 ## Project Rankine Version 1.3 Changelog [27Feb2022]
 A new world is highly recomended/needed to support new/changed features. This changelog has been simplified to account for 8 months of changes and multiple alpha versions.
 
