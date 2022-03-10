@@ -1,22 +1,22 @@
 {
-  "name": "Tree Tapping",
+  "name": "rankine.journal.cat_materials.tree_tapping.name",
   "icon": "rankine:tree_tap",
   "category": "materials",
-  "sortnum": 1,
   "pages": [
     {
       "type": "text",
-      "text": "The Tree Tap is a device that extracts various fluids from logs. A tap with a bucket will eventually fill with liquid and can be retrieved by right clicking. Additional equipment can be used to automate the tapping process."
+      "text": "rankine.journal.cat_materials.tree_tapping.text1"
     },
     {
       "type": "spotlight",
       "item": "rankine:tree_tap",
-      "text": "Tree taps will not work if there is another one in any adjacent block. Also, the tree needs to be alive, meaning the tree must contained naturally spawned leaves."
+      "link_recipe": true,
+      "text": "rankine.journal.cat_materials.tree_tapping.tree_tap"
     },
     {
       "type": "crafting",
       "recipe": "rankine:tap_line",
-      "text": "Tap lines are essentially a pipe network for tree taps to output to a tap barrel. Fluids can not flow upwards. Tap lines will connect to a tree tap from below or to a flood gate on any side. ~30 block max search distance."
+      "text": "rankine.journal.cat_materials.tree_tapping.tap_line"
     },
     {
       "type": "spotlight",

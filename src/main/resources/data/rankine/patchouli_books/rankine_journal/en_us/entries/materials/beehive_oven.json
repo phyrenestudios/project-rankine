@@ -2,7 +2,6 @@
   "name": "rankine.journal.cat_materials.beehive_oven.name",
   "icon": "rankine:beehive_oven_pit",
   "category": "materials",
-  "sortnum": 1,
   "pages": [
     {
       "type": "text",

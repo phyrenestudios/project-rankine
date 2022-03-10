@@ -48,6 +48,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         return "Project Rankine - BlockStates/Models";
     }
 
+
     @Override
     protected void registerStatesAndModels() {
 
@@ -279,7 +280,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 if (SECTION.equals(DoubleBlockHalf.UPPER.toString()) && (AGE==0 || AGE==1)) {
                     MODEL = models().withExistingParent("air",mcLoc("block/air"));
                 } else {
-                    MODEL = models().cross(CROP.getRegistryName().getPath()+"_"+SECTION+"_stage"+AGE,modLoc("block/"+CROP.getRegistryName().getPath()+"_"+SECTION+"_stage"+AGE));
+                    if (CROP.matchesBlock(RankineBlocks.BARLEY_PLANT.get()) || CROP.matchesBlock(RankineBlocks.RYE_PLANT.get())) {
+                        MODEL = models().crop(CROP.getRegistryName().getPath()+"_"+SECTION+"_stage"+AGE,modLoc("block/"+CROP.getRegistryName().getPath()+"_"+SECTION+"_stage"+AGE));
+                    } else {
+                        MODEL = models().cross(CROP.getRegistryName().getPath()+"_"+SECTION+"_stage"+AGE,modLoc("block/"+CROP.getRegistryName().getPath()+"_"+SECTION+"_stage"+AGE));
+                    }
                 }
                 return ConfiguredModel.builder().modelFile(MODEL).build();
             });

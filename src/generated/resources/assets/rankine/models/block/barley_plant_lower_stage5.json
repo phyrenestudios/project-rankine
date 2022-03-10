@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cross",
+  "parent": "minecraft:block/crop",
   "textures": {
-    "cross": "rankine:block/barley_plant_lower_stage5"
+    "crop": "rankine:block/barley_plant_lower_stage5"
   }
 }
