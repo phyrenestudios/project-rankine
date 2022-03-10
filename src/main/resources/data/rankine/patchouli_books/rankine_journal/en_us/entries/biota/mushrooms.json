@@ -8,16 +8,20 @@
       "text": "rankine.journal.cat_biota.mushrooms.text1"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:oyster_mushroom,rankine:sulfur_shelf_mushroom,rankine:honey_mushroom,rankine:lions_mane_mushroom",
-      "link_recipe": true,
+      "type": "rankine:item4",
+      "item1": "rankine:oyster_mushroom",
+      "item2": "rankine:sulfur_shelf_mushroom",
+      "item3": "rankine:honey_mushroom",
+      "item4": "rankine:lions_mane_mushroom",
       "title": "rankine.journal.cat_biota.mushrooms.edible_mushrooms_header",
       "text": "rankine.journal.cat_biota.mushrooms.edible_mushrooms"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:artist_conk_mushroom,rankine:tinder_conk_mushroom,rankine:cinnabar_polypore_mushroom,rankine:turkey_tail_mushroom",
-      "link_recipe": true,
+      "type": "rankine:item4",
+      "item1": "rankine:artist_conk_mushroom",
+      "item2": "rankine:tinder_conk_mushroom,rankine",
+      "item3": "rankine:cinnabar_polypore_mushroom",
+      "item4": "rankine:turkey_tail_mushroom",
       "title": "rankine.journal.cat_biota.mushrooms.edible_mushrooms_header",
       "text": "rankine.journal.cat_biota.mushrooms.edible_mushrooms"
     }

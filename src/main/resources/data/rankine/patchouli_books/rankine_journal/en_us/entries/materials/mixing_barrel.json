@@ -14,6 +14,22 @@
     {
       "type": "crafting",
       "recipe": "rankine:mixing_barrel"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cement_mix",
+      "text": "rankine.journal.cat_materials.mixing_barrel.cement_mix"
+    },
+    {
+      "type": "rankine:item6",
+      "item1": "rankine:asphalt",
+      "item2": "rankine:dark_gray_asphalt",
+      "item3": "rankine:gray_asphalt",
+      "item4": "rankine:red_asphalt",
+      "item5": "rankine:blue_asphalt",
+      "item6": "rankine:green_asphalt",
+      "heading": "rankine.journal.cat_materials.mixing_barrel.asphalt_heading",
+      "text": "rankine.journal.cat_materials.mixing_barrel.asphalt"
     }
   ]
 }

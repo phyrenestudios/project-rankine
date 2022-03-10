@@ -8,11 +8,6 @@
       "text": "rankine.journal.cat_stones.otherworldly.text1"
     },
     {
-      "type": "text",
-      "title": "rankine.journal.cat_stones.otherworldly.text2",
-      "text": "rankine.journal.cat_stones.otherworldly.text3"
-    },
-    {
       "type": "spotlight",
       "item": "minecraft:end_stone",
       "link_recipe": true,

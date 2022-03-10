@@ -1184,6 +1184,9 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_materials.mixing_barrel.name", "Mixing Barrel");
         add("rankine.journal.cat_materials.mixing_barrel.text1", "The mixing barrel combines together materials and fluid of various composition. Place items in any of the four items slots and their relative compositions will be displayed. Add fluid to the barrel by right clicking with a bucket. When an appropriate recipe is in the barrel, supply redstone pulses to the block to begin spinning. Each recipe has a variable number of spins needed to complete based off the redstone signal strength.");
         add("rankine.journal.cat_materials.mixing_barrel.text2", "A recipe is defined by composition of ingredients needed to make the output. The actual quantity of input material can vary and this will determine the quantity of the output and the number of spins required. The material scale of the recipe (shown by the #:# in JEI) means some recipes are not 1 to 1, make sure your mixing batch doesn't go over 64.");
+        add("rankine.journal.cat_materials.mixing_barrel.asphalt_heading", "Asphalt");
+        add("rankine.journal.cat_materials.mixing_barrel.asphalt", "Asphalts are decorative blocks for more urban environments. Right click on asphalt blocks with any dye to change the rotation and pattern of the block.");
+        add("rankine.journal.cat_materials.mixing_barrel.cement_mix", "Cement mix is an early game component used to create a variety of reinforced blocks suck as bricks, cements, and concretes. The simplest recipe is equal parts sand, clay balls, and limestone with water.");
 
 
         add("rankine.journal.cat_materials.gasses.name", "Gas Blocks");
@@ -1206,6 +1209,13 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_materials.beehive_oven.text2", "The bricks used in the structure can be upgraded one at a time to the high and ultra high tiers to increase processing speed.");
         add("rankine.journal.cat_materials.beehive_oven.text4", "The minimum requirements for an oven.");
         add("rankine.journal.cat_materials.beehive_oven.text5", "The full structure for the oven.");
+
+
+        add("rankine.journal.cat_materials.tree_tapping.name", "Tree Tapping");
+        add("rankine.journal.cat_materials.tree_tapping.text1", "The Tree Tap is a device that extracts various fluids from logs. A tap with a bucket will eventually fill with liquid and can be retrieved by right clicking. Additional equipment can be used to automate the tapping process.");
+        add("rankine.journal.cat_materials.tree_tapping.tree_tap", "Tree taps will not work if there is another one in any adjacent block. Also, the tree needs to be alive, meaning the tree must contained naturally spawned leaves.");
+        add("rankine.journal.cat_materials.tree_tapping.tap_line", "Tap lines are essentially a pipe network for tree taps to output to a tap barrel. Fluids can not flow upwards. Tap lines will connect to a tree tap from below or to a flood gate on any side. ~30 block max search distance.");
+
 
 
         //Mechanics
@@ -1286,9 +1296,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_stones.desc", "");
 
         add("rankine.journal.cat_stones.otherworldly.name", "Otherworldly Stones");
-        add("rankine.journal.cat_stones.otherworldly.text1", "Some stones can not form under standard environmental conditions. This class of stone is simply named Otherworldly, as they naturally occur in atypical locations.");
-        add("rankine.journal.cat_stones.otherworldly.text2", "Otherworldly Generator");
-        add("rankine.journal.cat_stones.otherworldly.text3", "Otherworldly Generator");
+        add("rankine.journal.cat_stones.otherworldly.text1", "Some stones form under unique environmental conditions. They resemble igneous stones but this class of stone is simply named Otherworldly, as they naturally occur in atypical locations.");
         add("rankine.journal.cat_stones.otherworldly.end_stone", "");
         add("rankine.journal.cat_stones.otherworldly.sommanite", "");
         add("rankine.journal.cat_stones.otherworldly.wadsleyone", "");
@@ -1299,7 +1307,7 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.journal.cat_stones.volcanic.name", "Volcanic Stones");
         add("rankine.journal.cat_stones.volcanic.text1", "Some stones can not form under standard environmental conditions. This class of stone is simply named Otherworldly, as they naturally occur in atypical locations.");
-        add("rankine.journal.cat_stones.volcanic.text3", "Volcanic stones are generated using the vanilla obsidian generator, where water flows onto lava source blocks.");
+        add("rankine.journal.cat_stones.volcanic.text3", "Volcanic stones are generated using the vanilla obsidian generator, where water flows onto lava source blocks. An adjacent block determines the generated block.");
         add("rankine.journal.cat_stones.volcanic.text2", "Volcanic Generator");
         add("rankine.journal.cat_stones.volcanic.obsidian", "");
         add("rankine.journal.cat_stones.volcanic.crying_obsidian", "");
@@ -1359,11 +1367,11 @@ public class RankineLangProvider extends LanguageProvider {
 
 
         add("rankine.journal.cat_stones.igneous.name", "Igneous Stones");
-        add("rankine.journal.cat_stones.igneous.text1", "");
-        add("rankine.journal.cat_stones.igneous.text2", "Intrusive Stones");
-        add("rankine.journal.cat_stones.igneous.text3", "");
-        add("rankine.journal.cat_stones.igneous.text4", "Extrusive Stones");
-        add("rankine.journal.cat_stones.igneous.text5", "");
+        add("rankine.journal.cat_stones.igneous.text1", "Igneous stones are formed from the cooling of magma/lava. The molten composition and the method in which they cool determine the rock texture and composition.");
+        add("rankine.journal.cat_stones.igneous.text2", "Intrusive Generator");
+        add("rankine.journal.cat_stones.igneous.text3", "Intrusive igneous rocks are formed in the standard cobblestone generator where lava meets flowing water. Two blocks can be placed adjacent to determine the generated block.");
+        add("rankine.journal.cat_stones.igneous.text4", "Extrusive Generator");
+        add("rankine.journal.cat_stones.igneous.text5", "Extrusive igneous rocks are formed in the standard cobblestone generator where lava meets blue ice over soul soil. One block can be placed adjacent to determine the generated block.");
         add("rankine.journal.cat_stones.igneous.stone", "Stone in this world is generally found solely as an intrusion. Depending on the biome, it will contain a variety of the vanilla ores.");
         add("rankine.journal.cat_stones.igneous.granite", "An intrusive stone found in plains and forest biomes. Associated ores include Malachite, and Cassiterite.");
         add("rankine.journal.cat_stones.igneous.gray_granite", "An intrusive stone found in mountain, swamp, taiga, and icy biomes. Associated ores include Malachite, and Cassiterite.");
