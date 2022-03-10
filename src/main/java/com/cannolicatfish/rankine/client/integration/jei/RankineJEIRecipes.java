@@ -68,6 +68,10 @@ public class RankineJEIRecipes {
         return recipeManager.getRecipesForType(RankineRecipeTypes.TREETAPPING);
     }
 
+    public List<StrippingRecipe> getStrippingRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.STRIPPING);
+    }
+
     public List<AirDistillationRecipe> getAirDistillationRecipes() {
         return recipeManager.getRecipesForType(RankineRecipeTypes.AIR_DISTILLATION);
     }

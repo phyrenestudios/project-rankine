@@ -750,6 +750,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.volcanic", "Volcanic Rock Generator");
         add("rankine.jei.air_distillation", "Air Distillation");
         add("rankine.jei.treetapping", "Treetap");
+        add("rankine.jei.stripping", "Axe Stripping");
         add("itemGroup.rankine_world", "Project Rankine Building");
         add("itemGroup.rankine_metallurgy", "Project Rankine Metallurgy");
         add("itemGroup.rankine_elements", "Project Rankine Elements");

@@ -130,8 +130,8 @@ public class StrippingRecipe implements IRecipe<IInventory> {
 
             ItemStack output = buffer.readItemStack();
 
-            int time = buffer.readInt();
-            return new StrippingRecipe(recipeId,input,output,time);
+            int chance = buffer.readInt();
+            return new StrippingRecipe(recipeId,input,output,chance);
         }
 
         @Override
