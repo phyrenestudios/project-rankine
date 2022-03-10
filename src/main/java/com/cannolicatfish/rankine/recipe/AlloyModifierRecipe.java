@@ -30,7 +30,6 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
 
     public static final AlloyModifierRecipe.Serializer SERIALIZER = new AlloyModifierRecipe.Serializer();
     protected Ingredient ingredient;
-    protected ItemStack result;
     protected final ResourceLocation id;
     private final List<AlloyModifier> modifiers;
     private final List<String> enchantments;
@@ -78,7 +77,7 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getRecipeOutput() {
-        return result;
+        return ItemStack.EMPTY;
     }
 
     public List<AlloyModifier> getModifiers() {
