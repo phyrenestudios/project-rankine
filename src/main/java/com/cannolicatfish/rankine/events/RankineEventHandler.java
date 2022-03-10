@@ -317,7 +317,7 @@ public class RankineEventHandler {
             } else if (!Config.TOOLS.DISABLE_CLOCK.get() && (player.getHeldItemOffhand().getItem() == Items.CLOCK || player.getHeldItemMainhand().getItem() == Items.CLOCK)) {
                 double hours = ((Math.floor(worldIn.getDayTime() / 1000f)) + 6) % 24;
                 double minutes = ((worldIn.getDayTime() / 1000f) % 1) * 60;
-                player.sendStatusMessage(new StringTextComponent("Time = " + new DecimalFormat("00").format(hours) + ":" + new DecimalFormat("00").format(minutes) + " (" + worldIn.getDayTime() + ")").mergeStyle(TextFormatting.GOLD), true);
+                player.sendStatusMessage(new StringTextComponent("Time = " + new DecimalFormat("00").format(hours) + ":" + new DecimalFormat("00").format(minutes) + " (" + worldIn.getDayTime() % 24000 + ")").mergeStyle(TextFormatting.GOLD), true);
             } else if (!Config.TOOLS.DISABLE_THERMOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.THERMOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.THERMOMETER.get())) {
                 float temp = worldIn.getBiome(pos).getTemperature(pos);
                 if (temp < 0.0) {

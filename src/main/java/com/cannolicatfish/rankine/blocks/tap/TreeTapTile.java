@@ -31,7 +31,7 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
     }
 
     public void tick() {
-        if (world.getDayTime()>2000 && world.getDayTime()<10000 && isTreeAlive(pos,world) && !world.isRemote()) {
+        if (world.getDayTime() % 24000 >2000 && world.getDayTime() % 24000 <10000 && isTreeAlive(pos,world) && !world.isRemote()) {
             BlockPos logPos = pos.offset(this.getBlockState().get(TreeTapBlock.FACING).getOpposite());
             for (BlockPos s : BlockPos.getAllInBoxMutable(logPos.add(-1,-2,-1),logPos.add(1,2,1))) {
                 BlockPos stupidPos = s.toImmutable();
