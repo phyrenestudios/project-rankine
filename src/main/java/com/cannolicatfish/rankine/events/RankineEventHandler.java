@@ -1293,6 +1293,10 @@ public class RankineEventHandler {
                 }
             }
 
+            if ((player.getHeldItemMainhand().getItem().equals(RankineItems.TOTEM_OF_BLAZING.get()) || player.getHeldItemOffhand().getItem().equals(RankineItems.TOTEM_OF_BLAZING.get())) && !player.world.isRemote) {
+                float damage = event.getAmount() + event.getAmount() * 0.5f;
+                event.setAmount(damage);
+            }
             if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOTOXIN,player.getHeldItem(Hand.MAIN_HAND)) >= 1 && !player.world.isRemote) {
                 LivingEntity receiver = event.getEntityLiving();
                 if ((receiver instanceof EndermanEntity || receiver instanceof ShulkerEntity || receiver instanceof EndermiteEntity || receiver.getEntityWorld().getDimensionKey().equals(World.THE_END))) {

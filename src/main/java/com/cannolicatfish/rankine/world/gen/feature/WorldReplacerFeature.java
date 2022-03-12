@@ -61,13 +61,14 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
                         BlockPos TARGET_POS = new BlockPos(x,y,z);
                         BlockState TARGET_BS = reader.getBlockState(TARGET_POS);
                         Block TARGET_BLOCK = TARGET_BS.getBlock();
-
                         if (Config.MISC_WORLDGEN.REPLACE_VANILLA_ORES.get() && vanillaOre(TARGET_BLOCK) != Blocks.AIR.getDefaultState()) {
-                            reader.setBlockState(TARGET_POS, vanillaOre(TARGET_BLOCK).with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock())), 3);
+                            int TARGET_INDEX = WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock());
+                            reader.setBlockState(TARGET_POS, vanillaOre(TARGET_BLOCK).with(RankineOreBlock.TYPE, TARGET_INDEX == -1 ? 0 : TARGET_INDEX), 3);
                             continue;
                         } else if (TARGET_BLOCK instanceof RankineOreBlock && WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
                             if (TARGET_BS.get(RankineOreBlock.TYPE) != 67 && TARGET_BS.get(RankineOreBlock.TYPE) != 68 && TARGET_BS.get(RankineOreBlock.TYPE) != 69) {
-                                reader.setBlockState(TARGET_POS, TARGET_BLOCK.getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock())), 3);
+                                int TARGET_INDEX = WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock());
+                                reader.setBlockState(TARGET_POS, TARGET_BLOCK.getDefaultState().with(RankineOreBlock.TYPE, TARGET_INDEX == -1 ? 0 : TARGET_INDEX), 3);
                             }
                             continue;
                         }
