@@ -632,6 +632,15 @@ public class RankineLangProvider extends LanguageProvider {
         add("entity.minecraft.villager.rankine.gem_cutter", "Gem Cutter");
         add("entity.minecraft.villager.rankine.rock_collector", "Rock Collector");
 
+        add("effect.rankine.mercury_poison", "Mercury Poisoning");
+        add("item.minecraft.potion.effect.mercury_poison", "Potion of Mercury Poisoning");
+        add("item.minecraft.splash_potion.effect.mercury_poison", "Splash Potion of Mercury Poisoning");
+        add("item.minecraft.lingering_potion.effect.mercury_poison", "Lingering Potion of Mercury Poisoning");
+        add("effect.rankine.conductive", "Conductive");
+        add("item.minecraft.potion.effect.conductive", "Potion of Conductivity");
+        add("item.minecraft.splash_potion.effect.conductive", "Splash Potion of Conductivity");
+        add("item.minecraft.lingering_potion.effect.conductive", "Lingering Potion of Conductivity");
+
         add("enchantment.rankine.puncture", "Puncture");
         add("enchantment.rankine.puncture.desc", "Deals extra armor-piercing damage on direct attacks.");
         add("enchantment.rankine.blast", "Blast");
@@ -1445,7 +1454,7 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.journal.cat_tools.totems.name", "Totems");
         add("rankine.journal.cat_tools.totems.text1", "Totems are relics derived from the natural magics of the world. While in the offhand, they provide various effects.");
-        add("rankine.journal.cat_tools.totems.totem_of_blazing", "");
+        add("rankine.journal.cat_tools.totems.totem_of_blazing", "When on fire, deal 1.5x damage and lay fire at your feet. When health is less than 25% or you fall in lava, this totem disappears and provides Fire Resistance and a small amount of Regeneration.");
         add("rankine.journal.cat_tools.totems.totem_of_cobbling", "Internally stores all types of stones up to 8 stacks. Can be used to place cobblestone.");
         add("rankine.journal.cat_tools.totems.totem_of_enduring", "Increases the wearer's health capacity. Can be used every so often to apply regeneration.");
         add("rankine.journal.cat_tools.totems.totem_of_hastening", "Applies efficiency to your arms, allowing you to mine all blocks quicker.");

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:rose_gold_axe"
+    ]
+  },
+  "criteria": {
+    "has_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rose_gold_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:rose_gold_axe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_alloy",
+      "has_the_recipe"
+    ]
+  ]
+}
