@@ -22,17 +22,17 @@ public class RankinePOIs {
     public static final PointOfInterestType ROCK_COLLECTOR_POI = new PointOfInterestType("rock_collector_poi", ImmutableSet.copyOf(getAllStates(RankineBlocks.SEDIMENT_FAN.get())), 1, 1);
 
     public static Set<BlockState> getAllStates(Block blockIn) {
-        return ImmutableSet.copyOf(blockIn.getStateContainer().getValidStates());
+        return ImmutableSet.copyOf(blockIn.getStateDefinition().getPossibleStates());
     }
 
     public static Set<BlockState> getAllStatesByTag(ResourceLocation tag) {
-        ITag<Block> col = BlockTags.getCollection().get(tag);
+        ITag<Block> col = BlockTags.getAllTags().getTag(tag);
         if (col != null)
         {
             List<BlockState> blockList = new ArrayList<>();
-            for (Block block : col.getAllElements())
+            for (Block block : col.getValues())
             {
-                blockList.addAll(block.getStateContainer().getValidStates());
+                blockList.addAll(block.getStateDefinition().getPossibleStates());
             }
             return ImmutableSet.copyOf(blockList);
         } else {

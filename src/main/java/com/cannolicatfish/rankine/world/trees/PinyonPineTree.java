@@ -13,7 +13,7 @@ public class PinyonPineTree extends Tree {
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return RankineFeatures.PINYON_PINE_TREE.get().withConfiguration(RankineBiomeFeatures.PINYON_PINE_TREE_CONFIG);
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
+        return RankineFeatures.PINYON_PINE_TREE.get().configured(RankineBiomeFeatures.PINYON_PINE_TREE_CONFIG);
     }
 }

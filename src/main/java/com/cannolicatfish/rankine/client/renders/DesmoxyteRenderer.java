@@ -16,7 +16,7 @@ public class DesmoxyteRenderer extends LivingRenderer<DesmoxyteEntity, Desmoxyte
     public static final DesmoxyteRenderer.RenderFactory instance = new DesmoxyteRenderer.RenderFactory();
 
     @Override
-    protected boolean canRenderName(DesmoxyteEntity entity) {
+    protected boolean shouldShowName(DesmoxyteEntity entity) {
         return false;
     }
 
@@ -25,7 +25,7 @@ public class DesmoxyteRenderer extends LivingRenderer<DesmoxyteEntity, Desmoxyte
     }
 
     @Override
-    public ResourceLocation getEntityTexture(DesmoxyteEntity entity) {
+    public ResourceLocation getTextureLocation(DesmoxyteEntity entity) {
         return new ResourceLocation("rankine:textures/entity/desmoxyte.png");
     }
 

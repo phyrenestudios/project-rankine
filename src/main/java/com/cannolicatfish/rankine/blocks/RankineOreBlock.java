@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class RankineOreBlock extends Block {
     public int type = 0;
     private List<String> hlpath = new ArrayList<>();
@@ -24,26 +26,26 @@ public class RankineOreBlock extends Block {
     public static final IntegerProperty TYPE = IntegerProperty.create("type",0, WorldgenUtils.ORE_TEXTURES.size() -1);
     public RankineOreBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(TYPE,0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(TYPE,0));
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        World world = context.getWorld();
-        BlockState target = world.getBlockState(context.getPos().offset(context.getFace().getOpposite()));
+        World world = context.getLevel();
+        BlockState target = world.getBlockState(context.getClickedPos().relative(context.getClickedFace().getOpposite()));
         if (target.getBlock() instanceof  RankineOreBlock) {
-            return this.getDefaultState().with(TYPE, target.get(TYPE));
+            return this.defaultBlockState().setValue(TYPE, target.getValue(TYPE));
         } else if (WorldgenUtils.ORE_STONES.contains(target.getBlock())) {
-            return this.getDefaultState().with(TYPE, WorldgenUtils.ORE_STONES.indexOf(target.getBlock()));
+            return this.defaultBlockState().setValue(TYPE, WorldgenUtils.ORE_STONES.indexOf(target.getBlock()));
         }
-        return this.getDefaultState().with(TYPE,0);
+        return this.defaultBlockState().setValue(TYPE,0);
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(TYPE);
     }
 
     @Override
-    public boolean ticksRandomly(BlockState state) {
+    public boolean isRandomlyTicking(BlockState state) {
         return false;
         //return state.get(TYPE) == 0;
     }
@@ -51,12 +53,12 @@ public class RankineOreBlock extends Block {
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         for (Direction d : Direction.values()) {
-            BlockState BS = worldIn.getBlockState(pos.offset(d));
-            if (BS.getBlock() instanceof RankineOreBlock && BS.get(TYPE) != 0) {
-                worldIn.setBlockState(pos,state.with(TYPE, BS.get(TYPE)));
+            BlockState BS = worldIn.getBlockState(pos.relative(d));
+            if (BS.getBlock() instanceof RankineOreBlock && BS.getValue(TYPE) != 0) {
+                worldIn.setBlockAndUpdate(pos,state.setValue(TYPE, BS.getValue(TYPE)));
                 break;
             } else if (BS.getBlock() != Blocks.STONE && WorldgenUtils.ORE_STONES.contains(BS.getBlock())) {
-                worldIn.setBlockState(pos,state.with(TYPE, WorldgenUtils.ORE_STONES.indexOf(BS.getBlock())));
+                worldIn.setBlockAndUpdate(pos,state.setValue(TYPE, WorldgenUtils.ORE_STONES.indexOf(BS.getBlock())));
                 break;
             }
         }

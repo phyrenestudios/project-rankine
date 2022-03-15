@@ -32,13 +32,13 @@ public final class PeriodicTableUtils {
 
     public ElementRecipe getElementRecipe(ItemStack stack, World world) {
         Inventory temp = new Inventory(stack);
-        return world.getRecipeManager().getRecipe(RankineRecipeTypes.ELEMENT, temp, world).orElse(null);
+        return world.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, temp, world).orElse(null);
     }
 
     public AlloyingRecipe getAlloyRecipe(ItemStack stack, World world) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            IRecipe<?> recipe = world.getRecipeManager().getRecipe(rs).orElse(null);
+            IRecipe<?> recipe = world.getRecipeManager().byKey(rs).orElse(null);
             if (recipe instanceof AlloyingRecipe) {
                 return (AlloyingRecipe) recipe;
             }

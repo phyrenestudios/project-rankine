@@ -36,7 +36,7 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
 
     public CrushingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(145, 140);
-        localizedName = I18n.format("rankine.jei.crushing");
+        localizedName = I18n.get("rankine.jei.crushing");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/crushing_jei.png"),
                 0, 15, 140, 160);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineItems.STEEL_HAMMER.get()));
@@ -69,7 +69,7 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
 
     @Override
     public void draw(CrushingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().fontRenderer;
+        FontRenderer font = Minecraft.getInstance().font;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -79,9 +79,9 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
             String s = Math.round(recipe.getChances().get(i) * 100) + "%";
             int ymod = i > 2 ? 36 : 0;
             int xmod = i > 2 ? 45*(i-3) : 45*i;
-            font.drawString(ms, s, (float)(27 + xmod - font.getStringWidth(s) / 2), 80 + ymod, 0x000000);
+            font.draw(ms, s, (float)(27 + xmod - font.width(s) / 2), 80 + ymod, 0x000000);
             String t = "+" + Math.round(recipe.getAdditional().get(i) * 100) + "%";
-            font.drawString(ms, t, (float)(26 + xmod - font.getStringWidth(t) / 2), 88 + ymod, 0x00aa00);
+            font.draw(ms, t, (float)(26 + xmod - font.width(t) / 2), 88 + ymod, 0x00aa00);
         }
 
     }
@@ -90,7 +90,7 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
     public void setIngredients(CrushingRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getMatchingStacks()));
+            builder.add(Arrays.asList(i.getItems()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
         iIngredients.setOutputs(VanillaTypes.ITEM, recipe.getRecipeOutputsJEI());

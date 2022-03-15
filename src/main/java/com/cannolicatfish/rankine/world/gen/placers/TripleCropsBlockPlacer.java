@@ -15,7 +15,7 @@ public class TripleCropsBlockPlacer extends BlockPlacer {
     public static final Codec<TripleCropsBlockPlacer> CODEC;
     public static final TripleCropsBlockPlacer PLACER = new TripleCropsBlockPlacer();
 
-    protected BlockPlacerType<?> getBlockPlacerType() {
+    protected BlockPlacerType<?> type() {
         return RankineBlockPlacerType.TRIPLE_CROP.get();
     }
 

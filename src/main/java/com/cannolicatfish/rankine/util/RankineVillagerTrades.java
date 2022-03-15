@@ -48,7 +48,7 @@ public class RankineVillagerTrades {
 
         public MerchantOffer getOffer(Entity trader, Random rand) {
             int i = 5 + rand.nextInt(15);
-            ItemStack itemstack = EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(this.sellingStack.getItem()), i, false);
+            ItemStack itemstack = EnchantmentHelper.enchantItem(rand, new ItemStack(this.sellingStack.getItem()), i, false);
             IAlloyItem.createDirectAlloyNBT(itemstack,alloyData,alloyRecipe,alloyNameOverride);
             int j = Math.min(this.emeraldCount + i, 64);
             ItemStack itemstack1 = new ItemStack(Items.EMERALD, j);
@@ -68,7 +68,7 @@ public class RankineVillagerTrades {
         }
 
         public RandomItemFromTagForEmeraldsTrade(ResourceLocation tag, Item fallback, int amount, int emeraldCount, int maxUses, int xpValue, float priceMultiplier) {
-            ITag<Item> e = ItemTags.getCollection().get(tag);
+            ITag<Item> e = ItemTags.getAllTags().getTag(tag);
             if (e != null)
             {
                 this.sellingStack = new ItemStack(e.getRandomElement(new Random()),amount);
@@ -88,10 +88,10 @@ public class RankineVillagerTrades {
     }
 
     public static List<VillagerTrades.ITrade> returnTagTrades(ResourceLocation tag, Item fallback, int amount, int emeraldCount, int maxUses, int xpValue, float mult) {
-        ITag<Item> e = ItemTags.getCollection().get(tag);
+        ITag<Item> e = ItemTags.getAllTags().getTag(tag);
         List<VillagerTrades.ITrade> trades = new ArrayList<>();
         if (e != null) {
-            for (Item item : e.getAllElements()) {
+            for (Item item : e.getValues()) {
                 trades.add(new BasicTrade(emeraldCount, new ItemStack(item,amount), maxUses, xpValue, mult));
             }
         } else {

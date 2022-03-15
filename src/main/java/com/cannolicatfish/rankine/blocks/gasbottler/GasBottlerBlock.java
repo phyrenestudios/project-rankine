@@ -21,6 +21,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class GasBottlerBlock extends DirectionalBlock {
     public GasBottlerBlock(Properties properties) {
         super(properties);
@@ -38,11 +40,11 @@ public class GasBottlerBlock extends DirectionalBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
-        if (!world.isRemote) {
-            TileEntity tileEntity = world.getTileEntity(pos);
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+        if (!world.isClientSide) {
+            TileEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof INamedContainerProvider) {
-                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getBlockPos());
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }
@@ -54,22 +56,22 @@ public class GasBottlerBlock extends DirectionalBlock {
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(FACING, context.getNearestLookingDirection());
+        return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection());
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(BlockStateProperties.FACING);
     }
 
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!state.matchesBlock(newState.getBlock())) {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.is(newState.getBlock())) {
+            TileEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof GasBottlerTile) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (GasBottlerTile)tileentity);
-                worldIn.updateComparatorOutputLevel(pos, this);
+                InventoryHelper.dropContents(worldIn, pos, (GasBottlerTile)tileentity);
+                worldIn.updateNeighbourForOutputSignal(pos, this);
             }
-            super.onReplaced(state, worldIn, pos, newState, isMoving);
+            super.onRemove(state, worldIn, pos, newState, isMoving);
         }
     }
 }

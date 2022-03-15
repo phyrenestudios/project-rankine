@@ -8,6 +8,8 @@ import net.minecraft.world.IBlockReader;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class ParticleAcceleratorBlock extends Block {
     public ParticleAcceleratorBlock(Properties properties) {
         super(properties);
@@ -25,7 +27,7 @@ public class ParticleAcceleratorBlock extends Block {
     }
 
     @Override
-    public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    public int getLightBlock(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return 10;
     }
 }

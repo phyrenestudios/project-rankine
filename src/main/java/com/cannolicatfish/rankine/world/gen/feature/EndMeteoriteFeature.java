@@ -22,14 +22,14 @@ public class EndMeteoriteFeature extends Feature<NoFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
 
 
         if (rand.nextFloat() < Config.MISC_WORLDGEN.END_METEORITE_CHANCE.get()) {
             IChunk chunk = reader.getChunk(pos);
-            int randX = chunk.getPos().getXStart() + rand.nextInt(16) + 8;
+            int randX = chunk.getPos().getMinBlockX() + rand.nextInt(16) + 8;
             int randY = rand.nextInt(70) + 20;
-            int randZ = chunk.getPos().getZEnd() + rand.nextInt(16 + 8);
+            int randZ = chunk.getPos().getMaxBlockZ() + rand.nextInt(16 + 8);
             BlockPos POS = new BlockPos(randX, randY, randZ);
 
 
@@ -42,40 +42,40 @@ public class EndMeteoriteFeature extends Feature<NoFeatureConfig> {
             double radius = Math.max(I1,Math.max(I2,I3));
             double size = rand.nextDouble();
             boolean frozen = rand.nextBoolean();
-            BlockState BLOCK = Arrays.asList(RankineBlocks.METEORITE.get().getDefaultState(),RankineBlocks.ENSTATITE_CHONDRITE.get().getDefaultState()).get(rand.nextInt(2));
-            BlockState TEKTITE = Arrays.asList(RankineBlocks.BLACK_TEKTITE.get().getDefaultState(),RankineBlocks.GRAY_TEKTITE.get().getDefaultState(),RankineBlocks.GREEN_TEKTITE.get().getDefaultState(),RankineBlocks.BROWN_TEKTITE.get().getDefaultState()).get(rand.nextInt(4));
-            BlockState ORE = Arrays.asList(RankineBlocks.KAMACITE_ORE.get().getDefaultState(),RankineBlocks.ANTITAENITE_ORE.get().getDefaultState(),RankineBlocks.TAENITE_ORE.get().getDefaultState(),RankineBlocks.TETRATAENITE_ORE.get().getDefaultState()).get(rand.nextInt(4));
+            BlockState BLOCK = Arrays.asList(RankineBlocks.METEORITE.get().defaultBlockState(),RankineBlocks.ENSTATITE_CHONDRITE.get().defaultBlockState()).get(rand.nextInt(2));
+            BlockState TEKTITE = Arrays.asList(RankineBlocks.BLACK_TEKTITE.get().defaultBlockState(),RankineBlocks.GRAY_TEKTITE.get().defaultBlockState(),RankineBlocks.GREEN_TEKTITE.get().defaultBlockState(),RankineBlocks.BROWN_TEKTITE.get().defaultBlockState()).get(rand.nextInt(4));
+            BlockState ORE = Arrays.asList(RankineBlocks.KAMACITE_ORE.get().defaultBlockState(),RankineBlocks.ANTITAENITE_ORE.get().defaultBlockState(),RankineBlocks.TAENITE_ORE.get().defaultBlockState(),RankineBlocks.TETRATAENITE_ORE.get().defaultBlockState()).get(rand.nextInt(4));
 
 
 
-            for (BlockPos blockpos1 : BlockPos.getAllInBoxMutable(POS.add(-radius,-radius,-radius),POS.add(radius,radius,radius))) {
+            for (BlockPos blockpos1 : BlockPos.betweenClosed(POS.offset(-radius,-radius,-radius),POS.offset(radius,radius,radius))) {
                 if (frozen) {
                     if (d1 * Math.pow(blockpos1.getX() - POS.getX(), 2) + d2 * Math.pow(blockpos1.getY() - POS.getY(), 2) + d3 * Math.pow(blockpos1.getZ() - POS.getZ(), 2) <= size) {
                         if (d1 * Math.pow(blockpos1.getX() - POS.getX(), 2) + d2 * Math.pow(blockpos1.getY() - POS.getY(), 2) + d3 * Math.pow(blockpos1.getZ() - POS.getZ(), 2) > size - 0.1*size) {
-                            BLOCK = RankineBlocks.FROZEN_METEORITE.get().getDefaultState();
+                            BLOCK = RankineBlocks.FROZEN_METEORITE.get().defaultBlockState();
                         }
                         float chance = rand.nextFloat();
                         if (chance < 0.02) {
-                            this.setBlockState(reader, blockpos1, RankineBlocks.LONSDALEITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
+                            this.setBlock(reader, blockpos1, RankineBlocks.LONSDALEITE_ORE.get().defaultBlockState().setValue(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
                         } else if (chance < 0.07) {
-                            this.setBlockState(reader, blockpos1, ORE.with(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
+                            this.setBlock(reader, blockpos1, ORE.setValue(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
                         } else if (chance < 0.3) {
-                            this.setBlockState(reader, blockpos1, RankineBlocks.METEORIC_ICE.get().getDefaultState());
+                            this.setBlock(reader, blockpos1, RankineBlocks.METEORIC_ICE.get().defaultBlockState());
                         } else {
-                            this.setBlockState(reader, blockpos1, BLOCK);
+                            this.setBlock(reader, blockpos1, BLOCK);
                         }
                     }
                 } else {
                     if (d1 * Math.pow(blockpos1.getX() - POS.getX(), 2) + d2 * Math.pow(blockpos1.getY() - POS.getY(), 2) + d3 * Math.pow(blockpos1.getZ() - POS.getZ(), 2) <= size) {
                         float chance = rand.nextFloat();
                         if (chance < 0.02) {
-                            this.setBlockState(reader, blockpos1, RankineBlocks.LONSDALEITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
+                            this.setBlock(reader, blockpos1, RankineBlocks.LONSDALEITE_ORE.get().defaultBlockState().setValue(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
                         } else if (chance < 0.07) {
-                            this.setBlockState(reader, blockpos1, ORE.with(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
+                            this.setBlock(reader, blockpos1, ORE.setValue(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
                         } else if (chance < 0.3) {
-                            this.setBlockState(reader, blockpos1, TEKTITE);
+                            this.setBlock(reader, blockpos1, TEKTITE);
                         } else {
-                            this.setBlockState(reader, blockpos1, BLOCK);
+                            this.setBlock(reader, blockpos1, BLOCK);
                         }
                     }
                 }

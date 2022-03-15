@@ -28,32 +28,32 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
         this.proccessTime = nbt.getInt("ProcessTime");
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         compound.putInt("ProcessTime", this.proccessTime);
         return compound;
     }
 
     public void tick() {
-        if (!world.isAreaLoaded(pos, 1)) return;
-        int LAYERS = structureCheck(world,pos);
-        if (!world.isRemote && LAYERS > 0) {
+        if (!level.isAreaLoaded(worldPosition, 1)) return;
+        int LAYERS = structureCheck(level,worldPosition);
+        if (!level.isClientSide && LAYERS > 0) {
             ++proccessTime;
             if (proccessTime >= Config.MACHINES.AIR_DISTILLATION_SPEED.get()) {
-                System.out.println(world.getDimensionKey().getLocation());
-                AirDistillationRecipe recipe =  getRecipe(world,world.getBiome(pos).getRegistryName(),world.getDimensionKey().getLocation());
+                System.out.println(level.dimension().location());
+                AirDistillationRecipe recipe =  getRecipe(level,level.getBiome(worldPosition).getRegistryName(),level.dimension().location());
                 if (recipe != null) {
                     for (int i = 4; i < LAYERS * 3 + 2; i+=3) {
-                        if (world.getBlockState(pos.up(i)).matchesBlock(Blocks.AIR)) {
-                            ItemStack result = recipe.getDistillationWithChances(world, Math.floorDiv(i,3), world.getBiome(pos).getRegistryName(), world.getDimensionKey().getLocation());
+                        if (level.getBlockState(worldPosition.above(i)).is(Blocks.AIR)) {
+                            ItemStack result = recipe.getDistillationWithChances(level, Math.floorDiv(i,3), level.getBiome(worldPosition).getRegistryName(), level.dimension().location());
                             if (result.getItem() instanceof BlockItem) {
-                                world.setBlockState(pos.up(i), ((BlockItem) result.getItem()).getBlock().getDefaultState());
+                                level.setBlockAndUpdate(worldPosition.above(i), ((BlockItem) result.getItem()).getBlock().defaultBlockState());
                             }
                         }
                     }
@@ -65,7 +65,7 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
     }
 
     private AirDistillationRecipe getRecipe(World worldIn, ResourceLocation biome, ResourceLocation dim) {
-        for (AirDistillationRecipe recipe : worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.AIR_DISTILLATION)) {
+        for (AirDistillationRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.AIR_DISTILLATION)) {
             if (recipe.matchesDistillationRecipe(biome, dim)){
                 return recipe;
             }
@@ -75,52 +75,52 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
 
     private int structureCheck(World worldIn, BlockPos pos) {
         if (getRing(worldIn,pos, BlockTags.ICE) &&
-            worldIn.getBlockState(pos.add(2,0,-1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(2,0,0)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(2,0,1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-2,0,-1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-2,0,0)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-2,0,1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-1,0,2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(0,0,2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(1,0,2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-1,0,-2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(0,0,-2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(1,0,-2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(2,0,-1)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(2,0,0)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(2,0,1)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-2,0,-1)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-2,0,0)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-2,0,1)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-1,0,2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(0,0,2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(1,0,2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-1,0,-2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(0,0,-2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(1,0,-2)).is(RankineTags.Blocks.SHEETMETAL) &&
 
-            getRing(worldIn,pos.up(),BlockTags.ICE) &&
-            worldIn.getBlockState(pos.add(2,1,-1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(2,1,0)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(2,1,1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-2,1,-1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-2,1,0)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-2,1,1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-1,1,2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(0,1,2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(1,1,2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-1,1,-2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(0,1,-2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(1,1,-2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(0,1,0)).matchesBlock(RankineBlocks.AIR_DISTILLATION_PACKING.get()) &&
+            getRing(worldIn,pos.above(),BlockTags.ICE) &&
+            worldIn.getBlockState(pos.offset(2,1,-1)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(2,1,0)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(2,1,1)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-2,1,-1)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-2,1,0)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-2,1,1)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-1,1,2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(0,1,2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(1,1,2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-1,1,-2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(0,1,-2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(1,1,-2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(0,1,0)).is(RankineBlocks.AIR_DISTILLATION_PACKING.get()) &&
 
-            getRing(worldIn,pos.up(2),BlockTags.ICE) &&
-            worldIn.getBlockState(pos.add(2,2,-1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(2,2,0)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(2,2,1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-2,2,-1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-2,2,0)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-2,2,1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-1,2,2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(0,2,2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(1,2,2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(-1,2,-2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(0,2,-2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(1,2,-2)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-            worldIn.getBlockState(pos.add(0,2,0)).matchesBlock(RankineBlocks.AIR_DISTILLATION_PACKING.get())
+            getRing(worldIn,pos.above(2),BlockTags.ICE) &&
+            worldIn.getBlockState(pos.offset(2,2,-1)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(2,2,0)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(2,2,1)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-2,2,-1)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-2,2,0)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-2,2,1)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-1,2,2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(0,2,2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(1,2,2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(-1,2,-2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(0,2,-2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(1,2,-2)).is(RankineTags.Blocks.SHEETMETAL) &&
+            worldIn.getBlockState(pos.offset(0,2,0)).is(RankineBlocks.AIR_DISTILLATION_PACKING.get())
         ) {
             int top = 0;
             for (int i = 1; i<256; i++) {
-                if (worldIn.getBlockState(pos.up(i)).isIn(RankineTags.Blocks.SHEETMETAL)) {
+                if (worldIn.getBlockState(pos.above(i)).is(RankineTags.Blocks.SHEETMETAL)) {
                     top = i;
                     break;
                 }
@@ -128,19 +128,19 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
             if (top >= 5) {
                 int layers = 0;
                 for (int i = 1; i<=top; i++) {
-                    if (worldIn.getBlockState(pos.add(0,i*3,0)).matchesBlock(AIR_DISTILLATION_PACKING.get()) &&
-                        getRing(worldIn,pos.up(i*3),RankineTags.Blocks.SHEETMETAL) &&
-                        worldIn.getBlockState(pos.add(0,i*3+1,0)).matchesBlock(Blocks.AIR) &&
-                        worldIn.getBlockState(pos.add(1,i*3+1,1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-                        worldIn.getBlockState(pos.add(-1,i*3+1,1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-                        worldIn.getBlockState(pos.add(1,i*3+1,-1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-                        worldIn.getBlockState(pos.add(-1,i*3+1,-1)).isIn(RankineTags.Blocks.SHEETMETAL) &&
-                        (worldIn.getBlockState(pos.add(0,i*3+1,-1)).isIn(RankineTags.Blocks.SHEETMETAL) || worldIn.getBlockState(pos.add(0,i*3+1,-1)).matchesBlock(GAS_VENT.get())) &&
-                        (worldIn.getBlockState(pos.add(0,i*3+1,1)).isIn(RankineTags.Blocks.SHEETMETAL) || worldIn.getBlockState(pos.add(0,i*3+1,1)).matchesBlock(GAS_VENT.get())) &&
-                        (worldIn.getBlockState(pos.add(1,i*3+1,0)).isIn(RankineTags.Blocks.SHEETMETAL) || worldIn.getBlockState(pos.add(1,i*3+1,0)).matchesBlock(GAS_VENT.get())) &&
-                        (worldIn.getBlockState(pos.add(-1,i*3+1,0)).isIn(RankineTags.Blocks.SHEETMETAL) || worldIn.getBlockState(pos.add(-1,i*3+1,0)).matchesBlock(GAS_VENT.get())) &&
-                        (worldIn.getBlockState(pos.add(0, i*3 + 2, 0)).matchesBlock(AIR_DISTILLATION_PACKING.get()) || worldIn.getBlockState(pos.add(0, i*3 + 2, 0)).isIn(RankineTags.Blocks.SHEETMETAL)) &&
-                        getRing(worldIn, pos.up(i*3 + 2), RankineTags.Blocks.SHEETMETAL)) {
+                    if (worldIn.getBlockState(pos.offset(0,i*3,0)).is(AIR_DISTILLATION_PACKING.get()) &&
+                        getRing(worldIn,pos.above(i*3),RankineTags.Blocks.SHEETMETAL) &&
+                        worldIn.getBlockState(pos.offset(0,i*3+1,0)).is(Blocks.AIR) &&
+                        worldIn.getBlockState(pos.offset(1,i*3+1,1)).is(RankineTags.Blocks.SHEETMETAL) &&
+                        worldIn.getBlockState(pos.offset(-1,i*3+1,1)).is(RankineTags.Blocks.SHEETMETAL) &&
+                        worldIn.getBlockState(pos.offset(1,i*3+1,-1)).is(RankineTags.Blocks.SHEETMETAL) &&
+                        worldIn.getBlockState(pos.offset(-1,i*3+1,-1)).is(RankineTags.Blocks.SHEETMETAL) &&
+                        (worldIn.getBlockState(pos.offset(0,i*3+1,-1)).is(RankineTags.Blocks.SHEETMETAL) || worldIn.getBlockState(pos.offset(0,i*3+1,-1)).is(GAS_VENT.get())) &&
+                        (worldIn.getBlockState(pos.offset(0,i*3+1,1)).is(RankineTags.Blocks.SHEETMETAL) || worldIn.getBlockState(pos.offset(0,i*3+1,1)).is(GAS_VENT.get())) &&
+                        (worldIn.getBlockState(pos.offset(1,i*3+1,0)).is(RankineTags.Blocks.SHEETMETAL) || worldIn.getBlockState(pos.offset(1,i*3+1,0)).is(GAS_VENT.get())) &&
+                        (worldIn.getBlockState(pos.offset(-1,i*3+1,0)).is(RankineTags.Blocks.SHEETMETAL) || worldIn.getBlockState(pos.offset(-1,i*3+1,0)).is(GAS_VENT.get())) &&
+                        (worldIn.getBlockState(pos.offset(0, i*3 + 2, 0)).is(AIR_DISTILLATION_PACKING.get()) || worldIn.getBlockState(pos.offset(0, i*3 + 2, 0)).is(RankineTags.Blocks.SHEETMETAL)) &&
+                        getRing(worldIn, pos.above(i*3 + 2), RankineTags.Blocks.SHEETMETAL)) {
                             layers = i;
                     } else {
                         break;
@@ -156,25 +156,25 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
     }
 
     private boolean getRing(World worldIn, BlockPos pos, Block matchBlock) {
-        return worldIn.getBlockState(pos.add(-1, 0, -1)).matchesBlock(matchBlock) &&
-                worldIn.getBlockState(pos.add(0, 0, -1)).matchesBlock(matchBlock) &&
-                worldIn.getBlockState(pos.add(1, 0, -1)).matchesBlock(matchBlock) &&
-                worldIn.getBlockState(pos.add(-1, 0, 0)).matchesBlock(matchBlock) &&
-                worldIn.getBlockState(pos.add(1, 0, 0)).matchesBlock(matchBlock) &&
-                worldIn.getBlockState(pos.add(-1, 0, 1)).matchesBlock(matchBlock) &&
-                worldIn.getBlockState(pos.add(0, 0, 1)).matchesBlock(matchBlock) &&
-                worldIn.getBlockState(pos.add(1, 0, 1)).matchesBlock(matchBlock);
+        return worldIn.getBlockState(pos.offset(-1, 0, -1)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(0, 0, -1)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(1, 0, -1)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(-1, 0, 0)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(1, 0, 0)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(-1, 0, 1)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(0, 0, 1)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(1, 0, 1)).is(matchBlock);
     }
 
     private boolean getRing(World worldIn, BlockPos pos, ITag<Block> matchBlock) {
-        return worldIn.getBlockState(pos.add(-1, 0, -1)).isIn(matchBlock) &&
-                worldIn.getBlockState(pos.add(0, 0, -1)).isIn(matchBlock) &&
-                worldIn.getBlockState(pos.add(1, 0, -1)).isIn(matchBlock) &&
-                worldIn.getBlockState(pos.add(-1, 0, 0)).isIn(matchBlock) &&
-                worldIn.getBlockState(pos.add(1, 0, 0)).isIn(matchBlock) &&
-                worldIn.getBlockState(pos.add(-1, 0, 1)).isIn(matchBlock) &&
-                worldIn.getBlockState(pos.add(0, 0, 1)).isIn(matchBlock) &&
-                worldIn.getBlockState(pos.add(1, 0, 1)).isIn(matchBlock);
+        return worldIn.getBlockState(pos.offset(-1, 0, -1)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(0, 0, -1)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(1, 0, -1)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(-1, 0, 0)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(1, 0, 0)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(-1, 0, 1)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(0, 0, 1)).is(matchBlock) &&
+                worldIn.getBlockState(pos.offset(1, 0, 1)).is(matchBlock);
     }
 
 }

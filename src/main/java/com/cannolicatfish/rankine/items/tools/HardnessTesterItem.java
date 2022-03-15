@@ -9,21 +9,23 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
+import net.minecraft.item.Item.Properties;
+
 public class HardnessTesterItem extends Item {
     public HardnessTesterItem(Properties p_i48487_1_) {
         super(p_i48487_1_);
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
+    public ActionResultType useOn(ItemUseContext context) {
+        World world = context.getLevel();
         PlayerEntity player = context.getPlayer();
-        if (!world.isRemote && player != null)
+        if (!world.isClientSide && player != null)
         {
-            Block b = world.getBlockState(context.getPos()).getBlock();
-            int harvest = b.getHarvestLevel(b.getDefaultState());
+            Block b = world.getBlockState(context.getClickedPos()).getBlock();
+            int harvest = b.getHarvestLevel(b.defaultBlockState());
             String desc;
-            if (b.getHarvestTool(b.getDefaultState()) == ToolType.PICKAXE)
+            if (b.getHarvestTool(b.defaultBlockState()) == ToolType.PICKAXE)
             {
                 switch (harvest)
                 {
@@ -54,14 +56,14 @@ public class HardnessTesterItem extends Item {
 
             } else {
                 harvest = 0;
-                if (b.getDefaultState().getBlockHardness(context.getWorld(),context.getPos()) < 0) {
+                if (b.defaultBlockState().getDestroySpeed(context.getLevel(),context.getClickedPos()) < 0) {
                     desc = " (Unbreakable)";
                 } else {
                     desc = " (None)";
                 }
             }
 
-            player.sendMessage(new StringTextComponent("Harvest Level: " + harvest + desc),player.getUniqueID());
+            player.sendMessage(new StringTextComponent("Harvest Level: " + harvest + desc),player.getUUID());
         }
 
 

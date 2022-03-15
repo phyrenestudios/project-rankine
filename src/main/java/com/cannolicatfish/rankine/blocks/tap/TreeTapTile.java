@@ -31,40 +31,40 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
     }
 
     public void tick() {
-        if (world.getDayTime() % 24000 >2000 && world.getDayTime() % 24000 <10000 && isTreeAlive(pos,world) && !world.isRemote()) {
-            BlockPos logPos = pos.offset(this.getBlockState().get(TreeTapBlock.FACING).getOpposite());
-            for (BlockPos s : BlockPos.getAllInBoxMutable(logPos.add(-1,-2,-1),logPos.add(1,2,1))) {
-                BlockPos stupidPos = s.toImmutable();
-                if (!stupidPos.equals(pos) && world.getBlockState(stupidPos).matchesBlock(RankineBlocks.TREE_TAP.get())) {
+        if (level.getDayTime() % 24000 >2000 && level.getDayTime() % 24000 <10000 && isTreeAlive(worldPosition,level) && !level.isClientSide()) {
+            BlockPos logPos = worldPosition.relative(this.getBlockState().getValue(TreeTapBlock.FACING).getOpposite());
+            for (BlockPos s : BlockPos.betweenClosed(logPos.offset(-1,-2,-1),logPos.offset(1,2,1))) {
+                BlockPos stupidPos = s.immutable();
+                if (!stupidPos.equals(worldPosition) && level.getBlockState(stupidPos).is(RankineBlocks.TREE_TAP.get())) {
                     return;
                 }
             }
-            Block log = world.getBlockState(logPos).getBlock();
-            TreetappingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.TREETAPPING, new Inventory(new ItemStack(log)), this.world).orElse(null);
-            if (irecipe != null && world.getDayTime()%irecipe.getTapTime() == 0) {
+            Block log = level.getBlockState(logPos).getBlock();
+            TreetappingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.TREETAPPING, new Inventory(new ItemStack(log)), this.level).orElse(null);
+            if (irecipe != null && level.getDayTime()%irecipe.getTapTime() == 0) {
                 outputTank.fill(irecipe.getResult(), IFluidHandler.FluidAction.EXECUTE);
             }
 
-            if (outputTank.getFluidAmount() == 1000 && world.getBlockState(pos.down()).getBlock().matchesBlock(RankineBlocks.TAP_LINE.get())) {
+            if (outputTank.getFluidAmount() == 1000 && level.getBlockState(worldPosition.below()).getBlock().is(RankineBlocks.TAP_LINE.get())) {
                 BlockPos floodGate = null;
                 Set<BlockPos> checkedBlocks = new HashSet<>();
                 Stack<BlockPos> toCheck = new Stack<>();
-                toCheck.add(pos.down());
+                toCheck.add(worldPosition.below());
                 while (!toCheck.isEmpty()) {
                     BlockPos cp = toCheck.pop();
                     if (!checkedBlocks.contains(cp)) {
                         checkedBlocks.add(cp);
-                        if (world.isBlockLoaded(cp)) {
-                            BlockState s = world.getBlockState(cp);
-                            if (s.getBlock().matchesBlock(RankineBlocks.FLOOD_GATE.get())) {
+                        if (level.hasChunkAt(cp)) {
+                            BlockState s = level.getBlockState(cp);
+                            if (s.getBlock().is(RankineBlocks.FLOOD_GATE.get())) {
                                 floodGate = cp;
                                 break;
-                            } else if (s.getBlock().matchesBlock(RankineBlocks.TAP_LINE.get())) {
+                            } else if (s.getBlock().is(RankineBlocks.TAP_LINE.get())) {
                                 toCheck.add(cp.north());
                                 toCheck.add(cp.east());
                                 toCheck.add(cp.south());
                                 toCheck.add(cp.west());
-                                toCheck.add(cp.down());
+                                toCheck.add(cp.below());
                             }
                         }
                         if (checkedBlocks.size() > 200) {
@@ -73,7 +73,7 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
                     }
                 }
 
-                if (floodGate != null && FloodGateBlock.placeFluid(world, floodGate, outputTank.getFluid().getFluid().getDefaultState().getBlockState())) {
+                if (floodGate != null && FloodGateBlock.placeFluid(level, floodGate, outputTank.getFluid().getFluid().defaultFluidState().createLegacyBlock())) {
                     outputTank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
                 }
             }
@@ -89,14 +89,14 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
         this.outputTank = this.outputTank.readFromNBT(nbt.getCompound("OutputTank"));
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         compound.put("OutputTank",this.outputTank.writeToNBT(new CompoundNBT()));
 
         return compound;
@@ -106,17 +106,17 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
         Set<BlockPos> checkedBlocks = new HashSet<>();
         Stack<BlockPos> toCheck = new Stack<>();
 
-        toCheck.add(pos.offset(worldIn.getBlockState(pos).get(TreeTapBlock.FACING).getOpposite()));
+        toCheck.add(pos.relative(worldIn.getBlockState(pos).getValue(TreeTapBlock.FACING).getOpposite()));
         while (!toCheck.isEmpty()) {
             BlockPos cp = toCheck.pop();
             if (!checkedBlocks.contains(cp)) {
                 checkedBlocks.add(cp);
-                for (BlockPos b : BlockPos.getAllInBoxMutable(cp.add(-1,-1,-1), cp.add(1,1,1))) {
-                    BlockState target = worldIn.getBlockState(b.toImmutable());
-                    if (target.isIn(RankineTags.Blocks.TREE_LEAVES)) {
+                for (BlockPos b : BlockPos.betweenClosed(cp.offset(-1,-1,-1), cp.offset(1,1,1))) {
+                    BlockState target = worldIn.getBlockState(b.immutable());
+                    if (target.is(RankineTags.Blocks.TREE_LEAVES)) {
                         return true;
-                    } else if (target.isIn(RankineTags.Blocks.TREE_LOGS)) {
-                        toCheck.add(b.toImmutable());
+                    } else if (target.is(RankineTags.Blocks.TREE_LOGS)) {
+                        toCheck.add(b.immutable());
                     }
                 }
                 if (toCheck.size() > 300) {

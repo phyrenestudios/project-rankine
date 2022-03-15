@@ -20,6 +20,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class CarbonDisulfideFlowingFluidBlock extends RankineFlowingFluidBlock {
     public CarbonDisulfideFlowingFluidBlock(Supplier<? extends FlowingFluid> supplier, Properties properties) {
         super(supplier, properties);
@@ -37,21 +39,21 @@ public class CarbonDisulfideFlowingFluidBlock extends RankineFlowingFluidBlock {
 
     @Override
     public void catchFire(BlockState state, World world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
-        if (!world.isRemote && world.getRandom().nextFloat() < 0.002f) {
+        if (!world.isClientSide && world.getRandom().nextFloat() < 0.002f) {
             for (int i = 0; i < 2; i++) {
-                BlockPos close = BlockPos.getClosestMatchingPosition(pos,3,3,B -> world.isAirBlock(B) && !(world.getBlockState(B).getBlock() instanceof GasBlock)).orElse(null);
+                BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> world.isEmptyBlock(B) && !(world.getBlockState(B).getBlock() instanceof GasBlock)).orElse(null);
                 if (close == null) {
                     break;
                 } else {
-                    world.setBlockState(close, RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get().getDefaultState(),2);
+                    world.setBlock(close, RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get().defaultBlockState(),2);
                 }
             }
             for (int i = 0; i < 1; i++) {
-                BlockPos close = BlockPos.getClosestMatchingPosition(pos,3,3,B -> world.isAirBlock(B) && !(world.getBlockState(B).getBlock() instanceof GasBlock)).orElse(null);
+                BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> world.isEmptyBlock(B) && !(world.getBlockState(B).getBlock() instanceof GasBlock)).orElse(null);
                 if (close == null) {
                     break;
                 } else {
-                    world.setBlockState(pos,RankineBlocks.SULFUR_DIOXIDE_GAS_BLOCK.get().getDefaultState(),3);
+                    world.setBlock(pos,RankineBlocks.SULFUR_DIOXIDE_GAS_BLOCK.get().defaultBlockState(),3);
                 }
             }
         }

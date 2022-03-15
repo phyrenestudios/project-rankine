@@ -31,6 +31,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class OrnamentBlock extends Block implements IWaterLoggable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final IntegerProperty STYLE = IntegerProperty.create("style",0,2);
@@ -38,58 +40,58 @@ public class OrnamentBlock extends Block implements IWaterLoggable {
 
     public OrnamentBlock(Properties builder) {
         super(builder);
-        this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch (state.get(STYLE)) {
+        switch (state.getValue(STYLE)) {
             default:
             case 0:
-                return Block.makeCuboidShape(5.0D, 7.0D, 5.0D, 11.0D, 13.0D, 11.0D);
+                return Block.box(5.0D, 7.0D, 5.0D, 11.0D, 13.0D, 11.0D);
             case 1:
-                return Block.makeCuboidShape(6.0D, 5.0D, 6.0D, 10.0D, 13.0D, 10.0D);
+                return Block.box(6.0D, 5.0D, 6.0D, 10.0D, 13.0D, 10.0D);
             case 2:
-                return Block.makeCuboidShape(6.0D, 9.0D, 6.0D, 10.0D, 13.0D, 10.0D);
+                return Block.box(6.0D, 9.0D, 6.0D, 10.0D, 13.0D, 10.0D);
         }
 
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED,STYLE);
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
-        boolean flag = fluidstate.getFluid() == Fluids.WATER;
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        boolean flag = fluidstate.getType() == Fluids.WATER;
 
-        ItemStack heldItem = context.getPlayer().getHeldItemOffhand();
+        ItemStack heldItem = context.getPlayer().getOffhandItem();
         if (heldItem.getItem() == RankineItems.BUILDING_TOOL.get()) {
-            return this.getDefaultState().with(STYLE, Math.min(2,BuildingToolItem.getBuildingMode(heldItem))).with(WATERLOGGED, flag);
+            return this.defaultBlockState().setValue(STYLE, Math.min(2,BuildingToolItem.getBuildingMode(heldItem))).setValue(WATERLOGGED, flag);
         }
-        return this.getDefaultState().with(WATERLOGGED, flag);
+        return this.defaultBlockState().setValue(WATERLOGGED, flag);
     }
 
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (stateIn.get(WATERLOGGED)) {
-            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
 
-        return Direction.UP == facing && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return Direction.UP == facing && !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return Block.hasEnoughSolidSide(worldIn, pos.offset(Direction.UP), Direction.UP.getOpposite()) || worldIn.getBlockState(pos.offset(Direction.UP)).isIn(BlockTags.LEAVES);
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        return Block.canSupportCenter(worldIn, pos.relative(Direction.UP), Direction.UP.getOpposite()) || worldIn.getBlockState(pos.relative(Direction.UP)).is(BlockTags.LEAVES);
     }
 
-    public PushReaction getPushReaction(BlockState state) {
+    public PushReaction getPistonPushReaction(BlockState state) {
         return PushReaction.DESTROY;
     }
 
     @Override
-    public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
+    public void onProjectileHit(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
         if (!(projectile instanceof SnowballEntity)) {
-            worldIn.destroyBlock(hit.getPos(),false);
+            worldIn.destroyBlock(hit.getBlockPos(),false);
         }
     }
 
@@ -97,7 +99,7 @@ public class OrnamentBlock extends Block implements IWaterLoggable {
     @Override
     @SuppressWarnings("deprecation")
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
 }

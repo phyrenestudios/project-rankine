@@ -157,9 +157,9 @@ public class RankineLangProvider extends LanguageProvider {
         for (Block blk : Stream.of(
             RankineLists.ELEMENT_BLOCKS,
             RankineLists.MINERAL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            if (blk.matchesBlock(RankineBlocks.SODIUM_CHLORIDE_BLOCK.get())) {
+            if (blk.is(RankineBlocks.SODIUM_CHLORIDE_BLOCK.get())) {
                 add(blk, "Block of Salt (NaCl)");
-            } else if (blk.matchesBlock(RankineBlocks.CALCIUM_CHLORIDE_BLOCK.get())) {
+            } else if (blk.is(RankineBlocks.CALCIUM_CHLORIDE_BLOCK.get())) {
                 add(blk, "Block of Salt (CaCl2)");
             } else {
                 add(blk, parseLangName("block_of_"+blk.getRegistryName().getPath().replace("_block","")));

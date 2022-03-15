@@ -27,9 +27,11 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class RopeBlock extends Block {
 
-    VoxelShape voxelshape = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
+    VoxelShape voxelshape = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
 
     public RopeBlock(Properties p_i49976_1_) {
         super(p_i49976_1_);
@@ -41,13 +43,13 @@ public class RopeBlock extends Block {
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.up()).matchesBlock(this) || worldIn.getBlockState(pos.up()).isSolid();
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        return worldIn.getBlockState(pos.above()).is(this) || worldIn.getBlockState(pos.above()).canOcclude();
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        if (context.isSneaking()) {
+        if (context.isDescending()) {
             return voxelshape;
         } else {
             return VoxelShapes.empty();
@@ -55,47 +57,47 @@ public class RopeBlock extends Block {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         int height = pos.getY();
-        if (player.getHeldItemMainhand().getItem().equals(this.asItem())) {
+        if (player.getMainHandItem().getItem().equals(this.asItem())) {
             for (int i = 1; i < height; i++) {
-                if (worldIn.getBlockState(pos.down(i)).isReplaceable(new BlockItemUseContext(player, handIn, player.getHeldItem(handIn), hit))) {
-                    worldIn.setBlockState(pos.down(i), RankineBlocks.ROPE.get().getDefaultState());
+                if (worldIn.getBlockState(pos.below(i)).canBeReplaced(new BlockItemUseContext(player, handIn, player.getItemInHand(handIn), hit))) {
+                    worldIn.setBlockAndUpdate(pos.below(i), RankineBlocks.ROPE.get().defaultBlockState());
                     if (!player.isCreative()) {
-                        player.getHeldItemMainhand().shrink(1);
+                        player.getMainHandItem().shrink(1);
                     }
                     return ActionResultType.SUCCESS;
-                } else if (worldIn.getBlockState(pos.down(i)).getBlock() != RankineBlocks.ROPE.get()) {
+                } else if (worldIn.getBlockState(pos.below(i)).getBlock() != RankineBlocks.ROPE.get()) {
                     break;
                 }
             }
 
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return super.use(state, worldIn, pos, player, handIn, hit);
     }
 
     @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+    public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
         int ropeCount = 0;
         int i=1;
-        while (worldIn.getBlockState(pos.down(i)).matchesBlock(this)) {
-            worldIn.destroyBlock(pos.down(i),false);
+        while (worldIn.getBlockState(pos.below(i)).is(this)) {
+            worldIn.destroyBlock(pos.below(i),false);
             ropeCount += 1;
             i += 1;
         }
-        if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !player.isCreative()) {
-            double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-            double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-            double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+        if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !player.isCreative()) {
+            double d0 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
+            double d1 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
+            double d2 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
             ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(RankineBlocks.ROPE.get(),ropeCount));
-            itementity.setNoPickupDelay();
-            worldIn.addEntity(itementity);
+            itementity.setNoPickUpDelay();
+            worldIn.addFreshEntity(itementity);
         }
-        super.onBlockHarvested(worldIn, pos, state, player);
+        super.playerWillDestroy(worldIn, pos, state, player);
     }
 
     @Override
-    public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
+    public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
         return false;
     }
 }

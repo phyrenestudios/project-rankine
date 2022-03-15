@@ -10,12 +10,12 @@ public class BackstabEnchantment extends Enchantment {
         super(p_i46721_1_, RankineEnchantmentTypes.KNIFE, p_i46721_2_);
     }
 
-    public int getMinEnchantability(int enchantmentLevel) {
+    public int getMinCost(int enchantmentLevel) {
         return 5 + (enchantmentLevel - 1) * 9;
     }
 
-    public int getMaxEnchantability(int enchantmentLevel) {
-        return this.getMinEnchantability(enchantmentLevel) + 15;
+    public int getMaxCost(int enchantmentLevel) {
+        return this.getMinCost(enchantmentLevel) + 15;
     }
 
     public int getMaxLevel() {

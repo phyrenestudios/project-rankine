@@ -21,17 +21,17 @@ public class FumaroleFeature extends Feature<NoFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
 
         IChunk chunk = reader.getChunk(pos);
-        int randX = chunk.getPos().getXStart() + rand.nextInt(16) + 8;
-        int randZ = chunk.getPos().getZStart() + rand.nextInt(16) + 8;
+        int randX = chunk.getPos().getMinBlockX() + rand.nextInt(16) + 8;
+        int randZ = chunk.getPos().getMinBlockZ() + rand.nextInt(16) + 8;
         int yHeight;
         Block FUMAROLE;
-        if (reader.getBiome(new BlockPos(randX,0,randZ)).getCategory() == Biome.Category.NETHER) {
+        if (reader.getBiome(new BlockPos(randX,0,randZ)).getBiomeCategory() == Biome.Category.NETHER) {
             yHeight = 30;
             for (int y = 80; y>=yHeight; --y) {
-                if (reader.getBlockState(new BlockPos(randX, y, randZ)).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && reader.getBlockState(new BlockPos(randX, y + 1, randZ)).matchesBlock(Blocks.AIR)) {
+                if (reader.getBlockState(new BlockPos(randX, y, randZ)).is(RankineTags.Blocks.FUMAROLE_DEPOSIT) && reader.getBlockState(new BlockPos(randX, y + 1, randZ)).is(Blocks.AIR)) {
                     yHeight=y;
                     break;
                 }
@@ -40,7 +40,7 @@ public class FumaroleFeature extends Feature<NoFeatureConfig> {
         } else {
             yHeight = 11;
             for (int y = 40; y>=yHeight; --y) {
-                if (reader.getBlockState(new BlockPos(randX, y, randZ)).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && reader.getBlockState(new BlockPos(randX, y + 1, randZ)).matchesBlock(Blocks.AIR)) {
+                if (reader.getBlockState(new BlockPos(randX, y, randZ)).is(RankineTags.Blocks.FUMAROLE_DEPOSIT) && reader.getBlockState(new BlockPos(randX, y + 1, randZ)).is(Blocks.AIR)) {
                     yHeight=y;
                     break;
                 }
@@ -49,16 +49,16 @@ public class FumaroleFeature extends Feature<NoFeatureConfig> {
         }
 
         BlockPos POS = new BlockPos(randX, yHeight, randZ);
-        reader.setBlockState(POS, FUMAROLE.getDefaultState(), 3);
-        reader.setBlockState(POS.down(), Blocks.MAGMA_BLOCK.getDefaultState(), 3);
-        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(POS.add(-2,-2,-2),POS.add(2,0,2))) {
-            if (rand.nextFloat() < 0.5 && reader.getBlockState(blockpos).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && blockpos.distanceSq(POS)<9) {
-                reader.setBlockState(blockpos, RankineBlocks.FUMAROLE_DEPOSIT.get().getDefaultState(), 3);
+        reader.setBlock(POS, FUMAROLE.defaultBlockState(), 3);
+        reader.setBlock(POS.below(), Blocks.MAGMA_BLOCK.defaultBlockState(), 3);
+        for (BlockPos blockpos : BlockPos.betweenClosed(POS.offset(-2,-2,-2),POS.offset(2,0,2))) {
+            if (rand.nextFloat() < 0.5 && reader.getBlockState(blockpos).is(RankineTags.Blocks.FUMAROLE_DEPOSIT) && blockpos.distSqr(POS)<9) {
+                reader.setBlock(blockpos, RankineBlocks.FUMAROLE_DEPOSIT.get().defaultBlockState(), 3);
             }
         }
-        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(POS.add(-2,1,-2),POS.add(2,3,2))) {
-            if (reader.getBlockState(blockpos).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && blockpos.distanceSq(POS)<9) {
-                reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 3);
+        for (BlockPos blockpos : BlockPos.betweenClosed(POS.offset(-2,1,-2),POS.offset(2,3,2))) {
+            if (reader.getBlockState(blockpos).is(RankineTags.Blocks.FUMAROLE_DEPOSIT) && blockpos.distSqr(POS)<9) {
+                reader.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 3);
             }
         }
 

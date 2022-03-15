@@ -39,8 +39,8 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
     private AlloyingRecipe alloy = null;
     public MaterialTestingTableScreen(MaterialTestingTableContainer container, PlayerInventory inv, ITextComponent name) {
         super(container, inv, name);
-        this.xSize = 256;
-        this.ySize = 256;
+        this.imageWidth = 256;
+        this.imageHeight = 256;
         this.textureXSize = 256;
         this.textureYSize = 256;
     }
@@ -49,32 +49,32 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
-        this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
+        this.renderTooltip(matrixStack, mouseX, mouseY);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
+    protected void renderBg(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        this.minecraft.getTextureManager().bindTexture(this.GUI);
+        this.minecraft.getTextureManager().bind(this.GUI);
 
-        int x = (this.width - this.xSize) / 2;
-        int y = (this.height - this.ySize) / 2;
+        int x = (this.width - this.imageWidth) / 2;
+        int y = (this.height - this.imageHeight) / 2;
 
-        blit(p_230450_1_, x, y, 0, 0, this.xSize, this.ySize, this.textureXSize, this.textureYSize);
+        blit(p_230450_1_, x, y, 0, 0, this.imageWidth, this.imageHeight, this.textureXSize, this.textureYSize);
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int p_230451_2_, int p_230451_3_) {
-        World worldIn = Minecraft.getInstance().world;
+    protected void renderLabels(MatrixStack matrixStack, int p_230451_2_, int p_230451_3_) {
+        World worldIn = Minecraft.getInstance().level;
         if (worldIn != null)
         {
-            if (element != this.container.getElementRecipeForSlotItem(worldIn)) {
-                element = this.container.getElementRecipeForSlotItem(worldIn);
+            if (element != this.menu.getElementRecipeForSlotItem(worldIn)) {
+                element = this.menu.getElementRecipeForSlotItem(worldIn);
             }
 
-            if (alloy != this.container.getAlloyRecipeForSlotItem(worldIn)) {
-                alloy = this.container.getAlloyRecipeForSlotItem(worldIn);
+            if (alloy != this.menu.getAlloyRecipeForSlotItem(worldIn)) {
+                alloy = this.menu.getAlloyRecipeForSlotItem(worldIn);
             }
         }
         DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
@@ -82,60 +82,60 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
         });
         if (element != null)
         {
-            int stat = this.container.getToolItem(worldIn);
+            int stat = this.menu.getToolItem(worldIn);
             if (stat >= 0 && stat <= 9) {
                 String statStr = StatType.values()[stat].toString();
-                drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("block.rankine.material_testing_bench."+ statStr.toLowerCase(Locale.ROOT) +".test"),12,32,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().font,new TranslationTextComponent("block.rankine.material_testing_bench."+ statStr.toLowerCase(Locale.ROOT) +".test"),12,32,0xffffff);
                 int ymod = 0;
 
                 List<StringTextComponent> strings = checkStatRange(element,StatType.values()[stat]);
                 for (StringTextComponent s : strings) {
                     int textX = s.getText().contains("->") ? 24 : 12;
-                    drawString(matrixStack,Minecraft.getInstance().fontRenderer,s,textX,44 + ymod,0xffffff);
+                    drawString(matrixStack,Minecraft.getInstance().font,s,textX,44 + ymod,0xffffff);
                     ymod += 12;
                 }
 
-                drawString(matrixStack,Minecraft.getInstance().fontRenderer,element.getName().toUpperCase(Locale.ROOT) + " (" + element.getSymbol() + ")",32,10,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().font,element.getName().toUpperCase(Locale.ROOT) + " (" + element.getSymbol() + ")",32,10,0xffffff);
                 //drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("element."+ element.getId() +".preview"),32,20,0xffffff);
             } else if (stat == 10) {
-                drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("block.rankine.material_testing_bench.enchantments.test"),12,32,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().font,new TranslationTextComponent("block.rankine.material_testing_bench.enchantments.test"),12,32,0xffffff);
                 int ymod = 0;
                 List<StringTextComponent> strings = listEnchantments(element);
                 for (StringTextComponent s : strings) {
                     int textX = s.getText().contains("->") ? 24 : 12;
-                    drawString(matrixStack,Minecraft.getInstance().fontRenderer,s,textX,44 + ymod,0xffffff);
+                    drawString(matrixStack,Minecraft.getInstance().font,s,textX,44 + ymod,0xffffff);
                     ymod += 12;
                 }
             } else if (stat == 11) {
-                drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("block.rankine.material_testing_bench.exam.test"),12,32,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().font,new TranslationTextComponent("block.rankine.material_testing_bench.exam.test"),12,32,0xffffff);
                 int ymod = 0;
                 List<StringTextComponent> strings = listFacts(element);
                 for (StringTextComponent s : strings) {
                     int textX = s.getText().contains("->") ? 24 : 12;
-                    drawString(matrixStack,Minecraft.getInstance().fontRenderer,s,textX,44 + ymod,0xffffff);
+                    drawString(matrixStack,Minecraft.getInstance().font,s,textX,44 + ymod,0xffffff);
                     ymod += 12;
                 }
             } else {
-                drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Insert a tool to test for properties.",12,44,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().font,"Insert a tool to test for properties.",12,44,0xffffff);
             }
 
-            drawString(matrixStack,Minecraft.getInstance().fontRenderer,element.getName().toUpperCase(Locale.ROOT) + " (" + element.getSymbol() + ")",32,10,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().font,element.getName().toUpperCase(Locale.ROOT) + " (" + element.getSymbol() + ")",32,10,0xffffff);
             //drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("element."+ element.getId() +".preview"),32,20,0xffffff);
         } else if (alloy != null) {
-            int stat = this.container.getToolItem(worldIn);
+            int stat = this.menu.getToolItem(worldIn);
             if (stat >= 0 && stat <= 9) {
                 String statStr = StatType.values()[stat].toString();
-                drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("block.rankine.material_testing_bench."+ statStr.toLowerCase(Locale.ROOT) +".test"),12,32,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().font,new TranslationTextComponent("block.rankine.material_testing_bench."+ statStr.toLowerCase(Locale.ROOT) +".test"),12,32,0xffffff);
                 int ymod = 0;
-                ItemStack stack = this.container.getSlotItem(worldIn);
+                ItemStack stack = this.menu.getSlotItem(worldIn);
                 List<StringTextComponent> strings = checkAlloyDetails(stack,alloy,StatType.values()[stat],worldIn);
                 for (StringTextComponent s : strings) {
                     int textX = s.getText().contains("->") ? 24 : 12;
-                    drawString(matrixStack,Minecraft.getInstance().fontRenderer,s,textX,44 + ymod,0xffffff);
+                    drawString(matrixStack,Minecraft.getInstance().font,s,textX,44 + ymod,0xffffff);
                     ymod += 12;
                 }
 
-                drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent(stack.getTranslationKey()).getString().toUpperCase(Locale.ROOT),32,10,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().font,new TranslationTextComponent(stack.getDescriptionId()).getString().toUpperCase(Locale.ROOT),32,10,0xffffff);
                 //drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("alloy."+ alloy.getId() +".preview"),32,20,0xffffff);
             }
         }
@@ -152,7 +152,7 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
             ResourceLocation elem = new ResourceLocation(nbt.getString("id"));
             int amount = nbt.getShort("percent");
             if (worldIn != null) {
-                IRecipe<?> recipe = worldIn.getRecipeManager().getRecipe(elem).orElse(null);
+                IRecipe<?> recipe = worldIn.getRecipeManager().byKey(elem).orElse(null);
                 if (recipe instanceof ElementRecipe) {
 
                     ElementRecipe e = (ElementRecipe) recipe;

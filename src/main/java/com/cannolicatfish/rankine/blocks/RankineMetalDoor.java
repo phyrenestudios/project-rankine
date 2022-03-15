@@ -9,6 +9,6 @@ import net.minecraft.block.material.MaterialColor;
 public class RankineMetalDoor extends DoorBlock
 {
     public RankineMetalDoor() {
-        super(Block.Properties.create(Material.IRON, MaterialColor.IRON).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.METAL).notSolid());
+        super(Block.Properties.of(Material.METAL, MaterialColor.METAL).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion());
     }
 }

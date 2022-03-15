@@ -19,22 +19,22 @@ public abstract class ItemDisplayEntity extends TileEntity implements ITickableT
     @Override
     @Nullable
     public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(this.getPos(), 3, this.getUpdateTag());
+        return new SUpdateTileEntityPacket(this.getBlockPos(), 3, this.getUpdateTag());
     }
 
     @Override
     public CompoundNBT getUpdateTag() {
-        return this.write(new CompoundNBT());
+        return this.save(new CompoundNBT());
     }
 
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         super.onDataPacket(net, pkt);
-        handleUpdateTag(world.getBlockState(pos),pkt.getNbtCompound());
+        handleUpdateTag(level.getBlockState(worldPosition),pkt.getTag());
     }
 
     public void updateBlock(){
-        BlockState state = world.getBlockState(pos);
-        world.notifyBlockUpdate(pos, state, state, 2);
+        BlockState state = level.getBlockState(worldPosition);
+        level.sendBlockUpdated(worldPosition, state, state, 2);
     }
 }

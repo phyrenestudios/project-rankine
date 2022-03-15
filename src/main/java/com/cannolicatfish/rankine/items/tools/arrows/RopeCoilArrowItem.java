@@ -30,11 +30,11 @@ public class RopeCoilArrowItem extends ArrowItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
-            tooltip.add(new StringTextComponent("Firing this arrow with rope in the offhand deploys additional rope.").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent("Firing this arrow with rope in the offhand deploys additional rope.").withStyle(TextFormatting.GRAY));
         } else {
-            tooltip.add(new StringTextComponent("Hold shift for more information...").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent("Hold shift for more information...").withStyle(TextFormatting.GRAY));
         }
 
     }

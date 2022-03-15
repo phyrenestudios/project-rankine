@@ -12,7 +12,7 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Random;
 
 public class ShortGrassBlock extends BushBlock implements IGrowable, net.minecraftforge.common.IForgeShearable {
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D);
+    protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D);
 
     public ShortGrassBlock(AbstractBlock.Properties properties) {
         super(properties);
@@ -22,17 +22,17 @@ public class ShortGrassBlock extends BushBlock implements IGrowable, net.minecra
         return SHAPE;
     }
 
-    public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
         return true;
     }
 
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(World worldIn, Random rand, BlockPos pos, BlockState state) {
         return true;
     }
 
-    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-        if (Blocks.GRASS.getDefaultState().isValidPosition(worldIn, pos) && worldIn.isAirBlock(pos.up())) {
-            worldIn.setBlockState(pos,Blocks.GRASS.getDefaultState(),2);
+    public void performBonemeal(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+        if (Blocks.GRASS.defaultBlockState().canSurvive(worldIn, pos) && worldIn.isEmptyBlock(pos.above())) {
+            worldIn.setBlock(pos,Blocks.GRASS.defaultBlockState(),2);
         }
     }
 
@@ -41,7 +41,7 @@ public class ShortGrassBlock extends BushBlock implements IGrowable, net.minecra
     }
 
     @Override
-    public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
+    public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
         return true;
     }
 }

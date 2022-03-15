@@ -26,9 +26,9 @@ public class AlloySmithingRecipe extends SmithingRecipe {
     }
 
     @Override
-    public ItemStack getCraftingResult(IInventory inv) {
+    public ItemStack assemble(IInventory inv) {
         ItemStack itemstack = this.result.copy();
-        CompoundNBT compoundnbt = inv.getStackInSlot(0).getTag();
+        CompoundNBT compoundnbt = inv.getItem(0).getTag();
         if (compoundnbt != null) {
             itemstack.setTag(compoundnbt.copy());
         }
@@ -41,23 +41,23 @@ public class AlloySmithingRecipe extends SmithingRecipe {
     }
 
     public AlloySmithingRecipe read(ResourceLocation recipeId, JsonObject json) {
-        Ingredient ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "base"));
-        Ingredient ingredient1 = Ingredient.deserialize(JSONUtils.getJsonObject(json, "addition"));
-        ItemStack itemstack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
+        Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "base"));
+        Ingredient ingredient1 = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "addition"));
+        ItemStack itemstack = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "result"));
         return new AlloySmithingRecipe(recipeId, ingredient, ingredient1, itemstack);
     }
 
     public AlloySmithingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-        Ingredient ingredient = Ingredient.read(buffer);
-        Ingredient ingredient1 = Ingredient.read(buffer);
-        ItemStack itemstack = buffer.readItemStack();
+        Ingredient ingredient = Ingredient.fromNetwork(buffer);
+        Ingredient ingredient1 = Ingredient.fromNetwork(buffer);
+        ItemStack itemstack = buffer.readItem();
         return new AlloySmithingRecipe(recipeId, ingredient, ingredient1, itemstack);
     }
 
     public void write(PacketBuffer buffer, AlloySmithingRecipe recipe) {
-        recipe.base.write(buffer);
-        recipe.addition.write(buffer);
-        buffer.writeItemStack(recipe.result);
+        recipe.base.toNetwork(buffer);
+        recipe.addition.toNetwork(buffer);
+        buffer.writeItem(recipe.result);
     }
 }
 

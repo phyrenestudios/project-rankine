@@ -10,20 +10,20 @@ public class GraftingEnchantment extends Enchantment {
         super(p_i46721_1_, RankineEnchantmentTypes.KNIFE, p_i46721_2_);
     }
 
-    public int getMinEnchantability(int p_77321_1_) {
+    public int getMinCost(int p_77321_1_) {
         return 10;
     }
 
-    public int getMaxEnchantability(int p_223551_1_) {
-        return super.getMinEnchantability(p_223551_1_) + 50;
+    public int getMaxCost(int p_223551_1_) {
+        return super.getMinCost(p_223551_1_) + 50;
     }
 
     public int getMaxLevel() {
         return 1;
     }
 
-    public boolean canApplyTogether(Enchantment enchantment) {
+    public boolean checkCompatibility(Enchantment enchantment) {
 
-        return super.canApplyTogether(enchantment);
+        return super.checkCompatibility(enchantment);
     }
 }

@@ -20,6 +20,8 @@ import net.minecraft.world.IWorld;
 import javax.annotation.Nullable;
 import java.util.Map;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class TapLineBlock extends Block {
     private static final Direction[] FACING_VALUES = Direction.values();
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
@@ -41,18 +43,18 @@ public class TapLineBlock extends Block {
     public TapLineBlock(float apothem, Properties properties) {
         super(properties);
         this.shapes = this.makeShapes(apothem);
-        this.setDefaultState(this.stateContainer.getBaseState().with(NORTH, Boolean.FALSE).with(EAST, Boolean.FALSE).with(SOUTH, Boolean.FALSE).with(WEST, Boolean.FALSE).with(UP, Boolean.FALSE).with(DOWN, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.FALSE).setValue(EAST, Boolean.FALSE).setValue(SOUTH, Boolean.FALSE).setValue(WEST, Boolean.FALSE).setValue(UP, Boolean.FALSE).setValue(DOWN, Boolean.FALSE));
     }
 
     private VoxelShape[] makeShapes(float apothem) {
         float f = 0.5F - apothem;
         float f1 = 0.5F + apothem;
-        VoxelShape voxelshape = Block.makeCuboidShape((double)(f * 16.0F), (double)(f * 16.0F), (double)(f * 16.0F), (double)(f1 * 16.0F), (double)(f1 * 16.0F), (double)(f1 * 16.0F));
+        VoxelShape voxelshape = Block.box((double)(f * 16.0F), (double)(f * 16.0F), (double)(f * 16.0F), (double)(f1 * 16.0F), (double)(f1 * 16.0F), (double)(f1 * 16.0F));
         VoxelShape[] avoxelshape = new VoxelShape[FACING_VALUES.length];
 
         for(int i = 0; i < FACING_VALUES.length; ++i) {
             Direction direction = FACING_VALUES[i];
-            avoxelshape[i] = VoxelShapes.create(0.5D + Math.min((double)(-apothem), (double)direction.getXOffset() * 0.5D), 0.5D + Math.min((double)(-apothem), (double)direction.getYOffset() * 0.5D), 0.5D + Math.min((double)(-apothem), (double)direction.getZOffset() * 0.5D), 0.5D + Math.max((double)apothem, (double)direction.getXOffset() * 0.5D), 0.5D + Math.max((double)apothem, (double)direction.getYOffset() * 0.5D), 0.5D + Math.max((double)apothem, (double)direction.getZOffset() * 0.5D));
+            avoxelshape[i] = VoxelShapes.box(0.5D + Math.min((double)(-apothem), (double)direction.getStepX() * 0.5D), 0.5D + Math.min((double)(-apothem), (double)direction.getStepY() * 0.5D), 0.5D + Math.min((double)(-apothem), (double)direction.getStepZ() * 0.5D), 0.5D + Math.max((double)apothem, (double)direction.getStepX() * 0.5D), 0.5D + Math.max((double)apothem, (double)direction.getStepY() * 0.5D), 0.5D + Math.max((double)apothem, (double)direction.getStepZ() * 0.5D));
         }
 
         VoxelShape[] avoxelshape1 = new VoxelShape[64];
@@ -84,7 +86,7 @@ public class TapLineBlock extends Block {
         int i = 0;
 
         for(int j = 0; j < FACING_VALUES.length; ++j) {
-            if (state.get(FACING_TO_PROPERTY_MAP.get(FACING_VALUES[j]))) {
+            if (state.getValue(FACING_TO_PROPERTY_MAP.get(FACING_VALUES[j]))) {
                 i |= 1 << j;
             }
         }
@@ -94,29 +96,29 @@ public class TapLineBlock extends Block {
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.makeConnections(context.getWorld(), context.getPos());
+        return this.makeConnections(context.getLevel(), context.getClickedPos());
     }
 
     public BlockState makeConnections(IBlockReader blockReader, BlockPos pos) {
-        Block block = blockReader.getBlockState(pos.down()).getBlock();
-        Block block1 = blockReader.getBlockState(pos.up()).getBlock();
-        BlockState bs1 = blockReader.getBlockState(pos.up());
+        Block block = blockReader.getBlockState(pos.below()).getBlock();
+        Block block1 = blockReader.getBlockState(pos.above()).getBlock();
+        BlockState bs1 = blockReader.getBlockState(pos.above());
         Block block2 = blockReader.getBlockState(pos.north()).getBlock();
         Block block3 = blockReader.getBlockState(pos.east()).getBlock();
         Block block4 = blockReader.getBlockState(pos.south()).getBlock();
         Block block5 = blockReader.getBlockState(pos.west()).getBlock();
-        return this.getDefaultState().with(DOWN, block == this || block == RankineBlocks.FLOOD_GATE.get())
-                .with(NORTH, block2 == this || block2 == RankineBlocks.FLOOD_GATE.get())
-                .with(EAST, block3 == this || block3 == RankineBlocks.FLOOD_GATE.get())
-                .with(SOUTH, block4 == this || block4 == RankineBlocks.FLOOD_GATE.get())
-                .with(WEST, block5 == this || block5 == RankineBlocks.FLOOD_GATE.get())
-                .with(UP, block1 == this || (block1 == RankineBlocks.TREE_TAP.get()));
+        return this.defaultBlockState().setValue(DOWN, block == this || block == RankineBlocks.FLOOD_GATE.get())
+                .setValue(NORTH, block2 == this || block2 == RankineBlocks.FLOOD_GATE.get())
+                .setValue(EAST, block3 == this || block3 == RankineBlocks.FLOOD_GATE.get())
+                .setValue(SOUTH, block4 == this || block4 == RankineBlocks.FLOOD_GATE.get())
+                .setValue(WEST, block5 == this || block5 == RankineBlocks.FLOOD_GATE.get())
+                .setValue(UP, block1 == this || (block1 == RankineBlocks.TREE_TAP.get()));
     }
 
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (!stateIn.isValidPosition(worldIn, currentPos)) {
-            worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
-            return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (!stateIn.canSurvive(worldIn, currentPos)) {
+            worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
+            return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
         } else {
             boolean flag = false;
             Block fsb = facingState.getBlock();
@@ -129,14 +131,14 @@ public class TapLineBlock extends Block {
                 case SOUTH:
                 case EAST:
                 case WEST:
-                    flag = fsb == this || fsb.matchesBlock(RankineBlocks.FLOOD_GATE.get());
+                    flag = fsb == this || fsb.is(RankineBlocks.FLOOD_GATE.get());
                     break;
             }
-            return stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), flag);
+            return stateIn.setValue(FACING_TO_PROPERTY_MAP.get(facing), flag);
         }
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN);
     }
 }

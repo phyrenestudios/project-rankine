@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 public class NonAlloyItemColor implements IItemColor {
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
-        BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
+        BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
         return new NonAlloyBlockColor().getColor(blockstate, null, null, 0);
     }
 }

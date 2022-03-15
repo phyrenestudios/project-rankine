@@ -14,12 +14,12 @@ import java.util.function.Supplier;
 public class RankineClientPacketHandler {
 
     public static void handlePacket(FluidStackPacket packet, Supplier<NetworkEvent.Context> context) {
-        World worldIn = Minecraft.getInstance().world;
-        if (worldIn != null && worldIn.isBlockLoaded(packet.pos)) {
+        World worldIn = Minecraft.getInstance().level;
+        if (worldIn != null && worldIn.hasChunkAt(packet.pos)) {
             BlockPos pos = packet.pos;
             FluidStack fluidStack = packet.fluidStack;
-            if (worldIn.getTileEntity(pos) instanceof FusionFurnaceTile) {
-                FusionFurnaceTile tile = ((FusionFurnaceTile) worldIn.getTileEntity(pos));
+            if (worldIn.getBlockEntity(pos) instanceof FusionFurnaceTile) {
+                FusionFurnaceTile tile = ((FusionFurnaceTile) worldIn.getBlockEntity(pos));
                 if (tile != null) {
                     if (packet.input) {
                         tile.getInputTank().setFluid(fluidStack);
@@ -27,13 +27,13 @@ public class RankineClientPacketHandler {
                         tile.getOutputTank().setFluid(fluidStack);
                     }
                 }
-            } else if (worldIn.getTileEntity(pos) instanceof MixingBarrelTile) {
-                MixingBarrelTile tile = ((MixingBarrelTile) worldIn.getTileEntity(pos));
+            } else if (worldIn.getBlockEntity(pos) instanceof MixingBarrelTile) {
+                MixingBarrelTile tile = ((MixingBarrelTile) worldIn.getBlockEntity(pos));
                 if (tile != null) {
                     tile.getInputTank().setFluid(fluidStack);
                 }
-            } else if (worldIn.getTileEntity(pos) instanceof TreeTapTile) {
-                TreeTapTile tile = ((TreeTapTile) worldIn.getTileEntity(pos));
+            } else if (worldIn.getBlockEntity(pos) instanceof TreeTapTile) {
+                TreeTapTile tile = ((TreeTapTile) worldIn.getBlockEntity(pos));
                 if (tile != null) {
                     tile.getOutputTank().setFluid(fluidStack);
                 }

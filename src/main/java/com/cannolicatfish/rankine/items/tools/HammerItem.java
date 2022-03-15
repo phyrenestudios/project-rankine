@@ -31,6 +31,8 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.*;
 
+import net.minecraft.item.Item.Properties;
+
 public class HammerItem extends ToolItem {
 
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.STONE, Blocks.COBBLESTONE, Blocks.SMOOTH_STONE, Blocks.SANDSTONE, Blocks.RED_SANDSTONE, RankineBlocks.GRAY_GRANITE.get(), RankineBlocks.HORNBLENDE_ANDESITE.get(), RankineBlocks.GRANODIORITE.get(), RankineBlocks.LIMESTONE.get(), RankineBlocks.THOLEIITIC_BASALT.get(), RankineBlocks.RHYOLITE.get(),
@@ -44,39 +46,39 @@ public class HammerItem extends ToolItem {
 
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+    public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         boolean creativeFlag = false;
         if (entityLiving instanceof PlayerEntity)
         {
             creativeFlag = ((PlayerEntity) entityLiving).isCreative();
         }
-        if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isAirBlock(pos)) {
-            for (CrushingRecipe recipe : worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.CRUSHING)) {
+        if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isEmptyBlock(pos)) {
+            for (CrushingRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING)) {
                 for (ItemStack s : recipe.getIngredientAsStackList().clone()) {
-                    if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem() && this.getTier().getHarvestLevel() >= state.getBlock().getHarvestLevel(state)) {
-                        if (state.getBlockHardness(worldIn, pos) != 0.0F) {
-                            stack.damageItem(1, entityLiving, (p_220038_0_) -> {
-                                p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                    if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem() && this.getTier().getLevel() >= state.getBlock().getHarvestLevel(state)) {
+                        if (state.getDestroySpeed(worldIn, pos) != 0.0F) {
+                            stack.hurtAndBreak(1, entityLiving, (p_220038_0_) -> {
+                                p_220038_0_.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
                             });
                         }
-                        double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                        double d1 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                        double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                        double d0 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
+                        double d1 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
+                        double d2 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
 
                         if (!creativeFlag) {
-                            List<ItemStack> results = recipe.getResults(getTier().getHarvestLevel(), worldIn);
+                            List<ItemStack> results = recipe.getResults(getTier().getLevel(), worldIn);
                             if (getAtomizeModifier(stack) >= 1) {
                                 for (int i = 0; i < results.size(); i++) {
                                     if (results.get(i).isEmpty()) {
-                                        ItemStack resu = recipe.getSpecificResult(getTier().getHarvestLevel(),i,worldIn);
+                                        ItemStack resu = recipe.getSpecificResult(getTier().getLevel(),i,worldIn);
                                         results.set(i,resu);
                                     }
                                 }
                             }
                             for (ItemStack t : results) {
                                 ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, t.copy());
-                                itementity.setDefaultPickupDelay();
-                                worldIn.addEntity(itementity);
+                                itementity.setDefaultPickUpDelay();
+                                worldIn.addFreshEntity(itementity);
                             }
                             worldIn.destroyBlock(pos, false);
                             return true;
@@ -87,57 +89,57 @@ public class HammerItem extends ToolItem {
                 }
             }
             SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
-            worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getHitSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
+            worldIn.playLocalSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getHitSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
         }
         return false;
     }
 
-    public boolean canHarvestBlock(BlockState blockIn) {
-        int i = this.getTier().getHarvestLevel();
+    public boolean isCorrectToolForDrops(BlockState blockIn) {
+        int i = this.getTier().getLevel();
         return i >= blockIn.getHarvestLevel();
     }
 
     @Override
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getEntityWorld().isRainingAt(target.getPosition()) && getLightningModifier(stack) == 1)
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && getLightningModifier(stack) == 1)
         {
-            LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,attacker.world);
-            //ent.func_233576_c_(Vector3d.func_237492_c_(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
-            ent.setPosition(target.getPosX(),target.getPosY(),target.getPosZ());
-            target.getEntityWorld().addEntity(ent);
+            LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,attacker.level);
+            //ent.moveTo(Vector3d.atBottomCenterOf(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
+            ent.setPos(target.getX(),target.getY(),target.getZ());
+            target.getCommandSenderWorld().addFreshEntity(ent);
         }
         if (getDazeModifier(stack) != 0)
         {
             if (attacker instanceof PlayerEntity)
             {
                 PlayerEntity player = (PlayerEntity) attacker;
-                if (player.getCooledAttackStrength(0) >= (1f))
+                if (player.getAttackStrengthScale(0) >= (1f))
                 {
-                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*10, getDazeModifier(stack)*2));
+                    target.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*10, getDazeModifier(stack)*2));
                 } else {
-                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*10, 1));
+                    target.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*10, 1));
                 }
             } else {
-                target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*10, 1));
+                target.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*10, 1));
             }
 
         }
-        stack.damageItem(1, attacker, (p_220045_0_) -> {
-            p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+        stack.hurtAndBreak(1, attacker, (p_220045_0_) -> {
+            p_220045_0_.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
         });
         return true;
     }
 
     public void getExcavationResult(BlockPos pos, World worldIn, PlayerEntity player, ItemStack stack) {
-        BlockRayTraceResult raytraceresult = rayTrace(worldIn, player, RayTraceContext.FluidMode.ANY);
+        BlockRayTraceResult raytraceresult = getPlayerPOVHitResult(worldIn, player, RayTraceContext.FluidMode.ANY);
         List<BlockPos> positions = new ArrayList<>();
         if (getExcavateModifier(stack) == 1)
         {
-            switch (raytraceresult.getFace())
+            switch (raytraceresult.getDirection())
             {
                 case EAST:
                 case WEST:
-                    positions.addAll(Arrays.asList(pos,pos.north(),pos.south(),pos.up(),pos.down()));
+                    positions.addAll(Arrays.asList(pos,pos.north(),pos.south(),pos.above(),pos.below()));
                     break;
                 case DOWN:
                 case UP:
@@ -145,18 +147,18 @@ public class HammerItem extends ToolItem {
                     break;
                 case NORTH:
                 case SOUTH:
-                    positions.addAll(Arrays.asList(pos,pos.east(),pos.west(),pos.up(),pos.down()));
+                    positions.addAll(Arrays.asList(pos,pos.east(),pos.west(),pos.above(),pos.below()));
                     break;
                 default:
                     positions.add(pos);
             }
 
         } else {
-            switch (raytraceresult.getFace())
+            switch (raytraceresult.getDirection())
             {
                 case EAST:
                 case WEST:
-                    positions.addAll(Arrays.asList(pos,pos.north(),pos.south(),pos.up(),pos.down(),pos.north().up(),pos.south().up(),pos.north().down(),pos.south().down()));
+                    positions.addAll(Arrays.asList(pos,pos.north(),pos.south(),pos.above(),pos.below(),pos.north().above(),pos.south().above(),pos.north().below(),pos.south().below()));
                     break;
                 case DOWN:
                 case UP:
@@ -164,7 +166,7 @@ public class HammerItem extends ToolItem {
                     break;
                 case NORTH:
                 case SOUTH:
-                    positions.addAll(Arrays.asList(pos,pos.east(),pos.west(),pos.up(),pos.down(),pos.up().east(),pos.down().east(),pos.up().west(),pos.down().west()));
+                    positions.addAll(Arrays.asList(pos,pos.east(),pos.west(),pos.above(),pos.below(),pos.above().east(),pos.below().east(),pos.above().west(),pos.below().west()));
                     break;
                 default:
                     positions.add(pos);
@@ -172,30 +174,30 @@ public class HammerItem extends ToolItem {
         }
         for (BlockPos p: positions)
         {
-            onBlockDestroyed(stack,worldIn,worldIn.getBlockState(p),p, player);
+            mineBlock(stack,worldIn,worldIn.getBlockState(p),p, player);
         }
     }
 
 
     public static int getLightningModifier(ItemStack stack) {
-        return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.LIGHTNING_ASPECT, stack);
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LIGHTNING_ASPECT, stack);
     }
 
     public static int getDazeModifier(ItemStack stack) {
-        return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.DAZE, stack);
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.DAZE, stack);
     }
 
     public static int getExcavateModifier(ItemStack stack) {
-        return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.EXCAVATE, stack);
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.EXCAVATE, stack);
     }
 
     public static int getAtomizeModifier(ItemStack stack) {
-        return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ATOMIZE, stack);
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ATOMIZE, stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.SILK_TOUCH || enchantment == Enchantments.FORTUNE ) {
+        if (enchantment == Enchantments.BLOCK_EFFICIENCY || enchantment == Enchantments.SILK_TOUCH || enchantment == Enchantments.BLOCK_FORTUNE ) {
             return false;
         }
         return super.canApplyAtEnchantingTable(stack,enchantment);
@@ -203,23 +205,23 @@ public class HammerItem extends ToolItem {
 
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        if (context.getPlayer() != null && context.getPlayer().isCrouching() && context.getWorld().getBlockState(context.getPos()).getBlock() instanceof AnvilBlock) {
-            World worldIn = context.getWorld();
-            BlockPos pos = context.getPos();
+    public ActionResultType useOn(ItemUseContext context) {
+        if (context.getPlayer() != null && context.getPlayer().isCrouching() && context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof AnvilBlock) {
+            World worldIn = context.getLevel();
+            BlockPos pos = context.getClickedPos();
             BlockState anvil = worldIn.getBlockState(pos);
-            if (anvil.getBlock() == Blocks.CHIPPED_ANVIL && (context.getItem().getMaxDamage() - context.getItem().getDamage()) >= 100) {
-                worldIn.setBlockState(pos,Blocks.ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
-                worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
-                context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            if (anvil.getBlock() == Blocks.CHIPPED_ANVIL && (context.getItemInHand().getMaxDamage() - context.getItemInHand().getDamageValue()) >= 100) {
+                worldIn.setBlock(pos,Blocks.ANVIL.defaultBlockState().setValue(HorizontalBlock.FACING,anvil.getValue(HorizontalBlock.FACING)),2);
+                worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
                 return ActionResultType.SUCCESS;
-            } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (context.getItem().getMaxDamage() - context.getItem().getDamage()) >= 100) {
-                worldIn.setBlockState(pos,Blocks.CHIPPED_ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
-                worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
-                context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (context.getItemInHand().getMaxDamage() - context.getItemInHand().getDamageValue()) >= 100) {
+                worldIn.setBlock(pos,Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(HorizontalBlock.FACING,anvil.getValue(HorizontalBlock.FACING)),2);
+                worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
                 return ActionResultType.SUCCESS;
             }
         }
-        return super.onItemUse(context);
+        return super.useOn(context);
     }
 }

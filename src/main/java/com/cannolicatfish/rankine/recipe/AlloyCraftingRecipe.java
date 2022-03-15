@@ -106,7 +106,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
      * Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one
      * possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
      */
-    public ItemStack getRecipeOutput() {
+    public ItemStack getResultItem() {
         ItemStack out = this.recipeOutput.copy();
         if (this.getColor() != 16777215) {
             out.getOrCreateTag().putInt("color",this.getColor());
@@ -125,7 +125,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
     /**
      * Used to determine if this recipe can fit in a grid of the given width/height
      */
-    public boolean canFit(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return width >= this.recipeWidth && height >= this.recipeHeight;
     }
 
@@ -166,20 +166,20 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
                     }
                 }
 
-                ItemStack stackInSlot = craftingInventory.getStackInSlot(i + j * craftingInventory.getWidth());
+                ItemStack stackInSlot = craftingInventory.getItem(i + j * craftingInventory.getWidth());
                 if (!ingredient.test(stackInSlot)) {
                     return false;
                 }
-                if (ingredient.getMatchingStacks().length > 0)
+                if (ingredient.getItems().length > 0)
                 {
-                    if (!IAlloyItem.getAlloyComposition(ingredient.getMatchingStacks()[0]).isEmpty() &&
-                            !IAlloyItem.getAlloyComposition(ingredient.getMatchingStacks()[0]).equals(IAlloyItem.getAlloyComposition(stackInSlot))) {
+                    if (!IAlloyItem.getAlloyComposition(ingredient.getItems()[0]).isEmpty() &&
+                            !IAlloyItem.getAlloyComposition(ingredient.getItems()[0]).equals(IAlloyItem.getAlloyComposition(stackInSlot))) {
                         //System.out.println("Item " + stackInSlot + " does not match composition of " + ingredient.getMatchingStacks()[0]);
                         //System.out.println("ingredient comp: " + (IAlloyItem.getAlloyComposition(ingredient.getMatchingStacks()[0])));
                         //System.out.println("stackInSlot comp: " + (IAlloyItem.getAlloyComposition(stackInSlot)));
                         return false;
                     }
-                    ResourceLocation rs = IAlloyItem.getAlloyRecipe(ingredient.getMatchingStacks()[0]);
+                    ResourceLocation rs = IAlloyItem.getAlloyRecipe(ingredient.getItems()[0]);
                     ResourceLocation inSlot = IAlloyItem.getAlloyRecipe(stackInSlot);
                     if (rs != null &&
                             (inSlot == null || !rs.toString().equals(inSlot.toString()))) {
@@ -198,8 +198,8 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
     /**
      * Returns an Item that is the result of this recipe
      */
-    public ItemStack getCraftingResult(CraftingInventory inv) {
-        ItemStack res = this.getRecipeOutput().copy();
+    public ItemStack assemble(CraftingInventory inv) {
+        ItemStack res = this.getResultItem().copy();
         if (this.inherit)
         {
             String workingRecipe = "";
@@ -210,7 +210,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             for(int i = 0; i < inv.getWidth(); ++i) {
                 for (int j = 0; j < inv.getHeight(); ++j) {
 
-                    ItemStack stackInSlot = inv.getStackInSlot(i + j * inv.getWidth());
+                    ItemStack stackInSlot = inv.getItem(i + j * inv.getWidth());
                     ResourceLocation rs = IAlloyItem.getAlloyRecipe(stackInSlot);
                     //System.out.println(stackInSlot + " has alloy recipe of " + rs);
                     if (!this.inheritRecipe.isEmpty()) {
@@ -375,7 +375,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             throw new JsonSyntaxException("Invalid pattern: empty pattern not allowed");
         } else {
             for(int i = 0; i < astring.length; ++i) {
-                String s = JSONUtils.getString(jsonArr.get(i), "pattern[" + i + "]");
+                String s = JSONUtils.convertToString(jsonArr.get(i), "pattern[" + i + "]");
                 if (s.length() > MAX_WIDTH) {
                     throw new JsonSyntaxException("Invalid pattern: too many columns, " + MAX_WIDTH + " is maximum");
                 }
@@ -413,17 +413,17 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             {
                 if (entry.getValue().getAsJsonObject().has("alloyComp"))
                 {
-                    alloyComp = JSONUtils.getString(entry.getValue().getAsJsonObject(), "alloyComp");
+                    alloyComp = JSONUtils.getAsString(entry.getValue().getAsJsonObject(), "alloyComp");
                 }
                 if (entry.getValue().getAsJsonObject().has("alloyRecipe"))
                 {
-                    alloyRecipe = JSONUtils.getString(entry.getValue().getAsJsonObject(), "alloyRecipe");
+                    alloyRecipe = JSONUtils.getAsString(entry.getValue().getAsJsonObject(), "alloyRecipe");
                 }
                 if (entry.getValue().getAsJsonObject().has("langName")) {
-                    name = JSONUtils.getString(entry.getValue().getAsJsonObject(), "langName");
+                    name = JSONUtils.getAsString(entry.getValue().getAsJsonObject(), "langName");
                 }
                 if (entry.getValue().getAsJsonObject().has("color")) {
-                    color = Math.max(0,JSONUtils.getInt(entry.getValue().getAsJsonObject(), "color"));
+                    color = Math.max(0,JSONUtils.getAsInt(entry.getValue().getAsJsonObject(), "color"));
                 }
             }
 
@@ -435,7 +435,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getString(object, "item");
+        String s = JSONUtils.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -443,15 +443,15 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getInt(object, "count", 1);
+            int i = JSONUtils.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
 
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<AlloyCraftingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "alloy_crafting");
-        public AlloyCraftingRecipe read(ResourceLocation recipeId, JsonObject json) {
-            String s = JSONUtils.getString(json, "group", "");
+        public AlloyCraftingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+            String s = JSONUtils.getAsString(json, "group", "");
             int c;
             if (json.has("color")) {
                 c = Math.max(0,json.get("color").getAsInt());
@@ -459,48 +459,48 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
                 c = 16777215;
             }
             String n = json.has("langName") ? json.get("langName").getAsString() : "";
-            Map<String, Ingredient> map = AlloyCraftingRecipe.deserializeKey(JSONUtils.getJsonObject(json, "key"));
-            String[] astring = AlloyCraftingRecipe.shrink(AlloyCraftingRecipe.patternFromJson(JSONUtils.getJsonArray(json, "pattern")));
+            Map<String, Ingredient> map = AlloyCraftingRecipe.deserializeKey(JSONUtils.getAsJsonObject(json, "key"));
+            String[] astring = AlloyCraftingRecipe.shrink(AlloyCraftingRecipe.patternFromJson(JSONUtils.getAsJsonArray(json, "pattern")));
             int i = astring[0].length();
             int j = astring.length;
             NonNullList<Ingredient> nonnulllist = AlloyCraftingRecipe.deserializeIngredients(astring, map, i, j);
-            ItemStack itemstack = AlloyCraftingRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
-            boolean in = json.has("inherit") && JSONUtils.getBoolean(json, "inherit");
-            String inR = json.has("inheritRecipe") ? JSONUtils.getString(json, "inheritRecipe") : "";
+            ItemStack itemstack = AlloyCraftingRecipe.deserializeItem(JSONUtils.getAsJsonObject(json, "result"));
+            boolean in = json.has("inherit") && JSONUtils.getAsBoolean(json, "inherit");
+            String inR = json.has("inheritRecipe") ? JSONUtils.getAsString(json, "inheritRecipe") : "";
             return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, in, inR,n,c);
         }
 
-        public AlloyCraftingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+        public AlloyCraftingRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
             int i = buffer.readVarInt();
             int j = buffer.readVarInt();
-            String s = buffer.readString(32767);
+            String s = buffer.readUtf(32767);
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY);
 
             for(int k = 0; k < nonnulllist.size(); ++k) {
-                nonnulllist.set(k, Ingredient.read(buffer));
+                nonnulllist.set(k, Ingredient.fromNetwork(buffer));
             }
 
-            ItemStack itemstack = buffer.readItemStack();
+            ItemStack itemstack = buffer.readItem();
             boolean in = buffer.readBoolean();
-            String inR = buffer.readString();
-            String n = buffer.readString();
+            String inR = buffer.readUtf();
+            String n = buffer.readUtf();
             int c = buffer.readInt();
             return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, in, inR,n,c);
         }
 
-        public void write(PacketBuffer buffer, AlloyCraftingRecipe recipe) {
+        public void toNetwork(PacketBuffer buffer, AlloyCraftingRecipe recipe) {
             buffer.writeVarInt(recipe.recipeWidth);
             buffer.writeVarInt(recipe.recipeHeight);
-            buffer.writeString(recipe.group);
+            buffer.writeUtf(recipe.group);
 
 
             for(Ingredient ingredient : recipe.recipeItems) {
-                ingredient.write(buffer);
+                ingredient.toNetwork(buffer);
             }
-            buffer.writeItemStack(recipe.recipeOutput);
+            buffer.writeItem(recipe.recipeOutput);
             buffer.writeBoolean(recipe.inherit);
-            buffer.writeString(recipe.inheritRecipe);
-            buffer.writeString(recipe.localName);
+            buffer.writeUtf(recipe.inheritRecipe);
+            buffer.writeUtf(recipe.localName);
             buffer.writeInt(recipe.color);
         }
     }

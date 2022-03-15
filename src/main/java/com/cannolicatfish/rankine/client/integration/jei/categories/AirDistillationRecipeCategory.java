@@ -35,7 +35,7 @@ public class AirDistillationRecipeCategory implements IRecipeCategory<AirDistill
 
     public AirDistillationRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(185, 146);
-        localizedName = I18n.format("rankine.jei.air_distillation");
+        localizedName = I18n.get("rankine.jei.air_distillation");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/air_distillation_jei.png"),
                 0, 15, 180, 141);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.DISTILLATION_TOWER.get()));
@@ -68,7 +68,7 @@ public class AirDistillationRecipeCategory implements IRecipeCategory<AirDistill
 
     @Override
     public void draw(AirDistillationRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().fontRenderer;
+        FontRenderer font = Minecraft.getInstance().font;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -84,7 +84,7 @@ public class AirDistillationRecipeCategory implements IRecipeCategory<AirDistill
                 str.append(recipe.getBiomeString().get(i));
                 count++;
                 if (count == 3 || i == recipe.getBiomeString().size() - 1) {
-                    font.drawString(ms, str.toString(), (float)(ymod >= 50 ? 32 : 0), ymod, 0x000000);
+                    font.draw(ms, str.toString(), (float)(ymod >= 50 ? 32 : 0), ymod, 0x000000);
                     count = 0;
                     ymod += 10;
                     str = new StringBuilder();
@@ -104,7 +104,7 @@ public class AirDistillationRecipeCategory implements IRecipeCategory<AirDistill
                 str.append(recipe.getDims().get(i));
                 count++;
                 if (count == 3 || i == recipe.getDims().size() - 1) {
-                    font.drawString(ms, str.toString(), (float)(ymod >= 50 ? 32 : 0), ymod, 0x000000);
+                    font.draw(ms, str.toString(), (float)(ymod >= 50 ? 32 : 0), ymod, 0x000000);
                     count = 0;
                     ymod += 10;
                     str = new StringBuilder();

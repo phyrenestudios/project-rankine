@@ -14,12 +14,12 @@ public class PryingEnchantment extends Enchantment {
         super(p_i46721_1_, RankineEnchantmentTypes.CROWBAR, p_i46721_2_);
     }
 
-    public int getMinEnchantability(int p_77321_1_) {
+    public int getMinCost(int p_77321_1_) {
         return 1 + 10 * (p_77321_1_ - 1);
     }
 
-    public int getMaxEnchantability(int p_223551_1_) {
-        return super.getMinEnchantability(p_223551_1_) + 50;
+    public int getMaxCost(int p_223551_1_) {
+        return super.getMinCost(p_223551_1_) + 50;
     }
 
     public int getMaxLevel() {
@@ -27,15 +27,15 @@ public class PryingEnchantment extends Enchantment {
     }
 
     @Override
-    public void onEntityDamaged(LivingEntity user, Entity target, int level) {
+    public void doPostAttack(LivingEntity user, Entity target, int level) {
         if (target instanceof LivingEntity && (!(target instanceof PlayerEntity) || Config.GENERAL.PLAYER_PRYING_ENCHANTMENT.get()))
         {
             int player = target instanceof PlayerEntity ? 1 : 0;
             LivingEntity ent = (LivingEntity) target;
-            if (ent.hasItemInSlot(EquipmentSlotType.MAINHAND) && ent.getEntityWorld().getRandom().nextFloat() <= Math.pow(2f,level + 2 - ent.getItemStackFromSlot(EquipmentSlotType.MAINHAND).getRarity().ordinal() - player)/100) {
+            if (ent.hasItemInSlot(EquipmentSlotType.MAINHAND) && ent.getCommandSenderWorld().getRandom().nextFloat() <= Math.pow(2f,level + 2 - ent.getItemBySlot(EquipmentSlotType.MAINHAND).getRarity().ordinal() - player)/100) {
 
-                ent.entityDropItem(ent.getItemStackFromSlot(EquipmentSlotType.MAINHAND));
-                ent.setItemStackToSlot(EquipmentSlotType.MAINHAND,ItemStack.EMPTY);
+                ent.spawnAtLocation(ent.getItemBySlot(EquipmentSlotType.MAINHAND));
+                ent.setItemSlot(EquipmentSlotType.MAINHAND,ItemStack.EMPTY);
             }
         }
     }

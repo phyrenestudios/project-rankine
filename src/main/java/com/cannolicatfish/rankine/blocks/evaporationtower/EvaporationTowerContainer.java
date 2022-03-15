@@ -35,9 +35,9 @@ public class EvaporationTowerContainer extends Container {
     }
     public EvaporationTowerContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray towerData) {
         super(EVAPORATION_TOWER_CONTAINER, windowId);
-        tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 1);
-        assertIntArraySize(towerData, 2);
+        tileEntity = world.getBlockEntity(pos);
+        checkContainerSize(furnaceInventoryIn, 1);
+        checkContainerDataCount(towerData, 2);
         this.playerEntity = player;
         this.data = towerData;
         this.furnaceInventory = furnaceInventoryIn;
@@ -46,7 +46,7 @@ public class EvaporationTowerContainer extends Container {
         this.addSlot(new Slot(furnaceInventoryIn, 0, 80, 26));
 
         layoutPlayerInventorySlots(8, 70);
-        this.trackIntArray(towerData);
+        this.addDataSlots(towerData);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -69,36 +69,36 @@ public class EvaporationTowerContainer extends Container {
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.EVAPORATION_TOWER.get());
+    public boolean stillValid(PlayerEntity playerIn) {
+        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, RankineBlocks.EVAPORATION_TOWER.get());
     }
 
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
-        if (slot != null && slot.getHasStack()) {
-            ItemStack stack = slot.getStack();
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
+            ItemStack stack = slot.getItem();
             itemstack = stack.copy();
             if (index == 0) {
-                if (!this.mergeItemStack(stack, 1, 37, true)) {
+                if (!this.moveItemStackTo(stack, 1, 37, true)) {
                     return ItemStack.EMPTY;
                 }
-                slot.onSlotChange(stack, itemstack);
+                slot.onQuickCraft(stack, itemstack);
             } else {
                 if (index < 28) {
-                    if (!this.mergeItemStack(stack, 28, 37, false)) {
+                    if (!this.moveItemStackTo(stack, 28, 37, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 37 && !this.mergeItemStack(stack, 1, 28, false)) {
+                } else if (index < 37 && !this.moveItemStackTo(stack, 1, 28, false)) {
                     return ItemStack.EMPTY;
                 }
             }
 
             if (stack.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
 
             if (stack.getCount() == itemstack.getCount()) {

@@ -29,7 +29,7 @@ public class AlloyEnchantmentUtils {
         for (int i = 0; i < alloyEnchants.size(); i++) {
             Enchantment en;
             if (alloyEnchants.get(i).equals("rankine:random")) {
-                List<EnchantmentData> dat = EnchantmentHelper.buildEnchantmentList(worldIn.getRandom(),stack,worldIn.getRandom().nextInt(40),true);
+                List<EnchantmentData> dat = EnchantmentHelper.selectEnchantment(worldIn.getRandom(),stack,worldIn.getRandom().nextInt(40),true);
                 if (!dat.isEmpty()) {
                     en = dat.get(0).enchantment;
                 } else {
@@ -61,7 +61,7 @@ public class AlloyEnchantmentUtils {
             for (int i = 0; i < elementEnchants.size(); i++) {
                 Enchantment en;
                 if (elementEnchants.get(i).equals("rankine:random")) {
-                    List<EnchantmentData> dat = EnchantmentHelper.buildEnchantmentList(worldIn.getRandom(),stack,1,true);
+                    List<EnchantmentData> dat = EnchantmentHelper.selectEnchantment(worldIn.getRandom(),stack,1,true);
                     if (!dat.isEmpty()) {
                         en = dat.get(0).enchantment;
                     } else {
@@ -94,47 +94,47 @@ public class AlloyEnchantmentUtils {
     public static boolean matchesEnchantmentType(Enchantment enchantment, ItemStack stack, EnchantmentTypes type) {
         switch (type) {
             case ALL:
-                return enchantment.canApply(stack);
+                return enchantment.canEnchant(stack);
             case TOOLS:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof ToolItem || stack.getItem() instanceof SwordItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ToolItem || stack.getItem() instanceof SwordItem);
             case ARMOR:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof ArmorItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem);
             case PICKAXE:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof PickaxeItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof PickaxeItem);
             case AXE:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof AxeItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof AxeItem);
             case SPEAR:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof SpearItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof SpearItem);
             case SHOVEL:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof ShovelItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ShovelItem);
             case HOE:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof HoeItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof HoeItem);
             case SWORD:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof SwordItem && !(stack.getItem() instanceof KnifeItem));
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof SwordItem && !(stack.getItem() instanceof KnifeItem));
             case HAMMER:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof HammerItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof HammerItem);
             case KNIFE:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof KnifeItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof KnifeItem);
             case CROWBAR:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof CrowbarItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof CrowbarItem);
             case HELMET:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getEquipmentSlot() == EquipmentSlotType.HEAD;
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlotType.HEAD;
             case CHESTPLATE:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getEquipmentSlot() == EquipmentSlotType.CHEST;
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlotType.CHEST;
             case LEGGINGS:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getEquipmentSlot() == EquipmentSlotType.LEGS;
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlotType.LEGS;
             case BOOTS:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getEquipmentSlot() == EquipmentSlotType.FEET;
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlotType.FEET;
             case SHIELD:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof ShieldItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ShieldItem);
             case FISHING_ROD:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof FishingRodItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof FishingRodItem);
             case BOW:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof BowItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof BowItem);
             case BLUNDERBUSS:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof BlunderbussItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof BlunderbussItem);
             default:
-                return enchantment.canApply(stack);
+                return enchantment.canEnchant(stack);
         }
     }
 

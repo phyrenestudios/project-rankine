@@ -38,7 +38,7 @@ import java.util.List;
 )
 
 public class CarcassEntity extends AbstractFireballEntity implements IRendersAsItem {
-    private static final DataParameter<ItemStack> STACK = EntityDataManager.createKey(CarcassEntity.class, DataSerializers.ITEMSTACK);
+    private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(CarcassEntity.class, DataSerializers.ITEM_STACK);
 
     public CarcassEntity(EntityType<? extends CarcassEntity> p_i50147_1_, World p_i50147_2_) {
         super(p_i50147_1_, p_i50147_2_);
@@ -58,13 +58,13 @@ public class CarcassEntity extends AbstractFireballEntity implements IRendersAsI
         super(e, world);
     }
 
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public void setStack(ItemStack stack) {
+    public void setItem(ItemStack stack) {
         if (stack.getItem() != RankineItems.CANNONBALL.get() || stack.hasTag()) {
-            this.getDataManager().set(STACK, Util.make(stack.copy(), (p_213897_0_) -> {
+            this.getEntityData().set(STACK, Util.make(stack.copy(), (p_213897_0_) -> {
                 p_213897_0_.setCount(1);
             }));
         }
@@ -72,29 +72,29 @@ public class CarcassEntity extends AbstractFireballEntity implements IRendersAsI
     }
 
     @Override
-    protected boolean isFireballFiery() {
+    protected boolean shouldBurn() {
         return true;
     }
 
-    protected ItemStack getStack() {
-        return this.getDataManager().get(STACK);
+    protected ItemStack getItemRaw() {
+        return this.getEntityData().get(STACK);
     }
 
     @OnlyIn(Dist.CLIENT)
     public ItemStack getItem() {
-        ItemStack itemstack = this.getStack();
+        ItemStack itemstack = this.getItemRaw();
         return itemstack.isEmpty() ? new ItemStack(RankineItems.CANNONBALL.get()) : itemstack;
     }
 
-    protected void registerData() {
-        this.getDataManager().register(STACK, ItemStack.EMPTY);
+    protected void defineSynchedData() {
+        this.getEntityData().define(STACK, ItemStack.EMPTY);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        ItemStack itemstack = this.getStack();
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
+        ItemStack itemstack = this.getItemRaw();
         if (!itemstack.isEmpty()) {
-            compound.put("Item", itemstack.write(new CompoundNBT()));
+            compound.put("Item", itemstack.save(new CompoundNBT()));
         }
 
     }
@@ -102,40 +102,40 @@ public class CarcassEntity extends AbstractFireballEntity implements IRendersAsI
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        ItemStack itemstack = ItemStack.read(compound.getCompound("Item"));
-        this.setStack(itemstack);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
+        ItemStack itemstack = ItemStack.of(compound.getCompound("Item"));
+        this.setItem(itemstack);
     }
 
-    protected void onEntityHit(EntityRayTraceResult result) {
-        super.onEntityHit(result);
-        if (!this.world.isRemote) {
+    protected void onHitEntity(EntityRayTraceResult result) {
+        super.onHitEntity(result);
+        if (!this.level.isClientSide) {
             Entity entity = result.getEntity();
-            if (!entity.isImmuneToFire()) {
-                Entity entity1 = this.getShooter();
-                int i = entity.getFireTimer();
-                entity.setFire(5);
-                boolean flag = entity.attackEntityFrom(DamageSource.causeOnFireDamage(this, entity1), 5.0F);
+            if (!entity.fireImmune()) {
+                Entity entity1 = this.getOwner();
+                int i = entity.getRemainingFireTicks();
+                entity.setSecondsOnFire(5);
+                boolean flag = entity.hurt(DamageSource.fireball(this, entity1), 5.0F);
                 if (!flag) {
-                    entity.forceFireTicks(i);
+                    entity.setRemainingFireTicks(i);
                 } else if (entity1 instanceof LivingEntity) {
-                    this.applyEnchantments((LivingEntity)entity1, entity);
+                    this.doEnchantDamageEffects((LivingEntity)entity1, entity);
                 }
             }
         }
     }
 
-    protected void func_230299_a_(BlockRayTraceResult result) {
-        super.func_230299_a_(result);
-        if (!this.world.isRemote) {
-            Explosion.Mode explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.getShooter()) ? Explosion.Mode.DESTROY : Explosion.Mode.NONE;
-            this.world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), 0.5F, false, explosion$mode);
-            Entity entity = this.getShooter();
-            if (entity == null || !(entity instanceof MobEntity) || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.getEntity())) {
-                BlockPos blockpos = result.getPos().offset(result.getFace());
-                if (this.world.isAirBlock(blockpos)) {
-                    this.world.setBlockState(blockpos, AbstractFireBlock.getFireForPlacement(this.world, blockpos));
+    protected void onHitBlock(BlockRayTraceResult result) {
+        super.onHitBlock(result);
+        if (!this.level.isClientSide) {
+            Explosion.Mode explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner()) ? Explosion.Mode.DESTROY : Explosion.Mode.NONE;
+            this.level.explode(this, this.getX(), this.getY(), this.getZ(), 0.5F, false, explosion$mode);
+            Entity entity = this.getOwner();
+            if (entity == null || !(entity instanceof MobEntity) || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getEntity())) {
+                BlockPos blockpos = result.getBlockPos().relative(result.getDirection());
+                if (this.level.isEmptyBlock(blockpos)) {
+                    this.level.setBlockAndUpdate(blockpos, AbstractFireBlock.getState(this.level, blockpos));
                 }
             }
 
@@ -145,31 +145,31 @@ public class CarcassEntity extends AbstractFireballEntity implements IRendersAsI
     /**
      * Called when this EntityFireball hits a block or entity.
      */
-    protected void onImpact(RayTraceResult result) {
-        super.onImpact(result);
-        Entity entity = this.getShooter();
-        if (!this.world.isRemote) {
-            List<LivingEntity> list = this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(4.0D, 2.0D, 4.0D));
-            AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ());
+    protected void onHit(RayTraceResult result) {
+        super.onHit(result);
+        Entity entity = this.getOwner();
+        if (!this.level.isClientSide) {
+            List<LivingEntity> list = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4.0D, 2.0D, 4.0D));
+            AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.level, this.getX(), this.getY(), this.getZ());
             if (entity instanceof LivingEntity) {
                 areaeffectcloudentity.setOwner((LivingEntity)entity);
             }
 
-            areaeffectcloudentity.setParticleData(ParticleTypes.ENTITY_EFFECT);
+            areaeffectcloudentity.setParticle(ParticleTypes.ENTITY_EFFECT);
             areaeffectcloudentity.setRadius(3.0F);
             areaeffectcloudentity.setDuration(300);
             areaeffectcloudentity.setRadiusPerTick((7.0F - areaeffectcloudentity.getRadius()) / (float)areaeffectcloudentity.getDuration());
             areaeffectcloudentity.addEffect(new EffectInstance(Effects.POISON, 80, 1));
             if (!list.isEmpty()) {
                 for(LivingEntity livingentity : list) {
-                    double d0 = this.getDistanceSq(livingentity);
+                    double d0 = this.distanceToSqr(livingentity);
                     if (d0 < 16.0D) {
-                        areaeffectcloudentity.setPosition(livingentity.getPosX(), livingentity.getPosY(), livingentity.getPosZ());
+                        areaeffectcloudentity.setPos(livingentity.getX(), livingentity.getY(), livingentity.getZ());
                         break;
                     }
                 }
             }
-            this.world.addEntity(areaeffectcloudentity);
+            this.level.addFreshEntity(areaeffectcloudentity);
             this.remove();
         }
 
@@ -178,14 +178,14 @@ public class CarcassEntity extends AbstractFireballEntity implements IRendersAsI
     /**
      * Returns true if other Entities should be prevented from moving through this Entity.
      */
-    public boolean canBeCollidedWith() {
+    public boolean isPickable() {
         return true;
     }
 
     /**
      * Called when the entity is attacked.
      */
-    public boolean attackEntityFrom(DamageSource source, float amount) {
+    public boolean hurt(DamageSource source, float amount) {
         return false;
     }
 }

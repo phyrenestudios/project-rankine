@@ -39,8 +39,8 @@ public class MaterialTestingTableContainer extends Container {
 
     public MaterialTestingTableContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory inv) {
         super(MATERIAL_TESTING_TABLE_CONTAINER,windowId);
-        tileEntity = world.getTileEntity(pos);
-        assertInventorySize(inv, 7);
+        tileEntity = world.getBlockEntity(pos);
+        checkContainerSize(inv, 7);
         this.inputInventory = inv;
         this.addSlot(new Slot(inputInventory,0,8,10));
 
@@ -64,99 +64,99 @@ public class MaterialTestingTableContainer extends Container {
 
 
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index)
     {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
+        Slot slot = this.slots.get(index);
 
-        if(slot != null && slot.getHasStack())
+        if(slot != null && slot.hasItem())
         {
-            ItemStack stack = slot.getStack();
+            ItemStack stack = slot.getItem();
             itemstack = stack.copy();
             if (!(index < 14)) {
                 if (AlloyCustomHelper.hasElement(stack.getItem()) || stack.getItem() instanceof IAlloyItem) {
-                    if (!this.mergeItemStack(stack, 0, 1, false)) {
+                    if (!this.moveItemStackTo(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_DURABILITY_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 2, 3, false))
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_DURABILITY_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 2, 3, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_MINING_SPEED_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 3, 4, false))
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_MINING_SPEED_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 3, 4, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 4, 5, false))
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 4, 5, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_ENCHANTABILITY_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 5, 6, false))
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_ENCHANTABILITY_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 5, 6, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 6, 7, false))
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 6, 7, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_ATTACK_SPEED_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 7, 8, false))
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_ATTACK_SPEED_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 7, 8, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 8, 9, false))
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 8, 9, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 9, 10, false))
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 9, 10, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 10, 11, false))
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 10, 11, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_TOUGHNESS_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 11, 12, false))
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_TOUGHNESS_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 11, 12, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_ENCHANTMENT_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 12, 13, false))
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_ENCHANTMENT_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 12, 13, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_EXAM_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 13, 14, false))
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_EXAM_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 13, 14, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_TOOLS)) {
-                    if (!this.mergeItemStack(stack, 1, 2, false)) {
+                } else if (itemstack.getItem().is(RankineTags.Items.MTT_TOOLS)) {
+                    if (!this.moveItemStackTo(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (index < 41) {
-                    if (!this.mergeItemStack(stack, 41, 50, false)) {
+                    if (!this.moveItemStackTo(stack, 41, 50, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 50 && !this.mergeItemStack(stack, 14, 41, false)) {
+                } else if (index < 50 && !this.moveItemStackTo(stack, 14, 41, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 14, 50, false)) {
+            } else if (!this.moveItemStackTo(stack, 14, 50, false)) {
                 return ItemStack.EMPTY;
             }
 
             if (stack.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
 
             if (stack.getCount() == itemstack.getCount()) {
@@ -196,7 +196,7 @@ public class MaterialTestingTableContainer extends Container {
     }
 
     public ElementRecipe getElementRecipeForSlotItem(World worldIn) {
-        ItemStack stack = this.inputInventory.getStackInSlot(0);
+        ItemStack stack = this.inputInventory.getItem(0);
 
         if (utils.hasElementRecipe(stack, worldIn))
         {
@@ -207,40 +207,40 @@ public class MaterialTestingTableContainer extends Container {
     }
 
     public AlloyingRecipe getAlloyRecipeForSlotItem(World worldIn) {
-        ItemStack stack = this.inputInventory.getStackInSlot(0);
+        ItemStack stack = this.inputInventory.getItem(0);
         return utils.getAlloyRecipe(stack,worldIn);
     }
 
     public ItemStack getSlotItem(World worldIn) {
-        return this.inputInventory.getStackInSlot(0);
+        return this.inputInventory.getItem(0);
     }
 
     public int getToolItem(World worldIn) {
-        ItemStack stack = this.inputInventory.getStackInSlot(1);
-        if (stack.getItem().isIn(RankineTags.Items.MTT_TOOLS)) {
-            if (stack.getItem().isIn(RankineTags.Items.MTT_DURABILITY_TOOLS)) {
+        ItemStack stack = this.inputInventory.getItem(1);
+        if (stack.getItem().is(RankineTags.Items.MTT_TOOLS)) {
+            if (stack.getItem().is(RankineTags.Items.MTT_DURABILITY_TOOLS)) {
                 return 0;
-            } else if (stack.getItem().isIn(RankineTags.Items.MTT_MINING_SPEED_TOOLS)) {
+            } else if (stack.getItem().is(RankineTags.Items.MTT_MINING_SPEED_TOOLS)) {
                 return 1;
-            } else if (stack.getItem().isIn(RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS)) {
+            } else if (stack.getItem().is(RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS)) {
                 return 2;
-            } else if (stack.getItem().isIn(RankineTags.Items.MTT_ENCHANTABILITY_TOOLS)) {
+            } else if (stack.getItem().is(RankineTags.Items.MTT_ENCHANTABILITY_TOOLS)) {
                 return 3;
-            } else if (stack.getItem().isIn(RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS)) {
+            } else if (stack.getItem().is(RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS)) {
                 return 4;
-            } else if (stack.getItem().isIn(RankineTags.Items.MTT_ATTACK_SPEED_TOOLS)) {
+            } else if (stack.getItem().is(RankineTags.Items.MTT_ATTACK_SPEED_TOOLS)) {
                 return 5;
-            } else if (stack.getItem().isIn(RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS)) {
+            } else if (stack.getItem().is(RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS)) {
                 return 6;
-            } else if (stack.getItem().isIn(RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS)) {
+            } else if (stack.getItem().is(RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS)) {
                 return 7;
-            } else if (stack.getItem().isIn(RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS)) {
+            } else if (stack.getItem().is(RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS)) {
                 return 8;
-            } else if (stack.getItem().isIn(RankineTags.Items.MTT_TOUGHNESS_TOOLS)) {
+            } else if (stack.getItem().is(RankineTags.Items.MTT_TOUGHNESS_TOOLS)) {
                 return 9;
-            } else if (stack.getItem().isIn(RankineTags.Items.MTT_ENCHANTMENT_TOOLS)) {
+            } else if (stack.getItem().is(RankineTags.Items.MTT_ENCHANTMENT_TOOLS)) {
                 return 10;
-            } else if (stack.getItem().isIn(RankineTags.Items.MTT_EXAM_TOOLS)) {
+            } else if (stack.getItem().is(RankineTags.Items.MTT_EXAM_TOOLS)) {
                 return 11;
             }
         }
@@ -251,8 +251,8 @@ public class MaterialTestingTableContainer extends Container {
 
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, RankineBlocks.MATERIAL_TESTING_TABLE.get());
+    public boolean stillValid(PlayerEntity playerIn) {
+        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerIn, RankineBlocks.MATERIAL_TESTING_TABLE.get());
     }
 
 }

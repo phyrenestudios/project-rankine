@@ -25,14 +25,14 @@ public class WallMushroomsFeature extends Feature<NoFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        BlockPos posShift = pos.add(8,0,8);
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+        BlockPos posShift = pos.offset(8,0,8);
         Block MUSH = RankineLists.WALL_MUSHROOMS.get(rand.nextInt(RankineLists.WALL_MUSHROOMS.size()));
         BlockPos surface = new BlockPos(posShift.getX(), reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, posShift.getX(), posShift.getZ()), posShift.getZ());
-        for (BlockPos bp : BlockPos.getAllInBoxMutable(surface.add(-5,-3,-5),surface.add(5,3,5))) {
-            if (reader.getBlockState(bp).isIn(BlockTags.LOGS) && rand.nextFloat()<0.5) {
+        for (BlockPos bp : BlockPos.betweenClosed(surface.offset(-5,-3,-5),surface.offset(5,3,5))) {
+            if (reader.getBlockState(bp).is(BlockTags.LOGS) && rand.nextFloat()<0.5) {
                 Direction dir = WorldgenUtils.randomHorizontalDirection(rand);
-                if (reader.getBlockState(bp.offset(dir)).matchesBlock(Blocks.AIR)) reader.setBlockState(bp.offset(dir), MUSH.getDefaultState().with(RankineWallMushroomBlock.HORIZONTAL_FACING,dir),19);
+                if (reader.getBlockState(bp.relative(dir)).is(Blocks.AIR)) reader.setBlock(bp.relative(dir), MUSH.defaultBlockState().setValue(RankineWallMushroomBlock.HORIZONTAL_FACING,dir),19);
             }
         }
         return true;

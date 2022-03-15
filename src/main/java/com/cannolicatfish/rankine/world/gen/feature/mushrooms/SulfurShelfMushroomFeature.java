@@ -19,27 +19,27 @@ public class SulfurShelfMushroomFeature extends Feature<BlockStateProvidingFeatu
         super(configFactoryIn);
     }
 
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config) {
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config) {
         return false;
     }
 
     public static boolean growMushroom(ISeedReader reader, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config, Direction dir) {
         boolean flag = true;
-        for (BlockPos b : BlockPos.getAllInBoxMutable(pos.offset(dir.rotateY(),2).down(),pos.offset(dir).offset(dir.rotateYCCW(),2).up())) {
+        for (BlockPos b : BlockPos.betweenClosed(pos.relative(dir.getClockWise(),2).below(),pos.relative(dir).relative(dir.getCounterClockWise(),2).above())) {
             if (!WorldgenUtils.isAirOrLeaves(reader,b)) {
                 flag = false;
             }
         }
 
         if (flag) {
-            BlockState state = config.stateProvider.getBlockState(rand, pos);
+            BlockState state = config.stateProvider.getState(rand, pos);
 
-            build(reader,pos.offset(dir),state,dir.rotateY(), rand.nextInt(2)+1);
-            build(reader,pos.offset(dir),state,dir.rotateYCCW(), rand.nextInt(2)+1);
-            build(reader,pos.up(),state,dir.rotateY(), rand.nextInt(2)+1);
-            build(reader,pos.up(),state,dir.rotateYCCW(), rand.nextInt(2)+1);
-            build(reader,pos.down(),state,dir.rotateY(), rand.nextInt(2)+1);
-            build(reader,pos.down(),state,dir.rotateYCCW(), rand.nextInt(2)+1);
+            build(reader,pos.relative(dir),state,dir.getClockWise(), rand.nextInt(2)+1);
+            build(reader,pos.relative(dir),state,dir.getCounterClockWise(), rand.nextInt(2)+1);
+            build(reader,pos.above(),state,dir.getClockWise(), rand.nextInt(2)+1);
+            build(reader,pos.above(),state,dir.getCounterClockWise(), rand.nextInt(2)+1);
+            build(reader,pos.below(),state,dir.getClockWise(), rand.nextInt(2)+1);
+            build(reader,pos.below(),state,dir.getCounterClockWise(), rand.nextInt(2)+1);
 
             return true;
         }
@@ -48,7 +48,7 @@ public class SulfurShelfMushroomFeature extends Feature<BlockStateProvidingFeatu
 
     private static void build(ISeedReader reader, BlockPos pos, BlockState state, Direction dir, int length) {
         for (int i = 0; i <= length; ++i) {
-            reader.setBlockState(pos.offset(dir,i),state,19);
+            reader.setBlock(pos.relative(dir,i),state,19);
         }
     }
 }

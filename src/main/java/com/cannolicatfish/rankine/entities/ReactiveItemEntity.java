@@ -34,16 +34,16 @@ public class ReactiveItemEntity extends ItemEntity {
 
     public ReactiveItemEntity(World worldIn, double x, double y, double z) {
         this(EntityType.ITEM, worldIn);
-        this.setPosition(x, y, z);
-        this.rotationYaw = this.rand.nextFloat() * 360.0F;
+        this.setPos(x, y, z);
+        this.yRot = this.random.nextFloat() * 360.0F;
         this.radius = 1f;
         this.canBreakBlocks = false;
-        this.setMotion(this.rand.nextDouble() * 0.2D - 0.1D, 0.2D, this.rand.nextDouble() * 0.2D - 0.1D);
+        this.setDeltaMovement(this.random.nextDouble() * 0.2D - 0.1D, 0.2D, this.random.nextDouble() * 0.2D - 0.1D);
     }
 
     public ReactiveItemEntity(World worldIn, double x, double y, double z, ItemStack stack) {
         super(EntityType.ITEM,worldIn);
-        this.setPosition(x, y, z);
+        this.setPos(x, y, z);
         this.setItem(stack);
         this.radius = 1f;
         this.canBreakBlocks = false;
@@ -54,7 +54,7 @@ public class ReactiveItemEntity extends ItemEntity {
 
     public ReactiveItemEntity(World worldIn, double x, double y, double z, float radius, boolean canBreakBlocks, ItemStack stack, Item newItem, Block releasedGas) {
         super(EntityType.ITEM,worldIn);
-        this.setPosition(x, y, z);
+        this.setPos(x, y, z);
         this.setItem(stack);
         this.radius = radius;
         this.canBreakBlocks = canBreakBlocks;
@@ -66,30 +66,30 @@ public class ReactiveItemEntity extends ItemEntity {
     @Override
     public void tick() {
 
-        if (this.inWater)
+        if (this.wasTouchingWater)
         {
-            BlockPos pos = this.getPosition();
+            BlockPos pos = this.blockPosition();
             if (canBreakBlocks)
             {
-                this.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.BREAK);
+                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.BREAK);
             } else {
-                this.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.NONE);
+                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.NONE);
             }
-            if (!world.isRemote && !world.restoringBlockSnapshots && !newItem.equals(Items.AIR)) {
-                double d0 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(world, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(newItem,this.getItem().getCount()));
-                itementity.setDefaultPickupDelay();
-                world.addEntity(itementity);
+            if (!level.isClientSide && !level.restoringBlockSnapshots && !newItem.equals(Items.AIR)) {
+                double d0 = (double) (level.random.nextFloat() * 0.5F) + 0.25D;
+                double d1 = (double) (level.random.nextFloat() * 0.5F) + 0.25D;
+                double d2 = (double) (level.random.nextFloat() * 0.5F) + 0.25D;
+                ItemEntity itementity = new ItemEntity(level, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(newItem,this.getItem().getCount()));
+                itementity.setDefaultPickUpDelay();
+                level.addFreshEntity(itementity);
             }
-            if (!world.isRemote && !releasedGas.equals(Blocks.AIR)) {
+            if (!level.isClientSide && !releasedGas.equals(Blocks.AIR)) {
                 for (int i = 0; i < Math.max(1,Math.round(this.radius)); i++) {
-                    BlockPos close = BlockPos.getClosestMatchingPosition(pos,3,3,B -> world.isAirBlock(B) && !(world.getBlockState(B).getBlock() instanceof GasBlock)).orElse(null);
+                    BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> level.isEmptyBlock(B) && !(level.getBlockState(B).getBlock() instanceof GasBlock)).orElse(null);
                     if (close == null) {
                         break;
                     } else {
-                        world.setBlockState(close,this.releasedGas.getDefaultState(),2);
+                        level.setBlock(close,this.releasedGas.defaultBlockState(),2);
                     }
                 }
             }
@@ -98,7 +98,7 @@ public class ReactiveItemEntity extends ItemEntity {
         super.tick();
     }
 
-    public @NotNull IPacket<?> createSpawnPacket() {
+    public @NotNull IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

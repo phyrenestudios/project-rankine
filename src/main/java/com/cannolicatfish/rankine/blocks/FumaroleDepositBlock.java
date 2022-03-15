@@ -10,20 +10,22 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class FumaroleDepositBlock extends Block {
     public FumaroleDepositBlock(Properties properties) {
         super(properties);
     }
 
     @Override
-    public boolean ticksRandomly(BlockState state) {
+    public boolean isRandomlyTicking(BlockState state) {
         return true;
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (random.nextFloat()<0.1 && worldIn.getBlockState(pos.down()).matchesBlock(Blocks.AIR) && worldIn.getBlockState(pos.down()).matchesBlock(Blocks.WATER)) {
-            worldIn.setBlockState(pos.down(), RankineBlocks.GWIHABAITE_CRYSTAL.get().getDefaultState().with(GwihabaiteBlock.FACING, Direction.DOWN),3);
+        if (random.nextFloat()<0.1 && worldIn.getBlockState(pos.below()).is(Blocks.AIR) && worldIn.getBlockState(pos.below()).is(Blocks.WATER)) {
+            worldIn.setBlock(pos.below(), RankineBlocks.GWIHABAITE_CRYSTAL.get().defaultBlockState().setValue(GwihabaiteBlock.FACING, Direction.DOWN),3);
         }
 
         super.randomTick(state, worldIn, pos, random);

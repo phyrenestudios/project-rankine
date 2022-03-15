@@ -20,29 +20,31 @@ import net.minecraft.world.IWorld;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class SodiumVaporLampBlock extends Block implements IWaterLoggable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
-    public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.HORIZONTAL_FACING;
+    public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.FACING;
 
     public SodiumVaporLampBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(HANGING, false).with(WATERLOGGED, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any().setValue(HORIZONTAL_FACING, Direction.NORTH).setValue(HANGING, false).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
-        BlockState blockstate = this.getDefaultState();
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        BlockState blockstate = this.defaultBlockState();
 
         for(Direction direction : context.getNearestLookingDirections()) {
             if (direction == Direction.UP) {
-                blockstate = this.getDefaultState().with(HANGING,true);
+                blockstate = this.defaultBlockState().setValue(HANGING,true);
             }
             if (direction.getAxis().isHorizontal()) {
                 Direction direction1 = direction.getOpposite();
-                if (blockstate.isValidPosition(context.getWorld(), context.getPos())) {
-                    return blockstate.with(HORIZONTAL_FACING, direction1).with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);
+                if (blockstate.canSurvive(context.getLevel(), context.getClickedPos())) {
+                    return blockstate.setValue(HORIZONTAL_FACING, direction1).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
                 }
             }
         }
@@ -51,36 +53,36 @@ public class SodiumVaporLampBlock extends Block implements IWaterLoggable {
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        if (state.get(HANGING)) {
-            switch (state.get(HORIZONTAL_FACING)) {
+        if (state.getValue(HANGING)) {
+            switch (state.getValue(HORIZONTAL_FACING)) {
                 case EAST:
                 case WEST:
-                    return Block.makeCuboidShape(4.0D, 10.0D, 2.0D, 12.0D, 16.0D, 14.0D);
+                    return Block.box(4.0D, 10.0D, 2.0D, 12.0D, 16.0D, 14.0D);
                 case SOUTH:
                 case NORTH:
                 default:
-                    return Block.makeCuboidShape(2.0D, 10.0D, 4.0D, 14.0D, 16.0D, 12.0D);
+                    return Block.box(2.0D, 10.0D, 4.0D, 14.0D, 16.0D, 12.0D);
             }
         } else {
-            switch (state.get(HORIZONTAL_FACING)) {
+            switch (state.getValue(HORIZONTAL_FACING)) {
                 case WEST:
-                    return Block.makeCuboidShape(7.0D, 7.0D, 2.0D, 16.0D, 16.0D, 14.0D);
+                    return Block.box(7.0D, 7.0D, 2.0D, 16.0D, 16.0D, 14.0D);
                 case EAST:
-                    return Block.makeCuboidShape(0.0D, 7.0D, 2.0D, 9.0D, 16.0D, 14.0D);
+                    return Block.box(0.0D, 7.0D, 2.0D, 9.0D, 16.0D, 14.0D);
                 case SOUTH:
-                    return Block.makeCuboidShape(2.0D, 7.0D, 0.0D, 14.0D, 16.0D, 9.0D);
+                    return Block.box(2.0D, 7.0D, 0.0D, 14.0D, 16.0D, 9.0D);
                 case NORTH:
                 default:
-                    return Block.makeCuboidShape(2.0D, 7.0D, 7.0D, 14.0D, 16.0D, 16.0D);
+                    return Block.box(2.0D, 7.0D, 7.0D, 14.0D, 16.0D, 16.0D);
             }
         }
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_FACING,HANGING,WATERLOGGED);
     }
 
-    public PushReaction getPushReaction(BlockState state) {
+    public PushReaction getPistonPushReaction(BlockState state) {
         return PushReaction.DESTROY;
     }
 
@@ -90,18 +92,18 @@ public class SodiumVaporLampBlock extends Block implements IWaterLoggable {
      * returns its solidified counterpart.
      * Note that this method should ideally consider only the specific face passed in.
      */
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (stateIn.get(WATERLOGGED)) {
-            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
-        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
         return false;
     }
 

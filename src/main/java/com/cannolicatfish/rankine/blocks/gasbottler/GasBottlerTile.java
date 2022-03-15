@@ -63,7 +63,7 @@ public class GasBottlerTile extends TileEntity implements ISidedInventory, ITick
                     break;
             }
         }
-        public int size() {
+        public int getCount() {
             return 2;
         }
     };
@@ -73,17 +73,17 @@ public class GasBottlerTile extends TileEntity implements ISidedInventory, ITick
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
-        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt,this.items);
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         ItemStackHelper.saveAllItems(compound, this.items);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
@@ -92,23 +92,23 @@ public class GasBottlerTile extends TileEntity implements ISidedInventory, ITick
 
     @Override
     public void tick() {
-        World worldIn = this.getWorld();
+        World worldIn = this.getLevel();
         BlockState BS = this.getBlockState();
-        if (!worldIn.isRemote) {
+        if (!worldIn.isClientSide) {
             ItemStack input = this.items.get(0);
             ItemStack output = this.items.get(1);
-            if (input.getItem().equals(Items.GLASS_BOTTLE) && worldIn.getBlockState(this.getPos().offset(BS.get(GasBottlerBlock.FACING))).getBlock() instanceof GasBlock && ResourceLocation.tryCreate(worldIn.getBlockState(this.getPos().offset(BS.get(GasBottlerBlock.FACING))).getBlock().getRegistryName().toString().replace("block","bottle")) != null) {
-                Item OUT = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(worldIn.getBlockState(this.getPos().offset(BS.get(GasBottlerBlock.FACING))).getBlock().getRegistryName().toString().replace("block","bottle")));
+            if (input.getItem().equals(Items.GLASS_BOTTLE) && worldIn.getBlockState(this.getBlockPos().relative(BS.getValue(GasBottlerBlock.FACING))).getBlock() instanceof GasBlock && ResourceLocation.tryParse(worldIn.getBlockState(this.getBlockPos().relative(BS.getValue(GasBottlerBlock.FACING))).getBlock().getRegistryName().toString().replace("block","bottle")) != null) {
+                Item OUT = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(worldIn.getBlockState(this.getBlockPos().relative(BS.getValue(GasBottlerBlock.FACING))).getBlock().getRegistryName().toString().replace("block","bottle")));
                 if ((output.getItem() == OUT && output.getCount() < 64) || output.isEmpty()) {
                     ++this.cookTime;
                     if (this.cookTime >= this.cookTimeTotal) {
                         if (output.getItem() == OUT && output.getCount() < 64) {
                             this.items.set(1, new ItemStack(OUT, output.getCount() + 1));
-                            worldIn.removeBlock(this.getPos().offset(BS.get(GasBottlerBlock.FACING)), false);
+                            worldIn.removeBlock(this.getBlockPos().relative(BS.getValue(GasBottlerBlock.FACING)), false);
                             input.shrink(1);
                         } else if (output.isEmpty()) {
                             this.items.set(1, new ItemStack(OUT, 1));
-                            worldIn.removeBlock(this.getPos().offset(BS.get(GasBottlerBlock.FACING)), false);
+                            worldIn.removeBlock(this.getBlockPos().relative(BS.getValue(GasBottlerBlock.FACING)), false);
                             input.shrink(1);
                         }
                         cookTime = 0;
@@ -126,7 +126,7 @@ public class GasBottlerTile extends TileEntity implements ISidedInventory, ITick
 
     @Override
     public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (facing == Direction.UP)
                 return handlers[0].cast();
             else if (facing == Direction.DOWN)
@@ -138,8 +138,8 @@ public class GasBottlerTile extends TileEntity implements ISidedInventory, ITick
     }
 
     @Override
-    public void remove() {
-        super.remove();
+    public void setRemoved() {
+        super.setRemoved();
         for (int x = 0; x < handlers.length; x++)
             handlers[x].invalidate();
     }
@@ -152,7 +152,7 @@ public class GasBottlerTile extends TileEntity implements ISidedInventory, ITick
     @Override
     @Nullable
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new GasBottlerContainer(i, world, pos, playerInventory, playerEntity, this, this.towerData);
+        return new GasBottlerContainer(i, level, worldPosition, playerInventory, playerEntity, this, this.towerData);
     }
 
     @Override
@@ -165,17 +165,17 @@ public class GasBottlerTile extends TileEntity implements ISidedInventory, ITick
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, @Nullable Direction direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, @Nullable Direction direction) {
+        return this.canPlaceItem(index, itemStackIn);
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         return true;
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return this.items.size();
     }
 
@@ -191,45 +191,45 @@ public class GasBottlerTile extends TileEntity implements ISidedInventory, ITick
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public ItemStack getItem(int index) {
         return this.items.get(index);
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return ItemStackHelper.getAndSplit(this.items, index, count);
+    public ItemStack removeItem(int index, int count) {
+        return ItemStackHelper.removeItem(this.items, index, count);
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.items, index);
+    public ItemStack removeItemNoUpdate(int index) {
+        return ItemStackHelper.takeItem(this.items, index);
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
         this.items.set(index, stack);
-        if (stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
         }
 
         if (index == 0 && !flag) {
-            this.markDirty();
+            this.setChanged();
         }
     }
 
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        if (this.world.getTileEntity(this.pos) != this) {
+    public boolean stillValid(PlayerEntity player) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
-            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+            return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
         }
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
+    public boolean canPlaceItem(int index, ItemStack stack) {
         switch (index) {
             case 0:
                 return stack.getItem().equals(Items.GLASS_BOTTLE);
@@ -240,7 +240,7 @@ public class GasBottlerTile extends TileEntity implements ISidedInventory, ITick
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.items.clear();
     }
 

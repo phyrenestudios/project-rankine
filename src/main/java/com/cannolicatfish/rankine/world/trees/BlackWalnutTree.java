@@ -13,7 +13,7 @@ public class BlackWalnutTree extends Tree {
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return RankineFeatures.BLACK_WALNUT_TREE.get().withConfiguration(RankineBiomeFeatures.BLACK_WALNUT_TREE_CONFIG);
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
+        return RankineFeatures.BLACK_WALNUT_TREE.get().configured(RankineBiomeFeatures.BLACK_WALNUT_TREE_CONFIG);
     }
 }

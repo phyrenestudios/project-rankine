@@ -15,27 +15,29 @@ import net.minecraftforge.common.Tags;
 
 import java.util.Optional;
 
+import net.minecraft.item.Item.Properties;
+
 public class OreDetectorItem extends Item {
 
     public OreDetectorItem(Properties properties) {
         super(properties);
     }
 
-    public ActionResultType onItemUse(ItemUseContext context) {
+    public ActionResultType useOn(ItemUseContext context) {
         PlayerEntity player = context.getPlayer();
-        World worldIn = context.getWorld();
-        BlockPos pos = context.getPos();
+        World worldIn = context.getLevel();
+        BlockPos pos = context.getClickedPos();
 
-        Optional<BlockPos> b = BlockPos.getClosestMatchingPosition(pos, Config.TOOLS.ORE_DETECTOR_RANGE.get(), Config.TOOLS.ORE_DETECTOR_RANGE.get(), (p) -> worldIn.getBlockState(p).isIn(Tags.Blocks.ORES));
+        Optional<BlockPos> b = BlockPos.findClosestMatch(pos, Config.TOOLS.ORE_DETECTOR_RANGE.get(), Config.TOOLS.ORE_DETECTOR_RANGE.get(), (p) -> worldIn.getBlockState(p).is(Tags.Blocks.ORES));
         if (player != null && b.isPresent()) {
-            worldIn.playSound(player,pos, SoundEvents.BLOCK_NOTE_BLOCK_BELL, SoundCategory.PLAYERS,1.0F, random.nextFloat() * 0.4F + 0.8F);
+            worldIn.playSound(player,pos, SoundEvents.NOTE_BLOCK_BELL, SoundCategory.PLAYERS,1.0F, random.nextFloat() * 0.4F + 0.8F);
 
-            if (!worldIn.isRemote()) {
+            if (!worldIn.isClientSide()) {
                 BlockState ORE = worldIn.getBlockState(b.get());
-                player.sendStatusMessage(new TranslationTextComponent("item.rankine.ore_detector.message", ORE.getBlock().getTranslatedName(), Integer.toString(ORE.getBlock().getHarvestLevel(ORE)), b.get().getX(), b.get().getY(), b.get().getZ()), false);
+                player.displayClientMessage(new TranslationTextComponent("item.rankine.ore_detector.message", ORE.getBlock().getName(), Integer.toString(ORE.getBlock().getHarvestLevel(ORE)), b.get().getX(), b.get().getY(), b.get().getZ()), false);
 
-                context.getItem().damageItem(1, player, (p) -> {
-                    p.sendBreakAnimation(context.getHand());
+                context.getItemInHand().hurtAndBreak(1, player, (p) -> {
+                    p.broadcastBreakEvent(context.getHand());
                 });
             }
         }

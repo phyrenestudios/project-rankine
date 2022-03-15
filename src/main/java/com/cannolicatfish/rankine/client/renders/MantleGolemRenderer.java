@@ -21,12 +21,12 @@ public class MantleGolemRenderer extends LivingRenderer<MantleGolemEntity, Mantl
     }
 
     @Override
-    protected boolean canRenderName(MantleGolemEntity entity) {
+    protected boolean shouldShowName(MantleGolemEntity entity) {
         return false;
     }
 
     @Override
-    public ResourceLocation getEntityTexture(MantleGolemEntity entity)
+    public ResourceLocation getTextureLocation(MantleGolemEntity entity)
     {
         return new ResourceLocation("rankine:textures/entity/mantle_golem.png");
     }

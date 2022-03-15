@@ -43,7 +43,7 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean isDynamic() {
+    public boolean isSpecial() {
         return true;
     }
 
@@ -53,16 +53,16 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        return this.ingredient.test(inv.getStackInSlot(0));
+        return this.ingredient.test(inv.getItem(0));
     }
 
     @Override
-    public ItemStack getCraftingResult(IInventory inv) {
+    public ItemStack assemble(IInventory inv) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public boolean canFit(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return true;
     }
 
@@ -76,7 +76,7 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack getRecipeOutput() {
+    public ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
 
@@ -108,7 +108,7 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
     }
 
     public static ItemStack deserializeBlock(JsonObject object) {
-        String s = JSONUtils.getString(object, "block");
+        String s = JSONUtils.getAsString(object, "block");
 
         Block block = Registry.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonParseException("Unknown block '" + s + "'");
@@ -124,16 +124,16 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<AlloyModifierRecipe> {
 
         @Override
-        public AlloyModifierRecipe read(ResourceLocation recipeId, JsonObject json) {
+        public AlloyModifierRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             String[] s = recipeId.getPath().split("/");
             String nm = recipeId.getNamespace() + ":" + s[s.length-1];
-            Ingredient ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "input"));
+            Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input"));
 
             List<AlloyModifier> alloyModifiers = new ArrayList<>();
             if (json.has("modifiers")) {
-                JsonArray modTypes = JSONUtils.getJsonArray(json,"modifiers");
-                JsonArray modConds = JSONUtils.getJsonArray(json,"modifierTypes");
-                JsonArray modVals = JSONUtils.getJsonArray(json,"values");
+                JsonArray modTypes = JSONUtils.getAsJsonArray(json,"modifiers");
+                JsonArray modConds = JSONUtils.getAsJsonArray(json,"modifierTypes");
+                JsonArray modVals = JSONUtils.getAsJsonArray(json,"values");
                 for (int i = 0; i < modTypes.size(); i++) {
                     String inName = nm + "_" + modTypes.get(i).getAsString().toLowerCase(Locale.ROOT);
                     alloyModifiers.add(new AlloyModifier(inName,modTypes.get(i).getAsString().toUpperCase(Locale.ROOT),modConds.get(i).getAsString().toUpperCase(Locale.ROOT),modVals.get(i).getAsFloat()));
@@ -143,8 +143,8 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
             List<String> enchantmentTypes = new ArrayList<>();
 
             if (json.has("enchantments")) {
-                JsonArray e = JSONUtils.getJsonArray(json,"enchantments");
-                JsonArray eTypes = JSONUtils.getJsonArray(json,"enchantmentTypes");
+                JsonArray e = JSONUtils.getAsJsonArray(json,"enchantments");
+                JsonArray eTypes = JSONUtils.getAsJsonArray(json,"enchantmentTypes");
                 for (int i = 0; i < e.size(); i++) {
                     enchantments.add(e.get(i).getAsString().toLowerCase(Locale.ROOT));
                     enchantmentTypes.add(eTypes.get(i).getAsString().toUpperCase(Locale.ROOT));
@@ -155,16 +155,16 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
 
         @Nullable
         @Override
-        public AlloyModifierRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+        public AlloyModifierRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
             String[] s = recipeId.getPath().split("/");
             String nm = recipeId.getNamespace() + ":" + s[s.length-1];
-            Ingredient input = Ingredient.read(buffer);
+            Ingredient input = Ingredient.fromNetwork(buffer);
 
             int size = buffer.readInt();
             List<AlloyModifier> modifiers = new ArrayList<>();
             for (int j = 0; j < size; j++) {
-                String type = buffer.readString().toUpperCase(Locale.ROOT);
-                String cond = buffer.readString().toUpperCase(Locale.ROOT);
+                String type = buffer.readUtf().toUpperCase(Locale.ROOT);
+                String cond = buffer.readUtf().toUpperCase(Locale.ROOT);
                 float val = buffer.readFloat();
                 String inName = nm + "_" + type.toLowerCase(Locale.ROOT);
                 modifiers.add(new AlloyModifier(inName,type,cond,val));
@@ -174,31 +174,31 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
             List<String> enchantments = new ArrayList<>();
             List<String> enchantmentTypes = new ArrayList<>();
             for (int j = 0; j < size; j++) {
-                enchantments.add(buffer.readString().toLowerCase(Locale.ROOT));
-                enchantmentTypes.add(buffer.readString().toUpperCase(Locale.ROOT));
+                enchantments.add(buffer.readUtf().toLowerCase(Locale.ROOT));
+                enchantmentTypes.add(buffer.readUtf().toUpperCase(Locale.ROOT));
             }
 
             return new AlloyModifierRecipe(recipeId,input,modifiers,enchantments,enchantmentTypes);
         }
 
         @Override
-        public void write(PacketBuffer buffer, AlloyModifierRecipe recipe) {
-            recipe.getIngredient().write(buffer);
+        public void toNetwork(PacketBuffer buffer, AlloyModifierRecipe recipe) {
+            recipe.getIngredient().toNetwork(buffer);
 
             int size = recipe.getModifiers().size();
             buffer.writeInt(size);
             for (int i = 0; i < size; i++) {
                 AlloyModifier mod = recipe.getModifiers().get(i);
-                buffer.writeString(mod.getType().toString().toUpperCase(Locale.ROOT));
-                buffer.writeString(mod.getCondition().toString().toUpperCase(Locale.ROOT));
+                buffer.writeUtf(mod.getType().toString().toUpperCase(Locale.ROOT));
+                buffer.writeUtf(mod.getCondition().toString().toUpperCase(Locale.ROOT));
                 buffer.writeFloat(mod.getValue());
             }
 
             size = recipe.getEnchantments().size();
             buffer.writeInt(size);
             for (int i = 0; i < size; i++) {
-                buffer.writeString(recipe.getEnchantments().get(i));
-                buffer.writeString(recipe.getEnchantmentTypes().get(i));
+                buffer.writeUtf(recipe.getEnchantments().get(i));
+                buffer.writeUtf(recipe.getEnchantmentTypes().get(i));
             }
         }
     }

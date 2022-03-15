@@ -39,7 +39,7 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
 
     public TreetappingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(145, 95);
-        localizedName = I18n.format("rankine.jei.treetapping");
+        localizedName = I18n.get("rankine.jei.treetapping");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/treetapping_jei.png"),
                 0, 15, 140, 90);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.TREE_TAP.get()));
@@ -72,14 +72,14 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
 
     @Override
     public void draw(TreetappingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().fontRenderer;
+        FontRenderer font = Minecraft.getInstance().font;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
         RenderSystem.disableBlend();
         RenderSystem.disableAlphaTest();
         if (recipe.getTapTime() > 0) {
-            font.drawString(ms, Math.round(recipe.getTapTime()/20f)+"s", 107, 55, 0x7E7E7E);
+            font.draw(ms, Math.round(recipe.getTapTime()/20f)+"s", 107, 55, 0x7E7E7E);
         }
     }
 
@@ -87,7 +87,7 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
     public void setIngredients(TreetappingRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getMatchingStacks()));
+            builder.add(Arrays.asList(i.getItems()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
         iIngredients.setOutput(VanillaTypes.FLUID, recipe.getFilledResult());

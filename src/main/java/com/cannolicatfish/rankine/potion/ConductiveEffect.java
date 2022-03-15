@@ -15,14 +15,14 @@ public class ConductiveEffect extends Effect {
     }
 
     @Override
-    public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
-        Random rand = entityLivingBaseIn.getRNG();
-        World worldIn = entityLivingBaseIn.getEntityWorld();
-        if (worldIn.isRainingAt(entityLivingBaseIn.getPosition()) && rand.nextFloat() < 0.2f) {
+    public void applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
+        Random rand = entityLivingBaseIn.getRandom();
+        World worldIn = entityLivingBaseIn.getCommandSenderWorld();
+        if (worldIn.isRainingAt(entityLivingBaseIn.blockPosition()) && rand.nextFloat() < 0.2f) {
             LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,worldIn);
-            ent.setPosition(entityLivingBaseIn.getPosX(),entityLivingBaseIn.getPosY(),entityLivingBaseIn.getPosZ());
-            worldIn.addEntity(ent);
-            entityLivingBaseIn.removePotionEffect(this.getEffect());
+            ent.setPos(entityLivingBaseIn.getX(),entityLivingBaseIn.getY(),entityLivingBaseIn.getZ());
+            worldIn.addFreshEntity(ent);
+            entityLivingBaseIn.removeEffect(this.getEffect());
         }
     }
 
@@ -32,7 +32,7 @@ public class ConductiveEffect extends Effect {
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration % Math.max(1, 20 - amplifier) == 0;
     }
 }

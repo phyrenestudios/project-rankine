@@ -15,12 +15,12 @@ public class EndotoxinEnchantment extends Enchantment {
         super(p_i46721_1_, RankineEnchantmentTypes.ENDER_AMALGAM_CROWBAR, p_i46721_2_);
     }
 
-    public int getMinEnchantability(int enchantmentLevel) {
+    public int getMinCost(int enchantmentLevel) {
         return 5 + (enchantmentLevel - 1) * 8;
     }
 
-    public int getMaxEnchantability(int enchantmentLevel) {
-        return this.getMinEnchantability(enchantmentLevel) + 20;
+    public int getMaxCost(int enchantmentLevel) {
+        return this.getMinCost(enchantmentLevel) + 20;
     }
 
     /**
@@ -31,12 +31,12 @@ public class EndotoxinEnchantment extends Enchantment {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
+    public boolean canEnchant(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
             return rs.equals(new ResourceLocation("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyCrowbarItem;
         }
-        return RankineEnchantmentTypes.ENDER_AMALGAM_CROWBAR.canEnchantItem(stack.getItem());
+        return RankineEnchantmentTypes.ENDER_AMALGAM_CROWBAR.canEnchant(stack.getItem());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class EndotoxinEnchantment extends Enchantment {
     }
 
     @Override
-    public boolean canGenerateInLoot() {
+    public boolean isDiscoverable() {
         return false;
     }
 }

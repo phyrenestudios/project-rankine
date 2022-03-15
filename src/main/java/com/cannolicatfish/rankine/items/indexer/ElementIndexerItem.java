@@ -28,6 +28,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 
+import net.minecraft.item.Item.Properties;
+
 public class ElementIndexerItem extends Item {
     private static final ElementIndexerContainerProvider INSTANCE = new ElementIndexerContainerProvider();
     private static final PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
@@ -41,13 +43,13 @@ public class ElementIndexerItem extends Item {
 
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        if (!worldIn.isRemote)
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        if (!worldIn.isClientSide)
         {
             NetworkHooks.openGui((ServerPlayerEntity) playerIn,INSTANCE);
         }
 
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return super.use(worldIn, playerIn, handIn);
     }
 
     public static class ElementIndexerIItemHandler extends ItemStackHandler

@@ -65,16 +65,16 @@ public class AlloyCustomHelper {
         if (list == null) {
             ImmutableList.Builder<ItemStack> builder = ImmutableList.builder();
             for (AlloyCraftingRecipe recipe :  CRAFTING_RECIPE_LIST) {
-                if (item.equals(recipe.getRecipeOutput().getItem())) {
-                    ItemStack stack = recipe.getRecipeOutput().copy();
+                if (item.equals(recipe.getResultItem().getItem())) {
+                    ItemStack stack = recipe.getResultItem().copy();
                     String composition = null;
                     String inherit = null;
                     if (item instanceof IAlloyItem && ((IAlloyItem) item).getDefaultRecipe() == null) {
                         if (!recipe.getInheritRecipe().isEmpty()) {
                             inherit = recipe.getInheritRecipe();
                             for (Ingredient s : recipe.getIngredients()) {
-                                if (s.getMatchingStacks().length > 0) {
-                                    ItemStack newStack = s.getMatchingStacks()[0];
+                                if (s.getItems().length > 0) {
+                                    ItemStack newStack = s.getItems()[0];
                                     ResourceLocation rs = IAlloyItem.getAlloyRecipe(newStack);
                                     if (newStack.getItem() instanceof IAlloyItem && rs != null && rs.toString().equals(inherit)) {
                                         if (!IAlloyItem.getAlloyComposition(newStack).isEmpty()) {
@@ -88,8 +88,8 @@ public class AlloyCustomHelper {
                             }
                         } else {
                             for (Ingredient s : recipe.getIngredients()) {
-                                if (s.getMatchingStacks().length > 0) {
-                                    ItemStack newStack = s.getMatchingStacks()[0];
+                                if (s.getItems().length > 0) {
+                                    ItemStack newStack = s.getItems()[0];
                                     if (newStack.getItem() instanceof IAlloyItem) {
                                         if (!IAlloyItem.getAlloyComposition(newStack).isEmpty()) {
                                             composition = IAlloyItem.getAlloyComposition(newStack);
@@ -132,7 +132,7 @@ public class AlloyCustomHelper {
         for (ElementRecipe recipe :  ELEMENT_RECIPE_LIST) {
             List<Ingredient> ing = recipe.getIngredients();
             for (int x = 0; x < ing.size(); x++) {
-                ItemStack[] stacks = ing.get(x).getMatchingStacks();
+                ItemStack[] stacks = ing.get(x).getItems();
                 for (ItemStack stack : stacks) {
                     Item item = stack.getItem();
                     if (ELEMENT_ITEM_LISTS.containsKey(item)) {
@@ -159,8 +159,8 @@ public class AlloyCustomHelper {
         if (list == null) {
             ImmutableList.Builder<ItemStack> builder = ImmutableList.builder();
             for (AlloyingRecipe recipe : ALLOY_RECIPE_LIST) {
-                if (item.equals(recipe.getRecipeOutput().getItem())) {
-                    ItemStack stack = recipe.getRecipeOutput().copy();
+                if (item.equals(recipe.getResultItem().getItem())) {
+                    ItemStack stack = recipe.getResultItem().copy();
                     stack.setCount(1);
                     builder.add(stack);
                 }

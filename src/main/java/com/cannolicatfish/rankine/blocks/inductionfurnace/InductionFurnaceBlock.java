@@ -23,6 +23,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class InductionFurnaceBlock extends Block{
 
     public InductionFurnaceBlock(Properties properties) {
@@ -31,20 +33,20 @@ public class InductionFurnaceBlock extends Block{
 
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        if (stateIn.get(BlockStateProperties.LIT)) {
+        if (stateIn.getValue(BlockStateProperties.LIT)) {
             double d0 = (double)pos.getX();
             double d1 = (double)pos.getY() + 0.9D;
             double d2 = (double)pos.getZ();
             if (rand.nextDouble() < 0.1D) {
-                worldIn.playSound(d0, d1, d2, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+                worldIn.playLocalSound(d0, d1, d2, SoundEvents.FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
             }
-            Direction direction = stateIn.get(BlockStateProperties.HORIZONTAL_FACING);
+            Direction direction = stateIn.getValue(BlockStateProperties.HORIZONTAL_FACING);
             Direction.Axis direction$axis = direction.getAxis();
             double d3 = 0.52D;
             double d4 = rand.nextDouble() * 0.6D - 0.55D;
-            double d5 = direction$axis == Direction.Axis.X ? (double)direction.getXOffset() * 0.05D : d4;
+            double d5 = direction$axis == Direction.Axis.X ? (double)direction.getStepX() * 0.05D : d4;
             double d6 = rand.nextDouble() * 6.0D / 16.0D;
-            double d7 = direction$axis == Direction.Axis.Z ? (double)direction.getZOffset() * 0.05D : d4;
+            double d7 = direction$axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.05D : d4;
             worldIn.addParticle(ParticleTypes.SMOKE, d0 + 0.5D, d1 + d6, d2 + 0.5D, 0.0D, 0.0D, 0.0D);
             worldIn.addParticle(ParticleTypes.FLAME, d0 + 0.5D, d1 + d6, d2 + 0.5D, 0.0D, 0.0D, 0.0D);
         }
@@ -58,7 +60,7 @@ public class InductionFurnaceBlock extends Block{
 
     @Override
     public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-        return state.get(BlockStateProperties.LIT) ? super.getLightValue(state,world,pos) : 0;
+        return state.getValue(BlockStateProperties.LIT) ? super.getLightValue(state,world,pos) : 0;
     }
 
     @Nullable
@@ -68,15 +70,15 @@ public class InductionFurnaceBlock extends Block{
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(BlockStateProperties.HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite()).with(BlockStateProperties.LIT, false);
+        return this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection().getOpposite()).setValue(BlockStateProperties.LIT, false);
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
-        if (!world.isRemote) {
-            TileEntity tileEntity = world.getTileEntity(pos);
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+        if (!world.isClientSide) {
+            TileEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof INamedContainerProvider) {
-                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getBlockPos());
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }
@@ -88,35 +90,35 @@ public class InductionFurnaceBlock extends Block{
     }
 
 
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!state.matchesBlock(newState.getBlock())) {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.is(newState.getBlock())) {
+            TileEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof InductionFurnaceTile) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (InductionFurnaceTile)tileentity);
+                InventoryHelper.dropContents(worldIn, pos, (InductionFurnaceTile)tileentity);
                 //((InductionFurnaceTile)tileentity).grantStoredRecipeExperience(worldIn, Vector3d.copyCentered(pos));
-                worldIn.updateComparatorOutputLevel(pos, this);
+                worldIn.updateNeighbourForOutputSignal(pos, this);
             }
 
-            super.onReplaced(state, worldIn, pos, newState, isMoving);
+            super.onRemove(state, worldIn, pos, newState, isMoving);
         }
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(BlockStateProperties.HORIZONTAL_FACING,BlockStateProperties.LIT);
     }
 
     @Override
-    public boolean eventReceived(BlockState state, World worldIn, BlockPos pos, int id, int param) {
-        super.eventReceived(state, worldIn, pos, id, param);
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity == null ? false : tileentity.receiveClientEvent(id, param);
+    public boolean triggerEvent(BlockState state, World worldIn, BlockPos pos, int id, int param) {
+        super.triggerEvent(state, worldIn, pos, id, param);
+        TileEntity tileentity = worldIn.getBlockEntity(pos);
+        return tileentity == null ? false : tileentity.triggerEvent(id, param);
     }
 
     @Override
     @Nullable
-    public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
-        TileEntity tileentity = worldIn.getTileEntity(pos);
+    public INamedContainerProvider getMenuProvider(BlockState state, World worldIn, BlockPos pos) {
+        TileEntity tileentity = worldIn.getBlockEntity(pos);
         return tileentity instanceof INamedContainerProvider ? (INamedContainerProvider)tileentity : null;
     }
 

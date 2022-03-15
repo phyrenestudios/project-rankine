@@ -4,8 +4,11 @@ import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 
+import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.block.PressurePlateBlock.Sensitivity;
+
 public class RankineStonePressurePlate extends PressurePlateBlock {
     public RankineStonePressurePlate() {
-        super(Sensitivity.MOBS, Properties.create(Material.ROCK).sound(SoundType.STONE).doesNotBlockMovement().hardnessAndResistance(0.5F));
+        super(Sensitivity.MOBS, Properties.of(Material.STONE).sound(SoundType.STONE).noCollission().strength(0.5F));
     }
 }

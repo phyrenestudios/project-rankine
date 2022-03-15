@@ -37,17 +37,17 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
+    public ITextComponent getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
+            return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
         }
-        return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
+        return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
 
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,true), attacker, (entity) -> {
-            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,true), attacker, (entity) -> {
+            entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
         });
         return true;
     }
@@ -55,10 +55,10 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
     /**
      * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
      */
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
-            stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,false), entityLiving, (entity) -> {
-                entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+    public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+        if (!worldIn.isClientSide && state.getDestroySpeed(worldIn, pos) != 0.0F) {
+            stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,false), entityLiving, (entity) -> {
+                entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
             });
         }
 
@@ -82,7 +82,7 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         addAlloyInformation(stack,worldIn,tooltip,flagIn);
         if (flagIn.isAdvanced()) {
             addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
@@ -91,9 +91,9 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
 
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         this.applyAlloyEnchantments(stack,worldIn);
-        super.onCreated(stack, worldIn, playerIn);
+        super.onCraftedBy(stack, worldIn, playerIn);
     }
 
 
@@ -108,12 +108,12 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
             this.initStats(stack,getElementMap(IAlloyItem.getAlloyComposition(stack),worldIn),getAlloyingRecipe(IAlloyItem.getAlloyRecipe(stack),worldIn),null);
         }
 
-        if (!worldIn.isRemote && isSelected && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDURE,stack) > 0 && entityIn instanceof LivingEntity) {
+        if (!worldIn.isClientSide && isSelected && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDURE,stack) > 0 && entityIn instanceof LivingEntity) {
             LivingEntity living = (LivingEntity) entityIn;
-            List<EnderCrystalEntity> list = worldIn.getEntitiesWithinAABB(EnderCrystalEntity.class, new AxisAlignedBB(living.getPosition()).grow(5, 5, 5));
+            List<EnderCrystalEntity> list = worldIn.getEntitiesOfClass(EnderCrystalEntity.class, new AxisAlignedBB(living.blockPosition()).inflate(5, 5, 5));
             for (EnderCrystalEntity enderCrystalEntity : list) {
-                if (living.ticksExisted % 100 == 0 && living.getHealth() < living.getMaxHealth()) {
-                    enderCrystalEntity.setBeamTarget(living.getPosition());
+                if (living.tickCount % 100 == 0 && living.getHealth() < living.getMaxHealth()) {
+                    enderCrystalEntity.setBeamTarget(living.blockPosition());
                     living.setHealth(living.getHealth() + 1.0F);
                 } else {
                     enderCrystalEntity.setBeamTarget(null);
@@ -124,12 +124,12 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (this.isInGroup(group) && this.defaultAlloyRecipe == null) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+        if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
             items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
             items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
-        } else if (this.isInGroup(group)) {
-            super.fillItemGroup(group,items);
+        } else if (this.allowdedIn(group)) {
+            super.fillItemCategory(group,items);
         }
     }
 
@@ -144,7 +144,7 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
     }
 
     @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
         if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);

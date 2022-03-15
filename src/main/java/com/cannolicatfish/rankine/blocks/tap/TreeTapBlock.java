@@ -24,19 +24,19 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import javax.annotation.Nullable;
 
 public class TreeTapBlock extends Block {
-    public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-    protected static final VoxelShape TAP_WEST_AABB = Block.makeCuboidShape(5.0D, 0.0D, 4.0D, 16.0D, 13.0D, 12.0D);
-    protected static final VoxelShape TAP_EAST_AABB = Block.makeCuboidShape(0.0D, 0.0D, 4.0D, 11.0D, 13.0D, 12.0D);
-    protected static final VoxelShape TAP_NORTH_AABB = Block.makeCuboidShape(4.0D, 0.0D, 5.0D, 12.0D, 13.0D, 16.0D);
-    protected static final VoxelShape TAP_SOUTH_AABB = Block.makeCuboidShape(4.0D, 0.0D, 0.0D, 12.0D, 13.0D, 11.0D);
+    public static final DirectionProperty FACING = HorizontalBlock.FACING;
+    protected static final VoxelShape TAP_WEST_AABB = Block.box(5.0D, 0.0D, 4.0D, 16.0D, 13.0D, 12.0D);
+    protected static final VoxelShape TAP_EAST_AABB = Block.box(0.0D, 0.0D, 4.0D, 11.0D, 13.0D, 12.0D);
+    protected static final VoxelShape TAP_NORTH_AABB = Block.box(4.0D, 0.0D, 5.0D, 12.0D, 13.0D, 16.0D);
+    protected static final VoxelShape TAP_SOUTH_AABB = Block.box(4.0D, 0.0D, 0.0D, 12.0D, 13.0D, 11.0D);
 
     public TreeTapBlock(AbstractBlock.Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch(state.get(FACING)) {
+        switch(state.getValue(FACING)) {
             case NORTH:
                 return TAP_NORTH_AABB;
             case SOUTH:
@@ -61,15 +61,15 @@ public class TreeTapBlock extends Block {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
-        if (!world.isRemote) {
-            LazyOptional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
-            TreeTapTile treeTapTile = (TreeTapTile) world.getTileEntity(pos);
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+        if (!world.isClientSide) {
+            LazyOptional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getItemInHand(hand));
+            TreeTapTile treeTapTile = (TreeTapTile) world.getBlockEntity(pos);
             if (item.isPresent() && treeTapTile != null) {
-                FluidActionResult fillContainerAndStowOutput = FluidUtil.tryFillContainerAndStow(player.getHeldItem(hand), treeTapTile.outputTank, new InvWrapper(player.inventory), treeTapTile.outputTank.getFluidAmount(), player, true);
+                FluidActionResult fillContainerAndStowOutput = FluidUtil.tryFillContainerAndStow(player.getItemInHand(hand), treeTapTile.outputTank, new InvWrapper(player.inventory), treeTapTile.outputTank.getFluidAmount(), player, true);
                 if (fillContainerAndStowOutput.isSuccess()) {
-                    player.setHeldItem(hand, fillContainerAndStowOutput.getResult());
-                    world.markChunkDirty(pos, treeTapTile);
+                    player.setItemInHand(hand, fillContainerAndStowOutput.getResult());
+                    world.blockEntityChanged(pos, treeTapTile);
                     return ActionResultType.CONSUME;
                 }
             }
@@ -81,32 +81,32 @@ public class TreeTapBlock extends Block {
 
     private boolean canAttachTo(IBlockReader blockReader, BlockPos pos, Direction direction) {
         BlockState blockstate = blockReader.getBlockState(pos);
-        return blockstate.isSolidSide(blockReader, pos, direction);
+        return blockstate.isFaceSturdy(blockReader, pos, direction);
     }
 
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        Direction direction = state.get(FACING);
-        return this.canAttachTo(worldIn, pos.offset(direction.getOpposite()), direction);
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        Direction direction = state.getValue(FACING);
+        return this.canAttachTo(worldIn, pos.relative(direction.getOpposite()), direction);
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        return facing.getOpposite() == stateIn.get(FACING) && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : stateIn;
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        return facing.getOpposite() == stateIn.getValue(FACING) && !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : stateIn;
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(FACING, rot.rotate(state.get(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.toRotation(state.get(FACING)));
+        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 

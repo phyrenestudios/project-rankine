@@ -44,12 +44,12 @@ public class MagnesiumArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(RankineItems.MAGNESIUM_ARROW.get());
     }
 
@@ -57,31 +57,31 @@ public class MagnesiumArrowEntity extends AbstractArrowEntity {
     public void tick() {
         super.tick();
         if (this.inGround) {
-            if (this.timeInGround % 100 == 0) {
+            if (this.inGroundTime % 100 == 0) {
                 this.spawnParticles(1);
-                List<LivingEntity> mobEntities = this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(5, 5, 5));
+                List<LivingEntity> mobEntities = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(5, 5, 5));
                 for (LivingEntity mob : mobEntities) {
-                    mob.addPotionEffect(new EffectInstance(Effects.BLINDNESS,120));
+                    mob.addEffect(new EffectInstance(Effects.BLINDNESS,120));
                 }
             }
         } else {
-            if (this.ticksExisted % 100 == 0) {
+            if (this.tickCount % 100 == 0) {
                 this.spawnParticles(1);
             }
         }
     }
 
     @Override
-    protected void arrowHit(LivingEntity living) {
-        super.arrowHit(living);
+    protected void doPostHurtEffects(LivingEntity living) {
+        super.doPostHurtEffects(living);
         if (living instanceof CreeperEntity)
         {
             ((CreeperEntity)living).ignite();
         } else {
-            List<MobEntity> mobEntities = this.world.getEntitiesWithinAABB(MobEntity.class, this.getBoundingBox().grow(5, 5, 5));
+            List<MobEntity> mobEntities = this.level.getEntitiesOfClass(MobEntity.class, this.getBoundingBox().inflate(5, 5, 5));
             for (MobEntity mob : mobEntities) {
-                if (living != mob && mob.getCreatureAttribute() == CreatureAttribute.UNDEAD) {
-                    mob.setAttackTarget(living);
+                if (living != mob && mob.getMobType() == CreatureAttribute.UNDEAD) {
+                    mob.setTarget(living);
                 }
             }
         }
@@ -96,7 +96,7 @@ public class MagnesiumArrowEntity extends AbstractArrowEntity {
             double d2 = (double)(i >> 0 & 255) / 255.0D;
 
             for(int j = 0; j < particleCount; ++j) {
-                this.world.addParticle(ParticleTypes.FLASH, this.getPosXRandom(0.5D), this.getPosYRandom(), this.getPosZRandom(0.5D), d0, d1, d2);
+                this.level.addParticle(ParticleTypes.FLASH, this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D), d0, d1, d2);
             }
 
         }

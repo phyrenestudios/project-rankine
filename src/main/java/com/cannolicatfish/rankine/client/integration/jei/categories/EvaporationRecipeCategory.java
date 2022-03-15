@@ -39,7 +39,7 @@ public class EvaporationRecipeCategory implements IRecipeCategory<EvaporationRec
 
     public EvaporationRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(185, 146);
-        localizedName = I18n.format("rankine.jei.evaporation");
+        localizedName = I18n.get("rankine.jei.evaporation");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/evaporation_jei.png"),
                 0, 15, 180, 141);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()));
@@ -72,7 +72,7 @@ public class EvaporationRecipeCategory implements IRecipeCategory<EvaporationRec
 
     @Override
     public void draw(EvaporationRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().fontRenderer;
+        FontRenderer font = Minecraft.getInstance().font;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -91,7 +91,7 @@ public class EvaporationRecipeCategory implements IRecipeCategory<EvaporationRec
                 str.append(recipe.getBiomeString().get(i));
                 count++;
                 if (count == 3 || i == recipe.getBiomeString().size() - 1) {
-                    font.drawString(ms, str.toString(), (float)(ymod >= 50 ? 32 : 0), ymod, 0x000000);
+                    font.draw(ms, str.toString(), (float)(ymod >= 50 ? 32 : 0), ymod, 0x000000);
                     count = 0;
                     ymod += 10;
                     str = new StringBuilder();
@@ -102,9 +102,9 @@ public class EvaporationRecipeCategory implements IRecipeCategory<EvaporationRec
 
         }
         int r = ymod + 10 >= 50 ? 32 : 0;
-        font.drawString(ms, s, (float)(r), ymod, 0x000000);
+        font.draw(ms, s, (float)(r), ymod, 0x000000);
         ymod += 10;
-        font.drawString(ms, large, (float)(r), ymod, recipe.isLarge() ? 0xaa0000 : 0x00aa00);
+        font.draw(ms, large, (float)(r), ymod, recipe.isLarge() ? 0xaa0000 : 0x00aa00);
 
 
     }

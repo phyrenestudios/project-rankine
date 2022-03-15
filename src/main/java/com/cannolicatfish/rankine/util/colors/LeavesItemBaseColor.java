@@ -9,7 +9,7 @@ public class LeavesItemBaseColor implements IItemColor {
 
     @Override
     public int getColor(ItemStack stack, int color) {
-        BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
+        BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
         return new LeavesBlockBaseColor().getColor(blockstate, null, null, color);
     }
 }

@@ -22,7 +22,7 @@ public class FallenLogFeature extends Feature<NoFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
 
 
         if (rand.nextFloat() < Config.MISC_WORLDGEN.END_METEORITE_CHANCE.get()) {

@@ -16,7 +16,7 @@ public class DemonyteRenderer extends LivingRenderer<DemonyteEntity, DemonyteMod
     public static final DemonyteRenderer.RenderFactory instance = new DemonyteRenderer.RenderFactory();
 
     @Override
-    protected boolean canRenderName(DemonyteEntity entity) {
+    protected boolean shouldShowName(DemonyteEntity entity) {
         return false;
     }
 
@@ -25,7 +25,7 @@ public class DemonyteRenderer extends LivingRenderer<DemonyteEntity, DemonyteMod
     }
 
     @Override
-    public ResourceLocation getEntityTexture(DemonyteEntity entity) {
+    public ResourceLocation getTextureLocation(DemonyteEntity entity) {
         return new ResourceLocation("rankine:textures/entity/demonyte.png");
     }
 

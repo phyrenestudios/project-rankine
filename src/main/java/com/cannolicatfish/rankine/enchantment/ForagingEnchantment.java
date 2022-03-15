@@ -15,12 +15,12 @@ public class ForagingEnchantment extends Enchantment {
     /**
      * Returns the minimal value of enchantability needed on the enchantment level passed.
      */
-    public int getMinEnchantability(int enchantmentLevel) {
+    public int getMinCost(int enchantmentLevel) {
         return 10;
     }
 
-    public int getMaxEnchantability(int enchantmentLevel) {
-        return super.getMinEnchantability(enchantmentLevel) + 50;
+    public int getMaxCost(int enchantmentLevel) {
+        return super.getMinCost(enchantmentLevel) + 50;
     }
 
     /**

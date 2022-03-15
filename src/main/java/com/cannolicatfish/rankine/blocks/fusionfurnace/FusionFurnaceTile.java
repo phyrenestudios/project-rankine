@@ -94,15 +94,15 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
             }
         }
 
-        public int size() {
+        public int getCount() {
             return 4;
         }
     };
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
-        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt,this.items);
         this.inputTank = this.inputTank.readFromNBT(nbt.getCompound("InputTank"));
         this.outputTank = this.outputTank.readFromNBT(nbt.getCompound("OutputTank"));
@@ -113,8 +113,8 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
@@ -130,7 +130,7 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
         if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(2),powerCost))) {
             burnTime--;
         }
-        if (!this.world.isRemote) {
+        if (!this.level.isClientSide) {
 
             ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(3)};
             ItemStack battery = this.items.get(2);
@@ -193,7 +193,7 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
                             outputTank.fill(irecipe.getFluidOut(), IFluidHandler.FluidAction.EXECUTE);
                         }
                         cookTime = 0;
-                        battery.setDamage(battery.getDamage() + powerCost);
+                        battery.setDamageValue(battery.getDamageValue() + powerCost);
                         return;
                     }
                 } else {
@@ -205,20 +205,20 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
 
             if (flag != this.isBurning()) {
                 flag1 = true;
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
+                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
             }
         }
 
         if (flag1) {
-            this.markDirty();
+            this.setChanged();
         }
 
     }
 
     private FusionFurnaceRecipe getFusionFurnaceRecipe() {
-        if (this.world != null) {
-            for (FusionFurnaceRecipe recipe : this.world.getRecipeManager().getRecipesForType(RankineRecipeTypes.FUSION_FURNACE)) {
-                if (recipe.matchesRecipe(this,this.inputTank,this.outputTank,this.world)){
+        if (this.level != null) {
+            for (FusionFurnaceRecipe recipe : this.level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.FUSION_FURNACE)) {
+                if (recipe.matchesRecipe(this,this.inputTank,this.outputTank,this.level)){
                     return recipe;
                 }
             }
@@ -254,9 +254,9 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
             } else {
                 for (int i = 0; i < 3; i++) {
                     ItemStack itemstack = this.items.get(4 + i);
-                    if ((!itemstack.isItemEqual(itemstacks.get(i)) && !itemstack.isEmpty())) {
+                    if ((!itemstack.sameItem(itemstacks.get(i)) && !itemstack.isEmpty())) {
                         return false;
-                    } else if (itemstack.getCount() + itemstacks.get(i).getCount() > this.getInventoryStackLimit() && itemstack.getCount() + itemstacks.get(i).getCount() > itemstack.getMaxStackSize()) {
+                    } else if (itemstack.getCount() + itemstacks.get(i).getCount() > this.getMaxStackSize() && itemstack.getCount() + itemstacks.get(i).getCount() > itemstack.getMaxStackSize()) {
                         return false;
                     } else if (itemstack.getCount() + itemstacks.get(i).getCount() > itemstacks.get(i).getMaxStackSize()) {
                         return false;
@@ -275,7 +275,7 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
 
     @Override
     public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (facing == Direction.UP)
                 return handlers[0].cast();
             else if (facing == Direction.DOWN)
@@ -287,8 +287,8 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
     }
 
     @Override
-    public void remove() {
-        super.remove();
+    public void setRemoved() {
+        super.setRemoved();
         for (int x = 0; x < handlers.length; x++)
             handlers[x].invalidate();
     }
@@ -301,7 +301,7 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
     @Override
     @Nullable
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new FusionFurnaceContainer(i, world, pos, playerInventory, playerEntity, this, this.furnaceData);
+        return new FusionFurnaceContainer(i, level, worldPosition, playerInventory, playerEntity, this, this.furnaceData);
     }
 
 
@@ -315,17 +315,17 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, @Nullable Direction direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, @Nullable Direction direction) {
+        return this.canPlaceItem(index, itemStackIn);
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         return true;
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return this.items.size();
     }
 
@@ -341,47 +341,47 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public ItemStack getItem(int index) {
         return this.items.get(index);
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return ItemStackHelper.getAndSplit(this.items, index, count);
+    public ItemStack removeItem(int index, int count) {
+        return ItemStackHelper.removeItem(this.items, index, count);
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.items, index);
+    public ItemStack removeItemNoUpdate(int index) {
+        return ItemStackHelper.takeItem(this.items, index);
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
         this.items.set(index, stack);
-        if (stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
         }
 
         if (index == 0 && !flag) {
             this.cookTimeTotal = 400;
             this.cookTime = 0;
-            this.markDirty();
+            this.setChanged();
         }
     }
 
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        if (this.world.getTileEntity(this.pos) != this) {
+    public boolean stillValid(PlayerEntity player) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
-            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+            return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
         }
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
+    public boolean canPlaceItem(int index, ItemStack stack) {
         switch (index)
         {
             case 0:
@@ -403,7 +403,7 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.items.clear();
     }
 }

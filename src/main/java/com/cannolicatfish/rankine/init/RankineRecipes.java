@@ -46,17 +46,17 @@ public class RankineRecipes {
         /**
          * Dispense the specified stack, play the dispense sound and spawn particles.
          */
-        public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+        public ItemStack execute(IBlockSource source, ItemStack stack) {
             Block dispensing = Blocks.AIR;
             if (stack.getItem() instanceof GasBottleItem) {
                 GasBottleItem bucketitem = (GasBottleItem) stack.getItem();
                 dispensing = bucketitem.getGas();
             }
 
-            BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
-            World world = source.getWorld();
+            BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+            World world = source.getLevel();
             if (world.getBlockState(blockpos).isAir()) {
-                world.setBlockState(blockpos, dispensing.getDefaultState(),3);
+                world.setBlock(blockpos, dispensing.defaultBlockState(),3);
                 return new ItemStack(Items.GLASS_BOTTLE);
             } else {
                 return this.defaultBehaviour.dispense(source, stack);
@@ -70,12 +70,12 @@ public class RankineRecipes {
         /**
          * Dispense the specified stack, play the dispense sound and spawn particles.
          */
-        public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+        public ItemStack execute(IBlockSource source, ItemStack stack) {
             BucketItem bucketitem = (BucketItem)stack.getItem();
-            BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
-            World world = source.getWorld();
-            if (bucketitem.tryPlaceContainedLiquid((PlayerEntity)null, world, blockpos, (BlockRayTraceResult)null)) {
-                bucketitem.onLiquidPlaced(world, stack, blockpos);
+            BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+            World world = source.getLevel();
+            if (bucketitem.emptyBucket((PlayerEntity)null, world, blockpos, (BlockRayTraceResult)null)) {
+                bucketitem.checkExtraContent(world, stack, blockpos);
                 return new ItemStack(Items.BUCKET);
             } else {
                 return this.defaultBehaviour.dispense(source, stack);
@@ -87,18 +87,18 @@ public class RankineRecipes {
         /**
          * Dispense the specified stack, play the dispense sound and spawn particles.
          */
-        public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
-            Direction direction = source.getBlockState().get(DispenserBlock.FACING);
+        public ItemStack execute(IBlockSource source, ItemStack stack) {
+            Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
             IPosition iposition = DispenserBlock.getDispensePosition(source);
-            double d0 = iposition.getX() + (double) ((float) direction.getXOffset() * 0.3F);
-            double d1 = iposition.getY() + (double) ((float) direction.getYOffset() * 0.3F);
-            double d2 = iposition.getZ() + (double) ((float) direction.getZOffset() * 0.3F);
-            World world = source.getWorld();
-            Random random = world.rand;
-            double d3 = random.nextGaussian() * 0.05D + (double) direction.getXOffset();
-            double d4 = random.nextGaussian() * 0.05D + (double) direction.getYOffset();
-            double d5 = random.nextGaussian() * 0.05D + (double) direction.getZOffset();
-            world.addEntity(Util.make(new CannonballEntity(world, d0, d1, d2, d3, d4, d5), (fireball) -> {
+            double d0 = iposition.x() + (double) ((float) direction.getStepX() * 0.3F);
+            double d1 = iposition.y() + (double) ((float) direction.getStepY() * 0.3F);
+            double d2 = iposition.z() + (double) ((float) direction.getStepZ() * 0.3F);
+            World world = source.getLevel();
+            Random random = world.random;
+            double d3 = random.nextGaussian() * 0.05D + (double) direction.getStepX();
+            double d4 = random.nextGaussian() * 0.05D + (double) direction.getStepY();
+            double d5 = random.nextGaussian() * 0.05D + (double) direction.getStepZ();
+            world.addFreshEntity(Util.make(new CannonballEntity(world, d0, d1, d2, d3, d4, d5), (fireball) -> {
                 fireball.setStack(stack);
             }));
             stack.shrink(1);
@@ -111,19 +111,19 @@ public class RankineRecipes {
         /**
          * Dispense the specified stack, play the dispense sound and spawn particles.
          */
-        public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
-            Direction direction = source.getBlockState().get(DispenserBlock.FACING);
+        public ItemStack execute(IBlockSource source, ItemStack stack) {
+            Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
             IPosition iposition = DispenserBlock.getDispensePosition(source);
-            double d0 = iposition.getX() + (double) ((float) direction.getXOffset() * 0.3F);
-            double d1 = iposition.getY() + (double) ((float) direction.getYOffset() * 0.3F);
-            double d2 = iposition.getZ() + (double) ((float) direction.getZOffset() * 0.3F);
-            World world = source.getWorld();
-            Random random = world.rand;
-            double d3 = random.nextGaussian() * 0.05D + (double) direction.getXOffset();
-            double d4 = random.nextGaussian() * 0.05D + (double) direction.getYOffset();
-            double d5 = random.nextGaussian() * 0.05D + (double) direction.getZOffset();
-            world.addEntity(Util.make(new CarcassEntity(world, d0, d1, d2, d3, d4, d5), (fireball) -> {
-                fireball.setStack(stack);
+            double d0 = iposition.x() + (double) ((float) direction.getStepX() * 0.3F);
+            double d1 = iposition.y() + (double) ((float) direction.getStepY() * 0.3F);
+            double d2 = iposition.z() + (double) ((float) direction.getStepZ() * 0.3F);
+            World world = source.getLevel();
+            Random random = world.random;
+            double d3 = random.nextGaussian() * 0.05D + (double) direction.getStepX();
+            double d4 = random.nextGaussian() * 0.05D + (double) direction.getStepY();
+            double d5 = random.nextGaussian() * 0.05D + (double) direction.getStepZ();
+            world.addFreshEntity(Util.make(new CarcassEntity(world, d0, d1, d2, d3, d4, d5), (fireball) -> {
+                fireball.setItem(stack);
             }));
             stack.shrink(1);
             return stack;
@@ -134,37 +134,37 @@ public class RankineRecipes {
          * Play the dispense sound from the specified block.
          */
         protected void playDispenseSound(IBlockSource source) {
-            source.getWorld().playEvent(1018, source.getBlockPos(), 0);
+            source.getLevel().levelEvent(1018, source.getPos(), 0);
         }
 
 
         public static void registerPotionRecipes() {
-        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.fromItems(RankineItems.MERCURY::get), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), RankinePotions.MERCURY_POISON));
-        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.fromItems(RankineItems.SODIUM_CHLORIDE::get,RankineItems.PINK_SALT::get), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), RankinePotions.CONDUCTIVE_POTION));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.MERCURY::get), PotionUtils.setPotion(new ItemStack(Items.POTION), RankinePotions.MERCURY_POISON));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.SODIUM_CHLORIDE::get,RankineItems.PINK_SALT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), RankinePotions.CONDUCTIVE_POTION));
 
     }
 
     public static void registerDispenserBehaviors() {
         for (Item i : RankineLists.GAS_BOTTLES) {
-            DispenserBlock.registerDispenseBehavior(i,gasDispenseBehavior);
+            DispenserBlock.registerBehavior(i,gasDispenseBehavior);
         }
-        DispenserBlock.registerDispenseBehavior(RankineItems.JUGLONE_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.LIQUID_MERCURY_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.AQUA_REGIA_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.HYDROBROMIC_ACID_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.GRAY_MUD_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.RED_MUD_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.SULFURIC_ACID_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.LATEX_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.RESIN_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.SAP_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.MAPLE_SAP_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.BLACK_LIQUOR_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.GREEN_LIQUOR_BUCKET.get(),bucketItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.WHITE_LIQUOR_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.JUGLONE_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.LIQUID_MERCURY_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.AQUA_REGIA_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.HYDROBROMIC_ACID_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.GRAY_MUD_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.RED_MUD_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.SULFURIC_ACID_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.LATEX_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.RESIN_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.SAP_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.MAPLE_SAP_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.BLACK_LIQUOR_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.GREEN_LIQUOR_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.WHITE_LIQUOR_BUCKET.get(),bucketItemBehavior);
 
-        DispenserBlock.registerDispenseBehavior(RankineItems.CANNONBALL.get(),cannonballItemBehavior);
-        DispenserBlock.registerDispenseBehavior(RankineItems.CARCASS.get(),carcassItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.CANNONBALL.get(),cannonballItemBehavior);
+        DispenserBlock.registerBehavior(RankineItems.CARCASS.get(),carcassItemBehavior);
     }
 
     public static void registerPredicates() {
@@ -178,7 +178,7 @@ public class RankineRecipes {
         List<ElementRecipe> currentElements = new ArrayList<>();
         List<Integer> currentMaterial = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            ItemStack stack = inv.getStackInSlot(i);
+            ItemStack stack = inv.getItem(i);
             if (!stack.isEmpty() && AlloyCustomHelper.hasElement(stack.getItem())) {
                 Tuple<ElementRecipe,Integer> entry = AlloyCustomHelper.getEntryForElementItem(stack.getItem());
                 if (!currentElements.contains(entry.getA())) {

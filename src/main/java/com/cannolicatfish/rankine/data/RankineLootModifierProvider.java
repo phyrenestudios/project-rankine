@@ -23,7 +23,7 @@ public class RankineLootModifierProvider extends GlobalLootModifierProvider {
 
     @Override
     protected void start() {
-        add("surf_rod_modifier",SurfRodModifier.SERIALIZER,new SurfRodModifier(new ILootCondition[]{MatchTool.builder(ItemPredicate.Builder.create().item(RankineItems.ALLOY_SURF_ROD.get())).build(), EntityHasProperty.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().fishing(FishingPredicate.func_234640_a_(true))).build()}, Items.COD, RankineItems.TUNA.get()));
+        add("surf_rod_modifier",SurfRodModifier.SERIALIZER,new SurfRodModifier(new ILootCondition[]{MatchTool.toolMatches(ItemPredicate.Builder.item().of(RankineItems.ALLOY_SURF_ROD.get())).build(), EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().fishingHook(FishingPredicate.inOpenWater(true))).build()}, Items.COD, RankineItems.TUNA.get()));
 
     }
 }

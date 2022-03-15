@@ -11,7 +11,7 @@ public class RockGeneratorUtils {
 
     public BlockState modifiedStoneGenerator(RockGeneratorRecipe recipe, List<Block> blocks) {
 
-        return Blocks.AIR.getDefaultState();
+        return Blocks.AIR.defaultBlockState();
     }
 
     public enum RockGenType {

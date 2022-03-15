@@ -7,6 +7,8 @@ import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class SoybeanPlantBlock extends RankineCropsBlock {
 
     public SoybeanPlantBlock(Properties properties) {
@@ -14,12 +16,12 @@ public class SoybeanPlantBlock extends RankineCropsBlock {
     }
 
     @Override
-    protected IItemProvider getSeedsItem() {
+    protected IItemProvider getBaseSeedId() {
         return RankineItems.SOYBEANS.get();
     }
 
     @Override
-    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.matchesBlock(Blocks.FARMLAND);
+    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return state.is(Blocks.FARMLAND);
     }
 }

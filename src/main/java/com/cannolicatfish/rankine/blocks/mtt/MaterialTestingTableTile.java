@@ -39,15 +39,15 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
-        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt,this.items);
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         ItemStackHelper.saveAllItems(compound, this.items);
         return compound;
     }
@@ -58,7 +58,7 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
 
     @Override
     public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (facing == Direction.UP)
                 return handlers[0].cast();
             else if (facing == Direction.DOWN)
@@ -70,8 +70,8 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
     }
 
     @Override
-    public void remove() {
-        super.remove();
+    public void setRemoved() {
+        super.setRemoved();
         for (int x = 0; x < handlers.length; x++)
             handlers[x].invalidate();
     }
@@ -84,7 +84,7 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
     @Override
     @Nullable
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new MaterialTestingTableContainer(i, world,pos,playerInventory, playerEntity, this);
+        return new MaterialTestingTableContainer(i, level,worldPosition,playerInventory, playerEntity, this);
     }
 
 
@@ -94,17 +94,17 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, @Nullable Direction direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, @Nullable Direction direction) {
+        return this.canPlaceItem(index, itemStackIn);
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         return true;
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return this.items.size();
     }
 
@@ -120,53 +120,53 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public ItemStack getItem(int index) {
         return this.items.get(index);
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return ItemStackHelper.getAndSplit(this.items, index, count);
+    public ItemStack removeItem(int index, int count) {
+        return ItemStackHelper.removeItem(this.items, index, count);
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.items, index);
+    public ItemStack removeItemNoUpdate(int index) {
+        return ItemStackHelper.takeItem(this.items, index);
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
         this.items.set(index, stack);
-        if (stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
         }
 
         if (!flag) {
-            this.markDirty();
+            this.setChanged();
         }
     }
 
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        if (this.world.getTileEntity(this.pos) != this) {
+    public boolean stillValid(PlayerEntity player) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
-            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+            return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
         }
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
+    public boolean canPlaceItem(int index, ItemStack stack) {
         if (index == 0) {
             return AlloyCustomHelper.hasElement(stack.getItem())  || stack.getItem() instanceof IAlloyItem;
         }
-        return (stack.getItem().isIn(RankineTags.Items.MTT_TOOLS));
+        return (stack.getItem().is(RankineTags.Items.MTT_TOOLS));
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.items.clear();
     }
 

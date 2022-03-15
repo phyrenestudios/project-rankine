@@ -17,11 +17,11 @@ public class AlloyEnchantabilityPredicate extends ItemPredicate {
     }
 
     public AlloyEnchantabilityPredicate(JsonObject jsonObject) {
-        this(JSONUtils.getInt(jsonObject, "ench"),new ResourceLocation(JSONUtils.getString(jsonObject,"tag")));
+        this(JSONUtils.getAsInt(jsonObject, "ench"),new ResourceLocation(JSONUtils.getAsString(jsonObject,"tag")));
     }
 
     @Override
-    public boolean test(ItemStack stack) {
+    public boolean matches(ItemStack stack) {
         if (stack.getItem() instanceof IAlloyTool && stack.getItem().getTags().contains(tag)) {
             return ((IAlloyTool) stack.getItem()).getAlloyEnchantability(stack) >= ench;
         }

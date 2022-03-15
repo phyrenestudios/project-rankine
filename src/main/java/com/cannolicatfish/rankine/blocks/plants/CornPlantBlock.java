@@ -18,53 +18,55 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class CornPlantBlock extends TripleCropsBlock {
 
     public CornPlantBlock(Properties properties) {
         super(properties);
     }
 
-    protected IItemProvider getSeedsItem() {
+    protected IItemProvider getBaseSeedId() {
         return RankineItems.CORN_SEEDS.get();
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if (entityIn instanceof LivingEntity && state.get(AGE) > 2) {
-            entityIn.setMotionMultiplier(state, new Vector3d((double)0.95F, 1.0D, (double)0.95F));
+    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+        if (entityIn instanceof LivingEntity && state.getValue(AGE) > 2) {
+            entityIn.makeStuckInBlock(state, new Vector3d((double)0.95F, 1.0D, (double)0.95F));
         }
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (state.get(AGE) == 7) {
-            if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (state.getValue(AGE) == 7) {
+            if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
+                double d0 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
+                double d1 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
+                double d2 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
                 ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(RankineItems.CORN_EAR.get(), 1 + worldIn.getRandom().nextInt(3)));
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
+                itementity.setDefaultPickUpDelay();
+                worldIn.addFreshEntity(itementity);
             }
-            switch (state.get(SECTION)) {
+            switch (state.getValue(SECTION)) {
                 case BOTTOM:
-                    worldIn.setBlockState(pos, RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.BOTTOM), 19);
-                    worldIn.setBlockState(pos.up(1), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.MIDDLE), 19);
-                    worldIn.setBlockState(pos.up(2), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.TOP), 19);
+                    worldIn.setBlock(pos, RankineBlocks.CORN_STALK.get().defaultBlockState().setValue(SECTION, TripleBlockSection.BOTTOM), 19);
+                    worldIn.setBlock(pos.above(1), RankineBlocks.CORN_STALK.get().defaultBlockState().setValue(SECTION, TripleBlockSection.MIDDLE), 19);
+                    worldIn.setBlock(pos.above(2), RankineBlocks.CORN_STALK.get().defaultBlockState().setValue(SECTION, TripleBlockSection.TOP), 19);
                     break;
                 case MIDDLE:
-                    worldIn.setBlockState(pos.down(), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.BOTTOM), 19);
-                    worldIn.setBlockState(pos, RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.MIDDLE), 19);
-                    worldIn.setBlockState(pos.up(), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.TOP), 19);
+                    worldIn.setBlock(pos.below(), RankineBlocks.CORN_STALK.get().defaultBlockState().setValue(SECTION, TripleBlockSection.BOTTOM), 19);
+                    worldIn.setBlock(pos, RankineBlocks.CORN_STALK.get().defaultBlockState().setValue(SECTION, TripleBlockSection.MIDDLE), 19);
+                    worldIn.setBlock(pos.above(), RankineBlocks.CORN_STALK.get().defaultBlockState().setValue(SECTION, TripleBlockSection.TOP), 19);
                     break;
                 case TOP:
-                    worldIn.setBlockState(pos.down(2), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.BOTTOM), 19);
-                    worldIn.setBlockState(pos.down(1), RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.MIDDLE), 19);
-                    worldIn.setBlockState(pos, RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.TOP), 19);
+                    worldIn.setBlock(pos.below(2), RankineBlocks.CORN_STALK.get().defaultBlockState().setValue(SECTION, TripleBlockSection.BOTTOM), 19);
+                    worldIn.setBlock(pos.below(1), RankineBlocks.CORN_STALK.get().defaultBlockState().setValue(SECTION, TripleBlockSection.MIDDLE), 19);
+                    worldIn.setBlock(pos, RankineBlocks.CORN_STALK.get().defaultBlockState().setValue(SECTION, TripleBlockSection.TOP), 19);
                     break;
             }
         }
 
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return super.use(state, worldIn, pos, player, handIn, hit);
     }
 }

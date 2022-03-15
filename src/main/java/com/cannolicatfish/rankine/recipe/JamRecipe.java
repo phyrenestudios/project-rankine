@@ -31,15 +31,15 @@ public class JamRecipe extends SpecialRecipe {
         boolean flag3 = false;
         int berryCount = 0;
         int sugarCount = 0;
-        for(int i = 0; i < inv.getSizeInventory(); ++i) {
-            ItemStack itemstack = inv.getStackInSlot(i);
+        for(int i = 0; i < inv.getContainerSize(); ++i) {
+            ItemStack itemstack = inv.getItem(i);
             if (!itemstack.isEmpty()) {
                 if (itemstack.getItem() == Items.SUGAR && !flag) {
                     sugarCount++;
                     if (sugarCount == 2) {
                         flag = true;
                     }
-                } else if (itemstack.getItem().isIn(RankineTags.Items.BERRIES) && !flag2) {
+                } else if (itemstack.getItem().is(RankineTags.Items.BERRIES) && !flag2) {
                     berryCount++;
                     if (berryCount == 6) {
                         flag2 = true;
@@ -57,12 +57,12 @@ public class JamRecipe extends SpecialRecipe {
         return flag && flag2 && flag3;
     }
 
-    public ItemStack getCraftingResult(CraftingInventory inv) {
+    public ItemStack assemble(CraftingInventory inv) {
         ItemStack itemstack = ItemStack.EMPTY;
 
-        for(int i = 0; i < inv.getSizeInventory(); ++i) {
-            ItemStack itemstack1 = inv.getStackInSlot(i);
-            if (!itemstack1.isEmpty() && itemstack1.getItem().isIn(RankineTags.Items.BERRIES)) {
+        for(int i = 0; i < inv.getContainerSize(); ++i) {
+            ItemStack itemstack1 = inv.getItem(i);
+            if (!itemstack1.isEmpty() && itemstack1.getItem().is(RankineTags.Items.BERRIES)) {
                 itemstack = itemstack1;
                 break;
             }
@@ -82,7 +82,7 @@ public class JamRecipe extends SpecialRecipe {
     /**
      * Used to determine if this recipe can fit in a grid of the given width/height
      */
-    public boolean canFit(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return width >= 2 && height >= 2;
     }
 

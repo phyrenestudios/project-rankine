@@ -40,17 +40,17 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
     private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(Blocks.ACTIVATOR_RAIL, Blocks.COAL_ORE, Blocks.COBBLESTONE, Blocks.DETECTOR_RAIL, Blocks.DIAMOND_BLOCK, Blocks.DIAMOND_ORE, Blocks.POWERED_RAIL, Blocks.GOLD_BLOCK, Blocks.GOLD_ORE, Blocks.NETHER_GOLD_ORE, Blocks.ICE, Blocks.IRON_BLOCK, Blocks.IRON_ORE, Blocks.LAPIS_BLOCK, Blocks.LAPIS_ORE, Blocks.MOSSY_COBBLESTONE, Blocks.NETHERRACK, Blocks.PACKED_ICE, Blocks.BLUE_ICE, Blocks.RAIL, Blocks.REDSTONE_ORE, Blocks.SANDSTONE, Blocks.CHISELED_SANDSTONE, Blocks.CUT_SANDSTONE, Blocks.CHISELED_RED_SANDSTONE, Blocks.CUT_RED_SANDSTONE, Blocks.RED_SANDSTONE, Blocks.STONE, Blocks.GRANITE, Blocks.POLISHED_GRANITE, Blocks.DIORITE, Blocks.POLISHED_DIORITE, Blocks.ANDESITE, Blocks.POLISHED_ANDESITE, Blocks.STONE_SLAB, Blocks.SMOOTH_STONE_SLAB, Blocks.SANDSTONE_SLAB, Blocks.PETRIFIED_OAK_SLAB, Blocks.COBBLESTONE_SLAB, Blocks.BRICK_SLAB, Blocks.STONE_BRICK_SLAB, Blocks.NETHER_BRICK_SLAB, Blocks.QUARTZ_SLAB, Blocks.RED_SANDSTONE_SLAB, Blocks.PURPUR_SLAB, Blocks.SMOOTH_QUARTZ, Blocks.SMOOTH_RED_SANDSTONE, Blocks.SMOOTH_SANDSTONE, Blocks.SMOOTH_STONE, Blocks.STONE_BUTTON, Blocks.STONE_PRESSURE_PLATE, Blocks.POLISHED_GRANITE_SLAB, Blocks.SMOOTH_RED_SANDSTONE_SLAB, Blocks.MOSSY_STONE_BRICK_SLAB, Blocks.POLISHED_DIORITE_SLAB, Blocks.MOSSY_COBBLESTONE_SLAB, Blocks.END_STONE_BRICK_SLAB, Blocks.SMOOTH_SANDSTONE_SLAB, Blocks.SMOOTH_QUARTZ_SLAB, Blocks.GRANITE_SLAB, Blocks.ANDESITE_SLAB, Blocks.RED_NETHER_BRICK_SLAB, Blocks.POLISHED_ANDESITE_SLAB, Blocks.DIORITE_SLAB, Blocks.SHULKER_BOX, Blocks.BLACK_SHULKER_BOX, Blocks.BLUE_SHULKER_BOX, Blocks.BROWN_SHULKER_BOX, Blocks.CYAN_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX, Blocks.GREEN_SHULKER_BOX, Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX, Blocks.ORANGE_SHULKER_BOX, Blocks.PINK_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.WHITE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX, Blocks.PISTON, Blocks.STICKY_PISTON, Blocks.PISTON_HEAD);
 
     public AlloyPickaxeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn, Item.Properties properties) {
-        super(tier, attackDamageIn, attackSpeedIn, properties.addToolType(ToolType.PICKAXE, tier.getHarvestLevel()));
+        super(tier, attackDamageIn, attackSpeedIn, properties.addToolType(ToolType.PICKAXE, tier.getLevel()));
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
+    public ITextComponent getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
+            return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
         }
-        return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
+        return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
     @Override
@@ -60,18 +60,18 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
             return i >= blockIn.getHarvestLevel();
         }
         Material material = blockIn.getMaterial();
-        return material == Material.ROCK || material == Material.IRON || material == Material.ANVIL;
+        return material == Material.STONE || material == Material.METAL || material == Material.HEAVY_METAL;
     }
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
         Material material = state.getMaterial();
-        return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? getToolItemDestroySpeed(stack,state) : getAlloyMiningSpeed(stack);
+        return material != Material.METAL && material != Material.HEAVY_METAL && material != Material.STONE ? getToolItemDestroySpeed(stack,state) : getAlloyMiningSpeed(stack);
     }
 
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,false), attacker, (entity) -> {
-            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,false), attacker, (entity) -> {
+            entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
         });
         return true;
     }
@@ -79,17 +79,17 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
     /**
      * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
      */
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
-            stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
-                entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+    public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+        if (!worldIn.isClientSide && state.getDestroySpeed(worldIn, pos) != 0.0F) {
+            stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
+                entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
             });
-            if (Tags.Items.ORES.contains(state.getBlock().asItem()) && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDLESS,stack) > 0) {
+            if (Tags.Items.ORES.contains(state.getBlock().asItem()) && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDLESS,stack) > 0) {
                 List<Effect> r = ForgeRegistries.POTIONS.getEntries().stream().filter(registryKeyEffectEntry -> registryKeyEffectEntry.getValue().isBeneficial() &&
                         registryKeyEffectEntry.getKey().getRegistryName().getNamespace().equals("minecraft")).map(Map.Entry::getValue).collect(Collectors.toList());
                 Effect rand = r.get(worldIn.getRandom().nextInt(r.size()));
-                EffectInstance e = new EffectInstance(rand,400, EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDLESS,stack));
-                entityLiving.addPotionEffect(e);
+                EffectInstance e = new EffectInstance(rand,400, EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDLESS,stack));
+                entityLiving.addEffect(e);
             }
         }
 
@@ -118,7 +118,7 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         addAlloyInformation(stack,worldIn,tooltip,flagIn);
         if (flagIn.isAdvanced()) {
             addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
@@ -144,9 +144,9 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
      */
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         this.applyAlloyEnchantments(stack,worldIn);
-        super.onCreated(stack, worldIn, playerIn);
+        super.onCraftedBy(stack, worldIn, playerIn);
     }
 
 
@@ -164,12 +164,12 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (this.isInGroup(group) && this.defaultAlloyRecipe == null) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+        if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
             items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
             items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
-        } else if (this.isInGroup(group)) {
-            super.fillItemGroup(group,items);
+        } else if (this.allowdedIn(group)) {
+            super.fillItemCategory(group,items);
         }
     }
 
@@ -184,7 +184,7 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
     }
 
     @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
         if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);

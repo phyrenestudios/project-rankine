@@ -62,11 +62,11 @@ public class ElementRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        Item reg = inv.getStackInSlot(0).getItem();
+        Item reg = inv.getItem(0).getItem();
         if (reg != Items.AIR) {
             for (String s : items) {
                 if (s.contains("T#")) {
-                    ITag<Item> tag = ItemTags.getCollection().get(new ResourceLocation(s.split("T#")[1]));
+                    ITag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
                     if (tag != null && tag.contains(reg)){
                         return true;
                     }
@@ -82,7 +82,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean isDynamic() {
+    public boolean isSpecial() {
         return true;
     }
 
@@ -91,17 +91,17 @@ public class ElementRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack getCraftingResult(IInventory inv) {
+    public ItemStack assemble(IInventory inv) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public boolean canFit(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return false;
     }
 
     @Override
-    public ItemStack getRecipeOutput() {
+    public ItemStack getResultItem() {
         return new ItemStack(RankineItems.ELEMENT.get());
     }
 
@@ -112,15 +112,15 @@ public class ElementRecipe implements IRecipe<IInventory> {
         for (String s : getItems()) {
 
             if (s.contains("T#")) {
-                ITag<Item> tag = ItemTags.getCollection().get(new ResourceLocation(s.split("T#")[1]));
+                ITag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
 
                 if (tag != null){
-                    list.set(count,Ingredient.fromTag(tag));
+                    list.set(count,Ingredient.of(tag));
                 }
             } else if (s.contains("I#")) {
                 Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(s.split("I#")[1]));
                 if (item != null) {
-                    list.set(count,Ingredient.fromItems(() -> item));
+                    list.set(count,Ingredient.of(() -> item));
                 }
             }
             count++;
@@ -288,7 +288,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
         for (int i = 0; i < getItems().size(); i++) {
             String s = getItems().get(i);
             if (s.contains("T#")) {
-                ITag<Item> tag = ItemTags.getCollection().get(new ResourceLocation(s.split("T#")[1]));
+                ITag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
                 if (tag != null && tag.contains(reg)){
                     return getValues().get(i);
                 }
@@ -306,7 +306,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "element");
 
         @Override
-        public ElementRecipe read(ResourceLocation elementId, JsonObject json) {
+        public ElementRecipe fromJson(ResourceLocation elementId, JsonObject json) {
             String n = json.get("name").getAsString().toLowerCase(Locale.ROOT);
             String s = json.get("symbol").getAsString();
             int t = json.get("atomic").getAsInt();
@@ -322,8 +322,8 @@ public class ElementRecipe implements IRecipe<IInventory> {
             } else {
                 p = 0;
             }
-            JsonArray it = JSONUtils.getJsonArray(json,"items");
-            JsonArray val = JSONUtils.getJsonArray(json,"values");
+            JsonArray it = JSONUtils.getAsJsonArray(json,"items");
+            JsonArray val = JSONUtils.getAsJsonArray(json,"values");
             List<String> itemList = new ArrayList<>();
             List<Integer> valueList = new ArrayList<>();
             for (int i = 0; i < it.size(); i++) {
@@ -336,13 +336,13 @@ public class ElementRecipe implements IRecipe<IInventory> {
             int index = 0;
             for (String stat : stats) {
                 if (json.has(stat)) {
-                    JsonObject object = JSONUtils.getJsonObject(json, stat);
-                    JsonArray breaks = JSONUtils.getJsonArray(object,"breaks");
-                    JsonArray formulas = JSONUtils.getJsonArray(object,"formulas");
-                    JsonArray a = JSONUtils.getJsonArray(object,"a");
-                    JsonArray b = JSONUtils.getJsonArray(object,"b");
-                    JsonArray modifiers = JSONUtils.getJsonArray(object,"modifiers");
-                    JsonArray limit = JSONUtils.getJsonArray(object,"limit");
+                    JsonObject object = JSONUtils.getAsJsonObject(json, stat);
+                    JsonArray breaks = JSONUtils.getAsJsonArray(object,"breaks");
+                    JsonArray formulas = JSONUtils.getAsJsonArray(object,"formulas");
+                    JsonArray a = JSONUtils.getAsJsonArray(object,"a");
+                    JsonArray b = JSONUtils.getAsJsonArray(object,"b");
+                    JsonArray modifiers = JSONUtils.getAsJsonArray(object,"modifiers");
+                    JsonArray limit = JSONUtils.getAsJsonArray(object,"limit");
 
                     int[] breaksIn = new int[breaks.size()];
                     ElementEquation.FormulaType[] formulasIn = new ElementEquation.FormulaType[breaks.size()];
@@ -368,9 +368,9 @@ public class ElementRecipe implements IRecipe<IInventory> {
             List<String> enchantmentTypes = new ArrayList<>();
             List<Float> enchantmentFactors = new ArrayList<>();
             if (json.has("enchantments")) {
-                JsonArray e = JSONUtils.getJsonArray(json,"enchantments");
-                JsonArray eTypes = JSONUtils.getJsonArray(json,"enchantmentTypes");
-                JsonArray eFactors = JSONUtils.getJsonArray(json,"enchantmentFactors");
+                JsonArray e = JSONUtils.getAsJsonArray(json,"enchantments");
+                JsonArray eTypes = JSONUtils.getAsJsonArray(json,"enchantmentTypes");
+                JsonArray eFactors = JSONUtils.getAsJsonArray(json,"enchantmentFactors");
                 for (int i = 0; i < e.size(); i++) {
                     enchantments.add(e.get(i).getAsString().toLowerCase(Locale.ROOT));
                     enchantmentTypes.add(eTypes.get(i).getAsString().toUpperCase(Locale.ROOT));
@@ -382,20 +382,20 @@ public class ElementRecipe implements IRecipe<IInventory> {
 
         @Nullable
         @Override
-        public ElementRecipe read(ResourceLocation elementId, PacketBuffer buffer) {
+        public ElementRecipe fromNetwork(ResourceLocation elementId, PacketBuffer buffer) {
             List<ElementEquation> equations = new ArrayList<>();
             List<String> itemList = new ArrayList<>();
             List<Integer> valueList = new ArrayList<>();
 
-            String name = buffer.readString();
-            String sym = buffer.readString();
+            String name = buffer.readUtf();
+            String sym = buffer.readUtf();
             int atomic = buffer.readInt();
             int color = Math.max(0,buffer.readInt());
             float potential = buffer.readFloat();
 
             int itemSize = buffer.readInt();
             for (int i = 0; i < itemSize; i++) {
-                itemList.add(i,buffer.readString());
+                itemList.add(i,buffer.readUtf());
                 valueList.add(i,buffer.readInt());
             }
 
@@ -411,10 +411,10 @@ public class ElementRecipe implements IRecipe<IInventory> {
                     float[] limitIn = new float[breaks_dur];
                     for (int i = 0; i < breaks_dur; i++) {
                         breaksIn[i] = buffer.readInt();
-                        formulasIn[i] = ElementEquation.FormulaType.valueOf(buffer.readString().toUpperCase(Locale.ROOT));
+                        formulasIn[i] = ElementEquation.FormulaType.valueOf(buffer.readUtf().toUpperCase(Locale.ROOT));
                         aIn[i] = buffer.readFloat();
                         bIn[i] = buffer.readFloat();
-                        modifiersIn[i] = ElementEquation.FormulaModifier.valueOf(buffer.readString().toUpperCase(Locale.ROOT));
+                        modifiersIn[i] = ElementEquation.FormulaModifier.valueOf(buffer.readUtf().toUpperCase(Locale.ROOT));
                         limitIn[i] = buffer.readFloat();
                     }
                     equations.add(j,new ElementEquation(breaksIn,formulasIn,aIn,bIn,modifiersIn,limitIn));
@@ -428,8 +428,8 @@ public class ElementRecipe implements IRecipe<IInventory> {
             List<String> enchantmentTypes = new ArrayList<>();
             List<Float> enchantmentFactors = new ArrayList<>();
             for (int j = 0; j < size; j++) {
-                enchantments.add(buffer.readString().toLowerCase(Locale.ROOT));
-                enchantmentTypes.add(buffer.readString().toUpperCase(Locale.ROOT));
+                enchantments.add(buffer.readUtf().toLowerCase(Locale.ROOT));
+                enchantmentTypes.add(buffer.readUtf().toUpperCase(Locale.ROOT));
                 enchantmentFactors.add(buffer.readFloat());
             }
 
@@ -437,16 +437,16 @@ public class ElementRecipe implements IRecipe<IInventory> {
         }
 
         @Override
-        public void write(PacketBuffer buffer, ElementRecipe element) {
-            buffer.writeString(element.getName());
-            buffer.writeString(element.getSymbol());
+        public void toNetwork(PacketBuffer buffer, ElementRecipe element) {
+            buffer.writeUtf(element.getName());
+            buffer.writeUtf(element.getSymbol());
             buffer.writeInt(element.getAtomicNumber());
             buffer.writeInt(element.getColor());
             buffer.writeFloat(element.getElectrodePotential());
 
             buffer.writeInt(element.getItems().size());
             for (int i = 0; i < element.getItems().size(); i++) {
-                buffer.writeString(element.getItems().get(i));
+                buffer.writeUtf(element.getItems().get(i));
                 buffer.writeInt(element.getValues().get(i));
             }
 
@@ -457,10 +457,10 @@ public class ElementRecipe implements IRecipe<IInventory> {
                     buffer.writeInt(formula.getBreaks().length);
                     for (int i = 0; i < formula.getBreaks().length; i++) {
                         buffer.writeInt(formula.getBreaks()[i]);
-                        buffer.writeString(formula.getFormulaTypes()[i].toString().toUpperCase(Locale.ROOT));
+                        buffer.writeUtf(formula.getFormulaTypes()[i].toString().toUpperCase(Locale.ROOT));
                         buffer.writeFloat(formula.getA()[i]);
                         buffer.writeFloat(formula.getB()[i]);
-                        buffer.writeString(formula.getFormulaModifiers()[i].toString().toUpperCase(Locale.ROOT));
+                        buffer.writeUtf(formula.getFormulaModifiers()[i].toString().toUpperCase(Locale.ROOT));
                         buffer.writeFloat(formula.getLimit()[i]);
                     }
                 }
@@ -468,8 +468,8 @@ public class ElementRecipe implements IRecipe<IInventory> {
             int size = element.getEnchantments().size();
             buffer.writeInt(size);
             for (int i = 0; i < size; i++) {
-                buffer.writeString(element.getEnchantments().get(i));
-                buffer.writeString(element.getEnchantmentTypes().get(i));
+                buffer.writeUtf(element.getEnchantments().get(i));
+                buffer.writeUtf(element.getEnchantmentTypes().get(i));
                 buffer.writeFloat(element.getEnchantmentFactors().get(i));
             }
         }

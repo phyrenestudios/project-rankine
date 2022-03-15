@@ -18,8 +18,8 @@ public class RankineEntityTypeTagsProvider extends EntityTypeTagsProvider {
     }
 
     @Override
-    protected void registerTags() {
-        getOrCreateBuilder(EntityTypeTags.ARROWS).add(RankineEntityTypes.ALLOY_ARROW,RankineEntityTypes.MAGNESIUM_ARROW,RankineEntityTypes.THORIUM_ARROW,RankineEntityTypes.ROPE_COIL_ARROW);
+    protected void addTags() {
+        tag(EntityTypeTags.ARROWS).add(RankineEntityTypes.ALLOY_ARROW,RankineEntityTypes.MAGNESIUM_ARROW,RankineEntityTypes.THORIUM_ARROW,RankineEntityTypes.ROPE_COIL_ARROW);
 
     }
 

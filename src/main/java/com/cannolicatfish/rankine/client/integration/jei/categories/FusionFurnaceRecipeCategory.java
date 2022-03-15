@@ -39,7 +39,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnac
 
     public FusionFurnaceRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(180, 90);
-        localizedName = I18n.format("rankine.jei.fusion_furnace");
+        localizedName = I18n.get("rankine.jei.fusion_furnace");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/fusion_furnace_jei.png"),
                 0, 15, 175, 80);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineItems.FUSION_FURNACE.get()));
@@ -72,7 +72,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnac
 
     @Override
     public void draw(FusionFurnaceRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().fontRenderer;
+        FontRenderer font = Minecraft.getInstance().font;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -85,7 +85,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnac
     public void setIngredients(FusionFurnaceRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getMatchingStacks()));
+            builder.add(Arrays.asList(i.getItems()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
         iIngredients.setInput(VanillaTypes.FLUID,recipe.getFluidIn());

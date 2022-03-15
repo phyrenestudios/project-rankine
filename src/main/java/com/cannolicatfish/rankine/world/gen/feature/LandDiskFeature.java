@@ -16,9 +16,9 @@ public class LandDiskFeature extends Feature<SphereReplaceConfig> {
         super(codec);
         }
 
-public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, SphereReplaceConfig config) {
+public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, SphereReplaceConfig config) {
     boolean flag = false;
-    int i = config.radius.getSpread(rand);
+    int i = config.radius.sample(rand);
 
     for(int j = pos.getX() - i; j <= pos.getX() + i; ++j) {
         for(int k = pos.getZ() - i; k <= pos.getZ() + i; ++k) {
@@ -30,8 +30,8 @@ public boolean generate(ISeedReader reader, ChunkGenerator generator, Random ran
                     Block block = reader.getBlockState(blockpos).getBlock();
 
                     for(BlockState blockstate : config.targets) {
-                        if (blockstate.matchesBlock(block)) {
-                            reader.setBlockState(blockpos, config.state, 2);
+                        if (blockstate.is(block)) {
+                            reader.setBlock(blockpos, config.state, 2);
                             flag = true;
                             break;
                         }

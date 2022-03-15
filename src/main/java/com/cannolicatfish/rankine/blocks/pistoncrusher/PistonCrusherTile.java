@@ -83,15 +83,15 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
             }
         }
 
-        public int size() {
+        public int getCount() {
             return 4;
         }
     };
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
-        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt,this.items);
         this.burnTime = nbt.getInt("BurnTime");
         this.cookTime = nbt.getInt("CookTime");
@@ -100,8 +100,8 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
@@ -117,11 +117,11 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
             --this.burnTime;
         }
 
-        if (!this.world.isRemote) {
+        if (!this.level.isClientSide) {
             ItemStack input = this.items.get(0);
             ItemStack fuel = this.items.get(1);
             if ((this.isBurning() || !fuel.isEmpty() && !this.items.get(0).isEmpty())) {
-                CrushingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUSHING, this, this.world).orElse(null);
+                CrushingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUSHING, this, this.level).orElse(null);
                 if (!this.isBurning() && this.canSmelt(irecipe)) {
                     this.burnTime = ForgeHooks.getBurnTime(fuel);
                     this.currentBurnTime = this.burnTime;
@@ -143,7 +143,7 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
                 if (this.isBurning() && this.canSmelt(irecipe)) {
                     cookTime++;
                     if (cookTime >= cookTimeTotal) {
-                        List<ItemStack> results = irecipe.getResults(2,this.world);
+                        List<ItemStack> results = irecipe.getResults(2,this.level);
 
                         for (int i = 0; i < results.size(); i++) {
                             if (this.items.get(2 + i).getCount() > 0) {
@@ -166,12 +166,12 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
 
             if (flag != this.isBurning()) {
                 flag1 = true;
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
+                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
             }
         }
 
         if (flag1) {
-            this.markDirty();
+            this.setChanged();
         }
 
     }
@@ -190,7 +190,7 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
     private boolean canSmelt(@Nullable CrushingRecipe recipeIn)
     {
         if (!this.items.get(0).isEmpty() && recipeIn != null) {
-            List<ItemStack> itemstacks = recipeIn.getPossibleResults(2,this.world);
+            List<ItemStack> itemstacks = recipeIn.getPossibleResults(2,this.level);
             if (itemstacks.isEmpty()) {
                 return false;
             } else {
@@ -199,12 +199,12 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
                 ItemStack itemstack3 = this.items.get(4);
                 if (itemstack1.isEmpty() && itemstack2.isEmpty() && itemstack3.isEmpty()) {
                     return true;
-                } else if ((!itemstack1.isItemEqual(itemstacks.get(0)) && !itemstack1.isEmpty()) || (!itemstack2.isItemEqual(itemstacks.get(1)) && !itemstack2.isEmpty())
-                        || (!itemstack3.isItemEqual(itemstacks.get(2)) && !itemstack3.isEmpty())) {
+                } else if ((!itemstack1.sameItem(itemstacks.get(0)) && !itemstack1.isEmpty()) || (!itemstack2.sameItem(itemstacks.get(1)) && !itemstack2.isEmpty())
+                        || (!itemstack3.sameItem(itemstacks.get(2)) && !itemstack3.isEmpty())) {
                     return false;
-                } else if (itemstack1.getCount() + itemstacks.get(0).getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstacks.get(0).getCount() <= itemstack1.getMaxStackSize() &&
-                        itemstack2.getCount() + itemstacks.get(1).getCount() <= this.getInventoryStackLimit() && itemstack2.getCount() + itemstacks.get(1).getCount() <= itemstack2.getMaxStackSize() &&
-                        itemstack3.getCount() + itemstacks.get(2).getCount() <= this.getInventoryStackLimit() && itemstack3.getCount() + itemstacks.get(2).getCount() <= itemstack3.getMaxStackSize()) {
+                } else if (itemstack1.getCount() + itemstacks.get(0).getCount() <= this.getMaxStackSize() && itemstack1.getCount() + itemstacks.get(0).getCount() <= itemstack1.getMaxStackSize() &&
+                        itemstack2.getCount() + itemstacks.get(1).getCount() <= this.getMaxStackSize() && itemstack2.getCount() + itemstacks.get(1).getCount() <= itemstack2.getMaxStackSize() &&
+                        itemstack3.getCount() + itemstacks.get(2).getCount() <= this.getMaxStackSize() && itemstack3.getCount() + itemstacks.get(2).getCount() <= itemstack3.getMaxStackSize()) {
                     return true;
                 } else {
                     return itemstack1.getCount() + itemstacks.get(0).getCount() <= itemstacks.get(0).getMaxStackSize() &&
@@ -222,7 +222,7 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
 
     @Override
     public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (facing == Direction.UP)
                 return handlers[0].cast();
             else if (facing == Direction.DOWN)
@@ -234,8 +234,8 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
     }
 
     @Override
-    public void remove() {
-        super.remove();
+    public void setRemoved() {
+        super.setRemoved();
         for (int x = 0; x < handlers.length; x++)
             handlers[x].invalidate();
     }
@@ -248,7 +248,7 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
     @Override
     @Nullable
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new PistonCrusherContainer(i, world, pos, playerInventory, playerEntity, this, this.furnaceData);
+        return new PistonCrusherContainer(i, level, worldPosition, playerInventory, playerEntity, this, this.furnaceData);
     }
 
 
@@ -262,17 +262,17 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, @Nullable Direction direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, @Nullable Direction direction) {
+        return this.canPlaceItem(index, itemStackIn);
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         return true;
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return this.items.size();
     }
 
@@ -288,51 +288,51 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public ItemStack getItem(int index) {
         return this.items.get(index);
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return ItemStackHelper.getAndSplit(this.items, index, count);
+    public ItemStack removeItem(int index, int count) {
+        return ItemStackHelper.removeItem(this.items, index, count);
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.items, index);
+    public ItemStack removeItemNoUpdate(int index) {
+        return ItemStackHelper.takeItem(this.items, index);
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
         this.items.set(index, stack);
-        if (stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
         }
 
         if (index == 0 && !flag) {
             this.cookTimeTotal = 200;
             this.cookTime = 0;
-            this.markDirty();
+            this.setChanged();
         }
     }
 
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        if (this.world.getTileEntity(this.pos) != this) {
+    public boolean stillValid(PlayerEntity player) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
-            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+            return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
         }
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
-        CrushingRecipe recipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUSHING, this, this.world).orElse(null);
+    public boolean canPlaceItem(int index, ItemStack stack) {
+        CrushingRecipe recipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUSHING, this, this.level).orElse(null);
         List<ItemStack> outputs = Arrays.asList(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY);
         if (recipe != null) {
-            outputs = recipe.getPossibleResults(3, this.world);
+            outputs = recipe.getPossibleResults(3, this.level);
         }
         switch (index)
         {
@@ -341,18 +341,18 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
             case 1:
                 return AbstractFurnaceTileEntity.isFuel(stack);
             case 2:
-                return ItemStack.areItemsEqual(outputs.get(0), stack);
+                return ItemStack.isSame(outputs.get(0), stack);
             case 3:
-                return ItemStack.areItemsEqual(outputs.get(1), stack);
+                return ItemStack.isSame(outputs.get(1), stack);
             case 4:
-                return ItemStack.areItemsEqual(outputs.get(2), stack);
+                return ItemStack.isSame(outputs.get(2), stack);
             default:
                 return false;
         }
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.items.clear();
     }
 }

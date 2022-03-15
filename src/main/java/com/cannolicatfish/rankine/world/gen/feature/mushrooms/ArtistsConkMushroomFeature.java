@@ -19,29 +19,29 @@ public class ArtistsConkMushroomFeature extends Feature<BlockStateProvidingFeatu
         super(configFactoryIn);
     }
 
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config) {
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config) {
         return false;
     }
 
     public static boolean growMushroom(ISeedReader reader, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config, Direction dir) {
         boolean flag = true;
-        for (BlockPos b : BlockPos.getAllInBoxMutable(pos.offset(dir.rotateY()),pos.offset(dir).offset(dir.rotateYCCW()))) {
+        for (BlockPos b : BlockPos.betweenClosed(pos.relative(dir.getClockWise()),pos.relative(dir).relative(dir.getCounterClockWise()))) {
             if (!WorldgenUtils.isAirOrLeaves(reader,b)) {
                 flag = false;
             }
         }
 
         if (flag) {
-            BlockState state = config.stateProvider.getBlockState(rand, pos);
-            Direction dir2 = rand.nextBoolean() ? dir.rotateY() : dir.rotateYCCW();
+            BlockState state = config.stateProvider.getState(rand, pos);
+            Direction dir2 = rand.nextBoolean() ? dir.getClockWise() : dir.getCounterClockWise();
 
-            reader.setBlockState(pos, state, 3);
-            reader.setBlockState(pos.offset(dir2), state, 3);
-            reader.setBlockState(pos.offset(dir2.getOpposite()), state, 3);
-            reader.setBlockState(pos.offset(dir2).offset(dir2), state, 3);
-            reader.setBlockState(pos.offset(dir2).offset(dir.getOpposite()), state, 3);
-            reader.setBlockState(pos.offset(dir), state, 3);
-            reader.setBlockState(pos.offset(dir).offset(dir2), state, 3);
+            reader.setBlock(pos, state, 3);
+            reader.setBlock(pos.relative(dir2), state, 3);
+            reader.setBlock(pos.relative(dir2.getOpposite()), state, 3);
+            reader.setBlock(pos.relative(dir2).relative(dir2), state, 3);
+            reader.setBlock(pos.relative(dir2).relative(dir.getOpposite()), state, 3);
+            reader.setBlock(pos.relative(dir), state, 3);
+            reader.setBlock(pos.relative(dir).relative(dir2), state, 3);
 
             return true;
         }

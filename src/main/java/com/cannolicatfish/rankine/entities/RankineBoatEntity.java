@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class RankineBoatEntity extends BoatEntity {
-    private static final DataParameter<Integer> BOAT_TYPE = EntityDataManager.createKey(RankineBoatEntity.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> BOAT_TYPE = EntityDataManager.defineId(RankineBoatEntity.class, DataSerializers.INT);
     public RankineBoatEntity(EntityType<? extends BoatEntity> entityType, World worldIn)
     {
         super(entityType, worldIn);
@@ -27,36 +27,36 @@ public class RankineBoatEntity extends BoatEntity {
 
     public RankineBoatEntity(World worldIn, double x, double y, double z) {
         this(RankineEntityTypes.RANKINE_BOAT, worldIn);
-        this.setPosition(x, y, z);
-        this.setMotion(Vector3d.ZERO);
-        this.prevPosX = x;
-        this.prevPosY = y;
-        this.prevPosZ = z;
+        this.setPos(x, y, z);
+        this.setDeltaMovement(Vector3d.ZERO);
+        this.xo = x;
+        this.yo = y;
+        this.zo = z;
     }
 
-    protected void registerData()
+    protected void defineSynchedData()
     {
-        super.registerData();
-        this.dataManager.register(BOAT_TYPE, RankineBoatEntity.Type.OAK.ordinal());
+        super.defineSynchedData();
+        this.entityData.define(BOAT_TYPE, RankineBoatEntity.Type.OAK.ordinal());
     }
 
-    public IPacket<?> createSpawnPacket()
+    public IPacket<?> getAddEntityPacket()
     {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    protected void writeAdditional(CompoundNBT compound) {
+    protected void addAdditionalSaveData(CompoundNBT compound) {
         compound.putString("Type", this.getRankineBoatType().getName());
     }
 
-    protected void readAdditional(CompoundNBT compound) {
+    protected void readAdditionalSaveData(CompoundNBT compound) {
         if (compound.contains("Type", 8)) {
             this.setRankineBoatType(RankineBoatEntity.Type.getTypeFromString(compound.getString("Type")));
         }
 
     }
 
-    public Item getItemBoat() {
+    public Item getDropItem() {
         switch(this.getRankineBoatType()) {
             case OAK:
             default:
@@ -120,11 +120,11 @@ public class RankineBoatEntity extends BoatEntity {
 
 
     public RankineBoatEntity.Type getRankineBoatType() {
-        return RankineBoatEntity.Type.byId(this.dataManager.get(BOAT_TYPE));
+        return RankineBoatEntity.Type.byId(this.entityData.get(BOAT_TYPE));
     }
 
     public void setRankineBoatType(RankineBoatEntity.Type boatType) {
-        this.dataManager.set(BOAT_TYPE, boatType.ordinal());
+        this.entityData.set(BOAT_TYPE, boatType.ordinal());
     }
 
     public enum Type {

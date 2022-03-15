@@ -41,13 +41,15 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
 
+import net.minecraft.item.Item.Properties;
+
 public class AlloyTemplateItem extends Item {
     public AlloyTemplateItem(Properties properties) {
         super(properties);
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
+    public ITextComponent getName(ItemStack stack) {
         if (isTemplateInit(stack)) {
             int stackSize = getStackSize(stack);
             Item output = ForgeRegistries.ITEMS.getValue(getOutputAsResourceLocation(stack));
@@ -60,14 +62,14 @@ public class AlloyTemplateItem extends Item {
                         nameOverride = generateLangFromRecipe(((IAlloyItem) output).getDefaultRecipe());
                     }
                 }
-                String translate = new TranslationTextComponent(output.getTranslationKey(),new TranslationTextComponent(nameOverride).getString()).getString();
-                String template = new TranslationTextComponent(this.getTranslationKey(stack)).getString();
+                String translate = new TranslationTextComponent(output.getDescriptionId(),new TranslationTextComponent(nameOverride).getString()).getString();
+                String template = new TranslationTextComponent(this.getDescriptionId(stack)).getString();
                 return new StringTextComponent( stackSize + "x " + translate + " " + template);
             } else {
-                return super.getDisplayName(stack);
+                return super.getName(stack);
             }
         } else {
-            return super.getDisplayName(stack);
+            return super.getName(stack);
         }
     }
 
@@ -96,15 +98,15 @@ public class AlloyTemplateItem extends Item {
 
     private static Ingredient getIngredientFromString(String s) {
         if (s.contains("T#")) {
-            ITag<Item> tag = ItemTags.getCollection().get(new ResourceLocation(s.split("T#")[1]));
+            ITag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
 
             if (tag != null){
-                return Ingredient.fromTag(tag);
+                return Ingredient.of(tag);
             }
         } else if (s.contains("I#")) {
             Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(s.split("I#")[1]));
             if (item != null) {
-                return Ingredient.fromItems(() -> item);
+                return Ingredient.of(() -> item);
             }
         }
         return Ingredient.EMPTY;
@@ -112,10 +114,10 @@ public class AlloyTemplateItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (isTemplateInit(stack)) {
-            tooltip.add(new StringTextComponent("Composition: " + getAlloyComp(stack)).mergeStyle(TextFormatting.GRAY));
-            tooltip.add(new StringTextComponent("Requires:").mergeStyle(TextFormatting.DARK_GREEN));
+            tooltip.add(new StringTextComponent("Composition: " + getAlloyComp(stack)).withStyle(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent("Requires:").withStyle(TextFormatting.DARK_GREEN));
             ListNBT inputs = getStoredTemplate(stack);
             for (int i = 0; i < inputs.size(); i++) {
                 CompoundNBT nbt = inputs.getCompound(i);
@@ -124,11 +126,11 @@ public class AlloyTemplateItem extends Item {
                 if (ing.contains("#")) {
                     ing = ing.split("#")[1];
                 }
-                tooltip.add(new StringTextComponent(ingAmount + "x " + ing).mergeStyle(TextFormatting.GRAY));
+                tooltip.add(new StringTextComponent(ingAmount + "x " + ing).withStyle(TextFormatting.GRAY));
                 if (Screen.hasShiftDown() && worldIn != null) {
                     ResourceLocation id = new ResourceLocation(nbt.getString("element"));
                     int amount = nbt.getShort("elementAmount");
-                    IRecipe<?> recipe = worldIn.getRecipeManager().getRecipe(id).orElse(null);
+                    IRecipe<?> recipe = worldIn.getRecipeManager().byKey(id).orElse(null);
                     if (recipe instanceof ElementRecipe) {
                         ElementRecipe element = (ElementRecipe) recipe;
                         String elementName = element.getName();
@@ -136,20 +138,20 @@ public class AlloyTemplateItem extends Item {
                             elementName = elementName.substring(0,1).toUpperCase(Locale.ROOT) + elementName.substring(1);
                         }
                         String display = elementName + " (" + element.getSymbol() + ")";
-                        tooltip.add(new StringTextComponent("    " +amount + "x " + display).mergeStyle(TextFormatting.GRAY));
+                        tooltip.add(new StringTextComponent("    " +amount + "x " + display).withStyle(TextFormatting.GRAY));
                     }
 
                 }
             }
 
             tooltip.add(new StringTextComponent( ""));
-            tooltip.add(new StringTextComponent( "Made in:").mergeStyle(TextFormatting.DARK_GREEN));
+            tooltip.add(new StringTextComponent( "Made in:").withStyle(TextFormatting.DARK_GREEN));
             int tier = getAlloyTier(stack);
             if ((tier & 1) != 0) {
-                tooltip.add(new TranslationTextComponent(RankineBlocks.ALLOY_FURNACE.get().getTranslationKey()).mergeStyle(TextFormatting.GRAY));
+                tooltip.add(new TranslationTextComponent(RankineBlocks.ALLOY_FURNACE.get().getDescriptionId()).withStyle(TextFormatting.GRAY));
             }
             if ((tier & 2) != 0) {
-                tooltip.add(new TranslationTextComponent(RankineBlocks.INDUCTION_FURNACE.get().getTranslationKey()).mergeStyle(TextFormatting.GRAY));
+                tooltip.add(new TranslationTextComponent(RankineBlocks.INDUCTION_FURNACE.get().getDescriptionId()).withStyle(TextFormatting.GRAY));
             }
         }
     }
@@ -181,14 +183,14 @@ public class AlloyTemplateItem extends Item {
         List<Integer> amounts = new ArrayList<>();
         for (int i = startIndex; i < endIndex; i++)
         {
-            ItemStack invStackInSlot = inv.getStackInSlot(i);
+            ItemStack invStackInSlot = inv.getItem(i);
             if (stack.isEmpty())
             {
                 continue;
             }
 
             Inventory temp = new Inventory(invStackInSlot);
-            ElementRecipe elem = worldIn.getRecipeManager().getRecipe(RankineRecipeTypes.ELEMENT, temp, worldIn).orElse(null);
+            ElementRecipe elem = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, temp, worldIn).orElse(null);
             if (elem != null) {
                 ingredients.add(elem.getIngredientFromCount(elem.getMaterialCount(invStackInSlot.getItem())));
                 amounts.add(invStackInSlot.getCount());
@@ -223,7 +225,7 @@ public class AlloyTemplateItem extends Item {
                         CompoundNBT nbt = storedTemp.getCompound(i);
                         ResourceLocation elem = new ResourceLocation(nbt.getString("element"));
                         int amount = nbt.getShort("elementAmount");
-                        IRecipe<?> recipe = worldIn.getRecipeManager().getRecipe(elem).orElse(null);
+                        IRecipe<?> recipe = worldIn.getRecipeManager().byKey(elem).orElse(null);
                         if (recipe instanceof ElementRecipe) {
                             elementMap.put((ElementRecipe) recipe,amount);
                         }
@@ -327,7 +329,7 @@ public class AlloyTemplateItem extends Item {
                 ResourceLocation elem = new ResourceLocation(nbt.getString("element"));
                 int amount = nbt.getShort("elementAmount");
                 if (worldIn != null) {
-                    IRecipe<?> recipe = worldIn.getRecipeManager().getRecipe(elem).orElse(null);
+                    IRecipe<?> recipe = worldIn.getRecipeManager().byKey(elem).orElse(null);
                     if (recipe instanceof ElementRecipe) {
                         outMap.put((ElementRecipe) recipe, amount);
                     }
@@ -349,7 +351,7 @@ public class AlloyTemplateItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (getTemplate(stack).size() == 0 && !worldIn.isRemote)
+        if (getTemplate(stack).size() == 0 && !worldIn.isClientSide)
         {
             int random = worldIn.getRandom().nextInt(16);
             ItemStack[] inputs;
@@ -414,7 +416,7 @@ public class AlloyTemplateItem extends Item {
                     break;
             }
             sim = new Inventory(inputs);
-            recipeIn = worldIn.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, sim, worldIn).orElse(null);
+            recipeIn = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, sim, worldIn).orElse(null);
             if (recipeIn != null) {
                 AlloyTemplateItem.addTemplate(worldIn,stack, recipeIn, new Inventory(inputs), (DyeItem) Items.WHITE_DYE);
             }

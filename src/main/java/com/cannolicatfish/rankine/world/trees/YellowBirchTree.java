@@ -13,7 +13,7 @@ public class YellowBirchTree extends Tree {
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return RankineFeatures.BIRCH_TREE.get().withConfiguration(RankineBiomeFeatures.YELLOW_BIRCH_TREE_CONFIG);
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
+        return RankineFeatures.BIRCH_TREE.get().configured(RankineBiomeFeatures.YELLOW_BIRCH_TREE_CONFIG);
     }
 }

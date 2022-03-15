@@ -25,23 +25,25 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class LocustSpineBlock extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
-    protected static final VoxelShape[] UP_SHAPES = new VoxelShape[] {Block.makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 3.0D, 11.0D)};
-    protected static final VoxelShape[] DOWN_SHAPES = new VoxelShape[] {Block.makeCuboidShape(5.0D, 13.0D, 5.0D, 11.0D, 16.0D, 11.0D)};
-    protected static final VoxelShape[] NORTH_SHAPES = new VoxelShape[] {Block.makeCuboidShape(5.0D, 5.0D, 13.0D, 11.0D, 11.0D, 16.0D)};
-    protected static final VoxelShape[] SOUTH_SHAPES = new VoxelShape[] {Block.makeCuboidShape(5.0D, 5.0D, 0.0D, 11.0D, 11.0D, 3.0D)};
-    protected static final VoxelShape[] WEST_SHAPES = new VoxelShape[] {Block.makeCuboidShape(13.0D, 5.0D, 5.0D, 16.0D, 11.0D, 11.0D)};
-    protected static final VoxelShape[] EAST_SHAPES = new VoxelShape[] {Block.makeCuboidShape(0.0D, 5.0D, 5.0D, 3.0D, 11.0D, 11.0D)};
+    protected static final VoxelShape[] UP_SHAPES = new VoxelShape[] {Block.box(5.0D, 0.0D, 5.0D, 11.0D, 3.0D, 11.0D)};
+    protected static final VoxelShape[] DOWN_SHAPES = new VoxelShape[] {Block.box(5.0D, 13.0D, 5.0D, 11.0D, 16.0D, 11.0D)};
+    protected static final VoxelShape[] NORTH_SHAPES = new VoxelShape[] {Block.box(5.0D, 5.0D, 13.0D, 11.0D, 11.0D, 16.0D)};
+    protected static final VoxelShape[] SOUTH_SHAPES = new VoxelShape[] {Block.box(5.0D, 5.0D, 0.0D, 11.0D, 11.0D, 3.0D)};
+    protected static final VoxelShape[] WEST_SHAPES = new VoxelShape[] {Block.box(13.0D, 5.0D, 5.0D, 16.0D, 11.0D, 11.0D)};
+    protected static final VoxelShape[] EAST_SHAPES = new VoxelShape[] {Block.box(0.0D, 5.0D, 5.0D, 3.0D, 11.0D, 11.0D)};
 
     public LocustSpineBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.UP));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP));
     }
 
     @Override
-    public VoxelShape getRayTraceShape(BlockState state, IBlockReader p_230322_2_, BlockPos p_230322_3_, ISelectionContext p_230322_4_) {
-        switch(state.get(FACING)) {
+    public VoxelShape getVisualShape(BlockState state, IBlockReader p_230322_2_, BlockPos p_230322_3_, ISelectionContext p_230322_4_) {
+        switch(state.getValue(FACING)) {
             case UP:
                 return UP_SHAPES[0];
             case DOWN:
@@ -58,8 +60,8 @@ public class LocustSpineBlock extends Block {
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        switch(state.get(FACING)) {
+    public VoxelShape getBlockSupportShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        switch(state.getValue(FACING)) {
             case UP:
                 return UP_SHAPES[0];
             case DOWN:
@@ -78,7 +80,7 @@ public class LocustSpineBlock extends Block {
     @Nonnull
     @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch(state.get(FACING)) {
+        switch(state.getValue(FACING)) {
             case UP:
                 return UP_SHAPES[0];
             case DOWN:
@@ -95,22 +97,22 @@ public class LocustSpineBlock extends Block {
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        Direction direction = context.getFace();
-        return this.getDefaultState().with(FACING, direction);
+        Direction direction = context.getClickedFace();
+        return this.defaultBlockState().setValue(FACING, direction);
     }
 
     @SuppressWarnings("deprecation")
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.offset(state.get(FACING).getOpposite())).isIn(RankineTags.Blocks.HONEY_LOCUST_LOGS);
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        return worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite())).is(RankineTags.Blocks.HONEY_LOCUST_LOGS);
     }
 
     @Nonnull
     @SuppressWarnings("deprecation")
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        return !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        return !this.canSurvive(stateIn, worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 
@@ -119,19 +121,19 @@ public class LocustSpineBlock extends Block {
     //}
 
     @OnlyIn(Dist.CLIENT)
-    public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
-        return adjacentBlockState.getBlock() == this || super.isSideInvisible(state, adjacentBlockState, side);
+    public boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+        return adjacentBlockState.getBlock() == this || super.skipRendering(state, adjacentBlockState, side);
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity) {
-            entityIn.setMotionMultiplier(state, new Vector3d((double)0.98F, 0.98D, (double)0.98F));
-            if (!worldIn.isRemote && (entityIn.lastTickPosX != entityIn.getPosX() || entityIn.lastTickPosZ != entityIn.getPosZ())) {
-                double d0 = Math.abs(entityIn.getPosX() - entityIn.lastTickPosX);
-                double d1 = Math.abs(entityIn.getPosZ() - entityIn.lastTickPosZ);
+            entityIn.makeStuckInBlock(state, new Vector3d((double)0.98F, 0.98D, (double)0.98F));
+            if (!worldIn.isClientSide && (entityIn.xOld != entityIn.getX() || entityIn.zOld != entityIn.getZ())) {
+                double d0 = Math.abs(entityIn.getX() - entityIn.xOld);
+                double d1 = Math.abs(entityIn.getZ() - entityIn.zOld);
                 if (d0 >= (double)0.01F || d1 >= (double)0.01F) {
-                    entityIn.attackEntityFrom(DamageSource.CACTUS, 0.5F);
+                    entityIn.hurt(DamageSource.CACTUS, 0.5F);
                 }
             }
         }
@@ -147,7 +149,7 @@ public class LocustSpineBlock extends Block {
     }
 
     @Override
-    public boolean isReplaceable(BlockState p_196253_1_, BlockItemUseContext p_196253_2_) {
+    public boolean canBeReplaced(BlockState p_196253_1_, BlockItemUseContext p_196253_2_) {
         return true;
     }
 }

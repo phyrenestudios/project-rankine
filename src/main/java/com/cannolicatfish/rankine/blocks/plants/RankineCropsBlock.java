@@ -7,20 +7,22 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraftforge.common.Tags;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class RankineCropsBlock extends CropsBlock {
     public RankineCropsBlock(Properties builder) {
         super(builder);
     }
 
     public void placeAt(IWorld worldIn, BlockPos pos, int flags) {
-        worldIn.setBlockState(pos, this.getDefaultState().with(AGE, 7), flags);
+        worldIn.setBlock(pos, this.defaultBlockState().setValue(AGE, 7), flags);
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        if (state.get(AGE) == 7) {
-            return worldIn.getBlockState(pos.down()).isIn(Tags.Blocks.DIRT) || super.isValidPosition(state, worldIn, pos);
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        if (state.getValue(AGE) == 7) {
+            return worldIn.getBlockState(pos.below()).is(Tags.Blocks.DIRT) || super.canSurvive(state, worldIn, pos);
         }
-        return super.isValidPosition(state, worldIn, pos);
+        return super.canSurvive(state, worldIn, pos);
     }
 }

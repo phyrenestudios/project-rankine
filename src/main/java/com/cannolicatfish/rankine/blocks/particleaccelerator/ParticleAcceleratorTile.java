@@ -12,8 +12,8 @@ public class ParticleAcceleratorTile extends TileEntity implements ITickableTile
     }
 
     public void tick() {
-        if (!world.isAreaLoaded(pos, 1)) return;
-        if (world.isBlockPowered(pos)) {
+        if (!level.isAreaLoaded(worldPosition, 1)) return;
+        if (level.hasNeighborSignal(worldPosition)) {
 
         }
     }

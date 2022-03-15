@@ -46,14 +46,14 @@ public class MixingBarrelContainer extends Container {
     }
     public MixingBarrelContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray furnaceData) {
         super(MIXING_BARREL_CONTAINER, windowId);
-        tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 5);
-        assertIntArraySize(furnaceData, 4);
+        tileEntity = world.getBlockEntity(pos);
+        checkContainerSize(furnaceInventoryIn, 5);
+        checkContainerDataCount(furnaceData, 4);
         this.playerEntity = player;
         this.data = furnaceData;
         this.furnaceInventory = furnaceInventoryIn;
         this.playerInventory = new InvWrapper(playerInventory);
-        this.world = playerEntity.world;
+        this.world = playerEntity.level;
 
         this.addSlot(new Slot(furnaceInventory, 0, 40, 16));
         this.addSlot(new Slot(furnaceInventory, 1, 66,16));
@@ -63,7 +63,7 @@ public class MixingBarrelContainer extends Container {
 
         layoutPlayerInventorySlots(10, 86);
 
-        this.trackIntArray(furnaceData);
+        this.addDataSlots(furnaceData);
     }
 
 
@@ -83,8 +83,8 @@ public class MixingBarrelContainer extends Container {
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.MIXING_BARREL.get());
+    public boolean stillValid(PlayerEntity playerIn) {
+        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, RankineBlocks.MIXING_BARREL.get());
     }
 
     public FluidTank getInputTank() {
@@ -93,44 +93,44 @@ public class MixingBarrelContainer extends Container {
     }
 
     @Override
-    public void detectAndSendChanges() {
-        super.detectAndSendChanges();
+    public void broadcastChanges() {
+        super.broadcastChanges();
         MixingBarrelTile mixingBarrelTile = (MixingBarrelTile) tileEntity;
-        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new FluidStackPacket(mixingBarrelTile.getInputTank().getFluid(),tileEntity.getPos(),true));
+        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new FluidStackPacket(mixingBarrelTile.getInputTank().getFluid(),tileEntity.getBlockPos(),true));
     }
 
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
-        if (slot != null && slot.getHasStack()) {
-            ItemStack stack = slot.getStack();
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
+            ItemStack stack = slot.getItem();
             itemstack = stack.copy();
             if (index == 4) {
-                if (!this.mergeItemStack(stack, 5, 41, true)) {
+                if (!this.moveItemStackTo(stack, 5, 41, true)) {
                     return ItemStack.EMPTY;
                 }
-                slot.onSlotChange(stack, itemstack);
+                slot.onQuickCraft(stack, itemstack);
             } else if (index > 4) {
-                if (!this.mergeItemStack(stack, 0, 3, false)) {
+                if (!this.moveItemStackTo(stack, 0, 3, false)) {
                     return ItemStack.EMPTY;
                 }
                 else if (index < 32) {
-                    if (!this.mergeItemStack(stack, 32, 41, false)) {
+                    if (!this.moveItemStackTo(stack, 32, 41, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 41 && !this.mergeItemStack(stack, 6, 32, false)) {
+                } else if (index < 41 && !this.moveItemStackTo(stack, 6, 32, false)) {
                     return ItemStack.EMPTY;
                 }
             }
-            else if (!this.mergeItemStack(stack, 5, 41, false)) {
+            else if (!this.moveItemStackTo(stack, 5, 41, false)) {
                 return ItemStack.EMPTY;
             }
 
             if (stack.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
 
             if (stack.getCount() == itemstack.getCount()) {
@@ -144,7 +144,7 @@ public class MixingBarrelContainer extends Container {
     }
 
     protected boolean hasRecipe(ItemStack stack) {
-        for (MixingRecipe recipe : this.world.getRecipeManager().getRecipesForType(RankineRecipeTypes.MIXING)) {
+        for (MixingRecipe recipe : this.world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.MIXING)) {
             for (Ingredient i : recipe.getIngredients()) {
                 if (i.test(stack)) {
                     return true;
@@ -194,10 +194,10 @@ public class MixingBarrelContainer extends Container {
     }
 
     public String[] getSlotPercentages() {
-        int slot1 = furnaceInventory.getStackInSlot(0).getCount();
-        int slot2 = furnaceInventory.getStackInSlot(1).getCount();
-        int slot3 = furnaceInventory.getStackInSlot(2).getCount();
-        int slot4 = furnaceInventory.getStackInSlot(3).getCount();
+        int slot1 = furnaceInventory.getItem(0).getCount();
+        int slot2 = furnaceInventory.getItem(1).getCount();
+        int slot3 = furnaceInventory.getItem(2).getCount();
+        int slot4 = furnaceInventory.getItem(3).getCount();
         float sum = slot1 + slot2 + slot3 + slot4;
         return new String[]{Math.round(slot1/sum * 100f) + "%", Math.round(slot2/sum * 100f)+ "%", Math.round(slot3/sum * 100f)+ "%", Math.round(slot4/sum * 100f)+ "%"};
 

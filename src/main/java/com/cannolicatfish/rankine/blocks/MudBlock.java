@@ -20,18 +20,18 @@ import java.util.Random;
 
 public class MudBlock extends Block {
     public MudBlock() {
-        super(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0));
+        super(AbstractBlock.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.GRAVEL).harvestTool(ToolType.SHOVEL).strength(0.5F).harvestLevel(0));
     }
 
     @Override
-    public boolean ticksRandomly(BlockState state) {
+    public boolean isRandomlyTicking(BlockState state) {
         return true;
     }
 
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!WorldgenUtils.isWet((ISeedReader) worldIn, pos)) {
-            worldIn.setBlockState(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.MUD_BLOCKS.indexOf(state.getBlock())).getDefaultState(), 2);
+            worldIn.setBlock(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.MUD_BLOCKS.indexOf(state.getBlock())).defaultBlockState(), 2);
         }
     }
 

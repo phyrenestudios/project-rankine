@@ -49,9 +49,9 @@ public class AlloyFurnaceContainer extends Container {
     }
     public AlloyFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn,  IIntArray furnaceData) {
         super(ALLOY_FURNACE_CONTAINER, windowId);
-        tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 9);
-        assertIntArraySize(furnaceData, 5);
+        tileEntity = world.getBlockEntity(pos);
+        checkContainerSize(furnaceInventoryIn, 9);
+        checkContainerDataCount(furnaceData, 5);
         this.playerEntity = player;
         this.furnaceInventory = furnaceInventoryIn;
         this.data = furnaceData;
@@ -70,16 +70,16 @@ public class AlloyFurnaceContainer extends Container {
 
         layoutPlayerInventorySlots(8, 86);
 
-        this.trackIntArray(furnaceData);
+        this.addDataSlots(furnaceData);
     }
 
     @OnlyIn(Dist.CLIENT)
     public AbstractMap.SimpleEntry<String[],Integer> getOutputString() {
-        if (furnaceInventory.getStackInSlot(7).getItem() instanceof AlloyTemplateItem) {
-            ItemStack template = furnaceInventory.getStackInSlot(7);
+        if (furnaceInventory.getItem(7).getItem() instanceof AlloyTemplateItem) {
+            ItemStack template = furnaceInventory.getItem(7);
             boolean correctInputs = (AlloyTemplateItem.getAlloyTier(template) & 1) == 1;
             if (correctInputs) {
-                Map<ElementRecipe,Integer> map = AlloyTemplateItem.getElementList(this.playerEntity.world,template);
+                Map<ElementRecipe,Integer> map = AlloyTemplateItem.getElementList(this.playerEntity.level,template);
                 for (Map.Entry<ElementRecipe,Integer> entry : map.entrySet())
                 {
                     if (countMaterial(furnaceInventory,entry.getKey()) < entry.getValue()) {
@@ -87,7 +87,7 @@ public class AlloyFurnaceContainer extends Container {
                     }
                 }
             }
-            return new AbstractMap.SimpleEntry<>(new String[]{template.getItem().getDisplayName(template).getString(),
+            return new AbstractMap.SimpleEntry<>(new String[]{template.getItem().getName(template).getString(),
                     AlloyTemplateItem.getAlloyComp(template)},
                     correctInputs ? 0x55FF55 : 0xFF5555);
         }
@@ -98,8 +98,8 @@ public class AlloyFurnaceContainer extends Container {
     private int countMaterial(IInventory inv, ElementRecipe element) {
         int i = 0;
 
-        for(int j = 0; j < inv.getSizeInventory(); ++j) {
-            ItemStack itemstack = inv.getStackInSlot(j);
+        for(int j = 0; j < inv.getContainerSize(); ++j) {
+            ItemStack itemstack = inv.getItem(j);
             int co = element.getMaterialCount(itemstack.getItem());
             if (co > 0) {
                 i += co * itemstack.getCount();
@@ -129,54 +129,54 @@ public class AlloyFurnaceContainer extends Container {
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.ALLOY_FURNACE.get());
+    public boolean stillValid(PlayerEntity playerIn) {
+        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, RankineBlocks.ALLOY_FURNACE.get());
     }
 
     //TO-DO: REDO +3
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index)
     {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
+        Slot slot = this.slots.get(index);
 
-        if(slot != null && slot.getHasStack())
+        if(slot != null && slot.hasItem())
         {
-            ItemStack stack = slot.getStack();
+            ItemStack stack = slot.getItem();
             itemstack = stack.copy();
             if (index == 8) {
-                if (!this.mergeItemStack(stack, 9, 45, true)) {
+                if (!this.moveItemStackTo(stack, 9, 45, true)) {
                     return ItemStack.EMPTY;
                 }
-                slot.onSlotChange(stack, itemstack);
+                slot.onQuickCraft(stack, itemstack);
             } else if (index > 8) {
                 if (AlloyCustomHelper.hasElement(itemstack.getItem())) {
-                    if (!this.mergeItemStack(stack, 0, 6, false)) {
+                    if (!this.moveItemStackTo(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (AbstractFurnaceTileEntity.isFuel(stack)) {
-                    if (!this.mergeItemStack(stack, 6, 7, false)) {
+                    if (!this.moveItemStackTo(stack, 6, 7, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (stack.getItem() == RankineItems.ALLOY_TEMPLATE.get()) {
-                    if (!this.mergeItemStack(stack, 7, 8, false)) {
+                    if (!this.moveItemStackTo(stack, 7, 8, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (index < 36) {
-                    if (!this.mergeItemStack(stack, 36, 45, false)) {
+                    if (!this.moveItemStackTo(stack, 36, 45, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 45 && !this.mergeItemStack(stack, 9, 36, false)) {
+                } else if (index < 45 && !this.moveItemStackTo(stack, 9, 36, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 9, 45, false)) {
+            } else if (!this.moveItemStackTo(stack, 9, 45, false)) {
                 return ItemStack.EMPTY;
             }
 
             if (stack.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
 
             if (stack.getCount() == itemstack.getCount()) {

@@ -11,11 +11,11 @@ public class GuardEnchantment extends Enchantment {
         super(p_i46721_1_, EnchantmentType.ARMOR, p_i46721_2_);
     }
 
-    public int getMinEnchantability(int enchantmentLevel) {
+    public int getMinCost(int enchantmentLevel) {
         return 10 * enchantmentLevel;
     }
 
-    public int getMaxEnchantability(int enchantmentLevel) {
-        return this.getMinEnchantability(enchantmentLevel) + 30;
+    public int getMaxCost(int enchantmentLevel) {
+        return this.getMinCost(enchantmentLevel) + 30;
     }
 }

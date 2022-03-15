@@ -24,15 +24,17 @@ import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class RankineSoilTypeBlock extends Block {
     public static final EnumProperty<SoilTypes> SOIL_TYPE = EnumProperty.create("soil_type", SoilTypes.class);
 
     public RankineSoilTypeBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(SOIL_TYPE, SoilTypes.DIRT));
+        this.registerDefaultState(this.stateDefinition.any().setValue(SOIL_TYPE, SoilTypes.DIRT));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(SOIL_TYPE);
     }
 

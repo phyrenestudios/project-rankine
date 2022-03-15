@@ -24,6 +24,8 @@ import net.minecraftforge.fml.hooks.BasicEventHooks;
 
 import java.util.function.Function;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class MantleTeleporterBlock extends Block {
     public MantleTeleporterBlock(Properties properties) {
         super(properties);

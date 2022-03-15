@@ -34,7 +34,7 @@ public class InductionAlloyingRecipeCategory implements IRecipeCategory<Alloying
 
     public InductionAlloyingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(187, 156);
-        localizedName = I18n.format("rankine.jei.induction_alloying");
+        localizedName = I18n.get("rankine.jei.induction_alloying");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/alloying_jei.png"),
                 0, 15, 182, 151);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.INDUCTION_FURNACE.get()));
@@ -67,7 +67,7 @@ public class InductionAlloyingRecipeCategory implements IRecipeCategory<Alloying
 
     @Override
     public void draw(AlloyingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().fontRenderer;
+        FontRenderer font = Minecraft.getInstance().font;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -78,17 +78,17 @@ public class InductionAlloyingRecipeCategory implements IRecipeCategory<Alloying
     @Override
     public void setIngredients(AlloyingRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
-        for (Ingredient i : recipe.getIngredientsList(Minecraft.getInstance().world)) {
-            builder.add(Arrays.asList(i.getMatchingStacks()));
+        for (Ingredient i : recipe.getIngredientsList(Minecraft.getInstance().level)) {
+            builder.add(Arrays.asList(i.getItems()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getRecipeOutput()));
+        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getResultItem()));
     }
 
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, AlloyingRecipe recipe, IIngredients ingredients) {
         int index = 0;
-        List<Integer> reqIndex = recipe.getIndexList(Minecraft.getInstance().world, true);
+        List<Integer> reqIndex = recipe.getIndexList(Minecraft.getInstance().level, true);
         int reqCounter = 0;
         int nonReqCounter = 0;
         int reducer = 0;

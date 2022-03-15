@@ -15,6 +15,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class DryMortarItem extends Item {
 
     public DryMortarItem(Properties properties) {
@@ -23,8 +25,8 @@ public class DryMortarItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(new StringTextComponent("Drop in water to make mortar").mergeStyle(TextFormatting.GRAY));
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(new StringTextComponent("Drop in water to make mortar").withStyle(TextFormatting.GRAY));
     }
 
     @Override
@@ -34,9 +36,9 @@ public class DryMortarItem extends Item {
 
     @Override
     public Entity createEntity(World world, Entity location, ItemStack itemstack) {
-        DryMortarItemEntity result = new DryMortarItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), itemstack);
-        result.setPickupDelay(40);
-        result.setMotion(location.getMotion());
+        DryMortarItemEntity result = new DryMortarItemEntity(location.level,location.getX(),location.getY(),location.getZ(), itemstack);
+        result.setPickUpDelay(40);
+        result.setDeltaMovement(location.getDeltaMovement());
         return result;
     }
 }

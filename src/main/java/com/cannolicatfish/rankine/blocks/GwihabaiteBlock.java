@@ -25,25 +25,27 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class GwihabaiteBlock extends Block implements IWaterLoggable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
-    protected static final VoxelShape[] UP_SHAPES = new VoxelShape[] {Block.makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 3.0D, 11.0D)};
-    protected static final VoxelShape[] DOWN_SHAPES = new VoxelShape[] {Block.makeCuboidShape(5.0D, 13.0D, 5.0D, 11.0D, 16.0D, 11.0D)};
-    protected static final VoxelShape[] NORTH_SHAPES = new VoxelShape[] {Block.makeCuboidShape(5.0D, 5.0D, 13.0D, 11.0D, 11.0D, 16.0D)};
-    protected static final VoxelShape[] SOUTH_SHAPES = new VoxelShape[] {Block.makeCuboidShape(5.0D, 5.0D, 0.0D, 11.0D, 11.0D, 3.0D)};
-    protected static final VoxelShape[] WEST_SHAPES = new VoxelShape[] {Block.makeCuboidShape(13.0D, 5.0D, 5.0D, 16.0D, 11.0D, 11.0D)};
-    protected static final VoxelShape[] EAST_SHAPES = new VoxelShape[] {Block.makeCuboidShape(0.0D, 5.0D, 5.0D, 3.0D, 11.0D, 11.0D)};
+    protected static final VoxelShape[] UP_SHAPES = new VoxelShape[] {Block.box(5.0D, 0.0D, 5.0D, 11.0D, 3.0D, 11.0D)};
+    protected static final VoxelShape[] DOWN_SHAPES = new VoxelShape[] {Block.box(5.0D, 13.0D, 5.0D, 11.0D, 16.0D, 11.0D)};
+    protected static final VoxelShape[] NORTH_SHAPES = new VoxelShape[] {Block.box(5.0D, 5.0D, 13.0D, 11.0D, 11.0D, 16.0D)};
+    protected static final VoxelShape[] SOUTH_SHAPES = new VoxelShape[] {Block.box(5.0D, 5.0D, 0.0D, 11.0D, 11.0D, 3.0D)};
+    protected static final VoxelShape[] WEST_SHAPES = new VoxelShape[] {Block.box(13.0D, 5.0D, 5.0D, 16.0D, 11.0D, 11.0D)};
+    protected static final VoxelShape[] EAST_SHAPES = new VoxelShape[] {Block.box(0.0D, 5.0D, 5.0D, 3.0D, 11.0D, 11.0D)};
 
     public GwihabaiteBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.UP).with(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(WATERLOGGED, false));
     }
 
     @Nonnull
     @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch(state.get(FACING)) {
+        switch(state.getValue(FACING)) {
             case UP:
                 return UP_SHAPES[0];
             case DOWN:
@@ -62,40 +64,40 @@ public class GwihabaiteBlock extends Block implements IWaterLoggable {
     @Nonnull
     @SuppressWarnings("deprecation")
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        Direction direction = context.getFace();
-        FluidState fluidState = context.getWorld().getFluidState(context.getPos().offset(direction.getOpposite()));
-        return this.getDefaultState().with(FACING, direction).with(WATERLOGGED, fluidState.isTagged(FluidTags.WATER));
+        Direction direction = context.getClickedFace();
+        FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos().relative(direction.getOpposite()));
+        return this.defaultBlockState().setValue(FACING, direction).setValue(WATERLOGGED, fluidState.is(FluidTags.WATER));
     }
 
     @SuppressWarnings("deprecation")
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return isSideSolidForDirection(worldIn, pos, state.get(FACING).getOpposite());
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        return isSideSolidForDirection(worldIn, pos, state.getValue(FACING).getOpposite());
     }
 
     public static boolean isSideSolidForDirection(IWorldReader reader, BlockPos pos, Direction direction) {
-        BlockPos blockpos = pos.offset(direction);
-        return reader.getBlockState(blockpos).isSolidSide(reader, blockpos, direction.getOpposite());
+        BlockPos blockpos = pos.relative(direction);
+        return reader.getBlockState(blockpos).isFaceSturdy(reader, blockpos, direction.getOpposite());
     }
 
     @Nonnull
     @SuppressWarnings("deprecation")
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (stateIn.get(WATERLOGGED)) {
-            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
-        return !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return !this.canSurvive(stateIn, worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @SuppressWarnings("deprecation")
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-        return type == PathType.WATER && worldIn.getFluidState(pos).isTagged(FluidTags.WATER);
+    public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+        return type == PathType.WATER && worldIn.getFluidState(pos).is(FluidTags.WATER);
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING, WATERLOGGED);
     }
 
@@ -104,7 +106,7 @@ public class GwihabaiteBlock extends Block implements IWaterLoggable {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
-        return adjacentBlockState.getBlock() == this || super.isSideInvisible(state, adjacentBlockState, side);
+    public boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+        return adjacentBlockState.getBlock() == this || super.skipRendering(state, adjacentBlockState, side);
     }
 }

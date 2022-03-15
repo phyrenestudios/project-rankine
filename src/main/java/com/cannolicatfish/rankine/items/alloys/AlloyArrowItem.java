@@ -36,11 +36,11 @@ public class AlloyArrowItem extends ArrowItem implements IAlloyProjectile {
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
+    public ITextComponent getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
+            return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
         }
-        return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
+        return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
     @Override
@@ -52,12 +52,12 @@ public class AlloyArrowItem extends ArrowItem implements IAlloyProjectile {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
-            tooltip.add(new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD));
-            tooltip.add(new StringTextComponent("Damage: " + (getAlloyArrowDamage(stack))).mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(TextFormatting.GOLD));
+            tooltip.add(new StringTextComponent("Damage: " + (getAlloyArrowDamage(stack))).withStyle(TextFormatting.GRAY));
         } else {
-            tooltip.add(new StringTextComponent("Hold shift for details...").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent("Hold shift for details...").withStyle(TextFormatting.GRAY));
         }
 
     }

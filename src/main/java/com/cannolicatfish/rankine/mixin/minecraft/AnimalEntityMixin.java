@@ -11,15 +11,15 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 import java.util.Random;
 
-@Mixin(AnimalEntity.class)
+//@Mixin(AnimalEntity.class)
 public class AnimalEntityMixin {
 
     /**
      * @author CannoliCatfish
      * @reason Changes AnimalEntity spawning behavior to include any block in the block tag "forge:grass".
      */
-    @Overwrite
+  //  @Overwrite
     public static boolean canAnimalSpawn(EntityType<? extends AnimalEntity> animal, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
-        return worldIn.getBlockState(pos.down()).isIn(RankineTags.Blocks.GRASS_BLOCKS) && worldIn.getLightSubtracted(pos, 0) > 8;
+        return worldIn.getBlockState(pos.below()).is(RankineTags.Blocks.GRASS_BLOCKS) && worldIn.getRawBrightness(pos, 0) > 8;
     }
 }

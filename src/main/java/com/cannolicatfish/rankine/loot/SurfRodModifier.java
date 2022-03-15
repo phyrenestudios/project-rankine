@@ -41,8 +41,8 @@ public class SurfRodModifier extends LootModifier {
     public static class Serializer extends GlobalLootModifierSerializer<SurfRodModifier> {
         @Override
         public SurfRodModifier read(ResourceLocation name, JsonObject json, ILootCondition[] conditionsIn) {
-            Item toReplace = ForgeRegistries.ITEMS.getValue(new ResourceLocation((JSONUtils.getString(json, "originalItem"))));
-            Item replacement = ForgeRegistries.ITEMS.getValue(new ResourceLocation((JSONUtils.getString(json, "replacement"))));
+            Item toReplace = ForgeRegistries.ITEMS.getValue(new ResourceLocation((JSONUtils.getAsString(json, "originalItem"))));
+            Item replacement = ForgeRegistries.ITEMS.getValue(new ResourceLocation((JSONUtils.getAsString(json, "replacement"))));
             return new SurfRodModifier(conditionsIn,toReplace,replacement);
         }
 

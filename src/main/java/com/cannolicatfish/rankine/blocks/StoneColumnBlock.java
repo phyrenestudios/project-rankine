@@ -37,6 +37,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
     public static final IntegerProperty SIZE = IntegerProperty.create("size",1,7);
     //public static final IntegerProperty STABILITY = IntegerProperty.create("stability",0,24);
@@ -44,53 +46,53 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
 
     public StoneColumnBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(SIZE, 1).with(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(SIZE, 1).setValue(WATERLOGGED, false));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(SIZE, WATERLOGGED);
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        int size = state.get(SIZE);
-        return Block.makeCuboidShape(8-size,0,8-size,8+size,16,8+size);
+        int size = state.getValue(SIZE);
+        return Block.box(8-size,0,8-size,8+size,16,8+size);
     }
 
     @Nonnull
     @Override
     @SuppressWarnings("deprecation")
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
-        boolean flag = fluidstate.getFluid() == Fluids.WATER;
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        boolean flag = fluidstate.getType() == Fluids.WATER;
 
-        ItemStack heldItem = context.getPlayer().getHeldItemOffhand();
+        ItemStack heldItem = context.getPlayer().getOffhandItem();
         if (heldItem.getItem() == RankineItems.BUILDING_TOOL.get()) {
-            return this.getDefaultState().with(SIZE, Math.min(7,BuildingToolItem.getBuildingMode(heldItem)+1)).with(WATERLOGGED, flag);
+            return this.defaultBlockState().setValue(SIZE, Math.min(7,BuildingToolItem.getBuildingMode(heldItem)+1)).setValue(WATERLOGGED, flag);
         }
-        return this.getDefaultState().with(WATERLOGGED, flag);
+        return this.defaultBlockState().setValue(WATERLOGGED, flag);
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction direction, BlockState p_196271_3_, IWorld worldIn, BlockPos pos, BlockPos p_196271_6_) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState p_196271_3_, IWorld worldIn, BlockPos pos, BlockPos p_196271_6_) {
         if ((direction.equals(Direction.UP) || direction.equals(Direction.DOWN)) && worldIn instanceof World) {
             updateColumn(state, (World) worldIn, pos);
         }
-        return super.updatePostPlacement(state, direction, p_196271_3_, worldIn, pos, p_196271_6_);
+        return super.updateShape(state, direction, p_196271_3_, worldIn, pos, p_196271_6_);
     }
 
     @Override
-    public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
+    public void onProjectileHit(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
         if (projectile instanceof CannonballEntity) {
-            worldIn.removeBlock(hit.getPos(),false);
-            updateColumn(state, worldIn,hit.getPos().down());
+            worldIn.removeBlock(hit.getBlockPos(),false);
+            updateColumn(state, worldIn,hit.getBlockPos().below());
         }
-        super.onProjectileCollision(worldIn, state, hit, projectile);
+        super.onProjectileHit(worldIn, state, hit, projectile);
     }
 
     @Override
@@ -103,12 +105,12 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
 
     private void updateColumn(BlockState state, World worldIn, BlockPos pos) {
         int i = 0;
-        while (worldIn.getBlockState(pos.down(i)).matchesBlock(this)) {
+        while (worldIn.getBlockState(pos.below(i)).is(this)) {
             ++i;
         }
-        if (!isValidPosition(state, worldIn, pos.down(i-1))) {
-            BlockPos.Mutable blockpos$mutableblockpos = pos.down(i-1).toMutable();
-            while (worldIn.getBlockState(blockpos$mutableblockpos).matchesBlock(this)) {
+        if (!canSurvive(state, worldIn, pos.below(i-1))) {
+            BlockPos.Mutable blockpos$mutableblockpos = pos.below(i-1).mutable();
+            while (worldIn.getBlockState(blockpos$mutableblockpos).is(this)) {
                 spawnFallingBlock(worldIn, blockpos$mutableblockpos);
                 blockpos$mutableblockpos.move(Direction.UP);
             }
@@ -118,27 +120,27 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
 
     private void spawnFallingBlock(World worldIn, BlockPos pos) {
         FallingBlockEntity fallingblockentity = new FallingBlockEntity(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, worldIn.getBlockState(pos));
-        this.onStartFalling(fallingblockentity);
-        worldIn.addEntity(fallingblockentity);
+        this.falling(fallingblockentity);
+        worldIn.addFreshEntity(fallingblockentity);
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
         boolean flagU = true;
         boolean flagD = true;
 
         int i = 1;
-        while (worldIn.getBlockState(pos.down(i)).matchesBlock(this)) {
+        while (worldIn.getBlockState(pos.below(i)).is(this)) {
             ++i;
         }
-        if (!worldIn.getBlockState(pos.down(i)).isSolid()) {
+        if (!worldIn.getBlockState(pos.below(i)).canOcclude()) {
             flagD = false;
         }
         int j = 1;
-        while (worldIn.getBlockState(pos.up(j)).matchesBlock(this)) {
+        while (worldIn.getBlockState(pos.above(j)).is(this)) {
             ++j;
         }
-        if (!worldIn.getBlockState(pos.up(j)).isSolid()) {
+        if (!worldIn.getBlockState(pos.above(j)).canOcclude()) {
             flagU = false;
         }
 
@@ -147,17 +149,17 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
     }
 
     @Override
-    public void onEndFalling(World p_176502_1_, BlockPos p_176502_2_, BlockState p_176502_3_, BlockState p_176502_4_, FallingBlockEntity p_176502_5_) {
+    public void onLand(World p_176502_1_, BlockPos p_176502_2_, BlockState p_176502_3_, BlockState p_176502_4_, FallingBlockEntity p_176502_5_) {
         p_176502_1_.destroyBlock(p_176502_2_,false);
-        super.onEndFalling(p_176502_1_, p_176502_2_, p_176502_3_, p_176502_4_, p_176502_5_);
+        super.onLand(p_176502_1_, p_176502_2_, p_176502_3_, p_176502_4_, p_176502_5_);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         if (rand.nextInt(30) == 0) {
-            BlockPos blockpos = pos.down();
-            if (worldIn.isAirBlock(blockpos) || canFallThrough(worldIn.getBlockState(blockpos))) {
+            BlockPos blockpos = pos.below();
+            if (worldIn.isEmptyBlock(blockpos) || isFree(worldIn.getBlockState(blockpos))) {
                 double d0 = (double)pos.getX() + rand.nextDouble();
                 double d1 = (double)pos.getY() - 0.05D;
                 double d2 = (double)pos.getZ() + rand.nextDouble();
@@ -174,12 +176,12 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
     }
 
     @Override
-    public PushReaction getPushReaction(BlockState p_149656_1_) {
+    public PushReaction getPistonPushReaction(BlockState p_149656_1_) {
         return PushReaction.DESTROY;
     }
 
-    protected void onStartFalling(FallingBlockEntity fallingEntity) {
-        fallingEntity.setHurtEntities(true);
+    protected void falling(FallingBlockEntity fallingEntity) {
+        fallingEntity.setHurtsEntities(true);
     }
 
 }

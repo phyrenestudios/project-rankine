@@ -31,17 +31,17 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
     private final ResourceLocation defaultAlloyRecipe;
 
     public AlloyShovelItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn,  Item.Properties builder) {
-        super(tier, attackDamageIn, attackSpeedIn, builder.addToolType(net.minecraftforge.common.ToolType.SHOVEL, tier.getHarvestLevel()));
+        super(tier, attackDamageIn, attackSpeedIn, builder.addToolType(net.minecraftforge.common.ToolType.SHOVEL, tier.getLevel()));
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
+    public ITextComponent getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
+            return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
         }
-        return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
+        return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
 
@@ -49,51 +49,51 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
      * Called when this item is used when targetting a Block
      */
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
-        BlockPos blockpos = context.getPos();
+    public ActionResultType useOn(ItemUseContext context) {
+        World world = context.getLevel();
+        BlockPos blockpos = context.getClickedPos();
         BlockState blockstate = world.getBlockState(blockpos);
-        Direction e = context.getFace();
+        Direction e = context.getClickedFace();
         PlayerEntity playerentity = context.getPlayer();
         if (e == Direction.DOWN) {
-            if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOLITHIC,context.getItem()) > 0 && blockstate.getMaterial().equals(Material.ROCK) && playerentity != null) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOLITHIC,context.getItemInHand()) > 0 && blockstate.getMaterial().equals(Material.STONE) && playerentity != null) {
                 for (int x = 2; x <= 32; x++) {
-                    BlockPos newPos = blockpos.up(x);
-                    if (world.getBlockState(newPos).isAir() && world.getBlockState(newPos.up(1)).isAir() && world.getBlockState(newPos.down(1)).isSolid()){
-                        playerentity.setPositionAndUpdate(newPos.getX(), MathHelper.clamp(newPos.getY() + 0.5,0.0D, (double)(world.func_234938_ad_() - 1)),newPos.getZ());
-                        context.getItem().damageItem(calcDurabilityLoss(context.getItem(),context.getWorld(),playerentity,false) * 2, playerentity, (p_220040_1_) -> {
-                            p_220040_1_.sendBreakAnimation(context.getHand());
+                    BlockPos newPos = blockpos.above(x);
+                    if (world.getBlockState(newPos).isAir() && world.getBlockState(newPos.above(1)).isAir() && world.getBlockState(newPos.below(1)).canOcclude()){
+                        playerentity.teleportTo(newPos.getX(), MathHelper.clamp(newPos.getY() + 0.5,0.0D, (double)(world.getHeight() - 1)),newPos.getZ());
+                        context.getItemInHand().hurtAndBreak(calcDurabilityLoss(context.getItemInHand(),context.getLevel(),playerentity,false) * 2, playerentity, (p_220040_1_) -> {
+                            p_220040_1_.broadcastBreakEvent(context.getHand());
                         });
-                        SoundEvent soundevent = SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
+                        SoundEvent soundevent = SoundEvents.CHORUS_FRUIT_TELEPORT;
                         world.playSound((PlayerEntity)null,blockpos.getX(), blockpos.getY(), blockpos.getZ(), soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
                         playerentity.playSound(soundevent, 1.0F, 1.0F);
-                        return ActionResultType.func_233537_a_(world.isRemote);
+                        return ActionResultType.sidedSuccess(world.isClientSide);
                     }
                 }
             }
             return ActionResultType.PASS;
         } else {
-            BlockState blockstate1 = SHOVEL_LOOKUP.get(blockstate.getBlock());
+            BlockState blockstate1 = FLATTENABLES.get(blockstate.getBlock());
             BlockState blockstate2 = null;
-            if (blockstate1 != null && world.isAirBlock(blockpos.up())) {
-                world.playSound(playerentity, blockpos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            if (blockstate1 != null && world.isEmptyBlock(blockpos.above())) {
+                world.playSound(playerentity, blockpos, SoundEvents.SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 blockstate2 = blockstate1;
-            } else if (blockstate.getBlock() instanceof CampfireBlock && blockstate.get(CampfireBlock.LIT)) {
-                if (!world.isRemote()) {
-                    world.playEvent((PlayerEntity)null, 1009, blockpos, 0);
+            } else if (blockstate.getBlock() instanceof CampfireBlock && blockstate.getValue(CampfireBlock.LIT)) {
+                if (!world.isClientSide()) {
+                    world.levelEvent((PlayerEntity)null, 1009, blockpos, 0);
                 }
 
-                CampfireBlock.extinguish(world, blockpos, blockstate);
-                blockstate2 = blockstate.with(CampfireBlock.LIT, Boolean.FALSE);
-            } else if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOLITHIC,context.getItem()) > 0 && blockstate.getMaterial().equals(Material.ROCK) && playerentity != null) {
+                CampfireBlock.dowse(world, blockpos, blockstate);
+                blockstate2 = blockstate.setValue(CampfireBlock.LIT, Boolean.FALSE);
+            } else if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOLITHIC,context.getItemInHand()) > 0 && blockstate.getMaterial().equals(Material.STONE) && playerentity != null) {
                 for (int x = 2; x <= 32; x++) {
                     BlockPos newPos = blockpos;
                     switch (e.getOpposite()) {
                         case UP:
-                            newPos = blockpos.up(x);
+                            newPos = blockpos.above(x);
                             break;
                         case DOWN:
-                            newPos = blockpos.down(x);
+                            newPos = blockpos.below(x);
                             break;
                         case NORTH:
                             newPos = blockpos.north(x);
@@ -108,30 +108,30 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
                             newPos = blockpos.west(x);
                             break;
                     }
-                    if (world.getBlockState(newPos).isAir() && world.getBlockState(newPos.up(1)).isAir() && world.getBlockState(newPos.down(1)).isSolid()){
-                        playerentity.setPositionAndUpdate(newPos.getX(), MathHelper.clamp(newPos.getY() + 0.5,0.0D, (double)(world.func_234938_ad_() - 1)),newPos.getZ());
-                        context.getItem().damageItem(calcDurabilityLoss(context.getItem(),context.getWorld(),playerentity,false) * 2, playerentity, (p_220040_1_) -> {
-                            p_220040_1_.sendBreakAnimation(context.getHand());
+                    if (world.getBlockState(newPos).isAir() && world.getBlockState(newPos.above(1)).isAir() && world.getBlockState(newPos.below(1)).canOcclude()){
+                        playerentity.teleportTo(newPos.getX(), MathHelper.clamp(newPos.getY() + 0.5,0.0D, (double)(world.getHeight() - 1)),newPos.getZ());
+                        context.getItemInHand().hurtAndBreak(calcDurabilityLoss(context.getItemInHand(),context.getLevel(),playerentity,false) * 2, playerentity, (p_220040_1_) -> {
+                            p_220040_1_.broadcastBreakEvent(context.getHand());
                         });
-                        SoundEvent soundevent = SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
+                        SoundEvent soundevent = SoundEvents.CHORUS_FRUIT_TELEPORT;
                         world.playSound((PlayerEntity)null,blockpos.getX(), blockpos.getY(), blockpos.getZ(), soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
                         playerentity.playSound(soundevent, 1.0F, 1.0F);
-                        return ActionResultType.func_233537_a_(world.isRemote);
+                        return ActionResultType.sidedSuccess(world.isClientSide);
                     }
                 }
             }
 
             if (blockstate2 != null) {
-                if (!world.isRemote) {
-                    world.setBlockState(blockpos, blockstate2, 11);
+                if (!world.isClientSide) {
+                    world.setBlock(blockpos, blockstate2, 11);
                     if (playerentity != null) {
-                        context.getItem().damageItem(calcDurabilityLoss(context.getItem(),context.getWorld(),context.getPlayer(),true), playerentity, (p_220040_1_) -> {
-                            p_220040_1_.sendBreakAnimation(context.getHand());
+                        context.getItemInHand().hurtAndBreak(calcDurabilityLoss(context.getItemInHand(),context.getLevel(),context.getPlayer(),true), playerentity, (p_220040_1_) -> {
+                            p_220040_1_.broadcastBreakEvent(context.getHand());
                         });
                     }
                 }
 
-                return ActionResultType.func_233537_a_(world.isRemote);
+                return ActionResultType.sidedSuccess(world.isClientSide);
             } else {
                 return ActionResultType.PASS;
             }
@@ -144,9 +144,9 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
         return EFFECTIVE_ON.contains(state.getBlock()) ? getAlloyMiningSpeed(stack) : 1.0F;
     }
 
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,false), attacker, (entity) -> {
-            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,false), attacker, (entity) -> {
+            entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
         });
         return true;
     }
@@ -154,10 +154,10 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
     /**
      * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
      */
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
-            stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
-                entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+    public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+        if (!worldIn.isClientSide && state.getDestroySpeed(worldIn, pos) != 0.0F) {
+            stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
+                entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
             });
         }
 
@@ -181,7 +181,7 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         addAlloyInformation(stack,worldIn,tooltip,flagIn);
         if (flagIn.isAdvanced()) {
             addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
@@ -189,9 +189,9 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
     }
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         this.applyAlloyEnchantments(stack,worldIn);
-        super.onCreated(stack, worldIn, playerIn);
+        super.onCraftedBy(stack, worldIn, playerIn);
     }
 
 
@@ -209,12 +209,12 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (this.isInGroup(group) && this.defaultAlloyRecipe == null) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+        if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
             items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
             items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
-        } else if (this.isInGroup(group)) {
-            super.fillItemGroup(group,items);
+        } else if (this.allowdedIn(group)) {
+            super.fillItemCategory(group,items);
         }
     }
 
@@ -229,7 +229,7 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
     }
 
     @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
         if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);

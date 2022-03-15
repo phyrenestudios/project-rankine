@@ -24,15 +24,17 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class SpeedTotemItem extends Item{
     public SpeedTotemItem(Properties properties) {
         super(properties);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        super.addInformation(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslationTextComponent("item.rankine.totem_of_timesaving.tooltip").mergeStyle(TextFormatting.GRAY, TextFormatting.ITALIC));
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        tooltip.add(new TranslationTextComponent("item.rankine.totem_of_timesaving.tooltip").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC));
     }
 
     @Override
@@ -40,35 +42,35 @@ public class SpeedTotemItem extends Item{
         if (entityIn instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entityIn;
             ModifiableAttributeInstance att = player.getAttribute(Attributes.MOVEMENT_SPEED);
-            if (player.getHeldItemOffhand().getItem() == this && !att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM)) {
-                att.applyNonPersistentModifier(RankineAttributes.SWIFTNESS_TOTEM);
-            } else if (player.getHeldItemOffhand().getItem() != this && att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM)) {
+            if (player.getOffhandItem().getItem() == this && !att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM)) {
+                att.addTransientModifier(RankineAttributes.SWIFTNESS_TOTEM);
+            } else if (player.getOffhandItem().getItem() != this && att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM)) {
                 att.removeModifier(RankineAttributes.SWIFTNESS_TOTEM);
             }
         }
     }
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         if (Config.GENERAL.PENDANT_CURSE.get()) {
-            stack.addEnchantment(Enchantments.VANISHING_CURSE,1);
+            stack.enchant(Enchantments.VANISHING_CURSE,1);
         }
-        super.onCreated(stack, worldIn, playerIn);
+        super.onCraftedBy(stack, worldIn, playerIn);
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if ((group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+        if ((group == ItemGroup.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
             ItemStack stack = new ItemStack(this.getItem());
-            stack.addEnchantment(Enchantments.VANISHING_CURSE,1);
+            stack.enchant(Enchantments.VANISHING_CURSE,1);
             items.add(stack);
         } else {
-            super.fillItemGroup(group, items);
+            super.fillItemCategory(group, items);
         }
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return false;
     }
 }

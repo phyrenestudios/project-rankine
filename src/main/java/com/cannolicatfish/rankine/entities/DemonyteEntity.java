@@ -24,26 +24,26 @@ public class DemonyteEntity extends SilverfishEntity {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));;
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, new Class[0])).setCallsForHelp(new Class[0]));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, PlayerEntity.class, true));
     }
 
-    public static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 1.0D);
+    public static AttributeModifierMap.MutableAttribute createBugAttributes() {
+        return MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 8.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.ATTACK_DAMAGE, 1.0D);
     }
 
-    public boolean attackEntityAsMob(Entity entityIn) {
-        if (super.attackEntityAsMob(entityIn)) {
+    public boolean doHurtTarget(Entity entityIn) {
+        if (super.doHurtTarget(entityIn)) {
             if (entityIn instanceof LivingEntity) {
                 int i = 0;
-                if (this.world.getDifficulty() == Difficulty.NORMAL) {
+                if (this.level.getDifficulty() == Difficulty.NORMAL) {
                     i = 5;
-                } else if (this.world.getDifficulty() == Difficulty.HARD) {
+                } else if (this.level.getDifficulty() == Difficulty.HARD) {
                     i = 10;
                 }
 
                 if (i > 0) {
-                    ((LivingEntity)entityIn).addPotionEffect(new EffectInstance(Effects.WITHER, i * 20, 0));
+                    ((LivingEntity)entityIn).addEffect(new EffectInstance(Effects.WITHER, i * 20, 0));
                 }
             }
 
@@ -55,11 +55,11 @@ public class DemonyteEntity extends SilverfishEntity {
 
 
     @Override
-    public boolean canAttack(EntityType<?> typeIn) {
+    public boolean canAttackType(EntityType<?> typeIn) {
         if (typeIn == EntityType.PLAYER) {
             return true;
         } else {
-            return typeIn != RankineEntityTypes.MANTLE_GOLEM && typeIn != RankineEntityTypes.DIAMOND_MANTLE_GOLEM && typeIn != RankineEntityTypes.PERIDOT_MANTLE_GOLEM && super.canAttack(typeIn);
+            return typeIn != RankineEntityTypes.MANTLE_GOLEM && typeIn != RankineEntityTypes.DIAMOND_MANTLE_GOLEM && typeIn != RankineEntityTypes.PERIDOT_MANTLE_GOLEM && super.canAttackType(typeIn);
         }
     }
 }

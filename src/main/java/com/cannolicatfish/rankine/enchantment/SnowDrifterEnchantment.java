@@ -5,6 +5,8 @@ import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.enchantment.Enchantment.Rarity;
+
 public class SnowDrifterEnchantment extends Enchantment {
     public SnowDrifterEnchantment(Rarity rarityIn, EquipmentSlotType... slots) {
         super(rarityIn, EnchantmentType.ARMOR_FEET, slots);
@@ -13,12 +15,12 @@ public class SnowDrifterEnchantment extends Enchantment {
     /**
      * Returns the minimal value of enchantability needed on the enchantment level passed.
      */
-    public int getMinEnchantability(int enchantmentLevel) {
+    public int getMinCost(int enchantmentLevel) {
         return enchantmentLevel * 10;
     }
 
-    public int getMaxEnchantability(int enchantmentLevel) {
-        return this.getMinEnchantability(enchantmentLevel) + 15;
+    public int getMaxCost(int enchantmentLevel) {
+        return this.getMinCost(enchantmentLevel) + 15;
     }
 
     @Override
@@ -27,8 +29,8 @@ public class SnowDrifterEnchantment extends Enchantment {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
-        return EnchantmentType.ARMOR_FEET.canEnchantItem(stack.getItem());
+    public boolean canEnchant(ItemStack stack) {
+        return EnchantmentType.ARMOR_FEET.canEnchant(stack.getItem());
     }
 
     /**

@@ -22,6 +22,8 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class UnamedExplosiveBlock extends Block {
     public UnamedExplosiveBlock(Properties properties) {
         super(properties);
@@ -29,17 +31,17 @@ public class UnamedExplosiveBlock extends Block {
 
     @Override
     public void catchFire(BlockState state, World world, BlockPos pos, @Nullable net.minecraft.util.Direction face, @Nullable LivingEntity igniter) {
-        world.createExplosion(igniter, pos.getX(), pos.getY() + 1, pos.getZ(), 6F, Explosion.Mode.BREAK);
-        world.createExplosion(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()+6, 6F, Explosion.Mode.BREAK);
-        world.createExplosion(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()+6, 6F, Explosion.Mode.BREAK);
-        world.createExplosion(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()-6, 6F, Explosion.Mode.BREAK);
-        world.createExplosion(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()-6, 6F, Explosion.Mode.BREAK);
+        world.explode(igniter, pos.getX(), pos.getY() + 1, pos.getZ(), 6F, Explosion.Mode.BREAK);
+        world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()+6, 6F, Explosion.Mode.BREAK);
+        world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()+6, 6F, Explosion.Mode.BREAK);
+        world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()-6, 6F, Explosion.Mode.BREAK);
+        world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()-6, 6F, Explosion.Mode.BREAK);
         world.removeBlock(pos, false);
     }
 
     @Override
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-        if (worldIn.isBlockPowered(pos)) {
+        if (worldIn.hasNeighborSignal(pos)) {
             catchFire(state, worldIn, pos, null, null);
         }
     }
@@ -55,18 +57,18 @@ public class UnamedExplosiveBlock extends Block {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
-        ItemStack itemstack = player.getHeldItem(handIn);
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
+        ItemStack itemstack = player.getItemInHand(handIn);
         Item item = itemstack.getItem();
         if (item != Items.FLINT_AND_STEEL && item != Items.FIRE_CHARGE) {
-            return super.onBlockActivated(state, worldIn, pos, player, handIn, p_225533_6_);
+            return super.use(state, worldIn, pos, player, handIn, p_225533_6_);
         } else {
-            catchFire(state, worldIn, pos, p_225533_6_.getFace(), player);
-            worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
+            catchFire(state, worldIn, pos, p_225533_6_.getDirection(), player);
+            worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
             if (!player.isCreative()) {
                 if (item == Items.FLINT_AND_STEEL) {
-                    itemstack.damageItem(1, player, (p_220287_1_) -> {
-                        p_220287_1_.sendBreakAnimation(handIn);
+                    itemstack.hurtAndBreak(1, player, (p_220287_1_) -> {
+                        p_220287_1_.broadcastBreakEvent(handIn);
                     });
                 } else {
                     itemstack.shrink(1);
@@ -78,20 +80,20 @@ public class UnamedExplosiveBlock extends Block {
     }
 
     @Override
-    public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
-        if (!worldIn.isRemote && projectile instanceof AbstractArrowEntity) {
+    public void onProjectileHit(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
+        if (!worldIn.isClientSide && projectile instanceof AbstractArrowEntity) {
             AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
-            Entity entity = abstractarrowentity.getShooter();
-            if (abstractarrowentity.isBurning()) {
-                BlockPos blockpos = hit.getPos();
+            Entity entity = abstractarrowentity.getOwner();
+            if (abstractarrowentity.isOnFire()) {
+                BlockPos blockpos = hit.getBlockPos();
                 catchFire(state, worldIn, blockpos, null, entity instanceof LivingEntity ? (LivingEntity)entity : null);
             }
         }
 
     }
 
-    public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn) {
-        if (!worldIn.isRemote) {
+    public void wasExploded(World worldIn, BlockPos pos, Explosion explosionIn) {
+        if (!worldIn.isClientSide) {
             catchFire(worldIn.getBlockState(pos), worldIn, pos, null,null);
         }
     }

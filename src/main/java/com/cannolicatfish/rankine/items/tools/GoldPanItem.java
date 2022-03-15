@@ -19,6 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class GoldPanItem extends Item {
 
     public GoldPanItem(Properties properties) {

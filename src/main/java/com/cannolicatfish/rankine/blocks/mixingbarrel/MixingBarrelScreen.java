@@ -30,47 +30,47 @@ public class MixingBarrelScreen extends ContainerScreen<MixingBarrelContainer> {
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
-        this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
-        if (mouseX >= this.guiLeft+4 && mouseX <= this.guiLeft+19 && mouseY >= this.guiTop+12 && mouseY <= this.guiTop+75 && !this.container.getInputTank().isEmpty()) {
-            FluidStack fluidStack = this.container.getInputTank().getFluid();
+        this.renderTooltip(matrixStack, mouseX, mouseY);
+        if (mouseX >= this.leftPos+4 && mouseX <= this.leftPos+19 && mouseY >= this.topPos+12 && mouseY <= this.topPos+75 && !this.menu.getInputTank().isEmpty()) {
+            FluidStack fluidStack = this.menu.getInputTank().getFluid();
             this.renderWrappedToolTip(matrixStack, Arrays.asList(new TranslationTextComponent(fluidStack.getTranslationKey()),new StringTextComponent(fluidStack.getAmount()+"mb")), mouseX, mouseY, (this.font));
         }
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindTexture(GUI);
-        int relX = (this.width - this.xSize) / 2;
-        int relY = (this.height - this.ySize) / 2;
-        this.blit(p_230450_1_,relX, relY, 0, 0, this.xSize, this.ySize);
-        if(this.container.getHeatStatus() > 0)
+    protected void renderBg(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
+        GlStateManager._color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.minecraft.getTextureManager().bind(GUI);
+        int relX = (this.width - this.imageWidth) / 2;
+        int relY = (this.height - this.imageHeight) / 2;
+        this.blit(p_230450_1_,relX, relY, 0, 0, this.imageWidth, this.imageHeight);
+        if(this.menu.getHeatStatus() > 0)
         {
-            this.blit(p_230450_1_,this.guiLeft + 78, this.guiTop + 77, 176, 29, 18, 4);
+            this.blit(p_230450_1_,this.leftPos + 78, this.topPos + 77, 176, 29, 18, 4);
         }
 
-        int l = this.container.getCookProgressScaled(27);
-        this.blit(p_230450_1_,this.guiLeft + 108, this.guiTop + 44, 176, 0, 10, l + 1);
+        int l = this.menu.getCookProgressScaled(27);
+        this.blit(p_230450_1_,this.leftPos + 108, this.topPos + 44, 176, 0, 10, l + 1);
 
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Mixing Barrel", 88, 6, 0xffffff);
-        if (!this.container.getInputTank().isEmpty()) {
-            drawFluidTank(p_230451_1_,this.container.getInputTank(),4,12); //60
+    protected void renderLabels(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().font, "Mixing Barrel", 88, 6, 0xffffff);
+        if (!this.menu.getInputTank().isEmpty()) {
+            drawFluidTank(p_230451_1_,this.menu.getInputTank(),4,12); //60
         }
-        String[] percents = container.getSlotPercentages();
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, percents[0], 48, 34, 0xffffff);
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, percents[1], 74, 34, 0xffffff);
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, percents[2], 100, 34, 0xffffff);
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, percents[3], 126, 34, 0xffffff);
+        String[] percents = menu.getSlotPercentages();
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().font, percents[0], 48, 34, 0xffffff);
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().font, percents[1], 74, 34, 0xffffff);
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().font, percents[2], 100, 34, 0xffffff);
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().font, percents[3], 126, 34, 0xffffff);
     }
 
     protected void drawFluidTank(MatrixStack ms,FluidTank tankIn,int x,int y) {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager._color4f(1.0F, 1.0F, 1.0F, 1.0F);
         FluidStack input = tankIn.getFluid();
-        TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).apply(input.getFluid().getAttributes().getStillTexture());
+        TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(PlayerContainer.BLOCK_ATLAS).apply(input.getFluid().getAttributes().getStillTexture());
 
         float amount = input.getAmount();
         float capacity = tankIn.getCapacity();
@@ -81,10 +81,10 @@ public class MixingBarrelScreen extends ContainerScreen<MixingBarrelContainer> {
 
         Color color = new Color(input.getFluid().getAttributes().getColor());
         //this.minecraft.getTextureManager().bindTexture(new ResourceLocation(sprite.getName().getNamespace(),"textures/"+sprite.getName().getPath()+".png"));
-        this.minecraft.getTextureManager().bindTexture(sprite.getAtlasTexture().getTextureLocation());
-        GlStateManager.color4f(color.getRed(),color.getGreen(),color.getBlue(),color.getAlpha());
+        this.minecraft.getTextureManager().bind(sprite.atlas().location());
+        GlStateManager._color4f(color.getRed(),color.getGreen(),color.getBlue(),color.getAlpha());
         if (tankIn.getFluid().getFluid().equals(Fluids.WATER)) {
-            GlStateManager.color4f(63,118,228,color.getAlpha());
+            GlStateManager._color4f(63,118,228,color.getAlpha());
         }
         blit(ms,x, y + (fluidTankHeight - fluidAmount),0,16, fluidAmount,sprite);
 

@@ -7,6 +7,6 @@ import net.minecraft.block.material.Material;
 
 public class RankineMetalTrapdoor extends TrapDoorBlock {
     public RankineMetalTrapdoor() {
-        super(Block.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.METAL).notSolid());
+        super(Block.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion());
     }
 }

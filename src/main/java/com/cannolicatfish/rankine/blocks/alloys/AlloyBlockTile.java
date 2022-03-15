@@ -19,15 +19,15 @@ public class AlloyBlockTile extends TileEntity {
 
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
+    public CompoundNBT save(CompoundNBT compound) {
         if (this.alloyData != null) compound.put("AlloyData", this.alloyData);
-        return super.write(compound);
+        return super.save(compound);
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
+    public void load(BlockState state, CompoundNBT nbt) {
         if (nbt.contains("AlloyData")) this.alloyData = nbt.getCompound("AlloyData");
-        super.read(state, nbt);
+        super.load(state, nbt);
     }
 
     public CompoundNBT writeAlloyData(CompoundNBT compoundNBT) {

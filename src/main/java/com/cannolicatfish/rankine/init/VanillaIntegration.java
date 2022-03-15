@@ -282,17 +282,17 @@ public class VanillaIntegration {
                     }
 
                     if (RS.contains("#")) {
-                        ResourceLocation newRS = ResourceLocation.tryCreate(RS.replace("#",""));
-                        ITag<Item> tag = TagCollectionManager.getManager().getItemTags().get(newRS);
+                        ResourceLocation newRS = ResourceLocation.tryParse(RS.replace("#",""));
+                        ITag<Item> tag = TagCollectionManager.getInstance().getItems().getTag(newRS);
                         if (tag != null) {
-                            for (Item item : tag.getAllElements()) {
+                            for (Item item : tag.getValues()) {
                                 if (item != null && !fuelValueMap.containsKey(item)) {
                                     fuelValueMap.put(item, burnTime);
                                 }
                             }
                         }
                     } else {
-                        Item item = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryCreate(RS));
+                        Item item = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(RS));
                         if (item != null && !fuelValueMap.containsKey(item)) {
                             fuelValueMap.put(item,burnTime);
                         }
@@ -305,7 +305,7 @@ public class VanillaIntegration {
     }
 
     public static void registerCompostable(float chance, IItemProvider itemIn) {
-        ComposterBlock.CHANCES.put(itemIn.asItem(), chance);
+        ComposterBlock.COMPOSTABLES.put(itemIn.asItem(), chance);
     }
 
     public static void addFlowerPot(Block plant, Block plantPot) {

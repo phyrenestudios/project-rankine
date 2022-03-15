@@ -27,12 +27,12 @@ public class AlloyIngredientHelper {
             if (alloyRecipe != null)
             {
                 List<ItemStack> stacks = new ArrayList<>();
-                for (ItemStack s : ret.getMatchingStacks())
+                for (ItemStack s : ret.getItems())
                 {
                     IAlloyItem.createDirectAlloyNBT(s,alloyComp,alloyRecipe,name);
                     stacks.add(s);
                 }
-                ret = Ingredient.fromStacks(stacks.toArray(new ItemStack[0]));
+                ret = Ingredient.of(stacks.toArray(new ItemStack[0]));
             }
 
             return ret;
@@ -47,13 +47,13 @@ public class AlloyIngredientHelper {
             if (alloyComp != null || alloyRecipe != null || name != null || color != 16777215)
             {
                 List<ItemStack> stacks = new ArrayList<>();
-                for (ItemStack s : ret.getMatchingStacks())
+                for (ItemStack s : ret.getItems())
                 {
                     IAlloyItem.createDirectAlloyNBT(s,alloyComp,alloyRecipe,name);
                     IAlloyItem.addColorNBT(s,color);
                     stacks.add(s);
                 }
-                ret = Ingredient.fromStacks(stacks.toArray(new ItemStack[0]));
+                ret = Ingredient.of(stacks.toArray(new ItemStack[0]));
             }
 
             return ret;
@@ -71,7 +71,7 @@ public class AlloyIngredientHelper {
 
     public static ItemStack getItemStack(JsonObject json, boolean readNBT, boolean includeCount)
     {
-        String itemName = JSONUtils.getString(json, "item");
+        String itemName = JSONUtils.getAsString(json, "item");
 
         Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName));
 
@@ -86,9 +86,9 @@ public class AlloyIngredientHelper {
                 JsonElement element = json.get("nbt");
                 CompoundNBT nbt;
                 if(element.isJsonObject())
-                    nbt = JsonToNBT.getTagFromJson(new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(element));
+                    nbt = JsonToNBT.parseTag(new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(element));
                 else
-                    nbt = JsonToNBT.getTagFromJson(JSONUtils.getString(element, "nbt"));
+                    nbt = JsonToNBT.parseTag(JSONUtils.convertToString(element, "nbt"));
 
                 CompoundNBT tmp = new CompoundNBT();
                 if (nbt.contains("ForgeCaps"))
@@ -100,11 +100,11 @@ public class AlloyIngredientHelper {
                 tmp.put("tag", nbt);
                 tmp.putString("id", itemName);
                 if (includeCount) {
-                    tmp.putInt("Count", JSONUtils.getInt(json, "count", 1));
+                    tmp.putInt("Count", JSONUtils.getAsInt(json, "count", 1));
                 } else {
                     tmp.putInt("Count", 1);
                 }
-                return ItemStack.read(tmp);
+                return ItemStack.of(tmp);
             }
             catch (CommandSyntaxException e)
             {
@@ -112,12 +112,12 @@ public class AlloyIngredientHelper {
             }
         }
 
-        ItemStack ret = new ItemStack(item, JSONUtils.getInt(json, "count", 1));
+        ItemStack ret = new ItemStack(item, JSONUtils.getAsInt(json, "count", 1));
         if (json.has("alloyComp") || json.has("alloyRecipe"))
         {
 
-            String alloyComp = json.has("alloyComp") ? JSONUtils.getString(json, "alloyComp") : "";
-            String alloyRecipe = json.has("alloyRecipe") ? JSONUtils.getString(json, "alloyRecipe") : "";
+            String alloyComp = json.has("alloyComp") ? JSONUtils.getAsString(json, "alloyComp") : "";
+            String alloyRecipe = json.has("alloyRecipe") ? JSONUtils.getAsString(json, "alloyRecipe") : "";
             //System.out.println("AlloyData detected in recipe!: " + JSONUtils.getString(json, "alloyData"));
             IAlloyItem.createDirectAlloyNBT(ret,alloyComp,alloyRecipe,null,ret.getItem() instanceof IAlloyTool);
         }

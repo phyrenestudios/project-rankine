@@ -23,28 +23,30 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class HollowLogBlock extends RotatedPillarBlock implements IWaterLoggable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public HollowLogBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(AXIS,WATERLOGGED);
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch (state.get(AXIS)) {
+        switch (state.getValue(AXIS)) {
             case X:
-                return VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(),makeCuboidShape(0,2,2,16,14,14), IBooleanFunction.ONLY_FIRST);
+                return VoxelShapes.join(VoxelShapes.block(),box(0,2,2,16,14,14), IBooleanFunction.ONLY_FIRST);
             case Z:
-                return VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(),makeCuboidShape(2,2,0,14,14,16), IBooleanFunction.ONLY_FIRST);
+                return VoxelShapes.join(VoxelShapes.block(),box(2,2,0,14,14,16), IBooleanFunction.ONLY_FIRST);
             case Y:
             default:
-                return VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(),makeCuboidShape(2,0,2,14,16,14), IBooleanFunction.ONLY_FIRST);
+                return VoxelShapes.join(VoxelShapes.block(),box(2,0,2,14,16,14), IBooleanFunction.ONLY_FIRST);
         }
     }
 
@@ -65,15 +67,15 @@ public class HollowLogBlock extends RotatedPillarBlock implements IWaterLoggable
      */
 
     @Override
-    public VoxelShape getRaytraceShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        switch (state.get(AXIS)) {
+    public VoxelShape getInteractionShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        switch (state.getValue(AXIS)) {
             case X:
-                return makeCuboidShape(0,2,2,16,14,14);
+                return box(0,2,2,16,14,14);
             case Z:
-                return makeCuboidShape(2,2,0,14,14,16);
+                return box(2,2,0,14,14,16);
             case Y:
             default:
-                return makeCuboidShape(2,0,2,14,16,14);
+                return box(2,0,2,14,16,14);
         }
     }
 
@@ -89,29 +91,29 @@ public class HollowLogBlock extends RotatedPillarBlock implements IWaterLoggable
     }
 
     @Override
-    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
-        if (fallDistance > 1.0f && worldIn.getRandom().nextFloat() < 0.2 && !worldIn.isRemote) {
+    public void fallOn(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+        if (fallDistance > 1.0f && worldIn.getRandom().nextFloat() < 0.2 && !worldIn.isClientSide) {
             worldIn.destroyBlock(pos,true);
         }
-        super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+        super.fallOn(worldIn, pos, entityIn, fallDistance);
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
-        boolean flag = fluidstate.getFluid() == Fluids.WATER;
-        return super.getStateForPlacement(context).with(WATERLOGGED, flag);
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        boolean flag = fluidstate.getType() == Fluids.WATER;
+        return super.getStateForPlacement(context).setValue(WATERLOGGED, flag);
     }
 
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (stateIn.get(WATERLOGGED)) {
-            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
-        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
 }

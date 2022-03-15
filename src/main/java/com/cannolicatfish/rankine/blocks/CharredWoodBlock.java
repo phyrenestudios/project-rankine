@@ -14,26 +14,28 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class CharredWoodBlock extends Block {
     public int type = 0;
     public static final IntegerProperty TYPE = IntegerProperty.create("type",0,7);
     public CharredWoodBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(TYPE,0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(TYPE,0));
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return super.getStateForPlacement(context).with(TYPE,0);
+        return super.getStateForPlacement(context).setValue(TYPE,0);
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(TYPE);
     }
 
     public static void spawnSmokeParticles(World worldIn, BlockPos pos) {
         Random random = worldIn.getRandom();
         BasicParticleType basicparticletype = ParticleTypes.LARGE_SMOKE;
-        worldIn.addOptionalParticle(basicparticletype,  true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
+        worldIn.addAlwaysVisibleParticle(basicparticletype,  true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
     }
 
     @OnlyIn(Dist.CLIENT)

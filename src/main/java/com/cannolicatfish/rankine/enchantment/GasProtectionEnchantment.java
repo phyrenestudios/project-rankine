@@ -12,12 +12,12 @@ public class GasProtectionEnchantment extends Enchantment {
     /**
      * Returns the minimal value of enchantability needed on the enchantment level passed.
      */
-    public int getMinEnchantability(int enchantmentLevel) {
+    public int getMinCost(int enchantmentLevel) {
         return enchantmentLevel * 10;
     }
 
-    public int getMaxEnchantability(int enchantmentLevel) {
-        return this.getMinEnchantability(enchantmentLevel) + 15;
+    public int getMaxCost(int enchantmentLevel) {
+        return this.getMinCost(enchantmentLevel) + 15;
     }
 
     @Override
@@ -26,8 +26,8 @@ public class GasProtectionEnchantment extends Enchantment {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
-        return EnchantmentType.ARMOR_HEAD.canEnchantItem(stack.getItem());
+    public boolean canEnchant(ItemStack stack) {
+        return EnchantmentType.ARMOR_HEAD.canEnchant(stack.getItem());
     }
     /**
      * Returns the maximum level that the enchantment can have.

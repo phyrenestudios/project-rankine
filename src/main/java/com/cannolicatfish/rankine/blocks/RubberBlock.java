@@ -23,16 +23,18 @@ import net.minecraft.world.World;
 import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class RubberBlock extends Block {
     public RubberBlock(Properties properties) {
         super(properties);
     }
 
-    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+    public void fallOn(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
         if (entityIn.isSuppressingBounce()) {
-            super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+            super.fallOn(worldIn, pos, entityIn, fallDistance);
         } else {
-            entityIn.onLivingFall(fallDistance, 0.2F);
+            entityIn.causeFallDamage(fallDistance, 0.2F);
         }
 
     }
@@ -41,9 +43,9 @@ public class RubberBlock extends Block {
      * Called when an Entity lands on this Block. This method *must* update motionY because the entity will not do that
      * on its own
      */
-    public void onLanded(IBlockReader worldIn, Entity entityIn) {
+    public void updateEntityAfterFallOn(IBlockReader worldIn, Entity entityIn) {
         if (entityIn.isSuppressingBounce()) {
-            super.onLanded(worldIn, entityIn);
+            super.updateEntityAfterFallOn(worldIn, entityIn);
         } else {
             this.bounceEntity(entityIn);
         }
@@ -51,10 +53,10 @@ public class RubberBlock extends Block {
     }
 
     private void bounceEntity(Entity entity) {
-        Vector3d vector3d = entity.getMotion();
+        Vector3d vector3d = entity.getDeltaMovement();
         if (vector3d.y < 0.0D) {
             double d0 = entity instanceof LivingEntity ? 1.0D : 0.8D;
-            entity.setMotion(vector3d.x, -vector3d.y * d0, vector3d.z);
+            entity.setDeltaMovement(vector3d.x, -vector3d.y * d0, vector3d.z);
         }
 
     }
@@ -62,13 +64,13 @@ public class RubberBlock extends Block {
     /**
      * Called when the given entity walks on this Block
      */
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        double d0 = Math.abs(entityIn.getMotion().y);
+    public void stepOn(World worldIn, BlockPos pos, Entity entityIn) {
+        double d0 = Math.abs(entityIn.getDeltaMovement().y);
         if (d0 < 0.1D && !entityIn.isSteppingCarefully()) {
             double d1 = 0.4D + d0 * 0.2D;
-            entityIn.setMotion(entityIn.getMotion().mul(d1, 1.0D, d1));
+            entityIn.setDeltaMovement(entityIn.getDeltaMovement().multiply(d1, 1.0D, d1));
         }
 
-        super.onEntityWalk(worldIn, pos, entityIn);
+        super.stepOn(worldIn, pos, entityIn);
     }
 }

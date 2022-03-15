@@ -14,8 +14,8 @@ public class RankineDoublePlantPlacer extends BlockPlacer {
     public static final Codec<RankineDoublePlantPlacer> CODEC;
     public static final RankineDoublePlantPlacer PLACER = new RankineDoublePlantPlacer();
 
-    protected BlockPlacerType<?> getBlockPlacerType() {
-        return BlockPlacerType.DOUBLE_PLANT;
+    protected BlockPlacerType<?> type() {
+        return BlockPlacerType.DOUBLE_PLANT_PLACER;
     }
 
     public void place(IWorld world, BlockPos pos, BlockState state, Random random) {

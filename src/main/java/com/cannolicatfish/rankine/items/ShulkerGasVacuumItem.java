@@ -17,34 +17,36 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import net.minecraft.item.Item.Properties;
+
 public class ShulkerGasVacuumItem extends Item {
     public ShulkerGasVacuumItem(Properties properties) {
         super(properties);
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
+    public ITextComponent getName(ItemStack stack) {
         if (stack.getTag() != null){
             String s = stack.getTag().getString("gas");
             Block b = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(s));
             if (!s.isEmpty() && b instanceof GasBlock) {
-                return new StringTextComponent(new TranslationTextComponent(this.getTranslationKey(stack)).getString() + " (" + new TranslationTextComponent(b.getTranslationKey()).getString() + ") ");
+                return new StringTextComponent(new TranslationTextComponent(this.getDescriptionId(stack)).getString() + " (" + new TranslationTextComponent(b.getDescriptionId()).getString() + ") ");
             }
         }
-        return super.getDisplayName(stack);
+        return super.getName(stack);
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World worldIn = context.getWorld();
-        BlockPos pos = context.getPos();
-        Direction opp = context.getFace();
-        ItemStack stack = context.getItem();
+    public ActionResultType useOn(ItemUseContext context) {
+        World worldIn = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        Direction opp = context.getClickedFace();
+        ItemStack stack = context.getItemInHand();
         if (context.getPlayer() != null && (stack.getTag() != null && !stack.getTag().getString("gas").isEmpty())) {
             Block b = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(stack.getTag().getString("gas")));
-            if (b instanceof GasBlock && context.getWorld().getBlockState(pos.offset(opp)).getBlock() instanceof AirBlock) {
-                if (!worldIn.isRemote) {
-                    worldIn.setBlockState(pos.offset(opp),b.getDefaultState(),3);
+            if (b instanceof GasBlock && context.getLevel().getBlockState(pos.relative(opp)).getBlock() instanceof AirBlock) {
+                if (!worldIn.isClientSide) {
+                    worldIn.setBlock(pos.relative(opp),b.defaultBlockState(),3);
                     stack.getTag().putString("gas","");
                     stack.getTag().putInt("color",0);
                 }
@@ -58,16 +60,16 @@ public class ShulkerGasVacuumItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        BlockPos pos = playerIn.isCrouching() ? playerIn.getPosition() : playerIn.getPosition().up();
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        BlockPos pos = playerIn.isCrouching() ? playerIn.blockPosition() : playerIn.blockPosition().above();
         Block bl = worldIn.getBlockState(pos).getBlock();
-        ItemStack stack = playerIn.getHeldItem(handIn);
+        ItemStack stack = playerIn.getItemInHand(handIn);
         Hand other = handIn == Hand.MAIN_HAND ? Hand.OFF_HAND : Hand.MAIN_HAND;
         if (bl instanceof GasBlock && bl.getRegistryName() != null && (stack.getTag() == null || stack.getTag().getString("gas").isEmpty())) {
-            if (!worldIn.isRemote) {
-                if (playerIn.getHeldItem(other).getItem() == Items.GLASS_BOTTLE) {
-                    playerIn.getHeldItem(other).shrink(1);
-                    playerIn.inventory.addItemStackToInventory(new ItemStack(getGasBottle(((GasBlock) bl).getGasEnum())));
+            if (!worldIn.isClientSide) {
+                if (playerIn.getItemInHand(other).getItem() == Items.GLASS_BOTTLE) {
+                    playerIn.getItemInHand(other).shrink(1);
+                    playerIn.inventory.add(new ItemStack(getGasBottle(((GasBlock) bl).getGasEnum())));
                 } else {
                     stack.getOrCreateTag().putString("gas",bl.getRegistryName().toString());
                     stack.getTag().putInt("color",((GasBlock) bl).getGas().getColor());
@@ -75,10 +77,10 @@ public class ShulkerGasVacuumItem extends Item {
                 worldIn.removeBlock(pos,false);
             }
             playerIn.playSound(RankineSoundEvents.SHULKER_GAS_VACUUM_ABSORB.get(),1.0F, 1.0F);
-            return ActionResult.resultSuccess(stack);
+            return ActionResult.success(stack);
         }
 
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return super.use(worldIn, playerIn, handIn);
     }
 
     public static int getColor(ItemStack stack) {

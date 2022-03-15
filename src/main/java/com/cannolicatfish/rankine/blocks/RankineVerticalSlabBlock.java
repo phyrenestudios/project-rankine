@@ -26,35 +26,37 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class RankineVerticalSlabBlock extends Block implements IWaterLoggable {
-    public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.HORIZONTAL_FACING;
+    public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.FACING;
     public static final EnumProperty<VerticalSlabStates> TYPE = EnumProperty.create("type", VerticalSlabStates .class);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    protected static final VoxelShape STRAIGHT_N = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
-    protected static final VoxelShape STRAIGHT_S = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
-    protected static final VoxelShape STRAIGHT_W = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
-    protected static final VoxelShape STRAIGHT_E = Block.makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-    protected static final VoxelShape INNER_N = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
-    protected static final VoxelShape INNER_S = Block.makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
-    protected static final VoxelShape INNER_E = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
-    protected static final VoxelShape INNER_W = Block.makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
+    protected static final VoxelShape STRAIGHT_N = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
+    protected static final VoxelShape STRAIGHT_S = Block.box(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
+    protected static final VoxelShape STRAIGHT_W = Block.box(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
+    protected static final VoxelShape STRAIGHT_E = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+    protected static final VoxelShape INNER_N = Block.box(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
+    protected static final VoxelShape INNER_S = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
+    protected static final VoxelShape INNER_E = Block.box(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
+    protected static final VoxelShape INNER_W = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
 
 
     public RankineVerticalSlabBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(TYPE, VerticalSlabStates.STRAIGHT).with(HORIZONTAL_FACING, Direction.NORTH).with(WATERLOGGED, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any().setValue(TYPE, VerticalSlabStates.STRAIGHT).setValue(HORIZONTAL_FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     @Override
-    public boolean isTransparent(BlockState state) {
-        return state.get(TYPE) != VerticalSlabStates.DOUBLE;
+    public boolean useShapeForLightOcclusion(BlockState state) {
+        return state.getValue(TYPE) != VerticalSlabStates.DOUBLE;
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        Direction facing = state.get(HORIZONTAL_FACING);
-        switch(state.get(TYPE)) {
+        Direction facing = state.getValue(HORIZONTAL_FACING);
+        switch(state.getValue(TYPE)) {
             case DOUBLE:
-                return VoxelShapes.fullCube();
+                return VoxelShapes.block();
             case STRAIGHT:
                 switch(facing) {
                     case NORTH:
@@ -89,26 +91,26 @@ public class RankineVerticalSlabBlock extends Block implements IWaterLoggable {
                         return VoxelShapes.or(STRAIGHT_N,INNER_N);
                 }
         }
-        return VoxelShapes.fullCube();
+        return VoxelShapes.block();
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockPos blockpos = context.getPos();
-        BlockState blockstate = context.getWorld().getBlockState(blockpos);
-        if (blockstate.matchesBlock(this)) {
-            return blockstate.with(TYPE, VerticalSlabStates.DOUBLE).with(WATERLOGGED, Boolean.FALSE);
+        BlockPos blockpos = context.getClickedPos();
+        BlockState blockstate = context.getLevel().getBlockState(blockpos);
+        if (blockstate.is(this)) {
+            return blockstate.setValue(TYPE, VerticalSlabStates.DOUBLE).setValue(WATERLOGGED, Boolean.FALSE);
         } else {
             //blockstate1 = getType(context.getWorld(),context.getPos(),context.getPlacementHorizontalFacing());
-            FluidState fluidstate = context.getWorld().getFluidState(blockpos);
-            BlockState blockstate1 = this.getDefaultState().with(TYPE, VerticalSlabStates.STRAIGHT).with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);
-            Direction direction = context.getFace();
+            FluidState fluidstate = context.getLevel().getFluidState(blockpos);
+            BlockState blockstate1 = this.defaultBlockState().setValue(TYPE, VerticalSlabStates.STRAIGHT).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+            Direction direction = context.getClickedFace();
             if (direction.getAxis() == Direction.Axis.Y) {
-                Vector3d vec = context.getHitVec().subtract(new Vector3d(blockpos.getX(), blockpos.getY(), blockpos.getZ())).subtract(0.5, 0, 0.5);
+                Vector3d vec = context.getClickLocation().subtract(new Vector3d(blockpos.getX(), blockpos.getY(), blockpos.getZ())).subtract(0.5, 0, 0.5);
                 double angle = Math.atan2(vec.x, vec.z) * -180.0 / Math.PI;
-                blockstate1 = blockstate1.with(HORIZONTAL_FACING, Direction.fromAngle(angle));
+                blockstate1 = blockstate1.setValue(HORIZONTAL_FACING, Direction.fromYRot(angle));
             } else {
-                blockstate1 = blockstate1.with(HORIZONTAL_FACING, direction.getOpposite());
+                blockstate1 = blockstate1.setValue(HORIZONTAL_FACING, direction.getOpposite());
             }
 
             return blockstate1;
@@ -116,12 +118,12 @@ public class RankineVerticalSlabBlock extends Block implements IWaterLoggable {
     }
 
     @Override
-    public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
-        ItemStack itemstack = useContext.getItem();
-        VerticalSlabStates slabtype = state.get(TYPE);
+    public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
+        ItemStack itemstack = useContext.getItemInHand();
+        VerticalSlabStates slabtype = state.getValue(TYPE);
         if (slabtype != VerticalSlabStates.DOUBLE && itemstack.getItem() == this.asItem()) {
             if (useContext.replacingClickedOnBlock()) {
-                return useContext.getFace() == state.get(HORIZONTAL_FACING).getOpposite();
+                return useContext.getClickedFace() == state.getValue(HORIZONTAL_FACING).getOpposite();
             } else {
                 return true;
             }
@@ -130,11 +132,11 @@ public class RankineVerticalSlabBlock extends Block implements IWaterLoggable {
         }
     }
 
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (stateIn.get(WATERLOGGED)) {
-            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
-        if (facing != Direction.DOWN && facing != Direction.UP && facing != stateIn.get(HORIZONTAL_FACING).getOpposite()) {
+        if (facing != Direction.DOWN && facing != Direction.UP && facing != stateIn.getValue(HORIZONTAL_FACING).getOpposite()) {
             return stateIn;
         } else {
             return stateIn;
@@ -142,40 +144,40 @@ public class RankineVerticalSlabBlock extends Block implements IWaterLoggable {
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(HORIZONTAL_FACING, rot.rotate(state.get(HORIZONTAL_FACING)));
+        return state.setValue(HORIZONTAL_FACING, rot.rotate(state.getValue(HORIZONTAL_FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.toRotation(state.get(HORIZONTAL_FACING)));
+        return state.rotate(mirrorIn.getRotation(state.getValue(HORIZONTAL_FACING)));
     }
 
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(TYPE, HORIZONTAL_FACING, WATERLOGGED);
     }
 
 
     public BlockState getType(World worldIn, BlockPos pos, Direction facing) {
 
-        BlockState forwardBS = worldIn.getBlockState(pos.offset(facing));
-        BlockState backwardBS = worldIn.getBlockState(pos.offset(facing.getOpposite()));
-        BlockState leftBS = worldIn.getBlockState(pos.offset(facing.rotateYCCW().rotateYCCW().rotateYCCW()));
-        BlockState rightBS = worldIn.getBlockState(pos.offset(facing.rotateYCCW()));
+        BlockState forwardBS = worldIn.getBlockState(pos.relative(facing));
+        BlockState backwardBS = worldIn.getBlockState(pos.relative(facing.getOpposite()));
+        BlockState leftBS = worldIn.getBlockState(pos.relative(facing.getCounterClockWise().getCounterClockWise().getCounterClockWise()));
+        BlockState rightBS = worldIn.getBlockState(pos.relative(facing.getCounterClockWise()));
 
-        boolean forward = forwardBS.matchesBlock(this);
-        boolean backward = backwardBS.matchesBlock(this);
-        boolean left = leftBS.matchesBlock(this);
-        boolean right = rightBS.matchesBlock(this);
+        boolean forward = forwardBS.is(this);
+        boolean backward = backwardBS.is(this);
+        boolean left = leftBS.is(this);
+        boolean right = rightBS.is(this);
 
         if (left && right) {
-            return this.getDefaultState().with(TYPE, VerticalSlabStates.STRAIGHT).with(HORIZONTAL_FACING, facing);
+            return this.defaultBlockState().setValue(TYPE, VerticalSlabStates.STRAIGHT).setValue(HORIZONTAL_FACING, facing);
         } else if (backward && left) {
-            return this.getDefaultState().with(TYPE, VerticalSlabStates.OUTER).with(HORIZONTAL_FACING, facing);
+            return this.defaultBlockState().setValue(TYPE, VerticalSlabStates.OUTER).setValue(HORIZONTAL_FACING, facing);
         } else if (backward && right) {
-            return this.getDefaultState().with(TYPE, VerticalSlabStates.OUTER).with(HORIZONTAL_FACING, facing).mirror(Mirror.LEFT_RIGHT);
+            return this.defaultBlockState().setValue(TYPE, VerticalSlabStates.OUTER).setValue(HORIZONTAL_FACING, facing).mirror(Mirror.LEFT_RIGHT);
         }
 
 /*
@@ -199,7 +201,7 @@ public class RankineVerticalSlabBlock extends Block implements IWaterLoggable {
  */
 
 
-        return this.getDefaultState().with(TYPE, VerticalSlabStates.STRAIGHT).with(HORIZONTAL_FACING, facing);
+        return this.defaultBlockState().setValue(TYPE, VerticalSlabStates.STRAIGHT).setValue(HORIZONTAL_FACING, facing);
 
     }
 

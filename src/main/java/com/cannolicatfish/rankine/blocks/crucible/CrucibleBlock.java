@@ -29,19 +29,21 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class CrucibleBlock extends Block {
     public static final BooleanProperty FLUID = BooleanProperty.create("fluid");
-    private static final VoxelShape INSIDE = makeCuboidShape(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-    protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), VoxelShapes.or(makeCuboidShape(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), makeCuboidShape(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), IBooleanFunction.ONLY_FIRST);
+    private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+    protected static final VoxelShape SHAPE = VoxelShapes.join(VoxelShapes.block(), VoxelShapes.or(box(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), box(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), IBooleanFunction.ONLY_FIRST);
 
     public CrucibleBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(FLUID, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FLUID, false));
     }
 
     @Override
     public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-        return state.get(FLUID) ? super.getLightValue(state,world,pos) : 0;
+        return state.getValue(FLUID) ? super.getLightValue(state,world,pos) : 0;
     }
 
     @Override
@@ -50,16 +52,16 @@ public class CrucibleBlock extends Block {
     }
 
     @Override
-    public VoxelShape getRaytraceShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    public VoxelShape getInteractionShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return INSIDE;
     }
 
 
     @Override
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         float f = (float)pos.getY() + (6.0F + (float)(3 * 3)) / 16.0F;
-        if (!worldIn.isRemote && state.get(FLUID) && entityIn.getPosY() <= (double)f) {
-            entityIn.setFire(2);
+        if (!worldIn.isClientSide && state.getValue(FLUID) && entityIn.getY() <= (double)f) {
+            entityIn.setSecondsOnFire(2);
         }
 
     }
@@ -76,11 +78,11 @@ public class CrucibleBlock extends Block {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (!worldIn.isRemote) {
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (!worldIn.isClientSide) {
+            TileEntity tileEntity = worldIn.getBlockEntity(pos);
             if (tileEntity instanceof INamedContainerProvider) {
-                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getBlockPos());
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }
@@ -93,12 +95,12 @@ public class CrucibleBlock extends Block {
 
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        if (stateIn.get(FLUID)) {
+        if (stateIn.getValue(FLUID)) {
             double d0 = (double)pos.getX() + 0.5;
             double d1 = (double)pos.getY() + 0.3D;
             double d2 = (double)pos.getZ() + 0.5;
             if (rand.nextDouble() < 0.1D) {
-                worldIn.playSound(d0, d1, d2, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+                worldIn.playLocalSound(d0, d1, d2, SoundEvents.LAVA_POP, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
             }
             Direction.Axis direction$axis = Direction.Axis.Y;
             double d3 = 0.52D;
@@ -107,7 +109,7 @@ public class CrucibleBlock extends Block {
             double d6 = rand.nextDouble() * 6.0D / 16.0D;
             double d7 = rand.nextDouble() * 0.6D - 0.3D;
             double d8 = d4;
-            if (rand.nextDouble() < 0.4D && (worldIn.getBlockState(pos.down()).getBlock() == Blocks.FIRE || worldIn.getBlockState(pos.down()).getBlock() == Blocks.LAVA))
+            if (rand.nextDouble() < 0.4D && (worldIn.getBlockState(pos.below()).getBlock() == Blocks.FIRE || worldIn.getBlockState(pos.below()).getBlock() == Blocks.LAVA))
             {
                 worldIn.addParticle(ParticleTypes.LAVA, d0, d1, d2, 0.0D, 0.0D, 0.0D);
             }
@@ -115,24 +117,24 @@ public class CrucibleBlock extends Block {
         }
     }
 
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!state.matchesBlock(newState.getBlock())) {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.is(newState.getBlock())) {
+            TileEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof CrucibleTile) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (CrucibleTile)tileentity);
-                worldIn.updateComparatorOutputLevel(pos, this);
+                InventoryHelper.dropContents(worldIn, pos, (CrucibleTile)tileentity);
+                worldIn.updateNeighbourForOutputSignal(pos, this);
             }
 
-            super.onReplaced(state, worldIn, pos, newState, isMoving);
+            super.onRemove(state, worldIn, pos, newState, isMoving);
         }
     }
 
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FLUID);
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
         return false;
     }
 }

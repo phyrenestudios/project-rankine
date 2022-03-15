@@ -35,7 +35,7 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
 
     public BeehiveOvenRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(145, 95);
-        localizedName = I18n.format("rankine.jei.beeoven");
+        localizedName = I18n.get("rankine.jei.beeoven");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"),
                 0, 15, 140, 90);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get()));
@@ -79,10 +79,10 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
     public void setIngredients(BeehiveOvenRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getMatchingStacks()));
+            builder.add(Arrays.asList(i.getItems()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getRecipeOutput()));
+        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getResultItem()));
     }
 
     @Override

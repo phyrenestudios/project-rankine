@@ -25,23 +25,23 @@ public class CobblePatchFeature extends Feature<BlockClusterFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockClusterFeatureConfig config) {
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockClusterFeatureConfig config) {
         List<String> rockList = new ArrayList<String>();
         if (WorldgenUtils.GEN_BIOMES.contains(reader.getBiome(pos).getRegistryName())) {
             rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(reader.getBiome(pos).getRegistryName()));
         }
 
         if (rockList.size() < 1) return false;
-        Block stoneBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(rockList.get(rand.nextInt(rockList.size()))));
+        Block stoneBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(rockList.get(rand.nextInt(rockList.size()))));
         if (!RankineLists.STONES.contains(stoneBlock)) {
             return false;
         }
-        BlockState blockstate = RankineLists.STONE_COBBLES.get(RankineLists.STONES.indexOf(stoneBlock)).getDefaultState();
+        BlockState blockstate = RankineLists.STONE_COBBLES.get(RankineLists.STONES.indexOf(stoneBlock)).defaultBlockState();
 
 
         BlockPos blockpos;
         if (config.project) {
-            blockpos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos);
+            blockpos = reader.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
         } else {
             blockpos = pos;
         }
@@ -49,11 +49,11 @@ public class CobblePatchFeature extends Feature<BlockClusterFeatureConfig> {
         int i = 0;
         BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
 
-        for(int j = 0; j < config.tryCount; ++j) {
-            blockpos$mutable.setAndOffset(blockpos, rand.nextInt(config.xSpread + 1) - rand.nextInt(config.xSpread + 1), rand.nextInt(config.ySpread + 1) - rand.nextInt(config.ySpread + 1), rand.nextInt(config.zSpread + 1) - rand.nextInt(config.zSpread + 1));
-            BlockPos blockpos1 = blockpos$mutable.down();
+        for(int j = 0; j < config.tries; ++j) {
+            blockpos$mutable.setWithOffset(blockpos, rand.nextInt(config.xspread + 1) - rand.nextInt(config.xspread + 1), rand.nextInt(config.yspread + 1) - rand.nextInt(config.yspread + 1), rand.nextInt(config.zspread + 1) - rand.nextInt(config.zspread + 1));
+            BlockPos blockpos1 = blockpos$mutable.below();
             BlockState blockstate1 = reader.getBlockState(blockpos1);
-            if ((reader.isAirBlock(blockpos$mutable) || config.isReplaceable && reader.getBlockState(blockpos$mutable).getMaterial().isReplaceable()) && blockstate.isValidPosition(reader, blockpos$mutable) && (config.whitelist.isEmpty() || config.whitelist.contains(blockstate1.getBlock())) && !config.blacklist.contains(blockstate1) && (!config.requiresWater || reader.getFluidState(blockpos1.west()).isTagged(FluidTags.WATER) || reader.getFluidState(blockpos1.east()).isTagged(FluidTags.WATER) || reader.getFluidState(blockpos1.north()).isTagged(FluidTags.WATER) || reader.getFluidState(blockpos1.south()).isTagged(FluidTags.WATER))) {
+            if ((reader.isEmptyBlock(blockpos$mutable) || config.canReplace && reader.getBlockState(blockpos$mutable).getMaterial().isReplaceable()) && blockstate.canSurvive(reader, blockpos$mutable) && (config.whitelist.isEmpty() || config.whitelist.contains(blockstate1.getBlock())) && !config.blacklist.contains(blockstate1) && (!config.needWater || reader.getFluidState(blockpos1.west()).is(FluidTags.WATER) || reader.getFluidState(blockpos1.east()).is(FluidTags.WATER) || reader.getFluidState(blockpos1.north()).is(FluidTags.WATER) || reader.getFluidState(blockpos1.south()).is(FluidTags.WATER))) {
                 config.blockPlacer.place(reader, blockpos$mutable, blockstate, rand);
                 ++i;
             }

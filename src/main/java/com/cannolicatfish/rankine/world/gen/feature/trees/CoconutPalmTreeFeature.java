@@ -25,10 +25,10 @@ public class CoconutPalmTreeFeature extends Feature<BaseTreeFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
-        int trunkHeight = config.trunkPlacer.getHeight(rand);
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
+        int trunkHeight = config.trunkPlacer.getTreeHeight(rand);
         boolean flag = true;
-        if (pos.getY() >= 1 && pos.getY() + trunkHeight + 1 <= reader.getHeight()) {
+        if (pos.getY() >= 1 && pos.getY() + trunkHeight + 1 <= reader.getMaxBuildHeight()) {
             for(int j = pos.getY(); j <= pos.getY() + 1 + trunkHeight; ++j) {
                 int k = 1;
                 if (j == pos.getY()) {
@@ -43,8 +43,8 @@ public class CoconutPalmTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
                 for(int l = pos.getX() - k; l <= pos.getX() + k && flag; ++l) {
                     for(int i1 = pos.getZ() - k; i1 <= pos.getZ() + k && flag; ++i1) {
-                        if (j >= 0 && j < reader.getHeight()) {
-                            if (!WorldgenUtils.isAirOrLeaves(reader, blockpos$mutableblockpos.setPos(l, j, i1))) {
+                        if (j >= 0 && j < reader.getMaxBuildHeight()) {
+                            if (!WorldgenUtils.isAirOrLeaves(reader, blockpos$mutableblockpos.set(l, j, i1))) {
                                 flag = false;
                             }
                         }
@@ -57,26 +57,26 @@ public class CoconutPalmTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
             if (!flag) {
                 return false;
-            } else if (isValidGround(reader, pos.down()) && pos.getY() < reader.getHeight() - trunkHeight - 1) {
-                setDirtAt(reader, pos.down());
+            } else if (isValidGround(reader, pos.below()) && pos.getY() < reader.getMaxBuildHeight() - trunkHeight - 1) {
+                setDirtAt(reader, pos.below());
                 BlockPos topPos = pos;
                 BlockPos base = pos;
                 int dir = rand.nextInt(8);
                 int len = rand.nextInt(3)+2;
                 for(int i = 0; i <= trunkHeight; ++i) {
-                    WorldgenUtils.checkLog(reader, base.up(i), rand, config, Direction.Axis.Y);
-                    topPos = base.up(i+1);
+                    WorldgenUtils.checkLog(reader, base.above(i), rand, config, Direction.Axis.Y);
+                    topPos = base.above(i+1);
                     if (i == len) {
                         base = WorldgenUtils.eightBlockDirection(base,dir,1);
                         len = len + rand.nextInt(3)+2;
                         if (i < trunkHeight) {
-                            WorldgenUtils.checkLog(reader, base.up(i), rand, config, Direction.Axis.Y);
+                            WorldgenUtils.checkLog(reader, base.above(i), rand, config, Direction.Axis.Y);
                         }
                     }
                 }
                 for (Direction d : Direction.values()) {
                     if (d.getAxis().equals(Direction.Axis.Y)) continue;
-                    WorldgenUtils.checkLog(reader,topPos.offset(d),rand,config,d.getAxis());
+                    WorldgenUtils.checkLog(reader,topPos.relative(d),rand,config,d.getAxis());
                 }
                 palmLeaves(reader, topPos, rand, config);
                 return true;
@@ -92,21 +92,21 @@ public class CoconutPalmTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
     private void palmLeaves(ISeedReader reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config) {
         List<BlockPos> leaves = new ArrayList<>();
-        for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-2,0,-2),pos.add(2,0,2))) {
-            if (WorldgenUtils.inRadiusCenter(pos.up(b.getY()-pos.getY()),b,2.5D)) leaves.add(b.toImmutable());
+        for (BlockPos b : BlockPos.betweenClosed(pos.offset(-2,0,-2),pos.offset(2,0,2))) {
+            if (WorldgenUtils.inRadiusCenter(pos.above(b.getY()-pos.getY()),b,2.5D)) leaves.add(b.immutable());
         }
-        for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-1,1,-1),pos.add(1,1,1))) {
-            leaves.add(b.toImmutable());
+        for (BlockPos b : BlockPos.betweenClosed(pos.offset(-1,1,-1),pos.offset(1,1,1))) {
+            leaves.add(b.immutable());
         }
-        leaves.add(pos.up().north(2));
-        leaves.add(pos.up().east(2));
-        leaves.add(pos.up().west(2));
-        leaves.add(pos.up().south(2));
+        leaves.add(pos.above().north(2));
+        leaves.add(pos.above().east(2));
+        leaves.add(pos.above().west(2));
+        leaves.add(pos.above().south(2));
 
         for (Direction d : Direction.values()) {
             if (d.getAxis().equals(Direction.Axis.Y)) continue;
-            leaves.addAll(palmFraun(reader, pos.offset(d,2).offset(d.rotateY()), rand, d));
-            leaves.addAll(palmFraun(reader, pos.offset(d,2).offset(d.rotateYCCW()), rand, d));
+            leaves.addAll(palmFraun(reader, pos.relative(d,2).relative(d.getClockWise()), rand, d));
+            leaves.addAll(palmFraun(reader, pos.relative(d,2).relative(d.getCounterClockWise()), rand, d));
         }
 
         for (BlockPos b : leaves) {
@@ -119,31 +119,31 @@ public class CoconutPalmTreeFeature extends Feature<BaseTreeFeatureConfig> {
         List<BlockPos> leaves = new ArrayList<>();
         int leaf = rand.nextInt(2);
         if (leaf == 0) {
-            leaves.add(pos.down());
-            leaves.add(pos.down().offset(dir));
+            leaves.add(pos.below());
+            leaves.add(pos.below().relative(dir));
             //if (rand.nextFloat() < 0.5) {
-                leaves.add(pos.down(2).offset(dir));
+                leaves.add(pos.below(2).relative(dir));
             //}
             if (rand.nextFloat() < 0.5) {
-                leaves.add(pos.down(2).offset(dir,2));
+                leaves.add(pos.below(2).relative(dir,2));
             }
             if (rand.nextFloat() < 0.5) {
-                leaves.add(pos.down(2).offset(dir).offset(dir.rotateYCCW()));
+                leaves.add(pos.below(2).relative(dir).relative(dir.getCounterClockWise()));
             }
             if (rand.nextFloat() < 0.5) {
-                leaves.add(pos.down(2).offset(dir).offset(dir.rotateY()));
+                leaves.add(pos.below(2).relative(dir).relative(dir.getClockWise()));
             }
         } else {
-            leaves.add(pos.offset(dir));
-            leaves.add(pos.down().offset(dir));
+            leaves.add(pos.relative(dir));
+            leaves.add(pos.below().relative(dir));
             //if (rand.nextFloat() < 0.5) {
-                leaves.add(pos.down().offset(dir,2));
+                leaves.add(pos.below().relative(dir,2));
             //}
             if (rand.nextFloat() < 0.7) {
-                leaves.add(pos.down().offset(dir).offset(dir.rotateY()));
+                leaves.add(pos.below().relative(dir).relative(dir.getClockWise()));
             }
             if (rand.nextFloat() < 0.7) {
-                leaves.add(pos.down().offset(dir).offset(dir.rotateYCCW()));
+                leaves.add(pos.below().relative(dir).relative(dir.getCounterClockWise()));
             }
 
         }
@@ -154,7 +154,7 @@ public class CoconutPalmTreeFeature extends Feature<BaseTreeFeatureConfig> {
     public static void setDirtAt(IWorld reader, BlockPos pos) {
         Block block = reader.getBlockState(pos).getBlock();
         if (block == Blocks.GRASS_BLOCK || block == Blocks.FARMLAND) {
-            reader.setBlockState(pos, Blocks.DIRT.getDefaultState(), 18);
+            reader.setBlock(pos, Blocks.DIRT.defaultBlockState(), 18);
         }
     }
 

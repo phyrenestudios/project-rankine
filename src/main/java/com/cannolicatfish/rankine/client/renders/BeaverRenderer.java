@@ -15,7 +15,7 @@ public class BeaverRenderer extends MobRenderer<BeaverEntity, BeaverModel<Beaver
     public static final BeaverRenderer.RenderFactory instance = new BeaverRenderer.RenderFactory();
 
     @Override
-    protected boolean canRenderName(BeaverEntity entity) {
+    protected boolean shouldShowName(BeaverEntity entity) {
         return false;
     }
 
@@ -30,7 +30,7 @@ public class BeaverRenderer extends MobRenderer<BeaverEntity, BeaverModel<Beaver
     }
 
     @Override
-    public ResourceLocation getEntityTexture(BeaverEntity entity) {
+    public ResourceLocation getTextureLocation(BeaverEntity entity) {
         return new ResourceLocation("rankine:textures/entity/beaver.png");
     }
 

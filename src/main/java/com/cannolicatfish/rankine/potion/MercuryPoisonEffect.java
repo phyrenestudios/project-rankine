@@ -29,15 +29,15 @@ public class MercuryPoisonEffect extends Effect {
     }
 
     @Override
-    public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
+    public void applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
 
         if (entityLivingBaseIn instanceof PlayerEntity)
         {
             PlayerEntity player = ((PlayerEntity)entityLivingBaseIn);
 
-            if (player.isSprinting() || player.isSwimming() || player.isSwingInProgress)
+            if (player.isSprinting() || player.isSwimming() || player.swinging)
             {
-                player.addExhaustion(0.05f * amplifier);
+                player.causeFoodExhaustion(0.05f * amplifier);
             }
 
         }
@@ -46,7 +46,7 @@ public class MercuryPoisonEffect extends Effect {
 
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
     }
 }

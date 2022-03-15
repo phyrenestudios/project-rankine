@@ -51,7 +51,7 @@ public interface IAlloyShield extends IAlloyItem {
 
 
         if (alloyRecipe != null) {
-            Optional<? extends IRecipe<?>> opt = worldIn.getRecipeManager().getRecipe(alloyRecipe);
+            Optional<? extends IRecipe<?>> opt = worldIn.getRecipeManager().byKey(alloyRecipe);
             if (opt.isPresent()) {
                 AlloyingRecipe recipe = (AlloyingRecipe) opt.get();
                 dur += recipe.getBonusDurability();
@@ -89,24 +89,24 @@ public interface IAlloyShield extends IAlloyItem {
         int interval = 5;
         int maxLvl = 5;
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
-        if (rs != null && worldIn.getRecipeManager().getRecipe(rs).isPresent()) {
-            AlloyingRecipe recipe = (AlloyingRecipe) worldIn.getRecipeManager().getRecipe(rs).get();
+        if (rs != null && worldIn.getRecipeManager().byKey(rs).isPresent()) {
+            AlloyingRecipe recipe = (AlloyingRecipe) worldIn.getRecipeManager().byKey(rs).get();
             start = recipe.getMinEnchantability();
             interval = recipe.getEnchantInterval();
             maxLvl = recipe.getMaxEnchantLevelIn();
             for (Enchantment e: AlloyEnchantmentUtils.getAlloyEnchantments(recipe,stack,worldIn))
             {
                 int enchLvl = Math.min(Math.floorDiv(Math.max(getAlloyEnchantability(stack) - start + interval,0),interval),maxLvl);
-                if (enchLvl > 0 && EnchantmentHelper.getEnchantmentLevel(e,stack) == 0) {
-                    stack.addEnchantment(e,Math.min(e.getMaxLevel(),enchLvl));
+                if (enchLvl > 0 && EnchantmentHelper.getItemEnchantmentLevel(e,stack) == 0) {
+                    stack.enchant(e,Math.min(e.getMaxLevel(),enchLvl));
                 }
             }
         }
         for (Enchantment e: AlloyEnchantmentUtils.getElementEnchantments(getElementRecipes(IAlloyItem.getAlloyComposition(stack),worldIn),getPercents(IAlloyItem.getAlloyComposition(stack)),stack,worldIn))
         {
             int enchLvl = Math.min(Math.floorDiv(Math.max(getAlloyEnchantability(stack) - start + interval,0),interval),maxLvl);
-            if (enchLvl > 0 && EnchantmentHelper.getEnchantmentLevel(e,stack) == 0) {
-                stack.addEnchantment(e,Math.min(e.getMaxLevel(),enchLvl));
+            if (enchLvl > 0 && EnchantmentHelper.getItemEnchantmentLevel(e,stack) == 0) {
+                stack.enchant(e,Math.min(e.getMaxLevel(),enchLvl));
             }
         }
 
@@ -176,11 +176,11 @@ public interface IAlloyShield extends IAlloyItem {
         boolean memory = false;
         Random rand = worldIn.getRandom();
         int i = 1;
-        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
+        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getRemainingFireTicks() > 0 || worldIn.dimension() == World.NETHER)) {
             i += Config.ALLOYS.ALLOY_HEAT_AMT.get();
             memory = true;
         }
-        if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet()))
+        if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isInWaterOrRain()))
         {
             i += Config.ALLOYS.ALLOY_CORROSION_AMT.get();
         }
@@ -189,8 +189,8 @@ public interface IAlloyShield extends IAlloyItem {
             i *= 2;
         }
 
-        if (memory && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SHAPE_MEMORY,stack) >= 1) {
-            stack.setDamage(Math.max(stack.getDamage() - i,0));
+        if (memory && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.SHAPE_MEMORY,stack) >= 1) {
+            stack.setDamageValue(Math.max(stack.getDamageValue() - i,0));
             i = 0;
         }
         return i;

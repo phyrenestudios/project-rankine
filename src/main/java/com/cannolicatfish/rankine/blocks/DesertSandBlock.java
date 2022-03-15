@@ -8,6 +8,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class DesertSandBlock extends SandBlock {
 
     public DesertSandBlock(int dustColorIn, Properties properties) {
@@ -16,6 +18,6 @@ public class DesertSandBlock extends SandBlock {
 
     @Override
     public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
-        return plantable.getPlantType(world, pos.offset(facing)).equals(PlantType.DESERT) || plantable.getPlantType(world, pos.offset(facing)).equals(PlantType.BEACH);
+        return plantable.getPlantType(world, pos.relative(facing)).equals(PlantType.DESERT) || plantable.getPlantType(world, pos.relative(facing)).equals(PlantType.BEACH);
     }
 }

@@ -35,27 +35,29 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class PeriodicTableChestBlock extends Block implements IWaterLoggable {
-    public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = HorizontalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
+    protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 
     public PeriodicTableChestBlock(Properties properties) {
         super(properties);
     }
 
     @Override
-    public BlockRenderType getRenderType(BlockState state) {
+    public BlockRenderType getRenderShape(BlockState state) {
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (stateIn.get(WATERLOGGED)) {
-            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
 
-        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
@@ -65,52 +67,52 @@ public class PeriodicTableChestBlock extends Block implements IWaterLoggable {
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        Direction direction = context.getPlacementHorizontalFacing().getOpposite();
-        FluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+        Direction direction = context.getHorizontalDirection().getOpposite();
+        FluidState ifluidstate = context.getLevel().getFluidState(context.getClickedPos());
 
-        return this.getDefaultState().with(FACING, direction).with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
+        return this.defaultBlockState().setValue(FACING, direction).setValue(WATERLOGGED, ifluidstate.getType() == Fluids.WATER);
     }
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        TileEntity tileentity = worldIn.getTileEntity(pos);
+    public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        TileEntity tileentity = worldIn.getBlockEntity(pos);
 
         if (tileentity instanceof PeriodicTableChestTile) {
             ((PeriodicTableChestTile) tileentity).wasPlaced(placer, stack);
 
-            if (stack.hasDisplayName()) {
-                ((PeriodicTableChestTile) tileentity).setCustomName(stack.getDisplayName());
+            if (stack.hasCustomHoverName()) {
+                ((PeriodicTableChestTile) tileentity).setCustomName(stack.getHoverName());
             }
         }
     }
 
     @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+            TileEntity tileentity = worldIn.getBlockEntity(pos);
 
             if (tileentity instanceof PeriodicTableChestTile) {
                 ((PeriodicTableChestTile) tileentity).removeAdornments();
-                InventoryHelper.dropInventoryItems(worldIn, pos, (PeriodicTableChestTile) tileentity);
-                worldIn.updateComparatorOutputLevel(pos, this);
+                InventoryHelper.dropContents(worldIn, pos, (PeriodicTableChestTile) tileentity);
+                worldIn.updateNeighbourForOutputSignal(pos, this);
             }
 
-            super.onReplaced(state, worldIn, pos, newState, isMoving);
+            super.onRemove(state, worldIn, pos, newState, isMoving);
         }
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (!worldIn.isRemote) {
-            INamedContainerProvider inamedcontainerprovider = this.getContainer(state, worldIn, pos);
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (!worldIn.isClientSide) {
+            INamedContainerProvider inamedcontainerprovider = this.getMenuProvider(state, worldIn, pos);
             if (inamedcontainerprovider != null) {
-                player.openContainer(inamedcontainerprovider);
-                player.addStat(this.getOpenStat());
+                player.openMenu(inamedcontainerprovider);
+                player.awardStat(this.getOpenStat());
             }
 
         }
@@ -123,8 +125,8 @@ public class PeriodicTableChestBlock extends Block implements IWaterLoggable {
 
     @Override
     @Nullable
-    public INamedContainerProvider getContainer(BlockState state, World world, BlockPos pos) {
-        TileEntity tileentity = world.getTileEntity(pos);
+    public INamedContainerProvider getMenuProvider(BlockState state, World world, BlockPos pos) {
+        TileEntity tileentity = world.getBlockEntity(pos);
         return tileentity instanceof INamedContainerProvider ? (INamedContainerProvider) tileentity : null;
     }
 
@@ -134,10 +136,10 @@ public class PeriodicTableChestBlock extends Block implements IWaterLoggable {
     }
 
     @Override
-    public boolean eventReceived(BlockState state, World worldIn, BlockPos pos, int id, int param) {
-        super.eventReceived(state, worldIn, pos, id, param);
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity == null ? false : tileentity.receiveClientEvent(id, param);
+    public boolean triggerEvent(BlockState state, World worldIn, BlockPos pos, int id, int param) {
+        super.triggerEvent(state, worldIn, pos, id, param);
+        TileEntity tileentity = worldIn.getBlockEntity(pos);
+        return tileentity == null ? false : tileentity.triggerEvent(id, param);
     }
 
     private static boolean isBlocked(IWorld iWorld, BlockPos blockPos) {
@@ -145,12 +147,12 @@ public class PeriodicTableChestBlock extends Block implements IWaterLoggable {
     }
 
     private static boolean isBelowSolidBlock(IBlockReader iBlockReader, BlockPos worldIn) {
-        BlockPos blockpos = worldIn.up();
-        return iBlockReader.getBlockState(blockpos).isNormalCube(iBlockReader, blockpos);
+        BlockPos blockpos = worldIn.above();
+        return iBlockReader.getBlockState(blockpos).isRedstoneConductor(iBlockReader, blockpos);
     }
 
     private static boolean isCatSittingOn(IWorld iWorld, BlockPos blockPos) {
-        List<CatEntity> list = iWorld.getEntitiesWithinAABB(CatEntity.class, new AxisAlignedBB((double) blockPos.getX(), (double) (blockPos.getY() + 1), (double) blockPos.getZ(), (double) (blockPos.getX() + 1), (double) (blockPos.getY() + 2), (double) (blockPos.getZ() + 1)));
+        List<CatEntity> list = iWorld.getEntitiesOfClass(CatEntity.class, new AxisAlignedBB((double) blockPos.getX(), (double) (blockPos.getY() + 1), (double) blockPos.getZ(), (double) (blockPos.getX() + 1), (double) (blockPos.getY() + 2), (double) (blockPos.getZ() + 1)));
         if (!list.isEmpty()) {
             for (CatEntity catentity : list) {
                 if (catentity.isSleeping()) {
@@ -163,32 +165,32 @@ public class PeriodicTableChestBlock extends Block implements IWaterLoggable {
     }
 
     @Override
-    public boolean hasComparatorInputOverride(BlockState state) {
+    public boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 
     @Override
-    public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
-        return Container.calcRedstoneFromInventory((IInventory) worldIn.getTileEntity(pos));
+    public int getAnalogOutputSignal(BlockState blockState, World worldIn, BlockPos pos) {
+        return Container.getRedstoneSignalFromContainer((IInventory) worldIn.getBlockEntity(pos));
     }
 
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(FACING, rot.rotate(state.get(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.toRotation(state.get(FACING)));
+        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING, WATERLOGGED);
     }
 
     @Override
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
         return false;
     }
 
@@ -203,7 +205,7 @@ public class PeriodicTableChestBlock extends Block implements IWaterLoggable {
     }
 
     public static Direction getDirectionToAttached(BlockState state) {
-        Direction direction = state.get(FACING);
-        return direction.rotateYCCW();
+        Direction direction = state.getValue(FACING);
+        return direction.getCounterClockWise();
     }
 }

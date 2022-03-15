@@ -31,53 +31,53 @@ public class ElectromagnetBlock extends DirectionalBlock {
     int type;
 
     public ElectromagnetBlock(int type) {
-        super(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 6.0F));
-        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.SOUTH).with(POWERED, Boolean.FALSE));
+        super(Block.Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5.0F, 6.0F));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.SOUTH).setValue(POWERED, Boolean.FALSE));
         this.type = type;
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING, POWERED);
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(FACING, context.getNearestLookingDirection().getOpposite()).with(POWERED, Boolean.FALSE);
+        return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite()).setValue(POWERED, Boolean.FALSE);
     }
 
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-        if (!worldIn.isRemote) {
-            boolean flag = state.get(POWERED);
-            if (flag != worldIn.isBlockPowered(pos)) {
+        if (!worldIn.isClientSide) {
+            boolean flag = state.getValue(POWERED);
+            if (flag != worldIn.hasNeighborSignal(pos)) {
                 if (flag) {
-                    worldIn.getPendingBlockTicks().scheduleTick(pos, this, 4);
+                    worldIn.getBlockTicks().scheduleTick(pos, this, 4);
                 } else {
-                    worldIn.setBlockState(pos, state.cycleValue(POWERED), 2);
-                    Direction direction = state.get(FACING);
-                    BlockPos blockpos = pos.offset(direction);
-                    if (worldIn.isAirBlock(blockpos)) {
-                        List<BlockPos> blockPosList = BlockPos.getAllInBox(blockpos,blockpos.add(direction.getDirectionVec().offset(direction, type * Config.MACHINES.ELECTROMAGNET_RANGE.get() - 1))).map(BlockPos::toImmutable).collect(Collectors.toList());
+                    worldIn.setBlock(pos, state.cycle(POWERED), 2);
+                    Direction direction = state.getValue(FACING);
+                    BlockPos blockpos = pos.relative(direction);
+                    if (worldIn.isEmptyBlock(blockpos)) {
+                        List<BlockPos> blockPosList = BlockPos.betweenClosedStream(blockpos,blockpos.offset(direction.getNormal().relative(direction, type * Config.MACHINES.ELECTROMAGNET_RANGE.get() - 1))).map(BlockPos::immutable).collect(Collectors.toList());
                         if(direction == Direction.NORTH || direction == Direction.WEST || direction == Direction.DOWN) {
                             Collections.reverse(blockPosList);
                         }
                         for (BlockPos b : blockPosList) {
                             BlockState BS = worldIn.getBlockState(b);
-                            if (!BS.isIn(RankineTags.Blocks.MAGNET_BANNED) && worldIn.getTileEntity(b) == null && worldIn.getFluidState(b).isEmpty()) {
-                                if (!worldIn.isAirBlock(b) && BS.getMaterial().blocksMovement()) {
-                                    if (BS.getMaterial() == Material.IRON || !Config.MACHINES.ELECTROMAGNET_MATERIAL_REQ.get()) {
-                                        List<LivingEntity> entities = worldIn.getEntitiesWithinAABB(LivingEntity.class, new AxisAlignedBB(blockpos, b).expand(1, 1, 1), (e) -> e instanceof MobEntity || e instanceof PlayerEntity);
+                            if (!BS.is(RankineTags.Blocks.MAGNET_BANNED) && worldIn.getBlockEntity(b) == null && worldIn.getFluidState(b).isEmpty()) {
+                                if (!worldIn.isEmptyBlock(b) && BS.getMaterial().blocksMotion()) {
+                                    if (BS.getMaterial() == Material.METAL || !Config.MACHINES.ELECTROMAGNET_MATERIAL_REQ.get()) {
+                                        List<LivingEntity> entities = worldIn.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(blockpos, b).expandTowards(1, 1, 1), (e) -> e instanceof MobEntity || e instanceof PlayerEntity);
                                         for (LivingEntity i : entities) {
-                                            i.attackEntityFrom(DamageSource.FLY_INTO_WALL, MathHelper.sqrt(b.distanceSq(blockpos)));
+                                            i.hurt(DamageSource.FLY_INTO_WALL, MathHelper.sqrt(b.distSqr(blockpos)));
                                         }
 
-                                        List<LivingEntity> entitiesOnBlock = worldIn.getEntitiesWithinAABB(LivingEntity.class, new AxisAlignedBB(b, b.up()).expand(1, 1, 1), (e) -> e instanceof MobEntity || e instanceof PlayerEntity);
+                                        List<LivingEntity> entitiesOnBlock = worldIn.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(b, b.above()).expandTowards(1, 1, 1), (e) -> e instanceof MobEntity || e instanceof PlayerEntity);
                                         for (LivingEntity i : entitiesOnBlock) {
-                                            i.setPositionAndUpdate(blockpos.getX() - (b.getX() - i.getPosX()), blockpos.getY() + 1, blockpos.getZ() - (b.getZ() - i.getPosZ()));
+                                            i.teleportTo(blockpos.getX() - (b.getX() - i.getX()), blockpos.getY() + 1, blockpos.getZ() - (b.getZ() - i.getZ()));
                                         }
 
-                                        worldIn.setBlockState(blockpos, BS, 3);
-                                        worldIn.setBlockState(b, Blocks.AIR.getDefaultState(), 3);
-                                        for (BlockPos toBreak : BlockPos.getAllInBoxMutable(blockpos, b)) {
-                                            if (!worldIn.getBlockState(toBreak).getMaterial().blocksMovement()) {
+                                        worldIn.setBlock(blockpos, BS, 3);
+                                        worldIn.setBlock(b, Blocks.AIR.defaultBlockState(), 3);
+                                        for (BlockPos toBreak : BlockPos.betweenClosed(blockpos, b)) {
+                                            if (!worldIn.getBlockState(toBreak).getMaterial().blocksMotion()) {
                                                 worldIn.destroyBlock(toBreak, true);
                                             }
                                         }
@@ -96,8 +96,8 @@ public class ElectromagnetBlock extends DirectionalBlock {
     }
 
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (state.get(POWERED) && !worldIn.isBlockPowered(pos)) {
-            worldIn.setBlockState(pos, state.cycleValue(POWERED), 2);
+        if (state.getValue(POWERED) && !worldIn.hasNeighborSignal(pos)) {
+            worldIn.setBlock(pos, state.cycle(POWERED), 2);
         }
     }
 }

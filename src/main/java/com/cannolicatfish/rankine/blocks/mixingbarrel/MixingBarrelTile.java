@@ -85,15 +85,15 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
             }
         }
 
-        public int size() {
+        public int getCount() {
             return 4;
         }
     };
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
-        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt,this.items);
         this.inputTank = this.inputTank.readFromNBT(nbt.getCompound("InputTank"));
         this.mixTime = nbt.getInt("MixTime");
@@ -103,8 +103,8 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         compound.put("InputTank",this.inputTank.writeToNBT(new CompoundNBT()));
         compound.putInt("MixTime", this.mixTime);
         compound.putInt("MixTimeTotal", this.mixTimeTotal);
@@ -120,28 +120,28 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
         boolean flag1 = this.getNeedsRefresh();
         boolean flag2 = false;
 
-        if (!this.world.isRemote) {
+        if (!this.level.isClientSide) {
             if (!flag && flag1) {
                 this.needsRefresh = 0;
                 flag1 = false;
             }
             ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2), this.items.get(3)};
             if ((!this.getNeedsRefresh() && flag) && (!this.items.get(0).isEmpty() || !this.items.get(1).isEmpty() || !this.items.get(2).isEmpty() || !this.items.get(3).isEmpty())) {
-                int angle = this.getBlockState().get(MixingBarrelBlock.ANGLE);
+                int angle = this.getBlockState().getValue(MixingBarrelBlock.ANGLE);
                 if (angle == 3) {
-                    world.setBlockState(this.pos, RankineBlocks.MIXING_BARREL.get().getDefaultState().with(MixingBarrelBlock.ANGLE,0),3);
+                    level.setBlock(this.worldPosition, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,0),3);
                 } else {
-                    world.setBlockState(this.pos, RankineBlocks.MIXING_BARREL.get().getDefaultState().with(MixingBarrelBlock.ANGLE,angle+1),3);
+                    level.setBlock(this.worldPosition, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,angle+1),3);
                 }
-                List<LivingEntity> entitiesOnBlock = world.getEntitiesWithinAABB(LivingEntity.class, new AxisAlignedBB(pos, pos.up()).expand(1, 1, 1), (e) -> e instanceof MobEntity || e instanceof PlayerEntity);
+                List<LivingEntity> entitiesOnBlock = level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(worldPosition, worldPosition.above()).expandTowards(1, 1, 1), (e) -> e instanceof MobEntity || e instanceof PlayerEntity);
                 for (LivingEntity i : entitiesOnBlock) {
-                    i.setPositionAndRotation(i.getPosX(),i.getPosY()+2,i.getPosZ(),i.getRotationYawHead() + 22.5F,i.getPitchYaw().y);
+                    i.absMoveTo(i.getX(),i.getY()+2,i.getZ(),i.getYHeadRot() + 22.5F,i.getRotationVector().y);
                 }
 
                 this.needsRefresh = 1;
 
 
-                MixingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.MIXING, this, this.world).orElse(null);
+                MixingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING, this, this.level).orElse(null);
                 if (this.canMix(irecipe, this)) {
                     if (this.mixTime == 0) {
                         this.mixTimeTotal = getMixTime();
@@ -151,7 +151,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
                         if (!irecipe.getFluid().isEmpty()) {
                             inputTank.drain(irecipe.getOutputFluidReq(this), IFluidHandler.FluidAction.EXECUTE);
                         }
-                        ItemStack smelting = irecipe.getMixingResult(this,world);
+                        ItemStack smelting = irecipe.getMixingResult(this,level);
                         if (this.items.get(4).getCount() > 0) {
                             this.items.get(4).grow(smelting.getCount());
                         } else {
@@ -177,7 +177,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
         }
 
         if (flag2) {
-            this.markDirty();
+            this.setChanged();
         }
 
     }
@@ -187,7 +187,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     }
 
     public int getMixTime() {
-        MixingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.MIXING, this, this.world).orElse(null);
+        MixingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING, this, this.level).orElse(null);
         if (irecipe != null) {
             return irecipe.getOutputMixTime(this);
         } else {
@@ -196,11 +196,11 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     }
 
     private boolean isRedstonePowered() {
-        return this.world.getRedstonePowerFromNeighbors(pos) > 0;
+        return this.level.getBestNeighborSignal(worldPosition) > 0;
     }
 
     private int getRedstonePower() {
-        return this.world.getRedstonePowerFromNeighbors(pos);
+        return this.level.getBestNeighborSignal(worldPosition);
     }
 
     public boolean getNeedsRefresh() {
@@ -221,7 +221,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
         }
         else
         {
-            ItemStack result = recipeIn.getMixingResult(inv,world);
+            ItemStack result = recipeIn.getMixingResult(inv,level);
             if(result.isEmpty())
             {
                 return false;
@@ -244,7 +244,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
 
     @Override
     public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (facing == Direction.UP)
                 return handlers[0].cast();
             else if (facing == Direction.DOWN)
@@ -256,8 +256,8 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public void remove() {
-        super.remove();
+    public void setRemoved() {
+        super.setRemoved();
         for (int x = 0; x < handlers.length; x++)
             handlers[x].invalidate();
     }
@@ -270,7 +270,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     @Override
     @Nullable
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new MixingBarrelContainer(i, world, pos, playerInventory, playerEntity, this, this.furnaceData);
+        return new MixingBarrelContainer(i, level, worldPosition, playerInventory, playerEntity, this, this.furnaceData);
     }
 
 
@@ -284,17 +284,17 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, @Nullable Direction direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, @Nullable Direction direction) {
+        return this.canPlaceItem(index, itemStackIn);
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         return true;
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return this.items.size();
     }
 
@@ -310,47 +310,47 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public ItemStack getItem(int index) {
         return this.items.get(index);
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return ItemStackHelper.getAndSplit(this.items, index, count);
+    public ItemStack removeItem(int index, int count) {
+        return ItemStackHelper.removeItem(this.items, index, count);
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.items, index);
+    public ItemStack removeItemNoUpdate(int index) {
+        return ItemStackHelper.takeItem(this.items, index);
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
         this.items.set(index, stack);
-        if (stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
         }
 
         if (index == 0 && !flag) {
             this.mixTimeTotal = this.getMixTime();
             this.mixTime = 0;
-            this.markDirty();
+            this.setChanged();
         }
     }
 
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        if (this.world.getTileEntity(this.pos) != this) {
+    public boolean stillValid(PlayerEntity player) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
-            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+            return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
         }
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
+    public boolean canPlaceItem(int index, ItemStack stack) {
         switch (index)
         {
             case 0:
@@ -364,7 +364,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.items.clear();
     }
 }

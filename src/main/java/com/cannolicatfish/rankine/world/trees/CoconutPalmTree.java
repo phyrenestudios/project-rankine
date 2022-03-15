@@ -13,7 +13,7 @@ public class CoconutPalmTree extends Tree {
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return RankineFeatures.COCONUT_PALM_TREE.get().withConfiguration(RankineBiomeFeatures.COCONUT_PALM_TREE_CONFIG);
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
+        return RankineFeatures.COCONUT_PALM_TREE.get().configured(RankineBiomeFeatures.COCONUT_PALM_TREE_CONFIG);
     }
 }

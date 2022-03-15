@@ -186,7 +186,7 @@ public interface IAlloyItem {
                 for (String e: comp)
                 {
                     String str = e.replaceAll("[^A-Za-z]+", "");
-                    worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ELEMENT).stream().filter(elementRecipe -> elementRecipe.getSymbol().equals(str)).findFirst().ifPresent(list::add);
+                    worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ELEMENT).stream().filter(elementRecipe -> elementRecipe.getSymbol().equals(str)).findFirst().ifPresent(list::add);
                 }
                 return list;
             }
@@ -233,7 +233,7 @@ public interface IAlloyItem {
 
     default AlloyingRecipe getAlloyingRecipe(ResourceLocation rs, World worldIn) {
         if (rs != null) {
-            Optional<? extends IRecipe<?>> opt = worldIn.getRecipeManager().getRecipe(rs);
+            Optional<? extends IRecipe<?>> opt = worldIn.getRecipeManager().byKey(rs);
             if (opt.isPresent() && opt.get() instanceof AlloyingRecipe) {
                 return (AlloyingRecipe) opt.get();
             }
@@ -249,24 +249,24 @@ public interface IAlloyItem {
     default void addAlloyInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (this.isAlloyInit(stack)) {
             if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
-                tooltip.add((new StringTextComponent("Any Composition").mergeStyle(TextFormatting.GOLD)));
+                tooltip.add((new StringTextComponent("Any Composition").withStyle(TextFormatting.GOLD)));
             } else {
-                tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD)));
+                tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(TextFormatting.GOLD)));
             }
 
             if (!IAlloyItem.getAlloyModifiers(stack).isEmpty()) {
-                tooltip.add((new StringTextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).mergeStyle(TextFormatting.AQUA)));
+                tooltip.add((new StringTextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(TextFormatting.AQUA)));
             } else {
-                tooltip.add((new StringTextComponent("No Modifiers Present").mergeStyle(TextFormatting.AQUA)));
+                tooltip.add((new StringTextComponent("No Modifiers Present").withStyle(TextFormatting.AQUA)));
             }
         }
     }
 
     default void addAdvancedAlloyInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (IAlloyItem.getAlloyRecipe(stack) != null) {
-            tooltip.add((new StringTextComponent("Recipe: " + (IAlloyItem.getAlloyRecipe(stack))).mergeStyle(TextFormatting.LIGHT_PURPLE)));
+            tooltip.add((new StringTextComponent("Recipe: " + (IAlloyItem.getAlloyRecipe(stack))).withStyle(TextFormatting.LIGHT_PURPLE)));
         } else {
-            tooltip.add((new StringTextComponent("No Recipe Defined").mergeStyle(TextFormatting.LIGHT_PURPLE)));
+            tooltip.add((new StringTextComponent("No Recipe Defined").withStyle(TextFormatting.LIGHT_PURPLE)));
         }
     }
 

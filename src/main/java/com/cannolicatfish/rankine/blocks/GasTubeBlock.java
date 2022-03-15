@@ -23,6 +23,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class GasTubeBlock extends RotatedPillarBlock implements IWaterLoggable {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -30,7 +32,7 @@ public class GasTubeBlock extends RotatedPillarBlock implements IWaterLoggable {
 
     public GasTubeBlock(Properties builder) {
         super(builder);
-        this.setDefaultState(this.stateContainer.getBaseState().with(AXIS, Direction.Axis.Y).with(WATERLOGGED, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any().setValue(AXIS, Direction.Axis.Y).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     @Override
@@ -39,36 +41,36 @@ public class GasTubeBlock extends RotatedPillarBlock implements IWaterLoggable {
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch (state.get(AXIS)) {
+        switch (state.getValue(AXIS)) {
             case X:
-                return makeCuboidShape(0,6,6,16,10,10);
+                return box(0,6,6,16,10,10);
             case Z:
-                return makeCuboidShape(6,6,0,10,10,16);
+                return box(6,6,0,10,10,16);
             case Y:
             default:
-                return makeCuboidShape(6,0,6,10,16,10);
+                return box(6,0,6,10,16,10);
         }
     }
 
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (stateIn.get(WATERLOGGED)) {
-            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
-        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockState blockstate1 = this.getDefaultState();
-        IWorldReader iworldreader = context.getWorld();
-        BlockPos blockpos = context.getPos();
-        FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
+        BlockState blockstate1 = this.defaultBlockState();
+        IWorldReader iworldreader = context.getLevel();
+        BlockPos blockpos = context.getClickedPos();
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
 
         for(Direction direction : context.getNearestLookingDirections()) {
             if (direction.getAxis().isHorizontal()) {
-                blockstate1 = blockstate1.with(AXIS, context.getFace().getAxis());
-                if (blockstate1.isValidPosition(iworldreader, blockpos)) {
-                    return blockstate1.with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);
+                blockstate1 = blockstate1.setValue(AXIS, context.getClickedFace().getAxis());
+                if (blockstate1.canSurvive(iworldreader, blockpos)) {
+                    return blockstate1.setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
                 }
             }
         }
@@ -78,18 +80,18 @@ public class GasTubeBlock extends RotatedPillarBlock implements IWaterLoggable {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
+    public boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
         if (adjacentBlockState.getBlock() == this) {
             return true;
         }
-        return super.isSideInvisible(state, adjacentBlockState, side);
+        return super.skipRendering(state, adjacentBlockState, side);
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(AXIS, WATERLOGGED);
     }
 
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 }

@@ -26,44 +26,44 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public class AlloyAxeItem extends AxeItem implements IAlloyTool {
-    private static final Set<Material> EFFECTIVE_ON_MATERIALS = Sets.newHashSet(Material.WOOD, Material.NETHER_WOOD, Material.PLANTS, Material.TALL_PLANTS, Material.BAMBOO, Material.GOURD);
+    private static final Set<Material> EFFECTIVE_ON_MATERIALS = Sets.newHashSet(Material.WOOD, Material.NETHER_WOOD, Material.PLANT, Material.REPLACEABLE_PLANT, Material.BAMBOO, Material.VEGETABLE);
     private static final Set<Block> EFFECTIVE_ON_BLOCKS = Sets.newHashSet(Blocks.LADDER, Blocks.SCAFFOLDING, Blocks.OAK_BUTTON, Blocks.SPRUCE_BUTTON, Blocks.BIRCH_BUTTON, Blocks.JUNGLE_BUTTON, Blocks.DARK_OAK_BUTTON, Blocks.ACACIA_BUTTON, Blocks.CRIMSON_BUTTON, Blocks.WARPED_BUTTON);
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
 
     public AlloyAxeItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn,  Item.Properties builder) {
-        super(tier, attackDamageIn, attackSpeedIn, builder.addToolType(ToolType.AXE, tier.getHarvestLevel()));
+        super(tier, attackDamageIn, attackSpeedIn, builder.addToolType(ToolType.AXE, tier.getLevel()));
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
+    public ITextComponent getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
+            return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
         }
-        return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
+        return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
-        BlockPos blockpos = context.getPos();
+    public ActionResultType useOn(ItemUseContext context) {
+        World world = context.getLevel();
+        BlockPos blockpos = context.getClickedPos();
         BlockState blockstate = world.getBlockState(blockpos);
-        Block block = BLOCK_STRIPPING_MAP.get(blockstate.getBlock());
+        Block block = STRIPABLES.get(blockstate.getBlock());
         if (block != null) {
             PlayerEntity playerentity = context.getPlayer();
-            world.playSound(playerentity, blockpos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            if (!world.isRemote) {
-                world.setBlockState(blockpos, block.getDefaultState().with(RotatedPillarBlock.AXIS, blockstate.get(RotatedPillarBlock.AXIS)), 11);
+            world.playSound(playerentity, blockpos, SoundEvents.AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            if (!world.isClientSide) {
+                world.setBlock(blockpos, block.defaultBlockState().setValue(RotatedPillarBlock.AXIS, blockstate.getValue(RotatedPillarBlock.AXIS)), 11);
                 if (playerentity != null) {
-                    context.getItem().damageItem(calcDurabilityLoss(context.getItem(),context.getWorld(),context.getPlayer(),true), playerentity, (p_220040_1_) -> {
-                        p_220040_1_.sendBreakAnimation(context.getHand());
+                    context.getItemInHand().hurtAndBreak(calcDurabilityLoss(context.getItemInHand(),context.getLevel(),context.getPlayer(),true), playerentity, (p_220040_1_) -> {
+                        p_220040_1_.broadcastBreakEvent(context.getHand());
                     });
                 }
             }
 
-            return ActionResultType.func_233537_a_(world.isRemote);
+            return ActionResultType.sidedSuccess(world.isClientSide);
         } else {
             return ActionResultType.PASS;
         }
@@ -80,9 +80,9 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
         return EFFECTIVE_ON_BLOCKS.contains(state.getBlock()) ? getAlloyMiningSpeed(stack) : 1.0F;
     }
 
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,false), attacker, (entity) -> {
-            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,false), attacker, (entity) -> {
+            entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
         });
         return true;
     }
@@ -90,10 +90,10 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
     /**
      * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
      */
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
-            stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
-                entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+    public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+        if (!worldIn.isClientSide && state.getDestroySpeed(worldIn, pos) != 0.0F) {
+            stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
+                entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
             });
         }
 
@@ -117,7 +117,7 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         addAlloyInformation(stack,worldIn,tooltip,flagIn);
         if (flagIn.isAdvanced()) {
             addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
@@ -125,8 +125,8 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
     }
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-        super.onCreated(stack, worldIn, playerIn);
+    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+        super.onCraftedBy(stack, worldIn, playerIn);
     }
 
 
@@ -143,12 +143,12 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (this.isInGroup(group) && this.defaultAlloyRecipe == null) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+        if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
             items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
             items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
-        } else if (this.isInGroup(group)) {
-            super.fillItemGroup(group,items);
+        } else if (this.allowdedIn(group)) {
+            super.fillItemCategory(group,items);
         }
     }
 
@@ -163,7 +163,7 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
     }
 
     @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
         if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);

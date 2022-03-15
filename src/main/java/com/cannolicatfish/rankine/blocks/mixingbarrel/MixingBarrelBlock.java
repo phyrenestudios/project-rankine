@@ -33,6 +33,8 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class MixingBarrelBlock extends Block {
     //public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static IntegerProperty ANGLE = IntegerProperty.create("angle",0,3);
@@ -40,17 +42,17 @@ public class MixingBarrelBlock extends Block {
 
     public MixingBarrelBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(ANGLE, 1));
+        this.registerDefaultState(this.stateDefinition.any().setValue(ANGLE, 1));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(ANGLE);
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         //return VoxelShapes.combineAndSimplify(makeCuboidShape(0,0,0,16,2,16),makeCuboidShape(2,2,2,14,16,14), IBooleanFunction.OR);
-        return VoxelShapes.fullCube();
+        return VoxelShapes.block();
     }
 
     @org.jetbrains.annotations.Nullable
@@ -60,8 +62,8 @@ public class MixingBarrelBlock extends Block {
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
@@ -77,26 +79,26 @@ public class MixingBarrelBlock extends Block {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (!worldIn.isRemote) {
-            LazyOptional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getHeldItem(handIn));
-            MixingBarrelTile mixingBarrelTile = (MixingBarrelTile) worldIn.getTileEntity(pos);
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (!worldIn.isClientSide) {
+            LazyOptional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getItemInHand(handIn));
+            MixingBarrelTile mixingBarrelTile = (MixingBarrelTile) worldIn.getBlockEntity(pos);
             if (item.isPresent() && mixingBarrelTile != null) {
-                FluidActionResult emptyContainerAndStow = FluidUtil.tryEmptyContainerAndStow(player.getHeldItem(handIn), mixingBarrelTile.inputTank, new InvWrapper(player.inventory), mixingBarrelTile.inputTank.getCapacity(), player, true);
+                FluidActionResult emptyContainerAndStow = FluidUtil.tryEmptyContainerAndStow(player.getItemInHand(handIn), mixingBarrelTile.inputTank, new InvWrapper(player.inventory), mixingBarrelTile.inputTank.getCapacity(), player, true);
                 if (emptyContainerAndStow.isSuccess()) {
-                    player.setHeldItem(handIn, emptyContainerAndStow.getResult());
-                    worldIn.markChunkDirty(pos, mixingBarrelTile);
+                    player.setItemInHand(handIn, emptyContainerAndStow.getResult());
+                    worldIn.blockEntityChanged(pos, mixingBarrelTile);
                     return ActionResultType.CONSUME;
                 }
 
-                FluidActionResult fillContainerAndStowInput = FluidUtil.tryFillContainerAndStow(player.getHeldItem(handIn), mixingBarrelTile.inputTank, new InvWrapper(player.inventory), mixingBarrelTile.inputTank.getFluidAmount(), player, true);
+                FluidActionResult fillContainerAndStowInput = FluidUtil.tryFillContainerAndStow(player.getItemInHand(handIn), mixingBarrelTile.inputTank, new InvWrapper(player.inventory), mixingBarrelTile.inputTank.getFluidAmount(), player, true);
                 if (fillContainerAndStowInput.isSuccess()) {
-                    player.setHeldItem(handIn, fillContainerAndStowInput.getResult());
-                    worldIn.markChunkDirty(pos, mixingBarrelTile);
+                    player.setItemInHand(handIn, fillContainerAndStowInput.getResult());
+                    worldIn.blockEntityChanged(pos, mixingBarrelTile);
                     return ActionResultType.CONSUME;
                 }
             }
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            TileEntity tileEntity = worldIn.getBlockEntity(pos);
             if (tileEntity instanceof INamedContainerProvider) {
                     if (player.isCrouching()) {
                         CompoundNBT nbt = tileEntity.getTileData();
@@ -105,14 +107,14 @@ public class MixingBarrelBlock extends Block {
                         System.out.println(mixTime + "/" + mixTimeTotal);
                         nbt.putInt("MixTime",Math.min(mixTime+8,mixTimeTotal));
                         nbt.putInt("RedstonePower",8);*/
-                        int angle = worldIn.getBlockState(pos).get(MixingBarrelBlock.ANGLE);
+                        int angle = worldIn.getBlockState(pos).getValue(MixingBarrelBlock.ANGLE);
                         if (angle == 3) {
-                            worldIn.setBlockState(pos, RankineBlocks.MIXING_BARREL.get().getDefaultState().with(MixingBarrelBlock.ANGLE,0),3);
+                            worldIn.setBlock(pos, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,0),3);
                         } else {
-                            worldIn.setBlockState(pos, RankineBlocks.MIXING_BARREL.get().getDefaultState().with(MixingBarrelBlock.ANGLE,angle+1),3);
+                            worldIn.setBlock(pos, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,angle+1),3);
                         }
                     } else {
-                        NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+                        NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getBlockPos());
                     }
                 } else {
                     throw new IllegalStateException("Our named container provider is missing!");
@@ -123,14 +125,14 @@ public class MixingBarrelBlock extends Block {
         }
     }
 
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!state.matchesBlock(newState.getBlock())) {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.is(newState.getBlock())) {
+            TileEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof MixingBarrelTile) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (MixingBarrelTile)tileentity);
-                worldIn.updateComparatorOutputLevel(pos, this);
+                InventoryHelper.dropContents(worldIn, pos, (MixingBarrelTile)tileentity);
+                worldIn.updateNeighbourForOutputSignal(pos, this);
             }
-            super.onReplaced(state, worldIn, pos, newState, isMoving);
+            super.onRemove(state, worldIn, pos, newState, isMoving);
         }
     }
 

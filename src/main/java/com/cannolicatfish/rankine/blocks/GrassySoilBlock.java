@@ -26,17 +26,17 @@ public class GrassySoilBlock extends GrassBlock {
     public static final BooleanProperty DEAD = BooleanProperty.create("dead");
 
     public GrassySoilBlock() {
-        super(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL));
-        this.setDefaultState(this.stateContainer.getBaseState().with(SNOWY, false).with(DEAD, false));
+        super(AbstractBlock.Properties.of(Material.GRASS).randomTicks().strength(0.6F).sound(SoundType.GRASS).harvestTool(ToolType.SHOVEL));
+        this.registerDefaultState(this.stateDefinition.any().setValue(SNOWY, false).setValue(DEAD, false));
     }
 
     @Override
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
-        return !state.get(DEAD);
+    public boolean isBonemealSuccess(World worldIn, Random rand, BlockPos pos, BlockState state) {
+        return !state.getValue(DEAD);
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(SNOWY,DEAD);
     }
 
@@ -45,56 +45,56 @@ public class GrassySoilBlock extends GrassBlock {
         if (!isSnowyConditions(state, worldIn, pos)) {
             if (!worldIn.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
             if (RankineLists.GRASS_BLOCKS.contains(state.getBlock())) {
-                worldIn.setBlockState(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(state.getBlock())).getDefaultState());
+                worldIn.setBlockAndUpdate(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(state.getBlock())).defaultBlockState());
             } else {
-                worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
+                worldIn.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
             }
-        } else if (random.nextFloat() < Config.GENERAL.PODZOL_GROW_CHANCE.get() && worldIn.getBlockState(pos.up()).getBlock() instanceof LeafLitterBlock) {
-            worldIn.setBlockState(pos,RankineLists.PODZOL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(state.getBlock())).getDefaultState(),2);
-            worldIn.removeBlock(pos.up(),false);
+        } else if (random.nextFloat() < Config.GENERAL.PODZOL_GROW_CHANCE.get() && worldIn.getBlockState(pos.above()).getBlock() instanceof LeafLitterBlock) {
+            worldIn.setBlock(pos,RankineLists.PODZOL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(state.getBlock())).defaultBlockState(),2);
+            worldIn.removeBlock(pos.above(),false);
         } else if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get()) {
             Block ceillingBlock = Blocks.AIR;
             int i = 1;
             while (i <= 40) {
-                if (!worldIn.isAirBlock(pos.offset(Direction.UP, i)) && !(worldIn.getBlockState(pos.up(i)).isReplaceable(Fluids.WATER))) {
-                    ceillingBlock = worldIn.getBlockState(pos.up(i)).getBlock();
+                if (!worldIn.isEmptyBlock(pos.relative(Direction.UP, i)) && !(worldIn.getBlockState(pos.above(i)).canBeReplaced(Fluids.WATER))) {
+                    ceillingBlock = worldIn.getBlockState(pos.above(i)).getBlock();
                     break;
                 }
                 ++i;
             }
-            if (ceillingBlock instanceof LeavesBlock && !(ceillingBlock instanceof RankineLeavesBlock) && (worldIn.getBlockState(pos.up(i - 1)).isReplaceable(Fluids.WATER) || worldIn.getBlockState(pos.up(i - 1)).matchesBlock(Blocks.AIR))) {
-                worldIn.setBlockState(pos.up(i - 1), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate("rankine:"+ceillingBlock.getRegistryName().getPath().toString().replace("leaves", "leaf_litter"))).getDefaultState(), 3);
+            if (ceillingBlock instanceof LeavesBlock && !(ceillingBlock instanceof RankineLeavesBlock) && (worldIn.getBlockState(pos.above(i - 1)).canBeReplaced(Fluids.WATER) || worldIn.getBlockState(pos.above(i - 1)).is(Blocks.AIR))) {
+                worldIn.setBlock(pos.above(i - 1), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:"+ceillingBlock.getRegistryName().getPath().toString().replace("leaves", "leaf_litter"))).defaultBlockState(), 3);
             }
-        } else if (worldIn.getLight(pos.up()) >= 9) {
-            BlockState blockstate = this.getDefaultState();
+        } else if (worldIn.getMaxLocalRawBrightness(pos.above()) >= 9) {
+            BlockState blockstate = this.defaultBlockState();
             for (int i = 0; i < 4; ++i) {
-                BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-                if (worldIn.getBlockState(blockpos).matchesBlock(Blocks.DIRT) && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
-                    worldIn.setBlockState(blockpos, Blocks.GRASS_BLOCK.getDefaultState().with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)));
+                BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
+                if (worldIn.getBlockState(blockpos).is(Blocks.DIRT) && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
+                    worldIn.setBlockAndUpdate(blockpos, Blocks.GRASS_BLOCK.defaultBlockState().setValue(SNOWY, worldIn.getBlockState(blockpos.above()).is(Blocks.SNOW)));
                 } else if (RankineLists.SOIL_BLOCKS.contains(worldIn.getBlockState(blockpos).getBlock()) && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
-                    worldIn.setBlockState(blockpos, RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(worldIn.getBlockState(blockpos).getBlock())).getDefaultState().with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)).with(DEAD, blockstate.get(DEAD)));
+                    worldIn.setBlockAndUpdate(blockpos, RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(worldIn.getBlockState(blockpos).getBlock())).defaultBlockState().setValue(SNOWY, worldIn.getBlockState(blockpos.above()).is(Blocks.SNOW)).setValue(DEAD, blockstate.getValue(DEAD)));
                 }
             }
-            if (random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get() && !state.get(DEAD) && worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR)) {
+            if (random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get() && !state.getValue(DEAD) && worldIn.getBlockState(pos.above()).is(Blocks.AIR)) {
                 Biome BIOME = worldIn.getBiome(pos);
                 BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
-                worldIn.setBlockState(pos.up(), BLOCK, 3);
+                worldIn.setBlock(pos.above(), BLOCK, 3);
             }
         }
     }
 
     private static boolean isSnowyAndNotUnderwater(BlockState state, IWorldReader worldReader, BlockPos pos) {
-        return isSnowyConditions(state, worldReader, pos) && !worldReader.getFluidState(pos.up()).isTagged(FluidTags.WATER);
+        return isSnowyConditions(state, worldReader, pos) && !worldReader.getFluidState(pos.above()).is(FluidTags.WATER);
     }
     private static boolean isSnowyConditions(BlockState state, IWorldReader worldReader, BlockPos pos) {
-        BlockPos blockpos = pos.up();
+        BlockPos blockpos = pos.above();
         BlockState blockstate = worldReader.getBlockState(blockpos);
-        if (blockstate.matchesBlock(Blocks.SNOW) && blockstate.get(SnowBlock.LAYERS) == 1) {
+        if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowBlock.LAYERS) == 1) {
             return true;
-        } else if (blockstate.getFluidState().getLevel() == 8) {
+        } else if (blockstate.getFluidState().getAmount() == 8) {
             return false;
         } else {
-            int i = LightEngine.func_215613_a(worldReader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getOpacity(worldReader, blockpos));
+            int i = LightEngine.getLightBlockInto(worldReader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(worldReader, blockpos));
             return i < worldReader.getMaxLightLevel();
         }
     }

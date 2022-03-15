@@ -31,12 +31,12 @@ public class ThoriumArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(RankineItems.THORIUM_ARROW.get());
     }
 
@@ -44,20 +44,20 @@ public class ThoriumArrowEntity extends AbstractArrowEntity {
     public void tick() {
         super.tick();
         if (this.inGround) {
-            LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,this.world);
-            ent.setPosition(this.getPosX(),this.getPosY(),this.getPosZ());
-            this.world.addEntity(ent);
+            LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,this.level);
+            ent.setPos(this.getX(),this.getY(),this.getZ());
+            this.level.addFreshEntity(ent);
             this.remove();
         }
     }
 
     @Override
-    protected void arrowHit(LivingEntity living) {
-        super.arrowHit(living);
+    protected void doPostHurtEffects(LivingEntity living) {
+        super.doPostHurtEffects(living);
 
-        LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,this.world);
-        ent.setPosition(living.getPosX(),living.getPosY(),living.getPosZ());
-        this.world.addEntity(ent);
+        LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,this.level);
+        ent.setPos(living.getX(),living.getY(),living.getZ());
+        this.level.addFreshEntity(ent);
 
     }
 }

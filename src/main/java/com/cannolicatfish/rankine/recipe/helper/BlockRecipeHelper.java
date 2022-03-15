@@ -15,7 +15,7 @@ public class BlockRecipeHelper {
 
     public static ItemStack getBlockItemStack(JsonObject json)
     {
-        String itemName = JSONUtils.getString(json, "block");
+        String itemName = JSONUtils.getAsString(json, "block");
 
         Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(itemName));
 
@@ -27,7 +27,7 @@ public class BlockRecipeHelper {
 
     public static FluidStack getBlockFluidStack(JsonObject json)
     {
-        String itemName = JSONUtils.getString(json, "block");
+        String itemName = JSONUtils.getAsString(json, "block");
 
         Fluid fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(itemName));
 

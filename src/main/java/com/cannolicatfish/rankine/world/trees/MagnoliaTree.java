@@ -13,7 +13,7 @@ public class MagnoliaTree extends Tree {
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return RankineFeatures.MAGNOLIA_TREE.get().withConfiguration(RankineBiomeFeatures.MAGNOLIA_TREE_CONFIG);
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
+        return RankineFeatures.MAGNOLIA_TREE.get().configured(RankineBiomeFeatures.MAGNOLIA_TREE_CONFIG);
     }
 }

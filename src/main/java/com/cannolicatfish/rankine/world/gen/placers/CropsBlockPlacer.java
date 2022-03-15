@@ -15,7 +15,7 @@ public class CropsBlockPlacer extends BlockPlacer {
     public static final Codec<CropsBlockPlacer> CODEC;
     public static final CropsBlockPlacer PLACER = new CropsBlockPlacer();
 
-    protected BlockPlacerType<?> getBlockPlacerType() {
+    protected BlockPlacerType<?> type() {
         return RankineBlockPlacerType.SINGLE_CROP.get();
     }
 

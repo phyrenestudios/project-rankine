@@ -16,9 +16,9 @@ public class OrnamentColor implements IBlockColor {
     }
 
     private int colorShift(BlockPos pos) {
-        float r = Math.abs((float) (255*Biome.INFO_NOISE.noiseAt(pos.getX(), pos.getZ(), false)));
-        float g =  Math.abs((float) (255*Biome.INFO_NOISE.noiseAt(pos.getX()+pos.getY()*2, pos.getZ()+pos.getY()*2, false)));
-        float b =  Math.abs((float) (255*Biome.INFO_NOISE.noiseAt(pos.getX()+pos.getY()*4, pos.getZ()+pos.getY()*4, false)));
+        float r = Math.abs((float) (255*Biome.BIOME_INFO_NOISE.getValue(pos.getX(), pos.getZ(), false)));
+        float g =  Math.abs((float) (255*Biome.BIOME_INFO_NOISE.getValue(pos.getX()+pos.getY()*2, pos.getZ()+pos.getY()*2, false)));
+        float b =  Math.abs((float) (255*Biome.BIOME_INFO_NOISE.getValue(pos.getX()+pos.getY()*4, pos.getZ()+pos.getY()*4, false)));
         Color col = new Color(0x656565);
         r += (col.getRed());
         g += (col.getGreen());

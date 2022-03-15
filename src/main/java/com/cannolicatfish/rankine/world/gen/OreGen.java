@@ -95,53 +95,53 @@ public class OreGen {
             VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.COBBLE_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
         }
         if (Config.MISC_WORLDGEN.RANKINE_TREES.get()) {
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BALSAM_FIR_TREE.get().withConfiguration(RankineBiomeFeatures.BALSAM_FIR_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2))),
-                    Collections.singletonList(ResourceLocation.tryCreate("minecraft:wooded_mountains"))));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BALSAM_FIR_TREE.get().withConfiguration(RankineBiomeFeatures.SHORT_BALSAM_FIR_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BALSAM_FIR_TREE.get().configured(RankineBiomeFeatures.BALSAM_FIR_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(2))),
+                    Collections.singletonList(ResourceLocation.tryParse("minecraft:wooded_mountains"))));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BALSAM_FIR_TREE.get().configured(RankineBiomeFeatures.SHORT_BALSAM_FIR_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(3))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.COCONUT_PALM_TREE.get().withConfiguration(RankineBiomeFeatures.COCONUT_PALM_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT.configure(new FeatureSpreadConfig(1))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.COCONUT_PALM_TREE.get().configured(RankineBiomeFeatures.COCONUT_PALM_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT.configured(new FeatureSpreadConfig(1))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.BEACH), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BLACK_WALNUT_TREE.get().withConfiguration(RankineBiomeFeatures.BLACK_WALNUT_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2))),
-                    Arrays.asList(ResourceLocation.tryCreate("minecraft:dark_forest"),ResourceLocation.tryCreate("minecraft:dark_forest_hills"))));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BIRCH_TREE.get().withConfiguration(RankineBiomeFeatures.RED_BIRCH_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1))),
-                    Collections.singletonList(ResourceLocation.tryCreate("minecraft:wooded_mountains"))));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.EASTERN_HEMLOCK_TREE.get().withConfiguration(RankineBiomeFeatures.EASTERN_HEMLOCK_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2))),
-                    Arrays.asList(ResourceLocation.tryCreate("minecraft:giant_tree_taiga"),ResourceLocation.tryCreate("minecraft:giant_spruce_taiga"))));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.WESTERN_HEMLOCK_TREE.get().withConfiguration(RankineBiomeFeatures.WESTERN_HEMLOCK_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2))),
-                    Arrays.asList(ResourceLocation.tryCreate("minecraft:giant_tree_taiga_hills"),ResourceLocation.tryCreate("minecraft:giant_spruce_taiga_hills"))));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BIRCH_TREE.get().withConfiguration(RankineBiomeFeatures.BLACK_BIRCH_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1))),
-                    Arrays.asList(ResourceLocation.tryCreate("minecraft:birch_forest"),ResourceLocation.tryCreate("minecraft:tall_birch_forest"),ResourceLocation.tryCreate("minecraft:tall_birch_hills"),ResourceLocation.tryCreate("minecraft:birch_forest_hills"))));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BIRCH_TREE.get().withConfiguration(RankineBiomeFeatures.BLACK_BIRCH_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT.configure(new FeatureSpreadConfig(2))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BLACK_WALNUT_TREE.get().configured(RankineBiomeFeatures.BLACK_WALNUT_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(2))),
+                    Arrays.asList(ResourceLocation.tryParse("minecraft:dark_forest"),ResourceLocation.tryParse("minecraft:dark_forest_hills"))));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BIRCH_TREE.get().configured(RankineBiomeFeatures.RED_BIRCH_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(1))),
+                    Collections.singletonList(ResourceLocation.tryParse("minecraft:wooded_mountains"))));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.EASTERN_HEMLOCK_TREE.get().configured(RankineBiomeFeatures.EASTERN_HEMLOCK_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(2))),
+                    Arrays.asList(ResourceLocation.tryParse("minecraft:giant_tree_taiga"),ResourceLocation.tryParse("minecraft:giant_spruce_taiga"))));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.WESTERN_HEMLOCK_TREE.get().configured(RankineBiomeFeatures.WESTERN_HEMLOCK_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(2))),
+                    Arrays.asList(ResourceLocation.tryParse("minecraft:giant_tree_taiga_hills"),ResourceLocation.tryParse("minecraft:giant_spruce_taiga_hills"))));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BIRCH_TREE.get().configured(RankineBiomeFeatures.BLACK_BIRCH_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(1))),
+                    Arrays.asList(ResourceLocation.tryParse("minecraft:birch_forest"),ResourceLocation.tryParse("minecraft:tall_birch_forest"),ResourceLocation.tryParse("minecraft:tall_birch_hills"),ResourceLocation.tryParse("minecraft:birch_forest_hills"))));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BIRCH_TREE.get().configured(RankineBiomeFeatures.BLACK_BIRCH_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT.configured(new FeatureSpreadConfig(2))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.RIVER), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BIRCH_TREE.get().withConfiguration(RankineBiomeFeatures.YELLOW_BIRCH_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BIRCH_TREE.get().configured(RankineBiomeFeatures.YELLOW_BIRCH_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(1))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BIRCH_TREE.get().withConfiguration(RankineBiomeFeatures.BIRCH_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.BIRCH_TREE.get().configured(RankineBiomeFeatures.BIRCH_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(1))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.PETRIFIED_CHORUS_TREE.get().withConfiguration(RankineBiomeFeatures.PETRIFIED_CHORUS_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2))),
-                    Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"),ResourceLocation.tryCreate("minecraft:end_midlands"),ResourceLocation.tryCreate("minecraft:end_highlands"),ResourceLocation.tryCreate("minecraft:small_end_islands"))));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.PETRIFIED_CHORUS_TREE.get().withConfiguration(RankineBiomeFeatures.PETRIFIED_CHORUS_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(4))),
-                    Collections.singletonList(ResourceLocation.tryCreate("minecraft:the_end"))));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.PINYON_PINE_TREE.get().withConfiguration(RankineBiomeFeatures.PINYON_PINE_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.PETRIFIED_CHORUS_TREE.get().configured(RankineBiomeFeatures.PETRIFIED_CHORUS_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(2))),
+                    Arrays.asList(ResourceLocation.tryParse("minecraft:end_barrens"),ResourceLocation.tryParse("minecraft:end_midlands"),ResourceLocation.tryParse("minecraft:end_highlands"),ResourceLocation.tryParse("minecraft:small_end_islands"))));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.PETRIFIED_CHORUS_TREE.get().configured(RankineBiomeFeatures.PETRIFIED_CHORUS_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(4))),
+                    Collections.singletonList(ResourceLocation.tryParse("minecraft:the_end"))));
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.PINYON_PINE_TREE.get().configured(RankineBiomeFeatures.PINYON_PINE_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(2))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SAVANNA), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.JUNIPER_TREE.get().withConfiguration(RankineBiomeFeatures.JUNIPER_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.JUNIPER_TREE.get().configured(RankineBiomeFeatures.JUNIPER_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(2))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SAVANNA), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ERYTHRINA_TREE.get().withConfiguration(RankineBiomeFeatures.ERYTHRINA_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ERYTHRINA_TREE.get().configured(RankineBiomeFeatures.ERYTHRINA_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(1))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.MESA), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.MAGNOLIA_TREE.get().withConfiguration(RankineBiomeFeatures.MAGNOLIA_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.MAGNOLIA_TREE.get().configured(RankineBiomeFeatures.MAGNOLIA_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(1))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.RIVER), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.RED_CEDAR_TREE.get().withConfiguration(RankineBiomeFeatures.RED_CEDAR_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.RED_CEDAR_TREE.get().configured(RankineBiomeFeatures.RED_CEDAR_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(2))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.TAIGA), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.HONEY_LOCUST_TREE.get().withConfiguration(RankineBiomeFeatures.HONEY_LOCUST_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(10))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.HONEY_LOCUST_TREE.get().configured(RankineBiomeFeatures.HONEY_LOCUST_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(10))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.WEEPING_WILLOW_TREE.get().withConfiguration(RankineBiomeFeatures.WEEPING_WILLOW_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(4))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.WEEPING_WILLOW_TREE.get().configured(RankineBiomeFeatures.WEEPING_WILLOW_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(4))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.MAPLE_TREE.get().withConfiguration(RankineBiomeFeatures.MAPLE_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(4))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.MAPLE_TREE.get().configured(RankineBiomeFeatures.MAPLE_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(4))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.SHARINGA_TREE.get().withConfiguration(RankineBiomeFeatures.SHARINGA_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.SHARINGA_TREE.get().configured(RankineBiomeFeatures.SHARINGA_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(3))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.CORK_OAK_TREE.get().withConfiguration(RankineBiomeFeatures.CORK_OAK_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.CORK_OAK_TREE.get().configured(RankineBiomeFeatures.CORK_OAK_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(3))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)));
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.CINNAMON_TREE.get().withConfiguration(RankineBiomeFeatures.CINNAMON_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3))),
+            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineFeatures.CINNAMON_TREE.get().configured(RankineBiomeFeatures.CINNAMON_TREE_CONFIG).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.CHANCE.configured(new ChanceConfig(3))),
                     WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)));
         }
 
@@ -205,10 +205,10 @@ public class OreGen {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> EndFeatures = new ArrayList<>();
 
         if (Config.MISC_WORLDGEN.END_METEORITE_GEN.get()) {
-            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.END_METEORITE, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"),ResourceLocation.tryCreate("minecraft:small_end_islands"))));
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.END_METEORITE, Arrays.asList(ResourceLocation.tryParse("minecraft:end_barrens"),ResourceLocation.tryParse("minecraft:small_end_islands"))));
         }
         if (Config.MISC_WORLDGEN.SECRET_GEN.get()) {
-            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.ANTIMATTER_BLOB, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"))));
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.ANTIMATTER_BLOB, Arrays.asList(ResourceLocation.tryParse("minecraft:end_barrens"))));
         }
 
         return EndFeatures;
@@ -220,7 +220,7 @@ public class OreGen {
             GenerationStage.Decoration ugDecorationStage = GenerationStage.Decoration.UNDERGROUND_ORES;
             //---Disable vanilla features---
             final List<Supplier<ConfiguredFeature<?, ?>>> ORES = event.getGeneration().getFeatures(ugDecorationStage);
-            disableGenerators(ORES, event.getName(), Arrays.asList(Blocks.DIRT.getDefaultState(),Blocks.ANDESITE.getDefaultState(),Blocks.DIORITE.getDefaultState(),Blocks.GRANITE.getDefaultState(),Blocks.INFESTED_STONE.getDefaultState(),Blocks.IRON_ORE.getDefaultState(),Blocks.COAL_ORE.getDefaultState(),Blocks.GOLD_ORE.getDefaultState(),Blocks.DIAMOND_ORE.getDefaultState(),Blocks.EMERALD_ORE.getDefaultState(),Blocks.LAPIS_ORE.getDefaultState(),Blocks.REDSTONE_ORE.getDefaultState()));
+            disableGenerators(ORES, event.getName(), Arrays.asList(Blocks.DIRT.defaultBlockState(),Blocks.ANDESITE.defaultBlockState(),Blocks.DIORITE.defaultBlockState(),Blocks.GRANITE.defaultBlockState(),Blocks.INFESTED_STONE.defaultBlockState(),Blocks.IRON_ORE.defaultBlockState(),Blocks.COAL_ORE.defaultBlockState(),Blocks.GOLD_ORE.defaultBlockState(),Blocks.DIAMOND_ORE.defaultBlockState(),Blocks.EMERALD_ORE.defaultBlockState(),Blocks.LAPIS_ORE.defaultBlockState(),Blocks.REDSTONE_ORE.defaultBlockState()));
             //event.getGeneration().getFeatures(ugDecorationStage).removeIf(featureSupplier -> featureSupplier.toString().contains("net.minecraft.util.registry.WorldSettingsImport"));
 
             List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> OVERWORLD_FEATURES = new ArrayList<>();
@@ -232,7 +232,7 @@ public class OreGen {
                 boolean inEnd = false;
                 boolean inNether = false;
                 boolean inOverworld = false;
-                Block oreBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate((String) L.get(0)));
+                Block oreBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(0)));
                 List<String> biomeList = (List<String>) L.get(1);
                 List<ResourceLocation> genBiomes = WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), true);
                 if (biomeList.get(0).isEmpty()) {
@@ -244,11 +244,11 @@ public class OreGen {
                     for (String b : biomeList) {
                         List<String> biomeName = Arrays.asList(b.split(":"));
                         if (biomeName.size() > 1) {
-                            genBiomes.add(ResourceLocation.tryCreate(b));
+                            genBiomes.add(ResourceLocation.tryParse(b));
                         } else {
                             genBiomes.addAll(WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.byName(b)), true));
                             for (ResourceLocation RS : genBiomes) {
-                                Biome.Category biomeCat = ForgeRegistries.BIOMES.getValue(RS).getCategory();
+                                Biome.Category biomeCat = ForgeRegistries.BIOMES.getValue(RS).getBiomeCategory();
                                 if (biomeCat == Biome.Category.THEEND) {
                                     inEnd = true;
                                 }
@@ -272,14 +272,14 @@ public class OreGen {
                 ConfiguredFeature<?,?> oreFeature;
 
                 if (type.equals("sphere")) {
-                    oreFeature = RankineFeatures.SPHERE_ORE.get().withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, density, chance))
-                        .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(minHeight, minHeight, maxeight))).square().count(count);
+                    oreFeature = RankineFeatures.SPHERE_ORE.get().configured(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.defaultBlockState(), size, density, chance))
+                        .decorated(Placement.RANGE.configured(new TopSolidRangeConfig(minHeight, minHeight, maxeight))).squared().count(count);
                 } else if (type.equals("disk")) {
-                    oreFeature = RankineFeatures.DISK_ORE.get().withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, density, chance))
-                        .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(minHeight, minHeight, maxeight))).square().count(count);
+                    oreFeature = RankineFeatures.DISK_ORE.get().configured(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.defaultBlockState(), size, density, chance))
+                        .decorated(Placement.RANGE.configured(new TopSolidRangeConfig(minHeight, minHeight, maxeight))).squared().count(count);
                 } else {
-                    oreFeature = RankineFeatures.DEFAULT_ORE.get().withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, density, chance))
-                            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(minHeight, minHeight, maxeight))).square().count(count);
+                    oreFeature = RankineFeatures.DEFAULT_ORE.get().configured(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.defaultBlockState(), size, density, chance))
+                            .decorated(Placement.RANGE.configured(new TopSolidRangeConfig(minHeight, minHeight, maxeight))).squared().count(count);
                 }
 
                 if (inEnd) {
@@ -297,54 +297,54 @@ public class OreGen {
 
             for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : getBedraockFeatures()) {
                 if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
+                    event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry::getKey);
                 }
             }
             for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : getAllOreFeatures()) {
                 if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
+                    event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry::getKey);
                 }
             }
 
             if (event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.THEEND) {
                 for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : getOverworldOreFeatures()) {
                     if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
+                        event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry::getKey);
                     }
                 }
                 for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : OVERWORLD_FEATURES) {
                     if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
+                        event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry::getKey);
                     }
                 }
             } else if (event.getCategory() == Biome.Category.NETHER) {
                 for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : NETHER_FEATURES) {
                     if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
+                        event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry::getKey);
                     }
                 }
                 for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : getNetherOreFeatures()) {
                     if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
+                        event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry::getKey);
                     }
                 }
 
             } else if (event.getCategory() == Biome.Category.THEEND) {
                 for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : getEndOreFeatures()) {
                     if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
+                        event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry::getKey);
                     }
                 }
                 for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : END_FEATURES) {
                     if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().withFeature(ugDecorationStage.ordinal(),entry::getKey);
+                        event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry::getKey);
                     }
                 }
             }
 
             for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : getAllUndDecFeatures()) {
                 if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION.ordinal(),entry::getKey);
+                    event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION.ordinal(),entry::getKey);
                 }
             }
 
@@ -361,14 +361,14 @@ public class OreGen {
             List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> vegetalDecorationFeatures = getVegetalDecorationFeatures();
             for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : vegetalDecorationFeatures) {
                 if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), entry::getKey);
+                    event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), entry::getKey);
                 }
             }
 
             List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> topLayernFeatures = getTopLayernFeatures();
             for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : topLayernFeatures) {
                 if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().withFeature(GenerationStage.Decoration.TOP_LAYER_MODIFICATION.ordinal(), entry::getKey);
+                    event.getGeneration().addFeature(GenerationStage.Decoration.TOP_LAYER_MODIFICATION.ordinal(), entry::getKey);
                 }
             }
 
@@ -389,7 +389,7 @@ public class OreGen {
     }
 
     private static Optional<BlockState> findOreConfig(ConfiguredFeature<?, ?> feature) {
-        final Iterator<ConfiguredFeature<?, ?>> features = feature.config.getConfiguredFeatures().iterator();
+        final Iterator<ConfiguredFeature<?, ?>> features = feature.config.getFeatures().iterator();
         while (features.hasNext()) {
             final IFeatureConfig config = features.next().config;
             if (config instanceof OreFeatureConfig) {

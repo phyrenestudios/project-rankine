@@ -18,11 +18,11 @@ public class HarvestLevelPredicate extends ItemPredicate {
     }
 
     public HarvestLevelPredicate(JsonObject jsonObject) {
-        this(JSONUtils.getInt(jsonObject, "level"),JSONUtils.getItem(jsonObject,"item"));
+        this(JSONUtils.getAsInt(jsonObject, "level"),JSONUtils.getAsItem(jsonObject,"item"));
     }
 
     @Override
-    public boolean test(ItemStack stack) {
+    public boolean matches(ItemStack stack) {
         if (stack.getItem() instanceof IAlloyTool && stack.getItem() == item) {
             return ((IAlloyTool) stack.getItem()).getAlloyHarvestLevel(stack) == level;
         }

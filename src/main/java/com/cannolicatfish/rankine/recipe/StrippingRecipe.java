@@ -38,7 +38,7 @@ public class StrippingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean isDynamic() {
+    public boolean isSpecial() {
         return true;
     }
 
@@ -48,16 +48,16 @@ public class StrippingRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        return this.ingredient.test(inv.getStackInSlot(0));
+        return this.ingredient.test(inv.getItem(0));
     }
 
     @Override
-    public ItemStack getCraftingResult(IInventory inv) {
+    public ItemStack assemble(IInventory inv) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public boolean canFit(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return true;
     }
 
@@ -71,7 +71,7 @@ public class StrippingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack getRecipeOutput() {
+    public ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
 
@@ -99,7 +99,7 @@ public class StrippingRecipe implements IRecipe<IInventory> {
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getString(object, "item");
+        String s = JSONUtils.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -115,29 +115,29 @@ public class StrippingRecipe implements IRecipe<IInventory> {
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<StrippingRecipe> {
 
         @Override
-        public StrippingRecipe read(ResourceLocation recipeId, JsonObject json) {
+        public StrippingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             float w = json.has("chance") ? json.get("chance").getAsFloat() : 0.0f;
-            Ingredient ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "input"));
-            ItemStack result = deserializeItem(JSONUtils.getJsonObject(json, "result"));
+            Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input"));
+            ItemStack result = deserializeItem(JSONUtils.getAsJsonObject(json, "result"));
             return new StrippingRecipe(recipeId,ingredient,result,w);
         }
 
         @Nullable
         @Override
-        public StrippingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+        public StrippingRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
 
-            Ingredient input = Ingredient.read(buffer);
+            Ingredient input = Ingredient.fromNetwork(buffer);
 
-            ItemStack output = buffer.readItemStack();
+            ItemStack output = buffer.readItem();
 
             int chance = buffer.readInt();
             return new StrippingRecipe(recipeId,input,output,chance);
         }
 
         @Override
-        public void write(PacketBuffer buffer, StrippingRecipe recipe) {
-            recipe.getIngredient().write(buffer);
-            buffer.writeItemStack(recipe.getResult());
+        public void toNetwork(PacketBuffer buffer, StrippingRecipe recipe) {
+            recipe.getIngredient().toNetwork(buffer);
+            buffer.writeItem(recipe.getResult());
             buffer.writeFloat(recipe.chance);
         }
     }

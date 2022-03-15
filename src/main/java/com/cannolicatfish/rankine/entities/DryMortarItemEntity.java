@@ -17,21 +17,21 @@ public class DryMortarItemEntity extends ItemEntity {
 
     public DryMortarItemEntity(World worldIn, double x, double y, double z) {
         this(EntityType.ITEM, worldIn);
-        this.setPosition(x, y, z);
-        this.rotationYaw = this.rand.nextFloat() * 360.0F;
-        this.setMotion(this.rand.nextDouble() * 0.2D - 0.1D, 0.2D, this.rand.nextDouble() * 0.2D - 0.1D);
+        this.setPos(x, y, z);
+        this.yRot = this.random.nextFloat() * 360.0F;
+        this.setDeltaMovement(this.random.nextDouble() * 0.2D - 0.1D, 0.2D, this.random.nextDouble() * 0.2D - 0.1D);
     }
 
     public DryMortarItemEntity(World worldIn, double x, double y, double z, ItemStack stack) {
         super(EntityType.ITEM,worldIn);
-        this.setPosition(x, y, z);
+        this.setPos(x, y, z);
         this.setItem(stack);
         this.lifespan = (stack.getItem() == null ? 6000 : stack.getEntityLifespan(worldIn));
     }
 
     public DryMortarItemEntity(World worldIn, double x, double y, double z, float radius, boolean canBreakBlocks, ItemStack stack) {
         super(EntityType.ITEM,worldIn);
-        this.setPosition(x, y, z);
+        this.setPos(x, y, z);
         this.setItem(stack);
         this.lifespan = (stack.getItem() == null ? 6000 : stack.getEntityLifespan(worldIn));
     }
@@ -39,23 +39,23 @@ public class DryMortarItemEntity extends ItemEntity {
     @Override
     public void tick() {
 
-        if (this.inWater) {
-            BlockPos pos = this.getPosition();
-            World worldIn = this.getEntityWorld();
-            if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots) {
-                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+        if (this.wasTouchingWater) {
+            BlockPos pos = this.blockPosition();
+            World worldIn = this.getCommandSenderWorld();
+            if (!worldIn.isClientSide && !worldIn.restoringBlockSnapshots) {
+                double d0 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
+                double d1 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
+                double d2 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
                 ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(RankineItems.MORTAR.get(),this.getItem().getCount()));
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
+                itementity.setDefaultPickUpDelay();
+                worldIn.addFreshEntity(itementity);
             }
             this.remove();
         }
         super.tick();
     }
 
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

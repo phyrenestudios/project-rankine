@@ -19,25 +19,25 @@ public class HoneyMushroomFeature extends Feature<BlockStateProvidingFeatureConf
         super(configFactoryIn);
     }
 
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config) {
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config) {
         return false;
     }
 
     public static boolean growMushroom(ISeedReader reader, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config, Direction dir) {
         boolean flag = true;
-        for (BlockPos b : BlockPos.getAllInBoxMutable(pos.offset(dir.rotateY()),pos.offset(dir).offset(dir.rotateYCCW()).up())) {
+        for (BlockPos b : BlockPos.betweenClosed(pos.relative(dir.getClockWise()),pos.relative(dir).relative(dir.getCounterClockWise()).above())) {
             if (!WorldgenUtils.isAirOrLeaves(reader,b)) {
                 flag = false;
             }
         }
 
         if (flag) {
-            BlockState state = config.stateProvider.getBlockState(rand, pos);
-            reader.setBlockState(pos, state, 3);
-            reader.setBlockState(pos.up(), state, 3);
-            reader.setBlockState(pos.up().offset(dir.rotateYCCW()), state, 3);
-            reader.setBlockState(pos.up().offset(dir.rotateY()), state, 3);
-            reader.setBlockState(pos.up().offset(dir), state, 3);
+            BlockState state = config.stateProvider.getState(rand, pos);
+            reader.setBlock(pos, state, 3);
+            reader.setBlock(pos.above(), state, 3);
+            reader.setBlock(pos.above().relative(dir.getCounterClockWise()), state, 3);
+            reader.setBlock(pos.above().relative(dir.getClockWise()), state, 3);
+            reader.setBlock(pos.above().relative(dir), state, 3);
 
             return true;
         }

@@ -27,32 +27,34 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.item.Item.Properties;
+
 public class HerbicideItem extends Item {
     public HerbicideItem(Properties properties) {
         super(properties);
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World worldIn = context.getWorld();
-        BlockPos pos = context.getPos();
+    public ActionResultType useOn(ItemUseContext context) {
+        World worldIn = context.getLevel();
+        BlockPos pos = context.getClickedPos();
 
         int radius = Config.GENERAL.HERBICIDE_RANGE.get();
 
-        if (!worldIn.isRemote) {
-            for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-radius, -radius, -radius), pos.add(radius, radius, radius))) {
+        if (!worldIn.isClientSide) {
+            for (BlockPos b : BlockPos.betweenClosed(pos.offset(-radius, -radius, -radius), pos.offset(radius, radius, radius))) {
                 Block blk = worldIn.getBlockState(b).getBlock();
-                if (blk.isIn(RankineTags.Blocks.HERBICIDAL) && b.distanceSq(pos) <= radius*radius) {
+                if (blk.is(RankineTags.Blocks.HERBICIDAL) && b.distSqr(pos) <= radius*radius) {
                     worldIn.destroyBlock(b,false);
-                } else if (blk instanceof SaplingBlock && b.distanceSq(pos) <= radius*radius) {
-                    worldIn.setBlockState(b, Blocks.DEAD_BUSH.getDefaultState(), 2);
-                } else if (blk instanceof GrassySoilBlock && b.distanceSq(pos) <= radius*radius) {
-                    worldIn.setBlockState(b, blk.getDefaultState().with(GrassySoilBlock.DEAD, true), 2);
+                } else if (blk instanceof SaplingBlock && b.distSqr(pos) <= radius*radius) {
+                    worldIn.setBlock(b, Blocks.DEAD_BUSH.defaultBlockState(), 2);
+                } else if (blk instanceof GrassySoilBlock && b.distSqr(pos) <= radius*radius) {
+                    worldIn.setBlock(b, blk.defaultBlockState().setValue(GrassySoilBlock.DEAD, true), 2);
                 }
             }
         }
-        worldIn.playSound(null,pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS,0.5f,0.3f);
-        context.getItem().shrink(1);
+        worldIn.playSound(null,pos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS,0.5f,0.3f);
+        context.getItemInHand().shrink(1);
         return ActionResultType.SUCCESS;
 
     }
@@ -60,8 +62,8 @@ public class HerbicideItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-            tooltip.add(new StringTextComponent("Kills vegetation").mergeStyle(TextFormatting.GRAY));
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+            tooltip.add(new StringTextComponent("Kills vegetation").withStyle(TextFormatting.GRAY));
     }
 
 

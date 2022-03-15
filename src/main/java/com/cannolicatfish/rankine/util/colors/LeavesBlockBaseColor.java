@@ -12,12 +12,12 @@ import org.jetbrains.annotations.Nullable;
 public class LeavesBlockBaseColor implements IBlockColor {
     @Override
     public int getColor(BlockState state, @Nullable IBlockDisplayReader reader, @Nullable BlockPos pos, int tint) {
-        if (state.matchesBlock(RankineBlocks.SPRUCE_LEAF_LITTER.get())) {
-            return FoliageColors.getSpruce();
-        } else if (state.matchesBlock(RankineBlocks.BIRCH_LEAF_LITTER.get())) {
-            return FoliageColors.getBirch();
+        if (state.is(RankineBlocks.SPRUCE_LEAF_LITTER.get())) {
+            return FoliageColors.getEvergreenColor();
+        } else if (state.is(RankineBlocks.BIRCH_LEAF_LITTER.get())) {
+            return FoliageColors.getBirchColor();
         } else {
-            return reader != null && pos != null ? BiomeColors.getFoliageColor(reader, pos) : FoliageColors.getDefault();
+            return reader != null && pos != null ? BiomeColors.getAverageFoliageColor(reader, pos) : FoliageColors.getDefaultColor();
         }
     }
 }

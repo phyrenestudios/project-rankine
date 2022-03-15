@@ -33,10 +33,10 @@ public class ErythrinaTreeFeature extends Feature<BaseTreeFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
-        int trunkHeight = config.trunkPlacer.getHeight(rand);
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
+        int trunkHeight = config.trunkPlacer.getTreeHeight(rand);
         boolean flag = true;
-        if (pos.getY() >= 1 && pos.getY() + trunkHeight + 1 <= reader.getHeight()) {
+        if (pos.getY() >= 1 && pos.getY() + trunkHeight + 1 <= reader.getMaxBuildHeight()) {
             for(int j = pos.getY(); j <= pos.getY() + 1 + trunkHeight; ++j) {
                 int k = 1;
                 if (j == pos.getY()) {
@@ -51,8 +51,8 @@ public class ErythrinaTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
                 for(int l = pos.getX() - k; l <= pos.getX() + k && flag; ++l) {
                     for(int i1 = pos.getZ() - k; i1 <= pos.getZ() + k && flag; ++i1) {
-                        if (j >= 0 && j < reader.getHeight()) {
-                            if (!isAirOrLeaves(reader, blockpos$mutableblockpos.setPos(l, j, i1))) {
+                        if (j >= 0 && j < reader.getMaxBuildHeight()) {
+                            if (!isAirOrLeaves(reader, blockpos$mutableblockpos.set(l, j, i1))) {
                                 flag = false;
                             }
                         }
@@ -66,18 +66,18 @@ public class ErythrinaTreeFeature extends Feature<BaseTreeFeatureConfig> {
             //build tree
             if (!flag) {
                 return false;
-            } else if (isValidGround(reader, pos.down()) && pos.getY() < reader.getHeight() - trunkHeight - 1) {
-                setDirtAt(reader, pos.down());
+            } else if (isValidGround(reader, pos.below()) && pos.getY() < reader.getMaxBuildHeight() - trunkHeight - 1) {
+                setDirtAt(reader, pos.below());
                 int branchPoint = (int) Math.round(trunkHeight * 0.3);
                 for(int i = 0; i <= branchPoint; ++i) {
-                    if (isAirOrLeaves(reader, pos.up(i))) {
-                        this.placeLogAt(reader, pos.up(i), rand, config, Direction.Axis.Y);
+                    if (isAirOrLeaves(reader, pos.above(i))) {
+                        this.placeLogAt(reader, pos.above(i), rand, config, Direction.Axis.Y);
                     }
                 }
 
                 int dir = rand.nextInt(8);
                 for (int branch = 1; branch < 4; ++branch) {
-                    erythrinaBranch(reader,pos.up(branchPoint),rand,config, trunkHeight-branchPoint,dir,0);
+                    erythrinaBranch(reader,pos.above(branchPoint),rand,config, trunkHeight-branchPoint,dir,0);
                     dir = dir + rand.nextInt(2)+2;
                 }
                 return true;
@@ -93,20 +93,20 @@ public class ErythrinaTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
     private void magnoliaLeaves(ISeedReader reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config) {
         List<BlockPos> leaves = new ArrayList<>();
-        for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-1,0,-1),pos.add(1,0,1))) {
-            leaves.add(b.toImmutable());
+        for (BlockPos b : BlockPos.betweenClosed(pos.offset(-1,0,-1),pos.offset(1,0,1))) {
+            leaves.add(b.immutable());
         }
-        leaves.add(pos.down(1));
-        leaves.add(pos.down(1).north());
-        leaves.add(pos.down(1).east());
-        leaves.add(pos.down(1).west());
-        leaves.add(pos.down(1).south());
-        leaves.add(pos.up(2));
-        leaves.add(pos.up(1));
-        leaves.add(pos.up(1).south());
-        leaves.add(pos.up(1).east());
-        leaves.add(pos.up(1).west());
-        leaves.add(pos.up(1).north());
+        leaves.add(pos.below(1));
+        leaves.add(pos.below(1).north());
+        leaves.add(pos.below(1).east());
+        leaves.add(pos.below(1).west());
+        leaves.add(pos.below(1).south());
+        leaves.add(pos.above(2));
+        leaves.add(pos.above(1));
+        leaves.add(pos.above(1).south());
+        leaves.add(pos.above(1).east());
+        leaves.add(pos.above(1).west());
+        leaves.add(pos.above(1).north());
 
         for (BlockPos b : leaves) {
             if (isAirOrLeaves(reader, b)) {
@@ -117,7 +117,7 @@ public class ErythrinaTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
     private static boolean areAllNeighborsEmpty(IWorldReader worldIn, BlockPos pos) {
         for(Direction direction : Direction.Plane.HORIZONTAL) {
-            if (!worldIn.isAirBlock(pos.offset(direction))) {
+            if (!worldIn.isEmptyBlock(pos.relative(direction))) {
                 return false;
             }
         }
@@ -131,59 +131,59 @@ public class ErythrinaTreeFeature extends Feature<BaseTreeFeatureConfig> {
         BlockPos b = pos;
         for (int i = 0; i<topHeight; ++i) {
             b = WorldgenUtils.eightBlockDirection(b,dir,1);
-            if (isAirOrLeaves(reader, b.up(i))) {
-                placeLogAt(reader,b.up(i),rand,config, Direction.Axis.Y);
+            if (isAirOrLeaves(reader, b.above(i))) {
+                placeLogAt(reader,b.above(i),rand,config, Direction.Axis.Y);
             }
-            if (isAirOrLeaves(reader, b.up(i+1))) {
-                placeLogAt(reader,b.up(i+1),rand,config, Direction.Axis.Y);
+            if (isAirOrLeaves(reader, b.above(i+1))) {
+                placeLogAt(reader,b.above(i+1),rand,config, Direction.Axis.Y);
             }
             if (i == split && branchHeight-i-1 > 0) {
-                erythrinaBranch(reader, b.up(i+1), rand, config, branchHeight-i-1, dir-2, tier+1);
+                erythrinaBranch(reader, b.above(i+1), rand, config, branchHeight-i-1, dir-2, tier+1);
             }
 
             dir = (rand.nextBoolean() ? 0 : 1) + dir;
         }
-        magnoliaLeaves(reader, b.up(topHeight+1), rand, config);
+        magnoliaLeaves(reader, b.above(topHeight+1), rand, config);
 
     }
 
 
     private void placeLogAt(IWorldWriter reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config, Direction.Axis axis) {
-        this.setLogState(reader, pos, config.trunkProvider.getBlockState(rand, pos).with(BlockStateProperties.AXIS, axis));
+        this.setLogState(reader, pos, config.trunkProvider.getState(rand, pos).setValue(BlockStateProperties.AXIS, axis));
     }
 
     private void placeLeafAt(IWorldGenerationReader world, BlockPos pos, Random rand, BaseTreeFeatureConfig config) {
         if (isAirOrLeaves(world, pos)) {
-            this.setLogState(world, pos, config.leavesProvider.getBlockState(rand, pos).with(LeavesBlock.DISTANCE, 1));
+            this.setLogState(world, pos, config.leavesProvider.getState(rand, pos).setValue(LeavesBlock.DISTANCE, 1));
         }
     }
 
     protected final void setLogState(IWorldWriter reader, BlockPos pos, BlockState state) {
-        reader.setBlockState(pos, state, 18);
+        reader.setBlock(pos, state, 18);
     }
 
     public static boolean isAir(IWorldGenerationBaseReader reader, BlockPos pos) {
         if (!(reader instanceof net.minecraft.world.IBlockReader)) {
-            return reader.hasBlockState(pos, BlockState::isAir);
+            return reader.isStateAtPosition(pos, BlockState::isAir);
         }
         else {
-            return reader.hasBlockState(pos, state -> state.isAir((net.minecraft.world.IBlockReader) reader, pos));
+            return reader.isStateAtPosition(pos, state -> state.isAir((net.minecraft.world.IBlockReader) reader, pos));
         }
     }
 
     public static boolean isAirOrLeaves(IWorldGenerationBaseReader reader, BlockPos pos) {
         if (reader instanceof IWorldReader) {
-            return reader.hasBlockState(pos, state -> state.canBeReplacedByLeaves((IWorldReader) reader, pos));
+            return reader.isStateAtPosition(pos, state -> state.canBeReplacedByLeaves((IWorldReader) reader, pos));
         }
-        return reader.hasBlockState(pos, (state) -> {
-            return state.isAir() || state.isIn(BlockTags.LEAVES);
+        return reader.isStateAtPosition(pos, (state) -> {
+            return state.isAir() || state.is(BlockTags.LEAVES);
         });
     }
 
     public static void setDirtAt(IWorld reader, BlockPos pos) {
         Block block = reader.getBlockState(pos).getBlock();
         if (block == Blocks.GRASS_BLOCK || block == Blocks.FARMLAND) {
-            reader.setBlockState(pos, Blocks.DIRT.getDefaultState(), 18);
+            reader.setBlock(pos, Blocks.DIRT.defaultBlockState(), 18);
         }
     }
 

@@ -23,80 +23,82 @@ import net.minecraftforge.common.Tags;
 
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class DoubleCropsBlock extends CropsBlock {
     public static final EnumProperty<DoubleBlockHalf> SECTION = BlockStateProperties.DOUBLE_BLOCK_HALF;
-    private static final VoxelShape[] LOWER_SHAPE_BY_AGE = new VoxelShape[]{Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
-    private static final VoxelShape[] UPPER_SHAPE_BY_AGE = new VoxelShape[]{Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
+    private static final VoxelShape[] LOWER_SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
+    private static final VoxelShape[] UPPER_SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
 
     public DoubleCropsBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(SECTION, DoubleBlockHalf.LOWER).with(AGE, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(SECTION, DoubleBlockHalf.LOWER).setValue(AGE, 0));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(AGE, SECTION);
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch (state.get(SECTION)) {
+        switch (state.getValue(SECTION)) {
             case LOWER:
-                return LOWER_SHAPE_BY_AGE[state.get(this.getAgeProperty())];
+                return LOWER_SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
             case UPPER:
-                return UPPER_SHAPE_BY_AGE[state.get(this.getAgeProperty())];
+                return UPPER_SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
         }
         return super.getShape(state, worldIn, pos, context);
     }
 
     protected DoubleBlockHalf getSection(BlockState state) {
-        return state.get(SECTION);
+        return state.getValue(SECTION);
     }
 
     @Override
-    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.matchesBlock(Blocks.FARMLAND);
+    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return state.is(Blocks.FARMLAND);
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        if (state.get(SECTION) != DoubleBlockHalf.UPPER) {
-            if (state.get(AGE) == 7) {
-                return worldIn.getBlockState(pos.down()).isIn(Tags.Blocks.DIRT) || super.isValidPosition(state, worldIn, pos);
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        if (state.getValue(SECTION) != DoubleBlockHalf.UPPER) {
+            if (state.getValue(AGE) == 7) {
+                return worldIn.getBlockState(pos.below()).is(Tags.Blocks.DIRT) || super.canSurvive(state, worldIn, pos);
             }
-            return super.isValidPosition(state, worldIn, pos);
+            return super.canSurvive(state, worldIn, pos);
         } else {
-            BlockState blockstate = worldIn.getBlockState(pos.down());
-            if (state.getBlock() != this) return super.isValidPosition(state, worldIn, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
-            return blockstate.matchesBlock(this) && blockstate.get(SECTION) == DoubleBlockHalf.LOWER;
+            BlockState blockstate = worldIn.getBlockState(pos.below());
+            if (state.getBlock() != this) return super.canSurvive(state, worldIn, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
+            return blockstate.is(this) && blockstate.getValue(SECTION) == DoubleBlockHalf.LOWER;
         }
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        DoubleBlockHalf doubleblockhalf = stateIn.get(SECTION);
-        if (facing.getAxis() != Direction.Axis.Y || doubleblockhalf == DoubleBlockHalf.LOWER != (facing == Direction.UP) || facingState.matchesBlock(this) && facingState.get(SECTION) != doubleblockhalf) {
-            return doubleblockhalf == DoubleBlockHalf.LOWER && facing == Direction.DOWN && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        DoubleBlockHalf doubleblockhalf = stateIn.getValue(SECTION);
+        if (facing.getAxis() != Direction.Axis.Y || doubleblockhalf == DoubleBlockHalf.LOWER != (facing == Direction.UP) || facingState.is(this) && facingState.getValue(SECTION) != doubleblockhalf) {
+            return doubleblockhalf == DoubleBlockHalf.LOWER && facing == Direction.DOWN && !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
         } else {
-            return Blocks.AIR.getDefaultState();
+            return Blocks.AIR.defaultBlockState();
         }
     }
 
     @Override
-    public boolean ticksRandomly(BlockState state) {
+    public boolean isRandomlyTicking(BlockState state) {
         return !this.isMaxAge(state) && getSection(state).equals(DoubleBlockHalf.LOWER);
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-        if (worldIn.getLightSubtracted(pos, 0) >= 9) {
-            if (worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR) || worldIn.getBlockState(pos.up()).matchesBlock(this)) {
+        if (worldIn.getRawBrightness(pos, 0) >= 9) {
+            if (worldIn.getBlockState(pos.above()).is(Blocks.AIR) || worldIn.getBlockState(pos.above()).is(this)) {
                 int i = this.getAge(state);
                 if (i < this.getMaxAge()) {
-                    float f = getGrowthChance(this, worldIn, pos);
+                    float f = getGrowthSpeed(this, worldIn, pos);
                     if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / f) + 1) == 0)) {
-                        worldIn.setBlockState(pos, this.withAge(i + 1).with(SECTION, DoubleBlockHalf.LOWER), 2);
-                        worldIn.setBlockState(pos.up(), this.withAge(i + 1).with(SECTION, DoubleBlockHalf.UPPER), 2);
+                        worldIn.setBlock(pos, this.getStateForAge(i + 1).setValue(SECTION, DoubleBlockHalf.LOWER), 2);
+                        worldIn.setBlock(pos.above(), this.getStateForAge(i + 1).setValue(SECTION, DoubleBlockHalf.UPPER), 2);
                         net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
                     }
                 }
@@ -105,29 +107,29 @@ public class DoubleCropsBlock extends CropsBlock {
     }
 
     @Override
-    public void grow(World worldIn, BlockPos pos, BlockState state) {
+    public void growCrops(World worldIn, BlockPos pos, BlockState state) {
         int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
         int j = this.getMaxAge();
         if (i > j) {
             i = j;
         }
-        switch (state.get(SECTION)) {
+        switch (state.getValue(SECTION)) {
             case LOWER:
-                worldIn.setBlockState(pos, this.withAge(i).with(SECTION, DoubleBlockHalf.LOWER), 2);
-                worldIn.setBlockState(pos.up(), this.withAge(i).with(SECTION, DoubleBlockHalf.UPPER), 2);
+                worldIn.setBlock(pos, this.getStateForAge(i).setValue(SECTION, DoubleBlockHalf.LOWER), 2);
+                worldIn.setBlock(pos.above(), this.getStateForAge(i).setValue(SECTION, DoubleBlockHalf.UPPER), 2);
                 break;
             case UPPER:
-                worldIn.setBlockState(pos.down(), this.withAge(i).with(SECTION, DoubleBlockHalf.LOWER), 2);
-                worldIn.setBlockState(pos, this.withAge(i).with(SECTION, DoubleBlockHalf.UPPER), 2);
+                worldIn.setBlock(pos.below(), this.getStateForAge(i).setValue(SECTION, DoubleBlockHalf.LOWER), 2);
+                worldIn.setBlock(pos, this.getStateForAge(i).setValue(SECTION, DoubleBlockHalf.UPPER), 2);
                 break;
         }
     }
 
     @Override
-    public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-        switch (state.get(SECTION)) {
+    public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+        switch (state.getValue(SECTION)) {
             case LOWER:
-                return !this.isMaxAge(state) && (worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR) || worldIn.getBlockState(pos.up()).matchesBlock(this));
+                return !this.isMaxAge(state) && (worldIn.getBlockState(pos.above()).is(Blocks.AIR) || worldIn.getBlockState(pos.above()).is(this));
             case UPPER:
                 return !this.isMaxAge(state);
         }
@@ -135,31 +137,31 @@ public class DoubleCropsBlock extends CropsBlock {
     }
 
     @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!worldIn.isRemote) {
+    public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+        if (!worldIn.isClientSide) {
             if (player.isCreative()) {
                 removeLowerSections(worldIn, pos, state, player);
             } else {
-                spawnDrops(state, worldIn, pos, (TileEntity)null, player, player.getHeldItemMainhand());
+                dropResources(state, worldIn, pos, (TileEntity)null, player, player.getMainHandItem());
             }
         }
-        super.onBlockHarvested(worldIn, pos, state, player);
+        super.playerWillDestroy(worldIn, pos, state, player);
     }
 
     protected static void removeLowerSections(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (state.get(SECTION).equals(DoubleBlockHalf.UPPER)) {
-            BlockPos blockpos = pos.down(1);
+        if (state.getValue(SECTION).equals(DoubleBlockHalf.UPPER)) {
+            BlockPos blockpos = pos.below(1);
             BlockState blockstate = world.getBlockState(blockpos);
-            if (blockstate.getBlock() == state.getBlock() && blockstate.get(SECTION) == DoubleBlockHalf.LOWER) {
-                world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 35);
-                world.playEvent(player, 2001, blockpos, Block.getStateId(blockstate));
+            if (blockstate.getBlock() == state.getBlock() && blockstate.getValue(SECTION) == DoubleBlockHalf.LOWER) {
+                world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
+                world.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
             }
         }
     }
 
     public void placeAt(IWorld worldIn, BlockPos pos, int flags) {
-        worldIn.setBlockState(pos, this.getDefaultState().with(AGE, 7).with(SECTION, DoubleBlockHalf.LOWER), flags);
-        worldIn.setBlockState(pos.up(), this.getDefaultState().with(AGE, 7).with(SECTION, DoubleBlockHalf.UPPER), flags);
+        worldIn.setBlock(pos, this.defaultBlockState().setValue(AGE, 7).setValue(SECTION, DoubleBlockHalf.LOWER), flags);
+        worldIn.setBlock(pos.above(), this.defaultBlockState().setValue(AGE, 7).setValue(SECTION, DoubleBlockHalf.UPPER), flags);
     }
 
 }

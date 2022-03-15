@@ -11,6 +11,8 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class GasElementItem extends ElementItem {
     GasUtilsEnum gas;
     public GasElementItem(float waterReactive, boolean canBreakBlocks, int radioactive, GasUtilsEnum gas, Properties properties) {
@@ -23,13 +25,13 @@ public class GasElementItem extends ElementItem {
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World worldIn = context.getWorld();
-        BlockPos pos = context.getPos();
-        Direction opp = context.getFace();
+    public ActionResultType useOn(ItemUseContext context) {
+        World worldIn = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        Direction opp = context.getClickedFace();
         if (context.getPlayer() != null) {
-            worldIn.setBlockState(pos.offset(opp), this.getGas().getDefaultState());
-            context.getItem().shrink(1);
+            worldIn.setBlockAndUpdate(pos.relative(opp), this.getGas().defaultBlockState());
+            context.getItemInHand().shrink(1);
             return ActionResultType.SUCCESS;
         } else {
             return ActionResultType.PASS;

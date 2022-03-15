@@ -19,37 +19,37 @@ public class InductionFurnaceScreen extends ContainerScreen<InductionFurnaceCont
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
-        this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
+        this.renderTooltip(matrixStack, mouseX, mouseY);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindTexture(this.GUI);
-        int i = this.guiLeft;
-        int j = this.guiTop;
-        this.blit(p_230450_1_, i, j, 0, 0, this.xSize, this.ySize);
-        int relX = (this.width - this.xSize) / 2;
-        int relY = (this.height - this.ySize) / 2;
-        this.blit(p_230450_1_, relX, relY, 0, 0, this.xSize, this.ySize);
-        if(this.container.isBurning())
+    protected void renderBg(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
+        GlStateManager._color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.minecraft.getTextureManager().bind(this.GUI);
+        int i = this.leftPos;
+        int j = this.topPos;
+        this.blit(p_230450_1_, i, j, 0, 0, this.imageWidth, this.imageHeight);
+        int relX = (this.width - this.imageWidth) / 2;
+        int relY = (this.height - this.imageHeight) / 2;
+        this.blit(p_230450_1_, relX, relY, 0, 0, this.imageWidth, this.imageHeight);
+        if(this.menu.isBurning())
         {
 
-            int k = this.container.getBurnLeftScaled(13);
-            this.blit(p_230450_1_, this.guiLeft + 10, this.guiTop + 22 + 12 - k, 176, 12 - k, 14, k + 1);
+            int k = this.menu.getBurnLeftScaled(13);
+            this.blit(p_230450_1_, this.leftPos + 10, this.topPos + 22 + 12 - k, 176, 12 - k, 14, k + 1);
 
         }
 
-        int l = this.container.getCookProgressScaled(24);
-        this.blit(p_230450_1_, this.guiLeft + 98, this.guiTop + 32, 176, 14, l + 1, 16);
+        int l = this.menu.getCookProgressScaled(24);
+        this.blit(p_230450_1_, this.leftPos + 98, this.topPos + 32, 176, 14, l + 1, 16);
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Induction Furnace", 92, 10, 0xffffff);
+    protected void renderLabels(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().font, "Induction Furnace", 92, 10, 0xffffff);
         int ymod = 0;
-        for (String s : this.container.getOutputString().getKey()) {
-            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, s, 92, 60 + ymod, this.container.getOutputString().getValue());
+        for (String s : this.menu.getOutputString().getKey()) {
+            drawCenteredString(p_230451_1_, Minecraft.getInstance().font, s, 92, 60 + ymod, this.menu.getOutputString().getValue());
             ymod += 10;
         }
 

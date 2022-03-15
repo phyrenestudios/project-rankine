@@ -17,6 +17,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class DistillationTowerBlock extends Block {
     public DistillationTowerBlock(Properties properties) {
         super(properties);

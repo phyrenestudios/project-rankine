@@ -40,7 +40,7 @@ public class BeehiveOvenRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean isDynamic() {
+    public boolean isSpecial() {
         return true;
     }
 
@@ -50,16 +50,16 @@ public class BeehiveOvenRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        return this.ingredient.test(inv.getStackInSlot(0));
+        return this.ingredient.test(inv.getItem(0));
     }
 
     @Override
-    public ItemStack getCraftingResult(IInventory inv) {
+    public ItemStack assemble(IInventory inv) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public boolean canFit(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return true;
     }
 
@@ -73,7 +73,7 @@ public class BeehiveOvenRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack getRecipeOutput() {
+    public ItemStack getResultItem() {
         return result;
     }
 
@@ -93,7 +93,7 @@ public class BeehiveOvenRecipe implements IRecipe<IInventory> {
     }
 
     public static ItemStack deserializeBlock(JsonObject object) {
-        String s = JSONUtils.getString(object, "block");
+        String s = JSONUtils.getAsString(object, "block");
 
         Block block = Registry.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonParseException("Unknown block '" + s + "'");
@@ -109,27 +109,27 @@ public class BeehiveOvenRecipe implements IRecipe<IInventory> {
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<BeehiveOvenRecipe> {
 
         @Override
-        public BeehiveOvenRecipe read(ResourceLocation recipeId, JsonObject json) {
-            Ingredient ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "input"));
-            ItemStack result = deserializeBlock(JSONUtils.getJsonObject(json, "result"));
+        public BeehiveOvenRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+            Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input"));
+            ItemStack result = deserializeBlock(JSONUtils.getAsJsonObject(json, "result"));
             return new BeehiveOvenRecipe(recipeId,ingredient,result);
         }
 
         @Nullable
         @Override
-        public BeehiveOvenRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+        public BeehiveOvenRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
 
-            Ingredient input = Ingredient.read(buffer);
+            Ingredient input = Ingredient.fromNetwork(buffer);
 
-            ItemStack output = buffer.readItemStack();
+            ItemStack output = buffer.readItem();
 
             return new BeehiveOvenRecipe(recipeId,input,output);
         }
 
         @Override
-        public void write(PacketBuffer buffer, BeehiveOvenRecipe recipe) {
-            recipe.getIngredient().write(buffer);
-            buffer.writeItemStack(recipe.getRecipeOutput());
+        public void toNetwork(PacketBuffer buffer, BeehiveOvenRecipe recipe) {
+            recipe.getIngredient().toNetwork(buffer);
+            buffer.writeItem(recipe.getResultItem());
         }
     }
 

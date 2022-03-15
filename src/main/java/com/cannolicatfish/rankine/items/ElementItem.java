@@ -27,6 +27,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class ElementItem extends Item {
     float waterReactive;
     boolean canBreakBlocks;
@@ -40,16 +42,16 @@ public class ElementItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Config.HARD_MODE.WATER_REACTIVE.get() && waterReactive > 0.0f) {
             if (waterReactive < 2.0f) {
-                tooltip.add(new StringTextComponent("Warning! Reactive with water!").mergeStyle(TextFormatting.GRAY));
+                tooltip.add(new StringTextComponent("Warning! Reactive with water!").withStyle(TextFormatting.GRAY));
             } else if (waterReactive >= 2.0f) {
-                tooltip.add(new StringTextComponent("Warning! Highly reactive with water!").mergeStyle(TextFormatting.GRAY));
+                tooltip.add(new StringTextComponent("Warning! Highly reactive with water!").withStyle(TextFormatting.GRAY));
             }
         }
         if (Config.HARD_MODE.RADIOACTIVE.get() && radioactive > 0) {
-            tooltip.add(new StringTextComponent("Warning: Radioactive! Prolonged exposure is harmful.").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent("Warning: Radioactive! Prolonged exposure is harmful.").withStyle(TextFormatting.GRAY));
         }
     }
 
@@ -59,21 +61,21 @@ public class ElementItem extends Item {
                 if (entityIn.isInWater() && isSelected) {
                     if (entityIn instanceof PlayerEntity) {
                         PlayerEntity player = (PlayerEntity) entityIn;
-                        if (!player.abilities.isCreativeMode) {
+                        if (!player.abilities.instabuild) {
                             stack.shrink(1);
-                            BlockPos pos = entityIn.getPosition();
+                            BlockPos pos = entityIn.blockPosition();
                             if (canBreakBlocks) {
-                                entityIn.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.Mode.BREAK);
+                                entityIn.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.Mode.BREAK);
                             } else {
-                                entityIn.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.Mode.NONE);
+                                entityIn.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.Mode.NONE);
                             }
                             for (int i = 0; i < Math.round(this.waterReactive); i++) {
-                                BlockPos close = BlockPos.getClosestMatchingPosition(pos,3,3,B -> worldIn.isAirBlock(B) && !(worldIn.getBlockState(B).getBlock() instanceof GasBlock)
-                                        && BlockPos.getClosestMatchingPosition(B,1,1,P -> worldIn.getBlockState(P).getBlock() instanceof GasBlock || worldIn.getBlockState(P).getBlock() instanceof FumaroleBlock).orElse(null) != null).orElse(null);
+                                BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> worldIn.isEmptyBlock(B) && !(worldIn.getBlockState(B).getBlock() instanceof GasBlock)
+                                        && BlockPos.findClosestMatch(B,1,1,P -> worldIn.getBlockState(P).getBlock() instanceof GasBlock || worldIn.getBlockState(P).getBlock() instanceof FumaroleBlock).orElse(null) != null).orElse(null);
                                 if (close == null) {
                                     break;
                                 } else {
-                                    worldIn.setBlockState(close, RankineBlocks.HYDROGEN_GAS_BLOCK.get().getDefaultState(),3);
+                                    worldIn.setBlock(close, RankineBlocks.HYDROGEN_GAS_BLOCK.get().defaultBlockState(),3);
                                 }
                             }
                         }
@@ -84,10 +86,10 @@ public class ElementItem extends Item {
                 if (entityIn instanceof PlayerEntity) {
                     PlayerEntity player = (PlayerEntity) entityIn;
                     if (!player.isCreative()) {
-                        EffectInstance rad = player.getActivePotionEffect(RankineEffects.RADIATION_POISONING);
+                        EffectInstance rad = player.getEffect(RankineEffects.RADIATION_POISONING);
                         int dur = rad == null ? Math.max(0,this.radioactive * stack.getCount()) : Math.max(0,rad.getDuration() + this.radioactive * stack.getCount());
                         if (dur > 0) {
-                            player.addPotionEffect(new EffectInstance(RankineEffects.RADIATION_POISONING,dur,0, false, false, false));
+                            player.addEffect(new EffectInstance(RankineEffects.RADIATION_POISONING,dur,0, false, false, false));
                         }
                     }
                 }
@@ -103,8 +105,8 @@ public class ElementItem extends Item {
     public Entity createEntity(World world, Entity location, ItemStack itemstack) {
         if (waterReactive > 0.0f) {
             ReactiveItemEntity result = getResult(location,itemstack);
-            result.setPickupDelay(40);
-            result.setMotion(location.getMotion());
+            result.setPickUpDelay(40);
+            result.setDeltaMovement(location.getDeltaMovement());
             return result;
         } else {
             return null;
@@ -115,25 +117,25 @@ public class ElementItem extends Item {
     public ReactiveItemEntity getResult(Entity location, ItemStack itemstack) {
         switch (this.getRegistryName().toString()) {
             case "rankine:lithium_ingot":
-                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive,
+                return new ReactiveItemEntity(location.level,location.getX(),location.getY(),location.getZ(), this.waterReactive,
                         this.canBreakBlocks, itemstack, RankineItems.LITHIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());
             case "rankine:sodium_ingot":
-                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive,
+                return new ReactiveItemEntity(location.level,location.getX(),location.getY(),location.getZ(), this.waterReactive,
                         this.canBreakBlocks, itemstack, RankineItems.SODIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());
             case "rankine:potassium_ingot":
-                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive,
+                return new ReactiveItemEntity(location.level,location.getX(),location.getY(),location.getZ(), this.waterReactive,
                         this.canBreakBlocks, itemstack, RankineItems.POTASSIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());
             case "rankine:rubidium_ingot":
-                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive,
+                return new ReactiveItemEntity(location.level,location.getX(),location.getY(),location.getZ(), this.waterReactive,
                         this.canBreakBlocks, itemstack, RankineItems.RUBIDIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());
             case "rankine:cesium_ingot":
-                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive,
+                return new ReactiveItemEntity(location.level,location.getX(),location.getY(),location.getZ(), this.waterReactive,
                         this.canBreakBlocks, itemstack, RankineItems.CESIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());
             case "rankine:francium_ingot":
-                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive,
+                return new ReactiveItemEntity(location.level,location.getX(),location.getY(),location.getZ(), this.waterReactive,
                         this.canBreakBlocks, itemstack, RankineItems.FRANCIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());
             default:
-                return new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), itemstack);
+                return new ReactiveItemEntity(location.level,location.getX(),location.getY(),location.getZ(), itemstack);
         }
     }
 

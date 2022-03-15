@@ -39,14 +39,14 @@ public class GyratoryCrusherContainer extends Container {
 
     public GyratoryCrusherContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn,  IIntArray furnaceData) {
         super(GYRATORY_CRUSHER_CONTAINER, windowId);
-        tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 9);
-        assertIntArraySize(furnaceData, 5);
+        tileEntity = world.getBlockEntity(pos);
+        checkContainerSize(furnaceInventoryIn, 9);
+        checkContainerDataCount(furnaceData, 5);
         this.data = furnaceData;
         this.playerEntity = player;
         this.furnaceInventory = furnaceInventoryIn;
         this.playerInventory = new InvWrapper(playerInventory);
-        this.world = playerEntity.world;
+        this.world = playerEntity.level;
 
         this.addSlot(new Slot(furnaceInventory, 0, 56, 31));
         this.addSlot(new Slot(furnaceInventory, 1, 10,37));
@@ -60,59 +60,59 @@ public class GyratoryCrusherContainer extends Container {
 
         layoutPlayerInventorySlots(10, 86);
 
-        this.trackIntArray(furnaceData);
+        this.addDataSlots(furnaceData);
 
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.GYRATORY_CRUSHER.get());
+    public boolean stillValid(PlayerEntity playerIn) {
+        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, RankineBlocks.GYRATORY_CRUSHER.get());
     }
 
     protected boolean hasRecipe(ItemStack stack) {
-        return this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUSHING, new Inventory(stack), this.world).isPresent();
+        return this.world.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUSHING, new Inventory(stack), this.world).isPresent();
     }
 
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
-        if (slot != null && slot.getHasStack()) {
-            ItemStack stack = slot.getStack();
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
+            ItemStack stack = slot.getItem();
             itemstack = stack.copy();
             if (index >= 3 && index <= 8) {
-                if (!this.mergeItemStack(stack, 9, 45, true)) {
+                if (!this.moveItemStackTo(stack, 9, 45, true)) {
                     return ItemStack.EMPTY;
                 }
-                slot.onSlotChange(stack, itemstack);
+                slot.onQuickCraft(stack, itemstack);
             } else if (index != 1 && index != 0) {
                 if (hasRecipe(stack)) {
-                    if (!this.mergeItemStack(stack, 0, 1, false)) {
+                    if (!this.moveItemStackTo(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (stack.getItem() instanceof BatteryItem) {
-                    if (!this.mergeItemStack(stack, 1, 2, false)) {
+                    if (!this.moveItemStackTo(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (stack.getItem() instanceof CrushingHeadItem) {
-                    if (!this.mergeItemStack(stack, 2, 3, false)) {
+                    if (!this.moveItemStackTo(stack, 2, 3, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (index < 36) {
-                    if (!this.mergeItemStack(stack, 36, 45, false)) {
+                    if (!this.moveItemStackTo(stack, 36, 45, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 45 && !this.mergeItemStack(stack, 8, 36, false)) {
+                } else if (index < 45 && !this.moveItemStackTo(stack, 8, 36, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 9, 45, false)) {
+            } else if (!this.moveItemStackTo(stack, 9, 45, false)) {
                 return ItemStack.EMPTY;
             }
 
             if (stack.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
 
             if (stack.getCount() == itemstack.getCount()) {

@@ -40,7 +40,7 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
 
     public SluicingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(145, 125);
-        localizedName = I18n.format("rankine.jei.sluicing");
+        localizedName = I18n.get("rankine.jei.sluicing");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/sluicing_jei.png"),
                 0, 15, 140, 120);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineItems.STEEL_GOLD_PAN.get()));
@@ -73,7 +73,7 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
 
     @Override
     public void draw(SluicingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().fontRenderer;
+        FontRenderer font = Minecraft.getInstance().font;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -85,12 +85,12 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
     public void setIngredients(SluicingRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getMatchingStacks()));
+            builder.add(Arrays.asList(i.getItems()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
         ImmutableList.Builder<List<ItemStack>> builder2 = ImmutableList.builder();
         for (Ingredient i : recipe.getOutputs()) {
-            builder2.add(Arrays.asList(i.getMatchingStacks()));
+            builder2.add(Arrays.asList(i.getItems()));
         }
         iIngredients.setOutputLists(VanillaTypes.ITEM, builder2.build());
     }

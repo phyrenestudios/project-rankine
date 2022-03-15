@@ -21,41 +21,41 @@ import java.util.Random;
 
 public class LeafLitterBlock extends FallingBlock {
     public LeafLitterBlock() {
-        super(Block.Properties.create(Material.PLANTS).zeroHardnessAndResistance().notSolid().sound(SoundType.PLANT));
+        super(Block.Properties.of(Material.PLANT).instabreak().noOcclusion().sound(SoundType.GRASS));
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+        return Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
     }
 
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (worldIn.isAirBlock(pos.down()) || canFallThrough(worldIn.getBlockState(pos.down())) && pos.getY() >= 0) {
+        if (worldIn.isEmptyBlock(pos.below()) || canFallThrough(worldIn.getBlockState(pos.below())) && pos.getY() >= 0) {
             FallingBlockEntity fallingblockentity = new FallingBlockEntity(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, worldIn.getBlockState(pos));
-            fallingblockentity.shouldDropItem = false;
-            this.onStartFalling(fallingblockentity);
-            worldIn.addEntity(fallingblockentity);
+            fallingblockentity.dropItem = false;
+            this.falling(fallingblockentity);
+            worldIn.addFreshEntity(fallingblockentity);
         }
     }
 
     public static boolean canFallThrough(BlockState state) {
         Material material = state.getMaterial();
-        return state.isAir() || state.isIn(BlockTags.FIRE) || material.isLiquid() || material.isReplaceable() || state.getBlock() instanceof LeafLitterBlock;
+        return state.isAir() || state.is(BlockTags.FIRE) || material.isLiquid() || material.isReplaceable() || state.getBlock() instanceof LeafLitterBlock;
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.down()).isNormalCube(worldIn,pos.down()) && worldIn.getBlockState(pos.down()).getBlock() != this;
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        return worldIn.getBlockState(pos.below()).isRedstoneConductor(worldIn,pos.below()) && worldIn.getBlockState(pos.below()).getBlock() != this;
     }
 
     @Override
-    public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
+    public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
         return true;
     }
 
     @Override
-    public boolean isReplaceable(BlockState state, Fluid fluid) {
-        return super.isReplaceable(state, fluid);
+    public boolean canBeReplaced(BlockState state, Fluid fluid) {
+        return super.canBeReplaced(state, fluid);
     }
 
     @Override

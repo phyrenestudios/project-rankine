@@ -22,30 +22,32 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class IceMeltItem extends Item {
     public IceMeltItem(Properties properties) {
         super(properties);
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World worldIn = context.getWorld();
-        BlockPos pos = context.getPos();
+    public ActionResultType useOn(ItemUseContext context) {
+        World worldIn = context.getLevel();
+        BlockPos pos = context.getClickedPos();
 
         int radius = Config.GENERAL.ICEMELT_RANGE.get();
 
-        if (!worldIn.isRemote) {
-            for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-radius, -radius, -radius), pos.add(radius, radius, radius))) {
+        if (!worldIn.isClientSide) {
+            for (BlockPos b : BlockPos.betweenClosed(pos.offset(-radius, -radius, -radius), pos.offset(radius, radius, radius))) {
                 Block blk = worldIn.getBlockState(b).getBlock();
-                if (blk.isIn(BlockTags.ICE) && b.distanceSq(pos) <= radius*radius) {
-                    worldIn.setBlockState(b, Blocks.WATER.getDefaultState(), 3);
-                } else if (blk.matchesBlock(Blocks.SNOW) && b.distanceSq(pos) <= radius*radius) {
+                if (blk.is(BlockTags.ICE) && b.distSqr(pos) <= radius*radius) {
+                    worldIn.setBlock(b, Blocks.WATER.defaultBlockState(), 3);
+                } else if (blk.is(Blocks.SNOW) && b.distSqr(pos) <= radius*radius) {
                     worldIn.destroyBlock(b,false);
                 }
             }
         }
-        worldIn.playSound(null,pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS,0.5f,0.3f);
-        context.getItem().shrink(1);
+        worldIn.playSound(null,pos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS,0.5f,0.3f);
+        context.getItemInHand().shrink(1);
         return ActionResultType.SUCCESS;
 
     }
@@ -53,8 +55,8 @@ public class IceMeltItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-            tooltip.add(new StringTextComponent("Melts snow and ice").mergeStyle(TextFormatting.GRAY));
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+            tooltip.add(new StringTextComponent("Melts snow and ice").withStyle(TextFormatting.GRAY));
     }
 
 

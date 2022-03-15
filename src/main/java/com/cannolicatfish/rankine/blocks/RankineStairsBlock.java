@@ -10,8 +10,10 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class RankineStairsBlock extends StairsBlock {
     public RankineStairsBlock(Properties properties) {
-        super(Block.getStateById(0), properties);
+        super(Block.stateById(0), properties);
     }
 }

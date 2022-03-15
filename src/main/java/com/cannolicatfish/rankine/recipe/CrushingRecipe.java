@@ -81,20 +81,20 @@ public class CrushingRecipe implements IRecipe<IInventory> {
     }
 
     public ItemStack[] getIngredientAsStackList() {
-        return this.recipeItems.get(0).getMatchingStacks().clone();
+        return this.recipeItems.get(0).getItems().clone();
     }
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        return this.recipeItems.get(0).test(inv.getStackInSlot(0));
+        return this.recipeItems.get(0).test(inv.getItem(0));
     }
 
     @Override
-    public ItemStack getCraftingResult(IInventory inv) {
+    public ItemStack assemble(IInventory inv) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public ItemStack getRecipeOutput() {
+    public ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
 
@@ -133,12 +133,12 @@ public class CrushingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean canFit(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return true;
     }
 
     @Override
-    public boolean isDynamic() {
+    public boolean isSpecial() {
         return true;
     }
 
@@ -153,7 +153,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getString(object, "item");
+        String s = JSONUtils.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -161,7 +161,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getInt(object, "count", 1);
+            int i = JSONUtils.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
@@ -173,7 +173,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
 
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<CrushingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "crushing");
-        public CrushingRecipe read(ResourceLocation recipeId, JsonObject json) {
+        public CrushingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(1,Ingredient.EMPTY);
             nonnulllist.set(0, AlloyIngredientHelper.deserialize(json.get("input"),null, null,null));
 
@@ -183,7 +183,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             for (int i = 0; i < 6; i++) {
                 String output = "output" + (i+1);
                 if (json.has(output)) {
-                    JsonObject object = JSONUtils.getJsonObject(json, output);
+                    JsonObject object = JSONUtils.getAsJsonObject(json, output);
                     stacks.set(i,CrushingRecipe.deserializeItem(object));
                     if (object.has("chance")){
                         chances.set(i,object.get("chance").getAsFloat());
@@ -203,16 +203,16 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             return new CrushingRecipe(recipeId, nonnulllist, stacks, chances, additional);
         }
 
-        public CrushingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+        public CrushingRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(1, Ingredient.EMPTY);
 
             for(int k = 0; k < nonnulllist.size(); ++k) {
-                nonnulllist.set(k, Ingredient.read(buffer));
+                nonnulllist.set(k, Ingredient.fromNetwork(buffer));
             }
 
             NonNullList<ItemStack> stacks = NonNullList.withSize(6, ItemStack.EMPTY);
             for(int k = 0; k < stacks.size(); ++k) {
-                stacks.set(k, buffer.readItemStack());
+                stacks.set(k, buffer.readItem());
             }
 
             NonNullList<Float> chances = NonNullList.withSize(6, 0f);
@@ -229,18 +229,18 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             return new CrushingRecipe(recipeId, nonnulllist, stacks, chances, additional);
         }
 
-        public void write(PacketBuffer buffer, CrushingRecipe recipe) {
+        public void toNetwork(PacketBuffer buffer, CrushingRecipe recipe) {
             for(Ingredient ingredient : recipe.recipeItems) {
-                ingredient.write(buffer);
+                ingredient.toNetwork(buffer);
             }
 
             int count = 0;
             for(ItemStack stack : recipe.recipeOutputs) {
-                buffer.writeItemStack(stack);
+                buffer.writeItem(stack);
                 count++;
             }
             while (count < 6) {
-                buffer.writeItemStack(ItemStack.EMPTY);
+                buffer.writeItem(ItemStack.EMPTY);
                 count++;
             }
 

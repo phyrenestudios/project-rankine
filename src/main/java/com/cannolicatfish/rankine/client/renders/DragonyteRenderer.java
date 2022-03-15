@@ -16,7 +16,7 @@ public class DragonyteRenderer extends LivingRenderer<DragonyteEntity, Dragonyte
     public static final DragonyteRenderer.RenderFactory instance = new DragonyteRenderer.RenderFactory();
 
     @Override
-    protected boolean canRenderName(DragonyteEntity entity) {
+    protected boolean shouldShowName(DragonyteEntity entity) {
         return false;
     }
 
@@ -25,7 +25,7 @@ public class DragonyteRenderer extends LivingRenderer<DragonyteEntity, Dragonyte
     }
 
     @Override
-    public ResourceLocation getEntityTexture(DragonyteEntity entity) {
+    public ResourceLocation getTextureLocation(DragonyteEntity entity) {
         return new ResourceLocation("rankine:textures/entity/dragonyte.png");
     }
 

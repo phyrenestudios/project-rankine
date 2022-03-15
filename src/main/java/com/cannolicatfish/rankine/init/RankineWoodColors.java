@@ -16,9 +16,9 @@ public class RankineWoodColors {
         int colorR = (color >> 16) & 0xFF;
         int colorG = (color >> 8) & 0xFF;
         int colorB = color & 0xFF;
-        Map<Double, MaterialColor> dists = Arrays.stream(MaterialColor.COLORS).filter(Objects::nonNull)
+        Map<Double, MaterialColor> dists = Arrays.stream(MaterialColor.MATERIAL_COLORS).filter(Objects::nonNull)
                 .collect(Collectors.toMap(materialColor -> {
-                    int col = materialColor.colorValue;
+                    int col = materialColor.col;
                     int colR = (col >> 16) & 0xFF;
                     int colG = (col >> 8) & 0xFF;
                     int colB = col & 0xFF;

@@ -16,13 +16,13 @@ public class ReplacerPlacement extends SimplePlacement<NoPlacementConfig> {
         super(p_i232085_1_);
     }
 
-    public Stream<BlockPos> getPositions(Random random, NoPlacementConfig p_212852_2_, BlockPos pos) {
+    public Stream<BlockPos> place(Random random, NoPlacementConfig p_212852_2_, BlockPos pos) {
         int i = 1;
         return IntStream.range(0, i).mapToObj((p_215060_2_) -> {
             int j = random.nextInt(16);
             int k = random.nextInt(28) + 4;
             int l = random.nextInt(16);
-            return pos.add(j, k, l);
+            return pos.offset(j, k, l);
         });
     }
 }

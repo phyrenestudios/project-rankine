@@ -39,7 +39,7 @@ public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe>
 
     public StrippingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(145, 95);
-        localizedName = I18n.format("rankine.jei.stripping");
+        localizedName = I18n.get("rankine.jei.stripping");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/stripping_jei.png"),
                 0, 15, 140, 90);
         icon = guiHelper.createDrawableIngredient(new ItemStack(Items.IRON_AXE));
@@ -72,7 +72,7 @@ public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe>
 
     @Override
     public void draw(StrippingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().fontRenderer;
+        FontRenderer font = Minecraft.getInstance().font;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -82,7 +82,7 @@ public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe>
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
         if (recipe.getChance() < 1) {
-            font.drawString(ms, df.format(recipe.getChance()*100f)+"%", 107, 55, 0x7E7E7E);
+            font.draw(ms, df.format(recipe.getChance()*100f)+"%", 107, 55, 0x7E7E7E);
         }
     }
 
@@ -90,7 +90,7 @@ public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe>
     public void setIngredients(StrippingRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getMatchingStacks()));
+            builder.add(Arrays.asList(i.getItems()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
         iIngredients.setOutput(VanillaTypes.ITEM, recipe.getResult());

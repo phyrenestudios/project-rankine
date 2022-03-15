@@ -15,18 +15,20 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class AsparagusPlantBlock extends DoubleCropsBlock {
 
     public AsparagusPlantBlock(Properties properties) {
         super(properties);
     }
 
-    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
-        return block.isIn(Tags.Blocks.DIRT);
+        return block.is(Tags.Blocks.DIRT);
     }
 
-    protected IItemProvider getSeedsItem() {
+    protected IItemProvider getBaseSeedId() {
         return RankineItems.ASPARAGUS_SEEDS.get();
     }
 

@@ -18,7 +18,7 @@ public class PeridotMantleGolemEntity extends IronGolemEntity {
     }
 
     @Override
-    protected boolean isDespawnPeaceful() {
+    protected boolean shouldDespawnInPeaceful() {
         return true;
     }
 
@@ -36,15 +36,15 @@ public class PeridotMantleGolemEntity extends IronGolemEntity {
         }));
     }
     @Override
-    public boolean canAttack(EntityType<?> typeIn) {
+    public boolean canAttackType(EntityType<?> typeIn) {
         if (this.isPlayerCreated() && typeIn == EntityType.PLAYER) {
             return true;
         } else {
-            return typeIn != RankineEntityTypes.DESMOXYTE && typeIn != RankineEntityTypes.MANTLE_GOLEM && typeIn != RankineEntityTypes.DIAMOND_MANTLE_GOLEM && super.canAttack(typeIn);
+            return typeIn != RankineEntityTypes.DESMOXYTE && typeIn != RankineEntityTypes.MANTLE_GOLEM && typeIn != RankineEntityTypes.DIAMOND_MANTLE_GOLEM && super.canAttackType(typeIn);
         }
     }
 
-    public static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 15.0D);
+    public static AttributeModifierMap.MutableAttribute createGolemAttributes() {
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 100.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.KNOCKBACK_RESISTANCE, 1.0D).add(Attributes.ATTACK_DAMAGE, 15.0D);
     }
 }

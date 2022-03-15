@@ -13,24 +13,26 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class TemplateTableBlock extends Block {
     public static final TranslationTextComponent CONTAINER_NAME = new TranslationTextComponent("rankine.container.templatetable");
     public TemplateTableBlock(Properties properties) {
         super(properties);
     }
 
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.isRemote) {
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (worldIn.isClientSide) {
             return ActionResultType.SUCCESS;
         } else {
-            player.openContainer(state.getContainer(worldIn, pos));
+            player.openMenu(state.getMenuProvider(worldIn, pos));
             return ActionResultType.CONSUME;
         }
     }
 
-    public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
+    public INamedContainerProvider getMenuProvider(BlockState state, World worldIn, BlockPos pos) {
         return new SimpleNamedContainerProvider((id, inventory, player) -> {
-            return new TemplateTableContainer(id, inventory, player, IWorldPosCallable.of(worldIn, pos));
+            return new TemplateTableContainer(id, inventory, player, IWorldPosCallable.create(worldIn, pos));
         }, CONTAINER_NAME);
     }
 }

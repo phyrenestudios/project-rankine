@@ -98,7 +98,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
         for (String s : this.getBiomes()) {
             if (s.contains("C#")) {
                 for (Biome b : ForgeRegistries.BIOMES) {
-                    if (b.getCategory().getString().equalsIgnoreCase(s.split("C#")[1])) {
+                    if (b.getBiomeCategory().getSerializedName().equalsIgnoreCase(s.split("C#")[1])) {
                         biomeList.add(b);
                     }
                 }
@@ -118,8 +118,8 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
         for (String s : this.getBiomes()) {
             if (s.contains("C#")) {
                 for (Biome b : ForgeRegistries.BIOMES) {
-                    if (b.getCategory().getString().equalsIgnoreCase(s.split("C#")[1]) && !list.contains(b.getCategory().getString().toUpperCase(Locale.ROOT).replace("_", " "))) {
-                        list.add(b.getCategory().getString().toUpperCase(Locale.ROOT).replace("_", " "));
+                    if (b.getBiomeCategory().getSerializedName().equalsIgnoreCase(s.split("C#")[1]) && !list.contains(b.getBiomeCategory().getSerializedName().toUpperCase(Locale.ROOT).replace("_", " "))) {
+                        list.add(b.getBiomeCategory().getSerializedName().toUpperCase(Locale.ROOT).replace("_", " "));
                     }
                 }
             } else if (s.contains("B#")) {
@@ -156,12 +156,12 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack getCraftingResult(IInventory inv) {
+    public ItemStack assemble(IInventory inv) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public ItemStack getRecipeOutput() {
+    public ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
 
@@ -191,12 +191,12 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean canFit(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return true;
     }
 
     @Override
-    public boolean isDynamic() {
+    public boolean isSpecial() {
         return true;
     }
 
@@ -211,7 +211,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getString(object, "item");
+        String s = JSONUtils.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -219,7 +219,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getInt(object, "count", 1);
+            int i = JSONUtils.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
@@ -231,13 +231,13 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
 
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<EvaporationRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "evaporation");
-        public EvaporationRecipe read(ResourceLocation recipeId, JsonObject json) {
+        public EvaporationRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int t = json.get("total").getAsInt();
             int w = json.has("cookTime") ? json.get("cookTime").getAsInt() : 6400;
             boolean l = !json.has("large") || json.get("large").getAsBoolean();
-            FluidStack fluid = FluidHelper.getFluidStack(JSONUtils.getJsonObject(json, "input"));
+            FluidStack fluid = FluidHelper.getFluidStack(JSONUtils.getAsJsonObject(json, "input"));
 
-            JsonArray b = json.has("biomes") ? JSONUtils.getJsonArray(json, "biomes") : new JsonArray();
+            JsonArray b = json.has("biomes") ? JSONUtils.getAsJsonArray(json, "biomes") : new JsonArray();
             List<String> biomes = new ArrayList<>();
             for (int i = 0; i < b.size(); i++) {
                 biomes.add(b.get(i).getAsString());
@@ -249,7 +249,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
             for (int i = 0; i < t; i++) {
                 String output = "output" + (i+1);
                 if (json.has(output)) {
-                    JsonObject object = JSONUtils.getJsonObject(json, output);
+                    JsonObject object = JSONUtils.getAsJsonObject(json, output);
                     stacks.set(i, EvaporationRecipe.deserializeItem(object));
                     if (object.has("weight")){
                         weights.set(i,object.get("weight").getAsFloat());
@@ -276,7 +276,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
             return new EvaporationRecipe(recipeId,l, t, w, fluid, biomes, stacks, weights, mins,maxes);
         }
 
-        public EvaporationRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+        public EvaporationRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
 
             boolean l = buffer.readBoolean();
             int t = buffer.readInt();
@@ -286,14 +286,14 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
             int biomesSize = buffer.readInt();
             String[] biomeArray = new String[biomesSize];
             for (int i = 0; i < biomesSize; i++) {
-                biomeArray[i] = buffer.readString();
+                biomeArray[i] = buffer.readUtf();
             }
 
             List<String> biomes = Arrays.asList(biomeArray);
 
             NonNullList<ItemStack> stacks = NonNullList.withSize(t, ItemStack.EMPTY);
             for(int k = 0; k < stacks.size(); ++k) {
-                stacks.set(k, buffer.readItemStack());
+                stacks.set(k, buffer.readItem());
             }
 
             NonNullList<Float> weights = NonNullList.withSize(t, 0f);
@@ -314,7 +314,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
             return new EvaporationRecipe(recipeId, l, t, w,input,biomes, stacks, weights, mins, maxes);
         }
 
-        public void write(PacketBuffer buffer, EvaporationRecipe recipe) {
+        public void toNetwork(PacketBuffer buffer, EvaporationRecipe recipe) {
             buffer.writeBoolean(recipe.isLarge());
             buffer.writeInt(recipe.total);
             buffer.writeInt(recipe.time);
@@ -322,16 +322,16 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
 
             buffer.writeInt(recipe.getBiomes().size());
             for (int i = 0; i < recipe.getBiomes().size(); i++) {
-                buffer.writeString(recipe.getBiomes().get(i));
+                buffer.writeUtf(recipe.getBiomes().get(i));
             }
 
             int count = 0;
             for(ItemStack stack : recipe.recipeOutputs) {
-                buffer.writeItemStack(stack);
+                buffer.writeItem(stack);
                 count++;
             }
             while (count < recipe.total) {
-                buffer.writeItemStack(ItemStack.EMPTY);
+                buffer.writeItem(ItemStack.EMPTY);
                 count++;
             }
 

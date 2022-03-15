@@ -29,13 +29,13 @@ import java.util.Random;
 public class SoilBlock extends Block {
 
     public SoilBlock() {
-        super(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0));
+        super(Block.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.GRAVEL).harvestTool(ToolType.SHOVEL).strength(0.5F).harvestLevel(0));
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        World worldIn = context.getWorld();
+        World worldIn = context.getLevel();
         //if (WorldgenUtils.isWet((ISeedReader) worldIn, context.getPos())) {
         //    worldIn.setBlockState(context.getPos(), VanillaIntegration.soil_mud_map.get(((BlockItem) context.getItem().getItem()).getBlock()).getDefaultState(), 2);
        // }

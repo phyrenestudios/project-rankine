@@ -32,7 +32,7 @@ public class IntrusiveGeneratorRecipeCategory implements IRecipeCategory<RockGen
 
     public IntrusiveGeneratorRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(145, 95);
-        localizedName = I18n.format("rankine.jei.intrusive_igneous");
+        localizedName = I18n.get("rankine.jei.intrusive_igneous");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/intrusive_igneous_jei.png"),
                 0, 15, 140, 90);
         icon = guiHelper.createDrawableIngredient(new ItemStack(Blocks.COBBLESTONE));
@@ -76,10 +76,10 @@ public class IntrusiveGeneratorRecipeCategory implements IRecipeCategory<RockGen
     public void setIngredients(RockGeneratorRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getMatchingStacks()));
+            builder.add(Arrays.asList(i.getItems()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getRecipeOutput()));
+        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getResultItem()));
     }
 
     @Override

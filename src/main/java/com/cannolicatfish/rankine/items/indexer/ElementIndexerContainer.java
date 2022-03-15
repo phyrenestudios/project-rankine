@@ -33,17 +33,17 @@ public class ElementIndexerContainer extends Container {
         layoutPlayerInventorySlots(8, 140);
     }
 
-    public void onContainerClosed(PlayerEntity playerIn) {
+    public void removed(PlayerEntity playerIn) {
         PlayerInventory playerinventory = playerIn.inventory;
-        if (!playerinventory.getItemStack().isEmpty()) {
-            playerIn.dropItem(playerinventory.getItemStack(), false);
-            playerinventory.setItemStack(ItemStack.EMPTY);
+        if (!playerinventory.getCarried().isEmpty()) {
+            playerIn.drop(playerinventory.getCarried(), false);
+            playerinventory.setCarried(ItemStack.EMPTY);
         }
-        if (playerinventory.getFirstEmptyStack() == -1)
+        if (playerinventory.getFreeSlot() == -1)
         {
-            playerIn.dropItem(this.handler.getStackInSlot(0), false);
+            playerIn.drop(this.handler.getStackInSlot(0), false);
         }  else {
-            playerIn.addItemStackToInventory(this.handler.getStackInSlot(0));
+            playerIn.addItem(this.handler.getStackInSlot(0));
         }
 
     }
@@ -59,32 +59,32 @@ public class ElementIndexerContainer extends Container {
         }
     }
 
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
-        if(slot != null && slot.getHasStack()) {
-            ItemStack stack = slot.getStack();
+        Slot slot = this.slots.get(index);
+        if(slot != null && slot.hasItem()) {
+            ItemStack stack = slot.getItem();
             itemstack = stack.copy();
             if (index != 0) {
                 if (handler.isItemValid(0,stack)) {
-                    if (!this.mergeItemStack(stack, 0, 1, false)) {
+                    if (!this.moveItemStackTo(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (index < 28) {
-                    if (!this.mergeItemStack(stack, 28, 37, false)) {
+                    if (!this.moveItemStackTo(stack, 28, 37, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 37 && !this.mergeItemStack(stack, 5, 28, false)) {
+                } else if (index < 37 && !this.moveItemStackTo(stack, 5, 28, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 5, 37, false)) {
+            } else if (!this.moveItemStackTo(stack, 5, 37, false)) {
                 return ItemStack.EMPTY;
             }
 
             if (stack.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
 
             if (stack.getCount() == itemstack.getCount()) {
@@ -97,7 +97,7 @@ public class ElementIndexerContainer extends Container {
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
+    public boolean stillValid(PlayerEntity playerIn) {
         return true;
     }
 

@@ -10,6 +10,9 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.OffsetType;
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class GrassVegetationBlock extends BushBlock {
     double height;
 
@@ -19,7 +22,7 @@ public class GrassVegetationBlock extends BushBlock {
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, height, 14.0D);
+        return Block.box(2.0D, 0.0D, 2.0D, 14.0D, height, 14.0D);
     }
 
     public OffsetType getOffsetType() {

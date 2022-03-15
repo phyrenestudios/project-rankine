@@ -11,28 +11,30 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.Tags;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class RankineSaplingBlock extends SaplingBlock {
-    public static final IntegerProperty STAGE = BlockStateProperties.STAGE_0_1;
+    public static final IntegerProperty STAGE = BlockStateProperties.STAGE;
     private final Tree tree;
     private int type;
     public RankineSaplingBlock(Tree treeIn, Properties properties, int type) {
         super(treeIn, properties);
         this.tree = treeIn;
-        this.setDefaultState(this.stateContainer.getBaseState().with(STAGE, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(STAGE, 0));
         this.type = type;
     }
 
     @Override
-    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
         switch (type) {
             case 3:
-                return block.isIn(Tags.Blocks.DIRT) || block.isIn(Tags.Blocks.SAND) || block.isIn(RankineTags.Blocks.COARSE_DIRT);
+                return block.is(Tags.Blocks.DIRT) || block.is(Tags.Blocks.SAND) || block.is(RankineTags.Blocks.COARSE_DIRT);
             case 2:
-                return block.isIn(Tags.Blocks.DIRT) || block.isIn(RankineTags.Blocks.COARSE_DIRT);
+                return block.is(Tags.Blocks.DIRT) || block.is(RankineTags.Blocks.COARSE_DIRT);
             case 1:
             default:
-                return block.isIn(Tags.Blocks.DIRT);
+                return block.is(Tags.Blocks.DIRT);
         }
     }
 

@@ -16,12 +16,12 @@ public class EndobioticEnchantment extends Enchantment {
         super(p_i46721_1_, RankineEnchantmentTypes.ENDER_AMALGAM_ARMOR, p_i46721_2_);
     }
 
-    public int getMinEnchantability(int p_77321_1_) {
+    public int getMinCost(int p_77321_1_) {
         return 10 + 7 * (p_77321_1_ - 1);
     }
 
-    public int getMaxEnchantability(int p_223551_1_) {
-        return super.getMinEnchantability(p_223551_1_) + 50;
+    public int getMaxCost(int p_223551_1_) {
+        return super.getMinCost(p_223551_1_) + 50;
     }
 
     public int getMaxLevel() {
@@ -29,12 +29,12 @@ public class EndobioticEnchantment extends Enchantment {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
+    public boolean canEnchant(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
             return rs.equals(new ResourceLocation("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyArmorItem;
         }
-        return RankineEnchantmentTypes.ENDER_AMALGAM_ARMOR.canEnchantItem(stack.getItem());
+        return RankineEnchantmentTypes.ENDER_AMALGAM_ARMOR.canEnchant(stack.getItem());
     }
 
     @Override
@@ -47,7 +47,7 @@ public class EndobioticEnchantment extends Enchantment {
     }
 
     @Override
-    public boolean canGenerateInLoot() {
+    public boolean isDiscoverable() {
         return false;
     }
 

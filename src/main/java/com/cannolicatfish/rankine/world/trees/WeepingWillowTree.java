@@ -13,7 +13,7 @@ public class WeepingWillowTree extends Tree {
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return RankineFeatures.WEEPING_WILLOW_TREE.get().withConfiguration(RankineBiomeFeatures.WEEPING_WILLOW_TREE_CONFIG);
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
+        return RankineFeatures.WEEPING_WILLOW_TREE.get().configured(RankineBiomeFeatures.WEEPING_WILLOW_TREE_CONFIG);
     }
 }

@@ -32,40 +32,40 @@ public class BaseAsphaltBlock extends HorizontalBlock {
     public static final IntegerProperty SIZE = IntegerProperty.create("size",1,4);
 
     public BaseAsphaltBlock() {
-        super(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0));
-        this.setDefaultState(this.stateContainer.getBaseState().with(SIZE, 4).with(HORIZONTAL_FACING, Direction.NORTH));
+        super(Block.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).strength(2).harvestLevel(0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(SIZE, 4).setValue(FACING, Direction.NORTH));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(SIZE,HORIZONTAL_FACING);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(SIZE,FACING);
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return Block.makeCuboidShape(0.0D,0.0D,0.0D,16.0D,4*state.get(SIZE),16.0D);
+        return Block.box(0.0D,0.0D,0.0D,16.0D,4*state.getValue(SIZE),16.0D);
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        ItemStack heldItem = context.getPlayer().getHeldItemOffhand();
+        ItemStack heldItem = context.getPlayer().getOffhandItem();
         if (heldItem.getItem() == RankineItems.BUILDING_TOOL.get()) {
-            return this.getDefaultState().with(HORIZONTAL_FACING,context.getPlayer().getHorizontalFacing()).with(SIZE, Math.min(4, BuildingToolItem.getBuildingMode(heldItem)+1));
+            return this.defaultBlockState().setValue(FACING,context.getPlayer().getDirection()).setValue(SIZE, Math.min(4, BuildingToolItem.getBuildingMode(heldItem)+1));
         }
-        return this.getDefaultState().with(HORIZONTAL_FACING,context.getPlayer().getHorizontalFacing());
+        return this.defaultBlockState().setValue(FACING,context.getPlayer().getDirection());
     }
 
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        Direction dir = player.getHorizontalFacing();
-        if (Tags.Items.DYES.contains(player.getHeldItem(handIn).getItem())) {
-            if (state.get(HORIZONTAL_FACING) != dir) {
-                worldIn.setBlockState(pos, state.with(HORIZONTAL_FACING, dir), 3);
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        Direction dir = player.getDirection();
+        if (Tags.Items.DYES.contains(player.getItemInHand(handIn).getItem())) {
+            if (state.getValue(FACING) != dir) {
+                worldIn.setBlock(pos, state.setValue(FACING, dir), 3);
             } else {
-                worldIn.setBlockState(pos, RankineLists.ASPHALT_BLOCKS.get((RankineLists.ASPHALT_BLOCKS.indexOf(state.getBlock())+1)%RankineLists.ASPHALT_BLOCKS.size()).getDefaultState().with(SIZE,state.get(SIZE)).with(HORIZONTAL_FACING, dir), 3);
+                worldIn.setBlock(pos, RankineLists.ASPHALT_BLOCKS.get((RankineLists.ASPHALT_BLOCKS.indexOf(state.getBlock())+1)%RankineLists.ASPHALT_BLOCKS.size()).defaultBlockState().setValue(SIZE,state.getValue(SIZE)).setValue(FACING, dir), 3);
             }
             return ActionResultType.SUCCESS;
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return super.use(state, worldIn, pos, player, handIn, hit);
     }
 
 

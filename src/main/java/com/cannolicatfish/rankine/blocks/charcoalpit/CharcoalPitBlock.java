@@ -28,6 +28,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class CharcoalPitBlock extends Block {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     int MAX_HEIGHT = Config.MACHINES.CHARCOAL_PIT_HEIGHT.get();
@@ -49,22 +51,22 @@ public class CharcoalPitBlock extends Block {
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(LIT, false);
+        return this.defaultBlockState().setValue(LIT, false);
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(LIT);
     }
 
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
-        ItemStack itemstack = player.getHeldItem(handIn);
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
+        ItemStack itemstack = player.getItemInHand(handIn);
         Item item = itemstack.getItem();
         boolean flag = false;
         if (item == Items.FLINT_AND_STEEL || item == RankineItems.SPARK_LIGHTER.get()) {
-            itemstack.damageItem(1, player, (p_220287_1_) -> {
-                p_220287_1_.sendBreakAnimation(handIn);
+            itemstack.hurtAndBreak(1, player, (p_220287_1_) -> {
+                p_220287_1_.broadcastBreakEvent(handIn);
             });
             flag = true;
         } else if (item == Items.FIRE_CHARGE) {
@@ -73,8 +75,8 @@ public class CharcoalPitBlock extends Block {
         }
         if (flag) {
             for (int i = -MAX_HEIGHT; i <= MAX_HEIGHT; ++i) {
-                if (worldIn.getBlockState(pos.up(i)).matchesBlock(RankineBlocks.CHARCOAL_PIT.get())) {
-                    worldIn.setBlockState(pos.up(i), RankineBlocks.CHARCOAL_PIT.get().getDefaultState().with(BlockStateProperties.LIT, Boolean.TRUE), 3);
+                if (worldIn.getBlockState(pos.above(i)).is(RankineBlocks.CHARCOAL_PIT.get())) {
+                    worldIn.setBlock(pos.above(i), RankineBlocks.CHARCOAL_PIT.get().defaultBlockState().setValue(BlockStateProperties.LIT, Boolean.TRUE), 3);
                 }
             }
             return ActionResultType.SUCCESS;
@@ -85,11 +87,11 @@ public class CharcoalPitBlock extends Block {
 
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        if (rand.nextFloat() < 0.7 && stateIn.get(LIT)) {
+        if (rand.nextFloat() < 0.7 && stateIn.getValue(LIT)) {
             Random random = worldIn.getRandom();
             BasicParticleType basicparticletype = ParticleTypes.CAMPFIRE_COSY_SMOKE;
-            worldIn.addOptionalParticle(basicparticletype, true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
-            worldIn.addOptionalParticle(basicparticletype, true, (double)pos.getX() + 0.5D + (random.nextInt(3)-1) * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + (random.nextInt(3)-1) * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
+            worldIn.addAlwaysVisibleParticle(basicparticletype, true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
+            worldIn.addAlwaysVisibleParticle(basicparticletype, true, (double)pos.getX() + 0.5D + (random.nextInt(3)-1) * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + (random.nextInt(3)-1) * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
         }
     }
 

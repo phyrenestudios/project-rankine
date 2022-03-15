@@ -9,6 +9,8 @@ import net.minecraft.util.DrinkHelper;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class DrinkItem extends Item {
     public DrinkItem(Properties properties) {
         super(properties);
@@ -21,7 +23,7 @@ public class DrinkItem extends Item {
     /**
      * returns the action that specifies what animation to play when the items is being used
      */
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAnimation(ItemStack stack) {
         return UseAction.DRINK;
     }
 
@@ -29,7 +31,7 @@ public class DrinkItem extends Item {
      * Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see
      * {@link #onItemUse}.
      */
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        return DrinkHelper.startDrinking(worldIn, playerIn, handIn);
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        return DrinkHelper.useDrink(worldIn, playerIn, handIn);
     }
 }

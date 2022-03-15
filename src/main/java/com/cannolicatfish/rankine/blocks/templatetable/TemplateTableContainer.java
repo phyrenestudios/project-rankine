@@ -40,9 +40,9 @@ public class TemplateTableContainer extends Container {
     private IItemHandler playerInventory;
     private World world;
     public final IInventory inputInventory = new Inventory(8) {
-        public void markDirty() {
-            super.markDirty();
-            TemplateTableContainer.this.onCraftMatrixChanged(this);
+        public void setChanged() {
+            super.setChanged();
+            TemplateTableContainer.this.slotsChanged(this);
         }
     };
     public final IInventory outputInventory = new Inventory(1);
@@ -51,14 +51,14 @@ public class TemplateTableContainer extends Container {
     private final IWorldPosCallable worldPosCallable;
 
     public TemplateTableContainer(int id, PlayerInventory playerInventory, PlayerEntity player) {
-        this(id,playerInventory,player, IWorldPosCallable.DUMMY);
+        this(id,playerInventory,player, IWorldPosCallable.NULL);
     }
 
     public TemplateTableContainer(int windowId, PlayerInventory playerInventory, PlayerEntity player, IWorldPosCallable wpos) {
         super(TEMPLATE_TABLE_CONTAINER,windowId);
         this.worldPosCallable = wpos;
         this.player = player;
-        this.world = player.world;
+        this.world = player.level;
 
         this.addSlot(new Slot(inputInventory,0,108,18));
         this.addSlot(new Slot(inputInventory,1,134,18));
@@ -69,17 +69,17 @@ public class TemplateTableContainer extends Container {
         this.addSlot(new Slot(inputInventory,6,180,62));
         this.addSlot(new Slot(inputInventory,7,198,62));
         this.addSlot(new Slot(outputInventory,0,248,58) {
-            public boolean isItemValid(ItemStack stack) {
+            public boolean mayPlace(ItemStack stack) {
                 return false;
             }
 
             public ItemStack onTake(PlayerEntity player, ItemStack stack) {
-                TemplateTableContainer.this.inputInventory.decrStackSize(6,1);
-                TemplateTableContainer.this.inputInventory.decrStackSize(7,1);
+                TemplateTableContainer.this.inputInventory.removeItem(6,1);
+                TemplateTableContainer.this.inputInventory.removeItem(7,1);
                 TemplateTableContainer.this.updateRecipeResultSlot();
 
-                stack.getItem().onCreated(stack, player.world, player);
-                worldPosCallable.consume((p_216954_1_, p_216954_2_) -> {
+                stack.getItem().onCraftedBy(stack, player.level, player);
+                worldPosCallable.execute((p_216954_1_, p_216954_2_) -> {
 
                 });
                 return super.onTake(player, stack);
@@ -94,48 +94,48 @@ public class TemplateTableContainer extends Container {
     }
 
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index)
     {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
+        Slot slot = this.slots.get(index);
 
-        if(slot != null && slot.getHasStack())
+        if(slot != null && slot.hasItem())
         {
-            ItemStack stack = slot.getStack();
+            ItemStack stack = slot.getItem();
             itemstack = stack.copy();
             if (index == 9) {
-                if (!this.mergeItemStack(stack, 9, 45, true)) {
+                if (!this.moveItemStackTo(stack, 9, 45, true)) {
                     return ItemStack.EMPTY;
                 }
-                slot.onSlotChange(stack, itemstack);
+                slot.onQuickCraft(stack, itemstack);
             } else if (!(index < 8)) {
                 if (AlloyCustomHelper.hasElement(itemstack.getItem())) {
-                    if (!this.mergeItemStack(stack, 0, 6, false)) {
+                    if (!this.moveItemStackTo(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (itemstack.getItem() == Items.PAPER) {
-                    if (!this.mergeItemStack(stack, 6, 7, false)) {
+                    if (!this.moveItemStackTo(stack, 6, 7, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (itemstack.getItem() instanceof DyeItem) {
-                    if (!this.mergeItemStack(stack, 7, 8, false)) {
+                    if (!this.moveItemStackTo(stack, 7, 8, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (index < 36) {
-                    if (!this.mergeItemStack(stack, 36, 45, false)) {
+                    if (!this.moveItemStackTo(stack, 36, 45, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 45 && !this.mergeItemStack(stack, 10, 36, false)) {
+                } else if (index < 45 && !this.moveItemStackTo(stack, 10, 36, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 9, 45, false)) {
+            } else if (!this.moveItemStackTo(stack, 9, 45, false)) {
                 return ItemStack.EMPTY;
             }
 
             if (stack.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
 
             if (stack.getCount() == itemstack.getCount()) {
@@ -191,76 +191,76 @@ public class TemplateTableContainer extends Container {
         }
     }*/
 
-    public void onCraftMatrixChanged(IInventory inventoryIn) {
+    public void slotsChanged(IInventory inventoryIn) {
 
-        if (this.inputInventory.getStackInSlot(6).getItem() == Items.PAPER &&
-                (this.inputInventory.getStackInSlot(7).getItem() instanceof DyeItem))
+        if (this.inputInventory.getItem(6).getItem() == Items.PAPER &&
+                (this.inputInventory.getItem(7).getItem() instanceof DyeItem))
         {
-            AlloyingRecipe recipeIn = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, this.inputInventory, this.world).orElse(null);
+            AlloyingRecipe recipeIn = this.world.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, this.inputInventory, this.world).orElse(null);
             //calcPercentages();
             if (recipeIn != null) {
                 ItemStack recipeOutput = recipeIn.generateResult(this.world,this.inputInventory, 3);
                 if (!recipeOutput.isEmpty()) {
                     ItemStack st = new ItemStack(RankineItems.ALLOY_TEMPLATE.get());
-                    AlloyTemplateItem.addTemplate(world,st, recipeIn, this.inputInventory, (DyeItem) this.inputInventory.getStackInSlot(7).getItem());
+                    AlloyTemplateItem.addTemplate(world,st, recipeIn, this.inputInventory, (DyeItem) this.inputInventory.getItem(7).getItem());
 
-                    this.outputInventory.setInventorySlotContents(0, st);
+                    this.outputInventory.setItem(0, st);
                     return;
 
                 }
             }
 
         }
-        if (!this.outputInventory.getStackInSlot(0).isEmpty()) {
-            this.outputInventory.setInventorySlotContents(0,ItemStack.EMPTY);
+        if (!this.outputInventory.getItem(0).isEmpty()) {
+            this.outputInventory.setItem(0,ItemStack.EMPTY);
         }
     }
 
 
     private void updateRecipeResultSlot() {
-        this.onCraftMatrixChanged(inputInventory);
-        this.detectAndSendChanges();
+        this.slotsChanged(inputInventory);
+        this.broadcastChanges();
     }
 
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(this.worldPosCallable, playerIn, RankineBlocks.TEMPLATE_TABLE.get());
+    public boolean stillValid(PlayerEntity playerIn) {
+        return stillValid(this.worldPosCallable, playerIn, RankineBlocks.TEMPLATE_TABLE.get());
     }
 
-    public void onContainerClosed(PlayerEntity playerIn) {
-        super.onContainerClosed(playerIn);
-        this.worldPosCallable.consume((p_217068_2_, p_217068_3_) -> {
+    public void removed(PlayerEntity playerIn) {
+        super.removed(playerIn);
+        this.worldPosCallable.execute((p_217068_2_, p_217068_3_) -> {
             this.clearContainer(playerIn, p_217068_2_, this.inputInventory);
         });
     }
 
     public List<AlloyingRecipe> getAlloyRecipes() {
         //&& !alloyingRecipe.cannotMake(player.inventory, this.world)
-        return world.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(this.world).isEmpty()).collect(Collectors.toList());
+        return world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING).stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(this.world).isEmpty()).collect(Collectors.toList());
     }
 
-    public void func_217046_g(int p_217046_1_) {
+    public void tryMoveItems(int p_217046_1_) {
         if (this.getAlloyRecipes().size() > p_217046_1_) {
-            ItemStack itemstack = this.inputInventory.getStackInSlot(0);
+            ItemStack itemstack = this.inputInventory.getItem(0);
             if (!itemstack.isEmpty()) {
-                if (!this.mergeItemStack(itemstack, 3, 39, true)) {
+                if (!this.moveItemStackTo(itemstack, 3, 39, true)) {
                     return;
                 }
 
-                this.inputInventory.setInventorySlotContents(0, itemstack);
+                this.inputInventory.setItem(0, itemstack);
             }
 
-            ItemStack itemstack1 = this.inputInventory.getStackInSlot(1);
+            ItemStack itemstack1 = this.inputInventory.getItem(1);
             if (!itemstack1.isEmpty()) {
-                if (!this.mergeItemStack(itemstack1, 3, 39, true)) {
+                if (!this.moveItemStackTo(itemstack1, 3, 39, true)) {
                     return;
                 }
 
-                this.inputInventory.setInventorySlotContents(1, itemstack1);
+                this.inputInventory.setItem(1, itemstack1);
             }
 
-            if (this.inputInventory.getStackInSlot(0).isEmpty() && this.inputInventory.getStackInSlot(1).isEmpty()) {
+            if (this.inputInventory.getItem(0).isEmpty() && this.inputInventory.getItem(1).isEmpty()) {
 
             }
 

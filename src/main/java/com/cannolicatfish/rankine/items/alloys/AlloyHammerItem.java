@@ -32,6 +32,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
@@ -42,69 +44,69 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
+    public ITextComponent getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
+            return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
         }
-        return new TranslationTextComponent(this.getTranslationKey(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
+        return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getEntityWorld().isRainingAt(target.getPosition()) && getLightningModifier(stack) == 1)
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && getLightningModifier(stack) == 1)
         {
-            LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,attacker.world);
-            //ent.func_233576_c_(Vector3d.func_237492_c_(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
-            ent.setPosition(target.getPosX(),target.getPosY(),target.getPosZ());
-            ((ServerWorld)target.getEntityWorld()).addEntity(ent);
+            LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,attacker.level);
+            //ent.moveTo(Vector3d.atBottomCenterOf(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
+            ent.setPos(target.getX(),target.getY(),target.getZ());
+            ((ServerWorld)target.getCommandSenderWorld()).addFreshEntity(ent);
         }
         if (getDazeModifier(stack) != 0)
         {
             if (attacker instanceof PlayerEntity)
             {
                 PlayerEntity player = (PlayerEntity) attacker;
-                if (player.getCooledAttackStrength(0) >= (1f))
+                if (player.getAttackStrengthScale(0) >= (1f))
                 {
-                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 2));
+                    target.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*20, 2));
                 } else {
-                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 1));
+                    target.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*20, 1));
                 }
             } else {
-                target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 1));
+                target.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*20, 1));
             }
 
         }
-        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,true), attacker, (entity) -> {
-            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,true), attacker, (entity) -> {
+            entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
         });
         return true;
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+    public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         boolean creativeFlag = false;
         if (entityLiving instanceof PlayerEntity)
         {
             creativeFlag = ((PlayerEntity) entityLiving).isCreative();
         }
-        if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isAirBlock(pos)) {
-            for (CrushingRecipe recipe : worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.CRUSHING)) {
+        if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isEmptyBlock(pos)) {
+            for (CrushingRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING)) {
                 for (ItemStack s : recipe.getIngredientAsStackList()) {
                     if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem() && getAlloyHarvestLevel(stack) >= state.getBlock().getHarvestLevel(state)) {
-                        if (state.getBlockHardness(worldIn, pos) != 0.0F) {
-                            stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (p_220038_0_) -> {
-                                p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                        if (state.getDestroySpeed(worldIn, pos) != 0.0F) {
+                            stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (p_220038_0_) -> {
+                                p_220038_0_.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
                             });
                         }
-                        double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                        double d1 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                        double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                        double d0 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
+                        double d1 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
+                        double d2 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
 
                         if (!creativeFlag) {
                             List<ItemStack> results = recipe.getResults(getAlloyHarvestLevel(stack),worldIn);
                             if (getAtomizeModifier(stack) >= 1) {
                                 for (int i = 0; i < results.size(); i++) {
                                     if (results.get(i).isEmpty()) {
-                                        ItemStack resu = recipe.getSpecificResult(getTier().getHarvestLevel(),i,worldIn);
+                                        ItemStack resu = recipe.getSpecificResult(getTier().getLevel(),i,worldIn);
                                         results.set(i,resu);
                                     }
                                 }
@@ -112,8 +114,8 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
                             for (ItemStack t : results)
                             {
                                 ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, t.copy());
-                                itementity.setDefaultPickupDelay();
-                                worldIn.addEntity(itementity);
+                                itementity.setDefaultPickUpDelay();
+                                worldIn.addFreshEntity(itementity);
                             }
                         }
 
@@ -125,7 +127,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
                 }
             }
             SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
-            worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getHitSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
+            worldIn.playLocalSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getHitSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
         }
         return false;
     }
@@ -147,7 +149,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         addAlloyInformation(stack,worldIn,tooltip,flagIn);
         if (flagIn.isAdvanced()) {
             addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
@@ -155,9 +157,9 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     }
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         this.applyAlloyEnchantments(stack,worldIn);
-        super.onCreated(stack, worldIn, playerIn);
+        super.onCraftedBy(stack, worldIn, playerIn);
     }
 
     @Override
@@ -179,34 +181,34 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (this.isInGroup(group) && this.defaultAlloyRecipe == null) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+        if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
             items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
             items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
-        } else if (this.isInGroup(group)) {
-            super.fillItemGroup(group,items);
+        } else if (this.allowdedIn(group)) {
+            super.fillItemCategory(group,items);
         }
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        if (context.getPlayer() != null && context.getPlayer().isCrouching() && context.getWorld().getBlockState(context.getPos()).getBlock() instanceof AnvilBlock) {
-            World worldIn = context.getWorld();
-            BlockPos pos = context.getPos();
+    public ActionResultType useOn(ItemUseContext context) {
+        if (context.getPlayer() != null && context.getPlayer().isCrouching() && context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof AnvilBlock) {
+            World worldIn = context.getLevel();
+            BlockPos pos = context.getClickedPos();
             BlockState anvil = worldIn.getBlockState(pos);
-            if (anvil.getBlock() == Blocks.CHIPPED_ANVIL && (getAlloyDurability(context.getItem()) - context.getItem().getDamage()) >= 100) {
-                worldIn.setBlockState(pos,Blocks.ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
-                worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
-                context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            if (anvil.getBlock() == Blocks.CHIPPED_ANVIL && (getAlloyDurability(context.getItemInHand()) - context.getItemInHand().getDamageValue()) >= 100) {
+                worldIn.setBlock(pos,Blocks.ANVIL.defaultBlockState().setValue(HorizontalBlock.FACING,anvil.getValue(HorizontalBlock.FACING)),2);
+                worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
                 return ActionResultType.SUCCESS;
-            } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (getAlloyDurability(context.getItem()) - context.getItem().getDamage()) >= 100) {
-                worldIn.setBlockState(pos,Blocks.CHIPPED_ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
-                worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
-                context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (getAlloyDurability(context.getItemInHand()) - context.getItemInHand().getDamageValue()) >= 100) {
+                worldIn.setBlock(pos,Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(HorizontalBlock.FACING,anvil.getValue(HorizontalBlock.FACING)),2);
+                worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
                 return ActionResultType.SUCCESS;
             }
         }
-        return super.onItemUse(context);
+        return super.useOn(context);
     }
 
     @Override
@@ -220,7 +222,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     }
 
     @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
         if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);

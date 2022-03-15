@@ -28,38 +28,40 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class BlazingTotemItem extends Item {
     public BlazingTotemItem(Properties properties) {
         super(properties);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        super.addInformation(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslationTextComponent("item.rankine.totem_of_blazing.tooltip").mergeStyle(TextFormatting.GRAY, TextFormatting.ITALIC));
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        tooltip.add(new TranslationTextComponent("item.rankine.totem_of_blazing.tooltip").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC));
     }
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         if (Config.GENERAL.PENDANT_CURSE.get()) {
-            stack.addEnchantment(Enchantments.VANISHING_CURSE,1);
+            stack.enchant(Enchantments.VANISHING_CURSE,1);
         }
-        super.onCreated(stack, worldIn, playerIn);
+        super.onCraftedBy(stack, worldIn, playerIn);
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if ((group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+        if ((group == ItemGroup.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
             ItemStack stack = new ItemStack(this.getItem());
-            stack.addEnchantment(Enchantments.VANISHING_CURSE,1);
+            stack.enchant(Enchantments.VANISHING_CURSE,1);
             items.add(stack);
         } else {
-            super.fillItemGroup(group, items);
+            super.fillItemCategory(group, items);
         }
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return false;
     }
 
@@ -67,20 +69,20 @@ public class BlazingTotemItem extends Item {
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (entityIn instanceof LivingEntity) {
             LivingEntity living = ((LivingEntity) entityIn);
-            if (living.getFireTimer() > 0 && (living.getHeldItemMainhand().equals(stack) || living.getHeldItemOffhand().equals(stack))) {
-                worldIn.setBlockState(living.getPosition(), AbstractFireBlock.getFireForPlacement(worldIn, living.getPosition()));
-                if ((living.isInLava() && living.getActivePotionEffect(Effects.FIRE_RESISTANCE) == null) || living.getHealth() < living.getMaxHealth() * .25f) {
+            if (living.getRemainingFireTicks() > 0 && (living.getMainHandItem().equals(stack) || living.getOffhandItem().equals(stack))) {
+                worldIn.setBlockAndUpdate(living.blockPosition(), AbstractFireBlock.getState(worldIn, living.blockPosition()));
+                if ((living.isInLava() && living.getEffect(Effects.FIRE_RESISTANCE) == null) || living.getHealth() < living.getMaxHealth() * .25f) {
                     EffectInstance lavaSave = new EffectInstance(Effects.FIRE_RESISTANCE,500);
                     EffectInstance regen = new EffectInstance(Effects.REGENERATION,100,3);
                     if (AlexMobs.isInstalled()){
                         Effect lavaVision = ForgeRegistries.POTIONS.getValue(new ResourceLocation("alexsmobs:lava_vision"));
                         if (lavaVision != null) {
                             EffectInstance lavaVisionEffect = new EffectInstance(lavaVision,500);
-                            living.addPotionEffect(lavaVisionEffect);
+                            living.addEffect(lavaVisionEffect);
                         }
                     }
-                    living.addPotionEffect(lavaSave);
-                    living.addPotionEffect(regen);
+                    living.addEffect(lavaSave);
+                    living.addEffect(regen);
                     stack.shrink(1);
                 }
             }

@@ -17,8 +17,11 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.block.AbstractBlock.OffsetType;
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class StingingNettleBlock extends BushBlock {
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
+    protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
 
     public StingingNettleBlock(Properties properties) {
         super(properties);
@@ -29,14 +32,14 @@ public class StingingNettleBlock extends BushBlock {
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity) {
-            if (!worldIn.isRemote && (entityIn.lastTickPosX != entityIn.getPosX() || entityIn.lastTickPosZ != entityIn.getPosZ())) {
-                double d0 = Math.abs(entityIn.getPosX() - entityIn.lastTickPosX);
-                double d1 = Math.abs(entityIn.getPosZ() - entityIn.lastTickPosZ);
+            if (!worldIn.isClientSide && (entityIn.xOld != entityIn.getX() || entityIn.zOld != entityIn.getZ())) {
+                double d0 = Math.abs(entityIn.getX() - entityIn.xOld);
+                double d1 = Math.abs(entityIn.getZ() - entityIn.zOld);
                 if (d0 >= (double)0.003F || d1 >= (double)0.003F) {
                     //entityIn.attackEntityFrom(DamageSource.CACTUS, 2.0F);
-                    ((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.POISON,20*2,0));
+                    ((LivingEntity) entityIn).addEffect(new EffectInstance(Effects.POISON,20*2,0));
                 }
             }
         }
@@ -53,7 +56,7 @@ public class StingingNettleBlock extends BushBlock {
     }
 
     @Override
-    public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
+    public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
         return true;
     }
 

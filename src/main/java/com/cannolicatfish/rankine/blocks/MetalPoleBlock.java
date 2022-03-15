@@ -30,12 +30,12 @@ public class MetalPoleBlock extends Block implements IWaterLoggable {
     int alloyColor;
 
     public MetalPoleBlock(int color) {
-        super(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(4.0F, 6.0F).sound(SoundType.METAL).notSolid());
+        super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(4.0F, 6.0F).sound(SoundType.METAL).noOcclusion());
         this.alloyColor = color;
-        this.setDefaultState(this.stateContainer.getBaseState().with(STYLE,0).with(WATERLOGGED, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any().setValue(STYLE,0).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(STYLE,WATERLOGGED);
     }
 
@@ -50,7 +50,7 @@ public class MetalPoleBlock extends Block implements IWaterLoggable {
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         //VoxelShape BOX = makeCuboidShape(0,0,0,0,0,0);
-        VoxelShape main = makeCuboidShape(5,0,5,11,16,11);
+        VoxelShape main = box(5,0,5,11,16,11);
         /*
         if (state.get(NORTH)) {
             BOX = makeCuboidShape(5,12,0,11,16,5);
@@ -72,8 +72,8 @@ public class MetalPoleBlock extends Block implements IWaterLoggable {
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
-        return this.getDefaultState().with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        return this.defaultBlockState().setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
     }
 /*
     public BlockState makeConnections(IBlockReader blockReader, BlockPos pos) {
@@ -91,9 +91,9 @@ public class MetalPoleBlock extends Block implements IWaterLoggable {
  */
 
     @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (stateIn.get(WATERLOGGED)) {
-            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
         /*
         boolean flag;
@@ -113,51 +113,51 @@ public class MetalPoleBlock extends Block implements IWaterLoggable {
         }
 
          */
-        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 
     }
 
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
         return false;
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (player.getHeldItem(handIn).getItem().equals(RankineItems.GARLAND.get()) && state.get(STYLE) != 1 && !worldIn.isRemote) {
-            worldIn.setBlockState(pos,state.with(STYLE,1));
-            worldIn.playSound(null,pos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS,0.8f,0.8f);
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (player.getItemInHand(handIn).getItem().equals(RankineItems.GARLAND.get()) && state.getValue(STYLE) != 1 && !worldIn.isClientSide) {
+            worldIn.setBlockAndUpdate(pos,state.setValue(STYLE,1));
+            worldIn.playSound(null,pos, SoundEvents.GRASS_PLACE, SoundCategory.BLOCKS,0.8f,0.8f);
             player.swing(handIn,true);
-            if (!player.isCreative()) player.getHeldItem(handIn).shrink(1);
+            if (!player.isCreative()) player.getItemInHand(handIn).shrink(1);
 
-        } else if (player.isSneaking()) {
+        } else if (player.isShiftKeyDown()) {
             int n = 1;
-            while (worldIn.getBlockState(pos.down(n)).getBlock() == this.getBlock()) {
+            while (worldIn.getBlockState(pos.below(n)).getBlock() == this.getBlock()) {
                 n += 1;
             }
-            if (!worldIn.isRemote) {
-                BlockPos newpos = pos.add(0,-n+1,0);
-                if (worldIn.isAirBlock(newpos.north()) && worldIn.isAirBlock(newpos.north().up())) {
+            if (!worldIn.isClientSide) {
+                BlockPos newpos = pos.offset(0,-n+1,0);
+                if (worldIn.isEmptyBlock(newpos.north()) && worldIn.isEmptyBlock(newpos.north().above())) {
                     newpos = newpos.north();
-                } else if (worldIn.isAirBlock(newpos.east()) && worldIn.isAirBlock(newpos.east().up())) {
+                } else if (worldIn.isEmptyBlock(newpos.east()) && worldIn.isEmptyBlock(newpos.east().above())) {
                     newpos = newpos.east();
-                } else if (worldIn.isAirBlock(newpos.south()) && worldIn.isAirBlock(newpos.south().up())) {
+                } else if (worldIn.isEmptyBlock(newpos.south()) && worldIn.isEmptyBlock(newpos.south().above())) {
                     newpos = newpos.south();
-                } else if (worldIn.isAirBlock(newpos.west()) && worldIn.isAirBlock(newpos.west().up())) {
+                } else if (worldIn.isEmptyBlock(newpos.west()) && worldIn.isEmptyBlock(newpos.west().above())) {
                     newpos = newpos.west();
                 }
-                player.setPositionAndUpdate(newpos.getX() + .5f, newpos.getY(), newpos.getZ() + .5f);
-                player.playSound(SoundEvents.BLOCK_METAL_FALL, SoundCategory.BLOCKS,0.8f,1.0f);
+                player.teleportTo(newpos.getX() + .5f, newpos.getY(), newpos.getZ() + .5f);
+                player.playNotifySound(SoundEvents.METAL_FALL, SoundCategory.BLOCKS,0.8f,1.0f);
                 if (n>5) {
-                    player.attackEntityFrom(DamageSource.FALL, 1.0F);
+                    player.hurt(DamageSource.FALL, 1.0F);
                 }
                 return ActionResultType.FAIL;
             }
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return super.use(state, worldIn, pos, player, handIn, hit);
     }
 
 

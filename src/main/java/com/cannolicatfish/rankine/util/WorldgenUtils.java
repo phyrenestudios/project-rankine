@@ -71,22 +71,22 @@ public class WorldgenUtils {
     public static void initConfigs() {
 
         for (String ORE : ORES) {
-            ORE_STONES.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(ORE.split("\\|")[0])));
+            ORE_STONES.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(ORE.split("\\|")[0])));
         }
 
         for (List<Object> L : Config.BIOME_GEN.BIOME_SETTINGS.get()) {
             String biomeToAdd = (String) L.get(0);
             List<String> biomeName = Arrays.asList(biomeToAdd.split(":"));
             if (biomeName.size() > 1) {
-                Block gravel = ResourceLocation.tryCreate((String) L.get(5)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate((String) L.get(5)));
-                Block sand = ResourceLocation.tryCreate((String) L.get(6)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate((String) L.get(6)));
-                Block sandstone = ResourceLocation.tryCreate((String) L.get(7)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate((String) L.get(7)));
-                populateLists(ResourceLocation.tryCreate(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone);
+                Block gravel = ResourceLocation.tryParse((String) L.get(5)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(5)));
+                Block sand = ResourceLocation.tryParse((String) L.get(6)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(6)));
+                Block sandstone = ResourceLocation.tryParse((String) L.get(7)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(7)));
+                populateLists(ResourceLocation.tryParse(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone);
             } else {
                 for (ResourceLocation RS : getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.byName(biomeToAdd)), true)) {
-                    Block gravel = ResourceLocation.tryCreate((String) L.get(5)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate((String) L.get(5)));
-                    Block sand = ResourceLocation.tryCreate((String) L.get(6)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate((String) L.get(6)));
-                    Block sandstone = ResourceLocation.tryCreate((String) L.get(7)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate((String) L.get(7)));
+                    Block gravel = ResourceLocation.tryParse((String) L.get(5)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(5)));
+                    Block sand = ResourceLocation.tryParse((String) L.get(6)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(6)));
+                    Block sandstone = ResourceLocation.tryParse((String) L.get(7)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(7)));
                     populateLists(RS,(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone);
                 }
             }
@@ -112,11 +112,11 @@ public class WorldgenUtils {
             List<Block> tempIO = new ArrayList<>();
             List<Float> tempIC = new ArrayList<>();
             for (String entry : I) {
-                tempIB.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(entry.split("\\|")[0])));
+                tempIB.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(entry.split("\\|")[0])));
                 tempIW.add(Float.parseFloat(entry.split("\\|")[1]));
-                tempIO.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(entry.split("\\|")[2])));
+                tempIO.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(entry.split("\\|")[2])));
                 tempIC.add(Float.parseFloat(entry.split("\\|")[3]));
-                col.add(tempIW.get(ind),tempIB.get(ind).getDefaultState());
+                col.add(tempIW.get(ind),tempIB.get(ind).defaultBlockState());
                 ind += 1;
             }
             INTRUSION_BLOCKS.add(tempIB);
@@ -132,9 +132,9 @@ public class WorldgenUtils {
             List<Block> tempVB = new ArrayList<>();
             List<Float> tempVW = new ArrayList<>();
             for (String entry : V) {
-                tempVB.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(entry.split("\\|")[0])));
+                tempVB.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(entry.split("\\|")[0])));
                 tempVW.add(Float.parseFloat(entry.split("\\|")[1]));
-                col.add(tempVW.get(ind),tempVB.get(ind).getDefaultState());
+                col.add(tempVW.get(ind),tempVB.get(ind).defaultBlockState());
                 ind += 1;
             }
             VEGETATION_COLLECTIONS.add(col);
@@ -152,12 +152,12 @@ public class WorldgenUtils {
             A2.add(Blocks.AIR);
             B2.add(Blocks.AIR);
         } else {
-            O1.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(0))));
-            A1.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(1))));
-            B1.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(2))));
-            O2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(3))));
-            A2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(4))));
-            B2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(5))));
+            O1.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(SOILS.get(0))));
+            A1.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(SOILS.get(1))));
+            B1.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(SOILS.get(2))));
+            O2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(SOILS.get(3))));
+            A2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(SOILS.get(4))));
+            B2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(SOILS.get(5))));
         }
         INTRUSION_LISTS.add(INTRUSIONS);
         LAYER_LISTS.add(STONES);
@@ -174,10 +174,10 @@ public class WorldgenUtils {
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (!biomeCats.isEmpty()) {
                 for (Biome.Category cat : biomeCats) {
-                    if (biome.getCategory() == cat && include){
+                    if (biome.getBiomeCategory() == cat && include){
                         b.add(biome.getRegistryName());
                     }
-                    if (!include && biome.getCategory() != cat) {
+                    if (!include && biome.getBiomeCategory() != cat) {
                         b.add(biome.getRegistryName());
                     }
                 }
@@ -189,8 +189,8 @@ public class WorldgenUtils {
     }
 
     public static boolean isWet(ISeedReader reader, BlockPos pos) {
-        for(BlockPos POS : BlockPos.getAllInBoxMutable(pos.add(-2,0,-2),pos.add(2,2,2))) {
-            if (reader.getFluidState(POS).isTagged(FluidTags.WATER)) {
+        for(BlockPos POS : BlockPos.betweenClosed(pos.offset(-2,0,-2),pos.offset(2,2,2))) {
+            if (reader.getFluidState(POS).is(FluidTags.WATER)) {
                 return true;
             }
         }
@@ -205,21 +205,21 @@ public class WorldgenUtils {
     public static BlockPos eightBlockDirection(BlockPos pos, int type, int mult) {
         switch (type % 8) {
             case 0:
-                return pos.add(-1*mult,0,-1*mult);
+                return pos.offset(-1*mult,0,-1*mult);
             case 1:
-                return pos.add(-1*mult,0,0);
+                return pos.offset(-1*mult,0,0);
             case 2:
-                return pos.add(-1*mult,0, mult);
+                return pos.offset(-1*mult,0, mult);
             case 7:
-                return pos.add(0,0,-1*mult);
+                return pos.offset(0,0,-1*mult);
             case 3:
-                return pos.add(0,0, mult);
+                return pos.offset(0,0, mult);
             case 6:
-                return pos.add(mult,0,-1*mult);
+                return pos.offset(mult,0,-1*mult);
             case 5:
-                return pos.add(mult,0,0);
+                return pos.offset(mult,0,0);
             case 4:
-                return pos.add(mult,0, mult);
+                return pos.offset(mult,0, mult);
             default:
                 return pos;
         }
@@ -229,17 +229,17 @@ public class WorldgenUtils {
         Biome biome = worldIn.getBiome(pos);
         int surface = worldIn.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ());
 
-        return biome.getCategory() == Biome.Category.OCEAN || biome.getCategory() == Biome.Category.BEACH || biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.RIVER ? worldIn.getSeaLevel() + 1 : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
+        return biome.getBiomeCategory() == Biome.Category.OCEAN || biome.getBiomeCategory() == Biome.Category.BEACH || biome.getBiomeCategory() == Biome.Category.SWAMP || biome.getBiomeCategory() == Biome.Category.RIVER ? worldIn.getSeaLevel() + 1 : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
     }
 
     public static boolean inArea(BlockPos b, double radius, boolean center, BlockPos... targets) {
         for (BlockPos target : targets) {
             if (center) {
-                if (b.add(0.5,0.5,0.5).distanceSq(target) < Math.pow(radius, 2) + 0.5) {
+                if (b.offset(0.5,0.5,0.5).distSqr(target) < Math.pow(radius, 2) + 0.5) {
                     return true;
                 }
             } else {
-                if (b.distanceSq(target) < Math.pow(radius, 2) + 0.5) {
+                if (b.distSqr(target) < Math.pow(radius, 2) + 0.5) {
                     return true;
                 }
             }
@@ -263,8 +263,8 @@ public class WorldgenUtils {
     public static Block getCeillingBlock(World worldIn, BlockPos pos, Direction dir, int height) {
         int i = 1;
         while (i<=height) {
-            if (!worldIn.isAirBlock(pos.offset(dir,i)) && !(worldIn.getBlockState(pos.up(i)).isReplaceable(Fluids.WATER))) {
-                return worldIn.getBlockState(pos.up(i)).getBlock();
+            if (!worldIn.isEmptyBlock(pos.relative(dir,i)) && !(worldIn.getBlockState(pos.above(i)).canBeReplaced(Fluids.WATER))) {
+                return worldIn.getBlockState(pos.above(i)).getBlock();
             }
             ++i;
         }
@@ -274,7 +274,7 @@ public class WorldgenUtils {
 
 
     public static boolean inRadiusCenter(BlockPos center, BlockPos checkPos, double radius) {
-        return center.distanceSq(checkPos.getX()+0.5D,checkPos.getY()+0.5D,checkPos.getZ()+0.5D,true) < radius*radius;
+        return center.distSqr(checkPos.getX()+0.5D,checkPos.getY()+0.5D,checkPos.getZ()+0.5D,true) < radius*radius;
     }
 
     public static void checkLog(ISeedReader reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config, Direction.Axis axis) {
@@ -284,34 +284,34 @@ public class WorldgenUtils {
     }
 
     public static void placeLogAt(IWorldWriter reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config, Direction.Axis axis) {
-        setLogState(reader, pos, config.trunkProvider.getBlockState(rand, pos).with(BlockStateProperties.AXIS, axis));
+        setLogState(reader, pos, config.trunkProvider.getState(rand, pos).setValue(BlockStateProperties.AXIS, axis));
     }
 
     public static void setLogState(IWorldWriter reader, BlockPos pos, BlockState state) {
-        reader.setBlockState(pos, state, 18);
+        reader.setBlock(pos, state, 18);
     }
 
     public static void placeLeafAt(IWorldGenerationReader world, BlockPos pos, Random rand, BaseTreeFeatureConfig config) {
         if (isAirOrLeaves(world, pos)) {
-            setLogState(world, pos, config.leavesProvider.getBlockState(rand, pos).with(LeavesBlock.DISTANCE, 1));
+            setLogState(world, pos, config.leavesProvider.getState(rand, pos).setValue(LeavesBlock.DISTANCE, 1));
         }
     }
 
     public static boolean isAirOrLeaves(IWorldGenerationBaseReader reader, BlockPos pos) {
         if (reader instanceof net.minecraft.world.IWorldReader) {
-            return reader.hasBlockState(pos, state -> state.canBeReplacedByLeaves((net.minecraft.world.IWorldReader) reader, pos));
+            return reader.isStateAtPosition(pos, state -> state.canBeReplacedByLeaves((net.minecraft.world.IWorldReader) reader, pos));
         }
-        return reader.hasBlockState(pos, (state) -> {
-            return state.isAir() || state.isIn(BlockTags.LEAVES);
+        return reader.isStateAtPosition(pos, (state) -> {
+            return state.isAir() || state.is(BlockTags.LEAVES);
         });
     }
 
     public static boolean isAir(IWorldGenerationBaseReader reader, BlockPos pos) {
         if (!(reader instanceof net.minecraft.world.IBlockReader)) {
-            return reader.hasBlockState(pos, BlockState::isAir);
+            return reader.isStateAtPosition(pos, BlockState::isAir);
         }
         else {
-            return reader.hasBlockState(pos, state -> state.isAir((net.minecraft.world.IBlockReader) reader, pos));
+            return reader.isStateAtPosition(pos, state -> state.isAir((net.minecraft.world.IBlockReader) reader, pos));
         }
     }
 

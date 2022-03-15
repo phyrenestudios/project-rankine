@@ -94,15 +94,15 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
                     break;
             }
         }
-        public int size() {
+        public int getCount() {
             return 5;
         }
     };
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
-        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt,this.items);
         this.burnTime = nbt.getInt("BurnTime");
         this.cookTime = nbt.getInt("CookTime");
@@ -111,8 +111,8 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
@@ -128,11 +128,11 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
             --this.burnTime;
         }
 
-        if (!this.world.isRemote) {
+        if (!this.level.isClientSide) {
             ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2),this.items.get(3),this.items.get(4),this.items.get(5)};
             ItemStack fuel = this.items.get(6);
             if ((this.isBurning() || !fuel.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
-                AlloyingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, this, this.world).orElse(null);
+                AlloyingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, this, this.level).orElse(null);
                 if (!this.isBurning() && this.canSmelt(irecipe,this)) {
                     this.burnTime = ForgeHooks.getBurnTime(fuel);
                     this.currentBurnTime = this.burnTime;
@@ -160,8 +160,8 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
                         ItemStack smelting = ItemStack.EMPTY;
                         if (recipeMode)
                         {
-                            ItemStack template = this.getStackInSlot(7);
-                            output = AlloyTemplateItem.getResult(world,template).copy();
+                            ItemStack template = this.getItem(7);
+                            output = AlloyTemplateItem.getResult(level,template).copy();
 
                             for (Map.Entry<Ingredient,Short> input : AlloyTemplateItem.getInputStacks(template).entrySet())
                             {
@@ -195,7 +195,7 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
                             }
                             smelting = ItemStack.EMPTY;
                         } else {
-                            output = irecipe.generateResult(world,this,1).copy();
+                            output = irecipe.generateResult(level,this,1).copy();
                             x = new int[]{inputs[0].getCount(),inputs[1].getCount(),inputs[2].getCount(),inputs[3].getCount(),inputs[4].getCount(),inputs[5].getCount()};
                             smelting = output;
                             if (this.items.get(8).getCount() > 0) {
@@ -226,12 +226,12 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
 
             if (flag != this.isBurning()) {
                 flag1 = true;
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
+                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
             }
         }
 
         if (flag1) {
-            this.markDirty();
+            this.setChanged();
         }
 
     }
@@ -251,9 +251,9 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
 
     private boolean canSmelt(@Nullable AlloyingRecipe recipeIn, IInventory inv)
     {
-        if (recipeIn != null || inv.getStackInSlot(7).getItem() instanceof AlloyTemplateItem) {
-            recipeMode = inv.getStackInSlot(7).getItem() instanceof AlloyTemplateItem;
-            ItemStack template = inv.getStackInSlot(7);
+        if (recipeIn != null || inv.getItem(7).getItem() instanceof AlloyTemplateItem) {
+            recipeMode = inv.getItem(7).getItem() instanceof AlloyTemplateItem;
+            ItemStack template = inv.getItem(7);
             if (recipeMode) {
                 if ((AlloyTemplateItem.getAlloyTier(template) & 1) != 1) {
                     return false;
@@ -262,24 +262,24 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
                 {
                     int count = input.getValue();
                     int itemCount = 0;
-                    for (ItemStack stack : input.getKey().getMatchingStacks()) {
-                        itemCount += inv.count(stack.getItem());
+                    for (ItemStack stack : input.getKey().getItems()) {
+                        itemCount += inv.countItem(stack.getItem());
                     }
                     if (itemCount < count) {
                         return false;
                     }
                 }
             }
-            ItemStack stack = recipeMode ? AlloyTemplateItem.getResult(world,template) : recipeIn.generateResult(world,inv,1);
+            ItemStack stack = recipeMode ? AlloyTemplateItem.getResult(level,template) : recipeIn.generateResult(level,inv,1);
             if (stack.isEmpty()) {
                 return false;
             } else {
                 ItemStack itemstack1 = this.items.get(8);
                 if (itemstack1.isEmpty()) {
                     return true;
-                } else if ((!itemstack1.isItemEqual(stack) || !ItemStack.areItemStackTagsEqual(stack,itemstack1)) && !itemstack1.isEmpty()) {
+                } else if ((!itemstack1.sameItem(stack) || !ItemStack.tagMatches(stack,itemstack1)) && !itemstack1.isEmpty()) {
                     return false;
-                } else if (itemstack1.getCount() + stack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + stack.getCount() <= itemstack1.getMaxStackSize()) {
+                } else if (itemstack1.getCount() + stack.getCount() <= this.getMaxStackSize() && itemstack1.getCount() + stack.getCount() <= itemstack1.getMaxStackSize()) {
                     return true;
                 } else {
                     return itemstack1.getCount() + stack.getCount() <= stack.getMaxStackSize();
@@ -297,7 +297,7 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
 
     @Override
     public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             switch (facing)
             {
                 case UP:
@@ -316,8 +316,8 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public void remove() {
-        super.remove();
+    public void setRemoved() {
+        super.setRemoved();
         for (int x = 0; x < handlers.length; x++)
             handlers[x].invalidate();
     }
@@ -330,7 +330,7 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
     @Override
     @Nullable
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new AlloyFurnaceContainer(i, world, pos, playerInventory, playerEntity, this, this.furnaceData);
+        return new AlloyFurnaceContainer(i, level, worldPosition, playerInventory, playerEntity, this, this.furnaceData);
     }
 
     @Override
@@ -353,17 +353,17 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, @Nullable Direction direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, @Nullable Direction direction) {
+        return this.canPlaceItem(index, itemStackIn);
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         return true;
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return this.items.size();
     }
 
@@ -379,47 +379,47 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public ItemStack getItem(int index) {
         return this.items.get(index);
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return ItemStackHelper.getAndSplit(this.items, index, count);
+    public ItemStack removeItem(int index, int count) {
+        return ItemStackHelper.removeItem(this.items, index, count);
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.items, index);
+    public ItemStack removeItemNoUpdate(int index) {
+        return ItemStackHelper.takeItem(this.items, index);
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
         this.items.set(index, stack);
-        if (stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
         }
 
         if (index >= 0 && index <= 5 && !flag) {
             this.cookTimeTotal = 800;
             this.cookTime = 0;
-            this.markDirty();
+            this.setChanged();
         }
     }
 
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        if (this.world.getTileEntity(this.pos) != this) {
+    public boolean stillValid(PlayerEntity player) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
-            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+            return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
         }
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
+    public boolean canPlaceItem(int index, ItemStack stack) {
         switch (index)
         {
             case 0:
@@ -441,12 +441,12 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.items.clear();
     }
 
-    public void markDirty() {
-        super.markDirty();
+    public void setChanged() {
+        super.setChanged();
     }
 }
 

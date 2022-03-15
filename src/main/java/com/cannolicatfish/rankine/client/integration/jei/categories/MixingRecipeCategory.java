@@ -35,7 +35,7 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
 
     public MixingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(185, 146);
-        localizedName = I18n.format("rankine.jei.mixing");
+        localizedName = I18n.get("rankine.jei.mixing");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/mixing_jei.png"),
                 0, 15, 180, 141);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.MIXING_BARREL.get()));
@@ -68,7 +68,7 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
 
     @Override
     public void draw(MixingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().fontRenderer;
+        FontRenderer font = Minecraft.getInstance().font;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -77,23 +77,23 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
 
         float matScale = recipe.getMatScale();
         if (matScale < 1) {
-            font.drawString(ms,   Math.round(1/matScale) + ":" + 1, (float)151, 26, 0x000000);
+            font.draw(ms,   Math.round(1/matScale) + ":" + 1, (float)151, 26, 0x000000);
         } else {
-            font.drawString(ms, 1 + ":" + Math.round(matScale), (float)151, 26, 0x000000);
+            font.draw(ms, 1 + ":" + Math.round(matScale), (float)151, 26, 0x000000);
         }
 
-        font.drawString(ms, String.valueOf(recipe.getMixTime()),  (float)151, 100, 0x7C3E3E);
+        font.draw(ms, String.valueOf(recipe.getMixTime()),  (float)151, 100, 0x7C3E3E);
     }
 
     @Override
     public void setIngredients(MixingRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getMatchingStacks()));
+            builder.add(Arrays.asList(i.getItems()));
         }
         iIngredients.setInput(VanillaTypes.FLUID,recipe.getFluidFilled());
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
+        iIngredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
     }
 
     @Override

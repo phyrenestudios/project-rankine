@@ -15,12 +15,12 @@ public class QuakeEnchantment extends Enchantment {
     /**
      * Returns the minimal value of enchantability needed on the enchantment level passed.
      */
-    public int getMinEnchantability(int enchantmentLevel) {
+    public int getMinCost(int enchantmentLevel) {
         return 1 + 10 * (enchantmentLevel - 1);
     }
 
-    public int getMaxEnchantability(int enchantmentLevel) {
-        return super.getMinEnchantability(enchantmentLevel) + 50;
+    public int getMaxCost(int enchantmentLevel) {
+        return super.getMinCost(enchantmentLevel) + 50;
     }
 
     /**
@@ -33,11 +33,11 @@ public class QuakeEnchantment extends Enchantment {
     /**
      * Determines if this enchantment can be applied to a specific ItemStack.
      */
-    public boolean canApply(ItemStack stack) {
-        return super.canApply(stack);
+    public boolean canEnchant(ItemStack stack) {
+        return super.canEnchant(stack);
     }
 
-    public boolean canApplyTogether(Enchantment p_77326_1_) {
-        return super.canApplyTogether(p_77326_1_) && p_77326_1_ != Enchantments.EFFICIENCY;
+    public boolean checkCompatibility(Enchantment p_77326_1_) {
+        return super.checkCompatibility(p_77326_1_) && p_77326_1_ != Enchantments.BLOCK_EFFICIENCY;
     }
 }

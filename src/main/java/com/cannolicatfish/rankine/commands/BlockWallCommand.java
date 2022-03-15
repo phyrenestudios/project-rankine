@@ -13,55 +13,55 @@ import net.minecraft.world.server.ServerWorld;
 public class BlockWallCommand {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(Commands.literal("blockwall").requires((p_198688_0_) -> {
-            return p_198688_0_.hasPermissionLevel(2);
+            return p_198688_0_.hasPermission(2);
         }).then(Commands.argument("pos", BlockPosArgument.blockPos()).then(Commands.argument("pos", BlockPosArgument.blockPos()).executes((p_198682_0_) -> {
             return blockWall(p_198682_0_.getSource(), BlockPosArgument.getLoadedBlockPos(p_198682_0_, "pos"));
         }))));
     }
 
     private static int blockWall(CommandSource source, BlockPos pos) throws CommandSyntaxException {
-        ServerWorld serverworld = source.getWorld();
+        ServerWorld serverworld = source.getLevel();
         for (Block BLK : RankineLists.STONES) {
             int i = RankineLists.STONES.indexOf(BLK);
-            serverworld.setBlockState(pos.north(2*i),BLK.getDefaultState());
-            serverworld.setBlockState(pos.north(2*i+1),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up().north(2*i),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up().north(2*i+1),BLK.getDefaultState());
+            serverworld.setBlockAndUpdate(pos.north(2*i),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.north(2*i+1),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above().north(2*i),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above().north(2*i+1),BLK.defaultBlockState());
         }
         for (Block BLK : RankineLists.POLISHED_STONES) {
             int i = RankineLists.POLISHED_STONES.indexOf(BLK);
-            serverworld.setBlockState(pos.up(2).north(2*i),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(2).north(2*i+1),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(3).north(2*i),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(3).north(2*i+1),BLK.getDefaultState());
+            serverworld.setBlockAndUpdate(pos.above(2).north(2*i),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(2).north(2*i+1),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(3).north(2*i),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(3).north(2*i+1),BLK.defaultBlockState());
         }
         for (Block BLK : RankineLists.STONE_BRICKS) {
             int i = RankineLists.STONE_BRICKS.indexOf(BLK);
-            serverworld.setBlockState(pos.up(4).north(2*i),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(4).north(2*i+1),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(5).north(2*i),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(5).north(2*i+1),BLK.getDefaultState());
+            serverworld.setBlockAndUpdate(pos.above(4).north(2*i),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(4).north(2*i+1),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(5).north(2*i),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(5).north(2*i+1),BLK.defaultBlockState());
         }
         for (Block BLK : RankineLists.LOGS) {
             int i = RankineLists.LOGS.indexOf(BLK);
-            serverworld.setBlockState(pos.up(6).north(2*i),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(6).north(2*i+1),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(7).north(2*i),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(7).north(2*i+1),BLK.getDefaultState());
+            serverworld.setBlockAndUpdate(pos.above(6).north(2*i),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(6).north(2*i+1),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(7).north(2*i),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(7).north(2*i+1),BLK.defaultBlockState());
         }
         for (Block BLK : RankineLists.STRIPPED_LOGS) {
             int i = RankineLists.STRIPPED_LOGS.indexOf(BLK);
-            serverworld.setBlockState(pos.up(8).north(2*i),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(8).north(2*i+1),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(9).north(2*i),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(9).north(2*i+1),BLK.getDefaultState());
+            serverworld.setBlockAndUpdate(pos.above(8).north(2*i),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(8).north(2*i+1),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(9).north(2*i),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(9).north(2*i+1),BLK.defaultBlockState());
         }
         for (Block BLK : RankineLists.PLANKS) {
             int i = RankineLists.PLANKS.indexOf(BLK);
-            serverworld.setBlockState(pos.up(10).north(2*i),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(10).north(2*i+1),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(11).north(2*i),BLK.getDefaultState());
-            serverworld.setBlockState(pos.up(11).north(2*i+1),BLK.getDefaultState());
+            serverworld.setBlockAndUpdate(pos.above(10).north(2*i),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(10).north(2*i+1),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(11).north(2*i),BLK.defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(11).north(2*i+1),BLK.defaultBlockState());
         }
 
         return 1;

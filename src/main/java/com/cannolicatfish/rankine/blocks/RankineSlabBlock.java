@@ -7,6 +7,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class RankineSlabBlock extends SlabBlock {
     public RankineSlabBlock(Properties properties) {
         super(properties);

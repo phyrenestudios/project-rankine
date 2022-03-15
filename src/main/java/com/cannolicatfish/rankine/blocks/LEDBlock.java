@@ -16,22 +16,22 @@ public class LEDBlock extends Block {
 
     public LEDBlock(AbstractBlock.Properties properties) {
         super(properties);
-        this.setDefaultState(this.getDefaultState().with(LIT, Boolean.FALSE));
+        this.registerDefaultState(this.defaultBlockState().setValue(LIT, Boolean.FALSE));
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(LIT, context.getWorld().isBlockPowered(context.getPos()));
+        return this.defaultBlockState().setValue(LIT, context.getLevel().hasNeighborSignal(context.getClickedPos()));
     }
 
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-        if (!worldIn.isRemote) {
-            boolean flag = state.get(LIT);
-            if (flag != worldIn.isBlockPowered(pos)) {
+        if (!worldIn.isClientSide) {
+            boolean flag = state.getValue(LIT);
+            if (flag != worldIn.hasNeighborSignal(pos)) {
                 if (flag) {
-                    worldIn.getPendingBlockTicks().scheduleTick(pos, this, 4);
+                    worldIn.getBlockTicks().scheduleTick(pos, this, 4);
                 } else {
-                    worldIn.setBlockState(pos, state.cycleValue(LIT), 2);
+                    worldIn.setBlock(pos, state.cycle(LIT), 2);
                 }
             }
 
@@ -39,13 +39,13 @@ public class LEDBlock extends Block {
     }
 
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (state.get(LIT) && !worldIn.isBlockPowered(pos)) {
-            worldIn.setBlockState(pos, state.cycleValue(LIT), 2);
+        if (state.getValue(LIT) && !worldIn.hasNeighborSignal(pos)) {
+            worldIn.setBlock(pos, state.cycle(LIT), 2);
         }
     }
 
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(LIT);
     }
 }

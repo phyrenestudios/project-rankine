@@ -34,7 +34,7 @@ import java.util.List;
 )
 
 public class EnderballEntity extends DamagingProjectileEntity implements IRendersAsItem {
-    private static final DataParameter<ItemStack> STACK = EntityDataManager.createKey(EnderballEntity.class, DataSerializers.ITEMSTACK);
+    private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(EnderballEntity.class, DataSerializers.ITEM_STACK);
 
     public EnderballEntity(EntityType<? extends EnderballEntity> p_i50147_1_, World p_i50147_2_) {
         super(p_i50147_1_, p_i50147_2_);
@@ -54,13 +54,13 @@ public class EnderballEntity extends DamagingProjectileEntity implements IRender
         super(e, world);
     }
 
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     public void setStack(ItemStack stack) {
         if (stack.getItem() != RankineItems.CANNONBALL.get() || stack.hasTag()) {
-            this.getDataManager().set(STACK, Util.make(stack.copy(), (p_213897_0_) -> {
+            this.getEntityData().set(STACK, Util.make(stack.copy(), (p_213897_0_) -> {
                 p_213897_0_.setCount(1);
             }));
         }
@@ -68,12 +68,12 @@ public class EnderballEntity extends DamagingProjectileEntity implements IRender
     }
 
     @Override
-    protected boolean isFireballFiery() {
+    protected boolean shouldBurn() {
         return false;
     }
 
     protected ItemStack getStack() {
-        return this.getDataManager().get(STACK);
+        return this.getEntityData().get(STACK);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -82,15 +82,15 @@ public class EnderballEntity extends DamagingProjectileEntity implements IRender
         return itemstack.isEmpty() ? new ItemStack(RankineItems.ENDERBALL.get()) : itemstack;
     }
 
-    protected void registerData() {
-        this.getDataManager().register(STACK, ItemStack.EMPTY);
+    protected void defineSynchedData() {
+        this.getEntityData().define(STACK, ItemStack.EMPTY);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         ItemStack itemstack = this.getStack();
         if (!itemstack.isEmpty()) {
-            compound.put("Item", itemstack.write(new CompoundNBT()));
+            compound.put("Item", itemstack.save(new CompoundNBT()));
         }
 
     }
@@ -98,33 +98,33 @@ public class EnderballEntity extends DamagingProjectileEntity implements IRender
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        ItemStack itemstack = ItemStack.read(compound.getCompound("Item"));
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
+        ItemStack itemstack = ItemStack.of(compound.getCompound("Item"));
         this.setStack(itemstack);
     }
 
-    protected void onEntityHit(EntityRayTraceResult result) {
-        super.onEntityHit(result);
-        if (!this.world.isRemote) {
+    protected void onHitEntity(EntityRayTraceResult result) {
+        super.onHitEntity(result);
+        if (!this.level.isClientSide) {
             Entity entity = result.getEntity();
-            Entity entity1 = this.getShooter();
-            boolean flag = entity.attackEntityFrom(RankineDamageSources.CANNONBALL, 10.0F);
+            Entity entity1 = this.getOwner();
+            boolean flag = entity.hurt(RankineDamageSources.CANNONBALL, 10.0F);
             if (flag && entity1 instanceof LivingEntity) {
-                this.applyEnchantments((LivingEntity)entity1, entity);
+                this.doEnchantDamageEffects((LivingEntity)entity1, entity);
             }
-            Vector3d vector3d = this.getMotion().mul(1.0D, 0.0D, 1.0D).normalize().scale((double)1.6D);
-            if (vector3d.lengthSquared() > 0.0D) {
-                entity.addVelocity(vector3d.x, 0.1D, vector3d.z);
+            Vector3d vector3d = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale((double)1.6D);
+            if (vector3d.lengthSqr() > 0.0D) {
+                entity.push(vector3d.x, 0.1D, vector3d.z);
             }
         }
     }
 
-    protected void func_230299_a_(BlockRayTraceResult result) {
-        super.func_230299_a_(result);
-        if (!this.world.isRemote) {
-            Explosion.Mode explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.getShooter()) ? Explosion.Mode.DESTROY : Explosion.Mode.NONE;
-            this.world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0F, false, explosion$mode);
+    protected void onHitBlock(BlockRayTraceResult result) {
+        super.onHitBlock(result);
+        if (!this.level.isClientSide) {
+            Explosion.Mode explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner()) ? Explosion.Mode.DESTROY : Explosion.Mode.NONE;
+            this.level.explode(this, this.getX(), this.getY(), this.getZ(), 1.0F, false, explosion$mode);
 
         }
     }
@@ -132,21 +132,21 @@ public class EnderballEntity extends DamagingProjectileEntity implements IRender
     /**
      * Called when this EntityFireball hits a block or entity.
      */
-    protected void onImpact(RayTraceResult result) {
-        super.onImpact(result);
-        if (!this.world.isRemote) {
-            List<LivingEntity> list = world.getEntitiesWithinAABB(LivingEntity.class, new AxisAlignedBB(this.getPosition()).grow(5, 5, 5), (e) -> (e instanceof MobEntity || e instanceof PlayerEntity) && !(e instanceof EndermiteEntity));
+    protected void onHit(RayTraceResult result) {
+        super.onHit(result);
+        if (!this.level.isClientSide) {
+            List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(this.blockPosition()).inflate(5, 5, 5), (e) -> (e instanceof MobEntity || e instanceof PlayerEntity) && !(e instanceof EndermiteEntity));
             for (int i = 0; i < 3; i++) {
-                EndermiteEntity endermiteEntity = new EndermiteEntity(EntityType.ENDERMITE,this.world);
-                endermiteEntity.setPosition(this.getPosX(),this.getPosY(),this.getPosZ());
+                EndermiteEntity endermiteEntity = new EndermiteEntity(EntityType.ENDERMITE,this.level);
+                endermiteEntity.setPos(this.getX(),this.getY(),this.getZ());
                 if (list.size() > 1) {
-                    endermiteEntity.setAttackTarget(list.get(world.getRandom().nextInt(list.size())));
+                    endermiteEntity.setTarget(list.get(level.getRandom().nextInt(list.size())));
                 } else if (list.size() == 1) {
-                    endermiteEntity.setAttackTarget(list.get(0));
+                    endermiteEntity.setTarget(list.get(0));
                 }
                 if (list.size() >= 1) {
-                    endermiteEntity.addPotionEffect(new EffectInstance(Effects.SPEED,80,2));
-                    this.world.addEntity(endermiteEntity);
+                    endermiteEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,80,2));
+                    this.level.addFreshEntity(endermiteEntity);
                 }
 
             }
@@ -158,14 +158,14 @@ public class EnderballEntity extends DamagingProjectileEntity implements IRender
     /**
      * Returns true if other Entities should be prevented from moving through this Entity.
      */
-    public boolean canBeCollidedWith() {
+    public boolean isPickable() {
         return true;
     }
 
     /**
      * Called when the entity is attacked.
      */
-    public boolean attackEntityFrom(DamageSource source, float amount) {
+    public boolean hurt(DamageSource source, float amount) {
         return false;
     }
 }

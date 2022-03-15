@@ -11,13 +11,16 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.item.Item.Properties;
+import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
+
 public class CanteenItem extends Item implements IFluidHandlerItem {
     public CanteenItem(Properties properties) {
         super(properties);
     }
 
     @Override
-    public UseAction getUseAction(ItemStack p_77661_1_) {
+    public UseAction getUseAnimation(ItemStack p_77661_1_) {
         return UseAction.DRINK;
     }
 

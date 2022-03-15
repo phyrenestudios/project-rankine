@@ -13,22 +13,24 @@ import net.minecraft.world.World;
 
 import java.util.function.Supplier;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class RankineFlowingFluidBlock extends FlowingFluidBlock {
     public RankineFlowingFluidBlock(Supplier<? extends FlowingFluid> supplier, Properties properties) {
         super(supplier, properties);
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        Entity entity = entityIn.isBeingRidden() && entityIn.getControllingPassenger() != null ? entityIn.getControllingPassenger() : entityIn;
+    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+        Entity entity = entityIn.isVehicle() && entityIn.getControllingPassenger() != null ? entityIn.getControllingPassenger() : entityIn;
         float f = entity == entityIn ? 0.35F : 0.4F;
         Vector3d v = (FluidHelper.handleFluidAcceleration(entityIn,0.114D));
         float f1 = MathHelper.sqrt(v.x * v.x * (double)0.2F + v.y * v.y + v.z * v.z * (double)0.2F) * f;
         if (f1 > 1.0F) {
             f1 = 1.0F;
         }
-        entity.playSound(SoundEvents.ENTITY_GENERIC_SWIM, f1, 1.0F + (worldIn.getRandom().nextFloat() - worldIn.getRandom().nextFloat()) * 0.4F);
-        entity.getMotion().add(v);
-        super.onEntityCollision(state, worldIn, pos, entityIn);
+        entity.playSound(SoundEvents.GENERIC_SWIM, f1, 1.0F + (worldIn.getRandom().nextFloat() - worldIn.getRandom().nextFloat()) * 0.4F);
+        entity.getDeltaMovement().add(v);
+        super.entityInside(state, worldIn, pos, entityIn);
     }
 }

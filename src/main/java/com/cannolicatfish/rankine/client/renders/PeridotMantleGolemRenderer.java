@@ -20,12 +20,12 @@ public class PeridotMantleGolemRenderer extends LivingRenderer<PeridotMantleGole
     }
 
     @Override
-    protected boolean canRenderName(PeridotMantleGolemEntity entity) {
+    protected boolean shouldShowName(PeridotMantleGolemEntity entity) {
         return false;
     }
 
     @Override
-    public ResourceLocation getEntityTexture(PeridotMantleGolemEntity entity) {
+    public ResourceLocation getTextureLocation(PeridotMantleGolemEntity entity) {
         return new ResourceLocation("rankine:textures/entity/peridot_mantle_golem.png");
     }
 

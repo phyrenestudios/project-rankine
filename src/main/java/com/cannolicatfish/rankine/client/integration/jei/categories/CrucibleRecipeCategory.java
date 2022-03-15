@@ -35,7 +35,7 @@ public class CrucibleRecipeCategory implements IRecipeCategory<CrucibleRecipe> {
 
     public CrucibleRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(185, 146);
-        localizedName = I18n.format("rankine.jei.crucible");
+        localizedName = I18n.get("rankine.jei.crucible");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/crucible_jei.png"),
                 0, 15, 180, 141);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.CRUCIBLE_BLOCK.get()));
@@ -68,7 +68,7 @@ public class CrucibleRecipeCategory implements IRecipeCategory<CrucibleRecipe> {
 
     @Override
     public void draw(CrucibleRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().fontRenderer;
+        FontRenderer font = Minecraft.getInstance().font;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -80,7 +80,7 @@ public class CrucibleRecipeCategory implements IRecipeCategory<CrucibleRecipe> {
     public void setIngredients(CrucibleRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getCondensedIngredients()) {
-            builder.add(Arrays.asList(i.getMatchingStacks()));
+            builder.add(Arrays.asList(i.getItems()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
         iIngredients.setOutputs(VanillaTypes.ITEM, Arrays.asList(recipe.getPrimaryOutput(),recipe.getSecondaryOutput()));

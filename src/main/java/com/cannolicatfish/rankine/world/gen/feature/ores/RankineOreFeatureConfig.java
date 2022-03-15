@@ -47,7 +47,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             return BlockTags.BASE_STONE_OVERWORLD.contains(blockstate.getBlock()) || BlockTags.BASE_STONE_NETHER.contains(blockstate.getBlock()) || RankineTags.Blocks.BASE_STONE_END.contains(blockstate.getBlock());
         });
 
-        public static final Codec<RankineOreFeatureConfig.RankineFillerBlockType> field_236571_d_ = IStringSerializable.createEnumCodec(RankineOreFeatureConfig.RankineFillerBlockType::values, RankineOreFeatureConfig.RankineFillerBlockType::byName);
+        public static final Codec<RankineOreFeatureConfig.RankineFillerBlockType> field_236571_d_ = IStringSerializable.fromEnum(RankineOreFeatureConfig.RankineFillerBlockType::values, RankineOreFeatureConfig.RankineFillerBlockType::byName);
         /** maps the filler block type name to the corresponding enum value. */
         private static final Map<String, RankineOreFeatureConfig.RankineFillerBlockType> VALUES_MAP = Arrays.stream(values()).collect(Collectors.toMap(RankineOreFeatureConfig.RankineFillerBlockType::getName, (p_236573_0_) -> {
             return p_236573_0_;
@@ -87,7 +87,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
         }
 
         @Override
-        public String getString() {
+        public String getSerializedName() {
             return this.name;
         }
     }

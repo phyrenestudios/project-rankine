@@ -19,35 +19,37 @@ import net.minecraft.world.IWorld;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class QuarterSlabPoleBlock extends QuarterSlabBlock {
     public static final BooleanProperty POLE = BooleanProperty.create("pole");
 
     public QuarterSlabPoleBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(SIZE, 2).with(POLE,false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(SIZE, 2).setValue(POLE,false));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(SIZE,POLE);
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return VoxelShapes.or(Block.makeCuboidShape(0.0D,0.0D,0.0D,16.0D,4*state.get(SIZE),16.0D), state.get(POLE).booleanValue() ? Block.makeCuboidShape(4,4*state.get(SIZE),4,12,16,12) : VoxelShapes.empty());
+        return VoxelShapes.or(Block.box(0.0D,0.0D,0.0D,16.0D,4*state.getValue(SIZE),16.0D), state.getValue(POLE).booleanValue() ? Block.box(4,4*state.getValue(SIZE),4,12,16,12) : VoxelShapes.empty());
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        ItemStack heldItem = context.getPlayer().getHeldItemOffhand();
+        ItemStack heldItem = context.getPlayer().getOffhandItem();
         if (heldItem.getItem() == RankineItems.BUILDING_TOOL.get()) {
-            return this.getDefaultState().with(SIZE, Math.min(3, BuildingToolItem.getBuildingMode(heldItem)+1)).with(POLE,context.getWorld().getBlockState(context.getPos().up()).getBlock() instanceof MetalPoleBlock || context.getWorld().getBlockState(context.getPos().up()).getBlock() instanceof WallBlock );
+            return this.defaultBlockState().setValue(SIZE, Math.min(3, BuildingToolItem.getBuildingMode(heldItem)+1)).setValue(POLE,context.getLevel().getBlockState(context.getClickedPos().above()).getBlock() instanceof MetalPoleBlock || context.getLevel().getBlockState(context.getClickedPos().above()).getBlock() instanceof WallBlock );
         }
-        return this.getDefaultState();
+        return this.defaultBlockState();
     }
 
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (Direction.UP == facing) {
-            return facingState.getBlock() instanceof MetalPoleBlock || facingState.getBlock() instanceof WallBlock ? stateIn.with(POLE,true): stateIn.with(POLE,false);
+            return facingState.getBlock() instanceof MetalPoleBlock || facingState.getBlock() instanceof WallBlock ? stateIn.setValue(POLE,true): stateIn.setValue(POLE,false);
         }
-        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 }

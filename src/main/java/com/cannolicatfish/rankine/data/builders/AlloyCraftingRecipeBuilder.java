@@ -39,7 +39,7 @@ public class AlloyCraftingRecipeBuilder {
     private final String inheritRecipe;
     private final List<String> pattern = Lists.newArrayList();
     private final Map<Character, AlloyIngredient> key = Maps.newLinkedHashMap();
-    private final Advancement.Builder advancementBuilder = Advancement.Builder.builder();
+    private final Advancement.Builder advancementBuilder = Advancement.Builder.advancement();
     private String group;
     private final String langName;
     private final int color;
@@ -87,22 +87,22 @@ public class AlloyCraftingRecipeBuilder {
      * Adds a key to the recipe pattern.
      */
     public AlloyCraftingRecipeBuilder key(Character symbol, ITag<Item> tagIn) {
-        return this.key(symbol, Ingredient.fromTag(tagIn));
+        return this.key(symbol, Ingredient.of(tagIn));
     }
 
     /**
      * Adds a key to the recipe pattern.
      */
     public AlloyCraftingRecipeBuilder key(Character symbol, IItemProvider itemIn) {
-        return this.key(symbol, Ingredient.fromItems(itemIn));
+        return this.key(symbol, Ingredient.of(itemIn));
     }
 
     public AlloyCraftingRecipeBuilder alloyKey(Character symbol, ITag<Item> tagIn, String compositionReqsIn, ResourceLocation alloyRecipeIn,String langNameIn,int colorIn) {
-        return this.key(symbol, new AlloyIngredient(Ingredient.fromTag(tagIn),compositionReqsIn,alloyRecipeIn,langNameIn,colorIn));
+        return this.key(symbol, new AlloyIngredient(Ingredient.of(tagIn),compositionReqsIn,alloyRecipeIn,langNameIn,colorIn));
     }
 
     public AlloyCraftingRecipeBuilder alloyKey(Character symbol, IItemProvider itemIn, String compositionReqsIn, ResourceLocation alloyRecipeIn,String langNameIn,int colorIn) {
-        return this.key(symbol, new AlloyIngredient(Ingredient.fromItems(itemIn),compositionReqsIn,alloyRecipeIn,langNameIn,colorIn));
+        return this.key(symbol, new AlloyIngredient(Ingredient.of(itemIn),compositionReqsIn,alloyRecipeIn,langNameIn,colorIn));
     }
 
     public AlloyCraftingRecipeBuilder directAlloyKey(Character symbol, AlloyIngredient alloyIngredientIn) {
@@ -152,7 +152,7 @@ public class AlloyCraftingRecipeBuilder {
      * Adds a criterion needed to unlock the recipe.
      */
     public AlloyCraftingRecipeBuilder addCriterion(String name, ICriterionInstance criterionIn) {
-        this.advancementBuilder.withCriterion(name, criterionIn);
+        this.advancementBuilder.addCriterion(name, criterionIn);
         return this;
     }
 
@@ -186,8 +186,8 @@ public class AlloyCraftingRecipeBuilder {
      */
     public void build(Consumer<IFinishedRecipe> consumerIn, ResourceLocation id) {
         this.validate(id);
-        this.advancementBuilder.withParentId(new ResourceLocation("recipes/root")).withCriterion("has_the_recipe", RecipeUnlockedTrigger.create(id)).withRewards(AdvancementRewards.Builder.recipe(id)).withRequirementsStrategy(IRequirementsStrategy.OR);
-        consumerIn.accept(new AlloyCraftingRecipeBuilder.Result(id, this.result, this.count, this.inherit,this.inheritRecipe,this.group == null ? "" : this.group, this.pattern, this.key, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getGroup().getPath() + "/" + id.getPath()),this.langName,this.color));
+        this.advancementBuilder.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(IRequirementsStrategy.OR);
+        consumerIn.accept(new AlloyCraftingRecipeBuilder.Result(id, this.result, this.count, this.inherit,this.inheritRecipe,this.group == null ? "" : this.group, this.pattern, this.key, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + id.getPath()),this.langName,this.color));
     }
 
     /**
@@ -248,7 +248,7 @@ public class AlloyCraftingRecipeBuilder {
             this.color = colorIn;
         }
 
-        public void serialize(JsonObject json) {
+        public void serializeRecipeData(JsonObject json) {
             if (!this.group.isEmpty()) {
                 json.addProperty("group", this.group);
             }
@@ -274,7 +274,7 @@ public class AlloyCraftingRecipeBuilder {
             JsonObject jsonobject = new JsonObject();
 
             for(Map.Entry<Character, AlloyIngredient> entry : this.key.entrySet()) {
-                jsonobject.add(String.valueOf(entry.getKey()), alloySerializer(entry.getValue().getIngredient().serialize(),entry.getValue()));
+                jsonobject.add(String.valueOf(entry.getKey()), alloySerializer(entry.getValue().getIngredient().toJson(),entry.getValue()));
             }
 
             json.add("key", jsonobject);
@@ -300,14 +300,14 @@ public class AlloyCraftingRecipeBuilder {
             return array;
         }
 
-        public IRecipeSerializer<?> getSerializer() {
+        public IRecipeSerializer<?> getType() {
             return AlloyCraftingRecipe.SERIALIZER;
         }
 
         /**
          * Gets the ID for the recipe.
          */
-        public ResourceLocation getID() {
+        public ResourceLocation getId() {
             return this.id;
         }
 
@@ -315,8 +315,8 @@ public class AlloyCraftingRecipeBuilder {
          * Gets the JSON for the advancement that unlocks this recipe. Null if there is no advancement.
          */
         @Nullable
-        public JsonObject getAdvancementJson() {
-            return this.advancementBuilder.serialize();
+        public JsonObject serializeAdvancement() {
+            return this.advancementBuilder.serializeToJson();
         }
 
         /**
@@ -324,7 +324,7 @@ public class AlloyCraftingRecipeBuilder {
          * is non-null.
          */
         @Nullable
-        public ResourceLocation getAdvancementID() {
+        public ResourceLocation getAdvancementId() {
             return this.advancementId;
         }
     }

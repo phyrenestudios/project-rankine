@@ -14,9 +14,9 @@ public class CrucibleColor implements IBlockColor {
     @Override
     public int getColor(BlockState p_getColor_1_, @Nullable IBlockDisplayReader p_getColor_2_, @Nullable BlockPos p_getColor_3_, int p_getColor_4_) {
         if (p_getColor_4_ == 0) {
-            World worldIn = Minecraft.getInstance().world;
+            World worldIn = Minecraft.getInstance().level;
             if (p_getColor_3_ != null && worldIn != null) {
-                TileEntity t = worldIn.getTileEntity(p_getColor_3_);
+                TileEntity t = worldIn.getBlockEntity(p_getColor_3_);
                 if (t != null) {
                     CompoundNBT data = t.getTileData();
                     return data.getInt("color");

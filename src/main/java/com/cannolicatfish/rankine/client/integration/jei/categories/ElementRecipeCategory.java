@@ -41,7 +41,7 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
 
     public ElementRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(145, 125);
-        localizedName = I18n.format("rankine.jei.element");
+        localizedName = I18n.get("rankine.jei.element");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/element_jei.png"),
                 0, 15, 140, 120);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineItems.ELEMENT_INDEXER.get()));
@@ -74,7 +74,7 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
 
     @Override
     public void draw(ElementRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().fontRenderer;
+        FontRenderer font = Minecraft.getInstance().font;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -89,12 +89,12 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
         String e = "Electrode Potential: " + (p > 0 ? "+" : "") + df.format(recipe.getElectrodePotential())+"V";
 
         if (recipe.getAtomicNumber() >= 0) {
-            font.drawString(ms,String.valueOf(recipe.getAtomicNumber()),60, 10,0x000000);
+            font.draw(ms,String.valueOf(recipe.getAtomicNumber()),60, 10,0x000000);
         }
-        font.drawString(ms,String.valueOf(recipe.getSymbol()),60, 20,0x000000);
-        font.drawString(ms,name,(float)(70 - font.getStringWidth(name) / 2),40,0x000000);
-        font.drawString(ms,e,(float)(70 - font.getStringWidth(e) / 2),50,0x000000);
-        font.drawString(ms,"Items:",(float)(70 - font.getStringWidth("Items:") / 2),70,0x000000);
+        font.draw(ms,String.valueOf(recipe.getSymbol()),60, 20,0x000000);
+        font.draw(ms,name,(float)(70 - font.width(name) / 2),40,0x000000);
+        font.draw(ms,e,(float)(70 - font.width(e) / 2),50,0x000000);
+        font.draw(ms,"Items:",(float)(70 - font.width("Items:") / 2),70,0x000000);
     }
 
 
@@ -102,10 +102,10 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
     public void setIngredients(ElementRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getMatchingStacks()));
+            builder.add(Arrays.asList(i.getItems()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getRecipeOutput()));
+        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getResultItem()));
     }
 
     @Override

@@ -17,16 +17,16 @@ public class AntimatterFeature extends Feature<NoFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
 
         IChunk chunk = reader.getChunk(pos);
 
         if (rand.nextFloat()<0.1) {        //for (int i = 0; i <4; ++i) {
-            int randX = chunk.getPos().getXStart() + rand.nextInt(16);
+            int randX = chunk.getPos().getMinBlockX() + rand.nextInt(16);
             int randY = rand.nextInt(90);
-            int randZ = chunk.getPos().getZEnd() + rand.nextInt(16);
+            int randZ = chunk.getPos().getMaxBlockZ() + rand.nextInt(16);
 
-            reader.setBlockState(new BlockPos(randX, randY, randZ), RankineBlocks.ANTIMATTER.get().getDefaultState(), 19);
+            reader.setBlock(new BlockPos(randX, randY, randZ), RankineBlocks.ANTIMATTER.get().defaultBlockState(), 19);
             //}}
 
         }

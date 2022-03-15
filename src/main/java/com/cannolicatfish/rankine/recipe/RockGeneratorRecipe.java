@@ -48,7 +48,7 @@ public class RockGeneratorRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean isDynamic() {
+    public boolean isSpecial() {
         return true;
     }
 
@@ -64,8 +64,8 @@ public class RockGeneratorRecipe implements IRecipe<IInventory> {
     public boolean matches(IInventory inv, World worldIn) {
         if (this.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS) || this.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC) || this.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC)) {
             boolean test;
-            for (int i = 0; i < inv.getSizeInventory(); i++) {
-                test = this.ingredient1.test(inv.getStackInSlot(i));
+            for (int i = 0; i < inv.getContainerSize(); i++) {
+                test = this.ingredient1.test(inv.getItem(i));
                 if (test) {
                     return true;
                 }
@@ -74,12 +74,12 @@ public class RockGeneratorRecipe implements IRecipe<IInventory> {
         } else {
             boolean test1 = false;
             boolean test2 = false;
-            for (int i = 0; i < inv.getSizeInventory(); i++) {
+            for (int i = 0; i < inv.getContainerSize(); i++) {
                 if (!test1) {
-                    test1 = this.ingredient1.test(inv.getStackInSlot(i));
+                    test1 = this.ingredient1.test(inv.getItem(i));
                 }
                 if (!test2) {
-                    test2 = this.ingredient2.test(inv.getStackInSlot(i));
+                    test2 = this.ingredient2.test(inv.getItem(i));
                 }
                 if (test1 && test2) {
                     return true;
@@ -90,12 +90,12 @@ public class RockGeneratorRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack getCraftingResult(IInventory inv) {
+    public ItemStack assemble(IInventory inv) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public boolean canFit(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return true;
     }
 
@@ -110,14 +110,14 @@ public class RockGeneratorRecipe implements IRecipe<IInventory> {
     @Override
     public NonNullList<Ingredient> getIngredients() {
         if (this.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {
-            return NonNullList.from(Ingredient.EMPTY, ingredient1, ingredient2, Ingredient.fromStacks(new ItemStack(RankineItems.SEDIMENT_FAN.get())));
+            return NonNullList.of(Ingredient.EMPTY, ingredient1, ingredient2, Ingredient.of(new ItemStack(RankineItems.SEDIMENT_FAN.get())));
         } else if (this.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS))
         {
-            return NonNullList.from(Ingredient.EMPTY, ingredient1, Ingredient.fromStacks(new ItemStack(Items.SOUL_SOIL)),Ingredient.fromStacks(new ItemStack(Items.BLUE_ICE)));
+            return NonNullList.of(Ingredient.EMPTY, ingredient1, Ingredient.of(new ItemStack(Items.SOUL_SOIL)),Ingredient.of(new ItemStack(Items.BLUE_ICE)));
         } else if (this.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC) || this.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC)) {
-            return NonNullList.from(Ingredient.EMPTY, ingredient1);
+            return NonNullList.of(Ingredient.EMPTY, ingredient1);
         } else {
-            return NonNullList.from(Ingredient.EMPTY, ingredient1, ingredient2);
+            return NonNullList.of(Ingredient.EMPTY, ingredient1, ingredient2);
         }
 
     }
@@ -131,7 +131,7 @@ public class RockGeneratorRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack getRecipeOutput() {
+    public ItemStack getResultItem() {
         return result;
     }
 
@@ -151,7 +151,7 @@ public class RockGeneratorRecipe implements IRecipe<IInventory> {
     }
 
     public static ItemStack deserializeBlock(JsonObject object) {
-        String s = JSONUtils.getString(object, "block");
+        String s = JSONUtils.getAsString(object, "block");
 
         Block block = Registry.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonParseException("Unknown block '" + s + "'");
@@ -167,37 +167,37 @@ public class RockGeneratorRecipe implements IRecipe<IInventory> {
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<RockGeneratorRecipe> {
 
         @Override
-        public RockGeneratorRecipe read(ResourceLocation recipeId, JsonObject json) {
+        public RockGeneratorRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             RockGeneratorUtils.RockGenType t = json.has("genType") ? RockGeneratorUtils.RockGenType.valueOf(json.get("genType").getAsString().toUpperCase(Locale.ROOT)) : RockGeneratorUtils.RockGenType.INTRUSIVE_IGNEOUS;
-            Ingredient ingredient1 = Ingredient.deserialize(JSONUtils.getJsonObject(json, "input1"));
+            Ingredient ingredient1 = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input1"));
             Ingredient ingredient2;
             if (t.equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS) || t.equals(RockGeneratorUtils.RockGenType.METAMORPHIC) || t.equals(RockGeneratorUtils.RockGenType.VOLCANIC)) {
                 ingredient2 = Ingredient.EMPTY;
             } else {
-                ingredient2 = json.has("input2") ? Ingredient.deserialize(JSONUtils.getJsonObject(json, "input2")) : Ingredient.EMPTY;
+                ingredient2 = json.has("input2") ? Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input2")) : Ingredient.EMPTY;
             }
 
-            ItemStack result = deserializeBlock(JSONUtils.getJsonObject(json, "result"));
+            ItemStack result = deserializeBlock(JSONUtils.getAsJsonObject(json, "result"));
             return new RockGeneratorRecipe(recipeId,t,ingredient1,ingredient2,result);
         }
 
         @Nullable
         @Override
-        public RockGeneratorRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-            RockGeneratorUtils.RockGenType t = RockGeneratorUtils.RockGenType.valueOf(buffer.readString().toUpperCase(Locale.ROOT));
-            Ingredient input1 = Ingredient.read(buffer);
-            Ingredient input2 = Ingredient.read(buffer);
-            ItemStack output = buffer.readItemStack();
+        public RockGeneratorRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+            RockGeneratorUtils.RockGenType t = RockGeneratorUtils.RockGenType.valueOf(buffer.readUtf().toUpperCase(Locale.ROOT));
+            Ingredient input1 = Ingredient.fromNetwork(buffer);
+            Ingredient input2 = Ingredient.fromNetwork(buffer);
+            ItemStack output = buffer.readItem();
 
             return new RockGeneratorRecipe(recipeId,t,input1,input2,output);
         }
 
         @Override
-        public void write(PacketBuffer buffer, RockGeneratorRecipe recipe) {
-            buffer.writeString(recipe.getGenType().toString());
-            recipe.getFirstIngredient().write(buffer);
-            recipe.getSecondIngredient().write(buffer);
-            buffer.writeItemStack(recipe.getRecipeOutput());
+        public void toNetwork(PacketBuffer buffer, RockGeneratorRecipe recipe) {
+            buffer.writeUtf(recipe.getGenType().toString());
+            recipe.getFirstIngredient().toNetwork(buffer);
+            recipe.getSecondIngredient().toNetwork(buffer);
+            buffer.writeItem(recipe.getResultItem());
         }
     }
 

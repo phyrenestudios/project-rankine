@@ -24,6 +24,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nonnull;
 import java.util.Set;
 
+import net.minecraft.item.Item.Properties;
+
 public class GlassCutterItem extends ToolItem {
 
     private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(Blocks.GLASS);
@@ -36,9 +38,9 @@ public class GlassCutterItem extends ToolItem {
      * Check whether this Item can harvest the given Block
      */
     @Override
-    public boolean canHarvestBlock(BlockState blockIn) {
-        int i = this.getTier().getHarvestLevel();
-        if (blockIn.isIn(RankineTags.Blocks.GLASS_CUTTER)) {
+    public boolean isCorrectToolForDrops(BlockState blockIn) {
+        int i = this.getTier().getLevel();
+        if (blockIn.is(RankineTags.Blocks.GLASS_CUTTER)) {
             return i >= blockIn.getHarvestLevel();
         }
         Material material = blockIn.getMaterial();
@@ -47,36 +49,36 @@ public class GlassCutterItem extends ToolItem {
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
-        if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return efficiency;
-        return state.isIn(RankineTags.Blocks.GLASS_CUTTER) ? this.efficiency : 0.1F;
+        if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return speed;
+        return state.is(RankineTags.Blocks.GLASS_CUTTER) ? this.speed : 0.1F;
     }
 
     @Nonnull
-    public ActionResultType onItemUse(ItemUseContext context) {
+    public ActionResultType useOn(ItemUseContext context) {
         PlayerEntity playerentity = context.getPlayer();
-        IWorld iworld = context.getWorld();
-        BlockPos blockpos = context.getPos();
+        IWorld iworld = context.getLevel();
+        BlockPos blockpos = context.getClickedPos();
         BlockState blockstate = iworld.getBlockState(blockpos);
         if (playerentity != null) {
-            context.getItem().damageItem(1, playerentity, (p_219998_1_) -> {
-                p_219998_1_.sendBreakAnimation(context.getHand());
+            context.getItemInHand().hurtAndBreak(1, playerentity, (p_219998_1_) -> {
+                p_219998_1_.broadcastBreakEvent(context.getHand());
             });
         }
         if (blockstate.getBlock().getTags().contains(new ResourceLocation("forge:glass"))) {
             Block b = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(blockstate.getBlock().getRegistryName().toString() + "_pane"));
             if (b != null)
             {
-                iworld.playSound(playerentity, blockpos, SoundEvents.ENTITY_BEE_STING, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 1.8F);
-                iworld.setBlockState(blockpos,b.getDefaultState(),3);
+                iworld.playSound(playerentity, blockpos, SoundEvents.BEE_STING, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 1.8F);
+                iworld.setBlock(blockpos,b.defaultBlockState(),3);
 
 
                 float f = 0.5F;
-                double d0 = (double)(context.getWorld().rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double)(context.getWorld().rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double)(context.getWorld().rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(context.getWorld(), (double)blockpos.getX() + d0, (double)blockpos.getY() + d1, (double)blockpos.getZ() + d2, new ItemStack(b,2));
-                itementity.setDefaultPickupDelay();
-                context.getWorld().addEntity(itementity);
+                double d0 = (double)(context.getLevel().random.nextFloat() * 0.5F) + 0.25D;
+                double d1 = (double)(context.getLevel().random.nextFloat() * 0.5F) + 0.25D;
+                double d2 = (double)(context.getLevel().random.nextFloat() * 0.5F) + 0.25D;
+                ItemEntity itementity = new ItemEntity(context.getLevel(), (double)blockpos.getX() + d0, (double)blockpos.getY() + d1, (double)blockpos.getZ() + d2, new ItemStack(b,2));
+                itementity.setDefaultPickUpDelay();
+                context.getLevel().addFreshEntity(itementity);
                 return ActionResultType.SUCCESS;
             }
         }
@@ -87,19 +89,19 @@ public class GlassCutterItem extends ToolItem {
         return ActionResultType.FAIL;
     }
 
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+        if (group == ItemGroup.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) {
             ItemStack stack = new ItemStack(this.asItem(),1);
-            stack.addEnchantment(Enchantments.SILK_TOUCH,1);
+            stack.enchant(Enchantments.SILK_TOUCH,1);
             items.add(stack);
         }
     }
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH,stack) != 1){
-            stack.addEnchantment(Enchantments.SILK_TOUCH,1);
+    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH,stack) != 1){
+            stack.enchant(Enchantments.SILK_TOUCH,1);
         }
-        super.onCreated(stack, worldIn, playerIn);
+        super.onCraftedBy(stack, worldIn, playerIn);
     }
 }

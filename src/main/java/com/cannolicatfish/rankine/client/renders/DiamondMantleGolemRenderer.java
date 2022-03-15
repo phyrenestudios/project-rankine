@@ -20,12 +20,12 @@ public class DiamondMantleGolemRenderer extends LivingRenderer<DiamondMantleGole
     }
 
     @Override
-    protected boolean canRenderName(DiamondMantleGolemEntity entity) {
+    protected boolean shouldShowName(DiamondMantleGolemEntity entity) {
         return false;
     }
 
     @Override
-    public ResourceLocation getEntityTexture(DiamondMantleGolemEntity entity) {
+    public ResourceLocation getTextureLocation(DiamondMantleGolemEntity entity) {
         return new ResourceLocation("rankine:textures/entity/diamond_mantle_golem.png");
     }
 

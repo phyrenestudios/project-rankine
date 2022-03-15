@@ -62,7 +62,7 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean isDynamic() {
+    public boolean isSpecial() {
         return true;
     }
 
@@ -78,9 +78,9 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
     public boolean matchesRecipe(IInventory inv, FluidTank tankIn, FluidTank tankOut, World worldIn) {
         boolean fluidInCheck = this.fluidIn.isEmpty() || tankIn.getFluid().containsFluid(this.fluidIn);
         boolean fluidOutCheck = this.fluidIn.isEmpty() || tankOut.isFluidValid(this.fluidOut);
-        return (this.ingredient1.test(inv.getStackInSlot(0)) || this.ingredient1.test(inv.getStackInSlot(1)))
-                && (this.ingredient2.test(inv.getStackInSlot(1)) || this.ingredient2.test(inv.getStackInSlot(0)))
-                && inv.getStackInSlot(3).isItemEqual(this.gasIn) && fluidInCheck && fluidOutCheck;
+        return (this.ingredient1.test(inv.getItem(0)) || this.ingredient1.test(inv.getItem(1)))
+                && (this.ingredient2.test(inv.getItem(1)) || this.ingredient2.test(inv.getItem(0)))
+                && inv.getItem(3).sameItem(this.gasIn) && fluidInCheck && fluidOutCheck;
     }
 
     public Ingredient getIngredient1() {
@@ -92,22 +92,22 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack getCraftingResult(IInventory inv) {
+    public ItemStack assemble(IInventory inv) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public boolean canFit(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return true;
     }
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        return NonNullList.from(Ingredient.EMPTY,this.ingredient1,this.ingredient2,Ingredient.fromStacks(this.gasIn));
+        return NonNullList.of(Ingredient.EMPTY,this.ingredient1,this.ingredient2,Ingredient.of(this.gasIn));
     }
 
     public NonNullList<ItemStack> getRecipeOutputs() {
-        return NonNullList.from(ItemStack.EMPTY,this.result1,this.result2,this.gasOut);
+        return NonNullList.of(ItemStack.EMPTY,this.result1,this.result2,this.gasOut);
     }
 
     public NonNullList<ItemStack> getRecipeOutputsJEI() {
@@ -128,7 +128,7 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack getRecipeOutput() {
+    public ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
 
@@ -160,7 +160,7 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getString(object, "item");
+        String s = JSONUtils.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -168,7 +168,7 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getInt(object, "count", 1);
+            int i = JSONUtils.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
@@ -183,42 +183,42 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
 
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<FusionFurnaceRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "fusion_furnace");
-        public FusionFurnaceRecipe read(ResourceLocation recipeId, JsonObject json) {
+        public FusionFurnaceRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int w = json.has("cookTime") ? json.get("cookTime").getAsInt() : 400;
-            FluidStack fIn = json.has("fluidInput") ? FluidHelper.getFluidStack(JSONUtils.getJsonObject(json, "fluidInput")) : FluidStack.EMPTY;
-            ItemStack gIn = json.has("gasInput") ? deserializeItem(JSONUtils.getJsonObject(json,"gasInput")) : ItemStack.EMPTY;
-            Ingredient in1 = json.has("input1") ? Ingredient.deserialize(JSONUtils.getJsonObject(json, "input1")) : Ingredient.EMPTY;
-            Ingredient in2 = json.has("input2") ? Ingredient.deserialize(JSONUtils.getJsonObject(json, "input2")) : Ingredient.EMPTY;
-            ItemStack output1 = json.has("result1") ? deserializeItem(JSONUtils.getJsonObject(json,"result1")) : ItemStack.EMPTY;
-            ItemStack output2 = json.has("result2") ? deserializeItem(JSONUtils.getJsonObject(json,"result2")) : ItemStack.EMPTY;
-            ItemStack gOut = json.has("gasOutput") ? deserializeItem(JSONUtils.getJsonObject(json,"gasOutput")) : ItemStack.EMPTY;
-            FluidStack fOut = json.has("fluidOutput") ? FluidHelper.getFluidStack(JSONUtils.getJsonObject(json, "fluidOutput")) : FluidStack.EMPTY;
+            FluidStack fIn = json.has("fluidInput") ? FluidHelper.getFluidStack(JSONUtils.getAsJsonObject(json, "fluidInput")) : FluidStack.EMPTY;
+            ItemStack gIn = json.has("gasInput") ? deserializeItem(JSONUtils.getAsJsonObject(json,"gasInput")) : ItemStack.EMPTY;
+            Ingredient in1 = json.has("input1") ? Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input1")) : Ingredient.EMPTY;
+            Ingredient in2 = json.has("input2") ? Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input2")) : Ingredient.EMPTY;
+            ItemStack output1 = json.has("result1") ? deserializeItem(JSONUtils.getAsJsonObject(json,"result1")) : ItemStack.EMPTY;
+            ItemStack output2 = json.has("result2") ? deserializeItem(JSONUtils.getAsJsonObject(json,"result2")) : ItemStack.EMPTY;
+            ItemStack gOut = json.has("gasOutput") ? deserializeItem(JSONUtils.getAsJsonObject(json,"gasOutput")) : ItemStack.EMPTY;
+            FluidStack fOut = json.has("fluidOutput") ? FluidHelper.getFluidStack(JSONUtils.getAsJsonObject(json, "fluidOutput")) : FluidStack.EMPTY;
 
             return new FusionFurnaceRecipe(recipeId,fIn,gIn,in1,in2,fOut,gOut,output1,output2,w);
         }
 
-        public FusionFurnaceRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+        public FusionFurnaceRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
             int w = buffer.readInt();
             FluidStack fIn = buffer.readFluidStack();
-            ItemStack gIn = buffer.readItemStack();
-            Ingredient in1 = Ingredient.read(buffer);
-            Ingredient in2 = Ingredient.read(buffer);
-            ItemStack output1 = buffer.readItemStack();
-            ItemStack output2 = buffer.readItemStack();
-            ItemStack gOut = buffer.readItemStack();
+            ItemStack gIn = buffer.readItem();
+            Ingredient in1 = Ingredient.fromNetwork(buffer);
+            Ingredient in2 = Ingredient.fromNetwork(buffer);
+            ItemStack output1 = buffer.readItem();
+            ItemStack output2 = buffer.readItem();
+            ItemStack gOut = buffer.readItem();
             FluidStack fOut = buffer.readFluidStack();
             return new FusionFurnaceRecipe(recipeId,fIn,gIn,in1,in2,fOut,gOut,output1,output2,w);
         }
 
-        public void write(PacketBuffer buffer, FusionFurnaceRecipe recipe) {
+        public void toNetwork(PacketBuffer buffer, FusionFurnaceRecipe recipe) {
             buffer.writeInt(recipe.cookTime);
             buffer.writeFluidStack(recipe.fluidIn);
-            buffer.writeItemStack(recipe.gasIn);
-            recipe.ingredient1.write(buffer);
-            recipe.ingredient2.write(buffer);
-            buffer.writeItemStack(recipe.result1);
-            buffer.writeItemStack(recipe.result2);
-            buffer.writeItemStack(recipe.gasOut);
+            buffer.writeItem(recipe.gasIn);
+            recipe.ingredient1.toNetwork(buffer);
+            recipe.ingredient2.toNetwork(buffer);
+            buffer.writeItem(recipe.result1);
+            buffer.writeItem(recipe.result2);
+            buffer.writeItem(recipe.gasOut);
             buffer.writeFluidStack(recipe.fluidOut);
         }
     }

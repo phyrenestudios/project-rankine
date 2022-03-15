@@ -30,8 +30,8 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
     public ReactiveItemRenderer(EntityRendererManager renderManager) {
         super(renderManager);
         this.itemRenderer = Minecraft.getInstance().getItemRenderer();
-        this.shadowSize = 0.15F;
-        this.shadowOpaque = 0.75F;
+        this.shadowRadius = 0.15F;
+        this.shadowStrength = 0.75F;
     }
 
 
@@ -51,19 +51,19 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
     }
 
     public void render(ReactiveItemEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-        matrixStackIn.push();
+        matrixStackIn.pushPose();
         ItemStack itemstack = entityIn.getItem();
-        int i = itemstack.isEmpty() ? 187 : Item.getIdFromItem(itemstack.getItem()) + itemstack.getDamage();
+        int i = itemstack.isEmpty() ? 187 : Item.getId(itemstack.getItem()) + itemstack.getDamageValue();
         this.random.setSeed((long)i);
-        IBakedModel ibakedmodel = this.itemRenderer.getItemModelWithOverrides(itemstack, entityIn.world, (LivingEntity)null);
+        IBakedModel ibakedmodel = this.itemRenderer.getModel(itemstack, entityIn.level, (LivingEntity)null);
         boolean flag = ibakedmodel.isGui3d();
         int j = this.getModelCount(itemstack);
         float f = 0.25F;
-        float f1 = MathHelper.sin(((float)entityIn.getAge() + partialTicks) / 10.0F + entityIn.hoverStart) * 0.1F + 0.1F;
-        float f2 = shouldBob() ? ibakedmodel.getItemCameraTransforms().getTransform(ItemCameraTransforms.TransformType.GROUND).scale.getY() : 0;
+        float f1 = MathHelper.sin(((float)entityIn.getAge() + partialTicks) / 10.0F + entityIn.bobOffs) * 0.1F + 0.1F;
+        float f2 = shouldBob() ? ibakedmodel.getTransforms().getTransform(ItemCameraTransforms.TransformType.GROUND).scale.y() : 0;
         matrixStackIn.translate(0.0D, (double)(f1 + 0.25F * f2), 0.0D);
-        float f3 = entityIn.getItemHover(partialTicks);
-        matrixStackIn.rotate(Vector3f.YP.rotation(f3));
+        float f3 = entityIn.getSpin(partialTicks);
+        matrixStackIn.mulPose(Vector3f.YP.rotation(f3));
         if (!flag) {
             float f7 = -0.0F * (float)(j - 1) * 0.5F;
             float f8 = -0.0F * (float)(j - 1) * 0.5F;
@@ -72,7 +72,7 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
         }
 
         for(int k = 0; k < j; ++k) {
-            matrixStackIn.push();
+            matrixStackIn.pushPose();
             if (k > 0) {
                 if (flag) {
                     float f11 = (this.random.nextFloat() * 2.0F - 1.0F) * 0.15F;
@@ -86,22 +86,22 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
                 }
             }
 
-            this.itemRenderer.renderItem(itemstack, ItemCameraTransforms.TransformType.GROUND, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ibakedmodel);
-            matrixStackIn.pop();
+            this.itemRenderer.render(itemstack, ItemCameraTransforms.TransformType.GROUND, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ibakedmodel);
+            matrixStackIn.popPose();
             if (!flag) {
                 matrixStackIn.translate(0.0, 0.0, 0.09375F);
             }
         }
 
-        matrixStackIn.pop();
+        matrixStackIn.popPose();
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 
     /**
      * Returns the location of an entity's texture.
      */
-    public ResourceLocation getEntityTexture(ReactiveItemEntity entity) {
-        return AtlasTexture.LOCATION_BLOCKS_TEXTURE;
+    public ResourceLocation getTextureLocation(ReactiveItemEntity entity) {
+        return AtlasTexture.LOCATION_BLOCKS;
     }
 
     /*==================================== FORGE START ===========================================*/

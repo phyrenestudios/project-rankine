@@ -25,7 +25,7 @@ public class EnderShiroBlock extends Block {
     }
 
     @Override
-    public boolean ticksRandomly(BlockState state) {
+    public boolean isRandomlyTicking(BlockState state) {
         return true;
     }
 
@@ -33,19 +33,19 @@ public class EnderShiroBlock extends Block {
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (enderShiroGrowth(worldIn, pos)) {
             for(int i = 0; i < 4; ++i) {
-                BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(3) - 1, random.nextInt(3) - 1);
-                if (worldIn.getBlockState(blockpos).getBlock().matchesBlock(Blocks.END_STONE) && enderShiroGrowth(worldIn, blockpos)) {
-                    worldIn.setBlockState(blockpos, RankineBlocks.ENDER_SHIRO.get().getDefaultState());
+                BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(3) - 1, random.nextInt(3) - 1);
+                if (worldIn.getBlockState(blockpos).getBlock().is(Blocks.END_STONE) && enderShiroGrowth(worldIn, blockpos)) {
+                    worldIn.setBlockAndUpdate(blockpos, RankineBlocks.ENDER_SHIRO.get().defaultBlockState());
                 }
             }
         } else {
-            worldIn.setBlockState(pos, Blocks.END_STONE.getDefaultState());
+            worldIn.setBlockAndUpdate(pos, Blocks.END_STONE.defaultBlockState());
         }
 
     }
 
     private boolean enderShiroGrowth(ServerWorld worldIn, BlockPos pos) {
-        return !worldIn.getBlockState(pos.up()).matchesBlock(this) && !worldIn.getBlockState(pos.up()).matchesBlock(Blocks.END_STONE);
+        return !worldIn.getBlockState(pos.above()).is(this) && !worldIn.getBlockState(pos.above()).is(Blocks.END_STONE);
     }
 
 }

@@ -11,12 +11,12 @@ public class ImpactEnchantment extends Enchantment {
         super(p_i46721_1_, RankineEnchantmentTypes.SPEAR, p_i46721_2_);
     }
 
-    public int getMinEnchantability(int p_77321_1_) {
+    public int getMinCost(int p_77321_1_) {
         return 1 + 10 * (p_77321_1_ - 1);
     }
 
-    public int getMaxEnchantability(int p_223551_1_) {
-        return super.getMinEnchantability(p_223551_1_) + 50;
+    public int getMaxCost(int p_223551_1_) {
+        return super.getMinCost(p_223551_1_) + 50;
     }
 
     public int getMaxLevel() {

@@ -25,7 +25,7 @@ public enum SoilTypes implements IStringSerializable {
         return this.name;
     }
 
-    public String getString() {
+    public String getSerializedName() {
         return this.name;
     }
 }

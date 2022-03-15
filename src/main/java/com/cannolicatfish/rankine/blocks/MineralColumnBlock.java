@@ -10,6 +10,8 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class MineralColumnBlock extends StoneColumnBlock implements IWaterLoggable {
     //public static final IntegerProperty STABILITY = IntegerProperty.create("stability",0,24);
 
@@ -18,13 +20,13 @@ public class MineralColumnBlock extends StoneColumnBlock implements IWaterLoggab
     }
 
     @Override
-    public boolean ticksRandomly(BlockState state) {
+    public boolean isRandomlyTicking(BlockState state) {
         return true;
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (!worldIn.isRemote && (worldIn.getBlockState(pos.up(1)).isIn(RankineTags.Blocks.STONES_LIMESTONE) || worldIn.getBlockState(pos.up(1)).isIn(RankineTags.Blocks.STONES_DOLOMITE)) && worldIn.getBlockState(pos.up(2)).matchesBlock(Blocks.WATER)) {
+        if (!worldIn.isClientSide && (worldIn.getBlockState(pos.above(1)).is(RankineTags.Blocks.STONES_LIMESTONE) || worldIn.getBlockState(pos.above(1)).is(RankineTags.Blocks.STONES_DOLOMITE)) && worldIn.getBlockState(pos.above(2)).is(Blocks.WATER)) {
             grow(worldIn,pos);
             //worldIn.setBlockState(pos,state.with(SIZE,Math.min(7,state.get(SIZE)+1)));
         }
@@ -35,23 +37,23 @@ public class MineralColumnBlock extends StoneColumnBlock implements IWaterLoggab
     private void grow(World worldIn, BlockPos pos) {
         Random rand = worldIn.getRandom();
         int i = 0;
-        while (worldIn.getBlockState(pos.down(i)).matchesBlock(this)) {
+        while (worldIn.getBlockState(pos.below(i)).is(this)) {
             ++i;
         }
-        if (rand.nextFloat() < 1.0f/(i+1) && worldIn.getBlockState(pos.down(i)).matchesBlock(Blocks.AIR)) {
-            worldIn.setBlockState(pos.down(i),this.getDefaultState());
+        if (rand.nextFloat() < 1.0f/(i+1) && worldIn.getBlockState(pos.below(i)).is(Blocks.AIR)) {
+            worldIn.setBlockAndUpdate(pos.below(i),this.defaultBlockState());
         } else {
             int R = rand.nextInt(i);
-            BlockState targetBS = worldIn.getBlockState(pos.down(R));
+            BlockState targetBS = worldIn.getBlockState(pos.below(R));
             if (rand.nextFloat() < 1.0f/(R+2)) {
-                boolean flag1 = worldIn.getBlockState(pos.down(R).up()).matchesBlock(this);
-                boolean flag2 = worldIn.getBlockState(pos.down(R).down()).matchesBlock(this);
-                if (flag1 && flag2 && targetBS.get(SIZE)+1 - worldIn.getBlockState(pos.down(R).up()).get(SIZE) < 2 && targetBS.get(SIZE)+1 - worldIn.getBlockState(pos.down(R).down()).get(SIZE) < 2) {
-                    worldIn.setBlockState(pos.down(R),targetBS.with(SIZE,Math.min(7,targetBS.get(SIZE)+1)));
-                } else if (flag1 && targetBS.get(SIZE)+1 - worldIn.getBlockState(pos.down(R).up()).get(SIZE) < 2) {
-                    worldIn.setBlockState(pos.down(R),targetBS.with(SIZE,Math.min(7,targetBS.get(SIZE)+1)));
-                } else if (flag2 && targetBS.get(SIZE)+1 - worldIn.getBlockState(pos.down(R).down()).get(SIZE) < 2) {
-                    worldIn.setBlockState(pos.down(R),targetBS.with(SIZE,Math.min(7,targetBS.get(SIZE)+1)));
+                boolean flag1 = worldIn.getBlockState(pos.below(R).above()).is(this);
+                boolean flag2 = worldIn.getBlockState(pos.below(R).below()).is(this);
+                if (flag1 && flag2 && targetBS.getValue(SIZE)+1 - worldIn.getBlockState(pos.below(R).above()).getValue(SIZE) < 2 && targetBS.getValue(SIZE)+1 - worldIn.getBlockState(pos.below(R).below()).getValue(SIZE) < 2) {
+                    worldIn.setBlockAndUpdate(pos.below(R),targetBS.setValue(SIZE,Math.min(7,targetBS.getValue(SIZE)+1)));
+                } else if (flag1 && targetBS.getValue(SIZE)+1 - worldIn.getBlockState(pos.below(R).above()).getValue(SIZE) < 2) {
+                    worldIn.setBlockAndUpdate(pos.below(R),targetBS.setValue(SIZE,Math.min(7,targetBS.getValue(SIZE)+1)));
+                } else if (flag2 && targetBS.getValue(SIZE)+1 - worldIn.getBlockState(pos.below(R).below()).getValue(SIZE) < 2) {
+                    worldIn.setBlockAndUpdate(pos.below(R),targetBS.setValue(SIZE,Math.min(7,targetBS.getValue(SIZE)+1)));
                 }
             }
         }

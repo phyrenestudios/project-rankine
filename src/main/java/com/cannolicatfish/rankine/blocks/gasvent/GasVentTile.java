@@ -17,12 +17,12 @@ public class GasVentTile extends TileEntity implements ITickableTileEntity {
     }
 
     public void tick() {
-        if (!world.isAreaLoaded(pos, 1)) return;
-        BlockState BS = world.getBlockState(pos);
-        Block toMove = world.getBlockState(pos.offset(BS.get(BlockStateProperties.FACING).getOpposite())).getBlock();
-        if (toMove instanceof GasBlock && world.getBlockState(pos.offset(BS.get(BlockStateProperties.FACING))).matchesBlock(Blocks.AIR)) {
-            world.removeBlock(pos.offset(BS.get(BlockStateProperties.FACING).getOpposite()), false);
-            world.setBlockState(pos.offset(BS.get(BlockStateProperties.FACING)),toMove.getDefaultState(),3);
+        if (!level.isAreaLoaded(worldPosition, 1)) return;
+        BlockState BS = level.getBlockState(worldPosition);
+        Block toMove = level.getBlockState(worldPosition.relative(BS.getValue(BlockStateProperties.FACING).getOpposite())).getBlock();
+        if (toMove instanceof GasBlock && level.getBlockState(worldPosition.relative(BS.getValue(BlockStateProperties.FACING))).is(Blocks.AIR)) {
+            level.removeBlock(worldPosition.relative(BS.getValue(BlockStateProperties.FACING).getOpposite()), false);
+            level.setBlock(worldPosition.relative(BS.getValue(BlockStateProperties.FACING)),toMove.defaultBlockState(),3);
         }
     }
 

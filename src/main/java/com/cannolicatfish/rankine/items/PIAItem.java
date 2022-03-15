@@ -26,33 +26,35 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Optional;
 
+import net.minecraft.item.Item.Properties;
+
 public class PIAItem extends Item {
     public PIAItem(Properties properties) {
         super(properties);
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
         PlayerInventory inv = playerIn.inventory;
-        ITag<Item> itemTag = TagCollectionManager.getManager().getItemTags().get(new ResourceLocation("forge:nuggets"));
-        if (itemTag != null && inv.hasTag(itemTag) && !worldIn.isRemote)
+        ITag<Item> itemTag = TagCollectionManager.getInstance().getItems().getTag(new ResourceLocation("forge:nuggets"));
+        if (itemTag != null && inv.contains(itemTag) && !worldIn.isClientSide)
         {
-            for (ItemStack i : new Ingredient.TagList(itemTag).getStacks()) {
-                if (inv.getSlotFor(i) != -1) {
-                    ItemStack invStack = inv.getStackInSlot(inv.getSlotFor(i));
-                    int slot = inv.getSlotFor(i);
+            for (ItemStack i : new Ingredient.TagList(itemTag).getItems()) {
+                if (inv.findSlotMatchingItem(i) != -1) {
+                    ItemStack invStack = inv.getItem(inv.findSlotMatchingItem(i));
+                    int slot = inv.findSlotMatchingItem(i);
 
                     if (invStack.getCount() >= 9) {
                         CraftingInventory craft = new CraftingInventoryFilled(new Container(null, -1) {
                             @Override
-                            public boolean canInteractWith(PlayerEntity playerIn) {
+                            public boolean stillValid(PlayerEntity playerIn) {
                                 return false;
                             }
                         },3,3,NonNullList.withSize(9, i));
-                        Optional<ICraftingRecipe> recipe = worldIn.getRecipeManager().getRecipe(IRecipeType.CRAFTING,craft,worldIn);
+                        Optional<ICraftingRecipe> recipe = worldIn.getRecipeManager().getRecipeFor(IRecipeType.CRAFTING,craft,worldIn);
 
                         if (recipe.isPresent()) {
-                            ItemStack newStack = recipe.get().getCraftingResult(craft);
+                            ItemStack newStack = recipe.get().assemble(craft);
                             invStack.shrink(9);
                             inv.placeItemBackInInventory(worldIn,newStack);
                         }
@@ -61,16 +63,16 @@ public class PIAItem extends Item {
                 }
             }
         }
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return super.use(worldIn, playerIn, handIn);
     }
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (entityIn instanceof PlayerEntity){
             PlayerEntity player = (PlayerEntity) entityIn;
-            List<ItemEntity> items = worldIn.getEntitiesWithinAABB(ItemEntity.class, entityIn.getBoundingBox().grow(2, 2, 2));
+            List<ItemEntity> items = worldIn.getEntitiesOfClass(ItemEntity.class, entityIn.getBoundingBox().inflate(2, 2, 2));
             for (ItemEntity i : items) {
-                i.onCollideWithPlayer(player);
+                i.playerTouch(player);
             }
         }
 

@@ -28,6 +28,8 @@ import net.minecraftforge.common.ForgeMod;
 
 import java.util.UUID;
 
+import net.minecraft.item.Item.Properties;
+
 public class SpearItem extends Item {
     private final float attackDamage;
     private final float attackSpeedIn;
@@ -37,28 +39,28 @@ public class SpearItem extends Item {
 
     private ImmutableMultimap<Attribute, AttributeModifier> attributeModifiers;
     public SpearItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, EntityType<SpearEntity> entity, ResourceLocation type, Properties properties) {
-        super(properties.defaultMaxDamage(tier.getMaxUses()));
+        super(properties.defaultDurability(tier.getUses()));
         this.attackSpeedIn = attackSpeedIn;
-        this.attackDamage = (float) attackDamageIn + tier.getAttackDamage();
+        this.attackDamage = (float) attackDamageIn + tier.getAttackDamageBonus();
         this.type = type;
         this.entity = entity;
         this.tier = tier;
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double)attackSpeedIn, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)attackSpeedIn, AttributeModifier.Operation.ADDITION));
         this.attributeModifiers = builder.build();
     }
 
     @Override
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-        return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot);
+    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType equipmentSlot) {
+        return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getDefaultAttributeModifiers(equipmentSlot);
     }
 
-    public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
+    public boolean canAttackBlock(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
         return !player.isCreative();
     }
 
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAnimation(ItemStack stack) {
         return UseAction.SPEAR;
     }
 
@@ -69,42 +71,42 @@ public class SpearItem extends Item {
         return 72000;
     }
 
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return stack.isEnchanted();
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+    public void releaseUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
             int i = this.getUseDuration(stack) - timeLeft;
             if (i >= 10) {
-                int j = EnchantmentHelper.getRiptideModifier(stack);
-                if (j <= 0 || playerentity.isWet()) {
-                    if (!worldIn.isRemote) {
-                        stack.damageItem(1, playerentity, (p_220047_1_) -> {
-                            p_220047_1_.sendBreakAnimation(entityLiving.getActiveHand());
+                int j = EnchantmentHelper.getRiptide(stack);
+                if (j <= 0 || playerentity.isInWaterOrRain()) {
+                    if (!worldIn.isClientSide) {
+                        stack.hurtAndBreak(1, playerentity, (p_220047_1_) -> {
+                            p_220047_1_.broadcastBreakEvent(entityLiving.getUsedItemHand());
                         });
                         if (j == 0) {
                             SpearEntity spearentity;
                             spearentity = new SpearEntity(worldIn, playerentity, stack, entity, type, this.attackDamage);
-                            spearentity.setDirectionAndMovement(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
-                            if (playerentity.abilities.isCreativeMode) {
-                                spearentity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+                            spearentity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
+                            if (playerentity.abilities.instabuild) {
+                                spearentity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
                             }
 
-                            worldIn.addEntity(spearentity);
-                            worldIn.playMovingSound((PlayerEntity)null, spearentity, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                            if (!playerentity.abilities.isCreativeMode) {
-                                playerentity.inventory.deleteStack(stack);
+                            worldIn.addFreshEntity(spearentity);
+                            worldIn.playSound((PlayerEntity)null, spearentity, SoundEvents.TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                            if (!playerentity.abilities.instabuild) {
+                                playerentity.inventory.removeItem(stack);
                             }
                         }
                     }
 
-                    playerentity.addStat(Stats.ITEM_USED.get(this));
+                    playerentity.awardStat(Stats.ITEM_USED.get(this));
                     if (j > 0) {
-                        float f7 = playerentity.rotationYaw;
-                        float f = playerentity.rotationPitch;
+                        float f7 = playerentity.yRot;
+                        float f = playerentity.xRot;
                         float f1 = -MathHelper.sin(f7 * ((float)Math.PI / 180F)) * MathHelper.cos(f * ((float)Math.PI / 180F));
                         float f2 = -MathHelper.sin(f * ((float)Math.PI / 180F));
                         float f3 = MathHelper.cos(f7 * ((float)Math.PI / 180F)) * MathHelper.cos(f * ((float)Math.PI / 180F));
@@ -113,8 +115,8 @@ public class SpearItem extends Item {
                         f1 = f1 * (f5 / f4);
                         f2 = f2 * (f5 / f4);
                         f3 = f3 * (f5 / f4);
-                        playerentity.addVelocity((double)f1, (double)f2, (double)f3);
-                        playerentity.startSpinAttack(20);
+                        playerentity.push((double)f1, (double)f2, (double)f3);
+                        playerentity.startAutoSpinAttack(20);
                         if (playerentity.isOnGround()) {
                             float f6 = 1.1999999F;
                             playerentity.move(MoverType.SELF, new Vector3d(0.0D, (double)1.1999999F, 0.0D));
@@ -122,14 +124,14 @@ public class SpearItem extends Item {
 
                         SoundEvent soundevent;
                         if (j >= 3) {
-                            soundevent = SoundEvents.ITEM_TRIDENT_RIPTIDE_3;
+                            soundevent = SoundEvents.TRIDENT_RIPTIDE_3;
                         } else if (j == 2) {
-                            soundevent = SoundEvents.ITEM_TRIDENT_RIPTIDE_2;
+                            soundevent = SoundEvents.TRIDENT_RIPTIDE_2;
                         } else {
-                            soundevent = SoundEvents.ITEM_TRIDENT_RIPTIDE_1;
+                            soundevent = SoundEvents.TRIDENT_RIPTIDE_1;
                         }
 
-                        worldIn.playMovingSound((PlayerEntity)null, playerentity, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                        worldIn.playSound((PlayerEntity)null, playerentity, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
                     }
 
                 }
@@ -137,29 +139,29 @@ public class SpearItem extends Item {
         }
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack itemstack = playerIn.getHeldItem(handIn);
-        if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack itemstack = playerIn.getItemInHand(handIn);
+        if (itemstack.getDamageValue() >= itemstack.getMaxDamage()) {
             return new ActionResult<>(ActionResultType.FAIL, itemstack);
-        } else if (EnchantmentHelper.getRiptideModifier(itemstack) > 0 && !playerIn.isWet()) {
+        } else if (EnchantmentHelper.getRiptide(itemstack) > 0 && !playerIn.isInWaterOrRain()) {
             return new ActionResult<>(ActionResultType.FAIL, itemstack);
         } else {
-            playerIn.setActiveHand(handIn);
+            playerIn.startUsingItem(handIn);
             return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
         }
     }
 
-    public int getItemEnchantability() {
-        return this.tier.getEnchantability();
+    public int getEnchantmentValue() {
+        return this.tier.getEnchantmentValue();
     }
 
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-        return this.tier.getRepairMaterial().test(repair) || super.getIsRepairable(toRepair, repair);
+    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
+        return this.tier.getRepairIngredient().test(repair) || super.isValidRepairItem(toRepair, repair);
     }
 
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(1, attacker, (p_220048_0_) -> {
-            p_220048_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(1, attacker, (p_220048_0_) -> {
+            p_220048_0_.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
         });
         return true;
     }
@@ -167,10 +169,10 @@ public class SpearItem extends Item {
     /**
      * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
      */
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        if ((double)state.getBlockHardness(worldIn, pos) != 0.0D) {
-            stack.damageItem(2, entityLiving, (p_220046_0_) -> {
-                p_220046_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+    public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+        if ((double)state.getDestroySpeed(worldIn, pos) != 0.0D) {
+            stack.hurtAndBreak(2, entityLiving, (p_220046_0_) -> {
+                p_220046_0_.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
             });
         }
 

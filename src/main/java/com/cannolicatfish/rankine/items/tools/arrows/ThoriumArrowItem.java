@@ -17,6 +17,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class ThoriumArrowItem extends ArrowItem {
     public ThoriumArrowItem(Properties builder) {
         super(builder);
@@ -30,11 +32,11 @@ public class ThoriumArrowItem extends ArrowItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
-            tooltip.add(new StringTextComponent("Summons lightning upon landing. Does not require rain.").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent("Summons lightning upon landing. Does not require rain.").withStyle(TextFormatting.GRAY));
         } else {
-            tooltip.add(new StringTextComponent("Hold shift for more information...").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent("Hold shift for more information...").withStyle(TextFormatting.GRAY));
         }
 
     }

@@ -22,12 +22,12 @@ public class PetrifiedChorusTreeFeature extends Feature<BaseTreeFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
         int trunkHeight = rand.nextInt(11) + 10;
 
 
         boolean flag = true;
-        if (pos.getY() >= 1 && pos.getY() + trunkHeight + 1 <= reader.getHeight()) {
+        if (pos.getY() >= 1 && pos.getY() + trunkHeight + 1 <= reader.getMaxBuildHeight()) {
             for(int j = pos.getY(); j <= pos.getY() + 1 + trunkHeight; ++j) {
                 int k = 1;
                 if (j == pos.getY()) {
@@ -42,8 +42,8 @@ public class PetrifiedChorusTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
                 for(int l = pos.getX() - k; l <= pos.getX() + k && flag; ++l) {
                     for(int i1 = pos.getZ() - k; i1 <= pos.getZ() + k && flag; ++i1) {
-                        if (j >= 0 && j < reader.getHeight()) {
-                            if (!WorldgenUtils.isAir(reader, blockpos$mutableblockpos.setPos(l, j, i1))) {
+                        if (j >= 0 && j < reader.getMaxBuildHeight()) {
+                            if (!WorldgenUtils.isAir(reader, blockpos$mutableblockpos.set(l, j, i1))) {
                                 flag = false;
                             }
                         }
@@ -56,7 +56,7 @@ public class PetrifiedChorusTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
             if (!flag) {
                 return false;
-            } else if (isValidGround(reader, pos.down()) && pos.getY() < reader.getHeight() - trunkHeight - 1) {
+            } else if (isValidGround(reader, pos.below()) && pos.getY() < reader.getMaxBuildHeight() - trunkHeight - 1) {
                 WorldgenUtils.checkLog(reader, pos, rand, config, Direction.Axis.Y);
                 branch(reader,pos,rand,config,0);
                 return true;
@@ -74,7 +74,7 @@ public class PetrifiedChorusTreeFeature extends Feature<BaseTreeFeatureConfig> {
         tier += 1;
         int height = rand.nextInt(3)+2;
         for (int i = 1; i <= height; ++i) {
-            WorldgenUtils.checkLog(reader, pos.up(i), rand, config, Direction.Axis.Y);
+            WorldgenUtils.checkLog(reader, pos.above(i), rand, config, Direction.Axis.Y);
         }
         if (tier > 5) return;
         for (Direction dir : Direction.values()) {
@@ -82,20 +82,20 @@ public class PetrifiedChorusTreeFeature extends Feature<BaseTreeFeatureConfig> {
             if (rand.nextFloat() < 0.3) {
                 int length = rand.nextInt(2)+1;
                 for (int i = 1; i <= length; ++i) {
-                    if (areAllNeighborsEmpty(reader,pos.up(height).offset(dir,i),dir.getOpposite())) {
-                        WorldgenUtils.checkLog(reader, pos.up(height).offset(dir,i), rand, config, dir.getAxis());
+                    if (areAllNeighborsEmpty(reader,pos.above(height).relative(dir,i),dir.getOpposite())) {
+                        WorldgenUtils.checkLog(reader, pos.above(height).relative(dir,i), rand, config, dir.getAxis());
                     } else {
                         break;
                     }
                 }
-                branch(reader, pos.up(height).offset(dir,length), rand, config, tier);
+                branch(reader, pos.above(height).relative(dir,length), rand, config, tier);
             }
         }
     }
 
     private static boolean areAllNeighborsEmpty(IWorldReader worldIn, BlockPos pos, @Nullable Direction excludingSide) {
         for(Direction direction : Direction.Plane.HORIZONTAL) {
-            if (direction != excludingSide && !worldIn.isAirBlock(pos.offset(direction))) {
+            if (direction != excludingSide && !worldIn.isEmptyBlock(pos.relative(direction))) {
                 return false;
             }
         }
@@ -104,6 +104,6 @@ public class PetrifiedChorusTreeFeature extends Feature<BaseTreeFeatureConfig> {
     }
 
     public static boolean isValidGround(IWorld world, BlockPos pos) {
-        return world.getBlockState(pos).isIn(RankineTags.Blocks.BASE_STONE_END);
+        return world.getBlockState(pos).is(RankineTags.Blocks.BASE_STONE_END);
     }
 }

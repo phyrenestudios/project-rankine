@@ -13,7 +13,7 @@ public class CedarTree extends Tree {
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return RankineFeatures.RED_CEDAR_TREE.get().withConfiguration(RankineBiomeFeatures.RED_CEDAR_TREE_CONFIG);
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
+        return RankineFeatures.RED_CEDAR_TREE.get().configured(RankineBiomeFeatures.RED_CEDAR_TREE_CONFIG);
     }
 }

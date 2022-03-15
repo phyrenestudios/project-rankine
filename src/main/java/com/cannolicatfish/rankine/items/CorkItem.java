@@ -17,9 +17,9 @@ public class CorkItem extends BlockItem {
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        ActionResultType actionresulttype = this.tryPlace(new BlockItemUseContext(context));
-        return !actionresulttype.isSuccessOrConsume() && this.isFood() ? this.onItemRightClick(context.getWorld(), context.getPlayer(), context.getHand()).getType() : actionresulttype;
+    public ActionResultType useOn(ItemUseContext context) {
+        ActionResultType actionresulttype = this.place(new BlockItemUseContext(context));
+        return !actionresulttype.consumesAction() && this.isEdible() ? this.use(context.getLevel(), context.getPlayer(), context.getHand()).getResult() : actionresulttype;
     }
 
     /**
@@ -27,13 +27,13 @@ public class CorkItem extends BlockItem {
      * {@link #onItemUse}.
      */
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        BlockRayTraceResult blockraytraceresult = rayTrace(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
-        if (!worldIn.getFluidState(blockraytraceresult.getPos()).isEmpty()) {
-            ActionResultType actionresulttype = super.onItemUse(new ItemUseContext(playerIn, handIn, blockraytraceresult));
-            return new ActionResult<>(actionresulttype, playerIn.getHeldItem(handIn));
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        BlockRayTraceResult blockraytraceresult = getPlayerPOVHitResult(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
+        if (!worldIn.getFluidState(blockraytraceresult.getBlockPos()).isEmpty()) {
+            ActionResultType actionresulttype = super.useOn(new ItemUseContext(playerIn, handIn, blockraytraceresult));
+            return new ActionResult<>(actionresulttype, playerIn.getItemInHand(handIn));
         } else {
-            return super.onItemRightClick(worldIn,playerIn,handIn);
+            return super.use(worldIn,playerIn,handIn);
         }
 
     }

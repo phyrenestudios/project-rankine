@@ -12,6 +12,8 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class PenningTrapItem extends Item {
 
     public PenningTrapItem(Properties properties) {
@@ -19,22 +21,22 @@ public class PenningTrapItem extends Item {
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World worldIn = context.getWorld();
-        BlockPos pos = context.getPos();
+    public ActionResultType useOn(ItemUseContext context) {
+        World worldIn = context.getLevel();
+        BlockPos pos = context.getClickedPos();
         PlayerEntity playerIn = context.getPlayer();
-        ItemStack stack = context.getItem();
+        ItemStack stack = context.getItemInHand();
 
         if (stack.getTag() == null && stack.getTag().getInt("filled") == 0) {
-            if (worldIn.getBlockState(pos).matchesBlock(RankineBlocks.ANTIMATTER.get())) {
-                context.getItem().getOrCreateTag().putInt("filled", 1);
+            if (worldIn.getBlockState(pos).is(RankineBlocks.ANTIMATTER.get())) {
+                context.getItemInHand().getOrCreateTag().putInt("filled", 1);
                 worldIn.removeBlock(pos, false);
                 playerIn.playSound(RankineSoundEvents.PENNING_TRAP_ABSORB.get(), 1.0F, 1.0F);
                 return ActionResultType.SUCCESS;
             }
         } else if (stack.getTag() != null && stack.getTag().getInt("filled") != 0) {
-            if (worldIn.getBlockState(pos).matchesBlock(Blocks.DRAGON_EGG) && worldIn.getBlockState(pos.up()).isAir() && !worldIn.isRemote) {
-                worldIn.setBlockState(pos.up(),Blocks.DRAGON_EGG.getDefaultState(),3);
+            if (worldIn.getBlockState(pos).is(Blocks.DRAGON_EGG) && worldIn.getBlockState(pos.above()).isAir() && !worldIn.isClientSide) {
+                worldIn.setBlock(pos.above(),Blocks.DRAGON_EGG.defaultBlockState(),3);
                 stack.getTag().putInt("filled", 0);
                 return ActionResultType.SUCCESS;
             }
@@ -42,7 +44,7 @@ public class PenningTrapItem extends Item {
             stack.getTag().putInt("filled", 0);
             return ActionResultType.SUCCESS;
         }
-        return super.onItemUse(context);
+        return super.useOn(context);
     }
 
 }

@@ -20,11 +20,11 @@ public class IncludesCompositionPredicate extends ItemPredicate {
     }
 
     public IncludesCompositionPredicate(JsonObject jsonObject) {
-        this(JSONUtils.getString(jsonObject, "comp"),new ResourceLocation(JSONUtils.getString(jsonObject,"tag")));
+        this(JSONUtils.getAsString(jsonObject, "comp"),new ResourceLocation(JSONUtils.getAsString(jsonObject,"tag")));
     }
 
     @Override
-    public boolean test(ItemStack stack) {
+    public boolean matches(ItemStack stack) {
         if (stack.getItem() instanceof IAlloyItem && stack.getItem().getTags().contains(tag)) {
             return IAlloyItem.getAlloyComposition(stack).contains(str);
         }

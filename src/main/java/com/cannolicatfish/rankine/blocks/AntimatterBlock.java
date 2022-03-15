@@ -11,6 +11,8 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class AntimatterBlock extends Block {
     public AntimatterBlock(Properties properties) {
         super(properties);
@@ -22,16 +24,16 @@ public class AntimatterBlock extends Block {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (player.getHeldItem(handIn).getItem() != RankineItems.PENNING_TRAP.get()) {
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (player.getItemInHand(handIn).getItem() != RankineItems.PENNING_TRAP.get()) {
             explode(worldIn, pos);
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return super.use(state, worldIn, pos, player, handIn, hit);
     }
 
     public static void explode(World worldIn, BlockPos pos) {
-        if (!worldIn.isRemote) {
-            worldIn.createExplosion(null, pos.getX() + 0.5, pos.getY() + 2, pos.getZ() + 0.5, 15.0F, Explosion.Mode.BREAK);
+        if (!worldIn.isClientSide) {
+            worldIn.explode(null, pos.getX() + 0.5, pos.getY() + 2, pos.getZ() + 0.5, 15.0F, Explosion.Mode.BREAK);
             worldIn.removeBlock(pos, false);
 
 

@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class BandageItem extends Item {
 
     public BandageItem(Properties properties) {
@@ -14,35 +16,35 @@ public class BandageItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
         if (playerIn.getHealth() < playerIn.getMaxHealth()) {
-            ItemStack itemstack = playerIn.getHeldItem(handIn);
-            worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ITEM_BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 0.1F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-            playerIn.getCooldownTracker().setCooldown(this, 60);
+            ItemStack itemstack = playerIn.getItemInHand(handIn);
+            worldIn.playSound((PlayerEntity)null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 0.1F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+            playerIn.getCooldowns().addCooldown(this, 60);
 
-            if (!worldIn.isRemote && !playerIn.abilities.isCreativeMode) {
+            if (!worldIn.isClientSide && !playerIn.abilities.instabuild) {
                 playerIn.heal(2.0f);
                 itemstack.shrink(1);
             }
         }
 
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return super.use(worldIn, playerIn, handIn);
     }
 
     @Override
-    public ActionResultType itemInteractionForEntity(ItemStack stack, PlayerEntity playerIn, LivingEntity target, Hand hand) {
-        World worldIn = playerIn.getEntityWorld();
+    public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity playerIn, LivingEntity target, Hand hand) {
+        World worldIn = playerIn.getCommandSenderWorld();
         if (target.getHealth() < target.getMaxHealth()) {
-            ItemStack itemstack = playerIn.getHeldItem(hand);
-            worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ITEM_BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 0.1F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-            playerIn.getCooldownTracker().setCooldown(this, 60);
+            ItemStack itemstack = playerIn.getItemInHand(hand);
+            worldIn.playSound((PlayerEntity)null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 0.1F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+            playerIn.getCooldowns().addCooldown(this, 60);
 
-            if (!worldIn.isRemote) {
+            if (!worldIn.isClientSide) {
                 target.heal(2.0f);
                 itemstack.shrink(1);
             }
         }
 
-        return super.itemInteractionForEntity(stack,playerIn,target,hand);
+        return super.interactLivingEntity(stack,playerIn,target,hand);
     }
 }

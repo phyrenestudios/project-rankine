@@ -14,7 +14,7 @@ public class POIFixer {
     {
         try
         {
-            POIFixer.blockStatesInjector = ObfuscationReflectionHelper.findMethod(PointOfInterestType.class,"func_221052_a", PointOfInterestType.class);
+            POIFixer.blockStatesInjector = ObfuscationReflectionHelper.findMethod(PointOfInterestType.class,"registerBlockStates", PointOfInterestType.class);
             POIFixer.blockStatesInjector.setAccessible(true);
         }
         catch (SecurityException | ObfuscationReflectionHelper.UnableToFindMethodException e)

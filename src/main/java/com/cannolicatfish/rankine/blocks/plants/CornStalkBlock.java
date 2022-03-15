@@ -25,100 +25,103 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.block.AbstractBlock.OffsetType;
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class CornStalkBlock extends BushBlock {
 
     public static final EnumProperty<TripleBlockSection> SECTION = EnumProperty.create("section", TripleBlockSection.class);
 
     public CornStalkBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(SECTION, TripleBlockSection.BOTTOM));
+        this.registerDefaultState(this.stateDefinition.any().setValue(SECTION, TripleBlockSection.BOTTOM));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(SECTION);
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch (state.get(SECTION)) {
+        switch (state.getValue(SECTION)) {
             case BOTTOM:
             case MIDDLE:
             case TOP:
-                return VoxelShapes.fullCube();
+                return VoxelShapes.block();
         }
         return super.getShape(state, worldIn, pos, context);
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        switch (state.get(SECTION)) {
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        switch (state.getValue(SECTION)) {
             case BOTTOM:
-                return worldIn.getBlockState(pos.down()).isIn(Tags.Blocks.DIRT) || worldIn.getBlockState(pos.down()).isIn(RankineTags.Blocks.FARMLAND);
+                return worldIn.getBlockState(pos.below()).is(Tags.Blocks.DIRT) || worldIn.getBlockState(pos.below()).is(RankineTags.Blocks.FARMLAND);
             case MIDDLE:
-                BlockState blockstate1 = worldIn.getBlockState(pos.down());
-                if (state.getBlock() != this) return super.isValidPosition(state, worldIn, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
-                return blockstate1.matchesBlock(this) && blockstate1.get(SECTION) == TripleBlockSection.BOTTOM;
+                BlockState blockstate1 = worldIn.getBlockState(pos.below());
+                if (state.getBlock() != this) return super.canSurvive(state, worldIn, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
+                return blockstate1.is(this) && blockstate1.getValue(SECTION) == TripleBlockSection.BOTTOM;
             case TOP:
-                BlockState blockstate2 = worldIn.getBlockState(pos.down());
-                if (state.getBlock() != this) return super.isValidPosition(state, worldIn, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
-                return blockstate2.matchesBlock(this) && blockstate2.get(SECTION) == TripleBlockSection.MIDDLE;
+                BlockState blockstate2 = worldIn.getBlockState(pos.below());
+                if (state.getBlock() != this) return super.canSurvive(state, worldIn, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
+                return blockstate2.is(this) && blockstate2.getValue(SECTION) == TripleBlockSection.MIDDLE;
         }
-        return super.isValidPosition(state, worldIn, pos);
+        return super.canSurvive(state, worldIn, pos);
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        TripleBlockSection tripleBlockSection = stateIn.get(SECTION);
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        TripleBlockSection tripleBlockSection = stateIn.getValue(SECTION);
         switch (tripleBlockSection) {
             case BOTTOM:
             case MIDDLE:
-                if (facing.getAxis() != Direction.Axis.Y || !(facing == Direction.UP) || facingState.matchesBlock(this) && facingState.get(SECTION) != tripleBlockSection) {
-                    return facing == Direction.DOWN && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+                if (facing.getAxis() != Direction.Axis.Y || !(facing == Direction.UP) || facingState.is(this) && facingState.getValue(SECTION) != tripleBlockSection) {
+                    return facing == Direction.DOWN && !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
                 } else {
-                    return Blocks.AIR.getDefaultState();
+                    return Blocks.AIR.defaultBlockState();
                 }
             case TOP:
                 break;
         }
-        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        if (!worldIn.isRemote) {
-            worldIn.setBlockState(pos.up(1), this.getDefaultState().with(SECTION, TripleBlockSection.MIDDLE));
-            worldIn.setBlockState(pos.up(2), this.getDefaultState().with(SECTION, TripleBlockSection.TOP));
+    public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        if (!worldIn.isClientSide) {
+            worldIn.setBlockAndUpdate(pos.above(1), this.defaultBlockState().setValue(SECTION, TripleBlockSection.MIDDLE));
+            worldIn.setBlockAndUpdate(pos.above(2), this.defaultBlockState().setValue(SECTION, TripleBlockSection.TOP));
         }
-        super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+        super.setPlacedBy(worldIn, pos, state, placer, stack);
     }
 
     @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!worldIn.isRemote) {
+    public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+        if (!worldIn.isClientSide) {
             if (player.isCreative()) {
                 removeLowerSections(worldIn, pos, state, player);
             } else {
                 //spawnDrops(state, worldIn, pos, (TileEntity)null, player, player.getHeldItemMainhand());
             }
         }
-        super.onBlockHarvested(worldIn, pos, state, player);
+        super.playerWillDestroy(worldIn, pos, state, player);
     }
 
     protected static void removeLowerSections(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (state.get(SECTION).equals(TripleBlockSection.MIDDLE)) {
-            BlockPos blockpos = pos.down(1);
+        if (state.getValue(SECTION).equals(TripleBlockSection.MIDDLE)) {
+            BlockPos blockpos = pos.below(1);
             BlockState blockstate = world.getBlockState(blockpos);
-            if (blockstate.getBlock() == state.getBlock() && blockstate.get(SECTION) == TripleBlockSection.BOTTOM) {
-                world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 35);
-                world.playEvent(player, 2001, blockpos, Block.getStateId(blockstate));
+            if (blockstate.getBlock() == state.getBlock() && blockstate.getValue(SECTION) == TripleBlockSection.BOTTOM) {
+                world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
+                world.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
             }
         }
-        if (state.get(SECTION).equals(TripleBlockSection.TOP)) {
-            BlockPos blockpos = pos.down(2);
+        if (state.getValue(SECTION).equals(TripleBlockSection.TOP)) {
+            BlockPos blockpos = pos.below(2);
             BlockState blockstate = world.getBlockState(blockpos);
-            if (blockstate.getBlock() == state.getBlock() && blockstate.get(SECTION) == TripleBlockSection.BOTTOM) {
-                world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 35);
-                world.playEvent(player, 2001, blockpos, Block.getStateId(blockstate));
+            if (blockstate.getBlock() == state.getBlock() && blockstate.getValue(SECTION) == TripleBlockSection.BOTTOM) {
+                world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
+                world.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
             }
         }
     }
@@ -129,9 +132,9 @@ public class CornStalkBlock extends BushBlock {
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity) {
-            entityIn.setMotionMultiplier(state, new Vector3d((double)0.98F, 1.0D, (double)0.98F));
+            entityIn.makeStuckInBlock(state, new Vector3d((double)0.98F, 1.0D, (double)0.98F));
         }
     }
 

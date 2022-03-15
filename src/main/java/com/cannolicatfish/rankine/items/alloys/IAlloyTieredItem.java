@@ -55,33 +55,33 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         });
         if (this.isAlloyInit(stack)) {
             if (!Screen.hasShiftDown()) {
-                tooltip.add((new StringTextComponent("Hold shift for details...")).mergeStyle(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Hold shift for details...")).withStyle(TextFormatting.GRAY));
             }
             if (Screen.hasShiftDown()) {
                 if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
-                    tooltip.add((new StringTextComponent("Any Composition").mergeStyle(TextFormatting.GOLD)));
+                    tooltip.add((new StringTextComponent("Any Composition").withStyle(TextFormatting.GOLD)));
                 } else {
-                    tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD)));
+                    tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(TextFormatting.GOLD)));
                 }
 
                 if (!IAlloyItem.getAlloyModifiers(stack).isEmpty()) {
-                    tooltip.add((new StringTextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).mergeStyle(TextFormatting.AQUA)));
+                    tooltip.add((new StringTextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(TextFormatting.AQUA)));
                 } else {
-                    tooltip.add((new StringTextComponent("No Modifiers Present").mergeStyle(TextFormatting.AQUA)));
+                    tooltip.add((new StringTextComponent("No Modifiers Present").withStyle(TextFormatting.AQUA)));
                 }
 
                 if (!this.needsRefresh(stack)) {
 
-                    tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(stack) - stack.getDamage()) + "/" + getAlloyDurability(stack))).mergeStyle(TextFormatting.DARK_GREEN));
-                    tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(stack))).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(stack) - stack.getDamageValue()) + "/" + getAlloyDurability(stack))).withStyle(TextFormatting.DARK_GREEN));
+                    tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(stack))).withStyle(TextFormatting.GRAY));
                     if (Config.ALLOYS.ALLOY_CORROSION.get()) {
-                        tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                        tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).withStyle(TextFormatting.GRAY));
                     }
                     if (Config.ALLOYS.ALLOY_HEAT.get()) {
-                        tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                        tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).withStyle(TextFormatting.GRAY));
                     }
                     if (Config.ALLOYS.ALLOY_TOUGHNESS.get()) {
-                        tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                        tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack) * 100)) + "%")).withStyle(TextFormatting.GRAY));
                     }
                 }
             }
@@ -376,8 +376,8 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
             i *= 2;
         }
 
-        if (hr > 0 && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SHAPE_MEMORY,stack) >= 1) {
-            stack.setDamage(Math.max(stack.getDamage() - i,0));
+        if (hr > 0 && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.SHAPE_MEMORY,stack) >= 1) {
+            stack.setDamageValue(Math.max(stack.getDamageValue() - i,0));
             i = 0;
         }
         return i;
@@ -385,7 +385,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
 
     default int calcCorrosionResistanceProc(ItemStack stack, LivingEntity entity, Random random) {
         float corrResist = getCorrResist(stack);
-        if ((random.nextFloat() > corrResist && entity.isWet())) {
+        if ((random.nextFloat() > corrResist && entity.isInWaterOrRain())) {
             return Config.ALLOYS.ALLOY_CORROSION_AMT.get();
         }
         return 0;
@@ -393,7 +393,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
 
     default int calcHeatResistanceProc(ItemStack stack, LivingEntity entity, Random random) {
         float heatResist = getHeatResist(stack);
-        if ((random.nextFloat() > heatResist &&  (entity.isInLava() || entity.getFireTimer() > 0 || entity.getEntityWorld().getDimensionKey() == World.THE_NETHER))) {
+        if ((random.nextFloat() > heatResist &&  (entity.isInLava() || entity.getRemainingFireTicks() > 0 || entity.getCommandSenderWorld().dimension() == World.NETHER))) {
             return Config.ALLOYS.ALLOY_HEAT_AMT.get();
         }
         return 0;
@@ -414,24 +414,24 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         int interval = 5;
         int maxLvl = 5;
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
-        if (rs != null && worldIn.getRecipeManager().getRecipe(rs).isPresent()) {
-            AlloyingRecipe recipe = (AlloyingRecipe) worldIn.getRecipeManager().getRecipe(rs).get();
+        if (rs != null && worldIn.getRecipeManager().byKey(rs).isPresent()) {
+            AlloyingRecipe recipe = (AlloyingRecipe) worldIn.getRecipeManager().byKey(rs).get();
             start = recipe.getMinEnchantability();
             interval = recipe.getEnchantInterval();
             maxLvl = recipe.getMaxEnchantLevelIn();
             for (Enchantment e: AlloyEnchantmentUtils.getAlloyEnchantments(recipe,stack,worldIn))
             {
                 int enchLvl = Math.min(Math.floorDiv(Math.max(getAlloyEnchantability(stack) - start + interval,0),interval),maxLvl);
-                if (enchLvl > 0 && EnchantmentHelper.getEnchantmentLevel(e,stack) == 0) {
-                    stack.addEnchantment(e,Math.min(e.getMaxLevel(),enchLvl));
+                if (enchLvl > 0 && EnchantmentHelper.getItemEnchantmentLevel(e,stack) == 0) {
+                    stack.enchant(e,Math.min(e.getMaxLevel(),enchLvl));
                 }
             }
         }
         for (Enchantment e: AlloyEnchantmentUtils.getElementEnchantments(getElementRecipes(IAlloyItem.getAlloyComposition(stack),worldIn),getPercents(IAlloyItem.getAlloyComposition(stack)),stack,worldIn))
         {
             int enchLvl = Math.min(Math.floorDiv(Math.max(getAlloyEnchantability(stack) - start + interval,0),interval),maxLvl);
-            if (enchLvl > 0 && EnchantmentHelper.getEnchantmentLevel(e,stack) == 0) {
-                stack.addEnchantment(e,Math.min(e.getMaxLevel(),enchLvl));
+            if (enchLvl > 0 && EnchantmentHelper.getItemEnchantmentLevel(e,stack) == 0) {
+                stack.enchant(e,Math.min(e.getMaxLevel(),enchLvl));
             }
         }
 

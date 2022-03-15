@@ -43,7 +43,7 @@ public class RankineEnchantmentTypes {
         return itemIn instanceof AlloySwordItem; });
 
     public static EnchantmentType ALLOYTOOL = EnchantmentType.create("alloytool", (itemIn) -> {
-        return itemIn instanceof IAlloyTool && itemIn.isDamageable(); });
+        return itemIn instanceof IAlloyTool && itemIn.canBeDepleted(); });
 
     public static EnchantmentType ENDER_AMALGAM_HAMMER = EnchantmentType.create("ender_hammer", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_HAMMER.get(); });

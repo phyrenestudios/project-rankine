@@ -3,6 +3,8 @@ package com.cannolicatfish.rankine.items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.item.Item.Properties;
+
 public class BatteryItem extends Item {
     public BatteryItem(Properties properties) {
         super(properties);
@@ -27,7 +29,7 @@ public class BatteryItem extends Item {
 
     public static boolean hasPowerRequired(ItemStack stack, int powerRequired) {
         if (stack.getItem() instanceof BatteryItem) {
-            return stack.getDamage() + powerRequired < stack.getMaxDamage();
+            return stack.getDamageValue() + powerRequired < stack.getMaxDamage();
         } else {
             return false;
         }

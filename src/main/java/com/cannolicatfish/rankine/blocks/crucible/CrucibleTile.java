@@ -77,15 +77,15 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
             }
         }
 
-        public int size() {
+        public int getCount() {
             return 3;
         }
     };
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
-        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt,this.items);
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
@@ -93,8 +93,8 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
         compound.putInt("color", this.color);
@@ -104,20 +104,20 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     }
 
     public void tick() {
-        boolean flag = this.isHeated(this.pos,this.world);
+        boolean flag = this.isHeated(this.worldPosition,this.level);
         boolean flag1 = this.isCooking();
         boolean flag2 = false;
 
-        if (!this.world.isRemote) {
+        if (!this.level.isClientSide) {
             if (!flag1) {
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(CrucibleBlock.FLUID, false), 3);
+                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(CrucibleBlock.FLUID, false), 3);
             } else if (this.getTileData().getInt("color") != this.color) {
                 this.getTileData().putInt("color",this.color);
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(CrucibleBlock.FLUID, this.isCooking()), 3);
+                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(CrucibleBlock.FLUID, this.isCooking()), 3);
             }
             ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2), this.items.get(3)};
             if ((this.isCooking() && flag) || !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(3).isEmpty()) {
-                CrucibleRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUCIBLE, this, this.world).orElse(null);
+                CrucibleRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE, this, this.level).orElse(null);
                 if (this.canSmelt(irecipe, this)) {
                     if (this.cookTime == 0) {
                         this.cookTimeTotal = getCookTime();
@@ -156,18 +156,18 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
 
             if (flag1 != this.isCooking()) {
                 flag2 = true;
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(CrucibleBlock.FLUID, this.isCooking()), 3);
+                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(CrucibleBlock.FLUID, this.isCooking()), 3);
             }
         }
 
         if (flag2) {
-            this.markDirty();
+            this.setChanged();
         }
 
     }
 
     public int getCookTime() {
-        CrucibleRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUCIBLE, this, this.world).orElse(null);
+        CrucibleRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE, this, this.level).orElse(null);
         if (irecipe != null) {
             return irecipe.getRecipeCookTime(this);
         } else {
@@ -176,9 +176,9 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     }
 
     private boolean isHeated(BlockPos pos, World worldIn) {
-        List<BlockPos> positions = Arrays.asList(pos.down(),pos.east(),pos.north(),pos.west(),pos.south());
+        List<BlockPos> positions = Arrays.asList(pos.below(),pos.east(),pos.north(),pos.west(),pos.south());
         for (BlockPos p : positions) {
-            if (worldIn.getBlockState(p).isIn(RankineTags.Blocks.HEAT_SOURCES)) {
+            if (worldIn.getBlockState(p).is(RankineTags.Blocks.HEAT_SOURCES)) {
                 heatPower = 1;
                 return true;
             }
@@ -221,13 +221,13 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
                     return true;
                 }
 
-                if(!output.isItemEqual(result) || !secondary.isItemEqual(sec))
+                if(!output.sameItem(result) || !secondary.sameItem(sec))
                 {
                     return false;
                 }
                 int res = output.getCount() + result.getCount();
                 int res2 = secondary.getCount() + sec.getCount();
-                if (ItemStack.areItemStackTagsEqual(output, result) && ItemStack.areItemsEqual(output, result) && ItemStack.areItemStackTagsEqual(secondary, sec) && ItemStack.areItemsEqual(secondary, sec)) {
+                if (ItemStack.tagMatches(output, result) && ItemStack.isSame(output, result) && ItemStack.tagMatches(secondary, sec) && ItemStack.isSame(secondary, sec)) {
                     this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
                     return res <= 64 && res2 <= 64 && res <= output.getMaxStackSize() && res2 <= secondary.getMaxStackSize();
                 } else {
@@ -242,7 +242,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
 
     @Override
     public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (facing == Direction.UP)
                 return handlers[0].cast();
             else if (facing == Direction.DOWN)
@@ -254,8 +254,8 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     }
 
     @Override
-    public void remove() {
-        super.remove();
+    public void setRemoved() {
+        super.setRemoved();
         for (int x = 0; x < handlers.length; x++)
             handlers[x].invalidate();
     }
@@ -268,7 +268,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     @Override
     @Nullable
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new CrucibleContainer(i, world, pos, playerInventory, playerEntity, this, this.furnaceData);
+        return new CrucibleContainer(i, level, worldPosition, playerInventory, playerEntity, this, this.furnaceData);
     }
 
 
@@ -282,17 +282,17 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, @Nullable Direction direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, @Nullable Direction direction) {
+        return this.canPlaceItem(index, itemStackIn);
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         return true;
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return this.items.size();
     }
 
@@ -308,47 +308,47 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public ItemStack getItem(int index) {
         return this.items.get(index);
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return ItemStackHelper.getAndSplit(this.items, index, count);
+    public ItemStack removeItem(int index, int count) {
+        return ItemStackHelper.removeItem(this.items, index, count);
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.items, index);
+    public ItemStack removeItemNoUpdate(int index) {
+        return ItemStackHelper.takeItem(this.items, index);
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
         this.items.set(index, stack);
-        if (stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
         }
 
         if (index == 0 && !flag) {
             this.cookTimeTotal = this.getCookTime();
             this.cookTime = 0;
-            this.markDirty();
+            this.setChanged();
         }
     }
 
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        if (this.world.getTileEntity(this.pos) != this) {
+    public boolean stillValid(PlayerEntity player) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
-            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+            return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
         }
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
+    public boolean canPlaceItem(int index, ItemStack stack) {
         switch (index)
         {
             case 0:
@@ -362,7 +362,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.items.clear();
     }
 }

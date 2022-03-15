@@ -22,8 +22,8 @@ public class DefaultOreVeinFeature extends Feature<RankineOreFeatureConfig> {
     }
 
 
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, RankineOreFeatureConfig config) {
-        BlockPos posShift = pos.add(8,0,8);
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, RankineOreFeatureConfig config) {
+        BlockPos posShift = pos.offset(8,0,8);
 
         if (rand.nextFloat() < config.chance) {
             float f = rand.nextFloat() * (float) Math.PI;
@@ -45,7 +45,7 @@ public class DefaultOreVeinFeature extends Feature<RankineOreFeatureConfig> {
             for (int l1 = k; l1 <= k + j1; ++l1) {
                 for (int i2 = i1; i2 <= i1 + j1; ++i2) {
                     if (l <= reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, l1, i2)) {
-                        return this.func_207803_a(reader, rand, config, d0, d1, d2, d3, d4, d5, k, l, i1, j1, k1);
+                        return this.doPlace(reader, rand, config, d0, d1, d2, d3, d4, d5, k, l, i1, j1, k1);
                     }
                 }
             }
@@ -54,7 +54,7 @@ public class DefaultOreVeinFeature extends Feature<RankineOreFeatureConfig> {
         return false;
     }
 
-    public boolean func_207803_a(IWorld worldIn, Random random, RankineOreFeatureConfig config, double p_207803_4_, double p_207803_6_, double p_207803_8_, double p_207803_10_, double p_207803_12_, double p_207803_14_, int p_207803_16_, int p_207803_17_, int p_207803_18_, int p_207803_19_, int p_207803_20_) {
+    public boolean doPlace(IWorld worldIn, Random random, RankineOreFeatureConfig config, double p_207803_4_, double p_207803_6_, double p_207803_8_, double p_207803_10_, double p_207803_12_, double p_207803_14_, int p_207803_16_, int p_207803_17_, int p_207803_18_, int p_207803_19_, int p_207803_20_) {
         int i = 0;
         BitSet bitset = new BitSet(p_207803_19_ * p_207803_20_ * p_207803_19_);
         BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
@@ -118,17 +118,17 @@ public class DefaultOreVeinFeature extends Feature<RankineOreFeatureConfig> {
                                         int k2 = l1 - p_207803_16_ + (i2 - p_207803_17_) * p_207803_19_ + (j2 - p_207803_18_) * p_207803_19_ * p_207803_20_;
                                         if (!bitset.get(k2)) {
                                             bitset.set(k2);
-                                            blockpos$mutableblockpos.setPos(l1, i2, j2);
+                                            blockpos$mutableblockpos.set(l1, i2, j2);
                                             Block b = worldIn.getBlockState(blockpos$mutableblockpos).getBlock();
                                             if (config.target.getPredicate().test(worldIn.getBlockState(blockpos$mutableblockpos)) && random.nextFloat() < config.density) {
                                                 if (config.state.getBlock() instanceof RankineOreBlock) {
                                                     if (WorldgenUtils.ORE_STONES.contains(b)) {
-                                                        worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(b)), 19);
+                                                        worldIn.setBlock(blockpos$mutableblockpos, config.state.getBlock().defaultBlockState().setValue(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(b)), 19);
                                                     } else {
-                                                        worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 19);
+                                                        worldIn.setBlock(blockpos$mutableblockpos, config.state.getBlock().defaultBlockState(), 19);
                                                     }
                                                 } else {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 19);
+                                                    worldIn.setBlock(blockpos$mutableblockpos, config.state.getBlock().defaultBlockState(), 19);
                                                 }
                                                 ++i;
                                             }

@@ -11,12 +11,12 @@ public class LightningAspectEnchantment extends Enchantment {
         super(p_i46730_1_, RankineEnchantmentTypes.HAMMER, p_i46730_2_);
     }
 
-    public int getMinEnchantability(int p_77321_1_) {
+    public int getMinCost(int p_77321_1_) {
         return 15;
     }
 
-    public int getMaxEnchantability(int p_223551_1_) {
-        return super.getMinEnchantability(p_223551_1_) + 50;
+    public int getMaxCost(int p_223551_1_) {
+        return super.getMinCost(p_223551_1_) + 50;
     }
 
     public int getMaxLevel() {

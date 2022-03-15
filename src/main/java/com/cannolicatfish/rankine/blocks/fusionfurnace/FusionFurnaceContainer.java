@@ -45,9 +45,9 @@ public class FusionFurnaceContainer extends Container {
     }
     public FusionFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray furnaceData) {
         super(FUSION_FURNACE_CONTAINER, windowId);
-        tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 7);
-        assertIntArraySize(furnaceData, 4);
+        tileEntity = world.getBlockEntity(pos);
+        checkContainerSize(furnaceInventoryIn, 7);
+        checkContainerDataCount(furnaceData, 4);
         this.playerEntity = player;
         this.furnaceInventory = furnaceInventoryIn;
         this.data = furnaceData;
@@ -64,7 +64,7 @@ public class FusionFurnaceContainer extends Container {
 
         layoutPlayerInventorySlots(8, 84);
 
-        this.trackIntArray(furnaceData);
+        this.addDataSlots(furnaceData);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -88,8 +88,8 @@ public class FusionFurnaceContainer extends Container {
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.FUSION_FURNACE.get());
+    public boolean stillValid(PlayerEntity playerIn) {
+        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, RankineBlocks.FUSION_FURNACE.get());
     }
 
     public String getInputTankInfo() {
@@ -113,57 +113,57 @@ public class FusionFurnaceContainer extends Container {
     }
 
     @Override
-    public void detectAndSendChanges() {
-        super.detectAndSendChanges();
+    public void broadcastChanges() {
+        super.broadcastChanges();
         FusionFurnaceTile fusionFurnaceTile = (FusionFurnaceTile) tileEntity;
-        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new FluidStackPacket(fusionFurnaceTile.inputTank.getFluid(),tileEntity.getPos(),true));
-        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new FluidStackPacket(fusionFurnaceTile.outputTank.getFluid(),tileEntity.getPos(), playerEntity.func_241845_aY()));
+        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new FluidStackPacket(fusionFurnaceTile.inputTank.getFluid(),tileEntity.getBlockPos(),true));
+        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new FluidStackPacket(fusionFurnaceTile.outputTank.getFluid(),tileEntity.getBlockPos(), playerEntity.canBeCollidedWith()));
     }
 
     //TODO Rewrite this
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index)
     {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
+        Slot slot = this.slots.get(index);
 
-        if(slot != null && slot.getHasStack())
+        if(slot != null && slot.hasItem())
         {
-            ItemStack stack = slot.getStack();
+            ItemStack stack = slot.getItem();
             itemstack = stack.copy();
             if (index == 5) {
-                if (!this.mergeItemStack(stack, 7, 43, true)) {
+                if (!this.moveItemStackTo(stack, 7, 43, true)) {
                     return ItemStack.EMPTY;
                 }
-                slot.onSlotChange(stack, itemstack);
+                slot.onQuickCraft(stack, itemstack);
             } else if (index > 6) {
                 if (!(stack.getItem() instanceof BatteryItem || stack.getItem() instanceof GasBottleItem || stack.getItem() instanceof GlassBottleItem)) {
-                    if (!this.mergeItemStack(stack, 0, 2, false)) {
+                    if (!this.moveItemStackTo(stack, 0, 2, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (stack.getItem() instanceof BatteryItem) {
-                    if (!this.mergeItemStack(stack, 2, 3, false)) {
+                    if (!this.moveItemStackTo(stack, 2, 3, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if ((stack.getItem() instanceof GasBottleItem || stack.getItem() instanceof GlassBottleItem)) {
-                    if (!this.mergeItemStack(stack, 3, 4, false)) {
+                    if (!this.moveItemStackTo(stack, 3, 4, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (index < 34) {
-                    if (!this.mergeItemStack(stack, 34, 43, false)) {
+                    if (!this.moveItemStackTo(stack, 34, 43, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 43 && !this.mergeItemStack(stack, 7, 34, false)) {
+                } else if (index < 43 && !this.moveItemStackTo(stack, 7, 34, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 7, 43, false)) {
+            } else if (!this.moveItemStackTo(stack, 7, 43, false)) {
                 return ItemStack.EMPTY;
             }
 
             if (stack.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
 
             if (stack.getCount() == itemstack.getCount()) {

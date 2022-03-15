@@ -20,11 +20,11 @@ public class ExactCompositionPredicate extends ItemPredicate {
     }
 
     public ExactCompositionPredicate(JsonObject jsonObject) {
-        this(JSONUtils.getString(jsonObject, "comp"),JSONUtils.getItem(jsonObject,"item"));
+        this(JSONUtils.getAsString(jsonObject, "comp"),JSONUtils.getAsItem(jsonObject,"item"));
     }
 
     @Override
-    public boolean test(ItemStack stack) {
+    public boolean matches(ItemStack stack) {
         if (stack.getItem() instanceof IAlloyItem && stack.getItem() == item) {
             return IAlloyItem.getAlloyComposition(stack).equals(str);
         }

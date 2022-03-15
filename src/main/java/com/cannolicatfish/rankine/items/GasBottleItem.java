@@ -14,6 +14,8 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class GasBottleItem extends Item {
     GasUtilsEnum gas;
     public GasBottleItem(GasUtilsEnum gas, Properties properties) {
@@ -26,15 +28,15 @@ public class GasBottleItem extends Item {
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World worldIn = context.getWorld();
-        BlockPos pos = context.getPos();
-        Direction opp = context.getFace();
+    public ActionResultType useOn(ItemUseContext context) {
+        World worldIn = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        Direction opp = context.getClickedFace();
         if (context.getPlayer() != null) {
-            worldIn.setBlockState(pos.offset(opp), this.getGas().getDefaultState(),3);
-            context.getItem().shrink(1);
-            if (!context.getPlayer().abilities.isCreativeMode) {
-                context.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
+            worldIn.setBlock(pos.relative(opp), this.getGas().defaultBlockState(),3);
+            context.getItemInHand().shrink(1);
+            if (!context.getPlayer().abilities.instabuild) {
+                context.getPlayer().inventory.add(new ItemStack(Items.GLASS_BOTTLE));
             }
             return ActionResultType.SUCCESS;
         } else {

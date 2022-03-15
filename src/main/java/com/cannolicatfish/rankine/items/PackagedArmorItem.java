@@ -25,6 +25,8 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import net.minecraft.item.Item.Properties;
+
 public class PackagedArmorItem extends Item {
     public PackagedArmorItem(Properties properties) {
         super(properties);
@@ -32,19 +34,19 @@ public class PackagedArmorItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add((new TranslationTextComponent("item.rankine.packaged_tool_armor_desc")).mergeStyle(TextFormatting.RED));
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        tooltip.add((new TranslationTextComponent("item.rankine.packaged_tool_armor_desc")).withStyle(TextFormatting.RED));
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        if (!playerIn.world.isRemote) {
-            playerIn.addItemStackToInventory(genRandomTool(playerIn.getHeldItem(handIn),worldIn));
-            playerIn.getHeldItem(handIn).shrink(1);
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        if (!playerIn.level.isClientSide) {
+            playerIn.addItem(genRandomTool(playerIn.getItemInHand(handIn),worldIn));
+            playerIn.getItemInHand(handIn).shrink(1);
 
         }
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return super.use(worldIn, playerIn, handIn);
 
     }
 
@@ -89,7 +91,7 @@ public class PackagedArmorItem extends Item {
             }
         }
 
-        List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING);
+        List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING);
         List<AlloyingRecipe> newRecipes = recipes.stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty()).collect(Collectors.toList());
         AlloyingRecipe alloy = newRecipes.get(worldIn.getRandom().nextInt(recipes.size()));
         //System.out.println(alloy.getId());

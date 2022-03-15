@@ -14,20 +14,20 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public enum RankineArmorMaterials implements IArmorMaterial {
-    BRIGANDINE("rankine:brigandine", 20, new int[]{3, 6, 8, 3}, 12, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1.0F, 0.0F, () -> {
-        return Ingredient.fromItems(Items.LEATHER, RankineItems.STEEL_INGOT.get());
+    BRIGANDINE("rankine:brigandine", 20, new int[]{3, 6, 8, 3}, 12, SoundEvents.ARMOR_EQUIP_LEATHER, 1.0F, 0.0F, () -> {
+        return Ingredient.of(Items.LEATHER, RankineItems.STEEL_INGOT.get());
     }),
-    ALLOY("rankine:alloy", 10, new int[]{0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
-        return Ingredient.fromItems(RankineItems.ALLOY_INGOT.get());
+    ALLOY("rankine:alloy", 10, new int[]{0, 0, 0, 0}, 0, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+        return Ingredient.of(RankineItems.ALLOY_INGOT.get());
     }),
-    RUBBER("rankine:rubber", 15, new int[]{1, 3, 5, 2}, 7, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
-        return Ingredient.fromItems(RankineItems.VULCANIZED_RUBBER.get());
+    RUBBER("rankine:rubber", 15, new int[]{1, 3, 5, 2}, 7, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
+        return Ingredient.of(RankineItems.VULCANIZED_RUBBER.get());
     }),
-    DIVING("rankine:diving", 10, new int[]{2, 4, 5, 2}, 14, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
-        return Ingredient.fromItems(RankineItems.BRASS_INGOT.get());
+    DIVING("rankine:diving", 10, new int[]{2, 4, 5, 2}, 14, SoundEvents.ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
+        return Ingredient.of(RankineItems.BRASS_INGOT.get());
     }),
-    CONDUIT_DIVING("rankine:conduit_diving", 24, new int[]{3, 5, 6, 3}, 16, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 0.0F, 0.1F, () -> {
-        return Ingredient.fromItems(Items.PRISMARINE,Items.PRISMARINE_CRYSTALS,Items.CONDUIT);
+    CONDUIT_DIVING("rankine:conduit_diving", 24, new int[]{3, 5, 6, 3}, 16, SoundEvents.ARMOR_EQUIP_TURTLE, 0.0F, 0.1F, () -> {
+        return Ingredient.of(Items.PRISMARINE,Items.PRISMARINE_CRYSTALS,Items.CONDUIT);
     });
 
     private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
@@ -51,24 +51,24 @@ public enum RankineArmorMaterials implements IArmorMaterial {
         this.repairMaterial = new LazyValue<>(repairMaterialSupplier);
     }
 
-    public int getDurability(EquipmentSlotType slotIn) {
+    public int getDurabilityForSlot(EquipmentSlotType slotIn) {
         return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
     }
 
-    public int getDamageReductionAmount(EquipmentSlotType slotIn) {
+    public int getDefenseForSlot(EquipmentSlotType slotIn) {
         return this.damageReductionAmountArray[slotIn.getIndex()];
     }
 
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
         return this.enchantability;
     }
 
-    public SoundEvent getSoundEvent() {
+    public SoundEvent getEquipSound() {
         return this.soundEvent;
     }
 
-    public Ingredient getRepairMaterial() {
-        return this.repairMaterial.getValue();
+    public Ingredient getRepairIngredient() {
+        return this.repairMaterial.get();
     }
 
     @OnlyIn(Dist.CLIENT)

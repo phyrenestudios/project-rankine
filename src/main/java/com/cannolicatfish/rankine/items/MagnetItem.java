@@ -12,6 +12,8 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class MagnetItem extends Item {
 
     int type;
@@ -21,32 +23,32 @@ public class MagnetItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
         if (type != 4) {
             float radius = type * Config.MACHINES.MAGNET_RANGE.get();
-            List<ItemEntity> items = worldIn.getEntitiesWithinAABB(ItemEntity.class, playerIn.getBoundingBox().grow(radius, radius, radius));
+            List<ItemEntity> items = worldIn.getEntitiesOfClass(ItemEntity.class, playerIn.getBoundingBox().inflate(radius, radius, radius));
             for (ItemEntity i : items) {
-                i.setPickupDelay(0);
-                i.onCollideWithPlayer(playerIn);
+                i.setPickUpDelay(0);
+                i.playerTouch(playerIn);
             }
             if (!playerIn.isCreative())
             {
-                playerIn.getHeldItem(handIn).damageItem(1, playerIn, (entity) -> {
-                    entity.sendBreakAnimation(handIn);
+                playerIn.getItemInHand(handIn).hurtAndBreak(1, playerIn, (entity) -> {
+                    entity.broadcastBreakEvent(handIn);
                 });
             }
         }
 
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return super.use(worldIn, playerIn, handIn);
     }
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (entityIn instanceof PlayerEntity && type == 4){
             PlayerEntity player = (PlayerEntity) entityIn;
-            List<ItemEntity> items = worldIn.getEntitiesWithinAABB(ItemEntity.class, entityIn.getBoundingBox().grow(2, 2, 2));
+            List<ItemEntity> items = worldIn.getEntitiesOfClass(ItemEntity.class, entityIn.getBoundingBox().inflate(2, 2, 2));
             for (ItemEntity i : items) {
-                i.onCollideWithPlayer(player);
+                i.playerTouch(player);
             }
         }
 

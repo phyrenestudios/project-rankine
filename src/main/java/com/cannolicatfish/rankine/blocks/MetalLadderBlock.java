@@ -31,6 +31,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.network.NetworkHooks;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class MetalLadderBlock extends LadderBlock {
 
     private boolean teleport;
@@ -42,36 +44,36 @@ public class MetalLadderBlock extends LadderBlock {
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        Direction direction = state.get(FACING);
-        return canAttachTo(worldIn, pos.offset(direction.getOpposite()), direction) || worldIn.getBlockState(pos.down()).matchesBlock(this);
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        Direction direction = state.getValue(FACING);
+        return canAttachTo(worldIn, pos.relative(direction.getOpposite()), direction) || worldIn.getBlockState(pos.below()).is(this);
     }
 
     private boolean canAttachTo(IBlockReader blockReader, BlockPos pos, Direction direction) {
         BlockState blockstate = blockReader.getBlockState(pos);
-        return blockstate.isSolidSide(blockReader, pos, direction);
+        return blockstate.isFaceSturdy(blockReader, pos, direction);
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
         if (this.teleport) {
             int n = 1;
-            while (world.getBlockState(pos.up(n)).getBlock() == this.getBlock()) {
+            while (world.getBlockState(pos.above(n)).getBlock() == this.getBlock()) {
                 n += 1;
             }
-            if (!world.isRemote) {
-                player.setPositionAndUpdate(pos.getX() + .5f, pos.getY() + n, pos.getZ() + .5f);
+            if (!world.isClientSide) {
+                player.teleportTo(pos.getX() + .5f, pos.getY() + n, pos.getZ() + .5f);
                 return ActionResultType.PASS;
             }
         }
         if (this.autoPlace) {
-            if (world.isAirBlock(pos.up()) && player.inventory.hasItemStack(new ItemStack(state.getBlock()))) {
-                world.setBlockState(pos.up(), state, 2);
+            if (world.isEmptyBlock(pos.above()) && player.inventory.contains(new ItemStack(state.getBlock()))) {
+                world.setBlock(pos.above(), state, 2);
 
             }
             return ActionResultType.PASS;
         }
-        return super.onBlockActivated(state, world, pos, player, hand, result);
+        return super.use(state, world, pos, player, hand, result);
     }
 
 }

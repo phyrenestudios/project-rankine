@@ -22,21 +22,21 @@ public class RankineBookshelvesBlock extends Block {
     public static final IntegerProperty MODE = IntegerProperty.create("mode", 0, 1);
 
     public RankineBookshelvesBlock() {
-        super(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD));
-        this.setDefaultState(this.stateContainer.getBaseState().with(MODE, 0));
+        super(AbstractBlock.Properties.of(Material.WOOD).strength(1.5F).sound(SoundType.WOOD));
+        this.registerDefaultState(this.stateDefinition.any().setValue(MODE, 0));
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        ItemStack heldItem = context.getPlayer().getHeldItemOffhand();
+        ItemStack heldItem = context.getPlayer().getOffhandItem();
         if (heldItem.getItem() == RankineItems.BUILDING_TOOL.get()) {
-            return this.getDefaultState().with(MODE, Math.min(BuildingToolItem.getBuildingMode(heldItem),1));
+            return this.defaultBlockState().setValue(MODE, Math.min(BuildingToolItem.getBuildingMode(heldItem),1));
         }
-        return this.getDefaultState();
+        return this.defaultBlockState();
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(MODE);
     }
 

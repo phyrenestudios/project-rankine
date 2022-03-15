@@ -23,29 +23,29 @@ public class RankineEightLayerBlock extends Block {
 
     public static final IntegerProperty LAYERS = IntegerProperty.create("layers", 1, 8);
     protected static final VoxelShape[] SHAPES = new VoxelShape[]{VoxelShapes.empty(),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
 
     public RankineEightLayerBlock(AbstractBlock.Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(LAYERS, 1));
+        this.registerDefaultState(this.stateDefinition.any().setValue(LAYERS, 1));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(LAYERS);
     }
 
 
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
         switch(type) {
             case LAND:
-                return state.get(LAYERS) < 5;
+                return state.getValue(LAYERS) < 5;
             case WATER:
                 return false;
             case AIR:
@@ -56,48 +56,48 @@ public class RankineEightLayerBlock extends Block {
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPES[state.get(LAYERS)];
+        return SHAPES[state.getValue(LAYERS)];
     }
 
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPES[state.get(LAYERS) - 1];
+        return SHAPES[state.getValue(LAYERS) - 1];
     }
 
-    public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos) {
-        return SHAPES[state.get(LAYERS)];
+    public VoxelShape getBlockSupportShape(BlockState state, IBlockReader reader, BlockPos pos) {
+        return SHAPES[state.getValue(LAYERS)];
     }
 
-    public VoxelShape getRayTraceShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
-        return SHAPES[state.get(LAYERS)];
+    public VoxelShape getVisualShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
+        return SHAPES[state.getValue(LAYERS)];
     }
 
-    public boolean isTransparent(BlockState state) {
+    public boolean useShapeForLightOcclusion(BlockState state) {
         return true;
     }
 
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        BlockState blockstate = worldIn.getBlockState(pos.down());
-        if (!blockstate.matchesBlock(Blocks.HONEY_BLOCK) && !blockstate.matchesBlock(Blocks.SOUL_SAND)) {
-            return Block.doesSideFillSquare(blockstate.getCollisionShapeUncached(worldIn, pos.down()), Direction.UP) || blockstate.getBlock() == this && blockstate.get(LAYERS) == 8;
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        BlockState blockstate = worldIn.getBlockState(pos.below());
+        if (!blockstate.is(Blocks.HONEY_BLOCK) && !blockstate.is(Blocks.SOUL_SAND)) {
+            return Block.isFaceFull(blockstate.getCollisionShape(worldIn, pos.below()), Direction.UP) || blockstate.getBlock() == this && blockstate.getValue(LAYERS) == 8;
         } else {
             return true;
         }
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (facing == Direction.DOWN && !stateIn.isValidPosition(worldIn, currentPos) && !worldIn.isRemote()) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (facing == Direction.DOWN && !stateIn.canSurvive(worldIn, currentPos) && !worldIn.isClientSide()) {
             //spawnDrops(stateIn, (World) worldIn, currentPos);
-            return Blocks.AIR.getDefaultState();
+            return Blocks.AIR.defaultBlockState();
         }
-        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
-    public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
-        int i = state.get(LAYERS);
-        if (useContext.getItem().getItem() == this.asItem() && i < 8) {
+    public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
+        int i = state.getValue(LAYERS);
+        if (useContext.getItemInHand().getItem() == this.asItem() && i < 8) {
             if (useContext.replacingClickedOnBlock()) {
-                return useContext.getFace() == Direction.UP;
+                return useContext.getClickedFace() == Direction.UP;
             } else {
                 return true;
             }
@@ -108,10 +108,10 @@ public class RankineEightLayerBlock extends Block {
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockState blockstate = context.getWorld().getBlockState(context.getPos());
-        if (blockstate.matchesBlock(this)) {
-            int i = blockstate.get(LAYERS);
-            return blockstate.with(LAYERS, Math.min(8, i + 1));
+        BlockState blockstate = context.getLevel().getBlockState(context.getClickedPos());
+        if (blockstate.is(this)) {
+            int i = blockstate.getValue(LAYERS);
+            return blockstate.setValue(LAYERS, Math.min(8, i + 1));
         } else {
             return super.getStateForPlacement(context);
         }

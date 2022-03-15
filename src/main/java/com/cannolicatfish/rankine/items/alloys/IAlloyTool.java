@@ -56,35 +56,35 @@ public interface IAlloyTool extends IAlloyTieredItem {
         });
         if (this.isAlloyInit(stack)) {
             if (!Screen.hasShiftDown()) {
-                tooltip.add((new StringTextComponent("Hold shift for details...")).mergeStyle(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Hold shift for details...")).withStyle(TextFormatting.GRAY));
             }
             if (Screen.hasShiftDown()) {
                 if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
-                    tooltip.add((new StringTextComponent("Any Composition").mergeStyle(TextFormatting.GOLD)));
+                    tooltip.add((new StringTextComponent("Any Composition").withStyle(TextFormatting.GOLD)));
                 } else {
-                    tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD)));
+                    tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(TextFormatting.GOLD)));
                 }
 
                 if (!IAlloyItem.getAlloyModifiers(stack).isEmpty()) {
-                    tooltip.add((new StringTextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).mergeStyle(TextFormatting.AQUA)));
+                    tooltip.add((new StringTextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(TextFormatting.AQUA)));
                 } else {
-                    tooltip.add((new StringTextComponent("No Modifiers Present").mergeStyle(TextFormatting.AQUA)));
+                    tooltip.add((new StringTextComponent("No Modifiers Present").withStyle(TextFormatting.AQUA)));
                 }
 
                 if (!this.needsRefresh(stack)) {
 
-                    tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(stack) - stack.getDamage()) + "/" + getAlloyDurability(stack))).mergeStyle(TextFormatting.DARK_GREEN));
-                    tooltip.add((new StringTextComponent("Harvest Level: " + (getAlloyHarvestLevel(stack)))).mergeStyle(TextFormatting.GRAY));
-                    tooltip.add((new StringTextComponent("Mining Speed: " + df.format(getAlloyMiningSpeed(stack)))).mergeStyle(TextFormatting.GRAY));
-                    tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(stack))).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(stack) - stack.getDamageValue()) + "/" + getAlloyDurability(stack))).withStyle(TextFormatting.DARK_GREEN));
+                    tooltip.add((new StringTextComponent("Harvest Level: " + (getAlloyHarvestLevel(stack)))).withStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Mining Speed: " + df.format(getAlloyMiningSpeed(stack)))).withStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(stack))).withStyle(TextFormatting.GRAY));
                     if (Config.ALLOYS.ALLOY_CORROSION.get()) {
-                        tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                        tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).withStyle(TextFormatting.GRAY));
                     }
                     if (Config.ALLOYS.ALLOY_HEAT.get()) {
-                        tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                        tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).withStyle(TextFormatting.GRAY));
                     }
                     if (Config.ALLOYS.ALLOY_TOUGHNESS.get()) {
-                        tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                        tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack) * 100)) + "%")).withStyle(TextFormatting.GRAY));
                     }
                 }
             }

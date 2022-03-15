@@ -26,10 +26,10 @@ public class MagnoliaTreeFeature extends Feature<BaseTreeFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
-        int trunkHeight = config.trunkPlacer.getHeight(rand);
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
+        int trunkHeight = config.trunkPlacer.getTreeHeight(rand);
         boolean flag = true;
-        if (pos.getY() >= 1 && pos.getY() + trunkHeight + 1 <= reader.getHeight()) {
+        if (pos.getY() >= 1 && pos.getY() + trunkHeight + 1 <= reader.getMaxBuildHeight()) {
             for(int j = pos.getY(); j <= pos.getY() + 1 + trunkHeight; ++j) {
                 int k = 1;
                 if (j == pos.getY()) {
@@ -44,8 +44,8 @@ public class MagnoliaTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
                 for(int l = pos.getX() - k; l <= pos.getX() + k && flag; ++l) {
                     for(int i1 = pos.getZ() - k; i1 <= pos.getZ() + k && flag; ++i1) {
-                        if (j >= 0 && j < reader.getHeight()) {
-                            if (!WorldgenUtils.isAirOrLeaves(reader, blockpos$mutableblockpos.setPos(l, j, i1))) {
+                        if (j >= 0 && j < reader.getMaxBuildHeight()) {
+                            if (!WorldgenUtils.isAirOrLeaves(reader, blockpos$mutableblockpos.set(l, j, i1))) {
                                 flag = false;
                             }
                         }
@@ -59,16 +59,16 @@ public class MagnoliaTreeFeature extends Feature<BaseTreeFeatureConfig> {
             //build tree
             if (!flag) {
                 return false;
-            } else if (isValidGround(reader, pos.down()) && pos.getY() < reader.getHeight() - trunkHeight - 1) {
-                setDirtAt(reader, pos.down());
+            } else if (isValidGround(reader, pos.below()) && pos.getY() < reader.getMaxBuildHeight() - trunkHeight - 1) {
+                setDirtAt(reader, pos.below());
                 int branchPoint = (int) Math.round(trunkHeight * 0.5) - 1;
                 for(int i = 0; i <= branchPoint; ++i) {
-                    WorldgenUtils.checkLog(reader, pos.up(i), rand, config, Direction.Axis.Y);
+                    WorldgenUtils.checkLog(reader, pos.above(i), rand, config, Direction.Axis.Y);
                 }
 
                 int dir = rand.nextInt(8);
                 for (int branch = 1; branch < 4; ++branch) {
-                    magnoliaBranch(reader,pos.up(branchPoint),rand,config, trunkHeight-branchPoint,dir);
+                    magnoliaBranch(reader,pos.above(branchPoint),rand,config, trunkHeight-branchPoint,dir);
                     dir = (dir + rand.nextInt(2)+2) % 8;
                 }
                 return true;
@@ -85,25 +85,25 @@ public class MagnoliaTreeFeature extends Feature<BaseTreeFeatureConfig> {
     private void magnoliaLeaves(ISeedReader reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config) {
         List<BlockPos> leaves = new ArrayList<>();
 
-        for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-1,-1,-1),pos.add(1,0,1))) {
-            leaves.add(b.toImmutable());
+        for (BlockPos b : BlockPos.betweenClosed(pos.offset(-1,-1,-1),pos.offset(1,0,1))) {
+            leaves.add(b.immutable());
         }
-        leaves.add(pos.add(-2,-1,-1));
-        leaves.add(pos.add(-2,-1,0));
-        leaves.add(pos.add(-2,-1,1));
-        leaves.add(pos.add(2,-1,-1));
-        leaves.add(pos.add(2,-1,0));
-        leaves.add(pos.add(2,-1,1));
-        leaves.add(pos.add(-1,-1,-2));
-        leaves.add(pos.add(0,-1,-2));
-        leaves.add(pos.add(1,-1,-2));
-        leaves.add(pos.add(-1,-1,2));
-        leaves.add(pos.add(0,-1,2));
-        leaves.add(pos.add(1,-1,2));
+        leaves.add(pos.offset(-2,-1,-1));
+        leaves.add(pos.offset(-2,-1,0));
+        leaves.add(pos.offset(-2,-1,1));
+        leaves.add(pos.offset(2,-1,-1));
+        leaves.add(pos.offset(2,-1,0));
+        leaves.add(pos.offset(2,-1,1));
+        leaves.add(pos.offset(-1,-1,-2));
+        leaves.add(pos.offset(0,-1,-2));
+        leaves.add(pos.offset(1,-1,-2));
+        leaves.add(pos.offset(-1,-1,2));
+        leaves.add(pos.offset(0,-1,2));
+        leaves.add(pos.offset(1,-1,2));
 
         for (BlockPos b : leaves) {
-            if (rand.nextFloat() < 0.7 &&  WorldgenUtils.isAir(reader,b.down()) && areAllNeighborsEmpty(reader,b.down())) {
-                WorldgenUtils.placeLeafAt(reader, b.down(), rand, config);
+            if (rand.nextFloat() < 0.7 &&  WorldgenUtils.isAir(reader,b.below()) && areAllNeighborsEmpty(reader,b.below())) {
+                WorldgenUtils.placeLeafAt(reader, b.below(), rand, config);
             }
              WorldgenUtils.placeLeafAt(reader, b, rand, config);
         }
@@ -111,7 +111,7 @@ public class MagnoliaTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
     private static boolean areAllNeighborsEmpty(IWorldReader worldIn, BlockPos pos) {
         for(Direction direction : Direction.Plane.HORIZONTAL) {
-            if (!worldIn.isAirBlock(pos.offset(direction))) {
+            if (!worldIn.isEmptyBlock(pos.relative(direction))) {
                 return false;
             }
         }
@@ -124,18 +124,18 @@ public class MagnoliaTreeFeature extends Feature<BaseTreeFeatureConfig> {
         BlockPos b = pos;
         for (int i = 0; i<topHeight; ++i) {
             b = WorldgenUtils.eightBlockDirection(b,dir,1);
-            WorldgenUtils.checkLog(reader,b.up(i),rand,config, Direction.Axis.Y);
-            WorldgenUtils.checkLog(reader,b.up(i+1),rand,config, Direction.Axis.Y);
+            WorldgenUtils.checkLog(reader,b.above(i),rand,config, Direction.Axis.Y);
+            WorldgenUtils.checkLog(reader,b.above(i+1),rand,config, Direction.Axis.Y);
             dir = ((rand.nextBoolean() ? 0 : 1) + dir) % 8;
         }
-        magnoliaLeaves(reader, b.up(topHeight+2), rand, config);
+        magnoliaLeaves(reader, b.above(topHeight+2), rand, config);
 
     }
 
     public static void setDirtAt(IWorld reader, BlockPos pos) {
         Block block = reader.getBlockState(pos).getBlock();
         if (block == Blocks.GRASS_BLOCK || block == Blocks.FARMLAND) {
-            reader.setBlockState(pos, Blocks.DIRT.getDefaultState(), 18);
+            reader.setBlock(pos, Blocks.DIRT.defaultBlockState(), 18);
         }
     }
 

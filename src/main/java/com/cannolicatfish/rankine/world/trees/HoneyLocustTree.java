@@ -13,7 +13,7 @@ public class HoneyLocustTree extends Tree {
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return RankineFeatures.HONEY_LOCUST_TREE.get().withConfiguration(RankineBiomeFeatures.HONEY_LOCUST_TREE_CONFIG);
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
+        return RankineFeatures.HONEY_LOCUST_TREE.get().configured(RankineBiomeFeatures.HONEY_LOCUST_TREE_CONFIG);
     }
 }

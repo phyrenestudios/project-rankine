@@ -29,12 +29,12 @@ public class RopeCoilArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(RankineItems.ROPE_COIL_ARROW.get());
     }
 
@@ -43,24 +43,24 @@ public class RopeCoilArrowEntity extends AbstractArrowEntity {
     protected void onInsideBlock(BlockState state) {
 
         if (this.inGround) {
-            World worldIn = this.world;
+            World worldIn = this.level;
             int rope = 1;
-            if (this.getShooter() instanceof PlayerEntity) {
-                PlayerEntity player = ((PlayerEntity) this.getShooter());
-                rope += player.getHeldItemOffhand().getItem() == RankineItems.ROPE.get() ? player.getHeldItemOffhand().getCount() : 0;
+            if (this.getOwner() instanceof PlayerEntity) {
+                PlayerEntity player = ((PlayerEntity) this.getOwner());
+                rope += player.getOffhandItem().getItem() == RankineItems.ROPE.get() ? player.getOffhandItem().getCount() : 0;
             }
             int ropeCount = -1;
             for (int i = 0; i < rope; i++) {
-                if (worldIn.isAirBlock(this.getPosition().down(i))) {
-                    worldIn.setBlockState(this.getPosition().down(i), RankineBlocks.ROPE.get().getDefaultState());
+                if (worldIn.isEmptyBlock(this.blockPosition().below(i))) {
+                    worldIn.setBlockAndUpdate(this.blockPosition().below(i), RankineBlocks.ROPE.get().defaultBlockState());
                     ropeCount++;
                 } else {
                     break;
                 }
             }
 
-            if (this.getShooter() instanceof PlayerEntity && !((PlayerEntity)this.getShooter()).isCreative() && ropeCount > 0) {
-                ((PlayerEntity)this.getShooter()).getHeldItemOffhand().shrink(ropeCount);
+            if (this.getOwner() instanceof PlayerEntity && !((PlayerEntity)this.getOwner()).isCreative() && ropeCount > 0) {
+                ((PlayerEntity)this.getOwner()).getOffhandItem().shrink(ropeCount);
             }
             this.remove();
         }

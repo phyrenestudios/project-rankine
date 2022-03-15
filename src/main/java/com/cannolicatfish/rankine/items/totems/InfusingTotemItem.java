@@ -26,42 +26,44 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import net.minecraft.item.Item.Properties;
+
 public class InfusingTotemItem extends Item {
     public InfusingTotemItem(Properties properties) {
         super(properties);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        super.addInformation(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslationTextComponent("item.rankine.totem_of_infusing.tooltip").mergeStyle(TextFormatting.GRAY, TextFormatting.ITALIC));
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        tooltip.add(new TranslationTextComponent("item.rankine.totem_of_infusing.tooltip").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC));
     }
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         if (Config.GENERAL.PENDANT_CURSE.get()) {
-            stack.addEnchantment(Enchantments.VANISHING_CURSE,1);
+            stack.enchant(Enchantments.VANISHING_CURSE,1);
         }
-        super.onCreated(stack, worldIn, playerIn);
+        super.onCraftedBy(stack, worldIn, playerIn);
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if ((group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+        if ((group == ItemGroup.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
             ItemStack stack = new ItemStack(this.getItem());
-            stack.addEnchantment(Enchantments.VANISHING_CURSE,1);
+            stack.enchant(Enchantments.VANISHING_CURSE,1);
             items.add(stack);
         } else {
-            super.fillItemGroup(group, items);
+            super.fillItemCategory(group, items);
         }
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack stack = playerIn.getHeldItem(handIn);
-        if (!worldIn.isRemote) {
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack stack = playerIn.getItemInHand(handIn);
+        if (!worldIn.isClientSide) {
             Hand oppHand = Hand.values()[(handIn.ordinal() + 1) % Hand.values().length];
-            ItemStack oppHandStack = playerIn.getHeldItem(oppHand);
+            ItemStack oppHandStack = playerIn.getItemInHand(oppHand);
             Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack).entrySet().stream().filter(enchantmentIntegerEntry -> !enchantmentIntegerEntry.getKey().isCurse())
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
             if (oppHandStack.isEnchanted() && map.size() == 0) {
@@ -71,14 +73,14 @@ public class InfusingTotemItem extends Item {
                 if (en.length > 0) {
                     int index = en.length == 1 ? 0 : worldIn.getRandom().nextInt(en.length - 1);
                     Enchantment key = en[index];
-                    stack.addEnchantment(key,output.get(key));
+                    stack.enchant(key,output.get(key));
 
-                    ItemStack oppNew = removeEnchantments(oppHandStack, oppHandStack.getDamage(),oppHandStack.getCount());
-                    int slot = playerIn.inventory.getSlotFor(oppHandStack);
-                    playerIn.inventory.removeStackFromSlot(slot);
-                    playerIn.inventory.setInventorySlotContents(slot,oppNew);
-                    worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.PLAYERS, 1.0f, 1.0f);
-                    return ActionResult.resultSuccess(stack);
+                    ItemStack oppNew = removeEnchantments(oppHandStack, oppHandStack.getDamageValue(),oppHandStack.getCount());
+                    int slot = playerIn.inventory.findSlotMatchingItem(oppHandStack);
+                    playerIn.inventory.removeItemNoUpdate(slot);
+                    playerIn.inventory.setItem(slot,oppNew);
+                    worldIn.playSound(playerIn, playerIn.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE, SoundCategory.PLAYERS, 1.0f, 1.0f);
+                    return ActionResult.success(stack);
                 }
                 /*
                 if (!oppHandStack.isEnchanted() && oppHandStack.isEnchantable() && map.size() > 0) {
@@ -92,13 +94,13 @@ public class InfusingTotemItem extends Item {
 
                  */
             }
-            return ActionResult.resultPass(stack);
+            return ActionResult.pass(stack);
         }
-        return super.onItemRightClick(worldIn,playerIn,handIn);
+        return super.use(worldIn,playerIn,handIn);
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return false;
     }
 
@@ -114,12 +116,12 @@ public class InfusingTotemItem extends Item {
 
     private ItemStack removeEnchantments(ItemStack stack, int damage, int count) {
         ItemStack itemstack = stack.copy();
-        itemstack.removeChildTag("Enchantments");
-        itemstack.removeChildTag("StoredEnchantments");
+        itemstack.removeTagKey("Enchantments");
+        itemstack.removeTagKey("StoredEnchantments");
         if (damage > 0) {
-            itemstack.setDamage(damage);
+            itemstack.setDamageValue(damage);
         } else {
-            itemstack.removeChildTag("Damage");
+            itemstack.removeTagKey("Damage");
         }
 
         itemstack.setCount(count);
@@ -130,13 +132,13 @@ public class InfusingTotemItem extends Item {
         itemstack.setRepairCost(0);
         if (itemstack.getItem() == Items.ENCHANTED_BOOK && map.size() == 0) {
             itemstack = new ItemStack(Items.BOOK);
-            if (stack.hasDisplayName()) {
-                itemstack.setDisplayName(stack.getDisplayName());
+            if (stack.hasCustomHoverName()) {
+                itemstack.setHoverName(stack.getHoverName());
             }
         }
 
         for(int i = 0; i < map.size(); ++i) {
-            itemstack.setRepairCost(RepairContainer.getNewRepairCost(itemstack.getRepairCost()));
+            itemstack.setRepairCost(RepairContainer.calculateIncreasedRepairCost(itemstack.getBaseRepairCost()));
         }
 
         return itemstack;

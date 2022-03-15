@@ -21,6 +21,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class FumaroleBlock extends Block {
     GasUtilsEnum gas;
     public FumaroleBlock(GasUtilsEnum gas, Properties properties) {
@@ -29,29 +31,29 @@ public class FumaroleBlock extends Block {
     }
 
     @Override
-    public boolean ticksRandomly(BlockState state) {
+    public boolean isRandomlyTicking(BlockState state) {
         return Config.GASES.ENABLE_GAS_VENTS.get();
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (Config.GASES.ENABLE_GAS_VENTS.get()) {
-            List<BlockPos> surround = Arrays.asList(pos.up(),pos.down(),pos.west(),pos.east(),pos.north(),pos.south());
-            if (!worldIn.isRemote) {
-                int airCount = (int) surround.stream().filter(worldIn::isAirBlock).count();
+            List<BlockPos> surround = Arrays.asList(pos.above(),pos.below(),pos.west(),pos.east(),pos.north(),pos.south());
+            if (!worldIn.isClientSide) {
+                int airCount = (int) surround.stream().filter(worldIn::isEmptyBlock).count();
                 for (int i = 0; i < airCount; i++) {
-                    BlockPos close = BlockPos.getClosestMatchingPosition(pos,3,3,B -> worldIn.isAirBlock(B) && !(worldIn.getBlockState(B).getBlock() instanceof GasBlock)
-                            && BlockPos.getClosestMatchingPosition(B,1,1,P -> worldIn.getBlockState(P).getBlock() instanceof GasBlock || worldIn.getBlockState(P).getBlock() instanceof FumaroleBlock).orElse(null) != null).orElse(null);
+                    BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> worldIn.isEmptyBlock(B) && !(worldIn.getBlockState(B).getBlock() instanceof GasBlock)
+                            && BlockPos.findClosestMatch(B,1,1,P -> worldIn.getBlockState(P).getBlock() instanceof GasBlock || worldIn.getBlockState(P).getBlock() instanceof FumaroleBlock).orElse(null) != null).orElse(null);
                     if (close == null) {
                         break;
                     } else {
-                        worldIn.setBlockState(close,getGas().getDefaultState(),3);
+                        worldIn.setBlock(close,getGas().defaultBlockState(),3);
                     }
                 }
                 if (random.nextFloat() < Config.GENERAL.FUMAROLE_DEPOSIT_RATE.get()) {
                     BlockPos deposit = new BlockPos(pos.getX()+random.nextInt(5)-2,pos.getY()+random.nextInt(5)-3,pos.getZ()+random.nextInt(5)-2);
-                    if (worldIn.getBlockState(deposit).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT)) {
-                        worldIn.setBlockState(deposit,RankineBlocks.FUMAROLE_DEPOSIT.get().getDefaultState(),3);
+                    if (worldIn.getBlockState(deposit).is(RankineTags.Blocks.FUMAROLE_DEPOSIT)) {
+                        worldIn.setBlock(deposit,RankineBlocks.FUMAROLE_DEPOSIT.get().defaultBlockState(),3);
                     }
                 }
             }
@@ -62,8 +64,8 @@ public class FumaroleBlock extends Block {
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+    public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        super.setPlacedBy(worldIn, pos, state, placer, stack);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -71,7 +73,7 @@ public class FumaroleBlock extends Block {
         if (rand.nextFloat() < 0.01) {
             Random random = worldIn.getRandom();
             BasicParticleType basicparticletype = ParticleTypes.SMOKE;
-            worldIn.addOptionalParticle(basicparticletype, true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
+            worldIn.addAlwaysVisibleParticle(basicparticletype, true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
         }
     }
 

@@ -19,9 +19,9 @@ public class SteelSpearEntityModel extends Model {
     private final ModelRenderer modelRenderer;
 
     public SteelSpearEntityModel() {
-        super(RenderType::getEntitySolid);
-        this.textureWidth = 32;
-        this.textureHeight = 32;
+        super(RenderType::entitySolid);
+        this.texWidth = 32;
+        this.texHeight = 32;
         this.modelRenderer = new ModelRenderer(this, 0, 0);
         this.modelRenderer.addBox(-0.5F, -4.0F, -0.5F, 1, 31, 1, 0.0F);
         ModelRenderer renderermodel = new ModelRenderer(this, 4, 0);
@@ -39,7 +39,7 @@ public class SteelSpearEntityModel extends Model {
          */
     }
 
-    public void render(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         this.modelRenderer.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
     }
 }

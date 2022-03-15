@@ -31,8 +31,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 
 public class SpearEntity extends AbstractArrowEntity {
-    private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.createKey(SpearEntity.class, DataSerializers.BYTE);
-    private static final DataParameter<Byte> TELEPORT_LEVEL = EntityDataManager.createKey(SpearEntity.class, DataSerializers.BYTE);
+    private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.defineId(SpearEntity.class, DataSerializers.BYTE);
+    private static final DataParameter<Byte> TELEPORT_LEVEL = EntityDataManager.defineId(SpearEntity.class, DataSerializers.BYTE);
     private ItemStack thrownStack = new ItemStack(RankineItems.BRONZE_SPEAR.get());
     public ResourceLocation type;
     private boolean dealtDamage;
@@ -48,8 +48,8 @@ public class SpearEntity extends AbstractArrowEntity {
     public SpearEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn, EntityType<SpearEntity> e, ResourceLocation type, float damage) {
         super(e, thrower, worldIn);
         this.thrownStack = thrownStackIn.copy();
-        this.dataManager.set(TELEPORT_LEVEL, (byte) EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDPOINT,thrownStackIn));
-        this.dataManager.set(LOYALTY_LEVEL, (byte) EnchantmentHelper.getLoyaltyModifier(thrownStackIn));
+        this.entityData.set(TELEPORT_LEVEL, (byte) EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDPOINT,thrownStackIn));
+        this.entityData.set(LOYALTY_LEVEL, (byte) EnchantmentHelper.getLoyalty(thrownStackIn));
         this.type = type;
         this.attackDamage = damage;
 
@@ -67,62 +67,62 @@ public class SpearEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(TELEPORT_LEVEL, (byte)0);
-        this.dataManager.register(LOYALTY_LEVEL, (byte)0);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(TELEPORT_LEVEL, (byte)0);
+        this.entityData.define(LOYALTY_LEVEL, (byte)0);
     }
 
     public void tick() {
-        if (this.timeInGround > 4) {
+        if (this.inGroundTime > 4) {
             this.dealtDamage = true;
         }
-        int r = EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.IMPACT, this.thrownStack);
+        int r = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.IMPACT, this.thrownStack);
 
         if (r > 0) {
-            this.setKnockbackStrength(r * 2);
+            this.setKnockback(r * 2);
         }
 
-        Entity entity = this.getShooter();
-        if (this.timeInGround == 4 && entity instanceof PlayerEntity && this.dataManager.get(TELEPORT_LEVEL) > 0) {
-            double x = this.getPosX();
-            double y = this.getPosY();
-            double z = this.getPosZ();
-            if (world.isRemote) {
-                world.addParticle(ParticleTypes.PORTAL, entity.getPosX(), entity.getPosY() + 0.5D, entity.getPosZ(), (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D);
-                world.addParticle(ParticleTypes.PORTAL, x, y + 0.5D, z, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D);
+        Entity entity = this.getOwner();
+        if (this.inGroundTime == 4 && entity instanceof PlayerEntity && this.entityData.get(TELEPORT_LEVEL) > 0) {
+            double x = this.getX();
+            double y = this.getY();
+            double z = this.getZ();
+            if (level.isClientSide) {
+                level.addParticle(ParticleTypes.PORTAL, entity.getX(), entity.getY() + 0.5D, entity.getZ(), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
+                level.addParticle(ParticleTypes.PORTAL, x, y + 0.5D, z, (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
             }
-            world.playSound(x,y,z,SoundEvents.ENTITY_ENDERMAN_TELEPORT,SoundCategory.PLAYERS,1f,1f,false);
-            entity.setPositionAndUpdate(x,y,z);
+            level.playLocalSound(x,y,z,SoundEvents.ENDERMAN_TELEPORT,SoundCategory.PLAYERS,1f,1f,false);
+            entity.teleportTo(x,y,z);
             if (!((PlayerEntity) entity).isCreative()) {
-                entity.attackEntityFrom(DamageSource.FALL, Math.max(5.0F - 2.5F*(this.dataManager.get(TELEPORT_LEVEL) - 1),0));
+                entity.hurt(DamageSource.FALL, Math.max(5.0F - 2.5F*(this.entityData.get(TELEPORT_LEVEL) - 1),0));
             }
         }
 
-        if ((this.dealtDamage || this.getNoClip()) && entity != null) {
-            int i = this.dataManager.get(LOYALTY_LEVEL);
+        if ((this.dealtDamage || this.isNoPhysics()) && entity != null) {
+            int i = this.entityData.get(LOYALTY_LEVEL);
             if (i > 0 && !this.shouldReturnToThrower()) {
-                if (!this.world.isRemote && this.pickupStatus == AbstractArrowEntity.PickupStatus.ALLOWED) {
-                    this.entityDropItem(this.getArrowStack(), 0.1F);
+                if (!this.level.isClientSide && this.pickup == AbstractArrowEntity.PickupStatus.ALLOWED) {
+                    this.spawnAtLocation(this.getPickupItem(), 0.1F);
                 }
 
                 this.remove();
             } else if (i > 0) {
-                this.setNoClip(true);
-                Vector3d vec3d = new Vector3d(entity.getPosX() - this.getPosX(), entity.getPosY() + (double)entity.getEyeHeight() - this.getPosY(), entity.getPosZ() - this.getPosZ());
-                this.setRawPosition(this.getPosX(), this.getPosY() + vec3d.y * 0.015D * (double)i, this.getPosZ());
-                if (this.world.isRemote) {
-                    this.lastTickPosY = this.getPosY();
+                this.setNoPhysics(true);
+                Vector3d vec3d = new Vector3d(entity.getX() - this.getX(), entity.getY() + (double)entity.getEyeHeight() - this.getY(), entity.getZ() - this.getZ());
+                this.setPosRaw(this.getX(), this.getY() + vec3d.y * 0.015D * (double)i, this.getZ());
+                if (this.level.isClientSide) {
+                    this.yOld = this.getY();
                 }
 
                 double d0 = 0.05D * (double)i;
-                this.setMotion(this.getMotion().scale(0.95D).add(vec3d.normalize().scale(d0)));
+                this.setDeltaMovement(this.getDeltaMovement().scale(0.95D).add(vec3d.normalize().scale(d0)));
                 if (this.returningTicks == 0) {
-                    this.playSound(SoundEvents.ITEM_TRIDENT_RETURN, 10.0F, 1.0F);
+                    this.playSound(SoundEvents.TRIDENT_RETURN, 10.0F, 1.0F);
                 }
 
                 ++this.returningTicks;
@@ -132,7 +132,7 @@ public class SpearEntity extends AbstractArrowEntity {
     }
 
     private boolean shouldReturnToThrower() {
-        Entity entity = this.getShooter();
+        Entity entity = this.getOwner();
         if (entity != null && entity.isAlive()) {
             return !(entity instanceof ServerPlayerEntity) || !entity.isSpectator();
         } else {
@@ -140,11 +140,11 @@ public class SpearEntity extends AbstractArrowEntity {
         }
     }
 
-    public void setKnockbackStrength(int knockbackStrengthIn) {
+    public void setKnockback(int knockbackStrengthIn) {
         this.knockbackStrength = knockbackStrengthIn;
     }
 
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return this.thrownStack.copy();
     }
 
@@ -152,14 +152,14 @@ public class SpearEntity extends AbstractArrowEntity {
      * Gets the EntityRayTraceResult representing the entity hit
      */
     @Nullable
-    protected EntityRayTraceResult rayTraceEntities(Vector3d startVec, Vector3d endVec) {
-        return this.dealtDamage ? null : super.rayTraceEntities(startVec, endVec);
+    protected EntityRayTraceResult findHitEntity(Vector3d startVec, Vector3d endVec) {
+        return this.dealtDamage ? null : super.findHitEntity(startVec, endVec);
     }
 
     /**
      * Called when the arrow hits an entity
      */
-    protected void onEntityHit(EntityRayTraceResult p_213868_1_) {
+    protected void onHitEntity(EntityRayTraceResult p_213868_1_) {
         Entity entity = p_213868_1_.getEntity();
         float f = this.attackDamage;
         if (f == 0)
@@ -169,34 +169,34 @@ public class SpearEntity extends AbstractArrowEntity {
 
         if (entity instanceof LivingEntity) {
             LivingEntity livingentity = (LivingEntity)entity;
-            f += EnchantmentHelper.getModifierForCreature(this.thrownStack, livingentity.getCreatureAttribute());
+            f += EnchantmentHelper.getDamageBonus(this.thrownStack, livingentity.getMobType());
             if (this.knockbackStrength > 0) {
-                Vector3d vector3d = this.getMotion().mul(1.0D, 0.0D, 1.0D).normalize().scale((double)this.knockbackStrength * 0.6D);
-                if (vector3d.lengthSquared() > 0.0D) {
-                    livingentity.addVelocity(vector3d.x, 0.1D, vector3d.z);
+                Vector3d vector3d = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale((double)this.knockbackStrength * 0.6D);
+                if (vector3d.lengthSqr() > 0.0D) {
+                    livingentity.push(vector3d.x, 0.1D, vector3d.z);
                 }
             }
         }
 
-        Entity entity1 = this.getShooter();
-        DamageSource damagesource = DamageSource.causeTridentDamage(this, (Entity)(entity1 == null ? this : entity1));
+        Entity entity1 = this.getOwner();
+        DamageSource damagesource = DamageSource.trident(this, (Entity)(entity1 == null ? this : entity1));
         this.dealtDamage = true;
-        SoundEvent soundevent = SoundEvents.ITEM_TRIDENT_HIT;
-        if (entity.attackEntityFrom(damagesource, f) && entity instanceof LivingEntity) {
+        SoundEvent soundevent = SoundEvents.TRIDENT_HIT;
+        if (entity.hurt(damagesource, f) && entity instanceof LivingEntity) {
             LivingEntity livingentity1 = (LivingEntity)entity;
             if (entity1 instanceof LivingEntity) {
-                EnchantmentHelper.applyThornEnchantments(livingentity1, entity1);
-                EnchantmentHelper.applyArthropodEnchantments((LivingEntity)entity1, livingentity1);
+                EnchantmentHelper.doPostHurtEffects(livingentity1, entity1);
+                EnchantmentHelper.doPostDamageEffects((LivingEntity)entity1, livingentity1);
             }
 
-            this.arrowHit(livingentity1);
+            this.doPostHurtEffects(livingentity1);
         }
 
-        this.setMotion(this.getMotion().mul(-0.01D, -0.1D, -0.01D));
+        this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));
         float f1 = 1.0F;
         /*
         if (this.world instanceof ServerWorld && this.world.isThundering() && EnchantmentHelper.hasChanneling(this.thrownStack)) {
-            BlockPos blockpos = entity.func_233580_cy_();
+            BlockPos blockpos = entity.blockPosition();
             if (this.world.canSeeSky(blockpos)) {
                 LightningBoltEntity lightningboltentity = new LightningBoltEntity(this.world, (double)blockpos.getX() + 0.5D, (double)blockpos.getY(), (double)blockpos.getZ() + 0.5D, false);
                 lightningboltentity.setCaster(entity1 instanceof ServerPlayerEntity ? (ServerPlayerEntity)entity1 : null);
@@ -212,54 +212,54 @@ public class SpearEntity extends AbstractArrowEntity {
     /**
      * The sound made when an entity is hit by this projectile
      */
-    protected SoundEvent getHitEntitySound() {
-        return SoundEvents.ITEM_TRIDENT_HIT_GROUND;
+    protected SoundEvent getDefaultHitGroundSoundEvent() {
+        return SoundEvents.TRIDENT_HIT_GROUND;
     }
 
     /**
      * Called by a player entity when they collide with an entity
      */
-    public void onCollideWithPlayer(PlayerEntity entityIn) {
-        Entity entity = this.getShooter();
-        if (entity == null || entity.getUniqueID() == entityIn.getUniqueID()) {
-            super.onCollideWithPlayer(entityIn);
+    public void playerTouch(PlayerEntity entityIn) {
+        Entity entity = this.getOwner();
+        if (entity == null || entity.getUUID() == entityIn.getUUID()) {
+            super.playerTouch(entityIn);
         }
     }
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         if (compound.contains("Spear", 10)) {
-            this.thrownStack = ItemStack.read(compound.getCompound("Spear"));
+            this.thrownStack = ItemStack.of(compound.getCompound("Spear"));
         }
 
         this.dealtDamage = compound.getBoolean("DealtDamage");
-        this.dataManager.set(LOYALTY_LEVEL, (byte)EnchantmentHelper.getLoyaltyModifier(this.thrownStack));
+        this.entityData.set(LOYALTY_LEVEL, (byte)EnchantmentHelper.getLoyalty(this.thrownStack));
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        compound.put("Spear", this.thrownStack.write(new CompoundNBT()));
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
+        compound.put("Spear", this.thrownStack.save(new CompoundNBT()));
         compound.putBoolean("DealtDamage", this.dealtDamage);
     }
 
-    protected void func_225516_i_() {
-        int i = this.dataManager.get(LOYALTY_LEVEL);
-        if (this.pickupStatus != AbstractArrowEntity.PickupStatus.ALLOWED || i <= 0) {
-            super.func_225516_i_();
+    protected void tickDespawn() {
+        int i = this.entityData.get(LOYALTY_LEVEL);
+        if (this.pickup != AbstractArrowEntity.PickupStatus.ALLOWED || i <= 0) {
+            super.tickDespawn();
         }
 
     }
 
 
-    protected float getWaterDrag() {
+    protected float getWaterInertia() {
         return 0.8F;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public boolean isInRangeToRender3d(double x, double y, double z) {
+    public boolean shouldRender(double x, double y, double z) {
         return true;
     }
 }

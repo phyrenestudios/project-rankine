@@ -24,7 +24,7 @@ public class MetalBarsBlock extends PaneBlock {
     int alloyColor;
 
     public MetalBarsBlock(int color) {
-        super(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid());
+        super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion());
         this.alloyColor = color;
         //this.setDefaultState(this.stateContainer.getBaseState().with(MODE, 0));
     }
@@ -37,14 +37,14 @@ public class MetalBarsBlock extends PaneBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        ItemStack heldItem = context.getPlayer().getHeldItemOffhand();
-        BlockState state1 =this.getDefaultState();
+        ItemStack heldItem = context.getPlayer().getOffhandItem();
+        BlockState state1 =this.defaultBlockState();
         if (heldItem.getItem() == RankineItems.BUILDING_TOOL.get()) {
         //    state1 = state1.with(MODE, Math.min(BuildingToolItem.getBuildingMode(heldItem),4));
         }
-        IBlockReader iblockreader = context.getWorld();
-        BlockPos blockpos = context.getPos();
-        FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
+        IBlockReader iblockreader = context.getLevel();
+        BlockPos blockpos = context.getClickedPos();
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
         BlockPos blockpos1 = blockpos.north();
         BlockPos blockpos2 = blockpos.south();
         BlockPos blockpos3 = blockpos.west();
@@ -53,7 +53,7 @@ public class MetalBarsBlock extends PaneBlock {
         BlockState blockstate1 = iblockreader.getBlockState(blockpos2);
         BlockState blockstate2 = iblockreader.getBlockState(blockpos3);
         BlockState blockstate3 = iblockreader.getBlockState(blockpos4);
-        return state1.with(NORTH, this.canAttachTo(blockstate, blockstate.isSolidSide(iblockreader, blockpos1, Direction.SOUTH))).with(SOUTH, this.canAttachTo(blockstate1, blockstate1.isSolidSide(iblockreader, blockpos2, Direction.NORTH))).with(WEST, this.canAttachTo(blockstate2, blockstate2.isSolidSide(iblockreader, blockpos3, Direction.EAST))).with(EAST, this.canAttachTo(blockstate3, blockstate3.isSolidSide(iblockreader, blockpos4, Direction.WEST))).with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);
+        return state1.setValue(NORTH, this.attachsTo(blockstate, blockstate.isFaceSturdy(iblockreader, blockpos1, Direction.SOUTH))).setValue(SOUTH, this.attachsTo(blockstate1, blockstate1.isFaceSturdy(iblockreader, blockpos2, Direction.NORTH))).setValue(WEST, this.attachsTo(blockstate2, blockstate2.isFaceSturdy(iblockreader, blockpos3, Direction.EAST))).setValue(EAST, this.attachsTo(blockstate3, blockstate3.isFaceSturdy(iblockreader, blockpos4, Direction.WEST))).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 
     }
 
@@ -63,17 +63,17 @@ public class MetalBarsBlock extends PaneBlock {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
+    public boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
         if (adjacentBlockState.getBlock() instanceof PaneBlock) {
             if (!side.getAxis().isHorizontal()) {
                 return true;
             }
 
-            if (state.get(FACING_TO_PROPERTY_MAP.get(side)) && adjacentBlockState.get(FACING_TO_PROPERTY_MAP.get(side.getOpposite()))) {
+            if (state.getValue(PROPERTY_BY_DIRECTION.get(side)) && adjacentBlockState.getValue(PROPERTY_BY_DIRECTION.get(side.getOpposite()))) {
                 return true;
             }
         }
 
-        return super.isSideInvisible(state, adjacentBlockState, side);
+        return super.skipRendering(state, adjacentBlockState, side);
     }
 }

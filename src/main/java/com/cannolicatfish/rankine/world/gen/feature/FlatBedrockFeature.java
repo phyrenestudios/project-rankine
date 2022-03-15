@@ -16,12 +16,12 @@ public class FlatBedrockFeature extends Feature<ReplacerFeatureConfig> {
 
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
         IChunk chunk = reader.getChunk(pos);
-        int startX = chunk.getPos().getXStart();
-        int startZ = chunk.getPos().getZStart();
-        int endX = chunk.getPos().getXEnd();
-        int endZ = chunk.getPos().getZEnd();
+        int startX = chunk.getPos().getMinBlockX();
+        int startZ = chunk.getPos().getMinBlockZ();
+        int endX = chunk.getPos().getMaxBlockX();
+        int endZ = chunk.getPos().getMaxBlockZ();
         int startY = config.bottomBound;
         int endY = config.topBound;
 
@@ -29,12 +29,12 @@ public class FlatBedrockFeature extends Feature<ReplacerFeatureConfig> {
             for (int z = startZ; z <= endZ; ++z) {
                 for (int y = startY; y < endY; ++y) {
                     if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                        reader.setBlockState(new BlockPos(x, y, z), config.state, 2);
+                        reader.setBlock(new BlockPos(x, y, z), config.state, 2);
                     }
                 }
                 for (int y = endY; y <= 10; ++y) {
                     if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.state.getBlock()) {
-                        reader.setBlockState(new BlockPos(x, y, z), config.target, 2);
+                        reader.setBlock(new BlockPos(x, y, z), config.target, 2);
                     }
                 }
             }

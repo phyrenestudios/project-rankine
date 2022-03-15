@@ -36,66 +36,66 @@ public class ClientProxy implements IProxy {
 
     public static void addCutout(List<Block> blockList) {
         for (Block block : blockList) {
-            RenderTypeLookup.setRenderLayer(block, RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
         }
     }
 
     public static void addCutoutMipped(List<Block> blockList) {
         for (Block block : blockList) {
-            RenderTypeLookup.setRenderLayer(block, RenderType.getCutoutMipped());
+            RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
         }
     }
 
     public static void addTranslucent(List<Block> blockList) {
         for (Block block : blockList) {
-            RenderTypeLookup.setRenderLayer(block, RenderType.getTranslucent());
+            RenderTypeLookup.setRenderLayer(block, RenderType.translucent());
         }
     }
 
     public static void registerItemProperties() {
         for (Item ITEM : Stream.of(RankineLists.WOODEN_TOOLS,RankineLists.STONE_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.NIOBIUM_ALLOY_TOOLS, RankineLists.ZIRCONIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.OSMIRIDIUM_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             if (ITEM instanceof SpearItem) {
-                ItemModelsProperties.registerProperty(ITEM, new ResourceLocation("throwing"), (stack, world, living) ->
-                        living != null && living.isHandActive() && living.getActiveItemStack() == stack ? 1.0F : 0.0F);
+                ItemModelsProperties.register(ITEM, new ResourceLocation("throwing"), (stack, world, living) ->
+                        living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F);
             }
         }
 
-        ItemModelsProperties.registerProperty(RankineItems.SHULKER_GAS_VACUUM.get(),
+        ItemModelsProperties.register(RankineItems.SHULKER_GAS_VACUUM.get(),
                 new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living) ->
                         stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F);
 
-        ItemModelsProperties.registerProperty(RankineItems.PENNING_TRAP.get(),
+        ItemModelsProperties.register(RankineItems.PENNING_TRAP.get(),
                 new ResourceLocation(ProjectRankine.MODID, "filled"), (stack, world, living) ->
                         stack.getTag() != null && stack.getTag().getInt("filled") != 0 ? 1 : 0);
 
-        ItemModelsProperties.registerProperty(RankineItems.ALLOY_SURF_ROD.get(), new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_) -> {
+        ItemModelsProperties.register(RankineItems.ALLOY_SURF_ROD.get(), new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_) -> {
             if (p_239422_2_ == null) {
                 return 0.0F;
             } else {
-                boolean flag = p_239422_2_.getHeldItemMainhand() == p_239422_0_;
-                boolean flag1 = p_239422_2_.getHeldItemOffhand() == p_239422_0_;
-                if (p_239422_2_.getHeldItemMainhand().getItem() instanceof AlloySurfRodItem) {
+                boolean flag = p_239422_2_.getMainHandItem() == p_239422_0_;
+                boolean flag1 = p_239422_2_.getOffhandItem() == p_239422_0_;
+                if (p_239422_2_.getMainHandItem().getItem() instanceof AlloySurfRodItem) {
                     flag1 = false;
                 }
 
-                return (flag || flag1) && p_239422_2_ instanceof PlayerEntity && ((PlayerEntity)p_239422_2_).fishingBobber != null ? 1.0F : 0.0F;
+                return (flag || flag1) && p_239422_2_ instanceof PlayerEntity && ((PlayerEntity)p_239422_2_).fishing != null ? 1.0F : 0.0F;
             }
         });
     }
     @Override
     public void init() {
-        ScreenManager.registerFactory(RankineBlocks.MIXING_BARREL_CONTAINER, MixingBarrelScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.ALLOY_FURNACE_CONTAINER, AlloyFurnaceScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.PISTON_CRUSHER_CONTAINER, PistonCrusherScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.EVAPORATION_TOWER_CONTAINER, EvaporationTowerScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.GAS_CONDENSER_CONTAINER, GasBottlerScreen::new);
-        ScreenManager.registerFactory(RankineItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.TEMPLATE_TABLE_CONTAINER, TemplateTableScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.MATERIAL_TESTING_TABLE_CONTAINER, MaterialTestingTableScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.CRUCIBLE_CONTAINER, CrucibleScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.FUSION_FURNACE_CONTAINER, FusionFurnaceScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.GYRATORY_CRUSHER_CONTAINER, GyratoryCrusherScreen::new);
+        ScreenManager.register(RankineBlocks.MIXING_BARREL_CONTAINER, MixingBarrelScreen::new);
+        ScreenManager.register(RankineBlocks.ALLOY_FURNACE_CONTAINER, AlloyFurnaceScreen::new);
+        ScreenManager.register(RankineBlocks.PISTON_CRUSHER_CONTAINER, PistonCrusherScreen::new);
+        ScreenManager.register(RankineBlocks.EVAPORATION_TOWER_CONTAINER, EvaporationTowerScreen::new);
+        ScreenManager.register(RankineBlocks.GAS_CONDENSER_CONTAINER, GasBottlerScreen::new);
+        ScreenManager.register(RankineItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
+        ScreenManager.register(RankineBlocks.TEMPLATE_TABLE_CONTAINER, TemplateTableScreen::new);
+        ScreenManager.register(RankineBlocks.MATERIAL_TESTING_TABLE_CONTAINER, MaterialTestingTableScreen::new);
+        ScreenManager.register(RankineBlocks.CRUCIBLE_CONTAINER, CrucibleScreen::new);
+        ScreenManager.register(RankineBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
+        ScreenManager.register(RankineBlocks.FUSION_FURNACE_CONTAINER, FusionFurnaceScreen::new);
+        ScreenManager.register(RankineBlocks.GYRATORY_CRUSHER_CONTAINER, GyratoryCrusherScreen::new);
 
         addCutout(RankineLists.WOODEN_DOORS);
         addCutout(RankineLists.METAL_DOORS);
@@ -212,7 +212,7 @@ public class ClientProxy implements IProxy {
 
     @Override
     public World getClientWorld() {
-        return Minecraft.getInstance().world;
+        return Minecraft.getInstance().level;
     }
 
     @Override

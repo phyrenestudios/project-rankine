@@ -22,7 +22,7 @@ public class CraftingInventoryFilled extends CraftingInventory {
         this.height = height;
     }
 
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return this.stackList.size();
     }
 
@@ -39,24 +39,24 @@ public class CraftingInventoryFilled extends CraftingInventory {
     /**
      * Returns the stack in the given slot.
      */
-    public ItemStack getStackInSlot(int index) {
-        return index >= this.getSizeInventory() ? ItemStack.EMPTY : this.stackList.get(index);
+    public ItemStack getItem(int index) {
+        return index >= this.getContainerSize() ? ItemStack.EMPTY : this.stackList.get(index);
     }
 
     /**
      * Removes a stack from the given slot and returns it.
      */
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.stackList, index);
+    public ItemStack removeItemNoUpdate(int index) {
+        return ItemStackHelper.takeItem(this.stackList, index);
     }
 
     /**
      * Removes up to a specified number of items from an inventory slot and returns them in a new stack.
      */
-    public ItemStack decrStackSize(int index, int count) {
-        ItemStack itemstack = ItemStackHelper.getAndSplit(this.stackList, index, count);
+    public ItemStack removeItem(int index, int count) {
+        ItemStack itemstack = ItemStackHelper.removeItem(this.stackList, index, count);
         if (!itemstack.isEmpty()) {
-            this.eventHandler.onCraftMatrixChanged(this);
+            this.eventHandler.slotsChanged(this);
         }
 
         return itemstack;
@@ -65,26 +65,26 @@ public class CraftingInventoryFilled extends CraftingInventory {
     /**
      * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
      */
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setItem(int index, ItemStack stack) {
         this.stackList.set(index, stack);
-        this.eventHandler.onCraftMatrixChanged(this);
+        this.eventHandler.slotsChanged(this);
     }
 
     /**
      * For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it
      * hasn't changed and skip it.
      */
-    public void markDirty() {
+    public void setChanged() {
     }
 
     /**
      * Don't rename this method to canInteractWith due to conflicts with Container
      */
-    public boolean isUsableByPlayer(PlayerEntity player) {
+    public boolean stillValid(PlayerEntity player) {
         return true;
     }
 
-    public void clear() {
+    public void clearContent() {
         this.stackList.clear();
     }
 
@@ -98,7 +98,7 @@ public class CraftingInventoryFilled extends CraftingInventory {
 
     public void fillStackedContents(RecipeItemHelper helper) {
         for(ItemStack itemstack : this.stackList) {
-            helper.accountPlainStack(itemstack);
+            helper.accountSimpleStack(itemstack);
         }
 
     }

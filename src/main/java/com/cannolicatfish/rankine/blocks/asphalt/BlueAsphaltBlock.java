@@ -18,16 +18,16 @@ public class BlueAsphaltBlock extends BaseAsphaltBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        Direction dir = player.getHorizontalFacing();
-        if (Tags.Items.DYES.contains(player.getHeldItem(handIn).getItem())) {
-            if (state.get(HORIZONTAL_FACING) != dir) {
-                worldIn.setBlockState(pos, state.with(HORIZONTAL_FACING, dir), 3);
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        Direction dir = player.getDirection();
+        if (Tags.Items.DYES.contains(player.getItemInHand(handIn).getItem())) {
+            if (state.getValue(FACING) != dir) {
+                worldIn.setBlock(pos, state.setValue(FACING, dir), 3);
             } else {
-                worldIn.setBlockState(pos, RankineLists.BLUE_ASPHALT_BLOCKS.get((RankineLists.BLUE_ASPHALT_BLOCKS.indexOf(state.getBlock())+1)%RankineLists.BLUE_ASPHALT_BLOCKS.size()).getDefaultState().with(SIZE,state.get(SIZE)).with(HORIZONTAL_FACING, dir), 3);
+                worldIn.setBlock(pos, RankineLists.BLUE_ASPHALT_BLOCKS.get((RankineLists.BLUE_ASPHALT_BLOCKS.indexOf(state.getBlock())+1)%RankineLists.BLUE_ASPHALT_BLOCKS.size()).defaultBlockState().setValue(SIZE,state.getValue(SIZE)).setValue(FACING, dir), 3);
             }
             return ActionResultType.SUCCESS;
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return super.use(state, worldIn, pos, player, handIn, hit);
     }
 }
