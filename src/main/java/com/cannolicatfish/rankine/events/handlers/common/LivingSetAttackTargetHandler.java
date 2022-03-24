@@ -4,7 +4,6 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 
 public class LivingSetAttackTargetHandler {

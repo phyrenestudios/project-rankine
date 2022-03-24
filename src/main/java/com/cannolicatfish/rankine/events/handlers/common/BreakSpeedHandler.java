@@ -1,55 +1,29 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
-import com.cannolicatfish.rankine.blocks.RankineOreBlock;
-import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
-import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.SweetBerryBushBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.PickaxeItem;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
 import java.util.Set;
 import java.util.Stack;
-
-import static net.minecraft.block.Block.spawnAsEntity;
 
 public class BreakSpeedHandler {
 

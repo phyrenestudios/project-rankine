@@ -1,19 +1,5 @@
 package com.cannolicatfish.rankine.events;
 
-import com.cannolicatfish.rankine.blocks.LEDBlock;
-import com.cannolicatfish.rankine.blocks.RankineOreBlock;
-import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
-import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitBlock;
-import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
-import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
-import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
-import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
-import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
-import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
-import com.cannolicatfish.rankine.compatibility.Patchouli;
-import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
-import com.cannolicatfish.rankine.entities.goals.EatGrassGoalModified;
-import com.cannolicatfish.rankine.events.handlers.client.ItemTooltipHandler;
 import com.cannolicatfish.rankine.events.handlers.common.AnvilUpdateHandler;
 import com.cannolicatfish.rankine.events.handlers.common.BlockBreakHandler;
 import com.cannolicatfish.rankine.events.handlers.common.BlockToolInteractHandler;
@@ -26,6 +12,7 @@ import com.cannolicatfish.rankine.events.handlers.common.FluidPlaceBlockHandler;
 import com.cannolicatfish.rankine.events.handlers.common.FurnaceFuelBurnTimeHandler;
 import com.cannolicatfish.rankine.events.handlers.common.HarvestCheckHandler;
 import com.cannolicatfish.rankine.events.handlers.common.ItemAttributeModifierHandler;
+import com.cannolicatfish.rankine.events.handlers.common.ItemPickupHandler;
 import com.cannolicatfish.rankine.events.handlers.common.LeftClickBlockHandler;
 import com.cannolicatfish.rankine.events.handlers.common.LivingDamagedHandler;
 import com.cannolicatfish.rankine.events.handlers.common.LivingSetAttackTargetHandler;
@@ -38,57 +25,6 @@ import com.cannolicatfish.rankine.events.handlers.common.SaplingGrowHandler;
 import com.cannolicatfish.rankine.events.handlers.common.VillagerTradeHandler;
 import com.cannolicatfish.rankine.events.handlers.common.WanderingTradeHandler;
 import com.cannolicatfish.rankine.events.handlers.common.WorldLoadHandler;
-import com.cannolicatfish.rankine.init.*;
-import com.cannolicatfish.rankine.items.alloys.*;
-import com.cannolicatfish.rankine.items.tools.CrowbarItem;
-import com.cannolicatfish.rankine.items.tools.HammerItem;
-import com.cannolicatfish.rankine.items.tools.KnifeItem;
-import com.cannolicatfish.rankine.items.tools.SpearItem;
-import com.cannolicatfish.rankine.potion.RankineEffects;
-import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
-import com.cannolicatfish.rankine.recipe.SluicingRecipe;
-import com.cannolicatfish.rankine.recipe.StrippingRecipe;
-import com.cannolicatfish.rankine.util.RankineMathHelper;
-import com.cannolicatfish.rankine.util.RockGeneratorUtils;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
-import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.ai.goal.EatGrassGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.loot.*;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -97,7 +33,6 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
@@ -106,22 +41,15 @@ import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.SaplingGrowTreeEvent;
 import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
-import vazkii.patchouli.api.PatchouliAPI;
-
-import java.util.*;
-
-import static net.minecraft.block.Block.spawnAsEntity;
 
 @Mod.EventBusSubscriber
 public class RankineEventHandler {
 
     @SubscribeEvent
     public static void onItemPickup(PlayerEvent.ItemPickupEvent event) {
-        RankineEventHandler.onItemPickup(event);
+        ItemPickupHandler.onItemPickup(event);
     }
 
     @SubscribeEvent
