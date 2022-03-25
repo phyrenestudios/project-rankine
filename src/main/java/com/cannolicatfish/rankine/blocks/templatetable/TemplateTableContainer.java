@@ -3,58 +3,50 @@ package com.cannolicatfish.rankine.blocks.templatetable;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.init.RankineRecipes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.*;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.MerchantOffers;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.INBT;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraft.world.inventory.Slot;
 
-import java.util.AbstractMap;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.TEMPLATE_TABLE_CONTAINER;
-public class TemplateTableContainer extends Container {
+public class TemplateTableContainer extends AbstractContainerMenu {
+
+
 
     private IItemHandler playerInventory;
-    private World world;
-    public final IInventory inputInventory = new Inventory(8) {
+    private Level world;
+    public final Container inputInventory = new SimpleContainer(8) {
         public void setChanged() {
             super.setChanged();
             TemplateTableContainer.this.slotsChanged(this);
         }
     };
-    public final IInventory outputInventory = new Inventory(1);
+    public final Container outputInventory = new SimpleContainer(1);
     private ItemStack recipeOutput;
-    private PlayerEntity player;
-    private final IWorldPosCallable worldPosCallable;
+    private Player player;
+    private final ContainerLevelAccess worldPosCallable;
 
-    public TemplateTableContainer(int id, PlayerInventory playerInventory, PlayerEntity player) {
-        this(id,playerInventory,player, IWorldPosCallable.NULL);
+    public TemplateTableContainer(int id, Inventory playerInventory, Player player) {
+        this(id,playerInventory,player, ContainerLevelAccess.NULL);
     }
 
-    public TemplateTableContainer(int windowId, PlayerInventory playerInventory, PlayerEntity player, IWorldPosCallable wpos) {
+    public TemplateTableContainer(int windowId, Inventory playerInventory, Player player, ContainerLevelAccess wpos) {
         super(TEMPLATE_TABLE_CONTAINER,windowId);
         this.worldPosCallable = wpos;
         this.player = player;
@@ -73,7 +65,7 @@ public class TemplateTableContainer extends Container {
                 return false;
             }
 
-            public ItemStack onTake(PlayerEntity player, ItemStack stack) {
+            public void onTake(Player player, ItemStack stack) {
                 TemplateTableContainer.this.inputInventory.removeItem(6,1);
                 TemplateTableContainer.this.inputInventory.removeItem(7,1);
                 TemplateTableContainer.this.updateRecipeResultSlot();
@@ -82,19 +74,19 @@ public class TemplateTableContainer extends Container {
                 worldPosCallable.execute((p_216954_1_, p_216954_2_) -> {
 
                 });
-                return super.onTake(player, stack);
+                super.onTake(player, stack);
             }
         });
         this.playerInventory = new InvWrapper(playerInventory);
         layoutPlayerInventorySlots(108, 84);
     }
 
-    public World getWorld() {
+    public Level getWorld() {
         return world;
     }
 
     @Override
-    public ItemStack quickMoveStack(PlayerEntity playerIn, int index)
+    public ItemStack quickMoveStack(Player playerIn, int index)
     {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
@@ -191,7 +183,7 @@ public class TemplateTableContainer extends Container {
         }
     }*/
 
-    public void slotsChanged(IInventory inventoryIn) {
+    public void slotsChanged(Container inventoryIn) {
 
         if (this.inputInventory.getItem(6).getItem() == Items.PAPER &&
                 (this.inputInventory.getItem(7).getItem() instanceof DyeItem))
@@ -224,14 +216,14 @@ public class TemplateTableContainer extends Container {
 
 
     @Override
-    public boolean stillValid(PlayerEntity playerIn) {
+    public boolean stillValid(Player playerIn) {
         return stillValid(this.worldPosCallable, playerIn, RankineBlocks.TEMPLATE_TABLE.get());
     }
 
-    public void removed(PlayerEntity playerIn) {
+    public void removed(Player playerIn) {
         super.removed(playerIn);
         this.worldPosCallable.execute((p_217068_2_, p_217068_3_) -> {
-            this.clearContainer(playerIn, p_217068_2_, this.inputInventory);
+            this.clearContainer(playerIn, this.inputInventory);
         });
     }
 

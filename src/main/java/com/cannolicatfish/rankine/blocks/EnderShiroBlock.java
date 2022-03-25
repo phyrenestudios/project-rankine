@@ -1,26 +1,20 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ShovelItem;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.Features;
-import net.minecraft.world.gen.feature.NetherVegetationFeature;
-import net.minecraft.world.gen.feature.TwistingVineFeature;
-import net.minecraft.world.lighting.LightEngine;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.Random;
 
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+
 public class EnderShiroBlock extends Block {
-    public EnderShiroBlock(AbstractBlock.Properties properties) {
+    public EnderShiroBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
@@ -30,11 +24,11 @@ public class EnderShiroBlock extends Block {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
         if (enderShiroGrowth(worldIn, pos)) {
             for(int i = 0; i < 4; ++i) {
                 BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(3) - 1, random.nextInt(3) - 1);
-                if (worldIn.getBlockState(blockpos).getBlock().is(Blocks.END_STONE) && enderShiroGrowth(worldIn, blockpos)) {
+                if (worldIn.getBlockState(blockpos).getBlock().equals(Blocks.END_STONE) && enderShiroGrowth(worldIn, blockpos)) {
                     worldIn.setBlockAndUpdate(blockpos, RankineBlocks.ENDER_SHIRO.get().defaultBlockState());
                 }
             }
@@ -44,7 +38,7 @@ public class EnderShiroBlock extends Block {
 
     }
 
-    private boolean enderShiroGrowth(ServerWorld worldIn, BlockPos pos) {
+    private boolean enderShiroGrowth(ServerLevel worldIn, BlockPos pos) {
         return !worldIn.getBlockState(pos.above()).is(this) && !worldIn.getBlockState(pos.above()).is(Blocks.END_STONE);
     }
 

@@ -4,7 +4,7 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.recipe.TreetappingRecipe;
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -13,13 +13,13 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.text.DecimalFormat;
@@ -56,8 +56,8 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
     }
 
     @Override
-    public String getTitle() {
-        return localizedName;
+    public Component getTitle() {
+        return new TextComponent(localizedName);
     }
 
     @Override
@@ -71,13 +71,13 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
     }
 
     @Override
-    public void draw(TreetappingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().font;
-        RenderSystem.enableAlphaTest();
+    public void draw(TreetappingRecipe recipe, PoseStack ms, double mouseX, double mouseY) {
+        Font font = Minecraft.getInstance().font;
+        //RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
         RenderSystem.disableBlend();
-        RenderSystem.disableAlphaTest();
+        //RenderSystem.disableAlphaTest();
         if (recipe.getTapTime() > 0) {
             font.draw(ms, Math.round(recipe.getTapTime()/20f)+"s", 107, 55, 0x7E7E7E);
         }
@@ -110,7 +110,7 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
         }
 
         recipeLayout.getFluidStacks().addTooltipCallback((i, b, stack, list) -> {
-            list.add(new StringTextComponent(recipe.getResult().getAmount() + "mb"));
+            list.add(new TextComponent(recipe.getResult().getAmount() + "mb"));
         });
     }
 }

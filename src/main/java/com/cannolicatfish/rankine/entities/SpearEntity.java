@@ -2,37 +2,39 @@ package com.cannolicatfish.rankine.entities;
 
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.FMLPlayMessages;
-import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-public class SpearEntity extends AbstractArrowEntity {
-    private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.defineId(SpearEntity.class, DataSerializers.BYTE);
-    private static final DataParameter<Byte> TELEPORT_LEVEL = EntityDataManager.defineId(SpearEntity.class, DataSerializers.BYTE);
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraftforge.fmllegacy.network.FMLPlayMessages;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
+
+public class SpearEntity extends AbstractArrow {
+    private static final EntityDataAccessor<Byte> LOYALTY_LEVEL = SynchedEntityData.defineId(SpearEntity.class, EntityDataSerializers.BYTE);
+    private static final EntityDataAccessor<Byte> TELEPORT_LEVEL = SynchedEntityData.defineId(SpearEntity.class, EntityDataSerializers.BYTE);
     private ItemStack thrownStack = new ItemStack(RankineItems.BRONZE_SPEAR.get());
     public ResourceLocation type;
     private boolean dealtDamage;
@@ -41,11 +43,11 @@ public class SpearEntity extends AbstractArrowEntity {
     private int knockbackStrength;
 
 
-    public SpearEntity(EntityType<? extends SpearEntity> type, World worldIn) {
+    public SpearEntity(EntityType<? extends SpearEntity> type, Level worldIn) {
         super(type, worldIn);
     }
 
-    public SpearEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn, EntityType<SpearEntity> e, ResourceLocation type, float damage) {
+    public SpearEntity(Level worldIn, LivingEntity thrower, ItemStack thrownStackIn, EntityType<SpearEntity> e, ResourceLocation type, float damage) {
         super(e, thrower, worldIn);
         this.thrownStack = thrownStackIn.copy();
         this.entityData.set(TELEPORT_LEVEL, (byte) EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDPOINT,thrownStackIn));
@@ -57,17 +59,17 @@ public class SpearEntity extends AbstractArrowEntity {
 
 
     @OnlyIn(Dist.CLIENT)
-    public SpearEntity(World worldIn, double x, double y, double z, EntityType<SpearEntity> e) {
+    public SpearEntity(Level worldIn, double x, double y, double z, EntityType<SpearEntity> e) {
         super(e, x, y, z, worldIn);
     }
     @OnlyIn(Dist.CLIENT)
-    public SpearEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world, EntityType<SpearEntity> e, ResourceLocation type) {
+    public SpearEntity(FMLPlayMessages.SpawnEntity spawnEntity, Level world, EntityType<SpearEntity> e, ResourceLocation type) {
         super(e, world);
         this.type = type;
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -88,7 +90,7 @@ public class SpearEntity extends AbstractArrowEntity {
         }
 
         Entity entity = this.getOwner();
-        if (this.inGroundTime == 4 && entity instanceof PlayerEntity && this.entityData.get(TELEPORT_LEVEL) > 0) {
+        if (this.inGroundTime == 4 && entity instanceof Player && this.entityData.get(TELEPORT_LEVEL) > 0) {
             double x = this.getX();
             double y = this.getY();
             double z = this.getZ();
@@ -96,9 +98,9 @@ public class SpearEntity extends AbstractArrowEntity {
                 level.addParticle(ParticleTypes.PORTAL, entity.getX(), entity.getY() + 0.5D, entity.getZ(), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
                 level.addParticle(ParticleTypes.PORTAL, x, y + 0.5D, z, (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
             }
-            level.playLocalSound(x,y,z,SoundEvents.ENDERMAN_TELEPORT,SoundCategory.PLAYERS,1f,1f,false);
+            level.playLocalSound(x,y,z,SoundEvents.ENDERMAN_TELEPORT,SoundSource.PLAYERS,1f,1f,false);
             entity.teleportTo(x,y,z);
-            if (!((PlayerEntity) entity).isCreative()) {
+            if (!((Player) entity).isCreative()) {
                 entity.hurt(DamageSource.FALL, Math.max(5.0F - 2.5F*(this.entityData.get(TELEPORT_LEVEL) - 1),0));
             }
         }
@@ -106,14 +108,14 @@ public class SpearEntity extends AbstractArrowEntity {
         if ((this.dealtDamage || this.isNoPhysics()) && entity != null) {
             int i = this.entityData.get(LOYALTY_LEVEL);
             if (i > 0 && !this.shouldReturnToThrower()) {
-                if (!this.level.isClientSide && this.pickup == AbstractArrowEntity.PickupStatus.ALLOWED) {
+                if (!this.level.isClientSide && this.pickup == AbstractArrow.Pickup.ALLOWED) {
                     this.spawnAtLocation(this.getPickupItem(), 0.1F);
                 }
 
-                this.remove();
+                this.remove(RemovalReason.DISCARDED);
             } else if (i > 0) {
                 this.setNoPhysics(true);
-                Vector3d vec3d = new Vector3d(entity.getX() - this.getX(), entity.getY() + (double)entity.getEyeHeight() - this.getY(), entity.getZ() - this.getZ());
+                Vec3 vec3d = new Vec3(entity.getX() - this.getX(), entity.getY() + (double)entity.getEyeHeight() - this.getY(), entity.getZ() - this.getZ());
                 this.setPosRaw(this.getX(), this.getY() + vec3d.y * 0.015D * (double)i, this.getZ());
                 if (this.level.isClientSide) {
                     this.yOld = this.getY();
@@ -134,7 +136,7 @@ public class SpearEntity extends AbstractArrowEntity {
     private boolean shouldReturnToThrower() {
         Entity entity = this.getOwner();
         if (entity != null && entity.isAlive()) {
-            return !(entity instanceof ServerPlayerEntity) || !entity.isSpectator();
+            return !(entity instanceof ServerPlayer) || !entity.isSpectator();
         } else {
             return false;
         }
@@ -152,14 +154,14 @@ public class SpearEntity extends AbstractArrowEntity {
      * Gets the EntityRayTraceResult representing the entity hit
      */
     @Nullable
-    protected EntityRayTraceResult findHitEntity(Vector3d startVec, Vector3d endVec) {
+    protected EntityHitResult findHitEntity(Vec3 startVec, Vec3 endVec) {
         return this.dealtDamage ? null : super.findHitEntity(startVec, endVec);
     }
 
     /**
      * Called when the arrow hits an entity
      */
-    protected void onHitEntity(EntityRayTraceResult p_213868_1_) {
+    protected void onHitEntity(EntityHitResult p_213868_1_) {
         Entity entity = p_213868_1_.getEntity();
         float f = this.attackDamage;
         if (f == 0)
@@ -171,7 +173,7 @@ public class SpearEntity extends AbstractArrowEntity {
             LivingEntity livingentity = (LivingEntity)entity;
             f += EnchantmentHelper.getDamageBonus(this.thrownStack, livingentity.getMobType());
             if (this.knockbackStrength > 0) {
-                Vector3d vector3d = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale((double)this.knockbackStrength * 0.6D);
+                Vec3 vector3d = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale((double)this.knockbackStrength * 0.6D);
                 if (vector3d.lengthSqr() > 0.0D) {
                     livingentity.push(vector3d.x, 0.1D, vector3d.z);
                 }
@@ -219,7 +221,7 @@ public class SpearEntity extends AbstractArrowEntity {
     /**
      * Called by a player entity when they collide with an entity
      */
-    public void playerTouch(PlayerEntity entityIn) {
+    public void playerTouch(Player entityIn) {
         Entity entity = this.getOwner();
         if (entity == null || entity.getUUID() == entityIn.getUUID()) {
             super.playerTouch(entityIn);
@@ -229,7 +231,7 @@ public class SpearEntity extends AbstractArrowEntity {
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readAdditionalSaveData(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("Spear", 10)) {
             this.thrownStack = ItemStack.of(compound.getCompound("Spear"));
@@ -239,15 +241,15 @@ public class SpearEntity extends AbstractArrowEntity {
         this.entityData.set(LOYALTY_LEVEL, (byte)EnchantmentHelper.getLoyalty(this.thrownStack));
     }
 
-    public void addAdditionalSaveData(CompoundNBT compound) {
+    public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.put("Spear", this.thrownStack.save(new CompoundNBT()));
+        compound.put("Spear", this.thrownStack.save(new CompoundTag()));
         compound.putBoolean("DealtDamage", this.dealtDamage);
     }
 
     protected void tickDespawn() {
         int i = this.entityData.get(LOYALTY_LEVEL);
-        if (this.pickup != AbstractArrowEntity.PickupStatus.ALLOWED || i <= 0) {
+        if (this.pickup != AbstractArrow.Pickup.ALLOWED || i <= 0) {
             super.tickDespawn();
         }
 

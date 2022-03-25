@@ -2,14 +2,14 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class FloodGateBlock extends Block {
     public FloodGateBlock(Properties properties) {
@@ -21,7 +21,7 @@ public class FloodGateBlock extends Block {
         return true;
     }
 
-    public static boolean placeFluid(World worldIn, BlockPos pos, BlockState bs) {
+    public static boolean placeFluid(Level worldIn, BlockPos pos, BlockState bs) {
         if (worldIn.getBlockState(pos.below()).is(Blocks.AIR)) {
             worldIn.setBlock(pos.below(),bs,3);
             return true;
@@ -41,7 +41,7 @@ public class FloodGateBlock extends Block {
         return false;
     }
 
-    public static boolean inInfiniteSource(World worldIn, BlockPos pos) {
+    public static boolean inInfiniteSource(Level worldIn, BlockPos pos) {
         int waterSides = 0;
         for (Direction d : Direction.values()) {
             if (worldIn.getBlockState(pos.relative(d)).is(Blocks.WATER)) {

@@ -1,10 +1,10 @@
 package com.cannolicatfish.rankine.util.colors;
 
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
-import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.world.item.ItemStack;
 
-public class TemplateItemColor implements IItemColor {
+public class TemplateItemColor implements ItemColor {
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
         if (stack.getItem() instanceof AlloyTemplateItem) {

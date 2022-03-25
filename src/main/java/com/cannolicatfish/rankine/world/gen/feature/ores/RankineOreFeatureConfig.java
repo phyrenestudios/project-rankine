@@ -3,17 +3,17 @@ package com.cannolicatfish.rankine.world.gen.feature.ores;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class RankineOreFeatureConfig implements IFeatureConfig {
+public class RankineOreFeatureConfig implements FeatureConfiguration {
     public static final Codec<RankineOreFeatureConfig> CODEC = RecordCodecBuilder.create((p_236568_0_) -> {
         return p_236568_0_.group(RankineOreFeatureConfig.RankineFillerBlockType.field_236571_d_.fieldOf("target").forGetter((p_236570_0_) -> {
             return p_236570_0_.target;
@@ -41,13 +41,13 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
         this.target = target;
     }
 
-    public static enum RankineFillerBlockType implements IStringSerializable, net.minecraftforge.common.IExtensibleEnum {
+    public static enum RankineFillerBlockType implements StringRepresentable, net.minecraftforge.common.IExtensibleEnum {
 
         ORE_FILLER("ore_filler", (blockstate) -> {
             return BlockTags.BASE_STONE_OVERWORLD.contains(blockstate.getBlock()) || BlockTags.BASE_STONE_NETHER.contains(blockstate.getBlock()) || RankineTags.Blocks.BASE_STONE_END.contains(blockstate.getBlock());
         });
 
-        public static final Codec<RankineOreFeatureConfig.RankineFillerBlockType> field_236571_d_ = IStringSerializable.fromEnum(RankineOreFeatureConfig.RankineFillerBlockType::values, RankineOreFeatureConfig.RankineFillerBlockType::byName);
+        public static final Codec<RankineOreFeatureConfig.RankineFillerBlockType> field_236571_d_ = StringRepresentable.fromEnum(RankineOreFeatureConfig.RankineFillerBlockType::values, RankineOreFeatureConfig.RankineFillerBlockType::byName);
         /** maps the filler block type name to the corresponding enum value. */
         private static final Map<String, RankineOreFeatureConfig.RankineFillerBlockType> VALUES_MAP = Arrays.stream(values()).collect(Collectors.toMap(RankineOreFeatureConfig.RankineFillerBlockType::getName, (p_236573_0_) -> {
             return p_236573_0_;

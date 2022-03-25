@@ -1,9 +1,9 @@
 package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
 

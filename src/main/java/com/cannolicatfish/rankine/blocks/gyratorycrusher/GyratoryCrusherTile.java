@@ -5,24 +5,25 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.CrushingHeadItem;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
-import net.minecraft.block.AbstractFurnaceBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.core.NonNullList;
+import net.minecraft.util.Mth;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
@@ -33,13 +34,13 @@ import java.util.List;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.GYRATORY_CRUSHER_TILE;
 
-public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
+public class GyratoryCrusherTile  extends BlockEntity implements WorldlyContainer, MenuProvider {
     private static final int[] SLOTS_UP = new int[]{0};
     private static final int[] SLOTS_DOWN = new int[]{3,4,5,6,7,8};
     private static final int[] SLOTS_HORIZONTAL = new int[]{1,2};
     private final int powerCost = Config.MACHINES.GYRATORY_CRUSHER_POWER.get();
-    public GyratoryCrusherTile() {
-        super(GYRATORY_CRUSHER_TILE);
+    public GyratoryCrusherTile(BlockPos posIn, BlockState stateIn) {
+        super(GYRATORY_CRUSHER_TILE, posIn, stateIn);
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
     private int burnTime;
@@ -47,7 +48,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
     private int cookTime;
     private int cookTimeTotal = 200;
     private int currentLevel = -1;
-    private final IIntArray furnaceData = new IIntArray(){
+    private final ContainerData furnaceData = new ContainerData(){
         public int get(int index)
         {
             switch(index)
@@ -95,25 +96,25 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
     };
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt,this.items);
+        ContainerHelper.loadAllItems(nbt,this.items);
         this.burnTime = nbt.getInt("BurnTime");
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
-        this.currentBurnTime = ForgeHooks.getBurnTime(this.items.get(1));
+        this.currentBurnTime = ForgeHooks.getBurnTime(this.items.get(1), RecipeType.SMELTING);
         this.currentLevel = nbt.getInt("CurrentLevel");
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
         compound.putInt("CurrentLevel", this.currentLevel);
-        ItemStackHelper.saveAllItems(compound, this.items);
+        ContainerHelper.saveAllItems(compound, this.items);
 
         return compound;
     }
@@ -170,7 +171,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
                     this.cookTime = 0;
                 }
             } else if ((!this.isBurning()) && this.cookTime > 0) {
-                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
             }
 
             if (flag != this.isBurning()) {
@@ -245,13 +246,13 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
     }
 
     @Override
-    public ITextComponent getDisplayName() {
-        return new StringTextComponent(getType().getRegistryName().getPath());
+    public Component getDisplayName() {
+        return new TextComponent(getType().getRegistryName().getPath());
     }
 
     @Override
     @Nullable
-    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+    public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
         return new GyratoryCrusherContainer(i, level, worldPosition, playerInventory, playerEntity, this, this.furnaceData);
     }
 
@@ -298,12 +299,12 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
 
     @Override
     public ItemStack removeItem(int index, int count) {
-        return ItemStackHelper.removeItem(this.items, index, count);
+        return ContainerHelper.removeItem(this.items, index, count);
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int index) {
-        return ItemStackHelper.takeItem(this.items, index);
+        return ContainerHelper.takeItem(this.items, index);
     }
 
     @Override
@@ -323,7 +324,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
     }
 
     @Override
-    public boolean stillValid(PlayerEntity player) {
+    public boolean stillValid(Player player) {
         if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {

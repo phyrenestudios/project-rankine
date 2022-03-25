@@ -2,10 +2,10 @@ package com.cannolicatfish.rankine.advancements;
 
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.google.gson.JsonObject;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.resources.ResourceLocation;
 
 public class AlloyEnchantabilityPredicate extends ItemPredicate {
 
@@ -17,7 +17,7 @@ public class AlloyEnchantabilityPredicate extends ItemPredicate {
     }
 
     public AlloyEnchantabilityPredicate(JsonObject jsonObject) {
-        this(JSONUtils.getAsInt(jsonObject, "ench"),new ResourceLocation(JSONUtils.getAsString(jsonObject,"tag")));
+        this(GsonHelper.getAsInt(jsonObject, "ench"),new ResourceLocation(GsonHelper.getAsString(jsonObject,"tag")));
     }
 
     @Override

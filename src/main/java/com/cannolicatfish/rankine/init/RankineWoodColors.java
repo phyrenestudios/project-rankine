@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import net.minecraft.block.material.MaterialColor;
+import net.minecraft.world.level.material.MaterialColor;
 
 import java.util.Arrays;
 import java.util.Map;

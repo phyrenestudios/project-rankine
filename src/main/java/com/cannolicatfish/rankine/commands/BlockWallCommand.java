@@ -3,15 +3,15 @@ package com.cannolicatfish.rankine.commands;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.block.Block;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.command.arguments.BlockPosArgument;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 
 public class BlockWallCommand {
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("blockwall").requires((p_198688_0_) -> {
             return p_198688_0_.hasPermission(2);
         }).then(Commands.argument("pos", BlockPosArgument.blockPos()).then(Commands.argument("pos", BlockPosArgument.blockPos()).executes((p_198682_0_) -> {
@@ -19,8 +19,8 @@ public class BlockWallCommand {
         }))));
     }
 
-    private static int blockWall(CommandSource source, BlockPos pos) throws CommandSyntaxException {
-        ServerWorld serverworld = source.getLevel();
+    private static int blockWall(CommandSourceStack source, BlockPos pos) throws CommandSyntaxException {
+        ServerLevel serverworld = source.getLevel();
         for (Block BLK : RankineLists.STONES) {
             int i = RankineLists.STONES.indexOf(BLK);
             serverworld.setBlockAndUpdate(pos.north(2*i),BLK.defaultBlockState());

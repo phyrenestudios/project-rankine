@@ -1,21 +1,23 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.init.Config;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
+
+import java.util.Random;
 
 public class PumiceSoapItem extends Item {
     public PumiceSoapItem(Properties properties) {
@@ -23,10 +25,10 @@ public class PumiceSoapItem extends Item {
     }
 
     @Override
-    public ActionResultType useOn(ItemUseContext context) {
-        if (Config.GENERAL.PUMICE_SOAP.get()) return ActionResultType.FAIL;
+    public InteractionResult useOn(UseOnContext context) {
+        if (Config.GENERAL.PUMICE_SOAP.get()) return InteractionResult.FAIL;
 
-        World worldIn = context.getLevel();
+        Level worldIn = context.getLevel();
         Block block = worldIn.getBlockState(context.getClickedPos()).getBlock();
         ResourceLocation rs = block.getRegistryName();
         if (rs != null) {
@@ -37,7 +39,7 @@ public class PumiceSoapItem extends Item {
                     worldIn.setBlock(context.getClickedPos(),bl.defaultBlockState(),2);
                     spawnSoapParticles(worldIn,context.getClickedPos(),0);
                     context.getItemInHand().shrink(1);
-                    return ActionResultType.SUCCESS;
+                    return InteractionResult.SUCCESS;
                 }
             } else if(rs.getPath().contains("cracked_")) {
                 ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(),rs.getPath().split("cracked_")[1]);
@@ -47,7 +49,7 @@ public class PumiceSoapItem extends Item {
                     worldIn.setBlock(context.getClickedPos(),bl.defaultBlockState(),2);
                     spawnSoapParticles(worldIn,context.getClickedPos(),0);
                     context.getItemInHand().shrink(1);
-                    return ActionResultType.SUCCESS;
+                    return InteractionResult.SUCCESS;
                 }
             } else if (block.getTags().contains(new ResourceLocation("forge:stone")) && !rs.getPath().contains("polished_")) {
                 ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(),"polished_" + rs.getPath());
@@ -56,14 +58,14 @@ public class PumiceSoapItem extends Item {
                     worldIn.setBlock(context.getClickedPos(),bl.defaultBlockState(),2);
                     spawnSoapParticles(worldIn,context.getClickedPos(),0);
                     context.getItemInHand().shrink(1);
-                    return ActionResultType.SUCCESS;
+                    return InteractionResult.SUCCESS;
                 }
             }
         }
         return super.useOn(context);
     }
 
-    public static void spawnSoapParticles(IWorld worldIn, BlockPos posIn, int data) {
+    public static void spawnSoapParticles(LevelAccessor worldIn, BlockPos posIn, int data) {
         if (worldIn.isClientSide())
         {
             if (data == 0) {
@@ -71,7 +73,7 @@ public class PumiceSoapItem extends Item {
             }
 
             BlockState blockstate = worldIn.getBlockState(posIn);
-            if (!blockstate.isAir(worldIn, posIn)) {
+            if (!blockstate.isAir()) {
                 double d0 = 0.5D;
                 double d1;
                 if (blockstate.is(Blocks.WATER)) {
@@ -88,7 +90,7 @@ public class PumiceSoapItem extends Item {
                 }
 
                 worldIn.addParticle(ParticleTypes.HAPPY_VILLAGER, (double)posIn.getX() + 0.5D, (double)posIn.getY() + 0.5D, (double)posIn.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
-
+                Random random = worldIn.getRandom();
                 for(int i = 0; i < data; ++i) {
                     double d2 = random.nextGaussian() * 0.02D;
                     double d3 = random.nextGaussian() * 0.02D;

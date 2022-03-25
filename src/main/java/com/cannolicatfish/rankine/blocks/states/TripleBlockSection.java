@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks.states;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum TripleBlockSection implements IStringSerializable {
+public enum TripleBlockSection implements StringRepresentable {
     BOTTOM("bottom"),
     MIDDLE("middle"),
     TOP("top");

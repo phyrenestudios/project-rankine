@@ -7,31 +7,27 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
 import com.cannolicatfish.rankine.recipe.EvaporationRecipe;
 import com.cannolicatfish.rankine.util.WeightedCollection;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -41,7 +37,7 @@ import java.util.Random;
 import static com.cannolicatfish.rankine.init.RankineBlocks.EVAPORATION_TOWER_TILE;
 
 
-public class EvaporationTowerTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
+public class EvaporationTowerTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
     private static final int[] SLOTS_UP = new int[]{};
     private static final int[] SLOTS_DOWN = new int[]{0};
@@ -49,7 +45,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
     private int cookTime;
     private int cookTimeTotal = 6400;
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
-    private final IIntArray towerData = new IIntArray(){
+    private final ContainerData towerData = new ContainerData(){
         public int get(int index)
         {
             switch(index)
@@ -79,31 +75,30 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         }
     };
 
-    public EvaporationTowerTile() {
-        super(EVAPORATION_TOWER_TILE);
+    public EvaporationTowerTile(BlockPos posIn, BlockState stateIn) {
+        super(EVAPORATION_TOWER_TILE, posIn, stateIn);
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt,this.items);
+        ContainerHelper.loadAllItems(nbt,this.items);
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
-        ItemStackHelper.saveAllItems(compound, this.items);
+        ContainerHelper.saveAllItems(compound, this.items);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
         return compound;
     }
 
-    @Override
     public void tick() {
-        World worldIn = this.getLevel();
+        Level worldIn = this.getLevel();
         if (!worldIn.isClientSide) {
             ItemStack output = this.items.get(0);
             BlockPos p = this.getBlockPos();
@@ -121,7 +116,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
                             cookTime = 0;
                         }
                     } else if (cookTime > 0) {
-                        this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                        this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                     }
                 } else {
                     if (boilerStructure(p, worldIn) && output.isEmpty()) {
@@ -132,7 +127,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
                             cookTime = 0;
                         }
                     } else if (cookTime > 0) {
-                        this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                        this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                     }
                 }
             }
@@ -174,7 +169,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
             handlers[x].invalidate();
     }
 
-    private boolean boilerStructure(BlockPos pos, World worldIn) {
+    private boolean boilerStructure(BlockPos pos, Level worldIn) {
         if (!worldIn.isClientSide) {
             for (BlockPos p : Arrays.asList(pos.north(), pos.east(), pos.south(), pos.west(), pos.above().north(), pos.above().east(), pos.above().west(), pos.above().south())) {
                 if (!worldIn.getBlockState(p).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))) {
@@ -187,7 +182,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         }
     }
 
-    private int checkStructure(BlockPos pos, World worldIn, Block fluid) {
+    private int checkStructure(BlockPos pos, Level worldIn, Block fluid) {
         int height = 0;
         if (!worldIn.isClientSide) {
             List<BlockPos> Base = Arrays.asList(
@@ -261,13 +256,13 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
     }
 
     @Override
-    public ITextComponent getDisplayName() {
-        return new StringTextComponent(getType().getRegistryName().getPath());
+    public Component getDisplayName() {
+        return new TextComponent(getType().getRegistryName().getPath());
     }
 
     @Override
     @Nullable
-    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+    public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
         return new EvaporationTowerContainer(i, level, worldPosition, playerInventory, playerEntity, this, this.towerData);
     }
 
@@ -313,12 +308,12 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
 
     @Override
     public ItemStack removeItem(int index, int count) {
-        return ItemStackHelper.removeItem(this.items, index, count);
+        return ContainerHelper.removeItem(this.items, index, count);
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int index) {
-        return ItemStackHelper.takeItem(this.items, index);
+        return ContainerHelper.takeItem(this.items, index);
     }
 
     @Override
@@ -336,7 +331,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
     }
 
     @Override
-    public boolean stillValid(PlayerEntity player) {
+    public boolean stillValid(Player player) {
         if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {

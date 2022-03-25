@@ -6,12 +6,12 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import java.util.Random;
 
@@ -21,7 +21,11 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, MeteoriteFeatureConfig config) {
+    public boolean place(FeaturePlaceContext<MeteoriteFeatureConfig> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
+        MeteoriteFeatureConfig config = p_159749_.config();
         BlockPos posShift = pos;
         if (!RankineTags.Blocks.METEORITE_REPLACEABLE.contains(reader.getBlockState(posShift.below()).getBlock())) {
             return false;
@@ -79,7 +83,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
         return true;
     }
 
-    private void buildMeteor(ISeedReader reader, Random rand, BlockPos pos, BlockState ORE, BlockState TEKTITE) {
+    private void buildMeteor(WorldGenLevel reader, Random rand, BlockPos pos, BlockState ORE, BlockState TEKTITE) {
         int j = Config.MISC_WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
         int k = Config.MISC_WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
         int l = Config.MISC_WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);

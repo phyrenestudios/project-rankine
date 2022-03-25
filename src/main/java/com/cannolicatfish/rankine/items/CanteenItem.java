@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.items;
 
-import net.minecraft.item.*;
 import net.minecraft.tags.FluidTags;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fluids.FluidAttributes;
@@ -11,8 +10,12 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
+
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
 
 public class CanteenItem extends Item implements IFluidHandlerItem {
     public CanteenItem(Properties properties) {
@@ -20,8 +23,8 @@ public class CanteenItem extends Item implements IFluidHandlerItem {
     }
 
     @Override
-    public UseAction getUseAnimation(ItemStack p_77661_1_) {
-        return UseAction.DRINK;
+    public UseAnim getUseAnimation(ItemStack p_77661_1_) {
+        return UseAnim.DRINK;
     }
 
     @NotNull

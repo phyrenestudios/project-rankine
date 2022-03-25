@@ -5,15 +5,15 @@ import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -22,15 +22,15 @@ import java.util.Random;
 
 public interface IAlloyShield extends IAlloyItem {
     @Override
-    default void createAlloyNBT(ItemStack stack, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
+    default void createAlloyNBT(ItemStack stack, Level worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
         if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
             stack.getTag().remove("RegenerateAlloy");
         }
-        ListNBT alloyData = IAlloyItem.getAlloyNBT(stack);
+        ListTag alloyData = IAlloyItem.getAlloyNBT(stack);
         List<ElementRecipe> elements = this.getElementRecipes(composition,worldIn);
         List<Integer> percents = this.getPercents(composition);
 
-        CompoundNBT listnbt = new CompoundNBT();
+        CompoundTag listnbt = new CompoundTag();
         int dur = 0;
         int ench = 0;
         float cr = 0;
@@ -51,7 +51,7 @@ public interface IAlloyShield extends IAlloyItem {
 
 
         if (alloyRecipe != null) {
-            Optional<? extends IRecipe<?>> opt = worldIn.getRecipeManager().byKey(alloyRecipe);
+            Optional<? extends Recipe<?>> opt = worldIn.getRecipeManager().byKey(alloyRecipe);
             if (opt.isPresent()) {
                 AlloyingRecipe recipe = (AlloyingRecipe) opt.get();
                 dur += recipe.getBonusDurability();
@@ -84,7 +84,7 @@ public interface IAlloyShield extends IAlloyItem {
         }
     }
 
-    default void applyAlloyEnchantments(ItemStack stack, World worldIn) {
+    default void applyAlloyEnchantments(ItemStack stack, Level worldIn) {
         int start = 10;
         int interval = 5;
         int maxLvl = 5;
@@ -171,12 +171,12 @@ public interface IAlloyShield extends IAlloyItem {
         }
     }
 
-    default int calcDurabilityLoss(ItemStack stack, World worldIn, LivingEntity entityLiving, boolean isEfficient)
+    default int calcDurabilityLoss(ItemStack stack, Level worldIn, LivingEntity entityLiving, boolean isEfficient)
     {
         boolean memory = false;
         Random rand = worldIn.getRandom();
         int i = 1;
-        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getRemainingFireTicks() > 0 || worldIn.dimension() == World.NETHER)) {
+        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getRemainingFireTicks() > 0 || worldIn.dimension() == Level.NETHER)) {
             i += Config.ALLOYS.ALLOY_HEAT_AMT.get();
             memory = true;
         }

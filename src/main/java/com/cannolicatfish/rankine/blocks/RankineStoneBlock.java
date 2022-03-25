@@ -1,10 +1,10 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.Block;
 
 public class RankineStoneBlock extends Block {
-    public RankineStoneBlock(AbstractBlock.Properties properties) {
+    public RankineStoneBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 

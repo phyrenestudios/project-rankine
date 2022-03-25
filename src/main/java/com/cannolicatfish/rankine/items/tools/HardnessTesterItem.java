@@ -1,15 +1,14 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.level.Level;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class HardnessTesterItem extends Item {
     public HardnessTesterItem(Properties p_i48487_1_) {
@@ -17,15 +16,15 @@ public class HardnessTesterItem extends Item {
     }
 
     @Override
-    public ActionResultType useOn(ItemUseContext context) {
-        World world = context.getLevel();
-        PlayerEntity player = context.getPlayer();
+    public InteractionResult useOn(UseOnContext context) {
+        Level world = context.getLevel();
+        Player player = context.getPlayer();
         if (!world.isClientSide && player != null)
         {
             Block b = world.getBlockState(context.getClickedPos()).getBlock();
-            int harvest = b.getHarvestLevel(b.defaultBlockState());
             String desc;
-            if (b.getHarvestTool(b.defaultBlockState()) == ToolType.PICKAXE)
+            int harvest = -1;
+            if (true)
             {
                 switch (harvest)
                 {
@@ -63,10 +62,10 @@ public class HardnessTesterItem extends Item {
                 }
             }
 
-            player.sendMessage(new StringTextComponent("Harvest Level: " + harvest + desc),player.getUUID());
+            player.sendMessage(new TextComponent("Harvest Level: " + harvest + desc),player.getUUID());
         }
 
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 }

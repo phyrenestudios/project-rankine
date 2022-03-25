@@ -15,26 +15,28 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.*;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class AlloyingRecipe implements IRecipe<IInventory> {
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+
+public class AlloyingRecipe implements Recipe<Container> {
 
     private final int total;
 
@@ -92,7 +94,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return this.tier;
     }
 
-    public List<Ingredient> getIngredientsList(World worldIn) {
+    public List<Ingredient> getIngredientsList(Level worldIn) {
         List<Ingredient> ret = new ArrayList<>();
         for (ResourceLocation rs : this.elements) {
             if (worldIn.getRecipeManager().byKey(rs).isPresent()) {
@@ -103,7 +105,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return ret;
     }
 
-    public List<Ingredient> getIngredientsList(World worldIn, boolean required) {
+    public List<Ingredient> getIngredientsList(Level worldIn, boolean required) {
         List<Ingredient> ret = new ArrayList<>();
         for (int i = 0; i < this.elements.size(); i++) {
             ResourceLocation rs = this.elements.get(i);
@@ -115,7 +117,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return ret;
     }
 
-    public List<ElementRecipe> getElementList(World worldIn, boolean required) {
+    public List<ElementRecipe> getElementList(Level worldIn, boolean required) {
         List<ElementRecipe> ret = new ArrayList<>();
         for (int i = 0; i < this.elements.size(); i++) {
             ResourceLocation rs = this.elements.get(i);
@@ -127,7 +129,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return ret;
     }
 
-    public List<ElementRecipe> getElementList(World worldIn) {
+    public List<ElementRecipe> getElementList(Level worldIn) {
         List<ElementRecipe> ret = new ArrayList<>();
         for (ResourceLocation rs : this.elements) {
             if (worldIn.getRecipeManager().byKey(rs).isPresent()) {
@@ -142,7 +144,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return Collections.frequency(this.required,true);
     }
 
-    public List<Integer> getIndexList(World worldIn, boolean required) {
+    public List<Integer> getIndexList(Level worldIn, boolean required) {
         List<Integer> ret = new ArrayList<>();
         for (int i = 0; i < this.elements.size(); i++) {
             ResourceLocation rs = this.elements.get(i);
@@ -153,7 +155,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return ret;
     }
 
-    public boolean cannotMake(PlayerInventory inv, World world) {
+    public boolean cannotMake(Inventory inv, Level world) {
         for (Ingredient i : this.getIngredientsList(world,true)) {
             if (!inv.hasAnyOf(Arrays.stream(i.getItems()).map(ItemStack::getItem).collect(Collectors.toSet())))
             {
@@ -163,7 +165,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return false;
     }
 
-    public ItemStack generateResult(World worldIn, IInventory inv, int type) {
+    public ItemStack generateResult(Level worldIn, Container inv, int type) {
         if ((getTier() & type) != Math.min(getTier(),type) && getTier() != 0 && type != 0) {
             return ItemStack.EMPTY;
         }
@@ -174,7 +176,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             ItemStack stack = inv.getItem(i);
             if (!stack.isEmpty()) {
                 boolean flag = false;
-                ElementRecipe element = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, new Inventory(stack), worldIn).orElse(null);
+                ElementRecipe element = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, new SimpleContainer(stack), worldIn).orElse(null);
                 if (element != null && getElements().contains(element.getId())) {
                     if (!currentElements.contains(element)) {
                         currentElements.add(element);
@@ -233,7 +235,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return out;
     }
 
-    public String generateRandomResult(World worldIn) {
+    public String generateRandomResult(Level worldIn) {
         List<Integer> percents = new ArrayList<>();
         List<String> symbols = new ArrayList<>();
         Random rand = worldIn.getRandom();
@@ -396,7 +398,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         if (inv instanceof AlloyFurnaceTile) {
             return !generateResult(worldIn,inv,1).isEmpty();
         } else if (inv instanceof InductionFurnaceTile) {
@@ -409,7 +411,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -450,12 +452,12 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "item");
+        String s = GsonHelper.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -463,17 +465,17 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getAsInt(object, "count", 1);
+            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true, false);
         }
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.ALLOYING;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<AlloyingRecipe> {
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AlloyingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "alloying");
         public AlloyingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int reqcount = 0;
@@ -496,7 +498,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             }
             boolean force = json.has("forceNBT") && json.get("forceNBT").getAsBoolean();
 
-            String s1 = JSONUtils.getAsString(json, "result");
+            String s1 = GsonHelper.getAsString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);
             ItemStack stack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
 
@@ -508,7 +510,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             for (int i = 0; i < t; i++) {
                 String input = "input" + (i+1);
                 if (json.has(input)) {
-                    JsonObject object = JSONUtils.getAsJsonObject(json, input);
+                    JsonObject object = GsonHelper.getAsJsonObject(json, input);
                     if (object.has("element")){
                         elements.set(i, new ResourceLocation(object.get("element").getAsString()));
                     } else {
@@ -541,7 +543,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             List<Float> bonusStats = new ArrayList<>();
             for (String stat : stats) {
                 if (json.has(stat)) {
-                    bonusStats.add(JSONUtils.getAsFloat(json, stat));
+                    bonusStats.add(GsonHelper.getAsFloat(json, stat));
                 } else {
                     bonusStats.add(0f);
                 }
@@ -550,8 +552,8 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             List<String> enchantments = new ArrayList<>();
             List<String> enchantmentTypes = new ArrayList<>();
             if (json.has("enchantments")) {
-                JsonArray e = JSONUtils.getAsJsonArray(json,"enchantments");
-                JsonArray eTypes = JSONUtils.getAsJsonArray(json,"enchantmentTypes");
+                JsonArray e = GsonHelper.getAsJsonArray(json,"enchantments");
+                JsonArray eTypes = GsonHelper.getAsJsonArray(json,"enchantmentTypes");
                 for (int i = 0; i < e.size(); i++) {
                     enchantments.add(e.get(i).getAsString().toLowerCase(Locale.ROOT));
                     enchantmentTypes.add(eTypes.get(i).getAsString().toUpperCase(Locale.ROOT));
@@ -564,7 +566,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             return new AlloyingRecipe(recipeId, t, y, elements, reqs, mins, maxes, stack, bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
         }
 
-        public AlloyingRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public AlloyingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             int t = buffer.readInt();
             int y = buffer.readInt();
             List<Float> bonusStats = new ArrayList<>();
@@ -615,7 +617,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             return new AlloyingRecipe(recipeId,t,y, elements, reqs, mins, maxes, stack,bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
         }
 
-        public void toNetwork(PacketBuffer buffer, AlloyingRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, AlloyingRecipe recipe) {
             buffer.writeInt(recipe.total);
             buffer.writeInt(recipe.tier);
 

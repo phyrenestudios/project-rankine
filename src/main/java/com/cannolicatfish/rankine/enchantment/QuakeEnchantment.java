@@ -1,14 +1,13 @@
 package com.cannolicatfish.rankine.enchantment;
 
 import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
 
 public class QuakeEnchantment extends Enchantment {
-    public QuakeEnchantment(Enchantment.Rarity rarityIn, EquipmentSlotType... slots) {
+    public QuakeEnchantment(Enchantment.Rarity rarityIn, EquipmentSlot... slots) {
         super(rarityIn, RankineEnchantmentTypes.MINING, slots);
     }
 

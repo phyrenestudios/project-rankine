@@ -2,15 +2,15 @@ package com.cannolicatfish.rankine.enchantment;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
 
 public class PryingEnchantment extends Enchantment {
-    public PryingEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
+    public PryingEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlot... p_i46721_2_) {
         super(p_i46721_1_, RankineEnchantmentTypes.CROWBAR, p_i46721_2_);
     }
 
@@ -28,14 +28,14 @@ public class PryingEnchantment extends Enchantment {
 
     @Override
     public void doPostAttack(LivingEntity user, Entity target, int level) {
-        if (target instanceof LivingEntity && (!(target instanceof PlayerEntity) || Config.GENERAL.PLAYER_PRYING_ENCHANTMENT.get()))
+        if (target instanceof LivingEntity && (!(target instanceof Player) || Config.GENERAL.PLAYER_PRYING_ENCHANTMENT.get()))
         {
-            int player = target instanceof PlayerEntity ? 1 : 0;
+            int player = target instanceof Player ? 1 : 0;
             LivingEntity ent = (LivingEntity) target;
-            if (ent.hasItemInSlot(EquipmentSlotType.MAINHAND) && ent.getCommandSenderWorld().getRandom().nextFloat() <= Math.pow(2f,level + 2 - ent.getItemBySlot(EquipmentSlotType.MAINHAND).getRarity().ordinal() - player)/100) {
+            if (ent.hasItemInSlot(EquipmentSlot.MAINHAND) && ent.getCommandSenderWorld().getRandom().nextFloat() <= Math.pow(2f,level + 2 - ent.getItemBySlot(EquipmentSlot.MAINHAND).getRarity().ordinal() - player)/100) {
 
-                ent.spawnAtLocation(ent.getItemBySlot(EquipmentSlotType.MAINHAND));
-                ent.setItemSlot(EquipmentSlotType.MAINHAND,ItemStack.EMPTY);
+                ent.spawnAtLocation(ent.getItemBySlot(EquipmentSlot.MAINHAND));
+                ent.setItemSlot(EquipmentSlot.MAINHAND,ItemStack.EMPTY);
             }
         }
     }

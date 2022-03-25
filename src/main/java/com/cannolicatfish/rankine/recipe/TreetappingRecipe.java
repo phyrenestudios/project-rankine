@@ -5,25 +5,25 @@ import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import net.minecraft.block.Block;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
-public class TreetappingRecipe implements IRecipe<IInventory> {
+public class TreetappingRecipe implements Recipe<Container> {
 
     public static final TreetappingRecipe.Serializer SERIALIZER = new TreetappingRecipe.Serializer();
     protected Ingredient ingredient;
@@ -48,12 +48,12 @@ public class TreetappingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         return this.ingredient.test(inv.getItem(0));
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -96,17 +96,17 @@ public class TreetappingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.TREETAPPING;
     }
 
     public static ItemStack deserializeBlock(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "block");
+        String s = GsonHelper.getAsString(object, "block");
 
         Block block = Registry.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonParseException("Unknown block '" + s + "'");
@@ -119,19 +119,19 @@ public class TreetappingRecipe implements IRecipe<IInventory> {
         }
     }
 
-    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<TreetappingRecipe> {
+    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<TreetappingRecipe> {
 
         @Override
         public TreetappingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int w = json.has("tapTime") ? json.get("tapTime").getAsInt() : 400;
-            Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input"));
-            FluidStack result = FluidHelper.getFluidStack(JSONUtils.getAsJsonObject(json, "result"));
+            Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
+            FluidStack result = FluidHelper.getFluidStack(GsonHelper.getAsJsonObject(json, "result"));
             return new TreetappingRecipe(recipeId,ingredient,result,w);
         }
 
         @Nullable
         @Override
-        public TreetappingRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public TreetappingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
 
             Ingredient input = Ingredient.fromNetwork(buffer);
 
@@ -142,7 +142,7 @@ public class TreetappingRecipe implements IRecipe<IInventory> {
         }
 
         @Override
-        public void toNetwork(PacketBuffer buffer, TreetappingRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, TreetappingRecipe recipe) {
             recipe.getIngredient().toNetwork(buffer);
             buffer.writeFluidStack(recipe.getResult());
             buffer.writeInt(recipe.getTapTime());

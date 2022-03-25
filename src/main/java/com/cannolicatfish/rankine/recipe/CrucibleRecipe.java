@@ -15,28 +15,26 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class CrucibleRecipe implements IRecipe<IInventory> {
+public class CrucibleRecipe implements Recipe<Container> {
 
     private final NonNullList<Ingredient> recipeItems;
     private final int cookTime;
@@ -113,7 +111,7 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
     }
 
 
-    public ItemStack generateResult(IInventory inv) {
+    public ItemStack generateResult(Container inv) {
         ItemStack output = this.getPrimaryOutput().copy();
         List<Integer> groupsUsed = new ArrayList<>();
         List<List<String>> alloyCommands = new ArrayList<>();
@@ -192,12 +190,12 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
 
 
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         return !generateResult(inv).isEmpty();
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -226,7 +224,7 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
         return cookTime;
     }
 
-    public int getRecipeCookTime(IInventory inv) {
+    public int getRecipeCookTime(Container inv) {
         int cook = this.getCookTime();
         for (int s = 0; s < 4; s++) {
             ItemStack stack = inv.getItem(s);
@@ -299,12 +297,12 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "item");
+        String s = GsonHelper.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -312,17 +310,17 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getAsInt(object, "count", 1);
+            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true, false);
         }
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.CRUCIBLE;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<CrucibleRecipe> {
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<CrucibleRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "crucible");
         public CrucibleRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int c = json.get("cookTime").getAsInt();
@@ -336,18 +334,18 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
             NonNullList<Integer> cookMods = NonNullList.withSize(t,0);
             NonNullList<List<String>> shiftMods = NonNullList.withSize(t, Collections.emptyList());
 
-            ItemStack itemstack = AlloyCraftingRecipe.deserializeItem(JSONUtils.getAsJsonObject(json, "result"));
+            ItemStack itemstack = AlloyCraftingRecipe.deserializeItem(GsonHelper.getAsJsonObject(json, "result"));
             String alloy = json.has("alloyData") ? json.get("alloyData").getAsString() : "";
-            ItemStack secondary = AlloyCraftingRecipe.deserializeItem(JSONUtils.getAsJsonObject(json, "secondary"));
+            ItemStack secondary = AlloyCraftingRecipe.deserializeItem(GsonHelper.getAsJsonObject(json, "secondary"));
 
-            JsonArray req = JSONUtils.getAsJsonArray(json,"required");
+            JsonArray req = GsonHelper.getAsJsonArray(json,"required");
             for (int i = 0; i < req.size(); i++) {
                 requiredbool.set(i,req.get(i).getAsBoolean());
             }
             for (int i = 0; i < t; i++) {
                 String input = "input" + (i+1);
                 if (json.has(input)) {
-                    JsonObject object = JSONUtils.getAsJsonObject(json, input);
+                    JsonObject object = GsonHelper.getAsJsonObject(json, input);
                     ingredients.set(i, AlloyIngredientHelper.deserialize(object,null,null,null));
                     if (object.has("group")) {
                         groups.set(i,object.get("group").getAsInt());
@@ -359,7 +357,7 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
                         cookMods.set(i,object.get("cookMod").getAsInt());
                     }
                     if (object.has("shiftMod")) {
-                        JsonArray smod = JSONUtils.getAsJsonArray(object,"shiftMod");
+                        JsonArray smod = GsonHelper.getAsJsonArray(object,"shiftMod");
                         List<String> strL = new ArrayList<>();
                         for (int j = 0; j < smod.size(); j++) {
                             strL.add(j,smod.get(j).getAsString());
@@ -371,7 +369,7 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
             return new CrucibleRecipe(recipeId,c,t,col,ingredients, groups, requiredbool, countMods, cookMods, shiftMods, itemstack, alloy, secondary);
         }
 
-        public CrucibleRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public CrucibleRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             int c = buffer.readInt();
             int t = buffer.readInt();
             int col = buffer.readInt();
@@ -413,7 +411,7 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
             return new CrucibleRecipe(recipeId,c,t,col,ingredients,groups,req,countMods,cookMods,shiftMods, stack, all, secondary);
         }
 
-        public void toNetwork(PacketBuffer buffer, CrucibleRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, CrucibleRecipe recipe) {
             buffer.writeInt(recipe.getCookTime());
             buffer.writeInt(recipe.getTotal());
             buffer.writeInt(recipe.getColor());

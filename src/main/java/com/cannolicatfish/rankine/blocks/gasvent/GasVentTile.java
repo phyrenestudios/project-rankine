@@ -1,19 +1,19 @@
 package com.cannolicatfish.rankine.blocks.gasvent;
 
 import com.cannolicatfish.rankine.blocks.GasBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.GAS_VENT_TILE;
 
-public class GasVentTile extends TileEntity implements ITickableTileEntity {
+public class GasVentTile extends BlockEntity {
 
-    public GasVentTile() {
-        super(GAS_VENT_TILE);
+    public GasVentTile(BlockPos posIn, BlockState stateIn) {
+        super(GAS_VENT_TILE, posIn, stateIn);
     }
 
     public void tick() {

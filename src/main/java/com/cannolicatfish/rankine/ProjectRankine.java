@@ -48,27 +48,28 @@ import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
 import com.cannolicatfish.rankine.world.gen.RankineBiomeFeatures;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.block.Block;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.merchant.villager.VillagerProfession;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.Item;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.Potion;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.village.PointOfInterestType;
-import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -82,7 +83,6 @@ import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -140,7 +140,7 @@ public class ProjectRankine {
         proxy.init();
 
 
-        DeferredWorkQueue.runLater(() -> {
+        event.enqueueWork(() -> {
             RankineRecipes.registerPredicates();
             RankineRecipes.registerPotionRecipes();
             RankineRecipes.registerDispenserBehaviors();
@@ -242,19 +242,13 @@ public class ProjectRankine {
 
         @SubscribeEvent
         public static void addEntityAttributes(final EntityAttributeCreationEvent event) {
-            event.put(RankineEntityTypes.BEAVER, BeaverEntity.createBeaverAttributes().build());
-            event.put(RankineEntityTypes.MANTLE_GOLEM, MantleGolemEntity.createGolemAttributes().build());
-            event.put(RankineEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemEntity.createGolemAttributes().build());
-            event.put(RankineEntityTypes.PERIDOT_MANTLE_GOLEM, PeridotMantleGolemEntity.createGolemAttributes().build());
-            event.put(RankineEntityTypes.DESMOXYTE, DesmoxyteEntity.createBugAttributes().build());
-            event.put(RankineEntityTypes.DEMONYTE, DemonyteEntity.createBugAttributes().build());
-            event.put(RankineEntityTypes.DRAGONYTE, DragonyteEntity.createBugAttributes().build());
+
         }
 
 
 
         @SubscribeEvent
-        public static void onPOIRegistry(final RegistryEvent.Register<PointOfInterestType> event) {
+        public static void onPOIRegistry(final RegistryEvent.Register<PoiType> event) {
             event.getRegistry().register(RankinePOIs.TEMPLATE_TABLE_POI.setRegistryName(ProjectRankine.MODID,"template_table_poi"));
             event.getRegistry().register(RankinePOIs.PISTON_CRUSHER_POI.setRegistryName(ProjectRankine.MODID,"piston_crusher_poi"));
             event.getRegistry().register(RankinePOIs.BOTANIST_STATION_POI.setRegistryName(ProjectRankine.MODID,"potted_plant_poi"));
@@ -263,7 +257,7 @@ public class ProjectRankine {
         }
 
         @SubscribeEvent
-        public static void onPlacementRegistry(final RegistryEvent.Register<Placement<?>> event) {
+        public static void onPlacementRegistry(final RegistryEvent.Register<FeatureDecorator<?>> event) {
             //event.getRegistry().register(RankineBiomeFeatures.REPLACER_PLACEMENT.setRegistryName(ProjectRankine.MODID,"replacer_placement"));
             //event.getRegistry().register(RankineBiomeFeatures.INTRUSION_PLACEMENT.setRegistryName(ProjectRankine.MODID,"intrusion_placement"));
         }
@@ -278,7 +272,7 @@ public class ProjectRankine {
         }
 
         @SubscribeEvent
-         public static void onRecipeSerializersRegistry(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
+         public static void onRecipeSerializersRegistry(final RegistryEvent.Register<RecipeSerializer<?>> event) {
             event.getRegistry().register(AlloyCraftingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloy_crafting"));
             event.getRegistry().register(CrushingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crushing"));
             event.getRegistry().register(AlloyingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloying"));
@@ -304,30 +298,30 @@ public class ProjectRankine {
         }
 
         @SubscribeEvent
-        public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
-            event.getRegistry().register(TileEntityType.Builder.of(AlloyFurnaceTile::new, RankineBlocks.ALLOY_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
-            event.getRegistry().register(TileEntityType.Builder.of(PistonCrusherTile::new, RankineBlocks.PISTON_CRUSHER.get()).build(null).setRegistryName(ProjectRankine.MODID,"piston_crusher"));
-            event.getRegistry().register(TileEntityType.Builder.of(CrucibleTile::new, RankineBlocks.CRUCIBLE_BLOCK.get()).build(null).setRegistryName(ProjectRankine.MODID,"crucible"));
-            event.getRegistry().register(TileEntityType.Builder.of(InductionFurnaceTile::new, RankineBlocks.INDUCTION_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"induction_furnace"));
-            event.getRegistry().register(TileEntityType.Builder.of(FusionFurnaceTile::new, RankineBlocks.FUSION_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"fusion_furnace"));
-            event.getRegistry().register(TileEntityType.Builder.of(GyratoryCrusherTile::new, RankineBlocks.GYRATORY_CRUSHER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gyratory_crusher"));
-            event.getRegistry().register(TileEntityType.Builder.of(EvaporationTowerTile::new, RankineBlocks.EVAPORATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
-            event.getRegistry().register(TileEntityType.Builder.of(GasBottlerTile::new, RankineBlocks.GAS_BOTTLER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_condenser"));
-            event.getRegistry().register(TileEntityType.Builder.of(GasVentTile::new, RankineBlocks.GAS_VENT.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_vent"));
-            event.getRegistry().register(TileEntityType.Builder.of(TreeTapTile::new, RankineBlocks.TREE_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"tree_tap"));
-            event.getRegistry().register(TileEntityType.Builder.of(SedimentFanTile::new, RankineBlocks.SEDIMENT_FAN.get()).build(null).setRegistryName(ProjectRankine.MODID,"sediment_fan"));
-            event.getRegistry().register(TileEntityType.Builder.of(MixingBarrelTile::new, RankineBlocks.MIXING_BARREL.get()).build(null).setRegistryName(ProjectRankine.MODID,"mixing_barrel"));
+        public static void onTileEntityRegistry(final RegistryEvent.Register<BlockEntityType<?>> event) {
+            event.getRegistry().register(BlockEntityType.Builder.of(AlloyFurnaceTile::new, RankineBlocks.ALLOY_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
+            event.getRegistry().register(BlockEntityType.Builder.of(PistonCrusherTile::new, RankineBlocks.PISTON_CRUSHER.get()).build(null).setRegistryName(ProjectRankine.MODID,"piston_crusher"));
+            event.getRegistry().register(BlockEntityType.Builder.of(CrucibleTile::new, RankineBlocks.CRUCIBLE_BLOCK.get()).build(null).setRegistryName(ProjectRankine.MODID,"crucible"));
+            event.getRegistry().register(BlockEntityType.Builder.of(InductionFurnaceTile::new, RankineBlocks.INDUCTION_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"induction_furnace"));
+            event.getRegistry().register(BlockEntityType.Builder.of(FusionFurnaceTile::new, RankineBlocks.FUSION_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"fusion_furnace"));
+            event.getRegistry().register(BlockEntityType.Builder.of(GyratoryCrusherTile::new, RankineBlocks.GYRATORY_CRUSHER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gyratory_crusher"));
+            event.getRegistry().register(BlockEntityType.Builder.of(EvaporationTowerTile::new, RankineBlocks.EVAPORATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
+            event.getRegistry().register(BlockEntityType.Builder.of(GasBottlerTile::new, RankineBlocks.GAS_BOTTLER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_condenser"));
+            event.getRegistry().register(BlockEntityType.Builder.of(GasVentTile::new, RankineBlocks.GAS_VENT.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_vent"));
+            event.getRegistry().register(BlockEntityType.Builder.of(TreeTapTile::new, RankineBlocks.TREE_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"tree_tap"));
+            event.getRegistry().register(BlockEntityType.Builder.of(SedimentFanTile::new, RankineBlocks.SEDIMENT_FAN.get()).build(null).setRegistryName(ProjectRankine.MODID,"sediment_fan"));
+            event.getRegistry().register(BlockEntityType.Builder.of(MixingBarrelTile::new, RankineBlocks.MIXING_BARREL.get()).build(null).setRegistryName(ProjectRankine.MODID,"mixing_barrel"));
             //event.getRegistry().register(TileEntityType.Builder.create(LaserQuarryTile::new, RankineBlocks.LASER_QUARRY.get()).build(null).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
-            event.getRegistry().register(TileEntityType.Builder.of(AlloyBlockTile::new, RankineLists.ALLOY_BLOCKS.toArray(new Block[0])).build(null).setRegistryName(ProjectRankine.MODID,"alloy_block"));
+            event.getRegistry().register(BlockEntityType.Builder.of(AlloyBlockTile::new, RankineLists.ALLOY_BLOCKS.toArray(new Block[0])).build(null).setRegistryName(ProjectRankine.MODID,"alloy_block"));
             //event.getRegistry().register(TileEntityType.Builder.create(SodiumVaporLampTile::new, RankineBlocks.SODIUM_VAPOR_LAMP.get()).build(null).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
-            event.getRegistry().register(TileEntityType.Builder.of(TilledSoilTile::new, RankineBlocks.TILLED_SOIL.get()).build(null).setRegistryName(ProjectRankine.MODID,"tilled_soil"));
-            event.getRegistry().register(TileEntityType.Builder.of(GroundTapTile::new, RankineBlocks.GROUND_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"ground_tap"));
-            event.getRegistry().register(TileEntityType.Builder.of(MaterialTestingTableTile::new, RankineBlocks.MATERIAL_TESTING_TABLE.get()).build(null).setRegistryName(ProjectRankine.MODID,"material_testing_table"));
-            event.getRegistry().register(TileEntityType.Builder.of(BeehiveOvenTile::new, RankineBlocks.BEEHIVE_OVEN_PIT.get()).build(null).setRegistryName(ProjectRankine.MODID,"beehive_oven"));
-            event.getRegistry().register(TileEntityType.Builder.of(DistillationTowerTile::new, RankineBlocks.DISTILLATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"distillation_tower"));
-            event.getRegistry().register(TileEntityType.Builder.of(CharcoalPitTile::new, RankineBlocks.CHARCOAL_PIT.get()).build(null).setRegistryName(ProjectRankine.MODID,"charcoal_pit"));
-            event.getRegistry().register(TileEntityType.Builder.of(ParticleAcceleratorTile::new, RankineBlocks.PARTICLE_ACCELERATOR.get()).build(null).setRegistryName(ProjectRankine.MODID,"particle_accelerator"));
-            event.getRegistry().register(TileEntityType.Builder.of(PedestalTile::new, RankineLists.ALLOY_PEDESTALS.toArray(new Block[0])).build(null).setRegistryName(ProjectRankine.MODID,"pedestal"));
+            event.getRegistry().register(BlockEntityType.Builder.of(TilledSoilTile::new, RankineBlocks.TILLED_SOIL.get()).build(null).setRegistryName(ProjectRankine.MODID,"tilled_soil"));
+            event.getRegistry().register(BlockEntityType.Builder.of(GroundTapTile::new, RankineBlocks.GROUND_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"ground_tap"));
+            event.getRegistry().register(BlockEntityType.Builder.of(MaterialTestingTableTile::new, RankineBlocks.MATERIAL_TESTING_TABLE.get()).build(null).setRegistryName(ProjectRankine.MODID,"material_testing_table"));
+            event.getRegistry().register(BlockEntityType.Builder.of(BeehiveOvenTile::new, RankineBlocks.BEEHIVE_OVEN_PIT.get()).build(null).setRegistryName(ProjectRankine.MODID,"beehive_oven"));
+            event.getRegistry().register(BlockEntityType.Builder.of(DistillationTowerTile::new, RankineBlocks.DISTILLATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"distillation_tower"));
+            event.getRegistry().register(BlockEntityType.Builder.of(CharcoalPitTile::new, RankineBlocks.CHARCOAL_PIT.get()).build(null).setRegistryName(ProjectRankine.MODID,"charcoal_pit"));
+            event.getRegistry().register(BlockEntityType.Builder.of(ParticleAcceleratorTile::new, RankineBlocks.PARTICLE_ACCELERATOR.get()).build(null).setRegistryName(ProjectRankine.MODID,"particle_accelerator"));
+            event.getRegistry().register(BlockEntityType.Builder.of(PedestalTile::new, RankineLists.ALLOY_PEDESTALS.toArray(new Block[0])).build(null).setRegistryName(ProjectRankine.MODID,"pedestal"));
         }
 
         @SubscribeEvent
@@ -354,66 +348,54 @@ public class ProjectRankine {
             event.getRegistry().register(RankineEntityTypes.ALLOY_SPEAR);
             event.getRegistry().register(RankineEntityTypes.STAINLESS_STEEL_SPEAR);
             event.getRegistry().register(RankineEntityTypes.ROPE_COIL_ARROW);
-            event.getRegistry().register(RankineEntityTypes.THORIUM_ARROW);
-            event.getRegistry().register(RankineEntityTypes.MAGNESIUM_ARROW);
             event.getRegistry().register(RankineEntityTypes.ALLOY_ARROW);
             event.getRegistry().register(RankineEntityTypes.REACTIVE_ITEM.setRegistryName(ProjectRankine.MODID,"reactive_item"));
             event.getRegistry().register(RankineEntityTypes.CANNONBALL.setRegistryName(ProjectRankine.MODID,"cannonball"));
             event.getRegistry().register(RankineEntityTypes.CARCASS.setRegistryName(ProjectRankine.MODID,"carcass"));
             event.getRegistry().register(RankineEntityTypes.ENDERBALL.setRegistryName(ProjectRankine.MODID,"enderball"));
-            event.getRegistry().register(RankineEntityTypes.MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"mantle_golem"));
-            event.getRegistry().register(RankineEntityTypes.DIAMOND_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"diamond_mantle_golem"));
-            event.getRegistry().register(RankineEntityTypes.PERIDOT_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"peridot_mantle_golem"));
-            event.getRegistry().register(RankineEntityTypes.DESMOXYTE.setRegistryName(ProjectRankine.MODID,"desmoxyte"));
-            event.getRegistry().register(RankineEntityTypes.DEMONYTE.setRegistryName(ProjectRankine.MODID,"demonyte"));
-            event.getRegistry().register(RankineEntityTypes.DRAGONYTE.setRegistryName(ProjectRankine.MODID,"dragonyte"));
-            event.getRegistry().register(RankineEntityTypes.BEAVER.setRegistryName(ProjectRankine.MODID,"beaver"));
             event.getRegistry().register(RankineEntityTypes.RANKINE_BOAT.setRegistryName(ProjectRankine.MODID,"cedar_boat"));
         }
 
         @SubscribeEvent
         public static void clientSetupEvent(FMLClientSetupEvent event)
         {
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.FLINT_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.PEWTER_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.BRONZE_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.IRON_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.INVAR_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.STEEL_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ROSE_GOLD_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.WHITE_GOLD_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.GREEN_GOLD_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.BLUE_GOLD_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.PURPLE_GOLD_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.BLACK_GOLD_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.AMALGAM_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.DIAMOND_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.NETHERITE_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.NICKEL_SUPERALLOY_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.COBALT_SUPERALLOY_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.TUNGSTEN_HEAVY_ALLOY_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.STAINLESS_STEEL_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.TITANIUM_ALLOY_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ALLOY_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.REACTIVE_ITEM, ReactiveItemRenderer::new);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.MANTLE_GOLEM,MantleGolemRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.PERIDOT_MANTLE_GOLEM,PeridotMantleGolemRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.BEAVER, BeaverRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.DESMOXYTE, DesmoxyteRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.DEMONYTE, DemonyteRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.DRAGONYTE, DragonyteRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.RANKINE_BOAT,RankineBoatRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ROPE_COIL_ARROW, RopeCoilArrowRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.THORIUM_ARROW,ThoriumArrowRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.MAGNESIUM_ARROW,MagnesiumArrowRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ALLOY_ARROW,AlloyArrowRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.CANNONBALL, CannonballRenderer::new);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ENDERBALL, EnderballRenderer::new);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.CARCASS, CarcassRenderer::new);
+;
+        }
+
+        @SubscribeEvent
+        public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
+        {
+            event.registerEntityRenderer(RankineEntityTypes.FLINT_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.PEWTER_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.BRONZE_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.IRON_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.INVAR_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.STEEL_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.ROSE_GOLD_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.WHITE_GOLD_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.GREEN_GOLD_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.BLUE_GOLD_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.PURPLE_GOLD_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.BLACK_GOLD_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.AMALGAM_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.DIAMOND_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.NETHERITE_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.NICKEL_SUPERALLOY_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.COBALT_SUPERALLOY_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.TUNGSTEN_HEAVY_ALLOY_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.STAINLESS_STEEL_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.TITANIUM_ALLOY_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.ALLOY_SPEAR, SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.REACTIVE_ITEM, ReactiveItemRenderer::new);
+            event.registerEntityRenderer(RankineEntityTypes.RANKINE_BOAT,RankineBoatRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.ROPE_COIL_ARROW, RopeCoilArrowRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.ALLOY_ARROW,AlloyArrowRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.CANNONBALL, CannonballRenderer::new);
+            event.registerEntityRenderer(RankineEntityTypes.ENDERBALL, EnderballRenderer::new);
+            event.registerEntityRenderer(RankineEntityTypes.CARCASS, CarcassRenderer::new);
         }
         @SubscribeEvent
-        public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event) {
+        public static void onContainerRegistry(final RegistryEvent.Register<MenuType<?>> event) {
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new AlloyFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
@@ -487,7 +469,7 @@ public class ProjectRankine {
         }
 
         @SubscribeEvent
-        public static void registerEffects(final RegistryEvent.Register<Effect> event) {
+        public static void registerEffects(final RegistryEvent.Register<MobEffect> event) {
             event.getRegistry().registerAll(
                     RankineEffects.MERCURY_POISONING,
                     RankineEffects.CONDUCTIVE,
@@ -506,84 +488,84 @@ public class ProjectRankine {
         @SubscribeEvent
         public static void registerFluids(final RegistryEvent.Register<Fluid> event) {
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.LIQUID_MERCURY, () -> RankineFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(LiquidMercuryFluid.FLUID_STILL, LiquidMercuryFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(LiquidMercuryFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.LIQUID_MERCURY_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.LIQUID_MERCURY.get())).setRegistryName(ProjectRankine.MODID,"liquid_mercury"));
+                    .bucket(RankineItems.LIQUID_MERCURY_BUCKET).block(() -> (LiquidBlock) RankineBlocks.LIQUID_MERCURY.get())).setRegistryName(ProjectRankine.MODID,"liquid_mercury"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.LIQUID_MERCURY, () -> RankineFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(LiquidMercuryFluid.FLUID_STILL, LiquidMercuryFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(LiquidMercuryFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.LIQUID_MERCURY_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.LIQUID_MERCURY.get())).setRegistryName(ProjectRankine.MODID,"liquid_mercury_flowing"));
+                    .bucket(RankineItems.LIQUID_MERCURY_BUCKET).block(() -> (LiquidBlock) RankineBlocks.LIQUID_MERCURY.get())).setRegistryName(ProjectRankine.MODID,"liquid_mercury_flowing"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.SAP, () -> RankineFluids.FLOWING_SAP, FluidAttributes.builder(SapFluid.FLUID_STILL,SapFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(SapFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.SAP_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.SAP.get())).setRegistryName(ProjectRankine.MODID,"sap"));
+                    .bucket(RankineItems.SAP_BUCKET).block(() -> (LiquidBlock) RankineBlocks.SAP.get())).setRegistryName(ProjectRankine.MODID,"sap"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.SAP, () -> RankineFluids.FLOWING_SAP, FluidAttributes.builder(SapFluid.FLUID_STILL,SapFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(SapFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.SAP_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.SAP.get())).setRegistryName(ProjectRankine.MODID,"flowing_sap"));
+                    .bucket(RankineItems.SAP_BUCKET).block(() -> (LiquidBlock) RankineBlocks.SAP.get())).setRegistryName(ProjectRankine.MODID,"flowing_sap"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.MAPLE_SAP, () -> RankineFluids.FLOWING_MAPLE_SAP, FluidAttributes.builder(MapleSapFluid.FLUID_STILL,MapleSapFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(MapleSapFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.MAPLE_SAP_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.MAPLE_SAP.get())).setRegistryName(ProjectRankine.MODID,"maple_sap"));
+                    .bucket(RankineItems.MAPLE_SAP_BUCKET).block(() -> (LiquidBlock) RankineBlocks.MAPLE_SAP.get())).setRegistryName(ProjectRankine.MODID,"maple_sap"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.MAPLE_SAP, () -> RankineFluids.FLOWING_MAPLE_SAP, FluidAttributes.builder(MapleSapFluid.FLUID_STILL,MapleSapFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(MapleSapFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.MAPLE_SAP_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.MAPLE_SAP.get())).setRegistryName(ProjectRankine.MODID,"flowing_maple_sap"));
+                    .bucket(RankineItems.MAPLE_SAP_BUCKET).block(() -> (LiquidBlock) RankineBlocks.MAPLE_SAP.get())).setRegistryName(ProjectRankine.MODID,"flowing_maple_sap"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.LATEX, () -> RankineFluids.FLOWING_LATEX, FluidAttributes.builder(LatexFluid.FLUID_STILL,LatexFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(LatexFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.LATEX_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.LATEX.get())).setRegistryName(ProjectRankine.MODID,"latex"));
+                    .bucket(RankineItems.LATEX_BUCKET).block(() -> (LiquidBlock) RankineBlocks.LATEX.get())).setRegistryName(ProjectRankine.MODID,"latex"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.LATEX, () -> RankineFluids.FLOWING_LATEX, FluidAttributes.builder(LatexFluid.FLUID_STILL,LatexFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(LatexFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.LATEX_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.LATEX.get())).setRegistryName(ProjectRankine.MODID,"flowing_latex"));
+                    .bucket(RankineItems.LATEX_BUCKET).block(() -> (LiquidBlock) RankineBlocks.LATEX.get())).setRegistryName(ProjectRankine.MODID,"flowing_latex"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.JUGLONE, () -> RankineFluids.FLOWING_JUGLONE, FluidAttributes.builder(JugloneFluid.FLUID_STILL,JugloneFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(JugloneFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.JUGLONE_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.JUGLONE.get())).setRegistryName(ProjectRankine.MODID,"juglone"));
+                    .bucket(RankineItems.JUGLONE_BUCKET).block(() -> (LiquidBlock) RankineBlocks.JUGLONE.get())).setRegistryName(ProjectRankine.MODID,"juglone"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.JUGLONE, () -> RankineFluids.FLOWING_JUGLONE, FluidAttributes.builder(JugloneFluid.FLUID_STILL,JugloneFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(JugloneFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.JUGLONE_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.JUGLONE.get())).setRegistryName(ProjectRankine.MODID,"flowing_juglone"));
+                    .bucket(RankineItems.JUGLONE_BUCKET).block(() -> (LiquidBlock) RankineBlocks.JUGLONE.get())).setRegistryName(ProjectRankine.MODID,"flowing_juglone"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.RESIN, () -> RankineFluids.FLOWING_RESIN, FluidAttributes.builder(ResinFluid.FLUID_STILL,ResinFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(ResinFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.RESIN_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.RESIN.get())).setRegistryName(ProjectRankine.MODID,"resin"));
+                    .bucket(RankineItems.RESIN_BUCKET).block(() -> (LiquidBlock) RankineBlocks.RESIN.get())).setRegistryName(ProjectRankine.MODID,"resin"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.RESIN, () -> RankineFluids.FLOWING_RESIN, FluidAttributes.builder(ResinFluid.FLUID_STILL,ResinFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(ResinFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.RESIN_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.RESIN.get())).setRegistryName(ProjectRankine.MODID,"flowing_resin"));
+                    .bucket(RankineItems.RESIN_BUCKET).block(() -> (LiquidBlock) RankineBlocks.RESIN.get())).setRegistryName(ProjectRankine.MODID,"flowing_resin"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.AQUA_REGIA, () -> RankineFluids.FLOWING_AQUA_REGIA, FluidAttributes.builder(AquaRegiaFluid.FLUID_STILL,AquaRegiaFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(AquaRegiaFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.AQUA_REGIA_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.AQUA_REGIA.get())).setRegistryName(ProjectRankine.MODID,"aqua_regia"));
+                    .bucket(RankineItems.AQUA_REGIA_BUCKET).block(() -> (LiquidBlock) RankineBlocks.AQUA_REGIA.get())).setRegistryName(ProjectRankine.MODID,"aqua_regia"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.AQUA_REGIA, () -> RankineFluids.FLOWING_AQUA_REGIA, FluidAttributes.builder(AquaRegiaFluid.FLUID_STILL,AquaRegiaFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(AquaRegiaFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.AQUA_REGIA_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.AQUA_REGIA.get())).setRegistryName(ProjectRankine.MODID,"flowing_aqua_regia"));
+                    .bucket(RankineItems.AQUA_REGIA_BUCKET).block(() -> (LiquidBlock) RankineBlocks.AQUA_REGIA.get())).setRegistryName(ProjectRankine.MODID,"flowing_aqua_regia"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.CARBON_DISULFIDE, () -> RankineFluids.FLOWING_CARBON_DISULFIDE, FluidAttributes.builder(CarbonDisulfideFluid.FLUID_STILL,CarbonDisulfideFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(CarbonDisulfideFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY).viscosity(6000))
-                    .bucket(RankineItems.CARBON_DISULFIDE_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.CARBON_DISULFIDE.get())).setRegistryName(ProjectRankine.MODID,"carbon_disulfide"));
+                    .bucket(RankineItems.CARBON_DISULFIDE_BUCKET).block(() -> (LiquidBlock) RankineBlocks.CARBON_DISULFIDE.get())).setRegistryName(ProjectRankine.MODID,"carbon_disulfide"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.CARBON_DISULFIDE, () -> RankineFluids.FLOWING_CARBON_DISULFIDE, FluidAttributes.builder(CarbonDisulfideFluid.FLUID_STILL,CarbonDisulfideFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(CarbonDisulfideFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY).viscosity(6000))
-                    .bucket(RankineItems.CARBON_DISULFIDE_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.CARBON_DISULFIDE.get())).setRegistryName(ProjectRankine.MODID,"flowing_carbon_disulfide"));
+                    .bucket(RankineItems.CARBON_DISULFIDE_BUCKET).block(() -> (LiquidBlock) RankineBlocks.CARBON_DISULFIDE.get())).setRegistryName(ProjectRankine.MODID,"flowing_carbon_disulfide"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.HEXAFLUOROSILICIC_ACID, () -> RankineFluids.FLOWING_HEXAFLUOROSILICIC_ACID, FluidAttributes.builder(HexafluorosilicicAcidFluid.FLUID_STILL,HexafluorosilicicAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(HexafluorosilicicAcidFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.HEXAFLUOROSILICIC_ACID_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.HEXAFLUOROSILICIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"hexafluorosilicic_acid"));
+                    .bucket(RankineItems.HEXAFLUOROSILICIC_ACID_BUCKET).block(() -> (LiquidBlock) RankineBlocks.HEXAFLUOROSILICIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"hexafluorosilicic_acid"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.HEXAFLUOROSILICIC_ACID, () -> RankineFluids.FLOWING_HEXAFLUOROSILICIC_ACID, FluidAttributes.builder(HexafluorosilicicAcidFluid.FLUID_STILL,HexafluorosilicicAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(HexafluorosilicicAcidFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.HEXAFLUOROSILICIC_ACID_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.HEXAFLUOROSILICIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"flowing_hexafluorosilicic_acid"));
+                    .bucket(RankineItems.HEXAFLUOROSILICIC_ACID_BUCKET).block(() -> (LiquidBlock) RankineBlocks.HEXAFLUOROSILICIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"flowing_hexafluorosilicic_acid"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.HYDROBROMIC_ACID, () -> RankineFluids.FLOWING_HYDROBROMIC_ACID, FluidAttributes.builder(HydrobromicAcidFluid.FLUID_STILL,HydrobromicAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(HydrobromicAcidFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.HYDROBROMIC_ACID_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.HYDROBROMIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"hydrobromic_acid"));
+                    .bucket(RankineItems.HYDROBROMIC_ACID_BUCKET).block(() -> (LiquidBlock) RankineBlocks.HYDROBROMIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"hydrobromic_acid"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.HYDROBROMIC_ACID, () -> RankineFluids.FLOWING_HYDROBROMIC_ACID, FluidAttributes.builder(HydrobromicAcidFluid.FLUID_STILL,HydrobromicAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(HydrobromicAcidFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.HYDROBROMIC_ACID_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.HYDROBROMIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"flowing_hydrobromic_acid"));
+                    .bucket(RankineItems.HYDROBROMIC_ACID_BUCKET).block(() -> (LiquidBlock) RankineBlocks.HYDROBROMIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"flowing_hydrobromic_acid"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.GRAY_MUD, () -> RankineFluids.FLOWING_GRAY_MUD, FluidAttributes.builder(GrayMudFluid.FLUID_STILL,GrayMudFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(GrayMudFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.GRAY_MUD_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.GRAY_MUD.get())).setRegistryName(ProjectRankine.MODID,"gray_mud"));
+                    .bucket(RankineItems.GRAY_MUD_BUCKET).block(() -> (LiquidBlock) RankineBlocks.GRAY_MUD.get())).setRegistryName(ProjectRankine.MODID,"gray_mud"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.GRAY_MUD, () -> RankineFluids.FLOWING_GRAY_MUD, FluidAttributes.builder(GrayMudFluid.FLUID_STILL,GrayMudFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(GrayMudFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.GRAY_MUD_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.GRAY_MUD.get())).setRegistryName(ProjectRankine.MODID,"flowing_gray_mud"));
+                    .bucket(RankineItems.GRAY_MUD_BUCKET).block(() -> (LiquidBlock) RankineBlocks.GRAY_MUD.get())).setRegistryName(ProjectRankine.MODID,"flowing_gray_mud"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.RED_MUD, () -> RankineFluids.FLOWING_RED_MUD, FluidAttributes.builder(RedMudFluid.FLUID_STILL,RedMudFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(RedMudFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.RED_MUD_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.RED_MUD.get())).setRegistryName(ProjectRankine.MODID,"red_mud"));
+                    .bucket(RankineItems.RED_MUD_BUCKET).block(() -> (LiquidBlock) RankineBlocks.RED_MUD.get())).setRegistryName(ProjectRankine.MODID,"red_mud"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.RED_MUD, () -> RankineFluids.FLOWING_RED_MUD, FluidAttributes.builder(RedMudFluid.FLUID_STILL,RedMudFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(RedMudFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.RED_MUD_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.RED_MUD.get())).setRegistryName(ProjectRankine.MODID,"flowing_red_mud"));
+                    .bucket(RankineItems.RED_MUD_BUCKET).block(() -> (LiquidBlock) RankineBlocks.RED_MUD.get())).setRegistryName(ProjectRankine.MODID,"flowing_red_mud"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.SULFURIC_ACID, () -> RankineFluids.FLOWING_SULFURIC_ACID, FluidAttributes.builder(SulfuricAcidFluid.FLUID_STILL,SulfuricAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(SulfuricAcidFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.SULFURIC_ACID_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.SULFURIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"sulfuric_acid"));
+                    .bucket(RankineItems.SULFURIC_ACID_BUCKET).block(() -> (LiquidBlock) RankineBlocks.SULFURIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"sulfuric_acid"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.SULFURIC_ACID, () -> RankineFluids.FLOWING_SULFURIC_ACID, FluidAttributes.builder(SulfuricAcidFluid.FLUID_STILL,SulfuricAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(SulfuricAcidFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.SULFURIC_ACID_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.SULFURIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"flowing_sulfuric_acid"));
+                    .bucket(RankineItems.SULFURIC_ACID_BUCKET).block(() -> (LiquidBlock) RankineBlocks.SULFURIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"flowing_sulfuric_acid"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.BLACK_LIQUOR, () -> RankineFluids.FLOWING_BLACK_LIQUOR, FluidAttributes.builder(BlackLiquorFluid.FLUID_STILL,BlackLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(BlackLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.BLACK_LIQUOR_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.BLACK_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"black_liquor"));
+                    .bucket(RankineItems.BLACK_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.BLACK_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"black_liquor"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.BLACK_LIQUOR, () -> RankineFluids.FLOWING_BLACK_LIQUOR, FluidAttributes.builder(BlackLiquorFluid.FLUID_STILL,BlackLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(BlackLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.BLACK_LIQUOR_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.BLACK_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"flowing_black_liquor"));
+                    .bucket(RankineItems.BLACK_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.BLACK_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"flowing_black_liquor"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.GREEN_LIQUOR, () -> RankineFluids.FLOWING_GREEN_LIQUOR, FluidAttributes.builder(GreenLiquorFluid.FLUID_STILL,GreenLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(GreenLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.GREEN_LIQUOR_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.GREEN_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"green_liquor"));
+                    .bucket(RankineItems.GREEN_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.GREEN_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"green_liquor"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.GREEN_LIQUOR, () -> RankineFluids.FLOWING_GREEN_LIQUOR, FluidAttributes.builder(GreenLiquorFluid.FLUID_STILL,GreenLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(GreenLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.GREEN_LIQUOR_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.GREEN_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"flowing_green_liquor"));
+                    .bucket(RankineItems.GREEN_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.GREEN_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"flowing_green_liquor"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.WHITE_LIQUOR, () -> RankineFluids.FLOWING_WHITE_LIQUOR, FluidAttributes.builder(WhiteLiquorFluid.FLUID_STILL,WhiteLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(WhiteLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.WHITE_LIQUOR_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.WHITE_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"white_liquor"));
+                    .bucket(RankineItems.WHITE_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.WHITE_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"white_liquor"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.WHITE_LIQUOR, () -> RankineFluids.FLOWING_WHITE_LIQUOR, FluidAttributes.builder(WhiteLiquorFluid.FLUID_STILL,WhiteLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(WhiteLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.WHITE_LIQUOR_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.WHITE_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"flowing_white_liquor"));
+                    .bucket(RankineItems.WHITE_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.WHITE_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"flowing_white_liquor"));
         }
 
         @SubscribeEvent
@@ -618,60 +600,60 @@ public class ProjectRankine {
 
         @SubscribeEvent
         public static void registerEnchantments(final RegistryEvent.Register<Enchantment> event) {
-            final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[]{EquipmentSlotType.HEAD, EquipmentSlotType.CHEST, EquipmentSlotType.LEGS, EquipmentSlotType.FEET};
-            final EquipmentSlotType[] HAND_SLOTS = new EquipmentSlotType[]{EquipmentSlotType.MAINHAND, EquipmentSlotType.OFFHAND};
+            final EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
+            final EquipmentSlot[] HAND_SLOTS = new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND};
 
-            event.getRegistry().register(new PunctureEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"puncture"));
-            event.getRegistry().register(new SwingEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"swing"));
-            event.getRegistry().register(new DazeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"daze"));
-            event.getRegistry().register(new AtomizeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"atomize"));
-            event.getRegistry().register(new ExcavateEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"excavate"));
-            event.getRegistry().register(new ImpactEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"impact"));
-            event.getRegistry().register(new QuakeEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"quake"));
-            event.getRegistry().register(new ForagingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"foraging"));
-            event.getRegistry().register(new LightningAspectEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"lightning_aspect"));
+            event.getRegistry().register(new PunctureEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"puncture"));
+            event.getRegistry().register(new SwingEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"swing"));
+            event.getRegistry().register(new DazeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"daze"));
+            event.getRegistry().register(new AtomizeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"atomize"));
+            event.getRegistry().register(new ExcavateEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"excavate"));
+            event.getRegistry().register(new ImpactEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"impact"));
+            event.getRegistry().register(new QuakeEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"quake"));
+            event.getRegistry().register(new ForagingEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"foraging"));
+            event.getRegistry().register(new LightningAspectEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"lightning_aspect"));
 
-            event.getRegistry().register(new DuneWalkerEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"dune_walker"));
-            event.getRegistry().register(new SnowDrifterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"snow_drifter"));
-            event.getRegistry().register(new SpeedSkaterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"speed_skater"));
-            event.getRegistry().register(new FlippersEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"flippers"));
-            event.getRegistry().register(new GasProtectionEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"gas_protection"));
-            event.getRegistry().register(new AntiquatedEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"antiquated"));
-            event.getRegistry().register(new CleanseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"cleanse"));
+            event.getRegistry().register(new DuneWalkerEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET).setRegistryName(ProjectRankine.MODID,"dune_walker"));
+            event.getRegistry().register(new SnowDrifterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET).setRegistryName(ProjectRankine.MODID,"snow_drifter"));
+            event.getRegistry().register(new SpeedSkaterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET).setRegistryName(ProjectRankine.MODID,"speed_skater"));
+            event.getRegistry().register(new FlippersEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET).setRegistryName(ProjectRankine.MODID,"flippers"));
+            event.getRegistry().register(new GasProtectionEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET).setRegistryName(ProjectRankine.MODID,"gas_protection"));
+            event.getRegistry().register(new AntiquatedEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"antiquated"));
+            event.getRegistry().register(new CleanseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"cleanse"));
 
 
             event.getRegistry().register(new EndobioticEnchantment(Enchantment.Rarity.VERY_RARE, ARMOR_SLOTS).setRegistryName(ProjectRankine.MODID,"endobiotic"));
-            event.getRegistry().register(new EndotoxinEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endotoxin"));
-            event.getRegistry().register(new EndpointEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endpoint"));
-            event.getRegistry().register(new EndosporeEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endospore"));
-            event.getRegistry().register(new EndureEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endure"));
+            event.getRegistry().register(new EndotoxinEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endotoxin"));
+            event.getRegistry().register(new EndpointEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endpoint"));
+            event.getRegistry().register(new EndosporeEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endospore"));
+            event.getRegistry().register(new EndureEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endure"));
             event.getRegistry().register(new EndgameEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"endgame"));
-            event.getRegistry().register(new EndolithicEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endolithic"));
-            event.getRegistry().register(new EndlessEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endless"));
-            event.getRegistry().register(new EndeavorEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endeavor"));
-            event.getRegistry().register(new EndothermicEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endothermic"));
-            event.getRegistry().register(new EndplayEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endplay"));
+            event.getRegistry().register(new EndolithicEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endolithic"));
+            event.getRegistry().register(new EndlessEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endless"));
+            event.getRegistry().register(new EndeavorEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endeavor"));
+            event.getRegistry().register(new EndothermicEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endothermic"));
+            event.getRegistry().register(new EndplayEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endplay"));
 
-            event.getRegistry().register(new GhastRegenerationEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"ghast_regeneration"));
-            event.getRegistry().register(new WitheringCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"withering_curse"));
-            event.getRegistry().register(new ShapeMemoryEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"shape_memory"));
+            event.getRegistry().register(new GhastRegenerationEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"ghast_regeneration"));
+            event.getRegistry().register(new WitheringCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"withering_curse"));
+            event.getRegistry().register(new ShapeMemoryEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"shape_memory"));
             event.getRegistry().register(new GuardEnchantment(Enchantment.Rarity.UNCOMMON, ARMOR_SLOTS).setRegistryName(ProjectRankine.MODID,"guard"));
 
 
             event.getRegistry().register(new PreparationEnchantment(Enchantment.Rarity.COMMON, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"preparation"));
-            event.getRegistry().register(new PoisonAspectEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"poison_aspect"));
-            event.getRegistry().register(new BackstabEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"backstab"));
-            event.getRegistry().register(new GraftingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"grafting"));
+            event.getRegistry().register(new PoisonAspectEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"poison_aspect"));
+            event.getRegistry().register(new BackstabEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"backstab"));
+            event.getRegistry().register(new GraftingEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"grafting"));
             event.getRegistry().register(new RetaliateEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"retaliate"));
             event.getRegistry().register(new RetreatEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"retreat"));
 
 
-            event.getRegistry().register(new LeverageEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"leverage"));
-            event.getRegistry().register(new PryingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"prying"));
+            event.getRegistry().register(new LeverageEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"leverage"));
+            event.getRegistry().register(new PryingEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"prying"));
             event.getRegistry().register(new LiftEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"lift"));
-            event.getRegistry().register(new RetrievalEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"retrieval"));
+            event.getRegistry().register(new RetrievalEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"retrieval"));
 
-            event.getRegistry().register(new AccuracyEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"accuracy"));
+            event.getRegistry().register(new AccuracyEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"accuracy"));
 
         }
 

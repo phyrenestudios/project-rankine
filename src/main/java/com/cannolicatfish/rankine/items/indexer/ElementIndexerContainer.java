@@ -3,28 +3,28 @@ package com.cannolicatfish.rankine.items.indexer;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.*;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 import static com.cannolicatfish.rankine.init.RankineItems.ELEMENT_INDEXER_CONTAINER;
 
-public class ElementIndexerContainer extends Container {
-    private PlayerEntity playerEntity;
+public class ElementIndexerContainer extends AbstractContainerMenu {
+    private Player playerEntity;
     private IItemHandler playerInventory;
     private IItemHandler handler;
     private static final PeriodicTableUtils utils = new PeriodicTableUtils();
     private Item currentItem;
 
-    public ElementIndexerContainer(int windowId, PlayerInventory playerInventory, PlayerEntity player) {
+    public ElementIndexerContainer(int windowId, Inventory playerInventory, Player player) {
         super(ELEMENT_INDEXER_CONTAINER, windowId);
         this.playerEntity = player;
         this.playerInventory = new InvWrapper(playerInventory);
@@ -33,12 +33,13 @@ public class ElementIndexerContainer extends Container {
         layoutPlayerInventorySlots(8, 140);
     }
 
-    public void removed(PlayerEntity playerIn) {
-        PlayerInventory playerinventory = playerIn.inventory;
-        if (!playerinventory.getCarried().isEmpty()) {
+
+    public void removed(Player playerIn) {
+        Inventory playerinventory = playerIn.getInventory();
+        /*if (!playerinventory.getCarried().isEmpty()) {
             playerIn.drop(playerinventory.getCarried(), false);
             playerinventory.setCarried(ItemStack.EMPTY);
-        }
+        }*/
         if (playerinventory.getFreeSlot() == -1)
         {
             playerIn.drop(this.handler.getStackInSlot(0), false);
@@ -48,7 +49,7 @@ public class ElementIndexerContainer extends Container {
 
     }
 
-    public ElementRecipe getSlotItem(World worldIn) {
+    public ElementRecipe getSlotItem(Level worldIn) {
         ItemStack stack = this.handler.getStackInSlot(0);
 
         if (utils.hasElementRecipe(stack, worldIn))
@@ -59,7 +60,7 @@ public class ElementIndexerContainer extends Container {
         }
     }
 
-    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if(slot != null && slot.hasItem()) {
@@ -97,7 +98,7 @@ public class ElementIndexerContainer extends Container {
     }
 
     @Override
-    public boolean stillValid(PlayerEntity playerIn) {
+    public boolean stillValid(Player playerIn) {
         return true;
     }
 

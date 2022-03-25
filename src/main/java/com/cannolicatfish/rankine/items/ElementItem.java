@@ -7,27 +7,25 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.potion.RankineEffects;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class ElementItem extends Item {
     float waterReactive;
@@ -42,32 +40,32 @@ public class ElementItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (Config.HARD_MODE.WATER_REACTIVE.get() && waterReactive > 0.0f) {
             if (waterReactive < 2.0f) {
-                tooltip.add(new StringTextComponent("Warning! Reactive with water!").withStyle(TextFormatting.GRAY));
+                tooltip.add(new TextComponent("Warning! Reactive with water!").withStyle(ChatFormatting.GRAY));
             } else if (waterReactive >= 2.0f) {
-                tooltip.add(new StringTextComponent("Warning! Highly reactive with water!").withStyle(TextFormatting.GRAY));
+                tooltip.add(new TextComponent("Warning! Highly reactive with water!").withStyle(ChatFormatting.GRAY));
             }
         }
         if (Config.HARD_MODE.RADIOACTIVE.get() && radioactive > 0) {
-            tooltip.add(new StringTextComponent("Warning: Radioactive! Prolonged exposure is harmful.").withStyle(TextFormatting.GRAY));
+            tooltip.add(new TextComponent("Warning: Radioactive! Prolonged exposure is harmful.").withStyle(ChatFormatting.GRAY));
         }
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
             if (Config.HARD_MODE.WATER_REACTIVE.get() && waterReactive > 0.0f) {
                 if (entityIn.isInWater() && isSelected) {
-                    if (entityIn instanceof PlayerEntity) {
-                        PlayerEntity player = (PlayerEntity) entityIn;
-                        if (!player.abilities.instabuild) {
+                    if (entityIn instanceof Player) {
+                        Player player = (Player) entityIn;
+                        if (!player.getAbilities().instabuild) {
                             stack.shrink(1);
                             BlockPos pos = entityIn.blockPosition();
                             if (canBreakBlocks) {
-                                entityIn.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.Mode.BREAK);
+                                entityIn.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.BlockInteraction.BREAK);
                             } else {
-                                entityIn.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.Mode.NONE);
+                                entityIn.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.BlockInteraction.NONE);
                             }
                             for (int i = 0; i < Math.round(this.waterReactive); i++) {
                                 BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> worldIn.isEmptyBlock(B) && !(worldIn.getBlockState(B).getBlock() instanceof GasBlock)
@@ -83,13 +81,13 @@ public class ElementItem extends Item {
                 }
             }
             if (Config.HARD_MODE.RADIOACTIVE.get()) {
-                if (entityIn instanceof PlayerEntity) {
-                    PlayerEntity player = (PlayerEntity) entityIn;
+                if (entityIn instanceof Player) {
+                    Player player = (Player) entityIn;
                     if (!player.isCreative()) {
-                        EffectInstance rad = player.getEffect(RankineEffects.RADIATION_POISONING);
+                        MobEffectInstance rad = player.getEffect(RankineEffects.RADIATION_POISONING);
                         int dur = rad == null ? Math.max(0,this.radioactive * stack.getCount()) : Math.max(0,rad.getDuration() + this.radioactive * stack.getCount());
                         if (dur > 0) {
-                            player.addEffect(new EffectInstance(RankineEffects.RADIATION_POISONING,dur,0, false, false, false));
+                            player.addEffect(new MobEffectInstance(RankineEffects.RADIATION_POISONING,dur,0, false, false, false));
                         }
                     }
                 }
@@ -102,7 +100,7 @@ public class ElementItem extends Item {
     }
 
     @Override
-    public Entity createEntity(World world, Entity location, ItemStack itemstack) {
+    public Entity createEntity(Level world, Entity location, ItemStack itemstack) {
         if (waterReactive > 0.0f) {
             ReactiveItemEntity result = getResult(location,itemstack);
             result.setPickUpDelay(40);

@@ -3,29 +3,24 @@ package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineTags;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowerBlock;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.SuspiciousStewItem;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.SpecialRecipe;
-import net.minecraft.item.crafting.SpecialRecipeSerializer;
-import net.minecraft.potion.Effect;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.CustomRecipe;
+import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.Tags;
 
-public class JamRecipe extends SpecialRecipe {
-    public static final SpecialRecipeSerializer<JamRecipe> SERIALIZER = new SpecialRecipeSerializer<>(JamRecipe::new);
+public class JamRecipe extends CustomRecipe {
+    public static final SimpleRecipeSerializer<JamRecipe> SERIALIZER = new SimpleRecipeSerializer<>(JamRecipe::new);
     public JamRecipe(ResourceLocation idIn) {
         super(idIn);
     }
 
-    public boolean matches(CraftingInventory inv, World worldIn) {
+    public boolean matches(CraftingContainer inv, Level worldIn) {
         boolean flag = false;
         boolean flag2 = false;
         boolean flag3 = false;
@@ -39,7 +34,7 @@ public class JamRecipe extends SpecialRecipe {
                     if (sugarCount == 2) {
                         flag = true;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.BERRIES) && !flag2) {
+                } else if (RankineTags.Items.BERRIES.contains(itemstack.getItem()) && !flag2) {
                     berryCount++;
                     if (berryCount == 6) {
                         flag2 = true;
@@ -57,12 +52,12 @@ public class JamRecipe extends SpecialRecipe {
         return flag && flag2 && flag3;
     }
 
-    public ItemStack assemble(CraftingInventory inv) {
+    public ItemStack assemble(CraftingContainer inv) {
         ItemStack itemstack = ItemStack.EMPTY;
 
         for(int i = 0; i < inv.getContainerSize(); ++i) {
             ItemStack itemstack1 = inv.getItem(i);
-            if (!itemstack1.isEmpty() && itemstack1.getItem().is(RankineTags.Items.BERRIES)) {
+            if (!itemstack1.isEmpty() && RankineTags.Items.BERRIES.contains(itemstack1.getItem())) {
                 itemstack = itemstack1;
                 break;
             }
@@ -86,7 +81,7 @@ public class JamRecipe extends SpecialRecipe {
         return width >= 2 && height >= 2;
     }
 
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 

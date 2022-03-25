@@ -4,9 +4,9 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.world.gen.placers.CropsBlockPlacer;
 import com.cannolicatfish.rankine.world.gen.placers.DoubleCropsBlockPlacer;
 import com.mojang.serialization.Codec;
-import net.minecraft.world.gen.blockplacer.BlockPlacer;
-import net.minecraft.world.gen.blockplacer.BlockPlacerType;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.levelgen.feature.blockplacers.BlockPlacer;
+import net.minecraft.world.level.levelgen.feature.blockplacers.BlockPlacerType;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

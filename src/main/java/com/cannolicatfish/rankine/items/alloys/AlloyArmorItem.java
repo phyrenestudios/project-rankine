@@ -7,22 +7,21 @@ import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyColorHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.Util;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -34,27 +33,33 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
-public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem, IDyeableArmorItem {
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.DyeableArmorItem;
+import net.minecraft.world.item.DyeableLeatherItem;
+import net.minecraft.world.item.ItemStack;
+
+public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem, DyeableLeatherItem {
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
-    public AlloyArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn, Properties builderIn) {
+    public AlloyArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn, Properties builderIn) {
         super(materialIn, slot, builderIn);
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
     }
 
     @Override
-    public ITextComponent getName(ItemStack stack) {
+    public Component getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
+            return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(IAlloyItem.getNameOverride(stack)));
         }
-        return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
+        return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
     @Override
     public void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier) {
-        CompoundNBT listnbt = new CompoundNBT();
+        CompoundTag listnbt = new CompoundTag();
         listnbt.putInt("durability",createValueForArmorDurability(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.DURABILITY)));
         listnbt.putInt("armorToughness",createValueForArmorToughness(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.TOUGHNESS)));
         listnbt.putInt("damageResistance",createValueForDamageResistance(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.HARVEST_LEVEL)));
@@ -77,10 +82,6 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
         }
         return false;
     }
-    @Override
-    public double getDurabilityForDisplay(ItemStack stack) {
-        return getDamage(stack) * 1f / this.getAlloyDurability(stack);
-    }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
@@ -94,36 +95,36 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
     }
 
     @Override
-    public void addAlloyInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addAlloyInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
         if (this.isAlloyInit(stack)) {
             if (!Screen.hasShiftDown()) {
-                tooltip.add((new StringTextComponent("Hold shift for details...")).withStyle(TextFormatting.GRAY));
+                tooltip.add((new TextComponent("Hold shift for details...")).withStyle(ChatFormatting.GRAY));
             }
             if (Screen.hasShiftDown()) {
                 if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
-                    tooltip.add((new StringTextComponent("Any Composition").withStyle(TextFormatting.GOLD)));
+                    tooltip.add((new TextComponent("Any Composition").withStyle(ChatFormatting.GOLD)));
                 } else {
-                    tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(TextFormatting.GOLD)));
+                    tooltip.add((new TextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(ChatFormatting.GOLD)));
                 }
 
                 if (!IAlloyItem.getAlloyModifiers(stack).isEmpty()) {
-                    tooltip.add((new StringTextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(TextFormatting.AQUA)));
+                    tooltip.add((new TextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(ChatFormatting.AQUA)));
                 } else {
-                    tooltip.add((new StringTextComponent("No Modifiers Present").withStyle(TextFormatting.AQUA)));
+                    tooltip.add((new TextComponent("No Modifiers Present").withStyle(ChatFormatting.AQUA)));
                 }
 
                 if (!this.needsRefresh(stack)) {
 
-                    tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(stack) - stack.getDamageValue()) + "/" + getAlloyDurability(stack))).withStyle(TextFormatting.DARK_GREEN));
-                    tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(stack))).withStyle(TextFormatting.GRAY));
+                    tooltip.add((new TextComponent("Durability: " + (getAlloyDurability(stack) - stack.getDamageValue()) + "/" + getAlloyDurability(stack))).withStyle(ChatFormatting.DARK_GREEN));
+                    tooltip.add((new TextComponent("Enchantability: " + getAlloyEnchantability(stack))).withStyle(ChatFormatting.GRAY));
                     if (Config.ALLOYS.ALLOY_CORROSION.get()) {
-                        tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).withStyle(TextFormatting.GRAY));
+                        tooltip.add((new TextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).withStyle(ChatFormatting.GRAY));
                     }
                     if (Config.ALLOYS.ALLOY_HEAT.get()) {
-                        tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).withStyle(TextFormatting.GRAY));
+                        tooltip.add((new TextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).withStyle(ChatFormatting.GRAY));
                     }
                 }
             }
@@ -132,7 +133,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         addAlloyInformation(stack,worldIn,tooltip,flagIn);
         if (flagIn.isAdvanced()) {
             addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
@@ -167,12 +168,12 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
 
     private int createValueForDamageResistance(Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloy, @Nullable AlloyModifier modifier)
     {
-        EquipmentSlotType slotType = this.getSlot();
+        EquipmentSlot slotType = this.getSlot();
         int hl = createValueForHarvestLevel(elementMap,alloy,modifier);
-        int base = slotType == EquipmentSlotType.CHEST ? 3 : slotType == EquipmentSlotType.LEGS ? 2 : 1;
-        if (slotType == EquipmentSlotType.CHEST || slotType == EquipmentSlotType.LEGS) {
+        int base = slotType == EquipmentSlot.CHEST ? 3 : slotType == EquipmentSlot.LEGS ? 2 : 1;
+        if (slotType == EquipmentSlot.CHEST || slotType == EquipmentSlot.LEGS) {
             return Math.min(base + hl,10);
-        } else if (slotType == EquipmentSlotType.FEET) {
+        } else if (slotType == EquipmentSlot.FEET) {
             if (hl >= 5) {
                 return base + 2;
             } else if (hl >= 3) {
@@ -214,7 +215,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
     }
 
     @Override
-    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
         if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
             items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
             items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
@@ -240,7 +241,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
     }*/
 
     @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (!this.isAlloyInit(stack)) {
             this.createAlloyNBT(stack,worldIn,this.defaultComposition,this.defaultAlloyRecipe,null);
             this.initStats(stack,getElementMap(this.defaultComposition,worldIn),getAlloyingRecipe(this.defaultAlloyRecipe,worldIn),null);
@@ -257,19 +258,19 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
 
     @Override
     public boolean hasCustomColor(ItemStack stack) {
-        CompoundNBT compoundnbt = stack.getTag();
+        CompoundTag compoundnbt = stack.getTag();
         return compoundnbt != null && compoundnbt.contains("color", 99);
     }
 
     @Override
     public int getColor(ItemStack stack) {
-        CompoundNBT compoundnbt = stack.getTag();
+        CompoundTag compoundnbt = stack.getTag();
         return compoundnbt != null && compoundnbt.contains("color", 99) ? compoundnbt.getInt("color") : 10511680;
     }
 
     @Override
     public void clearColor(ItemStack stack) {
-        CompoundNBT compoundnbt = stack.getTag();
+        CompoundTag compoundnbt = stack.getTag();
         if (compoundnbt != null && compoundnbt.contains("color")) {
             compoundnbt.remove("color");
         }
@@ -283,8 +284,8 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
 
     @Override
     public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-        World world = wearer.getCommandSenderWorld();
-        Optional<? extends IRecipe<?>> gold = world.getRecipeManager().byKey(new ResourceLocation("rankine:elements/gold"));
+        Level world = wearer.getCommandSenderWorld();
+        Optional<? extends Recipe<?>> gold = world.getRecipeManager().byKey(new ResourceLocation("rankine:elements/gold"));
         if (gold.isPresent() && gold.get() instanceof ElementRecipe) {
             ElementRecipe g = (ElementRecipe) gold.get();
             return this.checkCompositionRequirement(stack,world,g,">=",60);

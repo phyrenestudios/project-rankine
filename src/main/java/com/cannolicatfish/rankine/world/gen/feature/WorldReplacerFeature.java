@@ -7,29 +7,30 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SharedSeedRandom;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.PerlinNoiseGenerator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.Random;
 
-public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
+public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
     public static final int NOISE_SCALE = Config.MISC_WORLDGEN.NOISE_SCALE.get();
     //public static final int NOISE_OFFSET = Config.MISC_WORLDGEN.NOISE_OFFSET.get();
     public static final int LAYER_THICKNESS = Config.MISC_WORLDGEN.LAYER_THICKNESS.get();
@@ -37,19 +38,22 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
     public static List<ResourceLocation> GEN_BIOMES = WorldgenUtils.GEN_BIOMES;
     public static List<List<String>> LAYER_LISTS = WorldgenUtils.LAYER_LISTS;
 
-    public static final PerlinNoiseGenerator INTRUSION_NOISE = new PerlinNoiseGenerator(new SharedSeedRandom(9183), ImmutableList.of(0));
+    public static final PerlinSimplexNoise INTRUSION_NOISE = new PerlinSimplexNoise(new WorldgenRandom(9183), ImmutableList.of(0));
 
-    public WorldReplacerFeature(Codec<NoFeatureConfig> configFactoryIn) {
+    public WorldReplacerFeature(Codec<NoneFeatureConfiguration> configFactoryIn) {
         super(configFactoryIn);
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
 
-        IChunk chunk = reader.getChunk(pos);
+        ChunkAccess chunk = reader.getChunk(pos);
         for (int x = chunk.getPos().getMinBlockX(); x <= chunk.getPos().getMaxBlockX(); ++x) {
             for (int z = chunk.getPos().getMinBlockZ(); z <= chunk.getPos().getMaxBlockZ(); ++z) {
-                int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
+                int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
                 double stoneNoise = Biome.BIOME_INFO_NOISE.getValue(((double)x) / NOISE_SCALE, ((double)z) / NOISE_SCALE, false);
                 Biome targetBiome = reader.getBiome(new BlockPos(x, 0, z));
 
@@ -79,14 +83,14 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
                                     if (!leaveNetherrack(reader,TARGET_POS,targetBiome)) {
                                         if (placeSandstone(reader,TARGET_POS)) {
                                             reader.setBlock(TARGET_POS, RankineBlocks.SOUL_SANDSTONE.get().defaultBlockState(), 3);
-                                        } else if (TARGET_BLOCK.is(BlockTags.BASE_STONE_NETHER)) {
+                                        } else if (BlockTags.BASE_STONE_NETHER.contains(TARGET_BLOCK)) {
                                             reader.setBlock(TARGET_POS, StoneBS, 3);
                                         }
                                     }
                                 }
                                 break;
                             case THEEND:
-                                if (TARGET_BLOCK.is(RankineTags.Blocks.BASE_STONE_END)) {
+                                if (RankineTags.Blocks.BASE_STONE_END.contains(TARGET_BLOCK)) {
                                     reader.setBlock(TARGET_POS, StoneBS, 3);
                                 }
                                 break;
@@ -104,23 +108,23 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
     }
 
     private static BlockState vanillaOre(Block ore) {
-        if (ore.is(Blocks.IRON_ORE)) {
+        if (ore.equals(Blocks.IRON_ORE)) {
             return RankineBlocks.IRON_ORE.get().defaultBlockState();
-        } else if (ore.is(Blocks.GOLD_ORE)) {
+        } else if (ore.equals(Blocks.GOLD_ORE)) {
             return RankineBlocks.GOLD_ORE.get().defaultBlockState();
-        } else if (ore.is(Blocks.DIAMOND_ORE)) {
+        } else if (ore.equals(Blocks.DIAMOND_ORE)) {
             return RankineBlocks.DIAMOND_ORE.get().defaultBlockState();
-        } else if (ore.is(Blocks.EMERALD_ORE)) {
+        } else if (ore.equals(Blocks.EMERALD_ORE)) {
             return RankineBlocks.EMERALD_ORE.get().defaultBlockState();
-        } else if (ore.is(Blocks.COAL_ORE)) {
+        } else if (ore.equals(Blocks.COAL_ORE)) {
             return RankineBlocks.COAL_ORE.get().defaultBlockState();
-        } else if (ore.is(Blocks.LAPIS_ORE)) {
+        } else if (ore.equals(Blocks.LAPIS_ORE)) {
             return RankineBlocks.LAPIS_ORE.get().defaultBlockState();
-        } else if (ore.is(Blocks.REDSTONE_ORE)) {
+        } else if (ore.equals(Blocks.REDSTONE_ORE)) {
             return RankineBlocks.REDSTONE_ORE.get().defaultBlockState();
-        } else if (ore.is(Blocks.NETHER_GOLD_ORE)) {
+        } else if (ore.equals(Blocks.NETHER_GOLD_ORE)) {
             return RankineBlocks.NETHER_GOLD_ORE.get().defaultBlockState();
-        } else if (ore.is(Blocks.NETHER_QUARTZ_ORE)) {
+        } else if (ore.equals(Blocks.NETHER_QUARTZ_ORE)) {
             return RankineBlocks.NETHER_QUARTZ_ORE.get().defaultBlockState();
         }
 
@@ -130,19 +134,19 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
     private static boolean canReplaceStone(Block target) {
         switch (Config.MISC_WORLDGEN.LAYER_GEN.get()) {
             case 1:
-                return target.is(Blocks.STONE);
+                return target.equals(Blocks.STONE);
             case 2:
-                return target.is(BlockTags.BASE_STONE_OVERWORLD);
+                return BlockTags.BASE_STONE_OVERWORLD.contains(target);
             case 3:
             default:
-                return target.is(BlockTags.BASE_STONE_OVERWORLD) && !target.getRegistryName().getNamespace().equals("rankine");
+                return BlockTags.BASE_STONE_OVERWORLD.contains(target) && !target.getRegistryName().getNamespace().equals("rankine");
 
         }
     }
 
     private static BlockState getStone(ResourceLocation biomeName, double noise, int y) {
         List<String> blockList = LAYER_LISTS.get(GEN_BIOMES.indexOf(biomeName));
-        int i = (int) MathHelper.clamp(Math.floor((y+noise/LAYER_BEND+20)/LAYER_THICKNESS),0,blockList.size()-1);
+        int i = (int) Mth.clamp(Math.floor((y+noise/LAYER_BEND+20)/LAYER_THICKNESS),0,blockList.size()-1);
         try {
             return ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(blockList.get(i))).defaultBlockState();
         } catch (Exception e) {
@@ -168,16 +172,16 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
 
     }
 
-    private static boolean leaveNetherrack(ISeedReader reader, BlockPos pos, Biome biome) {
+    private static boolean leaveNetherrack(WorldGenLevel reader, BlockPos pos, Biome biome) {
         if (biome.getRegistryName().toString().equals(Biomes.BASALT_DELTAS.location().toString()) || biome.getRegistryName().toString().equals(Biomes.SOUL_SAND_VALLEY.location().toString())) return false;
         for (int i = 1; i <=Config.MISC_WORLDGEN.NETHERRACK_LAYER_THICKNESS.get(); i++) {
-            if (reader.getBlockState(pos.above(i)).is(RankineTags.Blocks.NETHER_TOPS)) return true;
+            if (RankineTags.Blocks.NETHER_TOPS.contains(reader.getBlockState(pos.above(i)).getBlock())) return true;
         }
         return false;
     }
-    private static boolean placeSandstone(ISeedReader reader, BlockPos pos) {
+    private static boolean placeSandstone(WorldGenLevel reader, BlockPos pos) {
         for (int i = -1*Config.MISC_WORLDGEN.SOUL_SANDSTONE_LAYER_THICKNESS.get(); i <=Config.MISC_WORLDGEN.SOUL_SANDSTONE_LAYER_THICKNESS.get(); i++) {
-            if (reader.getBlockState(pos.above(i)).is(BlockTags.SOUL_SPEED_BLOCKS)) return true;
+            if (BlockTags.SOUL_SPEED_BLOCKS.contains(reader.getBlockState(pos.above(i)).getBlock())) return true;
         }
         return false;
     }

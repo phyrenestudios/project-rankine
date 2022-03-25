@@ -1,18 +1,11 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.state.properties.Half;
-import net.minecraft.state.properties.StairsShape;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StairBlock;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
-public class RankineStairsBlock extends StairsBlock {
+public class RankineStairsBlock extends StairBlock {
     public RankineStairsBlock(Properties properties) {
         super(Block.stateById(0), properties);
     }

@@ -1,12 +1,12 @@
 package com.cannolicatfish.rankine.loot;
 
 import com.google.gson.JsonObject;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -23,7 +23,7 @@ public class SurfRodModifier extends LootModifier {
     private final Item itemToReplace;
     private final Item itemReplacement;
     public static final Serializer SERIALIZER = new Serializer();
-    public SurfRodModifier(ILootCondition[] conditionsIn, Item toReplace, Item replacement) {
+    public SurfRodModifier(LootItemCondition[] conditionsIn, Item toReplace, Item replacement) {
         super(conditionsIn);
         itemToReplace = toReplace;
         itemReplacement = replacement;
@@ -40,9 +40,9 @@ public class SurfRodModifier extends LootModifier {
 
     public static class Serializer extends GlobalLootModifierSerializer<SurfRodModifier> {
         @Override
-        public SurfRodModifier read(ResourceLocation name, JsonObject json, ILootCondition[] conditionsIn) {
-            Item toReplace = ForgeRegistries.ITEMS.getValue(new ResourceLocation((JSONUtils.getAsString(json, "originalItem"))));
-            Item replacement = ForgeRegistries.ITEMS.getValue(new ResourceLocation((JSONUtils.getAsString(json, "replacement"))));
+        public SurfRodModifier read(ResourceLocation name, JsonObject json, LootItemCondition[] conditionsIn) {
+            Item toReplace = ForgeRegistries.ITEMS.getValue(new ResourceLocation((GsonHelper.getAsString(json, "originalItem"))));
+            Item replacement = ForgeRegistries.ITEMS.getValue(new ResourceLocation((GsonHelper.getAsString(json, "replacement"))));
             return new SurfRodModifier(conditionsIn,toReplace,replacement);
         }
 

@@ -2,28 +2,34 @@ package com.cannolicatfish.rankine.world.gen.feature.mushrooms;
 
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.BlockStateProvidingFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockPileConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
 import java.util.Random;
 
-public class TurkeyTailMushroomFeature extends Feature<BlockStateProvidingFeatureConfig> {
+public class TurkeyTailMushroomFeature extends Feature<BlockPileConfiguration> {
 
 
-    public TurkeyTailMushroomFeature(Codec<BlockStateProvidingFeatureConfig> configFactoryIn) {
+    public TurkeyTailMushroomFeature(Codec<BlockPileConfiguration> configFactoryIn) {
         super(configFactoryIn);
     }
 
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config) {
+    @Override
+    public boolean place(FeaturePlaceContext<BlockPileConfiguration> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
+        BlockPileConfiguration config = p_159749_.config();
         return false;
     }
 
-    public static boolean growMushroom(ISeedReader reader, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config, Direction dir) {
+    public static boolean growMushroom(WorldGenLevel reader, Random rand, BlockPos pos, BlockPileConfiguration config, Direction dir) {
         boolean flag = true;
         for (BlockPos b : BlockPos.betweenClosed(pos.relative(dir.getClockWise(),2).below(),pos.relative(dir).relative(dir.getCounterClockWise(),2).above())) {
             if (!WorldgenUtils.isAirOrLeaves(reader,b)) {
@@ -46,7 +52,7 @@ public class TurkeyTailMushroomFeature extends Feature<BlockStateProvidingFeatur
         return false;
     }
 
-    private static void build(ISeedReader reader, BlockPos pos, BlockState state, Direction dir, int length) {
+    private static void build(WorldGenLevel reader, BlockPos pos, BlockState state, Direction dir, int length) {
         for (int i = 0; i <= length; ++i) {
             reader.setBlock(pos.relative(dir,i),state,19);
         }

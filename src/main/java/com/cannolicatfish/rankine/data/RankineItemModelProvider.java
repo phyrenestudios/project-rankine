@@ -6,10 +6,10 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.items.alloys.AlloyCrowbarItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -347,14 +347,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.ORNAMENT.get());
 
         basicItem("rankine_journal");
-
-        withExistingParent(RankineItems.BEAVER.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-        withExistingParent(RankineItems.DESMOXYTE.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-        withExistingParent(RankineItems.DEMONYTE.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-        withExistingParent(RankineItems.DRAGONYTE.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-        withExistingParent(RankineItems.MANTLE_GOLEM.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-        withExistingParent(RankineItems.DIAMOND_MANTLE_GOLEM.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-        withExistingParent(RankineItems.PERIDOT_MANTLE_GOLEM.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
 
         basicItem(RankineItems.BIOME_INDICATOR_GENERIC.get());
         basicItem(RankineItems.BIOME_INDICATOR_OCEAN.get());

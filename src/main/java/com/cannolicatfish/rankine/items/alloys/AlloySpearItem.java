@@ -3,50 +3,53 @@ package com.cannolicatfish.rankine.items.alloys;
 import com.cannolicatfish.rankine.entities.SpearEntity;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
+
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
 
 public class AlloySpearItem extends SpearItem implements IAlloyTool {
 
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
-    public AlloySpearItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn,  EntityType<SpearEntity> entity, ResourceLocation type, Properties properties) {
+    public AlloySpearItem(Tier tier, float attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn,  EntityType<SpearEntity> entity, ResourceLocation type, Properties properties) {
         super(tier, attackDamageIn, attackSpeedIn,entity, type, properties);
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
     }
 
     @Override
-    public ITextComponent getName(ItemStack stack) {
+    public Component getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(IAlloyItem.getNameOverride(stack)));
+            return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(IAlloyItem.getNameOverride(stack)));
         }
-        return new TranslationTextComponent(this.getDescriptionId(stack),new TranslationTextComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
+        return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,true), attacker, (entity) -> {
-            entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
+            entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
         return true;
     }
@@ -54,19 +57,14 @@ public class AlloySpearItem extends SpearItem implements IAlloyTool {
     /**
      * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
      */
-    public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+    public boolean mineBlock(ItemStack stack, Level worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         if (!worldIn.isClientSide && state.getDestroySpeed(worldIn, pos) != 0.0F) {
             stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,false), entityLiving, (entity) -> {
-                entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
+                entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
             });
         }
 
         return true;
-    }
-
-    @Override
-    public double getDurabilityForDisplay(ItemStack stack) {
-        return getDamage(stack) * 1f / this.getAlloyDurability(stack);
     }
 
     @Override
@@ -81,7 +79,7 @@ public class AlloySpearItem extends SpearItem implements IAlloyTool {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         addAlloyInformation(stack,worldIn,tooltip,flagIn);
         if (flagIn.isAdvanced()) {
             addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
@@ -89,14 +87,14 @@ public class AlloySpearItem extends SpearItem implements IAlloyTool {
     }
 
     @Override
-    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, Level worldIn, Player playerIn) {
         this.applyAlloyEnchantments(stack,worldIn);
         super.onCraftedBy(stack, worldIn, playerIn);
     }
 
 
     @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (!this.isAlloyInit(stack)) {
             this.createAlloyNBT(stack,worldIn,this.defaultComposition,this.defaultAlloyRecipe,null);
             this.initStats(stack,getElementMap(this.defaultComposition,worldIn),getAlloyingRecipe(this.defaultAlloyRecipe,worldIn),null);
@@ -109,7 +107,7 @@ public class AlloySpearItem extends SpearItem implements IAlloyTool {
     }
 
     @Override
-    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
         if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
             items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
             items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));

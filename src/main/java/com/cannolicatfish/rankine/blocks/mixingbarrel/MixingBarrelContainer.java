@@ -6,45 +6,45 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.packets.FluidStackPacket;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.recipe.MixingRecipe;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.IntArray;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.MIXING_BARREL_CONTAINER;
 
-public class MixingBarrelContainer extends Container {
-    private final IInventory furnaceInventory;
-    private TileEntity tileEntity;
-    private PlayerEntity playerEntity;
+public class MixingBarrelContainer extends AbstractContainerMenu {
+    private final Container furnaceInventory;
+    private BlockEntity tileEntity;
+    private Player playerEntity;
     private IItemHandler playerInventory;
-    private World world;
-    private final IIntArray data;
+    private Level world;
+    private final ContainerData data;
 
-    public MixingBarrelContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player,new Inventory(5),new IntArray(4));
+    public MixingBarrelContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
+        this(windowId,world,pos,playerInventory,player,new SimpleContainer(5),new SimpleContainerData(4));
 
 
 
     }
-    public MixingBarrelContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray furnaceData) {
+    public MixingBarrelContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData furnaceData) {
         super(MIXING_BARREL_CONTAINER, windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 5);
@@ -83,8 +83,8 @@ public class MixingBarrelContainer extends Container {
     }
 
     @Override
-    public boolean stillValid(PlayerEntity playerIn) {
-        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, RankineBlocks.MIXING_BARREL.get());
+    public boolean stillValid(Player playerIn) {
+        return stillValid(ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, RankineBlocks.MIXING_BARREL.get());
     }
 
     public FluidTank getInputTank() {
@@ -100,7 +100,7 @@ public class MixingBarrelContainer extends Container {
     }
 
     @Override
-    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot != null && slot.hasItem()) {

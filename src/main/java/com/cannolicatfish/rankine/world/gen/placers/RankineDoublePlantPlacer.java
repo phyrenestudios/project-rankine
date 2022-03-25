@@ -2,11 +2,11 @@ package com.cannolicatfish.rankine.world.gen.placers;
 
 import com.cannolicatfish.rankine.blocks.plants.RankineDoublePlantBlock;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.gen.blockplacer.BlockPlacer;
-import net.minecraft.world.gen.blockplacer.BlockPlacerType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.levelgen.feature.blockplacers.BlockPlacer;
+import net.minecraft.world.level.levelgen.feature.blockplacers.BlockPlacerType;
 
 import java.util.Random;
 
@@ -18,7 +18,7 @@ public class RankineDoublePlantPlacer extends BlockPlacer {
         return BlockPlacerType.DOUBLE_PLANT_PLACER;
     }
 
-    public void place(IWorld world, BlockPos pos, BlockState state, Random random) {
+    public void place(LevelAccessor world, BlockPos pos, BlockState state, Random random) {
         ((RankineDoublePlantBlock)state.getBlock()).placeAt(world, pos, 2);
     }
 

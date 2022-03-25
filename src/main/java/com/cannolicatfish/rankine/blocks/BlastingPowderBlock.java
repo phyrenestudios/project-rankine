@@ -1,32 +1,32 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FallingBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.FallingBlockEntity;
-import net.minecraft.entity.item.TNTEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 
 public class BlastingPowderBlock extends FallingBlock {
     public BlastingPowderBlock(Properties properties) {
@@ -34,19 +34,19 @@ public class BlastingPowderBlock extends FallingBlock {
     }
 
     @Override
-    public void catchFire(BlockState state, World world, BlockPos pos, @Nullable net.minecraft.util.Direction face, @Nullable LivingEntity igniter) {
-        world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.Mode.BREAK);
+    public void catchFire(BlockState state, Level world, BlockPos pos, @Nullable net.minecraft.core.Direction face, @Nullable LivingEntity igniter) {
+        world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.BlockInteraction.BREAK);
         world.removeBlock(pos, false);
     }
 
     @Override
-    public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+    public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         Random random = new Random();
         if (random.nextFloat() <= 0.05f)
         {
-            if (placer instanceof PlayerEntity)
+            if (placer instanceof Player)
             {
-                if (!((PlayerEntity)placer).abilities.instabuild)
+                if (!((Player)placer).getAbilities().instabuild)
                 {
                     catchFire(state, worldIn, pos, null, null);
                 }
@@ -60,24 +60,24 @@ public class BlastingPowderBlock extends FallingBlock {
     }
 
     @Override
-    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (worldIn.hasNeighborSignal(pos)) {
             catchFire(state, worldIn, pos, null, null);
         }
     }
 
     @Override
-    public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+    public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
         return 280;
     }
 
     @Override
-    public boolean isFlammable(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+    public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
         return true;
     }
 
     @Override
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_225533_6_) {
         ItemStack itemstack = player.getItemInHand(handIn);
         Item item = itemstack.getItem();
         if (item != Items.FLINT_AND_STEEL && item != Items.FIRE_CHARGE) {
@@ -95,14 +95,14 @@ public class BlastingPowderBlock extends FallingBlock {
                 }
             }
 
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
     }
 
     @Override
-    public void onProjectileHit(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
-        if (!worldIn.isClientSide && projectile instanceof AbstractArrowEntity) {
-            AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
+    public void onProjectileHit(Level worldIn, BlockState state, BlockHitResult hit, Projectile projectile) {
+        if (!worldIn.isClientSide && projectile instanceof AbstractArrow) {
+            AbstractArrow abstractarrowentity = (AbstractArrow)projectile;
             Entity entity = abstractarrowentity.getOwner();
             if (abstractarrowentity.isOnFire()) {
                 BlockPos blockpos = hit.getBlockPos();
@@ -112,23 +112,23 @@ public class BlastingPowderBlock extends FallingBlock {
 
     }
 
-    public void wasExploded(World worldIn, BlockPos pos, Explosion explosionIn) {
+    public void wasExploded(Level worldIn, BlockPos pos, Explosion explosionIn) {
         if (!worldIn.isClientSide) {
             catchFire(worldIn.getBlockState(pos), worldIn, pos, null,null);
         }
     }
 
     @Override
-    public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         Random random = new Random();
-        if (random.nextFloat() <= 0.50f && !player.abilities.instabuild)
+        if (random.nextFloat() <= 0.50f && !player.getAbilities().instabuild)
         {
             catchFire(worldIn.getBlockState(pos), worldIn, pos, null,player);
         }
     }
 
     @Override
-    public void onLand(World worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, FallingBlockEntity p_176502_5_)  {
+    public void onLand(Level worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, FallingBlockEntity p_176502_5_)  {
         catchFire(this.defaultBlockState(), worldIn, pos, null, null);
     }
 
@@ -137,7 +137,7 @@ public class BlastingPowderBlock extends FallingBlock {
      * Return whether this block can drop from an explosion.
      */
     @Override
-    public boolean canDropFromExplosion(BlockState state, IBlockReader world, BlockPos pos, Explosion explosion) {
+    public boolean canDropFromExplosion(BlockState state, BlockGetter world, BlockPos pos, Explosion explosion) {
         return true;
     }
 }

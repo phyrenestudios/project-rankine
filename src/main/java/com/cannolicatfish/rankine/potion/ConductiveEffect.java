@@ -1,28 +1,28 @@
 package com.cannolicatfish.rankine.potion;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.LightningBoltEntity;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectType;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.level.Level;
 
 import java.util.Random;
 
-public class ConductiveEffect extends Effect {
-    protected ConductiveEffect(EffectType typeIn, int liquidColorIn) {
+public class ConductiveEffect extends MobEffect {
+    protected ConductiveEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 
     @Override
     public void applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
         Random rand = entityLivingBaseIn.getRandom();
-        World worldIn = entityLivingBaseIn.getCommandSenderWorld();
+        Level worldIn = entityLivingBaseIn.getCommandSenderWorld();
         if (worldIn.isRainingAt(entityLivingBaseIn.blockPosition()) && rand.nextFloat() < 0.2f) {
-            LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,worldIn);
+            LightningBolt ent = new LightningBolt(EntityType.LIGHTNING_BOLT,worldIn);
             ent.setPos(entityLivingBaseIn.getX(),entityLivingBaseIn.getY(),entityLivingBaseIn.getZ());
             worldIn.addFreshEntity(ent);
-            entityLivingBaseIn.removeEffect(this.getEffect());
+            entityLivingBaseIn.removeEffect(this);
         }
     }
 

@@ -2,25 +2,24 @@ package com.cannolicatfish.rankine.items.totems;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.Config;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class SofteningTotemItem extends Item {
     public SofteningTotemItem(Properties properties) {
@@ -28,13 +27,13 @@ public class SofteningTotemItem extends Item {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslationTextComponent("item.rankine.totem_of_softening.tooltip").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC));
+        tooltip.add(new TranslatableComponent("item.rankine.totem_of_softening.tooltip").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 
     @Override
-    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, Level worldIn, Player playerIn) {
         if (Config.GENERAL.PENDANT_CURSE.get()) {
             stack.enchant(Enchantments.VANISHING_CURSE,1);
         }
@@ -42,9 +41,9 @@ public class SofteningTotemItem extends Item {
     }
 
     @Override
-    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
-        if ((group == ItemGroup.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
-            ItemStack stack = new ItemStack(this.getItem());
+    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
+        if ((group == CreativeModeTab.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
+            ItemStack stack = new ItemStack(this);
             stack.enchant(Enchantments.VANISHING_CURSE,1);
             items.add(stack);
         } else {

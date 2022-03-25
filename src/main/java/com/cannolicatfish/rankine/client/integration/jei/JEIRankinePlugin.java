@@ -20,12 +20,14 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.ingredients.subtypes.IIngredientSubtypeInterpreter;
+import mezz.jei.api.ingredients.subtypes.UidContext;
 import mezz.jei.api.registration.*;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nonnull;
@@ -62,8 +64,8 @@ public class JEIRankinePlugin implements IModPlugin {
         return elements;
     }
 
-    private static <T extends IRecipe<?>> List<T> getSortedRecipes(List<T> recipes) {
-        final Comparator<IRecipe<?>> BY_ID = Comparator.comparing(IRecipe::getId);
+    private static <T extends Recipe<?>> List<T> getSortedRecipes(List<T> recipes) {
+        final Comparator<Recipe<?>> BY_ID = Comparator.comparing(Recipe::getId);
         recipes.sort(BY_ID);
         return recipes;
     }
@@ -89,67 +91,36 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getMetamorphicGeneratorRecipes()), MetamorphicGeneratorRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()), VolcanicGeneratorRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getAirDistillationRecipes()), AirDistillationRecipeCategory.UID);
-        registry.addIngredientInfo(new ItemStack(RankineItems.COKE.get()), VanillaTypes.ITEM, "Coke can be obtained by cooking Bituminous Coal Blocks in a beehive oven.",
-                "See Beehive Oven Pit for more details.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.QUICKLIME.get()), VanillaTypes.ITEM, "Quicklime can be obtained by cooking Limestone in a beehive oven.",
-                "See Beehive Oven Pit for more details.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.MAGNESIA.get()), VanillaTypes.ITEM, "Magnesia can be obtained by cooking a Block of Magnesite in a beehive oven.",
-                "See Beehive Oven Pit for more details.");
-        registry.addIngredientInfo(new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get()), VanillaTypes.ITEM, "The beehive oven is at minimum a 3x3 structure with a beehive oven pit in the center of 8 refractory bricks. " +
-                "The pit block must have access to the sky. Place blocks on the refractory bricks and light it to cook them over time.");
-        registry.addIngredientInfo(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()), VanillaTypes.ITEM, "The evaporation tower is a complex multiblock which requires sheetmetal, magma blocks, and the Evaporation Tower block." +
-                " See the modpage or the Patchouli book for details.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.ELEMENT_INDEXER.get()), VanillaTypes.ITEM, "The Element Indexer is a device that can be used to analyze the properties of an element in an alloy. " +
-                "Scroll up and down to change the percentage.");
-        registry.addIngredientInfo(new ItemStack(RankineBlocks.TEMPLATE_TABLE.get()), VanillaTypes.ITEM, "The Alloy Template Table can make templates to automate the alloy furnace. " +
-                "Paper and dye are required, and the template is determined by the arrangement of materials in the bottom row.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.ALLOY_TEMPLATE.get()), VanillaTypes.ITEM, "Created using the Alloy Template Table. " +
-                "Paper and dye are required.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.FLINT_KNIFE.get()), VanillaTypes.ITEM, "Right-clicking on grass blocks allows you to obtain grass and convert the original block into dirt at an increased durability cost." +
-                "The knife can also harvest grass and vines by left clicking.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.COMPOST.get()), VanillaTypes.ITEM, "Can be placed in the Composter.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.GAS_MASK.get()), VanillaTypes.ITEM, "The gas mask prevents negative effects from standing in gas blocks when worn. Combine with a helmet in an anvil to add the enchantment Gas Protection which has the same effect.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.SANDALS.get()), VanillaTypes.ITEM, "Sandals increase movement speed on sand blocks when worn. Combine with boots in an anvil to add the enchantment Dune Walker which has the same effect.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.SNOWSHOES.get()), VanillaTypes.ITEM, "Snowshoes increase movement speed on snow blocks when worn. Combine with boots in an anvil to add the enchantment Snow Drifter which has the same effect.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.ICE_SKATES.get()), VanillaTypes.ITEM, "Ice Skates increase movement speed on ice blocks when worn. Combine with boots in an anvil to add the enchantment Speed Skater which has the same effect.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.GOGGLES.get()), VanillaTypes.ITEM, "Ice Skates increase movement speed on ice blocks when worn. Combine with boots in an anvil to add the enchantment Speed Skater which has the same effect.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.FINS.get()), VanillaTypes.ITEM, "Fins increase movement speed when swimming. Combine with boots in an anvil to add the enchantment TBD which has the same effect.");
-        //Tools
-        registry.addIngredientInfo(new ItemStack(Items.COMPASS), VanillaTypes.ITEM, "While held, the compass will display the holder's coordinates and direction. Default is head position, sneak for position at feet.");
-        registry.addIngredientInfo(new ItemStack(Items.CLOCK), VanillaTypes.ITEM, "While held, the clock will display the current game time on a 24 hour clock and in ticks.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.ALTIMETER.get()), VanillaTypes.ITEM, "While held, the altimeter will display the holder's Y value. Default is head position, sneak for position at feet.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.PHOTOMETER.get()), VanillaTypes.ITEM, "While held, the photometer will display the current light level. Default is head position, sneak for position at feet.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.THERMOMETER.get()), VanillaTypes.ITEM, "While held, the thermometer will display the current block temperature. Default is head position, sneak for position at feet.");
     }
 
     @Override
     public void registerItemSubtypes(ISubtypeRegistration registration) {
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_DUST.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_GEAR.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_BLOCK.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_INGOT.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_NUGGET.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_PLATE.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_ROD.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_WIRE.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_DUST.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_GEAR.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_BLOCK.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_INGOT.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_NUGGET.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_PLATE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_ROD.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_WIRE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
 
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_PICKAXE.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_AXE.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SHOVEL.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SWORD.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_HOE.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SPEAR.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_HAMMER.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_KNIFE.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_CROWBAR.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_BLUNDERBUSS.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SURF_ROD.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_PICKAXE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_AXE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SHOVEL.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SWORD.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_HOE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SPEAR.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_HAMMER.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_KNIFE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_CROWBAR.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_BLUNDERBUSS.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SURF_ROD.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
 
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_HELMET.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_CHESTPLATE.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_LEGGINGS.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_BOOTS.get(), IAlloyItem::getSubtype);
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_ARROW.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_HELMET.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_CHESTPLATE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_LEGGINGS.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_BOOTS.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_ARROW.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
     }
 
     @Override

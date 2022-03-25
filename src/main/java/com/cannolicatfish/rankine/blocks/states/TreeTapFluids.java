@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks.states;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum TreeTapFluids implements IStringSerializable {
+public enum TreeTapFluids implements StringRepresentable {
     NONE("none"),
     EMPTY("empty"),
     WATER("water"),

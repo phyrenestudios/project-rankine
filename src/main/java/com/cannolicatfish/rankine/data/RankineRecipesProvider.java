@@ -8,24 +8,33 @@ import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.JamRecipe;
-import net.minecraft.advancements.criterion.InventoryChangeTrigger;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.data.*;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.tags.Tag;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.function.Consumer;
+
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.data.recipes.SpecialRecipeBuilder;
+import net.minecraft.data.recipes.UpgradeRecipeBuilder;
 
 public class RankineRecipesProvider extends RecipeProvider {
 
@@ -39,9 +48,9 @@ public class RankineRecipesProvider extends RecipeProvider {
     }
 
     @Override
-    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
         //MINECRAFT OVERRIDE
-        CookingRecipeBuilder.smelting(Ingredient.of(ItemTags.LOGS_THAT_BURN), RankineItems.ASH.get(), 0.1F, 200).unlockedBy("has_logs", has(ItemTags.LOGS_THAT_BURN)).save(consumer, "minecraft:charcoal");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ItemTags.LOGS_THAT_BURN), RankineItems.ASH.get(), 0.1F, 200).unlockedBy("has_logs", has(ItemTags.LOGS_THAT_BURN)).save(consumer, "minecraft:charcoal");
         ShapedRecipeBuilder.shaped(Blocks.BRICKS).define('#', Items.BRICK).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_brick", has(Items.BRICK)).save(consumer);
         ShapedRecipeBuilder.shaped(Blocks.END_STONE_BRICKS, 2).define('#', Blocks.END_STONE).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_end_stone", has(Blocks.END_STONE)).save(consumer);
         ShapedRecipeBuilder.shaped(Blocks.QUARTZ_BRICKS, 2).define('#', Blocks.QUARTZ_BLOCK).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_quartz_block", has(Blocks.QUARTZ_BLOCK)).save(consumer);
@@ -53,7 +62,7 @@ public class RankineRecipesProvider extends RecipeProvider {
 
 
         //ALTERNATIVE RECIPES
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.SILT.get()), Items.GLASS, 0.1F, 200).unlockedBy("has_ingredient", has(RankineBlocks.SILT.get().asItem())).save(consumer, "rankine:glass_from_silt_smelting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.SILT.get()), Items.GLASS, 0.1F, 200).unlockedBy("has_ingredient", has(RankineBlocks.SILT.get().asItem())).save(consumer, "rankine:glass_from_silt_smelting");
 
         ShapedRecipeBuilder.shaped(Blocks.TORCH, 3).pattern("C").pattern("S").define('C', RankineItems.LIGNITE.get()).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_ingredient", has(RankineItems.LIGNITE.get())).group("torch").save(consumer, "rankine:torch_from_lignite");
         ShapedRecipeBuilder.shaped(Blocks.TORCH, 4).pattern("C").pattern("S").define('C', RankineItems.SUBBITUMINOUS_COAL.get()).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_ingredient", has(RankineItems.SUBBITUMINOUS_COAL.get())).group("torch").save(consumer, "rankine:torch_from_subbituminous_coal");
@@ -143,10 +152,10 @@ public class RankineRecipesProvider extends RecipeProvider {
             ShapelessRecipeBuilder.shapeless(SANDSTONE).requires(VSLAB).requires(VSLAB).group("block_from_slab").unlockedBy("has_ingredient", has(SANDSTONE)).save(consumer,"rankine:"+baseName+"_from_vslab");
             ShapelessRecipeBuilder.shapeless(SANDSTONE).requires(SLAB).requires(SLAB).group("block_from_vslab").unlockedBy("has_ingredient", has(SANDSTONE)).save(consumer,"rankine:"+baseName+"_from_slab");
             ShapelessRecipeBuilder.shapeless(SANDSTONE,6).requires(STAIRS).requires(STAIRS).requires(STAIRS).requires(STAIRS).group("block_from_stairs").unlockedBy("has_ingredient", has(SANDSTONE)).save(consumer,"rankine:"+baseName+"_from_stairs");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SANDSTONE), SLAB, 2).unlocks("has_ingredient", has(SANDSTONE)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SANDSTONE), VSLAB, 2).unlocks("has_ingredient", has(SANDSTONE)).save(consumer, "rankine:"+baseName+"_vertical_slab_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SANDSTONE), STAIRS).unlocks("has_ingredient", has(SANDSTONE)).save(consumer, "rankine:"+baseName+"_stairs_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SANDSTONE), WALL).unlocks("has_ingredient", has(SANDSTONE)).save(consumer, "rankine:"+baseName+"_wall_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SANDSTONE), SLAB, 2).unlockedBy("has_ingredient", has(SANDSTONE)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SANDSTONE), VSLAB, 2).unlockedBy("has_ingredient", has(SANDSTONE)).save(consumer, "rankine:"+baseName+"_vertical_slab_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SANDSTONE), STAIRS).unlockedBy("has_ingredient", has(SANDSTONE)).save(consumer, "rankine:"+baseName+"_stairs_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SANDSTONE), WALL).unlockedBy("has_ingredient", has(SANDSTONE)).save(consumer, "rankine:"+baseName+"_wall_from_"+baseName+"_stonecutting");
 
         }
         for (Block SMOOTH_SANDSTONE : RankineLists.SMOOTH_SANDSTONES) {
@@ -156,7 +165,7 @@ public class RankineRecipesProvider extends RecipeProvider {
             Block VSLAB = RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS.get(RankineLists.SMOOTH_SANDSTONES.indexOf(SMOOTH_SANDSTONE));
             Block STAIRS = RankineLists.SMOOTH_SANDSTONE_STAIRS.get(RankineLists.SMOOTH_SANDSTONES.indexOf(SMOOTH_SANDSTONE));
             Block WALL = RankineLists.SMOOTH_SANDSTONE_WALLS.get(RankineLists.SMOOTH_SANDSTONES.indexOf(SMOOTH_SANDSTONE));
-            CookingRecipeBuilder.smelting(Ingredient.of(SANDSTONE), SMOOTH_SANDSTONE, 0.1F, 200).unlockedBy("has_ingredient", has(SANDSTONE)).save(consumer);
+            SimpleCookingRecipeBuilder.smelting(Ingredient.of(SANDSTONE), SMOOTH_SANDSTONE, 0.1F, 200).unlockedBy("has_ingredient", has(SANDSTONE)).save(consumer);
             slab(consumer,SLAB.asItem(),SMOOTH_SANDSTONE.asItem(), "smooth_sandstone_slab");
             stairs(consumer,STAIRS.asItem(),SMOOTH_SANDSTONE.asItem(), "smooth_sandstone_stairs");
             wall(consumer,WALL.asItem(),SMOOTH_SANDSTONE.asItem(), "smooth_sandstone_wall");
@@ -165,10 +174,10 @@ public class RankineRecipesProvider extends RecipeProvider {
             ShapelessRecipeBuilder.shapeless(SMOOTH_SANDSTONE).requires(VSLAB).requires(VSLAB).group("block_from_slab").unlockedBy("has_ingredient", has(SMOOTH_SANDSTONE)).save(consumer,"rankine:"+baseName+"_from_vslab");
             ShapelessRecipeBuilder.shapeless(SMOOTH_SANDSTONE).requires(SLAB).requires(SLAB).group("block_from_vslab").unlockedBy("has_ingredient", has(SMOOTH_SANDSTONE)).save(consumer,"rankine:"+baseName+"_from_slab");
             ShapelessRecipeBuilder.shapeless(SMOOTH_SANDSTONE,6).requires(STAIRS).requires(STAIRS).requires(STAIRS).requires(STAIRS).group("block_from_stairs").unlockedBy("has_ingredient", has(SMOOTH_SANDSTONE)).save(consumer,"rankine:"+baseName+"_from_stairs");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SMOOTH_SANDSTONE), SLAB, 2).unlocks("has_ingredient", has(SMOOTH_SANDSTONE)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SMOOTH_SANDSTONE), VSLAB, 2).unlocks("has_ingredient", has(SMOOTH_SANDSTONE)).save(consumer, "rankine:"+baseName+"_vertical_slab_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SMOOTH_SANDSTONE), STAIRS).unlocks("has_ingredient", has(SMOOTH_SANDSTONE)).save(consumer, "rankine:"+baseName+"_stairs_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SMOOTH_SANDSTONE), WALL).unlocks("has_ingredient", has(SMOOTH_SANDSTONE)).save(consumer, "rankine:"+baseName+"_wall_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SMOOTH_SANDSTONE), SLAB, 2).unlockedBy("has_ingredient", has(SMOOTH_SANDSTONE)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SMOOTH_SANDSTONE), VSLAB, 2).unlockedBy("has_ingredient", has(SMOOTH_SANDSTONE)).save(consumer, "rankine:"+baseName+"_vertical_slab_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SMOOTH_SANDSTONE), STAIRS).unlockedBy("has_ingredient", has(SMOOTH_SANDSTONE)).save(consumer, "rankine:"+baseName+"_stairs_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(SMOOTH_SANDSTONE), WALL).unlockedBy("has_ingredient", has(SMOOTH_SANDSTONE)).save(consumer, "rankine:"+baseName+"_wall_from_"+baseName+"_stonecutting");
 
         }
         for (Block CUT_SANDSTONE : RankineLists.CUT_SANDSTONES) {
@@ -182,8 +191,8 @@ public class RankineRecipesProvider extends RecipeProvider {
             ShapelessRecipeBuilder.shapeless(VSLAB).requires(SLAB).group("cut_sandstone_vslab_from_slab").unlockedBy("has_ingredient", has(CUT_SANDSTONE)).save(consumer,"rankine:"+baseName+"_vslab_from_slab");
             ShapelessRecipeBuilder.shapeless(CUT_SANDSTONE).requires(VSLAB).requires(VSLAB).group("block_from_slab").unlockedBy("has_ingredient", has(CUT_SANDSTONE)).save(consumer,"rankine:"+baseName+"_from_vslab");
             ShapelessRecipeBuilder.shapeless(CUT_SANDSTONE).requires(SLAB).requires(SLAB).group("block_from_vslab").unlockedBy("has_ingredient", has(CUT_SANDSTONE)).save(consumer,"rankine:"+baseName+"_from_slab");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(CUT_SANDSTONE), SLAB, 2).unlocks("has_ingredient", has(CUT_SANDSTONE)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(CUT_SANDSTONE), VSLAB, 2).unlocks("has_ingredient", has(CUT_SANDSTONE)).save(consumer, "rankine:"+baseName+"_vertical_slab_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(CUT_SANDSTONE), SLAB, 2).unlockedBy("has_ingredient", has(CUT_SANDSTONE)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(CUT_SANDSTONE), VSLAB, 2).unlockedBy("has_ingredient", has(CUT_SANDSTONE)).save(consumer, "rankine:"+baseName+"_vertical_slab_from_"+baseName+"_stonecutting");
         }
         for (Block BRICK : RankineLists.BRICKS) {
             String baseName = BRICK.getRegistryName().getPath();
@@ -199,10 +208,10 @@ public class RankineRecipesProvider extends RecipeProvider {
             ShapelessRecipeBuilder.shapeless(BRICK).requires(VSLAB).requires(VSLAB).group("block_from_slab").unlockedBy("has_ingredient", has(BRICK)).save(consumer,"rankine:"+baseName+"_from_vslab");
             ShapelessRecipeBuilder.shapeless(BRICK).requires(SLAB).requires(SLAB).group("block_from_vslab").unlockedBy("has_ingredient", has(BRICK)).save(consumer,"rankine:"+baseName+"_from_slab");
             ShapelessRecipeBuilder.shapeless(BRICK,6).requires(STAIRS).requires(STAIRS).requires(STAIRS).requires(STAIRS).group("block_from_stairs").unlockedBy("has_ingredient", has(BRICK)).save(consumer,"rankine:"+baseName+"_from_stairs");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BRICK), SLAB, 2).unlocks("has_ingredient", has(BRICK)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BRICK), VSLAB, 2).unlocks("has_ingredient", has(BRICK)).save(consumer, "rankine:"+baseName+"_vertical_slab_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BRICK), STAIRS).unlocks("has_ingredient", has(BRICK)).save(consumer, "rankine:"+baseName+"_stairs_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BRICK), WALL).unlocks("has_ingredient", has(BRICK)).save(consumer, "rankine:"+baseName+"_wall_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BRICK), SLAB, 2).unlockedBy("has_ingredient", has(BRICK)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BRICK), VSLAB, 2).unlockedBy("has_ingredient", has(BRICK)).save(consumer, "rankine:"+baseName+"_vertical_slab_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BRICK), STAIRS).unlockedBy("has_ingredient", has(BRICK)).save(consumer, "rankine:"+baseName+"_stairs_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BRICK), WALL).unlockedBy("has_ingredient", has(BRICK)).save(consumer, "rankine:"+baseName+"_wall_from_"+baseName+"_stonecutting");
 
         }
         for (Block BLOCK : RankineLists.MISC_BLOCKS) {
@@ -221,10 +230,10 @@ public class RankineRecipesProvider extends RecipeProvider {
             ShapelessRecipeBuilder.shapeless(BLOCK,6).requires(STAIRS).requires(STAIRS).requires(STAIRS).requires(STAIRS).group("block_from_stairs").unlockedBy("has_ingredient", has(BLOCK)).save(consumer,"rankine:"+baseName+"_from_stairs");
 
             if (Arrays.asList(RankineBlocks.SKARN.get(),RankineBlocks.BRECCIA.get()).contains(BLOCK)) {
-                SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), SLAB, 2).unlocks("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
-                SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), VSLAB, 2).unlocks("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_vertical_slab_from_"+baseName+"_stonecutting");
-                SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), STAIRS).unlocks("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_stairs_from_"+baseName+"_stonecutting");
-                SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), WALL).unlocks("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_wall_from_"+baseName+"_stonecutting");
+                SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), SLAB, 2).unlockedBy("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
+                SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), VSLAB, 2).unlockedBy("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_vertical_slab_from_"+baseName+"_stonecutting");
+                SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), STAIRS).unlockedBy("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_stairs_from_"+baseName+"_stonecutting");
+                SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), WALL).unlockedBy("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_wall_from_"+baseName+"_stonecutting");
 
             }
         }
@@ -235,7 +244,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .pattern("##")
                 .define('#', RankineItems.ROMAN_CONCRETE.get())
                 .group("polished_stone")
-                .unlockedBy("has_ingredient", InventoryChangeTrigger.Instance.hasItems(RankineItems.ROMAN_CONCRETE.get()))
+                .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(RankineItems.ROMAN_CONCRETE.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RankineItems.ROMAN_CONCRETE_BRICKS.get(), 2)
@@ -244,11 +253,11 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .define('#', RankineItems.ROMAN_CONCRETE.get())
                 .define('M', RankineItems.MORTAR.get())
                 .group("stone_bricks")
-                .unlockedBy("has_mortar", InventoryChangeTrigger.Instance.hasItems(RankineItems.MORTAR.get()))
+                .unlockedBy("has_mortar", InventoryChangeTrigger.TriggerInstance.hasItems(RankineItems.MORTAR.get()))
                 .save(consumer);
 
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineItems.ROMAN_CONCRETE.get()), RankineItems.POLISHED_ROMAN_CONCRETE.get()).unlocks("has_ingredient", has(RankineItems.ROMAN_CONCRETE.get())).save(consumer, "rankine:polished_roman_concrete_stonecutting");
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineItems.ROMAN_CONCRETE.get()), RankineItems.ROMAN_CONCRETE_BRICKS.get()).unlocks("has_ingredient", has(RankineItems.ROMAN_CONCRETE.get())).save(consumer, "rankine:roman_concrete_bricks_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineItems.ROMAN_CONCRETE.get()), RankineItems.POLISHED_ROMAN_CONCRETE.get()).unlockedBy("has_ingredient", has(RankineItems.ROMAN_CONCRETE.get())).save(consumer, "rankine:polished_roman_concrete_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineItems.ROMAN_CONCRETE.get()), RankineItems.ROMAN_CONCRETE_BRICKS.get()).unlockedBy("has_ingredient", has(RankineItems.ROMAN_CONCRETE.get())).save(consumer, "rankine:roman_concrete_bricks_stonecutting");
 
 
         for (Block BLOCK : RankineLists.CONCRETE_BLOCKS) {
@@ -266,10 +275,10 @@ public class RankineRecipesProvider extends RecipeProvider {
             ShapelessRecipeBuilder.shapeless(BLOCK).requires(SLAB).requires(SLAB).group("block_from_vslab").unlockedBy("has_ingredient", has(BLOCK)).save(consumer,"rankine:"+baseName+"_from_slab");
             ShapelessRecipeBuilder.shapeless(BLOCK,6).requires(STAIRS).requires(STAIRS).requires(STAIRS).requires(STAIRS).group("block_from_stairs").unlockedBy("has_ingredient", has(BLOCK)).save(consumer,"rankine:"+baseName+"_from_stairs");
 
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), SLAB, 2).unlocks("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), VSLAB, 2).unlocks("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_vertical_slab_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), STAIRS).unlocks("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_stairs_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), WALL).unlocks("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_wall_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), SLAB, 2).unlockedBy("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), VSLAB, 2).unlockedBy("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_vertical_slab_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), STAIRS).unlockedBy("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_stairs_from_"+baseName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), WALL).unlockedBy("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_wall_from_"+baseName+"_stonecutting");
 
         }
 
@@ -359,8 +368,6 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RankineItems.STONE_HAMMER.get(), 1).pattern("PPP").pattern("PSP").pattern(" S ").define('P', Tags.Items.COBBLESTONE).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_ingredient", has(Tags.Items.COBBLESTONE)).save(consumer);
         ShapedRecipeBuilder.shaped(RankineItems.BUILDING_TOOL.get(), 1).pattern("PRP").pattern("PRP").pattern(" S ").define('P', Tags.Items.STONE).define('S', Tags.Items.RODS_WOODEN).define('R', RankineTags.Items.ROPE).unlockedBy("has_ingredient", has(Tags.Items.STONE)).save(consumer);
         ShapedRecipeBuilder.shaped(RankineItems.ROPE_COIL_ARROW.get(), 1).pattern("T").pattern("S").pattern("F").define('F', Tags.Items.FEATHERS).define('T', RankineTags.Items.ROPE).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_ingredient", has(RankineTags.Items.ROPE)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineItems.MAGNESIUM_ARROW.get(), 4).pattern("T").pattern("S").pattern("F").define('F', Tags.Items.FEATHERS).define('T', RankineTags.Items.INGOTS_MAGNESIUM).define('S', RankineTags.Items.RODS_GRAPHITE).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_MAGNESIUM)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineItems.MAGNESIUM_ARROW.get(), 4).pattern("T").pattern("S").pattern("F").define('F', Tags.Items.FEATHERS).define('T', RankineTags.Items.INGOTS_MAGNESIUM_ALLOY).define('S', RankineTags.Items.RODS_GRAPHITE).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_MAGNESIUM_ALLOY)).save(consumer,"rankine:magnesium_arrow_from_magnesium_alloy");
         ShapedRecipeBuilder.shaped(RankineItems.FIRE_EXTINGUISHER.get(), 1).pattern("INI").pattern("IWI").pattern("III").define('W', Items.WATER_BUCKET).define('I', RankineTags.Items.CRAFTING_METAL_INGOTS).define('N', RankineTags.Items.CRAFTING_METAL_NUGGETS).unlockedBy("has_ingredient", has(RankineTags.Items.CRAFTING_METAL_INGOTS)).save(consumer);
         ShapedRecipeBuilder.shaped(RankineItems.PROSPECTING_STICK.get(), 1).pattern(" SN").pattern(" RS").pattern("S  ").define('N', Tags.Items.NUGGETS).define('R', RankineItems.ROPE.get()).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_ingredient", has(Tags.Items.NUGGETS)).save(consumer);
         ShapedRecipeBuilder.shaped(RankineItems.HARDNESS_TESTER.get(), 1).pattern("  R").pattern(" S ").pattern("G  ").define('G', Tags.Items.GLASS).define('R', Tags.Items.STONE).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_ingredient", has(Tags.Items.STONE)).save(consumer);
@@ -429,22 +436,22 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RankineBlocks.DISTILLATION_TOWER.get(), 1).pattern("IBI").pattern("I#I").pattern("IMI").define('I', RankineTags.Items.INGOTS_STAINLESS_STEEL).define('B', RankineTags.Items.ICE).define('M', Items.MAGMA_BLOCK).define('#', RankineItems.MICA_BLOCK.get()).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_STAINLESS_STEEL)).save(consumer);
 
         //Smithing Recipes
-        SmithingRecipeBuilder.smithing(Ingredient.of(Items.LEATHER_BOOTS),Ingredient.of(RankineTags.Items.INGOTS_STEEL),RankineItems.BRIGADINE_BOOTS.get()).unlocks("has_ingredient", has(RankineTags.Items.INGOTS_STEEL)).save(consumer,"rankine:brigadine_boots_from_smithing");
-        SmithingRecipeBuilder.smithing(Ingredient.of(Items.LEATHER_LEGGINGS),Ingredient.of(RankineTags.Items.INGOTS_STEEL),RankineItems.BRIGADINE_LEGGINGS.get()).unlocks("has_ingredient", has(RankineTags.Items.INGOTS_STEEL)).save(consumer,"rankine:brigadine_leggings_from_smithing");
-        SmithingRecipeBuilder.smithing(Ingredient.of(Items.LEATHER_CHESTPLATE),Ingredient.of(RankineTags.Items.INGOTS_STEEL),RankineItems.BRIGADINE_CHESTPLATE.get()).unlocks("has_ingredient", has(RankineTags.Items.INGOTS_STEEL)).save(consumer,"rankine:brigadine_chestplate_from_smithing");
-        SmithingRecipeBuilder.smithing(Ingredient.of(Items.LEATHER_HELMET),Ingredient.of(RankineTags.Items.INGOTS_STEEL),RankineItems.BRIGADINE_HELMET.get()).unlocks("has_ingredient", has(RankineTags.Items.INGOTS_STEEL)).save(consumer,"rankine:brigadine_helmet_from_smithing");
-        SmithingRecipeBuilder.smithing(Ingredient.of(RankineItems.DIVING_BOOTS.get()),Ingredient.of(new ItemStack(Items.PRISMARINE_SHARD,8)),RankineItems.CONDUIT_DIVING_BOOTS.get()).unlocks("has_ingredient", has(Items.CONDUIT)).save(consumer,"rankine:conduit_diving_boots_from_smithing");
-        SmithingRecipeBuilder.smithing(Ingredient.of(RankineItems.DIVING_LEGGINGS.get()),Ingredient.of(new ItemStack(Items.PRISMARINE_CRYSTALS,8)),RankineItems.CONDUIT_DIVING_LEGGINGS.get()).unlocks("has_ingredient", has(Items.CONDUIT)).save(consumer,"rankine:conduit_diving_leggings_from_smithing");
-        SmithingRecipeBuilder.smithing(Ingredient.of(RankineItems.DIVING_CHESTPLATE.get()),Ingredient.of(Items.CONDUIT),RankineItems.CONDUIT_DIVING_CHESTPLATE.get()).unlocks("has_ingredient", has(Items.CONDUIT)).save(consumer,"rankine:conduit_diving_chestplate_from_smithing");
-        SmithingRecipeBuilder.smithing(Ingredient.of(RankineItems.DIVING_HELMET.get()),Ingredient.of(Items.SPONGE),RankineItems.CONDUIT_DIVING_HELMET.get()).unlocks("has_ingredient", has(Items.CONDUIT)).save(consumer,"rankine:conduit_diving_helmet_from_smithing");
+        UpgradeRecipeBuilder.smithing(Ingredient.of(Items.LEATHER_BOOTS),Ingredient.of(RankineTags.Items.INGOTS_STEEL),RankineItems.BRIGADINE_BOOTS.get()).unlocks("has_ingredient", has(RankineTags.Items.INGOTS_STEEL)).save(consumer,"rankine:brigadine_boots_from_smithing");
+        UpgradeRecipeBuilder.smithing(Ingredient.of(Items.LEATHER_LEGGINGS),Ingredient.of(RankineTags.Items.INGOTS_STEEL),RankineItems.BRIGADINE_LEGGINGS.get()).unlocks("has_ingredient", has(RankineTags.Items.INGOTS_STEEL)).save(consumer,"rankine:brigadine_leggings_from_smithing");
+        UpgradeRecipeBuilder.smithing(Ingredient.of(Items.LEATHER_CHESTPLATE),Ingredient.of(RankineTags.Items.INGOTS_STEEL),RankineItems.BRIGADINE_CHESTPLATE.get()).unlocks("has_ingredient", has(RankineTags.Items.INGOTS_STEEL)).save(consumer,"rankine:brigadine_chestplate_from_smithing");
+        UpgradeRecipeBuilder.smithing(Ingredient.of(Items.LEATHER_HELMET),Ingredient.of(RankineTags.Items.INGOTS_STEEL),RankineItems.BRIGADINE_HELMET.get()).unlocks("has_ingredient", has(RankineTags.Items.INGOTS_STEEL)).save(consumer,"rankine:brigadine_helmet_from_smithing");
+        UpgradeRecipeBuilder.smithing(Ingredient.of(RankineItems.DIVING_BOOTS.get()),Ingredient.of(new ItemStack(Items.PRISMARINE_SHARD,8)),RankineItems.CONDUIT_DIVING_BOOTS.get()).unlocks("has_ingredient", has(Items.CONDUIT)).save(consumer,"rankine:conduit_diving_boots_from_smithing");
+        UpgradeRecipeBuilder.smithing(Ingredient.of(RankineItems.DIVING_LEGGINGS.get()),Ingredient.of(new ItemStack(Items.PRISMARINE_CRYSTALS,8)),RankineItems.CONDUIT_DIVING_LEGGINGS.get()).unlocks("has_ingredient", has(Items.CONDUIT)).save(consumer,"rankine:conduit_diving_leggings_from_smithing");
+        UpgradeRecipeBuilder.smithing(Ingredient.of(RankineItems.DIVING_CHESTPLATE.get()),Ingredient.of(Items.CONDUIT),RankineItems.CONDUIT_DIVING_CHESTPLATE.get()).unlocks("has_ingredient", has(Items.CONDUIT)).save(consumer,"rankine:conduit_diving_chestplate_from_smithing");
+        UpgradeRecipeBuilder.smithing(Ingredient.of(RankineItems.DIVING_HELMET.get()),Ingredient.of(Items.SPONGE),RankineItems.CONDUIT_DIVING_HELMET.get()).unlocks("has_ingredient", has(Items.CONDUIT)).save(consumer,"rankine:conduit_diving_helmet_from_smithing");
         
 
         
         //furnace recipes
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.FIRE_CLAY_BALL.get()), RankineItems.REFRACTORY_BRICK.get(), 0.2F, 200).unlockedBy("has_ingredient", has(RankineTags.Items.CLAY_BALLS)).save(consumer, "rankine:refractory_brick_from_fire_clay_ball_smelting");
-        CookingRecipeBuilder.smelting(Ingredient.of(Items.BAMBOO), RankineItems.DRIED_BAMBOO.get(), 0.1F, 25).unlockedBy("has_ingredient", has(Items.BAMBOO)).save(consumer, "rankine:dried_bamboo_from_bamboo_smelting");
-        CookingRecipeBuilder.smelting(Ingredient.of(Items.BONE), RankineItems.BONE_ASH.get(), 0.1F, 200).unlockedBy("has_ingredient", has(Items.BONE)).save(consumer, "rankine:bone_ash_from_bone_smelting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.PULP.get()), Items.PAPER, 0.1F, 100).unlockedBy("has_ingredient", has(RankineItems.PULP.get())).save(consumer, "rankine:paper_from_pulp_smelting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.FIRE_CLAY_BALL.get()), RankineItems.REFRACTORY_BRICK.get(), 0.2F, 200).unlockedBy("has_ingredient", has(RankineTags.Items.CLAY_BALLS)).save(consumer, "rankine:refractory_brick_from_fire_clay_ball_smelting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.BAMBOO), RankineItems.DRIED_BAMBOO.get(), 0.1F, 25).unlockedBy("has_ingredient", has(Items.BAMBOO)).save(consumer, "rankine:dried_bamboo_from_bamboo_smelting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.BONE), RankineItems.BONE_ASH.get(), 0.1F, 200).unlockedBy("has_ingredient", has(Items.BONE)).save(consumer, "rankine:bone_ash_from_bone_smelting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.PULP.get()), Items.PAPER, 0.1F, 100).unlockedBy("has_ingredient", has(RankineItems.PULP.get())).save(consumer, "rankine:paper_from_pulp_smelting");
 
         //blasting recipes
         for (Item MINERAL : RankineLists.BLASTING_MINERALS) {
@@ -452,22 +459,22 @@ public class RankineRecipesProvider extends RecipeProvider {
             Item INGOT = RankineLists.BLASTING_INGOTS.get(RankineLists.BLASTING_MINERALS.indexOf(MINERAL));
             Item MINERAL_BLOCK = RankineLists.BLASTING_MINERAL_BLOCKS.get(RankineLists.BLASTING_MINERALS.indexOf(MINERAL));
             Item INGOT_BLOCK = RankineLists.BLASTING_BLOCKS.get(RankineLists.BLASTING_MINERALS.indexOf(MINERAL));
-            CookingRecipeBuilder.blasting(Ingredient.of(MINERAL), INGOT, 0.5F, 100).unlockedBy("has_"+baseName, has(MINERAL)).save(consumer, "rankine:"+INGOT.getRegistryName().getPath()+"_from_"+baseName+"_blasting");
+            SimpleCookingRecipeBuilder.blasting(Ingredient.of(MINERAL), INGOT, 0.5F, 100).unlockedBy("has_"+baseName, has(MINERAL)).save(consumer, "rankine:"+INGOT.getRegistryName().getPath()+"_from_"+baseName+"_blasting");
             //CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(MINERAL_BLOCK), INGOT_BLOCK, 5.0F, 800).addCriterion("has_"+baseName, hasItem(MINERAL)).build(consumer, "rankine:"+INGOT_BLOCK.getRegistryName().getPath()+"_from_"+baseName+"_block_blasting");
             //beehive oven
         }
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.APATITE.get()), RankineItems.PHOSPHORUS_NUGGET.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.APATITE.get())).save(consumer, "rankine:phosphorus_nugget_from_apatite_blasting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.BADDELEYITE.get()), RankineItems.ZIRCONIA.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.BADDELEYITE.get())).save(consumer, "rankine:zirconia_from_baddeleyite_blasting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.APATITE.get()), RankineItems.PHOSPHORUS_NUGGET.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.APATITE.get())).save(consumer, "rankine:phosphorus_nugget_from_apatite_blasting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.BADDELEYITE.get()), RankineItems.ZIRCONIA.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.BADDELEYITE.get())).save(consumer, "rankine:zirconia_from_baddeleyite_blasting");
         //CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RankineItems.APATITE_BLOCK.get()), RankineItems.PHOSPHORUS.get(), 5.0F, 800).addCriterion("has_ingredient", hasItem(RankineItems.APATITE.get())).build(consumer, RankineItems.PHOSPHORUS.get().getRegistryName().getPath()+"_from_apatite_block_blasting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.METEORIC_IRON.get()), Items.IRON_INGOT, 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.METEORIC_IRON.get())).save(consumer, "rankine:iron_from_meteoric_iron_blasting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.TRONA.get()), RankineItems.SODIUM_CARBONATE.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.TRONA.get())).save(consumer, "rankine:sodium_carbonate_from_trona_blasting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.METEORIC_IRON.get()), Items.IRON_INGOT, 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.METEORIC_IRON.get())).save(consumer, "rankine:iron_from_meteoric_iron_blasting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.TRONA.get()), RankineItems.SODIUM_CARBONATE.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.TRONA.get())).save(consumer, "rankine:sodium_carbonate_from_trona_blasting");
 
 
 
 
         for (Block MAT : RankineLists.FIBER_MAT) {
             Block BLOCK = RankineLists.FIBER_BLOCK.get(RankineLists.FIBER_MAT.indexOf(MAT));
-            ShapedRecipeBuilder.shaped(MAT, 3).pattern("##").define('#', BLOCK).group("fiber_mat").unlockedBy("has_block", InventoryChangeTrigger.Instance.hasItems(RankineItems.FIBER_BLOCK.get())).save(consumer);
+            ShapedRecipeBuilder.shaped(MAT, 3).pattern("##").define('#', BLOCK).group("fiber_mat").unlockedBy("has_block", InventoryChangeTrigger.TriggerInstance.hasItems(RankineItems.FIBER_BLOCK.get())).save(consumer);
         }
         for (Block MAT : RankineLists.FIBER_MAT) {
             if (RankineLists.FIBER_MAT.indexOf(MAT)==0) continue;
@@ -534,7 +541,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(Items.BLUE_DYE,4).requires(RankineTags.Items.NUGGETS_YTTRIUM).requires(RankineTags.Items.NUGGETS_YTTRIUM).requires(RankineTags.Items.NUGGETS_INDIUM).requires(RankineTags.Items.NUGGETS_INDIUM).requires(RankineTags.Items.NUGGETS_MANGANESE).requires(RankineTags.Items.NUGGETS_MANGANESE).unlockedBy("has_ingredient", has(RankineTags.Items.NUGGETS_MANGANESE)).save(consumer, "rankine:blue_dye_from_metals");
 
 
-        CustomRecipeBuilder.special(JamRecipe.SERIALIZER).save(consumer, "fruit_jam");
+        SpecialRecipeBuilder.special(JamRecipe.SERIALIZER).save(consumer, "fruit_jam");
 
         ShapedRecipeBuilder.shaped(RankineBlocks.CLAY_BRICKS.get()).define('#', Items.CLAY_BALL).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_clay", has(Items.CLAY_BALL)).save(consumer);
         ShapedRecipeBuilder.shaped(RankineBlocks.FIRE_CLAY_BRICKS.get()).define('#', RankineItems.FIRE_CLAY_BALL.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_clay", has(RankineItems.FIRE_CLAY_BALL.get())).save(consumer);
@@ -545,9 +552,9 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RankineBlocks.METEORITE_BRICKS.get()).define('#', RankineBlocks.METEORITE.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_meteorite", has(RankineBlocks.METEORITE.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RankineBlocks.ENSTATITE_CHONDRITE_BRICKS.get()).define('#', RankineBlocks.ENSTATITE_CHONDRITE.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_enstatite_chondrite", has(RankineBlocks.ENSTATITE_CHONDRITE.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RankineBlocks.FROZEN_METEORITE_BRICKS.get()).define('#', RankineBlocks.FROZEN_METEORITE.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_meteorite", has(RankineBlocks.FROZEN_METEORITE.get())).save(consumer);
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineBlocks.METEORITE.get()), RankineBlocks.METEORITE_BRICKS.get(), 1).unlocks("has_meteorite", has(RankineBlocks.METEORITE.get())).save(consumer, "rankine:meteorite_bricks_from_stonecutting");
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineBlocks.FROZEN_METEORITE.get()), RankineBlocks.FROZEN_METEORITE_BRICKS.get(), 1).unlocks("has_frozen_meteorite", has(RankineBlocks.FROZEN_METEORITE.get())).save(consumer, "rankine:frozen_meteorite_bricks_from_stonecutting");
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineBlocks.ENSTATITE_CHONDRITE.get()), RankineBlocks.ENSTATITE_CHONDRITE_BRICKS.get(), 1).unlocks("has_meteorite", has(RankineBlocks.ENSTATITE_CHONDRITE.get())).save(consumer, "rankine:enstatite_bricks_from_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineBlocks.METEORITE.get()), RankineBlocks.METEORITE_BRICKS.get(), 1).unlockedBy("has_meteorite", has(RankineBlocks.METEORITE.get())).save(consumer, "rankine:meteorite_bricks_from_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineBlocks.FROZEN_METEORITE.get()), RankineBlocks.FROZEN_METEORITE_BRICKS.get(), 1).unlockedBy("has_frozen_meteorite", has(RankineBlocks.FROZEN_METEORITE.get())).save(consumer, "rankine:frozen_meteorite_bricks_from_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineBlocks.ENSTATITE_CHONDRITE.get()), RankineBlocks.ENSTATITE_CHONDRITE_BRICKS.get(), 1).unlockedBy("has_meteorite", has(RankineBlocks.ENSTATITE_CHONDRITE.get())).save(consumer, "rankine:enstatite_bricks_from_stonecutting");
 
 
 
@@ -698,7 +705,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .pattern("#")
                     .define('#', STONE)
                     .group("stone_column")
-                    .unlockedBy("has_ingredient", InventoryChangeTrigger.Instance.hasItems(STONE))
+                    .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(STONE))
                     .save(consumer);
             ShapelessRecipeBuilder.shapeless(STONE).requires(COLUMN).requires(COLUMN).requires(COLUMN).requires(COLUMN).group("stone_from_stone_column").unlockedBy("has_ingredient", has(COLUMN)).save(consumer,"rankine:"+STONE.getRegistryName().getPath()+"_from_column");
             ShapelessRecipeBuilder.shapeless(STONE).requires(COBBLE).requires(COBBLE).requires(COBBLE).requires(COBBLE).group("stone_from_cobble").unlockedBy("has_ingredient", has(COBBLE)).save(consumer,"rankine:"+STONE.getRegistryName().getPath()+"_from_cobble");
@@ -709,7 +716,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .pattern("##")
                     .define('#', STONE)
                     .group("polished_stone")
-                    .unlockedBy("has_ingredient", InventoryChangeTrigger.Instance.hasItems(STONE))
+                    .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(STONE))
                     .save(consumer);
 
             ShapedRecipeBuilder.shaped(STONE_BRICKS, 2)
@@ -718,7 +725,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .define('#', STONE)
                     .define('M', RankineItems.MORTAR.get())
                     .group("stone_bricks")
-                    .unlockedBy("has_mortar", InventoryChangeTrigger.Instance.hasItems(RankineItems.MORTAR.get()))
+                    .unlockedBy("has_mortar", InventoryChangeTrigger.TriggerInstance.hasItems(RankineItems.MORTAR.get()))
                     .save(consumer);
 
             slab(consumer, STONE_SLAB.asItem(), STONE.asItem(), "stone_slab");
@@ -734,25 +741,25 @@ public class RankineRecipesProvider extends RecipeProvider {
             pressurePlate(consumer, STONE_BRICKS_PRESSURE_PLATE.asItem(), STONE_BRICKS.asItem(), "stone_pressure_plate");
             ShapelessRecipeBuilder.shapeless(STONE_BUTTON).requires(STONE).group("stone_button").unlockedBy("has_ingredient", has(STONE)).save(consumer);
 
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), POLISHED_STONE, 1).unlocks("has_ingredient", has(STONE)).save(consumer, "rankine:polished_"+baseStone+"_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_BRICKS, 1).unlocks("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_bricks_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_SLAB, 2).unlocks("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_slab_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_VERTICAL_SLAB, 2).unlocks("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_vertical_slab_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_STAIRS).unlocks("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_stairs_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_WALL).unlocks("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_wall_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_PRESSURE_PLATE).unlocks("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_pressure_plate_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_BUTTON).unlocks("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_button_from_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), POLISHED_STONE, 1).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:polished_"+baseStone+"_from_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_BRICKS, 1).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_bricks_from_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_SLAB, 2).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_slab_from_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_VERTICAL_SLAB, 2).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_vertical_slab_from_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_STAIRS).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_stairs_from_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_WALL).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_wall_from_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_PRESSURE_PLATE).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_pressure_plate_from_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_BUTTON).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_button_from_"+baseStone+"_stonecutting");
 
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), STONE_BRICKS_SLAB, 2).unlocks("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_slab_from_"+baseStone+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), STONE_BRICKS_VERTICAL_SLAB, 2).unlocks("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_vertical_slab_from_"+baseStone+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), STONE_BRICKS_STAIRS).unlocks("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_stairs_from_"+baseStone+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), STONE_BRICKS_WALL).unlocks("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_wall_from_"+baseStone+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), STONE_BRICKS_PRESSURE_PLATE).unlocks("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_button_from_"+baseStone+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), STONE_BRICKS_SLAB, 2).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_slab_from_"+baseStone+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), STONE_BRICKS_VERTICAL_SLAB, 2).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_vertical_slab_from_"+baseStone+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), STONE_BRICKS_STAIRS).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_stairs_from_"+baseStone+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), STONE_BRICKS_WALL).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_wall_from_"+baseStone+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), STONE_BRICKS_PRESSURE_PLATE).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_button_from_"+baseStone+"_bricks_stonecutting");
 
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), POLISHED_STONE_SLAB, 2).unlocks("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStone+"_slab_from_polished_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), POLISHED_STONE_VERTICAL_SLAB, 2).unlocks("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStone+"_vertical_slab_from_polished_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), POLISHED_STONE_STAIRS).unlocks("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStone+"_stairs_from_polished_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), POLISHED_STONE_WALL).unlocks("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStone+"_wall_from_polished_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), POLISHED_STONE_SLAB, 2).unlockedBy("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStone+"_slab_from_polished_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), POLISHED_STONE_VERTICAL_SLAB, 2).unlockedBy("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStone+"_vertical_slab_from_polished_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), POLISHED_STONE_STAIRS).unlockedBy("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStone+"_stairs_from_polished_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), POLISHED_STONE_WALL).unlockedBy("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStone+"_wall_from_polished_"+baseStone+"_stonecutting");
 
             ShapelessRecipeBuilder.shapeless(STONE_SLAB).requires(STONE_VERTICAL_SLAB).group("stone_slab_from_vslab").unlockedBy("has_ingredient", has(STONE)).save(consumer,"rankine:"+baseStone+"_slab_from_vslab");
             ShapelessRecipeBuilder.shapeless(STONE_VERTICAL_SLAB).requires(STONE_SLAB).group("stone_vslab_from_slab").unlockedBy("has_ingredient", has(STONE)).save(consumer,"rankine:"+baseStone+"_vslab_from_slab");
@@ -789,7 +796,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .define('#', STONE)
                     .define('M', RankineItems.MORTAR.get())
                     .group("stone_bricks")
-                    .unlockedBy("has_mortar", InventoryChangeTrigger.Instance.hasItems(RankineItems.MORTAR.get()))
+                    .unlockedBy("has_mortar", InventoryChangeTrigger.TriggerInstance.hasItems(RankineItems.MORTAR.get()))
                     .save(consumer);
 
             slab(consumer, SLAB.asItem(), STONE_BRICK.asItem(), "stone_slab");
@@ -797,12 +804,12 @@ public class RankineRecipesProvider extends RecipeProvider {
             wall(consumer, WALL.asItem(), STONE_BRICK.asItem(), "stone_wall");
             pressurePlate(consumer, PRESSURE_PLATE.asItem(), STONE_BRICK.asItem(), "stone_pressure_plate");
 
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_BRICK, 1).unlocks("has_ingredient", has(STONE)).save(consumer, "rankine:"+PATH+"_bricks_from_"+PATH+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICK), SLAB, 2).unlocks("has_ingredient", has(STONE_BRICK)).save(consumer, "rankine:"+PATH+"_brick_slab_from_"+PATH+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICK), VERTICAL_SLAB, 2).unlocks("has_ingredient", has(STONE_BRICK)).save(consumer, "rankine:"+PATH+"_brick_vertical_slab_from_"+PATH+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICK), STAIRS).unlocks("has_ingredient", has(STONE_BRICK)).save(consumer, "rankine:"+PATH+"_brick_stairs_from_"+PATH+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICK), WALL).unlocks("has_ingredient", has(STONE_BRICK)).save(consumer, "rankine:"+PATH+"_brick_wall_from_"+PATH+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICK), PRESSURE_PLATE).unlocks("has_ingredient", has(STONE_BRICK)).save(consumer, "rankine:"+PATH+"_brick_pressure_plate_from_"+PATH+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_BRICK, 1).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+PATH+"_bricks_from_"+PATH+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICK), SLAB, 2).unlockedBy("has_ingredient", has(STONE_BRICK)).save(consumer, "rankine:"+PATH+"_brick_slab_from_"+PATH+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICK), VERTICAL_SLAB, 2).unlockedBy("has_ingredient", has(STONE_BRICK)).save(consumer, "rankine:"+PATH+"_brick_vertical_slab_from_"+PATH+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICK), STAIRS).unlockedBy("has_ingredient", has(STONE_BRICK)).save(consumer, "rankine:"+PATH+"_brick_stairs_from_"+PATH+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICK), WALL).unlockedBy("has_ingredient", has(STONE_BRICK)).save(consumer, "rankine:"+PATH+"_brick_wall_from_"+PATH+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICK), PRESSURE_PLATE).unlockedBy("has_ingredient", has(STONE_BRICK)).save(consumer, "rankine:"+PATH+"_brick_pressure_plate_from_"+PATH+"_bricks_stonecutting");
 
             ShapelessRecipeBuilder.shapeless(SLAB).requires(VERTICAL_SLAB).group("stone_slab_from_vslab").unlockedBy("has_ingredient", has(STONE_BRICK)).save(consumer,"rankine:"+PATH+"_slab_from_vslab");
             ShapelessRecipeBuilder.shapeless(VERTICAL_SLAB).requires(SLAB).group("stone_vslab_from_slab").unlockedBy("has_ingredient", has(STONE_BRICK)).save(consumer,"rankine:"+PATH+"_vslab_from_slab");
@@ -813,50 +820,50 @@ public class RankineRecipesProvider extends RecipeProvider {
         }
 
         //NATIVE ORES
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_SULFUR_ORE.get()), RankineItems.SULFUR.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SULFUR_ORE.get().asItem())).save(consumer, "rankine:sulfur_from_native_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_SULFUR_ORE.get()), RankineItems.SULFUR.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SULFUR_ORE.get().asItem())).save(consumer, "rankine:sulfur_from_native_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_ARSENIC_ORE.get()), RankineItems.ARSENIC.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_ARSENIC_ORE.get().asItem())).save(consumer, "rankine:arsenic_ingot_from_native_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_ARSENIC_ORE.get()), RankineItems.ARSENIC.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_ARSENIC_ORE.get().asItem())).save(consumer, "rankine:arsenic_ingot_from_native_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_BISMUTH_ORE.get()), RankineItems.BISMUTH_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_BISMUTH_ORE.get().asItem())).save(consumer, "rankine:bismuth_ingot_from_native_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_BISMUTH_ORE.get()), RankineItems.BISMUTH_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_BISMUTH_ORE.get().asItem())).save(consumer, "rankine:bismuth_ingot_from_native_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_LEAD_ORE.get()), RankineItems.LEAD_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_LEAD_ORE.get().asItem())).save(consumer, "rankine:lead_ingot_from_native_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_LEAD_ORE.get()), RankineItems.LEAD_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_LEAD_ORE.get().asItem())).save(consumer, "rankine:lead_ingot_from_native_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_GOLD_ORE.get()), Items.GOLD_INGOT, 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_GOLD_ORE.get().asItem())).save(consumer, "rankine:gold_ingot_from_native_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_GOLD_ORE.get()), Items.GOLD_INGOT, 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_GOLD_ORE.get().asItem())).save(consumer, "rankine:gold_ingot_from_native_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_SILVER_ORE.get()), RankineItems.SILVER_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SILVER_ORE.get().asItem())).save(consumer, "rankine:silver_ingot_from_native_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_SILVER_ORE.get()), RankineItems.SILVER_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SILVER_ORE.get().asItem())).save(consumer, "rankine:silver_ingot_from_native_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_TIN_ORE.get()), RankineItems.TIN_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_TIN_ORE.get().asItem())).save(consumer, "rankine:tin_ingot_from_native_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_TIN_ORE.get()), RankineItems.TIN_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_TIN_ORE.get().asItem())).save(consumer, "rankine:tin_ingot_from_native_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_INDIUM_ORE.get()), RankineItems.INDIUM_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_INDIUM_ORE.get().asItem())).save(consumer, "rankine:indium_ingot_from_native_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_INDIUM_ORE.get()), RankineItems.INDIUM_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_INDIUM_ORE.get().asItem())).save(consumer, "rankine:indium_ingot_from_native_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_GALLIUM_ORE.get()), RankineItems.GALLIUM_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_GALLIUM_ORE.get().asItem())).save(consumer, "rankine:gallium_ingot_from_native_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_GALLIUM_ORE.get()), RankineItems.GALLIUM_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_GALLIUM_ORE.get().asItem())).save(consumer, "rankine:gallium_ingot_from_native_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_SELENIUM_ORE.get()), RankineItems.SELENIUM.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SELENIUM_ORE.get().asItem())).save(consumer, "rankine:selenium_ingot_from_native_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_SELENIUM_ORE.get()), RankineItems.SELENIUM.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SELENIUM_ORE.get().asItem())).save(consumer, "rankine:selenium_ingot_from_native_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_TELLURIUM_ORE.get()), RankineItems.TELLURIUM.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_TELLURIUM_ORE.get().asItem())).save(consumer, "rankine:tellurium_ingot_from_native_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_TELLURIUM_ORE.get()), RankineItems.TELLURIUM.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_TELLURIUM_ORE.get().asItem())).save(consumer, "rankine:tellurium_ingot_from_native_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.PORPHYRY_COPPER.get()), RankineItems.COPPER_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.PORPHYRY_COPPER.get().asItem())).save(consumer, "rankine:copper_ingot_from_porphyry_copper_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.PORPHYRY_COPPER.get()), RankineItems.COPPER_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.PORPHYRY_COPPER.get().asItem())).save(consumer, "rankine:copper_ingot_from_porphyry_copper_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.STIBNITE_ORE.get()), RankineItems.ANTIMONY.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.STIBNITE_ORE.get().asItem())).save(consumer, "rankine:antimony_ingot_from_stibnite_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.STIBNITE_ORE.get()), RankineItems.ANTIMONY.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.STIBNITE_ORE.get().asItem())).save(consumer, "rankine:antimony_ingot_from_stibnite_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.IRON_ORE.get()), Items.IRON_INGOT, 0.7F, 200).unlockedBy("has_ingredient", has(RankineBlocks.IRON_ORE.get().asItem())).save(consumer, "rankine:iron_ingot_from_rankine_iron_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.IRON_ORE.get()), Items.IRON_INGOT, 0.7F, 100).unlockedBy("has_ingredient", has(RankineBlocks.IRON_ORE.get().asItem())).save(consumer, "rankine:iron_ingot_from_rankine_iron_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.GOLD_ORE.get()), Items.GOLD_INGOT, 1.0F, 200).unlockedBy("has_ingredient", has(RankineBlocks.GOLD_ORE.get().asItem())).save(consumer, "rankine:gold_ingot_from_rankine_gold_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.GOLD_ORE.get()), Items.GOLD_INGOT, 1.0F, 100).unlockedBy("has_ingredient", has(RankineBlocks.GOLD_ORE.get().asItem())).save(consumer, "rankine:gold_ingot_from_rankine_gold_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NETHER_GOLD_ORE.get()), Items.GOLD_INGOT, 1.0F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NETHER_GOLD_ORE.get().asItem())).save(consumer, "rankine:gold_ingot_from_rankine_nether_gold_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NETHER_GOLD_ORE.get()), Items.GOLD_INGOT, 1.0F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NETHER_GOLD_ORE.get().asItem())).save(consumer, "rankine:gold_ingot_from_rankine_nether_gold_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NETHER_QUARTZ_ORE.get()), Items.QUARTZ, 0.2F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NETHER_QUARTZ_ORE.get().asItem())).save(consumer, "rankine:quartz_ingot_from_rankine_nether_quartz_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NETHER_QUARTZ_ORE.get()), Items.QUARTZ, 0.2F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NETHER_QUARTZ_ORE.get().asItem())).save(consumer, "rankine:quartz_ingot_from_rankine_nether_quartz_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.COAL_ORE.get()), Items.COAL, 0.1F, 200).unlockedBy("has_ingredient", has(RankineBlocks.COAL_ORE.get().asItem())).save(consumer, "rankine:coal_from_rankine_coal_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.COAL_ORE.get()), Items.COAL, 0.1F, 100).unlockedBy("has_ingredient", has(RankineBlocks.COAL_ORE.get().asItem())).save(consumer, "rankine:coal_from_rankine_coal_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.LAPIS_ORE.get()), Items.LAPIS_LAZULI, 0.2F, 200).unlockedBy("has_ingredient", has(RankineBlocks.LAPIS_ORE.get().asItem())).save(consumer, "rankine:lapis_from_rankine_lapis_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.LAPIS_ORE.get()), Items.LAPIS_LAZULI, 0.2F,   100).unlockedBy("has_ingredient", has(RankineBlocks.LAPIS_ORE.get().asItem())).save(consumer, "rankine:lapis_from_rankine_lapis_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.REDSTONE_ORE.get()), Items.REDSTONE, 0.7F, 200).unlockedBy("has_ingredient", has(RankineBlocks.REDSTONE_ORE.get().asItem())).save(consumer, "rankine:redstone_from_rankine_redstone_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.REDSTONE_ORE.get()), Items.REDSTONE, 0.7F, 100).unlockedBy("has_ingredient", has(RankineBlocks.REDSTONE_ORE.get().asItem())).save(consumer, "rankine:redstone_from_rankine_redstone_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.DIAMOND_ORE.get()), Items.DIAMOND, 1.0F, 200).unlockedBy("has_ingredient", has(RankineBlocks.DIAMOND_ORE.get().asItem())).save(consumer, "rankine:diamond_from_rankine_diamond_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.DIAMOND_ORE.get()), Items.DIAMOND, 1.0F, 100).unlockedBy("has_ingredient", has(RankineBlocks.DIAMOND_ORE.get().asItem())).save(consumer, "rankine:diamond_from_rankine_diamond_ore_blasting");
-        CookingRecipeBuilder.smelting(Ingredient.of(RankineItems.EMERALD_ORE.get()), Items.EMERALD, 1.0F, 200).unlockedBy("has_ingredient", has(RankineBlocks.EMERALD_ORE.get().asItem())).save(consumer, "rankine:emerlad_from_rankine_emerlad_ore_smelting");
-        CookingRecipeBuilder.blasting(Ingredient.of(RankineItems.EMERALD_ORE.get()), Items.EMERALD, 1.0F, 100).unlockedBy("has_ingredient", has(RankineBlocks.EMERALD_ORE.get().asItem())).save(consumer, "rankine:emerlad_from_rankine_emerlad_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_SULFUR_ORE.get()), RankineItems.SULFUR.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SULFUR_ORE.get().asItem())).save(consumer, "rankine:sulfur_from_native_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_SULFUR_ORE.get()), RankineItems.SULFUR.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SULFUR_ORE.get().asItem())).save(consumer, "rankine:sulfur_from_native_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_ARSENIC_ORE.get()), RankineItems.ARSENIC.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_ARSENIC_ORE.get().asItem())).save(consumer, "rankine:arsenic_ingot_from_native_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_ARSENIC_ORE.get()), RankineItems.ARSENIC.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_ARSENIC_ORE.get().asItem())).save(consumer, "rankine:arsenic_ingot_from_native_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_BISMUTH_ORE.get()), RankineItems.BISMUTH_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_BISMUTH_ORE.get().asItem())).save(consumer, "rankine:bismuth_ingot_from_native_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_BISMUTH_ORE.get()), RankineItems.BISMUTH_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_BISMUTH_ORE.get().asItem())).save(consumer, "rankine:bismuth_ingot_from_native_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_LEAD_ORE.get()), RankineItems.LEAD_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_LEAD_ORE.get().asItem())).save(consumer, "rankine:lead_ingot_from_native_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_LEAD_ORE.get()), RankineItems.LEAD_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_LEAD_ORE.get().asItem())).save(consumer, "rankine:lead_ingot_from_native_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_GOLD_ORE.get()), Items.GOLD_INGOT, 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_GOLD_ORE.get().asItem())).save(consumer, "rankine:gold_ingot_from_native_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_GOLD_ORE.get()), Items.GOLD_INGOT, 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_GOLD_ORE.get().asItem())).save(consumer, "rankine:gold_ingot_from_native_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_SILVER_ORE.get()), RankineItems.SILVER_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SILVER_ORE.get().asItem())).save(consumer, "rankine:silver_ingot_from_native_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_SILVER_ORE.get()), RankineItems.SILVER_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SILVER_ORE.get().asItem())).save(consumer, "rankine:silver_ingot_from_native_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_TIN_ORE.get()), RankineItems.TIN_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_TIN_ORE.get().asItem())).save(consumer, "rankine:tin_ingot_from_native_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_TIN_ORE.get()), RankineItems.TIN_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_TIN_ORE.get().asItem())).save(consumer, "rankine:tin_ingot_from_native_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_INDIUM_ORE.get()), RankineItems.INDIUM_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_INDIUM_ORE.get().asItem())).save(consumer, "rankine:indium_ingot_from_native_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_INDIUM_ORE.get()), RankineItems.INDIUM_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_INDIUM_ORE.get().asItem())).save(consumer, "rankine:indium_ingot_from_native_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_GALLIUM_ORE.get()), RankineItems.GALLIUM_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_GALLIUM_ORE.get().asItem())).save(consumer, "rankine:gallium_ingot_from_native_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_GALLIUM_ORE.get()), RankineItems.GALLIUM_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_GALLIUM_ORE.get().asItem())).save(consumer, "rankine:gallium_ingot_from_native_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_SELENIUM_ORE.get()), RankineItems.SELENIUM.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SELENIUM_ORE.get().asItem())).save(consumer, "rankine:selenium_ingot_from_native_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_SELENIUM_ORE.get()), RankineItems.SELENIUM.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SELENIUM_ORE.get().asItem())).save(consumer, "rankine:selenium_ingot_from_native_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_TELLURIUM_ORE.get()), RankineItems.TELLURIUM.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_TELLURIUM_ORE.get().asItem())).save(consumer, "rankine:tellurium_ingot_from_native_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_TELLURIUM_ORE.get()), RankineItems.TELLURIUM.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_TELLURIUM_ORE.get().asItem())).save(consumer, "rankine:tellurium_ingot_from_native_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.PORPHYRY_COPPER.get()), RankineItems.COPPER_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.PORPHYRY_COPPER.get().asItem())).save(consumer, "rankine:copper_ingot_from_porphyry_copper_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.PORPHYRY_COPPER.get()), RankineItems.COPPER_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.PORPHYRY_COPPER.get().asItem())).save(consumer, "rankine:copper_ingot_from_porphyry_copper_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.STIBNITE_ORE.get()), RankineItems.ANTIMONY.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.STIBNITE_ORE.get().asItem())).save(consumer, "rankine:antimony_ingot_from_stibnite_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.STIBNITE_ORE.get()), RankineItems.ANTIMONY.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.STIBNITE_ORE.get().asItem())).save(consumer, "rankine:antimony_ingot_from_stibnite_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.IRON_ORE.get()), Items.IRON_INGOT, 0.7F, 200).unlockedBy("has_ingredient", has(RankineBlocks.IRON_ORE.get().asItem())).save(consumer, "rankine:iron_ingot_from_rankine_iron_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.IRON_ORE.get()), Items.IRON_INGOT, 0.7F, 100).unlockedBy("has_ingredient", has(RankineBlocks.IRON_ORE.get().asItem())).save(consumer, "rankine:iron_ingot_from_rankine_iron_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.GOLD_ORE.get()), Items.GOLD_INGOT, 1.0F, 200).unlockedBy("has_ingredient", has(RankineBlocks.GOLD_ORE.get().asItem())).save(consumer, "rankine:gold_ingot_from_rankine_gold_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.GOLD_ORE.get()), Items.GOLD_INGOT, 1.0F, 100).unlockedBy("has_ingredient", has(RankineBlocks.GOLD_ORE.get().asItem())).save(consumer, "rankine:gold_ingot_from_rankine_gold_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NETHER_GOLD_ORE.get()), Items.GOLD_INGOT, 1.0F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NETHER_GOLD_ORE.get().asItem())).save(consumer, "rankine:gold_ingot_from_rankine_nether_gold_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NETHER_GOLD_ORE.get()), Items.GOLD_INGOT, 1.0F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NETHER_GOLD_ORE.get().asItem())).save(consumer, "rankine:gold_ingot_from_rankine_nether_gold_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NETHER_QUARTZ_ORE.get()), Items.QUARTZ, 0.2F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NETHER_QUARTZ_ORE.get().asItem())).save(consumer, "rankine:quartz_ingot_from_rankine_nether_quartz_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NETHER_QUARTZ_ORE.get()), Items.QUARTZ, 0.2F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NETHER_QUARTZ_ORE.get().asItem())).save(consumer, "rankine:quartz_ingot_from_rankine_nether_quartz_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.COAL_ORE.get()), Items.COAL, 0.1F, 200).unlockedBy("has_ingredient", has(RankineBlocks.COAL_ORE.get().asItem())).save(consumer, "rankine:coal_from_rankine_coal_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.COAL_ORE.get()), Items.COAL, 0.1F, 100).unlockedBy("has_ingredient", has(RankineBlocks.COAL_ORE.get().asItem())).save(consumer, "rankine:coal_from_rankine_coal_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.LAPIS_ORE.get()), Items.LAPIS_LAZULI, 0.2F, 200).unlockedBy("has_ingredient", has(RankineBlocks.LAPIS_ORE.get().asItem())).save(consumer, "rankine:lapis_from_rankine_lapis_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.LAPIS_ORE.get()), Items.LAPIS_LAZULI, 0.2F,   100).unlockedBy("has_ingredient", has(RankineBlocks.LAPIS_ORE.get().asItem())).save(consumer, "rankine:lapis_from_rankine_lapis_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.REDSTONE_ORE.get()), Items.REDSTONE, 0.7F, 200).unlockedBy("has_ingredient", has(RankineBlocks.REDSTONE_ORE.get().asItem())).save(consumer, "rankine:redstone_from_rankine_redstone_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.REDSTONE_ORE.get()), Items.REDSTONE, 0.7F, 100).unlockedBy("has_ingredient", has(RankineBlocks.REDSTONE_ORE.get().asItem())).save(consumer, "rankine:redstone_from_rankine_redstone_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.DIAMOND_ORE.get()), Items.DIAMOND, 1.0F, 200).unlockedBy("has_ingredient", has(RankineBlocks.DIAMOND_ORE.get().asItem())).save(consumer, "rankine:diamond_from_rankine_diamond_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.DIAMOND_ORE.get()), Items.DIAMOND, 1.0F, 100).unlockedBy("has_ingredient", has(RankineBlocks.DIAMOND_ORE.get().asItem())).save(consumer, "rankine:diamond_from_rankine_diamond_ore_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.EMERALD_ORE.get()), Items.EMERALD, 1.0F, 200).unlockedBy("has_ingredient", has(RankineBlocks.EMERALD_ORE.get().asItem())).save(consumer, "rankine:emerlad_from_rankine_emerlad_ore_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.EMERALD_ORE.get()), Items.EMERALD, 1.0F, 100).unlockedBy("has_ingredient", has(RankineBlocks.EMERALD_ORE.get().asItem())).save(consumer, "rankine:emerlad_from_rankine_emerlad_ore_blasting");
 
         //ALLOY STUFFS
         for (Item NUGGET : RankineLists.ALLOY_NUGGETS) {
@@ -925,27 +932,27 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         
         //Campfire
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.DRIED_BAMBOO.get()), Items.BAMBOO, 0.35F, 40, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BAMBOO)).save(consumer, "rankine:dried_bamboo_campfire_cooking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.BONE_ASH.get()), Items.BONE, 0.35F, 200, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BONE)).save(consumer, "rankine:bone_ash_campfire_cooking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.FIRE_CLAY_BALL.get()), RankineItems.REFRACTORY_BRICK.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.FIRE_CLAY_BALL.get())).save(consumer, "rankine:refractory_brick_campfire_cooking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.PANCAKE_BATTER.get()), RankineItems.PANCAKE.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.PANCAKE_BATTER.get())).save(consumer, "rankine:pancake_campfire_cooking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.CORN_EAR.get()), RankineItems.POPCORN.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.CORN_EAR.get())).save(consumer, "rankine:popcorn_campfire_cooking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.ASPARAGUS.get()), RankineItems.ROASTED_ASPARAGUS.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.ROASTED_ASPARAGUS.get())).save(consumer, "rankine:roasted_asparagus_campfire_cooking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.BLACK_WALNUT.get()), RankineItems.ROASTED_WALNUT.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.BLACK_WALNUT.get())).save(consumer, "rankine:roasted_walnut_campfire_cooking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.COCONUT.get()), RankineItems.TOASTED_COCONUT.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.COCONUT.get())).save(consumer, "rankine:toasted_coconut_campfire_cooking");
-        CookingRecipeBuilder.cooking(Ingredient.of(Items.BREAD), RankineItems.TOAST.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BREAD)).save(consumer, "rankine:toast_campfire_cooking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.DOUGH.get()), Items.BREAD, 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineTags.Items.FLOUR)).save(consumer, "rankine:bread_campfire_cooking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TOFU.get()), RankineItems.COOKED_TOFU.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TOFU.get())).save(consumer, "rankine:cooked_tofu_campfire_cooking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TUNA.get()), RankineItems.COOKED_TUNA.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TUNA.get())).save(consumer, "rankine:cooked_tuna_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.DRIED_BAMBOO.get()), Items.BAMBOO, 0.35F, 40, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BAMBOO)).save(consumer, "rankine:dried_bamboo_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.BONE_ASH.get()), Items.BONE, 0.35F, 200, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BONE)).save(consumer, "rankine:bone_ash_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.FIRE_CLAY_BALL.get()), RankineItems.REFRACTORY_BRICK.get(), 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.FIRE_CLAY_BALL.get())).save(consumer, "rankine:refractory_brick_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.PANCAKE_BATTER.get()), RankineItems.PANCAKE.get(), 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.PANCAKE_BATTER.get())).save(consumer, "rankine:pancake_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.CORN_EAR.get()), RankineItems.POPCORN.get(), 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.CORN_EAR.get())).save(consumer, "rankine:popcorn_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.ASPARAGUS.get()), RankineItems.ROASTED_ASPARAGUS.get(), 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.ROASTED_ASPARAGUS.get())).save(consumer, "rankine:roasted_asparagus_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.BLACK_WALNUT.get()), RankineItems.ROASTED_WALNUT.get(), 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.BLACK_WALNUT.get())).save(consumer, "rankine:roasted_walnut_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.COCONUT.get()), RankineItems.TOASTED_COCONUT.get(), 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.COCONUT.get())).save(consumer, "rankine:toasted_coconut_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.BREAD), RankineItems.TOAST.get(), 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BREAD)).save(consumer, "rankine:toast_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.DOUGH.get()), Items.BREAD, 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineTags.Items.FLOUR)).save(consumer, "rankine:bread_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TOFU.get()), RankineItems.COOKED_TOFU.get(), 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TOFU.get())).save(consumer, "rankine:cooked_tofu_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TUNA.get()), RankineItems.COOKED_TUNA.get(), 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TUNA.get())).save(consumer, "rankine:cooked_tuna_campfire_cooking");
         //Smoking
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.PANCAKE_BATTER.get()), RankineItems.PANCAKE.get(), 0.35F, 100, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.PANCAKE_BATTER.get())).save(consumer, "rankine:pancake_smoking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.CORN_EAR.get()), RankineItems.POPCORN.get(), 0.35F, 100, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.CORN_EAR.get())).save(consumer, "rankine:popcorn_smoking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.ASPARAGUS.get()), RankineItems.ROASTED_ASPARAGUS.get(), 0.35F, 100, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.ROASTED_ASPARAGUS.get())).save(consumer, "rankine:roasted_asparagus_smoking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.BLACK_WALNUT.get()), RankineItems.ROASTED_WALNUT.get(), 0.35F, 100, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.BLACK_WALNUT.get())).save(consumer, "rankine:roasted_walnut_smoking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.COCONUT.get()), RankineItems.TOASTED_COCONUT.get(), 0.35F, 100, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.COCONUT.get())).save(consumer, "rankine:toasted_coconut_smoking");
-        CookingRecipeBuilder.cooking(Ingredient.of(Items.BREAD), RankineItems.TOAST.get(), 0.35F, 100, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BREAD)).save(consumer, "rankine:toast_smoking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TOFU.get()), RankineItems.COOKED_TOFU.get(), 0.35F, 600, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TOFU.get())).save(consumer, "rankine:cooked_tofu_smoking");
-        CookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TUNA.get()), RankineItems.COOKED_TUNA.get(), 0.35F, 600, IRecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TUNA.get())).save(consumer, "rankine:cooked_tuna_smoking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.PANCAKE_BATTER.get()), RankineItems.PANCAKE.get(), 0.35F, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.PANCAKE_BATTER.get())).save(consumer, "rankine:pancake_smoking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.CORN_EAR.get()), RankineItems.POPCORN.get(), 0.35F, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.CORN_EAR.get())).save(consumer, "rankine:popcorn_smoking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.ASPARAGUS.get()), RankineItems.ROASTED_ASPARAGUS.get(), 0.35F, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.ROASTED_ASPARAGUS.get())).save(consumer, "rankine:roasted_asparagus_smoking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.BLACK_WALNUT.get()), RankineItems.ROASTED_WALNUT.get(), 0.35F, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.BLACK_WALNUT.get())).save(consumer, "rankine:roasted_walnut_smoking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.COCONUT.get()), RankineItems.TOASTED_COCONUT.get(), 0.35F, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.COCONUT.get())).save(consumer, "rankine:toasted_coconut_smoking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.BREAD), RankineItems.TOAST.get(), 0.35F, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BREAD)).save(consumer, "rankine:toast_smoking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TOFU.get()), RankineItems.COOKED_TOFU.get(), 0.35F, 600, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TOFU.get())).save(consumer, "rankine:cooked_tofu_smoking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TUNA.get()), RankineItems.COOKED_TUNA.get(), 0.35F, 600, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TUNA.get())).save(consumer, "rankine:cooked_tuna_smoking");
 
 
         defaultToolRecipes(consumer, (AlloyItem) RankineItems.PEWTER_INGOT.get(), 11711154, "item.rankine.pewter_alloying", false);
@@ -984,21 +991,21 @@ public class RankineRecipesProvider extends RecipeProvider {
         alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.of(RankineItems.FERROCERIUM_INGOT.get()), "", null, null, 16777215),RankineItems.FERROCERIUM_INGOT.get(),7433071, "item.rankine.ferrocerium_alloying", "rankine:ferrocerium_",null);
     }
 
-    private void slab(Consumer<IFinishedRecipe> consumer, Item output, Item input) {
+    private void slab(Consumer<FinishedRecipe> consumer, Item output, Item input) {
         ShapedRecipeBuilder.shaped(output, 6)
                 .pattern("###")
                 .define('#', input)
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void slab(Consumer<IFinishedRecipe> consumer, Item output, ITag<Item> tagIn) {
+    private void slab(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn) {
         ShapedRecipeBuilder.shaped(output, 6)
                 .pattern("###")
                 .define('#', tagIn)
                 .unlockedBy("has_ingredient", has(tagIn))
                 .save(consumer);
     }
-    private void slab(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group) {
+    private void slab(Consumer<FinishedRecipe> consumer, Item output, Item input, String group) {
         ShapedRecipeBuilder.shaped(output, 6)
                 .pattern("###")
                 .define('#', input)
@@ -1006,7 +1013,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void slab(Consumer<IFinishedRecipe> consumer, Item output, ITag<Item> tagIn, String group) {
+    private void slab(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn, String group) {
         ShapedRecipeBuilder.shaped(output, 6)
                 .pattern("###")
                 .define('#', tagIn)
@@ -1014,7 +1021,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(tagIn))
                 .save(consumer);
     }
-    private void stairs(Consumer<IFinishedRecipe> consumer, Item output, Item input) {
+    private void stairs(Consumer<FinishedRecipe> consumer, Item output, Item input) {
         ShapedRecipeBuilder.shaped(output, 4)
                 .pattern("#  ")
                 .pattern("## ")
@@ -1023,7 +1030,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void stairs(Consumer<IFinishedRecipe> consumer, Item output, ITag<Item> tagIn) {
+    private void stairs(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn) {
         ShapedRecipeBuilder.shaped(output, 4)
                 .pattern("#  ")
                 .pattern("## ")
@@ -1032,7 +1039,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(tagIn))
                 .save(consumer);
     }
-    private void stairs(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group) {
+    private void stairs(Consumer<FinishedRecipe> consumer, Item output, Item input, String group) {
         ShapedRecipeBuilder.shaped(output, 4)
                 .pattern("#  ")
                 .pattern("## ")
@@ -1042,7 +1049,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void stairs(Consumer<IFinishedRecipe> consumer, Item output, ITag<Item> tagIn, String group) {
+    private void stairs(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn, String group) {
         ShapedRecipeBuilder.shaped(output, 4)
                 .pattern("#  ")
                 .pattern("## ")
@@ -1052,7 +1059,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(tagIn))
                 .save(consumer);
     }
-    private void wall(Consumer<IFinishedRecipe> consumer, Item output, Item input) {
+    private void wall(Consumer<FinishedRecipe> consumer, Item output, Item input) {
         ShapedRecipeBuilder.shaped(output, 6)
                 .pattern("###")
                 .pattern("###")
@@ -1060,7 +1067,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void wall(Consumer<IFinishedRecipe> consumer, Item output, ITag<Item> tagIn) {
+    private void wall(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn) {
         ShapedRecipeBuilder.shaped(output, 6)
                 .pattern("###")
                 .pattern("###")
@@ -1068,7 +1075,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(tagIn))
                 .save(consumer);
     }
-    private void wall(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group) {
+    private void wall(Consumer<FinishedRecipe> consumer, Item output, Item input, String group) {
         ShapedRecipeBuilder.shaped(output, 6)
                 .pattern("###")
                 .pattern("###")
@@ -1077,7 +1084,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void wall(Consumer<IFinishedRecipe> consumer, Item output, ITag<Item> tagIn, String group) {
+    private void wall(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn, String group) {
         ShapedRecipeBuilder.shaped(output, 6)
                 .pattern("###")
                 .pattern("###")
@@ -1086,21 +1093,21 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(tagIn))
                 .save(consumer);
     }
-    private void pressurePlate(Consumer<IFinishedRecipe> consumer, Item output, Item input) {
+    private void pressurePlate(Consumer<FinishedRecipe> consumer, Item output, Item input) {
         ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("##")
                 .define('#', input)
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void pressurePlate(Consumer<IFinishedRecipe> consumer, Item output, ITag<Item> tagIn) {
+    private void pressurePlate(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn) {
         ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("##")
                 .define('#', tagIn)
                 .unlockedBy("has_ingredient", has(tagIn))
                 .save(consumer);
     }
-    private void pressurePlate(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group) {
+    private void pressurePlate(Consumer<FinishedRecipe> consumer, Item output, Item input, String group) {
         ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("##")
                 .define('#', input)
@@ -1108,7 +1115,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void pressurePlate(Consumer<IFinishedRecipe> consumer, Item output, ITag<Item> tagIn, String group) {
+    private void pressurePlate(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn, String group) {
         ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("##")
                 .define('#', tagIn)
@@ -1127,55 +1134,55 @@ public class RankineRecipesProvider extends RecipeProvider {
     
     
     
-    private void door(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
+    private void door(Consumer<FinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output, 3)
                 .pattern("##")
                 .pattern("##")
                 .pattern("##")
                 .define('#', input)
                 .group(group)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
-    private void trapdoor(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
+    private void trapdoor(Consumer<FinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output, 2)
                 .pattern("###")
                 .pattern("###")
                 .define('#', input)
                 .group(group)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
-    private void boat(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
+    private void boat(Consumer<FinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("# #")
                 .pattern("###")
                 .define('#', input)
                 .group(group)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
-    private void fence(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
+    private void fence(Consumer<FinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output, 3)
                 .pattern("#S#")
                 .pattern("#S#")
                 .define('#', input)
                 .define('S', Tags.Items.RODS_WOODEN)
                 .group(group)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
-    private void fenceGate(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
+    private void fenceGate(Consumer<FinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("S#S")
                 .pattern("S#S")
                 .define('#', input)
                 .define('S', Tags.Items.RODS_WOODEN)
                 .group(group)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
-    private void bookshelf(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
+    private void bookshelf(Consumer<FinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("###")
                 .pattern("BBB")
@@ -1183,11 +1190,11 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .define('#', input)
                 .define('B', Items.BOOK)
                 .group(group)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
 
-    private void led(Consumer<IFinishedRecipe> consumer, Item output, ITag<Item> dye) {
+    private void led(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> dye) {
         ShapedRecipeBuilder.shaped(output, 4)
                 .pattern("DRD")
                 .pattern("RSR")
@@ -1196,11 +1203,11 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .define('R', Tags.Items.DUSTS_REDSTONE)
                 .define('S', RankineItems.SILICON_CARBIDE.get())
                 .group("led")
-                .unlockedBy("has_silicon_carbide", InventoryChangeTrigger.Instance.hasItems(RankineItems.SILICON_CARBIDE.get()))
+                .unlockedBy("has_silicon_carbide", InventoryChangeTrigger.TriggerInstance.hasItems(RankineItems.SILICON_CARBIDE.get()))
                 .save(consumer);
     }
     
-    private void pedestal(Consumer<IFinishedRecipe> consumer, Item output, String group, Item input, String triggerName, Item trigger) {
+    private void pedestal(Consumer<FinishedRecipe> consumer, Item output, String group, Item input, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output)
                 .pattern(" P ")
                 .pattern(" # ")
@@ -1208,71 +1215,71 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .define('#', input)
                 .define('P', RankineTags.Items.STONE_PRESSURE_PLATES)
                 .group(group)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
-    private void bars(Consumer<IFinishedRecipe> consumer, Item output, String group, Item input, String triggerName, Item trigger) {
+    private void bars(Consumer<FinishedRecipe> consumer, Item output, String group, Item input, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output,16)
                 .pattern("###")
                 .pattern("###")
                 .define('#', input)
                 .group(group)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
-    private void pole(Consumer<IFinishedRecipe> consumer, Item output, String group, Item input, String triggerName, Item trigger) {
+    private void pole(Consumer<FinishedRecipe> consumer, Item output, String group, Item input, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output,8)
                 .pattern("#")
                 .pattern("#")
                 .pattern("#")
                 .define('#', input)
                 .group(group)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
-    private void threeXthree(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
+    private void threeXthree(Consumer<FinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
         ShapedRecipeBuilder.shaped(output, count)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
                 .define('#', input)
                 //.setGroup("rankine")
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer, new ResourceLocation("rankine",name));
     }
-    private void threeXthree(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger) {
+    private void threeXthree(Consumer<FinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output, count)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
                 .define('#', input)
                 //.setGroup("rankine")
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
 
-    private void threeXthreeAlloy(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name,int color,@Nullable String langName) {
+    private void threeXthreeAlloy(Consumer<FinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name,int color,@Nullable String langName) {
         AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,"",langName == null ? "" : langName, color)
                 .patternLine("###")
                 .patternLine("###")
                 .patternLine("###")
                 .key('#', input)
                 .setGroup("rankine:alloy_blocks")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .addCriterion(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .build(consumer, new ResourceLocation("rankine",name));
     }
-    private void threeXthreeAlloy(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger,int color,@Nullable String langName) {
+    private void threeXthreeAlloy(Consumer<FinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger,int color,@Nullable String langName) {
         AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true,"",langName == null ? "" : langName, color)
                 .patternLine("###")
                 .patternLine("###")
                 .patternLine("###")
                 .key('#', input)
                 .setGroup("rankine:alloy_blocks")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .addCriterion(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .build(consumer);
     }
 
-    private void alloyArmorRecipes(Consumer<IFinishedRecipe> consumer, Item ingot, int alloyColor, ResourceLocation alloyRecipe, String alloyLang, String recipeName) {
+    private void alloyArmorRecipes(Consumer<FinishedRecipe> consumer, Item ingot, int alloyColor, ResourceLocation alloyRecipe, String alloyLang, String recipeName) {
         alloyHelmet(consumer, RankineItems.ALLOY_HELMET.get(),
                 new AlloyIngredient(Ingredient.of(ingot), "", alloyRecipe, alloyLang, alloyColor),
                 ingot, alloyColor, alloyLang, recipeName+"helmet",null);
@@ -1288,7 +1295,7 @@ public class RankineRecipesProvider extends RecipeProvider {
     }
 
     //private void defaultToolRecipes(Consumer<IFinishedRecipe> consumer, Item ingot, int alloyColor, ResourceLocation alloyRecipe, String alloyLang) {
-    private void defaultToolRecipes(Consumer<IFinishedRecipe> consumer, AlloyItem ingot, int alloyColor, String alloyLang, boolean steelRod) {
+    private void defaultToolRecipes(Consumer<FinishedRecipe> consumer, AlloyItem ingot, int alloyColor, String alloyLang, boolean steelRod) {
         String rs = ingot.getRegistryName().toString();
         AlloyIngredient alloyIngot = new AlloyIngredient(Ingredient.of(ingot), "", null, null, 16777215);
         AlloyIngredient rod = new AlloyIngredient(Ingredient.of(Tags.Items.RODS_WOODEN), null, null, null, 16777215);
@@ -1310,7 +1317,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         alloySurfRod(consumer, RankineItems.ALLOY_SURF_ROD.get(), alloyIngot, ingot, alloyColor, alloyLang, recipeNamePart,null);
     }
 
-    private void mimicToolRecipes(Consumer<IFinishedRecipe> consumer, AlloyItem ingot, Item mimic, int alloyColor, String alloyLang, boolean steelRod, String recipeName) {
+    private void mimicToolRecipes(Consumer<FinishedRecipe> consumer, AlloyItem ingot, Item mimic, int alloyColor, String alloyLang, boolean steelRod, String recipeName) {
         String rs = mimic.getRegistryName().toString();
         AlloyIngredient alloyIngot = new AlloyIngredient(Ingredient.of(ingot), "", null, null, 16777215);
         AlloyIngredient rod = new AlloyIngredient(Ingredient.of(Tags.Items.RODS_WOODEN), null, null, null, 16777215);
@@ -1331,18 +1338,18 @@ public class RankineRecipesProvider extends RecipeProvider {
         alloySurfRod(consumer, RankineItems.ALLOY_SURF_ROD.get(), alloyIngot, ingot, alloyColor, alloyLang, recipeName,null);
     }
 
-    private void alloyRod(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyRod(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         AlloyCraftingRecipeBuilder.shapedRecipe(output, 4,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                 .patternLine("  #")
                 .patternLine(" # ")
                 .patternLine("#  ")
                 .directAlloyKey('#', input)
                 .setGroup("rankine:alloy_rods")
-                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .build(consumer,recipeName+"_rod");
     }
 
-    private void alloyGear(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyGear(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                 .patternLine(" # ")
                 .patternLine("#R#")
@@ -1350,55 +1357,55 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .directAlloyKey('#', input)
                 .key('R', Tags.Items.RODS_WOODEN)
                 .setGroup("rankine:alloy_gears")
-                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .build(consumer,recipeName+"_gear");
     }
 
-    private void alloyHelmet(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color,@Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyHelmet(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color,@Nullable String langName, String recipeName, String inheritRecipe) {
         AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                 .patternLine("###")
                 .patternLine("# #")
                 .patternLine("   ")
                 .directAlloyKey('#', input)
                 .setGroup("rankine:alloy_helmets")
-                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .build(consumer,recipeName);
     }
 
-    private void alloyChestplate(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger,int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyChestplate(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger,int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                 .patternLine("# #")
                 .patternLine("###")
                 .patternLine("###")
                 .directAlloyKey('#', input)
                 .setGroup("rankine:alloy_chestplate")
-                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .build(consumer,recipeName);
     }
 
-    private void alloyLeggings(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color,@Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyLeggings(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color,@Nullable String langName, String recipeName, String inheritRecipe) {
         AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                 .patternLine("###")
                 .patternLine("# #")
                 .patternLine("# #")
                 .directAlloyKey('#', input)
                 .setGroup("rankine:alloy_leggings")
-                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .build(consumer,recipeName);
     }
 
-    private void alloyBoots(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyBoots(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                 .patternLine("   ")
                 .patternLine("# #")
                 .patternLine("# #")
                 .directAlloyKey('#', input)
                 .setGroup("rankine:alloy_boots")
-                .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .build(consumer,recipeName);
     }
 
-    private void alloyCrowbar(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyCrowbar(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         if (recipeName == null) {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                     .patternLine(" ##")
@@ -1406,7 +1413,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .patternLine("## ")
                     .directAlloyKey('#', input)
                     .setGroup("rankine:alloy_crowbars")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer);
         } else {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
@@ -1415,13 +1422,13 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .patternLine("## ")
                     .directAlloyKey('#', input)
                     .setGroup("rankine:alloy_crowbars")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer,recipeName+"crowbar");
         }
 
     }
 
-    private void alloySurfRod(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloySurfRod(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         if (recipeName == null) {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                     .patternLine("  #")
@@ -1430,7 +1437,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .key('s', Tags.Items.STRING)
                     .setGroup("rankine:alloy_surf_rods")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer);
         } else {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
@@ -1440,13 +1447,13 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .key('s', Tags.Items.STRING)
                     .setGroup("rankine:alloy_surf_rods")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer,recipeName+"surf_rod");
         }
 
     }
 
-    private void alloyBlunderbuss(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyBlunderbuss(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         if (recipeName == null) {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                     .patternLine("##f")
@@ -1456,7 +1463,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .key('s', RankineTags.Items.FIREPROOF_LOGS)
                     .key('f', Items.FLINT_AND_STEEL)
                     .setGroup("rankine:alloy_blunderbuss")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer);
         } else {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
@@ -1467,13 +1474,13 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .key('s', RankineTags.Items.FIREPROOF_LOGS)
                     .key('f', Items.FLINT_AND_STEEL)
                     .setGroup("rankine:alloy_blunderbuss")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer,recipeName+"blunderbuss");
         }
 
     }
 
-    private void alloyPickaxe(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyPickaxe(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         if (recipeName == null) {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                     .patternLine("###")
@@ -1482,7 +1489,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_pickaxes")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer);
         } else {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
@@ -1492,13 +1499,13 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_pickaxes")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer,recipeName+"pickaxe");
         }
 
     }
 
-    private void alloyHoe(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyHoe(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         if (recipeName == null) {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                     .patternLine("##")
@@ -1507,7 +1514,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_hoes")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer);
         } else {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
@@ -1517,13 +1524,13 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_hoes")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer,recipeName+"hoe");
         }
 
     }
 
-    private void alloyAxe(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyAxe(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         if (recipeName == null) {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                     .patternLine("##")
@@ -1532,7 +1539,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_axes")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer);
         } else {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
@@ -1542,7 +1549,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_axes")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer,recipeName+"axe");
         }
 
@@ -1550,7 +1557,7 @@ public class RankineRecipesProvider extends RecipeProvider {
 
 
 
-    private void alloyShovel(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyShovel(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         if (recipeName == null) {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                     .patternLine("#")
@@ -1559,7 +1566,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_shovels")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer);
         } else {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
@@ -1569,13 +1576,13 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_shovels")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer,recipeName+"shovel");
         }
 
     }
 
-    private void alloySword(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloySword(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         if (recipeName == null) {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                     .patternLine("#")
@@ -1584,7 +1591,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_swords")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer);
         } else {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
@@ -1594,13 +1601,13 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_swords")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer,recipeName+"sword");
         }
 
     }
 
-    private void alloyHammer(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyHammer(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         if (recipeName == null) {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true, inheritRecipe == null ? "" : inheritRecipe, langName == null ? "" : langName, color)
                     .patternLine("###")
@@ -1609,7 +1616,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_hammers")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer);
         } else {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true, inheritRecipe == null ? "" : inheritRecipe, langName == null ? "" : langName, color)
@@ -1619,13 +1626,13 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_hammers")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer,recipeName+"hammer");
         }
 
     }
 
-    private void alloyKnife(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloyKnife(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         if (recipeName == null) {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                     .patternLine(" #")
@@ -1633,7 +1640,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_knives")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer);
         } else {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
@@ -1642,13 +1649,13 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_knives")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer,recipeName+"knife");
         }
 
     }
 
-    private void alloySpear(Consumer<IFinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName, String inheritRecipe) {
+    private void alloySpear(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, AlloyIngredient rod, Item trigger,  int color, @Nullable String langName, String recipeName, String inheritRecipe) {
         if (recipeName == null) {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
                     .patternLine(" ##")
@@ -1657,7 +1664,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_spears")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer);
         } else {
             AlloyCraftingRecipeBuilder.shapedRecipe(output, 1,true,inheritRecipe == null ? "" : inheritRecipe,langName == null ? "" : langName, color)
@@ -1667,92 +1674,92 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .directAlloyKey('#', input)
                     .directAlloyKey('s', rod)
                     .setGroup("rankine:alloy_spears")
-                    .addCriterion("has_alloy", InventoryChangeTrigger.Instance.hasItems(trigger))
+                    .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                     .build(consumer,recipeName+"spear");
         }
     }
 
-    private void twoXtwo(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
+    private void twoXtwo(Consumer<FinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
         ShapedRecipeBuilder.shaped(output, count)
                 .pattern("##")
                 .pattern("##")
                 .define('#', input)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer, new ResourceLocation("rankine",name));
     }
-    private void twoXtwo(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger) {
+    private void twoXtwo(Consumer<FinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output, count)
                 .pattern("##")
                 .pattern("##")
                 .define('#', input)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
-    private void OneToX(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
+    private void OneToX(Consumer<FinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
             ShapelessRecipeBuilder.shapeless(output, count)
             .requires(input)
             //.setGroup("rankine")
-            .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+            .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
             .save(consumer, new ResourceLocation("rankine",name));
     }
-    private void OneToX(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger) {
+    private void OneToX(Consumer<FinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger) {
         ShapelessRecipeBuilder.shapeless(output, count)
                 .requires(input)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
 
-    private void OneToXAlloy(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
+    private void OneToXAlloy(Consumer<FinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger, String name) {
         AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true)
                 .patternLine("#")
                 .key('#', input)
                 .setGroup("rankine:alloy_nuggets")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .addCriterion(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .build(consumer, new ResourceLocation("rankine",name));
     }
-    private void OneToXAlloy(Consumer<IFinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger) {
+    private void OneToXAlloy(Consumer<FinishedRecipe> consumer, Item output, Item input, int count, String triggerName, Item trigger) {
         AlloyCraftingRecipeBuilder.shapedRecipe(output, count,true)
                 .patternLine("#")
                 .key('#', input)
                 .setGroup("rankine:alloy_nuggets")
-                .addCriterion(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .addCriterion(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .build(consumer);
     }
 
-    private void OneToXTag(Consumer<IFinishedRecipe> consumer, Item output, String group, ITag<Item> input, int count, String triggerName, Item trigger) {
+    private void OneToXTag(Consumer<FinishedRecipe> consumer, Item output, String group, Tag<Item> input, int count, String triggerName, Item trigger) {
         ShapelessRecipeBuilder.shapeless(output, count)
                 .requires(input)
                 .group(group)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
     
-    private void hLine(Consumer<IFinishedRecipe> consumer, Item output, int count, Item input, String group, String triggerName, Item trigger) {
+    private void hLine(Consumer<FinishedRecipe> consumer, Item output, int count, Item input, String group, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output, count)
                 .pattern("###")
                 .define('#', input)
                 .group(group)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }    
-    private void hLine(Consumer<IFinishedRecipe> consumer, Item output, int count, Item input, String triggerName, Item trigger) {
+    private void hLine(Consumer<FinishedRecipe> consumer, Item output, int count, Item input, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output, count)
                 .pattern("###")
                 .define('#', input)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
-    private void rod(Consumer<IFinishedRecipe> consumer, Item output, int count, Item input, String triggerName, Item trigger) {
+    private void rod(Consumer<FinishedRecipe> consumer, Item output, int count, Item input, String triggerName, Item trigger) {
         ShapedRecipeBuilder.shaped(output, count)
                 .pattern("  #")
                 .pattern(" # ")
                 .pattern("#  ")
                 .define('#', input)
-                .unlockedBy(triggerName, InventoryChangeTrigger.Instance.hasItems(trigger))
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
 
-    private void ladder(Consumer<IFinishedRecipe> consumer, Item output, int count, ITag<Item> input) {
+    private void ladder(Consumer<FinishedRecipe> consumer, Item output, int count, Tag<Item> input) {
         ShapedRecipeBuilder.shaped(output, count)
                 .pattern("# #")
                 .pattern("###")

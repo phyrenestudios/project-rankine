@@ -1,21 +1,21 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 
-import net.minecraft.block.AbstractBlock.OffsetType;
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class SorghumPlantBlock extends TripleCropsBlock {
     private static final VoxelShape[] BOTTOM_SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
@@ -26,12 +26,12 @@ public class SorghumPlantBlock extends TripleCropsBlock {
         super(properties);
     }
 
-    protected IItemProvider getBaseSeedId() {
+    protected ItemLike getBaseSeedId() {
         return RankineItems.SORGHUM_SEEDS.get();
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         switch (state.getValue(SECTION)) {
             case BOTTOM:
                 return BOTTOM_SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
@@ -44,14 +44,14 @@ public class SorghumPlantBlock extends TripleCropsBlock {
     }
 
     @Override
-    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity && state.getValue(AGE) > 2) {
-            entityIn.makeStuckInBlock(state, new Vector3d((double)0.98F, 1.0D, (double)0.98F));
+            entityIn.makeStuckInBlock(state, new Vec3((double)0.98F, 1.0D, (double)0.98F));
         }
     }
 
     @Override
-    public AbstractBlock.OffsetType getOffsetType() {
+    public BlockBehaviour.OffsetType getOffsetType() {
         return OffsetType.NONE;
     }
 

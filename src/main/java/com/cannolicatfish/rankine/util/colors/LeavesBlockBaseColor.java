@@ -1,23 +1,23 @@
 package com.cannolicatfish.rankine.util.colors;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.FoliageColors;
-import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.biome.BiomeColors;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.FoliageColor;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.client.renderer.BiomeColors;
 import org.jetbrains.annotations.Nullable;
 
-public class LeavesBlockBaseColor implements IBlockColor {
+public class LeavesBlockBaseColor implements BlockColor {
     @Override
-    public int getColor(BlockState state, @Nullable IBlockDisplayReader reader, @Nullable BlockPos pos, int tint) {
+    public int getColor(BlockState state, @Nullable BlockAndTintGetter reader, @Nullable BlockPos pos, int tint) {
         if (state.is(RankineBlocks.SPRUCE_LEAF_LITTER.get())) {
-            return FoliageColors.getEvergreenColor();
+            return FoliageColor.getEvergreenColor();
         } else if (state.is(RankineBlocks.BIRCH_LEAF_LITTER.get())) {
-            return FoliageColors.getBirchColor();
+            return FoliageColor.getBirchColor();
         } else {
-            return reader != null && pos != null ? BiomeColors.getAverageFoliageColor(reader, pos) : FoliageColors.getDefaultColor();
+            return reader != null && pos != null ? BiomeColors.getAverageFoliageColor(reader, pos) : FoliageColor.getDefaultColor();
         }
     }
 }

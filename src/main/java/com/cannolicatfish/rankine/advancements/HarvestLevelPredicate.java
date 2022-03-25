@@ -2,10 +2,10 @@ package com.cannolicatfish.rankine.advancements;
 
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.google.gson.JsonObject;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.JSONUtils;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.util.GsonHelper;
 
 public class HarvestLevelPredicate extends ItemPredicate {
 
@@ -18,7 +18,7 @@ public class HarvestLevelPredicate extends ItemPredicate {
     }
 
     public HarvestLevelPredicate(JsonObject jsonObject) {
-        this(JSONUtils.getAsInt(jsonObject, "level"),JSONUtils.getAsItem(jsonObject,"item"));
+        this(GsonHelper.getAsInt(jsonObject, "level"),GsonHelper.getAsItem(jsonObject,"item"));
     }
 
     @Override

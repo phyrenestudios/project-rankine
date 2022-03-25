@@ -3,20 +3,20 @@ package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.IntArray;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.IItemHandler;
@@ -25,19 +25,19 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.PISTON_CRUSHER_CONTAINER;
 
-public class PistonCrusherContainer extends Container {
-    private TileEntity tileEntity;
-    private final IInventory furnaceInventory;
-    private PlayerEntity playerEntity;
+public class PistonCrusherContainer extends AbstractContainerMenu {
+    private BlockEntity tileEntity;
+    private final Container furnaceInventory;
+    private Player playerEntity;
     private IItemHandler playerInventory;
-    private final IIntArray data;
-    protected final World world;
+    private final ContainerData data;
+    protected final Level world;
 
-    public PistonCrusherContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player, new Inventory(5),new IntArray(4));
+    public PistonCrusherContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
+        this(windowId,world,pos,playerInventory,player, new SimpleContainer(5),new SimpleContainerData(4));
     }
 
-    public PistonCrusherContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn,  IIntArray furnaceData) {
+    public PistonCrusherContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn,  ContainerData furnaceData) {
         super(PISTON_CRUSHER_CONTAINER, windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 5);
@@ -61,16 +61,16 @@ public class PistonCrusherContainer extends Container {
     }
 
     @Override
-    public boolean stillValid(PlayerEntity playerIn) {
-        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, RankineBlocks.PISTON_CRUSHER.get());
+    public boolean stillValid(Player playerIn) {
+        return stillValid(ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, RankineBlocks.PISTON_CRUSHER.get());
     }
 
     protected boolean hasRecipe(ItemStack stack) {
-        return this.world.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUSHING, new Inventory(stack), this.world).isPresent();
+        return this.world.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUSHING, new SimpleContainer(stack), this.world).isPresent();
     }
 
     @Override
-    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot != null && slot.hasItem()) {
@@ -86,7 +86,7 @@ public class PistonCrusherContainer extends Container {
                     if (!this.moveItemStackTo(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (AbstractFurnaceTileEntity.isFuel(stack)) {
+                } else if (AbstractFurnaceBlockEntity.isFuel(stack)) {
                     if (!this.moveItemStackTo(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }

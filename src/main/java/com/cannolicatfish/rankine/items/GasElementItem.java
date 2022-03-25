@@ -3,15 +3,16 @@ package com.cannolicatfish.rankine.items;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.*;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
+
+import net.minecraft.world.item.context.UseOnContext;
 
 public class GasElementItem extends ElementItem {
     GasUtilsEnum gas;
@@ -25,16 +26,16 @@ public class GasElementItem extends ElementItem {
     }
 
     @Override
-    public ActionResultType useOn(ItemUseContext context) {
-        World worldIn = context.getLevel();
+    public InteractionResult useOn(UseOnContext context) {
+        Level worldIn = context.getLevel();
         BlockPos pos = context.getClickedPos();
         Direction opp = context.getClickedFace();
         if (context.getPlayer() != null) {
             worldIn.setBlockAndUpdate(pos.relative(opp), this.getGas().defaultBlockState());
             context.getItemInHand().shrink(1);
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         } else {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
     }
 

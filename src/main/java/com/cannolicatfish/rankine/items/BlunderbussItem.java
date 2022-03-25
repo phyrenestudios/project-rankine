@@ -5,27 +5,36 @@ import com.cannolicatfish.rankine.entities.EnderballEntity;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineTags;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.enchantment.IVanishable;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.Vanishable;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import com.cannolicatfish.rankine.entities.CannonballEntity;
-import net.minecraft.entity.projectile.DamagingProjectileEntity;
-import net.minecraft.entity.projectile.SmallFireballEntity;
-import net.minecraft.item.*;
+import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 
 import java.util.Random;
 import java.util.function.Predicate;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
-public class BlunderbussItem extends ShootableItem implements IVanishable {
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.item.UseAnim;
+
+public class BlunderbussItem extends ProjectileWeaponItem implements Vanishable {
     public static final Predicate<ItemStack> CANNONBALLS = (p_220002_0_) -> {
         return RankineTags.Items.CANNONBALLS.contains(p_220002_0_.getItem());
     };
@@ -48,10 +57,10 @@ public class BlunderbussItem extends ShootableItem implements IVanishable {
         return 15;
     }
 
-    public void releaseUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
-        if (entityLiving instanceof PlayerEntity && timeLeft < 71975) {
-            PlayerEntity playerentity = (PlayerEntity)entityLiving;
-            boolean flag = playerentity.abilities.instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, stack) > 0;
+    public void releaseUsing(ItemStack stack, Level worldIn, LivingEntity entityLiving, int timeLeft) {
+        if (entityLiving instanceof Player && timeLeft < 71975) {
+            Player playerentity = (Player)entityLiving;
+            boolean flag = playerentity.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, stack) > 0;
             ItemStack itemstack = playerentity.getProjectile(stack);
 
             int i = this.getUseDuration(stack) - timeLeft;
@@ -66,10 +75,10 @@ public class BlunderbussItem extends ShootableItem implements IVanishable {
                 float f = getBulletVelocity(i);
                 if (!((double)f < 0.1D)) {
                     if (!worldIn.isClientSide) {
-                        Vector3d vector3d = playerentity.getViewVector(1.0F);
+                        Vec3 vector3d = playerentity.getViewVector(1.0F);
                         playerentity.knockback(1,-vector3d.x,-vector3d.z);
                         Random random = worldIn.getRandom();
-                        Vector3d inaccuracy = new Vector3d((random.nextInt(20)-10)/100f,(random.nextInt(20) - 10)/100f,(random.nextInt(20) - 10)/100f);
+                        Vec3 inaccuracy = new Vec3((random.nextInt(20)-10)/100f,(random.nextInt(20) - 10)/100f,(random.nextInt(20) - 10)/100f);
                         if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ACCURACY,stack) > 0) {
                             inaccuracy = inaccuracy.scale(1 - 0.33*EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ACCURACY,stack));
                         }
@@ -77,7 +86,7 @@ public class BlunderbussItem extends ShootableItem implements IVanishable {
                         double d3 = playerentity.getY(0.5D) - (playerentity.getY(0.5D) + vector3d.y) + inaccuracy.y;
                         double d4 = playerentity.getZ() - (playerentity.getZ() + vector3d.z) + inaccuracy.z;
 
-                        DamagingProjectileEntity cannonball;
+                        AbstractHurtingProjectile cannonball;
                         if (itemstack.getItem() == RankineItems.CANNONBALL.get()) {
                             if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDPLAY,stack) > 0) {
                                 cannonball = new EnderballEntity(worldIn, playerentity,-d2*2, -d3*2, -d4*2);
@@ -87,7 +96,7 @@ public class BlunderbussItem extends ShootableItem implements IVanishable {
                         } else if (itemstack.getItem() == RankineItems.CARCASS.get()) {
                             cannonball = new CarcassEntity(worldIn, playerentity,-d2, -d3, -d4);
                         } else if (itemstack.getItem() == Items.FIRE_CHARGE) {
-                            cannonball = new SmallFireballEntity(worldIn, playerentity,-d2, -d3, -d4);
+                            cannonball = new SmallFireball(worldIn, playerentity,-d2, -d3, -d4);
                         } else if (itemstack.getItem() == RankineItems.ENDERBALL.get()) {
                             cannonball = new EnderballEntity(worldIn, playerentity,-d2*2, -d3*2, -d4*2);
                         }else {
@@ -103,11 +112,11 @@ public class BlunderbussItem extends ShootableItem implements IVanishable {
                         worldIn.addFreshEntity(cannonball);
                     }
 
-                    worldIn.playSound((PlayerEntity)null, playerentity.getX(), playerentity.getY(), playerentity.getZ(), SoundEvents.GENERIC_EXPLODE, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
-                    if (!playerentity.abilities.instabuild) {
+                    worldIn.playSound((Player)null, playerentity.getX(), playerentity.getY(), playerentity.getZ(), SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 1.0F, 1.0F / (worldIn.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    if (!playerentity.getAbilities().instabuild) {
                         itemstack.shrink(1);
                         if (itemstack.isEmpty()) {
-                            playerentity.inventory.removeItem(itemstack);
+                            playerentity.getInventory().removeItem(itemstack);
                         }
                     }
 
@@ -137,26 +146,26 @@ public class BlunderbussItem extends ShootableItem implements IVanishable {
     /**
      * returns the action that specifies what animation to play when the items is being used
      */
-    public UseAction getUseAnimation(ItemStack stack) {
-        return UseAction.BOW;
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.BOW;
     }
 
-    public DamagingProjectileEntity customProjectile(DamagingProjectileEntity arrow) {
+    public AbstractHurtingProjectile customProjectile(AbstractHurtingProjectile arrow) {
         return arrow;
     }
 
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         boolean flag = !playerIn.getProjectile(itemstack).isEmpty();
 
-        ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, worldIn, playerIn, handIn, flag);
+        InteractionResultHolder<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, worldIn, playerIn, handIn, flag);
         if (ret != null) return ret;
 
-        if (!playerIn.abilities.instabuild && !flag) {
-            return flag ? new ActionResult<>(ActionResultType.PASS, itemstack) : new ActionResult<>(ActionResultType.FAIL, itemstack);
+        if (!playerIn.getAbilities().instabuild && !flag) {
+            return flag ? new InteractionResultHolder<>(InteractionResult.PASS, itemstack) : new InteractionResultHolder<>(InteractionResult.FAIL, itemstack);
         } else {
             playerIn.startUsingItem(handIn);
-            return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+            return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
         }
     }
 }

@@ -5,28 +5,31 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.Arrays;
 import java.util.Random;
 
-public class EndMeteoriteFeature extends Feature<NoFeatureConfig> {
-    public EndMeteoriteFeature(Codec<NoFeatureConfig> p_i49915_1_) {
+public class EndMeteoriteFeature extends Feature<NoneFeatureConfiguration> {
+    public EndMeteoriteFeature(Codec<NoneFeatureConfiguration> p_i49915_1_) {
         super(p_i49915_1_);
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
 
         if (rand.nextFloat() < Config.MISC_WORLDGEN.END_METEORITE_CHANCE.get()) {
-            IChunk chunk = reader.getChunk(pos);
+            ChunkAccess chunk = reader.getChunk(pos);
             int randX = chunk.getPos().getMinBlockX() + rand.nextInt(16) + 8;
             int randY = rand.nextInt(70) + 20;
             int randZ = chunk.getPos().getMaxBlockZ() + rand.nextInt(16 + 8);

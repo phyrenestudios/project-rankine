@@ -5,24 +5,24 @@ import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
-public class StrippingRecipe implements IRecipe<IInventory> {
+public class StrippingRecipe implements Recipe<Container> {
 
     public static final StrippingRecipe.Serializer SERIALIZER = new StrippingRecipe.Serializer();
     protected Ingredient ingredient;
@@ -47,12 +47,12 @@ public class StrippingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         return this.ingredient.test(inv.getItem(0));
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -89,17 +89,17 @@ public class StrippingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.STRIPPING;
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "item");
+        String s = GsonHelper.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -112,19 +112,19 @@ public class StrippingRecipe implements IRecipe<IInventory> {
         }
     }
 
-    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<StrippingRecipe> {
+    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<StrippingRecipe> {
 
         @Override
         public StrippingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             float w = json.has("chance") ? json.get("chance").getAsFloat() : 0.0f;
-            Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input"));
-            ItemStack result = deserializeItem(JSONUtils.getAsJsonObject(json, "result"));
+            Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
+            ItemStack result = deserializeItem(GsonHelper.getAsJsonObject(json, "result"));
             return new StrippingRecipe(recipeId,ingredient,result,w);
         }
 
         @Nullable
         @Override
-        public StrippingRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public StrippingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
 
             Ingredient input = Ingredient.fromNetwork(buffer);
 
@@ -135,7 +135,7 @@ public class StrippingRecipe implements IRecipe<IInventory> {
         }
 
         @Override
-        public void toNetwork(PacketBuffer buffer, StrippingRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, StrippingRecipe recipe) {
             recipe.getIngredient().toNetwork(buffer);
             buffer.writeItem(recipe.getResult());
             buffer.writeFloat(recipe.chance);

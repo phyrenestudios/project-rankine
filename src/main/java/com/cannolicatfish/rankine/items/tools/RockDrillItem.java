@@ -1,21 +1,21 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.BlockGetter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class RockDrillItem extends Item {
 
@@ -23,8 +23,8 @@ public class RockDrillItem extends Item {
         super(properties);
     }
 
-    public ActionResultType useOn(ItemUseContext context) {
-        IBlockReader reader = context.getLevel();
+    public InteractionResult useOn(UseOnContext context) {
+        BlockGetter reader = context.getLevel();
         BlockPos pos = context.getClickedPos();
         List<Block> stones = new ArrayList<Block>();
 
@@ -35,14 +35,14 @@ public class RockDrillItem extends Item {
             }
         }
         if (!context.getLevel().isClientSide && context.getPlayer() != null) {
-            PlayerEntity player = context.getPlayer();
+            Player player = context.getPlayer();
             if (!stones.isEmpty()) {
-                player.sendMessage(new StringTextComponent("== STONES LIST ==").withStyle(TextFormatting.GOLD),player.getUUID());
+                player.sendMessage(new TextComponent("== STONES LIST ==").withStyle(ChatFormatting.GOLD),player.getUUID());
                 for (Block s : stones) {
-                    player.sendMessage(new TranslationTextComponent(s.getDescriptionId()),player.getUUID());
+                    player.sendMessage(new TranslatableComponent(s.getDescriptionId()),player.getUUID());
                 }
             } else {
-                player.sendMessage(new StringTextComponent("No stones detected"),player.getUUID());
+                player.sendMessage(new TextComponent("No stones detected"),player.getUUID());
             }
             context.getItemInHand().hurtAndBreak(1,player,(p_220040_1_) -> {
                 p_220040_1_.broadcastBreakEvent(context.getHand());
@@ -51,7 +51,7 @@ public class RockDrillItem extends Item {
         }
 
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
 
     }
 

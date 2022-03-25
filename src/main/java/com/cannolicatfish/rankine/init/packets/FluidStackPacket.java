@@ -1,11 +1,11 @@
 package com.cannolicatfish.rankine.init.packets;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.BlockPos;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -15,7 +15,7 @@ public class FluidStackPacket {
     public final BlockPos pos;
     public final boolean input;
 
-    public FluidStackPacket(PacketBuffer buffer) {
+    public FluidStackPacket(FriendlyByteBuf buffer) {
         this.fluidStack = buffer.readFluidStack();
         this.pos = buffer.readBlockPos();
         this.input = buffer.readBoolean();
@@ -27,7 +27,7 @@ public class FluidStackPacket {
         this.input = input;
     }
 
-    public static void encode(FluidStackPacket packet, PacketBuffer buffer) {
+    public static void encode(FluidStackPacket packet, FriendlyByteBuf buffer) {
         buffer.writeFluidStack(packet.fluidStack);
         buffer.writeBlockPos(packet.pos);
         buffer.writeBoolean(packet.input);

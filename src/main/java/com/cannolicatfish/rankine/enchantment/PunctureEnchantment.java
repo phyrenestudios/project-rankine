@@ -2,15 +2,14 @@ package com.cannolicatfish.rankine.enchantment;
 
 import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.damagesource.DamageSource;
 
 public class PunctureEnchantment extends Enchantment {
-    public PunctureEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
+    public PunctureEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlot... p_i46721_2_) {
         super(p_i46721_1_, RankineEnchantmentTypes.SPEAR, p_i46721_2_);
     }
 

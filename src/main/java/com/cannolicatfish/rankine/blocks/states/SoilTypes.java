@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks.states;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum SoilTypes implements IStringSerializable {
+public enum SoilTypes implements StringRepresentable {
     DIRT("dirt"),
     LOAM("loam"),
     HUMUS("humus"),

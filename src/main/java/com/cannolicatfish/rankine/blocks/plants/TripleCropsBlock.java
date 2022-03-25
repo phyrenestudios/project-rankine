@@ -1,30 +1,35 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
 
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
-public class TripleCropsBlock extends CropsBlock {
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class TripleCropsBlock extends CropBlock {
     public static final EnumProperty<TripleBlockSection> SECTION = EnumProperty.create("section", TripleBlockSection.class);
     private static final VoxelShape[] BOTTOM_SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
     private static final VoxelShape[] MIDDLE_SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
@@ -35,17 +40,17 @@ public class TripleCropsBlock extends CropsBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(SECTION, TripleBlockSection.BOTTOM).setValue(AGE, 0));
     }
 
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE, SECTION);
     }
 
     @Override
-    public AbstractBlock.OffsetType getOffsetType() {
-        return AbstractBlock.OffsetType.XZ;
+    public BlockBehaviour.OffsetType getOffsetType() {
+        return BlockBehaviour.OffsetType.XZ;
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         switch (state.getValue(SECTION)) {
             case BOTTOM:
                 return BOTTOM_SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
@@ -62,12 +67,12 @@ public class TripleCropsBlock extends CropsBlock {
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
         return state.is(Blocks.FARMLAND);
     }
 
     @Override
-    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         switch (state.getValue(SECTION)) {
             default:
             case BOTTOM:
@@ -87,7 +92,7 @@ public class TripleCropsBlock extends CropsBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         TripleBlockSection tripleBlockSection = stateIn.getValue(SECTION);
         switch (tripleBlockSection) {
             case BOTTOM:
@@ -109,7 +114,7 @@ public class TripleCropsBlock extends CropsBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
         if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         if (worldIn.getRawBrightness(pos, 0) >= 9) {
             if ((worldIn.getBlockState(pos.above(1)).is(Blocks.AIR) || worldIn.getBlockState(pos.above(1)).is(this)) && (worldIn.getBlockState(pos.above(2)).is(Blocks.AIR) || worldIn.getBlockState(pos.above(2)).is(this))) {
@@ -128,7 +133,7 @@ public class TripleCropsBlock extends CropsBlock {
     }
 
     @Override
-    public void growCrops(World worldIn, BlockPos pos, BlockState state) {
+    public void growCrops(Level worldIn, BlockPos pos, BlockState state) {
         int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
         int j = this.getMaxAge();
         if (i > j) {
@@ -154,7 +159,7 @@ public class TripleCropsBlock extends CropsBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
         switch (state.getValue(SECTION)) {
             case BOTTOM:
             case MIDDLE:
@@ -166,18 +171,18 @@ public class TripleCropsBlock extends CropsBlock {
     }
 
     @Override
-    public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         if (!worldIn.isClientSide) {
             if (player.isCreative()) {
                 removeLowerSections(worldIn, pos, state, player);
             } else {
-                dropResources(state, worldIn, pos, (TileEntity)null, player, player.getMainHandItem());
+                dropResources(state, worldIn, pos, (BlockEntity)null, player, player.getMainHandItem());
             }
         }
         super.playerWillDestroy(worldIn, pos, state, player);
     }
 
-    protected static void removeLowerSections(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    protected static void removeLowerSections(Level world, BlockPos pos, BlockState state, Player player) {
         if (state.getValue(SECTION).equals(TripleBlockSection.TOP)) {
             BlockPos blockpos = pos.below(2);
             BlockState blockstate = world.getBlockState(blockpos);
@@ -198,10 +203,10 @@ public class TripleCropsBlock extends CropsBlock {
 
     @OnlyIn(Dist.CLIENT)
     public long getSeed(BlockState state, BlockPos pos) {
-        return MathHelper.getSeed(pos.getX(), pos.below(state.getValue(SECTION) == TripleBlockSection.BOTTOM ? 0 : 1).getY(), pos.getZ());
+        return Mth.getSeed(pos.getX(), pos.below(state.getValue(SECTION) == TripleBlockSection.BOTTOM ? 0 : 1).getY(), pos.getZ());
     }
 
-    public void placeAt(IWorld worldIn, BlockPos pos, int flags) {
+    public void placeAt(LevelAccessor worldIn, BlockPos pos, int flags) {
         worldIn.setBlock(pos, this.defaultBlockState().setValue(AGE, 7).setValue(SECTION, TripleBlockSection.BOTTOM), flags);
         worldIn.setBlock(pos.above(), this.defaultBlockState().setValue(AGE, 7).setValue(SECTION, TripleBlockSection.MIDDLE), flags);
         worldIn.setBlock(pos.above(2), this.defaultBlockState().setValue(AGE, 7).setValue(SECTION, TripleBlockSection.TOP), flags);

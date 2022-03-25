@@ -1,11 +1,11 @@
 package com.cannolicatfish.rankine.util.colors;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
 
-public class LeavesItemBaseColor implements IItemColor {
+public class LeavesItemBaseColor implements ItemColor {
 
     @Override
     public int getColor(ItemStack stack, int color) {

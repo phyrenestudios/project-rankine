@@ -1,22 +1,22 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class MapleLeavesBlock extends LeavesBlock {
     public static final IntegerProperty COLOR = IntegerProperty.create("color",0,6);
@@ -32,7 +32,7 @@ public class MapleLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
         if (!state.getValue(PERSISTENT)) {
             if (random.nextFloat() < 0.005) {
                 this.atumnize(state, worldIn.getLevel(), pos);
@@ -44,9 +44,9 @@ public class MapleLeavesBlock extends LeavesBlock {
         }
     }
 
-    private static BlockState updateDistance(BlockState state, IWorld worldIn, BlockPos pos) {
+    private static BlockState updateDistance(BlockState state, LevelAccessor worldIn, BlockPos pos) {
         int i = 7;
-        BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+        BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
         for(Direction direction : Direction.values()) {
             blockpos$mutable.setWithOffset(pos, direction);
@@ -68,16 +68,16 @@ public class MapleLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         return updateDistance(this.defaultBlockState().setValue(PERSISTENT, Boolean.TRUE).setValue(COLOR,0), context.getLevel(), context.getClickedPos());
     }
 
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(DISTANCE, PERSISTENT, COLOR);
     }
 
 
-    protected void atumnize(BlockState state, World worldIn, BlockPos pos) {
+    protected void atumnize(BlockState state, Level worldIn, BlockPos pos) {
         if (state.getValue(COLOR) != 6) {
             worldIn.setBlock(pos, RankineBlocks.MAPLE_LEAVES.get().defaultBlockState().setValue(DISTANCE, state.getValue(DISTANCE)).setValue(PERSISTENT, state.getValue(PERSISTENT)).setValue(COLOR, state.getValue(COLOR)+1),2);
         }

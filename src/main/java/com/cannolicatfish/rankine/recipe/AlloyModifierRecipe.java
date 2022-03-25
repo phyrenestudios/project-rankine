@@ -6,19 +6,19 @@ import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import net.minecraft.block.Block;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class AlloyModifierRecipe implements IRecipe<IInventory> {
+public class AlloyModifierRecipe implements Recipe<Container> {
 
     public static final AlloyModifierRecipe.Serializer SERIALIZER = new AlloyModifierRecipe.Serializer();
     protected Ingredient ingredient;
@@ -52,12 +52,12 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         return this.ingredient.test(inv.getItem(0));
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -98,17 +98,17 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.ALLOY_MODIFIER;
     }
 
     public static ItemStack deserializeBlock(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "block");
+        String s = GsonHelper.getAsString(object, "block");
 
         Block block = Registry.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonParseException("Unknown block '" + s + "'");
@@ -121,19 +121,19 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
         }
     }
 
-    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<AlloyModifierRecipe> {
+    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<AlloyModifierRecipe> {
 
         @Override
         public AlloyModifierRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             String[] s = recipeId.getPath().split("/");
             String nm = recipeId.getNamespace() + ":" + s[s.length-1];
-            Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input"));
+            Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
 
             List<AlloyModifier> alloyModifiers = new ArrayList<>();
             if (json.has("modifiers")) {
-                JsonArray modTypes = JSONUtils.getAsJsonArray(json,"modifiers");
-                JsonArray modConds = JSONUtils.getAsJsonArray(json,"modifierTypes");
-                JsonArray modVals = JSONUtils.getAsJsonArray(json,"values");
+                JsonArray modTypes = GsonHelper.getAsJsonArray(json,"modifiers");
+                JsonArray modConds = GsonHelper.getAsJsonArray(json,"modifierTypes");
+                JsonArray modVals = GsonHelper.getAsJsonArray(json,"values");
                 for (int i = 0; i < modTypes.size(); i++) {
                     String inName = nm + "_" + modTypes.get(i).getAsString().toLowerCase(Locale.ROOT);
                     alloyModifiers.add(new AlloyModifier(inName,modTypes.get(i).getAsString().toUpperCase(Locale.ROOT),modConds.get(i).getAsString().toUpperCase(Locale.ROOT),modVals.get(i).getAsFloat()));
@@ -143,8 +143,8 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
             List<String> enchantmentTypes = new ArrayList<>();
 
             if (json.has("enchantments")) {
-                JsonArray e = JSONUtils.getAsJsonArray(json,"enchantments");
-                JsonArray eTypes = JSONUtils.getAsJsonArray(json,"enchantmentTypes");
+                JsonArray e = GsonHelper.getAsJsonArray(json,"enchantments");
+                JsonArray eTypes = GsonHelper.getAsJsonArray(json,"enchantmentTypes");
                 for (int i = 0; i < e.size(); i++) {
                     enchantments.add(e.get(i).getAsString().toLowerCase(Locale.ROOT));
                     enchantmentTypes.add(eTypes.get(i).getAsString().toUpperCase(Locale.ROOT));
@@ -155,7 +155,7 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
 
         @Nullable
         @Override
-        public AlloyModifierRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public AlloyModifierRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             String[] s = recipeId.getPath().split("/");
             String nm = recipeId.getNamespace() + ":" + s[s.length-1];
             Ingredient input = Ingredient.fromNetwork(buffer);
@@ -182,7 +182,7 @@ public class AlloyModifierRecipe implements IRecipe<IInventory> {
         }
 
         @Override
-        public void toNetwork(PacketBuffer buffer, AlloyModifierRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, AlloyModifierRecipe recipe) {
             recipe.getIngredient().toNetwork(buffer);
 
             int size = recipe.getModifiers().size();

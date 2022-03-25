@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class MetronomeBlock extends Block {
 

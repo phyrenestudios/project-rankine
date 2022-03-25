@@ -5,10 +5,8 @@ import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.RockGeneratorUtils;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.item.crafting.ICraftingRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.RecipeManager;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.world.item.crafting.RecipeManager;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -19,7 +17,7 @@ public class RankineJEIRecipes {
     private final RecipeManager recipeManager;
 
     public RankineJEIRecipes() {
-        ClientWorld world = Minecraft.getInstance().level;
+        ClientLevel world = Minecraft.getInstance().level;
         checkNotNull(world, "minecraft world");
         this.recipeManager = world.getRecipeManager();
     }

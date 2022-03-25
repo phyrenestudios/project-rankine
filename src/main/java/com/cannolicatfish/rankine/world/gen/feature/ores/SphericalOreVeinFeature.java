@@ -3,11 +3,12 @@ package com.cannolicatfish.rankine.world.gen.feature.ores;
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import java.util.Random;
 
@@ -18,7 +19,12 @@ public class SphericalOreVeinFeature extends Feature<RankineOreFeatureConfig> {
     }
 
 
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, RankineOreFeatureConfig config) {
+    @Override
+    public boolean place(FeaturePlaceContext<RankineOreFeatureConfig> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
+        RankineOreFeatureConfig config = p_159749_.config();
         BlockPos posShift = pos.offset(8,0,8);
 
         if (rand.nextFloat() < 1 - config.chance) {

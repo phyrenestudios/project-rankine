@@ -6,21 +6,21 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineSoundEvents;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.util.RockGeneratorUtils;
-import net.minecraft.block.Block;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -30,10 +30,10 @@ import java.util.Random;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.SEDIMENT_FAN_TILE;
 
-public class SedimentFanTile extends TileEntity implements ITickableTileEntity {
+public class SedimentFanTile extends BlockEntity {
 
-    public SedimentFanTile() {
-        super(SEDIMENT_FAN_TILE);
+    public SedimentFanTile(BlockPos posIn, BlockState stateIn) {
+        super(SEDIMENT_FAN_TILE, posIn, stateIn);
     }
 
     public void tick() {
@@ -67,7 +67,7 @@ public class SedimentFanTile extends TileEntity implements ITickableTileEntity {
                     ItemStack[] items = adjPos2.stream().map(ItemStack::new).toArray(ItemStack[]::new);
                     RockGeneratorRecipe recipe = level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
                         if (r.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {
-                            return Util.toStream(RankineRecipeTypes.ROCK_GENERATOR.tryMatch(r, level, new Inventory(items)));
+                            return Util.toStream(RankineRecipeTypes.ROCK_GENERATOR.tryMatch(r, level, new SimpleContainer(items)));
                         }
                         return null;
                     }).findFirst().orElse(null);
@@ -75,11 +75,11 @@ public class SedimentFanTile extends TileEntity implements ITickableTileEntity {
                         ItemStack output = recipe.getResultItem();
                         if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                             level.setBlock(end, ((BlockItem) output.getItem()).getBlock().defaultBlockState(), 19);
-                            level.playSound(null,end, RankineSoundEvents.SEDIMENT_FAN_GEN.get(), SoundCategory.BLOCKS,1.0f,1.0f);
+                            level.playSound(null,end, RankineSoundEvents.SEDIMENT_FAN_GEN.get(), SoundSource.BLOCKS,1.0f,1.0f);
                         }
                     } else {
                         level.setBlock(end, RankineBlocks.BRECCIA.get().defaultBlockState(), 19);
-                        level.playSound(null, end, SoundEvents.SAND_HIT, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                        level.playSound(null, end, SoundEvents.SAND_HIT, SoundSource.BLOCKS, 1.0f, 1.0f);
                     }
                     if (level.getRandom().nextFloat() < Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get()) {
                         level.removeBlock(worldPosition.relative(dir,level.random.nextBoolean() ? 1 : 2),false);
@@ -91,7 +91,7 @@ public class SedimentFanTile extends TileEntity implements ITickableTileEntity {
 
 
     @OnlyIn(Dist.CLIENT)
-    public static void spawnParticles(World worldIn, BlockPos pos) {
+    public static void spawnParticles(Level worldIn, BlockPos pos) {
         Random random = worldIn.getRandom();
         double d0 = (double)pos.getX() + random.nextDouble();
         double d1 = (double)pos.getY() - 0.05D;

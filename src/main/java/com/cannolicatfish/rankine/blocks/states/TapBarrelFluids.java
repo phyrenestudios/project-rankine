@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks.states;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum TapBarrelFluids implements IStringSerializable {
+public enum TapBarrelFluids implements StringRepresentable {
     WATER("water"),
     LAVA("lava"),
     SAP("sap"),

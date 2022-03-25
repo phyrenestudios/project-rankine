@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks.states;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum VerticalSlabStates implements IStringSerializable {
+public enum VerticalSlabStates implements StringRepresentable {
     STRAIGHT("straight"),
     DOUBLE("double"),
     INNER("inner"),

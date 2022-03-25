@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.data;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.EntityTypeTagsProvider;
+import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -19,7 +19,7 @@ public class RankineEntityTypeTagsProvider extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags() {
-        tag(EntityTypeTags.ARROWS).add(RankineEntityTypes.ALLOY_ARROW,RankineEntityTypes.MAGNESIUM_ARROW,RankineEntityTypes.THORIUM_ARROW,RankineEntityTypes.ROPE_COIL_ARROW);
+        tag(EntityTypeTags.ARROWS).add(RankineEntityTypes.ALLOY_ARROW,RankineEntityTypes.ROPE_COIL_ARROW);
 
     }
 

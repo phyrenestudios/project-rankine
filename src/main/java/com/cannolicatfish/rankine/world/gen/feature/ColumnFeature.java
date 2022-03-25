@@ -4,41 +4,44 @@ import com.cannolicatfish.rankine.blocks.StoneColumnBlock;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.Random;
 
-public class ColumnFeature extends Feature<NoFeatureConfig> {
-    public ColumnFeature(Codec<NoFeatureConfig> p_i49915_1_) {
+public class ColumnFeature extends Feature<NoneFeatureConfiguration> {
+    public ColumnFeature(Codec<NoneFeatureConfiguration> p_i49915_1_) {
         super(p_i49915_1_);
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
         for (int X = 0; X < 16; ++ X) {
             for (int Z = 0; Z < 16; ++ Z) {
                 if (rand.nextFloat() < Config.MISC_WORLDGEN.COLUMN_CHANCE.get()) {
-                    IChunk chunk = reader.getChunk(pos);
+                    ChunkAccess chunk = reader.getChunk(pos);
                     int randX = chunk.getPos().getMinBlockX() + X;
                     int randZ = chunk.getPos().getMinBlockZ() + Z;
 
                     BlockPos topPos = new BlockPos(randX, 0, randZ);
                     BlockPos bottomPos;
-                    int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, topPos.getX(), topPos.getZ());
-                    if (reader.getBiome(topPos).getBiomeCategory() != Biome.Category.NETHER && reader.getBiome(topPos).getBiomeCategory() != Biome.Category.THEEND) {
+                    int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, topPos.getX(), topPos.getZ());
+                    if (reader.getBiome(topPos).getBiomeCategory() != Biome.BiomeCategory.NETHER && reader.getBiome(topPos).getBiomeCategory() != Biome.BiomeCategory.THEEND) {
                         for (int y = endY; y > 1; --y) {
                             topPos = new BlockPos(randX, y, randZ);
-                            if (RankineLists.STONES.contains(reader.getBlockState(topPos).getBlock()) && reader.getBlockState(topPos.below()).isAir(reader,topPos.below())) {
+                            if (RankineLists.STONES.contains(reader.getBlockState(topPos).getBlock()) && reader.getBlockState(topPos.below()).isAir()) {
                                 bottomPos = getBottom(reader, topPos);
                                 if (bottomPos != null) {
                                     if (reader.getBlockState(bottomPos).canOcclude()) {
@@ -69,7 +72,7 @@ public class ColumnFeature extends Feature<NoFeatureConfig> {
         return true;
     }
 
-    public static void createStalactite(ISeedReader reader, BlockPos topPos, BlockPos bottomPos) {
+    public static void createStalactite(WorldGenLevel reader, BlockPos topPos, BlockPos bottomPos) {
         float length = reader.getRandom().nextInt((int) Math.round(2*Math.sqrt(topPos.getY() - bottomPos.getY()))) + 1f;
         if (length > 12) return;
         int maxSize = reader.getRandom().nextInt(2) + Math.round(length/2f);
@@ -81,7 +84,7 @@ public class ColumnFeature extends Feature<NoFeatureConfig> {
     }
 
 
-    public static void createColumn(ISeedReader reader, BlockPos topPos, BlockPos bottomPos) {
+    public static void createColumn(WorldGenLevel reader, BlockPos topPos, BlockPos bottomPos) {
         float length = topPos.getY() - bottomPos.getY();
         if (length > 32) return;
         int maxSize = reader.getRandom().nextInt(2) + Math.round(length/2f);
@@ -93,9 +96,9 @@ public class ColumnFeature extends Feature<NoFeatureConfig> {
         }
     }
 
-    public static BlockPos getBottom(ISeedReader worldIn, BlockPos topPos) {
+    public static BlockPos getBottom(WorldGenLevel worldIn, BlockPos topPos) {
         for (int i = 2; i < topPos.getY(); ++i) {
-            if (!worldIn.getBlockState(topPos.below(i)).isAir(worldIn,topPos.below(i)) && !worldIn.getBlockState(topPos.below(i)).is(Blocks.WATER)) {
+            if (!worldIn.getBlockState(topPos.below(i)).isAir() && !worldIn.getBlockState(topPos.below(i)).is(Blocks.WATER)) {
                 return topPos.below(i);
             }
         }

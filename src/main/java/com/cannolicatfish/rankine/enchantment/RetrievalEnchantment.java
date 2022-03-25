@@ -2,11 +2,11 @@ package com.cannolicatfish.rankine.enchantment;
 
 import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.entity.EquipmentSlot;
 
 public class RetrievalEnchantment extends Enchantment {
-    public RetrievalEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
+    public RetrievalEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlot... p_i46721_2_) {
         super(p_i46721_1_, RankineEnchantmentTypes.CROWBAR, p_i46721_2_);
     }
 

@@ -4,15 +4,15 @@ import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
 import com.cannolicatfish.rankine.items.alloys.AlloyKnifeItem;
 import com.cannolicatfish.rankine.items.alloys.AlloyPickaxeItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.ResourceLocation;
 
-import net.minecraft.enchantment.Enchantment.Rarity;
+import net.minecraft.world.item.enchantment.Enchantment.Rarity;
 
 public class EndlessEnchantment extends Enchantment {
-    public EndlessEnchantment(Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
+    public EndlessEnchantment(Rarity p_i46721_1_, EquipmentSlot... p_i46721_2_) {
         super(p_i46721_1_, RankineEnchantmentTypes.ENDER_AMALGAM_PICKAXE, p_i46721_2_);
     }
 

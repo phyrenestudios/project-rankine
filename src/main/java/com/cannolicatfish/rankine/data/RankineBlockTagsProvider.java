@@ -3,12 +3,12 @@ package com.cannolicatfish.rankine.data;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.data.BlockTagsProvider;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -217,7 +217,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(RankineTags.Blocks.PATH_BLOCKS).add(blk);
         }
         tag(RankineTags.Blocks.PATH_BLOCKS).add(RankineBlocks.MYCELIUM_PATH.get());
-        tag(RankineTags.Blocks.PATH_BLOCKS).add(Blocks.GRASS_PATH);
+        tag(RankineTags.Blocks.PATH_BLOCKS).add(Blocks.DIRT_PATH);
 
         for (Block blk : Stream.of(RankineLists.MUD_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(RankineTags.Blocks.MUD).add(blk);

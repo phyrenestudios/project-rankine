@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.util.alloys;
 
 import com.cannolicatfish.rankine.items.alloys.*;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 
 import java.util.Arrays;
 import java.util.List;

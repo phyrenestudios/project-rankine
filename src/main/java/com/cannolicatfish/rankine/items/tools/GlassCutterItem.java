@@ -3,35 +3,40 @@ package com.cannolicatfish.rankine.items.tools;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.ToolItem;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.DiggerItem;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 import java.util.Set;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
-public class GlassCutterItem extends ToolItem {
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
 
-    private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(Blocks.GLASS);
+public class GlassCutterItem extends DiggerItem {
 
     public GlassCutterItem(Properties properties) {
-        super(1.0f, -3.0f, RankineToolMaterials.PEWTER, EFFECTIVE_ON, properties);
+        super(1.0f, -3.0f, RankineToolMaterials.PEWTER, RankineTags.Blocks.GLASS_CUTTER, properties);
     }
 
     /**
@@ -39,24 +44,19 @@ public class GlassCutterItem extends ToolItem {
      */
     @Override
     public boolean isCorrectToolForDrops(BlockState blockIn) {
-        int i = this.getTier().getLevel();
-        if (blockIn.is(RankineTags.Blocks.GLASS_CUTTER)) {
-            return i >= blockIn.getHarvestLevel();
-        }
         Material material = blockIn.getMaterial();
         return material == Material.GLASS;
     }
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
-        if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return speed;
         return state.is(RankineTags.Blocks.GLASS_CUTTER) ? this.speed : 0.1F;
     }
 
     @Nonnull
-    public ActionResultType useOn(ItemUseContext context) {
-        PlayerEntity playerentity = context.getPlayer();
-        IWorld iworld = context.getLevel();
+    public InteractionResult useOn(UseOnContext context) {
+        Player playerentity = context.getPlayer();
+        LevelAccessor iworld = context.getLevel();
         BlockPos blockpos = context.getClickedPos();
         BlockState blockstate = iworld.getBlockState(blockpos);
         if (playerentity != null) {
@@ -68,7 +68,7 @@ public class GlassCutterItem extends ToolItem {
             Block b = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(blockstate.getBlock().getRegistryName().toString() + "_pane"));
             if (b != null)
             {
-                iworld.playSound(playerentity, blockpos, SoundEvents.BEE_STING, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 1.8F);
+                iworld.playSound(playerentity, blockpos, SoundEvents.BEE_STING, SoundSource.BLOCKS, 1.0F, iworld.getRandom().nextFloat() * 0.4F + 1.8F);
                 iworld.setBlock(blockpos,b.defaultBlockState(),3);
 
 
@@ -79,18 +79,18 @@ public class GlassCutterItem extends ToolItem {
                 ItemEntity itementity = new ItemEntity(context.getLevel(), (double)blockpos.getX() + d0, (double)blockpos.getY() + d1, (double)blockpos.getZ() + d2, new ItemStack(b,2));
                 itementity.setDefaultPickUpDelay();
                 context.getLevel().addFreshEntity(itementity);
-                return ActionResultType.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
         else
         {
-            return ActionResultType.FAIL;
+            return InteractionResult.FAIL;
         }
-        return ActionResultType.FAIL;
+        return InteractionResult.FAIL;
     }
 
-    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
-        if (group == ItemGroup.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) {
+    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
+        if (group == CreativeModeTab.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) {
             ItemStack stack = new ItemStack(this.asItem(),1);
             stack.enchant(Enchantments.SILK_TOUCH,1);
             items.add(stack);
@@ -98,7 +98,7 @@ public class GlassCutterItem extends ToolItem {
     }
 
     @Override
-    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, Level worldIn, Player playerIn) {
         if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH,stack) != 1){
             stack.enchant(Enchantments.SILK_TOUCH,1);
         }

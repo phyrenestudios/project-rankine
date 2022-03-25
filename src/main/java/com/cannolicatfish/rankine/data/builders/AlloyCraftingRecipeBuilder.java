@@ -9,19 +9,19 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.ICriterionInstance;
-import net.minecraft.advancements.IRequirementsStrategy;
-import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
-import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.advancements.CriterionTriggerInstance;
+import net.minecraft.advancements.RequirementsStrategy;
+import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.data.recipes.FinishedRecipe;
 import com.cannolicatfish.rankine.data.builders.AlloyCraftingRecipeBuilder;
-import net.minecraft.item.Item;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -44,7 +44,7 @@ public class AlloyCraftingRecipeBuilder {
     private final String langName;
     private final int color;
 
-    public AlloyCraftingRecipeBuilder(IItemProvider resultIn, int countIn, boolean inheritIn, String inheritRecipeIn, String langNameIn, int colorIn) {
+    public AlloyCraftingRecipeBuilder(ItemLike resultIn, int countIn, boolean inheritIn, String inheritRecipeIn, String langNameIn, int colorIn) {
         this.result = resultIn.asItem();
         this.count = countIn;
         this.inherit = inheritIn;
@@ -56,52 +56,52 @@ public class AlloyCraftingRecipeBuilder {
     /**
      * Creates a new builder for a shaped recipe.
      */
-    public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn) {
+    public static AlloyCraftingRecipeBuilder shapedRecipe(ItemLike resultIn) {
         return shapedRecipe(resultIn, 1);
     }
 
     /**
      * Creates a new builder for a shaped recipe.
      */
-    public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn, int countIn) {
+    public static AlloyCraftingRecipeBuilder shapedRecipe(ItemLike resultIn, int countIn) {
         return shapedRecipe(resultIn, countIn, false, "","", 16777215);
     }
 
-    public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn, int countIn, boolean inheritIn) {
+    public static AlloyCraftingRecipeBuilder shapedRecipe(ItemLike resultIn, int countIn, boolean inheritIn) {
         return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, "","", 16777215);
     }
 
-    public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn, int countIn, boolean inheritIn, String inheritRecipe) {
+    public static AlloyCraftingRecipeBuilder shapedRecipe(ItemLike resultIn, int countIn, boolean inheritIn, String inheritRecipe) {
         return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, inheritRecipe, "", 16777215);
     }
 
-    public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn, int countIn, boolean inheritIn, String inheritRecipe, String langNameIn) {
+    public static AlloyCraftingRecipeBuilder shapedRecipe(ItemLike resultIn, int countIn, boolean inheritIn, String inheritRecipe, String langNameIn) {
         return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, inheritRecipe, langNameIn, 16777215);
     }
 
-    public static AlloyCraftingRecipeBuilder shapedRecipe(IItemProvider resultIn, int countIn, boolean inheritIn, String inheritRecipe, String langNameIn, int color) {
+    public static AlloyCraftingRecipeBuilder shapedRecipe(ItemLike resultIn, int countIn, boolean inheritIn, String inheritRecipe, String langNameIn, int color) {
         return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, inheritRecipe, langNameIn, color);
     }
 
     /**
      * Adds a key to the recipe pattern.
      */
-    public AlloyCraftingRecipeBuilder key(Character symbol, ITag<Item> tagIn) {
+    public AlloyCraftingRecipeBuilder key(Character symbol, Tag<Item> tagIn) {
         return this.key(symbol, Ingredient.of(tagIn));
     }
 
     /**
      * Adds a key to the recipe pattern.
      */
-    public AlloyCraftingRecipeBuilder key(Character symbol, IItemProvider itemIn) {
+    public AlloyCraftingRecipeBuilder key(Character symbol, ItemLike itemIn) {
         return this.key(symbol, Ingredient.of(itemIn));
     }
 
-    public AlloyCraftingRecipeBuilder alloyKey(Character symbol, ITag<Item> tagIn, String compositionReqsIn, ResourceLocation alloyRecipeIn,String langNameIn,int colorIn) {
+    public AlloyCraftingRecipeBuilder alloyKey(Character symbol, Tag<Item> tagIn, String compositionReqsIn, ResourceLocation alloyRecipeIn,String langNameIn,int colorIn) {
         return this.key(symbol, new AlloyIngredient(Ingredient.of(tagIn),compositionReqsIn,alloyRecipeIn,langNameIn,colorIn));
     }
 
-    public AlloyCraftingRecipeBuilder alloyKey(Character symbol, IItemProvider itemIn, String compositionReqsIn, ResourceLocation alloyRecipeIn,String langNameIn,int colorIn) {
+    public AlloyCraftingRecipeBuilder alloyKey(Character symbol, ItemLike itemIn, String compositionReqsIn, ResourceLocation alloyRecipeIn,String langNameIn,int colorIn) {
         return this.key(symbol, new AlloyIngredient(Ingredient.of(itemIn),compositionReqsIn,alloyRecipeIn,langNameIn,colorIn));
     }
 
@@ -151,7 +151,7 @@ public class AlloyCraftingRecipeBuilder {
     /**
      * Adds a criterion needed to unlock the recipe.
      */
-    public AlloyCraftingRecipeBuilder addCriterion(String name, ICriterionInstance criterionIn) {
+    public AlloyCraftingRecipeBuilder addCriterion(String name, CriterionTriggerInstance criterionIn) {
         this.advancementBuilder.addCriterion(name, criterionIn);
         return this;
     }
@@ -164,7 +164,7 @@ public class AlloyCraftingRecipeBuilder {
     /**
      * Builds this recipe into an {@link IFinishedRecipe}.
      */
-    public void build(Consumer<IFinishedRecipe> consumerIn) {
+    public void build(Consumer<FinishedRecipe> consumerIn) {
         this.build(consumerIn, Registry.ITEM.getKey(this.result));
     }
 
@@ -172,7 +172,7 @@ public class AlloyCraftingRecipeBuilder {
      * Builds this recipe into an {@link IFinishedRecipe}. Use {@link #build(Consumer)} if save is the same as the ID for
      * the result.
      */
-    public void build(Consumer<IFinishedRecipe> consumerIn, String save) {
+    public void build(Consumer<FinishedRecipe> consumerIn, String save) {
         ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result);
         if ((new ResourceLocation(save)).equals(resourcelocation)) {
             throw new IllegalStateException("Shaped Recipe " + save + " should remove its 'save' argument");
@@ -184,9 +184,9 @@ public class AlloyCraftingRecipeBuilder {
     /**
      * Builds this recipe into an {@link IFinishedRecipe}.
      */
-    public void build(Consumer<IFinishedRecipe> consumerIn, ResourceLocation id) {
+    public void build(Consumer<FinishedRecipe> consumerIn, ResourceLocation id) {
         this.validate(id);
-        this.advancementBuilder.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(IRequirementsStrategy.OR);
+        this.advancementBuilder.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(RequirementsStrategy.OR);
         consumerIn.accept(new AlloyCraftingRecipeBuilder.Result(id, this.result, this.count, this.inherit,this.inheritRecipe,this.group == null ? "" : this.group, this.pattern, this.key, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + id.getPath()),this.langName,this.color));
     }
 
@@ -219,7 +219,7 @@ public class AlloyCraftingRecipeBuilder {
         }
     }
 
-    public class Result implements IFinishedRecipe {
+    public class Result implements FinishedRecipe {
         private final ResourceLocation id;
         private final Item result;
         private final int count;
@@ -300,7 +300,7 @@ public class AlloyCraftingRecipeBuilder {
             return array;
         }
 
-        public IRecipeSerializer<?> getType() {
+        public RecipeSerializer<?> getType() {
             return AlloyCraftingRecipe.SERIALIZER;
         }
 

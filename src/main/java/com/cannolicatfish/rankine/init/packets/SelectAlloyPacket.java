@@ -1,12 +1,9 @@
 package com.cannolicatfish.rankine.init.packets;
 
-import net.minecraft.network.IPacket;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.play.IServerPlayNetHandler;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.io.IOException;
 import java.util.function.Supplier;
@@ -14,7 +11,7 @@ import java.util.function.Supplier;
 public class SelectAlloyPacket {
     public final int index;
 
-    public SelectAlloyPacket(PacketBuffer buffer) {
+    public SelectAlloyPacket(FriendlyByteBuf buffer) {
         this.index = buffer.readVarInt();
     }
 
@@ -23,7 +20,7 @@ public class SelectAlloyPacket {
         this.index = index;
     }
 
-    public static void encode(SelectAlloyPacket packet, PacketBuffer buffer) {
+    public static void encode(SelectAlloyPacket packet, FriendlyByteBuf buffer) {
         buffer.writeVarInt(packet.index);
     }
 

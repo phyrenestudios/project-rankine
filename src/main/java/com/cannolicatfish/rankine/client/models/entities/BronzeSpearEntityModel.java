@@ -1,46 +1,42 @@
 package com.cannolicatfish.rankine.client.models.entities;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.DataFixer;
 import com.mojang.datafixers.DataFixerBuilder;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.model.TridentModel;
-import net.minecraft.client.renderer.model.Model;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.model.Model;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class BronzeSpearEntityModel extends Model {
     public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation("rankine:textures/entity/bronze_spear.png");
-    private final ModelRenderer modelRenderer;
+    private final ModelPart modelRenderer;
 
-    public BronzeSpearEntityModel() {
+    public BronzeSpearEntityModel(ModelPart p_171016_) {
         super(RenderType::entitySolid);
-        this.texWidth = 32;
-        this.texHeight = 32;
-        this.modelRenderer = new ModelRenderer(this, 0, 0);
-        this.modelRenderer.addBox(-0.5F, -4.0F, -0.5F, 1, 31, 1, 0.0F);
-        ModelRenderer renderermodel = new ModelRenderer(this, 4, 0);
-        renderermodel.addBox(-1.5F, -2.0F, -0.5F, 3, 2, 1);
-        this.modelRenderer.addChild(renderermodel);
-        /*
-        ModelRenderer renderermodel1 = new ModelRenderer(this, 4, 3);
-        renderermodel1.addBox(-2.5F, -3.0F, -0.5F, 1, 4, 1);
-        this.modelRenderer.addChild(renderermodel1);
-        ModelRenderer renderermodel2 = new ModelRenderer(this, 4, 3);
-        renderermodel2.mirror = true;
-        renderermodel2.addBox(1.5F, -3.0F, -0.5F, 1, 4, 1);
-        this.modelRenderer.addChild(renderermodel2);
-
-         */
-
+        this.modelRenderer = p_171016_;
     }
 
-    public void renderToBuffer(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public static LayerDefinition createLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+        PartDefinition partdefinition1 = partdefinition.addOrReplaceChild("pole", CubeListBuilder.create().texOffs(0, 6).addBox(-0.5F, 2.0F, -0.5F, 1.0F, 25.0F, 1.0F), PartPose.ZERO);
+        partdefinition1.addOrReplaceChild("base", CubeListBuilder.create().texOffs(4, 0).addBox(-1.5F, 0.0F, -0.5F, 3.0F, 2.0F, 1.0F), PartPose.ZERO);
+        partdefinition1.addOrReplaceChild("middle_spike", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, -4.0F, -0.5F, 1.0F, 4.0F, 1.0F), PartPose.ZERO);
+        return LayerDefinition.create(meshdefinition, 32, 32);
+    }
+
+    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         this.modelRenderer.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
     }
 }

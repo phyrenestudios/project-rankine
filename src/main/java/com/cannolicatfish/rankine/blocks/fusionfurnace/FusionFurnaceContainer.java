@@ -5,45 +5,45 @@ import com.cannolicatfish.rankine.init.packets.FluidStackPacket;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.GasBottleItem;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.GlassBottleItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.IntArray;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.BottleItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.FUSION_FURNACE_CONTAINER;
 
-public class FusionFurnaceContainer extends Container {
-    private final IInventory furnaceInventory;
-    private TileEntity tileEntity;
-    private PlayerEntity playerEntity;
+public class FusionFurnaceContainer extends AbstractContainerMenu {
+    private final Container furnaceInventory;
+    private BlockEntity tileEntity;
+    private Player playerEntity;
     private IItemHandler playerInventory;
-    private final IIntArray data;
+    private final ContainerData data;
 
-    public FusionFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player,new Inventory(7),new IntArray(4));
+    public FusionFurnaceContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
+        this(windowId,world,pos,playerInventory,player,new SimpleContainer(7),new SimpleContainerData(4));
 
 
 
     }
-    public FusionFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray furnaceData) {
+    public FusionFurnaceContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData furnaceData) {
         super(FUSION_FURNACE_CONTAINER, windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 7);
@@ -88,8 +88,8 @@ public class FusionFurnaceContainer extends Container {
     }
 
     @Override
-    public boolean stillValid(PlayerEntity playerIn) {
-        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, RankineBlocks.FUSION_FURNACE.get());
+    public boolean stillValid(Player playerIn) {
+        return stillValid(ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, RankineBlocks.FUSION_FURNACE.get());
     }
 
     public String getInputTankInfo() {
@@ -122,7 +122,7 @@ public class FusionFurnaceContainer extends Container {
 
     //TODO Rewrite this
     @Override
-    public ItemStack quickMoveStack(PlayerEntity playerIn, int index)
+    public ItemStack quickMoveStack(Player playerIn, int index)
     {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
@@ -137,7 +137,7 @@ public class FusionFurnaceContainer extends Container {
                 }
                 slot.onQuickCraft(stack, itemstack);
             } else if (index > 6) {
-                if (!(stack.getItem() instanceof BatteryItem || stack.getItem() instanceof GasBottleItem || stack.getItem() instanceof GlassBottleItem)) {
+                if (!(stack.getItem() instanceof BatteryItem || stack.getItem() instanceof GasBottleItem || stack.getItem() instanceof BottleItem)) {
                     if (!this.moveItemStackTo(stack, 0, 2, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -145,7 +145,7 @@ public class FusionFurnaceContainer extends Container {
                     if (!this.moveItemStackTo(stack, 2, 3, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if ((stack.getItem() instanceof GasBottleItem || stack.getItem() instanceof GlassBottleItem)) {
+                } else if ((stack.getItem() instanceof GasBottleItem || stack.getItem() instanceof BottleItem)) {
                     if (!this.moveItemStackTo(stack, 3, 4, false)) {
                         return ItemStack.EMPTY;
                     }

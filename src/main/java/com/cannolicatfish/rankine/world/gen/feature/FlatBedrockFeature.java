@@ -1,11 +1,12 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.DiskConfiguration;
 
 import java.util.Random;
 
@@ -16,8 +17,12 @@ public class FlatBedrockFeature extends Feature<ReplacerFeatureConfig> {
 
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
-        IChunk chunk = reader.getChunk(pos);
+    public boolean place(FeaturePlaceContext<ReplacerFeatureConfig> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
+        ReplacerFeatureConfig config = p_159749_.config();
+        ChunkAccess chunk = reader.getChunk(pos);
         int startX = chunk.getPos().getMinBlockX();
         int startZ = chunk.getPos().getMinBlockZ();
         int endX = chunk.getPos().getMaxBlockX();

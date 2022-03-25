@@ -2,40 +2,46 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
-import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.lighting.LightEngine;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.lighting.LayerLightEngine;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
 import java.util.Random;
 
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.MyceliumBlock;
+import net.minecraft.world.level.block.SnowLayerBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+
 public class RankineMyceliumBlock extends MyceliumBlock {
     public RankineMyceliumBlock() {
-        super(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.COLOR_PURPLE).randomTicks().strength(0.6F).sound(SoundType.GRASS));
+        super(BlockBehaviour.Properties.of(Material.GRASS, MaterialColor.COLOR_PURPLE).randomTicks().strength(0.6F).sound(SoundType.GRASS));
     }
 
-    private static boolean isSnowyConditions(BlockState state, IWorldReader worldReader, BlockPos pos) {
+    private static boolean isSnowyConditions(BlockState state, LevelReader worldReader, BlockPos pos) {
         BlockPos blockpos = pos.above();
         BlockState blockstate = worldReader.getBlockState(blockpos);
-        if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowBlock.LAYERS) == 1) {
+        if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowLayerBlock.LAYERS) == 1) {
             return true;
         } else if (blockstate.getFluidState().getAmount() == 8) {
             return false;
         } else {
-            int i = LightEngine.getLightBlockInto(worldReader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(worldReader, blockpos));
+            int i = LayerLightEngine.getLightBlockInto(worldReader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(worldReader, blockpos));
             return i < worldReader.getMaxLightLevel();
         }
     }
 
-    private static boolean isSnowyAndNotUnderwater(BlockState state, IWorldReader worldReader, BlockPos pos) {
+    private static boolean isSnowyAndNotUnderwater(BlockState state, LevelReader worldReader, BlockPos pos) {
         BlockPos blockpos = pos.above();
         return isSnowyConditions(state, worldReader, pos) && !worldReader.getFluidState(blockpos).is(FluidTags.WATER);
     }
@@ -44,7 +50,7 @@ public class RankineMyceliumBlock extends MyceliumBlock {
      * Performs a random tick on a block.
      */
     @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
         if (!isSnowyConditions(state, worldIn, pos)) {
             if (!worldIn.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
             worldIn.setBlockAndUpdate(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.MYCELIUM_BLOCKS.indexOf(state.getBlock())).defaultBlockState());
@@ -70,7 +76,7 @@ public class RankineMyceliumBlock extends MyceliumBlock {
     }
 
     @Override
-    public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
+    public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
         return plantable.getPlantType(world, pos.relative(facing)).equals(PlantType.CAVE);
     }
 }

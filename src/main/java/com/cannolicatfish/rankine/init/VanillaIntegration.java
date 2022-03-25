@@ -1,16 +1,16 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ComposterBlock;
-import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.TagCollectionManager;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.tags.Tag;
+import net.minecraft.tags.SerializationTags;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
@@ -260,6 +260,7 @@ public class VanillaIntegration {
 
     }
 
+    @Deprecated
     public static void populateFuelMap() {
         if (!Config.GENERAL.FUEL_VALUES_LIST.get().isEmpty()) {
             for (String s : Config.GENERAL.FUEL_VALUES_LIST.get()) {
@@ -281,9 +282,9 @@ public class VanillaIntegration {
                         continue;
                     }
 
-                    if (RS.contains("#")) {
+                    /*if (RS.contains("#")) {
                         ResourceLocation newRS = ResourceLocation.tryParse(RS.replace("#",""));
-                        ITag<Item> tag = TagCollectionManager.getInstance().getItems().getTag(newRS);
+                        Tag<Item> tag = SerializationTags.getInstance().getItems().getTag(newRS);
                         if (tag != null) {
                             for (Item item : tag.getValues()) {
                                 if (item != null && !fuelValueMap.containsKey(item)) {
@@ -296,7 +297,7 @@ public class VanillaIntegration {
                         if (item != null && !fuelValueMap.containsKey(item)) {
                             fuelValueMap.put(item,burnTime);
                         }
-                    }
+                    }*/
                 }
 
             }
@@ -304,7 +305,7 @@ public class VanillaIntegration {
         }
     }
 
-    public static void registerCompostable(float chance, IItemProvider itemIn) {
+    public static void registerCompostable(float chance, ItemLike itemIn) {
         ComposterBlock.COMPOSTABLES.put(itemIn.asItem(), chance);
     }
 

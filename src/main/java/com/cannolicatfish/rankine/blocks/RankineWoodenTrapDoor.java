@@ -1,10 +1,10 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.SoundType;
-import net.minecraft.block.TrapDoorBlock;
-import net.minecraft.block.material.Material;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.material.Material;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class RankineWoodenTrapDoor extends TrapDoorBlock {
     public RankineWoodenTrapDoor() {

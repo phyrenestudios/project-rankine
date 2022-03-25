@@ -1,21 +1,22 @@
 package com.cannolicatfish.rankine.client.renders;
 
 import com.cannolicatfish.rankine.entities.ReactiveItemEntity;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.AtlasTexture;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import com.mojang.math.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -23,11 +24,11 @@ import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
 public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
-    private final net.minecraft.client.renderer.ItemRenderer itemRenderer;
+    private final net.minecraft.client.renderer.entity.ItemRenderer itemRenderer;
     private final Random random = new Random();
 
 
-    public ReactiveItemRenderer(EntityRendererManager renderManager) {
+    public ReactiveItemRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager);
         this.itemRenderer = Minecraft.getInstance().getItemRenderer();
         this.shadowRadius = 0.15F;
@@ -50,17 +51,17 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
         return i;
     }
 
-    public void render(ReactiveItemEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+    public void render(ReactiveItemEntity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
         matrixStackIn.pushPose();
         ItemStack itemstack = entityIn.getItem();
         int i = itemstack.isEmpty() ? 187 : Item.getId(itemstack.getItem()) + itemstack.getDamageValue();
         this.random.setSeed((long)i);
-        IBakedModel ibakedmodel = this.itemRenderer.getModel(itemstack, entityIn.level, (LivingEntity)null);
+        BakedModel ibakedmodel = this.itemRenderer.getModel(itemstack, entityIn.level, (LivingEntity)null, entityIn.getId());
         boolean flag = ibakedmodel.isGui3d();
         int j = this.getModelCount(itemstack);
         float f = 0.25F;
-        float f1 = MathHelper.sin(((float)entityIn.getAge() + partialTicks) / 10.0F + entityIn.bobOffs) * 0.1F + 0.1F;
-        float f2 = shouldBob() ? ibakedmodel.getTransforms().getTransform(ItemCameraTransforms.TransformType.GROUND).scale.y() : 0;
+        float f1 = Mth.sin(((float)entityIn.getAge() + partialTicks) / 10.0F + entityIn.bobOffs) * 0.1F + 0.1F;
+        float f2 = shouldBob() ? ibakedmodel.getTransforms().getTransform(ItemTransforms.TransformType.GROUND).scale.y() : 0;
         matrixStackIn.translate(0.0D, (double)(f1 + 0.25F * f2), 0.0D);
         float f3 = entityIn.getSpin(partialTicks);
         matrixStackIn.mulPose(Vector3f.YP.rotation(f3));
@@ -86,7 +87,7 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
                 }
             }
 
-            this.itemRenderer.render(itemstack, ItemCameraTransforms.TransformType.GROUND, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ibakedmodel);
+            this.itemRenderer.render(itemstack, ItemTransforms.TransformType.GROUND, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ibakedmodel);
             matrixStackIn.popPose();
             if (!flag) {
                 matrixStackIn.translate(0.0, 0.0, 0.09375F);
@@ -101,7 +102,7 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
      * Returns the location of an entity's texture.
      */
     public ResourceLocation getTextureLocation(ReactiveItemEntity entity) {
-        return AtlasTexture.LOCATION_BLOCKS;
+        return TextureAtlas.LOCATION_BLOCKS;
     }
 
     /*==================================== FORGE START ===========================================*/

@@ -9,20 +9,19 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.block.Block;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.registries.ForgeRegistryEntry;
@@ -32,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FusionFurnaceRecipe implements IRecipe<IInventory> {
+public class FusionFurnaceRecipe implements Recipe<Container> {
 
     //public static final FusionFurnaceRecipe.Serializer SERIALIZER = new FusionFurnaceRecipe.Serializer();
     protected int cookTime;
@@ -71,11 +70,11 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         return false;
     }
 
-    public boolean matchesRecipe(IInventory inv, FluidTank tankIn, FluidTank tankOut, World worldIn) {
+    public boolean matchesRecipe(Container inv, FluidTank tankIn, FluidTank tankOut, Level worldIn) {
         boolean fluidInCheck = this.fluidIn.isEmpty() || tankIn.getFluid().containsFluid(this.fluidIn);
         boolean fluidOutCheck = this.fluidIn.isEmpty() || tankOut.isFluidValid(this.fluidOut);
         return (this.ingredient1.test(inv.getItem(0)) || this.ingredient1.test(inv.getItem(1)))
@@ -92,7 +91,7 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -150,17 +149,17 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.FUSION_FURNACE;
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "item");
+        String s = GsonHelper.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -168,7 +167,7 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getAsInt(object, "count", 1);
+            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
@@ -181,23 +180,23 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
         return fluidIn;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<FusionFurnaceRecipe> {
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<FusionFurnaceRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "fusion_furnace");
         public FusionFurnaceRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int w = json.has("cookTime") ? json.get("cookTime").getAsInt() : 400;
-            FluidStack fIn = json.has("fluidInput") ? FluidHelper.getFluidStack(JSONUtils.getAsJsonObject(json, "fluidInput")) : FluidStack.EMPTY;
-            ItemStack gIn = json.has("gasInput") ? deserializeItem(JSONUtils.getAsJsonObject(json,"gasInput")) : ItemStack.EMPTY;
-            Ingredient in1 = json.has("input1") ? Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input1")) : Ingredient.EMPTY;
-            Ingredient in2 = json.has("input2") ? Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input2")) : Ingredient.EMPTY;
-            ItemStack output1 = json.has("result1") ? deserializeItem(JSONUtils.getAsJsonObject(json,"result1")) : ItemStack.EMPTY;
-            ItemStack output2 = json.has("result2") ? deserializeItem(JSONUtils.getAsJsonObject(json,"result2")) : ItemStack.EMPTY;
-            ItemStack gOut = json.has("gasOutput") ? deserializeItem(JSONUtils.getAsJsonObject(json,"gasOutput")) : ItemStack.EMPTY;
-            FluidStack fOut = json.has("fluidOutput") ? FluidHelper.getFluidStack(JSONUtils.getAsJsonObject(json, "fluidOutput")) : FluidStack.EMPTY;
+            FluidStack fIn = json.has("fluidInput") ? FluidHelper.getFluidStack(GsonHelper.getAsJsonObject(json, "fluidInput")) : FluidStack.EMPTY;
+            ItemStack gIn = json.has("gasInput") ? deserializeItem(GsonHelper.getAsJsonObject(json,"gasInput")) : ItemStack.EMPTY;
+            Ingredient in1 = json.has("input1") ? Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input1")) : Ingredient.EMPTY;
+            Ingredient in2 = json.has("input2") ? Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input2")) : Ingredient.EMPTY;
+            ItemStack output1 = json.has("result1") ? deserializeItem(GsonHelper.getAsJsonObject(json,"result1")) : ItemStack.EMPTY;
+            ItemStack output2 = json.has("result2") ? deserializeItem(GsonHelper.getAsJsonObject(json,"result2")) : ItemStack.EMPTY;
+            ItemStack gOut = json.has("gasOutput") ? deserializeItem(GsonHelper.getAsJsonObject(json,"gasOutput")) : ItemStack.EMPTY;
+            FluidStack fOut = json.has("fluidOutput") ? FluidHelper.getFluidStack(GsonHelper.getAsJsonObject(json, "fluidOutput")) : FluidStack.EMPTY;
 
             return new FusionFurnaceRecipe(recipeId,fIn,gIn,in1,in2,fOut,gOut,output1,output2,w);
         }
 
-        public FusionFurnaceRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public FusionFurnaceRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             int w = buffer.readInt();
             FluidStack fIn = buffer.readFluidStack();
             ItemStack gIn = buffer.readItem();
@@ -210,7 +209,7 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
             return new FusionFurnaceRecipe(recipeId,fIn,gIn,in1,in2,fOut,gOut,output1,output2,w);
         }
 
-        public void toNetwork(PacketBuffer buffer, FusionFurnaceRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, FusionFurnaceRecipe recipe) {
             buffer.writeInt(recipe.cookTime);
             buffer.writeFluidStack(recipe.fluidIn);
             buffer.writeItem(recipe.gasIn);

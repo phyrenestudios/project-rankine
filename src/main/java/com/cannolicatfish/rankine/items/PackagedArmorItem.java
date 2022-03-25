@@ -5,17 +5,16 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTieredItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -25,7 +24,7 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class PackagedArmorItem extends Item {
     public PackagedArmorItem(Properties properties) {
@@ -34,13 +33,13 @@ public class PackagedArmorItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add((new TranslationTextComponent("item.rankine.packaged_tool_armor_desc")).withStyle(TextFormatting.RED));
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+        tooltip.add((new TranslatableComponent("item.rankine.packaged_tool_armor_desc")).withStyle(ChatFormatting.RED));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         if (!playerIn.level.isClientSide) {
             playerIn.addItem(genRandomTool(playerIn.getItemInHand(handIn),worldIn));
             playerIn.getItemInHand(handIn).shrink(1);
@@ -50,7 +49,7 @@ public class PackagedArmorItem extends Item {
 
     }
 
-    public ItemStack genRandomTool(ItemStack stack, World worldIn){
+    public ItemStack genRandomTool(ItemStack stack, Level worldIn){
         ItemStack ret;
         if (stack.hasTag() && !stack.getTag().getString("forceArmor").isEmpty()) {
             String s = stack.getTag().getString("forceArmor");

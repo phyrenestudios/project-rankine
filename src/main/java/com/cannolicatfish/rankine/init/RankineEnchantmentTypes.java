@@ -6,75 +6,75 @@ import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.ShovelItem;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShovelItem;
 
 public class RankineEnchantmentTypes {
-    public static EnchantmentType HAMMER = EnchantmentType.create("hammer", (itemIn) -> {
+    public static EnchantmentCategory HAMMER = EnchantmentCategory.create("hammer", (itemIn) -> {
         return itemIn instanceof HammerItem; });
 
-    public static EnchantmentType CROWBAR = EnchantmentType.create("crowbar", (itemIn) -> {
+    public static EnchantmentCategory CROWBAR = EnchantmentCategory.create("crowbar", (itemIn) -> {
         return itemIn instanceof CrowbarItem; });
 
-    public static EnchantmentType KNIFE = EnchantmentType.create("knife", (itemIn) -> {
+    public static EnchantmentCategory KNIFE = EnchantmentCategory.create("knife", (itemIn) -> {
         return itemIn instanceof KnifeItem; });
 
-    public static EnchantmentType SWING = EnchantmentType.create("swing", (itemIn) -> {
+    public static EnchantmentCategory SWING = EnchantmentCategory.create("swing", (itemIn) -> {
         return itemIn instanceof HammerItem || itemIn instanceof CrowbarItem; });
 
-    public static EnchantmentType SPEAR = EnchantmentType.create("spear", (itemIn) -> {
+    public static EnchantmentCategory SPEAR = EnchantmentCategory.create("spear", (itemIn) -> {
         return itemIn instanceof SpearItem; });
 
-    public static EnchantmentType HOE = EnchantmentType.create("hoe", (itemIn) -> {
+    public static EnchantmentCategory HOE = EnchantmentCategory.create("hoe", (itemIn) -> {
         return itemIn instanceof HoeItem; });
 
-    public static EnchantmentType MINING = EnchantmentType.create("mining", (itemIn) -> {
+    public static EnchantmentCategory MINING = EnchantmentCategory.create("mining", (itemIn) -> {
         return itemIn instanceof ShovelItem || itemIn instanceof PickaxeItem; });
 
-    public static EnchantmentType PEWTER = EnchantmentType.create("pewter", (itemIn) -> {
+    public static EnchantmentCategory PEWTER = EnchantmentCategory.create("pewter", (itemIn) -> {
         return itemIn instanceof IAlloyTool; });
 
-    public static EnchantmentType BLUNDERBUSS = EnchantmentType.create("blunderbuss", (itemIn) -> {
+    public static EnchantmentCategory BLUNDERBUSS = EnchantmentCategory.create("blunderbuss", (itemIn) -> {
         return itemIn instanceof BlunderbussItem; });
 
-    public static EnchantmentType STAINLESS_STEEL_SWORD = EnchantmentType.create("stainless_steel_sword", (itemIn) -> {
+    public static EnchantmentCategory STAINLESS_STEEL_SWORD = EnchantmentCategory.create("stainless_steel_sword", (itemIn) -> {
         return itemIn instanceof AlloySwordItem; });
 
-    public static EnchantmentType ALLOYTOOL = EnchantmentType.create("alloytool", (itemIn) -> {
+    public static EnchantmentCategory ALLOYTOOL = EnchantmentCategory.create("alloytool", (itemIn) -> {
         return itemIn instanceof IAlloyTool && itemIn.canBeDepleted(); });
 
-    public static EnchantmentType ENDER_AMALGAM_HAMMER = EnchantmentType.create("ender_hammer", (itemIn) -> {
+    public static EnchantmentCategory ENDER_AMALGAM_HAMMER = EnchantmentCategory.create("ender_hammer", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_HAMMER.get(); });
 
-    public static EnchantmentType ENDER_AMALGAM_SWORD = EnchantmentType.create("ender_sword", (itemIn) -> {
+    public static EnchantmentCategory ENDER_AMALGAM_SWORD = EnchantmentCategory.create("ender_sword", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_SWORD.get(); });
 
-    public static EnchantmentType ENDER_AMALGAM_SHOVEL = EnchantmentType.create("ender_shovel", (itemIn) -> {
+    public static EnchantmentCategory ENDER_AMALGAM_SHOVEL = EnchantmentCategory.create("ender_shovel", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_SPEAR.get(); });
 
-    public static EnchantmentType ENDER_AMALGAM_KNIFE = EnchantmentType.create("ender_knife", (itemIn) -> {
+    public static EnchantmentCategory ENDER_AMALGAM_KNIFE = EnchantmentCategory.create("ender_knife", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_KNIFE.get(); });
 
-    public static EnchantmentType ENDER_AMALGAM_CROWBAR = EnchantmentType.create("ender_crowbar", (itemIn) -> {
+    public static EnchantmentCategory ENDER_AMALGAM_CROWBAR = EnchantmentCategory.create("ender_crowbar", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_CROWBAR.get(); });
 
-    public static EnchantmentType ENDER_AMALGAM_SPEAR = EnchantmentType.create("ender_spear", (itemIn) -> {
+    public static EnchantmentCategory ENDER_AMALGAM_SPEAR = EnchantmentCategory.create("ender_spear", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_SPEAR.get(); });
 
-    public static EnchantmentType ENDER_AMALGAM_AXE = EnchantmentType.create("ender_axe", (itemIn) -> {
+    public static EnchantmentCategory ENDER_AMALGAM_AXE = EnchantmentCategory.create("ender_axe", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_AXE.get(); });
 
-    public static EnchantmentType ENDER_AMALGAM_HOE = EnchantmentType.create("ender_hoe", (itemIn) -> {
+    public static EnchantmentCategory ENDER_AMALGAM_HOE = EnchantmentCategory.create("ender_hoe", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_HOE.get(); });
 
-    public static EnchantmentType ENDER_AMALGAM_PICKAXE = EnchantmentType.create("ender_pickaxe", (itemIn) -> {
+    public static EnchantmentCategory ENDER_AMALGAM_PICKAXE = EnchantmentCategory.create("ender_pickaxe", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_PICKAXE.get(); });
 
-    public static EnchantmentType ENDER_AMALGAM_BLUNDERBUSS = EnchantmentType.create("ender_blunderbuss", (itemIn) -> {
+    public static EnchantmentCategory ENDER_AMALGAM_BLUNDERBUSS = EnchantmentCategory.create("ender_blunderbuss", (itemIn) -> {
         return itemIn == RankineItems.ENDER_AMALGAM_BLUNDERBUSS.get(); });
 
-    public static EnchantmentType ENDER_AMALGAM_ARMOR = EnchantmentType.create("ender_armor", (itemIn) -> {
+    public static EnchantmentCategory ENDER_AMALGAM_ARMOR = EnchantmentCategory.create("ender_armor", (itemIn) -> {
         return itemIn instanceof AlloyArmorItem; });
 }

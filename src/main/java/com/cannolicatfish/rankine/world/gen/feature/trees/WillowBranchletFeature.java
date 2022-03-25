@@ -2,46 +2,52 @@ package com.cannolicatfish.rankine.world.gen.feature.trees;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.AbstractTopPlantBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.level.block.GrowingPlantHeadBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 
 import java.util.Random;
 
-public class WillowBranchletFeature extends Feature<NoFeatureConfig> {
+public class WillowBranchletFeature extends Feature<NoneFeatureConfiguration> {
     private static final Direction[] DIRECTIONS = Direction.values();
 
-    public WillowBranchletFeature(Codec<NoFeatureConfig> p_i232004_1_) {
+    public WillowBranchletFeature(Codec<NoneFeatureConfiguration> p_i232004_1_) {
         super(p_i232004_1_);
     }
 
-    public boolean place(ISeedReader p_241855_1_, ChunkGenerator p_241855_2_, Random p_241855_3_, BlockPos p_241855_4_, NoFeatureConfig p_241855_5_) {
-        if (!p_241855_1_.isEmptyBlock(p_241855_4_)) {
+    @Override
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
+        if (!reader.isEmptyBlock(pos)) {
             return false;
         } else {
-            BlockState lvt_6_1_ = p_241855_1_.getBlockState(p_241855_4_.above());
+            BlockState lvt_6_1_ = reader.getBlockState(pos.above());
             if (!lvt_6_1_.is(Blocks.NETHERRACK) && !lvt_6_1_.is(Blocks.NETHER_WART_BLOCK)) {
                 return false;
             } else {
-                this.placeRoofNetherWart(p_241855_1_, p_241855_3_, p_241855_4_);
-                this.placeRoofWeepingVines(p_241855_1_, p_241855_3_, p_241855_4_);
+                this.placeRoofNetherWart(reader, rand, pos);
+                this.placeRoofWeepingVines(reader, rand, pos);
                 return true;
             }
         }
     }
 
-    private void placeRoofNetherWart(IWorld p_236428_1_, Random p_236428_2_, BlockPos p_236428_3_) {
+    private void placeRoofNetherWart(LevelAccessor p_236428_1_, Random p_236428_2_, BlockPos p_236428_3_) {
         p_236428_1_.setBlock(p_236428_3_, Blocks.NETHER_WART_BLOCK.defaultBlockState(), 2);
-        BlockPos.Mutable lvt_4_1_ = new BlockPos.Mutable();
-        BlockPos.Mutable lvt_5_1_ = new BlockPos.Mutable();
+        BlockPos.MutableBlockPos lvt_4_1_ = new BlockPos.MutableBlockPos();
+        BlockPos.MutableBlockPos lvt_5_1_ = new BlockPos.MutableBlockPos();
 
         for(int lvt_6_1_ = 0; lvt_6_1_ < 200; ++lvt_6_1_) {
             lvt_4_1_.setWithOffset(p_236428_3_, p_236428_2_.nextInt(6) - p_236428_2_.nextInt(6), p_236428_2_.nextInt(2) - p_236428_2_.nextInt(5), p_236428_2_.nextInt(6) - p_236428_2_.nextInt(6));
@@ -70,15 +76,15 @@ public class WillowBranchletFeature extends Feature<NoFeatureConfig> {
 
     }
 
-    private void placeRoofWeepingVines(IWorld p_236429_1_, Random p_236429_2_, BlockPos p_236429_3_) {
-        BlockPos.Mutable lvt_4_1_ = new BlockPos.Mutable();
+    private void placeRoofWeepingVines(LevelAccessor p_236429_1_, Random p_236429_2_, BlockPos p_236429_3_) {
+        BlockPos.MutableBlockPos lvt_4_1_ = new BlockPos.MutableBlockPos();
 
         for(int lvt_5_1_ = 0; lvt_5_1_ < 100; ++lvt_5_1_) {
             lvt_4_1_.setWithOffset(p_236429_3_, p_236429_2_.nextInt(8) - p_236429_2_.nextInt(8), p_236429_2_.nextInt(2) - p_236429_2_.nextInt(7), p_236429_2_.nextInt(8) - p_236429_2_.nextInt(8));
             if (p_236429_1_.isEmptyBlock(lvt_4_1_)) {
                 BlockState lvt_6_1_ = p_236429_1_.getBlockState(lvt_4_1_.above());
                 if (lvt_6_1_.is(RankineBlocks.WEEPING_WILLOW_LEAVES.get())) {
-                    int lvt_7_1_ = MathHelper.nextInt(p_236429_2_, 1, 8);
+                    int lvt_7_1_ = Mth.nextInt(p_236429_2_, 1, 8);
                     if (p_236429_2_.nextInt(6) == 0) {
                         lvt_7_1_ *= 2;
                     }
@@ -96,11 +102,11 @@ public class WillowBranchletFeature extends Feature<NoFeatureConfig> {
 
     }
 
-    public static void placeWeepingVinesColumn(IWorld p_236427_0_, Random p_236427_1_, BlockPos.Mutable p_236427_2_, int p_236427_3_, int p_236427_4_, int p_236427_5_) {
+    public static void placeWeepingVinesColumn(LevelAccessor p_236427_0_, Random p_236427_1_, BlockPos.MutableBlockPos p_236427_2_, int p_236427_3_, int p_236427_4_, int p_236427_5_) {
         for(int lvt_6_1_ = 0; lvt_6_1_ <= p_236427_3_; ++lvt_6_1_) {
             if (p_236427_0_.isEmptyBlock(p_236427_2_)) {
                 if (lvt_6_1_ == p_236427_3_ || !p_236427_0_.isEmptyBlock(p_236427_2_.below())) {
-                    p_236427_0_.setBlock(p_236427_2_, (BlockState) RankineBlocks.WILLOW_BRANCHLET.get().defaultBlockState().setValue(AbstractTopPlantBlock.AGE, MathHelper.nextInt(p_236427_1_, p_236427_4_, p_236427_5_)), 2);
+                    p_236427_0_.setBlock(p_236427_2_, (BlockState) RankineBlocks.WILLOW_BRANCHLET.get().defaultBlockState().setValue(GrowingPlantHeadBlock.AGE, Mth.nextInt(p_236427_1_, p_236427_4_, p_236427_5_)), 2);
                     break;
                 }
 

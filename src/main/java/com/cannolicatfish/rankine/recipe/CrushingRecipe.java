@@ -6,25 +6,25 @@ import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class CrushingRecipe implements IRecipe<IInventory> {
+public class CrushingRecipe implements Recipe<Container> {
 
     private final NonNullList<Ingredient> recipeItems;
     private final NonNullList<ItemStack> recipeOutputs;
@@ -84,12 +84,12 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         return this.recipeItems.get(0).getItems().clone();
     }
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         return this.recipeItems.get(0).test(inv.getItem(0));
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -98,7 +98,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         return ItemStack.EMPTY;
     }
 
-    public List<ItemStack> getResults(int harvestLevel, World worldIn) {
+    public List<ItemStack> getResults(int harvestLevel, Level worldIn) {
         Random random = worldIn.getRandom();
         List<ItemStack> outputs = new ArrayList<>();
         int check = Math.min(harvestLevel + 1, 6);
@@ -113,7 +113,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         return outputs;
     }
 
-    public List<ItemStack> getPossibleResults(int harvestLevel, World worldIn) {
+    public List<ItemStack> getPossibleResults(int harvestLevel, Level worldIn) {
         List<ItemStack> outputs = new ArrayList<>();
         int check = Math.min(harvestLevel + 1, 6);
         for (int i = 0; i < check; i++) {
@@ -122,7 +122,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         return outputs;
     }
 
-    public ItemStack getSpecificResult(int harvestLevel, int index, World worldIn) {
+    public ItemStack getSpecificResult(int harvestLevel, int index, Level worldIn) {
         Random random = worldIn.getRandom();
         ItemStack outputs = ItemStack.EMPTY;
         float c = harvestLevel == index ? (this.chances.get(index) + this.additional.get(index)) : this.chances.get(index);
@@ -148,12 +148,12 @@ public class CrushingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "item");
+        String s = GsonHelper.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -161,17 +161,17 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getAsInt(object, "count", 1);
+            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.CRUSHING;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<CrushingRecipe> {
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<CrushingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "crushing");
         public CrushingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(1,Ingredient.EMPTY);
@@ -183,7 +183,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             for (int i = 0; i < 6; i++) {
                 String output = "output" + (i+1);
                 if (json.has(output)) {
-                    JsonObject object = JSONUtils.getAsJsonObject(json, output);
+                    JsonObject object = GsonHelper.getAsJsonObject(json, output);
                     stacks.set(i,CrushingRecipe.deserializeItem(object));
                     if (object.has("chance")){
                         chances.set(i,object.get("chance").getAsFloat());
@@ -203,7 +203,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             return new CrushingRecipe(recipeId, nonnulllist, stacks, chances, additional);
         }
 
-        public CrushingRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public CrushingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(1, Ingredient.EMPTY);
 
             for(int k = 0; k < nonnulllist.size(); ++k) {
@@ -229,7 +229,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             return new CrushingRecipe(recipeId, nonnulllist, stacks, chances, additional);
         }
 
-        public void toNetwork(PacketBuffer buffer, CrushingRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, CrushingRecipe recipe) {
             for(Ingredient ingredient : recipe.recipeItems) {
                 ingredient.toNetwork(buffer);
             }

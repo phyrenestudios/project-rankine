@@ -3,33 +3,32 @@ package com.cannolicatfish.rankine.entities;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.FMLPlayMessages;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.fmllegacy.network.FMLPlayMessages;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
-public class RopeCoilArrowEntity extends AbstractArrowEntity {
+public class RopeCoilArrowEntity extends AbstractArrow {
 
-    public RopeCoilArrowEntity(World worldIn, LivingEntity shooter) {
+    public RopeCoilArrowEntity(Level worldIn, LivingEntity shooter) {
         super(RankineEntityTypes.ROPE_COIL_ARROW, shooter, worldIn);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public RopeCoilArrowEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world, EntityType<RopeCoilArrowEntity> e) {
+    public RopeCoilArrowEntity(FMLPlayMessages.SpawnEntity spawnEntity, Level world, EntityType<RopeCoilArrowEntity> e) {
         super(e, world);
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -43,10 +42,10 @@ public class RopeCoilArrowEntity extends AbstractArrowEntity {
     protected void onInsideBlock(BlockState state) {
 
         if (this.inGround) {
-            World worldIn = this.level;
+            Level worldIn = this.level;
             int rope = 1;
-            if (this.getOwner() instanceof PlayerEntity) {
-                PlayerEntity player = ((PlayerEntity) this.getOwner());
+            if (this.getOwner() instanceof Player) {
+                Player player = ((Player) this.getOwner());
                 rope += player.getOffhandItem().getItem() == RankineItems.ROPE.get() ? player.getOffhandItem().getCount() : 0;
             }
             int ropeCount = -1;
@@ -59,10 +58,10 @@ public class RopeCoilArrowEntity extends AbstractArrowEntity {
                 }
             }
 
-            if (this.getOwner() instanceof PlayerEntity && !((PlayerEntity)this.getOwner()).isCreative() && ropeCount > 0) {
-                ((PlayerEntity)this.getOwner()).getOffhandItem().shrink(ropeCount);
+            if (this.getOwner() instanceof Player && !((Player)this.getOwner()).isCreative() && ropeCount > 0) {
+                ((Player)this.getOwner()).getOffhandItem().shrink(ropeCount);
             }
-            this.remove();
+            this.remove(RemovalReason.DISCARDED);
         }
 
         super.onInsideBlock(state);

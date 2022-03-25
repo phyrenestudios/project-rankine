@@ -7,25 +7,25 @@ import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class SluicingRecipe implements IRecipe<IInventory> {
+public class SluicingRecipe implements Recipe<Container> {
 
     private final int total;
     private final int cooldownTicks;
@@ -83,12 +83,12 @@ public class SluicingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         return this.getIngredient().test(inv.getItem(0)) && this.getTool().test(inv.getItem(1));
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -97,7 +97,7 @@ public class SluicingRecipe implements IRecipe<IInventory> {
         return ItemStack.EMPTY;
     }
 
-    public ItemStack getSluicingResult(World worldIn) {
+    public ItemStack getSluicingResult(Level worldIn) {
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
         Random rand = worldIn.getRandom();
         for (int i = 0; i < this.recipeOutputs.size(); i++) {
@@ -127,12 +127,12 @@ public class SluicingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "item");
+        String s = GsonHelper.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -140,22 +140,22 @@ public class SluicingRecipe implements IRecipe<IInventory> {
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getAsInt(object, "count", 1);
+            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.SLUICING;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<SluicingRecipe> {
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<SluicingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "sluicing");
         public SluicingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int t = json.get("total").getAsInt();
-            Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input"));
-            Ingredient it = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "tool"));
+            Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
+            Ingredient it = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "tool"));
             NonNullList<Ingredient> stacks = NonNullList.withSize(t, Ingredient.EMPTY);
             NonNullList<Float> weights = NonNullList.withSize(t, 0f);
             NonNullList<Integer> mins = NonNullList.withSize(t, 1);
@@ -163,8 +163,8 @@ public class SluicingRecipe implements IRecipe<IInventory> {
             for (int i = 0; i < t; i++) {
                 String output = "output" + (i+1);
                 if (json.has(output)) {
-                    JsonObject object = JSONUtils.getAsJsonObject(json, output);
-                    stacks.set(i,Ingredient.fromJson(JSONUtils.getAsJsonObject(json, output)));
+                    JsonObject object = GsonHelper.getAsJsonObject(json, output);
+                    stacks.set(i,Ingredient.fromJson(GsonHelper.getAsJsonObject(json, output)));
                     if (object.has("weight")){
                         weights.set(i,object.get("weight").getAsFloat());
                     } else {
@@ -190,7 +190,7 @@ public class SluicingRecipe implements IRecipe<IInventory> {
             return new SluicingRecipe(recipeId, t, ingredient, it, stacks, weights, mins,maxes,ticks);
         }
 
-        public SluicingRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public SluicingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             int t = buffer.readInt();
             int ticks = buffer.readInt();
             Ingredient input = Ingredient.fromNetwork(buffer);
@@ -219,7 +219,7 @@ public class SluicingRecipe implements IRecipe<IInventory> {
             return new SluicingRecipe(recipeId, t, input, it, stacks, weights, mins, maxes,ticks);
         }
 
-        public void toNetwork(PacketBuffer buffer, SluicingRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, SluicingRecipe recipe) {
             buffer.writeInt(recipe.total);
             buffer.writeInt(recipe.cooldownTicks);
             recipe.getIngredient().toNetwork(buffer);

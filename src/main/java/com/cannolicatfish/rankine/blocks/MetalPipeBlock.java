@@ -4,30 +4,27 @@ import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.google.common.collect.Maps;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.Direction;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 import java.util.Map;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
 
 public class MetalPipeBlock extends Block {
 
@@ -62,7 +59,7 @@ public class MetalPipeBlock extends Block {
 
         for(int i = 0; i < FACING_VALUES.length; ++i) {
             Direction direction = FACING_VALUES[i];
-            avoxelshape[i] = VoxelShapes.box(0.5D + Math.min((double)(-apothem), (double)direction.getStepX() * 0.5D), 0.5D + Math.min((double)(-apothem), (double)direction.getStepY() * 0.5D), 0.5D + Math.min((double)(-apothem), (double)direction.getStepZ() * 0.5D), 0.5D + Math.max((double)apothem, (double)direction.getStepX() * 0.5D), 0.5D + Math.max((double)apothem, (double)direction.getStepY() * 0.5D), 0.5D + Math.max((double)apothem, (double)direction.getStepZ() * 0.5D));
+            avoxelshape[i] = Shapes.box(0.5D + Math.min((double)(-apothem), (double)direction.getStepX() * 0.5D), 0.5D + Math.min((double)(-apothem), (double)direction.getStepY() * 0.5D), 0.5D + Math.min((double)(-apothem), (double)direction.getStepZ() * 0.5D), 0.5D + Math.max((double)apothem, (double)direction.getStepX() * 0.5D), 0.5D + Math.max((double)apothem, (double)direction.getStepY() * 0.5D), 0.5D + Math.max((double)apothem, (double)direction.getStepZ() * 0.5D));
         }
 
         VoxelShape[] avoxelshape1 = new VoxelShape[64];
@@ -72,7 +69,7 @@ public class MetalPipeBlock extends Block {
 
             for(int j = 0; j < FACING_VALUES.length; ++j) {
                 if ((k & 1 << j) != 0) {
-                    voxelshape1 = VoxelShapes.or(voxelshape1, avoxelshape[j]);
+                    voxelshape1 = Shapes.or(voxelshape1, avoxelshape[j]);
                 }
             }
 
@@ -82,11 +79,11 @@ public class MetalPipeBlock extends Block {
         return avoxelshape1;
     }
 
-    public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
+    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
         return false;
     }
 
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return this.shapes[this.getShapeIndex(state)];
     }
 
@@ -103,11 +100,11 @@ public class MetalPipeBlock extends Block {
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.makeConnections(context.getLevel(), context.getClickedPos());
     }
 
-    public BlockState makeConnections(IBlockReader blockReader, BlockPos pos) {
+    public BlockState makeConnections(BlockGetter blockReader, BlockPos pos) {
         Block block = blockReader.getBlockState(pos.below()).getBlock();
         Block block1 = blockReader.getBlockState(pos.above()).getBlock();
         BlockState bs1 = blockReader.getBlockState(pos.above());
@@ -124,7 +121,7 @@ public class MetalPipeBlock extends Block {
                 .setValue(UP, block1 == this || block1 == RankineBlocks.GROUND_TAP.get());
     }
 
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (!stateIn.canSurvive(worldIn, currentPos)) {
             worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
             return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
@@ -147,7 +144,7 @@ public class MetalPipeBlock extends Block {
         }
     }
 
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN);
     }
 }

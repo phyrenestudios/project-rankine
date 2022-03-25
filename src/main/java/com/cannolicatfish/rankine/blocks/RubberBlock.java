@@ -1,40 +1,30 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.FallingBlockEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.Direction;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 
 import java.util.Arrays;
 import java.util.List;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class RubberBlock extends Block {
     public RubberBlock(Properties properties) {
         super(properties);
     }
 
-    public void fallOn(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+    public void fallOn(Level worldIn, BlockState bs, BlockPos pos, Entity entityIn, float fallDistance) {
         if (entityIn.isSuppressingBounce()) {
-            super.fallOn(worldIn, pos, entityIn, fallDistance);
+            super.fallOn(worldIn, bs, pos, entityIn, fallDistance);
         } else {
-            entityIn.causeFallDamage(fallDistance, 0.2F);
+            entityIn.causeFallDamage(fallDistance, 0.2F, DamageSource.FALL);
         }
 
     }
@@ -43,7 +33,7 @@ public class RubberBlock extends Block {
      * Called when an Entity lands on this Block. This method *must* update motionY because the entity will not do that
      * on its own
      */
-    public void updateEntityAfterFallOn(IBlockReader worldIn, Entity entityIn) {
+    public void updateEntityAfterFallOn(BlockGetter worldIn, Entity entityIn) {
         if (entityIn.isSuppressingBounce()) {
             super.updateEntityAfterFallOn(worldIn, entityIn);
         } else {
@@ -53,7 +43,7 @@ public class RubberBlock extends Block {
     }
 
     private void bounceEntity(Entity entity) {
-        Vector3d vector3d = entity.getDeltaMovement();
+        Vec3 vector3d = entity.getDeltaMovement();
         if (vector3d.y < 0.0D) {
             double d0 = entity instanceof LivingEntity ? 1.0D : 0.8D;
             entity.setDeltaMovement(vector3d.x, -vector3d.y * d0, vector3d.z);
@@ -64,13 +54,13 @@ public class RubberBlock extends Block {
     /**
      * Called when the given entity walks on this Block
      */
-    public void stepOn(World worldIn, BlockPos pos, Entity entityIn) {
+    public void stepOn(Level worldIn, BlockPos pos, BlockState state, Entity entityIn) {
         double d0 = Math.abs(entityIn.getDeltaMovement().y);
         if (d0 < 0.1D && !entityIn.isSteppingCarefully()) {
             double d1 = 0.4D + d0 * 0.2D;
             entityIn.setDeltaMovement(entityIn.getDeltaMovement().multiply(d1, 1.0D, d1));
         }
 
-        super.stepOn(worldIn, pos, entityIn);
+        super.stepOn(worldIn, pos, state, entityIn);
     }
 }

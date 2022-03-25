@@ -3,12 +3,11 @@ package com.cannolicatfish.rankine.enchantment;
 import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.entity.EquipmentSlot;
 
 public class AtomizeEnchantment extends Enchantment {
-    public AtomizeEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
+    public AtomizeEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlot... p_i46721_2_) {
         super(p_i46721_1_, RankineEnchantmentTypes.HAMMER, p_i46721_2_);
     }
 

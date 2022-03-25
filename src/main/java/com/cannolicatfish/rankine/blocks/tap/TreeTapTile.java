@@ -5,15 +5,14 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.TreetappingRecipe;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
@@ -23,11 +22,11 @@ import java.util.Stack;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.TREE_TAP_TILE;
 
-public class TreeTapTile extends TileEntity implements ITickableTileEntity {
+public class TreeTapTile extends BlockEntity {
     FluidTank outputTank = new FluidTank(1000);
 
-    public TreeTapTile() {
-        super(TREE_TAP_TILE);
+    public TreeTapTile(BlockPos posIn, BlockState stateIn) {
+        super(TREE_TAP_TILE, posIn, stateIn);
     }
 
     public void tick() {
@@ -40,12 +39,12 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
                 }
             }
             Block log = level.getBlockState(logPos).getBlock();
-            TreetappingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.TREETAPPING, new Inventory(new ItemStack(log)), this.level).orElse(null);
+            TreetappingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.TREETAPPING, new SimpleContainer(new ItemStack(log)), this.level).orElse(null);
             if (irecipe != null && level.getDayTime()%irecipe.getTapTime() == 0) {
                 outputTank.fill(irecipe.getResult(), IFluidHandler.FluidAction.EXECUTE);
             }
 
-            if (outputTank.getFluidAmount() == 1000 && level.getBlockState(worldPosition.below()).getBlock().is(RankineBlocks.TAP_LINE.get())) {
+            if (outputTank.getFluidAmount() == 1000 && level.getBlockState(worldPosition.below()).getBlock().equals(RankineBlocks.TAP_LINE.get())) {
                 BlockPos floodGate = null;
                 Set<BlockPos> checkedBlocks = new HashSet<>();
                 Stack<BlockPos> toCheck = new Stack<>();
@@ -56,10 +55,10 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
                         checkedBlocks.add(cp);
                         if (level.hasChunkAt(cp)) {
                             BlockState s = level.getBlockState(cp);
-                            if (s.getBlock().is(RankineBlocks.FLOOD_GATE.get())) {
+                            if (s.getBlock().equals(RankineBlocks.FLOOD_GATE.get())) {
                                 floodGate = cp;
                                 break;
-                            } else if (s.getBlock().is(RankineBlocks.TAP_LINE.get())) {
+                            } else if (s.getBlock().equals(RankineBlocks.TAP_LINE.get())) {
                                 toCheck.add(cp.north());
                                 toCheck.add(cp.east());
                                 toCheck.add(cp.south());
@@ -89,20 +88,20 @@ public class TreeTapTile extends TileEntity implements ITickableTileEntity {
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         this.outputTank = this.outputTank.readFromNBT(nbt.getCompound("OutputTank"));
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
-        compound.put("OutputTank",this.outputTank.writeToNBT(new CompoundNBT()));
+        compound.put("OutputTank",this.outputTank.writeToNBT(new CompoundTag()));
 
         return compound;
     }
 
-    private boolean isTreeAlive(BlockPos pos, World worldIn) {
+    private boolean isTreeAlive(BlockPos pos, Level worldIn) {
         Set<BlockPos> checkedBlocks = new HashSet<>();
         Stack<BlockPos> toCheck = new Stack<>();
 

@@ -7,20 +7,19 @@ import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -29,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class MixingRecipe implements IRecipe<IInventory> {
+public class MixingRecipe implements Recipe<Container> {
 
     public static final MixingRecipe.Serializer SERIALIZER = new MixingRecipe.Serializer();
 
@@ -78,12 +77,12 @@ public class MixingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         return !getMixingResult(inv,worldIn).isEmpty();
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -96,7 +95,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
         return mixTime;
     }
 
-    public int getOutputMixTime(IInventory inv) {
+    public int getOutputMixTime(Container inv) {
         int sum = 0;
         for (int i = 0; i < inv.getContainerSize(); i++) {
             sum += inv.getItem(i).getCount();
@@ -104,7 +103,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
         return Math.round(mixTime * (sum*getMatScale()));
     }
 
-    public FluidStack getOutputFluidReq(IInventory inv) {
+    public FluidStack getOutputFluidReq(Container inv) {
         int sum = 0;
         for (int i = 0; i < inv.getContainerSize(); i++) {
             sum += inv.getItem(i).getCount();
@@ -150,17 +149,17 @@ public class MixingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.MIXING;
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "item");
+        String s = GsonHelper.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -168,12 +167,12 @@ public class MixingRecipe implements IRecipe<IInventory> {
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getAsInt(object, "count", 1);
+            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
 
-    public ItemStack getMixingResult(IInventory inv, World worldIn) {
+    public ItemStack getMixingResult(Container inv, Level worldIn) {
         List<Ingredient> currentIngredients = new ArrayList<>();
         List<Integer> currentMaterial = new ArrayList<>();
         for (int i = 0; i < inv.getContainerSize(); i++) {
@@ -221,14 +220,14 @@ public class MixingRecipe implements IRecipe<IInventory> {
     }
 
 
-    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<MixingRecipe> {
+    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<MixingRecipe> {
 
         @Override
         public MixingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int mixT = json.get("mixTime").getAsInt();
             int ingT = json.get("ingredientTotal").getAsInt();
             float matS = json.has("matScale") ? json.get("matScale").getAsFloat() : 1;
-            FluidStack fluidInput = FluidHelper.getFluidStack(JSONUtils.getAsJsonObject(json, "fluidInput"));
+            FluidStack fluidInput = FluidHelper.getFluidStack(GsonHelper.getAsJsonObject(json, "fluidInput"));
 
 
             NonNullList<Ingredient> ingredients = NonNullList.withSize(ingT,Ingredient.EMPTY);
@@ -238,7 +237,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
             for (int i = 0; i < ingT; i++) {
                 String input = "input" + (i+1);
                 if (json.has(input)) {
-                    JsonObject object = JSONUtils.getAsJsonObject(json, input);
+                    JsonObject object = GsonHelper.getAsJsonObject(json, input);
                     ingredients.set(i, AlloyIngredientHelper.deserialize(object,null,null,null));
                     if (object.has("min")){
                         mins.set(i,Math.min(Math.max(object.get("min").getAsFloat(),0f),1f));
@@ -253,13 +252,13 @@ public class MixingRecipe implements IRecipe<IInventory> {
                     }
                 }
             }
-            ItemStack result = json.has("result") ? deserializeItem(JSONUtils.getAsJsonObject(json,"result")) : ItemStack.EMPTY;
+            ItemStack result = json.has("result") ? deserializeItem(GsonHelper.getAsJsonObject(json,"result")) : ItemStack.EMPTY;
             return new MixingRecipe(recipeId,mixT,matS,ingT,fluidInput,ingredients,reqs,mins,maxes,result);
         }
 
         @Nullable
         @Override
-        public MixingRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public MixingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             int mixT = buffer.readInt();
             int ingT = buffer.readInt();
             float matS = buffer.readFloat();
@@ -284,7 +283,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
         }
 
         @Override
-        public void toNetwork(PacketBuffer buffer, MixingRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, MixingRecipe recipe) {
             buffer.writeInt(recipe.getMixTime());
             buffer.writeInt(recipe.getIngredientTotal());
             buffer.writeFloat(recipe.getMatScale());

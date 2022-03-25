@@ -3,27 +3,27 @@ package com.cannolicatfish.rankine.blocks;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class RankineLeavesBlock extends LeavesBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
@@ -33,11 +33,11 @@ public class RankineLeavesBlock extends LeavesBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 7).setValue(PERSISTENT, Boolean.FALSE).setValue(AGE, 0));
     }
 
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(DISTANCE, PERSISTENT, AGE);
     }
 
-    public int getLightBlock(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
         return state.getValue(AGE) == 4 || state.getValue(AGE) == 5 ? 3 : 1;
     }
 
@@ -47,14 +47,14 @@ public class RankineLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
         BlockState bs = worldIn.getBlockState(pos.below());
         if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get() && (bs.is(Blocks.AIR) || bs.canBeReplaced(Fluids.WATER)) && !bs.is(RankineBlocks.WILLOW_BRANCHLET.get())) {
                 worldIn.setBlock(pos.below(), RankineLists.LEAF_LITTERS.get(RankineLists.LEAVES.indexOf(state.getBlock())).defaultBlockState(),3);
         }
         if (worldIn.getBlockState(pos.above()).is(Blocks.SNOW) && !state.getValue(AGE).equals(5)) {
             worldIn.setBlock(pos, state.setValue(AGE, 5),2);
-        } else if ((worldIn.getBiome(pos).getPrecipitation() == Biome.RainType.SNOW || worldIn.getBiome(pos).getTemperature(pos) < 0.15) && !state.getValue(AGE).equals(4)) {
+        } else if ((worldIn.getBiome(pos).getPrecipitation() == Biome.Precipitation.SNOW || worldIn.getBiome(pos).getTemperature(pos) < 0.15) && !state.getValue(AGE).equals(4)) {
             worldIn.setBlock(pos, state.setValue(AGE, 4),2);
         } else if (!state.getValue(AGE).equals(0)) {
             worldIn.setBlock(pos, state.setValue(AGE, 0),2);
@@ -63,19 +63,19 @@ public class RankineLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         int i = getDistance(facingState) + 1;
         if (i != 1 || stateIn.getValue(DISTANCE) != i) {
             worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
         }
-        return worldIn.getBlockState(currentPos.above()).is(Blocks.SNOW) ? stateIn.setValue(AGE,5) : worldIn.getBiome(currentPos).getPrecipitation() == Biome.RainType.SNOW || worldIn.getBiome(currentPos).getTemperature(currentPos) < 0.15 ? stateIn.setValue(AGE,4) : stateIn.setValue(AGE,0);
+        return worldIn.getBlockState(currentPos.above()).is(Blocks.SNOW) ? stateIn.setValue(AGE,5) : worldIn.getBiome(currentPos).getPrecipitation() == Biome.Precipitation.SNOW || worldIn.getBiome(currentPos).getTemperature(currentPos) < 0.15 ? stateIn.setValue(AGE,4) : stateIn.setValue(AGE,0);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        World worldIn = context.getLevel();
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        Level worldIn = context.getLevel();
         BlockPos pos = context.getClickedPos();
-        return worldIn.getBiome(pos).getPrecipitation() == Biome.RainType.SNOW || worldIn.getBiome(pos).getTemperature(pos) < 0.15 ? updateDistance(this.defaultBlockState().setValue(PERSISTENT, Boolean.TRUE).setValue(AGE,4), context.getLevel(), context.getClickedPos()) : updateDistance(this.defaultBlockState().setValue(PERSISTENT, Boolean.TRUE).setValue(AGE,0), context.getLevel(), context.getClickedPos());
+        return worldIn.getBiome(pos).getPrecipitation() == Biome.Precipitation.SNOW || worldIn.getBiome(pos).getTemperature(pos) < 0.15 ? updateDistance(this.defaultBlockState().setValue(PERSISTENT, Boolean.TRUE).setValue(AGE,4), context.getLevel(), context.getClickedPos()) : updateDistance(this.defaultBlockState().setValue(PERSISTENT, Boolean.TRUE).setValue(AGE,0), context.getLevel(), context.getClickedPos());
     }
 
     private static int getDistance(BlockState neighbor) {
@@ -86,9 +86,9 @@ public class RankineLeavesBlock extends LeavesBlock {
         }
     }
 
-    private static BlockState updateDistance(BlockState state, IWorld worldIn, BlockPos pos) {
+    private static BlockState updateDistance(BlockState state, LevelAccessor worldIn, BlockPos pos) {
         int i = 7;
-        BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+        BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
         for(Direction direction : Direction.values()) {
             blockpos$mutable.setWithOffset(pos, direction);
@@ -102,12 +102,12 @@ public class RankineLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+    public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
         return state.getValue(AGE) > 3 ? 10 : 30;
     }
 
     @Override
-    public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+    public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
         return state.getValue(AGE) > 3 ? 20 : 60;
     }
 }

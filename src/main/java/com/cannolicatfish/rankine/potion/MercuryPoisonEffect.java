@@ -1,39 +1,24 @@
 package com.cannolicatfish.rankine.potion;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.ai.brain.Brain;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.ai.brain.schedule.Activity;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.PhantomEntity;
-import net.minecraft.entity.monster.SkeletonEntity;
-import net.minecraft.entity.monster.SpiderEntity;
-import net.minecraft.entity.passive.DolphinEntity;
-import net.minecraft.entity.passive.WolfEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectType;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class MercuryPoisonEffect extends Effect {
-    public MercuryPoisonEffect(EffectType typeIn, int liquidColorIn) {
+public class MercuryPoisonEffect extends MobEffect {
+    public MercuryPoisonEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 
     @Override
     public void applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
 
-        if (entityLivingBaseIn instanceof PlayerEntity)
+        if (entityLivingBaseIn instanceof Player)
         {
-            PlayerEntity player = ((PlayerEntity)entityLivingBaseIn);
+            Player player = ((Player)entityLivingBaseIn);
 
             if (player.isSprinting() || player.isSwimming() || player.swinging)
             {

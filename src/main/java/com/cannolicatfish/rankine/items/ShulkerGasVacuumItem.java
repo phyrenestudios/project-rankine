@@ -4,20 +4,28 @@ import com.cannolicatfish.rankine.blocks.GasBlock;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineSoundEvents;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
-import net.minecraft.block.AirBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.world.level.block.AirBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
+
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.UseOnContext;
 
 public class ShulkerGasVacuumItem extends Item {
     public ShulkerGasVacuumItem(Properties properties) {
@@ -25,20 +33,20 @@ public class ShulkerGasVacuumItem extends Item {
     }
 
     @Override
-    public ITextComponent getName(ItemStack stack) {
+    public Component getName(ItemStack stack) {
         if (stack.getTag() != null){
             String s = stack.getTag().getString("gas");
             Block b = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(s));
             if (!s.isEmpty() && b instanceof GasBlock) {
-                return new StringTextComponent(new TranslationTextComponent(this.getDescriptionId(stack)).getString() + " (" + new TranslationTextComponent(b.getDescriptionId()).getString() + ") ");
+                return new TextComponent(new TranslatableComponent(this.getDescriptionId(stack)).getString() + " (" + new TranslatableComponent(b.getDescriptionId()).getString() + ") ");
             }
         }
         return super.getName(stack);
     }
 
     @Override
-    public ActionResultType useOn(ItemUseContext context) {
-        World worldIn = context.getLevel();
+    public InteractionResult useOn(UseOnContext context) {
+        Level worldIn = context.getLevel();
         BlockPos pos = context.getClickedPos();
         Direction opp = context.getClickedFace();
         ItemStack stack = context.getItemInHand();
@@ -51,25 +59,25 @@ public class ShulkerGasVacuumItem extends Item {
                     stack.getTag().putInt("color",0);
                 }
                 context.getPlayer().playSound(RankineSoundEvents.SHULKER_GAS_VACUUM_RELEASE.get(),1.0F, 1.0F);
-                return ActionResultType.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         } else {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         BlockPos pos = playerIn.isCrouching() ? playerIn.blockPosition() : playerIn.blockPosition().above();
         Block bl = worldIn.getBlockState(pos).getBlock();
         ItemStack stack = playerIn.getItemInHand(handIn);
-        Hand other = handIn == Hand.MAIN_HAND ? Hand.OFF_HAND : Hand.MAIN_HAND;
+        InteractionHand other = handIn == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
         if (bl instanceof GasBlock && bl.getRegistryName() != null && (stack.getTag() == null || stack.getTag().getString("gas").isEmpty())) {
             if (!worldIn.isClientSide) {
                 if (playerIn.getItemInHand(other).getItem() == Items.GLASS_BOTTLE) {
                     playerIn.getItemInHand(other).shrink(1);
-                    playerIn.inventory.add(new ItemStack(getGasBottle(((GasBlock) bl).getGasEnum())));
+                    playerIn.getInventory().add(new ItemStack(getGasBottle(((GasBlock) bl).getGasEnum())));
                 } else {
                     stack.getOrCreateTag().putString("gas",bl.getRegistryName().toString());
                     stack.getTag().putInt("color",((GasBlock) bl).getGas().getColor());
@@ -77,7 +85,7 @@ public class ShulkerGasVacuumItem extends Item {
                 worldIn.removeBlock(pos,false);
             }
             playerIn.playSound(RankineSoundEvents.SHULKER_GAS_VACUUM_ABSORB.get(),1.0F, 1.0F);
-            return ActionResult.success(stack);
+            return InteractionResultHolder.success(stack);
         }
 
         return super.use(worldIn, playerIn, handIn);

@@ -1,14 +1,14 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraftforge.common.Tags;
 
 public class CamphorBasilPlantBlock extends RankineCropsBlock {
@@ -22,20 +22,20 @@ public class CamphorBasilPlantBlock extends RankineCropsBlock {
             Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D),
             Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D)};
 
-    public CamphorBasilPlantBlock(AbstractBlock.Properties properties) {
+    public CamphorBasilPlantBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
-    protected IItemProvider getBaseSeedId() {
+    protected ItemLike getBaseSeedId() {
         return RankineItems.CAMPHOR_BASIL_SEEDS.get();
     }
 
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return SHAPES[state.getValue(this.getAgeProperty())];
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
         return state.is(Tags.Blocks.DIRT);
     }
 }

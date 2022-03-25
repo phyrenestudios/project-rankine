@@ -7,29 +7,40 @@ import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentData;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.FishingRodItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShieldItem;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SwordItem;
+
 public class AlloyEnchantmentUtils {
 
-    public static List<Enchantment> getAlloyEnchantments(AlloyingRecipe recipe, ItemStack stack, World worldIn) {
+    public static List<Enchantment> getAlloyEnchantments(AlloyingRecipe recipe, ItemStack stack, Level worldIn) {
         List<Enchantment> enchantments = new ArrayList<>();
         List<String> alloyEnchants = recipe.getEnchantments();
         List<String> alloyEnchantTypes = recipe.getEnchantmentTypes();
         for (int i = 0; i < alloyEnchants.size(); i++) {
             Enchantment en;
             if (alloyEnchants.get(i).equals("rankine:random")) {
-                List<EnchantmentData> dat = EnchantmentHelper.selectEnchantment(worldIn.getRandom(),stack,worldIn.getRandom().nextInt(40),true);
+                List<EnchantmentInstance> dat = EnchantmentHelper.selectEnchantment(worldIn.getRandom(),stack,worldIn.getRandom().nextInt(40),true);
                 if (!dat.isEmpty()) {
                     en = dat.get(0).enchantment;
                 } else {
@@ -48,7 +59,7 @@ public class AlloyEnchantmentUtils {
         return enchantments;
     }
 
-    public static List<Enchantment> getElementEnchantments(List<ElementRecipe> elements, List<Integer> percents, ItemStack stack, World worldIn) {
+    public static List<Enchantment> getElementEnchantments(List<ElementRecipe> elements, List<Integer> percents, ItemStack stack, Level worldIn) {
         List<Enchantment> enchantments = new ArrayList<>();
         List<Float> enchantmentTotals = new ArrayList<>();
         for (int e = 0; e < elements.size(); e++) {
@@ -61,7 +72,7 @@ public class AlloyEnchantmentUtils {
             for (int i = 0; i < elementEnchants.size(); i++) {
                 Enchantment en;
                 if (elementEnchants.get(i).equals("rankine:random")) {
-                    List<EnchantmentData> dat = EnchantmentHelper.selectEnchantment(worldIn.getRandom(),stack,1,true);
+                    List<EnchantmentInstance> dat = EnchantmentHelper.selectEnchantment(worldIn.getRandom(),stack,1,true);
                     if (!dat.isEmpty()) {
                         en = dat.get(0).enchantment;
                     } else {
@@ -96,7 +107,7 @@ public class AlloyEnchantmentUtils {
             case ALL:
                 return enchantment.canEnchant(stack);
             case TOOLS:
-                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ToolItem || stack.getItem() instanceof SwordItem);
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof DiggerItem || stack.getItem() instanceof SwordItem);
             case ARMOR:
                 return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem);
             case PICKAXE:
@@ -118,13 +129,13 @@ public class AlloyEnchantmentUtils {
             case CROWBAR:
                 return enchantment.canEnchant(stack) && (stack.getItem() instanceof CrowbarItem);
             case HELMET:
-                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlotType.HEAD;
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlot.HEAD;
             case CHESTPLATE:
-                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlotType.CHEST;
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlot.CHEST;
             case LEGGINGS:
-                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlotType.LEGS;
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlot.LEGS;
             case BOOTS:
-                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlotType.FEET;
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlot.FEET;
             case SHIELD:
                 return enchantment.canEnchant(stack) && (stack.getItem() instanceof ShieldItem);
             case FISHING_ROD:

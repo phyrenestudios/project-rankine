@@ -7,12 +7,12 @@ import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -171,7 +171,7 @@ public class AlloyCustomHelper {
         return list;
     }
 
-    public static ItemStack getItemstackForSearching(Item item, @Nullable World worldIn) {
+    public static ItemStack getItemstackForSearching(Item item, @Nullable Level worldIn) {
         ItemStack list = ALLOY_SEARCH_LISTS.get(item);
         if (list == null && item instanceof IAlloyTool) {
             IAlloyTool tool = (IAlloyTool) item;

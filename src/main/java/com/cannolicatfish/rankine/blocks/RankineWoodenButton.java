@@ -1,10 +1,10 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.SoundType;
-import net.minecraft.block.WoodButtonBlock;
-import net.minecraft.block.material.Material;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.WoodButtonBlock;
+import net.minecraft.world.level.material.Material;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class RankineWoodenButton extends WoodButtonBlock {
     public RankineWoodenButton() {

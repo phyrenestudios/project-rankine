@@ -2,10 +2,10 @@ package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.BlockState;
-import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
-public class MeteoriteFeatureConfig implements IFeatureConfig {
+public class MeteoriteFeatureConfig implements FeatureConfiguration {
     public static final Codec<MeteoriteFeatureConfig> CODEC = RecordCodecBuilder.create((p_236451_0_) -> {
         return p_236451_0_.group(BlockState.CODEC.fieldOf("state").forGetter((p_236452_0_) -> {
             return p_236452_0_.state;

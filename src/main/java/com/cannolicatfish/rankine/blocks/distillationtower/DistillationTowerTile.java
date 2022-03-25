@@ -5,36 +5,35 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.AirDistillationRecipe;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ITag;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.*;
 
-public class DistillationTowerTile extends TileEntity implements ITickableTileEntity {
+public class DistillationTowerTile extends BlockEntity {
     private int proccessTime;
-    public DistillationTowerTile() {
-        super(DISTILLATION_TOWER_TILE);
+    public DistillationTowerTile(BlockPos posIn, BlockState stateIn) {
+        super(DISTILLATION_TOWER_TILE, posIn, stateIn);
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         this.proccessTime = nbt.getInt("ProcessTime");
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
         compound.putInt("ProcessTime", this.proccessTime);
         return compound;
@@ -64,7 +63,7 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
         }
     }
 
-    private AirDistillationRecipe getRecipe(World worldIn, ResourceLocation biome, ResourceLocation dim) {
+    private AirDistillationRecipe getRecipe(Level worldIn, ResourceLocation biome, ResourceLocation dim) {
         for (AirDistillationRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.AIR_DISTILLATION)) {
             if (recipe.matchesDistillationRecipe(biome, dim)){
                 return recipe;
@@ -73,7 +72,7 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
         return null;
     }
 
-    private int structureCheck(World worldIn, BlockPos pos) {
+    private int structureCheck(Level worldIn, BlockPos pos) {
         if (getRing(worldIn,pos, BlockTags.ICE) &&
             worldIn.getBlockState(pos.offset(2,0,-1)).is(RankineTags.Blocks.SHEETMETAL) &&
             worldIn.getBlockState(pos.offset(2,0,0)).is(RankineTags.Blocks.SHEETMETAL) &&
@@ -155,7 +154,7 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
         }
     }
 
-    private boolean getRing(World worldIn, BlockPos pos, Block matchBlock) {
+    private boolean getRing(Level worldIn, BlockPos pos, Block matchBlock) {
         return worldIn.getBlockState(pos.offset(-1, 0, -1)).is(matchBlock) &&
                 worldIn.getBlockState(pos.offset(0, 0, -1)).is(matchBlock) &&
                 worldIn.getBlockState(pos.offset(1, 0, -1)).is(matchBlock) &&
@@ -166,7 +165,7 @@ public class DistillationTowerTile extends TileEntity implements ITickableTileEn
                 worldIn.getBlockState(pos.offset(1, 0, 1)).is(matchBlock);
     }
 
-    private boolean getRing(World worldIn, BlockPos pos, ITag<Block> matchBlock) {
+    private boolean getRing(Level worldIn, BlockPos pos, Tag<Block> matchBlock) {
         return worldIn.getBlockState(pos.offset(-1, 0, -1)).is(matchBlock) &&
                 worldIn.getBlockState(pos.offset(0, 0, -1)).is(matchBlock) &&
                 worldIn.getBlockState(pos.offset(1, 0, -1)).is(matchBlock) &&

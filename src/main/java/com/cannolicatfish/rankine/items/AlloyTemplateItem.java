@@ -9,29 +9,27 @@ import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.tags.ITag;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.tags.Tag;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -41,7 +39,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class AlloyTemplateItem extends Item {
     public AlloyTemplateItem(Properties properties) {
@@ -49,7 +47,7 @@ public class AlloyTemplateItem extends Item {
     }
 
     @Override
-    public ITextComponent getName(ItemStack stack) {
+    public Component getName(ItemStack stack) {
         if (isTemplateInit(stack)) {
             int stackSize = getStackSize(stack);
             Item output = ForgeRegistries.ITEMS.getValue(getOutputAsResourceLocation(stack));
@@ -62,9 +60,9 @@ public class AlloyTemplateItem extends Item {
                         nameOverride = generateLangFromRecipe(((IAlloyItem) output).getDefaultRecipe());
                     }
                 }
-                String translate = new TranslationTextComponent(output.getDescriptionId(),new TranslationTextComponent(nameOverride).getString()).getString();
-                String template = new TranslationTextComponent(this.getDescriptionId(stack)).getString();
-                return new StringTextComponent( stackSize + "x " + translate + " " + template);
+                String translate = new TranslatableComponent(output.getDescriptionId(),new TranslatableComponent(nameOverride).getString()).getString();
+                String template = new TranslatableComponent(this.getDescriptionId(stack)).getString();
+                return new TextComponent( stackSize + "x " + translate + " " + template);
             } else {
                 return super.getName(stack);
             }
@@ -86,9 +84,9 @@ public class AlloyTemplateItem extends Item {
         Map<Ingredient,Short> ings = new HashMap<>();
         if (!getStoredTemplate(template).isEmpty()) {
 
-            ListNBT temp = getStoredTemplate(template);
+            ListTag temp = getStoredTemplate(template);
             for (int i = 0; i < temp.size(); i++) {
-                CompoundNBT nbt = temp.getCompound(i);
+                CompoundTag nbt = temp.getCompound(i);
                 ings.put(getIngredientFromString(nbt.getString("ingredient")),nbt.getShort("ingredientAmount"));
             }
             return ings;
@@ -98,7 +96,7 @@ public class AlloyTemplateItem extends Item {
 
     private static Ingredient getIngredientFromString(String s) {
         if (s.contains("T#")) {
-            ITag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
+            Tag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
 
             if (tag != null){
                 return Ingredient.of(tag);
@@ -114,23 +112,23 @@ public class AlloyTemplateItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (isTemplateInit(stack)) {
-            tooltip.add(new StringTextComponent("Composition: " + getAlloyComp(stack)).withStyle(TextFormatting.GRAY));
-            tooltip.add(new StringTextComponent("Requires:").withStyle(TextFormatting.DARK_GREEN));
-            ListNBT inputs = getStoredTemplate(stack);
+            tooltip.add(new TextComponent("Composition: " + getAlloyComp(stack)).withStyle(ChatFormatting.GRAY));
+            tooltip.add(new TextComponent("Requires:").withStyle(ChatFormatting.DARK_GREEN));
+            ListTag inputs = getStoredTemplate(stack);
             for (int i = 0; i < inputs.size(); i++) {
-                CompoundNBT nbt = inputs.getCompound(i);
+                CompoundTag nbt = inputs.getCompound(i);
                 String ing = nbt.getString("ingredient");
                 int ingAmount = nbt.getShort("ingredientAmount");
                 if (ing.contains("#")) {
                     ing = ing.split("#")[1];
                 }
-                tooltip.add(new StringTextComponent(ingAmount + "x " + ing).withStyle(TextFormatting.GRAY));
+                tooltip.add(new TextComponent(ingAmount + "x " + ing).withStyle(ChatFormatting.GRAY));
                 if (Screen.hasShiftDown() && worldIn != null) {
                     ResourceLocation id = new ResourceLocation(nbt.getString("element"));
                     int amount = nbt.getShort("elementAmount");
-                    IRecipe<?> recipe = worldIn.getRecipeManager().byKey(id).orElse(null);
+                    Recipe<?> recipe = worldIn.getRecipeManager().byKey(id).orElse(null);
                     if (recipe instanceof ElementRecipe) {
                         ElementRecipe element = (ElementRecipe) recipe;
                         String elementName = element.getName();
@@ -138,26 +136,26 @@ public class AlloyTemplateItem extends Item {
                             elementName = elementName.substring(0,1).toUpperCase(Locale.ROOT) + elementName.substring(1);
                         }
                         String display = elementName + " (" + element.getSymbol() + ")";
-                        tooltip.add(new StringTextComponent("    " +amount + "x " + display).withStyle(TextFormatting.GRAY));
+                        tooltip.add(new TextComponent("    " +amount + "x " + display).withStyle(ChatFormatting.GRAY));
                     }
 
                 }
             }
 
-            tooltip.add(new StringTextComponent( ""));
-            tooltip.add(new StringTextComponent( "Made in:").withStyle(TextFormatting.DARK_GREEN));
+            tooltip.add(new TextComponent( ""));
+            tooltip.add(new TextComponent( "Made in:").withStyle(ChatFormatting.DARK_GREEN));
             int tier = getAlloyTier(stack);
             if ((tier & 1) != 0) {
-                tooltip.add(new TranslationTextComponent(RankineBlocks.ALLOY_FURNACE.get().getDescriptionId()).withStyle(TextFormatting.GRAY));
+                tooltip.add(new TranslatableComponent(RankineBlocks.ALLOY_FURNACE.get().getDescriptionId()).withStyle(ChatFormatting.GRAY));
             }
             if ((tier & 2) != 0) {
-                tooltip.add(new TranslationTextComponent(RankineBlocks.INDUCTION_FURNACE.get().getDescriptionId()).withStyle(TextFormatting.GRAY));
+                tooltip.add(new TranslatableComponent(RankineBlocks.INDUCTION_FURNACE.get().getDescriptionId()).withStyle(ChatFormatting.GRAY));
             }
         }
     }
 
-    public static void addTemplate(World worldIn, ItemStack stack, AlloyingRecipe recipe, IInventory inv, DyeItem dye) {
-        CompoundNBT listnbt = new CompoundNBT();
+    public static void addTemplate(Level worldIn, ItemStack stack, AlloyingRecipe recipe, Container inv, DyeItem dye) {
+        CompoundTag listnbt = new CompoundTag();
         ItemStack output = recipe.generateResult(worldIn,inv,3);
 
         assembleTemplateData(stack,worldIn,inv,0,6);
@@ -171,12 +169,12 @@ public class AlloyTemplateItem extends Item {
         listnbt.putShort("alloyTier", (short) recipe.getTier());
         stack.getOrCreateTag().put("StoredInfo", listnbt);
 
-        stack.getOrCreateTag().putInt("color", dye.getDyeColor().getColorValue());
+        stack.getOrCreateTag().putInt("color", dye.getDyeColor().getMaterialColor().col);
     }
 
-    public static void assembleTemplateData(ItemStack stack, World worldIn, IInventory inv, int startIndex, int endIndex)
+    public static void assembleTemplateData(ItemStack stack, Level worldIn, Container inv, int startIndex, int endIndex)
     {
-        ListNBT elements = new ListNBT();
+        ListTag elements = new ListTag();
         List<ElementRecipe> elementRecipes = new ArrayList<>();
         List<String> ingredients = new ArrayList<>();
         List<Integer> elementAmounts = new ArrayList<>();
@@ -189,7 +187,7 @@ public class AlloyTemplateItem extends Item {
                 continue;
             }
 
-            Inventory temp = new Inventory(invStackInSlot);
+            SimpleContainer temp = new SimpleContainer(invStackInSlot);
             ElementRecipe elem = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, temp, worldIn).orElse(null);
             if (elem != null) {
                 ingredients.add(elem.getIngredientFromCount(elem.getMaterialCount(invStackInSlot.getItem())));
@@ -199,7 +197,7 @@ public class AlloyTemplateItem extends Item {
             }
         }
         for (int i = 0; i < ingredients.size(); i++) {
-            CompoundNBT compoundnbt = new CompoundNBT();
+            CompoundTag compoundnbt = new CompoundTag();
             compoundnbt.putString("ingredient", ingredients.get(i));
             compoundnbt.putShort("ingredientAmount", amounts.get(i).shortValue());
             compoundnbt.putString("element", String.valueOf(elementRecipes.get(i).getId()));
@@ -209,7 +207,7 @@ public class AlloyTemplateItem extends Item {
         stack.getOrCreateTag().put("StoredTemplate",elements);
     }
 
-    public static ItemStack getResult(World worldIn, ItemStack stack)
+    public static ItemStack getResult(Level worldIn, ItemStack stack)
     {
         if (isTemplateInit(stack)) {
             String rs = getOutput(stack);
@@ -220,12 +218,12 @@ public class AlloyTemplateItem extends Item {
                 if (item instanceof IAlloyItem)
                 {
                     Map<ElementRecipe,Integer> elementMap = new HashMap<>();
-                    ListNBT storedTemp = getStoredTemplate(stack);
+                    ListTag storedTemp = getStoredTemplate(stack);
                     for (int i = 0; i < storedTemp.size(); i++) {
-                        CompoundNBT nbt = storedTemp.getCompound(i);
+                        CompoundTag nbt = storedTemp.getCompound(i);
                         ResourceLocation elem = new ResourceLocation(nbt.getString("element"));
                         int amount = nbt.getShort("elementAmount");
-                        IRecipe<?> recipe = worldIn.getRecipeManager().byKey(elem).orElse(null);
+                        Recipe<?> recipe = worldIn.getRecipeManager().byKey(elem).orElse(null);
                         if (recipe instanceof ElementRecipe) {
                             elementMap.put((ElementRecipe) recipe,amount);
                         }
@@ -242,19 +240,19 @@ public class AlloyTemplateItem extends Item {
         return ItemStack.EMPTY;
     }
 
-    public static CompoundNBT getTemplate(ItemStack stack) {
-        CompoundNBT compoundnbt = stack.getTag();
-        return compoundnbt != null ? compoundnbt : new CompoundNBT();
+    public static CompoundTag getTemplate(ItemStack stack) {
+        CompoundTag compoundnbt = stack.getTag();
+        return compoundnbt != null ? compoundnbt : new CompoundTag();
     }
 
-    static ListNBT getStoredTemplate(ItemStack stack) {
-        CompoundNBT compoundnbt = stack.getTag();
-        return compoundnbt != null ? compoundnbt.getList("StoredTemplate", 10) : new ListNBT();
+    static ListTag getStoredTemplate(ItemStack stack) {
+        CompoundTag compoundnbt = stack.getTag();
+        return compoundnbt != null ? compoundnbt.getList("StoredTemplate", 10) : new ListTag();
     }
 
-    static CompoundNBT getStoredInfo(ItemStack stack) {
-        CompoundNBT compoundnbt = stack.getTag();
-        return compoundnbt != null ? compoundnbt.getCompound("StoredInfo") : new CompoundNBT();
+    static CompoundTag getStoredInfo(ItemStack stack) {
+        CompoundTag compoundnbt = stack.getTag();
+        return compoundnbt != null ? compoundnbt.getCompound("StoredInfo") : new CompoundTag();
     }
 
     static int getStackSize(ItemStack stack)
@@ -320,16 +318,16 @@ public class AlloyTemplateItem extends Item {
         }
     }
 
-    public static Map<ElementRecipe,Integer> getElementList(World worldIn, ItemStack stack) {
+    public static Map<ElementRecipe,Integer> getElementList(Level worldIn, ItemStack stack) {
         if (!getStoredTemplate(stack).isEmpty()) {
             Map<ElementRecipe,Integer> outMap = new HashMap<>();
-            ListNBT temp = getStoredTemplate(stack);
+            ListTag temp = getStoredTemplate(stack);
             for (int i = 0; i < temp.size(); i++) {
-                CompoundNBT nbt = temp.getCompound(i);
+                CompoundTag nbt = temp.getCompound(i);
                 ResourceLocation elem = new ResourceLocation(nbt.getString("element"));
                 int amount = nbt.getShort("elementAmount");
                 if (worldIn != null) {
-                    IRecipe<?> recipe = worldIn.getRecipeManager().byKey(elem).orElse(null);
+                    Recipe<?> recipe = worldIn.getRecipeManager().byKey(elem).orElse(null);
                     if (recipe instanceof ElementRecipe) {
                         outMap.put((ElementRecipe) recipe, amount);
                     }
@@ -350,13 +348,13 @@ public class AlloyTemplateItem extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (getTemplate(stack).size() == 0 && !worldIn.isClientSide)
         {
             int random = worldIn.getRandom().nextInt(16);
             ItemStack[] inputs;
             AlloyingRecipe recipeIn;
-            Inventory sim;
+            SimpleContainer sim;
             switch (random)
             {
                 case 0:
@@ -415,10 +413,10 @@ public class AlloyTemplateItem extends Item {
                             new ItemStack(RankineItems.TANTALUM_INGOT.get(),1),ItemStack.EMPTY,ItemStack.EMPTY};
                     break;
             }
-            sim = new Inventory(inputs);
+            sim = new SimpleContainer(inputs);
             recipeIn = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, sim, worldIn).orElse(null);
             if (recipeIn != null) {
-                AlloyTemplateItem.addTemplate(worldIn,stack, recipeIn, new Inventory(inputs), (DyeItem) Items.WHITE_DYE);
+                AlloyTemplateItem.addTemplate(worldIn,stack, recipeIn, new SimpleContainer(inputs), (DyeItem) Items.WHITE_DYE);
             }
 
         }

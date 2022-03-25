@@ -1,14 +1,12 @@
 package com.cannolicatfish.rankine.enchantment;
 
 import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
 
 public class GhastRegenerationEnchantment extends Enchantment {
-    public GhastRegenerationEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
+    public GhastRegenerationEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlot... p_i46721_2_) {
         super(p_i46721_1_, RankineEnchantmentTypes.ALLOYTOOL, p_i46721_2_);
     }
 

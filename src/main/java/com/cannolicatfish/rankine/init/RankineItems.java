@@ -7,21 +7,32 @@ import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerItem;
 import com.cannolicatfish.rankine.items.tools.*;
-import com.cannolicatfish.rankine.items.tools.arrows.MagnesiumArrowItem;
 import com.cannolicatfish.rankine.items.tools.arrows.RopeCoilArrowItem;
-import com.cannolicatfish.rankine.items.tools.arrows.ThoriumArrowItem;
 import com.cannolicatfish.rankine.items.totems.*;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.*;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.Arrays;
+
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.Tiers;
 
 public class RankineItems {
 
@@ -2396,32 +2407,32 @@ public class RankineItems {
     public static final RegistryObject<Item> GARLAND = REGISTRY.register("garland", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants)));
     //public static final RegistryObject<Item> LARGE_DEAD_BUSH = REGISTRY.register("large_dead_bush", () -> new BlockItem(RankineBlocks.GOLDENROD.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
 
-    public static final RegistryObject<Item> ASPARAGUS_SEEDS = REGISTRY.register("asparagus_seeds", () -> new BlockNamedItem(RankineBlocks.ASPARAGUS_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
-    public static final RegistryObject<Item> BARLEY_SEEDS = REGISTRY.register("barley_seeds", () -> new BlockNamedItem(RankineBlocks.BARLEY_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
-    public static final RegistryObject<Item> CAMPHOR_BASIL_SEEDS = REGISTRY.register("camphor_basil_seeds", () -> new BlockNamedItem(RankineBlocks.CAMPHOR_BASIL_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
-    public static final RegistryObject<Item> CORN_SEEDS = REGISTRY.register("corn_seeds", () -> new BlockNamedItem(RankineBlocks.CORN_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
-    public static final RegistryObject<Item> COTTON_SEEDS = REGISTRY.register("cotton_seeds", () -> new BlockNamedItem(RankineBlocks.COTTON_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
-    public static final RegistryObject<Item> JUTE_SEEDS = REGISTRY.register("jute_seeds", () -> new BlockNamedItem(RankineBlocks.JUTE_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
-    public static final RegistryObject<Item> MILLET_SEEDS = REGISTRY.register("millet_seeds", () -> new BlockNamedItem(RankineBlocks.MILLET_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
-    public static final RegistryObject<Item> OAT_SEEDS = REGISTRY.register("oat_seeds", () -> new BlockNamedItem(RankineBlocks.OAT_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
-    public static final RegistryObject<Item> RICE_SEEDS = REGISTRY.register("rice_seeds", () -> new BlockNamedItem(RankineBlocks.RICE_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
-    public static final RegistryObject<Item> RYE_SEEDS = REGISTRY.register("rye_seeds", () -> new BlockNamedItem(RankineBlocks.RYE_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
-    public static final RegistryObject<Item> SORGHUM_SEEDS = REGISTRY.register("sorghum_seeds", () -> new BlockNamedItem(RankineBlocks.SORGHUM_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> ASPARAGUS_SEEDS = REGISTRY.register("asparagus_seeds", () -> new ItemNameBlockItem(RankineBlocks.ASPARAGUS_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> BARLEY_SEEDS = REGISTRY.register("barley_seeds", () -> new ItemNameBlockItem(RankineBlocks.BARLEY_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> CAMPHOR_BASIL_SEEDS = REGISTRY.register("camphor_basil_seeds", () -> new ItemNameBlockItem(RankineBlocks.CAMPHOR_BASIL_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> CORN_SEEDS = REGISTRY.register("corn_seeds", () -> new ItemNameBlockItem(RankineBlocks.CORN_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> COTTON_SEEDS = REGISTRY.register("cotton_seeds", () -> new ItemNameBlockItem(RankineBlocks.COTTON_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> JUTE_SEEDS = REGISTRY.register("jute_seeds", () -> new ItemNameBlockItem(RankineBlocks.JUTE_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> MILLET_SEEDS = REGISTRY.register("millet_seeds", () -> new ItemNameBlockItem(RankineBlocks.MILLET_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> OAT_SEEDS = REGISTRY.register("oat_seeds", () -> new ItemNameBlockItem(RankineBlocks.OAT_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> RICE_SEEDS = REGISTRY.register("rice_seeds", () -> new ItemNameBlockItem(RankineBlocks.RICE_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> RYE_SEEDS = REGISTRY.register("rye_seeds", () -> new ItemNameBlockItem(RankineBlocks.RYE_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> SORGHUM_SEEDS = REGISTRY.register("sorghum_seeds", () -> new ItemNameBlockItem(RankineBlocks.SORGHUM_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
 
-    public static final RegistryObject<Item> ELDERBERRIES = REGISTRY.register("elderberries", () -> new BlockNamedItem(RankineBlocks.ELDERBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
-    public static final RegistryObject<Item> SNOWBERRIES = REGISTRY.register("snowberries", () -> new BlockNamedItem(RankineBlocks.SNOWBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SNOWBERRIES)));
-    public static final RegistryObject<Item> BLUEBERRIES = REGISTRY.register("blueberries", () -> new BlockNamedItem(RankineBlocks.BLUEBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
-    public static final RegistryObject<Item> RASPBERRIES = REGISTRY.register("raspberries", () -> new BlockNamedItem(RankineBlocks.RASPBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
-    public static final RegistryObject<Item> BLACKBERRIES = REGISTRY.register("blackberries", () -> new BlockNamedItem(RankineBlocks.BLACKBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
-    public static final RegistryObject<Item> CRANBERRIES = REGISTRY.register("cranberries", () -> new BlockNamedItem(RankineBlocks.CRANBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
-    public static final RegistryObject<Item> POKEBERRIES = REGISTRY.register("pokeberries", () -> new BlockNamedItem(RankineBlocks.POKEBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.POKEBERRIES)));
-    public static final RegistryObject<Item> STRAWBERRIES = REGISTRY.register("strawberries", () -> new BlockNamedItem(RankineBlocks.STRAWBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
-    public static final RegistryObject<Item> PINEAPPLE = REGISTRY.register("pineapple", () -> new BlockNamedItem(RankineBlocks.PINEAPPLE_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.PINEAPPLE)));
+    public static final RegistryObject<Item> ELDERBERRIES = REGISTRY.register("elderberries", () -> new ItemNameBlockItem(RankineBlocks.ELDERBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
+    public static final RegistryObject<Item> SNOWBERRIES = REGISTRY.register("snowberries", () -> new ItemNameBlockItem(RankineBlocks.SNOWBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SNOWBERRIES)));
+    public static final RegistryObject<Item> BLUEBERRIES = REGISTRY.register("blueberries", () -> new ItemNameBlockItem(RankineBlocks.BLUEBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
+    public static final RegistryObject<Item> RASPBERRIES = REGISTRY.register("raspberries", () -> new ItemNameBlockItem(RankineBlocks.RASPBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
+    public static final RegistryObject<Item> BLACKBERRIES = REGISTRY.register("blackberries", () -> new ItemNameBlockItem(RankineBlocks.BLACKBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
+    public static final RegistryObject<Item> CRANBERRIES = REGISTRY.register("cranberries", () -> new ItemNameBlockItem(RankineBlocks.CRANBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
+    public static final RegistryObject<Item> POKEBERRIES = REGISTRY.register("pokeberries", () -> new ItemNameBlockItem(RankineBlocks.POKEBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.POKEBERRIES)));
+    public static final RegistryObject<Item> STRAWBERRIES = REGISTRY.register("strawberries", () -> new ItemNameBlockItem(RankineBlocks.STRAWBERRY_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
+    public static final RegistryObject<Item> PINEAPPLE = REGISTRY.register("pineapple", () -> new ItemNameBlockItem(RankineBlocks.PINEAPPLE_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.PINEAPPLE)));
     public static final RegistryObject<Item> PINEAPPLE_SLEEVES = REGISTRY.register("pineapple_sleeves", () -> new Item(new Item.Properties().food(RankineFoods.PINEAPPLE_SLEEVES)));
-    public static final RegistryObject<Item> BANANA_YUCCA = REGISTRY.register("banana_yucca", () -> new BlockNamedItem(RankineBlocks.BANANA_YUCCA_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
-    public static final RegistryObject<Item> ALOE = REGISTRY.register("aloe", () -> new BlockNamedItem(RankineBlocks.ALOE_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.ALOE)));
+    public static final RegistryObject<Item> BANANA_YUCCA = REGISTRY.register("banana_yucca", () -> new ItemNameBlockItem(RankineBlocks.BANANA_YUCCA_BUSH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
+    public static final RegistryObject<Item> ALOE = REGISTRY.register("aloe", () -> new ItemNameBlockItem(RankineBlocks.ALOE_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.ALOE)));
     public static final RegistryObject<Item> ASPARAGUS = REGISTRY.register("asparagus", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
-    public static final RegistryObject<Item> SOYBEANS = REGISTRY.register("soybeans", () -> new BlockNamedItem(RankineBlocks.SOYBEAN_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> SOYBEANS = REGISTRY.register("soybeans", () -> new ItemNameBlockItem(RankineBlocks.SOYBEAN_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> CORN_EAR = REGISTRY.register("corn_ear", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.SIMPLE_FOOD)));
     public static final RegistryObject<Item> RICE = REGISTRY.register("rice", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> OATS = REGISTRY.register("oats", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants)));
@@ -2826,7 +2837,7 @@ public class RankineItems {
     public static final RegistryObject<Item> CEMENT_MIX = REGISTRY.register("cement_mix", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> MORTAR = REGISTRY.register("mortar", () -> new MortarItem(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BITUMEN = REGISTRY.register("bitumen", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> GWIHABAITE = REGISTRY.register("gwihabaite", () -> new BlockNamedItem(RankineBlocks.GWIHABAITE_CRYSTAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> GWIHABAITE = REGISTRY.register("gwihabaite", () -> new ItemNameBlockItem(RankineBlocks.GWIHABAITE_CRYSTAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
 
 
     public static final RegistryObject<Item> REFRACTORY_BRICK = REGISTRY.register("refractory_brick", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
@@ -2980,8 +2991,8 @@ public class RankineItems {
 //RANKINE MISC CREATIVE TAB --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //NORMAL TOOLS
-    public static final RegistryObject<Item> WOODEN_HAMMER = REGISTRY.register("wooden_hammer", () -> new HammerItem(2, -3.2F, ItemTier.WOOD, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> STONE_HAMMER = REGISTRY.register("stone_hammer", () -> new HammerItem(2, -3.2F, ItemTier.STONE, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> WOODEN_HAMMER = REGISTRY.register("wooden_hammer", () -> new HammerItem(2, -3.2F, Tiers.WOOD, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> STONE_HAMMER = REGISTRY.register("stone_hammer", () -> new HammerItem(2, -3.2F, Tiers.STONE, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> FLINT_PICKAXE = REGISTRY.register("flint_pickaxe", () -> new PickaxeItem(RankineToolMaterials.FLINT, 1, -2.8F, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> FLINT_AXE = REGISTRY.register("flint_axe", () -> new AxeItem(RankineToolMaterials.FLINT, 4.0F, -3.2F, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> FLINT_SHOVEL = REGISTRY.register("flint_shovel", () -> new ShovelItem(RankineToolMaterials.FLINT, 1.5F, -3.0F, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
@@ -3203,33 +3214,31 @@ public class RankineItems {
     public static final RegistryObject<Item> ALLOY_BLUNDERBUSS = REGISTRY.register("alloy_blunderbuss", () -> new AlloyBlunderbussItem(RankineToolMaterials.ALLOY, "80Hg-20Au",null, (new Item.Properties()).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ALLOY_SURF_ROD = REGISTRY.register("alloy_surf_rod", () -> new AlloySurfRodItem(RankineToolMaterials.ALLOY, "80Hg-20Au",null, (new Item.Properties()).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ALLOY_ARROW = REGISTRY.register("alloy_arrow", () -> new AlloyArrowItem("80Hg-20Au",null, new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> MAGNESIUM_ARROW = REGISTRY.register("magnesium_arrow", () -> new MagnesiumArrowItem(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> THORIUM_ARROW = REGISTRY.register("thorium_arrow", () -> new ThoriumArrowItem(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ROPE_COIL_ARROW = REGISTRY.register("rope_coil_arrow", () -> new RopeCoilArrowItem(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
 
-    public static final RegistryObject<Item> BRIGADINE_HELMET = REGISTRY.register("brigandine_helmet", () -> new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.HEAD, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> BRIGADINE_CHESTPLATE = REGISTRY.register("brigandine_chestplate", () -> new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.CHEST, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> BRIGADINE_LEGGINGS = REGISTRY.register("brigandine_leggings", () -> new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.LEGS, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> BRIGADINE_BOOTS = REGISTRY.register("brigandine_boots", () -> new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.FEET, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> DIVING_HELMET = REGISTRY.register("diving_helmet", () -> new ArmorItem(RankineArmorMaterials.DIVING, EquipmentSlotType.HEAD, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> DIVING_CHESTPLATE = REGISTRY.register("diving_chestplate", () -> new ArmorItem(RankineArmorMaterials.DIVING, EquipmentSlotType.CHEST, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> DIVING_LEGGINGS = REGISTRY.register("diving_leggings", () -> new ArmorItem(RankineArmorMaterials.DIVING, EquipmentSlotType.LEGS, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> DIVING_BOOTS = REGISTRY.register("diving_boots", () -> new ArmorItem(RankineArmorMaterials.DIVING, EquipmentSlotType.FEET, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> CONDUIT_DIVING_HELMET = REGISTRY.register("conduit_diving_helmet", () -> new ArmorItem(RankineArmorMaterials.CONDUIT_DIVING, EquipmentSlotType.HEAD, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> CONDUIT_DIVING_CHESTPLATE = REGISTRY.register("conduit_diving_chestplate", () -> new ArmorItem(RankineArmorMaterials.CONDUIT_DIVING, EquipmentSlotType.CHEST, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> CONDUIT_DIVING_LEGGINGS = REGISTRY.register("conduit_diving_leggings", () -> new ArmorItem(RankineArmorMaterials.CONDUIT_DIVING, EquipmentSlotType.LEGS, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> CONDUIT_DIVING_BOOTS = REGISTRY.register("conduit_diving_boots", () -> new ArmorItem(RankineArmorMaterials.CONDUIT_DIVING, EquipmentSlotType.FEET, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> ALLOY_HELMET = REGISTRY.register("alloy_helmet", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, EquipmentSlotType.HEAD, "80Hg-20Au",null, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> ALLOY_CHESTPLATE = REGISTRY.register("alloy_chestplate", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, EquipmentSlotType.CHEST, "80Hg-20Au",null, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> ALLOY_LEGGINGS = REGISTRY.register("alloy_leggings", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, EquipmentSlotType.LEGS, "80Hg-20Au",null, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> ALLOY_BOOTS = REGISTRY.register("alloy_boots", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, EquipmentSlotType.FEET, "80Hg-20Au",null, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> BRIGADINE_HELMET = REGISTRY.register("brigandine_helmet", () -> new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlot.HEAD, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> BRIGADINE_CHESTPLATE = REGISTRY.register("brigandine_chestplate", () -> new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlot.CHEST, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> BRIGADINE_LEGGINGS = REGISTRY.register("brigandine_leggings", () -> new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlot.LEGS, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> BRIGADINE_BOOTS = REGISTRY.register("brigandine_boots", () -> new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlot.FEET, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> DIVING_HELMET = REGISTRY.register("diving_helmet", () -> new ArmorItem(RankineArmorMaterials.DIVING, EquipmentSlot.HEAD, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> DIVING_CHESTPLATE = REGISTRY.register("diving_chestplate", () -> new ArmorItem(RankineArmorMaterials.DIVING, EquipmentSlot.CHEST, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> DIVING_LEGGINGS = REGISTRY.register("diving_leggings", () -> new ArmorItem(RankineArmorMaterials.DIVING, EquipmentSlot.LEGS, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> DIVING_BOOTS = REGISTRY.register("diving_boots", () -> new ArmorItem(RankineArmorMaterials.DIVING, EquipmentSlot.FEET, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CONDUIT_DIVING_HELMET = REGISTRY.register("conduit_diving_helmet", () -> new ArmorItem(RankineArmorMaterials.CONDUIT_DIVING, EquipmentSlot.HEAD, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CONDUIT_DIVING_CHESTPLATE = REGISTRY.register("conduit_diving_chestplate", () -> new ArmorItem(RankineArmorMaterials.CONDUIT_DIVING, EquipmentSlot.CHEST, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CONDUIT_DIVING_LEGGINGS = REGISTRY.register("conduit_diving_leggings", () -> new ArmorItem(RankineArmorMaterials.CONDUIT_DIVING, EquipmentSlot.LEGS, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CONDUIT_DIVING_BOOTS = REGISTRY.register("conduit_diving_boots", () -> new ArmorItem(RankineArmorMaterials.CONDUIT_DIVING, EquipmentSlot.FEET, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> ALLOY_HELMET = REGISTRY.register("alloy_helmet", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, EquipmentSlot.HEAD, "80Hg-20Au",null, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> ALLOY_CHESTPLATE = REGISTRY.register("alloy_chestplate", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, EquipmentSlot.CHEST, "80Hg-20Au",null, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> ALLOY_LEGGINGS = REGISTRY.register("alloy_leggings", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, EquipmentSlot.LEGS, "80Hg-20Au",null, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> ALLOY_BOOTS = REGISTRY.register("alloy_boots", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, EquipmentSlot.FEET, "80Hg-20Au",null, new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
 
-    public static final RegistryObject<Item> GAS_MASK = REGISTRY.register("gas_mask", () -> new ArmorItem(RankineArmorMaterials.RUBBER, EquipmentSlotType.HEAD, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> GOGGLES = REGISTRY.register("goggles", () -> new ArmorItem(RankineArmorMaterials.RUBBER, EquipmentSlotType.HEAD, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> SANDALS = REGISTRY.register("sandals", () -> new ArmorItem(ArmorMaterial.LEATHER, EquipmentSlotType.FEET, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> SNOWSHOES = REGISTRY.register("snowshoes", () -> new ArmorItem(ArmorMaterial.LEATHER, EquipmentSlotType.FEET, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> ICE_SKATES = REGISTRY.register("ice_skates", () -> new ArmorItem(ArmorMaterial.LEATHER, EquipmentSlotType.FEET, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> FINS = REGISTRY.register("fins", () -> new ArmorItem(RankineArmorMaterials.RUBBER, EquipmentSlotType.FEET, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> GAS_MASK = REGISTRY.register("gas_mask", () -> new ArmorItem(RankineArmorMaterials.RUBBER, EquipmentSlot.HEAD, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> GOGGLES = REGISTRY.register("goggles", () -> new ArmorItem(RankineArmorMaterials.RUBBER, EquipmentSlot.HEAD, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> SANDALS = REGISTRY.register("sandals", () -> new ArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.FEET, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> SNOWSHOES = REGISTRY.register("snowshoes", () -> new ArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.FEET, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> ICE_SKATES = REGISTRY.register("ice_skates", () -> new ArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.FEET, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> FINS = REGISTRY.register("fins", () -> new ArmorItem(RankineArmorMaterials.RUBBER, EquipmentSlot.FEET, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
 
     public static final RegistryObject<Item> TOTEM_OF_BLAZING = REGISTRY.register("totem_of_blazing", () -> new BlazingTotemItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(512).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TOTEM_OF_COBBLING = REGISTRY.register("totem_of_cobbling", () -> new CobblingTotemItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(512).tab(ProjectRankine.setup.rankineTools)));
@@ -3420,13 +3429,6 @@ public class RankineItems {
 
     public static final RegistryObject<Item> PACKAGED_TOOL = REGISTRY.register("packaged_tool", () -> new PackagedToolItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PACKAGED_ARMOR = REGISTRY.register("packaged_armor", () -> new PackagedArmorItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> MANTLE_GOLEM = REGISTRY.register("mantle_golem_egg", () -> new SpawnEggItem(RankineEntityTypes.MANTLE_GOLEM,0xB2B16A, 0x7A592E,new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> DIAMOND_MANTLE_GOLEM = REGISTRY.register("diamond_mantle_golem_egg", () -> new SpawnEggItem(RankineEntityTypes.DIAMOND_MANTLE_GOLEM, 0x435184,0xA1FBE8,new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> PERIDOT_MANTLE_GOLEM = REGISTRY.register("peridot_mantle_golem_egg", () -> new SpawnEggItem(RankineEntityTypes.PERIDOT_MANTLE_GOLEM,0xFF423C, 0x6BBE1F,new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> DESMOXYTE = REGISTRY.register("desmoxyte_spawn_egg", () -> new SpawnEggItem(RankineEntityTypes.DESMOXYTE,0x2D4F64, 0xAC6D10,new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> DEMONYTE = REGISTRY.register("demonyte_spawn_egg", () -> new SpawnEggItem(RankineEntityTypes.DEMONYTE,0x161617, 0x512259,new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> DRAGONYTE = REGISTRY.register("dragonyte_spawn_egg", () -> new SpawnEggItem(RankineEntityTypes.DRAGONYTE,0xC28215, 0x8F1826,new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> BEAVER = REGISTRY.register("beaver_spawn_egg", () -> new SpawnEggItem(RankineEntityTypes.BEAVER,0x765F4C, 0x463F39,new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
 
     public static final RegistryObject<Item> BIOME_INDICATOR_GENERIC = REGISTRY.register("biome_indicator_generic", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> BIOME_INDICATOR_RIVER = REGISTRY.register("biome_indicator_river", () -> new Item(new Item.Properties().stacksTo(1)));
@@ -3839,7 +3841,7 @@ public class RankineItems {
 
 
     @ObjectHolder("rankine:element_indexer")
-    public static ContainerType<ElementIndexerContainer> ELEMENT_INDEXER_CONTAINER;
+    public static MenuType<ElementIndexerContainer> ELEMENT_INDEXER_CONTAINER;
 
 /*
     public static void itemInit() {

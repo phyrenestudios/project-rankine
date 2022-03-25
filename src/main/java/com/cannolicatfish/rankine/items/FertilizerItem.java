@@ -2,21 +2,19 @@ package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.blocks.GrassySoilBlock;
 import com.cannolicatfish.rankine.init.Config;
-import net.minecraft.block.Block;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -24,7 +22,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class FertilizerItem extends Item {
     public FertilizerItem(Properties properties) {
@@ -32,8 +30,8 @@ public class FertilizerItem extends Item {
     }
 
     @Override
-    public ActionResultType useOn(ItemUseContext context) {
-        World worldIn = context.getLevel();
+    public InteractionResult useOn(UseOnContext context) {
+        Level worldIn = context.getLevel();
         BlockPos pos = context.getClickedPos();
 
         int radius = Config.GENERAL.HERBICIDE_RANGE.get();
@@ -46,17 +44,17 @@ public class FertilizerItem extends Item {
                 }
             }
         }
-        worldIn.playSound(null,pos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS,0.5f,1.2f);
+        worldIn.playSound(null,pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS,0.5f,1.2f);
         context.getItemInHand().shrink(1);
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
 
     }
 
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-            tooltip.add(new StringTextComponent("Restores vegetation").withStyle(TextFormatting.GRAY));
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+            tooltip.add(new TextComponent("Restores vegetation").withStyle(ChatFormatting.GRAY));
     }
 
 

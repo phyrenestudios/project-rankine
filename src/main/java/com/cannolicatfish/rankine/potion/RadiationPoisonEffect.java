@@ -1,13 +1,10 @@
 package com.cannolicatfish.rankine.potion;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectType;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 
-public class RadiationPoisonEffect extends Effect {
-    public RadiationPoisonEffect(EffectType typeIn, int liquidColorIn) {
+public class RadiationPoisonEffect extends MobEffect {
+    public RadiationPoisonEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 

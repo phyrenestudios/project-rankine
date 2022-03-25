@@ -2,18 +2,18 @@ package com.cannolicatfish.rankine.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.command.arguments.ItemArgument;
-import net.minecraft.command.arguments.ItemInput;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.item.ItemArgument;
+import net.minecraft.commands.arguments.item.ItemInput;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 
 
 public class GiveTagCommand {
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("rankinedetails").requires((p_198496_0_) -> {
             return p_198496_0_.hasPermission(2);
         }).then(Commands.argument("item", ItemArgument.item()).executes((p_198492_0_) -> {
@@ -21,12 +21,12 @@ public class GiveTagCommand {
         })));
     }
 
-    private static int getInfo(CommandSource source, ItemInput itemIn) throws CommandSyntaxException {
-        ServerPlayerEntity serverplayerentity = source.getPlayerOrException();
+    private static int getInfo(CommandSourceStack source, ItemInput itemIn) throws CommandSyntaxException {
+        ServerPlayer serverplayerentity = source.getPlayerOrException();
         Item item = itemIn.getItem();
 
-        source.sendSuccess(new TranslationTextComponent(item.getDescriptionId()), true);
-        source.sendSuccess(new StringTextComponent(item.getTags().toString()),true);
+        source.sendSuccess(new TranslatableComponent(item.getDescriptionId()), true);
+        source.sendSuccess(new TextComponent(item.getTags().toString()),true);
 
         return 1;
     }

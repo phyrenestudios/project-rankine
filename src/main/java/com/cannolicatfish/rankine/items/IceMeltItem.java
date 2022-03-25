@@ -1,28 +1,28 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.init.Config;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class IceMeltItem extends Item {
     public IceMeltItem(Properties properties) {
@@ -30,8 +30,8 @@ public class IceMeltItem extends Item {
     }
 
     @Override
-    public ActionResultType useOn(ItemUseContext context) {
-        World worldIn = context.getLevel();
+    public InteractionResult useOn(UseOnContext context) {
+        Level worldIn = context.getLevel();
         BlockPos pos = context.getClickedPos();
 
         int radius = Config.GENERAL.ICEMELT_RANGE.get();
@@ -39,24 +39,24 @@ public class IceMeltItem extends Item {
         if (!worldIn.isClientSide) {
             for (BlockPos b : BlockPos.betweenClosed(pos.offset(-radius, -radius, -radius), pos.offset(radius, radius, radius))) {
                 Block blk = worldIn.getBlockState(b).getBlock();
-                if (blk.is(BlockTags.ICE) && b.distSqr(pos) <= radius*radius) {
+                if (BlockTags.ICE.contains(blk) && b.distSqr(pos) <= radius*radius) {
                     worldIn.setBlock(b, Blocks.WATER.defaultBlockState(), 3);
-                } else if (blk.is(Blocks.SNOW) && b.distSqr(pos) <= radius*radius) {
+                } else if (blk.equals(Blocks.SNOW) && b.distSqr(pos) <= radius*radius) {
                     worldIn.destroyBlock(b,false);
                 }
             }
         }
-        worldIn.playSound(null,pos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS,0.5f,0.3f);
+        worldIn.playSound(null,pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS,0.5f,0.3f);
         context.getItemInHand().shrink(1);
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
 
     }
 
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-            tooltip.add(new StringTextComponent("Melts snow and ice").withStyle(TextFormatting.GRAY));
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+            tooltip.add(new TextComponent("Melts snow and ice").withStyle(ChatFormatting.GRAY));
     }
 
 

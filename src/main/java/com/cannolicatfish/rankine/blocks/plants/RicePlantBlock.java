@@ -1,12 +1,16 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.block.*;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class RicePlantBlock extends RankineCropsBlock {
     private static final VoxelShape[] SHAPES = new VoxelShape[]{
@@ -19,20 +23,20 @@ public class RicePlantBlock extends RankineCropsBlock {
             Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D),
             Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D)};
 
-    public RicePlantBlock(AbstractBlock.Properties properties) {
+    public RicePlantBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
-    protected IItemProvider getBaseSeedId() {
+    protected ItemLike getBaseSeedId() {
         return RankineItems.RICE_SEEDS.get();
     }
 
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return SHAPES[state.getValue(this.getAgeProperty())];
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
         return state.is(Blocks.FARMLAND);
     }
 }

@@ -4,37 +4,36 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
-import net.minecraft.block.BlockState;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.BEEHIVE_OVEN_TILE;
 
-public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
+public class BeehiveOvenTile extends BlockEntity {
     private int proccessTime;
     private int nextRecipe;
-    public BeehiveOvenTile() {
-        super(BEEHIVE_OVEN_TILE);
+    public BeehiveOvenTile(BlockPos posIn, BlockState stateIn) {
+        super(BEEHIVE_OVEN_TILE, posIn, stateIn);
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         this.proccessTime = nbt.getInt("ProcessTime");
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
         compound.putInt("ProcessTime", this.proccessTime);
         return compound;
@@ -51,7 +50,7 @@ public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
                 if (proccessTime >= nextRecipe) {
                     boolean flag = true;
                     for (BlockPos p: BlockPos.betweenClosed(worldPosition.offset(-1,1,-1),worldPosition.offset(1,2,1))) {
-                        BeehiveOvenRecipe recipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.BEEHIVE, new Inventory(new ItemStack(level.getBlockState(p).getBlock())), level).orElse(null);
+                        BeehiveOvenRecipe recipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.BEEHIVE, new SimpleContainer(new ItemStack(level.getBlockState(p).getBlock())), level).orElse(null);
                         if (recipe != null) {
                             ItemStack output = recipe.getResultItem();
                             if (!output.isEmpty()) {
@@ -73,7 +72,7 @@ public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
         }
     }
 
-    private static boolean canSeeSky(World worldIn, BlockPos pos) {
+    private static boolean canSeeSky(Level worldIn, BlockPos pos) {
         if (Config.MACHINES.BEEHIVE_OVEN_SKYLIGHT.get() != 0) {
             for (int i = 1; i <= Config.MACHINES.BEEHIVE_OVEN_SKYLIGHT.get(); i++) {
                 if (!worldIn.isEmptyBlock(pos.above(i))) {
@@ -84,7 +83,7 @@ public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
         return true;
     }
 
-    private int structureCheck(World world, BlockPos pos) {
+    private int structureCheck(Level world, BlockPos pos) {
         List<BlockPos> oven = Arrays.asList(
                 pos.offset(-1,0,-1),
                 pos.offset(-1,0,0),

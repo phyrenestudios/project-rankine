@@ -4,9 +4,9 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import java.util.Arrays;
@@ -157,9 +157,9 @@ public class RankineLangProvider extends LanguageProvider {
         for (Block blk : Stream.of(
             RankineLists.ELEMENT_BLOCKS,
             RankineLists.MINERAL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            if (blk.is(RankineBlocks.SODIUM_CHLORIDE_BLOCK.get())) {
+            if (blk.equals(RankineBlocks.SODIUM_CHLORIDE_BLOCK.get())) {
                 add(blk, "Block of Salt (NaCl)");
-            } else if (blk.is(RankineBlocks.CALCIUM_CHLORIDE_BLOCK.get())) {
+            } else if (blk.equals(RankineBlocks.CALCIUM_CHLORIDE_BLOCK.get())) {
                 add(blk, "Block of Salt (CaCl2)");
             } else {
                 add(blk, parseLangName("block_of_"+blk.getRegistryName().getPath().replace("_block","")));

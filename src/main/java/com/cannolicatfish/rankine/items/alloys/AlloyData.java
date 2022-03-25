@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.items.alloys;
 
-import net.minecraft.util.WeightedRandom;
+import net.minecraft.util.WeighedRandom;
 
-public class AlloyData extends WeightedRandom.Item {
+public class AlloyData extends WeighedRandom.WeighedRandomItem {
     public final String alloyComposition;
 
     public AlloyData(String comp) {

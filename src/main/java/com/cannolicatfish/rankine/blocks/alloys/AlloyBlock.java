@@ -4,54 +4,41 @@ import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.tileentity.ShulkerBoxTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class AlloyBlock extends Block {
     public AlloyBlock(Properties properties) {
         super(properties);
     }
 
-    @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
 
-    @Nullable
-    @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new AlloyBlockTile();
-    }
-
-    public boolean triggerEvent(BlockState state, World worldIn, BlockPos pos, int id, int param) {
+    public boolean triggerEvent(BlockState state, Level worldIn, BlockPos pos, int id, int param) {
         super.triggerEvent(state, worldIn, pos, id, param);
-        TileEntity tileentity = worldIn.getBlockEntity(pos);
+        BlockEntity tileentity = worldIn.getBlockEntity(pos);
         return tileentity != null && tileentity.triggerEvent(id, param);
     }
 
     @Override
-    public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, @org.jetbrains.annotations.Nullable LivingEntity placer, ItemStack stack) {
+    public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, @org.jetbrains.annotations.Nullable LivingEntity placer, ItemStack stack) {
         if (!IAlloyItem.getAlloyComposition(stack).isEmpty()) {
-            TileEntity tileentity = worldIn.getBlockEntity(pos);
+            BlockEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof AlloyBlockTile && stack.getTag() != null) {
                 ((AlloyBlockTile) tileentity).writeAlloyData(stack.getTag());
             }
@@ -60,9 +47,9 @@ public class AlloyBlock extends Block {
     }
 
     @Override
-    public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         if (!worldIn.isClientSide && !player.isCreative() && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
-            TileEntity tileentity = worldIn.getBlockEntity(pos);
+            BlockEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof AlloyBlockTile) {
                 AlloyBlockTile alloyBlockTile = (AlloyBlockTile)tileentity;
                 if (canHarvestBlock(state,worldIn,pos,player)) {

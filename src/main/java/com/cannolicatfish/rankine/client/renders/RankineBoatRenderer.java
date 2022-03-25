@@ -1,21 +1,28 @@
 package com.cannolicatfish.rankine.client.renders;
 
 import com.cannolicatfish.rankine.entities.RankineBoatEntity;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.util.math.vector.Quaternion;
+import com.google.common.collect.ImmutableMap;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.datafixers.util.Pair;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.MultiBufferSource;
+import com.mojang.math.Quaternion;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.model.BoatModel;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import com.mojang.math.Vector3f;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
+
+import java.util.Map;
+import java.util.stream.Stream;
 
 @OnlyIn(Dist.CLIENT)
 public class RankineBoatRenderer extends EntityRenderer<RankineBoatEntity> {
@@ -50,43 +57,56 @@ public class RankineBoatRenderer extends EntityRenderer<RankineBoatEntity> {
             new ResourceLocation("rankine:textures/entity/boat/honey_locust.png")
 
     };
-    protected final BoatModel modelBoat = new BoatModel();
+    private final Map<Boat.Type, Pair<ResourceLocation, BoatModel>> boatResources;
+    public Pair<ResourceLocation, BoatModel> getModelWithLocation(Boat boat) { return this.boatResources.get(boat.getBoatType()); }
+
     public static final RankineBoatRenderer.RenderFactory instance = new RankineBoatRenderer.RenderFactory();
 
-    public RankineBoatRenderer(EntityRendererManager renderManagerIn)
+    public RankineBoatRenderer(EntityRendererProvider.Context renderManagerIn)
     {
         super(renderManagerIn);
         this.shadowRadius = 0.8F;
+        this.boatResources = Stream.of(Boat.Type.values()).collect(ImmutableMap.toImmutableMap((p_173938_) -> {
+            return p_173938_;
+        }, (p_173941_) -> {
+            return Pair.of(new ResourceLocation("textures/entity/boat/" + p_173941_.getName() + ".png"), new BoatModel(renderManagerIn.bakeLayer(ModelLayers.createBoatModelName(p_173941_))));
+        }));
     }
 
-    public void render(RankineBoatEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-        matrixStackIn.pushPose();
-        matrixStackIn.translate(0.0D, 0.375D, 0.0D);
-        matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180.0F - entityYaw));
-        float f = (float)entityIn.getHurtTime() - partialTicks;
-        float f1 = entityIn.getDamage() - partialTicks;
+    public void render(RankineBoatEntity p_113929_, float p_113930_, float p_113931_, PoseStack p_113932_, MultiBufferSource p_113933_, int p_113934_) {
+        p_113932_.pushPose();
+        p_113932_.translate(0.0D, 0.375D, 0.0D);
+        p_113932_.mulPose(Vector3f.YP.rotationDegrees(180.0F - p_113930_));
+        float f = (float)p_113929_.getHurtTime() - p_113931_;
+        float f1 = p_113929_.getDamage() - p_113931_;
         if (f1 < 0.0F) {
             f1 = 0.0F;
         }
 
         if (f > 0.0F) {
-            matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(MathHelper.sin(f) * f * f1 / 10.0F * (float)entityIn.getHurtDir()));
+            p_113932_.mulPose(Vector3f.XP.rotationDegrees(Mth.sin(f) * f * f1 / 10.0F * (float)p_113929_.getHurtDir()));
         }
 
-        float f2 = entityIn.getBubbleAngle(partialTicks);
-        if (!MathHelper.equal(f2, 0.0F)) {
-            matrixStackIn.mulPose(new Quaternion(new Vector3f(1.0F, 0.0F, 1.0F), entityIn.getBubbleAngle(partialTicks), true));
+        float f2 = p_113929_.getBubbleAngle(p_113931_);
+        if (!Mth.equal(f2, 0.0F)) {
+            p_113932_.mulPose(new Quaternion(new Vector3f(1.0F, 0.0F, 1.0F), p_113929_.getBubbleAngle(p_113931_), true));
         }
 
-        matrixStackIn.scale(-1.0F, -1.0F, 1.0F);
-        matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(90.0F));
-        this.modelBoat.setupAnim(entityIn, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
-        IVertexBuilder ivertexbuilder = bufferIn.getBuffer(this.modelBoat.renderType(this.getTextureLocation(entityIn)));
-        this.modelBoat.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-        IVertexBuilder ivertexbuilder1 = bufferIn.getBuffer(RenderType.waterMask());
-        this.modelBoat.waterPatch().render(matrixStackIn, ivertexbuilder1, packedLightIn, OverlayTexture.NO_OVERLAY);
-        matrixStackIn.popPose();
-        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+        Pair<ResourceLocation, BoatModel> pair = getModelWithLocation(p_113929_);
+        ResourceLocation resourcelocation = pair.getFirst();
+        BoatModel boatmodel = pair.getSecond();
+        p_113932_.scale(-1.0F, -1.0F, 1.0F);
+        p_113932_.mulPose(Vector3f.YP.rotationDegrees(90.0F));
+        boatmodel.setupAnim(p_113929_, p_113931_, 0.0F, -0.1F, 0.0F, 0.0F);
+        VertexConsumer vertexconsumer = p_113933_.getBuffer(boatmodel.renderType(resourcelocation));
+        boatmodel.renderToBuffer(p_113932_, vertexconsumer, p_113934_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        if (!p_113929_.isUnderWater()) {
+            VertexConsumer vertexconsumer1 = p_113933_.getBuffer(RenderType.waterMask());
+            boatmodel.waterPatch().render(p_113932_, vertexconsumer1, p_113934_, OverlayTexture.NO_OVERLAY);
+        }
+
+        p_113932_.popPose();
+        super.render(p_113929_, p_113930_, p_113931_, p_113932_, p_113933_, p_113934_);
     }
 
     @Override
@@ -94,9 +114,9 @@ public class RankineBoatRenderer extends EntityRenderer<RankineBoatEntity> {
         return BOAT_TEXTURES[entity.getRankineBoatType().ordinal()];
     }
 
-    public static class RenderFactory implements IRenderFactory<RankineBoatEntity> {
+    public static class RenderFactory implements EntityRendererProvider<RankineBoatEntity> {
         @Override
-        public EntityRenderer<? super RankineBoatEntity> createRenderFor(EntityRendererManager manager) {
+        public EntityRenderer<RankineBoatEntity> create(Context manager) {
             return new RankineBoatRenderer(manager);
         }
 

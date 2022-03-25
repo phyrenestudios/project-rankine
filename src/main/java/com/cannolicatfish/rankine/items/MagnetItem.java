@@ -1,18 +1,18 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.init.Config;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class MagnetItem extends Item {
 
@@ -23,7 +23,7 @@ public class MagnetItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         if (type != 4) {
             float radius = type * Config.MACHINES.MAGNET_RANGE.get();
             List<ItemEntity> items = worldIn.getEntitiesOfClass(ItemEntity.class, playerIn.getBoundingBox().inflate(radius, radius, radius));
@@ -43,9 +43,9 @@ public class MagnetItem extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (entityIn instanceof PlayerEntity && type == 4){
-            PlayerEntity player = (PlayerEntity) entityIn;
+    public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        if (entityIn instanceof Player && type == 4){
+            Player player = (Player) entityIn;
             List<ItemEntity> items = worldIn.getEntitiesOfClass(ItemEntity.class, entityIn.getBoundingBox().inflate(2, 2, 2));
             for (ItemEntity i : items) {
                 i.playerTouch(player);

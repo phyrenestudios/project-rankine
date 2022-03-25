@@ -1,13 +1,13 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class SoybeanPlantBlock extends RankineCropsBlock {
 
@@ -16,12 +16,12 @@ public class SoybeanPlantBlock extends RankineCropsBlock {
     }
 
     @Override
-    protected IItemProvider getBaseSeedId() {
+    protected ItemLike getBaseSeedId() {
         return RankineItems.SOYBEANS.get();
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
         return state.is(Blocks.FARMLAND);
     }
 }

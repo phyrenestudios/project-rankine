@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.WallBlock;
+import net.minecraft.world.level.block.WallBlock;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class RankineWallBlock extends WallBlock {
     public RankineWallBlock(Properties properties) {

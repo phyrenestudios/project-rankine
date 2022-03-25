@@ -6,42 +6,38 @@ import com.cannolicatfish.rankine.init.packets.FluidStackPacket;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.init.packets.SelectAlloyPacket;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.gui.screen.inventory.MerchantScreen;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.item.MerchantOffers;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.play.client.CSelectTradePacket;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 
 import java.util.List;
 
-public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer> {
+public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableContainer> {
     private final ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/template_table.png");
-    private static final ITextComponent TRADES_LABEL = new TranslationTextComponent("rankine.alloys");
+    private static final Component TRADES_LABEL = new TranslatableComponent("rankine.alloys");
     private int selectedAlloyRecipe;
     private final AlloyButton[] tradeOfferButtons = new AlloyButton[7];
-    private static final ITextComponent DEPRECATED_TOOLTIP = new TranslationTextComponent("rankine.deprecated");
+    private static final Component DEPRECATED_TOOLTIP = new TranslatableComponent("rankine.deprecated");
     private int scrollOff;
     private boolean isSelected;
 
-    public TemplateTableScreen(TemplateTableContainer container, PlayerInventory inv, ITextComponent name) {
+    public TemplateTableScreen(TemplateTableContainer container, Inventory inv, Component name) {
         super(container, inv, name);
         this.imageWidth = 276;
         this.inventoryLabelX = 107;
@@ -59,21 +55,21 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
         int j = (this.height - this.imageHeight) / 2;
         int k = j + 16 + 2;
 
-        for(int l = 0; l < 7; ++l) {
+        /*for(int l = 0; l < 7; ++l) {
             this.tradeOfferButtons[l] = this.addButton(new AlloyButton(i + 5, k, l, (p_214132_1_) -> {
                 if (p_214132_1_ instanceof AlloyButton) {
                     /*this.selectedAlloyRecipe = ((AlloyButton)p_214132_1_).getIndex() + this.scrollOff;
-                    this.setSelectedAlloyRecipe();*/
+                    this.setSelectedAlloyRecipe();
                 }
 
             }));
             k += 20;
-        }
+        }*/
 
     }
 
     @Override
-    protected void renderLabels(MatrixStack matrixStack, int x, int y) {
+    protected void renderLabels(PoseStack matrixStack, int x, int y) {
         /*int i = this.container.getMerchantLevel();
         if (i > 0 && i <= 5 && this.container.showProgressBar()) {
             ITextComponent itextcomponent = this.title.deepCopy().appendSibling(LEVEL_SEPARATOR).appendSibling(new TranslationTextComponent("merchant.level." + i));
@@ -84,15 +80,15 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
             this.font.drawText(matrixStack, this.title, (float)(49 + this.xSize / 2 - this.font.getStringPropertyWidth(this.title) / 2), 6.0F, 4210752);
         }*/
 
-        this.font.draw(matrixStack, this.inventory.getDisplayName(), (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
+        this.font.draw(matrixStack, "Template Table", (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
         int l = this.font.width(TRADES_LABEL);
         this.font.draw(matrixStack, TRADES_LABEL, (float)(5 - l / 2 + 48), 6.0F, 4210752);
     }
 
     @Override
-    protected void renderBg(MatrixStack matrixStack, float partialTicks, int x, int y) {
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bind(GUI);
+    protected void renderBg(PoseStack matrixStack, float partialTicks, int x, int y) {
+        RenderSystem.clearColor(1.0F, 1.0F, 1.0F, 1.0F);
+        this.minecraft.getTextureManager().bindForSetup(GUI);
         int i = (this.width - this.imageWidth) / 2;
         int j = (this.height - this.imageHeight) / 2;
         blit(matrixStack, i, j, this.getBlitOffset(), 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 512);
@@ -114,7 +110,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
 
 
 
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+    public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
         List<AlloyingRecipe> alloyingRecipes = this.menu.getAlloyRecipes();
@@ -123,9 +119,9 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
             int j = (this.height - this.imageHeight) / 2;
             int k = j + 16 + 1;
             int l = i + 5 + 5;
-            RenderSystem.pushMatrix();
-            RenderSystem.enableRescaleNormal();
-            this.minecraft.getTextureManager().bind(GUI);
+            //RenderSystem.pushMatrix();
+            //RenderSystem.enableRescaleNormal();
+            this.minecraft.getTextureManager().bindForSetup(GUI);
             //this.renderScroller(matrixStack, i, j, alloyingRecipes);
             int i1 = 0;
 
@@ -133,7 +129,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
                 if (this.checkSeven(alloyingRecipes.size()) && (i1 < this.scrollOff || i1 >= 7 + this.scrollOff)) {
                     ++i1;
                 } else {
-                    World worldIn = this.menu.getWorld();
+                    Level worldIn = this.menu.getWorld();
                     ItemStack itemstack = new ItemStack(RankineItems.ELEMENT.get());
                     this.itemRenderer.blitOffset = 100.0F;
                     int j1 = k + 2;
@@ -181,21 +177,21 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
                 alloyButton.visible = alloyButton.index < this.menu.getAlloyRecipes().size();
             }
 
-            RenderSystem.popMatrix();
+            //RenderSystem.popMatrix();
             RenderSystem.enableDepthTest();
         }
 
         this.renderTooltip(matrixStack, mouseX, mouseY);
     }
 
-    private void renderItemOverlay(MatrixStack p_238841_1_, ItemStack p_238841_2_, ItemStack p_238841_3_, int p_238841_4_, int p_238841_5_) {
+    private void renderItemOverlay(PoseStack p_238841_1_, ItemStack p_238841_2_, ItemStack p_238841_3_, int p_238841_4_, int p_238841_5_) {
         this.itemRenderer.renderAndDecorateFakeItem(p_238841_2_, p_238841_4_, p_238841_5_);
         if (p_238841_3_.getCount() == p_238841_2_.getCount()) {
             this.itemRenderer.renderGuiItemDecorations(this.font, p_238841_2_, p_238841_4_, p_238841_5_);
         } else {
             this.itemRenderer.renderGuiItemDecorations(this.font, p_238841_3_, p_238841_4_, p_238841_5_, p_238841_3_.getCount() == 1 ? "1" : null);
             this.itemRenderer.renderGuiItemDecorations(this.font, p_238841_2_, p_238841_4_ + 14, p_238841_5_, p_238841_2_.getCount() == 1 ? "1" : null);
-            this.minecraft.getTextureManager().bind(GUI);
+            this.minecraft.getTextureManager().bindForSetup(GUI);
             this.setBlitOffset(this.getBlitOffset() + 300);
             blit(p_238841_1_, p_238841_4_ + 7, p_238841_5_ + 12, this.getBlitOffset(), 0.0F, 176.0F, 9, 2, 256, 512);
             this.setBlitOffset(this.getBlitOffset() - 300);
@@ -207,15 +203,15 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
         return p_214135_1_ > 7;
     }
 
-    private void checkIfValid(MatrixStack p_238842_1_, AlloyingRecipe p_238842_2_, int p_238842_3_, int p_238842_4_) {
+    private void checkIfValid(PoseStack p_238842_1_, AlloyingRecipe p_238842_2_, int p_238842_3_, int p_238842_4_) {
         RenderSystem.enableBlend();
-        this.minecraft.getTextureManager().bind(GUI);
-        if (p_238842_2_.cannotMake(this.inventory,this.menu.getWorld())) {
+        this.minecraft.getTextureManager().bindForSetup(GUI);
+        /*if (p_238842_2_.cannotMake(this.inventory,this.menu.getWorld())) {
             blit(p_238842_1_, p_238842_3_ + 5 + 35 + 20, p_238842_4_ + 3, this.getBlitOffset(), 25.0F, 171.0F, 10, 9, 256, 512);
         } else {
             blit(p_238842_1_, p_238842_3_ + 5 + 35 + 20, p_238842_4_ + 3, this.getBlitOffset(), 15.0F, 171.0F, 10, 9, 256, 512);
-        }
-
+        }*/
+        blit(p_238842_1_, p_238842_3_ + 5 + 35 + 20, p_238842_4_ + 3, this.getBlitOffset(), 15.0F, 171.0F, 10, 9, 256, 512);
     }
 
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
@@ -223,7 +219,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
         if (this.checkSeven(i)) {
             int j = i - 7;
             this.scrollOff = (int)((double)this.scrollOff - delta);
-            this.scrollOff = MathHelper.clamp(this.scrollOff, 0, j);
+            this.scrollOff = Mth.clamp(this.scrollOff, 0, j);
         }
 
         return true;
@@ -237,7 +233,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
             int l = i - 7;
             float f = ((float)mouseY - (float)j - 13.5F) / ((float)(k - j) - 27.0F);
             f = f * (float)l + 0.5F;
-            this.scrollOff = MathHelper.clamp((int)f, 0, l);
+            this.scrollOff = Mth.clamp((int)f, 0, l);
             return true;
         } else {
             return super.mouseDragged(mouseX, mouseY, button, dragX, dragY);
@@ -259,8 +255,8 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
     class AlloyButton extends Button {
         final int index;
 
-        public AlloyButton(int p_i50601_2_, int p_i50601_3_, int p_i50601_4_, Button.IPressable p_i50601_5_) {
-            super(p_i50601_2_, p_i50601_3_, 89, 20, StringTextComponent.EMPTY, p_i50601_5_);
+        public AlloyButton(int p_i50601_2_, int p_i50601_3_, int p_i50601_4_, Button.OnPress p_i50601_5_) {
+            super(p_i50601_2_, p_i50601_3_, 89, 20, TextComponent.EMPTY, p_i50601_5_);
             this.index = p_i50601_4_;
             this.visible = false;
         }
@@ -269,7 +265,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
             return this.index;
         }
 
-        public void renderToolTip(MatrixStack matrixStack, int mouseX, int mouseY) {
+        public void renderToolTip(PoseStack matrixStack, int mouseX, int mouseY) {
             if (this.isHovered && TemplateTableScreen.this.menu.getAlloyRecipes().size() > this.index + TemplateTableScreen.this.scrollOff) {
                 /*if (mouseX < this.x + 20) {
                     ItemStack itemstack = TemplateTableScreen.this.container.getAlloyRecipes().get(this.index + TemplateTableScreen.this.scrollOff).getRecipeOutput();
@@ -283,7 +279,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
                     ItemStack itemstack1 = TemplateTableScreen.this.menu.getAlloyRecipes().get(this.index + TemplateTableScreen.this.scrollOff).getResultItem();
                     TemplateTableScreen.this.renderTooltip(matrixStack, itemstack1, mouseX, mouseY);
                 } else {
-                    World worldIn = TemplateTableScreen.this.menu.getWorld();
+                    Level worldIn = TemplateTableScreen.this.menu.getWorld();
                     AlloyingRecipe alloy = TemplateTableScreen.this.menu.getAlloyRecipes().get(this.index + TemplateTableScreen.this.scrollOff);
                     int mouseXsub = mouseX - this.x - 10;
                     List<Ingredient> e = alloy.getIngredientsList(worldIn,true);

@@ -4,27 +4,27 @@ package com.cannolicatfish.rankine.items.totems;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineAttributes;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class SpeedTotemItem extends Item{
     public SpeedTotemItem(Properties properties) {
@@ -32,16 +32,16 @@ public class SpeedTotemItem extends Item{
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslationTextComponent("item.rankine.totem_of_timesaving.tooltip").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC));
+        tooltip.add(new TranslatableComponent("item.rankine.totem_of_timesaving.tooltip").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (entityIn instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) entityIn;
-            ModifiableAttributeInstance att = player.getAttribute(Attributes.MOVEMENT_SPEED);
+    public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        if (entityIn instanceof Player) {
+            Player player = (Player) entityIn;
+            AttributeInstance att = player.getAttribute(Attributes.MOVEMENT_SPEED);
             if (player.getOffhandItem().getItem() == this && !att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM)) {
                 att.addTransientModifier(RankineAttributes.SWIFTNESS_TOTEM);
             } else if (player.getOffhandItem().getItem() != this && att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM)) {
@@ -51,7 +51,7 @@ public class SpeedTotemItem extends Item{
     }
 
     @Override
-    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, Level worldIn, Player playerIn) {
         if (Config.GENERAL.PENDANT_CURSE.get()) {
             stack.enchant(Enchantments.VANISHING_CURSE,1);
         }
@@ -59,9 +59,9 @@ public class SpeedTotemItem extends Item{
     }
 
     @Override
-    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
-        if ((group == ItemGroup.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
-            ItemStack stack = new ItemStack(this.getItem());
+    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
+        if ((group == CreativeModeTab.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
+            ItemStack stack = new ItemStack(this);
             stack.enchant(Enchantments.VANISHING_CURSE,1);
             items.add(stack);
         } else {

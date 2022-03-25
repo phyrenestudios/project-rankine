@@ -3,24 +3,24 @@ package com.cannolicatfish.rankine.items.totems;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.compatibility.AlexMobs;
 import com.cannolicatfish.rankine.init.Config;
-import net.minecraft.block.AbstractFireBlock;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -28,7 +28,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class BlazingTotemItem extends Item {
     public BlazingTotemItem(Properties properties) {
@@ -36,13 +36,13 @@ public class BlazingTotemItem extends Item {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslationTextComponent("item.rankine.totem_of_blazing.tooltip").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC));
+        tooltip.add(new TranslatableComponent("item.rankine.totem_of_blazing.tooltip").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 
     @Override
-    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, Level worldIn, Player playerIn) {
         if (Config.GENERAL.PENDANT_CURSE.get()) {
             stack.enchant(Enchantments.VANISHING_CURSE,1);
         }
@@ -50,9 +50,9 @@ public class BlazingTotemItem extends Item {
     }
 
     @Override
-    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
-        if ((group == ItemGroup.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
-            ItemStack stack = new ItemStack(this.getItem());
+    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
+        if ((group == CreativeModeTab.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
+            ItemStack stack = new ItemStack(this);
             stack.enchant(Enchantments.VANISHING_CURSE,1);
             items.add(stack);
         } else {
@@ -66,18 +66,18 @@ public class BlazingTotemItem extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (entityIn instanceof LivingEntity) {
             LivingEntity living = ((LivingEntity) entityIn);
             if (living.getRemainingFireTicks() > 0 && (living.getMainHandItem().equals(stack) || living.getOffhandItem().equals(stack))) {
-                worldIn.setBlockAndUpdate(living.blockPosition(), AbstractFireBlock.getState(worldIn, living.blockPosition()));
-                if ((living.isInLava() && living.getEffect(Effects.FIRE_RESISTANCE) == null) || living.getHealth() < living.getMaxHealth() * .25f) {
-                    EffectInstance lavaSave = new EffectInstance(Effects.FIRE_RESISTANCE,500);
-                    EffectInstance regen = new EffectInstance(Effects.REGENERATION,100,3);
+                worldIn.setBlockAndUpdate(living.blockPosition(), BaseFireBlock.getState(worldIn, living.blockPosition()));
+                if ((living.isInLava() && living.getEffect(MobEffects.FIRE_RESISTANCE) == null) || living.getHealth() < living.getMaxHealth() * .25f) {
+                    MobEffectInstance lavaSave = new MobEffectInstance(MobEffects.FIRE_RESISTANCE,500);
+                    MobEffectInstance regen = new MobEffectInstance(MobEffects.REGENERATION,100,3);
                     if (AlexMobs.isInstalled()){
-                        Effect lavaVision = ForgeRegistries.POTIONS.getValue(new ResourceLocation("alexsmobs:lava_vision"));
+                        MobEffect lavaVision = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("alexsmobs:lava_vision"));
                         if (lavaVision != null) {
-                            EffectInstance lavaVisionEffect = new EffectInstance(lavaVision,500);
+                            MobEffectInstance lavaVisionEffect = new MobEffectInstance(lavaVision,500);
                             living.addEffect(lavaVisionEffect);
                         }
                     }

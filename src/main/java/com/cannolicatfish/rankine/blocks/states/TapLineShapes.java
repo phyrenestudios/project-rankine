@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks.states;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum TapLineShapes implements IStringSerializable {
+public enum TapLineShapes implements StringRepresentable {
     LINE("line"),
     JOINT("joint"),
     TEE("tee");

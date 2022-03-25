@@ -3,16 +3,13 @@ package com.cannolicatfish.rankine.recipe.helper;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.google.gson.*;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.JsonToNBT;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.TagCollectionManager;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.TagParser;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
@@ -71,7 +68,7 @@ public class AlloyIngredientHelper {
 
     public static ItemStack getItemStack(JsonObject json, boolean readNBT, boolean includeCount)
     {
-        String itemName = JSONUtils.getAsString(json, "item");
+        String itemName = GsonHelper.getAsString(json, "item");
 
         Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName));
 
@@ -84,13 +81,13 @@ public class AlloyIngredientHelper {
             try
             {
                 JsonElement element = json.get("nbt");
-                CompoundNBT nbt;
+                CompoundTag nbt;
                 if(element.isJsonObject())
-                    nbt = JsonToNBT.parseTag(new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(element));
+                    nbt = TagParser.parseTag(new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(element));
                 else
-                    nbt = JsonToNBT.parseTag(JSONUtils.convertToString(element, "nbt"));
+                    nbt = TagParser.parseTag(GsonHelper.convertToString(element, "nbt"));
 
-                CompoundNBT tmp = new CompoundNBT();
+                CompoundTag tmp = new CompoundTag();
                 if (nbt.contains("ForgeCaps"))
                 {
                     tmp.put("ForgeCaps", nbt.get("ForgeCaps"));
@@ -100,7 +97,7 @@ public class AlloyIngredientHelper {
                 tmp.put("tag", nbt);
                 tmp.putString("id", itemName);
                 if (includeCount) {
-                    tmp.putInt("Count", JSONUtils.getAsInt(json, "count", 1));
+                    tmp.putInt("Count", GsonHelper.getAsInt(json, "count", 1));
                 } else {
                     tmp.putInt("Count", 1);
                 }
@@ -112,12 +109,12 @@ public class AlloyIngredientHelper {
             }
         }
 
-        ItemStack ret = new ItemStack(item, JSONUtils.getAsInt(json, "count", 1));
+        ItemStack ret = new ItemStack(item, GsonHelper.getAsInt(json, "count", 1));
         if (json.has("alloyComp") || json.has("alloyRecipe"))
         {
 
-            String alloyComp = json.has("alloyComp") ? JSONUtils.getAsString(json, "alloyComp") : "";
-            String alloyRecipe = json.has("alloyRecipe") ? JSONUtils.getAsString(json, "alloyRecipe") : "";
+            String alloyComp = json.has("alloyComp") ? GsonHelper.getAsString(json, "alloyComp") : "";
+            String alloyRecipe = json.has("alloyRecipe") ? GsonHelper.getAsString(json, "alloyRecipe") : "";
             //System.out.println("AlloyData detected in recipe!: " + JSONUtils.getString(json, "alloyData"));
             IAlloyItem.createDirectAlloyNBT(ret,alloyComp,alloyRecipe,null,ret.getItem() instanceof IAlloyTool);
         }

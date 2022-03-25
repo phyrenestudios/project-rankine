@@ -1,30 +1,30 @@
 package com.cannolicatfish.rankine.blocks.buildingmodes;
 
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.PaneBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.IronBarsBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
-public class MetalBarsBlock extends PaneBlock {
+public class MetalBarsBlock extends IronBarsBlock {
     //public static final IntegerProperty MODE = IntegerProperty.create("mode", 0, 4);
     int alloyColor;
 
     public MetalBarsBlock(int color) {
-        super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion());
+        super(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion());
         this.alloyColor = color;
         //this.setDefaultState(this.stateContainer.getBaseState().with(MODE, 0));
     }
@@ -36,13 +36,13 @@ public class MetalBarsBlock extends PaneBlock {
 
     @Nullable
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         ItemStack heldItem = context.getPlayer().getOffhandItem();
         BlockState state1 =this.defaultBlockState();
         if (heldItem.getItem() == RankineItems.BUILDING_TOOL.get()) {
         //    state1 = state1.with(MODE, Math.min(BuildingToolItem.getBuildingMode(heldItem),4));
         }
-        IBlockReader iblockreader = context.getLevel();
+        BlockGetter iblockreader = context.getLevel();
         BlockPos blockpos = context.getClickedPos();
         FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
         BlockPos blockpos1 = blockpos.north();
@@ -64,7 +64,7 @@ public class MetalBarsBlock extends PaneBlock {
     @OnlyIn(Dist.CLIENT)
     @Override
     public boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
-        if (adjacentBlockState.getBlock() instanceof PaneBlock) {
+        if (adjacentBlockState.getBlock() instanceof IronBarsBlock) {
             if (!side.getAxis().isHorizontal()) {
                 return true;
             }

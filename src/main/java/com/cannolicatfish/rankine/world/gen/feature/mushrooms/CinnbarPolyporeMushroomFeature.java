@@ -2,28 +2,34 @@ package com.cannolicatfish.rankine.world.gen.feature.mushrooms;
 
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.BlockStateProvidingFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockPileConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
 import java.util.Random;
 
-public class CinnbarPolyporeMushroomFeature extends Feature<BlockStateProvidingFeatureConfig> {
+public class CinnbarPolyporeMushroomFeature extends Feature<BlockPileConfiguration> {
 
 
-    public CinnbarPolyporeMushroomFeature(Codec<BlockStateProvidingFeatureConfig> configFactoryIn) {
+    public CinnbarPolyporeMushroomFeature(Codec<BlockPileConfiguration> configFactoryIn) {
         super(configFactoryIn);
     }
 
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config) {
+    @Override
+    public boolean place(FeaturePlaceContext<BlockPileConfiguration> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
+        BlockPileConfiguration config = p_159749_.config();
         return false;
     }
 
-    public static boolean growMushroom(ISeedReader reader, Random rand, BlockPos pos, BlockStateProvidingFeatureConfig config, Direction dir) {
+    public static boolean growMushroom(WorldGenLevel reader, Random rand, BlockPos pos, BlockPileConfiguration config, Direction dir) {
         boolean flag = true;
         for (BlockPos b : BlockPos.betweenClosed(pos.relative(dir.getClockWise()),pos.relative(dir).relative(dir.getCounterClockWise()))) {
             if (!WorldgenUtils.isAirOrLeaves(reader,b)) {

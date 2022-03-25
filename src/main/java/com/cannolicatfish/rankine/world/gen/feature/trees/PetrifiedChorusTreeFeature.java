@@ -3,26 +3,31 @@ package com.cannolicatfish.rankine.world.gen.feature.trees;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class PetrifiedChorusTreeFeature extends Feature<BaseTreeFeatureConfig> {
+public class PetrifiedChorusTreeFeature extends Feature<TreeConfiguration> {
 
-    public PetrifiedChorusTreeFeature(Codec<BaseTreeFeatureConfig> config) {
+    public PetrifiedChorusTreeFeature(Codec<TreeConfiguration> config) {
         super(config);
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
+    public boolean place(FeaturePlaceContext<TreeConfiguration> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
+        TreeConfiguration config = p_159749_.config();
         int trunkHeight = rand.nextInt(11) + 10;
 
 
@@ -38,7 +43,7 @@ public class PetrifiedChorusTreeFeature extends Feature<BaseTreeFeatureConfig> {
                     k = 2;
                 }
 
-                BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
+                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
                 for(int l = pos.getX() - k; l <= pos.getX() + k && flag; ++l) {
                     for(int i1 = pos.getZ() - k; i1 <= pos.getZ() + k && flag; ++i1) {
@@ -70,7 +75,7 @@ public class PetrifiedChorusTreeFeature extends Feature<BaseTreeFeatureConfig> {
         }
     }
 
-    private void branch(ISeedReader reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config, int tier) {
+    private void branch(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, int tier) {
         tier += 1;
         int height = rand.nextInt(3)+2;
         for (int i = 1; i <= height; ++i) {
@@ -93,7 +98,7 @@ public class PetrifiedChorusTreeFeature extends Feature<BaseTreeFeatureConfig> {
         }
     }
 
-    private static boolean areAllNeighborsEmpty(IWorldReader worldIn, BlockPos pos, @Nullable Direction excludingSide) {
+    private static boolean areAllNeighborsEmpty(LevelReader worldIn, BlockPos pos, @Nullable Direction excludingSide) {
         for(Direction direction : Direction.Plane.HORIZONTAL) {
             if (direction != excludingSide && !worldIn.isEmptyBlock(pos.relative(direction))) {
                 return false;
@@ -103,7 +108,7 @@ public class PetrifiedChorusTreeFeature extends Feature<BaseTreeFeatureConfig> {
         return true;
     }
 
-    public static boolean isValidGround(IWorld world, BlockPos pos) {
+    public static boolean isValidGround(LevelAccessor world, BlockPos pos) {
         return world.getBlockState(pos).is(RankineTags.Blocks.BASE_STONE_END);
     }
 }

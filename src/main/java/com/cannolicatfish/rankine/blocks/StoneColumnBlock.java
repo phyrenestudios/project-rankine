@@ -3,33 +3,33 @@ package com.cannolicatfish.rankine.blocks;
 import com.cannolicatfish.rankine.entities.CannonballEntity;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.items.tools.BuildingToolItem;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FallingBlock;
-import net.minecraft.block.IWaterLoggable;
-import net.minecraft.block.material.PushReaction;
-import net.minecraft.entity.item.FallingBlockEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particles.BlockParticleData;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -37,9 +37,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
-public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
+public class StoneColumnBlock extends FallingBlock implements SimpleWaterloggedBlock {
     public static final IntegerProperty SIZE = IntegerProperty.create("size",1,7);
     //public static final IntegerProperty STABILITY = IntegerProperty.create("stability",0,24);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -49,12 +49,12 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
         this.registerDefaultState(this.stateDefinition.any().setValue(SIZE, 1).setValue(WATERLOGGED, false));
     }
 
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(SIZE, WATERLOGGED);
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         int size = state.getValue(SIZE);
         return Block.box(8-size,0,8-size,8+size,16,8+size);
     }
@@ -67,7 +67,7 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
         boolean flag = fluidstate.getType() == Fluids.WATER;
 
@@ -79,15 +79,15 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState p_196271_3_, IWorld worldIn, BlockPos pos, BlockPos p_196271_6_) {
-        if ((direction.equals(Direction.UP) || direction.equals(Direction.DOWN)) && worldIn instanceof World) {
-            updateColumn(state, (World) worldIn, pos);
+    public BlockState updateShape(BlockState state, Direction direction, BlockState p_196271_3_, LevelAccessor worldIn, BlockPos pos, BlockPos p_196271_6_) {
+        if ((direction.equals(Direction.UP) || direction.equals(Direction.DOWN)) && worldIn instanceof Level) {
+            updateColumn(state, (Level) worldIn, pos);
         }
         return super.updateShape(state, direction, p_196271_3_, worldIn, pos, p_196271_6_);
     }
 
     @Override
-    public void onProjectileHit(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
+    public void onProjectileHit(Level worldIn, BlockState state, BlockHitResult hit, Projectile projectile) {
         if (projectile instanceof CannonballEntity) {
             worldIn.removeBlock(hit.getBlockPos(),false);
             updateColumn(state, worldIn,hit.getBlockPos().below());
@@ -96,20 +96,20 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
         //if (!isValidPosition(state,worldIn,pos) && pos.getY() >= 0) {
         //    spawnFallingBlock(worldIn,pos);
         //}
     } // (worldIn.isAirBlock(pos.down()) || canFallThrough(worldIn.getBlockState(pos.down()))) &&
 
 
-    private void updateColumn(BlockState state, World worldIn, BlockPos pos) {
+    private void updateColumn(BlockState state, Level worldIn, BlockPos pos) {
         int i = 0;
         while (worldIn.getBlockState(pos.below(i)).is(this)) {
             ++i;
         }
         if (!canSurvive(state, worldIn, pos.below(i-1))) {
-            BlockPos.Mutable blockpos$mutableblockpos = pos.below(i-1).mutable();
+            BlockPos.MutableBlockPos blockpos$mutableblockpos = pos.below(i-1).mutable();
             while (worldIn.getBlockState(blockpos$mutableblockpos).is(this)) {
                 spawnFallingBlock(worldIn, blockpos$mutableblockpos);
                 blockpos$mutableblockpos.move(Direction.UP);
@@ -118,14 +118,14 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
         }
     }
 
-    private void spawnFallingBlock(World worldIn, BlockPos pos) {
+    private void spawnFallingBlock(Level worldIn, BlockPos pos) {
         FallingBlockEntity fallingblockentity = new FallingBlockEntity(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, worldIn.getBlockState(pos));
         this.falling(fallingblockentity);
         worldIn.addFreshEntity(fallingblockentity);
     }
 
     @Override
-    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         boolean flagU = true;
         boolean flagD = true;
 
@@ -149,21 +149,21 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
     }
 
     @Override
-    public void onLand(World p_176502_1_, BlockPos p_176502_2_, BlockState p_176502_3_, BlockState p_176502_4_, FallingBlockEntity p_176502_5_) {
+    public void onLand(Level p_176502_1_, BlockPos p_176502_2_, BlockState p_176502_3_, BlockState p_176502_4_, FallingBlockEntity p_176502_5_) {
         p_176502_1_.destroyBlock(p_176502_2_,false);
         super.onLand(p_176502_1_, p_176502_2_, p_176502_3_, p_176502_4_, p_176502_5_);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
         if (rand.nextInt(30) == 0) {
             BlockPos blockpos = pos.below();
             if (worldIn.isEmptyBlock(blockpos) || isFree(worldIn.getBlockState(blockpos))) {
                 double d0 = (double)pos.getX() + rand.nextDouble();
                 double d1 = (double)pos.getY() - 0.05D;
                 double d2 = (double)pos.getZ() + rand.nextDouble();
-                worldIn.addParticle(new BlockParticleData(ParticleTypes.FALLING_DUST, stateIn), d0, d1, d2, 0.0D, 0.0D, 0.0D);
+                worldIn.addParticle(new BlockParticleOption(ParticleTypes.FALLING_DUST, stateIn), d0, d1, d2, 0.0D, 0.0D, 0.0D);
             }
         }
 
@@ -171,7 +171,7 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public int getDustColor(BlockState state, IBlockReader reader, BlockPos pos) {
+    public int getDustColor(BlockState state, BlockGetter reader, BlockPos pos) {
         return 7828079;
     }
 
@@ -181,7 +181,7 @@ public class StoneColumnBlock extends FallingBlock implements IWaterLoggable {
     }
 
     protected void falling(FallingBlockEntity fallingEntity) {
-        fallingEntity.setHurtsEntities(true);
+        fallingEntity.setHurtsEntities(2,12);
     }
 
 }

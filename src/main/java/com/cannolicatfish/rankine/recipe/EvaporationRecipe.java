@@ -9,33 +9,27 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.block.Block;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
 
-public class EvaporationRecipe implements IRecipe<IInventory> {
+public class EvaporationRecipe implements Recipe<Container> {
 
     private final int total;
     private final int time;
@@ -147,7 +141,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         return false;
     }
 
@@ -156,7 +150,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -169,7 +163,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
         return maxes;
     }
 
-    public ItemStack getEvaporationResult(World worldIn, ResourceLocation biome) {
+    public ItemStack getEvaporationResult(Level worldIn, ResourceLocation biome) {
         if (this.getBiomeList().isEmpty()) {
             WeightedCollection<ItemStack> col = new WeightedCollection<>();
             for (int i = 0; i < this.recipeOutputs.size(); i++) {
@@ -206,12 +200,12 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "item");
+        String s = GsonHelper.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -219,25 +213,25 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getAsInt(object, "count", 1);
+            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.EVAPORATION;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<EvaporationRecipe> {
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<EvaporationRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "evaporation");
         public EvaporationRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int t = json.get("total").getAsInt();
             int w = json.has("cookTime") ? json.get("cookTime").getAsInt() : 6400;
             boolean l = !json.has("large") || json.get("large").getAsBoolean();
-            FluidStack fluid = FluidHelper.getFluidStack(JSONUtils.getAsJsonObject(json, "input"));
+            FluidStack fluid = FluidHelper.getFluidStack(GsonHelper.getAsJsonObject(json, "input"));
 
-            JsonArray b = json.has("biomes") ? JSONUtils.getAsJsonArray(json, "biomes") : new JsonArray();
+            JsonArray b = json.has("biomes") ? GsonHelper.getAsJsonArray(json, "biomes") : new JsonArray();
             List<String> biomes = new ArrayList<>();
             for (int i = 0; i < b.size(); i++) {
                 biomes.add(b.get(i).getAsString());
@@ -249,7 +243,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
             for (int i = 0; i < t; i++) {
                 String output = "output" + (i+1);
                 if (json.has(output)) {
-                    JsonObject object = JSONUtils.getAsJsonObject(json, output);
+                    JsonObject object = GsonHelper.getAsJsonObject(json, output);
                     stacks.set(i, EvaporationRecipe.deserializeItem(object));
                     if (object.has("weight")){
                         weights.set(i,object.get("weight").getAsFloat());
@@ -276,7 +270,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
             return new EvaporationRecipe(recipeId,l, t, w, fluid, biomes, stacks, weights, mins,maxes);
         }
 
-        public EvaporationRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public EvaporationRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
 
             boolean l = buffer.readBoolean();
             int t = buffer.readInt();
@@ -314,7 +308,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
             return new EvaporationRecipe(recipeId, l, t, w,input,biomes, stacks, weights, mins, maxes);
         }
 
-        public void toNetwork(PacketBuffer buffer, EvaporationRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, EvaporationRecipe recipe) {
             buffer.writeBoolean(recipe.isLarge());
             buffer.writeInt(recipe.total);
             buffer.writeInt(recipe.time);

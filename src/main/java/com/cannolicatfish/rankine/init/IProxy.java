@@ -1,12 +1,12 @@
 package com.cannolicatfish.rankine.init;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
 public interface IProxy {
 
     void init();
 
-    World getClientWorld();
+    Level getClientWorld();
 
-    PlayerEntity getClientPlayer();
+    Player getClientPlayer();
 }

@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
 import net.minecraft.advancements.Advancement;
-import net.minecraft.data.AdvancementProvider;
+import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 

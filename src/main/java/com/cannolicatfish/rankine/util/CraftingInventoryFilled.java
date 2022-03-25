@@ -1,20 +1,20 @@
 package com.cannolicatfish.rankine.util;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.RecipeItemHelper;
-import net.minecraft.util.NonNullList;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.core.NonNullList;
 
-public class CraftingInventoryFilled extends CraftingInventory {
+public class CraftingInventoryFilled extends CraftingContainer {
     private final NonNullList<ItemStack> stackList;
     private final int width;
     private final int height;
-    private final Container eventHandler;
+    private final AbstractContainerMenu eventHandler;
 
-    public CraftingInventoryFilled(Container eventHandlerIn, int width, int height, NonNullList<ItemStack> stackListIn) {
+    public CraftingInventoryFilled(AbstractContainerMenu eventHandlerIn, int width, int height, NonNullList<ItemStack> stackListIn) {
         super(eventHandlerIn, width, height);
         this.stackList = stackListIn;
         this.eventHandler = eventHandlerIn;
@@ -47,14 +47,14 @@ public class CraftingInventoryFilled extends CraftingInventory {
      * Removes a stack from the given slot and returns it.
      */
     public ItemStack removeItemNoUpdate(int index) {
-        return ItemStackHelper.takeItem(this.stackList, index);
+        return ContainerHelper.takeItem(this.stackList, index);
     }
 
     /**
      * Removes up to a specified number of items from an inventory slot and returns them in a new stack.
      */
     public ItemStack removeItem(int index, int count) {
-        ItemStack itemstack = ItemStackHelper.removeItem(this.stackList, index, count);
+        ItemStack itemstack = ContainerHelper.removeItem(this.stackList, index, count);
         if (!itemstack.isEmpty()) {
             this.eventHandler.slotsChanged(this);
         }
@@ -80,7 +80,7 @@ public class CraftingInventoryFilled extends CraftingInventory {
     /**
      * Don't rename this method to canInteractWith due to conflicts with Container
      */
-    public boolean stillValid(PlayerEntity player) {
+    public boolean stillValid(Player player) {
         return true;
     }
 
@@ -96,7 +96,7 @@ public class CraftingInventoryFilled extends CraftingInventory {
         return this.width;
     }
 
-    public void fillStackedContents(RecipeItemHelper helper) {
+    public void fillStackedContents(StackedContents helper) {
         for(ItemStack itemstack : this.stackList) {
             helper.accountSimpleStack(itemstack);
         }

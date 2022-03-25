@@ -1,18 +1,18 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineTags;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.IWaterLoggable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
-public class MineralColumnBlock extends StoneColumnBlock implements IWaterLoggable {
+public class MineralColumnBlock extends StoneColumnBlock implements SimpleWaterloggedBlock {
     //public static final IntegerProperty STABILITY = IntegerProperty.create("stability",0,24);
 
     public MineralColumnBlock(Properties properties) {
@@ -25,7 +25,7 @@ public class MineralColumnBlock extends StoneColumnBlock implements IWaterLoggab
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
         if (!worldIn.isClientSide && (worldIn.getBlockState(pos.above(1)).is(RankineTags.Blocks.STONES_LIMESTONE) || worldIn.getBlockState(pos.above(1)).is(RankineTags.Blocks.STONES_DOLOMITE)) && worldIn.getBlockState(pos.above(2)).is(Blocks.WATER)) {
             grow(worldIn,pos);
             //worldIn.setBlockState(pos,state.with(SIZE,Math.min(7,state.get(SIZE)+1)));
@@ -34,7 +34,7 @@ public class MineralColumnBlock extends StoneColumnBlock implements IWaterLoggab
         super.randomTick(state, worldIn, pos, random);
     }
 
-    private void grow(World worldIn, BlockPos pos) {
+    private void grow(Level worldIn, BlockPos pos) {
         Random rand = worldIn.getRandom();
         int i = 0;
         while (worldIn.getBlockState(pos.below(i)).is(this)) {

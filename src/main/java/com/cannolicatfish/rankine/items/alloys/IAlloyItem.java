@@ -4,16 +4,16 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -21,16 +21,16 @@ import java.util.*;
 
 public interface IAlloyItem {
 
-    default void createAlloyNBT(ItemStack stack, World worldIn, Map<ElementRecipe,Integer> elementMap, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
+    default void createAlloyNBT(ItemStack stack, Level worldIn, Map<ElementRecipe,Integer> elementMap, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
         if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
             stack.getTag().remove("RegenerateAlloy");
         }
 
-        CompoundNBT listnbt = new CompoundNBT();
-        ListNBT elements = new ListNBT();
+        CompoundTag listnbt = new CompoundTag();
+        ListTag elements = new ListTag();
         for (Map.Entry<ElementRecipe, Integer> entry : elementMap.entrySet()) {
             int perc = entry.getValue();
-            CompoundNBT compoundnbt = new CompoundNBT();
+            CompoundTag compoundnbt = new CompoundTag();
             compoundnbt.putString("id", String.valueOf(entry.getKey().getId()));
             compoundnbt.putShort("percent", (short)perc);
             elements.add(compoundnbt);
@@ -47,7 +47,7 @@ public interface IAlloyItem {
         }
     }
 
-    default void createAlloyNBT(ItemStack stack, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
+    default void createAlloyNBT(ItemStack stack, Level worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
         createAlloyNBT(stack,worldIn,getElementMap(composition,worldIn),alloyRecipe,nameOverride);
     }
 
@@ -59,7 +59,7 @@ public interface IAlloyItem {
         if (regenerate) {
             stack.getOrCreateTag().putBoolean("RegenerateAlloy",true);
         }
-        CompoundNBT listnbt = new CompoundNBT();
+        CompoundTag listnbt = new CompoundTag();
         if (composition != null) {
             listnbt.putString("comp",composition);
         }
@@ -85,9 +85,9 @@ public interface IAlloyItem {
         return 16777215;
     }
 
-    static ListNBT getAlloyNBT(ItemStack stack) {
-        CompoundNBT compoundnbt = stack.getTag();
-        return compoundnbt != null ? compoundnbt.getList("StoredAlloy", 10) : new ListNBT();
+    static ListTag getAlloyNBT(ItemStack stack) {
+        CompoundTag compoundnbt = stack.getTag();
+        return compoundnbt != null ? compoundnbt.getList("StoredAlloy", 10) : new ListTag();
     }
 
     default String getAlloyCompositionString(ItemStack stack) {
@@ -98,9 +98,9 @@ public interface IAlloyItem {
         return stack.getTag() != null ? stack.getTag().getCompound("StoredAlloy").getString("recipe") : "";
     }
 
-    static ListNBT getElementNBT(ItemStack stack) {
-        CompoundNBT compoundnbt = stack.getTag();
-        return compoundnbt != null ? compoundnbt.getList("Elements", 10) : new ListNBT();
+    static ListTag getElementNBT(ItemStack stack) {
+        CompoundTag compoundnbt = stack.getTag();
+        return compoundnbt != null ? compoundnbt.getList("Elements", 10) : new ListTag();
     }
 
     default boolean isAlloyInit(ItemStack stack) {
@@ -117,7 +117,7 @@ public interface IAlloyItem {
         }
     }
 
-    default boolean checkCompositionRequirement(ItemStack stack, World worldIn, ElementRecipe element, String operand, int percentage) {
+    default boolean checkCompositionRequirement(ItemStack stack, Level worldIn, ElementRecipe element, String operand, int percentage) {
         Map<ElementRecipe,Integer> elementMap = this.getElementMap(getAlloyComposition(stack),worldIn);
         if (elementMap.containsKey(element)) {
             if (percentage == -1) {
@@ -172,13 +172,13 @@ public interface IAlloyItem {
         }
     }
 
-    static ListNBT getAlloyModifiers(ItemStack stack)
+    static ListTag getAlloyModifiers(ItemStack stack)
     {
-        CompoundNBT compoundnbt = stack.getTag();
-        return compoundnbt != null ? compoundnbt.getList("AlloyModifiers", 10) : new ListNBT();
+        CompoundTag compoundnbt = stack.getTag();
+        return compoundnbt != null ? compoundnbt.getList("AlloyModifiers", 10) : new ListTag();
     }
 
-    default List<ElementRecipe> getElementRecipes(String c, @Nullable World worldIn) {
+    default List<ElementRecipe> getElementRecipes(String c, @Nullable Level worldIn) {
         if (worldIn != null) {
             if (c.contains("-")) {
                 String[] comp = c.split("-");
@@ -213,7 +213,7 @@ public interface IAlloyItem {
         return Collections.emptyList();
     }
 
-    default Map<ElementRecipe,Integer> getElementMap(String c, @Nullable World worldIn) {
+    default Map<ElementRecipe,Integer> getElementMap(String c, @Nullable Level worldIn) {
         List<ElementRecipe> elementRecipes = getElementRecipes(c,worldIn);
         List<Integer> percents = getPercents(c);
         Map<ElementRecipe,Integer> elementMap = new HashMap<>();
@@ -224,16 +224,16 @@ public interface IAlloyItem {
         }
         for (Map.Entry<ElementRecipe, Integer> entry : elementMap.entrySet()) {
             int perc = entry.getValue();
-            CompoundNBT compoundnbt = new CompoundNBT();
+            CompoundTag compoundnbt = new CompoundTag();
             compoundnbt.putString("id", String.valueOf(entry.getKey().getId()));
             compoundnbt.putShort("percent", (short)perc);
         }
         return elementMap;
     }
 
-    default AlloyingRecipe getAlloyingRecipe(ResourceLocation rs, World worldIn) {
+    default AlloyingRecipe getAlloyingRecipe(ResourceLocation rs, Level worldIn) {
         if (rs != null) {
-            Optional<? extends IRecipe<?>> opt = worldIn.getRecipeManager().byKey(rs);
+            Optional<? extends Recipe<?>> opt = worldIn.getRecipeManager().byKey(rs);
             if (opt.isPresent() && opt.get() instanceof AlloyingRecipe) {
                 return (AlloyingRecipe) opt.get();
             }
@@ -246,27 +246,27 @@ public interface IAlloyItem {
         return stack.hasTag() ? IAlloyItem.getNameOverride(stack).toLowerCase(Locale.ROOT).replace(" ","_") : "";
     }
 
-    default void addAlloyInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    default void addAlloyInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (this.isAlloyInit(stack)) {
             if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
-                tooltip.add((new StringTextComponent("Any Composition").withStyle(TextFormatting.GOLD)));
+                tooltip.add((new TextComponent("Any Composition").withStyle(ChatFormatting.GOLD)));
             } else {
-                tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(TextFormatting.GOLD)));
+                tooltip.add((new TextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(ChatFormatting.GOLD)));
             }
 
             if (!IAlloyItem.getAlloyModifiers(stack).isEmpty()) {
-                tooltip.add((new StringTextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(TextFormatting.AQUA)));
+                tooltip.add((new TextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(ChatFormatting.AQUA)));
             } else {
-                tooltip.add((new StringTextComponent("No Modifiers Present").withStyle(TextFormatting.AQUA)));
+                tooltip.add((new TextComponent("No Modifiers Present").withStyle(ChatFormatting.AQUA)));
             }
         }
     }
 
-    default void addAdvancedAlloyInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    default void addAdvancedAlloyInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (IAlloyItem.getAlloyRecipe(stack) != null) {
-            tooltip.add((new StringTextComponent("Recipe: " + (IAlloyItem.getAlloyRecipe(stack))).withStyle(TextFormatting.LIGHT_PURPLE)));
+            tooltip.add((new TextComponent("Recipe: " + (IAlloyItem.getAlloyRecipe(stack))).withStyle(ChatFormatting.LIGHT_PURPLE)));
         } else {
-            tooltip.add((new StringTextComponent("No Recipe Defined").withStyle(TextFormatting.LIGHT_PURPLE)));
+            tooltip.add((new TextComponent("No Recipe Defined").withStyle(ChatFormatting.LIGHT_PURPLE)));
         }
     }
 

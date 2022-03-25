@@ -4,14 +4,14 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineTags;
-import net.minecraft.block.Block;
-import net.minecraft.data.BlockTagsProvider;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.ItemTagsProvider;
-import net.minecraft.item.Items;
+import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.world.item.Items;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -914,7 +914,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         //getOrCreateBuilder(ItemTags.BEACON_PAYMENT_ITEMS).addTags();
 
         tag(ItemTags.FISHES).add(RankineItems.TUNA.get(),RankineItems.COOKED_TUNA.get());
-        tag(ItemTags.ARROWS).add(RankineItems.ROPE_COIL_ARROW.get(),RankineItems.THORIUM_ARROW.get(),RankineItems.MAGNESIUM_ARROW.get(),RankineItems.ALLOY_ARROW.get());
+        tag(ItemTags.ARROWS).add(RankineItems.ROPE_COIL_ARROW.get(),RankineItems.ALLOY_ARROW.get());
         //getOrCreateBuilder(EntityTypeTags.ARROWS).add(RankineEntityTypes.THORIUM_ARROW,RankineEntityTypes.MAGNESIUM_ARROW,RankineEntityTypes.ALLOY_ARROW);
         tag(ItemTags.COALS).add(RankineItems.LIGNITE.get(),RankineItems.SUBBITUMINOUS_COAL.get(),RankineItems.BITUMINOUS_COAL.get(),RankineItems.ANTHRACITE_COAL.get());
         tag(ItemTags.STONE_TOOL_MATERIALS).add(RankineItems.SKARN.get(),RankineItems.BRECCIA.get());

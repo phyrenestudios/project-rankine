@@ -2,12 +2,11 @@ package com.cannolicatfish.rankine.enchantment;
 
 import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.entity.EquipmentSlot;
 
 public class LightningAspectEnchantment extends Enchantment {
-    public LightningAspectEnchantment(Enchantment.Rarity p_i46730_1_, EquipmentSlotType... p_i46730_2_) {
+    public LightningAspectEnchantment(Enchantment.Rarity p_i46730_1_, EquipmentSlot... p_i46730_2_) {
         super(p_i46730_1_, RankineEnchantmentTypes.HAMMER, p_i46730_2_);
     }
 

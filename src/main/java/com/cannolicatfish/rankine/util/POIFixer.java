@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.util;
 
-import net.minecraft.village.PointOfInterestType;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -14,7 +14,7 @@ public class POIFixer {
     {
         try
         {
-            POIFixer.blockStatesInjector = ObfuscationReflectionHelper.findMethod(PointOfInterestType.class,"registerBlockStates", PointOfInterestType.class);
+            POIFixer.blockStatesInjector = ObfuscationReflectionHelper.findMethod(PoiType.class,"registerBlockStates", PoiType.class);
             POIFixer.blockStatesInjector.setAccessible(true);
         }
         catch (SecurityException | ObfuscationReflectionHelper.UnableToFindMethodException e)
@@ -23,11 +23,11 @@ public class POIFixer {
         }
     }
 
-    public static void fixPOITypeBlockStates(PointOfInterestType poiType)
+    public static void fixPOITypeBlockStates(PoiType poiType)
     {
         try
         {
-            POIFixer.blockStatesInjector.invoke(PointOfInterestType.class, poiType);
+            POIFixer.blockStatesInjector.invoke(PoiType.class, poiType);
         }
         catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e)
         {

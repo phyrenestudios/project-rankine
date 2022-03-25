@@ -5,22 +5,21 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.util.ElementEquation;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.tags.ITag;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.tags.Tag;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -29,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ElementRecipe implements IRecipe<IInventory> {
+public class ElementRecipe implements Recipe<Container> {
     public static final ElementRecipe.Serializer SERIALIZER = new ElementRecipe.Serializer();
     private final ResourceLocation id;
     private final String name;
@@ -61,12 +60,12 @@ public class ElementRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         Item reg = inv.getItem(0).getItem();
         if (reg != Items.AIR) {
             for (String s : items) {
                 if (s.contains("T#")) {
-                    ITag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
+                    Tag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
                     if (tag != null && tag.contains(reg)){
                         return true;
                     }
@@ -91,7 +90,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -112,7 +111,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
         for (String s : getItems()) {
 
             if (s.contains("T#")) {
-                ITag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
+                Tag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
 
                 if (tag != null){
                     list.set(count,Ingredient.of(tag));
@@ -136,7 +135,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.ELEMENT;
     }
 
@@ -268,7 +267,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
@@ -288,7 +287,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
         for (int i = 0; i < getItems().size(); i++) {
             String s = getItems().get(i);
             if (s.contains("T#")) {
-                ITag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
+                Tag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
                 if (tag != null && tag.contains(reg)){
                     return getValues().get(i);
                 }
@@ -302,7 +301,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
         return 0;
     }
 
-    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ElementRecipe> {
+    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ElementRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "element");
 
         @Override
@@ -322,8 +321,8 @@ public class ElementRecipe implements IRecipe<IInventory> {
             } else {
                 p = 0;
             }
-            JsonArray it = JSONUtils.getAsJsonArray(json,"items");
-            JsonArray val = JSONUtils.getAsJsonArray(json,"values");
+            JsonArray it = GsonHelper.getAsJsonArray(json,"items");
+            JsonArray val = GsonHelper.getAsJsonArray(json,"values");
             List<String> itemList = new ArrayList<>();
             List<Integer> valueList = new ArrayList<>();
             for (int i = 0; i < it.size(); i++) {
@@ -336,13 +335,13 @@ public class ElementRecipe implements IRecipe<IInventory> {
             int index = 0;
             for (String stat : stats) {
                 if (json.has(stat)) {
-                    JsonObject object = JSONUtils.getAsJsonObject(json, stat);
-                    JsonArray breaks = JSONUtils.getAsJsonArray(object,"breaks");
-                    JsonArray formulas = JSONUtils.getAsJsonArray(object,"formulas");
-                    JsonArray a = JSONUtils.getAsJsonArray(object,"a");
-                    JsonArray b = JSONUtils.getAsJsonArray(object,"b");
-                    JsonArray modifiers = JSONUtils.getAsJsonArray(object,"modifiers");
-                    JsonArray limit = JSONUtils.getAsJsonArray(object,"limit");
+                    JsonObject object = GsonHelper.getAsJsonObject(json, stat);
+                    JsonArray breaks = GsonHelper.getAsJsonArray(object,"breaks");
+                    JsonArray formulas = GsonHelper.getAsJsonArray(object,"formulas");
+                    JsonArray a = GsonHelper.getAsJsonArray(object,"a");
+                    JsonArray b = GsonHelper.getAsJsonArray(object,"b");
+                    JsonArray modifiers = GsonHelper.getAsJsonArray(object,"modifiers");
+                    JsonArray limit = GsonHelper.getAsJsonArray(object,"limit");
 
                     int[] breaksIn = new int[breaks.size()];
                     ElementEquation.FormulaType[] formulasIn = new ElementEquation.FormulaType[breaks.size()];
@@ -368,9 +367,9 @@ public class ElementRecipe implements IRecipe<IInventory> {
             List<String> enchantmentTypes = new ArrayList<>();
             List<Float> enchantmentFactors = new ArrayList<>();
             if (json.has("enchantments")) {
-                JsonArray e = JSONUtils.getAsJsonArray(json,"enchantments");
-                JsonArray eTypes = JSONUtils.getAsJsonArray(json,"enchantmentTypes");
-                JsonArray eFactors = JSONUtils.getAsJsonArray(json,"enchantmentFactors");
+                JsonArray e = GsonHelper.getAsJsonArray(json,"enchantments");
+                JsonArray eTypes = GsonHelper.getAsJsonArray(json,"enchantmentTypes");
+                JsonArray eFactors = GsonHelper.getAsJsonArray(json,"enchantmentFactors");
                 for (int i = 0; i < e.size(); i++) {
                     enchantments.add(e.get(i).getAsString().toLowerCase(Locale.ROOT));
                     enchantmentTypes.add(eTypes.get(i).getAsString().toUpperCase(Locale.ROOT));
@@ -382,7 +381,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
 
         @Nullable
         @Override
-        public ElementRecipe fromNetwork(ResourceLocation elementId, PacketBuffer buffer) {
+        public ElementRecipe fromNetwork(ResourceLocation elementId, FriendlyByteBuf buffer) {
             List<ElementEquation> equations = new ArrayList<>();
             List<String> itemList = new ArrayList<>();
             List<Integer> valueList = new ArrayList<>();
@@ -437,7 +436,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
         }
 
         @Override
-        public void toNetwork(PacketBuffer buffer, ElementRecipe element) {
+        public void toNetwork(FriendlyByteBuf buffer, ElementRecipe element) {
             buffer.writeUtf(element.getName());
             buffer.writeUtf(element.getSymbol());
             buffer.writeInt(element.getAtomicNumber());

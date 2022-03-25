@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.fluids;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class GrayMudFluid {
     public static final ResourceLocation FLUID_STILL = new ResourceLocation("rankine:block/gray_mud_still");

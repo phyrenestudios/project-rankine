@@ -1,24 +1,24 @@
 package com.cannolicatfish.rankine.util.colors;
 
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.World;
+import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-public class CrucibleColor implements IBlockColor {
+public class CrucibleColor implements BlockColor {
     @Override
-    public int getColor(BlockState p_getColor_1_, @Nullable IBlockDisplayReader p_getColor_2_, @Nullable BlockPos p_getColor_3_, int p_getColor_4_) {
+    public int getColor(BlockState p_getColor_1_, @Nullable BlockAndTintGetter p_getColor_2_, @Nullable BlockPos p_getColor_3_, int p_getColor_4_) {
         if (p_getColor_4_ == 0) {
-            World worldIn = Minecraft.getInstance().level;
+            Level worldIn = Minecraft.getInstance().level;
             if (p_getColor_3_ != null && worldIn != null) {
-                TileEntity t = worldIn.getBlockEntity(p_getColor_3_);
+                BlockEntity t = worldIn.getBlockEntity(p_getColor_3_);
                 if (t != null) {
-                    CompoundNBT data = t.getTileData();
+                    CompoundTag data = t.getTileData();
                     return data.getInt("color");
                 }
 

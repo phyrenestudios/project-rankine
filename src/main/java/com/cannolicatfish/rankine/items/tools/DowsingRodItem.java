@@ -1,19 +1,17 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.util.WorldgenUtils;
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
 
 import java.text.DecimalFormat;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class DowsingRodItem extends Item {
     public DowsingRodItem(Properties p_i48487_1_) {
@@ -21,12 +19,12 @@ public class DowsingRodItem extends Item {
     }
 
     @Override
-    public ActionResultType useOn(ItemUseContext context) {
-        World world = context.getLevel();
-        PlayerEntity player = context.getPlayer();
+    public InteractionResult useOn(UseOnContext context) {
+        Level world = context.getLevel();
+        Player player = context.getPlayer();
         if (!world.isClientSide && player != null) {
-            player.displayClientMessage(new StringTextComponent("Water height is about y=" + WorldgenUtils.waterTableHeight(world, context.getClickedPos())).withStyle(TextFormatting.WHITE), true);
+            player.displayClientMessage(new TextComponent("Water height is about y=" + WorldgenUtils.waterTableHeight(world, context.getClickedPos())).withStyle(ChatFormatting.WHITE), true);
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 }

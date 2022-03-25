@@ -1,11 +1,11 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.PressurePlateBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
+import net.minecraft.world.level.block.PressurePlateBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
 
-import net.minecraft.block.AbstractBlock.Properties;
-import net.minecraft.block.PressurePlateBlock.Sensitivity;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.PressurePlateBlock.Sensitivity;
 
 public class RankineWoodenPressurePlate extends PressurePlateBlock {
     public RankineWoodenPressurePlate() {

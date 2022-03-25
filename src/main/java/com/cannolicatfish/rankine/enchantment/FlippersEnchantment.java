@@ -1,15 +1,15 @@
 package com.cannolicatfish.rankine.enchantment;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
 
-import net.minecraft.enchantment.Enchantment.Rarity;
+import net.minecraft.world.item.enchantment.Enchantment.Rarity;
 
 public class FlippersEnchantment extends Enchantment {
-    public FlippersEnchantment(Rarity rarityIn, EquipmentSlotType... slots) {
-        super(rarityIn, EnchantmentType.ARMOR_FEET, slots);
+    public FlippersEnchantment(Rarity rarityIn, EquipmentSlot... slots) {
+        super(rarityIn, EnchantmentCategory.ARMOR_FEET, slots);
     }
     /**
      * Returns the minimal value of enchantability needed on the enchantment level passed.
@@ -30,7 +30,7 @@ public class FlippersEnchantment extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return EnchantmentType.ARMOR_FEET.canEnchant(stack.getItem());
+        return EnchantmentCategory.ARMOR_FEET.canEnchant(stack.getItem());
     }
 
     /**

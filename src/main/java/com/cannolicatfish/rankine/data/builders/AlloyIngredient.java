@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.data.builders;
 
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.resources.ResourceLocation;
 
 public class AlloyIngredient {
     private Ingredient ingredient;

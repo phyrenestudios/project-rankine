@@ -3,29 +3,34 @@ package com.cannolicatfish.rankine.world.gen.feature;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.DiskConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class CobblePatchFeature extends Feature<BlockClusterFeatureConfig> {
-    public CobblePatchFeature(Codec<BlockClusterFeatureConfig> p_i49915_1_) {
+public class CobblePatchFeature extends Feature<RandomPatchConfiguration> {
+    public CobblePatchFeature(Codec<RandomPatchConfiguration> p_i49915_1_) {
         super(p_i49915_1_);
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockClusterFeatureConfig config) {
+    public boolean place(FeaturePlaceContext<RandomPatchConfiguration> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
+        RandomPatchConfiguration config = p_159749_.config();
         List<String> rockList = new ArrayList<String>();
         if (WorldgenUtils.GEN_BIOMES.contains(reader.getBiome(pos).getRegistryName())) {
             rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(reader.getBiome(pos).getRegistryName()));
@@ -41,13 +46,13 @@ public class CobblePatchFeature extends Feature<BlockClusterFeatureConfig> {
 
         BlockPos blockpos;
         if (config.project) {
-            blockpos = reader.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
+            blockpos = reader.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, pos);
         } else {
             blockpos = pos;
         }
 
         int i = 0;
-        BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+        BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
         for(int j = 0; j < config.tries; ++j) {
             blockpos$mutable.setWithOffset(blockpos, rand.nextInt(config.xspread + 1) - rand.nextInt(config.xspread + 1), rand.nextInt(config.yspread + 1) - rand.nextInt(config.yspread + 1), rand.nextInt(config.zspread + 1) - rand.nextInt(config.zspread + 1));

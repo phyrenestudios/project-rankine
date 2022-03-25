@@ -1,8 +1,7 @@
 package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,9 +66,9 @@ public class ElementUtils {
         return 2f + 0.5f*hl + 0.5f*dmg;
     }
 
-    public int calcDamageReduceAmount(List<ElementRecipe> elements, List<Integer> percents, EquipmentSlotType slotType)
+    public int calcDamageReduceAmount(List<ElementRecipe> elements, List<Integer> percents, EquipmentSlot slotType)
     {
-        int base = slotType == EquipmentSlotType.CHEST ? 3 : slotType == EquipmentSlotType.LEGS ? 2 : 1;
+        int base = slotType == EquipmentSlot.CHEST ? 3 : slotType == EquipmentSlot.LEGS ? 2 : 1;
         int index = 0;
         List<Integer> levels = new ArrayList<>();
         for (ElementRecipe e: elements)
@@ -78,9 +77,9 @@ public class ElementUtils {
             index++;
         }
         int dr = Collections.max(levels);
-        if (slotType == EquipmentSlotType.CHEST || slotType == EquipmentSlotType.LEGS) {
+        if (slotType == EquipmentSlot.CHEST || slotType == EquipmentSlot.LEGS) {
             return Math.min(base + dr,10);
-        } else if (slotType == EquipmentSlotType.FEET) {
+        } else if (slotType == EquipmentSlot.FEET) {
             if (dr >= 5) {
                 return base + 2;
             } else if (dr >= 3) {
@@ -188,7 +187,7 @@ public class ElementUtils {
     }
 
 
-    public int calcArmorDurability(List<ElementRecipe> elements, List<Integer> percents, int extra, EquipmentSlotType slotType)
+    public int calcArmorDurability(List<ElementRecipe> elements, List<Integer> percents, int extra, EquipmentSlot slotType)
     {
         final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
         int durability = calcDurability(elements,percents) + extra;

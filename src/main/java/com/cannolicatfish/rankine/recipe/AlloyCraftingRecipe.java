@@ -7,23 +7,23 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.gson.*;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.ICraftingRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
 
 import java.util.Map;
 import java.util.Set;
 
-public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.common.crafting.IShapedRecipe<CraftingInventory> {
+public class AlloyCraftingRecipe implements CraftingRecipe, net.minecraftforge.common.crafting.IShapedRecipe<CraftingContainer> {
     static int MAX_WIDTH = 3;
     static int MAX_HEIGHT = 3;
     /**
@@ -67,7 +67,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
         return this.id;
     }
 
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
@@ -132,7 +132,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
     /**
      * Used to check if a recipe matches current crafting inventory
      */
-    public boolean matches(CraftingInventory inv, World worldIn) {
+    public boolean matches(CraftingContainer inv, Level worldIn) {
         for(int i = 0; i <= inv.getWidth() - this.recipeWidth; ++i) {
             for(int j = 0; j <= inv.getHeight() - this.recipeHeight; ++j) {
                 if (this.checkMatch(inv, i, j, true)) {
@@ -151,7 +151,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
     /**
      * Checks if the region of a crafting inventory is match for the recipe.
      */
-    private boolean checkMatch(CraftingInventory craftingInventory, int width, int height, boolean p_77573_4_) {
+    private boolean checkMatch(CraftingContainer craftingInventory, int width, int height, boolean p_77573_4_) {
         //String workingComposition = "";
         for(int i = 0; i < craftingInventory.getWidth(); ++i) {
             for(int j = 0; j < craftingInventory.getHeight(); ++j) {
@@ -198,7 +198,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
     /**
      * Returns an Item that is the result of this recipe
      */
-    public ItemStack assemble(CraftingInventory inv) {
+    public ItemStack assemble(CraftingContainer inv) {
         ItemStack res = this.getResultItem().copy();
         if (this.inherit)
         {
@@ -375,7 +375,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             throw new JsonSyntaxException("Invalid pattern: empty pattern not allowed");
         } else {
             for(int i = 0; i < astring.length; ++i) {
-                String s = JSONUtils.convertToString(jsonArr.get(i), "pattern[" + i + "]");
+                String s = GsonHelper.convertToString(jsonArr.get(i), "pattern[" + i + "]");
                 if (s.length() > MAX_WIDTH) {
                     throw new JsonSyntaxException("Invalid pattern: too many columns, " + MAX_WIDTH + " is maximum");
                 }
@@ -413,17 +413,17 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             {
                 if (entry.getValue().getAsJsonObject().has("alloyComp"))
                 {
-                    alloyComp = JSONUtils.getAsString(entry.getValue().getAsJsonObject(), "alloyComp");
+                    alloyComp = GsonHelper.getAsString(entry.getValue().getAsJsonObject(), "alloyComp");
                 }
                 if (entry.getValue().getAsJsonObject().has("alloyRecipe"))
                 {
-                    alloyRecipe = JSONUtils.getAsString(entry.getValue().getAsJsonObject(), "alloyRecipe");
+                    alloyRecipe = GsonHelper.getAsString(entry.getValue().getAsJsonObject(), "alloyRecipe");
                 }
                 if (entry.getValue().getAsJsonObject().has("langName")) {
-                    name = JSONUtils.getAsString(entry.getValue().getAsJsonObject(), "langName");
+                    name = GsonHelper.getAsString(entry.getValue().getAsJsonObject(), "langName");
                 }
                 if (entry.getValue().getAsJsonObject().has("color")) {
-                    color = Math.max(0,JSONUtils.getAsInt(entry.getValue().getAsJsonObject(), "color"));
+                    color = Math.max(0,GsonHelper.getAsInt(entry.getValue().getAsJsonObject(), "color"));
                 }
             }
 
@@ -435,7 +435,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "item");
+        String s = GsonHelper.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -443,15 +443,15 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getAsInt(object, "count", 1);
+            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<AlloyCraftingRecipe> {
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AlloyCraftingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "alloy_crafting");
         public AlloyCraftingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            String s = JSONUtils.getAsString(json, "group", "");
+            String s = GsonHelper.getAsString(json, "group", "");
             int c;
             if (json.has("color")) {
                 c = Math.max(0,json.get("color").getAsInt());
@@ -459,18 +459,18 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
                 c = 16777215;
             }
             String n = json.has("langName") ? json.get("langName").getAsString() : "";
-            Map<String, Ingredient> map = AlloyCraftingRecipe.deserializeKey(JSONUtils.getAsJsonObject(json, "key"));
-            String[] astring = AlloyCraftingRecipe.shrink(AlloyCraftingRecipe.patternFromJson(JSONUtils.getAsJsonArray(json, "pattern")));
+            Map<String, Ingredient> map = AlloyCraftingRecipe.deserializeKey(GsonHelper.getAsJsonObject(json, "key"));
+            String[] astring = AlloyCraftingRecipe.shrink(AlloyCraftingRecipe.patternFromJson(GsonHelper.getAsJsonArray(json, "pattern")));
             int i = astring[0].length();
             int j = astring.length;
             NonNullList<Ingredient> nonnulllist = AlloyCraftingRecipe.deserializeIngredients(astring, map, i, j);
-            ItemStack itemstack = AlloyCraftingRecipe.deserializeItem(JSONUtils.getAsJsonObject(json, "result"));
-            boolean in = json.has("inherit") && JSONUtils.getAsBoolean(json, "inherit");
-            String inR = json.has("inheritRecipe") ? JSONUtils.getAsString(json, "inheritRecipe") : "";
+            ItemStack itemstack = AlloyCraftingRecipe.deserializeItem(GsonHelper.getAsJsonObject(json, "result"));
+            boolean in = json.has("inherit") && GsonHelper.getAsBoolean(json, "inherit");
+            String inR = json.has("inheritRecipe") ? GsonHelper.getAsString(json, "inheritRecipe") : "";
             return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, in, inR,n,c);
         }
 
-        public AlloyCraftingRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public AlloyCraftingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             int i = buffer.readVarInt();
             int j = buffer.readVarInt();
             String s = buffer.readUtf(32767);
@@ -488,7 +488,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, in, inR,n,c);
         }
 
-        public void toNetwork(PacketBuffer buffer, AlloyCraftingRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, AlloyCraftingRecipe recipe) {
             buffer.writeVarInt(recipe.recipeWidth);
             buffer.writeVarInt(recipe.recipeHeight);
             buffer.writeUtf(recipe.group);

@@ -1,15 +1,15 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class BuildingToolItem extends Item {
     private int maxModes = 8;
@@ -18,13 +18,13 @@ public class BuildingToolItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
 
         if (playerIn.isShiftKeyDown()) {
             ItemStack heldItem = playerIn.getItemInHand(handIn);
             int mode = getBuildingMode(heldItem);
             heldItem.getOrCreateTag().putShort("buildingMode", (short) ((mode + 1) % maxModes));
-            playerIn.displayClientMessage(new TranslationTextComponent("item.rankine.building_tool.message", (mode + 1) % maxModes).withStyle(TextFormatting.WHITE), true);
+            playerIn.displayClientMessage(new TranslatableComponent("item.rankine.building_tool.message", (mode + 1) % maxModes).withStyle(ChatFormatting.WHITE), true);
         }
         return super.use(worldIn, playerIn, handIn);
     }

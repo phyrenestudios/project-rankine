@@ -6,18 +6,15 @@ import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.block.Block;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.*;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -26,7 +23,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class BeehiveOvenRecipe implements IRecipe<IInventory> {
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+
+public class BeehiveOvenRecipe implements Recipe<Container> {
 
     public static final BeehiveOvenRecipe.Serializer SERIALIZER = new BeehiveOvenRecipe.Serializer();
     protected Ingredient ingredient;
@@ -49,12 +51,12 @@ public class BeehiveOvenRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         return this.ingredient.test(inv.getItem(0));
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -83,17 +85,17 @@ public class BeehiveOvenRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.BEEHIVE;
     }
 
     public static ItemStack deserializeBlock(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "block");
+        String s = GsonHelper.getAsString(object, "block");
 
         Block block = Registry.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonParseException("Unknown block '" + s + "'");
@@ -106,18 +108,18 @@ public class BeehiveOvenRecipe implements IRecipe<IInventory> {
         }
     }
 
-    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<BeehiveOvenRecipe> {
+    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<BeehiveOvenRecipe> {
 
         @Override
         public BeehiveOvenRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input"));
-            ItemStack result = deserializeBlock(JSONUtils.getAsJsonObject(json, "result"));
+            Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
+            ItemStack result = deserializeBlock(GsonHelper.getAsJsonObject(json, "result"));
             return new BeehiveOvenRecipe(recipeId,ingredient,result);
         }
 
         @Nullable
         @Override
-        public BeehiveOvenRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public BeehiveOvenRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
 
             Ingredient input = Ingredient.fromNetwork(buffer);
 
@@ -127,7 +129,7 @@ public class BeehiveOvenRecipe implements IRecipe<IInventory> {
         }
 
         @Override
-        public void toNetwork(PacketBuffer buffer, BeehiveOvenRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, BeehiveOvenRecipe recipe) {
             recipe.getIngredient().toNetwork(buffer);
             buffer.writeItem(recipe.getResultItem());
         }

@@ -3,17 +3,16 @@ package com.cannolicatfish.rankine.items.indexer;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.Util;
+import net.minecraft.util.Mth;
+import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
@@ -24,19 +23,19 @@ import java.util.Collections;
 import java.util.Locale;
 
 @OnlyIn(Dist.CLIENT)
-public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContainer> {
+public class ElementIndexerScreen extends AbstractContainerScreen<ElementIndexerContainer> {
     private int currentScroll = 100;
     private ElementRecipe element = null;
     private static final PeriodicTableUtils utils = new PeriodicTableUtils();
     private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/element_indexer.png");
-    public ElementIndexerScreen(ElementIndexerContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public ElementIndexerScreen(ElementIndexerContainer screenContainer, Inventory inv, Component titleIn) {
         super(screenContainer, inv, titleIn);
         this.imageWidth = 176;
         this.imageHeight = 236;
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+    public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
         this.renderTooltip(matrixStack, mouseX, mouseY);
@@ -44,7 +43,7 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
 
 
     @Override
-    protected void renderLabels(MatrixStack matrixStack, int x, int y) {
+    protected void renderLabels(PoseStack matrixStack, int x, int y) {
 
         drawString(matrixStack,Minecraft.getInstance().font,this.currentScroll + "%",140,10,0xffffff);
         DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
@@ -103,7 +102,7 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
 
     }
 
-    public void drawScaledString(MatrixStack stack, FontRenderer fontRendererIn, String text, int x, int y, float size, int color) {
+    public void drawScaledString(PoseStack stack, Font fontRendererIn, String text, int x, int y, float size, int color) {
         GL11.glScalef(size,size,size);
         float mSize = (float)Math.pow(size,-1);
         drawString(stack, fontRendererIn,text,Math.round(x / size),Math.round(y / size),color);
@@ -111,9 +110,9 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
     }
 
     @Override
-    protected void renderBg(MatrixStack matrixStack, float partialTicks, int x, int y) {
-        GlStateManager._color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bind(this.GUI);
+    protected void renderBg(PoseStack matrixStack, float partialTicks, int x, int y) {
+        GlStateManager._clearColor(1.0F, 1.0F, 1.0F, 1.0F);
+        this.minecraft.getTextureManager().bindForSetup(this.GUI);
         int i = this.leftPos;
         int j = this.topPos;
         this.blit(matrixStack, i, j, 0, 0, this.imageWidth, this.imageHeight);
@@ -125,7 +124,7 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
 
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
         this.currentScroll = this.currentScroll + (int) (delta);
-        this.currentScroll = MathHelper.clamp(this.currentScroll, 1, 100);
+        this.currentScroll = Mth.clamp(this.currentScroll, 1, 100);
         return true;
     }
 

@@ -3,13 +3,12 @@ package com.cannolicatfish.rankine.blocks.groundtap;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
-import net.minecraft.block.BlockState;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,21 +16,21 @@ import java.util.Stack;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.GROUND_TAP_TILE;
 
-public class GroundTapTile extends TileEntity implements ITickableTileEntity {
+public class GroundTapTile extends BlockEntity {
     private int proccessTime;
 
-    public GroundTapTile() {
-        super(GROUND_TAP_TILE);
+    public GroundTapTile(BlockPos posIn, BlockState stateIn) {
+        super(GROUND_TAP_TILE, posIn, stateIn);
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         this.proccessTime = nbt.getInt("ProcessTime");
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
         compound.putInt("ProcessTime", this.proccessTime);
         return compound;
@@ -42,7 +41,7 @@ public class GroundTapTile extends TileEntity implements ITickableTileEntity {
         if (!this.getBlockState().getValue(GroundTapBlock.WATERLOGGED)) {
             this.proccessTime++;
             if (this.proccessTime % Config.MACHINES.GROUND_TAP_SPEED.get() == 0) {
-                World worldIn = this.getLevel();
+                Level worldIn = this.getLevel();
                 Set<BlockPos> checkedBlocks = new HashSet<>();
                 Stack<BlockPos> toCheck = new Stack<>();
                 boolean attached = false;

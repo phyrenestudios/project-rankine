@@ -3,22 +3,28 @@ package com.cannolicatfish.rankine.data;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
-import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.Items;
-import net.minecraft.loot.*;
-import net.minecraft.loot.conditions.TableBonus;
-import net.minecraft.loot.functions.ApplyBonus;
-import net.minecraft.loot.functions.SetCount;
-import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
 
 public class RankineBlockLootTables extends RankineLootTableProvider {
 
@@ -153,10 +159,10 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
         lootTables.put(RankineBlocks.ENDER_SHIRO.get(), droppingWithSilkTouch(RankineBlocks.ENDER_SHIRO.get(),Blocks.END_STONE));
 
-        lootTables.put(RankineBlocks.FIRE_CLAY.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.FIRE_CLAY.get(), RankineItems.FIRE_CLAY_BALL.get(), ConstantRange.exactly(4)));
-        lootTables.put(RankineBlocks.KAOLIN.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.KAOLIN.get(), RankineItems.KAOLINITE.get(), ConstantRange.exactly(4)));
-        lootTables.put(RankineBlocks.DARK_GRAVEL.get(), droppingWithSilkTouch(RankineBlocks.DARK_GRAVEL.get(), withSurvivesExplosion(RankineBlocks.DARK_GRAVEL.get(), ItemLootEntry.lootTableItem(Items.FLINT).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.2F, 0.5F, 1.0F, 1.0F)).otherwise(ItemLootEntry.lootTableItem(RankineBlocks.DARK_GRAVEL.get())))));
-        lootTables.put(RankineBlocks.LIGHT_GRAVEL.get(), droppingWithSilkTouch(RankineBlocks.LIGHT_GRAVEL.get(), withSurvivesExplosion(RankineBlocks.LIGHT_GRAVEL.get(), ItemLootEntry.lootTableItem(Items.FLINT).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.05F, 0.1F, 0.2F, 0.5F)).otherwise(ItemLootEntry.lootTableItem(RankineBlocks.LIGHT_GRAVEL.get())))));
+        lootTables.put(RankineBlocks.FIRE_CLAY.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.FIRE_CLAY.get(), RankineItems.FIRE_CLAY_BALL.get(), ConstantValue.exactly(4)));
+        lootTables.put(RankineBlocks.KAOLIN.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.KAOLIN.get(), RankineItems.KAOLINITE.get(), ConstantValue.exactly(4)));
+        lootTables.put(RankineBlocks.DARK_GRAVEL.get(), droppingWithSilkTouch(RankineBlocks.DARK_GRAVEL.get(), withSurvivesExplosion(RankineBlocks.DARK_GRAVEL.get(), LootItem.lootTableItem(Items.FLINT).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.2F, 0.5F, 1.0F, 1.0F)).otherwise(LootItem.lootTableItem(RankineBlocks.DARK_GRAVEL.get())))));
+        lootTables.put(RankineBlocks.LIGHT_GRAVEL.get(), droppingWithSilkTouch(RankineBlocks.LIGHT_GRAVEL.get(), withSurvivesExplosion(RankineBlocks.LIGHT_GRAVEL.get(), LootItem.lootTableItem(Items.FLINT).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.05F, 0.1F, 0.2F, 0.5F)).otherwise(LootItem.lootTableItem(RankineBlocks.LIGHT_GRAVEL.get())))));
 
 
         for (Block blk : Stream.of(
@@ -217,7 +223,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(), Items.DIAMOND));
         lootTables.put(RankineBlocks.BERYL_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.BERYL_ORE.get(), Items.EMERALD));
         lootTables.put(RankineBlocks.GWIHABAITE_CRYSTAL.get(), fortunableOreOreBlockLootTable(RankineBlocks.GWIHABAITE_CRYSTAL.get(), RankineItems.GWIHABAITE.get()));
-        lootTables.put(RankineBlocks.LAZURITE_ORE.get(), droppingWithSilkTouch(RankineBlocks.LAZURITE_ORE.get(), withExplosionDecay(RankineBlocks.LAZURITE_ORE.get(), ItemLootEntry.lootTableItem(Items.LAPIS_LAZULI).apply(SetCount.setCount(RandomValueRange.between(4.0F, 9.0F))).apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        lootTables.put(RankineBlocks.LAZURITE_ORE.get(), droppingWithSilkTouch(RankineBlocks.LAZURITE_ORE.get(), withExplosionDecay(RankineBlocks.LAZURITE_ORE.get(), LootItem.lootTableItem(Items.LAPIS_LAZULI).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
 
         lootTables.put(RankineBlocks.EMERALD_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.EMERALD_ORE.get(), Items.EMERALD));
         lootTables.put(RankineBlocks.DIAMOND_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.DIAMOND_ORE.get(), Items.DIAMOND));
@@ -225,9 +231,9 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.COAL_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.COAL_ORE.get(), Items.COAL));
         lootTables.put(RankineBlocks.IRON_ORE.get(), createBlockLootTable(RankineBlocks.IRON_ORE.get()));
         lootTables.put(RankineBlocks.GOLD_ORE.get(), createBlockLootTable(RankineBlocks.GOLD_ORE.get()));
-        lootTables.put(RankineBlocks.LAPIS_ORE.get(), droppingWithSilkTouch(RankineBlocks.LAPIS_ORE.get(), withExplosionDecay(RankineBlocks.LAPIS_ORE.get(), ItemLootEntry.lootTableItem(Items.LAPIS_LAZULI).apply(SetCount.setCount(RandomValueRange.between(4.0F, 9.0F))).apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
-        lootTables.put(RankineBlocks.REDSTONE_ORE.get(), droppingWithSilkTouch(RankineBlocks.REDSTONE_ORE.get(), withExplosionDecay(RankineBlocks.REDSTONE_ORE.get(), ItemLootEntry.lootTableItem(Items.REDSTONE).apply(SetCount.setCount(RandomValueRange.between(4.0F, 5.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
-        lootTables.put(RankineBlocks.NETHER_GOLD_ORE.get(), droppingWithSilkTouch(RankineBlocks.NETHER_GOLD_ORE.get(), withExplosionDecay(RankineBlocks.NETHER_GOLD_ORE.get(), ItemLootEntry.lootTableItem(Items.GOLD_NUGGET).apply(SetCount.setCount(RandomValueRange.between(2.0F, 6.0F))).apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        lootTables.put(RankineBlocks.LAPIS_ORE.get(), droppingWithSilkTouch(RankineBlocks.LAPIS_ORE.get(), withExplosionDecay(RankineBlocks.LAPIS_ORE.get(), LootItem.lootTableItem(Items.LAPIS_LAZULI).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        lootTables.put(RankineBlocks.REDSTONE_ORE.get(), droppingWithSilkTouch(RankineBlocks.REDSTONE_ORE.get(), withExplosionDecay(RankineBlocks.REDSTONE_ORE.get(), LootItem.lootTableItem(Items.REDSTONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 5.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        lootTables.put(RankineBlocks.NETHER_GOLD_ORE.get(), droppingWithSilkTouch(RankineBlocks.NETHER_GOLD_ORE.get(), withExplosionDecay(RankineBlocks.NETHER_GOLD_ORE.get(), LootItem.lootTableItem(Items.GOLD_NUGGET).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
 
         lootTables.put(RankineBlocks.TAENITE_ORE.get(), createBlockLootTable(RankineBlocks.TAENITE_ORE.get()));
         lootTables.put(RankineBlocks.TETRATAENITE_ORE.get(), createBlockLootTable(RankineBlocks.TETRATAENITE_ORE.get()));
@@ -255,13 +261,13 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
             lootTables.put(BLK, eightLayerBlock(BLK));
         }
         for (Block BLK : RankineLists.WOODEN_BOOKSHELVES) {
-            lootTables.put(BLK, droppingWithSilkTouchOrRandomly(BLK, Items.BOOK, ConstantRange.exactly(3)));
+            lootTables.put(BLK, droppingWithSilkTouchOrRandomly(BLK, Items.BOOK, ConstantValue.exactly(3)));
         }
         for (Block BLK : RankineLists.LIGHTNING_GLASSES) {
             lootTables.put(BLK, onlyWithSilkTouch(BLK));
         }
         for (Block BLK : RankineLists.HOLLOW_LOGS) {
-            lootTables.put(BLK, droppingWithSilkTouchOrRandomly(BLK, Items.STICK, RandomValueRange.between(2.0F, 6.0F)));
+            lootTables.put(BLK, droppingWithSilkTouchOrRandomly(BLK, Items.STICK, UniformGenerator.between(2.0F, 6.0F)));
         }
         for (Block BLK : RankineLists.MUSHROOM_BLOCKS) {
             lootTables.put(BLK, droppingItemRarely(BLK, RankineLists.WALL_MUSHROOMS.get(RankineLists.MUSHROOM_BLOCKS.indexOf(BLK)).asItem()));
@@ -271,7 +277,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
         for (Block LEAF : RankineLists.LEAVES) {
             Block SAPLING = RankineLists.SAPLINGS.get(RankineLists.LEAVES.indexOf(LEAF));
-            if (LEAF.is(RankineBlocks.COCONUT_PALM_LEAVES.get()) || LEAF.is(RankineBlocks.BALSAM_FIR_LEAVES.get())) {
+            if (LEAF.equals(RankineBlocks.COCONUT_PALM_LEAVES.get()) || LEAF.equals(RankineBlocks.BALSAM_FIR_LEAVES.get())) {
                 lootTables.put(LEAF, droppingWithChancesAndSticks(LEAF, SAPLING, DOUBLE_SAPLING_DROP_RATES));
             } else {
                 lootTables.put(LEAF, droppingWithChancesAndSticks(LEAF, SAPLING, DEFAULT_SAPLING_DROP_RATES));

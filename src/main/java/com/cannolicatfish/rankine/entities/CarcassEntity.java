@@ -3,62 +3,66 @@ package com.cannolicatfish.rankine.entities;
 import com.cannolicatfish.rankine.init.RankineDamageSources;
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.block.AbstractFireBlock;
-import net.minecraft.entity.*;
-import net.minecraft.entity.projectile.AbstractFireballEntity;
-import net.minecraft.entity.projectile.DamagingProjectileEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.entity.projectile.Fireball;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.FMLPlayMessages;
-import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.List;
 
+import net.minecraft.world.entity.AreaEffectCloud;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.projectile.ItemSupplier;
+import net.minecraftforge.fmllegacy.network.FMLPlayMessages;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
+
 @OnlyIn(
         value = Dist.CLIENT,
-        _interface = IRendersAsItem.class
+        _interface = ItemSupplier.class
 )
 
-public class CarcassEntity extends AbstractFireballEntity implements IRendersAsItem {
-    private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(CarcassEntity.class, DataSerializers.ITEM_STACK);
+public class CarcassEntity extends Fireball implements ItemSupplier {
+    private static final EntityDataAccessor<ItemStack> STACK = SynchedEntityData.defineId(CarcassEntity.class, EntityDataSerializers.ITEM_STACK);
 
-    public CarcassEntity(EntityType<? extends CarcassEntity> p_i50147_1_, World p_i50147_2_) {
+    public CarcassEntity(EntityType<? extends CarcassEntity> p_i50147_1_, Level p_i50147_2_) {
         super(p_i50147_1_, p_i50147_2_);
     }
 
 
-    public CarcassEntity(World worldIn, LivingEntity shooter, double accelX, double accelY, double accelZ) {
+    public CarcassEntity(Level worldIn, LivingEntity shooter, double accelX, double accelY, double accelZ) {
         super(RankineEntityTypes.CARCASS, shooter, accelX, accelY, accelZ, worldIn);
     }
 
-    public CarcassEntity(World worldIn, double x, double y, double z, double accelX, double accelY, double accelZ) {
+    public CarcassEntity(Level worldIn, double x, double y, double z, double accelX, double accelY, double accelZ) {
         super(RankineEntityTypes.CARCASS, x, y, z, accelX, accelY, accelZ, worldIn);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public CarcassEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world, EntityType<CarcassEntity> e) {
+    public CarcassEntity(FMLPlayMessages.SpawnEntity spawnEntity, Level world, EntityType<CarcassEntity> e) {
         super(e, world);
     }
 
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -90,11 +94,11 @@ public class CarcassEntity extends AbstractFireballEntity implements IRendersAsI
         this.getEntityData().define(STACK, ItemStack.EMPTY);
     }
 
-    public void addAdditionalSaveData(CompoundNBT compound) {
+    public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         ItemStack itemstack = this.getItemRaw();
         if (!itemstack.isEmpty()) {
-            compound.put("Item", itemstack.save(new CompoundNBT()));
+            compound.put("Item", itemstack.save(new CompoundTag()));
         }
 
     }
@@ -102,13 +106,13 @@ public class CarcassEntity extends AbstractFireballEntity implements IRendersAsI
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readAdditionalSaveData(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         ItemStack itemstack = ItemStack.of(compound.getCompound("Item"));
         this.setItem(itemstack);
     }
 
-    protected void onHitEntity(EntityRayTraceResult result) {
+    protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);
         if (!this.level.isClientSide) {
             Entity entity = result.getEntity();
@@ -126,16 +130,16 @@ public class CarcassEntity extends AbstractFireballEntity implements IRendersAsI
         }
     }
 
-    protected void onHitBlock(BlockRayTraceResult result) {
+    protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
         if (!this.level.isClientSide) {
-            Explosion.Mode explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner()) ? Explosion.Mode.DESTROY : Explosion.Mode.NONE;
+            Explosion.BlockInteraction explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner()) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE;
             this.level.explode(this, this.getX(), this.getY(), this.getZ(), 0.5F, false, explosion$mode);
             Entity entity = this.getOwner();
-            if (entity == null || !(entity instanceof MobEntity) || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getEntity())) {
+            if (entity == null || !(entity instanceof Mob) || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this)) {
                 BlockPos blockpos = result.getBlockPos().relative(result.getDirection());
                 if (this.level.isEmptyBlock(blockpos)) {
-                    this.level.setBlockAndUpdate(blockpos, AbstractFireBlock.getState(this.level, blockpos));
+                    this.level.setBlockAndUpdate(blockpos, BaseFireBlock.getState(this.level, blockpos));
                 }
             }
 
@@ -145,12 +149,12 @@ public class CarcassEntity extends AbstractFireballEntity implements IRendersAsI
     /**
      * Called when this EntityFireball hits a block or entity.
      */
-    protected void onHit(RayTraceResult result) {
+    protected void onHit(HitResult result) {
         super.onHit(result);
         Entity entity = this.getOwner();
         if (!this.level.isClientSide) {
             List<LivingEntity> list = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4.0D, 2.0D, 4.0D));
-            AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.level, this.getX(), this.getY(), this.getZ());
+            AreaEffectCloud areaeffectcloudentity = new AreaEffectCloud(this.level, this.getX(), this.getY(), this.getZ());
             if (entity instanceof LivingEntity) {
                 areaeffectcloudentity.setOwner((LivingEntity)entity);
             }
@@ -159,7 +163,7 @@ public class CarcassEntity extends AbstractFireballEntity implements IRendersAsI
             areaeffectcloudentity.setRadius(3.0F);
             areaeffectcloudentity.setDuration(300);
             areaeffectcloudentity.setRadiusPerTick((7.0F - areaeffectcloudentity.getRadius()) / (float)areaeffectcloudentity.getDuration());
-            areaeffectcloudentity.addEffect(new EffectInstance(Effects.POISON, 80, 1));
+            areaeffectcloudentity.addEffect(new MobEffectInstance(MobEffects.POISON, 80, 1));
             if (!list.isEmpty()) {
                 for(LivingEntity livingentity : list) {
                     double d0 = this.distanceToSqr(livingentity);
@@ -170,7 +174,7 @@ public class CarcassEntity extends AbstractFireballEntity implements IRendersAsI
                 }
             }
             this.level.addFreshEntity(areaeffectcloudentity);
-            this.remove();
+            this.remove(RemovalReason.DISCARDED);
         }
 
     }

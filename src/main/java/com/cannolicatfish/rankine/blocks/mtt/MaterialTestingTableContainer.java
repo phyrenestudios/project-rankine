@@ -8,36 +8,34 @@ import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.MATERIAL_TESTING_TABLE_CONTAINER;
 
-public class MaterialTestingTableContainer extends Container {
+public class MaterialTestingTableContainer extends AbstractContainerMenu {
     private static final PeriodicTableUtils utils = new PeriodicTableUtils();
     private IItemHandler playerInventory;
-    private final IInventory inputInventory;
-    private TileEntity tileEntity;
+    private final Container inputInventory;
+    private BlockEntity tileEntity;
 
-    public MaterialTestingTableContainer(int id,  World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(id,world,pos,playerInventory,player, new Inventory(14));
+    public MaterialTestingTableContainer(int id,  Level world, BlockPos pos, Inventory playerInventory, Player player) {
+        this(id,world,pos,playerInventory,player, new SimpleContainer(14));
     }
 
-    public MaterialTestingTableContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory inv) {
+    public MaterialTestingTableContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container inv) {
         super(MATERIAL_TESTING_TABLE_CONTAINER,windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(inv, 7);
@@ -64,7 +62,7 @@ public class MaterialTestingTableContainer extends Container {
 
 
     @Override
-    public ItemStack quickMoveStack(PlayerEntity playerIn, int index)
+    public ItemStack quickMoveStack(Player playerIn, int index)
     {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
@@ -78,67 +76,67 @@ public class MaterialTestingTableContainer extends Container {
                     if (!this.moveItemStackTo(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_DURABILITY_TOOLS)) {
+                } else if (RankineTags.Items.MTT_DURABILITY_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 2, 3, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_MINING_SPEED_TOOLS)) {
+                } else if (RankineTags.Items.MTT_MINING_SPEED_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 3, 4, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS)) {
+                } else if (RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 4, 5, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_ENCHANTABILITY_TOOLS)) {
+                } else if (RankineTags.Items.MTT_ENCHANTABILITY_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 5, 6, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS)) {
+                } else if (RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 6, 7, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_ATTACK_SPEED_TOOLS)) {
+                } else if (RankineTags.Items.MTT_ATTACK_SPEED_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 7, 8, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS)) {
+                } else if (RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 8, 9, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS)) {
+                } else if (RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 9, 10, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS)) {
+                } else if (RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 10, 11, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_TOUGHNESS_TOOLS)) {
+                } else if (RankineTags.Items.MTT_TOUGHNESS_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 11, 12, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_ENCHANTMENT_TOOLS)) {
+                } else if (RankineTags.Items.MTT_ENCHANTMENT_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 12, 13, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_EXAM_TOOLS)) {
+                } else if (RankineTags.Items.MTT_EXAM_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 13, 14, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem().is(RankineTags.Items.MTT_TOOLS)) {
+                } else if (RankineTags.Items.MTT_TOOLS.contains(stack.getItem())) {
                     if (!this.moveItemStackTo(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -195,7 +193,7 @@ public class MaterialTestingTableContainer extends Container {
         addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
     }
 
-    public ElementRecipe getElementRecipeForSlotItem(World worldIn) {
+    public ElementRecipe getElementRecipeForSlotItem(Level worldIn) {
         ItemStack stack = this.inputInventory.getItem(0);
 
         if (utils.hasElementRecipe(stack, worldIn))
@@ -206,41 +204,41 @@ public class MaterialTestingTableContainer extends Container {
         }
     }
 
-    public AlloyingRecipe getAlloyRecipeForSlotItem(World worldIn) {
+    public AlloyingRecipe getAlloyRecipeForSlotItem(Level worldIn) {
         ItemStack stack = this.inputInventory.getItem(0);
         return utils.getAlloyRecipe(stack,worldIn);
     }
 
-    public ItemStack getSlotItem(World worldIn) {
+    public ItemStack getSlotItem(Level worldIn) {
         return this.inputInventory.getItem(0);
     }
 
-    public int getToolItem(World worldIn) {
+    public int getToolItem(Level worldIn) {
         ItemStack stack = this.inputInventory.getItem(1);
-        if (stack.getItem().is(RankineTags.Items.MTT_TOOLS)) {
-            if (stack.getItem().is(RankineTags.Items.MTT_DURABILITY_TOOLS)) {
+        if (RankineTags.Items.MTT_TOOLS.contains(stack.getItem())) {
+            if (RankineTags.Items.MTT_DURABILITY_TOOLS.contains(stack.getItem())) {
                 return 0;
-            } else if (stack.getItem().is(RankineTags.Items.MTT_MINING_SPEED_TOOLS)) {
+            } else if (RankineTags.Items.MTT_MINING_SPEED_TOOLS.contains(stack.getItem())) {
                 return 1;
-            } else if (stack.getItem().is(RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS)) {
+            } else if (RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS.contains(stack.getItem())) {
                 return 2;
-            } else if (stack.getItem().is(RankineTags.Items.MTT_ENCHANTABILITY_TOOLS)) {
+            } else if (RankineTags.Items.MTT_ENCHANTABILITY_TOOLS.contains(stack.getItem())) {
                 return 3;
-            } else if (stack.getItem().is(RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS)) {
+            } else if (RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS.contains(stack.getItem())) {
                 return 4;
-            } else if (stack.getItem().is(RankineTags.Items.MTT_ATTACK_SPEED_TOOLS)) {
+            } else if (RankineTags.Items.MTT_ATTACK_SPEED_TOOLS.contains(stack.getItem())) {
                 return 5;
-            } else if (stack.getItem().is(RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS)) {
+            } else if (RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS.contains(stack.getItem())) {
                 return 6;
-            } else if (stack.getItem().is(RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS)) {
+            } else if (RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS.contains(stack.getItem())) {
                 return 7;
-            } else if (stack.getItem().is(RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS)) {
+            } else if (RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS.contains(stack.getItem())) {
                 return 8;
-            } else if (stack.getItem().is(RankineTags.Items.MTT_TOUGHNESS_TOOLS)) {
+            } else if (RankineTags.Items.MTT_TOUGHNESS_TOOLS.contains(stack.getItem())) {
                 return 9;
-            } else if (stack.getItem().is(RankineTags.Items.MTT_ENCHANTMENT_TOOLS)) {
+            } else if (RankineTags.Items.MTT_ENCHANTMENT_TOOLS.contains(stack.getItem())) {
                 return 10;
-            } else if (stack.getItem().is(RankineTags.Items.MTT_EXAM_TOOLS)) {
+            } else if (RankineTags.Items.MTT_EXAM_TOOLS.contains(stack.getItem())) {
                 return 11;
             }
         }
@@ -251,8 +249,8 @@ public class MaterialTestingTableContainer extends Container {
 
 
     @Override
-    public boolean stillValid(PlayerEntity playerIn) {
-        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerIn, RankineBlocks.MATERIAL_TESTING_TABLE.get());
+    public boolean stillValid(Player playerIn) {
+        return stillValid(ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerIn, RankineBlocks.MATERIAL_TESTING_TABLE.get());
     }
 
 }

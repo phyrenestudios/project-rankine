@@ -3,62 +3,70 @@ package com.cannolicatfish.rankine.items.tools;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.google.common.collect.Sets;
-import net.minecraft.block.*;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.LightningBoltEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.AbstractSkeletonEntity;
-import net.minecraft.entity.monster.BlazeEntity;
-import net.minecraft.entity.monster.SkeletonEntity;
-import net.minecraft.entity.passive.GolemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
 
 import java.util.*;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
-public class HammerItem extends ToolItem {
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.block.AnvilBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+
+public class HammerItem extends DiggerItem {
 
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.STONE, Blocks.COBBLESTONE, Blocks.SMOOTH_STONE, Blocks.SANDSTONE, Blocks.RED_SANDSTONE, RankineBlocks.GRAY_GRANITE.get(), RankineBlocks.HORNBLENDE_ANDESITE.get(), RankineBlocks.GRANODIORITE.get(), RankineBlocks.LIMESTONE.get(), RankineBlocks.THOLEIITIC_BASALT.get(), RankineBlocks.RHYOLITE.get(),
             RankineBlocks.GNEISS.get(), RankineBlocks.WHITE_MARBLE.get(), RankineBlocks.SHALE.get(), RankineBlocks.IRONSTONE.get(), RankineBlocks.ANORTHOSITE.get(), RankineBlocks.MAGNETITE_ORE.get(), RankineBlocks.MALACHITE_ORE.get(), RankineBlocks.BAUXITE_ORE.get(), RankineBlocks.CASSITERITE_ORE.get(), RankineBlocks.SPHALERITE_ORE.get(), RankineBlocks.CINNABAR_ORE.get(), RankineBlocks.PENTLANDITE_ORE.get(),
             RankineBlocks.LIGNITE_ORE.get(), RankineBlocks.SUBBITUMINOUS_ORE.get(), RankineBlocks.BITUMINOUS_ORE.get(), RankineBlocks.METEORITE.get());
 
 
-    public HammerItem(float attackDamageIn, float attackSpeedIn, IItemTier tier, Properties builder) {
-        super(attackDamageIn, attackSpeedIn, tier, EFFECTIVE_ON, builder);
+    public HammerItem(float attackDamageIn, float attackSpeedIn, Tier tier, Properties builder) {
+        super(attackDamageIn, attackSpeedIn, tier, RankineTags.Blocks.HARDENED_GLASS, builder);
     }
 
 
     @Override
-    public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+    public boolean mineBlock(ItemStack stack, Level worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         boolean creativeFlag = false;
-        if (entityLiving instanceof PlayerEntity)
+        if (entityLiving instanceof Player)
         {
-            creativeFlag = ((PlayerEntity) entityLiving).isCreative();
+            creativeFlag = ((Player) entityLiving).isCreative();
         }
         if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isEmptyBlock(pos)) {
             for (CrushingRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING)) {
                 for (ItemStack s : recipe.getIngredientAsStackList().clone()) {
-                    if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem() && this.getTier().getLevel() >= state.getBlock().getHarvestLevel(state)) {
+                    if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem()) {
                         if (state.getDestroySpeed(worldIn, pos) != 0.0F) {
                             stack.hurtAndBreak(1, entityLiving, (p_220038_0_) -> {
-                                p_220038_0_.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
+                                p_220038_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
                             });
                         }
                         double d0 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
@@ -89,49 +97,44 @@ public class HammerItem extends ToolItem {
                 }
             }
             SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
-            worldIn.playLocalSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getHitSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
+            worldIn.playLocalSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getHitSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
         }
         return false;
-    }
-
-    public boolean isCorrectToolForDrops(BlockState blockIn) {
-        int i = this.getTier().getLevel();
-        return i >= blockIn.getHarvestLevel();
     }
 
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && getLightningModifier(stack) == 1)
         {
-            LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,attacker.level);
+            LightningBolt ent = new LightningBolt(EntityType.LIGHTNING_BOLT,attacker.level);
             //ent.moveTo(Vector3d.atBottomCenterOf(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
             ent.setPos(target.getX(),target.getY(),target.getZ());
             target.getCommandSenderWorld().addFreshEntity(ent);
         }
         if (getDazeModifier(stack) != 0)
         {
-            if (attacker instanceof PlayerEntity)
+            if (attacker instanceof Player)
             {
-                PlayerEntity player = (PlayerEntity) attacker;
+                Player player = (Player) attacker;
                 if (player.getAttackStrengthScale(0) >= (1f))
                 {
-                    target.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*10, getDazeModifier(stack)*2));
+                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*10, getDazeModifier(stack)*2));
                 } else {
-                    target.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*10, 1));
+                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*10, 1));
                 }
             } else {
-                target.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*10, 1));
+                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*10, 1));
             }
 
         }
         stack.hurtAndBreak(1, attacker, (p_220045_0_) -> {
-            p_220045_0_.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
+            p_220045_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
         return true;
     }
 
-    public void getExcavationResult(BlockPos pos, World worldIn, PlayerEntity player, ItemStack stack) {
-        BlockRayTraceResult raytraceresult = getPlayerPOVHitResult(worldIn, player, RayTraceContext.FluidMode.ANY);
+    public void getExcavationResult(BlockPos pos, Level worldIn, Player player, ItemStack stack) {
+        BlockHitResult raytraceresult = getPlayerPOVHitResult(worldIn, player, ClipContext.Fluid.ANY);
         List<BlockPos> positions = new ArrayList<>();
         if (getExcavateModifier(stack) == 1)
         {
@@ -205,21 +208,21 @@ public class HammerItem extends ToolItem {
 
 
     @Override
-    public ActionResultType useOn(ItemUseContext context) {
+    public InteractionResult useOn(UseOnContext context) {
         if (context.getPlayer() != null && context.getPlayer().isCrouching() && context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof AnvilBlock) {
-            World worldIn = context.getLevel();
+            Level worldIn = context.getLevel();
             BlockPos pos = context.getClickedPos();
             BlockState anvil = worldIn.getBlockState(pos);
             if (anvil.getBlock() == Blocks.CHIPPED_ANVIL && (context.getItemInHand().getMaxDamage() - context.getItemInHand().getDamageValue()) >= 100) {
-                worldIn.setBlock(pos,Blocks.ANVIL.defaultBlockState().setValue(HorizontalBlock.FACING,anvil.getValue(HorizontalBlock.FACING)),2);
-                worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
-                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
-                return ActionResultType.SUCCESS;
+                worldIn.setBlock(pos,Blocks.ANVIL.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING,anvil.getValue(HorizontalDirectionalBlock.FACING)),2);
+                worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundSource.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+                return InteractionResult.SUCCESS;
             } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (context.getItemInHand().getMaxDamage() - context.getItemInHand().getDamageValue()) >= 100) {
-                worldIn.setBlock(pos,Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(HorizontalBlock.FACING,anvil.getValue(HorizontalBlock.FACING)),2);
-                worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
-                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
-                return ActionResultType.SUCCESS;
+                worldIn.setBlock(pos,Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING,anvil.getValue(HorizontalDirectionalBlock.FACING)),2);
+                worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundSource.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+                return InteractionResult.SUCCESS;
             }
         }
         return super.useOn(context);

@@ -1,28 +1,27 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BushBlock;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class CloverBlock extends BushBlock {
     public CloverBlock(Properties properties) {
         super(properties);
     }
 
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
     }
 
     @Override
-    public boolean canBeReplaced(BlockState state, BlockItemUseContext useContext) {
+    public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
         return true;
     }
 }

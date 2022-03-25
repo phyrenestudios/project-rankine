@@ -7,25 +7,25 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
 
-public class AirDistillationRecipe implements IRecipe<IInventory> {
+public class AirDistillationRecipe implements Recipe<Container> {
 
     private final List<String> dims;
     private final List<String> biomes;
@@ -79,12 +79,12 @@ public class AirDistillationRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public boolean matches(IInventory inv, World worldIn) {
+    public boolean matches(Container inv, Level worldIn) {
         return false;
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         return ItemStack.EMPTY;
     }
 
@@ -167,7 +167,7 @@ public class AirDistillationRecipe implements IRecipe<IInventory> {
         }
     }
 
-    public ItemStack getDistillationWithChances(World worldIn, int level, ResourceLocation biome, ResourceLocation dim) {
+    public ItemStack getDistillationWithChances(Level worldIn, int level, ResourceLocation biome, ResourceLocation dim) {
         return worldIn.getRandom().nextFloat() < chances.get(level-1) ? getDistillationResult(level, biome, dim) : ItemStack.EMPTY;
     }
 
@@ -187,12 +187,12 @@ public class AirDistillationRecipe implements IRecipe<IInventory> {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
-        String s = JSONUtils.getAsString(object, "item");
+        String s = GsonHelper.getAsString(object, "item");
         Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
@@ -200,27 +200,27 @@ public class AirDistillationRecipe implements IRecipe<IInventory> {
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = JSONUtils.getAsInt(object, "count", 1);
+            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
 
     @Override
-    public IRecipeType<?> getType() {
+    public RecipeType<?> getType() {
         return RankineRecipeTypes.AIR_DISTILLATION;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<AirDistillationRecipe> {
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AirDistillationRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "air_distillation");
         public AirDistillationRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 
-            JsonArray b = json.has("biomes") ? JSONUtils.getAsJsonArray(json, "biomes") : new JsonArray();
+            JsonArray b = json.has("biomes") ? GsonHelper.getAsJsonArray(json, "biomes") : new JsonArray();
             List<String> biomes = new ArrayList<>();
             for (int i = 0; i < b.size(); i++) {
                 biomes.add(b.get(i).getAsString());
             }
 
-            JsonArray d = json.has("dimensions") ? JSONUtils.getAsJsonArray(json, "dimensions") : new JsonArray();
+            JsonArray d = json.has("dimensions") ? GsonHelper.getAsJsonArray(json, "dimensions") : new JsonArray();
             List<String> dims = new ArrayList<>();
             for (int i = 0; i < d.size(); i++) {
                 dims.add(d.get(i).getAsString());
@@ -231,7 +231,7 @@ public class AirDistillationRecipe implements IRecipe<IInventory> {
             for (int i = 0; i < 10; i++) {
                 String output = "output" + (i+1);
                 if (json.has(output)) {
-                    JsonObject object = JSONUtils.getAsJsonObject(json, output);
+                    JsonObject object = GsonHelper.getAsJsonObject(json, output);
                     stacks.set(i, AirDistillationRecipe.deserializeItem(object));
                     if (object.has("chance")){
                         chances.set(i,object.get("chance").getAsFloat());
@@ -245,7 +245,7 @@ public class AirDistillationRecipe implements IRecipe<IInventory> {
             return new AirDistillationRecipe(recipeId, stacks, chances, dims, biomes);
         }
 
-        public AirDistillationRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public AirDistillationRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
 
             NonNullList<ItemStack> stacks = NonNullList.withSize(10, ItemStack.EMPTY);
             for(int k = 0; k < stacks.size(); ++k) {
@@ -277,7 +277,7 @@ public class AirDistillationRecipe implements IRecipe<IInventory> {
             return new AirDistillationRecipe(recipeId, stacks, chances,dims,biomes);
         }
 
-        public void toNetwork(PacketBuffer buffer, AirDistillationRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, AirDistillationRecipe recipe) {
 
             int count = 0;
             for(ItemStack stack : recipe.recipeOutputs) {

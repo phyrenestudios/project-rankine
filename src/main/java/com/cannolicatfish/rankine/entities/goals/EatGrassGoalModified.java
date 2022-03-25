@@ -1,27 +1,27 @@
 package com.cannolicatfish.rankine.entities.goals;
 
 import com.cannolicatfish.rankine.init.RankineTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
 public class EatGrassGoalModified extends Goal {
-    private static final Predicate<BlockState> IS_GRASS = (blockState -> blockState.getBlock().is(RankineTags.Blocks.GRASS_BLOCKS));
+    private static final Predicate<BlockState> IS_GRASS = (blockState -> RankineTags.Blocks.GRASS_BLOCKS.contains(blockState.getBlock()));
     /** The entity owner of this AITask */
-    private final MobEntity grassEaterEntity;
+    private final Mob grassEaterEntity;
     /** The world the grass eater entity is eating from */
-    private final World entityWorld;
+    private final Level entityWorld;
     /** Number of ticks since the entity started to eat grass */
     private int eatingGrassTimer;
 
-    public EatGrassGoalModified(MobEntity grassEaterEntityIn) {
+    public EatGrassGoalModified(Mob grassEaterEntityIn) {
         this.grassEaterEntity = grassEaterEntityIn;
         this.entityWorld = grassEaterEntityIn.level;
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK, Goal.Flag.JUMP));

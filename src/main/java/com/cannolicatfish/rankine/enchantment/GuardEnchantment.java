@@ -1,14 +1,14 @@
 package com.cannolicatfish.rankine.enchantment;
 
 import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.entity.EquipmentSlot;
 
 public class GuardEnchantment extends Enchantment {
 
-    public GuardEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
-        super(p_i46721_1_, EnchantmentType.ARMOR, p_i46721_2_);
+    public GuardEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlot... p_i46721_2_) {
+        super(p_i46721_1_, EnchantmentCategory.ARMOR, p_i46721_2_);
     }
 
     public int getMinCost(int enchantmentLevel) {

@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.init;
 
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.entity.merchant.villager.VillagerProfession;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.sounds.SoundEvents;
 
 public class RankineVillagerProfessions {
 

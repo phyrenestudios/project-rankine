@@ -2,20 +2,17 @@ package com.cannolicatfish.rankine.items.totems;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.Config;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.container.GrindstoneContainer;
-import net.minecraft.inventory.container.RepairContainer;
-import net.minecraft.item.*;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.util.*;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -26,7 +23,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
+
+import net.minecraft.core.NonNullList;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 public class InfusingTotemItem extends Item {
     public InfusingTotemItem(Properties properties) {
@@ -34,13 +41,13 @@ public class InfusingTotemItem extends Item {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslationTextComponent("item.rankine.totem_of_infusing.tooltip").withStyle(TextFormatting.GRAY, TextFormatting.ITALIC));
+        tooltip.add(new TranslatableComponent("item.rankine.totem_of_infusing.tooltip").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 
     @Override
-    public void onCraftedBy(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public void onCraftedBy(ItemStack stack, Level worldIn, Player playerIn) {
         if (Config.GENERAL.PENDANT_CURSE.get()) {
             stack.enchant(Enchantments.VANISHING_CURSE,1);
         }
@@ -48,9 +55,9 @@ public class InfusingTotemItem extends Item {
     }
 
     @Override
-    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
-        if ((group == ItemGroup.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
-            ItemStack stack = new ItemStack(this.getItem());
+    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
+        if ((group == CreativeModeTab.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
+            ItemStack stack = new ItemStack(this);
             stack.enchant(Enchantments.VANISHING_CURSE,1);
             items.add(stack);
         } else {
@@ -59,10 +66,10 @@ public class InfusingTotemItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
         if (!worldIn.isClientSide) {
-            Hand oppHand = Hand.values()[(handIn.ordinal() + 1) % Hand.values().length];
+            InteractionHand oppHand = InteractionHand.values()[(handIn.ordinal() + 1) % InteractionHand.values().length];
             ItemStack oppHandStack = playerIn.getItemInHand(oppHand);
             Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack).entrySet().stream().filter(enchantmentIntegerEntry -> !enchantmentIntegerEntry.getKey().isCurse())
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -76,11 +83,11 @@ public class InfusingTotemItem extends Item {
                     stack.enchant(key,output.get(key));
 
                     ItemStack oppNew = removeEnchantments(oppHandStack, oppHandStack.getDamageValue(),oppHandStack.getCount());
-                    int slot = playerIn.inventory.findSlotMatchingItem(oppHandStack);
-                    playerIn.inventory.removeItemNoUpdate(slot);
-                    playerIn.inventory.setItem(slot,oppNew);
-                    worldIn.playSound(playerIn, playerIn.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE, SoundCategory.PLAYERS, 1.0f, 1.0f);
-                    return ActionResult.success(stack);
+                    int slot = playerIn.getInventory().findSlotMatchingItem(oppHandStack);
+                    playerIn.getInventory().removeItemNoUpdate(slot);
+                    playerIn.getInventory().setItem(slot,oppNew);
+                    worldIn.playSound(playerIn, playerIn.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 1.0f, 1.0f);
+                    return InteractionResultHolder.success(stack);
                 }
                 /*
                 if (!oppHandStack.isEnchanted() && oppHandStack.isEnchantable() && map.size() > 0) {
@@ -94,7 +101,7 @@ public class InfusingTotemItem extends Item {
 
                  */
             }
-            return ActionResult.pass(stack);
+            return InteractionResultHolder.pass(stack);
         }
         return super.use(worldIn,playerIn,handIn);
     }
@@ -138,7 +145,7 @@ public class InfusingTotemItem extends Item {
         }
 
         for(int i = 0; i < map.size(); ++i) {
-            itemstack.setRepairCost(RepairContainer.calculateIncreasedRepairCost(itemstack.getBaseRepairCost()));
+            itemstack.setRepairCost(AnvilMenu.calculateIncreasedRepairCost(itemstack.getBaseRepairCost()));
         }
 
         return itemstack;

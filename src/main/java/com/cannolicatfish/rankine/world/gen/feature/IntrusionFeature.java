@@ -6,28 +6,32 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraftforge.common.Tags;
 
 import java.util.Random;
 
-public class IntrusionFeature extends Feature<NoFeatureConfig> {
-    public IntrusionFeature(Codec<NoFeatureConfig> configFactoryIn) {
+public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
+    public IntrusionFeature(Codec<NoneFeatureConfiguration> configFactoryIn) {
         super(configFactoryIn);
     }
 
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
         BlockPos posShift = pos.offset(2,0,2);
         Biome targetBiome = reader.getBiome(posShift);
         ResourceLocation biomeName = targetBiome.getRegistryName();
@@ -41,7 +45,7 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
             }
 
             if (!INTRUSION.is(Blocks.AIR)) {
-                if (targetBiome.getBiomeCategory() == Biome.Category.NETHER) {
+                if (targetBiome.getBiomeCategory() == Biome.BiomeCategory.NETHER) {
                     int radius = Config.MISC_WORLDGEN.NETHER_INTRUSION_RADIUS.get() + rand.nextInt(3);
                     int startY = 126;
                     int endY = 1;
@@ -91,7 +95,7 @@ public class IntrusionFeature extends Feature<NoFeatureConfig> {
                 } else {
                     //int radius = Config.MISC_WORLDGEN.OVERWORLD_INTRUSION_RADIUS.get();
                     int startY = 1;
-                    int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, posShift.getX(), posShift.getZ());
+                    int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, posShift.getX(), posShift.getZ());
                     posShift = new BlockPos(posShift.getX(),startY,posShift.getZ());
 
                     for (int y = startY; y <= endY; ++y) {

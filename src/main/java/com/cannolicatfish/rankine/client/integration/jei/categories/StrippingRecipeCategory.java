@@ -4,7 +4,7 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.recipe.StrippingRecipe;
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -13,14 +13,15 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.Util;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.text.DecimalFormat;
@@ -56,8 +57,8 @@ public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe>
     }
 
     @Override
-    public String getTitle() {
-        return localizedName;
+    public Component getTitle() {
+        return new TextComponent(localizedName);
     }
 
     @Override
@@ -71,13 +72,13 @@ public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe>
     }
 
     @Override
-    public void draw(StrippingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().font;
-        RenderSystem.enableAlphaTest();
+    public void draw(StrippingRecipe recipe, PoseStack ms, double mouseX, double mouseY) {
+        Font font = Minecraft.getInstance().font;
+        //RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
         RenderSystem.disableBlend();
-        RenderSystem.disableAlphaTest();
+        //RenderSystem.disableAlphaTest();
         DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });

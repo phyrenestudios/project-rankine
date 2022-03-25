@@ -1,22 +1,27 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.SphereReplaceConfig;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.DiskConfiguration;
 
 import java.util.Random;
 
-public class LandDiskFeature extends Feature<SphereReplaceConfig> {
-    public LandDiskFeature(Codec<SphereReplaceConfig> codec) {
+public class LandDiskFeature extends Feature<DiskConfiguration> {
+    public LandDiskFeature(Codec<DiskConfiguration> codec) {
         super(codec);
         }
 
-public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, SphereReplaceConfig config) {
+    @Override
+    public boolean place(FeaturePlaceContext<DiskConfiguration> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
+        DiskConfiguration config = p_159749_.config();
     boolean flag = false;
     int i = config.radius.sample(rand);
 

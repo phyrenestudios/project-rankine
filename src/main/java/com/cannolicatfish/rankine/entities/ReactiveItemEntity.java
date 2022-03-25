@@ -5,18 +5,18 @@ import com.cannolicatfish.rankine.blocks.GasBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 public class ReactiveItemEntity extends ItemEntity {
@@ -26,22 +26,22 @@ public class ReactiveItemEntity extends ItemEntity {
     private Item newItem;
     private Block releasedGas;
 
-    public ReactiveItemEntity(EntityType<? extends ItemEntity> p_i50217_1_, World p_i50217_2_) {
+    public ReactiveItemEntity(EntityType<? extends ItemEntity> p_i50217_1_, Level p_i50217_2_) {
         super(p_i50217_1_, p_i50217_2_);
         this.radius = 1f;
         this.canBreakBlocks = false;
     }
 
-    public ReactiveItemEntity(World worldIn, double x, double y, double z) {
+    public ReactiveItemEntity(Level worldIn, double x, double y, double z) {
         this(EntityType.ITEM, worldIn);
         this.setPos(x, y, z);
-        this.yRot = this.random.nextFloat() * 360.0F;
+        this.setYRot(this.random.nextFloat() * 360.0F);
         this.radius = 1f;
         this.canBreakBlocks = false;
         this.setDeltaMovement(this.random.nextDouble() * 0.2D - 0.1D, 0.2D, this.random.nextDouble() * 0.2D - 0.1D);
     }
 
-    public ReactiveItemEntity(World worldIn, double x, double y, double z, ItemStack stack) {
+    public ReactiveItemEntity(Level worldIn, double x, double y, double z, ItemStack stack) {
         super(EntityType.ITEM,worldIn);
         this.setPos(x, y, z);
         this.setItem(stack);
@@ -52,7 +52,7 @@ public class ReactiveItemEntity extends ItemEntity {
         this.releasedGas = Blocks.AIR;
     }
 
-    public ReactiveItemEntity(World worldIn, double x, double y, double z, float radius, boolean canBreakBlocks, ItemStack stack, Item newItem, Block releasedGas) {
+    public ReactiveItemEntity(Level worldIn, double x, double y, double z, float radius, boolean canBreakBlocks, ItemStack stack, Item newItem, Block releasedGas) {
         super(EntityType.ITEM,worldIn);
         this.setPos(x, y, z);
         this.setItem(stack);
@@ -71,9 +71,9 @@ public class ReactiveItemEntity extends ItemEntity {
             BlockPos pos = this.blockPosition();
             if (canBreakBlocks)
             {
-                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.BREAK);
+                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.BlockInteraction.BREAK);
             } else {
-                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.NONE);
+                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.BlockInteraction.NONE);
             }
             if (!level.isClientSide && !level.restoringBlockSnapshots && !newItem.equals(Items.AIR)) {
                 double d0 = (double) (level.random.nextFloat() * 0.5F) + 0.25D;
@@ -93,12 +93,12 @@ public class ReactiveItemEntity extends ItemEntity {
                     }
                 }
             }
-            this.remove();
+            this.remove(RemovalReason.DISCARDED);
         }
         super.tick();
     }
 
-    public @NotNull IPacket<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

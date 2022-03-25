@@ -4,7 +4,7 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -13,16 +13,14 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.Util;
+import net.minecraft.network.chat.TextComponent;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -57,8 +55,8 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
     }
 
     @Override
-    public String getTitle() {
-        return localizedName;
+    public Component getTitle() {
+        return new TextComponent(localizedName);
     }
 
     @Override
@@ -72,13 +70,13 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
     }
 
     @Override
-    public void draw(SluicingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
-        FontRenderer font = Minecraft.getInstance().font;
-        RenderSystem.enableAlphaTest();
+    public void draw(SluicingRecipe recipe, PoseStack ms, double mouseX, double mouseY) {
+        Font font = Minecraft.getInstance().font;
+        //RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
         RenderSystem.disableBlend();
-        RenderSystem.disableAlphaTest();
+        //RenderSystem.disableAlphaTest();
     }
 
     @Override
@@ -125,7 +123,7 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
                 p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
             });
             if (i != 0 && i != 1) {
-                list.add(new StringTextComponent("Chance: " + df.format(recipe.getChance(i - 2) * 100) + "%"));
+                list.add(new TextComponent("Chance: " + df.format(recipe.getChance(i - 2) * 100) + "%"));
             }
         });
 

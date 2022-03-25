@@ -1,35 +1,35 @@
 package com.cannolicatfish.rankine.entities;
 
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 public class DryMortarItemEntity extends ItemEntity {
 
-    public DryMortarItemEntity(EntityType<? extends ItemEntity> p_i50217_1_, World p_i50217_2_) {
+    public DryMortarItemEntity(EntityType<? extends ItemEntity> p_i50217_1_, Level p_i50217_2_) {
         super(p_i50217_1_, p_i50217_2_);
     }
 
-    public DryMortarItemEntity(World worldIn, double x, double y, double z) {
+    public DryMortarItemEntity(Level worldIn, double x, double y, double z) {
         this(EntityType.ITEM, worldIn);
         this.setPos(x, y, z);
-        this.yRot = this.random.nextFloat() * 360.0F;
+        this.setYRot(this.random.nextFloat() * 360.0F);
         this.setDeltaMovement(this.random.nextDouble() * 0.2D - 0.1D, 0.2D, this.random.nextDouble() * 0.2D - 0.1D);
     }
 
-    public DryMortarItemEntity(World worldIn, double x, double y, double z, ItemStack stack) {
+    public DryMortarItemEntity(Level worldIn, double x, double y, double z, ItemStack stack) {
         super(EntityType.ITEM,worldIn);
         this.setPos(x, y, z);
         this.setItem(stack);
         this.lifespan = (stack.getItem() == null ? 6000 : stack.getEntityLifespan(worldIn));
     }
 
-    public DryMortarItemEntity(World worldIn, double x, double y, double z, float radius, boolean canBreakBlocks, ItemStack stack) {
+    public DryMortarItemEntity(Level worldIn, double x, double y, double z, float radius, boolean canBreakBlocks, ItemStack stack) {
         super(EntityType.ITEM,worldIn);
         this.setPos(x, y, z);
         this.setItem(stack);
@@ -41,7 +41,7 @@ public class DryMortarItemEntity extends ItemEntity {
 
         if (this.wasTouchingWater) {
             BlockPos pos = this.blockPosition();
-            World worldIn = this.getCommandSenderWorld();
+            Level worldIn = this.getCommandSenderWorld();
             if (!worldIn.isClientSide && !worldIn.restoringBlockSnapshots) {
                 double d0 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
                 double d1 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
@@ -50,12 +50,12 @@ public class DryMortarItemEntity extends ItemEntity {
                 itementity.setDefaultPickUpDelay();
                 worldIn.addFreshEntity(itementity);
             }
-            this.remove();
+            this.remove(RemovalReason.DISCARDED);
         }
         super.tick();
     }
 
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

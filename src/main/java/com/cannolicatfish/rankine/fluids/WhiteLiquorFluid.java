@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.fluids;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class WhiteLiquorFluid {
     public static final ResourceLocation FLUID_STILL = new ResourceLocation("rankine:block/white_liquor_still");

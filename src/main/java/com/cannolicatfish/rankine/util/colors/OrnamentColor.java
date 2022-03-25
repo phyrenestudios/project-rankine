@@ -1,17 +1,17 @@
 package com.cannolicatfish.rankine.util.colors;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 
-public class OrnamentColor implements IBlockColor {
+public class OrnamentColor implements BlockColor {
     @Override
-    public int getColor(BlockState state, @Nullable IBlockDisplayReader reader, @Nullable BlockPos pos, int tint) {
+    public int getColor(BlockState state, @Nullable BlockAndTintGetter reader, @Nullable BlockPos pos, int tint) {
         return reader != null && pos != null ? colorShift(pos) : 0;
     }
 

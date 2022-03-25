@@ -2,25 +2,26 @@ package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorldWriter;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.IWorldGenerationBaseReader;
-import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.LevelWriter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.LevelSimulatedRW;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
@@ -83,7 +84,7 @@ public class WorldgenUtils {
                 Block sandstone = ResourceLocation.tryParse((String) L.get(7)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(7)));
                 populateLists(ResourceLocation.tryParse(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone);
             } else {
-                for (ResourceLocation RS : getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.byName(biomeToAdd)), true)) {
+                for (ResourceLocation RS : getBiomeNamesFromCategory(Collections.singletonList(Biome.BiomeCategory.byName(biomeToAdd)), true)) {
                     Block gravel = ResourceLocation.tryParse((String) L.get(5)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(5)));
                     Block sand = ResourceLocation.tryParse((String) L.get(6)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(6)));
                     Block sandstone = ResourceLocation.tryParse((String) L.get(7)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(7)));
@@ -169,11 +170,11 @@ public class WorldgenUtils {
     }
 
 
-    public static List<ResourceLocation> getBiomeNamesFromCategory(List<Biome.Category> biomeCats, boolean include) {
+    public static List<ResourceLocation> getBiomeNamesFromCategory(List<Biome.BiomeCategory> biomeCats, boolean include) {
         List<ResourceLocation> b = new ArrayList<>();
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (!biomeCats.isEmpty()) {
-                for (Biome.Category cat : biomeCats) {
+                for (Biome.BiomeCategory cat : biomeCats) {
                     if (biome.getBiomeCategory() == cat && include){
                         b.add(biome.getRegistryName());
                     }
@@ -188,7 +189,7 @@ public class WorldgenUtils {
         return b;
     }
 
-    public static boolean isWet(ISeedReader reader, BlockPos pos) {
+    public static boolean isWet(WorldGenLevel reader, BlockPos pos) {
         for(BlockPos POS : BlockPos.betweenClosed(pos.offset(-2,0,-2),pos.offset(2,2,2))) {
             if (reader.getFluidState(POS).is(FluidTags.WATER)) {
                 return true;
@@ -225,11 +226,11 @@ public class WorldgenUtils {
         }
     }
 
-    public static int waterTableHeight(World worldIn, BlockPos pos) {
+    public static int waterTableHeight(Level worldIn, BlockPos pos) {
         Biome biome = worldIn.getBiome(pos);
-        int surface = worldIn.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ());
+        int surface = worldIn.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ());
 
-        return biome.getBiomeCategory() == Biome.Category.OCEAN || biome.getBiomeCategory() == Biome.Category.BEACH || biome.getBiomeCategory() == Biome.Category.SWAMP || biome.getBiomeCategory() == Biome.Category.RIVER ? worldIn.getSeaLevel() + 1 : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
+        return biome.getBiomeCategory() == Biome.BiomeCategory.OCEAN || biome.getBiomeCategory() == Biome.BiomeCategory.BEACH || biome.getBiomeCategory() == Biome.BiomeCategory.SWAMP || biome.getBiomeCategory() == Biome.BiomeCategory.RIVER ? worldIn.getSeaLevel() + 1 : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
     }
 
     public static boolean inArea(BlockPos b, double radius, boolean center, BlockPos... targets) {
@@ -260,7 +261,7 @@ public class WorldgenUtils {
     }
 
 
-    public static Block getCeillingBlock(World worldIn, BlockPos pos, Direction dir, int height) {
+    public static Block getCeillingBlock(Level worldIn, BlockPos pos, Direction dir, int height) {
         int i = 1;
         while (i<=height) {
             if (!worldIn.isEmptyBlock(pos.relative(dir,i)) && !(worldIn.getBlockState(pos.above(i)).canBeReplaced(Fluids.WATER))) {
@@ -277,45 +278,45 @@ public class WorldgenUtils {
         return center.distSqr(checkPos.getX()+0.5D,checkPos.getY()+0.5D,checkPos.getZ()+0.5D,true) < radius*radius;
     }
 
-    public static void checkLog(ISeedReader reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config, Direction.Axis axis) {
+    public static void checkLog(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, Direction.Axis axis) {
         if (isAirOrLeaves(reader, pos)) {
             placeLogAt(reader, pos, rand, config, axis);
         }
     }
 
-    public static void placeLogAt(IWorldWriter reader, BlockPos pos, Random rand, BaseTreeFeatureConfig config, Direction.Axis axis) {
+    public static void placeLogAt(LevelWriter reader, BlockPos pos, Random rand, TreeConfiguration config, Direction.Axis axis) {
         setLogState(reader, pos, config.trunkProvider.getState(rand, pos).setValue(BlockStateProperties.AXIS, axis));
     }
 
-    public static void setLogState(IWorldWriter reader, BlockPos pos, BlockState state) {
+    public static void setLogState(LevelWriter reader, BlockPos pos, BlockState state) {
         reader.setBlock(pos, state, 18);
     }
 
-    public static void placeLeafAt(IWorldGenerationReader world, BlockPos pos, Random rand, BaseTreeFeatureConfig config) {
+    public static void placeLeafAt(LevelSimulatedRW world, BlockPos pos, Random rand, TreeConfiguration config) {
         if (isAirOrLeaves(world, pos)) {
-            setLogState(world, pos, config.leavesProvider.getState(rand, pos).setValue(LeavesBlock.DISTANCE, 1));
+            setLogState(world, pos, config.foliageProvider.getState(rand, pos).setValue(LeavesBlock.DISTANCE, 1));
         }
     }
 
-    public static boolean isAirOrLeaves(IWorldGenerationBaseReader reader, BlockPos pos) {
-        if (reader instanceof net.minecraft.world.IWorldReader) {
-            return reader.isStateAtPosition(pos, state -> state.canBeReplacedByLeaves((net.minecraft.world.IWorldReader) reader, pos));
-        }
+    public static boolean isAirOrLeaves(LevelSimulatedReader reader, BlockPos pos) {
+        /*/if (reader instanceof net.minecraft.world.level.LevelReader) {
+            return reader.isStateAtPosition(pos, state -> state.canBeReplacedByLeaves((net.minecraft.world.level.LevelReader) reader, pos));
+        }*/
         return reader.isStateAtPosition(pos, (state) -> {
             return state.isAir() || state.is(BlockTags.LEAVES);
         });
     }
 
-    public static boolean isAir(IWorldGenerationBaseReader reader, BlockPos pos) {
-        if (!(reader instanceof net.minecraft.world.IBlockReader)) {
+    public static boolean isAir(LevelSimulatedReader reader, BlockPos pos) {
+        if (!(reader instanceof net.minecraft.world.level.BlockGetter)) {
             return reader.isStateAtPosition(pos, BlockState::isAir);
         }
         else {
-            return reader.isStateAtPosition(pos, state -> state.isAir((net.minecraft.world.IBlockReader) reader, pos));
+            return reader.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir);
         }
     }
 
-    public static boolean isGasOrAir(World reader, BlockPos pos) {
+    public static boolean isGasOrAir(Level reader, BlockPos pos) {
         return RankineLists.GAS_BLOCKS.contains(reader.getBlockState(pos).getBlock()) || reader.getBlockState(pos).isAir();
     }
 

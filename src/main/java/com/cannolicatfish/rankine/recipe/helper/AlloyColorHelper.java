@@ -3,8 +3,7 @@ package com.cannolicatfish.rankine.recipe.helper;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.INBT;
+import net.minecraft.world.item.ItemStack;
 
 import java.awt.*;
 import java.util.AbstractMap;

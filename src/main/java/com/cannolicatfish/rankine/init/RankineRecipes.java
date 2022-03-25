@@ -12,41 +12,44 @@ import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.dispenser.DefaultDispenseItemBehavior;
-import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.dispenser.IDispenseItemBehavior;
-import net.minecraft.dispenser.IPosition;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.SmallFireballEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.core.BlockSource;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.core.Position;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 
 import java.util.*;
 
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
 public class RankineRecipes {
 
-    private static final IDispenseItemBehavior gasDispenseBehavior = new DefaultDispenseItemBehavior() {
+    private static final DispenseItemBehavior gasDispenseBehavior = new DefaultDispenseItemBehavior() {
         private final DefaultDispenseItemBehavior defaultBehaviour = new DefaultDispenseItemBehavior();
 
         /**
          * Dispense the specified stack, play the dispense sound and spawn particles.
          */
-        public ItemStack execute(IBlockSource source, ItemStack stack) {
+        public ItemStack execute(BlockSource source, ItemStack stack) {
             Block dispensing = Blocks.AIR;
             if (stack.getItem() instanceof GasBottleItem) {
                 GasBottleItem bucketitem = (GasBottleItem) stack.getItem();
@@ -54,7 +57,7 @@ public class RankineRecipes {
             }
 
             BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
-            World world = source.getLevel();
+            Level world = source.getLevel();
             if (world.getBlockState(blockpos).isAir()) {
                 world.setBlock(blockpos, dispensing.defaultBlockState(),3);
                 return new ItemStack(Items.GLASS_BOTTLE);
@@ -64,18 +67,18 @@ public class RankineRecipes {
         }
     };
 
-    private static final IDispenseItemBehavior bucketItemBehavior = new DefaultDispenseItemBehavior() {
+    private static final DispenseItemBehavior bucketItemBehavior = new DefaultDispenseItemBehavior() {
         private final DefaultDispenseItemBehavior defaultBehaviour = new DefaultDispenseItemBehavior();
 
         /**
          * Dispense the specified stack, play the dispense sound and spawn particles.
          */
-        public ItemStack execute(IBlockSource source, ItemStack stack) {
+        public ItemStack execute(BlockSource source, ItemStack stack) {
             BucketItem bucketitem = (BucketItem)stack.getItem();
             BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
-            World world = source.getLevel();
-            if (bucketitem.emptyBucket((PlayerEntity)null, world, blockpos, (BlockRayTraceResult)null)) {
-                bucketitem.checkExtraContent(world, stack, blockpos);
+            Level world = source.getLevel();
+            if (bucketitem.emptyContents((Player)null, world, blockpos, (BlockHitResult)null)) {
+                bucketitem.checkExtraContent(null, world, stack, blockpos);
                 return new ItemStack(Items.BUCKET);
             } else {
                 return this.defaultBehaviour.dispense(source, stack);
@@ -83,17 +86,17 @@ public class RankineRecipes {
         }
     };
 
-    private static final IDispenseItemBehavior cannonballItemBehavior = new DefaultDispenseItemBehavior() {
+    private static final DispenseItemBehavior cannonballItemBehavior = new DefaultDispenseItemBehavior() {
         /**
          * Dispense the specified stack, play the dispense sound and spawn particles.
          */
-        public ItemStack execute(IBlockSource source, ItemStack stack) {
+        public ItemStack execute(BlockSource source, ItemStack stack) {
             Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
-            IPosition iposition = DispenserBlock.getDispensePosition(source);
+            Position iposition = DispenserBlock.getDispensePosition(source);
             double d0 = iposition.x() + (double) ((float) direction.getStepX() * 0.3F);
             double d1 = iposition.y() + (double) ((float) direction.getStepY() * 0.3F);
             double d2 = iposition.z() + (double) ((float) direction.getStepZ() * 0.3F);
-            World world = source.getLevel();
+            Level world = source.getLevel();
             Random random = world.random;
             double d3 = random.nextGaussian() * 0.05D + (double) direction.getStepX();
             double d4 = random.nextGaussian() * 0.05D + (double) direction.getStepY();
@@ -107,17 +110,17 @@ public class RankineRecipes {
     };
 
 
-    private static final IDispenseItemBehavior carcassItemBehavior = new DefaultDispenseItemBehavior() {
+    private static final DispenseItemBehavior carcassItemBehavior = new DefaultDispenseItemBehavior() {
         /**
          * Dispense the specified stack, play the dispense sound and spawn particles.
          */
-        public ItemStack execute(IBlockSource source, ItemStack stack) {
+        public ItemStack execute(BlockSource source, ItemStack stack) {
             Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
-            IPosition iposition = DispenserBlock.getDispensePosition(source);
+            Position iposition = DispenserBlock.getDispensePosition(source);
             double d0 = iposition.x() + (double) ((float) direction.getStepX() * 0.3F);
             double d1 = iposition.y() + (double) ((float) direction.getStepY() * 0.3F);
             double d2 = iposition.z() + (double) ((float) direction.getStepZ() * 0.3F);
-            World world = source.getLevel();
+            Level world = source.getLevel();
             Random random = world.random;
             double d3 = random.nextGaussian() * 0.05D + (double) direction.getStepX();
             double d4 = random.nextGaussian() * 0.05D + (double) direction.getStepY();
@@ -133,7 +136,7 @@ public class RankineRecipes {
         /**
          * Play the dispense sound from the specified block.
          */
-        protected void playDispenseSound(IBlockSource source) {
+        protected void playDispenseSound(BlockSource source) {
             source.getLevel().levelEvent(1018, source.getPos(), 0);
         }
 
@@ -174,7 +177,7 @@ public class RankineRecipes {
         ItemPredicate.register(new ResourceLocation("rankine","includes_composition"), IncludesCompositionPredicate::new);
     }
 
-    public static String generateAlloyString(IInventory inv) {
+    public static String generateAlloyString(Container inv) {
         List<ElementRecipe> currentElements = new ArrayList<>();
         List<Integer> currentMaterial = new ArrayList<>();
         for (int i = 0; i < 6; i++) {

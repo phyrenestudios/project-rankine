@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
-import net.minecraft.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class RankineEnchantments {

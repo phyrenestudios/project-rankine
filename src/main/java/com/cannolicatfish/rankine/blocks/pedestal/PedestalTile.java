@@ -1,15 +1,16 @@
 package com.cannolicatfish.rankine.blocks.pedestal;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -19,27 +20,27 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class PedestalTile extends ItemDisplayEntity implements IInventory {
+public class PedestalTile extends ItemDisplayEntity implements Container {
     private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> new InvWrapper(this));
     public float frames;
     public ItemEntity entity;
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
 
-    public PedestalTile() {
-        super(RankineBlocks.PEDESTAL_TILE);
+    public PedestalTile(BlockPos posIn, BlockState stateIn) {
+        super(RankineBlocks.PEDESTAL_TILE, posIn, stateIn);
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT compound) {
-        super.load(state, compound);
+    public void load(CompoundTag compound) {
+        super.load(compound);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(compound,this.items);
+        ContainerHelper.loadAllItems(compound,this.items);
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
-        ItemStackHelper.saveAllItems(compound, this.items);
+        ContainerHelper.saveAllItems(compound, this.items);
         return super.save(compound);
     }
 
@@ -60,12 +61,12 @@ public class PedestalTile extends ItemDisplayEntity implements IInventory {
 
     @Override
     public ItemStack removeItem(int index, int count) {
-        return ItemStackHelper.removeItem(this.items, index, count);
+        return ContainerHelper.removeItem(this.items, index, count);
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int index) {
-        return ItemStackHelper.takeItem(this.items, index);
+        return ContainerHelper.takeItem(this.items, index);
     }
 
     @Override
@@ -84,7 +85,7 @@ public class PedestalTile extends ItemDisplayEntity implements IInventory {
     }
 
     @Override
-    public boolean stillValid(PlayerEntity player) {
+    public boolean stillValid(Player player) {
         return true;
     }
 
@@ -103,12 +104,11 @@ public class PedestalTile extends ItemDisplayEntity implements IInventory {
     }
 
     @Override
-    protected void invalidateCaps() {
+    public void invalidateCaps() {
         itemHandler.invalidate();
         super.invalidateCaps();
     }
 
-    @Override
     public void tick() {
 
     }

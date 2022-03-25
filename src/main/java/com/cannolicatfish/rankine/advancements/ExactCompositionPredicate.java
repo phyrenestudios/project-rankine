@@ -3,11 +3,10 @@ package com.cannolicatfish.rankine.advancements;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.google.gson.JsonObject;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.INBT;
-import net.minecraft.util.JSONUtils;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.util.GsonHelper;
 
 public class ExactCompositionPredicate extends ItemPredicate {
 
@@ -20,7 +19,7 @@ public class ExactCompositionPredicate extends ItemPredicate {
     }
 
     public ExactCompositionPredicate(JsonObject jsonObject) {
-        this(JSONUtils.getAsString(jsonObject, "comp"),JSONUtils.getAsItem(jsonObject,"item"));
+        this(GsonHelper.getAsString(jsonObject, "comp"),GsonHelper.getAsItem(jsonObject,"item"));
     }
 
     @Override

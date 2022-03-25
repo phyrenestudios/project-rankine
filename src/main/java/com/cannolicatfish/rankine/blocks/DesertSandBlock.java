@@ -1,14 +1,14 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SandBlock;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.SandBlock;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class DesertSandBlock extends SandBlock {
 
@@ -17,7 +17,7 @@ public class DesertSandBlock extends SandBlock {
     }
 
     @Override
-    public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
+    public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
         return plantable.getPlantType(world, pos.relative(facing)).equals(PlantType.DESERT) || plantable.getPlantType(world, pos.relative(facing)).equals(PlantType.BEACH);
     }
 }

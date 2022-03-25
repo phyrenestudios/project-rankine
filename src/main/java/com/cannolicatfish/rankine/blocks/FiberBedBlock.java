@@ -1,9 +1,9 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.BedBlock;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.item.DyeColor;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class FiberBedBlock extends BedBlock {
     public FiberBedBlock(DyeColor colorIn, Properties properties) {

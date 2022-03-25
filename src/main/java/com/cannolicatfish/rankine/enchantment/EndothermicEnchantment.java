@@ -4,15 +4,15 @@ import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
 import com.cannolicatfish.rankine.items.alloys.AlloyAxeItem;
 import com.cannolicatfish.rankine.items.alloys.AlloyBlunderbussItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.ResourceLocation;
 
-import net.minecraft.enchantment.Enchantment.Rarity;
+import net.minecraft.world.item.enchantment.Enchantment.Rarity;
 
 public class EndothermicEnchantment extends Enchantment {
-    public EndothermicEnchantment(Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
+    public EndothermicEnchantment(Rarity p_i46721_1_, EquipmentSlot... p_i46721_2_) {
         super(p_i46721_1_, RankineEnchantmentTypes.ENDER_AMALGAM_AXE, p_i46721_2_);
     }
 

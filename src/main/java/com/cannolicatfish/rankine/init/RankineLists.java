@@ -1,9 +1,9 @@
 package com.cannolicatfish.rankine.init;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 
 import java.util.Arrays;
@@ -130,7 +130,7 @@ public class RankineLists {
     public static List<Item> BLASTING_INGOTS = Arrays.asList(RankineItems.TIN_INGOT.get(),RankineItems.ZINC_INGOT.get(),RankineItems.NICKEL_INGOT.get(), Items.IRON_INGOT,Items.IRON_INGOT,RankineItems.LEAD_INGOT.get(),RankineItems.VANADIUM_INGOT.get(),RankineItems.BISMUTH_INGOT.get(),RankineItems.SILVER_INGOT.get(),RankineItems.MANGANESE_INGOT.get(),RankineItems.CHROMIUM_INGOT.get(),RankineItems.MOLYBDENUM_INGOT.get(),RankineItems.TITANIUM_INGOT.get(),RankineItems.NIOBIUM_INGOT.get(),RankineItems.TUNGSTEN_INGOT.get(),RankineItems.TANTALUM_INGOT.get(),RankineItems.CADMIUM_INGOT.get(),RankineItems.URANIUM_INGOT.get(),RankineItems.ANTIMONY.get(),RankineItems.YTTRIUM_INGOT.get(),RankineItems.LITHIUM_INGOT.get(),RankineItems.COBALT_INGOT.get(),RankineItems.SODIUM_INGOT.get(),RankineItems.STRONTIUM_INGOT.get(),RankineItems.COPPER_INGOT.get(),RankineItems.PLATINUM_INGOT.get(),RankineItems.RHENIUM_INGOT.get(),RankineItems.THORIUM_INGOT.get(),Items.IRON_INGOT,RankineItems.ARSENIC.get(),RankineItems.PALLADIUM_INGOT.get(),Items.IRON_INGOT,RankineItems.RUTHENIUM_INGOT.get(),RankineItems.IODINE.get(),RankineItems.TITANIUM_INGOT.get(),RankineItems.LITHIUM_INGOT.get(),RankineItems.COPPER_INGOT.get(),RankineItems.THALLIUM_INGOT.get(),RankineItems.CESIUM_INGOT.get());
     public static List<Item> BLASTING_BLOCKS = Arrays.asList(RankineItems.TIN_BLOCK.get(),RankineItems.ZINC_BLOCK.get(),RankineItems.NICKEL_BLOCK.get(), Items.IRON_BLOCK,Items.IRON_BLOCK,RankineItems.LEAD_BLOCK.get(),RankineItems.VANADIUM_BLOCK.get(),RankineItems.BISMUTH_BLOCK.get(),RankineItems.SILVER_BLOCK.get(),RankineItems.MANGANESE_BLOCK.get(),RankineItems.CHROMIUM_BLOCK.get(),RankineItems.MOLYBDENUM_BLOCK.get(),RankineItems.TITANIUM_BLOCK.get(),RankineItems.NIOBIUM_BLOCK.get(),RankineItems.TUNGSTEN_BLOCK.get(),RankineItems.TANTALUM_BLOCK.get(),RankineItems.CADMIUM_BLOCK.get(),RankineItems.URANIUM_BLOCK.get(),RankineItems.ANTIMONY_BLOCK.get(),RankineItems.YTTRIUM_BLOCK.get(),RankineItems.LITHIUM_BLOCK.get(),RankineItems.COBALT_BLOCK.get(),RankineItems.SODIUM_BLOCK.get(),RankineItems.STRONTIUM_BLOCK.get(),RankineItems.COPPER_BLOCK.get(),RankineItems.PLATINUM_BLOCK.get(),RankineItems.RHENIUM_BLOCK.get(),RankineItems.THORIUM_BLOCK.get(),Items.IRON_BLOCK,RankineItems.ARSENIC_BLOCK.get(),RankineItems.PALLADIUM_BLOCK.get(),Items.IRON_BLOCK,RankineItems.RUTHENIUM_BLOCK.get(),RankineItems.IODINE_BLOCK.get(),RankineItems.TITANIUM_BLOCK.get(),RankineItems.LITHIUM_BLOCK.get(),RankineItems.COPPER_BLOCK.get(),RankineItems.THALLIUM_BLOCK.get(),RankineItems.CESIUM_BLOCK.get());
 
-    public static List<Item> ARROWS = Arrays.asList(RankineItems.ROPE_COIL_ARROW.get(),RankineItems.THORIUM_ARROW.get(),RankineItems.MAGNESIUM_ARROW.get());
+    public static List<Item> ARROWS = Arrays.asList(RankineItems.ROPE_COIL_ARROW.get());
     public static List<Item> WOODEN_TOOLS = Collections.singletonList(RankineItems.WOODEN_HAMMER.get());
     public static List<Item> STONE_TOOLS = Collections.singletonList(RankineItems.STONE_HAMMER.get());
     public static List<Item> ALLOY_TOOLS = Arrays.asList(RankineItems.ALLOY_AXE.get(),RankineItems.ALLOY_PICKAXE.get(),RankineItems.ALLOY_SHOVEL.get(),RankineItems.ALLOY_SWORD.get(),RankineItems.ALLOY_HOE.get(),RankineItems.ALLOY_SPEAR.get(),RankineItems.ALLOY_HAMMER.get(),RankineItems.ALLOY_CROWBAR.get(),RankineItems.ALLOY_BLUNDERBUSS.get(),RankineItems.ALLOY_KNIFE.get(),RankineItems.ALLOY_SURF_ROD.get(),RankineItems.ALLOY_ARROW.get(),RankineItems.ALLOY_CHESTPLATE.get(),RankineItems.ALLOY_LEGGINGS.get(),RankineItems.ALLOY_BOOTS.get(),RankineItems.ALLOY_HELMET.get(),RankineItems.ALLOY_GEAR.get(),RankineItems.ALLOY_PLATE.get(),RankineItems.ALLOY_DUST.get(),RankineItems.ALLOY_ROD.get(),RankineItems.ALLOY_WIRE.get());

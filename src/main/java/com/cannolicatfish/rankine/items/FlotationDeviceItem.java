@@ -1,18 +1,16 @@
 package com.cannolicatfish.rankine.items;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.UseAction;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class FlotationDeviceItem extends Item {
     public FlotationDeviceItem(Properties properties) {
@@ -20,8 +18,8 @@ public class FlotationDeviceItem extends Item {
     }
 
     @Override
-    public UseAction getUseAnimation(ItemStack stack) {
-        return UseAction.BOW;
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.BOW;
     }
 
     @Override
@@ -30,15 +28,15 @@ public class FlotationDeviceItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        Vector3d vector3d = playerIn.getDeltaMovement();
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
+        Vec3 vector3d = playerIn.getDeltaMovement();
         double d0;
         d0 = Math.min(3D, vector3d.y + 0.6D);
 
         playerIn.setDeltaMovement(vector3d.x, d0, vector3d.z);
         playerIn.fallDistance = 0.0F;
         if (!playerIn.isInWater()) {
-            return new ActionResult<>(ActionResultType.PASS, ItemStack.EMPTY);
+            return new InteractionResultHolder<>(InteractionResult.PASS, ItemStack.EMPTY);
         }
         return super.use(worldIn, playerIn, handIn);
     }

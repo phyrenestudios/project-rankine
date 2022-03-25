@@ -3,12 +3,10 @@ package com.cannolicatfish.rankine.advancements;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.google.gson.JsonObject;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.INBT;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.resources.ResourceLocation;
 
 public class IncludesCompositionPredicate extends ItemPredicate {
 
@@ -20,7 +18,7 @@ public class IncludesCompositionPredicate extends ItemPredicate {
     }
 
     public IncludesCompositionPredicate(JsonObject jsonObject) {
-        this(JSONUtils.getAsString(jsonObject, "comp"),new ResourceLocation(JSONUtils.getAsString(jsonObject,"tag")));
+        this(GsonHelper.getAsString(jsonObject, "comp"),new ResourceLocation(GsonHelper.getAsString(jsonObject,"tag")));
     }
 
     @Override

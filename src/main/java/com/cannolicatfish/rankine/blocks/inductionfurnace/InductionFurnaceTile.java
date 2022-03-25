@@ -7,27 +7,26 @@ import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import net.minecraft.block.AbstractFurnaceBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.core.NonNullList;
+import net.minecraft.util.Mth;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -40,7 +39,7 @@ import java.util.Map;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.INDUCTION_FURNACE_TILE;
 
-public class InductionFurnaceTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
+public class InductionFurnaceTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
     private static final int[] SLOTS_UP = new int[]{6, 7};
     private static final int[] SLOTS_EAST = new int[]{0, 1};
@@ -48,8 +47,8 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     private static final int[] SLOTS_BACK = new int[]{4, 5};
     private static final int[] SLOTS_DOWN = new int[]{8};
 
-    public InductionFurnaceTile() {
-        super(INDUCTION_FURNACE_TILE);
+    public InductionFurnaceTile(BlockPos posIn, BlockState stateIn) {
+        super(INDUCTION_FURNACE_TILE, posIn, stateIn);
     }
 
     protected NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
@@ -59,7 +58,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     private int currentBurnTime;
     private int cookTime;
     private int cookTimeTotal = 800;
-    private final IIntArray furnaceData = new IIntArray() {
+    private final ContainerData furnaceData = new ContainerData() {
         public int get(int index) {
             switch (index) {
                 case 0:
@@ -103,10 +102,10 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     };
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.items);
+        ContainerHelper.loadAllItems(nbt, this.items);
         this.burnTime = nbt.getInt("BurnTime");
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
@@ -114,12 +113,12 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
-        ItemStackHelper.saveAllItems(compound, this.items);
+        ContainerHelper.saveAllItems(compound, this.items);
 
         return compound;
     }
@@ -206,7 +205,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
                     this.cookTime = 0;
                 }
             } else if (!this.isBurning() && this.cookTime > 0) {
-                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
             }
 
             if (flag != this.isBurning()) {
@@ -232,7 +231,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     }
 
 
-    private boolean canSmelt(@Nullable AlloyingRecipe recipeIn, IInventory inv) {
+    private boolean canSmelt(@Nullable AlloyingRecipe recipeIn, Container inv) {
         if (recipeIn != null || inv.getItem(7).getItem() instanceof AlloyTemplateItem) {
             recipeMode = inv.getItem(7).getItem() instanceof AlloyTemplateItem;
             ItemStack template = inv.getItem(7);
@@ -304,13 +303,13 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     }
 
     @Override
-    public ITextComponent getDisplayName() {
-        return new StringTextComponent(getType().getRegistryName().getPath());
+    public Component getDisplayName() {
+        return new TextComponent(getType().getRegistryName().getPath());
     }
 
     @Override
     @Nullable
-    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+    public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
         return new InductionFurnaceContainer(i, level, worldPosition, playerInventory, playerEntity, this, this.furnaceData);
     }
 
@@ -365,12 +364,12 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
 
     @Override
     public ItemStack removeItem(int index, int count) {
-        return ItemStackHelper.removeItem(this.items, index, count);
+        return ContainerHelper.removeItem(this.items, index, count);
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int index) {
-        return ItemStackHelper.takeItem(this.items, index);
+        return ContainerHelper.takeItem(this.items, index);
     }
 
     @Override
@@ -390,7 +389,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     }
 
     @Override
-    public boolean stillValid(PlayerEntity player) {
+    public boolean stillValid(Player player) {
         if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {

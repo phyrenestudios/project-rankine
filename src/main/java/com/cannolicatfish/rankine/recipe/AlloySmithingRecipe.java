@@ -2,17 +2,17 @@ package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.items.alloys.IAlloySpecialItem;
 import com.google.gson.JsonObject;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.item.crafting.SmithingRecipe;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.item.crafting.UpgradeRecipe;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.resources.ResourceLocation;
 
-public class AlloySmithingRecipe extends SmithingRecipe {
+public class AlloySmithingRecipe extends UpgradeRecipe {
     private final Ingredient base;
     private final Ingredient addition;
     private final ItemStack result;
@@ -26,9 +26,9 @@ public class AlloySmithingRecipe extends SmithingRecipe {
     }
 
     @Override
-    public ItemStack assemble(IInventory inv) {
+    public ItemStack assemble(Container inv) {
         ItemStack itemstack = this.result.copy();
-        CompoundNBT compoundnbt = inv.getItem(0).getTag();
+        CompoundTag compoundnbt = inv.getItem(0).getTag();
         if (compoundnbt != null) {
             itemstack.setTag(compoundnbt.copy());
         }
@@ -41,20 +41,20 @@ public class AlloySmithingRecipe extends SmithingRecipe {
     }
 
     public AlloySmithingRecipe read(ResourceLocation recipeId, JsonObject json) {
-        Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "base"));
-        Ingredient ingredient1 = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "addition"));
-        ItemStack itemstack = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "result"));
+        Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "base"));
+        Ingredient ingredient1 = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "addition"));
+        ItemStack itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
         return new AlloySmithingRecipe(recipeId, ingredient, ingredient1, itemstack);
     }
 
-    public AlloySmithingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+    public AlloySmithingRecipe read(ResourceLocation recipeId, FriendlyByteBuf buffer) {
         Ingredient ingredient = Ingredient.fromNetwork(buffer);
         Ingredient ingredient1 = Ingredient.fromNetwork(buffer);
         ItemStack itemstack = buffer.readItem();
         return new AlloySmithingRecipe(recipeId, ingredient, ingredient1, itemstack);
     }
 
-    public void write(PacketBuffer buffer, AlloySmithingRecipe recipe) {
+    public void write(FriendlyByteBuf buffer, AlloySmithingRecipe recipe) {
         recipe.base.toNetwork(buffer);
         recipe.addition.toNetwork(buffer);
         buffer.writeItem(recipe.result);

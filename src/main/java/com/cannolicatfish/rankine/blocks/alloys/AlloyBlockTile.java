@@ -1,41 +1,38 @@
 package com.cannolicatfish.rankine.blocks.alloys;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.ForgeHooks;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.ALLOY_BLOCK_TILE;
 
-public class AlloyBlockTile extends TileEntity {
-    private CompoundNBT alloyData = new CompoundNBT();
-    public AlloyBlockTile() {
-        super(ALLOY_BLOCK_TILE);
+public class AlloyBlockTile extends BlockEntity {
+    private CompoundTag alloyData = new CompoundTag();
+    public AlloyBlockTile(BlockPos posIn, BlockState stateIn) {
+        super(ALLOY_BLOCK_TILE, posIn, stateIn);
     }
 
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         if (this.alloyData != null) compound.put("AlloyData", this.alloyData);
         return super.save(compound);
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
+    public void load(CompoundTag nbt) {
         if (nbt.contains("AlloyData")) this.alloyData = nbt.getCompound("AlloyData");
-        super.load(state, nbt);
+        super.load(nbt);
     }
 
-    public CompoundNBT writeAlloyData(CompoundNBT compoundNBT) {
+    public CompoundTag writeAlloyData(CompoundTag compoundNBT) {
         this.alloyData = compoundNBT;
         return compoundNBT;
     }
 
-    public CompoundNBT getAlloyData() {
+    public CompoundTag getAlloyData() {
         return this.alloyData;
     }
 }

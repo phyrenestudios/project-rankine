@@ -3,29 +3,34 @@ package com.cannolicatfish.rankine.world.gen.feature.trees;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraftforge.common.IPlantable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RedCedarTreeFeature extends Feature<BaseTreeFeatureConfig> {
+public class RedCedarTreeFeature extends Feature<TreeConfiguration> {
 
-    public RedCedarTreeFeature(Codec<BaseTreeFeatureConfig> config) {
+    public RedCedarTreeFeature(Codec<TreeConfiguration> config) {
         super(config);
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
+    public boolean place(FeaturePlaceContext<TreeConfiguration> p_159749_) {
+        WorldGenLevel reader = p_159749_.level();
+        BlockPos pos = p_159749_.origin();
+        Random rand = reader.getRandom();
+        TreeConfiguration config = p_159749_.config();
         int trunkHeight = config.trunkPlacer.getTreeHeight(rand);
 
 
@@ -41,7 +46,7 @@ public class RedCedarTreeFeature extends Feature<BaseTreeFeatureConfig> {
                     k = 2;
                 }
 
-                BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
+                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
                 for(int l = pos.getX() - k; l <= pos.getX() + k && flag; ++l) {
                     for(int i1 = pos.getZ() - k; i1 <= pos.getZ() + k && flag; ++i1) {
@@ -101,7 +106,7 @@ public class RedCedarTreeFeature extends Feature<BaseTreeFeatureConfig> {
                     WorldgenUtils.placeLeafAt(reader, b, rand, config);
                 }
                 for (BlockPos b : BlockPos.betweenClosed(leafPos.offset(-2,-1,-2),leafPos.offset(2,3,2))) {
-                    if (reader.getBlockState(b).is(config.leavesProvider.getState(rand,b).getBlock()) && reader.getBlockState(b.above()).isAir()) {
+                    if (reader.getBlockState(b).is(config.foliageProvider.getState(rand,b).getBlock()) && reader.getBlockState(b.above()).isAir()) {
                         float r = rand.nextFloat();
                         if (r < 0.2) {
                             reader.setBlock(b,Blocks.AIR.defaultBlockState(),19);
@@ -122,14 +127,14 @@ public class RedCedarTreeFeature extends Feature<BaseTreeFeatureConfig> {
         }
     }
 
-    public static void setDirtAt(IWorld reader, BlockPos pos) {
+    public static void setDirtAt(LevelAccessor reader, BlockPos pos) {
         Block block = reader.getBlockState(pos).getBlock();
         if (block == Blocks.GRASS_BLOCK || block == Blocks.FARMLAND) {
             reader.setBlock(pos, Blocks.DIRT.defaultBlockState(), 18);
         }
     }
 
-    public static boolean isValidGround(IWorld world, BlockPos pos) {
+    public static boolean isValidGround(LevelAccessor world, BlockPos pos) {
         return world.getBlockState(pos).canSustainPlant(world, pos, Direction.UP, (IPlantable) RankineBlocks.BALSAM_FIR_SAPLING.get());
     }
 }

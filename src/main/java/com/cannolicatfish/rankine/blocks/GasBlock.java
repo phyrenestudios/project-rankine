@@ -5,28 +5,33 @@ import com.cannolicatfish.rankine.init.RankineDamageSources;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
-import net.minecraft.block.*;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
+import net.minecraft.world.level.block.AirBlock;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class GasBlock extends AirBlock {
 
@@ -47,7 +52,7 @@ public class GasBlock extends AirBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
         if (Config.GASES.GAS_DISSIPATION.get()) {
             if (random.nextFloat() < this.gas.getDissipationRate()) {
                 worldIn.setBlock(pos,Blocks.AIR.defaultBlockState(),3);
@@ -80,8 +85,8 @@ public class GasBlock extends AirBlock {
 
 
     @Override
-    public BlockRenderType getRenderShape(BlockState state) {
-        return BlockRenderType.INVISIBLE;
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.INVISIBLE;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -94,20 +99,20 @@ public class GasBlock extends AirBlock {
     }
 
     @Override
-    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (newState.getBlock() instanceof AbstractFireBlock) {
-            worldIn.explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1F, Explosion.Mode.NONE);
+    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (newState.getBlock() instanceof BaseFireBlock) {
+            worldIn.explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1F, Explosion.BlockInteraction.NONE);
         }
         super.onRemove(state, worldIn, pos, newState, isMoving);
     }
 
     @Override
-    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity) {
             LivingEntity ent = (LivingEntity) entityIn;
             boolean undead = ent.isInvertedHealAndHarm() && Config.GASES.GAS_AFFECT_UNDEAD.get();
-            boolean creative = (ent instanceof PlayerEntity && ((PlayerEntity) ent).isCreative());
-            boolean gasMask = ent.getItemBySlot(EquipmentSlotType.HEAD).getItem() == RankineItems.GAS_MASK.get() || EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.GAS_PROTECTION,ent.getItemBySlot(EquipmentSlotType.HEAD)) > 0;
+            boolean creative = (ent instanceof Player && ((Player) ent).isCreative());
+            boolean gasMask = ent.getItemBySlot(EquipmentSlot.HEAD).getItem() == RankineItems.GAS_MASK.get() || EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.GAS_PROTECTION,ent.getItemBySlot(EquipmentSlot.HEAD)) > 0;
             if (!creative) {
                 if (gas.isSuffocating() && !gasMask) {
                     ent.setAirSupply(Math.max(ent.getAirSupply() - 3,0));
@@ -115,7 +120,7 @@ public class GasBlock extends AirBlock {
                         ent.hurt(RankineDamageSources.SUFFOCATION, 2.0F);
                     }
                 }
-                for (EffectInstance effect : gas.getEffects())
+                for (MobEffectInstance effect : gas.getEffects())
                 {
                     if (effect.getEffect().isBeneficial() || (!gasMask && !undead)) {
                         ent.addEffect(effect);
@@ -128,8 +133,8 @@ public class GasBlock extends AirBlock {
         super.entityInside(state, worldIn, pos, entityIn);
     }
 
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return VoxelShapes.empty();
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        return Shapes.empty();
     }
 
     public GasUtilsEnum getGas() {

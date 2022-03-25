@@ -4,26 +4,25 @@ package com.cannolicatfish.rankine.blocks.crucible;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -33,20 +32,20 @@ import java.util.List;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.CRUCIBLE_TILE;
 
-public class CrucibleTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
+public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
     private static final int[] SLOTS_UP = new int[]{0,1};
     private static final int[] SLOTS_DOWN = new int[]{4, 5};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
-    public CrucibleTile() {
-        super(CRUCIBLE_TILE);
+    public CrucibleTile(BlockPos posIn, BlockState stateIn) {
+        super(CRUCIBLE_TILE, posIn, stateIn);
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(6, ItemStack.EMPTY);
     private int cookTime;
     private int cookTimeTotal;
     private int color = 16777215;
     private int heatPower = 0;
-    private final IIntArray furnaceData = new IIntArray(){
+    private final ContainerData furnaceData = new ContainerData(){
         public int get(int index)
         {
             switch(index)
@@ -83,22 +82,22 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     };
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt,this.items);
+        ContainerHelper.loadAllItems(nbt,this.items);
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
         this.color = nbt.getInt("color");
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
         compound.putInt("color", this.color);
-        ItemStackHelper.saveAllItems(compound, this.items);
+        ContainerHelper.saveAllItems(compound, this.items);
 
         return compound;
     }
@@ -151,7 +150,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
                     this.cookTime = 0;
                 }
             } else if ((flag) && this.cookTime > 0) {
-                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
             }
 
             if (flag1 != this.isCooking()) {
@@ -175,7 +174,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
         }
     }
 
-    private boolean isHeated(BlockPos pos, World worldIn) {
+    private boolean isHeated(BlockPos pos, Level worldIn) {
         List<BlockPos> positions = Arrays.asList(pos.below(),pos.east(),pos.north(),pos.west(),pos.south());
         for (BlockPos p : positions) {
             if (worldIn.getBlockState(p).is(RankineTags.Blocks.HEAT_SOURCES)) {
@@ -198,7 +197,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
         return te.furnaceData.get(0) > 0;
     }
 
-    private boolean canSmelt(@Nullable CrucibleRecipe recipeIn, IInventory inv)
+    private boolean canSmelt(@Nullable CrucibleRecipe recipeIn, Container inv)
     {
         if (recipeIn == null)
         {
@@ -261,13 +260,13 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     }
 
     @Override
-    public ITextComponent getDisplayName() {
-        return new StringTextComponent(getType().getRegistryName().getPath());
+    public Component getDisplayName() {
+        return new TextComponent(getType().getRegistryName().getPath());
     }
 
     @Override
     @Nullable
-    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+    public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
         return new CrucibleContainer(i, level, worldPosition, playerInventory, playerEntity, this, this.furnaceData);
     }
 
@@ -314,12 +313,12 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
 
     @Override
     public ItemStack removeItem(int index, int count) {
-        return ItemStackHelper.removeItem(this.items, index, count);
+        return ContainerHelper.removeItem(this.items, index, count);
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int index) {
-        return ItemStackHelper.takeItem(this.items, index);
+        return ContainerHelper.takeItem(this.items, index);
     }
 
     @Override
@@ -339,7 +338,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     }
 
     @Override
-    public boolean stillValid(PlayerEntity player) {
+    public boolean stillValid(Player player) {
         if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {

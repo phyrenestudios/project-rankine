@@ -5,16 +5,15 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.Level;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,24 +21,24 @@ import java.util.Stack;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.CHARCOAL_PIT_TILE;
 
-public class CharcoalPitTile extends TileEntity implements ITickableTileEntity {
+public class CharcoalPitTile extends BlockEntity {
     int MAX_HEIGHT = Config.MACHINES.CHARCOAL_PIT_HEIGHT.get();
     double RADIUS = Config.MACHINES.CHARCOAL_PIT_RADIUS.get()+0.5;
     int totalTime;
     int proccessTime = 0;
 
-    public CharcoalPitTile() {
-        super(CHARCOAL_PIT_TILE);
+    public CharcoalPitTile(BlockPos posIn, BlockState stateIn) {
+        super(CHARCOAL_PIT_TILE, posIn, stateIn);
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         this.proccessTime = nbt.getInt("ProcessTime");
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
         compound.putInt("ProcessTime", this.proccessTime);
         return compound;
@@ -48,7 +47,7 @@ public class CharcoalPitTile extends TileEntity implements ITickableTileEntity {
     public void tick() {
         if (!level.isAreaLoaded(worldPosition, 1) || !this.getBlockState().getValue(CharcoalPitBlock.LIT) || level.getBlockState(worldPosition.below()).is(RankineBlocks.CHARCOAL_PIT.get())) return;
         if (proccessTime == 0) {
-            totalTime = MathHelper.nextInt(level.random,(int) Math.round(0.8*Config.MACHINES.CHARCOAL_PIT_SPEED.get()),(int) Math.round(1.2*Config.MACHINES.CHARCOAL_PIT_SPEED.get()));
+            totalTime = Mth.nextInt(level.random,(int) Math.round(0.8*Config.MACHINES.CHARCOAL_PIT_SPEED.get()),(int) Math.round(1.2*Config.MACHINES.CHARCOAL_PIT_SPEED.get()));
         }
 
         if (proccessTime >= totalTime) {
@@ -128,13 +127,13 @@ public class CharcoalPitTile extends TileEntity implements ITickableTileEntity {
         }
     }
 
-    public static int logLayerCount(World worldIn, Block target) {
+    public static int logLayerCount(Level worldIn, Block target) {
         if (VanillaIntegration.fuelValueMap.containsKey(target.asItem())) {
             int value = VanillaIntegration.fuelValueMap.get(target.asItem());
-            return (int) Math.floor(MathHelper.clamp(value/100D -2.0D + (worldIn.random.nextFloat() < (value%100)/100D ? 1 : 0),1,8));
-        } else if (target.is(BlockTags.LOGS_THAT_BURN)) {
+            return (int) Math.floor(Mth.clamp(value/100D -2.0D + (worldIn.random.nextFloat() < (value%100)/100D ? 1 : 0),1,8));
+        } else if (BlockTags.LOGS_THAT_BURN.contains(target)) {
             return 2;
-        } else if (target.is(RankineBlocks.CHARCOAL_PIT.get())) {
+        } else if (target.equals(RankineBlocks.CHARCOAL_PIT.get())) {
             return 2;
         }
         return 0;

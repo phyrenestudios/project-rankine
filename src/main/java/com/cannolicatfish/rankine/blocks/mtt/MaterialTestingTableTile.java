@@ -7,48 +7,46 @@ import com.cannolicatfish.rankine.items.GasBottleItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.GlassBottleItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.MATERIAL_TESTING_TABLE_TILE;
 
-public class MaterialTestingTableTile extends TileEntity implements ISidedInventory, INamedContainerProvider, ITickableTileEntity {
+public class MaterialTestingTableTile extends BlockEntity implements WorldlyContainer, MenuProvider {
     protected NonNullList<ItemStack> items = NonNullList.withSize(14, ItemStack.EMPTY);
     private static final int[] SLOTS_UP = new int[]{0,1};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3,4,5,6,7,8,9,10,11,12,13};
-    public MaterialTestingTableTile() {
-        super(MATERIAL_TESTING_TABLE_TILE);
+    public MaterialTestingTableTile(BlockPos posIn, BlockState stateIn) {
+        super(MATERIAL_TESTING_TABLE_TILE, posIn, stateIn);
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt,this.items);
+        ContainerHelper.loadAllItems(nbt,this.items);
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
-        ItemStackHelper.saveAllItems(compound, this.items);
+        ContainerHelper.saveAllItems(compound, this.items);
         return compound;
     }
 
@@ -77,13 +75,13 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
     }
 
     @Override
-    public ITextComponent getDisplayName() {
-        return new StringTextComponent(getType().getRegistryName().getPath());
+    public Component getDisplayName() {
+        return new TextComponent(getType().getRegistryName().getPath());
     }
 
     @Override
     @Nullable
-    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+    public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
         return new MaterialTestingTableContainer(i, level,worldPosition,playerInventory, playerEntity, this);
     }
 
@@ -126,12 +124,12 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
 
     @Override
     public ItemStack removeItem(int index, int count) {
-        return ItemStackHelper.removeItem(this.items, index, count);
+        return ContainerHelper.removeItem(this.items, index, count);
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int index) {
-        return ItemStackHelper.takeItem(this.items, index);
+        return ContainerHelper.takeItem(this.items, index);
     }
 
     @Override
@@ -149,7 +147,7 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
     }
 
     @Override
-    public boolean stillValid(PlayerEntity player) {
+    public boolean stillValid(Player player) {
         if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
@@ -162,7 +160,7 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
         if (index == 0) {
             return AlloyCustomHelper.hasElement(stack.getItem())  || stack.getItem() instanceof IAlloyItem;
         }
-        return (stack.getItem().is(RankineTags.Items.MTT_TOOLS));
+        return (RankineTags.Items.MTT_TOOLS.contains(stack.getItem()));
     }
 
     @Override
@@ -170,8 +168,5 @@ public class MaterialTestingTableTile extends TileEntity implements ISidedInvent
         this.items.clear();
     }
 
-    @Override
-    public void tick() {
 
-    }
 }

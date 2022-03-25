@@ -4,26 +4,26 @@ package com.cannolicatfish.rankine.blocks.mixingbarrel;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.MixingRecipe;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -34,21 +34,21 @@ import java.util.List;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.MIXING_BARREL_TILE;
 
-public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
+public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
     FluidTank inputTank = new FluidTank(8000);
     private static final int[] SLOTS_UP = new int[]{0,1,2,3};
     private static final int[] SLOTS_DOWN = new int[]{4};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
-    public MixingBarrelTile() {
-        super(MIXING_BARREL_TILE);
+    public MixingBarrelTile(BlockPos posIn, BlockState stateIn) {
+        super(MIXING_BARREL_TILE, posIn, stateIn);
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
     private int mixTime;
     private int mixTimeTotal;
     private int redstonePower = 0;
     private int needsRefresh = 0;
-    private final IIntArray furnaceData = new IIntArray(){
+    private final ContainerData furnaceData = new ContainerData(){
         public int get(int index)
         {
             switch(index)
@@ -91,10 +91,10 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     };
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt,this.items);
+        ContainerHelper.loadAllItems(nbt,this.items);
         this.inputTank = this.inputTank.readFromNBT(nbt.getCompound("InputTank"));
         this.mixTime = nbt.getInt("MixTime");
         this.mixTimeTotal = nbt.getInt("MixTimeTotal");
@@ -103,14 +103,14 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
-        compound.put("InputTank",this.inputTank.writeToNBT(new CompoundNBT()));
+        compound.put("InputTank",this.inputTank.writeToNBT(new CompoundTag()));
         compound.putInt("MixTime", this.mixTime);
         compound.putInt("MixTimeTotal", this.mixTimeTotal);
         compound.putInt("RedstonePower", this.redstonePower);
         compound.putInt("NeedsRefresh", this.needsRefresh);
-        ItemStackHelper.saveAllItems(compound, this.items);
+        ContainerHelper.saveAllItems(compound, this.items);
 
         return compound;
     }
@@ -133,7 +133,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
                 } else {
                     level.setBlock(this.worldPosition, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,angle+1),3);
                 }
-                List<LivingEntity> entitiesOnBlock = level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(worldPosition, worldPosition.above()).expandTowards(1, 1, 1), (e) -> e instanceof MobEntity || e instanceof PlayerEntity);
+                List<LivingEntity> entitiesOnBlock = level.getEntitiesOfClass(LivingEntity.class, new AABB(worldPosition, worldPosition.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
                 for (LivingEntity i : entitiesOnBlock) {
                     i.absMoveTo(i.getX(),i.getY()+2,i.getZ(),i.getYHeadRot() + 22.5F,i.getRotationVector().y);
                 }
@@ -213,7 +213,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
         return te.furnaceData.get(0) > 0;
     }
 
-    private boolean canMix(@Nullable MixingRecipe recipeIn, IInventory inv)
+    private boolean canMix(@Nullable MixingRecipe recipeIn, Container inv)
     {
         if (recipeIn == null)
         {
@@ -263,13 +263,13 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public ITextComponent getDisplayName() {
-        return new StringTextComponent(getType().getRegistryName().getPath());
+    public Component getDisplayName() {
+        return new TextComponent(getType().getRegistryName().getPath());
     }
 
     @Override
     @Nullable
-    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+    public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
         return new MixingBarrelContainer(i, level, worldPosition, playerInventory, playerEntity, this, this.furnaceData);
     }
 
@@ -316,12 +316,12 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
 
     @Override
     public ItemStack removeItem(int index, int count) {
-        return ItemStackHelper.removeItem(this.items, index, count);
+        return ContainerHelper.removeItem(this.items, index, count);
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int index) {
-        return ItemStackHelper.takeItem(this.items, index);
+        return ContainerHelper.takeItem(this.items, index);
     }
 
     @Override
@@ -341,7 +341,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     }
 
     @Override
-    public boolean stillValid(PlayerEntity player) {
+    public boolean stillValid(Player player) {
         if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {

@@ -3,16 +3,16 @@ package com.cannolicatfish.rankine.util;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.merchant.villager.VillagerTrades;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.tags.ITag;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.tags.Tag;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.BasicTrade;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class RankineVillagerTrades {
 
-    public static class EnchantedAlloyItemForEmeraldsTrade implements VillagerTrades.ITrade {
+    public static class EnchantedAlloyItemForEmeraldsTrade implements VillagerTrades.ItemListing {
         private final ItemStack sellingStack;
         private final int emeraldCount;
         private final int maxUses;
@@ -56,7 +56,7 @@ public class RankineVillagerTrades {
         }
     }
 
-    public static class RandomItemFromTagForEmeraldsTrade implements VillagerTrades.ITrade {
+    public static class RandomItemFromTagForEmeraldsTrade implements VillagerTrades.ItemListing {
         private final ItemStack sellingStack;
         private final int emeraldCount;
         private final int maxUses;
@@ -68,7 +68,7 @@ public class RankineVillagerTrades {
         }
 
         public RandomItemFromTagForEmeraldsTrade(ResourceLocation tag, Item fallback, int amount, int emeraldCount, int maxUses, int xpValue, float priceMultiplier) {
-            ITag<Item> e = ItemTags.getAllTags().getTag(tag);
+            Tag<Item> e = ItemTags.getAllTags().getTag(tag);
             if (e != null)
             {
                 this.sellingStack = new ItemStack(e.getRandomElement(new Random()),amount);
@@ -87,9 +87,9 @@ public class RankineVillagerTrades {
         }
     }
 
-    public static List<VillagerTrades.ITrade> returnTagTrades(ResourceLocation tag, Item fallback, int amount, int emeraldCount, int maxUses, int xpValue, float mult) {
-        ITag<Item> e = ItemTags.getAllTags().getTag(tag);
-        List<VillagerTrades.ITrade> trades = new ArrayList<>();
+    public static List<VillagerTrades.ItemListing> returnTagTrades(ResourceLocation tag, Item fallback, int amount, int emeraldCount, int maxUses, int xpValue, float mult) {
+        Tag<Item> e = ItemTags.getAllTags().getTag(tag);
+        List<VillagerTrades.ItemListing> trades = new ArrayList<>();
         if (e != null) {
             for (Item item : e.getValues()) {
                 trades.add(new BasicTrade(emeraldCount, new ItemStack(item,amount), maxUses, xpValue, mult));

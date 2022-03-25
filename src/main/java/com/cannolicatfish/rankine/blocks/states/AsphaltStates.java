@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks.states;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum AsphaltStates implements IStringSerializable {
+public enum AsphaltStates implements StringRepresentable {
     NONE("none"),
     WHITE_LINE("white_line"),
     WHITE_DASHED_LINE("white_dashed_line"),

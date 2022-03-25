@@ -1,13 +1,13 @@
 package com.cannolicatfish.rankine.enchantment;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
 
 public class GasProtectionEnchantment extends Enchantment {
-    public GasProtectionEnchantment(Enchantment.Rarity rarityIn, EquipmentSlotType... slots) {
-        super(rarityIn, EnchantmentType.ARMOR_HEAD, slots);
+    public GasProtectionEnchantment(Enchantment.Rarity rarityIn, EquipmentSlot... slots) {
+        super(rarityIn, EnchantmentCategory.ARMOR_HEAD, slots);
     }
     /**
      * Returns the minimal value of enchantability needed on the enchantment level passed.
@@ -27,7 +27,7 @@ public class GasProtectionEnchantment extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        return EnchantmentType.ARMOR_HEAD.canEnchant(stack.getItem());
+        return EnchantmentCategory.ARMOR_HEAD.canEnchant(stack.getItem());
     }
     /**
      * Returns the maximum level that the enchantment can have.

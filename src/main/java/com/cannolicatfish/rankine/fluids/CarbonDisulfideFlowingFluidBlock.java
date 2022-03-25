@@ -2,25 +2,19 @@ package com.cannolicatfish.rankine.fluids;
 
 import com.cannolicatfish.rankine.blocks.GasBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.fluid.FlowingFluid;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3i;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class CarbonDisulfideFlowingFluidBlock extends RankineFlowingFluidBlock {
     public CarbonDisulfideFlowingFluidBlock(Supplier<? extends FlowingFluid> supplier, Properties properties) {
@@ -28,17 +22,17 @@ public class CarbonDisulfideFlowingFluidBlock extends RankineFlowingFluidBlock {
     }
 
     @Override
-    public boolean isFlammable(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+    public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
         return true;
     }
 
     @Override
-    public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+    public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
         return 300;
     }
 
     @Override
-    public void catchFire(BlockState state, World world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
+    public void catchFire(BlockState state, Level world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
         if (!world.isClientSide && world.getRandom().nextFloat() < 0.002f) {
             for (int i = 0; i < 2; i++) {
                 BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> world.isEmptyBlock(B) && !(world.getBlockState(B).getBlock() instanceof GasBlock)).orElse(null);
@@ -60,7 +54,7 @@ public class CarbonDisulfideFlowingFluidBlock extends RankineFlowingFluidBlock {
         world.removeBlock(pos, false);
     }
 
-    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (worldIn.getBlockState(pos).getBlock() instanceof CarbonDisulfideFlowingFluidBlock && worldIn.getBlockState(pos).isBurning(worldIn,pos)) {
             catchFire(state, worldIn, pos, null, null);
         }

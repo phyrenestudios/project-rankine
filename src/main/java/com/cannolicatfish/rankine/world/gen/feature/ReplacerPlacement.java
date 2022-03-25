@@ -2,21 +2,23 @@ package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Dynamic;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.placement.NoPlacementConfig;
-import net.minecraft.world.gen.placement.SimplePlacement;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneDecoratorConfiguration;
+import net.minecraft.world.level.levelgen.placement.DecorationContext;
+import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
 
 import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class ReplacerPlacement extends SimplePlacement<NoPlacementConfig> {
-    public ReplacerPlacement(Codec<NoPlacementConfig> p_i232085_1_) {
+public class ReplacerPlacement extends FeatureDecorator<NoneDecoratorConfiguration> {
+    public ReplacerPlacement(Codec<NoneDecoratorConfiguration> p_i232085_1_) {
         super(p_i232085_1_);
     }
 
-    public Stream<BlockPos> place(Random random, NoPlacementConfig p_212852_2_, BlockPos pos) {
+    @Override
+    public Stream<BlockPos> getPositions(DecorationContext p_70713_, Random random, NoneDecoratorConfiguration p_70715_, BlockPos pos) {
         int i = 1;
         return IntStream.range(0, i).mapToObj((p_215060_2_) -> {
             int j = random.nextInt(16);
@@ -25,4 +27,5 @@ public class ReplacerPlacement extends SimplePlacement<NoPlacementConfig> {
             return pos.offset(j, k, l);
         });
     }
+
 }
