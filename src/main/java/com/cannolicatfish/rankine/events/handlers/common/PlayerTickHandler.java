@@ -37,133 +37,217 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.TickEvent;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public class PlayerTickHandler {
+    private static final String DIRECTION_FORMAT = "Facing %s with coordinates: X =%3.3f Z =%3.3f";
+    private static final String CLOCK_FORMAT = "Time = %2f:%2f (%d)";
+    private static final String TEMP_FORMAT = "Temperature = %1.3f";
+    private static final String ALTIMETER_FORMAT = "Altitude: Y = %,6d";
+    private static final String PHOTOMETER_FORMAT = "Light Levels: Sky = %2d Block = %2d";
+
+    private static final Map<Item, Consumer<TickEvent.PlayerTickEvent>> ITEM_HOLD_MAP = new HashMap<>();
+    static {
+        ITEM_HOLD_MAP.put(Items.COMPASS, PlayerTickHandler::onCompassHold);
+        ITEM_HOLD_MAP.put(Items.CLOCK, PlayerTickHandler::onClockHold);
+        ITEM_HOLD_MAP.put(RankineItems.THERMOMETER.get(), PlayerTickHandler::onThermometerHold);
+        ITEM_HOLD_MAP.put(RankineItems.ALTIMETER.get(), PlayerTickHandler::onAltimeterHold);
+        ITEM_HOLD_MAP.put(RankineItems.PHOTOMETER.get(), PlayerTickHandler::onPhotometerHold);
+        ITEM_HOLD_MAP.put(RankineItems.BIOMETER.get(), PlayerTickHandler::onBiometerHold);
+        ITEM_HOLD_MAP.put(RankineItems.MAGNETOMETER.get(), PlayerTickHandler::onMagnetometerHold);
+    }
+
+    private static void onCompassHold(TickEvent.PlayerTickEvent event) {
+        PlayerEntity player = event.player;
+        switch (player.getHorizontalFacing()) {
+            case NORTH:
+                player.sendStatusMessage(
+                        new StringTextComponent(String.format(DIRECTION_FORMAT, "North", player.getPosX(), player.getPosZ()))
+                                .mergeStyle(TextFormatting.GOLD),true);
+                break;
+            case EAST:
+                player.sendStatusMessage(
+                        new StringTextComponent(String.format(DIRECTION_FORMAT, "EAST", player.getPosX(), player.getPosZ()))
+                                .mergeStyle(TextFormatting.GOLD),true);
+                break;
+            case SOUTH:
+                player.sendStatusMessage(
+                        new StringTextComponent(String.format(DIRECTION_FORMAT, "SOUTH", player.getPosX(), player.getPosZ()))
+                                .mergeStyle(TextFormatting.GOLD),true);
+                break;
+            case WEST:
+                player.sendStatusMessage(
+                        new StringTextComponent(String.format(DIRECTION_FORMAT, "West", player.getPosX(), player.getPosZ()))
+                                .mergeStyle(TextFormatting.GOLD),true);
+                break;
+        }
+    }
+    private static void onClockHold(TickEvent.PlayerTickEvent event) {
+        PlayerEntity player = event.player;
+        World worldIn = event.player.world;
+        double hours = ((Math.floor(worldIn.getDayTime() / 1000f)) + 6) % 24;
+        double minutes = ((worldIn.getDayTime() / 1000f) % 1) * 60;
+        player.sendStatusMessage(new StringTextComponent(String.format(CLOCK_FORMAT, hours, minutes, worldIn.getDayTime() % 24000))
+                                         .mergeStyle(TextFormatting.GOLD),
+                                 true);
+    }
+    private static void onThermometerHold(TickEvent.PlayerTickEvent event) {
+        PlayerEntity player = event.player;
+        World worldIn = event.player.world;
+        BlockPos pos = player.isSneaking() ? player.getPosition() : player.getPosition().up();
+        float temp = worldIn.getBiome(pos).getTemperature(pos);
+        StringTextComponent comp = new StringTextComponent(String.format(TEMP_FORMAT, temp));
+        if (temp < 0.0) {
+            player.sendStatusMessage(comp.mergeStyle(TextFormatting.LIGHT_PURPLE, TextFormatting.BOLD), true);
+        } else if (temp < 0.15) {
+            player.sendStatusMessage(comp.mergeStyle(TextFormatting.AQUA, TextFormatting.BOLD), true);
+        } else if (temp < 0.8) {
+            player.sendStatusMessage(comp.mergeStyle(TextFormatting.GREEN, TextFormatting.BOLD), true);
+        } else if (temp < 0.95) {
+            player.sendStatusMessage(comp.mergeStyle(TextFormatting.YELLOW, TextFormatting.BOLD), true);
+        } else {
+            player.sendStatusMessage(comp.mergeStyle(TextFormatting.RED, TextFormatting.BOLD), true);
+        }
+    }
+    private static void onAltimeterHold(TickEvent.PlayerTickEvent event) {
+        PlayerEntity player = event.player;
+        BlockPos pos = player.isSneaking() ? player.getPosition() : player.getPosition().up();
+        int y = pos.getY();
+        StringTextComponent comp = new StringTextComponent(String.format(ALTIMETER_FORMAT, y));
+        if (y < 0) {
+            player.sendStatusMessage(comp.mergeStyle(TextFormatting.WHITE, TextFormatting.BOLD), true);
+        } else if (y < 64) {
+            player.sendStatusMessage(comp.mergeStyle(TextFormatting.DARK_PURPLE, TextFormatting.BOLD), true);
+        } else if (y < 128) {
+            player.sendStatusMessage(comp.mergeStyle(TextFormatting.DARK_AQUA, TextFormatting.BOLD), true);
+        } else {
+            player.sendStatusMessage(comp.mergeStyle(TextFormatting.AQUA, TextFormatting.BOLD), true);
+        }
+    }
+    private static void onPhotometerHold(TickEvent.PlayerTickEvent event) {
+        PlayerEntity player = event.player;
+        World worldIn = event.player.world;
+        BlockPos pos = player.isSneaking() ? player.getPosition() : player.getPosition().up();
+        int SLL = worldIn.getLightFor(LightType.SKY, pos);
+        int BLL = worldIn.getLightFor(LightType.BLOCK,pos);
+        StringTextComponent comp = new StringTextComponent(String.format(PHOTOMETER_FORMAT, SLL, BLL));
+
+        if (worldIn.getBlockState(player.getPosition())
+                   .getBlock()
+                   .canCreatureSpawn(
+                           worldIn.getBlockState(player.getPosition()),
+                           worldIn,
+                           player.getPosition(),
+                           EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                           EntityType.ZOMBIE)
+        ) {
+            player.sendStatusMessage(comp.mergeStyle(TextFormatting.RED, TextFormatting.BOLD), true);
+        } else {
+            player.sendStatusMessage(comp.mergeStyle(TextFormatting.GREEN, TextFormatting.BOLD), true);
+        }
+    }
+    private static void onBiometerHold(TickEvent.PlayerTickEvent event) {
+        PlayerEntity player = event.player;
+        World worldIn = event.player.world;
+        BlockPos pos = player.isSneaking() ? player.getPosition() : player.getPosition().up();
+        player.sendStatusMessage(new StringTextComponent("Biome = " + new TranslationTextComponent(Util.makeTranslationKey("biome", worldIn.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(worldIn.getBiome(pos)))).getString()).mergeStyle(TextFormatting.GOLD), true);
+    }
+    private static void onMagnetometerHold( TickEvent.PlayerTickEvent event) {
+        PlayerEntity player = event.player;
+        World worldIn = event.player.world;
+        double strength = 0.05D;
+        if (BlockPos.getClosestMatchingPosition(player.getPosition(), 5, 4, (p) -> worldIn.getBlockState(p).isIn(RankineTags.Blocks.ELECTROMAGNETS)).isPresent()) {
+            strength = 3.00D;
+        } else if (BlockPos.getClosestMatchingPosition(player.getPosition(), 5, 4, (p) -> worldIn.getBlockState(p).matchesBlock(Blocks.OBSERVER)).isPresent()) {
+            strength = 1.00D;
+        } else {
+            Optional<BlockPos> b = BlockPos.getClosestMatchingPosition(player.getPosition(), Config.TOOLS.MAGNETOMETER_RANGE.get(), Config.TOOLS.MAGNETOMETER_RANGE.get(), ( p) -> worldIn.getBlockState(p).isIn(Tags.Blocks.ORES));
+            if (b.isPresent()) {
+                strength = 0.5D/(player.getPosition().distanceSq(b.get())-1);
+            }
+        }
+        player.sendStatusMessage(new TranslationTextComponent("item.rankine.magnetometer.message1", new DecimalFormat("#.##").format(strength)).mergeStyle(TextFormatting.GOLD, TextFormatting.BOLD), true);
+    }
+
     public static void onPlayerTick( TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
         World worldIn = player.world;
-        BlockPos pos = player.isSneaking() ? player.getPosition() : player.getPosition().up();
-
-        // Tools
-        if (worldIn.getGameTime()%5==0 && !worldIn.isRemote()) {
-            if (!Config.TOOLS.DISABLE_COMPASS.get() && (player.getHeldItemOffhand().getItem() == Items.COMPASS || player.getHeldItemMainhand().getItem() == Items.COMPASS)) {
-                switch (player.getHorizontalFacing()) {
-                    case NORTH:
-                        player.sendStatusMessage(new StringTextComponent("Facing North with coordinates: X =" + new DecimalFormat("###,###").format(pos.getX()) + " Z =" + new DecimalFormat("###,###").format(pos.getZ())).mergeStyle(TextFormatting.GOLD), true);
-                        break;
-                    case EAST:
-                        player.sendStatusMessage(new StringTextComponent("Facing East with coordinates: X =" + new DecimalFormat("###,###").format(pos.getX()) + " Z =" + new DecimalFormat("###,###").format(pos.getZ())).mergeStyle(TextFormatting.GOLD), true);
-                        break;
-                    case SOUTH:
-                        player.sendStatusMessage(new StringTextComponent("Facing South with coordinates: X =" + new DecimalFormat("###,###").format(pos.getX()) + " Z =" + new DecimalFormat("###,###").format(pos.getZ())).mergeStyle(TextFormatting.GOLD), true);
-                        break;
-                    case WEST:
-                        player.sendStatusMessage(new StringTextComponent("Facing West with coordinates: X =" + new DecimalFormat("###,###").format(pos.getX()) + " Z =" + new DecimalFormat("###,###").format(pos.getZ())).mergeStyle(TextFormatting.GOLD), true);
-                        break;
-                }
-            } else if (!Config.TOOLS.DISABLE_CLOCK.get() && (player.getHeldItemOffhand().getItem() == Items.CLOCK || player.getHeldItemMainhand().getItem() == Items.CLOCK)) {
-                double hours = ((Math.floor(worldIn.getDayTime() / 1000f)) + 6) % 24;
-                double minutes = ((worldIn.getDayTime() / 1000f) % 1) * 60;
-                player.sendStatusMessage(new StringTextComponent("Time = " + new DecimalFormat("00").format(hours) + ":" + new DecimalFormat("00").format(minutes) + " (" + worldIn.getDayTime() % 24000 + ")").mergeStyle(TextFormatting.GOLD), true);
-            } else if (!Config.TOOLS.DISABLE_THERMOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.THERMOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.THERMOMETER.get())) {
-                float temp = worldIn.getBiome(pos).getTemperature(pos);
-                if (temp < 0.0) {
-                    player.sendStatusMessage(new StringTextComponent("Temperature = " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.LIGHT_PURPLE, TextFormatting.BOLD), true);
-                } else if (temp < 0.15) {
-                    player.sendStatusMessage(new StringTextComponent("Temperature = " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.AQUA, TextFormatting.BOLD), true);
-                } else if (temp < 0.8) {
-                    player.sendStatusMessage(new StringTextComponent("Temperature = " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.GREEN, TextFormatting.BOLD), true);
-                } else if (temp < 0.95) {
-                    player.sendStatusMessage(new StringTextComponent("Temperature = " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.YELLOW, TextFormatting.BOLD), true);
-                } else {
-                    player.sendStatusMessage(new StringTextComponent("Temperature = " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.RED, TextFormatting.BOLD), true);
-                }
-            } else if (!Config.TOOLS.DISABLE_ALTIMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.ALTIMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.ALTIMETER.get())) {
-                int y = pos.getY();
-                if (y < 0) {
-                    player.sendStatusMessage(new StringTextComponent("Altitude: Y = " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.WHITE, TextFormatting.BOLD), true);
-                } else if (y < 64) {
-                    player.sendStatusMessage(new StringTextComponent("Altitude: Y = " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.DARK_PURPLE, TextFormatting.BOLD), true);
-                } else if (y < 128) {
-                    player.sendStatusMessage(new StringTextComponent("Altitude: Y = " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.DARK_AQUA, TextFormatting.BOLD), true);
-                } else {
-                    player.sendStatusMessage(new StringTextComponent("Altitude: Y = " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.AQUA, TextFormatting.BOLD), true);
-                }
-            } else if (!Config.TOOLS.DISABLE_PHOTOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.PHOTOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.PHOTOMETER.get())) {
-                int SLL = worldIn.getLightFor(LightType.SKY, pos);
-                int BLL = worldIn.getLightFor(LightType.BLOCK,pos);
-
-                if (worldIn.getBlockState(player.getPosition()).getBlock().canCreatureSpawn(worldIn.getBlockState(player.getPosition()), worldIn, player.getPosition(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, EntityType.ZOMBIE)) {
-                    player.sendStatusMessage(new StringTextComponent("Light Levels: Sky = " + new DecimalFormat("##").format(SLL) + " Block = " + new DecimalFormat("##").format(BLL)).mergeStyle(TextFormatting.RED, TextFormatting.BOLD), true);
-                } else {
-                    player.sendStatusMessage(new StringTextComponent("Light Levels: Sky = " + new DecimalFormat("##").format(SLL) + " Block = " + new DecimalFormat("##").format(BLL)).mergeStyle(TextFormatting.GREEN, TextFormatting.BOLD), true);
-                }
-            } else if (!Config.TOOLS.DISABLE_BIOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.BIOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.BIOMETER.get())) {
-                player.sendStatusMessage(new StringTextComponent("Biome = " + new TranslationTextComponent(Util.makeTranslationKey("biome", worldIn.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(worldIn.getBiome(pos)))).getString()).mergeStyle(TextFormatting.GOLD), true);
-            } else if (!Config.TOOLS.DISABLE_BIOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.MAGNETOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.MAGNETOMETER.get())) {
-                double strength = 0.05D;
-                if (BlockPos.getClosestMatchingPosition(player.getPosition(), 5, 4, (p) -> worldIn.getBlockState(p).isIn(RankineTags.Blocks.ELECTROMAGNETS)).isPresent()) {
-                    strength = 3.00D;
-                } else if (BlockPos.getClosestMatchingPosition(player.getPosition(), 5, 4, (p) -> worldIn.getBlockState(p).matchesBlock(Blocks.OBSERVER)).isPresent()) {
-                    strength = 1.00D;
-                } else {
-                    Optional<BlockPos> b = BlockPos.getClosestMatchingPosition(player.getPosition(), Config.TOOLS.MAGNETOMETER_RANGE.get(), Config.TOOLS.MAGNETOMETER_RANGE.get(), ( p) -> worldIn.getBlockState(p).isIn(Tags.Blocks.ORES));
-                    if (b.isPresent()) {
-                        strength = 0.5D/(player.getPosition().distanceSq(b.get())-1);
+        Item mainHand = player.getHeldItemMainhand().getItem();
+        Item offHand = player.getHeldItemOffhand().getItem();
+        if(worldIn.getGameTime() % 5 == 0){
+            // Tools
+            if(!worldIn.isRemote()){
+                ForgeConfigSpec.BooleanValue enabledMainHandItem = Config.Tools.DISABLED_ITEMS.get(mainHand);
+                Consumer<TickEvent.PlayerTickEvent> handler;
+                if(enabledMainHandItem != null && enabledMainHandItem.get()){
+                    handler = ITEM_HOLD_MAP.get(mainHand);
+                    if(handler != null){
+                        handler.accept(event);
                     }
                 }
-                player.sendStatusMessage(new TranslationTextComponent("item.rankine.magnetometer.message1", new DecimalFormat("#.##").format(strength)).mergeStyle(TextFormatting.GOLD, TextFormatting.BOLD), true);
-
+                ForgeConfigSpec.BooleanValue enabledOffHandItem = Config.Tools.DISABLED_ITEMS.get(offHand);
+                if(enabledOffHandItem != null && enabledOffHandItem.get()) {
+                    handler = ITEM_HOLD_MAP.get(offHand);
+                    if (handler != null) {
+                        handler.accept(event);
+                    }
+                }
             }
-        }
-        if (!Config.TOOLS.DISABLE_SPEEDOMETER.get() && worldIn.isRemote() && worldIn.getGameTime()%5==0 && (player.getHeldItemOffhand().getItem() == RankineItems.SPEEDOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.SPEEDOMETER.get())) {
-            Entity ent = player;
-            if (player.getRidingEntity() != null) {
-                ent = player.getRidingEntity();
+            else{
+                if (!Config.TOOLS.DISABLE_SPEEDOMETER.get() && (mainHand == RankineItems.SPEEDOMETER.get() || offHand == RankineItems.SPEEDOMETER.get())) {
+                    Entity ent = player;
+                    if (player.getRidingEntity() != null) {
+                        ent = player.getRidingEntity();
+                    }
+
+                    double d0 = Math.abs(ent.getPosX() - player.lastTickPosX);
+                    double d1 = Math.abs(ent.getPosZ() - player.lastTickPosZ);
+                    //double d2 = Math.abs(player.getPosY() - player.lastTickPosY);
+                    double speed = Math.sqrt(Math.pow(d0, 2) + Math.pow(d1, 2));
+                    if ((offHand == RankineItems.SPEEDOMETER.get() && !(mainHand instanceof InformationItem || mainHand == Items.COMPASS || mainHand == Items.CLOCK)) ||
+                            (mainHand == RankineItems.SPEEDOMETER.get() && !(offHand instanceof InformationItem || offHand.getItem() == Items.COMPASS || offHand.getItem() == Items.CLOCK)))
+                        player.sendStatusMessage(new StringTextComponent("Speed = " + new DecimalFormat("#.##").format(speed * 20) + " blocks per second").mergeStyle(TextFormatting.GOLD), true);
+                }
             }
 
-            double d0 = Math.abs(ent.getPosX() - player.lastTickPosX);
-            double d1 = Math.abs(ent.getPosZ() - player.lastTickPosZ);
-            //double d2 = Math.abs(player.getPosY() - player.lastTickPosY);
-            double speed = Math.sqrt(Math.pow(d0, 2) + Math.pow(d1, 2));
-            Item mainhand = player.getHeldItemMainhand().getItem();
-            Item offhand = player.getHeldItemOffhand().getItem();
-            if ((offhand == RankineItems.SPEEDOMETER.get() && !(mainhand.getItem() instanceof InformationItem || mainhand.getItem() == Items.COMPASS || mainhand.getItem() == Items.CLOCK)) ||
-                    (mainhand == RankineItems.SPEEDOMETER.get() && !(offhand instanceof InformationItem || offhand.getItem() == Items.COMPASS || offhand.getItem() == Items.CLOCK)))
-                player.sendStatusMessage(new StringTextComponent("Speed = " + new DecimalFormat("#.##").format(speed * 20) + " blocks per second").mergeStyle(TextFormatting.GOLD), true);
-
-        }
 
 
-        // Armor
-        if (player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.DIVING_HELMET.get()) {
-            int headSlot = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.DIVING_HELMET.get() ? 1 : 0;
-            int chestSlot = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() == RankineItems.DIVING_CHESTPLATE.get() ? 1 : 0;
-            int legsSlot = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem() == RankineItems.DIVING_LEGGINGS.get() ? 1 : 0;
-            int feetSlot = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.DIVING_BOOTS.get() ? 1 : 0;
-
-            if (!player.isInWater()) {
-                player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200 * (headSlot+chestSlot+legsSlot+feetSlot), 0, false, false, true));
-            }
-        } else if (player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.CONDUIT_DIVING_HELMET.get() && !player.areEyesInFluid(FluidTags.WATER) && player.isInWater()) {
-            int headSlot = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.CONDUIT_DIVING_HELMET.get() ? 1 : 0;
-            int chestSlot = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() == RankineItems.CONDUIT_DIVING_CHESTPLATE.get() ? 1 : 0;
-            int legsSlot = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem() == RankineItems.CONDUIT_DIVING_LEGGINGS.get() ? 1 : 0;
-            int feetSlot = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.CONDUIT_DIVING_BOOTS.get() ? 1 : 0;
-
-            player.addPotionEffect(new EffectInstance(Effects.CONDUIT_POWER, 400 * (headSlot+chestSlot+legsSlot+feetSlot), 0, false, false, true));
         }
 
+        // Moved the armor checks to every 10 ticks (half second) to prevent lag
+        // Also made it so that it doesn't happen the same tick as the tool checks
+        if(worldIn.getGameTime() % 10 == 1) {
+            // Armor
+            if(player.isInWater()){
+                if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.CONDUIT_DIVING_HELMET.get() && player.areEyesInFluid(FluidTags.WATER)){
+                    int chestSlot = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() == RankineItems.CONDUIT_DIVING_CHESTPLATE.get() ? 1 : 0;
+                    int legsSlot = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem() == RankineItems.CONDUIT_DIVING_LEGGINGS.get() ? 1 : 0;
+                    int feetSlot = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.CONDUIT_DIVING_BOOTS.get() ? 1 : 0;
 
-        if (player.getEntityWorld().getGameTime() % 1200L == 0) {
+                    player.addPotionEffect(new EffectInstance(Effects.CONDUIT_POWER, 400 * (1+chestSlot+legsSlot+feetSlot), 0, false, false, true));
+                }
+            }else{
+                if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.DIVING_HELMET.get()){
+                    int chestSlot = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() == RankineItems.DIVING_CHESTPLATE.get() ? 1 : 0;
+                    int legsSlot = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem() == RankineItems.DIVING_LEGGINGS.get() ? 1 : 0;
+                    int feetSlot = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.DIVING_BOOTS.get() ? 1 : 0;
+
+                    player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200 * ( 1 + chestSlot + legsSlot + feetSlot ), 0, false, false, true));
+                }
+            }
+        }
+        if (worldIn.getGameTime() % 1200 == 0) {
             int count = 0;
             for (ItemStack s : player.getArmorInventoryList()) {
                 if (s.isEnchanted() && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.GUARD, s) > 0) {
@@ -175,33 +259,44 @@ public class PlayerTickHandler {
             }
         }
 
-        ItemStack ghast = ItemStack.EMPTY;
-        for(int i = 0; i < player.inventory.getSizeInventory(); ++i) {
-            ItemStack itemstack = player.inventory.getStackInSlot(i);
-            if (!itemstack.isEmpty() && itemstack.getDamage() != 0 && (player.getHeldItemMainhand().getItem() instanceof InvigoratingTotemItem || player.getHeldItemOffhand().getItem() instanceof InvigoratingTotemItem)) {
-                ghast = itemstack;
-                break;
-            }
-        }
 
         EffectInstance eff = player.getActivePotionEffect(Effects.REGENERATION);
-        if (ghast != ItemStack.EMPTY && eff != null) {
-            int k = 50 >> eff.getAmplifier();
-            if (eff.getDuration() % k == 0) {
-                ghast.setDamage(Math.max(0,ghast.getDamage() - 1));
+        if(eff != null) {
+            if(mainHand instanceof InvigoratingTotemItem || offHand instanceof InvigoratingTotemItem) {
+                for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
+                    ItemStack itemstack = player.inventory.getStackInSlot(i);
+                    if (!itemstack.isEmpty() && itemstack.getDamage() != 0) {
+                        int k = 50 >> eff.getAmplifier();
+                        if (eff.getDuration() % k == 0) {
+                            itemstack.setDamage(Math.max(0, itemstack.getDamage() - 1));
+                        }
+                        break;
+                    }
+                }
             }
         }
 
-        ModifiableAttributeInstance att = player.getAttribute(Attributes.MOVEMENT_SPEED);
-        if (player.getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_TIMESAVING.get() && att != null && !att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM)) {
-            att.applyNonPersistentModifier(RankineAttributes.SWIFTNESS_TOTEM);
-        }
 
-        ModifiableAttributeInstance att2 = player.getAttribute(Attributes.MAX_HEALTH);
-        if (player.getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_ENDURING.get() && att2 != null && !att2.hasModifier(RankineAttributes.ENDURING_TOTEM)) {
-            att2.applyNonPersistentModifier(RankineAttributes.ENDURING_TOTEM);
+        ModifiableAttributeInstance att = player.getAttribute(Attributes.MOVEMENT_SPEED);
+        if(att != null) {
+            if(!att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM)) {
+                if(mainHand == RankineItems.TOTEM_OF_TIMESAVING.get()){
+                    att.applyNonPersistentModifier(RankineAttributes.SWIFTNESS_TOTEM);
+                }
+            }
+        }
+        att = player.getAttribute(Attributes.MAX_HEALTH);
+        if(att != null) {
+            if(!att.hasModifier(RankineAttributes.ENDURING_TOTEM)) {
+                if(mainHand == RankineItems.TOTEM_OF_ENDURING.get()){
+                    att.applyNonPersistentModifier(RankineAttributes.ENDURING_TOTEM);
+                }
+            }
         }
     }
+
+
+
     public static void movementModifier(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
         World world = event.player.world;
