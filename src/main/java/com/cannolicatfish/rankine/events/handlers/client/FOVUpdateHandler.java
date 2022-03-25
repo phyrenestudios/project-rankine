@@ -9,17 +9,21 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 
 public class FOVUpdateHandler {
-
     public static void fovUpdate( FOVUpdateEvent event) {
+        if (!Config.GENERAL.MOVEMENT_MODIFIERS.get()){
+            return;
+        }
         PlayerEntity player = event.getEntity();
         ModifiableAttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
-        if (Config.GENERAL.MOVEMENT_MODIFIERS.get() && movementSpeed != null) {
-            if (movementSpeed.hasModifier(RankineAttributes.GRASS_PATH_MS) || movementSpeed.hasModifier(RankineAttributes.SAND_MS) || movementSpeed.hasModifier(RankineAttributes.BRICKS_MS) ||
-                    movementSpeed.hasModifier(RankineAttributes.ROMAN_CONCRETE_MS) || movementSpeed.hasModifier(RankineAttributes.DIRT_MS) || movementSpeed.hasModifier(RankineAttributes.POLISHED_STONE_MS) ||
-                    movementSpeed.hasModifier(RankineAttributes.WOODEN_MS) || movementSpeed.hasModifier(RankineAttributes.CONCRETE_MS) || movementSpeed.hasModifier(RankineAttributes.SNOW_MS) ||
-                    movementSpeed.hasModifier(RankineAttributes.MUD_MS)) {
-                event.setNewfov(Minecraft.getInstance().gameSettings.fovScaleEffect * (player.isSprinting() ? 1.3f : 1));
-            }
+        if (movementSpeed == null) {
+            return;
+        }
+
+        if (movementSpeed.hasModifier(RankineAttributes.GRASS_PATH_MS) || movementSpeed.hasModifier(RankineAttributes.SAND_MS) || movementSpeed.hasModifier(RankineAttributes.BRICKS_MS) ||
+                movementSpeed.hasModifier(RankineAttributes.ROMAN_CONCRETE_MS) || movementSpeed.hasModifier(RankineAttributes.DIRT_MS) || movementSpeed.hasModifier(RankineAttributes.POLISHED_STONE_MS) ||
+                movementSpeed.hasModifier(RankineAttributes.WOODEN_MS) || movementSpeed.hasModifier(RankineAttributes.CONCRETE_MS) || movementSpeed.hasModifier(RankineAttributes.SNOW_MS) ||
+                movementSpeed.hasModifier(RankineAttributes.MUD_MS)) {
+            event.setNewfov(Minecraft.getInstance().gameSettings.fovScaleEffect * (player.isSprinting() ? 1.3f : 1));
         }
     }
 }
