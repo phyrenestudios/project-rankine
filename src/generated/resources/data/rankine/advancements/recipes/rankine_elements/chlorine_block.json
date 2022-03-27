@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:chlorine_ingot"
+            "items": [
+              "rankine:chlorine_ingot"
+            ]
           }
         ]
       }

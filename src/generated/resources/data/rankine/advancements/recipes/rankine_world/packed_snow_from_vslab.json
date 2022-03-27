@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:packed_snow"
+            "items": [
+              "rankine:packed_snow"
+            ]
           }
         ]
       }

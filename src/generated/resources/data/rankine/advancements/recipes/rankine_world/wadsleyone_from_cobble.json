@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:wadsleyone_cobble"
+            "items": [
+              "rankine:wadsleyone_cobble"
+            ]
           }
         ]
       }

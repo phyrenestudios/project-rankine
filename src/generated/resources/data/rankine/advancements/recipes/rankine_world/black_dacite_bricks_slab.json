@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:black_dacite_bricks"
+            "items": [
+              "rankine:black_dacite_bricks"
+            ]
           }
         ]
       }

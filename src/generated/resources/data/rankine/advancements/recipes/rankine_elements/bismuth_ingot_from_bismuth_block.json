@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:bismuth_block"
+            "items": [
+              "rankine:bismuth_block"
+            ]
           }
         ]
       }

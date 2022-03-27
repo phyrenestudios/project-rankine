@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:terbium_ingot"
+            "items": [
+              "rankine:terbium_ingot"
+            ]
           }
         ]
       }

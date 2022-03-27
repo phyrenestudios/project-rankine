@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:nitinol_block"
+            "items": [
+              "rankine:nitinol_block"
+            ]
           }
         ]
       }

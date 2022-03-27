@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:malachite"
+            "items": [
+              "rankine:malachite"
+            ]
           }
         ]
       }

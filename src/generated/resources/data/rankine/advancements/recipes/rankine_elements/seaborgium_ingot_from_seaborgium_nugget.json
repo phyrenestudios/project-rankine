@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:seaborgium_nugget"
+            "items": [
+              "rankine:seaborgium_nugget"
+            ]
           }
         ]
       }

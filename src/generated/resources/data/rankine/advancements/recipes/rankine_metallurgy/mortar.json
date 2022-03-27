@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:cement_mix"
+            "items": [
+              "rankine:cement_mix"
+            ]
           }
         ]
       }

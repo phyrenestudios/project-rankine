@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:eclogite_cobble"
+            "items": [
+              "rankine:eclogite_cobble"
+            ]
           }
         ]
       }

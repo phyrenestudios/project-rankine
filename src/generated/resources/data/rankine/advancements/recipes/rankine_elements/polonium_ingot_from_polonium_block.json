@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:polonium_block"
+            "items": [
+              "rankine:polonium_block"
+            ]
           }
         ]
       }

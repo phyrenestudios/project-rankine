@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:technetium_nugget"
+            "items": [
+              "rankine:technetium_nugget"
+            ]
           }
         ]
       }

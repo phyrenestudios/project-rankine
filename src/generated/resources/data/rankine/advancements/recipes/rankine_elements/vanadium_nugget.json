@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:vanadium_ingot"
+            "items": [
+              "rankine:vanadium_ingot"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:erythrina_leaves"
+            "items": [
+              "rankine:erythrina_leaves"
+            ]
           }
         ]
       }

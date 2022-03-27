@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:comendite_column"
+            "items": [
+              "rankine:comendite_column"
+            ]
           }
         ]
       }

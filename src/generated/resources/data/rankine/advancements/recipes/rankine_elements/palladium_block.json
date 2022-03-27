@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:palladium_ingot"
+            "items": [
+              "rankine:palladium_ingot"
+            ]
           }
         ]
       }

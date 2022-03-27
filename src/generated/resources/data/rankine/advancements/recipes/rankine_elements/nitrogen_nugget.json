@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:nitrogen_ingot"
+            "items": [
+              "rankine:nitrogen_ingot"
+            ]
           }
         ]
       }

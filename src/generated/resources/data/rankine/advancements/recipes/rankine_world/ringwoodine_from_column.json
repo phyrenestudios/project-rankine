@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:ringwoodine_column"
+            "items": [
+              "rankine:ringwoodine_column"
+            ]
           }
         ]
       }

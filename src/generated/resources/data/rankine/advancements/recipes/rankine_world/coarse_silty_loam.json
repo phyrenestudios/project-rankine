@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:silty_loam"
+            "items": [
+              "rankine:silty_loam"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:diamond_ore"
+            "items": [
+              "rankine:diamond_ore"
+            ]
           }
         ]
       }

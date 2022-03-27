@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:blueschist_column"
+            "items": [
+              "rankine:blueschist_column"
+            ]
           }
         ]
       }

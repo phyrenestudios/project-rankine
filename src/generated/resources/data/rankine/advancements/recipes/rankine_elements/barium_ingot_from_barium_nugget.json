@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:barium_nugget"
+            "items": [
+              "rankine:barium_nugget"
+            ]
           }
         ]
       }

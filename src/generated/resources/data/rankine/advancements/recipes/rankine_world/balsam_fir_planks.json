@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:balsam_fir_log"
+            "items": [
+              "rankine:balsam_fir_log"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:curium_ingot"
+            "items": [
+              "rankine:curium_ingot"
+            ]
           }
         ]
       }

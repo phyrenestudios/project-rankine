@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:bridgmanham_cobble"
+            "items": [
+              "rankine:bridgmanham_cobble"
+            ]
           }
         ]
       }

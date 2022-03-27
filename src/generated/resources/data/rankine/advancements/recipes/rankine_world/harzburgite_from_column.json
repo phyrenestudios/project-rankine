@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:harzburgite_column"
+            "items": [
+              "rankine:harzburgite_column"
+            ]
           }
         ]
       }

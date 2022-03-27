@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:eastern_hemlock_log"
+            "items": [
+              "rankine:eastern_hemlock_log"
+            ]
           }
         ]
       }

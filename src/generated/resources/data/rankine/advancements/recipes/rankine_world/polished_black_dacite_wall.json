@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:polished_black_dacite"
+            "items": [
+              "rankine:polished_black_dacite"
+            ]
           }
         ]
       }

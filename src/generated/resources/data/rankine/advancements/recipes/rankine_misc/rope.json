@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:plant_fiber"
+            "items": [
+              "rankine:plant_fiber"
+            ]
           }
         ]
       }

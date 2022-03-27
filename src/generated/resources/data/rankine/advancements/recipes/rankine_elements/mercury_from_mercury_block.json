@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:mercury_block"
+            "items": [
+              "rankine:mercury_block"
+            ]
           }
         ]
       }

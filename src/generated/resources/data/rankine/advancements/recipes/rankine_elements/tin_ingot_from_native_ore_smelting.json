@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:native_tin_ore"
+            "items": [
+              "rankine:native_tin_ore"
+            ]
           }
         ]
       }

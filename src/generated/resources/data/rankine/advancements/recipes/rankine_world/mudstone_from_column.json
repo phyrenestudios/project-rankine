@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:mudstone_column"
+            "items": [
+              "rankine:mudstone_column"
+            ]
           }
         ]
       }

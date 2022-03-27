@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:nickel_sheetmetal"
+            "items": [
+              "rankine:nickel_sheetmetal"
+            ]
           }
         ]
       }

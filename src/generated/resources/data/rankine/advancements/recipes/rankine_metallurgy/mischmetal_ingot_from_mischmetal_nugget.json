@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:mischmetal_nugget"
+            "items": [
+              "rankine:mischmetal_nugget"
+            ]
           }
         ]
       }

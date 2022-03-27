@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:redstone_ore"
+            "items": [
+              "rankine:redstone_ore"
+            ]
           }
         ]
       }

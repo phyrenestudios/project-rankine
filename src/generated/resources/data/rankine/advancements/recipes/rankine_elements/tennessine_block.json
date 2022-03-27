@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:tennessine_ingot"
+            "items": [
+              "rankine:tennessine_ingot"
+            ]
           }
         ]
       }

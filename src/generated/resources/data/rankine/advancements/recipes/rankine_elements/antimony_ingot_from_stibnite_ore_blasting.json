@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:stibnite_ore"
+            "items": [
+              "rankine:stibnite_ore"
+            ]
           }
         ]
       }

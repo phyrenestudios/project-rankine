@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:kimberlite_bricks"
+            "items": [
+              "rankine:kimberlite_bricks"
+            ]
           }
         ]
       }

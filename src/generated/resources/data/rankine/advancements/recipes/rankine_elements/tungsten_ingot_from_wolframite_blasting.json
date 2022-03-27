@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:wolframite"
+            "items": [
+              "rankine:wolframite"
+            ]
           }
         ]
       }

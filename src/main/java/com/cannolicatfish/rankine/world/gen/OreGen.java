@@ -13,6 +13,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.heightproviders.BiasedToBottomHeight;
+import net.minecraft.world.level.levelgen.heightproviders.UniformHeight;
 import net.minecraft.world.level.levelgen.placement.ChanceDecoratorConfiguration;
 import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
 import net.minecraft.world.level.levelgen.feature.configurations.RangeDecoratorConfiguration;
@@ -273,7 +274,7 @@ public class OreGen {
 
                 String type = (String) L.get(2);
                 int minHeight = (int) L.get(3);
-                int maxeight = (int) L.get(4);
+                int maxHeight = (int) L.get(4);
                 int size = (int) L.get(5);
                 float density = (float) (double) L.get(6);
                 int count = (int) L.get(7);
@@ -282,13 +283,13 @@ public class OreGen {
 
                 if (type.equals("sphere")) {
                     oreFeature = RankineFeatures.SPHERE_ORE.get().configured(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.defaultBlockState(), size, density, chance))
-                        .decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(BiasedToBottomHeight.of(VerticalAnchor.absolute(minHeight), VerticalAnchor.absolute(maxeight), minHeight)))).squared().count(count);
+                        .decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(UniformHeight.of(VerticalAnchor.aboveBottom(minHeight), VerticalAnchor.absolute(maxHeight))))).squared().count(count);
                 } else if (type.equals("disk")) {
                     oreFeature = RankineFeatures.DISK_ORE.get().configured(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.defaultBlockState(), size, density, chance))
-                        .decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(BiasedToBottomHeight.of(VerticalAnchor.absolute(minHeight), VerticalAnchor.absolute(maxeight), minHeight)))).squared().count(count);
+                        .decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(UniformHeight.of(VerticalAnchor.aboveBottom(minHeight), VerticalAnchor.absolute(maxHeight))))).squared().count(count);
                 } else {
                     oreFeature = RankineFeatures.DEFAULT_ORE.get().configured(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.defaultBlockState(), size, density, chance))
-                            .decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(BiasedToBottomHeight.of(VerticalAnchor.absolute(minHeight), VerticalAnchor.absolute(maxeight), minHeight)))).squared().count(count);
+                            .decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(UniformHeight.of(VerticalAnchor.aboveBottom(minHeight), VerticalAnchor.absolute(maxHeight))))).squared().count(count);
                 }
 
                 if (inEnd) {

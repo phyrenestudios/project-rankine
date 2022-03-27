@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:charred_planks"
+            "items": [
+              "rankine:charred_planks"
+            ]
           }
         ]
       }

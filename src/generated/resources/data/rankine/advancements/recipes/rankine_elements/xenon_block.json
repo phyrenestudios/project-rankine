@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:xenon_ingot"
+            "items": [
+              "rankine:xenon_ingot"
+            ]
           }
         ]
       }

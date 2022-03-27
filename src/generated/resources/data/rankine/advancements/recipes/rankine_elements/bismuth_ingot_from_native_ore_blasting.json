@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:native_bismuth_ore"
+            "items": [
+              "rankine:native_bismuth_ore"
+            ]
           }
         ]
       }

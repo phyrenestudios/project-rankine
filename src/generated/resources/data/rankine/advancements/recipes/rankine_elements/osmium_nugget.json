@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:osmium_ingot"
+            "items": [
+              "rankine:osmium_ingot"
+            ]
           }
         ]
       }

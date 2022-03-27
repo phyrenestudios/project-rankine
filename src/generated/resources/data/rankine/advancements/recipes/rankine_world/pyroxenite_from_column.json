@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:pyroxenite_column"
+            "items": [
+              "rankine:pyroxenite_column"
+            ]
           }
         ]
       }

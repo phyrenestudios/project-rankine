@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:granite_bricks_stairs"
+            "items": [
+              "rankine:granite_bricks_stairs"
+            ]
           }
         ]
       }

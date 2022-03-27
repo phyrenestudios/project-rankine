@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:iodine_nugget"
+            "items": [
+              "rankine:iodine_nugget"
+            ]
           }
         ]
       }

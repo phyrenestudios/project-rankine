@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:fluorite"
+            "items": [
+              "rankine:fluorite"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:shale_bricks"
+            "items": [
+              "rankine:shale_bricks"
+            ]
           }
         ]
       }

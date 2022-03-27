@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:xenon_nugget"
+            "items": [
+              "rankine:xenon_nugget"
+            ]
           }
         ]
       }

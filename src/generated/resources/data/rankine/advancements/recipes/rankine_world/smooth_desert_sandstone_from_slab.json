@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:smooth_desert_sandstone"
+            "items": [
+              "rankine:smooth_desert_sandstone"
+            ]
           }
         ]
       }

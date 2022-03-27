@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:bone_char"
+            "items": [
+              "rankine:bone_char"
+            ]
           }
         ]
       }

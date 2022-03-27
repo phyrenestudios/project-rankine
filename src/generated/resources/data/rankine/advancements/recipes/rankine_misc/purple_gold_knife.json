@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:purple_gold_ingot"
+            "items": [
+              "rankine:purple_gold_ingot"
+            ]
           }
         ]
       }

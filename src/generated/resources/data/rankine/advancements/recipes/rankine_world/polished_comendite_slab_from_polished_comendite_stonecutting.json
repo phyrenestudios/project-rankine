@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:polished_comendite"
+            "items": [
+              "rankine:polished_comendite"
+            ]
           }
         ]
       }

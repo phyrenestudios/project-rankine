@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:moscovium_ingot"
+            "items": [
+              "rankine:moscovium_ingot"
+            ]
           }
         ]
       }

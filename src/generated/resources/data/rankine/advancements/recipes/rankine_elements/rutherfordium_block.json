@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:rutherfordium_ingot"
+            "items": [
+              "rankine:rutherfordium_ingot"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:silicon_carbide"
+            "items": [
+              "rankine:silicon_carbide"
+            ]
           }
         ]
       }

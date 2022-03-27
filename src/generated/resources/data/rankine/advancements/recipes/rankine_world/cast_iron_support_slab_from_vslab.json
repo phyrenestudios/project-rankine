@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:cast_iron_support"
+            "items": [
+              "rankine:cast_iron_support"
+            ]
           }
         ]
       }

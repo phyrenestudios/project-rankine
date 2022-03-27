@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:saddle_tree"
+            "items": [
+              "rankine:saddle_tree"
+            ]
           }
         ]
       }

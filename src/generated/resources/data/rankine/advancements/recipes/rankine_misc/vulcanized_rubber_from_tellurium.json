@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:dry_rubber"
+            "items": [
+              "rankine:dry_rubber"
+            ]
           }
         ]
       }

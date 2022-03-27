@@ -515,7 +515,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             ResourceLocation TOP = new ResourceLocation("rankine","block/"+regName+"_top");
             ResourceLocation SIDE = new ResourceLocation("rankine","block/"+regName+"_side");
             ResourceLocation BOTTOM = new ResourceLocation("rankine","block/"+SOIL.getRegistryName().getPath());
-            pathBlock(PATH, new ResourceLocation("minecraft","block/grass_path_top"), SIDE, BOTTOM);
+            pathBlock(PATH, new ResourceLocation("minecraft","block/dirt_path_top"), SIDE, BOTTOM);
         }
         pathBlock(RankineBlocks.MYCELIUM_PATH.get(), new ResourceLocation("rankine","block/mycelium_path_top"), new ResourceLocation("rankine","block/mycelium_path_side"), new ResourceLocation("minecraft","block/dirt"));
 

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:dysprosium_ingot"
+            "items": [
+              "rankine:dysprosium_ingot"
+            ]
           }
         ]
       }

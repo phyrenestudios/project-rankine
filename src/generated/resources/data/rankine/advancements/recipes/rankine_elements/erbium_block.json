@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:erbium_ingot"
+            "items": [
+              "rankine:erbium_ingot"
+            ]
           }
         ]
       }

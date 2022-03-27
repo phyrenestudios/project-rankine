@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:soul_sandstone"
+            "items": [
+              "rankine:soul_sandstone"
+            ]
           }
         ]
       }

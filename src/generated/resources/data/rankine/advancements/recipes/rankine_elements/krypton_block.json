@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:krypton_ingot"
+            "items": [
+              "rankine:krypton_ingot"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:magnolia_leaves"
+            "items": [
+              "rankine:magnolia_leaves"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:emerald_ore"
+            "items": [
+              "rankine:emerald_ore"
+            ]
           }
         ]
       }

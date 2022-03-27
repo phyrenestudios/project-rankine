@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:meteoric_iron"
+            "items": [
+              "rankine:meteoric_iron"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:neptunium_block"
+            "items": [
+              "rankine:neptunium_block"
+            ]
           }
         ]
       }

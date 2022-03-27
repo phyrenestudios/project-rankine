@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:lherzolite_bricks"
+            "items": [
+              "rankine:lherzolite_bricks"
+            ]
           }
         ]
       }

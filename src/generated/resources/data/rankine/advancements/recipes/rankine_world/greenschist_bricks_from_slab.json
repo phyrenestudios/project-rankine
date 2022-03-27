@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:greenschist_bricks"
+            "items": [
+              "rankine:greenschist_bricks"
+            ]
           }
         ]
       }

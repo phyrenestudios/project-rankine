@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:sharinga_log"
+            "items": [
+              "rankine:sharinga_log"
+            ]
           }
         ]
       }

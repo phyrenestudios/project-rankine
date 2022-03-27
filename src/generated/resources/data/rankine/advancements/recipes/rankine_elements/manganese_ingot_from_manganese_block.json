@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:manganese_block"
+            "items": [
+              "rankine:manganese_block"
+            ]
           }
         ]
       }

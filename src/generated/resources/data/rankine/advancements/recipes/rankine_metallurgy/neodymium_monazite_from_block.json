@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:neodymium_monazite"
+            "items": [
+              "rankine:neodymium_monazite"
+            ]
           }
         ]
       }

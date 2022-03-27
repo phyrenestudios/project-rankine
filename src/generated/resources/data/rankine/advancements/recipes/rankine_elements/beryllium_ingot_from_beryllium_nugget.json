@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:beryllium_nugget"
+            "items": [
+              "rankine:beryllium_nugget"
+            ]
           }
         ]
       }

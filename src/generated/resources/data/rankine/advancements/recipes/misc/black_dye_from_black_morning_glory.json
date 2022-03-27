@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:black_morning_glory"
+            "items": [
+              "rankine:black_morning_glory"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:polished_hornblende_andesite"
+            "items": [
+              "rankine:polished_hornblende_andesite"
+            ]
           }
         ]
       }

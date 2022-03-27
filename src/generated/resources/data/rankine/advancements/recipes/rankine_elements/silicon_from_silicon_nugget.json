@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:silicon_nugget"
+            "items": [
+              "rankine:silicon_nugget"
+            ]
           }
         ]
       }

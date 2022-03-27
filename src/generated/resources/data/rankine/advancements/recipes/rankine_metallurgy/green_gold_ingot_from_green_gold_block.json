@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:green_gold_block"
+            "items": [
+              "rankine:green_gold_block"
+            ]
           }
         ]
       }

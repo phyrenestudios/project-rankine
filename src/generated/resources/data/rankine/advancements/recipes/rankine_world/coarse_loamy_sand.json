@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:loamy_sand"
+            "items": [
+              "rankine:loamy_sand"
+            ]
           }
         ]
       }

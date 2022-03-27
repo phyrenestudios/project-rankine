@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:ice_bricks"
+            "items": [
+              "rankine:ice_bricks"
+            ]
           }
         ]
       }

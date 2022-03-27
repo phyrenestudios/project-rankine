@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:invar_nugget"
+            "items": [
+              "rankine:invar_nugget"
+            ]
           }
         ]
       }

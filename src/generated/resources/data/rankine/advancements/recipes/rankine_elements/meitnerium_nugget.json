@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:meitnerium_ingot"
+            "items": [
+              "rankine:meitnerium_ingot"
+            ]
           }
         ]
       }

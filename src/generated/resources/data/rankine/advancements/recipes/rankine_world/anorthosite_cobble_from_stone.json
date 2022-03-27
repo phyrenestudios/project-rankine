@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:anorthosite_cobble"
+            "items": [
+              "rankine:anorthosite_cobble"
+            ]
           }
         ]
       }

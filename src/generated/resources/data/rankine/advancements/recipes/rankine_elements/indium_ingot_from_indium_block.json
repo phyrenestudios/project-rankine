@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:indium_block"
+            "items": [
+              "rankine:indium_block"
+            ]
           }
         ]
       }

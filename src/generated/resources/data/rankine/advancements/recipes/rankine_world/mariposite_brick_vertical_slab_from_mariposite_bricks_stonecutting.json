@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:mariposite_bricks"
+            "items": [
+              "rankine:mariposite_bricks"
+            ]
           }
         ]
       }

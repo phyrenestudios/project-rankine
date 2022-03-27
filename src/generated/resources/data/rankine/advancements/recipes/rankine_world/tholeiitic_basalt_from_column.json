@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:tholeiitic_basalt_column"
+            "items": [
+              "rankine:tholeiitic_basalt_column"
+            ]
           }
         ]
       }

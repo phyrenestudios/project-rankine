@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:cesium_nugget"
+            "items": [
+              "rankine:cesium_nugget"
+            ]
           }
         ]
       }

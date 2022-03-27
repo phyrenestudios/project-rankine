@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:polished_graywacke"
+            "items": [
+              "rankine:polished_graywacke"
+            ]
           }
         ]
       }

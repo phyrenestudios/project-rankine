@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:cedar_log"
+            "items": [
+              "rankine:cedar_log"
+            ]
           }
         ]
       }

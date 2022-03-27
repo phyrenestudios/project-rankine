@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:galinstan_block"
+            "items": [
+              "rankine:galinstan_block"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:dolostone_cobble"
+            "items": [
+              "rankine:dolostone_cobble"
+            ]
           }
         ]
       }

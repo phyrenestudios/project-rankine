@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:cadmium_ingot"
+            "items": [
+              "rankine:cadmium_ingot"
+            ]
           }
         ]
       }

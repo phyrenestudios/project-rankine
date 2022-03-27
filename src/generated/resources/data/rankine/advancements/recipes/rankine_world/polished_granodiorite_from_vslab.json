@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:polished_granodiorite"
+            "items": [
+              "rankine:polished_granodiorite"
+            ]
           }
         ]
       }

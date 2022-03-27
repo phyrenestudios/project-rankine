@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:arsenic_nugget"
+            "items": [
+              "rankine:arsenic_nugget"
+            ]
           }
         ]
       }

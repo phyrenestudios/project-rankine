@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:shale_cobble"
+            "items": [
+              "rankine:shale_cobble"
+            ]
           }
         ]
       }

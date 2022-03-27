@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:potassium_nugget"
+            "items": [
+              "rankine:potassium_nugget"
+            ]
           }
         ]
       }

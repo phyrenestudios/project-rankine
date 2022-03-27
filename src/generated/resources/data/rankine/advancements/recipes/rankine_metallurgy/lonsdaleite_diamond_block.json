@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:lonsdaleite_diamond"
+            "items": [
+              "rankine:lonsdaleite_diamond"
+            ]
           }
         ]
       }

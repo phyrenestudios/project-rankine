@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:holmium_nugget"
+            "items": [
+              "rankine:holmium_nugget"
+            ]
           }
         ]
       }

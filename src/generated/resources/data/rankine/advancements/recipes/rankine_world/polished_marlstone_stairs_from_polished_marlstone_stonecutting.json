@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:polished_marlstone"
+            "items": [
+              "rankine:polished_marlstone"
+            ]
           }
         ]
       }

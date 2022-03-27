@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:chrome_enstatite"
+            "items": [
+              "rankine:chrome_enstatite"
+            ]
           }
         ]
       }

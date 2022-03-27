@@ -3,7 +3,9 @@
     {
       "condition": "minecraft:match_tool",
       "predicate": {
-        "item": "rankine:alloy_surf_rod"
+        "items": [
+          "rankine:alloy_surf_rod"
+        ]
       }
     },
     {

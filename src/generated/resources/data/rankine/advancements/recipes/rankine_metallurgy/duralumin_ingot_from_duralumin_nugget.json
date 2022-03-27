@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:duralumin_nugget"
+            "items": [
+              "rankine:duralumin_nugget"
+            ]
           }
         ]
       }

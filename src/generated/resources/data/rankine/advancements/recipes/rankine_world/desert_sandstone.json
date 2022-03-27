@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:desert_sand"
+            "items": [
+              "rankine:desert_sand"
+            ]
           }
         ]
       }

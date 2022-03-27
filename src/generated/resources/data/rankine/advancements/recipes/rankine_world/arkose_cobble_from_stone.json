@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:arkose_cobble"
+            "items": [
+              "rankine:arkose_cobble"
+            ]
           }
         ]
       }

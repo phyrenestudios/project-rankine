@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:polished_whiteschist"
+            "items": [
+              "rankine:polished_whiteschist"
+            ]
           }
         ]
       }

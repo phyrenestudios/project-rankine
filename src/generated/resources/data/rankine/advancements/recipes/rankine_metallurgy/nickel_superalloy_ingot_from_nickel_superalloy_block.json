@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:nickel_superalloy_block"
+            "items": [
+              "rankine:nickel_superalloy_block"
+            ]
           }
         ]
       }

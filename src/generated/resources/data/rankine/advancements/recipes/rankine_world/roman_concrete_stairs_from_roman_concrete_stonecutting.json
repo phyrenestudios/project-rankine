@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:roman_concrete"
+            "items": [
+              "rankine:roman_concrete"
+            ]
           }
         ]
       }

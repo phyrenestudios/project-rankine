@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:chromite"
+            "items": [
+              "rankine:chromite"
+            ]
           }
         ]
       }

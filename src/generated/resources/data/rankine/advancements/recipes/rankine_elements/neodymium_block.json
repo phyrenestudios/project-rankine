@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:neodymium_ingot"
+            "items": [
+              "rankine:neodymium_ingot"
+            ]
           }
         ]
       }

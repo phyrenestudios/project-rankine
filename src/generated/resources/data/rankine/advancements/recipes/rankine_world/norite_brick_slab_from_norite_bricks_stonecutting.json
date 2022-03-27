@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:norite_bricks"
+            "items": [
+              "rankine:norite_bricks"
+            ]
           }
         ]
       }

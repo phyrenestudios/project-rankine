@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:zinc_block"
+            "items": [
+              "rankine:zinc_block"
+            ]
           }
         ]
       }

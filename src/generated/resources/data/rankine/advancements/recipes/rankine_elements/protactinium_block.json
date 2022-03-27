@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:protactinium_ingot"
+            "items": [
+              "rankine:protactinium_ingot"
+            ]
           }
         ]
       }

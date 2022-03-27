@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:oganesson_block"
+            "items": [
+              "rankine:oganesson_block"
+            ]
           }
         ]
       }

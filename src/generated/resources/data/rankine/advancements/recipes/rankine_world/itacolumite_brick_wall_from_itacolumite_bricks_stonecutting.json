@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:itacolumite_bricks"
+            "items": [
+              "rankine:itacolumite_bricks"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:flerovium_block"
+            "items": [
+              "rankine:flerovium_block"
+            ]
           }
         ]
       }

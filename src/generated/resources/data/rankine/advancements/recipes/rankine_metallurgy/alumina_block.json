@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:alumina"
+            "items": [
+              "rankine:alumina"
+            ]
           }
         ]
       }

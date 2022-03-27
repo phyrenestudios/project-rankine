@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:labradorite"
+            "items": [
+              "rankine:labradorite"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:tungsten_heavy_alloy_block"
+            "items": [
+              "rankine:tungsten_heavy_alloy_block"
+            ]
           }
         ]
       }

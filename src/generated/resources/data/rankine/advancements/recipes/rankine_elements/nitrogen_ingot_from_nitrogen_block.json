@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:nitrogen_block"
+            "items": [
+              "rankine:nitrogen_block"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:roentgenium_block"
+            "items": [
+              "rankine:roentgenium_block"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:aluminum_sheetmetal"
+            "items": [
+              "rankine:aluminum_sheetmetal"
+            ]
           }
         ]
       }

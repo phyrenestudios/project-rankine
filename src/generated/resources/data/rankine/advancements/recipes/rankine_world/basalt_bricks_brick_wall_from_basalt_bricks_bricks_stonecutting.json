@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:basalt_bricks"
+            "items": [
+              "rankine:basalt_bricks"
+            ]
           }
         ]
       }

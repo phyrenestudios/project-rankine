@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:post_perovskite"
+            "items": [
+              "rankine:post_perovskite"
+            ]
           }
         ]
       }

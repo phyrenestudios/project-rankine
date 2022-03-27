@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:peridot"
+            "items": [
+              "rankine:peridot"
+            ]
           }
         ]
       }

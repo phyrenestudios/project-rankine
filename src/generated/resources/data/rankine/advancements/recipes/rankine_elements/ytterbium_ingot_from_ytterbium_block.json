@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:ytterbium_block"
+            "items": [
+              "rankine:ytterbium_block"
+            ]
           }
         ]
       }

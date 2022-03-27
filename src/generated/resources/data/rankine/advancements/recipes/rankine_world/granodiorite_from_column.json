@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:granodiorite_column"
+            "items": [
+              "rankine:granodiorite_column"
+            ]
           }
         ]
       }

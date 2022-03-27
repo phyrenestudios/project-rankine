@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:nickel_superalloy_ingot"
+            "items": [
+              "rankine:nickel_superalloy_ingot"
+            ]
           }
         ]
       }

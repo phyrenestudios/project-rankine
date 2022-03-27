@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:brass_ingot"
+            "items": [
+              "rankine:brass_ingot"
+            ]
           }
         ]
       }

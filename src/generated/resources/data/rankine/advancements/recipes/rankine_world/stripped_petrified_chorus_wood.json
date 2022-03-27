@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:petrified_chorus_log"
+            "items": [
+              "rankine:petrified_chorus_log"
+            ]
           }
         ]
       }

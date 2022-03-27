@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:erbium_nugget"
+            "items": [
+              "rankine:erbium_nugget"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:titanium_nugget"
+            "items": [
+              "rankine:titanium_nugget"
+            ]
           }
         ]
       }

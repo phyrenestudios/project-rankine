@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:magnesium_nugget"
+            "items": [
+              "rankine:magnesium_nugget"
+            ]
           }
         ]
       }

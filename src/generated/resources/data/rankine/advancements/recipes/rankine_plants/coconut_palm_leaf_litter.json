@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:coconut_palm_leaves"
+            "items": [
+              "rankine:coconut_palm_leaves"
+            ]
           }
         ]
       }

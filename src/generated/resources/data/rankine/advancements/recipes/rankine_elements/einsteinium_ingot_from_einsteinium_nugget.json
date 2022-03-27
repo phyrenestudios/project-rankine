@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:einsteinium_nugget"
+            "items": [
+              "rankine:einsteinium_nugget"
+            ]
           }
         ]
       }

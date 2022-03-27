@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:mercury_nugget"
+            "items": [
+              "rankine:mercury_nugget"
+            ]
           }
         ]
       }

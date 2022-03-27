@@ -30,7 +30,7 @@ public class CobbleBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public CobbleBlock() {
-        super(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.0F, 3.0F));
+        super(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.0F, 3.0F).dynamicShape());
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.FALSE));
     }
 

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:livermorium_nugget"
+            "items": [
+              "rankine:livermorium_nugget"
+            ]
           }
         ]
       }

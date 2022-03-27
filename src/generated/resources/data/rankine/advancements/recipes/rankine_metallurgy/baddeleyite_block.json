@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:baddeleyite"
+            "items": [
+              "rankine:baddeleyite"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:serpentinite_column"
+            "items": [
+              "rankine:serpentinite_column"
+            ]
           }
         ]
       }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:honeystone_column"
+            "items": [
+              "rankine:honeystone_column"
+            ]
           }
         ]
       }

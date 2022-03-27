@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:americium_nugget"
+            "items": [
+              "rankine:americium_nugget"
+            ]
           }
         ]
       }

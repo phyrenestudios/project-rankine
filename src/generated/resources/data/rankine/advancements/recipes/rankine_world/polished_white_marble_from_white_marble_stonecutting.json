@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:white_marble"
+            "items": [
+              "rankine:white_marble"
+            ]
           }
         ]
       }

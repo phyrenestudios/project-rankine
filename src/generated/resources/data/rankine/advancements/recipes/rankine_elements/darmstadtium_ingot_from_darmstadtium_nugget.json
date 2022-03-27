@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:darmstadtium_nugget"
+            "items": [
+              "rankine:darmstadtium_nugget"
+            ]
           }
         ]
       }

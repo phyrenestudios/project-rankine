@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:orthoclase_feldspar"
+            "items": [
+              "rankine:orthoclase_feldspar"
+            ]
           }
         ]
       }

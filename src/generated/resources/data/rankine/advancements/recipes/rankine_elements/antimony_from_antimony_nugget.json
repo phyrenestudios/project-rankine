@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:antimony_nugget"
+            "items": [
+              "rankine:antimony_nugget"
+            ]
           }
         ]
       }

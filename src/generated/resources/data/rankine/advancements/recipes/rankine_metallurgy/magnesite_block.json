@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:magnesite"
+            "items": [
+              "rankine:magnesite"
+            ]
           }
         ]
       }

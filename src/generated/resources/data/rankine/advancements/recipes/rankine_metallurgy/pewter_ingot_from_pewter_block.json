@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:pewter_block"
+            "items": [
+              "rankine:pewter_block"
+            ]
           }
         ]
       }
