@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks.pedestal;
 
-import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,7 +26,7 @@ public class PedestalTile extends ItemDisplayEntity implements IInventory {
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
 
     public PedestalTile() {
-        super(RankineBlocks.PEDESTAL_TILE);
+        super(RankineTileEntities.PEDESTAL_TILE.get());
     }
 
     @Override

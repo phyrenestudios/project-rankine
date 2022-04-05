@@ -120,7 +120,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
 
 
-        for (Item item : Stream.of(RankineLists.WOODEN_BOATS,RankineLists.ELEMENT_INGOTS,RankineLists.ELEMENT_NUGGETS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Item item : Stream.of(RankineLists.WOODEN_SIGN_ITEMS,RankineLists.WOODEN_BOATS,RankineLists.ELEMENT_INGOTS,RankineLists.ELEMENT_NUGGETS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(item);
         }
         basicItem(RankineItems.SOLDER.get());

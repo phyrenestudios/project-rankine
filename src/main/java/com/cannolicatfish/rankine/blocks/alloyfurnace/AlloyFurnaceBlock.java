@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
-import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -93,8 +92,8 @@ public class AlloyFurnaceBlock extends Block {
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.matchesBlock(newState.getBlock())) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
-            if (tileentity instanceof MixingBarrelTile) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (MixingBarrelTile)tileentity);
+            if (tileentity instanceof AlloyFurnaceTile) {
+                InventoryHelper.dropInventoryItems(worldIn, pos, (AlloyFurnaceTile)tileentity);
                 worldIn.updateComparatorOutputLevel(pos, this);
             }
             super.onReplaced(state, worldIn, pos, newState, isMoving);

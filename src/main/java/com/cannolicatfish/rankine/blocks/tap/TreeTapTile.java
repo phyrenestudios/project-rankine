@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.blocks.FloodGateBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.recipe.TreetappingRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -21,13 +22,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.TREE_TAP_TILE;
-
 public class TreeTapTile extends TileEntity implements ITickableTileEntity {
     FluidTank outputTank = new FluidTank(1000);
 
     public TreeTapTile() {
-        super(TREE_TAP_TILE);
+        super(RankineTileEntities.TREE_TAP.get());
     }
 
     public void tick() {

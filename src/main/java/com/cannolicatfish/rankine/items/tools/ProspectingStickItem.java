@@ -38,7 +38,7 @@ public class ProspectingStickItem extends Item {
                 for (int i = 1; i < pos.getY(); ++i) {
                     Block target = worldIn.getBlockState(pos.down(i)).getBlock();
                     if (VanillaIntegration.oreNuggetMap.containsKey(target) && player != null && !worldIn.isRemote()) {
-                        player.sendStatusMessage(new TranslationTextComponent("item.rankine.prospecting_stick_cobbles.message", target.getTranslatedName()), true);
+                        player.sendStatusMessage(new TranslationTextComponent("item.rankine.prospecting_stick_cobbles.message", new TranslationTextComponent(target.getTranslationKey()).getString()), true);
                         if (this.isDamageable() && !worldIn.isRemote()) {
                             context.getItem().damageItem(1, player, (p_219998_1_) -> {
                                 p_219998_1_.sendBreakAnimation(context.getHand());

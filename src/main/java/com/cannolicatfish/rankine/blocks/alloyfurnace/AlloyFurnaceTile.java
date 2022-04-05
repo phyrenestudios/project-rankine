@@ -1,11 +1,10 @@
 package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
-import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,10 +32,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
-
-import java.util.*;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.ALLOY_FURNACE_TILE;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
@@ -46,7 +45,7 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
     private static final int[] SLOTS_BACK = new int[]{4,5};
     private static final int[] SLOTS_DOWN = new int[]{8};
     public AlloyFurnaceTile() {
-        super(ALLOY_FURNACE_TILE);
+        super(RankineTileEntities.ALLOY_FURNACE.get());
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
     private boolean recipeMode = false;

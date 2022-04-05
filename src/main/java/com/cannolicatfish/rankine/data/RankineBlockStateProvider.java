@@ -702,10 +702,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#side").cullface(Direction.DOWN).end()
                 .end()).addModel();
 
+        ModelFile STUMP = models().withExistingParent("stump0", modLoc("block/template_stump")).texture("side", getBlockRSL("stump_side0")).texture("top", getBlockRSL("stump_top0"));
         getVariantBuilder(RankineBlocks.STUMP.get())
-                .partialState().with(StumpBlock.AGE, 0).modelForState().modelFile(models().withExistingParent("stump0", modLoc("block/template_stump")).texture("side", getBlockRSL("stump_side0")).texture("top", getBlockRSL("stump_top0"))).addModel()
-                .partialState().with(StumpBlock.AGE, 1).modelForState().modelFile(models().withExistingParent("stump1", modLoc("block/template_stump")).texture("side", getBlockRSL("stump_side1")).texture("top", getBlockRSL("stump_top1"))).addModel()
-                .partialState().with(StumpBlock.AGE, 2).modelForState().modelFile(models().withExistingParent("stump2", modLoc("block/template_stump")).texture("side", getBlockRSL("stump_side2")).texture("top", getBlockRSL("stump_top2"))).addModel();
+                .partialState().with(StumpBlock.AGE, 0).modelForState().modelFile(STUMP).rotationY(0).nextModel().modelFile(STUMP).rotationY(90).nextModel().modelFile(STUMP).rotationY(180).nextModel().modelFile(STUMP).rotationY(270).addModel()
+                .partialState().with(StumpBlock.AGE, 1).modelForState().modelFile(STUMP).rotationY(0).nextModel().modelFile(STUMP).rotationY(90).nextModel().modelFile(STUMP).rotationY(180).nextModel().modelFile(STUMP).rotationY(270).addModel()
+                .partialState().with(StumpBlock.AGE, 2).modelForState().modelFile(STUMP).rotationY(0).nextModel().modelFile(STUMP).rotationY(90).nextModel().modelFile(STUMP).rotationY(180).nextModel().modelFile(STUMP).rotationY(270).addModel();
 
         getVariantBuilder(RankineBlocks.SOD_BLOCK.get())
                 .partialState().modelForState().modelFile(models().withExistingParent(RankineBlocks.SOD_BLOCK.get().getRegistryName().getPath(), mcLoc("block/block"))
@@ -721,10 +722,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .end()).addModel();
 
 
-
-
-
-
+        for (Block SIGN : RankineLists.WOODEN_SIGNS) {
+            Block PLANK = RankineLists.PLANKS.get((int) Math.floor(RankineLists.WOODEN_SIGNS.indexOf(SIGN)/2D));
+            signBlock(SIGN, getBlockRSL(PLANK.getRegistryName().getPath()));
+        }
 
     }
 
@@ -741,6 +742,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(name, mcLoc("block/block")).texture("particle", getBlockRSL(name+"_still"))).addModel();
     }
 
+    public void signBlock(Block blk, ResourceLocation plank) {
+        String name = blk.getRegistryName().getPath();
+        getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(name, modLoc("block/template_sign")).texture("particle", plank)).addModel();
+    }
 
     public void cobble(Block BLK) {
         String PATH = BLK.getRegistryName().getPath();

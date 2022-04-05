@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
-import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.packets.FluidStackPacket;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
@@ -28,8 +28,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.MIXING_BARREL_CONTAINER;
-
 public class MixingBarrelContainer extends Container {
     private final IInventory furnaceInventory;
     private TileEntity tileEntity;
@@ -45,7 +43,7 @@ public class MixingBarrelContainer extends Container {
 
     }
     public MixingBarrelContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray furnaceData) {
-        super(MIXING_BARREL_CONTAINER, windowId);
+        super(RankineContainers.MIXING_BARREL_CONTAINER.get(), windowId);
         tileEntity = world.getTileEntity(pos);
         assertInventorySize(furnaceInventoryIn, 5);
         assertIntArraySize(furnaceData, 4);

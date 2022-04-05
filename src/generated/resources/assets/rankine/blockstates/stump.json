@@ -1,13 +1,55 @@
 {
   "variants": {
-    "age=0": {
-      "model": "rankine:block/stump0"
-    },
-    "age=1": {
-      "model": "rankine:block/stump1"
-    },
-    "age=2": {
-      "model": "rankine:block/stump2"
-    }
+    "age=0": [
+      {
+        "model": "rankine:block/stump0"
+      },
+      {
+        "model": "rankine:block/stump0",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/stump0",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/stump0",
+        "y": 270
+      }
+    ],
+    "age=1": [
+      {
+        "model": "rankine:block/stump0"
+      },
+      {
+        "model": "rankine:block/stump0",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/stump0",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/stump0",
+        "y": 270
+      }
+    ],
+    "age=2": [
+      {
+        "model": "rankine:block/stump0"
+      },
+      {
+        "model": "rankine:block/stump0",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/stump0",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/stump0",
+        "y": 270
+      }
+    ]
   }
 }

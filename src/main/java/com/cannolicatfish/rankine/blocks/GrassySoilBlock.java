@@ -49,9 +49,9 @@ public class GrassySoilBlock extends GrassBlock {
             } else {
                 worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
             }
-        } else if (random.nextFloat() < Config.GENERAL.PODZOL_GROW_CHANCE.get() && worldIn.getBlockState(pos.up()).getBlock() instanceof LeafLitterBlock) {
-            worldIn.setBlockState(pos,RankineLists.PODZOL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(state.getBlock())).getDefaultState(),2);
-            worldIn.removeBlock(pos.up(),false);
+        } else if (random.nextFloat() < Config.GENERAL.PODZOL_GROW_CHANCE.get() && worldIn.getBlockState(pos.up()).getBlock() instanceof LeafLitterBlock && worldIn.getLightSubtracted(pos.up(), 0) <= 9) {
+            worldIn.setBlockState(pos,RankineLists.PODZOL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(state.getBlock())).getDefaultState(),3);
+            worldIn.destroyBlock(pos.up(),false);
         } else if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get()) {
             Block ceillingBlock = Blocks.AIR;
             int i = 1;

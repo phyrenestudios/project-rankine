@@ -1,14 +1,13 @@
 package com.cannolicatfish.rankine.blocks.particleaccelerator;
 
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.PARTICLE_ACCELERATOR_TILE;
 
 public class ParticleAcceleratorTile extends TileEntity implements ITickableTileEntity {
 
     public ParticleAcceleratorTile() {
-        super(PARTICLE_ACCELERATOR_TILE);
+        super(RankineTileEntities.PARTICLE_ACCELERATOR.get());
     }
 
     public void tick() {

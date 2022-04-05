@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:bamboo_sign"
+    ]
+  },
+  "criteria": {
+    "has_plank": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bamboo_planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:bamboo_sign"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_plank",
+      "has_the_recipe"
+    ]
+  ]
+}

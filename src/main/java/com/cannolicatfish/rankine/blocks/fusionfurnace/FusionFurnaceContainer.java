@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
-import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.packets.FluidStackPacket;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.items.BatteryItem;
@@ -21,14 +22,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.FUSION_FURNACE_CONTAINER;
 
 public class FusionFurnaceContainer extends Container {
     private final IInventory furnaceInventory;
@@ -44,7 +42,7 @@ public class FusionFurnaceContainer extends Container {
 
     }
     public FusionFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray furnaceData) {
-        super(FUSION_FURNACE_CONTAINER, windowId);
+        super(RankineContainers.FUSION_FURNACE_CONTAINER.get(), windowId);
         tileEntity = world.getTileEntity(pos);
         assertInventorySize(furnaceInventoryIn, 7);
         assertIntArraySize(furnaceData, 4);

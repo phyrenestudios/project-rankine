@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.gyratorycrusher;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.CrushingHeadItem;
@@ -23,8 +24,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.GYRATORY_CRUSHER_CONTAINER;
-
 public class GyratoryCrusherContainer extends Container {
     private TileEntity tileEntity;
     private final IInventory furnaceInventory;
@@ -38,7 +37,7 @@ public class GyratoryCrusherContainer extends Container {
     }
 
     public GyratoryCrusherContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn,  IIntArray furnaceData) {
-        super(GYRATORY_CRUSHER_CONTAINER, windowId);
+        super(RankineContainers.GYRATORY_CRUSHER_CONTAINER.get(), windowId);
         tileEntity = world.getTileEntity(pos);
         assertInventorySize(furnaceInventoryIn, 9);
         assertIntArraySize(furnaceData, 5);

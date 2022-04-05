@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.gasbottler;
 
 import com.cannolicatfish.rankine.blocks.GasBlock;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -26,8 +27,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.GAS_CONDENSER_TILE;
 
 
 public class GasBottlerTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
@@ -69,7 +68,7 @@ public class GasBottlerTile extends TileEntity implements ISidedInventory, ITick
     };
 
     public GasBottlerTile() {
-        super(GAS_CONDENSER_TILE);
+        super(RankineTileEntities.GAS_CONDENSER.get());
     }
 
     @Override
