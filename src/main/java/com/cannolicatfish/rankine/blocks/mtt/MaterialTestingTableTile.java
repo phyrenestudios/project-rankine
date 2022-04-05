@@ -1,12 +1,9 @@
 package com.cannolicatfish.rankine.blocks.mtt;
 
-import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
 import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.items.BatteryItem;
-import com.cannolicatfish.rankine.items.GasBottleItem;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -14,28 +11,23 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.GlassBottleItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.MATERIAL_TESTING_TABLE_TILE;
 
 public class MaterialTestingTableTile extends TileEntity implements ISidedInventory, INamedContainerProvider, ITickableTileEntity {
     protected NonNullList<ItemStack> items = NonNullList.withSize(14, ItemStack.EMPTY);
     private static final int[] SLOTS_UP = new int[]{0,1};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3,4,5,6,7,8,9,10,11,12,13};
     public MaterialTestingTableTile() {
-        super(MATERIAL_TESTING_TABLE_TILE);
+        super(RankineTileEntities.MATERIAL_TESTING_TABLE.get());
     }
 
     @Override

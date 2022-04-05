@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -23,8 +24,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.PISTON_CRUSHER_CONTAINER;
-
 public class PistonCrusherContainer extends Container {
     private TileEntity tileEntity;
     private final IInventory furnaceInventory;
@@ -38,7 +37,7 @@ public class PistonCrusherContainer extends Container {
     }
 
     public PistonCrusherContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn,  IIntArray furnaceData) {
-        super(PISTON_CRUSHER_CONTAINER, windowId);
+        super(RankineContainers.PISTON_CRUSHER_CONTAINER.get(), windowId);
         tileEntity = world.getTileEntity(pos);
         assertInventorySize(furnaceInventoryIn, 5);
         assertIntArraySize(furnaceData, 4);

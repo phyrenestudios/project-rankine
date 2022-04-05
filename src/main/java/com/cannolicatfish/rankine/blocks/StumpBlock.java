@@ -37,7 +37,7 @@ public class StumpBlock extends Block implements IWaterLoggable {
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return makeCuboidShape(1,0,1,15,6,15);
+        return makeCuboidShape(2,0,2,14,6,14);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class StumpBlock extends Block implements IWaterLoggable {
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (rand.nextFloat() < worldIn.getBiome(pos).getDownfall()/50.0f) {
+        if (rand.nextFloat() < worldIn.getBiome(pos).getDownfall()/40.0f) {
             if (state.get(AGE) != 2) {
                 worldIn.setBlockState(pos, state.with(AGE, state.get(AGE) + 1), 2);
             } else {

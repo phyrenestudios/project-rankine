@@ -32,7 +32,7 @@ public class OreDetectorItem extends Item {
 
             if (!worldIn.isRemote()) {
                 BlockState ORE = worldIn.getBlockState(b.get());
-                player.sendStatusMessage(new TranslationTextComponent("item.rankine.ore_detector.message", ORE.getBlock().getTranslatedName(), Integer.toString(ORE.getBlock().getHarvestLevel(ORE)), b.get().getX(), b.get().getY(), b.get().getZ()), false);
+                player.sendStatusMessage(new TranslationTextComponent("item.rankine.ore_detector.message", new TranslationTextComponent(ORE.getBlock().getTranslationKey()).getString(), Integer.toString(ORE.getBlock().getHarvestLevel(ORE)), b.get().getX(), b.get().getY(), b.get().getZ()), false);
 
                 context.getItem().damageItem(1, player, (p) -> {
                     p.sendBreakAnimation(context.getHand());

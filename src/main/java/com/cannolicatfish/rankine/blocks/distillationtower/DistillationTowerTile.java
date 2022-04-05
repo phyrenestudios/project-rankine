@@ -1,9 +1,6 @@
 package com.cannolicatfish.rankine.blocks.distillationtower;
 
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.init.RankineTags;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.recipe.AirDistillationRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -19,12 +16,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.*;
+import static com.cannolicatfish.rankine.init.RankineBlocks.AIR_DISTILLATION_PACKING;
+import static com.cannolicatfish.rankine.init.RankineBlocks.GAS_VENT;
 
 public class DistillationTowerTile extends TileEntity implements ITickableTileEntity {
     private int proccessTime;
     public DistillationTowerTile() {
-        super(DISTILLATION_TOWER_TILE);
+        super(RankineTileEntities.DISTILLATION_TOWER.get());
     }
 
     @Override

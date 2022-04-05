@@ -109,6 +109,8 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         for (Block blk : RankineLists.SAPLINGS) {
             getOrCreateBuilder(BlockTags.SAPLINGS).add(blk);
         }
+        getOrCreateBuilder(BlockTags.SMALL_FLOWERS).add(RankineBlocks.CRIMSON_CLOVER.get(),RankineBlocks.RED_CLOVER.get(),RankineBlocks.YELLOW_CLOVER.get(),RankineBlocks.WHITE_CLOVER.get());
+
         for (Block blk : RankineLists.TALL_FLOWERS) {
             getOrCreateBuilder(BlockTags.TALL_FLOWERS).add(blk);
         }
@@ -619,6 +621,11 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         }
         getOrCreateBuilder(RankineTags.Blocks.MOVEMENT_MODIFIERS).addTags(RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN,RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW,RankineTags.Blocks.MOVEMENT_MODIFIERS_WOOD,RankineTags.Blocks.MOVEMENT_MODIFIERS_DIRT,RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE,RankineTags.Blocks.MOVEMENT_MODIFIERS_MUD,RankineTags.Blocks.MOVEMENT_MODIFIERS_PATHS,RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND,RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE,RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED);
 
+        getOrCreateBuilder(BlockTags.createOptional(new ResourceLocation("twilight_forest", "portal/decoration"))).add(RankineBlocks.STINGING_NETTLE.get()).addTag(RankineTags.Blocks.LEAF_LITTERS);
+        getOrCreateBuilder(BlockTags.createOptional(new ResourceLocation("twilight_forest", "portal/edge"))).add(RankineBlocks.FULGURITE.get(),RankineBlocks.TILLED_SOIL.get());
+        for (Block blk : Stream.of(RankineLists.GRASS_BLOCKS,RankineLists.PODZOL_BLOCKS,RankineLists.MYCELIUM_BLOCKS,RankineLists.MUD_BLOCKS,RankineLists.COARSE_SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            getOrCreateBuilder(BlockTags.createOptional(new ResourceLocation("twilight_forest", "portal/edge"))).add(blk);
+        }
     }
 
 }

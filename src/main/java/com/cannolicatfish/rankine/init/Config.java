@@ -739,8 +739,6 @@ public class Config {
         public final ForgeConfigSpec.IntValue MAGNET_RANGE;
         public final ForgeConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
         public final ForgeConfigSpec.IntValue BEEHIVE_OVEN_SKYLIGHT;
-        public final ForgeConfigSpec.IntValue LASER_QUARRY_RANGE;
-        public final ForgeConfigSpec.IntValue LASER_QUARRY_SPEED;
         public final ForgeConfigSpec.IntValue GAS_BOTTLER_SPEED;
         public final ForgeConfigSpec.IntValue GYRATORY_CRUSHER_POWER;
         public final ForgeConfigSpec.IntValue INDUCTION_FURNACE_POWER;
@@ -772,10 +770,6 @@ public class Config {
                         .define("electromagnetMaterialReq",true);
                 BEEHIVE_OVEN_SKYLIGHT = b.comment("If disabled, the beehive ovens will not require sky access.")
                         .defineInRange("beehiveOvenAirHeight", 16, 0, 400);
-                LASER_QUARRY_RANGE = b.comment("Max range of the laser quarry. Larger numbers may cause lag. Set to 0 to disable functionality.")
-                        .defineInRange("laserQuarryRange", 31, 0, 63);
-                LASER_QUARRY_SPEED = b.comment("Max speed of the laser quarry in ticks.")
-                        .defineInRange("laserQuarrySpeed", 20, 1, 300);
                 GYRATORY_CRUSHER_POWER = b.comment("Defines the power requirement for one process in the gyratory crusher (multiplied by the tier of the current crushing head).")
                         .defineInRange("gyratoryCrusherPower", 1, 0, 10000);
                 INDUCTION_FURNACE_POWER = b.comment("Defines the power requirement for one process in the induction furnace.")

@@ -84,18 +84,18 @@ public class ClientProxy implements IProxy {
     }
     @Override
     public void init() {
-        ScreenManager.registerFactory(RankineBlocks.MIXING_BARREL_CONTAINER, MixingBarrelScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.ALLOY_FURNACE_CONTAINER, AlloyFurnaceScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.PISTON_CRUSHER_CONTAINER, PistonCrusherScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.EVAPORATION_TOWER_CONTAINER, EvaporationTowerScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.GAS_CONDENSER_CONTAINER, GasBottlerScreen::new);
-        ScreenManager.registerFactory(RankineItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.TEMPLATE_TABLE_CONTAINER, TemplateTableScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.MATERIAL_TESTING_TABLE_CONTAINER, MaterialTestingTableScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.CRUCIBLE_CONTAINER, CrucibleScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.FUSION_FURNACE_CONTAINER, FusionFurnaceScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.GYRATORY_CRUSHER_CONTAINER, GyratoryCrusherScreen::new);
+        ScreenManager.registerFactory(RankineContainers.MIXING_BARREL_CONTAINER.get(), MixingBarrelScreen::new);
+        ScreenManager.registerFactory(RankineContainers.ALLOY_FURNACE_CONTAINER.get(), AlloyFurnaceScreen::new);
+        ScreenManager.registerFactory(RankineContainers.PISTON_CRUSHER_CONTAINER.get(), PistonCrusherScreen::new);
+        ScreenManager.registerFactory(RankineContainers.EVAPORATION_TOWER_CONTAINER.get(), EvaporationTowerScreen::new);
+        ScreenManager.registerFactory(RankineContainers.GAS_CONDENSER_CONTAINER.get(), GasBottlerScreen::new);
+        ScreenManager.registerFactory(RankineContainers.ELEMENT_INDEXER_CONTAINER.get(), ElementIndexerScreen::new);
+        ScreenManager.registerFactory(RankineContainers.TEMPLATE_TABLE_CONTAINER.get(), TemplateTableScreen::new);
+        ScreenManager.registerFactory(RankineContainers.MATERIAL_TESTING_TABLE_CONTAINER.get(), MaterialTestingTableScreen::new);
+        ScreenManager.registerFactory(RankineContainers.CRUCIBLE_CONTAINER.get(), CrucibleScreen::new);
+        ScreenManager.registerFactory(RankineContainers.INDUCTION_FURNACE_CONTAINER.get(), InductionFurnaceScreen::new);
+        ScreenManager.registerFactory(RankineContainers.FUSION_FURNACE_CONTAINER.get(), FusionFurnaceScreen::new);
+        ScreenManager.registerFactory(RankineContainers.GYRATORY_CRUSHER_CONTAINER.get(), GyratoryCrusherScreen::new);
 
         addCutout(RankineLists.WOODEN_DOORS);
         addCutout(RankineLists.METAL_DOORS);

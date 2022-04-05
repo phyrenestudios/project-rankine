@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.gasbottler;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -20,8 +21,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.GAS_CONDENSER_CONTAINER;
-
 public class GasBottlerContainer extends Container {
     private TileEntity tileEntity;
     private PlayerEntity playerEntity;
@@ -33,7 +32,7 @@ public class GasBottlerContainer extends Container {
 
     }
     public GasBottlerContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray towerData) {
-        super(GAS_CONDENSER_CONTAINER, windowId);
+        super(RankineContainers.GAS_CONDENSER_CONTAINER.get(), windowId);
         tileEntity = world.getTileEntity(pos);
         assertInventorySize(furnaceInventoryIn, 2);
         assertIntArraySize(towerData, 2);

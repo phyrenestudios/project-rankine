@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks.beehiveoven;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;
@@ -18,13 +19,11 @@ import net.minecraft.world.World;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.BEEHIVE_OVEN_TILE;
-
 public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
     private int proccessTime;
     private int nextRecipe;
     public BeehiveOvenTile() {
-        super(BEEHIVE_OVEN_TILE);
+        super(RankineTileEntities.BEEHIVE_OVEN.get());
     }
 
     @Override

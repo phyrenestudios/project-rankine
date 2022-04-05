@@ -652,6 +652,7 @@ public class RankineRecipesProvider extends RecipeProvider {
             Block WOODEN_FENCE = RankineLists.WOODEN_FENCES.get(RankineLists.PLANKS.indexOf(PLANK));
             Block WOODEN_FENCE_GATE = RankineLists.WOODEN_FENCE_GATES.get(RankineLists.PLANKS.indexOf(PLANK));
             Block WOODEN_BOOKSHELVES = RankineLists.WOODEN_BOOKSHELVES.get(RankineLists.PLANKS.indexOf(PLANK));
+            Item SIGN = RankineLists.WOODEN_SIGN_ITEMS.get(RankineLists.PLANKS.indexOf(PLANK));
             Item WOODEN_BOAT = RankineLists.WOODEN_BOATS.get(RankineLists.PLANKS.indexOf(PLANK));
             slab(consumer, WOODEN_SLAB.asItem(), PLANK.asItem(), "wooden_slab");
             stairs(consumer, WOODEN_STAIRS.asItem(), PLANK.asItem(), "wooden_stairs");
@@ -661,6 +662,7 @@ public class RankineRecipesProvider extends RecipeProvider {
             fence(consumer, WOODEN_FENCE.asItem(), PLANK.asItem(), "wooden_fence",  "has_plank", PLANK.asItem());
             fenceGate(consumer, WOODEN_FENCE_GATE.asItem(), PLANK.asItem(), "wooden_fence_gate",  "has_plank", PLANK.asItem());
             bookshelf(consumer, WOODEN_BOOKSHELVES.asItem(), PLANK.asItem(), "wooden_bookshelves",  "has_plank", PLANK.asItem());
+            sign(consumer, SIGN, PLANK.asItem(), "signs",  "has_plank", PLANK.asItem());
             boat(consumer, WOODEN_BOAT, PLANK.asItem(), "boat",  "has_plank", PLANK.asItem());
             ShapelessRecipeBuilder.shapelessRecipe(WOODEN_BUTTON).addIngredient(PLANK).setGroup("wooden_button").addCriterion("has_ingredient", hasItem(PLANK)).build(consumer);
             
@@ -1186,7 +1188,17 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer);
     }
-
+    private void sign(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
+        ShapedRecipeBuilder.shapedRecipe(output, 3)
+                .patternLine("###")
+                .patternLine("###")
+                .patternLine(" S ")
+                .key('#', input)
+                .key('S', Tags.Items.RODS_WOODEN)
+                .setGroup(group)
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer);
+    }
     private void led(Consumer<IFinishedRecipe> consumer, Item output, ITag<Item> dye) {
         ShapedRecipeBuilder.shapedRecipe(output, 4)
                 .patternLine("DRD")

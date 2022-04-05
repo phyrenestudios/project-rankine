@@ -2,11 +2,9 @@ package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.items.BatteryItem;
-import com.cannolicatfish.rankine.items.CrushingHeadItem;
 import com.cannolicatfish.rankine.items.GasBottleItem;
-import com.cannolicatfish.rankine.recipe.CrushingRecipe;
-import com.cannolicatfish.rankine.recipe.FusionFurnaceRecipe;
 import com.cannolicatfish.rankine.recipe.FusionFurnaceRecipe;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
@@ -24,8 +22,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -36,11 +32,8 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 import javax.annotation.Nullable;
-
 import java.util.Arrays;
 import java.util.List;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.FUSION_FURNACE_TILE;
 
 public class FusionFurnaceTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
     FluidTank inputTank = new FluidTank(64000);
@@ -51,7 +44,7 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
     private final int powerCost = Config.MACHINES.GYRATORY_CRUSHER_POWER.get();
     public FusionFurnaceTile() {
-        super(FUSION_FURNACE_TILE);
+        super(RankineTileEntities.FUSION_FURNACE.get());
     }
     private int burnTime;
     private int currentBurnTime;

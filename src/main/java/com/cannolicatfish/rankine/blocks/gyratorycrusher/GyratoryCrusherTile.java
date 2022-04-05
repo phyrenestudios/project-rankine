@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.gyratorycrusher;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.CrushingHeadItem;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
@@ -28,10 +29,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
-
 import java.util.List;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.GYRATORY_CRUSHER_TILE;
 
 public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
     private static final int[] SLOTS_UP = new int[]{0};
@@ -39,7 +37,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
     private static final int[] SLOTS_HORIZONTAL = new int[]{1,2};
     private final int powerCost = Config.MACHINES.GYRATORY_CRUSHER_POWER.get();
     public GyratoryCrusherTile() {
-        super(GYRATORY_CRUSHER_TILE);
+        super(RankineTileEntities.GYRATORY_CRUSHER.get());
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
     private int burnTime;

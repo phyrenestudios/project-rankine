@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks.crucible;
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,15 +32,13 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.CRUCIBLE_TILE;
-
 public class CrucibleTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
     private static final int[] SLOTS_UP = new int[]{0,1};
     private static final int[] SLOTS_DOWN = new int[]{4, 5};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
     public CrucibleTile() {
-        super(CRUCIBLE_TILE);
+        super(RankineTileEntities.CRUCIBLE.get());
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(6, ItemStack.EMPTY);
     private int cookTime;
