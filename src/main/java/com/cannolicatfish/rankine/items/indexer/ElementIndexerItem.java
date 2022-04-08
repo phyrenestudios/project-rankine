@@ -13,18 +13,11 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
-import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-
-import net.minecraft.world.item.Item.Properties;
 
 public class ElementIndexerItem extends Item {
     private static final ElementIndexerContainerProvider INSTANCE = new ElementIndexerContainerProvider();

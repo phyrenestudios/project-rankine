@@ -82,12 +82,11 @@ public class GasBottlerTile extends BlockEntity implements WorldlyContainer, Men
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         ContainerHelper.saveAllItems(compound, this.items);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
-        return compound;
     }
 
     public void tick() {

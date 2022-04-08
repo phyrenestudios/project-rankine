@@ -9,6 +9,7 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.JamRecipe;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.data.*;
@@ -478,16 +479,16 @@ public class RankineRecipesProvider extends RecipeProvider {
         }
         for (Block MAT : RankineLists.FIBER_MAT) {
             if (RankineLists.FIBER_MAT.indexOf(MAT)==0) continue;
-            Tags.IOptionalNamedTag<Item> DYE = RankineLists.DYES.get(RankineLists.FIBER_MAT.indexOf(MAT)-1);
+            TagKey<Item> DYE = RankineLists.DYES.get(RankineLists.FIBER_MAT.indexOf(MAT)-1);
             ShapelessRecipeBuilder.shapeless(MAT).requires(RankineItems.FIBER_MAT.get()).requires(DYE).unlockedBy("has_ingredient", has(RankineItems.FIBER_MAT.get())).save(consumer, "rankine:"+MAT.getRegistryName().getPath()+"_from_dye");
         }
         for (Block BLOCK : RankineLists.FIBER_BLOCK) {
             if (RankineLists.FIBER_BLOCK.indexOf(BLOCK)==0) continue;
-            Tags.IOptionalNamedTag<Item> DYE = RankineLists.DYES.get(RankineLists.FIBER_BLOCK.indexOf(BLOCK)-1);
+            TagKey<Item> DYE = RankineLists.DYES.get(RankineLists.FIBER_BLOCK.indexOf(BLOCK)-1);
             ShapelessRecipeBuilder.shapeless(BLOCK).requires(RankineItems.FIBER_BLOCK.get()).requires(DYE).unlockedBy("has_ingredient", has(RankineItems.FIBER_BLOCK.get())).save(consumer, "rankine:"+BLOCK.getRegistryName().getPath()+"_from_dye");
         }
         for (Block BLOCK : RankineLists.LEDS) {
-            Tags.IOptionalNamedTag<Item> DYE = RankineLists.DYES.get(RankineLists.LEDS.indexOf(BLOCK));
+            TagKey<Item> DYE = RankineLists.DYES.get(RankineLists.LEDS.indexOf(BLOCK));
             led(consumer, BLOCK.asItem(), DYE);
         }
 
@@ -998,7 +999,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void slab(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn) {
+    private void slab(Consumer<FinishedRecipe> consumer, Item output, TagKey<Item> tagIn) {
         ShapedRecipeBuilder.shaped(output, 6)
                 .pattern("###")
                 .define('#', tagIn)
@@ -1013,7 +1014,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void slab(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn, String group) {
+    private void slab(Consumer<FinishedRecipe> consumer, Item output, TagKey<Item> tagIn, String group) {
         ShapedRecipeBuilder.shaped(output, 6)
                 .pattern("###")
                 .define('#', tagIn)
@@ -1030,7 +1031,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void stairs(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn) {
+    private void stairs(Consumer<FinishedRecipe> consumer, Item output, TagKey<Item> tagIn) {
         ShapedRecipeBuilder.shaped(output, 4)
                 .pattern("#  ")
                 .pattern("## ")
@@ -1049,7 +1050,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void stairs(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn, String group) {
+    private void stairs(Consumer<FinishedRecipe> consumer, Item output, TagKey<Item> tagIn, String group) {
         ShapedRecipeBuilder.shaped(output, 4)
                 .pattern("#  ")
                 .pattern("## ")
@@ -1067,7 +1068,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void wall(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn) {
+    private void wall(Consumer<FinishedRecipe> consumer, Item output, TagKey<Item> tagIn) {
         ShapedRecipeBuilder.shaped(output, 6)
                 .pattern("###")
                 .pattern("###")
@@ -1084,7 +1085,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void wall(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn, String group) {
+    private void wall(Consumer<FinishedRecipe> consumer, Item output, TagKey<Item> tagIn, String group) {
         ShapedRecipeBuilder.shaped(output, 6)
                 .pattern("###")
                 .pattern("###")
@@ -1100,7 +1101,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void pressurePlate(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn) {
+    private void pressurePlate(Consumer<FinishedRecipe> consumer, Item output, TagKey<Item> tagIn) {
         ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("##")
                 .define('#', tagIn)
@@ -1115,7 +1116,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .unlockedBy("has_ingredient", has(input))
                 .save(consumer);
     }
-    private void pressurePlate(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> tagIn, String group) {
+    private void pressurePlate(Consumer<FinishedRecipe> consumer, Item output, TagKey<Item> tagIn, String group) {
         ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("##")
                 .define('#', tagIn)
@@ -1194,7 +1195,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .save(consumer);
     }
 
-    private void led(Consumer<FinishedRecipe> consumer, Item output, Tag<Item> dye) {
+    private void led(Consumer<FinishedRecipe> consumer, Item output, TagKey<Item> dye) {
         ShapedRecipeBuilder.shaped(output, 4)
                 .pattern("DRD")
                 .pattern("RSR")
@@ -1726,7 +1727,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .build(consumer);
     }
 
-    private void OneToXTag(Consumer<FinishedRecipe> consumer, Item output, String group, Tag<Item> input, int count, String triggerName, Item trigger) {
+    private void OneToXTag(Consumer<FinishedRecipe> consumer, Item output, String group, TagKey<Item> input, int count, String triggerName, Item trigger) {
         ShapelessRecipeBuilder.shapeless(output, count)
                 .requires(input)
                 .group(group)
@@ -1759,7 +1760,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .save(consumer);
     }
 
-    private void ladder(Consumer<FinishedRecipe> consumer, Item output, int count, Tag<Item> input) {
+    private void ladder(Consumer<FinishedRecipe> consumer, Item output, int count, TagKey<Item> input) {
         ShapedRecipeBuilder.shaped(output, count)
                 .pattern("# #")
                 .pattern("###")

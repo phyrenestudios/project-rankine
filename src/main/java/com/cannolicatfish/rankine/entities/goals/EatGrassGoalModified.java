@@ -13,7 +13,7 @@ import java.util.EnumSet;
 import java.util.function.Predicate;
 
 public class EatGrassGoalModified extends Goal {
-    private static final Predicate<BlockState> IS_GRASS = (blockState -> RankineTags.Blocks.GRASS_BLOCKS.contains(blockState.getBlock()));
+    private static final Predicate<BlockState> IS_GRASS = (blockState -> blockState.is(RankineTags.Blocks.GRASS_BLOCKS));
     /** The entity owner of this AITask */
     private final Mob grassEaterEntity;
     /** The world the grass eater entity is eating from */

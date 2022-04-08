@@ -29,8 +29,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraftforge.fmllegacy.network.FMLPlayMessages;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.network.PlayMessages;
 
 public class SpearEntity extends AbstractArrow {
     private static final EntityDataAccessor<Byte> LOYALTY_LEVEL = SynchedEntityData.defineId(SpearEntity.class, EntityDataSerializers.BYTE);
@@ -63,7 +63,7 @@ public class SpearEntity extends AbstractArrow {
         super(e, x, y, z, worldIn);
     }
     @OnlyIn(Dist.CLIENT)
-    public SpearEntity(FMLPlayMessages.SpawnEntity spawnEntity, Level world, EntityType<SpearEntity> e, ResourceLocation type) {
+    public SpearEntity(PlayMessages.SpawnEntity spawnEntity, Level world, EntityType<SpearEntity> e, ResourceLocation type) {
         super(e, world);
         this.type = type;
     }

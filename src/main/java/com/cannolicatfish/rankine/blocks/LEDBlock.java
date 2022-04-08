@@ -33,7 +33,7 @@ public class LEDBlock extends Block {
             boolean flag = state.getValue(LIT);
             if (flag != worldIn.hasNeighborSignal(pos)) {
                 if (flag) {
-                    worldIn.getBlockTicks().scheduleTick(pos, this, 4);
+                    worldIn.getBlockTicks().willTickThisTick(pos, this);
                 } else {
                     worldIn.setBlock(pos, state.cycle(LIT), 2);
                 }

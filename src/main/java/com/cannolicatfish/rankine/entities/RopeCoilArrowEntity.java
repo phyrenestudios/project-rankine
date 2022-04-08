@@ -13,8 +13,8 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fmllegacy.network.FMLPlayMessages;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.network.PlayMessages;
 
 public class RopeCoilArrowEntity extends AbstractArrow {
 
@@ -23,7 +23,7 @@ public class RopeCoilArrowEntity extends AbstractArrow {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public RopeCoilArrowEntity(FMLPlayMessages.SpawnEntity spawnEntity, Level world, EntityType<RopeCoilArrowEntity> e) {
+    public RopeCoilArrowEntity(PlayMessages.SpawnEntity spawnEntity, Level world, EntityType<RopeCoilArrowEntity> e) {
         super(e, world);
     }
 

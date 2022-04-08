@@ -26,7 +26,7 @@ public class GiveTagCommand {
         Item item = itemIn.getItem();
 
         source.sendSuccess(new TranslatableComponent(item.getDescriptionId()), true);
-        source.sendSuccess(new TextComponent(item.getTags().toString()),true);
+        source.sendSuccess(new TextComponent(itemIn.createItemStack(1,true).getTags().toString()),true);
 
         return 1;
     }

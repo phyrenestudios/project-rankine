@@ -36,7 +36,7 @@ import net.minecraft.world.item.UseAnim;
 
 public class BlunderbussItem extends ProjectileWeaponItem implements Vanishable {
     public static final Predicate<ItemStack> CANNONBALLS = (p_220002_0_) -> {
-        return RankineTags.Items.CANNONBALLS.contains(p_220002_0_.getItem());
+        return p_220002_0_.is(RankineTags.Items.CANNONBALLS);
     };
     public BlunderbussItem(Properties properties) {
         super(properties);

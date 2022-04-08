@@ -38,10 +38,9 @@ public class CharcoalPitTile extends BlockEntity {
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         compound.putInt("ProcessTime", this.proccessTime);
-        return compound;
     }
 
     public void tick() {
@@ -96,7 +95,7 @@ public class CharcoalPitTile extends BlockEntity {
             for (int i = 0; i<=k; ++i) {
                 for (BlockPos b : BlockPos.betweenClosed(worldPosition.offset(-RADIUS,i,-RADIUS),worldPosition.offset(RADIUS,i,RADIUS))) {
                     if (validLogs.contains(b.immutable())) {
-                        int layerCount = logLayerCount(level,level.getBlockState(b).getBlock());
+                        int layerCount = logLayerCount(level,level.getBlockState(b));
                         if (layerCount == 0) continue;
                         int j = 1;
                         while (WorldgenUtils.isGasOrAir(level,b.below(j)) && j <= i) {
@@ -127,13 +126,14 @@ public class CharcoalPitTile extends BlockEntity {
         }
     }
 
-    public static int logLayerCount(Level worldIn, Block target) {
-        if (VanillaIntegration.fuelValueMap.containsKey(target.asItem())) {
-            int value = VanillaIntegration.fuelValueMap.get(target.asItem());
+    public static int logLayerCount(Level worldIn, BlockState target) {
+        Block blockTarget = target.getBlock();
+        if (VanillaIntegration.fuelValueMap.containsKey(blockTarget.asItem())) {
+            int value = VanillaIntegration.fuelValueMap.get(blockTarget.asItem());
             return (int) Math.floor(Mth.clamp(value/100D -2.0D + (worldIn.random.nextFloat() < (value%100)/100D ? 1 : 0),1,8));
-        } else if (BlockTags.LOGS_THAT_BURN.contains(target)) {
+        } else if (target.is(BlockTags.LOGS_THAT_BURN)) {
             return 2;
-        } else if (target.equals(RankineBlocks.CHARCOAL_PIT.get())) {
+        } else if (blockTarget.equals(RankineBlocks.CHARCOAL_PIT.get())) {
             return 2;
         }
         return 0;

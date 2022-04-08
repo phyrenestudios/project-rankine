@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -63,9 +64,9 @@ public class RankinePlantBlock extends BushBlock implements BonemealableBlock {
     protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
         Block block = state.getBlock();
         if (type == 7 || type == 8 || type == 10) {
-            return Tags.Blocks.DIRT.contains(block) || Tags.Blocks.SAND.contains(block) || block == RankineBlocks.DESERT_SAND.get();
+            return state.is(BlockTags.DIRT) || state.is(BlockTags.SAND) || block == RankineBlocks.DESERT_SAND.get();
         }
-        return Tags.Blocks.DIRT.contains(block);
+        return state.is(BlockTags.DIRT);
     }
 
     @Override

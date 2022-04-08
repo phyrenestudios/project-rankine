@@ -1,7 +1,8 @@
 package com.cannolicatfish.rankine.world.trees;
 
 import com.cannolicatfish.rankine.init.RankineFeatures;
-import com.cannolicatfish.rankine.world.gen.RankineBiomeFeatures;
+import com.cannolicatfish.rankine.world.gen.RankineConfiguredFeatures;
+import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -13,7 +14,7 @@ public class BlackWalnutTree extends AbstractTreeGrower {
 
     @Nullable
     @Override
-    protected ConfiguredFeature<TreeConfiguration, ?> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
-        return RankineFeatures.BLACK_WALNUT_TREE.get().configured(RankineBiomeFeatures.BLACK_WALNUT_TREE_CONFIG);
+    protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(Random randomIn, boolean p_225546_2_) {
+        return Holder.direct(RankineConfiguredFeatures.BLACK_WALNUT_TREE);
     }
 }

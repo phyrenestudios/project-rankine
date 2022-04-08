@@ -103,16 +103,14 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         compound.put("InputTank",this.inputTank.writeToNBT(new CompoundTag()));
         compound.putInt("MixTime", this.mixTime);
         compound.putInt("MixTimeTotal", this.mixTimeTotal);
         compound.putInt("RedstonePower", this.redstonePower);
         compound.putInt("NeedsRefresh", this.needsRefresh);
         ContainerHelper.saveAllItems(compound, this.items);
-
-        return compound;
     }
 
     public void tick() {

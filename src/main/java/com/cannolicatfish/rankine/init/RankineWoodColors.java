@@ -12,7 +12,7 @@ public class RankineWoodColors {
     public static final int CEDAR_WOOD = 7496010;
 
 
-    public static MaterialColor getClosestMaterialColor(int color) {
+    /*public static MaterialColor getClosestMaterialColor(int color) {
         int colorR = (color >> 16) & 0xFF;
         int colorG = (color >> 8) & 0xFF;
         int colorB = color & 0xFF;
@@ -31,5 +31,5 @@ public class RankineWoodColors {
         Double dist = dists.keySet().stream().sorted().findFirst()
                 .orElseThrow(() -> new RuntimeException("failed to find MaterialColor"));
         return dists.get(dist);
-    }
+    }*/
 }

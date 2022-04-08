@@ -39,7 +39,7 @@ public class IceMeltItem extends Item {
         if (!worldIn.isClientSide) {
             for (BlockPos b : BlockPos.betweenClosed(pos.offset(-radius, -radius, -radius), pos.offset(radius, radius, radius))) {
                 Block blk = worldIn.getBlockState(b).getBlock();
-                if (BlockTags.ICE.contains(blk) && b.distSqr(pos) <= radius*radius) {
+                if (worldIn.getBlockState(b).is(BlockTags.ICE) && b.distSqr(pos) <= radius*radius) {
                     worldIn.setBlock(b, Blocks.WATER.defaultBlockState(), 3);
                 } else if (blk.equals(Blocks.SNOW) && b.distSqr(pos) <= radius*radius) {
                     worldIn.destroyBlock(b,false);

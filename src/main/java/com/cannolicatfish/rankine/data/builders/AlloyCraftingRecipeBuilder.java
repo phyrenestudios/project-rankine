@@ -14,6 +14,7 @@ import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
 import com.cannolicatfish.rankine.data.builders.AlloyCraftingRecipeBuilder;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -86,7 +87,7 @@ public class AlloyCraftingRecipeBuilder {
     /**
      * Adds a key to the recipe pattern.
      */
-    public AlloyCraftingRecipeBuilder key(Character symbol, Tag<Item> tagIn) {
+    public AlloyCraftingRecipeBuilder key(Character symbol, TagKey<Item> tagIn) {
         return this.key(symbol, Ingredient.of(tagIn));
     }
 
@@ -97,7 +98,7 @@ public class AlloyCraftingRecipeBuilder {
         return this.key(symbol, Ingredient.of(itemIn));
     }
 
-    public AlloyCraftingRecipeBuilder alloyKey(Character symbol, Tag<Item> tagIn, String compositionReqsIn, ResourceLocation alloyRecipeIn,String langNameIn,int colorIn) {
+    public AlloyCraftingRecipeBuilder alloyKey(Character symbol, TagKey<Item> tagIn, String compositionReqsIn, ResourceLocation alloyRecipeIn,String langNameIn,int colorIn) {
         return this.key(symbol, new AlloyIngredient(Ingredient.of(tagIn),compositionReqsIn,alloyRecipeIn,langNameIn,colorIn));
     }
 
@@ -161,17 +162,10 @@ public class AlloyCraftingRecipeBuilder {
         return this;
     }
 
-    /**
-     * Builds this recipe into an {@link IFinishedRecipe}.
-     */
     public void build(Consumer<FinishedRecipe> consumerIn) {
         this.build(consumerIn, Registry.ITEM.getKey(this.result));
     }
 
-    /**
-     * Builds this recipe into an {@link IFinishedRecipe}. Use {@link #build(Consumer)} if save is the same as the ID for
-     * the result.
-     */
     public void build(Consumer<FinishedRecipe> consumerIn, String save) {
         ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result);
         if ((new ResourceLocation(save)).equals(resourcelocation)) {
@@ -181,9 +175,7 @@ public class AlloyCraftingRecipeBuilder {
         }
     }
 
-    /**
-     * Builds this recipe into an {@link IFinishedRecipe}.
-     */
+
     public void build(Consumer<FinishedRecipe> consumerIn, ResourceLocation id) {
         this.validate(id);
         this.advancementBuilder.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(RequirementsStrategy.OR);
@@ -319,10 +311,7 @@ public class AlloyCraftingRecipeBuilder {
             return this.advancementBuilder.serializeToJson();
         }
 
-        /**
-         * Gets the ID for the advancement associated with this recipe. Should not be null if {@link #getAdvancementJson}
-         * is non-null.
-         */
+
         @Nullable
         public ResourceLocation getAdvancementId() {
             return this.advancementId;

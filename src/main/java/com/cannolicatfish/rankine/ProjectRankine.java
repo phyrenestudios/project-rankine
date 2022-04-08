@@ -34,7 +34,6 @@ import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilTile;
 import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.enchantment.*;
-import com.cannolicatfish.rankine.entities.*;
 import com.cannolicatfish.rankine.fluids.*;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
@@ -46,7 +45,8 @@ import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.POIFixer;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
-import com.cannolicatfish.rankine.world.gen.RankineBiomeFeatures;
+import com.cannolicatfish.rankine.world.gen.RankineConfiguredFeatures;
+import com.cannolicatfish.rankine.world.gen.RankinePlacedFeatures;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -65,14 +65,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
-import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.extensions.IForgeContainerType;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -80,7 +79,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
-import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -116,9 +114,8 @@ public class ProjectRankine {
         RankineBlocks.REGISTRY.register(Bus);
         RankineItems.REGISTRY.register(Bus);
         RankineFeatures.REGISTRY.register(Bus);
-        RankinePlacements.REGISTRY.register(Bus);
+        //RankinePlacements.REGISTRY.register(Bus);
         RankineSoundEvents.SOUNDS.register(Bus);
-        RankineBlockPlacerType.BLOCK_PLACERS.register(Bus);
         //Bus.addListener(this::construct);
 
         Bus.addListener(this::LoadComplete);
@@ -132,11 +129,6 @@ public class ProjectRankine {
 
         WorldgenUtils.initConfigs();
         RankinePacketHandler.register();
-        POIFixer.fixPOITypeBlockStates(RankinePOIs.TEMPLATE_TABLE_POI);
-        POIFixer.fixPOITypeBlockStates(RankinePOIs.PISTON_CRUSHER_POI);
-        POIFixer.fixPOITypeBlockStates(RankinePOIs.BOTANIST_STATION_POI);
-        POIFixer.fixPOITypeBlockStates(RankinePOIs.GEM_CUTTER_POI);
-        POIFixer.fixPOITypeBlockStates(RankinePOIs.ROCK_COLLECTOR_POI);
         proxy.init();
 
 
@@ -144,8 +136,8 @@ public class ProjectRankine {
             RankineRecipes.registerPredicates();
             RankineRecipes.registerPotionRecipes();
             RankineRecipes.registerDispenserBehaviors();
-            RankineBiomeFeatures.registerConfiguredFeatures();
-
+            RankineConfiguredFeatures.registerConfiguredFeatures();
+            RankinePlacedFeatures.registerAllFeatures();
             //WoodType.register(RankineBlocks.CEDAR);
         });
 
@@ -256,11 +248,6 @@ public class ProjectRankine {
             event.getRegistry().register(RankinePOIs.ROCK_COLLECTOR_POI.setRegistryName(ProjectRankine.MODID,"rock_collector_poi"));
         }
 
-        @SubscribeEvent
-        public static void onPlacementRegistry(final RegistryEvent.Register<FeatureDecorator<?>> event) {
-            //event.getRegistry().register(RankineBiomeFeatures.REPLACER_PLACEMENT.setRegistryName(ProjectRankine.MODID,"replacer_placement"));
-            //event.getRegistry().register(RankineBiomeFeatures.INTRUSION_PLACEMENT.setRegistryName(ProjectRankine.MODID,"intrusion_placement"));
-        }
 
         @SubscribeEvent
         public static void onVillagerProfessionRegistry(final RegistryEvent.Register<VillagerProfession> event) {
@@ -396,73 +383,73 @@ public class ProjectRankine {
         }
         @SubscribeEvent
         public static void onContainerRegistry(final RegistryEvent.Register<MenuType<?>> event) {
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new AlloyFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new PistonCrusherContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"piston_crusher"));
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new CrucibleContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"crucible"));
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new MixingBarrelContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"mixing_barrel"));
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new InductionFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"induction_furnace"));
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new FusionFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"fusion_furnace"));
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new GyratoryCrusherContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"gyratory_crusher"));
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new EvaporationTowerContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new GasBottlerContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"gas_condenser"));
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new MaterialTestingTableContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"material_testing_table"));
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 return new TemplateTableContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"template_table"));
 
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 return new ElementIndexerContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"element_indexer"));
 /*
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new LaserQuarryContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
 
  */
 
-        //    event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+        //    event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
         //        BlockPos pos = data.readBlockPos();
          //       return new SodiumVaporLampContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
          //   }).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));

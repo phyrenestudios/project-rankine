@@ -24,8 +24,8 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fmllegacy.network.FMLPlayMessages;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.network.PlayMessages;
 
 @OnlyIn(
         value = Dist.CLIENT,
@@ -49,7 +49,7 @@ public class CannonballEntity extends AbstractHurtingProjectile implements ItemS
     }
 
     @OnlyIn(Dist.CLIENT)
-    public CannonballEntity(FMLPlayMessages.SpawnEntity spawnEntity, Level world, EntityType<CannonballEntity> e) {
+    public CannonballEntity(PlayMessages.SpawnEntity spawnEntity, Level world, EntityType<CannonballEntity> e) {
         super(e, world);
     }
 

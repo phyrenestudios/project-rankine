@@ -83,7 +83,7 @@ public class GrassySoilBlock extends GrassBlock {
                 }
             }
             if (random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get() && !state.getValue(DEAD) && worldIn.getBlockState(pos.above()).is(Blocks.AIR)) {
-                Biome BIOME = worldIn.getBiome(pos);
+                Biome BIOME = worldIn.getBiome(pos).value();
                 BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
                 worldIn.setBlock(pos.above(), BLOCK, 3);
             }

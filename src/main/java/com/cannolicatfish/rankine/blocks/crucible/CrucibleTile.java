@@ -92,14 +92,12 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
         compound.putInt("color", this.color);
         ContainerHelper.saveAllItems(compound, this.items);
-
-        return compound;
     }
 
     public void tick() {

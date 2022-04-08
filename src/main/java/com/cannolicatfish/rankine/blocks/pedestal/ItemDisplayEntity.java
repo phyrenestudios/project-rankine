@@ -19,12 +19,7 @@ public abstract class ItemDisplayEntity extends BlockEntity {
     @Override
     @Nullable
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        return new ClientboundBlockEntityDataPacket(this.getBlockPos(), 3, this.getUpdateTag());
-    }
-
-    @Override
-    public CompoundTag getUpdateTag() {
-        return this.save(new CompoundTag());
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override

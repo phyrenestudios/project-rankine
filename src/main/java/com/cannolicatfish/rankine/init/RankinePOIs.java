@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 
 import com.google.common.collect.ImmutableSet;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.tags.BlockTags;
@@ -23,21 +24,5 @@ public class RankinePOIs {
 
     public static Set<BlockState> getAllStates(Block blockIn) {
         return ImmutableSet.copyOf(blockIn.getStateDefinition().getPossibleStates());
-    }
-
-    public static Set<BlockState> getAllStatesByTag(ResourceLocation tag) {
-        Tag<Block> col = BlockTags.getAllTags().getTag(tag);
-        if (col != null)
-        {
-            List<BlockState> blockList = new ArrayList<>();
-            for (Block block : col.getValues())
-            {
-                blockList.addAll(block.getStateDefinition().getPossibleStates());
-            }
-            return ImmutableSet.copyOf(blockList);
-        } else {
-            return ImmutableSet.copyOf(Collections.emptyList());
-        }
-
     }
 }

@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineTags;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.SaplingBlock;
@@ -29,12 +30,12 @@ public class RankineSaplingBlock extends SaplingBlock {
         Block block = state.getBlock();
         switch (type) {
             case 3:
-                return Tags.Blocks.DIRT.contains(block) || Tags.Blocks.SAND.contains(block) || RankineTags.Blocks.COARSE_DIRT.contains(block);
+                return state.is(BlockTags.DIRT) || state.is(BlockTags.SAND) || state.is(RankineTags.Blocks.COARSE_DIRT);
             case 2:
-                return Tags.Blocks.DIRT.contains(block) || RankineTags.Blocks.COARSE_DIRT.contains(block);
+                return state.is(BlockTags.DIRT) || state.is(RankineTags.Blocks.COARSE_DIRT);
             case 1:
             default:
-                return Tags.Blocks.DIRT.contains(block);
+                return state.is(BlockTags.DIRT);
         }
     }
 

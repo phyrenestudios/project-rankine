@@ -11,8 +11,8 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fmllegacy.network.FMLPlayMessages;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.network.PlayMessages;
 
 public class AlloyArrowEntity extends AbstractArrow {
     private double damage = 2.0D;
@@ -29,7 +29,7 @@ public class AlloyArrowEntity extends AbstractArrow {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public AlloyArrowEntity(FMLPlayMessages.SpawnEntity spawnEntity, Level world, EntityType<AlloyArrowEntity> e) {
+    public AlloyArrowEntity(PlayMessages.SpawnEntity spawnEntity, Level world, EntityType<AlloyArrowEntity> e) {
         super(e, world);
     }
 

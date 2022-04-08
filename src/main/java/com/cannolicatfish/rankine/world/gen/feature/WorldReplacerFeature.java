@@ -7,11 +7,13 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
+import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -38,7 +40,7 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
     public static List<ResourceLocation> GEN_BIOMES = WorldgenUtils.GEN_BIOMES;
     public static List<List<String>> LAYER_LISTS = WorldgenUtils.LAYER_LISTS;
 
-    public static final PerlinSimplexNoise INTRUSION_NOISE = new PerlinSimplexNoise(new WorldgenRandom(9183), ImmutableList.of(0));
+    public static final PerlinSimplexNoise INTRUSION_NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(9183)), ImmutableList.of(0));
 
     public WorldReplacerFeature(Codec<NoneFeatureConfiguration> configFactoryIn) {
         super(configFactoryIn);
@@ -55,7 +57,7 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
             for (int z = chunk.getPos().getMinBlockZ(); z <= chunk.getPos().getMaxBlockZ(); ++z) {
                 int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
                 double stoneNoise = Biome.BIOME_INFO_NOISE.getValue(((double)x) / NOISE_SCALE, ((double)z) / NOISE_SCALE, false);
-                Biome targetBiome = reader.getBiome(new BlockPos(x, 0, z));
+                Biome targetBiome = reader.getBiome(new BlockPos(x, 0, z)).value();
 
                 if (GEN_BIOMES.contains(targetBiome.getRegistryName())) {
                     ResourceLocation biomeName = targetBiome.getRegistryName();
@@ -77,25 +79,25 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
                             continue;
                         }
 
-                        switch (targetBiome.getBiomeCategory()) {
+                        switch (Biome.getBiomeCategory(Holder.direct(targetBiome))) {
                             case NETHER:
                                 if (TARGET_BS == Blocks.NETHERRACK.defaultBlockState()) {
                                     if (!leaveNetherrack(reader,TARGET_POS,targetBiome)) {
                                         if (placeSandstone(reader,TARGET_POS)) {
                                             reader.setBlock(TARGET_POS, RankineBlocks.SOUL_SANDSTONE.get().defaultBlockState(), 3);
-                                        } else if (BlockTags.BASE_STONE_NETHER.contains(TARGET_BLOCK)) {
+                                        } else if (TARGET_BS.is(BlockTags.BASE_STONE_NETHER)) {
                                             reader.setBlock(TARGET_POS, StoneBS, 3);
                                         }
                                     }
                                 }
                                 break;
                             case THEEND:
-                                if (RankineTags.Blocks.BASE_STONE_END.contains(TARGET_BLOCK)) {
+                                if (TARGET_BS.is(RankineTags.Blocks.BASE_STONE_END)) {
                                     reader.setBlock(TARGET_POS, StoneBS, 3);
                                 }
                                 break;
                             default:
-                                if (canReplaceStone(TARGET_BLOCK)) {
+                                if (canReplaceStone(TARGET_BS)) {
                                     reader.setBlock(TARGET_POS, StoneBS, 3);
                                 }
                                 break;
@@ -131,15 +133,15 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
         return Blocks.AIR.defaultBlockState();
     }
 
-    private static boolean canReplaceStone(Block target) {
+    private static boolean canReplaceStone(BlockState target) {
         switch (Config.MISC_WORLDGEN.LAYER_GEN.get()) {
             case 1:
                 return target.equals(Blocks.STONE);
             case 2:
-                return BlockTags.BASE_STONE_OVERWORLD.contains(target);
+                return target.is(BlockTags.BASE_STONE_OVERWORLD);
             case 3:
             default:
-                return BlockTags.BASE_STONE_OVERWORLD.contains(target) && !target.getRegistryName().getNamespace().equals("rankine");
+                return target.is(BlockTags.BASE_STONE_OVERWORLD) && !target.getBlock().getRegistryName().getNamespace().equals("rankine");
 
         }
     }
@@ -175,13 +177,13 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
     private static boolean leaveNetherrack(WorldGenLevel reader, BlockPos pos, Biome biome) {
         if (biome.getRegistryName().toString().equals(Biomes.BASALT_DELTAS.location().toString()) || biome.getRegistryName().toString().equals(Biomes.SOUL_SAND_VALLEY.location().toString())) return false;
         for (int i = 1; i <=Config.MISC_WORLDGEN.NETHERRACK_LAYER_THICKNESS.get(); i++) {
-            if (RankineTags.Blocks.NETHER_TOPS.contains(reader.getBlockState(pos.above(i)).getBlock())) return true;
+            if (reader.getBlockState(pos.above(i)).is(RankineTags.Blocks.NETHER_TOPS)) return true;
         }
         return false;
     }
     private static boolean placeSandstone(WorldGenLevel reader, BlockPos pos) {
         for (int i = -1*Config.MISC_WORLDGEN.SOUL_SANDSTONE_LAYER_THICKNESS.get(); i <=Config.MISC_WORLDGEN.SOUL_SANDSTONE_LAYER_THICKNESS.get(); i++) {
-            if (BlockTags.SOUL_SPEED_BLOCKS.contains(reader.getBlockState(pos.above(i)).getBlock())) return true;
+            if (reader.getBlockState(pos.above(i)).is(BlockTags.SOUL_SPEED_BLOCKS)) return true;
         }
         return false;
     }

@@ -28,6 +28,7 @@ import net.minecraft.world.item.Item.Properties;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.Tags;
 
 public class AlloySpearItem extends SpearItem implements IAlloyTool {
 
@@ -128,7 +129,7 @@ public class AlloySpearItem extends SpearItem implements IAlloyTool {
 
     @Override
     public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
-        if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
+        if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.is(Tags.Items.INGOTS) || repair.getItem() == this)) {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);
 

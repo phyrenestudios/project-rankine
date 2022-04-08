@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineSoundEvents;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.util.RockGeneratorUtils;
+import com.mojang.datafixers.DataFixUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
@@ -27,6 +28,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.SEDIMENT_FAN_TILE;
 
@@ -67,7 +69,7 @@ public class SedimentFanTile extends BlockEntity {
                     ItemStack[] items = adjPos2.stream().map(ItemStack::new).toArray(ItemStack[]::new);
                     RockGeneratorRecipe recipe = level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
                         if (r.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {
-                            return Util.toStream(RankineRecipeTypes.ROCK_GENERATOR.tryMatch(r, level, new SimpleContainer(items)));
+                            return DataFixUtils.orElseGet(RankineRecipeTypes.ROCK_GENERATOR.tryMatch(r, level, new SimpleContainer(items)).map(Stream::of),Stream::empty);
                         }
                         return null;
                     }).findFirst().orElse(null);

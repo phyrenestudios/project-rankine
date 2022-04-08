@@ -111,18 +111,13 @@ public class StoneColumnBlock extends FallingBlock implements SimpleWaterloggedB
         if (!canSurvive(state, worldIn, pos.below(i-1))) {
             BlockPos.MutableBlockPos blockpos$mutableblockpos = pos.below(i-1).mutable();
             while (worldIn.getBlockState(blockpos$mutableblockpos).is(this)) {
-                spawnFallingBlock(worldIn, blockpos$mutableblockpos);
+                FallingBlockEntity.fall(worldIn,pos,state);
                 blockpos$mutableblockpos.move(Direction.UP);
             }
 
         }
     }
 
-    private void spawnFallingBlock(Level worldIn, BlockPos pos) {
-        FallingBlockEntity fallingblockentity = new FallingBlockEntity(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, worldIn.getBlockState(pos));
-        this.falling(fallingblockentity);
-        worldIn.addFreshEntity(fallingblockentity);
-    }
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {

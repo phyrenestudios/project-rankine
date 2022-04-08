@@ -53,7 +53,7 @@ public class ElectromagnetBlock extends DirectionalBlock {
             boolean flag = state.getValue(POWERED);
             if (flag != worldIn.hasNeighborSignal(pos)) {
                 if (flag) {
-                    worldIn.getBlockTicks().scheduleTick(pos, this, 4);
+                    worldIn.getBlockTicks().willTickThisTick(pos, this);
                 } else {
                     worldIn.setBlock(pos, state.cycle(POWERED), 2);
                     Direction direction = state.getValue(FACING);

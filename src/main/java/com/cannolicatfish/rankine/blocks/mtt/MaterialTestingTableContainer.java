@@ -76,67 +76,67 @@ public class MaterialTestingTableContainer extends AbstractContainerMenu {
                     if (!this.moveItemStackTo(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_DURABILITY_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_DURABILITY_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 2, 3, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_MINING_SPEED_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_MINING_SPEED_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 3, 4, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 4, 5, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_ENCHANTABILITY_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_ENCHANTABILITY_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 5, 6, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 6, 7, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_ATTACK_SPEED_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_ATTACK_SPEED_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 7, 8, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 8, 9, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 9, 10, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 10, 11, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_TOUGHNESS_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_TOUGHNESS_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 11, 12, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_ENCHANTMENT_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_ENCHANTMENT_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 12, 13, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_EXAM_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_EXAM_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 13, 14, false))
                     {
                         return ItemStack.EMPTY;
                     }
-                } else if (RankineTags.Items.MTT_TOOLS.contains(stack.getItem())) {
+                } else if (stack.is(RankineTags.Items.MTT_TOOLS)) {
                     if (!this.moveItemStackTo(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -215,30 +215,30 @@ public class MaterialTestingTableContainer extends AbstractContainerMenu {
 
     public int getToolItem(Level worldIn) {
         ItemStack stack = this.inputInventory.getItem(1);
-        if (RankineTags.Items.MTT_TOOLS.contains(stack.getItem())) {
-            if (RankineTags.Items.MTT_DURABILITY_TOOLS.contains(stack.getItem())) {
+        if (stack.is(RankineTags.Items.MTT_TOOLS)) {
+            if (stack.is(RankineTags.Items.MTT_DURABILITY_TOOLS)) {
                 return 0;
-            } else if (RankineTags.Items.MTT_MINING_SPEED_TOOLS.contains(stack.getItem())) {
+            } else if (stack.is(RankineTags.Items.MTT_MINING_SPEED_TOOLS)) {
                 return 1;
-            } else if (RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS.contains(stack.getItem())) {
+            } else if (stack.is(RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS)) {
                 return 2;
-            } else if (RankineTags.Items.MTT_ENCHANTABILITY_TOOLS.contains(stack.getItem())) {
+            } else if (stack.is(RankineTags.Items.MTT_ENCHANTABILITY_TOOLS)) {
                 return 3;
-            } else if (RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS.contains(stack.getItem())) {
+            } else if (stack.is(RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS)) {
                 return 4;
-            } else if (RankineTags.Items.MTT_ATTACK_SPEED_TOOLS.contains(stack.getItem())) {
+            } else if (stack.is(RankineTags.Items.MTT_ATTACK_SPEED_TOOLS)) {
                 return 5;
-            } else if (RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS.contains(stack.getItem())) {
+            } else if (stack.is(RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS)) {
                 return 6;
-            } else if (RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS.contains(stack.getItem())) {
+            } else if (stack.is(RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS)) {
                 return 7;
-            } else if (RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS.contains(stack.getItem())) {
+            } else if (stack.is(RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS)) {
                 return 8;
-            } else if (RankineTags.Items.MTT_TOUGHNESS_TOOLS.contains(stack.getItem())) {
+            } else if (stack.is(RankineTags.Items.MTT_TOUGHNESS_TOOLS)) {
                 return 9;
-            } else if (RankineTags.Items.MTT_ENCHANTMENT_TOOLS.contains(stack.getItem())) {
+            } else if (stack.is(RankineTags.Items.MTT_ENCHANTMENT_TOOLS)) {
                 return 10;
-            } else if (RankineTags.Items.MTT_EXAM_TOOLS.contains(stack.getItem())) {
+            } else if (stack.is(RankineTags.Items.MTT_EXAM_TOOLS)) {
                 return 11;
             }
         }

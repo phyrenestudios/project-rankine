@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
+import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.resources.ResourceLocation;
@@ -33,7 +34,7 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos pos = p_159749_.origin();
         Random rand = reader.getRandom();
         BlockPos posShift = pos.offset(2,0,2);
-        Biome targetBiome = reader.getBiome(posShift);
+        Biome targetBiome = reader.getBiome(posShift).value();
         ResourceLocation biomeName = targetBiome.getRegistryName();
         if (WorldgenUtils.GEN_BIOMES.contains(biomeName)) {
             BlockState INTRUSION;
@@ -45,7 +46,7 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
             }
 
             if (!INTRUSION.is(Blocks.AIR)) {
-                if (targetBiome.getBiomeCategory() == Biome.BiomeCategory.NETHER) {
+                if (Biome.getBiomeCategory(Holder.direct(targetBiome)) == Biome.BiomeCategory.NETHER) {
                     int radius = Config.MISC_WORLDGEN.NETHER_INTRUSION_RADIUS.get() + rand.nextInt(3);
                     int startY = 126;
                     int endY = 1;

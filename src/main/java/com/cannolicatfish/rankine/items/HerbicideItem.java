@@ -42,7 +42,7 @@ public class HerbicideItem extends Item {
         if (!worldIn.isClientSide) {
             for (BlockPos b : BlockPos.betweenClosed(pos.offset(-radius, -radius, -radius), pos.offset(radius, radius, radius))) {
                 Block blk = worldIn.getBlockState(b).getBlock();
-                if (RankineTags.Blocks.HERBICIDAL.contains(blk) && b.distSqr(pos) <= radius*radius) {
+                if (worldIn.getBlockState(b).is(RankineTags.Blocks.HERBICIDAL) && b.distSqr(pos) <= radius*radius) {
                     worldIn.destroyBlock(b,false);
                 } else if (blk instanceof SaplingBlock && b.distSqr(pos) <= radius*radius) {
                     worldIn.setBlock(b, Blocks.DEAD_BUSH.defaultBlockState(), 2);

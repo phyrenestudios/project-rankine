@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks.plants;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineTags;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
@@ -26,7 +27,7 @@ public class AsparagusPlantBlock extends DoubleCropsBlock {
 
     protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
         Block block = state.getBlock();
-        return Tags.Blocks.DIRT.contains(block);
+        return state.is(BlockTags.DIRT);
     }
 
     protected ItemLike getBaseSeedId() {

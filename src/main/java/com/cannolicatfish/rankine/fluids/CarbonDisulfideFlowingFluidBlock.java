@@ -32,7 +32,7 @@ public class CarbonDisulfideFlowingFluidBlock extends RankineFlowingFluidBlock {
     }
 
     @Override
-    public void catchFire(BlockState state, Level world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
+    public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
         if (!world.isClientSide && world.getRandom().nextFloat() < 0.002f) {
             for (int i = 0; i < 2; i++) {
                 BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> world.isEmptyBlock(B) && !(world.getBlockState(B).getBlock() instanceof GasBlock)).orElse(null);
@@ -56,7 +56,7 @@ public class CarbonDisulfideFlowingFluidBlock extends RankineFlowingFluidBlock {
 
     public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (worldIn.getBlockState(pos).getBlock() instanceof CarbonDisulfideFlowingFluidBlock && worldIn.getBlockState(pos).isBurning(worldIn,pos)) {
-            catchFire(state, worldIn, pos, null, null);
+            onCaughtFire(state, worldIn, pos, null, null);
         }
         super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
     }

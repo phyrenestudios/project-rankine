@@ -34,10 +34,11 @@ public class BlastingPowderBlock extends FallingBlock {
     }
 
     @Override
-    public void catchFire(BlockState state, Level world, BlockPos pos, @Nullable net.minecraft.core.Direction face, @Nullable LivingEntity igniter) {
+    public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable net.minecraft.core.Direction face, @Nullable LivingEntity igniter) {
         world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.BlockInteraction.BREAK);
         world.removeBlock(pos, false);
     }
+
 
     @Override
     public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
@@ -48,11 +49,11 @@ public class BlastingPowderBlock extends FallingBlock {
             {
                 if (!((Player)placer).getAbilities().instabuild)
                 {
-                    catchFire(state, worldIn, pos, null, null);
+                    onCaughtFire(state, worldIn, pos, null, null);
                 }
             } else
             {
-                catchFire(state, worldIn, pos, null, null);
+                onCaughtFire(state, worldIn, pos, null, null);
             }
 
 
@@ -62,7 +63,7 @@ public class BlastingPowderBlock extends FallingBlock {
     @Override
     public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (worldIn.hasNeighborSignal(pos)) {
-            catchFire(state, worldIn, pos, null, null);
+            onCaughtFire(state, worldIn, pos, null, null);
         }
     }
 
@@ -83,7 +84,7 @@ public class BlastingPowderBlock extends FallingBlock {
         if (item != Items.FLINT_AND_STEEL && item != Items.FIRE_CHARGE) {
             return super.use(state, worldIn, pos, player, handIn, p_225533_6_);
         } else {
-            catchFire(state, worldIn, pos, p_225533_6_.getDirection(), player);
+            onCaughtFire(state, worldIn, pos, p_225533_6_.getDirection(), player);
             worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
             if (!player.isCreative()) {
                 if (item == Items.FLINT_AND_STEEL) {
@@ -106,7 +107,7 @@ public class BlastingPowderBlock extends FallingBlock {
             Entity entity = abstractarrowentity.getOwner();
             if (abstractarrowentity.isOnFire()) {
                 BlockPos blockpos = hit.getBlockPos();
-                catchFire(state, worldIn, blockpos, null, entity instanceof LivingEntity ? (LivingEntity)entity : null);
+                onCaughtFire(state, worldIn, blockpos, null, entity instanceof LivingEntity ? (LivingEntity)entity : null);
             }
         }
 
@@ -114,7 +115,7 @@ public class BlastingPowderBlock extends FallingBlock {
 
     public void wasExploded(Level worldIn, BlockPos pos, Explosion explosionIn) {
         if (!worldIn.isClientSide) {
-            catchFire(worldIn.getBlockState(pos), worldIn, pos, null,null);
+            onCaughtFire(worldIn.getBlockState(pos), worldIn, pos, null,null);
         }
     }
 
@@ -123,13 +124,13 @@ public class BlastingPowderBlock extends FallingBlock {
         Random random = new Random();
         if (random.nextFloat() <= 0.50f && !player.getAbilities().instabuild)
         {
-            catchFire(worldIn.getBlockState(pos), worldIn, pos, null,player);
+            onCaughtFire(worldIn.getBlockState(pos), worldIn, pos, null,player);
         }
     }
 
     @Override
     public void onLand(Level worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, FallingBlockEntity p_176502_5_)  {
-        catchFire(this.defaultBlockState(), worldIn, pos, null, null);
+        onCaughtFire(this.defaultBlockState(), worldIn, pos, null, null);
     }
 
 

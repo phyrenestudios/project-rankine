@@ -27,7 +27,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
         Random rand = reader.getRandom();
         MeteoriteFeatureConfig config = p_159749_.config();
         BlockPos posShift = pos;
-        if (!RankineTags.Blocks.METEORITE_REPLACEABLE.contains(reader.getBlockState(posShift.below()).getBlock())) {
+        if (!reader.getBlockState(posShift.below()).is(RankineTags.Blocks.METEORITE_REPLACEABLE)) {
             return false;
         }
         BlockState ORE;

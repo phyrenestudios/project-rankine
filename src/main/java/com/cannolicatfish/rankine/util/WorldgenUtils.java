@@ -2,6 +2,8 @@ package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -175,10 +177,10 @@ public class WorldgenUtils {
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (!biomeCats.isEmpty()) {
                 for (Biome.BiomeCategory cat : biomeCats) {
-                    if (biome.getBiomeCategory() == cat && include){
+                    if (Biome.getBiomeCategory(Holder.direct(biome)) == cat && include){
                         b.add(biome.getRegistryName());
                     }
-                    if (!include && biome.getBiomeCategory() != cat) {
+                    if (!include && Biome.getBiomeCategory(Holder.direct(biome)) != cat) {
                         b.add(biome.getRegistryName());
                     }
                 }
@@ -227,10 +229,10 @@ public class WorldgenUtils {
     }
 
     public static int waterTableHeight(Level worldIn, BlockPos pos) {
-        Biome biome = worldIn.getBiome(pos);
+        Biome biome = worldIn.getBiome(pos).value();
         int surface = worldIn.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ());
-
-        return biome.getBiomeCategory() == Biome.BiomeCategory.OCEAN || biome.getBiomeCategory() == Biome.BiomeCategory.BEACH || biome.getBiomeCategory() == Biome.BiomeCategory.SWAMP || biome.getBiomeCategory() == Biome.BiomeCategory.RIVER ? worldIn.getSeaLevel() + 1 : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
+        return worldIn.getSeaLevel() + 1;
+        //return biome.getBiomeCategory() == Biome.BiomeCategory.OCEAN || biome.getBiomeCategory() == Biome.BiomeCategory.BEACH || biome.getBiomeCategory() == Biome.BiomeCategory.SWAMP || biome.getBiomeCategory() == Biome.BiomeCategory.RIVER ? worldIn.getSeaLevel() + 1 : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
     }
 
     public static boolean inArea(BlockPos b, double radius, boolean center, BlockPos... targets) {
@@ -275,7 +277,7 @@ public class WorldgenUtils {
 
 
     public static boolean inRadiusCenter(BlockPos center, BlockPos checkPos, double radius) {
-        return center.distSqr(checkPos.getX()+0.5D,checkPos.getY()+0.5D,checkPos.getZ()+0.5D,true) < radius*radius;
+        return center.distSqr(new Vec3i(checkPos.getX()+0.5D,checkPos.getY()+0.5D,checkPos.getZ()+0.5D)) < radius*radius;
     }
 
     public static void checkLog(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, Direction.Axis axis) {

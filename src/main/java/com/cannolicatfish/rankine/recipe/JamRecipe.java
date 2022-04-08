@@ -34,7 +34,7 @@ public class JamRecipe extends CustomRecipe {
                     if (sugarCount == 2) {
                         flag = true;
                     }
-                } else if (RankineTags.Items.BERRIES.contains(itemstack.getItem()) && !flag2) {
+                } else if (itemstack.is(RankineTags.Items.BERRIES) && !flag2) {
                     berryCount++;
                     if (berryCount == 6) {
                         flag2 = true;
@@ -57,7 +57,7 @@ public class JamRecipe extends CustomRecipe {
 
         for(int i = 0; i < inv.getContainerSize(); ++i) {
             ItemStack itemstack1 = inv.getItem(i);
-            if (!itemstack1.isEmpty() && RankineTags.Items.BERRIES.contains(itemstack1.getItem())) {
+            if (!itemstack1.isEmpty() && itemstack1.is(RankineTags.Items.BERRIES)) {
                 itemstack = itemstack1;
                 break;
             }

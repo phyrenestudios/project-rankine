@@ -63,7 +63,7 @@ public class CanteenItem extends Item implements IFluidHandlerItem {
 
     @Override
     public boolean isFluidValid(int tank, @NotNull FluidStack stack) {
-        return FluidTags.WATER.contains(stack.getFluid());
+        return true;
     }
 
     @Override

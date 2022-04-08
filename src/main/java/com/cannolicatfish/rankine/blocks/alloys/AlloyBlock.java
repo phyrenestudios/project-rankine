@@ -1,8 +1,5 @@
 package com.cannolicatfish.rankine.blocks.alloys;
 
-import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
-import com.cannolicatfish.rankine.items.alloys.AlloyData;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,14 +11,10 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.GameRules;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 
-import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class AlloyBlock extends Block {
     public AlloyBlock(Properties properties) {

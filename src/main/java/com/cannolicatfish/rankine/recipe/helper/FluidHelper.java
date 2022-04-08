@@ -114,7 +114,7 @@ public class FluidHelper {
             d0 = gravity.getValue();
 
             FluidState fluidstate = ent.level.getFluidState(ent.blockPosition());
-            if (inLiquid && !ent.canStandOnFluid(fluidstate.getType())) {
+            if (inLiquid && !ent.canStandOnFluid(fluidstate)) {
                 double d7 = ent.getY();
                 ent.moveRelative(0.02F, travelVector);
                 ent.move(MoverType.SELF, ent.getDeltaMovement());

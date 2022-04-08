@@ -112,14 +112,12 @@ public class AlloyFurnaceTile extends BlockEntity implements WorldlyContainer, M
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
         ContainerHelper.saveAllItems(compound, this.items);
-
-        return compound;
     }
 
     public void tick() {

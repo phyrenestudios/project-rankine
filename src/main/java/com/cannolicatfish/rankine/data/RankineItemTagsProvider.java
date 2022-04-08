@@ -689,7 +689,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         for (Block blk : RankineLists.SHEETMETALS) {
             String name = blk.getRegistryName().getPath();
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
-            tag(ItemTags.bind(new ResourceLocation("forge", "sheetmetals/"+baseName).toString())).add(blk.asItem());
+            tag(ItemTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName))).add(blk.asItem());
         }
 
 
@@ -838,7 +838,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.MUD, RankineTags.Items.MUD);
         copy(RankineTags.Blocks.COARSE_DIRT, RankineTags.Items.COARSE_DIRT);
         copy(Tags.Blocks.GRAVEL, Tags.Items.GRAVEL);
-        copy(Tags.Blocks.DIRT, RankineTags.Items.DIRT);
+        //copy(Tags.Blocks.DIRT, RankineTags.Items.DIRT);
         copy(RankineTags.Blocks.TUFF, RankineTags.Items.TUFF);
         copy(RankineTags.Blocks.TERRACOTTA, RankineTags.Items.TERRACOTTA);
         copy(RankineTags.Blocks.GLAZED_TERRACOTTA, RankineTags.Items.GLAZED_TERRACOTTA);

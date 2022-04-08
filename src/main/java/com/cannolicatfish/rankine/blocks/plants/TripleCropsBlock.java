@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -77,7 +78,7 @@ public class TripleCropsBlock extends CropBlock {
             default:
             case BOTTOM:
                 if (state.getValue(AGE) == 7) {
-                    return worldIn.getBlockState(pos.below()).is(Tags.Blocks.DIRT) || super.canSurvive(state, worldIn, pos);
+                    return worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || super.canSurvive(state, worldIn, pos);
                 }
                 return super.canSurvive(state, worldIn, pos);
             case MIDDLE:

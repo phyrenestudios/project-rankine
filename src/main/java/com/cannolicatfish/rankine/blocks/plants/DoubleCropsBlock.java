@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -63,7 +64,7 @@ public class DoubleCropsBlock extends CropBlock {
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         if (state.getValue(SECTION) != DoubleBlockHalf.UPPER) {
             if (state.getValue(AGE) == 7) {
-                return worldIn.getBlockState(pos.below()).is(Tags.Blocks.DIRT) || super.canSurvive(state, worldIn, pos);
+                return worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || super.canSurvive(state, worldIn, pos);
             }
             return super.canSurvive(state, worldIn, pos);
         } else {

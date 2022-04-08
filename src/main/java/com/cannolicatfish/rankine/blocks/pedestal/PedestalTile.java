@@ -38,10 +38,9 @@ public class PedestalTile extends ItemDisplayEntity implements Container {
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         ContainerHelper.saveAllItems(compound, this.items);
-        return super.save(compound);
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -104,15 +105,12 @@ public class AirDistillationRecipe implements Recipe<Container> {
     public List<Biome> getBiomeList() {
         List<Biome> biomeList = new ArrayList<>();
         for (String s : this.getBiomes()) {
-            if (s.contains("C#")) {
-                for (Biome b : ForgeRegistries.BIOMES) {
-                    if (b.getBiomeCategory().getSerializedName().equalsIgnoreCase(s.split("C#")[1])) {
-                        biomeList.add(b);
-                    }
-                }
+            if (s.contains("T#")) {
+                TagKey<Biome> tag = TagKey.create(ForgeRegistries.BIOMES.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
+                biomeList.addAll(ForgeRegistries.BIOMES.tags().getTag(tag).stream().toList());
             } else if (s.contains("B#")) {
                 for (Biome b : ForgeRegistries.BIOMES) {
-                    if (b.getRegistryName() != null && b.getRegistryName().equals(new ResourceLocation(s.split("C#")[1]))) {
+                    if (b.getRegistryName() != null && b.getRegistryName().equals(new ResourceLocation(s.split("B#")[1]))) {
                         biomeList.add(b);
                     }
                 }
@@ -124,15 +122,12 @@ public class AirDistillationRecipe implements Recipe<Container> {
     public List<String> getBiomeString() {
         List<String> list = new ArrayList<>();
         for (String s : this.getBiomes()) {
-            if (s.contains("C#")) {
-                for (Biome b : ForgeRegistries.BIOMES) {
-                    if (b.getBiomeCategory().getSerializedName().equalsIgnoreCase(s.split("C#")[1]) && !list.contains(b.getBiomeCategory().getSerializedName().toUpperCase(Locale.ROOT).replace("_", " "))) {
-                        list.add(b.getBiomeCategory().getSerializedName().toUpperCase(Locale.ROOT).replace("_", " "));
-                    }
-                }
+            if (s.contains("T#")) {
+                TagKey<Biome> tag = TagKey.create(ForgeRegistries.BIOMES.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
+                list.addAll(ForgeRegistries.BIOMES.tags().getTag(tag).stream().map(biome -> biome.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " ")).toList());
             } else if (s.contains("B#")) {
                 for (Biome b : ForgeRegistries.BIOMES) {
-                    if (b.getRegistryName() != null && b.getRegistryName().equals(new ResourceLocation(s.split("C#")[1])) && !list.contains(b.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " "))) {
+                    if (b.getRegistryName() != null && b.getRegistryName().equals(new ResourceLocation(s.split("B#")[1])) && !list.contains(b.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " "))) {
                         list.add(b.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " "));
                     }
                 }

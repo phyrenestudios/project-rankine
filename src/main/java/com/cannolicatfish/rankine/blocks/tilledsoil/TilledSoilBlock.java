@@ -49,7 +49,7 @@ public class TilledSoilBlock extends Block {
 
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (facing == Direction.UP && !stateIn.canSurvive(worldIn, currentPos)) {
-            worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
+            worldIn.getBlockTicks().willTickThisTick(currentPos, this);
         }
 
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);

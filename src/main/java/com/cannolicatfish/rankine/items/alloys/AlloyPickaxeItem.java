@@ -71,7 +71,7 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
             stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
                 entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
             });
-            if (Tags.Items.ORES.contains(state.getBlock().asItem()) && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDLESS,stack) > 0) {
+            if (state.is(Tags.Blocks.ORES) && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDLESS,stack) > 0) {
                 List<MobEffect> r = ForgeRegistries.MOB_EFFECTS.getEntries().stream().filter(registryKeyEffectEntry -> registryKeyEffectEntry.getValue().isBeneficial() &&
                         registryKeyEffectEntry.getKey().getRegistryName().getNamespace().equals("minecraft")).map(Map.Entry::getValue).collect(Collectors.toList());
                 MobEffect rand = r.get(worldIn.getRandom().nextInt(r.size()));
@@ -163,7 +163,7 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
 
     @Override
     public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
-        if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
+        if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.is(Tags.Items.INGOTS) || repair.getItem() == this)) {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);
 

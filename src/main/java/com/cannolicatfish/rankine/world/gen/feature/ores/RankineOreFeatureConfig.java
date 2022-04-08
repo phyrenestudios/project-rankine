@@ -44,7 +44,7 @@ public class RankineOreFeatureConfig implements FeatureConfiguration {
     public static enum RankineFillerBlockType implements StringRepresentable, net.minecraftforge.common.IExtensibleEnum {
 
         ORE_FILLER("ore_filler", (blockstate) -> {
-            return BlockTags.BASE_STONE_OVERWORLD.contains(blockstate.getBlock()) || BlockTags.BASE_STONE_NETHER.contains(blockstate.getBlock()) || RankineTags.Blocks.BASE_STONE_END.contains(blockstate.getBlock());
+            return blockstate.is(BlockTags.BASE_STONE_OVERWORLD) || blockstate.is(BlockTags.BASE_STONE_NETHER) || blockstate.is(RankineTags.Blocks.BASE_STONE_END);
         });
 
         public static final Codec<RankineOreFeatureConfig.RankineFillerBlockType> field_236571_d_ = StringRepresentable.fromEnum(RankineOreFeatureConfig.RankineFillerBlockType::values, RankineOreFeatureConfig.RankineFillerBlockType::byName);

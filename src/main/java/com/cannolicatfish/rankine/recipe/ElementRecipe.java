@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.util.ElementEquation;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -65,8 +66,8 @@ public class ElementRecipe implements Recipe<Container> {
         if (reg != Items.AIR) {
             for (String s : items) {
                 if (s.contains("T#")) {
-                    Tag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
-                    if (tag != null && tag.contains(reg)){
+                    TagKey<Item> tag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
+                    if (ForgeRegistries.ITEMS.tags().getTag(tag).contains(reg)){
                         return true;
                     }
                 } else if (s.contains("I#")) {
@@ -111,11 +112,8 @@ public class ElementRecipe implements Recipe<Container> {
         for (String s : getItems()) {
 
             if (s.contains("T#")) {
-                Tag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
-
-                if (tag != null){
-                    list.set(count,Ingredient.of(tag));
-                }
+                TagKey<Item> tag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
+                list.set(count,Ingredient.of(tag));
             } else if (s.contains("I#")) {
                 Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(s.split("I#")[1]));
                 if (item != null) {
@@ -287,8 +285,8 @@ public class ElementRecipe implements Recipe<Container> {
         for (int i = 0; i < getItems().size(); i++) {
             String s = getItems().get(i);
             if (s.contains("T#")) {
-                Tag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
-                if (tag != null && tag.contains(reg)){
+                TagKey<Item> tag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
+                if (ForgeRegistries.ITEMS.tags().getTag(tag).contains(reg)){
                     return getValues().get(i);
                 }
             } else if (s.contains("I#")) {

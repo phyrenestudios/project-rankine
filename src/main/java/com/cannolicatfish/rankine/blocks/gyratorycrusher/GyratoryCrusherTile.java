@@ -108,15 +108,13 @@ public class GyratoryCrusherTile  extends BlockEntity implements WorldlyContaine
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
         compound.putInt("CurrentLevel", this.currentLevel);
         ContainerHelper.saveAllItems(compound, this.items);
-
-        return compound;
     }
 
     public void tick() {

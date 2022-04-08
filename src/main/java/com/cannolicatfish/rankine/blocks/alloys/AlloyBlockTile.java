@@ -16,9 +16,9 @@ public class AlloyBlockTile extends BlockEntity {
 
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         if (this.alloyData != null) compound.put("AlloyData", this.alloyData);
-        return super.save(compound);
     }
 
     @Override

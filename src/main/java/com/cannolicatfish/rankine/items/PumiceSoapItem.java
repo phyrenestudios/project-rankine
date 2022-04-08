@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.init.Config;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -13,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import net.minecraft.world.item.Item.Properties;
@@ -51,7 +53,7 @@ public class PumiceSoapItem extends Item {
                     context.getItemInHand().shrink(1);
                     return InteractionResult.SUCCESS;
                 }
-            } else if (block.getTags().contains(new ResourceLocation("forge:stone")) && !rs.getPath().contains("polished_")) {
+            } else if (worldIn.getBlockState(context.getClickedPos()).is(Tags.Blocks.STONE) && !rs.getPath().contains("polished_")) {
                 ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(),"polished_" + rs.getPath());
                 Block bl = ForgeRegistries.BLOCKS.getValue(rs2);
                 if (bl != null && bl != Blocks.AIR) {

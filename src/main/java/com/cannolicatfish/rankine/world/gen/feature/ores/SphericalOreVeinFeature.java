@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.world.gen.feature.ores;
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
@@ -33,7 +34,7 @@ public class SphericalOreVeinFeature extends Feature<RankineOreFeatureConfig> {
 
         for (BlockPos BP : BlockPos.betweenClosed(posShift.offset(-config.size, -config.size, -config.size), posShift.offset(config.size, config.size, config.size))) {
             if (rand.nextFloat() < config.density * (rand.nextFloat() / 2 + 0.75)) {
-                float Dist = (float) Math.sqrt(BP.offset(0.5,0.5,0.5).distSqr(posShift.getX(), posShift.getY(), posShift.getZ(), true));
+                float Dist = (float) Math.sqrt(BP.offset(0.5,0.5,0.5).distSqr(new Vec3i(posShift.getX(), posShift.getY(), posShift.getZ())));
                 float RadiusEffect = (float) (1 - Math.pow(Dist-1,2) / Math.pow(config.size-0.5,2));
                 if (RadiusEffect > 0 && rand.nextFloat() < RadiusEffect) {
                     if (config.target.getPredicate().test(reader.getBlockState(BP))) {

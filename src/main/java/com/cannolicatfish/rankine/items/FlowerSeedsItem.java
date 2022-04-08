@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.init.RankineTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.tags.BlockTags;
@@ -14,6 +15,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -25,6 +27,7 @@ import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class FlowerSeedsItem extends Item {
     public FlowerSeedsItem(Properties properties) {
@@ -35,10 +38,9 @@ public class FlowerSeedsItem extends Item {
     public InteractionResult useOn(UseOnContext context) {
         Level worldIn = context.getLevel();
         BlockPos pos = context.getClickedPos();
-        Block b = worldIn.getBlockState(pos).getBlock();
-        Tag<Block> tag =  RankineTags.Blocks.FLOWER_SEEDS;
-        if (b.getTags().contains(new ResourceLocation("forge:dirt")) && worldIn.getBlockState(pos.above()).isAir()) {
-            Block flower = tag.getRandomElement(worldIn.getRandom());
+        TagKey<Block> tag =  RankineTags.Blocks.FLOWER_SEEDS;
+        if (worldIn.getBlockState(pos).is(BlockTags.DIRT) && worldIn.getBlockState(pos.above()).isAir()) {
+            Block flower = ForgeRegistries.BLOCKS.tags().getTag(tag).getRandomElement(worldIn.getRandom()).orElse(Blocks.POPPY);
             if (!worldIn.isClientSide) {
                 worldIn.setBlockAndUpdate(pos.above(), flower.defaultBlockState());
                 worldIn.playSound(context.getPlayer(), pos, SoundEvents.GRASS_PLACE, SoundSource.BLOCKS, 0.7F, worldIn.getRandom().nextFloat() * 0.4F + 0.5F);

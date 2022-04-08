@@ -2,19 +2,15 @@ package com.cannolicatfish.rankine.blocks.templatetable;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.packets.FluidStackPacket;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.init.packets.SelectAlloyPacket;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -24,7 +20,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fmllegacy.network.PacketDistributor;
+import net.minecraftforge.network.PacketDistributor;
 
 import java.util.List;
 
@@ -170,7 +166,7 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
             }*/
 
             for(AlloyButton alloyButton : this.tradeOfferButtons) {
-                if (alloyButton.isHovered()) {
+                if (alloyButton.isActive()) {
                     alloyButton.renderToolTip(matrixStack, mouseX, mouseY);
                 }
 

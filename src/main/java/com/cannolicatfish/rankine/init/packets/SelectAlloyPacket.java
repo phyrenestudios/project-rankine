@@ -3,9 +3,8 @@ package com.cannolicatfish.rankine.init.packets;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraftforge.network.NetworkEvent;
 
-import java.io.IOException;
 import java.util.function.Supplier;
 
 public class SelectAlloyPacket {

@@ -20,7 +20,7 @@ public class RedAsphaltBlock extends BaseAsphaltBlock {
     @Override
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         Direction dir = player.getDirection();
-        if (Tags.Items.DYES.contains(player.getItemInHand(handIn).getItem())) {
+        if (player.getItemInHand(handIn).is(Tags.Items.DYES)) {
             if (state.getValue(FACING) != dir) {
                 worldIn.setBlock(pos, state.setValue(FACING, dir), 3);
             } else {

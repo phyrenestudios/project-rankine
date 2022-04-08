@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 import java.util.Set;
 
 public class POIFixer {
-    private static Method blockStatesInjector;
+    /*private static Method blockStatesInjector;
 
     static
     {
@@ -33,5 +33,5 @@ public class POIFixer {
         {
             e.printStackTrace();
         }
-    }
+    }*/
 }

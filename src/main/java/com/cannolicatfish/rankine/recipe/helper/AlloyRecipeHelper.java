@@ -14,28 +14,6 @@ import java.util.*;
 
 public class AlloyRecipeHelper {
 
-    private static final PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
-
-    public static int returnMaterialCountFromStack(ItemStack stack) {
-        Item item = stack.getItem();
-        ResourceLocation reg = item.getRegistryName();
-        String registry = "";
-        if (reg != null) {
-            registry = reg.getPath();
-        }
-
-        if (stack.getItem().getTags().contains(new ResourceLocation("forge:storage_blocks")) || stack.getItem() instanceof BlockItem || registry.contains("block")) {
-            return 81 * stack.getCount();
-        } else if (stack.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || registry.contains("ingot")) {
-            return 9 * stack.getCount();
-        } else if (stack.getItem().getTags().contains(new ResourceLocation("forge:nuggets")) || registry.contains("nugget")) {
-            return stack.getCount();
-        } else if (stack.getItem() == Items.NETHERITE_SCRAP || registry.contains("scrap")){
-            return 2 * stack.getCount();
-        } else {
-            return 9 * stack.getCount();
-        }
-    }
 
     public static String getDirectComposition(List<Integer> percents, List<String> inputs) {
         StringBuilder ret = new StringBuilder();

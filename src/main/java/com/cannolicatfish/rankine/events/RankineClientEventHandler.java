@@ -57,7 +57,7 @@ public class RankineClientEventHandler {
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
-    public static void fovUpdate(FOVUpdateEvent event) {
+    public static void fovUpdate(FOVModifierEvent event) {
         Player player = event.getEntity();
         AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
         if (Config.GENERAL.MOVEMENT_MODIFIERS.get() && movementSpeed != null) {
@@ -137,10 +137,10 @@ public class RankineClientEventHandler {
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public void renderOverlayBlockEvent(RenderBlockOverlayEvent event) {
-        if (event.getOverlayType() == RenderBlockOverlayEvent.OverlayType.WATER && event.getBlockForOverlay().getBlock().getRegistryName().getNamespace().equals("rankine")) {
+        if (event.getOverlayType() == RenderBlockOverlayEvent.OverlayType.WATER && event.getBlockState().getBlock().getRegistryName().getNamespace().equals("rankine")) {
             Minecraft minecraftIn = Minecraft.getInstance();
             RenderSystem.enableTexture();
-            minecraftIn.getTextureManager().bindForSetup(new ResourceLocation("rankine:textures/block/"+event.getBlockForOverlay().getBlock().getRegistryName().getPath()+"_overlay.png"));
+            minecraftIn.getTextureManager().bindForSetup(new ResourceLocation("rankine:textures/block/"+event.getBlockState().getBlock().getRegistryName().getPath()+"_overlay.png"));
             BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
             float f = minecraftIn.player.getBrightness();
             RenderSystem.enableBlend();
@@ -153,7 +153,7 @@ public class RankineClientEventHandler {
             float f6 = -0.5F;
             float f7 = -minecraftIn.player.getYRot() / 64.0F;
             float f8 = minecraftIn.player.getXRot() / 64.0F;
-            Matrix4f matrix4f = event.getMatrixStack().last().pose();
+            Matrix4f matrix4f = event.getPoseStack().last().pose();
             bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR_TEX);
             bufferbuilder.vertex(matrix4f, -1.0F, -1.0F, -0.5F).color(f, f, f, 0.1F).uv(4.0F + f7, 4.0F + f8).endVertex();
             bufferbuilder.vertex(matrix4f, 1.0F, -1.0F, -0.5F).color(f, f, f, 0.1F).uv(0.0F + f7, 4.0F + f8).endVertex();

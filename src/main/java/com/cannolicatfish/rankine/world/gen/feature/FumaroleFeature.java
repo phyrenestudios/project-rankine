@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.world.gen.feature;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.mojang.serialization.Codec;
+import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.BlockPos;
@@ -32,7 +33,7 @@ public class FumaroleFeature extends Feature<NoneFeatureConfiguration> {
         int randZ = chunk.getPos().getMinBlockZ() + rand.nextInt(16) + 8;
         int yHeight;
         Block FUMAROLE;
-        if (reader.getBiome(new BlockPos(randX,0,randZ)).getBiomeCategory() == Biome.BiomeCategory.NETHER) {
+        if (Biome.getBiomeCategory(Holder.direct(reader.getBiome(new BlockPos(randX,0,randZ)).value())) == Biome.BiomeCategory.NETHER) {
             yHeight = 30;
             for (int y = 80; y>=yHeight; --y) {
                 if (reader.getBlockState(new BlockPos(randX, y, randZ)).is(RankineTags.Blocks.FUMAROLE_DEPOSIT) && reader.getBlockState(new BlockPos(randX, y + 1, randZ)).is(Blocks.AIR)) {

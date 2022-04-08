@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.blocks.StoneColumnBlock;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.mojang.serialization.Codec;
+import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.BlockPos;
@@ -38,7 +39,7 @@ public class ColumnFeature extends Feature<NoneFeatureConfiguration> {
                     BlockPos topPos = new BlockPos(randX, 0, randZ);
                     BlockPos bottomPos;
                     int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, topPos.getX(), topPos.getZ());
-                    if (reader.getBiome(topPos).getBiomeCategory() != Biome.BiomeCategory.NETHER && reader.getBiome(topPos).getBiomeCategory() != Biome.BiomeCategory.THEEND) {
+                    if (Biome.getBiomeCategory(Holder.direct(reader.getBiome(topPos).value())) != Biome.BiomeCategory.NETHER && Biome.getBiomeCategory(Holder.direct(reader.getBiome(topPos).value())) != Biome.BiomeCategory.THEEND) {
                         for (int y = endY; y > 1; --y) {
                             topPos = new BlockPos(randX, y, randZ);
                             if (RankineLists.STONES.contains(reader.getBlockState(topPos).getBlock()) && reader.getBlockState(topPos.below()).isAir()) {

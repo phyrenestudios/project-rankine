@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.entities;
 
-import com.cannolicatfish.rankine.init.RankineDamageSources;
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.world.level.block.BaseFireBlock;
@@ -33,8 +32,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.projectile.ItemSupplier;
-import net.minecraftforge.fmllegacy.network.FMLPlayMessages;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.network.PlayMessages;
 
 @OnlyIn(
         value = Dist.CLIENT,
@@ -58,7 +57,7 @@ public class CarcassEntity extends Fireball implements ItemSupplier {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public CarcassEntity(FMLPlayMessages.SpawnEntity spawnEntity, Level world, EntityType<CarcassEntity> e) {
+    public CarcassEntity(PlayMessages.SpawnEntity spawnEntity, Level world, EntityType<CarcassEntity> e) {
         super(e, world);
     }
 

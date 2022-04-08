@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.blocks.mushrooms;
 import com.cannolicatfish.rankine.blocks.HollowLogBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
-import com.cannolicatfish.rankine.world.gen.RankineBiomeFeatures;
+import com.cannolicatfish.rankine.world.gen.RankineConfiguredFeatures;
 import com.cannolicatfish.rankine.world.gen.feature.mushrooms.*;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -120,42 +120,42 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
     public boolean grow(ServerLevel world, BlockPos pos, BlockState state, Random rand) {
         world.removeBlock(pos, false);
         if (this == RankineBlocks.TINDER_CONK_MUSHROOM.get()) {
-            if (!TinderConkMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineBiomeFeatures.TINDER_CONK_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
+            if (!TinderConkMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.TINDER_CONK_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
                 world.setBlock(pos, state, 3);
                 return false;
             }
         } else if (this == RankineBlocks.LIONS_MANE_MUSHROOM.get()) {
-            if (!LionsManeMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineBiomeFeatures.LIONS_MANE_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
+            if (!LionsManeMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.LIONS_MANE_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
                 world.setBlock(pos, state, 3);
                 return false;
             }
         } else if (this == RankineBlocks.TURKEY_TAIL_MUSHROOM.get()) {
-            if (!TurkeyTailMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineBiomeFeatures.TURKEY_TAIL_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
+            if (!TurkeyTailMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.TURKEY_TAIL_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
                 world.setBlock(pos, state, 3);
                 return false;
             }
         } else if (this == RankineBlocks.SULFUR_SHELF_MUSHROOM.get()) {
-            if (!SulfurShelfMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineBiomeFeatures.SULFUR_SHELF_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
+            if (!SulfurShelfMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.SULFUR_SHELF_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
                 world.setBlock(pos, state, 3);
                 return false;
             }
         } else if (this == RankineBlocks.CINNABAR_POLYPORE_MUSHROOM.get()) {
-            if (!CinnbarPolyporeMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineBiomeFeatures.CINNABAR_POLYPORE_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
+            if (!CinnbarPolyporeMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.CINNABAR_POLYPORE_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
                 world.setBlock(pos, state, 3);
                 return false;
             }
         } else if (this == RankineBlocks.HONEY_MUSHROOM.get()) {
-            if (!HoneyMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineBiomeFeatures.HONEY_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
+            if (!HoneyMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.HONEY_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
                 world.setBlock(pos, state, 3);
                 return false;
             }
         } else if (this == RankineBlocks.OYSTER_MUSHROOM.get()) {
-            if (!OysterMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineBiomeFeatures.OYSTER_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
+            if (!OysterMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.OYSTER_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
                 world.setBlock(pos, state, 3);
                 return false;
             }
         } else if (this == RankineBlocks.ARTIST_CONK_MUSHROOM.get()) {
-            if (!ArtistsConkMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineBiomeFeatures.ARTIST_CONK_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
+            if (!ArtistsConkMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.ARTIST_CONK_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
                 world.setBlock(pos, state, 3);
                 return false;
             }

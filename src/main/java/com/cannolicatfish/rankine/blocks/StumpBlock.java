@@ -49,7 +49,7 @@ public class StumpBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
-        if (rand.nextFloat() < worldIn.getBiome(pos).getDownfall()/50.0f) {
+        if (rand.nextFloat() < worldIn.getBiome(pos).value().getDownfall()/50.0f) {
             if (state.getValue(AGE) != 2) {
                 worldIn.setBlock(pos, state.setValue(AGE, state.getValue(AGE) + 1), 2);
             } else {
@@ -67,7 +67,7 @@ public class StumpBlock extends Block implements SimpleWaterloggedBlock {
 
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (stateIn.getValue(WATERLOGGED)) {
-            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+            worldIn.getFluidTicks().willTickThisTick(currentPos, Fluids.WATER);
         }
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }

@@ -45,7 +45,7 @@ public class GeodeBlock extends Block implements SimpleWaterloggedBlock {
             return Blocks.AIR.defaultBlockState();
         } else {
             if (stateIn.getValue(WATERLOGGED)) {
-                worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+                worldIn.getFluidTicks().willTickThisTick(currentPos, Fluids.WATER);
             }
 
             return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);

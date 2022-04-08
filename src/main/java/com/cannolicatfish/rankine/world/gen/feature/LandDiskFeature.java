@@ -23,20 +23,20 @@ public class LandDiskFeature extends Feature<DiskConfiguration> {
         Random rand = reader.getRandom();
         DiskConfiguration config = p_159749_.config();
     boolean flag = false;
-    int i = config.radius.sample(rand);
+    int i = config.radius().sample(rand);
 
     for(int j = pos.getX() - i; j <= pos.getX() + i; ++j) {
         for(int k = pos.getZ() - i; k <= pos.getZ() + i; ++k) {
             int l = j - pos.getX();
             int i1 = k - pos.getZ();
             if (l * l + i1 * i1 <= i * i) {
-                for(int j1 = pos.getY() - config.halfHeight; j1 <= pos.getY() + config.halfHeight; ++j1) {
+                for(int j1 = pos.getY() - config.halfHeight(); j1 <= pos.getY() + config.halfHeight(); ++j1) {
                     BlockPos blockpos = new BlockPos(j, j1, k);
                     Block block = reader.getBlockState(blockpos).getBlock();
 
-                    for(BlockState blockstate : config.targets) {
+                    for(BlockState blockstate : config.targets()) {
                         if (blockstate.is(block)) {
-                            reader.setBlock(blockpos, config.state, 2);
+                            reader.setBlock(blockpos, config.state(), 2);
                             flag = true;
                             break;
                         }

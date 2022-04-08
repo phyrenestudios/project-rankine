@@ -44,7 +44,7 @@ public class PostWorldReplacerFeature extends Feature<NoneFeatureConfiguration> 
                 for (int y = 0; y < endY; ++y) {
                     BlockPos TARGET_POS = new BlockPos(x, y, z);
                     Block TARGET = reader.getBlockState(TARGET_POS).getBlock();
-                    ResourceLocation TARGET_BIOME = reader.getBiome(TARGET_POS).getRegistryName();
+                    ResourceLocation TARGET_BIOME = reader.getBiome(TARGET_POS).value().getRegistryName();
 
                     if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME)) {
                         Block Olayer;
@@ -54,12 +54,12 @@ public class PostWorldReplacerFeature extends Feature<NoneFeatureConfiguration> 
                         boolean dirtFlag = TARGET.equals(Blocks.DIRT);
                         if (noise > 0.3) {
                             Olayer = TARGET.equals(Blocks.GRASS_BLOCK) || TARGET.equals(Blocks.DIRT_PATH) ? WorldgenUtils.O1.get(genBiomesIndex) : Blocks.AIR;
-                            Alayer = dirtFlag && !Tags.Blocks.STONE.contains(reader.getBlockState(TARGET_POS.below()).getBlock()) || TARGET.equals(Blocks.MYCELIUM) || TARGET.equals(Blocks.PODZOL) || TARGET.equals(Blocks.COARSE_DIRT) ? WorldgenUtils.A1.get(genBiomesIndex) : Blocks.AIR;
-                            Blayer = dirtFlag && Tags.Blocks.STONE.contains(reader.getBlockState(TARGET_POS.below()).getBlock()) ? WorldgenUtils.B1.get(genBiomesIndex) : Blocks.AIR;
+                            Alayer = dirtFlag && !reader.getBlockState(TARGET_POS.below()).is(Tags.Blocks.STONE) || TARGET.equals(Blocks.MYCELIUM) || TARGET.equals(Blocks.PODZOL) || TARGET.equals(Blocks.COARSE_DIRT) ? WorldgenUtils.A1.get(genBiomesIndex) : Blocks.AIR;
+                            Blayer = dirtFlag && reader.getBlockState(TARGET_POS.below()).is(Tags.Blocks.STONE) ? WorldgenUtils.B1.get(genBiomesIndex) : Blocks.AIR;
                         } else {
                             Olayer = TARGET.equals(Blocks.GRASS_BLOCK) || TARGET.equals(Blocks.DIRT_PATH) ? WorldgenUtils.O2.get(genBiomesIndex) : Blocks.AIR;
-                            Alayer = dirtFlag && !Tags.Blocks.STONE.contains(reader.getBlockState(TARGET_POS.below()).getBlock()) || TARGET.equals(Blocks.MYCELIUM) || TARGET.equals(Blocks.PODZOL) || TARGET.equals(Blocks.COARSE_DIRT) ? WorldgenUtils.A2.get(genBiomesIndex) : Blocks.AIR;
-                            Blayer = dirtFlag && Tags.Blocks.STONE.contains(reader.getBlockState(TARGET_POS.below()).getBlock()) ? WorldgenUtils.B2.get(genBiomesIndex) : Blocks.AIR;
+                            Alayer = dirtFlag && !reader.getBlockState(TARGET_POS.below()).is(Tags.Blocks.STONE) || TARGET.equals(Blocks.MYCELIUM) || TARGET.equals(Blocks.PODZOL) || TARGET.equals(Blocks.COARSE_DIRT) ? WorldgenUtils.A2.get(genBiomesIndex) : Blocks.AIR;
+                            Blayer = dirtFlag && reader.getBlockState(TARGET_POS.below()).is(Tags.Blocks.STONE) ? WorldgenUtils.B2.get(genBiomesIndex) : Blocks.AIR;
                         }
                         if (TARGET.equals(Blocks.GRASS_BLOCK)) {
                             if (Olayer instanceof SnowyDirtBlock) {
@@ -113,8 +113,8 @@ public class PostWorldReplacerFeature extends Feature<NoneFeatureConfiguration> 
                             if (WorldgenUtils.SANDSTONES.get(genBiomesIndex) != Blocks.AIR && ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(WorldgenUtils.SANDSTONES.get(genBiomesIndex).getRegistryName().toString().replace(":",":smooth_"))) != null) {
                                 reader.setBlock(TARGET_POS, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(WorldgenUtils.SANDSTONES.get(genBiomesIndex).getRegistryName().toString().replace(":",":smooth_"))).defaultBlockState(), 2);
                             }
-                        } else if (Tags.Blocks.ORES_COAL.contains(TARGET)) {
-                            if (Tags.Blocks.STONE.contains(reader.getBlockState(TARGET_POS.below()).getBlock()) && rand.nextFloat()<0.7) {
+                        } else if (reader.getBlockState(TARGET_POS).is(Tags.Blocks.ORES_COAL)) {
+                            if (reader.getBlockState(TARGET_POS.below()).is(Tags.Blocks.STONE) && rand.nextFloat()<0.7) {
                                 reader.setBlock(TARGET_POS.below(), RankineBlocks.FIRE_CLAY.get().defaultBlockState(), 2);
                             }
                         }

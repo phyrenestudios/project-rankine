@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.world.item.Item.Properties;
+import net.minecraftforge.common.Tags;
 
 public class AlloySurfRodItem extends FishingRodItem implements IAlloyTieredItem {
     private final String defaultComposition;
@@ -91,7 +92,7 @@ public class AlloySurfRodItem extends FishingRodItem implements IAlloyTieredItem
 
     @Override
     public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
-        if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
+        if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.is(Tags.Items.INGOTS) || repair.getItem() == this)) {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);
 

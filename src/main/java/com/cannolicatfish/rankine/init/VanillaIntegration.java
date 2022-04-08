@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.tags.Tag;
-import net.minecraft.tags.SerializationTags;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;

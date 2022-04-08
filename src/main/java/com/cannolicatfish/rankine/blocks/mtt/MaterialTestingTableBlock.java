@@ -1,7 +1,5 @@
 package com.cannolicatfish.rankine.blocks.mtt;
 
-import com.cannolicatfish.rankine.blocks.distillationtower.DistillationTowerTile;
-import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableTile;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
@@ -13,13 +11,9 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
 
 public class MaterialTestingTableBlock extends Block {
     public MaterialTestingTableBlock(Properties properties) {

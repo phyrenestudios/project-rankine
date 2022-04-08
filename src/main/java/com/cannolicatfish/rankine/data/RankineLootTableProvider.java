@@ -200,9 +200,6 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
         return LootTable.lootTable().withPool(withSurvivesExplosion(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(block).apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))));
     }
 
-    protected static LootTable.Builder droppingWithContents(Block shulker) {
-        return LootTable.lootTable().withPool(withSurvivesExplosion(shulker, LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(shulker).apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)).apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY).copy("Lock", "BlockEntityTag.Lock").copy("LootTable", "BlockEntityTag.LootTable").copy("LootTableSeed", "BlockEntityTag.LootTableSeed")).apply(SetContainerContents.setContents().withEntry(DynamicLoot.dynamicEntry(ShulkerBoxBlock.CONTENTS))))));
-    }
 
     protected static LootTable.Builder droppingWithPatterns(Block banner) {
         return LootTable.lootTable().withPool(withSurvivesExplosion(banner, LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(banner).apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)).apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY).copy("Patterns", "BlockEntityTag.Patterns")))));

@@ -33,10 +33,9 @@ public class BeehiveOvenTile extends BlockEntity {
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         compound.putInt("ProcessTime", this.proccessTime);
-        return compound;
     }
 
     public void tick() {

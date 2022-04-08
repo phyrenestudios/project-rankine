@@ -1,9 +1,6 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
 import com.cannolicatfish.rankine.recipe.EvaporationRecipe;
 import com.cannolicatfish.rankine.util.WeightedCollection;
@@ -89,12 +86,11 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         ContainerHelper.saveAllItems(compound, this.items);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
-        return compound;
     }
 
     public void tick() {
@@ -112,7 +108,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
                     if (h > 0 && output.isEmpty()) {
                         ++this.cookTime;
                         if (this.cookTime >= this.cookTimeTotal / h) {
-                            this.items.set(0, recipe.getEvaporationResult(worldIn,worldIn.getBiome(p).getRegistryName()));
+                            this.items.set(0, recipe.getEvaporationResult(worldIn,worldIn.getBiome(p).value().getRegistryName()));
                             cookTime = 0;
                         }
                     } else if (cookTime > 0) {
@@ -123,7 +119,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
                         ++this.cookTime;
                         if (this.cookTime >= this.cookTimeTotal) {
                             worldIn.setBlock(p.above(), Blocks.AIR.defaultBlockState(), 3);
-                            this.items.set(0, recipe.getEvaporationResult(worldIn,worldIn.getBiome(p).getRegistryName()));
+                            this.items.set(0, recipe.getEvaporationResult(worldIn,worldIn.getBiome(p).value().getRegistryName()));
                             cookTime = 0;
                         }
                     } else if (cookTime > 0) {
@@ -138,7 +134,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
     private EvaporationRecipe getEvaporationRecipe(BlockPos pos) {
         if (this.level != null) {
             for (EvaporationRecipe recipe : this.level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.EVAPORATION)) {
-                if (!recipe.getEvaporationResult(this.level,level.getBiome(pos).getRegistryName()).isEmpty() && recipe.fluidMatch(this.level.getFluidState(pos).getType())){
+                if (!recipe.getEvaporationResult(this.level,level.getBiome(pos).value().getRegistryName()).isEmpty() && recipe.fluidMatch(this.level.getFluidState(pos).getType())){
                     return recipe;
                 }
             }
@@ -172,7 +168,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
     private boolean boilerStructure(BlockPos pos, Level worldIn) {
         if (!worldIn.isClientSide) {
             for (BlockPos p : Arrays.asList(pos.north(), pos.east(), pos.south(), pos.west(), pos.above().north(), pos.above().east(), pos.above().west(), pos.above().south())) {
-                if (!worldIn.getBlockState(p).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))) {
+                if (!worldIn.getBlockState(p).is(RankineTags.Blocks.SHEETMETAL)) {
                     return false;
                 }
             }
@@ -212,21 +208,21 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
                 }
             }
             for (int i = 1; i <= Config.MACHINES.EVAPORATION_TOWER_RANGE.get(); ++i) {
-                if (worldIn.getBlockState(pos.offset(3, i, -1)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(3, i, 0)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(3, i, 1)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(-3, i, -1)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(-3, i, 0)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(-3, i, 1)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(-1, i, 3)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(0, i, 3)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(1, i, 3)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(-1, i, 3)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(0, i, 3)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(2, i, 2)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(-2, i, -2)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(2, i, -2)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
-                        && worldIn.getBlockState(pos.offset(-2, i, 2)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                if (worldIn.getBlockState(pos.offset(3, i, -1)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(3, i, 0)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(3, i, 1)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(-3, i, -1)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(-3, i, 0)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(-3, i, 1)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(-1, i, 3)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(0, i, 3)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(1, i, 3)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(-1, i, 3)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(0, i, 3)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(2, i, 2)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(-2, i, -2)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(2, i, -2)).is(RankineTags.Blocks.SHEETMETAL)
+                        && worldIn.getBlockState(pos.offset(-2, i, 2)).is(RankineTags.Blocks.SHEETMETAL)
                         && worldIn.getBlockState(pos.offset(2, i, -1)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
                         && worldIn.getBlockState(pos.offset(2, i, 0)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
                         && worldIn.getBlockState(pos.offset(2, i, 1)) == Blocks.BUBBLE_COLUMN.defaultBlockState()

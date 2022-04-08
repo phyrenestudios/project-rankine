@@ -32,8 +32,8 @@ public class CobblePatchFeature extends Feature<RandomPatchConfiguration> {
         Random rand = reader.getRandom();
         RandomPatchConfiguration config = p_159749_.config();
         List<String> rockList = new ArrayList<String>();
-        if (WorldgenUtils.GEN_BIOMES.contains(reader.getBiome(pos).getRegistryName())) {
-            rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(reader.getBiome(pos).getRegistryName()));
+        if (WorldgenUtils.GEN_BIOMES.contains(reader.getBiome(pos).value().getRegistryName())) {
+            rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(reader.getBiome(pos).value().getRegistryName()));
         }
 
         if (rockList.size() < 1) return false;
@@ -45,21 +45,23 @@ public class CobblePatchFeature extends Feature<RandomPatchConfiguration> {
 
 
         BlockPos blockpos;
-        if (config.project) {
+        /*if (config.project) {
             blockpos = reader.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, pos);
         } else {
             blockpos = pos;
-        }
+        }*/
+
+        blockpos = reader.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, pos);
 
         int i = 0;
         BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
-        for(int j = 0; j < config.tries; ++j) {
-            blockpos$mutable.setWithOffset(blockpos, rand.nextInt(config.xspread + 1) - rand.nextInt(config.xspread + 1), rand.nextInt(config.yspread + 1) - rand.nextInt(config.yspread + 1), rand.nextInt(config.zspread + 1) - rand.nextInt(config.zspread + 1));
+        for(int j = 0; j < config.tries(); ++j) {
+            blockpos$mutable.setWithOffset(blockpos, rand.nextInt(config.xzSpread() + 1) - rand.nextInt(config.xzSpread() + 1), rand.nextInt(config.ySpread() + 1) - rand.nextInt(config.ySpread() + 1), rand.nextInt(config.xzSpread() + 1) - rand.nextInt(config.xzSpread() + 1));
             BlockPos blockpos1 = blockpos$mutable.below();
             BlockState blockstate1 = reader.getBlockState(blockpos1);
-            if ((reader.isEmptyBlock(blockpos$mutable) || config.canReplace && reader.getBlockState(blockpos$mutable).getMaterial().isReplaceable()) && blockstate.canSurvive(reader, blockpos$mutable) && (config.whitelist.isEmpty() || config.whitelist.contains(blockstate1.getBlock())) && !config.blacklist.contains(blockstate1) && (!config.needWater || reader.getFluidState(blockpos1.west()).is(FluidTags.WATER) || reader.getFluidState(blockpos1.east()).is(FluidTags.WATER) || reader.getFluidState(blockpos1.north()).is(FluidTags.WATER) || reader.getFluidState(blockpos1.south()).is(FluidTags.WATER))) {
-                config.blockPlacer.place(reader, blockpos$mutable, blockstate, rand);
+            if ((reader.isEmptyBlock(blockpos$mutable) || reader.getBlockState(blockpos$mutable).getMaterial().isReplaceable()) && blockstate.canSurvive(reader, blockpos$mutable)) {
+                config.feature().value().place(reader,p_159749_.chunkGenerator(),rand,blockpos$mutable);
                 ++i;
             }
         }

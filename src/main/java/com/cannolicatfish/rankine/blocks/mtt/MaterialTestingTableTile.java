@@ -44,10 +44,9 @@ public class MaterialTestingTableTile extends BlockEntity implements WorldlyCont
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         ContainerHelper.saveAllItems(compound, this.items);
-        return compound;
     }
 
 
@@ -160,7 +159,7 @@ public class MaterialTestingTableTile extends BlockEntity implements WorldlyCont
         if (index == 0) {
             return AlloyCustomHelper.hasElement(stack.getItem())  || stack.getItem() instanceof IAlloyItem;
         }
-        return (RankineTags.Items.MTT_TOOLS.contains(stack.getItem()));
+        return (stack.is(RankineTags.Items.MTT_TOOLS));
     }
 
     @Override

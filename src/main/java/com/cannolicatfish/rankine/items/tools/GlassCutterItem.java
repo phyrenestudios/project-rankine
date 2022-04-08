@@ -64,7 +64,7 @@ public class GlassCutterItem extends DiggerItem {
                 p_219998_1_.broadcastBreakEvent(context.getHand());
             });
         }
-        if (blockstate.getBlock().getTags().contains(new ResourceLocation("forge:glass"))) {
+        if (blockstate.is(Tags.Blocks.GLASS)) {
             Block b = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(blockstate.getBlock().getRegistryName().toString() + "_pane"));
             if (b != null)
             {

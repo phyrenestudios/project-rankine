@@ -4,12 +4,11 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
-import com.cannolicatfish.rankine.items.alloys.AlloyData;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.Container;
@@ -35,11 +34,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.*;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class AlloyTemplateItem extends Item {
     public AlloyTemplateItem(Properties properties) {
@@ -96,11 +91,8 @@ public class AlloyTemplateItem extends Item {
 
     private static Ingredient getIngredientFromString(String s) {
         if (s.contains("T#")) {
-            Tag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation(s.split("T#")[1]));
-
-            if (tag != null){
-                return Ingredient.of(tag);
-            }
+            TagKey<Item> tag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
+            return Ingredient.of(tag);
         } else if (s.contains("I#")) {
             Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(s.split("I#")[1]));
             if (item != null) {

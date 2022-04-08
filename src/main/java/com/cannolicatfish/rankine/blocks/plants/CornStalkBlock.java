@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
 import com.cannolicatfish.rankine.init.RankineTags;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -56,7 +57,7 @@ public class CornStalkBlock extends BushBlock {
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         switch (state.getValue(SECTION)) {
             case BOTTOM:
-                return worldIn.getBlockState(pos.below()).is(Tags.Blocks.DIRT) || worldIn.getBlockState(pos.below()).is(RankineTags.Blocks.FARMLAND);
+                return worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(RankineTags.Blocks.FARMLAND);
             case MIDDLE:
                 BlockState blockstate1 = worldIn.getBlockState(pos.below());
                 if (state.getBlock() != this) return super.canSurvive(state, worldIn, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.

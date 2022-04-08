@@ -8,6 +8,7 @@ import com.cannolicatfish.rankine.recipe.helper.AlloyColorHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -40,6 +41,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeableArmorItem;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.Tags;
 
 public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem, DyeableLeatherItem {
     private final String defaultComposition;
@@ -72,7 +74,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
 
     @Override
     public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
-        if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
+        if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.is(Tags.Items.INGOTS) || repair.getItem() == this)) {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);
 

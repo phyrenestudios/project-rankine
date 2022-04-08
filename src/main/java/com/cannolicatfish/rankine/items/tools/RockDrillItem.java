@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.world.item.Item.Properties;
+import net.minecraftforge.common.Tags;
 
 public class RockDrillItem extends Item {
 
@@ -30,7 +31,7 @@ public class RockDrillItem extends Item {
 
         for (int i=0; i<= pos.getY(); ++i) {
             Block stone = reader.getBlockState(pos.below(i)).getBlock();
-            if (!stones.contains(stone) && stone.getTags().contains(new ResourceLocation("forge:stone"))) {
+            if (!stones.contains(stone) && reader.getBlockState(context.getClickedPos()).is(Tags.Blocks.STONE)) {
                 stones.add(stone);
             }
         }

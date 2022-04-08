@@ -94,11 +94,9 @@ public class TreeTapTile extends BlockEntity {
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         compound.put("OutputTank",this.outputTank.writeToNBT(new CompoundTag()));
-
-        return compound;
     }
 
     private boolean isTreeAlive(BlockPos pos, Level worldIn) {

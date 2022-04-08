@@ -32,7 +32,7 @@ public class GunCottonBlock extends Block {
     }
 
     @Override
-    public void catchFire(BlockState state, Level world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
+    public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
         world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1.5F, Explosion.BlockInteraction.BREAK);
         world.removeBlock(pos, false);
     }
@@ -40,7 +40,7 @@ public class GunCottonBlock extends Block {
     @Override
     public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (worldIn.hasNeighborSignal(pos)) {
-            catchFire(state, worldIn, pos, null, null);
+            onCaughtFire(state, worldIn, pos, null, null);
         }
     }
 
@@ -61,7 +61,7 @@ public class GunCottonBlock extends Block {
         if (item != Items.FLINT_AND_STEEL && item != Items.FIRE_CHARGE) {
             return super.use(state, worldIn, pos, player, handIn, p_225533_6_);
         } else {
-            catchFire(state, worldIn, pos, p_225533_6_.getDirection(), player);
+            onCaughtFire(state, worldIn, pos, p_225533_6_.getDirection(), player);
             worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
             if (!player.isCreative()) {
                 if (item == Items.FLINT_AND_STEEL) {
@@ -84,7 +84,7 @@ public class GunCottonBlock extends Block {
             Entity entity = abstractarrowentity.getOwner();
             if (abstractarrowentity.isOnFire()) {
                 BlockPos blockpos = hit.getBlockPos();
-                catchFire(state, worldIn, blockpos, null, entity instanceof LivingEntity ? (LivingEntity)entity : null);
+                onCaughtFire(state, worldIn, blockpos, null, entity instanceof LivingEntity ? (LivingEntity)entity : null);
             }
         }
 
@@ -92,7 +92,7 @@ public class GunCottonBlock extends Block {
 
     public void wasExploded(Level worldIn, BlockPos pos, Explosion explosionIn) {
         if (!worldIn.isClientSide) {
-            catchFire(worldIn.getBlockState(pos), worldIn, pos, null,null);
+            onCaughtFire(worldIn.getBlockState(pos), worldIn, pos, null,null);
         }
     }
 

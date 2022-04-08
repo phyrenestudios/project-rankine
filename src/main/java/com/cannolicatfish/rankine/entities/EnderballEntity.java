@@ -33,8 +33,8 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.fmllegacy.network.FMLPlayMessages;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.network.PlayMessages;
 
 @OnlyIn(
         value = Dist.CLIENT,
@@ -58,7 +58,7 @@ public class EnderballEntity extends AbstractHurtingProjectile implements ItemSu
     }
 
     @OnlyIn(Dist.CLIENT)
-    public EnderballEntity(FMLPlayMessages.SpawnEntity spawnEntity, Level world, EntityType<EnderballEntity> e) {
+    public EnderballEntity(PlayMessages.SpawnEntity spawnEntity, Level world, EntityType<EnderballEntity> e) {
         super(e, world);
     }
 
