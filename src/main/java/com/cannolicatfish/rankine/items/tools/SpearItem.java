@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.entities.SpearEntity;
 import com.cannolicatfish.rankine.init.RankineAttributes;
+import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.world.level.block.state.BlockState;
@@ -44,16 +45,14 @@ public class SpearItem extends Item {
     private final float attackDamage;
     private final float attackSpeedIn;
     public ResourceLocation type;
-    public EntityType<SpearEntity> entity;
     private Tier tier;
 
     private ImmutableMultimap<Attribute, AttributeModifier> attributeModifiers;
-    public SpearItem(Tier tier, float attackDamageIn, float attackSpeedIn, EntityType<SpearEntity> entity, ResourceLocation type, Properties properties) {
+    public SpearItem(Tier tier, float attackDamageIn, float attackSpeedIn, ResourceLocation type, Properties properties) {
         super(properties.defaultDurability(tier.getUses()));
         this.attackSpeedIn = attackSpeedIn;
         this.attackDamage = (float) attackDamageIn + tier.getAttackDamageBonus();
         this.type = type;
-        this.entity = entity;
         this.tier = tier;
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
@@ -99,7 +98,7 @@ public class SpearItem extends Item {
                         });
                         if (j == 0) {
                             SpearEntity spearentity;
-                            spearentity = new SpearEntity(worldIn, playerentity, stack, entity, type, this.attackDamage);
+                            spearentity = new SpearEntity(worldIn, playerentity, stack, RankineEntityTypes.ALLOY_SPEAR.get(), type, this.attackDamage);
                             spearentity.shootFromRotation(playerentity, playerentity.getXRot(), playerentity.getYRot(), 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
                             if (playerentity.getAbilities().instabuild) {
                                 spearentity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;

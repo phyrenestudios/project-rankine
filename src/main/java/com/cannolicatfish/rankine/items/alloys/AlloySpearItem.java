@@ -34,8 +34,8 @@ public class AlloySpearItem extends SpearItem implements IAlloyTool {
 
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
-    public AlloySpearItem(Tier tier, float attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn,  EntityType<SpearEntity> entity, ResourceLocation type, Properties properties) {
-        super(tier, attackDamageIn, attackSpeedIn,entity, type, properties);
+    public AlloySpearItem(Tier tier, float attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn, ResourceLocation type, Properties properties) {
+        super(tier, attackDamageIn, attackSpeedIn, type, properties);
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
     }

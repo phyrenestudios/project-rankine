@@ -18,8 +18,12 @@ import net.minecraftforge.network.PlayMessages;
 
 public class RopeCoilArrowEntity extends AbstractArrow {
 
+    public RopeCoilArrowEntity(EntityType<? extends RopeCoilArrowEntity> type, Level worldIn) {
+        super(type, worldIn);
+    }
+
     public RopeCoilArrowEntity(Level worldIn, LivingEntity shooter) {
-        super(RankineEntityTypes.ROPE_COIL_ARROW, shooter, worldIn);
+        super(RankineEntityTypes.ROPE_COIL_ARROW.get(), shooter, worldIn);
     }
 
     @OnlyIn(Dist.CLIENT)

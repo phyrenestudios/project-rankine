@@ -50,11 +50,11 @@ public class EnderballEntity extends AbstractHurtingProjectile implements ItemSu
 
 
     public EnderballEntity(Level worldIn, LivingEntity shooter, double accelX, double accelY, double accelZ) {
-        super(RankineEntityTypes.ENDERBALL, shooter, accelX, accelY, accelZ, worldIn);
+        super(RankineEntityTypes.ENDERBALL.get(), shooter, accelX, accelY, accelZ, worldIn);
     }
 
     public EnderballEntity(Level worldIn, double x, double y, double z, double accelX, double accelY, double accelZ) {
-        super(RankineEntityTypes.ENDERBALL, x, y, z, accelX, accelY, accelZ, worldIn);
+        super(RankineEntityTypes.ENDERBALL.get(), x, y, z, accelX, accelY, accelZ, worldIn);
     }
 
     @OnlyIn(Dist.CLIENT)

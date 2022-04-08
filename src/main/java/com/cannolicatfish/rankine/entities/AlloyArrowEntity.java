@@ -18,12 +18,12 @@ public class AlloyArrowEntity extends AbstractArrow {
     private double damage = 2.0D;
     private ItemStack arrowStack = new ItemStack(RankineItems.ALLOY_ARROW.get());
 
-    protected AlloyArrowEntity(EntityType<? extends Arrow> type, Level worldIn) {
+    public AlloyArrowEntity(EntityType<? extends AlloyArrowEntity> type, Level worldIn) {
         super(type, worldIn);
     }
 
     public AlloyArrowEntity(Level worldIn, ItemStack arrowStackIn, LivingEntity shooter, float damageIn) {
-        super(RankineEntityTypes.ALLOY_ARROW, shooter, worldIn);
+        super(RankineEntityTypes.ALLOY_ARROW.get(), shooter, worldIn);
         this.arrowStack = arrowStackIn.copy();
         this.damage = damageIn;
     }

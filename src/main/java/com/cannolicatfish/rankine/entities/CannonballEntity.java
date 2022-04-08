@@ -41,11 +41,11 @@ public class CannonballEntity extends AbstractHurtingProjectile implements ItemS
 
 
     public CannonballEntity(Level worldIn, LivingEntity shooter, double accelX, double accelY, double accelZ) {
-        super(RankineEntityTypes.CANNONBALL, shooter, accelX, accelY, accelZ, worldIn);
+        super(RankineEntityTypes.CANNONBALL.get(), shooter, accelX, accelY, accelZ, worldIn);
     }
 
     public CannonballEntity(Level worldIn, double x, double y, double z, double accelX, double accelY, double accelZ) {
-        super(RankineEntityTypes.CANNONBALL, x, y, z, accelX, accelY, accelZ, worldIn);
+        super(RankineEntityTypes.CANNONBALL.get(), x, y, z, accelX, accelY, accelZ, worldIn);
     }
 
     @OnlyIn(Dist.CLIENT)

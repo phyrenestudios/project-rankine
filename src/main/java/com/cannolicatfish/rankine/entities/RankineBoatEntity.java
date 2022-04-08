@@ -26,7 +26,7 @@ public class RankineBoatEntity extends Boat {
     }
 
     public RankineBoatEntity(Level worldIn, double x, double y, double z) {
-        this(RankineEntityTypes.RANKINE_BOAT, worldIn);
+        this(RankineEntityTypes.RANKINE_BOAT.get(), worldIn);
         this.setPos(x, y, z);
         this.setDeltaMovement(Vec3.ZERO);
         this.xo = x;

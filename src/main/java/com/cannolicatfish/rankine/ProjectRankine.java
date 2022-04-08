@@ -113,6 +113,8 @@ public class ProjectRankine {
 
         RankineBlocks.REGISTRY.register(Bus);
         RankineItems.REGISTRY.register(Bus);
+        RankineEntityTypes.REGISTRY.register(Bus);
+        RankineBlockEntityTypes.REGISTRY.register(Bus);
         RankineFeatures.REGISTRY.register(Bus);
         //RankinePlacements.REGISTRY.register(Bus);
         RankineSoundEvents.SOUNDS.register(Bus);
@@ -284,64 +286,6 @@ public class ProjectRankine {
             event.getRegistry().register(SurfRodModifier.SERIALIZER.setRegistryName(ProjectRankine.MODID,"surf_rod_modifier"));
         }
 
-        @SubscribeEvent
-        public static void onTileEntityRegistry(final RegistryEvent.Register<BlockEntityType<?>> event) {
-            event.getRegistry().register(BlockEntityType.Builder.of(AlloyFurnaceTile::new, RankineBlocks.ALLOY_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
-            event.getRegistry().register(BlockEntityType.Builder.of(PistonCrusherTile::new, RankineBlocks.PISTON_CRUSHER.get()).build(null).setRegistryName(ProjectRankine.MODID,"piston_crusher"));
-            event.getRegistry().register(BlockEntityType.Builder.of(CrucibleTile::new, RankineBlocks.CRUCIBLE_BLOCK.get()).build(null).setRegistryName(ProjectRankine.MODID,"crucible"));
-            event.getRegistry().register(BlockEntityType.Builder.of(InductionFurnaceTile::new, RankineBlocks.INDUCTION_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"induction_furnace"));
-            event.getRegistry().register(BlockEntityType.Builder.of(FusionFurnaceTile::new, RankineBlocks.FUSION_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"fusion_furnace"));
-            event.getRegistry().register(BlockEntityType.Builder.of(GyratoryCrusherTile::new, RankineBlocks.GYRATORY_CRUSHER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gyratory_crusher"));
-            event.getRegistry().register(BlockEntityType.Builder.of(EvaporationTowerTile::new, RankineBlocks.EVAPORATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
-            event.getRegistry().register(BlockEntityType.Builder.of(GasBottlerTile::new, RankineBlocks.GAS_BOTTLER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_condenser"));
-            event.getRegistry().register(BlockEntityType.Builder.of(GasVentTile::new, RankineBlocks.GAS_VENT.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_vent"));
-            event.getRegistry().register(BlockEntityType.Builder.of(TreeTapTile::new, RankineBlocks.TREE_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"tree_tap"));
-            event.getRegistry().register(BlockEntityType.Builder.of(SedimentFanTile::new, RankineBlocks.SEDIMENT_FAN.get()).build(null).setRegistryName(ProjectRankine.MODID,"sediment_fan"));
-            event.getRegistry().register(BlockEntityType.Builder.of(MixingBarrelTile::new, RankineBlocks.MIXING_BARREL.get()).build(null).setRegistryName(ProjectRankine.MODID,"mixing_barrel"));
-            //event.getRegistry().register(TileEntityType.Builder.create(LaserQuarryTile::new, RankineBlocks.LASER_QUARRY.get()).build(null).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
-            event.getRegistry().register(BlockEntityType.Builder.of(AlloyBlockTile::new, RankineLists.ALLOY_BLOCKS.toArray(new Block[0])).build(null).setRegistryName(ProjectRankine.MODID,"alloy_block"));
-            //event.getRegistry().register(TileEntityType.Builder.create(SodiumVaporLampTile::new, RankineBlocks.SODIUM_VAPOR_LAMP.get()).build(null).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
-            event.getRegistry().register(BlockEntityType.Builder.of(TilledSoilTile::new, RankineBlocks.TILLED_SOIL.get()).build(null).setRegistryName(ProjectRankine.MODID,"tilled_soil"));
-            event.getRegistry().register(BlockEntityType.Builder.of(GroundTapTile::new, RankineBlocks.GROUND_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"ground_tap"));
-            event.getRegistry().register(BlockEntityType.Builder.of(MaterialTestingTableTile::new, RankineBlocks.MATERIAL_TESTING_TABLE.get()).build(null).setRegistryName(ProjectRankine.MODID,"material_testing_table"));
-            event.getRegistry().register(BlockEntityType.Builder.of(BeehiveOvenTile::new, RankineBlocks.BEEHIVE_OVEN_PIT.get()).build(null).setRegistryName(ProjectRankine.MODID,"beehive_oven"));
-            event.getRegistry().register(BlockEntityType.Builder.of(DistillationTowerTile::new, RankineBlocks.DISTILLATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"distillation_tower"));
-            event.getRegistry().register(BlockEntityType.Builder.of(CharcoalPitTile::new, RankineBlocks.CHARCOAL_PIT.get()).build(null).setRegistryName(ProjectRankine.MODID,"charcoal_pit"));
-            event.getRegistry().register(BlockEntityType.Builder.of(ParticleAcceleratorTile::new, RankineBlocks.PARTICLE_ACCELERATOR.get()).build(null).setRegistryName(ProjectRankine.MODID,"particle_accelerator"));
-            event.getRegistry().register(BlockEntityType.Builder.of(PedestalTile::new, RankineLists.ALLOY_PEDESTALS.toArray(new Block[0])).build(null).setRegistryName(ProjectRankine.MODID,"pedestal"));
-        }
-
-        @SubscribeEvent
-        public static void onEntityRegistry(final RegistryEvent.Register<EntityType<?>> event) {
-            event.getRegistry().register(RankineEntityTypes.FLINT_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.PEWTER_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.BRONZE_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.IRON_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.INVAR_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.STEEL_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.ROSE_GOLD_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.WHITE_GOLD_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.GREEN_GOLD_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.BLUE_GOLD_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.PURPLE_GOLD_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.BLACK_GOLD_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.AMALGAM_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.DIAMOND_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.NETHERITE_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.NICKEL_SUPERALLOY_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.COBALT_SUPERALLOY_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.TUNGSTEN_HEAVY_ALLOY_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.TITANIUM_ALLOY_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.ALLOY_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.STAINLESS_STEEL_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.ROPE_COIL_ARROW);
-            event.getRegistry().register(RankineEntityTypes.ALLOY_ARROW);
-            event.getRegistry().register(RankineEntityTypes.REACTIVE_ITEM.setRegistryName(ProjectRankine.MODID,"reactive_item"));
-            event.getRegistry().register(RankineEntityTypes.CANNONBALL.setRegistryName(ProjectRankine.MODID,"cannonball"));
-            event.getRegistry().register(RankineEntityTypes.CARCASS.setRegistryName(ProjectRankine.MODID,"carcass"));
-            event.getRegistry().register(RankineEntityTypes.ENDERBALL.setRegistryName(ProjectRankine.MODID,"enderball"));
-            event.getRegistry().register(RankineEntityTypes.RANKINE_BOAT.setRegistryName(ProjectRankine.MODID,"cedar_boat"));
-        }
 
         @SubscribeEvent
         public static void clientSetupEvent(FMLClientSetupEvent event)
@@ -352,34 +296,14 @@ public class ProjectRankine {
         @SubscribeEvent
         public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
         {
-            event.registerEntityRenderer(RankineEntityTypes.FLINT_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.PEWTER_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.BRONZE_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.IRON_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.INVAR_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.STEEL_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.ROSE_GOLD_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.WHITE_GOLD_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.GREEN_GOLD_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.BLUE_GOLD_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.PURPLE_GOLD_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.BLACK_GOLD_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.AMALGAM_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.DIAMOND_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.NETHERITE_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.NICKEL_SUPERALLOY_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.COBALT_SUPERALLOY_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.TUNGSTEN_HEAVY_ALLOY_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.STAINLESS_STEEL_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.TITANIUM_ALLOY_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.ALLOY_SPEAR, SpearEntityRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.REACTIVE_ITEM, ReactiveItemRenderer::new);
-            event.registerEntityRenderer(RankineEntityTypes.RANKINE_BOAT,RankineBoatRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.ROPE_COIL_ARROW, RopeCoilArrowRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.ALLOY_ARROW,AlloyArrowRenderer.instance);
-            event.registerEntityRenderer(RankineEntityTypes.CANNONBALL, CannonballRenderer::new);
-            event.registerEntityRenderer(RankineEntityTypes.ENDERBALL, EnderballRenderer::new);
-            event.registerEntityRenderer(RankineEntityTypes.CARCASS, CarcassRenderer::new);
+            event.registerEntityRenderer(RankineEntityTypes.ALLOY_SPEAR.get(), SpearEntityRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.REACTIVE_ITEM.get(), ReactiveItemRenderer::new);
+            event.registerEntityRenderer(RankineEntityTypes.RANKINE_BOAT.get(),RankineBoatRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.ROPE_COIL_ARROW.get(), RopeCoilArrowRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.ALLOY_ARROW.get(),AlloyArrowRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.CANNONBALL.get(), CannonballRenderer::new);
+            event.registerEntityRenderer(RankineEntityTypes.ENDERBALL.get(), EnderballRenderer::new);
+            event.registerEntityRenderer(RankineEntityTypes.CARCASS.get(), CarcassRenderer::new);
         }
         @SubscribeEvent
         public static void onContainerRegistry(final RegistryEvent.Register<MenuType<?>> event) {

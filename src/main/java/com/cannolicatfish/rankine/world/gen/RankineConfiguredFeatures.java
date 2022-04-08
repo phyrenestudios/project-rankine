@@ -40,7 +40,8 @@ public class RankineConfiguredFeatures {
             BlockStateProvider.simple(RankineBlocks.HONEY_LOCUST_LOG.get().defaultBlockState()),
             new StraightTrunkPlacer(8, 3, 0),
             BlockStateProvider.simple(RankineBlocks.HONEY_LOCUST_LEAVES.get().defaultBlockState()),
-            null,  null)).ignoreVines().build();
+            new AcaciaFoliagePlacer(UniformInt.of(1, 0), UniformInt.of(0, 0)),
+            new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().build();
 
     public static final TreeConfiguration WEEPING_WILLOW_TREE_CONFIG = (new TreeConfiguration.TreeConfigurationBuilder(
             BlockStateProvider.simple(RankineBlocks.WEEPING_WILLOW_LOG.get().defaultBlockState()),
@@ -314,6 +315,28 @@ public class RankineConfiguredFeatures {
         CFregister("sorghum_plant_patch",SORGHUM_PLANT_PATCH);
         CFregister("jute_plant_patch",JUTE_PLANT_PATCH);*/
 
+        CFregister("short_balsam_fir_tree",SHORT_BALSAM_FIR_TREE);
+        CFregister("balsam_fir_tree",BALSAM_FIR_TREE);
+        CFregister("coconut_palm_tree",COCONUT_PALM_TREE);
+        CFregister("black_walnut_tree",BLACK_WALNUT_TREE);
+        CFregister("red_birch_tree",RED_BIRCH_TREE);
+        CFregister("eastern_hemlock_tree",EASTERN_HEMLOCK_TREE);
+        CFregister("western_hemlock_tree",WESTERN_HEMLOCK_TREE);
+        CFregister("black_birch_tree",BLACK_BIRCH_TREE);
+        CFregister("yellow_birch_tree",YELLOW_BIRCH_TREE);
+        CFregister("modified_birch_tree",MODIFIED_BIRCH_TREE);
+        CFregister("petrified_chorus_tree",PETRIFIED_CHORUS_TREE);
+        CFregister("pinyon_pine_tree",PINYON_PINE_TREE);
+        CFregister("juniper_tree",JUNIPER_TREE);
+        CFregister("erythrina_tree",ERYTHRINA_TREE);
+        CFregister("magnolia_tree",MAGNOLIA_TREE);
+        CFregister("red_cedar_tree",RED_CEDAR_TREE);
+        CFregister("honey_locust_tree",HONEY_LOCUST_TREE);
+        CFregister("weeping_willow_tree",WEEPING_WILLOW_TREE);
+        CFregister("maple_tree",MAPLE_TREE);
+        CFregister("sharinga_tree",SHARINGA_TREE);
+        CFregister("cork_oak_tree",CORK_OAK_TREE);
+        CFregister("cinnamon_tree",CINNAMON_TREE);
     }
 
 

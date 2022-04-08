@@ -16,6 +16,7 @@ import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class RankinePlacedFeatures {
@@ -91,22 +92,22 @@ public class RankinePlacedFeatures {
         CORK_OAK_TREE = registerPlacedFeature("cork_oak_tree",RankineConfiguredFeatures.CORK_OAK_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
         CINNAMON_TREE = registerPlacedFeature("cinnamon_tree",RankineConfiguredFeatures.CINNAMON_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
 
-        MUSHROOM = registerPlacedFeature("mushroom",RankineConfiguredFeatures.MUSHROOMS, (PlacementModifier) null);
+        MUSHROOM = registerPlacedFeature("mushroom",RankineConfiguredFeatures.MUSHROOMS, (PlacementModifier) Collections.emptyList());
 
-        INTRUSION_FEATURE = registerPlacedFeature("intrusion",RankineConfiguredFeatures.INTRUSION_FEATURE,(PlacementModifier) null);
-        COLUMN_FEATURE = registerPlacedFeature("column",RankineConfiguredFeatures.COLUMN,(PlacementModifier) null);
-        FLAT_BEDROCK = registerPlacedFeature("flat_bedrock",RankineConfiguredFeatures.FLAT_BEDROCK,(PlacementModifier) null);
-        FLAT_BEDROCK_NETHER = registerPlacedFeature("flat_bedrock_nether",RankineConfiguredFeatures.FLAT_BEDROCK_NETHER,(PlacementModifier) null);
-        WORLD_REPLACER = registerPlacedFeature("world_replacer_feature",RankineConfiguredFeatures.WORLD_REPLACER_GEN,(PlacementModifier) null);
-        POST_WORLD_REPLACER = registerPlacedFeature("post_world_replacer_feature",RankineConfiguredFeatures.POST_WORLD_REPLACER_GEN,(PlacementModifier) null);
-        WHITE_SAND = registerPlacedFeature("white_sand",RankineConfiguredFeatures.DISK_WHITE_SAND,(PlacementModifier) null);
-        EVAPORITE = registerPlacedFeature("evaporite",RankineConfiguredFeatures.ORE_EVAPORITE,(PlacementModifier) null);
-        ALLUVIUM = registerPlacedFeature("alluvium",RankineConfiguredFeatures.ORE_ALLUVIUM,(PlacementModifier) null);
-        FUMAROLE = registerPlacedFeature("fumarole",RankineConfiguredFeatures.FUMAROLE,(PlacementModifier) null);
-        BLACK_SAND = registerPlacedFeature("black_sand",RankineConfiguredFeatures.DISK_BLACK_SAND,(PlacementModifier) null);
-        METEORITE = registerPlacedFeature("meteorite",RankineConfiguredFeatures.METEORITE,(PlacementModifier) null);
-        END_METEORITE = registerPlacedFeature("end_meteorite",RankineConfiguredFeatures.END_METEORITE,(PlacementModifier) null);
-        ANTIMATTER_BLOB = registerPlacedFeature("antimatter_blob",RankineConfiguredFeatures.ANTIMATTER_BLOB,(PlacementModifier) null);
+        INTRUSION_FEATURE = registerPlacedFeature("intrusion",RankineConfiguredFeatures.INTRUSION_FEATURE,(PlacementModifier) Collections.emptyList());
+        COLUMN_FEATURE = registerPlacedFeature("column",RankineConfiguredFeatures.COLUMN,(PlacementModifier) Collections.emptyList());
+        FLAT_BEDROCK = registerPlacedFeature("flat_bedrock",RankineConfiguredFeatures.FLAT_BEDROCK,(PlacementModifier) Collections.emptyList());
+        FLAT_BEDROCK_NETHER = registerPlacedFeature("flat_bedrock_nether",RankineConfiguredFeatures.FLAT_BEDROCK_NETHER,(PlacementModifier) Collections.emptyList());
+        WORLD_REPLACER = registerPlacedFeature("world_replacer_feature",RankineConfiguredFeatures.WORLD_REPLACER_GEN,(PlacementModifier) Collections.emptyList());
+        POST_WORLD_REPLACER = registerPlacedFeature("post_world_replacer_feature",RankineConfiguredFeatures.POST_WORLD_REPLACER_GEN,(PlacementModifier) Collections.emptyList());
+        WHITE_SAND = registerPlacedFeature("white_sand",RankineConfiguredFeatures.DISK_WHITE_SAND,(PlacementModifier) Collections.emptyList());
+        EVAPORITE = registerPlacedFeature("evaporite",RankineConfiguredFeatures.ORE_EVAPORITE,(PlacementModifier) Collections.emptyList());
+        ALLUVIUM = registerPlacedFeature("alluvium",RankineConfiguredFeatures.ORE_ALLUVIUM,(PlacementModifier) Collections.emptyList());
+        FUMAROLE = registerPlacedFeature("fumarole",RankineConfiguredFeatures.FUMAROLE,(PlacementModifier) Collections.emptyList());
+        BLACK_SAND = registerPlacedFeature("black_sand",RankineConfiguredFeatures.DISK_BLACK_SAND,(PlacementModifier) Collections.emptyList());
+        METEORITE = registerPlacedFeature("meteorite",RankineConfiguredFeatures.METEORITE,(PlacementModifier) Collections.emptyList());
+        END_METEORITE = registerPlacedFeature("end_meteorite",RankineConfiguredFeatures.END_METEORITE,(PlacementModifier) Collections.emptyList());
+        ANTIMATTER_BLOB = registerPlacedFeature("antimatter_blob",RankineConfiguredFeatures.ANTIMATTER_BLOB,(PlacementModifier) Collections.emptyList());
 
     }
 

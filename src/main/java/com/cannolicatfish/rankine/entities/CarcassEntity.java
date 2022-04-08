@@ -49,11 +49,11 @@ public class CarcassEntity extends Fireball implements ItemSupplier {
 
 
     public CarcassEntity(Level worldIn, LivingEntity shooter, double accelX, double accelY, double accelZ) {
-        super(RankineEntityTypes.CARCASS, shooter, accelX, accelY, accelZ, worldIn);
+        super(RankineEntityTypes.CARCASS.get(), shooter, accelX, accelY, accelZ, worldIn);
     }
 
     public CarcassEntity(Level worldIn, double x, double y, double z, double accelX, double accelY, double accelZ) {
-        super(RankineEntityTypes.CARCASS, x, y, z, accelX, accelY, accelZ, worldIn);
+        super(RankineEntityTypes.CARCASS.get(), x, y, z, accelX, accelY, accelZ, worldIn);
     }
 
     @OnlyIn(Dist.CLIENT)
