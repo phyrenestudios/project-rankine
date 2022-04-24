@@ -76,6 +76,7 @@ public class RankineEventHandler {
     public static void onCropTrample(BlockEvent.FarmlandTrampleEvent event) {
         CropTrampleHandler.onCropTrample(event);
     }
+
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         PlayerTickHandler.onPlayerTick(event);

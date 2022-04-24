@@ -1,0 +1,20 @@
+{
+  "name": "rankine.journal.cat_sediments.lightning_glass.name",
+  "icon": "rankine:lightning_glass",
+  "category": "sediments",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_sediments.lightning_glass.text1"
+    },
+    {
+      "type": "rankine:item5",
+      "item1": "rankine:lightning_glass",
+      "item2": "rankine:red_lightning_glass",
+      "item3": "rankine:black_lightning_glass",
+      "item4": "rankine:white_lightning_glass",
+      "item5": "rankine:soul_lightning_glass",
+      "text": "rankine.journal.cat_sediments.lightning_glass.text2"
+    }
+  ]
+}

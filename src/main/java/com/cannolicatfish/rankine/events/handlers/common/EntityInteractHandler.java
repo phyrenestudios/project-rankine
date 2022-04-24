@@ -25,6 +25,8 @@ public class EntityInteractHandler {
                 flag = true;
             } else if (type.equals(EntityType.SHEEP) && itemStack.getItem().isIn(RankineTags.Items.BREEDABLES_SHEEP)) {
                 flag = true;
+            } else if (type.equals(EntityType.LLAMA) && itemStack.getItem().isIn(RankineTags.Items.BREEDABLES_LLAMA)) {
+                flag = true;
             } else if (type.equals(EntityType.CHICKEN) && itemStack.getItem().isIn(RankineTags.Items.BREEDABLES_CHICKEN)) {
                 flag = true;
             } else if (type.equals(EntityType.FOX) && itemStack.getItem().isIn(RankineTags.Items.BREEDABLES_FOX)) {

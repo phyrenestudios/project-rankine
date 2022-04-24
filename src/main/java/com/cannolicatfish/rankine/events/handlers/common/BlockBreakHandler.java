@@ -2,19 +2,8 @@ package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
-import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineEnchantments;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.init.VanillaIntegration;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.SweetBerryBushBlock;
+import com.cannolicatfish.rankine.init.*;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,12 +25,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 import static net.minecraft.block.Block.spawnAsEntity;
 
@@ -248,44 +232,14 @@ public class BlockBreakHandler {
 
             //knife stuff
             if (mainHandItem.isIn(RankineTags.Items.KNIVES)) {
-                ItemStack drops = null;
-
-                if (target == Blocks.GRASS) {
-                    drops = new ItemStack(Items.GRASS, 1);
-                } else if (target == Blocks.TALL_GRASS) {
-                    drops = new ItemStack(Items.GRASS, 2);
-                } else if (target == Blocks.FERN) {
-                    drops = new ItemStack(Items.FERN, 1);
-                } else if (target == Blocks.LARGE_FERN) {
-                    drops = new ItemStack(Items.LARGE_FERN, 1);
-                } else if (target == Blocks.VINE) {
-                    drops = new ItemStack(Items.VINE, 1);
-                } else if (target == Blocks.TWISTING_VINES) {
-                    drops = new ItemStack(Items.TWISTING_VINES, 1);
-                } else if (target == Blocks.WEEPING_VINES_PLANT) {
-                    drops = new ItemStack(Items.WEEPING_VINES, 1);
-                } else if (target == RankineBlocks.SHORT_GRASS.get()) {
-                    drops = new ItemStack(RankineItems.SHORT_GRASS.get(), 1);
-                } else if (target == RankineBlocks.STINGING_NETTLE.get()) {
-                    drops = new ItemStack(RankineItems.STINGING_NETTLE.get(), 1);
-                } else if (target == RankineBlocks.YELLOW_CLOVER.get()) {
-                    drops = new ItemStack(RankineItems.YELLOW_CLOVER.get(), 1);
-                } else if (target == RankineBlocks.WHITE_CLOVER.get()) {
-                    drops = new ItemStack(RankineItems.WHITE_CLOVER.get(), 1);
-                } else if (target == RankineBlocks.CRIMSON_CLOVER.get()) {
-                    drops = new ItemStack(RankineItems.CRIMSON_CLOVER.get(), 1);
-                } else if (target == RankineBlocks.RED_CLOVER.get()) {
-                    drops = new ItemStack(RankineItems.RED_CLOVER.get(), 1);
-                } else if (target == Blocks.DEAD_BUSH || target instanceof RankinePlantBlock || target instanceof SweetBerryBushBlock) {
-                    drops = new ItemStack(Items.STICK, 2 + worldIn.getRandom().nextInt(4));
-                }
-                if (drops != null && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
-                    spawnAsEntity(worldIn, pos, drops);
-                }
-                if (drops != null && !worldIn.isRemote) {
-                    player.getHeldItemMainhand().damageItem(1, player, (p_220038_0_) -> {
-                        p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-                    });
+                if (target.isIn(RankineTags.Blocks.KNIFE_SHEARABLE)) {
+                    worldIn.destroyBlock(pos,false);
+                    spawnAsEntity(worldIn, pos, new ItemStack(target.asItem()));
+                    if (!worldIn.isRemote) {
+                        player.getHeldItemMainhand().damageItem(1, player, (p_220038_0_) -> {
+                            p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                        });
+                    }
                 }
             }
 
@@ -330,6 +284,8 @@ public class BlockBreakHandler {
                     spawnAsEntity(worldIn,pos,FOOD);
                 }
             }
+
+
 
 
         } //end creative check

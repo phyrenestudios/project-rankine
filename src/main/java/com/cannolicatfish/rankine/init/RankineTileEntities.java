@@ -23,6 +23,7 @@ import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
 import com.cannolicatfish.rankine.blocks.signs.RankineSignTile;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapTile;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilTile;
+import com.cannolicatfish.rankine.client.renders.PedestalRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.tileentity.TileEntityType;
@@ -65,5 +66,6 @@ public class RankineTileEntities {
     public static void registerTileEntityRenders() {
         // tile entities
         ClientRegistry.bindTileEntityRenderer(RANKINE_SIGN.get(), SignTileEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(PEDESTAL_TILE.get(), PedestalRenderer::new);
     }
 }

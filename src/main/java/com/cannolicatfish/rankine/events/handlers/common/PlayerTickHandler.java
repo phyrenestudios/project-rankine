@@ -51,10 +51,10 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class PlayerTickHandler {
-    private static final String DIRECTION_FORMAT = "Facing %s with coordinates: X =%3.3f Z =%3.3f";
-    private static final String CLOCK_FORMAT = "Time = %2f:%2f (%d)";
+    private static final String DIRECTION_FORMAT = "Facing %s with coordinates: X=%2.0f Z=%2.0f";
+    private static final String CLOCK_FORMAT = "Time = %02.0f:%02.0f (%d)";
     private static final String TEMP_FORMAT = "Temperature = %1.3f";
-    private static final String ALTIMETER_FORMAT = "Altitude: Y = %,6d";
+    private static final String ALTIMETER_FORMAT = "Altitude: Y = %d";
     private static final String PHOTOMETER_FORMAT = "Light Levels: Sky = %2d Block = %2d";
 
     private static final Map<Item, Consumer<TickEvent.PlayerTickEvent>> ITEM_HOLD_MAP = new HashMap<>();
@@ -78,12 +78,12 @@ public class PlayerTickHandler {
                 break;
             case EAST:
                 player.sendStatusMessage(
-                        new StringTextComponent(String.format(DIRECTION_FORMAT, "EAST", player.getPosX(), player.getPosZ()))
+                        new StringTextComponent(String.format(DIRECTION_FORMAT, "East", player.getPosX(), player.getPosZ()))
                                 .mergeStyle(TextFormatting.GOLD),true);
                 break;
             case SOUTH:
                 player.sendStatusMessage(
-                        new StringTextComponent(String.format(DIRECTION_FORMAT, "SOUTH", player.getPosX(), player.getPosZ()))
+                        new StringTextComponent(String.format(DIRECTION_FORMAT, "South", player.getPosX(), player.getPosZ()))
                                 .mergeStyle(TextFormatting.GOLD),true);
                 break;
             case WEST:
@@ -188,23 +188,22 @@ public class PlayerTickHandler {
         if(worldIn.getGameTime() % 5 == 0){
             // Tools
             if(!worldIn.isRemote()){
-                ForgeConfigSpec.BooleanValue enabledMainHandItem = Config.Tools.DISABLED_ITEMS.get(mainHand);
+                ForgeConfigSpec.BooleanValue enabledMainHandItem = VanillaIntegration.DISABLED_ITEMS.get(mainHand);
                 Consumer<TickEvent.PlayerTickEvent> handler;
-                if(enabledMainHandItem != null && enabledMainHandItem.get()){
+                if(enabledMainHandItem != null && !enabledMainHandItem.get()){
                     handler = ITEM_HOLD_MAP.get(mainHand);
                     if(handler != null){
                         handler.accept(event);
                     }
                 }
-                ForgeConfigSpec.BooleanValue enabledOffHandItem = Config.Tools.DISABLED_ITEMS.get(offHand);
-                if(enabledOffHandItem != null && enabledOffHandItem.get()) {
+                ForgeConfigSpec.BooleanValue enabledOffHandItem = VanillaIntegration.DISABLED_ITEMS.get(offHand);
+                if(enabledOffHandItem != null && !enabledOffHandItem.get()) {
                     handler = ITEM_HOLD_MAP.get(offHand);
                     if (handler != null) {
                         handler.accept(event);
                     }
                 }
-            }
-            else{
+            } else {
                 if (!Config.TOOLS.DISABLE_SPEEDOMETER.get() && (mainHand == RankineItems.SPEEDOMETER.get() || offHand == RankineItems.SPEEDOMETER.get())) {
                     Entity ent = player;
                     if (player.getRidingEntity() != null) {

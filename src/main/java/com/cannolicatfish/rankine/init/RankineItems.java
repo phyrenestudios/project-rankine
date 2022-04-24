@@ -4,7 +4,6 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.entities.RankineBoatEntity;
 import com.cannolicatfish.rankine.items.*;
 import com.cannolicatfish.rankine.items.alloys.*;
-import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerItem;
 import com.cannolicatfish.rankine.items.tools.*;
 import com.cannolicatfish.rankine.items.tools.arrows.MagnesiumArrowItem;
@@ -13,13 +12,11 @@ import com.cannolicatfish.rankine.items.tools.arrows.ThoriumArrowItem;
 import com.cannolicatfish.rankine.items.totems.*;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.Arrays;
 
@@ -2502,6 +2499,12 @@ public class RankineItems {
     //public static final RegistryObject<Item> ASPARAGUS_ROOT = REGISTRY.register("asparagus_root", () -> new BlockItem(RankineBlocks.ASPARAGUS_ROOT.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> CORN_STALK = ITEMS.register("corn_stalk", () -> new BlockItem(RankineBlocks.CORN_STALK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> PLANT_FIBER = ITEMS.register("plant_fiber", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants)));
+
+    public static final RegistryObject<Item> BARLEY_BALE = ITEMS.register("barley_bale", () -> new BlockItem(RankineBlocks.BARLEY_BALE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> OAT_BALE = ITEMS.register("oat_bale", () -> new BlockItem(RankineBlocks.OAT_BALE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> RYE_BALE = ITEMS.register("rye_bale", () -> new BlockItem(RankineBlocks.RYE_BALE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> SORGHUM_BALE = ITEMS.register("sorghum_bale", () -> new BlockItem(RankineBlocks.SORGHUM_BALE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> MILLET_BALE = ITEMS.register("millet_bale", () -> new BlockItem(RankineBlocks.MILLET_BALE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
 
 
 

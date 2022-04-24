@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:grass",
+    "minecraft:tall_grass",
+    "minecraft:fern",
+    "minecraft:large_fern",
+    "minecraft:seagrass",
+    "minecraft:tall_seagrass",
+    "minecraft:vine",
+    "minecraft:twisting_vines",
+    "minecraft:weeping_vines",
+    "minecraft:dead_bush",
+    "rankine:willow_branchlet",
+    "rankine:willow_branchlet_plant",
+    "rankine:short_grass",
+    "rankine:stinging_nettle",
+    "rankine:yellow_clover",
+    "rankine:red_clover",
+    "rankine:crimson_clover",
+    "rankine:white_clover"
+  ]
+}

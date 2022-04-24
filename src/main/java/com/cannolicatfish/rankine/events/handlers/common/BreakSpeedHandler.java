@@ -1,10 +1,6 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineEnchantments;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineTags;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
@@ -14,11 +10,11 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 
 import java.util.HashSet;
@@ -34,37 +30,10 @@ public class BreakSpeedHandler {
         if (!(heldItem instanceof AxeItem ) && event.getState().isIn(BlockTags.LOGS) && Config.GENERAL.MANDATORY_AXE.get()) { event.setNewSpeed(0f); }
         if (heldItem instanceof HammerItem) { event.setNewSpeed(0f); }
         if (heldItem instanceof CrowbarItem) { event.setNewSpeed(0f); }
-
-        if (Config.TOOLS.DISABLE_WOODEN_SWORD.get() && heldItem == Items.WOODEN_SWORD) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_WOODEN_AXE.get() && heldItem == Items.WOODEN_AXE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_WOODEN_SHOVEL.get() && heldItem == Items.WOODEN_SHOVEL) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_WOODEN_PICKAXE.get() && heldItem == Items.WOODEN_PICKAXE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_WOODEN_HOE.get() && heldItem == Items.WOODEN_HOE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_STONE_SWORD.get() && heldItem == Items.STONE_SWORD) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_STONE_AXE.get() && heldItem == Items.STONE_AXE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_STONE_SHOVEL.get() && heldItem == Items.STONE_SHOVEL) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_STONE_PICKAXE.get() && heldItem == Items.STONE_PICKAXE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_STONE_HOE.get() && heldItem == Items.STONE_HOE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_IRON_SWORD.get() && heldItem == Items.IRON_SWORD) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_IRON_AXE.get() && heldItem == Items.IRON_AXE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_IRON_SHOVEL.get() && heldItem == Items.IRON_SHOVEL) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_IRON_PICKAXE.get() && heldItem == Items.IRON_PICKAXE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_IRON_HOE.get() && heldItem == Items.IRON_HOE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_GOLDEN_SWORD.get() && heldItem == Items.GOLDEN_SWORD) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_GOLDEN_AXE.get() && heldItem == Items.GOLDEN_AXE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_GOLDEN_SHOVEL.get() && heldItem == Items.GOLDEN_SHOVEL) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_GOLDEN_PICKAXE.get() && heldItem == Items.GOLDEN_PICKAXE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_GOLDEN_HOE.get() && heldItem == Items.GOLDEN_HOE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_DIAMOND_SWORD.get() && heldItem == Items.DIAMOND_SWORD) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_DIAMOND_AXE.get() && heldItem == Items.DIAMOND_AXE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_DIAMOND_SHOVEL.get() && heldItem == Items.DIAMOND_SHOVEL) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_DIAMOND_PICKAXE.get() && heldItem == Items.DIAMOND_PICKAXE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_DIAMOND_HOE.get() && heldItem == Items.DIAMOND_HOE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_NETHERITE_SWORD.get() && heldItem == Items.NETHERITE_SWORD) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_NETHERITE_AXE.get() && heldItem == Items.NETHERITE_AXE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_NETHERITE_SHOVEL.get() && heldItem == Items.NETHERITE_SHOVEL) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_NETHERITE_PICKAXE.get() && heldItem == Items.NETHERITE_PICKAXE) { event.setNewSpeed(0f); }
-        if (Config.TOOLS.DISABLE_NETHERITE_HOE.get() && heldItem == Items.NETHERITE_HOE) { event.setNewSpeed(0f); }
+        ForgeConfigSpec.BooleanValue configSpec = VanillaIntegration.DISABLED_ITEMS.get(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem());
+        if (configSpec != null && configSpec.get()) {
+            event.setNewSpeed(0f);
+        }
 
         if (event.getPlayer().getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_HASTENING.get()) {
             event.setNewSpeed(event.getNewSpeed() + 3);
@@ -80,7 +49,6 @@ public class BreakSpeedHandler {
 
             float maxPercent = .40f + (enchant - 1) * .10f;
             int minHeight = 10;
-            float finalSpeed;
             int maxHeight = 45 + (enchant - 1) * 35;
             if (height < minHeight) {
                 event.setNewSpeed(event.getNewSpeed() + event.getNewSpeed() * maxPercent);
@@ -90,6 +58,10 @@ public class BreakSpeedHandler {
                 float[] s = RankineMathHelper.linspace(maxPercent, minPercent, maxHeight-minHeight);
                 event.setNewSpeed(event.getNewSpeed() + event.getNewSpeed() * s[height - 10]);
             }
+        }
+
+        if (event.getPlayer().world.getBlockState(event.getPos().up()).matchesBlock(RankineBlocks.STUMP.get()) && !event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem().isIn(RankineTags.Items.SHOVELS)) {
+            event.setNewSpeed(event.getNewSpeed() / 5);
         }
     }
 

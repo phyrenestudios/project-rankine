@@ -6,16 +6,12 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IItemProvider;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
 public class CornPlantBlock extends TripleCropsBlock {
@@ -38,14 +34,9 @@ public class CornPlantBlock extends TripleCropsBlock {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (state.get(AGE) == 7) {
-            if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(RankineItems.CORN_EAR.get(), 1 + worldIn.getRandom().nextInt(3)));
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
-            }
+            spawnAsEntity(worldIn,pos,new ItemStack(RankineItems.CORN_EAR.get(), 1 + worldIn.getRandom().nextInt(3)));
+            worldIn.playSound(player, pos, SoundEvents.BLOCK_CROP_BREAK, SoundCategory.BLOCKS, 0.8F, worldIn.getRandom().nextFloat() * 0.3F + 0.4F);
+
             switch (state.get(SECTION)) {
                 case BOTTOM:
                     worldIn.setBlockState(pos, RankineBlocks.CORN_STALK.get().getDefaultState().with(SECTION, TripleBlockSection.BOTTOM), 19);

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:sorghum"
+    }
+  },
+  "result": {
+    "item": "rankine:sorghum_bale"
+  }
+}

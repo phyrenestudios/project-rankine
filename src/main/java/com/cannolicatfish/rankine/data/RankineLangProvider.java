@@ -34,6 +34,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MISC_STAIRS,
                 RankineLists.MISC_WALLS,
 
+                RankineLists.BALES,
                 RankineLists.MUSHROOM_BLOCKS,
                 RankineLists.CONCRETE_VERTICAL_SLABS,
                 RankineLists.CONCRETE_STAIRS,
@@ -1188,7 +1189,7 @@ public class RankineLangProvider extends LanguageProvider {
 
 
         //Materials
-        add("rankine.journal.cat_materials.name", "Materials");
+        add("rankine.journal.cat_materials.name", "Material Acquisition");
         add("rankine.journal.cat_materials.desc", "Useable materials come from all sorts of places. Some are simply harvested raw from the world, while others require some manufacturing and refinement to obtain.");
 
         add("rankine.journal.cat_materials.mixing_barrel.name", "Mixing Barrel");

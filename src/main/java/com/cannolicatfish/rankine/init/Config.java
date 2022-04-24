@@ -1,7 +1,5 @@
 package com.cannolicatfish.rankine.init;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -10,9 +8,7 @@ import net.minecraftforge.fml.config.ModConfig;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Predicate;
 
 @Mod.EventBusSubscriber
@@ -222,7 +218,8 @@ public class Config {
     }
 
     public static class Tools {
-        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_MALLET;
+        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_HAMMER;
+        public final ForgeConfigSpec.BooleanValue DISABLE_STONE_HAMMER;
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_SWORD;
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_AXE;
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_SHOVEL;
@@ -263,76 +260,6 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue DISABLE_BIOMETER;
         public final ForgeConfigSpec.BooleanValue DISABLE_MAGNETOMETER;
 
-        public static final Map<Item,ForgeConfigSpec.BooleanValue> DISABLED_ITEMS = new HashMap<>();
-
-        static {
-            // Wood
-            DISABLED_ITEMS.put(Items.WOODEN_SWORD, Config.TOOLS.DISABLE_WOODEN_SWORD);
-            DISABLED_ITEMS.put(Items.WOODEN_AXE, Config.TOOLS.DISABLE_WOODEN_AXE);
-            DISABLED_ITEMS.put(Items.WOODEN_SHOVEL, Config.TOOLS.DISABLE_WOODEN_SHOVEL);
-            DISABLED_ITEMS.put(Items.WOODEN_PICKAXE, Config.TOOLS.DISABLE_WOODEN_PICKAXE);
-            DISABLED_ITEMS.put(Items.WOODEN_HOE, Config.TOOLS.DISABLE_WOODEN_HOE);
-
-            // Stone
-            DISABLED_ITEMS.put(Items.STONE_SWORD, Config.TOOLS.DISABLE_STONE_SWORD);
-            DISABLED_ITEMS.put(Items.STONE_AXE, Config.TOOLS.DISABLE_STONE_AXE);
-            DISABLED_ITEMS.put(Items.STONE_SHOVEL, Config.TOOLS.DISABLE_STONE_SHOVEL);
-            DISABLED_ITEMS.put(Items.STONE_PICKAXE, Config.TOOLS.DISABLE_STONE_PICKAXE);
-            DISABLED_ITEMS.put(Items.STONE_HOE, Config.TOOLS.DISABLE_STONE_HOE);
-
-            // Iron
-            DISABLED_ITEMS.put(Items.IRON_SWORD, Config.TOOLS.DISABLE_IRON_SWORD);
-            DISABLED_ITEMS.put(Items.IRON_AXE, Config.TOOLS.DISABLE_IRON_AXE);
-            DISABLED_ITEMS.put(Items.IRON_SHOVEL, Config.TOOLS.DISABLE_IRON_SHOVEL);
-            DISABLED_ITEMS.put(Items.IRON_PICKAXE, Config.TOOLS.DISABLE_IRON_PICKAXE);
-            DISABLED_ITEMS.put(Items.IRON_HOE, Config.TOOLS.DISABLE_IRON_HOE);
-
-            // Gold
-            DISABLED_ITEMS.put(Items.GOLDEN_SWORD, Config.TOOLS.DISABLE_GOLDEN_SWORD);
-            DISABLED_ITEMS.put(Items.GOLDEN_AXE, Config.TOOLS.DISABLE_GOLDEN_AXE);
-            DISABLED_ITEMS.put(Items.GOLDEN_SHOVEL, Config.TOOLS.DISABLE_GOLDEN_SHOVEL);
-            DISABLED_ITEMS.put(Items.GOLDEN_PICKAXE, Config.TOOLS.DISABLE_GOLDEN_PICKAXE);
-            DISABLED_ITEMS.put(Items.GOLDEN_HOE, Config.TOOLS.DISABLE_GOLDEN_HOE);
-
-            // Diamond
-            DISABLED_ITEMS.put(Items.DIAMOND_SWORD, Config.TOOLS.DISABLE_DIAMOND_SWORD);
-            DISABLED_ITEMS.put(Items.DIAMOND_AXE, Config.TOOLS.DISABLE_DIAMOND_AXE);
-            DISABLED_ITEMS.put(Items.DIAMOND_SHOVEL, Config.TOOLS.DISABLE_DIAMOND_SHOVEL);
-            DISABLED_ITEMS.put(Items.DIAMOND_PICKAXE, Config.TOOLS.DISABLE_DIAMOND_PICKAXE);
-            DISABLED_ITEMS.put(Items.DIAMOND_HOE, Config.TOOLS.DISABLE_DIAMOND_HOE);
-
-            // Netherite
-            DISABLED_ITEMS.put(Items.NETHERITE_SWORD, Config.TOOLS.DISABLE_NETHERITE_SWORD);
-            DISABLED_ITEMS.put(Items.NETHERITE_AXE, Config.TOOLS.DISABLE_NETHERITE_AXE);
-            DISABLED_ITEMS.put(Items.NETHERITE_SHOVEL, Config.TOOLS.DISABLE_NETHERITE_SHOVEL);
-            DISABLED_ITEMS.put(Items.NETHERITE_PICKAXE, Config.TOOLS.DISABLE_NETHERITE_PICKAXE);
-            DISABLED_ITEMS.put(Items.NETHERITE_HOE, Config.TOOLS.DISABLE_NETHERITE_HOE);
-
-
-            // Compass
-            DISABLED_ITEMS.put(Items.COMPASS, Config.TOOLS.DISABLE_COMPASS);
-
-            // Clock
-            DISABLED_ITEMS.put(Items.CLOCK, Config.TOOLS.DISABLE_CLOCK);
-
-            // Rankine Items
-            DISABLED_ITEMS.put(RankineItems.WOODEN_HAMMER.get(), Config.TOOLS.DISABLE_WOODEN_MALLET);
-            // Altimeter
-            DISABLED_ITEMS.put(RankineItems.ALTIMETER.get(), Config.TOOLS.DISABLE_ALTIMETER);
-            // Thermometer
-            DISABLED_ITEMS.put(RankineItems.THERMOMETER.get(), Config.TOOLS.DISABLE_THERMOMETER);
-            // Photometer
-            DISABLED_ITEMS.put(RankineItems.PHOTOMETER.get(), Config.TOOLS.DISABLE_PHOTOMETER);
-            // Speedometer
-            DISABLED_ITEMS.put(RankineItems.SPEEDOMETER.get(), Config.TOOLS.DISABLE_SPEEDOMETER);
-            // Biometer
-            DISABLED_ITEMS.put(RankineItems.BIOMETER.get(), Config.TOOLS.DISABLE_BIOMETER);
-            // Magnetometer
-            DISABLED_ITEMS.put(RankineItems.MAGNETOMETER.get(), Config.TOOLS.DISABLE_MAGNETOMETER);
-        }
-
-
-
         public final ForgeConfigSpec.IntValue PROSPECTING_STICK_RANGE;
         public final ForgeConfigSpec.IntValue MAGNETOMETER_RANGE;
         public final ForgeConfigSpec.IntValue ORE_DETECTOR_RANGE;
@@ -344,8 +271,10 @@ public class Config {
 
             b.comment("Rankine Tools").push("rankineTools");
 
-                DISABLE_WOODEN_MALLET = b.comment("Disable the use of the wooden mallet (still allows crafting for other recipes). This is enabled by default for progression.")
-                        .define("disableWoodenMallet", true);
+                DISABLE_WOODEN_HAMMER = b.comment("Disable the use of the wooden hammer (still allows crafting for other recipes). This is enabled by default for progression.")
+                        .define("disableWoodenHammer", false);
+                DISABLE_STONE_HAMMER = b.comment("Disable the use of the stone hammer (still allows crafting for other recipes). This is enabled by default for progression.")
+                        .define("disableStoneHammer", false);
                 DISABLE_COMPASS = b.comment("Disable status bar message from compass.")
                         .define("disableCompass",false);
                 DISABLE_CLOCK = b.comment("Disable status bar message from clock.")
@@ -577,7 +506,7 @@ public class Config {
                     GRASS_GROW_CHANCE = b.comment("Chance for a grass block to grow something on a random tick")
                             .defineInRange("grassGrowChance", 0.0005D, 0.00D, 1.00D);
                     PODZOL_GROW_CHANCE = b.comment("Chance for a podzol block to grow on grass")
-                            .defineInRange("podzolGrowChance", 0.0005D, 0.00D, 1.00D);
+                            .defineInRange("podzolGrowChance", 0.005D, 0.00D, 1.00D);
                     ROCK_GENERATOR_REMOVAL_CHANCE = b.comment("Chance for a mineral block to be removed from any rock generator process.")
                             .defineInRange("rockGenRemovalChance", 0.01D, 0.00D, 1.00D);
                     IGNEOUS_COBBLE_GEN = b.comment("Change the output of a cobblestone generator and basalt generator to intrusive and extrusive igneous rocks respectively.")
@@ -825,6 +754,8 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue WILD_CROPS;
         public final ForgeConfigSpec.BooleanValue MUSHROOMS;
         public final ForgeConfigSpec.BooleanValue COBBLES_GEN;
+        public final ForgeConfigSpec.BooleanValue FIRE_CLAY_COAL;
+        public final ForgeConfigSpec.BooleanValue GENERATE_MUD;
         public final ForgeConfigSpec.BooleanValue EVAPORITE_GEN;
         public final ForgeConfigSpec.BooleanValue FUMAROLE_GEN;
         public final ForgeConfigSpec.BooleanValue ALLUVIUM_GEN;
@@ -841,6 +772,7 @@ public class Config {
         public final ForgeConfigSpec.IntValue NETHERRACK_LAYER_THICKNESS;
         public final ForgeConfigSpec.IntValue SOUL_SANDSTONE_LAYER_THICKNESS;
 
+        public final ForgeConfigSpec.BooleanValue SOIL_GEN;
         public final ForgeConfigSpec.BooleanValue COLUMN_GEN;
         public final ForgeConfigSpec.DoubleValue COLUMN_CHANCE;
         public final ForgeConfigSpec.DoubleValue COLUMN_FREQUENCY;
@@ -869,6 +801,8 @@ public class Config {
             BEDROCK_LAYERS = b.comment("Layers of bedrock to generate if flatBedrock is true")
                     .defineInRange("bedrockLayers", 1, 0, 5);
 
+            SOIL_GEN = b.comment("Enable replacement of dirt, grass, sand, and other earthy blocks by biomeSettings.")
+                    .define("soilGen",false);
             SOIL_NOISE_SCALE = b.comment("This determines how mixed the two types of soil are per biome. Larger numbers mean larger patches.")
                     .defineInRange("soilNoiseScale", 60, 1, Integer.MAX_VALUE);
             SECRET_GEN = b.comment("Generate antimatter in the End.")
@@ -889,6 +823,10 @@ public class Config {
                     .define("generateCobbles",true);
             EVAPORITE_GEN = b.comment("Enables the generation of evaporite disks.")
                     .define("generateEvaporite",true);
+            FIRE_CLAY_COAL = b.comment("Enables the generation of fire clay underneath blocks in #forge:ores/coal")
+                    .define("generateFireClayUnderCoal",true);
+            GENERATE_MUD = b.comment("Enables the generation of mud blocks near water. This can be slightly laggy.")
+                    .define("generateMud",true);
             FUMAROLE_GEN = b.comment("Enables the generation of fumaroles. More options to come.")
                     .define("generateFumaroles",true);
             ALLUVIUM_GEN = b.comment("Enables the generation of alluvium disks.")

@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:hay_block",
+    "rankine:barley_bale",
+    "rankine:millet_bale",
+    "rankine:rye_bale",
+    "rankine:sorghum_bale",
+    "rankine:oat_bale",
+    "#forge:crops/barley",
+    "#forge:crops/rye",
+    "#forge:crops/sorghum",
+    "#forge:crops/millet",
+    "#forge:crops/oats",
+    "#forge:crops/wheat",
+    "#forge:crops/corn"
+  ]
+}

@@ -45,7 +45,7 @@ public class CharcoalPitTile extends TileEntity implements ITickableTileEntity {
     }
 
     public void tick() {
-        if (!world.isAreaLoaded(pos, 1) || !this.getBlockState().get(CharcoalPitBlock.LIT) || world.getBlockState(pos.down()).matchesBlock(RankineBlocks.CHARCOAL_PIT.get())) return;
+        if (!world.isAreaLoaded(pos, 1) || !world.isRemote() || !this.getBlockState().get(CharcoalPitBlock.LIT) || world.getBlockState(pos.down()).matchesBlock(RankineBlocks.CHARCOAL_PIT.get())) return;
         if (proccessTime == 0) {
             totalTime = MathHelper.nextInt(world.rand,(int) Math.round(0.8*Config.MACHINES.CHARCOAL_PIT_SPEED.get()),(int) Math.round(1.2*Config.MACHINES.CHARCOAL_PIT_SPEED.get()));
         }
@@ -118,7 +118,11 @@ public class CharcoalPitTile extends TileEntity implements ITickableTileEntity {
                             world.setBlockState(b, RankineBlocks.CHARCOAL_BLOCK.get().getDefaultState().with(RankineEightLayerBlock.LAYERS, layerCount),3);
                         }
                     } else if (invalidLogs.contains(b.toImmutable())) {
-                        world.setBlockState(b, RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get().getDefaultState(),3);
+                        if (world.getRandom().nextFloat() < 0.2) {
+                            world.setBlockState(b, RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get().getDefaultState(),3);
+                        } else {
+                            world.setBlockState(b, RankineBlocks.CHARRED_LOG.get().getDefaultState(),3);
+                        }
                     }
                 }
             }

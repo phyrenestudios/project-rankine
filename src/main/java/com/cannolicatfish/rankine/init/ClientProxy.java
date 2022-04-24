@@ -172,6 +172,7 @@ public class ClientProxy implements IProxy {
         addTranslucent(RankineLists.GAS_BLOCKS);
         addTranslucent(RankineLists.LIGHTNING_GLASSES);
         addTranslucent(Arrays.asList(
+
                 RankineBlocks.SODIUM_CHLORIDE_BLOCK.get(),
                 RankineBlocks.PINK_SALT_BLOCK.get(),
                 RankineBlocks.ICE_BRICKS.get(),
@@ -180,24 +181,6 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.ICE_BRICKS_VERTICAL_SLAB.get(),
                 RankineBlocks.ICE_BRICKS_WALL.get(),
 
-                RankineBlocks.HYDROGEN_GAS_BLOCK.get(),
-                RankineBlocks.HELIUM_GAS_BLOCK.get(),
-                RankineBlocks.NITROGEN_GAS_BLOCK.get(),
-                RankineBlocks.OXYGEN_GAS_BLOCK.get(),
-                RankineBlocks.FLUORINE_GAS_BLOCK.get(),
-                RankineBlocks.NEON_GAS_BLOCK.get(),
-                RankineBlocks.CHLORINE_GAS_BLOCK.get(),
-                RankineBlocks.ARGON_GAS_BLOCK.get(),
-                RankineBlocks.KRYPTON_GAS_BLOCK.get(),
-                RankineBlocks.XENON_GAS_BLOCK.get(),
-                RankineBlocks.RADON_GAS_BLOCK.get(),
-                RankineBlocks.OGANESSON_GAS_BLOCK.get(),
-                RankineBlocks.AMMONIA_GAS_BLOCK.get(),
-                RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get(),
-                RankineBlocks.HYDROGEN_CHLORIDE_GAS_BLOCK.get(),
-                RankineBlocks.HYDROGEN_FLUORIDE_GAS_BLOCK.get(),
-                RankineBlocks.HYDROGEN_SULFIDE_GAS_BLOCK.get(),
-                RankineBlocks.SULFUR_DIOXIDE_GAS_BLOCK.get(),
                 RankineBlocks.ANTIMATTER.get(),
                 RankineBlocks.BLACK_TEKTITE.get(),
                 RankineBlocks.GREEN_TEKTITE.get(),

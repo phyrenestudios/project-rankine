@@ -68,6 +68,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.HOLLOW_LOGS,
                 RankineLists.LEAF_LITTERS,
+                RankineLists.BALES,
                 RankineLists.WOODS,
                 RankineLists.LOGS,
                 RankineLists.PLANKS,

@@ -1,0 +1,15 @@
+{
+  "name": "rankine.journal.cat_constructions.pedestals.name",
+  "icon": "rankine:pedestals",
+  "category": "constructions",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_constructions.pedestals.text1"
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_constructions.pedestals.text2"
+    }
+  ]
+}
