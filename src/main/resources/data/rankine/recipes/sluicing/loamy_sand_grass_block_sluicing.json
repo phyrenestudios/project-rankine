@@ -1,46 +1,47 @@
 {
   "type": "rankine:sluicing",
-  "total": 9,
   "input": {
     "item": "rankine:loamy_sand_grass_block"
   },
   "tool": {
     "tag": "rankine:gold_pans"
   },
-  "output1": {
-    "item": "minecraft:dirt",
-    "weight": 60
-  },
-  "output2": {
-    "item": "minecraft:sand",
-    "weight": 12.375
-  },
-  "output3": {
-    "item": "minecraft:clay_ball",
-    "weight": 1.875
-  },
-  "output4": {
-    "item": "rankine:silt",
-    "weight": 0.75
-  },
-  "output5": {
-    "item": "minecraft:beetroot_seeds",
-    "weight": 5
-  },
-  "output6": {
-    "item": "minecraft:carrot",
-    "weight": 5
-  },
-  "output7": {
-    "item": "rankine:flower_seeds",
-    "weight": 5
-  },
-  "output8": {
-    "item": "minecraft:potato",
-    "weight": 5
-  },
-  "output9": {
-    "item": "rankine:camphor_basil_seeds",
-    "weight": 5
-  }
+  "outputs": [
+    {
+      "item": "minecraft:dirt",
+      "weight": 60
+    },
+    {
+      "item": "minecraft:sand",
+      "weight": 12.375
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "weight": 1.875
+    },
+    {
+      "item": "rankine:silt",
+      "weight": 0.75
+    },
+    {
+      "item": "minecraft:beetroot_seeds",
+      "weight": 5
+    },
+    {
+      "item": "minecraft:carrot",
+      "weight": 5
+    },
+    {
+      "item": "rankine:flower_seeds",
+      "weight": 5
+    },
+    {
+      "item": "minecraft:potato",
+      "weight": 5
+    },
+    {
+      "item": "rankine:camphor_basil_seeds",
+      "weight": 5
+    }
+  ]
 }

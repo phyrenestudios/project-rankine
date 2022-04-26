@@ -4,9 +4,7 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.util.WeightedCollection;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.*;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,7 +25,6 @@ import java.util.Random;
 
 public class SluicingRecipe implements IRecipe<IInventory> {
 
-    private final int total;
     private final int cooldownTicks;
     private final Ingredient ingredient;
     private final Ingredient tool;
@@ -39,8 +36,8 @@ public class SluicingRecipe implements IRecipe<IInventory> {
 
     public static final SluicingRecipe.Serializer SERIALIZER = new SluicingRecipe.Serializer();
 
-    public SluicingRecipe(ResourceLocation idIn, int totalIn, Ingredient ingredientIn, Ingredient itemIn, NonNullList<Ingredient> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn, int cooldownTicksIn) {
-        this.total = totalIn;
+    public SluicingRecipe(ResourceLocation idIn,Ingredient ingredientIn, Ingredient itemIn, NonNullList<Ingredient> recipeOutputsIn,
+                          NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn, int cooldownTicksIn) {
         this.id = idIn;
         this.ingredient = ingredientIn;
         this.tool = itemIn;
@@ -80,6 +77,14 @@ public class SluicingRecipe implements IRecipe<IInventory> {
 
     public NonNullList<Ingredient> getOutputs() {
         return this.recipeOutputs;
+    }
+
+    public NonNullList<Integer> getMins() {
+        return mins;
+    }
+
+    public NonNullList<Integer> getMaxes() {
+        return maxes;
     }
 
     @Override
@@ -153,115 +158,71 @@ public class SluicingRecipe implements IRecipe<IInventory> {
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<SluicingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "sluicing");
         public SluicingRecipe read(ResourceLocation recipeId, JsonObject json) {
-            int t = json.get("total").getAsInt();
             Ingredient ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "input"));
             Ingredient it = Ingredient.deserialize(JSONUtils.getJsonObject(json, "tool"));
-            NonNullList<Ingredient> stacks = NonNullList.withSize(t, Ingredient.EMPTY);
-            NonNullList<Float> weights = NonNullList.withSize(t, 0f);
-            NonNullList<Integer> mins = NonNullList.withSize(t, 1);
-            NonNullList<Integer> maxes = NonNullList.withSize(t, 1);
-            for (int i = 0; i < t; i++) {
-                String output = "output" + (i+1);
-                if (json.has(output)) {
-                    JsonObject object = JSONUtils.getJsonObject(json, output);
-                    stacks.set(i,Ingredient.deserialize(JSONUtils.getJsonObject(json, output)));
+
+            JsonArray outputsArray = JSONUtils.getJsonArray(json, "outputs");
+            int outputsArraySize = outputsArray.size();
+            NonNullList<Ingredient> stacks = NonNullList.withSize(outputsArraySize, Ingredient.EMPTY);
+            NonNullList<Float> weights = NonNullList.withSize(outputsArraySize, 0f);
+            NonNullList<Integer> mins = NonNullList.withSize(outputsArraySize, 1);
+            NonNullList<Integer> maxes = NonNullList.withSize(outputsArraySize, 1);
+
+            int i = 0;
+            for (JsonElement element : outputsArray) {
+                if (element.isJsonObject()) {
+                    JsonObject object = element.getAsJsonObject();
+                    stacks.set(i,Ingredient.deserialize(object));
                     if (object.has("weight")){
                         weights.set(i,object.get("weight").getAsFloat());
-                    } else {
-                        weights.set(i,0f);
                     }
 
                     if (object.has("min")){
                         mins.set(i,object.get("min").getAsInt());
-                    } else {
-                        mins.set(i,1);
                     }
 
                     if (object.has("max")){
                         maxes.set(i,object.get("max").getAsInt());
-                    } else {
-                        maxes.set(i,1);
                     }
-
-
                 }
+                i++;
             }
             int ticks = json.has("cooldown") ? json.get("cooldown").getAsInt() : 10;
-            return new SluicingRecipe(recipeId, t, ingredient, it, stacks, weights, mins,maxes,ticks);
+            return new SluicingRecipe(recipeId,ingredient, it, stacks, weights, mins,maxes,ticks);
         }
 
         public SluicingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-            int t = buffer.readInt();
             int ticks = buffer.readInt();
             Ingredient input = Ingredient.read(buffer);
             Ingredient it = Ingredient.read(buffer);
+            int t = buffer.readVarInt();
             NonNullList<Ingredient> stacks = NonNullList.withSize(t, Ingredient.EMPTY);
-            for(int k = 0; k < stacks.size(); ++k) {
-                stacks.set(k, Ingredient.read(buffer));
-            }
-
             NonNullList<Float> weights = NonNullList.withSize(t, 0f);
-            for(int k = 0; k < weights.size(); ++k) {
-                weights.set(k, buffer.readFloat());
-            }
-
-
             NonNullList<Integer> mins = NonNullList.withSize(t,1);
-            for(int k = 0; k < mins.size(); ++k) {
-                mins.set(k, buffer.readInt());
-            }
-
             NonNullList<Integer> maxes = NonNullList.withSize(t,1);
-            for(int k = 0; k < maxes.size(); ++k) {
-                maxes.set(k, buffer.readInt());
+
+            for (int i = 0; i < t; i++) {
+                stacks.add(Ingredient.read(buffer));
+                weights.add(buffer.readFloat());
+                mins.add(buffer.readInt());
+                maxes.add(buffer.readInt());
             }
 
-            return new SluicingRecipe(recipeId, t, input, it, stacks, weights, mins, maxes,ticks);
+            return new SluicingRecipe(recipeId, input, it, stacks, weights, mins, maxes,ticks);
         }
 
         public void write(PacketBuffer buffer, SluicingRecipe recipe) {
-            buffer.writeInt(recipe.total);
             buffer.writeInt(recipe.cooldownTicks);
             recipe.getIngredient().write(buffer);
             recipe.getTool().write(buffer);
-            int count = 0;
-            for(Ingredient stack : recipe.recipeOutputs) {
-                stack.write(buffer);
-                count++;
-            }
-            while (count < recipe.total) {
-                Ingredient.EMPTY.write(buffer);
-                count++;
-            }
 
-            count = 0;
-            for (float chance : recipe.weights) {
-                buffer.writeFloat(chance);
-                count++;
-            }
-            while (count < recipe.total) {
-                buffer.writeFloat(0f);
-                count++;
-            }
-
-            count = 0;
-            for (int add : recipe.mins) {
-                buffer.writeInt(add);
-                count++;
-            }
-            while (count < recipe.total) {
-                buffer.writeInt(1);
-                count++;
-            }
-
-            count = 0;
-            for (int add : recipe.maxes) {
-                buffer.writeInt(add);
-                count++;
-            }
-            while (count < recipe.total) {
-                buffer.writeInt(1);
-                count++;
+            int total = recipe.getOutputs().size();
+            buffer.writeVarInt(total);
+            for (int i = 0; i < total; i++) {
+                recipe.getOutputs().get(i).write(buffer);
+                buffer.writeFloat(recipe.getWeights().get(i));
+                buffer.writeInt(recipe.getMins().get(i));
+                buffer.writeInt(recipe.getMaxes().get(i));
             }
         }
     }

@@ -1,46 +1,47 @@
 {
   "type": "rankine:sluicing",
-  "total": 9,
   "input": {
     "item": "rankine:sandy_clay_grass_block"
   },
   "tool": {
     "tag": "rankine:gold_pans"
   },
-  "output1": {
-    "item": "minecraft:dirt",
-    "weight": 60
-  },
-  "output2": {
-    "item": "minecraft:sand",
-    "weight": 7.875
-  },
-  "output3": {
-    "item": "minecraft:clay_ball",
-    "weight": 6.375
-  },
-  "output4": {
-    "item": "rankine:silt",
-    "weight": 0.75
-  },
-  "output5": {
-    "item": "rankine:asparagus_seeds",
-    "weight": 5
-  },
-  "output6": {
-    "item": "minecraft:potato",
-    "weight": 5
-  },
-  "output7": {
-    "item": "rankine:flower_seeds",
-    "weight": 5
-  },
-  "output8": {
-    "item": "minecraft:melon_seeds",
-    "weight": 5
-  },
-  "output9": {
-    "item": "rankine:pokeberries",
-    "weight": 5
-  }
+  "outputs": [
+    {
+      "item": "minecraft:dirt",
+      "weight": 60
+    },
+    {
+      "item": "minecraft:sand",
+      "weight": 7.875
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "weight": 6.375
+    },
+    {
+      "item": "rankine:silt",
+      "weight": 0.75
+    },
+    {
+      "item": "rankine:asparagus_seeds",
+      "weight": 5
+    },
+    {
+      "item": "minecraft:potato",
+      "weight": 5
+    },
+    {
+      "item": "rankine:flower_seeds",
+      "weight": 5
+    },
+    {
+      "item": "minecraft:melon_seeds",
+      "weight": 5
+    },
+    {
+      "item": "rankine:pokeberries",
+      "weight": 5
+    }
+  ]
 }

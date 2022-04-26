@@ -1,14 +1,15 @@
 {
   "type": "rankine:sluicing",
-  "total": 1,
   "input": {
     "item": "rankine:geode"
   },
   "tool": {
     "tag": "forge:hammers"
   },
-  "output1": {
-    "tag": "rankine:geodes",
-    "weight": 1
-  }
+  "outputs": [
+    {
+      "tag": "rankine:geodes",
+      "weight": 1
+    }
+  ]
 }

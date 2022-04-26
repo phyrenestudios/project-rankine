@@ -1,62 +1,63 @@
 {
   "type": "rankine:sluicing",
-  "total": 13,
   "input": {
     "item": "rankine:white_sand"
   },
   "tool": {
     "item": "rankine:steel_gold_pan"
   },
-  "output1": {
-    "item": "minecraft:sand",
-    "weight": 40
-  },
-  "output2": {
-    "item": "minecraft:quartz",
-    "weight": 20
-  },
-  "output3": {
-    "item": "rankine:orthoclase_feldspar",
-    "weight": 20
-  },
-  "output4": {
-    "item": "minecraft:prismarine_shard",
-    "weight": 5
-  },
-  "output5": {
-    "item": "minecraft:prismarine_crystals",
-    "weight": 5
-  },
-  "output6": {
-    "item": "minecraft:brain_coral",
-    "weight": 1
-  },
-  "output7": {
-    "item": "minecraft:fire_coral",
-    "weight": 1
-  },
-  "output8": {
-    "item": "minecraft:tube_coral",
-    "weight": 1
-  },
-  "output9": {
-    "item": "minecraft:horn_coral",
-    "weight": 1
-  },
-  "output10": {
-    "item": "minecraft:bubble_coral",
-    "weight": 1
-  },
-  "output11": {
-    "item": "minecraft:sea_pickle",
-    "weight": 1
-  },
-  "output12": {
-    "item": "minecraft:heart_of_the_sea",
-    "weight": 0.01
-  },
-  "output13": {
-    "item": "minecraft:trident",
-    "weight": 0.01
-  }
+  "outputs": [
+    {
+      "item": "minecraft:sand",
+      "weight": 40
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 20
+    },
+    {
+      "item": "rankine:orthoclase_feldspar",
+      "weight": 20
+    },
+    {
+      "item": "minecraft:prismarine_shard",
+      "weight": 5
+    },
+    {
+      "item": "minecraft:prismarine_crystals",
+      "weight": 5
+    },
+    {
+      "item": "minecraft:brain_coral",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:fire_coral",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:tube_coral",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:horn_coral",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:bubble_coral",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:sea_pickle",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:heart_of_the_sea",
+      "weight": 0.01
+    },
+    {
+      "item": "minecraft:trident",
+      "weight": 0.01
+    }
+  ]
 }
