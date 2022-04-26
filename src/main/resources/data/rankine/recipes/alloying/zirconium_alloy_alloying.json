@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 28,
+  "total": 30,
   "color": 11848920,
   "name": "Zirconium Alloy",
   "input1": {
@@ -143,6 +143,16 @@
     "element": "rankine:elements/lutetium",
     "min": 0.0,
     "max": 0.06
+  },
+  "input29": {
+    "element": "rankine:elements/hydrogen",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input30": {
+    "element": "rankine:elements/helium",
+    "min": 0.0,
+    "max": 0.05
   },
   "result": "rankine:zirconium_alloy_ingot",
   "enchantments": ["rankine:guard"],

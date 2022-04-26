@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.google.common.collect.Sets;
@@ -219,6 +220,21 @@ public class HammerItem extends ToolItem {
                 context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
                 return ActionResultType.SUCCESS;
             }
+        } else if (context.getPlayer() != null && context.getWorld().getBlockState(context.getPos()).getBlock().equals(RankineBlocks.GEODE.get())) {
+            World worldIn = context.getWorld();
+            if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
+                Block randomGeode = RankineLists.GEODES.get(worldIn.getRandom().nextInt(RankineLists.GEODES.size()));
+                BlockPos pos = context.getPos();
+                double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                double d1 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(randomGeode));
+                itementity.setDefaultPickupDelay();
+                worldIn.addEntity(itementity);
+                worldIn.destroyBlock(context.getPos(), false);
+                return ActionResultType.SUCCESS;
+            }
+
         }
         return super.onItemUse(context);
     }

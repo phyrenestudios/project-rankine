@@ -1,10 +1,18 @@
 {
-          "type": "rankine:element",
-          "name": "krypton",
-          "symbol": "Kr",
-          "color": 16777215,
-          "atomic": 36,
-          "potential": 0,
-          "items": ["T#forge:nuggets/krypton","T#forge:ingots/krypton","T#forge:storage_blocks/krypton"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "krypton",
+  "symbol": "Kr",
+  "color": 16777215,
+  "atomic": 36,
+  "potential": 0,
+  "items": ["T#forge:nuggets/krypton","T#forge:ingots/krypton","T#forge:storage_blocks/krypton"],
+  "values": [1,9,81],
+  "knockbackresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.5]
+  }
+}
