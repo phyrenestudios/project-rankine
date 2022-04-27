@@ -513,7 +513,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
             basicItem(blk.asItem());
         }
 
-        filledTagItem(RankineItems.PENNING_TRAP.get());
+        basicItem(RankineItems.PENNING_TRAP.get());
+        basicItem(RankineItems.FILLED_PENNING_TRAP.get());
 
     }
 

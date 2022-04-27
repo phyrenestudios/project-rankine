@@ -610,7 +610,7 @@ public class RankineLangProvider extends LanguageProvider {
 
 
 
-
+        add("item.rankine.filled_penning_trap", "Penning Trap (Antimatter)");
         add("item.rankine.mantle_golem_egg", "Garnet Mantle Golem Spawn Egg");
         add("entity.rankine.mantle_golem", "Garnet Mantle Golem");
         add("item.rankine.diamond_mantle_golem_egg", "Diamond Mantle Golem Spawn Egg");
