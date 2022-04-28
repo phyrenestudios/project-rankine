@@ -1,12 +1,15 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "rankine:alloy_crafting",
   "pattern": [
     "WBW",
     "WMW"
   ],
   "key": {
     "W": {
-      "item": "rankine:alloy_wire"
+      "item": "rankine:alloy_wire",
+      "alloyRecipe": "rankine:alloying/cupronickel_alloying",
+      "langName": "item.rankine.cupronickel_alloying",
+      "color": 11946807
     },
     "B": {
       "item": "rankine:lead_acid_battery"

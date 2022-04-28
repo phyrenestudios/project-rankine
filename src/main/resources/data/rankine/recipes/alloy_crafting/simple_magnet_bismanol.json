@@ -8,7 +8,7 @@
     "I": {
       "item": "rankine:rose_metal_ingot",
       "alloyRecipe": "rankine:alloying/bismanol_alloying",
-      "name": "item.rankine.bismanol_alloying"
+      "langName": "item.rankine.bismanol_alloying"
     }
   },
   "result": {
