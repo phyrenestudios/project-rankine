@@ -151,23 +151,6 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
         }
     }
 
-    private static boolean inIntrusion(int x, int y, int z) {
-       /* for (BlockPos b : BlockPos.getAllInBoxMutable(-3+x,0,-3+z,3+x,0,3+z)) {
-            if (Math.pow(x-b.getX(),2)+Math.pow(z-b.getZ(),2) <= 12) {
-                if (INTRUSION_NOISE.noiseAt(b.getX()/10f,b.getZ()/10f,false) > 0.9) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-
-
-        */
-        return INTRUSION_NOISE.noiseAt(x/10f,z/10f,false) > 0.85;
-
-    }
-
     private static boolean leaveNetherrack(ISeedReader reader, BlockPos pos, Biome biome) {
         if (biome.getRegistryName().toString().equals(Biomes.BASALT_DELTAS.getLocation().toString()) || biome.getRegistryName().toString().equals(Biomes.SOUL_SAND_VALLEY.getLocation().toString())) return false;
         for (int i = 1; i <=Config.MISC_WORLDGEN.NETHERRACK_LAYER_THICKNESS.get(); i++) {

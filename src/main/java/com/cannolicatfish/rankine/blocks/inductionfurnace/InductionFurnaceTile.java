@@ -123,7 +123,8 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     public void tick() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-        if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(6),powerCost))) {
+        //if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(6),powerCost))) {
+        if (this.isBurning()) {
             burnTime--;
         }
         if (!this.world.isRemote) {
@@ -132,7 +133,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
             if ((this.isBurning() || !battery.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
                 AlloyingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, this, this.world).orElse(null);
                 if (!this.isBurning() && this.canSmelt(irecipe, this)) {
-                    this.burnTime = BatteryItem.hasPowerRequired(battery,powerCost) ? 50 : 0;
+                    this.burnTime = 50; //BatteryItem.hasPowerRequired(battery,powerCost) ? 50 : 0;
                     this.currentBurnTime = this.burnTime;
                     if (this.isBurning()) {
                         flag1 = true;
@@ -195,6 +196,9 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
                         }
 
                         battery.setDamage(battery.getDamage() + powerCost);
+                        if (battery.getDamage() > battery.getMaxDamage()) {
+                            battery.shrink(1);
+                        }
                         this.cookTime = 0;
                         return;
                     }
