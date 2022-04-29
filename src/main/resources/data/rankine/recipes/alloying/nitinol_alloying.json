@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 8,
+  "total": 10,
   "tier": 2,
   "color": 12882104,
   "input1": {
@@ -44,6 +44,16 @@
     "element": "rankine:elements/carbon",
     "min": 0.0,
     "max": 0.08
+  },
+  "input9": {
+    "element": "rankine:elements/oxygen",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input10": {
+    "element": "rankine:elements/fluorine",
+    "min": 0.0,
+    "max": 0.05
   },
   "result": "rankine:nitinol_ingot",
   "enchantments": ["rankine:shape_memory"],

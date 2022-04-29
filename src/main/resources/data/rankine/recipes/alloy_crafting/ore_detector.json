@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "rankine:alloy_crafting",
   "pattern":
   [
     "ssi",
@@ -14,7 +14,10 @@
     },
     "c":
     {
-      "item": "rankine:alloy_wire"
+      "item": "rankine:alloy_wire",
+      "langName": "item.rankine.duralumin_alloying",
+      "inheritRecipe": "rankine:alloying/duralumin_alloying",
+      "color": 8887223
     },
     "i":
     {

@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.blocks.AntimatterBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineSoundEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,22 +26,12 @@ public class PenningTrapItem extends Item {
         PlayerEntity playerIn = context.getPlayer();
         ItemStack stack = context.getItem();
 
-        if (stack.getTag() == null && stack.getTag().getInt("filled") == 0) {
-            if (worldIn.getBlockState(pos).matchesBlock(RankineBlocks.ANTIMATTER.get())) {
-                context.getItem().getOrCreateTag().putInt("filled", 1);
-                worldIn.removeBlock(pos, false);
-                playerIn.playSound(RankineSoundEvents.PENNING_TRAP_ABSORB.get(), 1.0F, 1.0F);
-                return ActionResultType.SUCCESS;
-            }
-        } else if (stack.getTag() != null && stack.getTag().getInt("filled") != 0) {
-            if (worldIn.getBlockState(pos).matchesBlock(Blocks.DRAGON_EGG) && worldIn.getBlockState(pos.up()).isAir() && !worldIn.isRemote) {
-                worldIn.setBlockState(pos.up(),Blocks.DRAGON_EGG.getDefaultState(),3);
-                stack.getTag().putInt("filled", 0);
-                return ActionResultType.SUCCESS;
-            }
-            AntimatterBlock.explode(worldIn,pos);
-            stack.getTag().putInt("filled", 0);
-            return ActionResultType.SUCCESS;
+        if (playerIn != null && worldIn.getBlockState(pos).matchesBlock(RankineBlocks.ANTIMATTER.get())) {
+            playerIn.addItemStackToInventory(new ItemStack(RankineItems.FILLED_PENNING_TRAP.get()));
+            worldIn.removeBlock(pos, false);
+            playerIn.playSound(RankineSoundEvents.PENNING_TRAP_ABSORB.get(), 1.0F, 1.0F);
+            stack.shrink(1);
+            return ActionResultType.func_233537_a_(worldIn.isRemote);
         }
         return super.onItemUse(context);
     }

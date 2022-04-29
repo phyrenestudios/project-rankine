@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "forge:ingots/uranium"
+  },
+  "input2": {
+    "tag": "forge:ingots/boron"
+  },
+  "result1": {
+    "item":"rankine:berkelium_ingot"
+  },
+  "gasInput": {
+    "item": "rankine:filled_penning_trap"
+  },
+  "gasOutput": {
+    "item": "rankine:penning_trap"
+  }
+}

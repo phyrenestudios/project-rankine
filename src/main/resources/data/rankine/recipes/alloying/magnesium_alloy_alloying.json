@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 24,
+  "total": 25,
   "color": 12362927,
   "input1": {
     "element": "rankine:elements/magnesium",
@@ -124,6 +124,11 @@
     "element": "rankine:elements/gadolinium",
     "min": 0.0,
     "max": 0.06
+  },
+  "input25": {
+    "element": "rankine:elements/fluorine",
+    "min": 0.0,
+    "max": 0.05
   },
   "result": "rankine:magnesium_alloy_ingot"
 }

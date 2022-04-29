@@ -1,26 +1,27 @@
 {
   "type": "rankine:sluicing",
-  "total": 4,
   "input": {
     "item": "rankine:silty_clay_loam"
   },
   "tool": {
     "tag": "rankine:gold_pans"
   },
-  "output1": {
-    "item": "minecraft:dirt",
-    "weight": 40
-  },
-  "output2": {
-    "item": "minecraft:sand",
-    "weight": 1
-  },
-  "output3": {
-    "item": "minecraft:clay_ball",
-    "weight": 3.25
-  },
-  "output4": {
-    "item": "rankine:silt",
-    "weight": 5.75
-  }
+  "outputs": [
+    {
+      "item": "minecraft:dirt",
+      "weight": 40
+    },
+    {
+      "item": "minecraft:sand",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "weight": 3.25
+    },
+    {
+      "item": "rankine:silt",
+      "weight": 5.75
+    }
+  ]
 }

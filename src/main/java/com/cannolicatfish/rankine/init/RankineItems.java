@@ -3337,8 +3337,8 @@ public class RankineItems {
     public static final RegistryObject<Item> ROCK_DRILL = ITEMS.register("rock_drill", () -> new RockDrillItem(new Item.Properties().maxStackSize(1).maxDamage(15).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> FIRE_EXTINGUISHER = ITEMS.register("fire_extinguisher", () -> new FireExtinguisherItem(new Item.Properties().maxStackSize(1).maxDamage(15).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> GLASS_CUTTER = ITEMS.register("glass_cutter", () -> new GlassCutterItem(new Item.Properties().maxDamage(256).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> PENNING_TRAP = ITEMS.register("penning_trap", () -> new PenningTrapItem(new Item.Properties().maxStackSize(1)));
-
+    public static final RegistryObject<Item> PENNING_TRAP = ITEMS.register("penning_trap", () -> new PenningTrapItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> FILLED_PENNING_TRAP = ITEMS.register("filled_penning_trap", () -> new FilledPenningTrapItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
     public static final RegistryObject<Item> HARDNESS_TESTER = ITEMS.register("hardness_tester", () -> new HardnessTesterItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     //public static final RegistryObject<Item> ORE_CYCLER = REGISTRY.register("ore_cycler", () -> new OreCyclerItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));

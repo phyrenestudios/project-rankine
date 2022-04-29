@@ -1,0 +1,26 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "langName": "item.rankine.duralumin_alloying",
+  "inheritRecipe": "rankine:alloying/duralumin_alloying",
+  "color": 8887223,
+  "pattern": [
+    " I ",
+    "ISI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/duralumin",
+      "alloyRecipe": "rankine:alloying/duralumin_alloying",
+      "langName": "item.rankine.duralumin_alloying"
+    },
+    "S": {
+      "tag": "forge:solder"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_wire",
+    "count": 8
+  }
+}

@@ -610,7 +610,7 @@ public class RankineLangProvider extends LanguageProvider {
 
 
 
-
+        add("item.rankine.filled_penning_trap", "Penning Trap (Antimatter)");
         add("item.rankine.mantle_golem_egg", "Garnet Mantle Golem Spawn Egg");
         add("entity.rankine.mantle_golem", "Garnet Mantle Golem");
         add("item.rankine.diamond_mantle_golem_egg", "Diamond Mantle Golem Spawn Egg");
@@ -1196,14 +1196,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_constructions.pedestals.text1", "Pedestals are decorative sculptures formed from various alloys. An item can be placed on a pedestal by right clicking. A comparator will output a redstone signal with a strength based on properties of the item.");
 
         add("rankine.journal.cat_constructions.mineral_wool.name", "Mineral Wool");
-        add("rankine.journal.cat_constructions.mineral_wool.text1", "Mineral wool is ");
-        add("rankine.journal.cat_constructions.mineral_wool.text2", "Colored variation can be created by....");
+        add("rankine.journal.cat_constructions.mineral_wool.text1", "Mineral wool is a fireproof version of standard wool made by the addition of slag into the fibers. The 16 color variations are available through in world dyeing or crafting.");
 
-        add("rankine.journal.cat_constructions.glass.name", "Glasses");
-        add("rankine.journal.cat_constructions.glass.text1", "Pedestals");
-
-        add("rankine.journal.cat_constructions.metal_equipment.name", "Metal Equipment");
-        add("rankine.journal.cat_constructions.metal_equipment.text1", "Pedestals");
 
         //Materials
         add("rankine.journal.cat_materials.name", "Material Acquisition");
