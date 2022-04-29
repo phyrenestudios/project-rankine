@@ -195,17 +195,18 @@ public class SluicingRecipe implements IRecipe<IInventory> {
             int ticks = buffer.readInt();
             Ingredient input = Ingredient.read(buffer);
             Ingredient it = Ingredient.read(buffer);
+
             int t = buffer.readVarInt();
             NonNullList<Ingredient> stacks = NonNullList.withSize(t, Ingredient.EMPTY);
             NonNullList<Float> weights = NonNullList.withSize(t, 0f);
             NonNullList<Integer> mins = NonNullList.withSize(t,1);
             NonNullList<Integer> maxes = NonNullList.withSize(t,1);
 
-            for (int i = 0; i < t; i++) {
-                stacks.add(Ingredient.read(buffer));
-                weights.add(buffer.readFloat());
-                mins.add(buffer.readInt());
-                maxes.add(buffer.readInt());
+            for (int i = 0; i < stacks.size(); i++) {
+                stacks.set(i,Ingredient.read(buffer));
+                weights.set(i,buffer.readFloat());
+                mins.set(i,buffer.readInt());
+                maxes.set(i,buffer.readInt());
             }
 
             return new SluicingRecipe(recipeId, input, it, stacks, weights, mins, maxes,ticks);
@@ -216,9 +217,8 @@ public class SluicingRecipe implements IRecipe<IInventory> {
             recipe.getIngredient().write(buffer);
             recipe.getTool().write(buffer);
 
-            int total = recipe.getOutputs().size();
-            buffer.writeVarInt(total);
-            for (int i = 0; i < total; i++) {
+            buffer.writeVarInt(recipe.getOutputs().size());
+            for (int i = 0; i < recipe.getOutputs().size(); i++) {
                 recipe.getOutputs().get(i).write(buffer);
                 buffer.writeFloat(recipe.getWeights().get(i));
                 buffer.writeInt(recipe.getMins().get(i));

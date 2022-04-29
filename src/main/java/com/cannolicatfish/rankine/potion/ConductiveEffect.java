@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class ConductiveEffect extends Effect {
-    protected ConductiveEffect(EffectType typeIn, int liquidColorIn) {
+    public ConductiveEffect(EffectType typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 
