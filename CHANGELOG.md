@@ -2,10 +2,17 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
-## Project Rankine Version 1.4 Changelog [2022]
-- Removed Magnesium Arrow and Thorium Arrow
-
 ## Project Rankine Version 1.3.2 Changelog [28Apr2022]
+### Hotfix 1 [29Apr2022]
+- Added Apatite fusion furnace recipe
+- Added pulp recipe involving talc
+- Added alternative methods to get certain potions
+- Added special item that has a chance to drop when breaking clover blocks
+- Fixed lang for Conductivity potions
+- Fixed connection issue to multiplayer servers
+- Fixed tag errors for added recipes
+- Fixed penning trap recipe 
+
 ### BLOCKS
 - Added model variants for stumps
 - Blocks under stumps take longer to mine unless using a shovel
@@ -17,7 +24,7 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - Added Bales for grain crops
 - Charred Logs can be obtained from an improperly built charcoal pit
 - Shrunk collision box of mud blocks to be 15 pixels tall
-- Updated some wood textures
+- Updated some wood textures (primarily doors and trapdoors)
 
 ### ITEMS
 - Updated Boat and Door item textures
