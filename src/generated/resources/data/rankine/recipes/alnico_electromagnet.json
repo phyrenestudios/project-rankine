@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WBW",
+    "WMW"
+  ],
+  "key": {
+    "W": {
+      "item": "rankine:alloy_wire"
+    },
+    "B": {
+      "item": "rankine:lead_acid_battery"
+    },
+    "M": {
+      "item": "rankine:alnico_magnet"
+    }
+  },
+  "result": {
+    "item": "rankine:alnico_electromagnet"
+  }
+}
