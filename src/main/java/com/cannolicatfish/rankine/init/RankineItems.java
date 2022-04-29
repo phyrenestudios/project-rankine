@@ -2415,6 +2415,7 @@ public class RankineItems {
     public static final RegistryObject<Item> WILLOW_BRANCHLET = ITEMS.register("willow_branchlet", () -> new BlockItem(RankineBlocks.WILLOW_BRANCHLET.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> LOCUST_SPINE = ITEMS.register("locust_spine", () -> new BlockItem(RankineBlocks.LOCUST_SPINE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> GARLAND = ITEMS.register("garland", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> FOUR_LEAF_CLOVER = ITEMS.register("four_leaf_clover", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants)));
     //public static final RegistryObject<Item> LARGE_DEAD_BUSH = REGISTRY.register("large_dead_bush", () -> new BlockItem(RankineBlocks.GOLDENROD.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
 
     public static final RegistryObject<Item> ASPARAGUS_SEEDS = ITEMS.register("asparagus_seeds", () -> new BlockNamedItem(RankineBlocks.ASPARAGUS_PLANT.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));

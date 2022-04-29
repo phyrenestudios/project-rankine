@@ -5,7 +5,7 @@
     "tag": "forge:ingots/uranium"
   },
   "input2": {
-    "tag": "forge:ingots/boron"
+    "tag": "forge:boron"
   },
   "result1": {
     "item":"rankine:berkelium_ingot"

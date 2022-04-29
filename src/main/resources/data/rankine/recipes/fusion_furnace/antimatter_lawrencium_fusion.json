@@ -5,7 +5,7 @@
     "tag": "forge:ingots/californium"
   },
   "input2": {
-    "tag": "forge:ingots/boron"
+    "tag": "forge:boron"
   },
   "result1": {
     "item":"rankine:lawrencium_ingot"

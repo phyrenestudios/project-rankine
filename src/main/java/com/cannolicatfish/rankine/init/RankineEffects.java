@@ -1,6 +1,9 @@
-package com.cannolicatfish.rankine.potion;
+package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.potion.ConductiveEffect;
+import com.cannolicatfish.rankine.potion.MercuryPoisonEffect;
+import com.cannolicatfish.rankine.potion.RadiationPoisonEffect;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.potion.Effect;

@@ -5,7 +5,7 @@
     "tag": "forge:ingots/bismuth"
   },
   "input2": {
-    "tag": "forge:ingots/astatine"
+    "tag": "forge:astatine"
   },
   "result1": {
     "item":"rankine:polonium_ingot"

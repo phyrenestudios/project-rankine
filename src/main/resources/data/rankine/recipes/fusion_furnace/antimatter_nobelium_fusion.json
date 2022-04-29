@@ -5,7 +5,7 @@
     "tag": "forge:ingots/curium"
   },
   "input2": {
-    "tag": "forge:ingots/carbon"
+    "tag": "forge:carbon"
   },
   "result1": {
     "item":"rankine:nobelium_ingot"

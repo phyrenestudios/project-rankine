@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.util;
 
-import com.cannolicatfish.rankine.potion.RankineEffects;
+import com.cannolicatfish.rankine.init.RankineEffects;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 

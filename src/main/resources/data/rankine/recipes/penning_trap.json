@@ -10,13 +10,13 @@
       "tag": "forge:ingots/copper"
     },
     "g": {
-      "item": "minecraft:piston"
+      "tag": "forge:ingots/gallium"
     },
     "a": {
-      "item": "minecraft:piston"
+      "tag": "forge:arsenic"
     },
     "p": {
-      "item": "minecraft:piston"
+      "tag": "forge:phosphorus"
     },
     "h": {
       "tag": "forge:ingots/helium"

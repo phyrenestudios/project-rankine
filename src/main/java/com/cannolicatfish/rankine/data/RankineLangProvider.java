@@ -387,6 +387,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.OSMIRIDIUM.get(),
             RankineItems.COMPOST.get(),
             RankineItems.GARLAND.get(),
+            RankineItems.FOUR_LEAF_CLOVER.get(),
             RankineItems.BIOMASS.get(),
             RankineItems.COMPRESSED_BIOMASS.get(),
             RankineItems.DRIED_BAMBOO.get(),
@@ -639,9 +640,9 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.minecraft.splash_potion.effect.mercury_poison", "Splash Potion of Mercury Poisoning");
         add("item.minecraft.lingering_potion.effect.mercury_poison", "Lingering Potion of Mercury Poisoning");
         add("effect.rankine.conductive", "Conductive");
-        add("item.minecraft.potion.effect.conductive", "Potion of Conductivity");
-        add("item.minecraft.splash_potion.effect.conductive", "Splash Potion of Conductivity");
-        add("item.minecraft.lingering_potion.effect.conductive", "Lingering Potion of Conductivity");
+        add("item.minecraft.potion.effect.conductive_potion", "Potion of Conductivity");
+        add("item.minecraft.splash_potion.effect.conductive_potion", "Splash Potion of Conductivity");
+        add("item.minecraft.lingering_potion.effect.conductive_potion", "Lingering Potion of Conductivity");
 
         add("enchantment.rankine.puncture", "Puncture");
         add("enchantment.rankine.puncture.desc", "Deals extra armor-piercing damage on direct attacks.");
