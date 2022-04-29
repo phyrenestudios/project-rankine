@@ -2,11 +2,11 @@ package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +16,6 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
@@ -32,13 +31,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.INDUCTION_FURNACE_TILE;
 
 public class InductionFurnaceTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
@@ -49,7 +45,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     private static final int[] SLOTS_DOWN = new int[]{8};
 
     public InductionFurnaceTile() {
-        super(INDUCTION_FURNACE_TILE);
+        super(RankineTileEntities.INDUCTION_FURNACE.get());
     }
 
     protected NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
@@ -127,7 +123,8 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     public void tick() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-        if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(6),powerCost))) {
+        //if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(6),powerCost))) {
+        if (this.isBurning()) {
             burnTime--;
         }
         if (!this.world.isRemote) {
@@ -136,7 +133,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
             if ((this.isBurning() || !battery.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
                 AlloyingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, this, this.world).orElse(null);
                 if (!this.isBurning() && this.canSmelt(irecipe, this)) {
-                    this.burnTime = BatteryItem.hasPowerRequired(battery,powerCost) ? 50 : 0;
+                    this.burnTime = 50; //BatteryItem.hasPowerRequired(battery,powerCost) ? 50 : 0;
                     this.currentBurnTime = this.burnTime;
                     if (this.isBurning()) {
                         flag1 = true;
@@ -199,6 +196,9 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
                         }
 
                         battery.setDamage(battery.getDamage() + powerCost);
+                        if (battery.getDamage() > battery.getMaxDamage()) {
+                            battery.shrink(1);
+                        }
                         this.cookTime = 0;
                         return;
                     }

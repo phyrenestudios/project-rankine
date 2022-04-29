@@ -23,7 +23,7 @@ public class AntimatterBlock extends Block {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (player.getHeldItem(handIn).getItem() != RankineItems.PENNING_TRAP.get()) {
+        if (player.getHeldItem(handIn).getItem() != RankineItems.PENNING_TRAP.get() && player.getHeldItem(handIn).getItem() != RankineItems.FILLED_PENNING_TRAP.get()) {
             explode(worldIn, pos);
         }
         return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);

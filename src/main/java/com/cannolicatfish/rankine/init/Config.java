@@ -218,7 +218,8 @@ public class Config {
     }
 
     public static class Tools {
-        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_MALLET;
+        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_HAMMER;
+        public final ForgeConfigSpec.BooleanValue DISABLE_STONE_HAMMER;
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_SWORD;
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_AXE;
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_SHOVEL;
@@ -259,7 +260,6 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue DISABLE_BIOMETER;
         public final ForgeConfigSpec.BooleanValue DISABLE_MAGNETOMETER;
 
-
         public final ForgeConfigSpec.IntValue PROSPECTING_STICK_RANGE;
         public final ForgeConfigSpec.IntValue MAGNETOMETER_RANGE;
         public final ForgeConfigSpec.IntValue ORE_DETECTOR_RANGE;
@@ -271,8 +271,10 @@ public class Config {
 
             b.comment("Rankine Tools").push("rankineTools");
 
-                DISABLE_WOODEN_MALLET = b.comment("Disable the use of the wooden mallet (still allows crafting for other recipes). This is enabled by default for progression.")
-                        .define("disableWoodenMallet", true);
+                DISABLE_WOODEN_HAMMER = b.comment("Disable the use of the wooden hammer (still allows crafting for other recipes). This is enabled by default for progression.")
+                        .define("disableWoodenHammer", false);
+                DISABLE_STONE_HAMMER = b.comment("Disable the use of the stone hammer (still allows crafting for other recipes). This is enabled by default for progression.")
+                        .define("disableStoneHammer", false);
                 DISABLE_COMPASS = b.comment("Disable status bar message from compass.")
                         .define("disableCompass",false);
                 DISABLE_CLOCK = b.comment("Disable status bar message from clock.")
@@ -421,7 +423,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
         public final ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
         public final ForgeConfigSpec.DoubleValue GRASS_GROW_CHANCE;
-        public final ForgeConfigSpec.DoubleValue PODZOL_GROW_CHANCE;
+        public final ForgeConfigSpec.IntValue LEAF_LITTER_GROWTH;
         public final ForgeConfigSpec.BooleanValue MANDATORY_AXE;
         public final ForgeConfigSpec.BooleanValue REFRESH_ALLOYS;
         public final ForgeConfigSpec.BooleanValue STARTING_BOOK;
@@ -499,18 +501,18 @@ public class Config {
                             .defineInRange("fumaroleDepositChance", 0.1D, 0.00D, 1.00D);
                     FLINT_DROP_CHANCE = b.comment("Chance for a stone block to drop a flint")
                             .defineInRange("flintDropChance", 0.15D, 0.00D, 1.00D);
-                    FORAGING_CHANCE = b.comment("Chance for a dirt block to drop a vegetable/seed")
+                    FORAGING_CHANCE = b.comment("Chance for a dirt block to drop a vegetable/seed.")
                             .defineInRange("foragingChance", 0.10D, 0.00D, 1.00D);
-                    GRASS_GROW_CHANCE = b.comment("Chance for a grass block to grow something on a random tick")
+                    GRASS_GROW_CHANCE = b.comment("Chance for a grass block to grow something on a random tick.")
                             .defineInRange("grassGrowChance", 0.0005D, 0.00D, 1.00D);
-                    PODZOL_GROW_CHANCE = b.comment("Chance for a podzol block to grow on grass")
-                            .defineInRange("podzolGrowChance", 0.0005D, 0.00D, 1.00D);
+                    LEAF_LITTER_GROWTH = b.comment("Chance for a leaf litters to age. Higher values slow decay.")
+                            .defineInRange("leafLitterDecay", 1, 1, Integer.MAX_VALUE);
                     ROCK_GENERATOR_REMOVAL_CHANCE = b.comment("Chance for a mineral block to be removed from any rock generator process.")
                             .defineInRange("rockGenRemovalChance", 0.01D, 0.00D, 1.00D);
                     IGNEOUS_COBBLE_GEN = b.comment("Change the output of a cobblestone generator and basalt generator to intrusive and extrusive igneous rocks respectively.")
                             .define("igneousGen",true);
                     METAMORPHIC_STONE_GEN = b.comment("Change the output of a stone generator from stone to metamorphic rocks.")
-                            .define("igneousGen",true);
+                            .define("metamorphicGen",true);
                     VILLAGER_TRADES = b.comment("Adds trades for Project Rankine to Villagers and the Wandering Trader.")
                             .define("villageTrades",true);
                     WANDERING_TRADE_SPECIAL = b.comment("Adds a trade to the Wandering Trader for a random tool which is not restricted by alloy constraints. May be unbalanced due to complete randomness.")
@@ -666,8 +668,6 @@ public class Config {
         public final ForgeConfigSpec.IntValue MAGNET_RANGE;
         public final ForgeConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
         public final ForgeConfigSpec.IntValue BEEHIVE_OVEN_SKYLIGHT;
-        public final ForgeConfigSpec.IntValue LASER_QUARRY_RANGE;
-        public final ForgeConfigSpec.IntValue LASER_QUARRY_SPEED;
         public final ForgeConfigSpec.IntValue GAS_BOTTLER_SPEED;
         public final ForgeConfigSpec.IntValue GYRATORY_CRUSHER_POWER;
         public final ForgeConfigSpec.IntValue INDUCTION_FURNACE_POWER;
@@ -699,10 +699,6 @@ public class Config {
                         .define("electromagnetMaterialReq",true);
                 BEEHIVE_OVEN_SKYLIGHT = b.comment("If disabled, the beehive ovens will not require sky access.")
                         .defineInRange("beehiveOvenAirHeight", 16, 0, 400);
-                LASER_QUARRY_RANGE = b.comment("Max range of the laser quarry. Larger numbers may cause lag. Set to 0 to disable functionality.")
-                        .defineInRange("laserQuarryRange", 31, 0, 63);
-                LASER_QUARRY_SPEED = b.comment("Max speed of the laser quarry in ticks.")
-                        .defineInRange("laserQuarrySpeed", 20, 1, 300);
                 GYRATORY_CRUSHER_POWER = b.comment("Defines the power requirement for one process in the gyratory crusher (multiplied by the tier of the current crushing head).")
                         .defineInRange("gyratoryCrusherPower", 1, 0, 10000);
                 INDUCTION_FURNACE_POWER = b.comment("Defines the power requirement for one process in the induction furnace.")
@@ -758,6 +754,8 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue WILD_CROPS;
         public final ForgeConfigSpec.BooleanValue MUSHROOMS;
         public final ForgeConfigSpec.BooleanValue COBBLES_GEN;
+        public final ForgeConfigSpec.BooleanValue FIRE_CLAY_COAL;
+        public final ForgeConfigSpec.BooleanValue GENERATE_MUD;
         public final ForgeConfigSpec.BooleanValue EVAPORITE_GEN;
         public final ForgeConfigSpec.BooleanValue FUMAROLE_GEN;
         public final ForgeConfigSpec.BooleanValue ALLUVIUM_GEN;
@@ -774,6 +772,7 @@ public class Config {
         public final ForgeConfigSpec.IntValue NETHERRACK_LAYER_THICKNESS;
         public final ForgeConfigSpec.IntValue SOUL_SANDSTONE_LAYER_THICKNESS;
 
+        public final ForgeConfigSpec.BooleanValue SOIL_GEN;
         public final ForgeConfigSpec.BooleanValue COLUMN_GEN;
         public final ForgeConfigSpec.DoubleValue COLUMN_CHANCE;
         public final ForgeConfigSpec.DoubleValue COLUMN_FREQUENCY;
@@ -802,6 +801,8 @@ public class Config {
             BEDROCK_LAYERS = b.comment("Layers of bedrock to generate if flatBedrock is true")
                     .defineInRange("bedrockLayers", 1, 0, 5);
 
+            SOIL_GEN = b.comment("Enable replacement of dirt, grass, sand, and other earthy blocks by biomeSettings.")
+                    .define("soilGen",false);
             SOIL_NOISE_SCALE = b.comment("This determines how mixed the two types of soil are per biome. Larger numbers mean larger patches.")
                     .defineInRange("soilNoiseScale", 60, 1, Integer.MAX_VALUE);
             SECRET_GEN = b.comment("Generate antimatter in the End.")
@@ -822,6 +823,10 @@ public class Config {
                     .define("generateCobbles",true);
             EVAPORITE_GEN = b.comment("Enables the generation of evaporite disks.")
                     .define("generateEvaporite",true);
+            FIRE_CLAY_COAL = b.comment("Enables the generation of fire clay underneath blocks in #forge:ores/coal")
+                    .define("generateFireClayUnderCoal",true);
+            GENERATE_MUD = b.comment("Enables the generation of mud blocks near water. This can be slightly laggy.")
+                    .define("generateMud",true);
             FUMAROLE_GEN = b.comment("Enables the generation of fumaroles. More options to come.")
                     .define("generateFumaroles",true);
             ALLUVIUM_GEN = b.comment("Enables the generation of alluvium disks.")

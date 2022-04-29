@@ -1,40 +1,29 @@
 package com.cannolicatfish.rankine.blocks.templatetable;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.init.RankineRecipes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.*;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.MerchantOffers;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.INBT;
 import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import java.util.AbstractMap;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.TEMPLATE_TABLE_CONTAINER;
 public class TemplateTableContainer extends Container {
 
     private IItemHandler playerInventory;
@@ -55,7 +44,7 @@ public class TemplateTableContainer extends Container {
     }
 
     public TemplateTableContainer(int windowId, PlayerInventory playerInventory, PlayerEntity player, IWorldPosCallable wpos) {
-        super(TEMPLATE_TABLE_CONTAINER,windowId);
+        super(RankineContainers.TEMPLATE_TABLE_CONTAINER.get(),windowId);
         this.worldPosCallable = wpos;
         this.player = player;
         this.world = player.world;

@@ -775,6 +775,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
         getOrCreateBuilder(RankineTags.Items.BREEDABLES_COW).addTags(RankineTags.Items.CROPS_BARLEY,RankineTags.Items.CROPS_RYE,RankineTags.Items.CROPS_SORGHUM,RankineTags.Items.CROPS_MILLET,RankineTags.Items.CROPS_OATS,Tags.Items.CROPS_WHEAT,RankineTags.Items.CROPS_CORN);
         getOrCreateBuilder(RankineTags.Items.BREEDABLES_SHEEP).addTags(RankineTags.Items.CROPS_BARLEY,RankineTags.Items.CROPS_RYE,RankineTags.Items.CROPS_SORGHUM,RankineTags.Items.CROPS_MILLET,RankineTags.Items.CROPS_OATS,Tags.Items.CROPS_WHEAT,RankineTags.Items.CROPS_CORN);
+        getOrCreateBuilder(RankineTags.Items.BREEDABLES_LLAMA).add(Items.HAY_BLOCK,RankineItems.BARLEY_BALE.get(),RankineItems.MILLET_BALE.get(),RankineItems.RYE_BALE.get(),RankineItems.SORGHUM_BALE.get(),RankineItems.OAT_BALE.get()).addTags(RankineTags.Items.CROPS_BARLEY,RankineTags.Items.CROPS_RYE,RankineTags.Items.CROPS_SORGHUM,RankineTags.Items.CROPS_MILLET,RankineTags.Items.CROPS_OATS,Tags.Items.CROPS_WHEAT,RankineTags.Items.CROPS_CORN);
         getOrCreateBuilder(RankineTags.Items.BREEDABLES_PIG).addTags(RankineTags.Items.CROPS_SOYBEAN,RankineTags.Items.CROPS_ASPARAGUS,RankineTags.Items.CROPS_CORN,Tags.Items.CROPS_BEETROOT,Tags.Items.CROPS_POTATO,Tags.Items.CROPS_CARROT);
         getOrCreateBuilder(RankineTags.Items.BREEDABLES_CHICKEN).addTags(Tags.Items.SEEDS);
         getOrCreateBuilder(RankineTags.Items.BREEDABLES_FOX).addTags(RankineTags.Items.BERRIES);
@@ -923,7 +924,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
             getOrCreateBuilder(ItemTags.SAPLINGS).add(blk.asItem());
         }
 
-
+        //getOrCreateBuilder(ItemTags.createOptional(new ResourceLocation("twilight_forest", "portal/activator"))).add(RankineItems.);
 
 
 

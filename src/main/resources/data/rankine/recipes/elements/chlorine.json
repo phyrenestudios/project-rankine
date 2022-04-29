@@ -1,10 +1,18 @@
 {
-          "type": "rankine:element",
-          "name": "chlorine",
-          "symbol": "Cl",
-          "color": 16777215,
-          "atomic": 17,
-          "potential": 0,
-          "items": ["T#forge:nuggets/chlorine","T#forge:ingots/chlorine","T#forge:storage_blocks/chlorine"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "chlorine",
+  "symbol": "Cl",
+  "color": 16777215,
+  "atomic": 17,
+  "potential": 0,
+  "items": ["T#forge:nuggets/chlorine","T#forge:ingots/chlorine","T#forge:storage_blocks/chlorine"],
+  "values": [1,9,81],
+  "damage": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.5],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [2.5]
+  }
+}

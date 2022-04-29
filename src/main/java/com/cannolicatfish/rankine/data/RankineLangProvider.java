@@ -34,6 +34,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MISC_STAIRS,
                 RankineLists.MISC_WALLS,
 
+                RankineLists.BALES,
                 RankineLists.MUSHROOM_BLOCKS,
                 RankineLists.CONCRETE_VERTICAL_SLABS,
                 RankineLists.CONCRETE_STAIRS,
@@ -241,6 +242,7 @@ public class RankineLangProvider extends LanguageProvider {
         }
 
         for (Item item : Stream.of(
+                RankineLists.WOODEN_SIGN_ITEMS,
                 RankineLists.WOODEN_BOATS,
                 RankineLists.ARROWS,
                 RankineLists.WOODEN_TOOLS,
@@ -608,7 +610,7 @@ public class RankineLangProvider extends LanguageProvider {
 
 
 
-
+        add("item.rankine.filled_penning_trap", "Penning Trap (Antimatter)");
         add("item.rankine.mantle_golem_egg", "Garnet Mantle Golem Spawn Egg");
         add("entity.rankine.mantle_golem", "Garnet Mantle Golem");
         add("item.rankine.diamond_mantle_golem_egg", "Diamond Mantle Golem Spawn Egg");
@@ -746,7 +748,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.crucible", "Crucible");
         add("rankine.jei.alloying", "Alloying");
         add("rankine.jei.induction_alloying", "Advanced Alloying");
-        add("rankine.jei.sluicing", "Gold Panning");
+        add("rankine.jei.sluicing", "Sluicing");
         add("rankine.jei.mixing", "Mixing");
         add("rankine.jei.evaporation", "Evaporation");
         add("rankine.jei.beeoven", "Beehive Oven");
@@ -1185,9 +1187,20 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.crops.banana_yucca", "");
         add("rankine.journal.cat_biota.crops.camphor_basil_leaf", "");
 
+        //Constructions
+        add("rankine.journal.cat_constructions.name", "Constructions");
+        add("rankine.journal.cat_constructions.desc", "Artificial devices and blocks with unique properties.");
+
+
+        add("rankine.journal.cat_constructions.pedestals.name", "Pedestals");
+        add("rankine.journal.cat_constructions.pedestals.text1", "Pedestals are decorative sculptures formed from various alloys. An item can be placed on a pedestal by right clicking. A comparator will output a redstone signal with a strength based on properties of the item.");
+
+        add("rankine.journal.cat_constructions.mineral_wool.name", "Mineral Wool");
+        add("rankine.journal.cat_constructions.mineral_wool.text1", "Mineral wool is a fireproof version of standard wool made by the addition of slag into the fibers. The 16 color variations are available through in world dyeing or crafting.");
+
 
         //Materials
-        add("rankine.journal.cat_materials.name", "Materials");
+        add("rankine.journal.cat_materials.name", "Material Acquisition");
         add("rankine.journal.cat_materials.desc", "Useable materials come from all sorts of places. Some are simply harvested raw from the world, while others require some manufacturing and refinement to obtain.");
 
         add("rankine.journal.cat_materials.mixing_barrel.name", "Mixing Barrel");

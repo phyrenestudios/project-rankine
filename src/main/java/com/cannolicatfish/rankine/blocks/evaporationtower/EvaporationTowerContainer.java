@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -20,8 +21,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.EVAPORATION_TOWER_CONTAINER;
-
 public class EvaporationTowerContainer extends Container {
     private final IInventory furnaceInventory;
     private TileEntity tileEntity;
@@ -34,7 +33,7 @@ public class EvaporationTowerContainer extends Container {
 
     }
     public EvaporationTowerContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray towerData) {
-        super(EVAPORATION_TOWER_CONTAINER, windowId);
+        super(RankineContainers.EVAPORATION_TOWER_CONTAINER.get(), windowId);
         tileEntity = world.getTileEntity(pos);
         assertInventorySize(furnaceInventoryIn, 1);
         assertIntArraySize(towerData, 2);

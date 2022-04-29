@@ -1,10 +1,18 @@
 {
-          "type": "rankine:element",
-          "name": "xenon",
-          "symbol": "Xe",
-          "color": 16777215,
-          "atomic": 54,
-          "potential": 0,
-          "items": ["T#forge:nuggets/xenon","T#forge:ingots/xenon","T#forge:storage_blocks/xenon"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "xenon",
+  "symbol": "Xe",
+  "color": 16777215,
+  "atomic": 54,
+  "potential": 0,
+  "items": ["T#forge:nuggets/xenon","T#forge:ingots/xenon","T#forge:storage_blocks/xenon"],
+  "values": [1,9,81],
+  "toughness": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.02],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.1]
+  }
+}

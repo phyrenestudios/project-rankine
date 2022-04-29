@@ -11,10 +11,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class RankinePlacements {
-    public static final DeferredRegister<Placement<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.DECORATORS, ProjectRankine.MODID);
+    public static final DeferredRegister<Placement<?>> PLACEMENTS = DeferredRegister.create(ForgeRegistries.DECORATORS, ProjectRankine.MODID);
 
-    public static final RegistryObject<Placement<NoPlacementConfig>> REPLACER_PLACEMENT = REGISTRY.register("replacer_placement", () -> new ReplacerPlacement(NoPlacementConfig.CODEC));
-    public static final RegistryObject<Placement<ChanceConfig>> INTRUSION_PLACEMENT = REGISTRY.register("intrusion_placement", () -> new IntrusionPlacement(ChanceConfig.CODEC));
+    public static final RegistryObject<Placement<NoPlacementConfig>> REPLACER_PLACEMENT = PLACEMENTS.register("replacer_placement", () -> new ReplacerPlacement(NoPlacementConfig.CODEC));
+    public static final RegistryObject<Placement<ChanceConfig>> INTRUSION_PLACEMENT = PLACEMENTS.register("intrusion_placement", () -> new IntrusionPlacement(ChanceConfig.CODEC));
 
 
 

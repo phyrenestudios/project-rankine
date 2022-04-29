@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.groundtap;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
@@ -15,13 +16,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.GROUND_TAP_TILE;
-
 public class GroundTapTile extends TileEntity implements ITickableTileEntity {
     private int proccessTime;
 
     public GroundTapTile() {
-        super(GROUND_TAP_TILE);
+        super(RankineTileEntities.GROUND_TAP.get());
     }
 
     @Override

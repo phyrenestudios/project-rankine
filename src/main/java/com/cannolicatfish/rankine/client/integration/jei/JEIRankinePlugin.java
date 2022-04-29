@@ -26,6 +26,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nonnull;
@@ -89,6 +91,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getMetamorphicGeneratorRecipes()), MetamorphicGeneratorRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()), VolcanicGeneratorRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getAirDistillationRecipes()), AirDistillationRecipeCategory.UID);
+        registry.addIngredientInfo(new ItemStack(RankineItems.GEODE.get()), VanillaTypes.ITEM, new StringTextComponent("Geodes can be opened by right-clicking them in-world with a hammer."));
         registry.addIngredientInfo(new ItemStack(RankineItems.COKE.get()), VanillaTypes.ITEM, "Coke can be obtained by cooking Bituminous Coal Blocks in a beehive oven.",
                 "See Beehive Oven Pit for more details.");
         registry.addIngredientInfo(new ItemStack(RankineItems.QUICKLIME.get()), VanillaTypes.ITEM, "Quicklime can be obtained by cooking Limestone in a beehive oven.",
@@ -113,7 +116,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addIngredientInfo(new ItemStack(RankineItems.SNOWSHOES.get()), VanillaTypes.ITEM, "Snowshoes increase movement speed on snow blocks when worn. Combine with boots in an anvil to add the enchantment Snow Drifter which has the same effect.");
         registry.addIngredientInfo(new ItemStack(RankineItems.ICE_SKATES.get()), VanillaTypes.ITEM, "Ice Skates increase movement speed on ice blocks when worn. Combine with boots in an anvil to add the enchantment Speed Skater which has the same effect.");
         registry.addIngredientInfo(new ItemStack(RankineItems.GOGGLES.get()), VanillaTypes.ITEM, "Ice Skates increase movement speed on ice blocks when worn. Combine with boots in an anvil to add the enchantment Speed Skater which has the same effect.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.FINS.get()), VanillaTypes.ITEM, "Fins increase movement speed when swimming. Combine with boots in an anvil to add the enchantment TBD which has the same effect.");
+        registry.addIngredientInfo(new ItemStack(RankineItems.FINS.get()), VanillaTypes.ITEM, "Fins increase movement speed when swimming. Combine with boots in an anvil to add the enchantment Swift Swimmer which has the same effect.");
         //Tools
         registry.addIngredientInfo(new ItemStack(Items.COMPASS), VanillaTypes.ITEM, "While held, the compass will display the holder's coordinates and direction. Default is head position, sneak for position at feet.");
         registry.addIngredientInfo(new ItemStack(Items.CLOCK), VanillaTypes.ITEM, "While held, the clock will display the current game time on a 24 hour clock and in ticks.");

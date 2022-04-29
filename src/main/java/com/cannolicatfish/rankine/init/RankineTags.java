@@ -45,6 +45,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Block> MOVEMENT_MODIFIERS_WOOD = modBlock("movement_modifiers/wood");
 
 
+        public static final Tags.IOptionalNamedTag<Block> KNIFE_SHEARABLE = modBlock("knife_shearable");
         public static final Tags.IOptionalNamedTag<Block> FIREPROOF_LOGS = modBlock("fireproof_logs");
         public static final Tags.IOptionalNamedTag<Block> ELECTROMAGNETS = modBlock("electromagnets");
         public static final Tags.IOptionalNamedTag<Block> MAGNET_BANNED = modBlock("magnet_banned");
@@ -479,6 +480,7 @@ public final class RankineTags {
         public static final Tags.IOptionalNamedTag<Item> BREEDABLES_COW = forgeItem("breedables/cow");
         public static final Tags.IOptionalNamedTag<Item> BREEDABLES_PIG = forgeItem("breedables/pig");
         public static final Tags.IOptionalNamedTag<Item> BREEDABLES_SHEEP = forgeItem("breedables/sheep");
+        public static final Tags.IOptionalNamedTag<Item> BREEDABLES_LLAMA = forgeItem("breedables/llama");
         public static final Tags.IOptionalNamedTag<Item> BREEDABLES_CHICKEN = forgeItem("breedables/chicken");
         public static final Tags.IOptionalNamedTag<Item> BREEDABLES_CAT = forgeItem("breedables/cat");
         public static final Tags.IOptionalNamedTag<Item> BREEDABLES_HORSE = forgeItem("breedables/horse");

@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
@@ -32,14 +33,13 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.PISTON_CRUSHER_TILE;
 
 public class PistonCrusherTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
     private static final int[] SLOTS_UP = new int[]{0};
     private static final int[] SLOTS_DOWN = new int[]{2,3,4};
     private static final int[] SLOTS_HORIZONTAL = new int[]{1};
     public PistonCrusherTile() {
-        super(PISTON_CRUSHER_TILE);
+        super(RankineTileEntities.PISTON_CRUSHER.get());
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
     private int burnTime;

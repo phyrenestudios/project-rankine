@@ -287,15 +287,16 @@ public class RankineRecipesProvider extends RecipeProvider {
 
 
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),4).addIngredient(RankineItems.JUTE.get()).addCriterion("has_ingredient", hasItem(Items.STICK)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_jute");
-        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),2).addIngredient(Items.VINE).addCriterion("has_ingredient", hasItem(Items.STICK)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_vine");
-        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),2).addIngredient(Items.WEEPING_VINES).addCriterion("has_ingredient", hasItem(Items.STICK)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_weeping_vines");
-        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),2).addIngredient(Items.TWISTING_VINES).addCriterion("has_ingredient", hasItem(Items.STICK)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_twisting_vines");
-        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),2).addIngredient(Items.TALL_GRASS).addCriterion("has_ingredient", hasItem(Items.STICK)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_tall_grass");
-        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),2).addIngredient(Items.LARGE_FERN).addCriterion("has_ingredient", hasItem(Items.STICK)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_large_fern");
-        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(Items.GRASS).addCriterion("has_ingredient", hasItem(Items.STICK)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_grass");
-        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(Items.SEAGRASS).addCriterion("has_ingredient", hasItem(Items.STICK)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_seagrass");
-        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(Items.FERN).addCriterion("has_ingredient", hasItem(Items.STICK)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_fern");
-        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(RankineItems.SHORT_GRASS.get()).addIngredient(RankineItems.SHORT_GRASS.get()).addCriterion("has_ingredient", hasItem(Items.STICK)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_short_grass");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),2).addIngredient(Items.VINE).addCriterion("has_ingredient", hasItem(Items.VINE)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_vine");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),2).addIngredient(Items.WEEPING_VINES).addCriterion("has_ingredient", hasItem(Items.WEEPING_VINES)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_weeping_vines");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),2).addIngredient(Items.TWISTING_VINES).addCriterion("has_ingredient", hasItem(Items.TWISTING_VINES)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_twisting_vines");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),2).addIngredient(Items.TALL_GRASS).addCriterion("has_ingredient", hasItem(Items.TALL_GRASS)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_tall_grass");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),2).addIngredient(Items.LARGE_FERN).addCriterion("has_ingredient", hasItem(Items.LARGE_FERN)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_large_fern");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(Items.GRASS).addCriterion("has_ingredient", hasItem(Items.GRASS)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_grass");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(Items.SEAGRASS).addCriterion("has_ingredient", hasItem(Items.SEAGRASS)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_seagrass");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(Items.FERN).addCriterion("has_ingredient", hasItem(Items.FERN)).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_fern");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(RankineItems.SHORT_GRASS.get()).addIngredient(RankineItems.SHORT_GRASS.get()).addCriterion("has_ingredient", hasItem(RankineItems.SHORT_GRASS.get())).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_short_grass");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(RankineItems.WILLOW_BRANCHLET.get()).addCriterion("has_ingredient", hasItem(RankineItems.WILLOW_BRANCHLET.get())).setGroup("plant_fiber").build(consumer, "rankine:plant_fiber_from_willow_branchlet");
 
         ShapedRecipeBuilder.shapedRecipe(Items.BREAD,  1).patternLine("###").key('#', RankineItems.MILLET.get()).setGroup("gf_bread").addCriterion("has_ingredient", hasItem(RankineItems.MILLET.get())).build(consumer,"rankine:gf_bread_from_millet");
         ShapedRecipeBuilder.shapedRecipe(Items.BREAD,  1).patternLine("###").key('#', RankineItems.OATS.get()).setGroup("gf_bread").addCriterion("has_ingredient", hasItem(RankineItems.OATS.get())).build(consumer,"rankine:gf_bread_from_oats");
@@ -532,7 +533,16 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(Items.PURPLE_DYE).addIngredient(RankineItems.PURPLE_MORNING_GLORY.get()).addCriterion("has_ingredient", hasItem(RankineItems.PURPLE_MORNING_GLORY.get())).build(consumer, "rankine:purple_dye_from_purple_morning_glory");
         ShapelessRecipeBuilder.shapelessRecipe(Items.GRAY_DYE).addIngredient(Items.WATER_BUCKET).addIngredient(RankineItems.ASH.get()).addIngredient(RankineItems.ASH.get()).addIngredient(RankineItems.ASH.get()).addIngredient(RankineItems.ASH.get()).addCriterion("has_ingredient", hasItem(RankineItems.ASH.get())).build(consumer, "rankine:gray_dye_from_ash");
         ShapelessRecipeBuilder.shapelessRecipe(Items.BLUE_DYE,4).addIngredient(RankineTags.Items.NUGGETS_YTTRIUM).addIngredient(RankineTags.Items.NUGGETS_YTTRIUM).addIngredient(RankineTags.Items.NUGGETS_INDIUM).addIngredient(RankineTags.Items.NUGGETS_INDIUM).addIngredient(RankineTags.Items.NUGGETS_MANGANESE).addIngredient(RankineTags.Items.NUGGETS_MANGANESE).addCriterion("has_ingredient", hasItem(RankineTags.Items.NUGGETS_MANGANESE)).build(consumer, "rankine:blue_dye_from_metals");
-
+        threeXthree(consumer, RankineItems.BARLEY_BALE.get(), RankineItems.BARLEY.get(), 1, "has_ingredient", RankineItems.BARLEY.get());
+        threeXthree(consumer, RankineItems.SORGHUM_BALE.get(), RankineItems.SORGHUM.get(), 1, "has_ingredient", RankineItems.SORGHUM.get());
+        threeXthree(consumer, RankineItems.RYE_BALE.get(), RankineItems.RYE.get(), 1, "has_ingredient", RankineItems.RYE.get());
+        threeXthree(consumer, RankineItems.MILLET_BALE.get(), RankineItems.MILLET.get(), 1, "has_ingredient", RankineItems.MILLET.get());
+        threeXthree(consumer, RankineItems.OAT_BALE.get(), RankineItems.OATS.get(), 1, "has_ingredient", RankineItems.OATS.get());
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.OATS.get(),9).addIngredient(RankineItems.OAT_BALE.get()).addCriterion("has_ingredient", hasItem(RankineItems.OAT_BALE.get())).build(consumer, "rankine:oats_from_bale");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.SORGHUM.get(),9).addIngredient(RankineItems.SORGHUM_BALE.get()).addCriterion("has_ingredient", hasItem(RankineItems.SORGHUM_BALE.get())).build(consumer, "rankine:sorghum_from_bale");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.BARLEY.get(),9).addIngredient(RankineItems.BARLEY_BALE.get()).addCriterion("has_ingredient", hasItem(RankineItems.BARLEY_BALE.get())).build(consumer, "rankine:barley_from_bale");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.RYE.get(),9).addIngredient(RankineItems.RYE_BALE.get()).addCriterion("has_ingredient", hasItem(RankineItems.RYE_BALE.get())).build(consumer, "rankine:rye_from_bale");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.MILLET.get(),9).addIngredient(RankineItems.MILLET_BALE.get()).addCriterion("has_ingredient", hasItem(RankineItems.MILLET_BALE.get())).build(consumer, "rankine:millet_from_bale");
 
         CustomRecipeBuilder.customRecipe(JamRecipe.SERIALIZER).build(consumer, "fruit_jam");
 
@@ -652,6 +662,7 @@ public class RankineRecipesProvider extends RecipeProvider {
             Block WOODEN_FENCE = RankineLists.WOODEN_FENCES.get(RankineLists.PLANKS.indexOf(PLANK));
             Block WOODEN_FENCE_GATE = RankineLists.WOODEN_FENCE_GATES.get(RankineLists.PLANKS.indexOf(PLANK));
             Block WOODEN_BOOKSHELVES = RankineLists.WOODEN_BOOKSHELVES.get(RankineLists.PLANKS.indexOf(PLANK));
+            Item SIGN = RankineLists.WOODEN_SIGN_ITEMS.get(RankineLists.PLANKS.indexOf(PLANK));
             Item WOODEN_BOAT = RankineLists.WOODEN_BOATS.get(RankineLists.PLANKS.indexOf(PLANK));
             slab(consumer, WOODEN_SLAB.asItem(), PLANK.asItem(), "wooden_slab");
             stairs(consumer, WOODEN_STAIRS.asItem(), PLANK.asItem(), "wooden_stairs");
@@ -661,6 +672,7 @@ public class RankineRecipesProvider extends RecipeProvider {
             fence(consumer, WOODEN_FENCE.asItem(), PLANK.asItem(), "wooden_fence",  "has_plank", PLANK.asItem());
             fenceGate(consumer, WOODEN_FENCE_GATE.asItem(), PLANK.asItem(), "wooden_fence_gate",  "has_plank", PLANK.asItem());
             bookshelf(consumer, WOODEN_BOOKSHELVES.asItem(), PLANK.asItem(), "wooden_bookshelves",  "has_plank", PLANK.asItem());
+            sign(consumer, SIGN, PLANK.asItem(), "signs",  "has_plank", PLANK.asItem());
             boat(consumer, WOODEN_BOAT, PLANK.asItem(), "boat",  "has_plank", PLANK.asItem());
             ShapelessRecipeBuilder.shapelessRecipe(WOODEN_BUTTON).addIngredient(PLANK).setGroup("wooden_button").addCriterion("has_ingredient", hasItem(PLANK)).build(consumer);
             
@@ -925,6 +937,7 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         
         //Campfire
+        //CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.CHARRED_LOG.get()), ItemTags.LOGS_THAT_BURN.getAllElements().stream().iterator(), 0.35F, 40, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(ItemTags.LOGS_THAT_BURN)).build(consumer, "rankine:charred_log_campfire_cooking");
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.DRIED_BAMBOO.get()), Items.BAMBOO, 0.35F, 40, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(Items.BAMBOO)).build(consumer, "rankine:dried_bamboo_campfire_cooking");
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.BONE_ASH.get()), Items.BONE, 0.35F, 200, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(Items.BONE)).build(consumer, "rankine:bone_ash_campfire_cooking");
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.FIRE_CLAY_BALL.get()), RankineItems.REFRACTORY_BRICK.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.FIRE_CLAY_BALL.get())).build(consumer, "rankine:refractory_brick_campfire_cooking");
@@ -1186,7 +1199,17 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer);
     }
-
+    private void sign(Consumer<IFinishedRecipe> consumer, Item output, Item input, String group, String triggerName, Item trigger) {
+        ShapedRecipeBuilder.shapedRecipe(output, 3)
+                .patternLine("###")
+                .patternLine("###")
+                .patternLine(" S ")
+                .key('#', input)
+                .key('S', Tags.Items.RODS_WOODEN)
+                .setGroup(group)
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer);
+    }
     private void led(Consumer<IFinishedRecipe> consumer, Item output, ITag<Item> dye) {
         ShapedRecipeBuilder.shapedRecipe(output, 4)
                 .patternLine("DRD")

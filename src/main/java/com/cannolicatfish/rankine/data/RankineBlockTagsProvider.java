@@ -109,6 +109,8 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         for (Block blk : RankineLists.SAPLINGS) {
             getOrCreateBuilder(BlockTags.SAPLINGS).add(blk);
         }
+        getOrCreateBuilder(BlockTags.SMALL_FLOWERS).add(RankineBlocks.CRIMSON_CLOVER.get(),RankineBlocks.RED_CLOVER.get(),RankineBlocks.YELLOW_CLOVER.get(),RankineBlocks.WHITE_CLOVER.get());
+
         for (Block blk : RankineLists.TALL_FLOWERS) {
             getOrCreateBuilder(BlockTags.TALL_FLOWERS).add(blk);
         }
@@ -594,6 +596,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         for (Block blk : RankineLists.HOLLOW_LOGS) {
             getOrCreateBuilder(RankineTags.Blocks.TREE_LOGS).add(blk);
         }
+        getOrCreateBuilder(RankineTags.Blocks.KNIFE_SHEARABLE).add(Blocks.GRASS,Blocks.TALL_GRASS,Blocks.FERN,Blocks.LARGE_FERN,Blocks.SEAGRASS,Blocks.TALL_SEAGRASS,Blocks.VINE,Blocks.TWISTING_VINES,Blocks.WEEPING_VINES,Blocks.DEAD_BUSH,RankineBlocks.WILLOW_BRANCHLET.get(),RankineBlocks.WILLOW_BRANCHLET_PLANT.get(),RankineBlocks.SHORT_GRASS.get(),RankineBlocks.STINGING_NETTLE.get(),RankineBlocks.YELLOW_CLOVER.get(),RankineBlocks.RED_CLOVER.get(),RankineBlocks.CRIMSON_CLOVER.get(),RankineBlocks.WHITE_CLOVER.get());
         getOrCreateBuilder(BlockTags.BEE_GROWABLES).add(RankineBlocks.JUTE_PLANT.get(),RankineBlocks.CORN_PLANT.get(),RankineBlocks.RICE_PLANT.get(),RankineBlocks.COTTON_PLANT.get(),RankineBlocks.ASPARAGUS_PLANT.get(),RankineBlocks.CAMPHOR_BASIL_PLANT.get(),RankineBlocks.ALOE_PLANT.get(),RankineBlocks.PINEAPPLE_BUSH.get(),RankineBlocks.CRANBERRY_BUSH.get(),RankineBlocks.POKEBERRY_BUSH.get(),RankineBlocks.BLUEBERRY_BUSH.get(),RankineBlocks.ELDERBERRY_BUSH.get(),RankineBlocks.STRAWBERRY_BUSH.get(),RankineBlocks.SNOWBERRY_BUSH.get(),RankineBlocks.RASPBERRY_BUSH.get(),RankineBlocks.BLACKBERRY_BUSH.get(),RankineBlocks.BANANA_YUCCA_BUSH.get(),RankineBlocks.RYE_PLANT.get(),RankineBlocks.SORGHUM_PLANT.get(),RankineBlocks.BARLEY_PLANT.get(),RankineBlocks.MILLET_PLANT.get(),RankineBlocks.OAT_PLANT.get(),RankineBlocks.SOYBEAN_PLANT.get());
         getOrCreateBuilder(RankineTags.Blocks.TREE_LEAVES).addTags(BlockTags.LEAVES).add(Blocks.WARPED_WART_BLOCK,Blocks.NETHER_WART_BLOCK);
         getOrCreateBuilder(RankineTags.Blocks.HERBICIDAL).addTags(RankineTags.Blocks.LEAF_LITTERS,BlockTags.SMALL_FLOWERS,BlockTags.TALL_FLOWERS,BlockTags.CROPS,BlockTags.CORAL_PLANTS,BlockTags.WALL_CORALS,BlockTags.SAPLINGS).add(Blocks.GRASS,Blocks.TALL_GRASS,Blocks.FERN,Blocks.LARGE_FERN,Blocks.SEAGRASS,Blocks.TALL_SEAGRASS,Blocks.VINE,Blocks.TWISTING_VINES,Blocks.TWISTING_VINES_PLANT,Blocks.WEEPING_VINES_PLANT,Blocks.WEEPING_VINES,Blocks.LILY_PAD,Blocks.FIRE_CORAL_FAN,Blocks.BRAIN_CORAL_FAN,Blocks.BUBBLE_CORAL_FAN,Blocks.HORN_CORAL_FAN,Blocks.TUBE_CORAL_FAN,RankineBlocks.SHORT_GRASS.get(),RankineBlocks.STINGING_NETTLE.get(),RankineBlocks.RED_CLOVER.get(),RankineBlocks.CRIMSON_CLOVER.get(),RankineBlocks.WHITE_CLOVER.get(),RankineBlocks.YELLOW_CLOVER.get());
@@ -619,6 +622,11 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         }
         getOrCreateBuilder(RankineTags.Blocks.MOVEMENT_MODIFIERS).addTags(RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN,RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW,RankineTags.Blocks.MOVEMENT_MODIFIERS_WOOD,RankineTags.Blocks.MOVEMENT_MODIFIERS_DIRT,RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE,RankineTags.Blocks.MOVEMENT_MODIFIERS_MUD,RankineTags.Blocks.MOVEMENT_MODIFIERS_PATHS,RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND,RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE,RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED);
 
+        getOrCreateBuilder(BlockTags.createOptional(new ResourceLocation("twilight_forest", "portal/decoration"))).add(RankineBlocks.STINGING_NETTLE.get()).addTag(RankineTags.Blocks.LEAF_LITTERS);
+        getOrCreateBuilder(BlockTags.createOptional(new ResourceLocation("twilight_forest", "portal/edge"))).add(RankineBlocks.FULGURITE.get(),RankineBlocks.TILLED_SOIL.get());
+        for (Block blk : Stream.of(RankineLists.GRASS_BLOCKS,RankineLists.PODZOL_BLOCKS,RankineLists.MYCELIUM_BLOCKS,RankineLists.MUD_BLOCKS,RankineLists.COARSE_SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            getOrCreateBuilder(BlockTags.createOptional(new ResourceLocation("twilight_forest", "portal/edge"))).add(blk);
+        }
     }
 
 }

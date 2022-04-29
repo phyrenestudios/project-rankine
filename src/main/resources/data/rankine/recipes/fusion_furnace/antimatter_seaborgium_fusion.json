@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "forge:ingots/californium"
+  },
+  "input2": {
+    "tag": "forge:ingots/oxygen"
+  },
+  "result1": {
+    "item":"rankine:seaborgium_ingot"
+  },
+  "gasInput": {
+    "item": "rankine:filled_penning_trap"
+  },
+  "gasOutput": {
+    "item": "rankine:penning_trap"
+  }
+}

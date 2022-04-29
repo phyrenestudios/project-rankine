@@ -58,6 +58,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.BRICKS_STAIRS,
                 RankineLists.BRICKS_WALL,
                 RankineLists.SHEETMETALS,
+                RankineLists.BALES,
                 RankineLists.GEODES,
                 RankineLists.LEDS,
                 RankineLists.COARSE_SOIL_BLOCKS,
@@ -89,6 +90,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.ALLOY_BARS,
                 RankineLists.LANTERNS,
                 RankineLists.WALL_MUSHROOMS,
+                RankineLists.WOODEN_SIGNS,
                 RankineLists.SAPLINGS
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(blk, createBlockLootTable(blk));
@@ -99,6 +101,8 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineBlocks.WHITE_CEMENT.get(),
                 RankineBlocks.SOD_BLOCK.get(),
                 RankineBlocks.COB.get(),
+                RankineBlocks.REFINED_COB.get(),
+                RankineBlocks.STUMP.get(),
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
                 RankineBlocks.REACTION_CHAMBER_CORE.get(),
                 RankineBlocks.CHARCOAL_PIT.get(),
@@ -312,6 +316,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.ELDERBERRY_BUSH.get(), doubleBushOneDrop(RankineBlocks.ELDERBERRY_BUSH.get(), RankineItems.ELDERBERRIES.get()));
         lootTables.put(RankineBlocks.CRANBERRY_BUSH.get(), doubleBushOneDrop(RankineBlocks.CRANBERRY_BUSH.get(), RankineItems.CRANBERRIES.get()));
 
+        lootTables.put(RankineBlocks.WILLOW_BRANCHLET.get(), droppingSeeds(RankineBlocks.WILLOW_BRANCHLET.get()));
         lootTables.put(RankineBlocks.SHORT_GRASS.get(), droppingSeeds(RankineBlocks.SHORT_GRASS.get()));
         lootTables.put(RankineBlocks.STINGING_NETTLE.get(), withShears(RankineBlocks.STINGING_NETTLE.get()));
         lootTables.put(RankineBlocks.YELLOW_CLOVER.get(), withShears(RankineBlocks.YELLOW_CLOVER.get()));

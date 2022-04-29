@@ -46,29 +46,35 @@ public class PedestalBlock extends Block {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(handIn != Hand.MAIN_HAND)
-            return ActionResultType.PASS;
+            return ActionResultType.FAIL;
         PedestalTile tile = (PedestalTile) world.getTileEntity(pos);
-        if(!world.isRemote && tile != null) {
-
-            if (tile.getStackInSlot(0) != null && player.getHeldItem(handIn).isEmpty()) {
-                if(world.getBlockState(pos.up()).getMaterial() != Material.AIR)
-                    return ActionResultType.SUCCESS;
-                ItemEntity item = new ItemEntity(world, player.getPosX(), player.getPosY(), player.getPosZ(), tile.getStackInSlot(0));
-                world.addEntity(item);
-                tile.clear();
-            } else if (!player.inventory.getCurrentItem().isEmpty()) {
-                if(tile.getStackInSlot(0) != null){
-                    ItemEntity item = new ItemEntity(world, player.getPosX(), player.getPosY(), player.getPosZ(), tile.getStackInSlot(0));
-                    world.addEntity(item);
+        if(tile != null) {
+            if (!world.isRemote) {
+                ItemStack tileStack = tile.getStackInSlot(0);
+                ItemStack playerStack = player.getHeldItem(handIn).copy();
+                boolean flag = false;
+                if (!tile.isEmpty()) {
+                    ItemEntity itemEntity = new ItemEntity(world, tile.getPos().getX() + 0.5, tile.getPos().getY() + 1.0, tile.getPos().getZ() + 0.5, tileStack);
+                    itemEntity.setDefaultPickupDelay();
+                    world.addEntity(itemEntity);
+                    tile.clear();
+                    flag = true;
                 }
-                ItemStack stack = player.getHeldItem(handIn).copy();
-                stack.setCount(1);
-                tile.setInventorySlotContents(0,stack);
-                player.getHeldItem(handIn).shrink(1);
+                if (!playerStack.isEmpty()) {
+                    playerStack.setCount(1);
+                    tile.setInventorySlotContents(0, playerStack);
+                    player.getHeldItem(handIn).shrink(1);
+                    flag = true;
+                }
+                if (flag) {
+                    world.notifyBlockUpdate(pos, state, state, 3);
+                    world.updateComparatorOutputLevel(pos, this);
+                    return ActionResultType.SUCCESS;
+                }
             }
-            world.notifyBlockUpdate(pos, state, state, 2);
+            return ActionResultType.CONSUME;
         }
-        return  ActionResultType.SUCCESS;
+        return super.onBlockActivated(state, world, pos, player, handIn, hit);
     }
 
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
@@ -86,5 +92,19 @@ public class PedestalBlock extends Block {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new PedestalTile();
+    }
+
+
+    public boolean hasComparatorInputOverride(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
+        TileEntity tileentity = worldIn.getTileEntity(pos);
+        if (tileentity instanceof PedestalTile) {
+            return ((PedestalTile)tileentity).getComparatorSignalLevel();
+        }
+        return 0;
     }
 }

@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 3,
+  "total": 4,
   "color": 13028546,
   "input1": {
     "element": "rankine:elements/nickel",
@@ -18,6 +18,11 @@
     "element": "rankine:elements/molybdenum",
     "min": 0.0,
     "max": 0.10
+  },
+  "input4": {
+    "element": "rankine:elements/fluorine",
+    "min": 0.0,
+    "max": 0.05
   },
   "result": "rankine:invar_ingot",
   "durability": -100,

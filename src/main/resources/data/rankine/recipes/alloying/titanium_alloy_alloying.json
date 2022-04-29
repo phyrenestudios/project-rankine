@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 21,
+  "total": 22,
   "color": 13750746,
   "input1": {
     "element": "rankine:elements/titanium",
@@ -105,6 +105,11 @@
   },
   "input21": {
     "element": "rankine:elements/silicon",
+    "min": 0.0,
+    "max": 0.02
+  },
+  "input22": {
+    "element": "rankine:elements/oxygen",
     "min": 0.0,
     "max": 0.02
   },

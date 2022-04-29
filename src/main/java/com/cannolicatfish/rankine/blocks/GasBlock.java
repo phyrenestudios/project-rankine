@@ -38,6 +38,9 @@ public class GasBlock extends AirBlock {
     public GasUtilsEnum getGasEnum() {
         return gas;
     }
+    public GasUtilsEnum getGas() {
+        return this.gas;
+    }
 
     @Override
     public boolean ticksRandomly(BlockState state) {
@@ -79,16 +82,13 @@ public class GasBlock extends AirBlock {
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.INVISIBLE;
+        return BlockRenderType.MODEL;
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
     public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
-        if (adjacentBlockState.getBlock() == this) {
-            return true;
-        }
-        return super.isSideInvisible(state, adjacentBlockState, side);
+        return adjacentBlockState.getBlock().matchesBlock(this);
     }
 
     @Override
@@ -130,7 +130,4 @@ public class GasBlock extends AirBlock {
         return VoxelShapes.empty();
     }
 
-    public GasUtilsEnum getGas() {
-        return this.gas;
-    }
 }

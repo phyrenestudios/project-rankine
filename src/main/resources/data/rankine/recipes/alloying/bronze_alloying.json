@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 15,
+  "total": 16,
   "color": 15510384,
   "input1": {
     "element": "rankine:elements/copper",
@@ -78,6 +78,11 @@
     "element": "rankine:elements/phosphorus",
     "min": 0,
     "max": 0.12
+  },
+  "input16": {
+    "element": "rankine:elements/chlorine",
+    "min": 0,
+    "max": 0.05
   },
   "result": "rankine:bronze_ingot",
   "durability": 100

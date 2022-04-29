@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "rankine:block/millet_bale_side",
+    "end": "rankine:block/millet_bale_top"
+  }
+}

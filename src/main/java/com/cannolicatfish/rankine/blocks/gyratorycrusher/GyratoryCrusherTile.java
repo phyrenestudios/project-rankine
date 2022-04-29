@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.gyratorycrusher;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.CrushingHeadItem;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
@@ -28,10 +29,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
-
 import java.util.List;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.GYRATORY_CRUSHER_TILE;
 
 public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
     private static final int[] SLOTS_UP = new int[]{0};
@@ -39,7 +37,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
     private static final int[] SLOTS_HORIZONTAL = new int[]{1,2};
     private final int powerCost = Config.MACHINES.GYRATORY_CRUSHER_POWER.get();
     public GyratoryCrusherTile() {
-        super(GYRATORY_CRUSHER_TILE);
+        super(RankineTileEntities.GYRATORY_CRUSHER.get());
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
     private int burnTime;
@@ -121,7 +119,8 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
     public void tick() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-        if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(1),powerCost*currentLevel))) {
+        //if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(1),powerCost*currentLevel))) {
+        if (this.isBurning()) {
             burnTime--;
         }
         if (this.currentLevel != CrushingHeadItem.getTier(this.items.get(2))) {
@@ -140,7 +139,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
                     this.currentBurnTime = this.burnTime;
                 }
                 if (!this.isBurning() && canSmelt) {
-                    this.burnTime = BatteryItem.hasPowerRequired(battery,powerCost*(currentLevel+1)) ? 50 : 0;
+                    this.burnTime = 50; //BatteryItem.hasPowerRequired(battery,powerCost*(currentLevel+1)) ? 50 : 0;
                     this.currentBurnTime = this.burnTime;
                     this.currentLevel = CrushingHeadItem.getTier(crusher);
                     if (this.isBurning()) {
@@ -164,6 +163,9 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
                         input.shrink(1);
                         cookTime = 0;
                         battery.setDamage(battery.getDamage() + powerCost*(currentLevel+1));
+                        if (battery.getDamage() > battery.getMaxDamage()) {
+                            battery.shrink(1);
+                        }
                         return;
                     }
                 } else {
@@ -198,7 +200,8 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
 
     private boolean canSmelt(@Nullable CrushingRecipe recipeIn)
     {
-        if (!this.items.get(0).isEmpty() && this.currentLevel >= 0 && recipeIn != null && BatteryItem.hasPowerRequired(this.items.get(1),powerCost*(currentLevel+1))) {
+        //if (!this.items.get(0).isEmpty() && this.currentLevel >= 0 && recipeIn != null && BatteryItem.hasPowerRequired(this.items.get(1),powerCost*(currentLevel+1))) {
+        if (!this.items.get(0).isEmpty() && this.currentLevel >= 0 && recipeIn != null) {
             List<ItemStack> itemstacks = recipeIn.getPossibleResults(this.currentLevel,this.world);
             if (itemstacks.isEmpty()) {
                 return false;

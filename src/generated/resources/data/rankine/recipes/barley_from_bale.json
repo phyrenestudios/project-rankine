@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:barley_bale"
+    }
+  ],
+  "result": {
+    "item": "rankine:barley",
+    "count": 9
+  }
+}

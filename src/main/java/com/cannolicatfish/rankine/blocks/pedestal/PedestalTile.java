@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks.pedestal;
 
-import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -21,12 +22,34 @@ import javax.annotation.Nullable;
 
 public class PedestalTile extends ItemDisplayEntity implements IInventory {
     private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> new InvWrapper(this));
-    public float frames;
     public ItemEntity entity;
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
 
     public PedestalTile() {
-        super(RankineBlocks.PEDESTAL_TILE);
+        super(RankineTileEntities.PEDESTAL_TILE.get());
+    }
+
+    @Override
+    public AxisAlignedBB getRenderBoundingBox() {
+        return new AxisAlignedBB(this.getPos(), this.getPos().up());
+    }
+
+    public int getComparatorSignalLevel() {
+        if (!this.isEmpty()) {
+            ItemStack stack = this.items.get(0);
+            switch (stack.getRarity()) {
+                case EPIC:
+                    return 15;
+                case RARE:
+                    return 11;
+                case UNCOMMON:
+                    return 7;
+                case COMMON:
+                default:
+                    return 3;
+            }
+        }
+        return 0;
     }
 
     @Override
@@ -71,15 +94,15 @@ public class PedestalTile extends ItemDisplayEntity implements IInventory {
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        //boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
         this.items.set(index, stack);
-        if (stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
-        }
+       // if (stack.getCount() > this.getInventoryStackLimit()) {
+        //    stack.setCount(this.getInventoryStackLimit());
+        //}
 
-        if (!flag) {
-            this.markDirty();
-        }
+        //if (!flag) {
+        //    this.markDirty();
+        //}
         updateBlock();
     }
 

@@ -1,0 +1,16 @@
+{
+  "name": "rankine.journal.cat_constructions.mineral_wool.name",
+  "icon": "rankine:mineral_wool",
+  "category": "constructions",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_constructions.mineral_wool.text1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:mineral_wool",
+      "text": "rankine.journal.cat_constructions.mineral_wool.text2"
+    }
+  ]
+}

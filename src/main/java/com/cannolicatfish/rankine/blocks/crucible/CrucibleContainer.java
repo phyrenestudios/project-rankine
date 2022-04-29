@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,7 +16,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.IntArray;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -23,8 +23,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.CRUCIBLE_CONTAINER;
 
 public class CrucibleContainer extends Container {
     private final IInventory furnaceInventory;
@@ -41,7 +39,7 @@ public class CrucibleContainer extends Container {
 
     }
     public CrucibleContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray furnaceData) {
-        super(CRUCIBLE_CONTAINER, windowId);
+        super(RankineContainers.CRUCIBLE_CONTAINER.get(), windowId);
         tileEntity = world.getTileEntity(pos);
         assertInventorySize(furnaceInventoryIn, 6);
         assertIntArraySize(furnaceData, 3);

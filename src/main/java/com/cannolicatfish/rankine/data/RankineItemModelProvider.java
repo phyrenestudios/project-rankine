@@ -68,6 +68,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.HOLLOW_LOGS,
                 RankineLists.LEAF_LITTERS,
+                RankineLists.BALES,
                 RankineLists.WOODS,
                 RankineLists.LOGS,
                 RankineLists.PLANKS,
@@ -120,7 +121,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
 
 
-        for (Item item : Stream.of(RankineLists.WOODEN_BOATS,RankineLists.ELEMENT_INGOTS,RankineLists.ELEMENT_NUGGETS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Item item : Stream.of(RankineLists.WOODEN_SIGN_ITEMS,RankineLists.WOODEN_BOATS,RankineLists.ELEMENT_INGOTS,RankineLists.ELEMENT_NUGGETS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(item);
         }
         basicItem(RankineItems.SOLDER.get());
@@ -512,7 +513,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
             basicItem(blk.asItem());
         }
 
-        filledTagItem(RankineItems.PENNING_TRAP.get());
+        basicItem(RankineItems.PENNING_TRAP.get());
+        basicItem(RankineItems.FILLED_PENNING_TRAP.get());
 
     }
 

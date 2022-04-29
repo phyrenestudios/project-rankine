@@ -64,10 +64,6 @@ public class ClientProxy implements IProxy {
                 new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living) ->
                         stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F);
 
-        ItemModelsProperties.registerProperty(RankineItems.PENNING_TRAP.get(),
-                new ResourceLocation(ProjectRankine.MODID, "filled"), (stack, world, living) ->
-                        stack.getTag() != null && stack.getTag().getInt("filled") != 0 ? 1 : 0);
-
         ItemModelsProperties.registerProperty(RankineItems.ALLOY_SURF_ROD.get(), new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_) -> {
             if (p_239422_2_ == null) {
                 return 0.0F;
@@ -84,18 +80,18 @@ public class ClientProxy implements IProxy {
     }
     @Override
     public void init() {
-        ScreenManager.registerFactory(RankineBlocks.MIXING_BARREL_CONTAINER, MixingBarrelScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.ALLOY_FURNACE_CONTAINER, AlloyFurnaceScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.PISTON_CRUSHER_CONTAINER, PistonCrusherScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.EVAPORATION_TOWER_CONTAINER, EvaporationTowerScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.GAS_CONDENSER_CONTAINER, GasBottlerScreen::new);
-        ScreenManager.registerFactory(RankineItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.TEMPLATE_TABLE_CONTAINER, TemplateTableScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.MATERIAL_TESTING_TABLE_CONTAINER, MaterialTestingTableScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.CRUCIBLE_CONTAINER, CrucibleScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.FUSION_FURNACE_CONTAINER, FusionFurnaceScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.GYRATORY_CRUSHER_CONTAINER, GyratoryCrusherScreen::new);
+        ScreenManager.registerFactory(RankineContainers.MIXING_BARREL_CONTAINER.get(), MixingBarrelScreen::new);
+        ScreenManager.registerFactory(RankineContainers.ALLOY_FURNACE_CONTAINER.get(), AlloyFurnaceScreen::new);
+        ScreenManager.registerFactory(RankineContainers.PISTON_CRUSHER_CONTAINER.get(), PistonCrusherScreen::new);
+        ScreenManager.registerFactory(RankineContainers.EVAPORATION_TOWER_CONTAINER.get(), EvaporationTowerScreen::new);
+        ScreenManager.registerFactory(RankineContainers.GAS_CONDENSER_CONTAINER.get(), GasBottlerScreen::new);
+        ScreenManager.registerFactory(RankineContainers.ELEMENT_INDEXER_CONTAINER.get(), ElementIndexerScreen::new);
+        ScreenManager.registerFactory(RankineContainers.TEMPLATE_TABLE_CONTAINER.get(), TemplateTableScreen::new);
+        ScreenManager.registerFactory(RankineContainers.MATERIAL_TESTING_TABLE_CONTAINER.get(), MaterialTestingTableScreen::new);
+        ScreenManager.registerFactory(RankineContainers.CRUCIBLE_CONTAINER.get(), CrucibleScreen::new);
+        ScreenManager.registerFactory(RankineContainers.INDUCTION_FURNACE_CONTAINER.get(), InductionFurnaceScreen::new);
+        ScreenManager.registerFactory(RankineContainers.FUSION_FURNACE_CONTAINER.get(), FusionFurnaceScreen::new);
+        ScreenManager.registerFactory(RankineContainers.GYRATORY_CRUSHER_CONTAINER.get(), GyratoryCrusherScreen::new);
 
         addCutout(RankineLists.WOODEN_DOORS);
         addCutout(RankineLists.METAL_DOORS);
@@ -172,6 +168,7 @@ public class ClientProxy implements IProxy {
         addTranslucent(RankineLists.GAS_BLOCKS);
         addTranslucent(RankineLists.LIGHTNING_GLASSES);
         addTranslucent(Arrays.asList(
+
                 RankineBlocks.SODIUM_CHLORIDE_BLOCK.get(),
                 RankineBlocks.PINK_SALT_BLOCK.get(),
                 RankineBlocks.ICE_BRICKS.get(),
@@ -180,24 +177,6 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.ICE_BRICKS_VERTICAL_SLAB.get(),
                 RankineBlocks.ICE_BRICKS_WALL.get(),
 
-                RankineBlocks.HYDROGEN_GAS_BLOCK.get(),
-                RankineBlocks.HELIUM_GAS_BLOCK.get(),
-                RankineBlocks.NITROGEN_GAS_BLOCK.get(),
-                RankineBlocks.OXYGEN_GAS_BLOCK.get(),
-                RankineBlocks.FLUORINE_GAS_BLOCK.get(),
-                RankineBlocks.NEON_GAS_BLOCK.get(),
-                RankineBlocks.CHLORINE_GAS_BLOCK.get(),
-                RankineBlocks.ARGON_GAS_BLOCK.get(),
-                RankineBlocks.KRYPTON_GAS_BLOCK.get(),
-                RankineBlocks.XENON_GAS_BLOCK.get(),
-                RankineBlocks.RADON_GAS_BLOCK.get(),
-                RankineBlocks.OGANESSON_GAS_BLOCK.get(),
-                RankineBlocks.AMMONIA_GAS_BLOCK.get(),
-                RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get(),
-                RankineBlocks.HYDROGEN_CHLORIDE_GAS_BLOCK.get(),
-                RankineBlocks.HYDROGEN_FLUORIDE_GAS_BLOCK.get(),
-                RankineBlocks.HYDROGEN_SULFIDE_GAS_BLOCK.get(),
-                RankineBlocks.SULFUR_DIOXIDE_GAS_BLOCK.get(),
                 RankineBlocks.ANTIMATTER.get(),
                 RankineBlocks.BLACK_TEKTITE.get(),
                 RankineBlocks.GREEN_TEKTITE.get(),

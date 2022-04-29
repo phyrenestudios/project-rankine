@@ -1,10 +1,18 @@
 {
-          "type": "rankine:element",
-          "name": "hydrogen",
-          "symbol": "H",
-          "color": 16777215,
-          "atomic": 1,
-          "potential": 0,
-          "items": ["T#forge:nuggets/hydrogen","T#forge:ingots/hydrogen","T#forge:storage_blocks/hydrogen"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "hydrogen",
+  "symbol": "H",
+  "color": 16777215,
+  "atomic": 1,
+  "potential": 0,
+  "items": ["T#forge:nuggets/hydrogen","T#forge:ingots/hydrogen","T#forge:storage_blocks/hydrogen"],
+  "values": [1,9,81],
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [1],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [5]
+  }
+}

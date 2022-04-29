@@ -1,9 +1,9 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.advancements.AlloyEnchantabilityPredicate;
 import com.cannolicatfish.rankine.advancements.ExactCompositionPredicate;
 import com.cannolicatfish.rankine.advancements.HarvestLevelPredicate;
 import com.cannolicatfish.rankine.advancements.IncludesCompositionPredicate;
-import com.cannolicatfish.rankine.advancements.AlloyEnchantabilityPredicate;
 import com.cannolicatfish.rankine.entities.CannonballEntity;
 import com.cannolicatfish.rankine.entities.CarcassEntity;
 import com.cannolicatfish.rankine.items.GasBottleItem;
@@ -11,7 +11,6 @@ import com.cannolicatfish.rankine.potion.RankinePotions;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -21,9 +20,11 @@ import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.dispenser.IDispenseItemBehavior;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.SmallFireballEntity;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.*;
+import net.minecraft.item.BucketItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
@@ -175,25 +176,25 @@ public class RankineRecipes {
     }
 
     public static String generateAlloyString(IInventory inv) {
-        List<ElementRecipe> currentElements = new ArrayList<>();
-        List<Integer> currentMaterial = new ArrayList<>();
+        Map<ElementRecipe, Integer> currentElements = new HashMap<>();
         for (int i = 0; i < 6; i++) {
             ItemStack stack = inv.getStackInSlot(i);
             if (!stack.isEmpty() && AlloyCustomHelper.hasElement(stack.getItem())) {
                 Tuple<ElementRecipe,Integer> entry = AlloyCustomHelper.getEntryForElementItem(stack.getItem());
-                if (!currentElements.contains(entry.getA())) {
-                    currentElements.add(entry.getA());
-                    currentMaterial.add(entry.getB());
+                if (!currentElements.containsKey(entry.getA())) {
+                    currentElements.put(entry.getA(),entry.getB()*stack.getCount());
+                } else {
+                    currentElements.put(entry.getA(), currentElements.get(entry.getA())+entry.getB()*stack.getCount());
                 }
             }
         }
-        int sum = currentMaterial.stream().mapToInt(Integer::intValue).sum();
+        int sum = currentElements.values().stream().mapToInt(Integer::intValue).sum();
 
         List<Integer> percents = new ArrayList<>();
         List<String> symbols = new ArrayList<>();
-        for (int j = 0; j < currentElements.size(); j++) {
-            ElementRecipe curEl = currentElements.get(j);
-            int curPer = Math.round(currentMaterial.get(j) * 100f/sum);
+        for (Map.Entry<ElementRecipe,Integer> ent : currentElements.entrySet()) {
+            ElementRecipe curEl = ent.getKey();
+            int curPer = Math.round(ent.getValue() * 100f/sum);
             symbols.add(curEl.getSymbol());
             percents.add(curPer);
         }

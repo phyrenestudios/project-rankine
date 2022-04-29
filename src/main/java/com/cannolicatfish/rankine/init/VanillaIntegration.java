@@ -11,6 +11,7 @@ import net.minecraft.tags.ITag;
 import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
@@ -23,6 +24,8 @@ public class VanillaIntegration {
     public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
     public static Map<Block, Block> pathBlocks_map = new HashMap<Block, Block>();
     public static Map<Block, TilledSoilTypes> hoeables_map = new HashMap<Block, TilledSoilTypes>();
+    public static final Map<Item, ForgeConfigSpec.BooleanValue> DISABLED_ITEMS = new HashMap<>();
+
 
     public static void init() {
 
@@ -257,6 +260,67 @@ public class VanillaIntegration {
         addFlowerPot(RankineBlocks.CINNAMON_SAPLING.get(), RankineBlocks.POTTED_CINNAMON_SAPLING.get());
         addFlowerPot(RankineBlocks.WEEPING_WILLOW_SAPLING.get(), RankineBlocks.POTTED_WEEPING_WILLOW_SAPLING.get());
         addFlowerPot(RankineBlocks.HONEY_LOCUST_SAPLING.get(), RankineBlocks.POTTED_HONEY_LOCUST_SAPLING.get());
+
+
+
+
+
+            // Wood
+            DISABLED_ITEMS.put(Items.WOODEN_SWORD, Config.TOOLS.DISABLE_WOODEN_SWORD);
+            DISABLED_ITEMS.put(Items.WOODEN_AXE, Config.TOOLS.DISABLE_WOODEN_AXE);
+            DISABLED_ITEMS.put(Items.WOODEN_SHOVEL, Config.TOOLS.DISABLE_WOODEN_SHOVEL);
+            DISABLED_ITEMS.put(Items.WOODEN_PICKAXE, Config.TOOLS.DISABLE_WOODEN_PICKAXE);
+            DISABLED_ITEMS.put(Items.WOODEN_HOE, Config.TOOLS.DISABLE_WOODEN_HOE);
+            // Stone
+            DISABLED_ITEMS.put(Items.STONE_SWORD, Config.TOOLS.DISABLE_STONE_SWORD);
+            DISABLED_ITEMS.put(Items.STONE_AXE, Config.TOOLS.DISABLE_STONE_AXE);
+            DISABLED_ITEMS.put(Items.STONE_SHOVEL, Config.TOOLS.DISABLE_STONE_SHOVEL);
+            DISABLED_ITEMS.put(Items.STONE_PICKAXE, Config.TOOLS.DISABLE_STONE_PICKAXE);
+            DISABLED_ITEMS.put(Items.STONE_HOE, Config.TOOLS.DISABLE_STONE_HOE);
+            // Iron
+            DISABLED_ITEMS.put(Items.IRON_SWORD, Config.TOOLS.DISABLE_IRON_SWORD);
+            DISABLED_ITEMS.put(Items.IRON_AXE, Config.TOOLS.DISABLE_IRON_AXE);
+            DISABLED_ITEMS.put(Items.IRON_SHOVEL, Config.TOOLS.DISABLE_IRON_SHOVEL);
+            DISABLED_ITEMS.put(Items.IRON_PICKAXE, Config.TOOLS.DISABLE_IRON_PICKAXE);
+            DISABLED_ITEMS.put(Items.IRON_HOE, Config.TOOLS.DISABLE_IRON_HOE);
+            // Gold
+            DISABLED_ITEMS.put(Items.GOLDEN_SWORD, Config.TOOLS.DISABLE_GOLDEN_SWORD);
+            DISABLED_ITEMS.put(Items.GOLDEN_AXE, Config.TOOLS.DISABLE_GOLDEN_AXE);
+            DISABLED_ITEMS.put(Items.GOLDEN_SHOVEL, Config.TOOLS.DISABLE_GOLDEN_SHOVEL);
+            DISABLED_ITEMS.put(Items.GOLDEN_PICKAXE, Config.TOOLS.DISABLE_GOLDEN_PICKAXE);
+            DISABLED_ITEMS.put(Items.GOLDEN_HOE, Config.TOOLS.DISABLE_GOLDEN_HOE);
+            // Diamond
+            DISABLED_ITEMS.put(Items.DIAMOND_SWORD, Config.TOOLS.DISABLE_DIAMOND_SWORD);
+            DISABLED_ITEMS.put(Items.DIAMOND_AXE, Config.TOOLS.DISABLE_DIAMOND_AXE);
+            DISABLED_ITEMS.put(Items.DIAMOND_SHOVEL, Config.TOOLS.DISABLE_DIAMOND_SHOVEL);
+            DISABLED_ITEMS.put(Items.DIAMOND_PICKAXE, Config.TOOLS.DISABLE_DIAMOND_PICKAXE);
+            DISABLED_ITEMS.put(Items.DIAMOND_HOE, Config.TOOLS.DISABLE_DIAMOND_HOE);
+            // Netherite
+            DISABLED_ITEMS.put(Items.NETHERITE_SWORD, Config.TOOLS.DISABLE_NETHERITE_SWORD);
+            DISABLED_ITEMS.put(Items.NETHERITE_AXE, Config.TOOLS.DISABLE_NETHERITE_AXE);
+            DISABLED_ITEMS.put(Items.NETHERITE_SHOVEL, Config.TOOLS.DISABLE_NETHERITE_SHOVEL);
+            DISABLED_ITEMS.put(Items.NETHERITE_PICKAXE, Config.TOOLS.DISABLE_NETHERITE_PICKAXE);
+            DISABLED_ITEMS.put(Items.NETHERITE_HOE, Config.TOOLS.DISABLE_NETHERITE_HOE);
+
+            // Compass
+            DISABLED_ITEMS.put(Items.COMPASS, Config.TOOLS.DISABLE_COMPASS);
+            // Clock
+            DISABLED_ITEMS.put(Items.CLOCK, Config.TOOLS.DISABLE_CLOCK);
+            // Wooden Hammer
+            DISABLED_ITEMS.put(RankineItems.WOODEN_HAMMER.get(), Config.TOOLS.DISABLE_WOODEN_HAMMER);
+            DISABLED_ITEMS.put(RankineItems.STONE_HAMMER.get(), Config.TOOLS.DISABLE_STONE_HAMMER);
+            // Altimeter
+            DISABLED_ITEMS.put(RankineItems.ALTIMETER.get(), Config.TOOLS.DISABLE_ALTIMETER);
+            // Thermometer
+            DISABLED_ITEMS.put(RankineItems.THERMOMETER.get(), Config.TOOLS.DISABLE_THERMOMETER);
+            // Photometer
+            DISABLED_ITEMS.put(RankineItems.PHOTOMETER.get(), Config.TOOLS.DISABLE_PHOTOMETER);
+            // Speedometer
+            DISABLED_ITEMS.put(RankineItems.SPEEDOMETER.get(), Config.TOOLS.DISABLE_SPEEDOMETER);
+            // Biometer
+            DISABLED_ITEMS.put(RankineItems.BIOMETER.get(), Config.TOOLS.DISABLE_BIOMETER);
+            // Magnetometer
+            DISABLED_ITEMS.put(RankineItems.MAGNETOMETER.get(), Config.TOOLS.DISABLE_MAGNETOMETER);
 
     }
 

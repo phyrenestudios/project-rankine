@@ -154,7 +154,7 @@ public class RankinePlantBlock extends BushBlock implements IGrowable {
    // @Nullable
     @Override
     public PathNodeType getAiPathNodeType(BlockState state, IBlockReader world, BlockPos pos, @Nullable MobEntity entity) {
-        return PathNodeType.DANGER_OTHER;
+        return PathNodeType.DANGER_CACTUS;
     }
 
     @Override

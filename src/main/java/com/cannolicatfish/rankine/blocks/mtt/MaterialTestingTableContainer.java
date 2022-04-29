@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.blocks.mtt;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
@@ -14,9 +14,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
@@ -24,8 +22,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.MATERIAL_TESTING_TABLE_CONTAINER;
 
 public class MaterialTestingTableContainer extends Container {
     private static final PeriodicTableUtils utils = new PeriodicTableUtils();
@@ -38,7 +34,7 @@ public class MaterialTestingTableContainer extends Container {
     }
 
     public MaterialTestingTableContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory inv) {
-        super(MATERIAL_TESTING_TABLE_CONTAINER,windowId);
+        super(RankineContainers.MATERIAL_TESTING_TABLE_CONTAINER.get(),windowId);
         tileEntity = world.getTileEntity(pos);
         assertInventorySize(inv, 7);
         this.inputInventory = inv;

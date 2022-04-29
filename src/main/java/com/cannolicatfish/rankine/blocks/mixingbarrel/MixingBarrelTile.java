@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.recipe.MixingRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
@@ -32,8 +33,6 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.MIXING_BARREL_TILE;
-
 public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
     FluidTank inputTank = new FluidTank(8000);
@@ -41,7 +40,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
     private static final int[] SLOTS_DOWN = new int[]{4};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
     public MixingBarrelTile() {
-        super(MIXING_BARREL_TILE);
+        super(RankineTileEntities.MIXING_BARREL.get());
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
     private int mixTime;
