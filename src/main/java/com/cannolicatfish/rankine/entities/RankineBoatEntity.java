@@ -83,8 +83,10 @@ public class RankineBoatEntity extends BoatEntity {
                 return RankineItems.BALSAM_FIR_BOAT.get();
             case MAGNOLIA:
                 return RankineItems.MAGNOLIA_BOAT.get();
-            case HEMLOCK:
+            case EASTERN_HEMLOCK:
                 return RankineItems.EASTERN_HEMLOCK_BOAT.get();
+            case WESTERN_HEMLOCK:
+                return RankineItems.WESTERN_HEMLOCK_BOAT.get();
             case MAPLE:
                 return RankineItems.MAPLE_BOAT.get();
             case BLACK_BIRCH:
@@ -135,27 +137,28 @@ public class RankineBoatEntity extends BoatEntity {
         ACACIA(Blocks.ACACIA_PLANKS, "acacia"),
         DARK_OAK(Blocks.DARK_OAK_PLANKS, "dark_oak"),
         CEDAR(RankineBlocks.CEDAR_PLANKS.get(), "cedar"),
-        COCONUT_PALM(RankineBlocks.COCONUT_PALM_PLANKS.get(), "coconut_palm"),
+        BALSAM_FIR(RankineBlocks.BALSAM_FIR_PLANKS.get(), "balsam_fir"),
+        EASTERN_HEMLOCK(RankineBlocks.EASTERN_HEMLOCK_PLANKS.get(), "eastern_hemlock"),
+        WESTERN_HEMLOCK(RankineBlocks.WESTERN_HEMLOCK_PLANKS.get(), "western_hemlock"),
         PINYON_PINE(RankineBlocks.PINYON_PINE_PLANKS.get(), "pinyon_pine"),
         JUNIPER(RankineBlocks.JUNIPER_PLANKS.get(), "juniper"),
-        BALSAM_FIR(RankineBlocks.BALSAM_FIR_PLANKS.get(), "balsam_fir"),
-        MAGNOLIA(RankineBlocks.MAGNOLIA_PLANKS.get(), "magnolia"),
-        HEMLOCK(RankineBlocks.EASTERN_HEMLOCK_PLANKS.get(), "hemlock"),
-        MAPLE(RankineBlocks.MAPLE_PLANKS.get(), "maple"),
         BLACK_BIRCH(RankineBlocks.BLACK_BIRCH_PLANKS.get(), "black_birch"),
         YELLOW_BIRCH(RankineBlocks.YELLOW_BIRCH_PLANKS.get(), "yellow_birch"),
         RED_BIRCH(RankineBlocks.RED_BIRCH_PLANKS.get(), "red_birch"),
+        MAGNOLIA(RankineBlocks.MAGNOLIA_PLANKS.get(), "magnolia"),
+        MAPLE(RankineBlocks.MAPLE_PLANKS.get(), "maple"),
         BLACK_WALNUT(RankineBlocks.BLACK_WALNUT_PLANKS.get(), "black_walnut"),
+        COCONUT_PALM(RankineBlocks.COCONUT_PALM_PLANKS.get(), "coconut_palm"),
+        CORK_OAK(RankineBlocks.CORK_OAK_PLANKS.get(), "cork_oak"),
         SHARINGA(RankineBlocks.SHARINGA_PLANKS.get(), "sharinga"),
+        CINNAMON(RankineBlocks.CINNAMON_PLANKS.get(), "cinnamon"),
         HONEY_LOCUST(RankineBlocks.HONEY_LOCUST_PLANKS.get(), "honey_locust"),
         WEEPING_WILLOW(RankineBlocks.WEEPING_WILLOW_PLANKS.get(), "weeping_willow"),
-        CORK_OAK(RankineBlocks.CORK_OAK_PLANKS.get(), "cork_oak"),
-        CINNAMON(RankineBlocks.CINNAMON_PLANKS.get(), "cinnamon"),
-        BAMBOO(RankineBlocks.BAMBOO_PLANKS.get(), "bamboo"),
-        BAMBOO_CULMS(RankineBlocks.BAMBOO_CULMS.get(), "bamboo_culms"),
-        PETRIFIED_CHORUS(RankineBlocks.PETRIFIED_CHORUS_PLANKS.get(), "petrified_chorus"),
         ERYTHRINA(RankineBlocks.ERYTHRINA_PLANKS.get(), "erythrina"),
-        CHARRED(RankineBlocks.CHARRED_PLANKS.get(), "charred");
+        PETRIFIED_CHORUS(RankineBlocks.PETRIFIED_CHORUS_PLANKS.get(), "petrified_chorus"),
+        CHARRED(RankineBlocks.CHARRED_PLANKS.get(), "charred"),
+        BAMBOO(RankineBlocks.BAMBOO_PLANKS.get(), "bamboo"),
+        BAMBOO_CULMS(RankineBlocks.BAMBOO_CULMS.get(), "bamboo_culms");
 
 
         private final String name;

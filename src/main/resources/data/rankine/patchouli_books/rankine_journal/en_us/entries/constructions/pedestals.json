@@ -1,15 +1,11 @@
 {
   "name": "rankine.journal.cat_constructions.pedestals.name",
-  "icon": "rankine:pedestals",
+  "icon": "rankine:bronze_pedestal",
   "category": "constructions",
   "pages": [
     {
       "type": "text",
       "text": "rankine.journal.cat_constructions.pedestals.text1"
-    },
-    {
-      "type": "text",
-      "text": "rankine.journal.cat_constructions.pedestals.text2"
     }
   ]
 }

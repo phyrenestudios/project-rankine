@@ -120,7 +120,8 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
     public void tick() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-        if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(2),powerCost))) {
+        if (this.isBurning()) {
+        //if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(2),powerCost))) {
             burnTime--;
         }
         if (!this.world.isRemote) {
@@ -135,7 +136,7 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
                     this.currentBurnTime = this.burnTime;
                 }
                 if (!this.isBurning() && canSmelt) {
-                    this.burnTime = BatteryItem.hasPowerRequired(battery,powerCost) ? 50 : 0;
+                    this.burnTime = 50; //BatteryItem.hasPowerRequired(battery,powerCost) ? 50 : 0;
                     this.currentBurnTime = this.burnTime;
                     if (this.isBurning()) {
                         flag1 = true;
@@ -187,6 +188,9 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
                         }
                         cookTime = 0;
                         battery.setDamage(battery.getDamage() + powerCost);
+                        if (battery.getDamage() > battery.getMaxDamage()) {
+                            battery.shrink(1);
+                        }
                         return;
                     }
                 } else {
@@ -240,7 +244,8 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
 
     private boolean canSmelt(@Nullable FusionFurnaceRecipe recipeIn)
     {
-        if (recipeIn != null && BatteryItem.hasPowerRequired(this.items.get(2),powerCost)) {
+        //if (recipeIn != null && BatteryItem.hasPowerRequired(this.items.get(2),powerCost)) {
+        if (recipeIn != null) {
             List<ItemStack> itemstacks = recipeIn.getResults();
             if (itemstacks.isEmpty()) {
                 return false;

@@ -423,7 +423,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
         public final ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
         public final ForgeConfigSpec.DoubleValue GRASS_GROW_CHANCE;
-        public final ForgeConfigSpec.DoubleValue PODZOL_GROW_CHANCE;
+        public final ForgeConfigSpec.IntValue LEAF_LITTER_GROWTH;
         public final ForgeConfigSpec.BooleanValue MANDATORY_AXE;
         public final ForgeConfigSpec.BooleanValue REFRESH_ALLOYS;
         public final ForgeConfigSpec.BooleanValue STARTING_BOOK;
@@ -501,18 +501,18 @@ public class Config {
                             .defineInRange("fumaroleDepositChance", 0.1D, 0.00D, 1.00D);
                     FLINT_DROP_CHANCE = b.comment("Chance for a stone block to drop a flint")
                             .defineInRange("flintDropChance", 0.15D, 0.00D, 1.00D);
-                    FORAGING_CHANCE = b.comment("Chance for a dirt block to drop a vegetable/seed")
+                    FORAGING_CHANCE = b.comment("Chance for a dirt block to drop a vegetable/seed.")
                             .defineInRange("foragingChance", 0.10D, 0.00D, 1.00D);
-                    GRASS_GROW_CHANCE = b.comment("Chance for a grass block to grow something on a random tick")
+                    GRASS_GROW_CHANCE = b.comment("Chance for a grass block to grow something on a random tick.")
                             .defineInRange("grassGrowChance", 0.0005D, 0.00D, 1.00D);
-                    PODZOL_GROW_CHANCE = b.comment("Chance for a podzol block to grow on grass")
-                            .defineInRange("podzolGrowChance", 0.005D, 0.00D, 1.00D);
+                    LEAF_LITTER_GROWTH = b.comment("Chance for a leaf litters to age. Higher values slow decay.")
+                            .defineInRange("leafLitterDecay", 1, 1, Integer.MAX_VALUE);
                     ROCK_GENERATOR_REMOVAL_CHANCE = b.comment("Chance for a mineral block to be removed from any rock generator process.")
                             .defineInRange("rockGenRemovalChance", 0.01D, 0.00D, 1.00D);
                     IGNEOUS_COBBLE_GEN = b.comment("Change the output of a cobblestone generator and basalt generator to intrusive and extrusive igneous rocks respectively.")
                             .define("igneousGen",true);
                     METAMORPHIC_STONE_GEN = b.comment("Change the output of a stone generator from stone to metamorphic rocks.")
-                            .define("igneousGen",true);
+                            .define("metamorphicGen",true);
                     VILLAGER_TRADES = b.comment("Adds trades for Project Rankine to Villagers and the Wandering Trader.")
                             .define("villageTrades",true);
                     WANDERING_TRADE_SPECIAL = b.comment("Adds a trade to the Wandering Trader for a random tool which is not restricted by alloy constraints. May be unbalanced due to complete randomness.")

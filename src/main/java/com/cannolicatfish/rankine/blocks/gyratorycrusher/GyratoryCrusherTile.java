@@ -119,7 +119,8 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
     public void tick() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-        if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(1),powerCost*currentLevel))) {
+        //if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(1),powerCost*currentLevel))) {
+        if (this.isBurning()) {
             burnTime--;
         }
         if (this.currentLevel != CrushingHeadItem.getTier(this.items.get(2))) {
@@ -138,7 +139,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
                     this.currentBurnTime = this.burnTime;
                 }
                 if (!this.isBurning() && canSmelt) {
-                    this.burnTime = BatteryItem.hasPowerRequired(battery,powerCost*(currentLevel+1)) ? 50 : 0;
+                    this.burnTime = 50; //BatteryItem.hasPowerRequired(battery,powerCost*(currentLevel+1)) ? 50 : 0;
                     this.currentBurnTime = this.burnTime;
                     this.currentLevel = CrushingHeadItem.getTier(crusher);
                     if (this.isBurning()) {
@@ -162,6 +163,9 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
                         input.shrink(1);
                         cookTime = 0;
                         battery.setDamage(battery.getDamage() + powerCost*(currentLevel+1));
+                        if (battery.getDamage() > battery.getMaxDamage()) {
+                            battery.shrink(1);
+                        }
                         return;
                     }
                 } else {
@@ -196,7 +200,8 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
 
     private boolean canSmelt(@Nullable CrushingRecipe recipeIn)
     {
-        if (!this.items.get(0).isEmpty() && this.currentLevel >= 0 && recipeIn != null && BatteryItem.hasPowerRequired(this.items.get(1),powerCost*(currentLevel+1))) {
+        //if (!this.items.get(0).isEmpty() && this.currentLevel >= 0 && recipeIn != null && BatteryItem.hasPowerRequired(this.items.get(1),powerCost*(currentLevel+1))) {
+        if (!this.items.get(0).isEmpty() && this.currentLevel >= 0 && recipeIn != null) {
             List<ItemStack> itemstacks = recipeIn.getPossibleResults(this.currentLevel,this.world);
             if (itemstacks.isEmpty()) {
                 return false;

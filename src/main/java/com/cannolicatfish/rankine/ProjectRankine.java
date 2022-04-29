@@ -317,7 +317,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineEntityTypes.DEMONYTE.setRegistryName(ProjectRankine.MODID,"demonyte"));
             event.getRegistry().register(RankineEntityTypes.DRAGONYTE.setRegistryName(ProjectRankine.MODID,"dragonyte"));
             event.getRegistry().register(RankineEntityTypes.BEAVER.setRegistryName(ProjectRankine.MODID,"beaver"));
-            event.getRegistry().register(RankineEntityTypes.RANKINE_BOAT.setRegistryName(ProjectRankine.MODID,"cedar_boat"));
+            event.getRegistry().register(RankineEntityTypes.RANKINE_BOAT.setRegistryName(ProjectRankine.MODID,"boat"));
         }
 
         @SubscribeEvent

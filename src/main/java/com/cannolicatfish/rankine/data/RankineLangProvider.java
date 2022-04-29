@@ -748,7 +748,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.crucible", "Crucible");
         add("rankine.jei.alloying", "Alloying");
         add("rankine.jei.induction_alloying", "Advanced Alloying");
-        add("rankine.jei.sluicing", "Gold Panning");
+        add("rankine.jei.sluicing", "Sluicing");
         add("rankine.jei.mixing", "Mixing");
         add("rankine.jei.evaporation", "Evaporation");
         add("rankine.jei.beeoven", "Beehive Oven");
@@ -1186,6 +1186,18 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.crops.aloe", "");
         add("rankine.journal.cat_biota.crops.banana_yucca", "");
         add("rankine.journal.cat_biota.crops.camphor_basil_leaf", "");
+
+        //Constructions
+        add("rankine.journal.cat_constructions.name", "Constructions");
+        add("rankine.journal.cat_constructions.desc", "Artificial devices and blocks with unique properties.");
+
+
+        add("rankine.journal.cat_constructions.pedestals.name", "Pedestals");
+        add("rankine.journal.cat_constructions.pedestals.text1", "Pedestals are decorative sculptures formed from various alloys. An item can be placed on a pedestal by right clicking. A comparator will output a redstone signal with a strength based on properties of the item.");
+
+        add("rankine.journal.cat_constructions.mineral_wool.name", "Mineral Wool");
+        add("rankine.journal.cat_constructions.mineral_wool.text1", "Mineral wool is ");
+        add("rankine.journal.cat_constructions.mineral_wool.text2", "Colored variation can be created by....");
 
 
         //Materials
