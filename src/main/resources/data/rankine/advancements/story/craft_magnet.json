@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:alnico_magnet"
+            "items": [
+              "rankine:alnico_magnet"
+            ]
           }
         ]
       }
@@ -31,7 +33,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:rare_earth_magnet"
+            "items": [
+              "rankine:rare_earth_magnet"
+            ]
           }
         ]
       }

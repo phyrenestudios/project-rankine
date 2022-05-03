@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:distillation_tower"
+            "items": [
+              "rankine:distillation_tower"
+            ]
           }
         ]
       }

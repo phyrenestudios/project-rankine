@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:dowsing_rod"
+            "items": [
+              "rankine:dowsing_rod"
+            ]
           }
         ]
       }

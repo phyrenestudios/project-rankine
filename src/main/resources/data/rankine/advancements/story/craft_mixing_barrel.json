@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:mixing_barrel"
+            "items": [
+              "rankine:mixing_barrel"
+            ]
           }
         ]
       }

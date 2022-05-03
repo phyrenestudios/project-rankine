@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:prospecting_stick"
+            "items": [
+              "rankine:prospecting_stick"
+            ]
           }
         ]
       }

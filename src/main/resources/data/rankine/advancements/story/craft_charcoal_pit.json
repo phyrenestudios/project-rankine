@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:charcoal_pit"
+            "items": [
+              "rankine:charcoal_pit"
+            ]
           }
         ]
       }

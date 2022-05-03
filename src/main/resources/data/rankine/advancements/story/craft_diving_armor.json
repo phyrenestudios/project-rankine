@@ -17,42 +17,29 @@
     "hidden": false
   },
   "criteria": {
-    "diving_helmet": {
+    "diving_armor": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:diving_helmet"
-          }
-        ]
-      }
-    },
-    "diving_chestplate": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+            "items": [
+              "rankine:diving_helmet"
+            ]
+          },
           {
-            "item": "rankine:diving_chestplate"
-          }
-        ]
-      }
-    },
-    "diving_leggings": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+            "items": [
+              "rankine:diving_chestplate"
+            ]
+          },
           {
-            "item": "rankine:diving_leggings"
-          }
-        ]
-      }
-    },
-    "diving_boots": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+            "items": [
+              "rankine:diving_leggings"
+            ]
+          },
           {
-            "item": "rankine:diving_boots"
+            "items": [
+              "rankine:diving_boots"
+            ]
           }
         ]
       }
@@ -60,13 +47,7 @@
   },
   "requirements": [
     [
-      "diving_helmet"
-    ], [
-      "diving_chestplate"
-    ], [
-      "diving_leggings"
-    ], [
-      "diving_boots"
+      "diving_armor"
     ]
   ]
 }

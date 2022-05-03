@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:beehive_oven_pit"
+            "items": [
+              "rankine:beehive_oven_pit"
+            ]
           }
         ]
       }
