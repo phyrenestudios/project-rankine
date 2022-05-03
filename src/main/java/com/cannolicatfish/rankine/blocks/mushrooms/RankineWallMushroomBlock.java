@@ -1,36 +1,27 @@
 package com.cannolicatfish.rankine.blocks.mushrooms;
 
 import com.cannolicatfish.rankine.blocks.HollowLogBlock;
-import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
-import com.cannolicatfish.rankine.world.gen.RankineConfiguredFeatures;
-import com.cannolicatfish.rankine.world.gen.feature.mushrooms.*;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.levelgen.feature.configurations.BlockPileConfiguration;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
-
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.BushBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 
 public class RankineWallMushroomBlock extends BushBlock implements BonemealableBlock{
    /* protected static final VoxelShape[] SHAPES = new VoxelShape[] {
@@ -119,6 +110,7 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
 
     public boolean grow(ServerLevel world, BlockPos pos, BlockState state, Random rand) {
         world.removeBlock(pos, false);
+        /*
         if (this == RankineBlocks.TINDER_CONK_MUSHROOM.get()) {
             if (!TinderConkMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.TINDER_CONK_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
                 world.setBlock(pos, state, 3);
@@ -163,6 +155,8 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
             world.setBlock(pos, state, 3);
             return false;
         }
+
+         */
         return true;
     }
 

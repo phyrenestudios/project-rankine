@@ -1,77 +1,36 @@
 package com.cannolicatfish.rankine;
 
-import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
-import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
-import com.cannolicatfish.rankine.blocks.alloys.AlloyBlockTile;
-import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
-import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
-import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
-import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
-import com.cannolicatfish.rankine.blocks.distillationtower.DistillationTowerTile;
-import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
-import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
-import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
-import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
-import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerContainer;
-import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerTile;
-import com.cannolicatfish.rankine.blocks.gasvent.GasVentTile;
-import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
-import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherContainer;
-import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherTile;
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceContainer;
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
-import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelContainer;
-import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
-import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
-import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableTile;
-import com.cannolicatfish.rankine.blocks.particleaccelerator.ParticleAcceleratorTile;
-import com.cannolicatfish.rankine.blocks.pedestal.PedestalTile;
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
-import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
-import com.cannolicatfish.rankine.blocks.tap.TreeTapTile;
-import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
-import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilTile;
 import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.enchantment.*;
 import com.cannolicatfish.rankine.fluids.*;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
-import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
 import com.cannolicatfish.rankine.loot.SurfRodModifier;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.potion.RankinePotions;
 import com.cannolicatfish.rankine.recipe.*;
-import com.cannolicatfish.rankine.util.POIFixer;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
-import com.cannolicatfish.rankine.world.gen.RankineConfiguredFeatures;
-import com.cannolicatfish.rankine.world.gen.RankinePlacedFeatures;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -111,14 +70,15 @@ public class ProjectRankine {
         Bus.addListener(this::CommonSetup);
         Bus.addListener(this::ClientSetup);
 
-        RankineBlocks.REGISTRY.register(Bus);
-        RankineItems.REGISTRY.register(Bus);
-        RankineEntityTypes.REGISTRY.register(Bus);
-        RankineBlockEntityTypes.REGISTRY.register(Bus);
-        RankineFeatures.REGISTRY.register(Bus);
-        //RankinePlacements.REGISTRY.register(Bus);
+        RankineBlocks.BLOCKS.register(Bus);
+        RankineItems.ITEMS.register(Bus);
+        RankineEntityTypes.ENTITY_TYPES.register(Bus);
+        RankineBlockEntityTypes.BLOCK_ENTITY_TYPES.register(Bus);
+        RankineContainers.CONTAINERS.register(Bus);
+        RankineFeatures.FEATURES.register(Bus);
+        RankineConfiguredFeatures.CONFIGURED_FEATURES.register(Bus);
+        RankinePlacedFeatures.PLACED_FEATURES.register(Bus);
         RankineSoundEvents.SOUNDS.register(Bus);
-        //Bus.addListener(this::construct);
 
         Bus.addListener(this::LoadComplete);
 
@@ -138,9 +98,6 @@ public class ProjectRankine {
             RankineRecipes.registerPredicates();
             RankineRecipes.registerPotionRecipes();
             RankineRecipes.registerDispenserBehaviors();
-            RankineConfiguredFeatures.registerConfiguredFeatures();
-            RankinePlacedFeatures.registerAllFeatures();
-            //WoodType.register(RankineBlocks.CEDAR);
         });
 
         LOGGER.info("Rankine: \"CommonSetup\" Event Complete!");
@@ -156,7 +113,9 @@ public class ProjectRankine {
 
     private void LoadComplete(FMLLoadCompleteEvent event) {
         LOGGER.debug("Rankine: \"Load Complete Event\" Starting...");
+
         VanillaIntegration.init();
+
         LOGGER.info("Rankine: \"Load Complete\" Event Complete!");
     }
 
@@ -305,79 +264,7 @@ public class ProjectRankine {
             event.registerEntityRenderer(RankineEntityTypes.ENDERBALL.get(), EnderballRenderer::new);
             event.registerEntityRenderer(RankineEntityTypes.CARCASS.get(), CarcassRenderer::new);
         }
-        @SubscribeEvent
-        public static void onContainerRegistry(final RegistryEvent.Register<MenuType<?>> event) {
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new AlloyFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
 
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new PistonCrusherContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"piston_crusher"));
-
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new CrucibleContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"crucible"));
-
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new MixingBarrelContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"mixing_barrel"));
-
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new InductionFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"induction_furnace"));
-
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new FusionFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"fusion_furnace"));
-
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new GyratoryCrusherContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"gyratory_crusher"));
-
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new EvaporationTowerContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
-
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new GasBottlerContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"gas_condenser"));
-
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new MaterialTestingTableContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"material_testing_table"));
-
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                return new TemplateTableContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"template_table"));
-
-
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                return new ElementIndexerContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"element_indexer"));
-/*
-            event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new LaserQuarryContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
-
- */
-
-        //    event.getRegistry().register(IForgeMenuType.create((windowId, inv, data) -> {
-        //        BlockPos pos = data.readBlockPos();
-         //       return new SodiumVaporLampContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-         //   }).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
-        }
 
         @SubscribeEvent
         public static void registerEffects(final RegistryEvent.Register<MobEffect> event) {

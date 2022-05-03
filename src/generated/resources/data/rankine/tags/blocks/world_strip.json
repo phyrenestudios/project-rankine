@@ -5,7 +5,7 @@
     "#minecraft:leaves",
     "#minecraft:logs",
     "#rankine:construction_sand",
-    "#forge:dirt",
+    "#minecraft:dirt",
     "#forge:gravel",
     "#forge:stone",
     "#minecraft:base_stone_overworld",

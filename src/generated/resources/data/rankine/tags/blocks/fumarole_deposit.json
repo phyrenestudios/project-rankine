@@ -3,7 +3,7 @@
   "values": [
     "#forge:tuff",
     "#forge:stone",
-    "#forge:dirt",
+    "#minecraft:dirt",
     "#forge:sand",
     "#minecraft:base_stone_overworld",
     "#minecraft:base_stone_nether",

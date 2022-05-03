@@ -2,9 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -805,41 +803,41 @@ public class Config {
             SOIL_NOISE_SCALE = b.comment("This determines how mixed the two types of soil are per biome. Larger numbers mean larger patches.")
                     .defineInRange("soilNoiseScale", 60, 1, Integer.MAX_VALUE);
             SECRET_GEN = b.comment("Generate antimatter in the End.")
-                    .define("antimatterGen",true);
+                    .define("antimatterGen",false);
             REPLACE_VANILLA_ORES = b.comment("If enabled, replaces vanilla ores with the Rankine counterparts (mostly for texture purposes). Results may vary due to the order of feature placements.")
-                    .define("replaceVanillaOres",true);
+                    .define("replaceVanillaOres",false);
             DISABLE_VANILLA_FEATURES = b.comment("Disable vanilla features in the overworld. Works by replacing the listed blocks in #rankine:vanilla_override with stones")
-                    .define("disableVanillaOres",true);
+                    .define("disableVanillaOres",false);
             RANKINE_FLORA = b.comment("Enable/Disable Project Rankine flowers and berry bushes in world.")
-                    .define("generateFlora",true);
+                    .define("generateFlora",false);
             RANKINE_TREES = b.comment("Enable/Disable Project Rankine trees in world.")
-                    .define("generateTrees",true);
+                    .define("generateTrees",false);
             WILD_CROPS = b.comment("Enable/Disable Project Rankine wild crops in world.")
-                    .define("generateWildCrops",true);
+                    .define("generateWildCrops",false);
             MUSHROOMS = b.comment("Enable/Disable Project Rankine mushrooms in world.")
-                    .define("generateMushrooms",true);
+                    .define("generateMushrooms",false);
             COBBLES_GEN = b.comment("Enable/Disable Project Rankine cobbles in world.")
                     .define("generateCobbles",true);
             EVAPORITE_GEN = b.comment("Enables the generation of evaporite disks.")
-                    .define("generateEvaporite",true);
+                    .define("generateEvaporite",false);
             FUMAROLE_GEN = b.comment("Enables the generation of fumaroles. More options to come.")
-                    .define("generateFumaroles",true);
+                    .define("generateFumaroles",false);
             ALLUVIUM_GEN = b.comment("Enables the generation of alluvium disks.")
-                    .define("generateAlluvium",true);
+                    .define("generateAlluvium",false);
             WHITE_SAND_GEN = b.comment("Enables the generation of white sand disks in beaches.")
-                    .define("generateWhiteSand",true);
+                    .define("generateWhiteSand",false);
             BLACK_SAND_GEN = b.comment("Enables the generation of black sand disks in the Nether.")
-                    .define("generateBlackSand",true);
+                    .define("generateBlackSand",false);
             END_METEORITE_GEN = b.comment("Enable to generate meteorites in the end.")
-                    .define("endMeteoriteGen",true);
+                    .define("endMeteoriteGen",false);
             END_METEORITE_CHANCE = b.comment("The chance for an end meteroite.")
                     .defineInRange("endMeteoriteChance", 0.03, 0.00, 1.00);
             METEORITE_GEN = b.comment("Enable to generate meteorites in the overworld.")
-                    .define("meteoriteGen",true);
+                    .define("meteoriteGen",false);
             METEORITE_SIZE = b.comment("Size parameter for meteorites. Higher number is bigger.")
                     .defineInRange("meteoriteSize", 1, 0, 5);
             METEORITE_CHANCE = b.comment("The chance a meteroite will spawn in the Overworld. Higher numbers increase rarity.")
-                    .defineInRange("meteoriteChance", 70, 0, Integer.MAX_VALUE);
+                    .defineInRange("meteoriteChance", 50, 0, Integer.MAX_VALUE);
             SOUL_SANDSTONE_LAYER_THICKNESS = b.comment("The number of blocks that Soul Sandstone will generate up or down from Soul Sand.")
                     .defineInRange("soulSandstoneLayerThickness", 3, 0, Integer.MAX_VALUE);
             BIG_METEORITE_CHANCE = b.comment("The chance a meteroite will be big.")
@@ -848,7 +846,7 @@ public class Config {
 
             b.comment("Settings for stone layering").push("layers");
             LAYER_GEN = b.comment("Determines how stone layers generate. 0 means disabled, 1 means they replace minecraft:stone, 2 means they replace #minecraft:base_stone_overworld, 3 means they replace any non-Rankine stone in #minecraft:base_stone_overworld")
-                    .defineInRange("layerGenType", 1, 0, 3);
+                    .defineInRange("layerGenType", 0, 0, 3);
             LAYER_BEND = b.comment("Determines the vertical spread of stone layers. 1.0 is flat, closer to 0.0 is more extreme, 0.0 will crash.")
                     .defineInRange("layerWidth", 0.05D, 0.0D, 1.0D);
             LAYER_THICKNESS = b.comment("")
@@ -864,7 +862,7 @@ public class Config {
 
             b.comment("Settings for stone columns").push("columns");
             COLUMN_GEN = b.comment("Enables the generation of stone columns.")
-                    .define("generateColumns",true);
+                    .define("generateColumns",false);
             COLUMN_CHANCE = b.comment("Determines the chance per x,z coordinate for columns to generate.")
                     .defineInRange("columnChance", 0.15D, 0.0D, 1.0D);
             COLUMN_FREQUENCY = b.comment("The chance for columns to generate as full columns instead of stalactites.")
@@ -873,7 +871,7 @@ public class Config {
 
             b.comment("Settings for intrusions").push("intrusions");
             INTRUSION_GEN = b.comment("Enables the generation of intrusions.")
-                    .define("generateIntrusions",true);
+                    .define("generateIntrusions",false);
             OVERWORLD_INTRUSION_RADIUS = b.comment("Size of an intrusion")
                     .defineInRange("overworldIntrusionRadius", 2, 0, 8);
             OVERWORLD_INTRUSION_SHRINK = b.comment("Chance for an overworld intrusion to shrink as it goes up. Values closer to 0 result in longer intrusions")
@@ -1173,6 +1171,8 @@ public class Config {
             oreSettings.add(Arrays.asList("rankine:uraninite_ore", Arrays.asList("the_end"), "sphere", 10, 60, 3, 0.6D, 1, 0.5));
             oreSettings.add(Arrays.asList("rankine:xenotime_ore", Arrays.asList("the_end"), "sphere", 10, 60, 3, 0.6D, 1, 0.5));
             oreSettings.add(Arrays.asList("rankine:greenockite_ore", Arrays.asList("the_end"), "sphere", 10, 60, 3, 0.6D, 1, 0.5));
+
+
 
 
 
