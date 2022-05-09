@@ -1,44 +1,44 @@
 package com.cannolicatfish.rankine.world.gen;
 
+import com.cannolicatfish.rankine.init.Config;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import java.util.Random;
-
-public class FlatBedrockFeature extends Feature<ReplacerFeatureConfig> {
-    public FlatBedrockFeature(Codec<ReplacerFeatureConfig> configFactoryIn) {
+public class FlatBedrockFeature extends Feature<NoneFeatureConfiguration> {
+    public FlatBedrockFeature(Codec<NoneFeatureConfiguration> configFactoryIn) {
         super(configFactoryIn);
     }
 
 
     @Override
-    public boolean place(FeaturePlaceContext<ReplacerFeatureConfig> p_159749_) {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
-        ReplacerFeatureConfig config = p_159749_.config();
         ChunkAccess chunk = reader.getChunk(pos);
-        int startX = chunk.getPos().getMinBlockX();
-        int startZ = chunk.getPos().getMinBlockZ();
-        int endX = chunk.getPos().getMaxBlockX();
-        int endZ = chunk.getPos().getMaxBlockZ();
-        int startY = config.bottomBound;
-        int endY = config.topBound;
+        BlockState baseBlock;
+        if (reader.getBiome(pos).is(BiomeTags.IS_NETHER)) {
+            baseBlock = Blocks.NETHERRACK.defaultBlockState();
+        } else {
+            baseBlock = Blocks.STONE.defaultBlockState();
+        }
 
-        for (int x = startX; x <= endX; ++x) {
-            for (int z = startZ; z <= endZ; ++z) {
-                for (int y = startY; y < endY; ++y) {
-                    if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                        reader.setBlock(new BlockPos(x, y, z), config.state, 2);
-                    }
+
+        for (int x = chunk.getPos().getMinBlockX(); x <= chunk.getPos().getMaxBlockX(); ++x) {
+            for (int z = chunk.getPos().getMinBlockZ(); z <= chunk.getPos().getMaxBlockZ(); ++z) {
+                for (int y = reader.getMinBuildHeight(); y < reader.getMinBuildHeight() + Config.MISC_WORLDGEN.BEDROCK_LAYERS.get(); ++y) {
+                    reader.setBlock(new BlockPos(x, y, z), Blocks.BEDROCK.defaultBlockState(), 2);
                 }
-                for (int y = endY; y <= 10; ++y) {
-                    if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.state.getBlock()) {
-                        reader.setBlock(new BlockPos(x, y, z), config.target, 2);
+                for (int y = reader.getMinBuildHeight() + Config.MISC_WORLDGEN.BEDROCK_LAYERS.get(); y <= reader.getMinBuildHeight() + 5; ++y) {
+                    if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.BEDROCK) {
+                        reader.setBlock(new BlockPos(x, y, z), baseBlock, 2);
                     }
                 }
             }

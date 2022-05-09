@@ -3,15 +3,15 @@ package com.cannolicatfish.rankine.world.gen;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
-import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
@@ -24,42 +24,35 @@ public class CobblePatchFeature extends Feature<RandomPatchConfiguration> {
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<RandomPatchConfiguration> p_159749_) {
-        WorldGenLevel reader = p_159749_.level();
-        BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
-        RandomPatchConfiguration config = p_159749_.config();
+    public boolean place(FeaturePlaceContext<RandomPatchConfiguration> p_160210_) {
+
+        RandomPatchConfiguration randompatchconfiguration = p_160210_.config();
+        Random random = p_160210_.random();
+        BlockPos blockpos = p_160210_.origin();
+        WorldGenLevel worldgenlevel = p_160210_.level();
+
         List<String> rockList = new ArrayList<String>();
-        if (WorldgenUtils.GEN_BIOMES.contains(reader.getBiome(pos).value().getRegistryName())) {
-            rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(reader.getBiome(pos).value().getRegistryName()));
+        if (WorldgenUtils.GEN_BIOMES.contains(worldgenlevel.getBiome(blockpos).value().getRegistryName())) {
+            rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(worldgenlevel.getBiome(blockpos).value().getRegistryName()));
         }
 
         if (rockList.size() < 1) return false;
-        Block stoneBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(rockList.get(rand.nextInt(rockList.size()))));
+        Block stoneBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(rockList.get(random.nextInt(rockList.size()))));
         if (!RankineLists.STONES.contains(stoneBlock)) {
             return false;
         }
         BlockState blockstate = RankineLists.STONE_COBBLES.get(RankineLists.STONES.indexOf(stoneBlock)).defaultBlockState();
 
 
-        BlockPos blockpos;
-        /*if (config.project) {
-            blockpos = reader.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, pos);
-        } else {
-            blockpos = pos;
-        }*/
-
-        blockpos = reader.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, pos);
-
         int i = 0;
-        BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        int j = randompatchconfiguration.xzSpread() + 1;
+        int k = randompatchconfiguration.ySpread() + 1;
 
-        for(int j = 0; j < config.tries(); ++j) {
-            blockpos$mutable.setWithOffset(blockpos, rand.nextInt(config.xzSpread() + 1) - rand.nextInt(config.xzSpread() + 1), rand.nextInt(config.ySpread() + 1) - rand.nextInt(config.ySpread() + 1), rand.nextInt(config.xzSpread() + 1) - rand.nextInt(config.xzSpread() + 1));
-            BlockPos blockpos1 = blockpos$mutable.below();
-            BlockState blockstate1 = reader.getBlockState(blockpos1);
-            if ((reader.isEmptyBlock(blockpos$mutable) || reader.getBlockState(blockpos$mutable).getMaterial().isReplaceable()) && blockstate.canSurvive(reader, blockpos$mutable)) {
-                config.feature().value().place(reader,p_159749_.chunkGenerator(),rand,blockpos$mutable);
+        for(int l = 0; l < randompatchconfiguration.tries(); ++l) {
+            blockpos$mutableblockpos.setWithOffset(blockpos, random.nextInt(j) - random.nextInt(j), random.nextInt(k) - random.nextInt(k), random.nextInt(j) - random.nextInt(j));
+            if (worldgenlevel.getBlockState(blockpos$mutableblockpos).is(Blocks.AIR) && blockstate.canSurvive(worldgenlevel, blockpos$mutableblockpos)) {
+                worldgenlevel.setBlock(blockpos$mutableblockpos, blockstate, 3);
                 ++i;
             }
         }

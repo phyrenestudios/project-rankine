@@ -241,6 +241,7 @@ public class RankineLangProvider extends LanguageProvider {
         }
 
         for (Item item : Stream.of(
+                RankineLists.WOODEN_SIGN_ITEMS,
                 RankineLists.WOODEN_BOATS,
                 RankineLists.ARROWS,
                 RankineLists.WOODEN_TOOLS,

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "rankine:block/violet_bellflower_top"
+    },
+    "half=lower": {
+      "model": "rankine:block/violet_bellflower_bottom"
+    }
+  }
+}

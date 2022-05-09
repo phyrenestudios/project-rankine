@@ -25,7 +25,7 @@ public class RankineItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ProjectRankine.MODID);
 
-    //public static final RegistryObject<Item> GRAY_GRANITE_PILLAR = REGISTRY.register("gray_granite_pillar", () -> new BlockItem(RankineBlocks.GRAY_GRANITE_PILLAR.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> GRAY_GRANITE_PILLAR = REGISTRY.register("gray_granite_pillar", () -> new BlockItem(RankineBlocks.GRAY_GRANITE_PILLAR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
 
     public static Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld);
 
@@ -1515,7 +1515,7 @@ public class RankineItems {
 
 
 
-    
+
     //WOOD BLOCKS
     public static final RegistryObject<Item> CEDAR_LOG = ITEMS.register("cedar_log", () -> new BlockItem(RankineBlocks.CEDAR_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CEDAR_WOOD = ITEMS.register("cedar_wood", () -> new BlockItem(RankineBlocks.CEDAR_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1532,6 +1532,7 @@ public class RankineItems {
     public static final RegistryObject<Item> CEDAR_DOOR = ITEMS.register("cedar_door", () -> new BlockItem(RankineBlocks.CEDAR_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CEDAR_TRAPDOOR = ITEMS.register("cedar_trapdoor", () -> new BlockItem(RankineBlocks.CEDAR_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CEDAR_BUTTON = ITEMS.register("cedar_button", () -> new BlockItem(RankineBlocks.CEDAR_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CEDAR_SIGN = ITEMS.register("cedar_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.CEDAR_SIGN.get(),RankineBlocks.CEDAR_WALL_SIGN.get()));
     public static final RegistryObject<Item> BALSAM_FIR_LOG = ITEMS.register("balsam_fir_log", () -> new BlockItem(RankineBlocks.BALSAM_FIR_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BALSAM_FIR_WOOD = ITEMS.register("balsam_fir_wood", () -> new BlockItem(RankineBlocks.BALSAM_FIR_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_BALSAM_FIR_LOG = ITEMS.register("stripped_balsam_fir_log", () -> new BlockItem(RankineBlocks.STRIPPED_BALSAM_FIR_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1547,6 +1548,7 @@ public class RankineItems {
     public static final RegistryObject<Item> BALSAM_FIR_DOOR = ITEMS.register("balsam_fir_door", () -> new BlockItem(RankineBlocks.BALSAM_FIR_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BALSAM_FIR_TRAPDOOR = ITEMS.register("balsam_fir_trapdoor", () -> new BlockItem(RankineBlocks.BALSAM_FIR_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BALSAM_FIR_BUTTON = ITEMS.register("balsam_fir_button", () -> new BlockItem(RankineBlocks.BALSAM_FIR_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BALSAM_FIR_SIGN = ITEMS.register("balsam_fir_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.BALSAM_FIR_SIGN.get(),RankineBlocks.BALSAM_FIR_WALL_SIGN.get()));
     public static final RegistryObject<Item> EASTERN_HEMLOCK_LOG = ITEMS.register("eastern_hemlock_log", () -> new BlockItem(RankineBlocks.EASTERN_HEMLOCK_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> EASTERN_HEMLOCK_WOOD = ITEMS.register("eastern_hemlock_wood", () -> new BlockItem(RankineBlocks.EASTERN_HEMLOCK_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_EASTERN_HEMLOCK_LOG = ITEMS.register("stripped_eastern_hemlock_log", () -> new BlockItem(RankineBlocks.STRIPPED_EASTERN_HEMLOCK_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1562,6 +1564,7 @@ public class RankineItems {
     public static final RegistryObject<Item> EASTERN_HEMLOCK_DOOR = ITEMS.register("eastern_hemlock_door", () -> new BlockItem(RankineBlocks.EASTERN_HEMLOCK_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> EASTERN_HEMLOCK_TRAPDOOR = ITEMS.register("eastern_hemlock_trapdoor", () -> new BlockItem(RankineBlocks.EASTERN_HEMLOCK_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> EASTERN_HEMLOCK_BUTTON = ITEMS.register("eastern_hemlock_button", () -> new BlockItem(RankineBlocks.EASTERN_HEMLOCK_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> EASTERN_HEMLOCK_SIGN = ITEMS.register("eastern_hemlock_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.EASTERN_HEMLOCK_SIGN.get(),RankineBlocks.EASTERN_HEMLOCK_WALL_SIGN.get()));
     public static final RegistryObject<Item> WESTERN_HEMLOCK_LOG = ITEMS.register("western_hemlock_log", () -> new BlockItem(RankineBlocks.WESTERN_HEMLOCK_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> WESTERN_HEMLOCK_WOOD = ITEMS.register("western_hemlock_wood", () -> new BlockItem(RankineBlocks.WESTERN_HEMLOCK_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_WESTERN_HEMLOCK_LOG = ITEMS.register("stripped_western_hemlock_log", () -> new BlockItem(RankineBlocks.STRIPPED_WESTERN_HEMLOCK_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1577,6 +1580,7 @@ public class RankineItems {
     public static final RegistryObject<Item> WESTERN_HEMLOCK_DOOR = ITEMS.register("western_hemlock_door", () -> new BlockItem(RankineBlocks.WESTERN_HEMLOCK_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> WESTERN_HEMLOCK_TRAPDOOR = ITEMS.register("western_hemlock_trapdoor", () -> new BlockItem(RankineBlocks.WESTERN_HEMLOCK_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> WESTERN_HEMLOCK_BUTTON = ITEMS.register("western_hemlock_button", () -> new BlockItem(RankineBlocks.WESTERN_HEMLOCK_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> WESTERN_HEMLOCK_SIGN = ITEMS.register("western_hemlock_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.WESTERN_HEMLOCK_SIGN.get(),RankineBlocks.WESTERN_HEMLOCK_WALL_SIGN.get()));
     public static final RegistryObject<Item> PINYON_PINE_LOG = ITEMS.register("pinyon_pine_log", () -> new BlockItem(RankineBlocks.PINYON_PINE_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> PINYON_PINE_WOOD = ITEMS.register("pinyon_pine_wood", () -> new BlockItem(RankineBlocks.PINYON_PINE_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_PINYON_PINE_LOG = ITEMS.register("stripped_pinyon_pine_log", () -> new BlockItem(RankineBlocks.STRIPPED_PINYON_PINE_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1592,6 +1596,7 @@ public class RankineItems {
     public static final RegistryObject<Item> PINYON_PINE_DOOR = ITEMS.register("pinyon_pine_door", () -> new BlockItem(RankineBlocks.PINYON_PINE_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> PINYON_PINE_TRAPDOOR = ITEMS.register("pinyon_pine_trapdoor", () -> new BlockItem(RankineBlocks.PINYON_PINE_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> PINYON_PINE_BUTTON = ITEMS.register("pinyon_pine_button", () -> new BlockItem(RankineBlocks.PINYON_PINE_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> PINYON_PINE_SIGN = ITEMS.register("pinyon_pine_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.PINYON_PINE_SIGN.get(),RankineBlocks.PINYON_PINE_WALL_SIGN.get()));
     public static final RegistryObject<Item> JUNIPER_LOG = ITEMS.register("juniper_log", () -> new BlockItem(RankineBlocks.JUNIPER_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> JUNIPER_WOOD = ITEMS.register("juniper_wood", () -> new BlockItem(RankineBlocks.JUNIPER_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_JUNIPER_LOG = ITEMS.register("stripped_juniper_log", () -> new BlockItem(RankineBlocks.STRIPPED_JUNIPER_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1607,6 +1612,7 @@ public class RankineItems {
     public static final RegistryObject<Item> JUNIPER_DOOR = ITEMS.register("juniper_door", () -> new BlockItem(RankineBlocks.JUNIPER_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> JUNIPER_TRAPDOOR = ITEMS.register("juniper_trapdoor", () -> new BlockItem(RankineBlocks.JUNIPER_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> JUNIPER_BUTTON = ITEMS.register("juniper_button", () -> new BlockItem(RankineBlocks.JUNIPER_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> JUNIPER_SIGN = ITEMS.register("juniper_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.JUNIPER_SIGN.get(),RankineBlocks.JUNIPER_WALL_SIGN.get()));
     public static final RegistryObject<Item> BLACK_BIRCH_LOG = ITEMS.register("black_birch_log", () -> new BlockItem(RankineBlocks.BLACK_BIRCH_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BLACK_BIRCH_WOOD = ITEMS.register("black_birch_wood", () -> new BlockItem(RankineBlocks.BLACK_BIRCH_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_BLACK_BIRCH_LOG = ITEMS.register("stripped_black_birch_log", () -> new BlockItem(RankineBlocks.STRIPPED_BLACK_BIRCH_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1622,6 +1628,7 @@ public class RankineItems {
     public static final RegistryObject<Item> BLACK_BIRCH_DOOR = ITEMS.register("black_birch_door", () -> new BlockItem(RankineBlocks.BLACK_BIRCH_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BLACK_BIRCH_TRAPDOOR = ITEMS.register("black_birch_trapdoor", () -> new BlockItem(RankineBlocks.BLACK_BIRCH_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BLACK_BIRCH_BUTTON = ITEMS.register("black_birch_button", () -> new BlockItem(RankineBlocks.BLACK_BIRCH_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BLACK_BIRCH_SIGN = ITEMS.register("black_birch_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.BLACK_BIRCH_SIGN.get(),RankineBlocks.BLACK_BIRCH_WALL_SIGN.get()));
     public static final RegistryObject<Item> YELLOW_BIRCH_LOG = ITEMS.register("yellow_birch_log", () -> new BlockItem(RankineBlocks.YELLOW_BIRCH_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> YELLOW_BIRCH_WOOD = ITEMS.register("yellow_birch_wood", () -> new BlockItem(RankineBlocks.YELLOW_BIRCH_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_YELLOW_BIRCH_LOG = ITEMS.register("stripped_yellow_birch_log", () -> new BlockItem(RankineBlocks.STRIPPED_YELLOW_BIRCH_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1637,6 +1644,7 @@ public class RankineItems {
     public static final RegistryObject<Item> YELLOW_BIRCH_DOOR = ITEMS.register("yellow_birch_door", () -> new BlockItem(RankineBlocks.YELLOW_BIRCH_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> YELLOW_BIRCH_TRAPDOOR = ITEMS.register("yellow_birch_trapdoor", () -> new BlockItem(RankineBlocks.YELLOW_BIRCH_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> YELLOW_BIRCH_BUTTON = ITEMS.register("yellow_birch_button", () -> new BlockItem(RankineBlocks.YELLOW_BIRCH_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> YELLOW_BIRCH_SIGN = ITEMS.register("yellow_birch_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.YELLOW_BIRCH_SIGN.get(),RankineBlocks.YELLOW_BIRCH_WALL_SIGN.get()));
     public static final RegistryObject<Item> RED_BIRCH_LOG = ITEMS.register("red_birch_log", () -> new BlockItem(RankineBlocks.RED_BIRCH_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> RED_BIRCH_WOOD = ITEMS.register("red_birch_wood", () -> new BlockItem(RankineBlocks.RED_BIRCH_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_RED_BIRCH_LOG = ITEMS.register("stripped_red_birch_log", () -> new BlockItem(RankineBlocks.STRIPPED_RED_BIRCH_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1652,6 +1660,7 @@ public class RankineItems {
     public static final RegistryObject<Item> RED_BIRCH_DOOR = ITEMS.register("red_birch_door", () -> new BlockItem(RankineBlocks.RED_BIRCH_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> RED_BIRCH_TRAPDOOR = ITEMS.register("red_birch_trapdoor", () -> new BlockItem(RankineBlocks.RED_BIRCH_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> RED_BIRCH_BUTTON = ITEMS.register("red_birch_button", () -> new BlockItem(RankineBlocks.RED_BIRCH_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> RED_BIRCH_SIGN = ITEMS.register("red_birch_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.RED_BIRCH_SIGN.get(),RankineBlocks.RED_BIRCH_WALL_SIGN.get()));
     public static final RegistryObject<Item> MAPLE_LOG = ITEMS.register("maple_log", () -> new BlockItem(RankineBlocks.MAPLE_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> MAPLE_WOOD = ITEMS.register("maple_wood", () -> new BlockItem(RankineBlocks.MAPLE_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_MAPLE_LOG = ITEMS.register("stripped_maple_log", () -> new BlockItem(RankineBlocks.STRIPPED_MAPLE_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1667,6 +1676,7 @@ public class RankineItems {
     public static final RegistryObject<Item> MAPLE_DOOR = ITEMS.register("maple_door", () -> new BlockItem(RankineBlocks.MAPLE_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> MAPLE_TRAPDOOR = ITEMS.register("maple_trapdoor", () -> new BlockItem(RankineBlocks.MAPLE_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> MAPLE_BUTTON = ITEMS.register("maple_button", () -> new BlockItem(RankineBlocks.MAPLE_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> MAPLE_SIGN = ITEMS.register("maple_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.MAPLE_SIGN.get(),RankineBlocks.MAPLE_WALL_SIGN.get()));
     public static final RegistryObject<Item> MAGNOLIA_LOG = ITEMS.register("magnolia_log", () -> new BlockItem(RankineBlocks.MAGNOLIA_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> MAGNOLIA_WOOD = ITEMS.register("magnolia_wood", () -> new BlockItem(RankineBlocks.MAGNOLIA_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_MAGNOLIA_LOG = ITEMS.register("stripped_magnolia_log", () -> new BlockItem(RankineBlocks.STRIPPED_MAGNOLIA_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1682,6 +1692,7 @@ public class RankineItems {
     public static final RegistryObject<Item> MAGNOLIA_DOOR = ITEMS.register("magnolia_door", () -> new BlockItem(RankineBlocks.MAGNOLIA_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> MAGNOLIA_TRAPDOOR = ITEMS.register("magnolia_trapdoor", () -> new BlockItem(RankineBlocks.MAGNOLIA_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> MAGNOLIA_BUTTON = ITEMS.register("magnolia_button", () -> new BlockItem(RankineBlocks.MAGNOLIA_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> MAGNOLIA_SIGN = ITEMS.register("magnolia_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.MAGNOLIA_SIGN.get(),RankineBlocks.MAGNOLIA_WALL_SIGN.get()));
     public static final RegistryObject<Item> BLACK_WALNUT_LOG = ITEMS.register("black_walnut_log", () -> new BlockItem(RankineBlocks.BLACK_WALNUT_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BLACK_WALNUT_WOOD = ITEMS.register("black_walnut_wood", () -> new BlockItem(RankineBlocks.BLACK_WALNUT_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_BLACK_WALNUT_LOG = ITEMS.register("stripped_black_walnut_log", () -> new BlockItem(RankineBlocks.STRIPPED_BLACK_WALNUT_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1697,6 +1708,7 @@ public class RankineItems {
     public static final RegistryObject<Item> BLACK_WALNUT_DOOR = ITEMS.register("black_walnut_door", () -> new BlockItem(RankineBlocks.BLACK_WALNUT_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BLACK_WALNUT_TRAPDOOR = ITEMS.register("black_walnut_trapdoor", () -> new BlockItem(RankineBlocks.BLACK_WALNUT_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BLACK_WALNUT_BUTTON = ITEMS.register("black_walnut_button", () -> new BlockItem(RankineBlocks.BLACK_WALNUT_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BLACK_WALNUT_SIGN = ITEMS.register("black_walnut_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.BLACK_WALNUT_SIGN.get(),RankineBlocks.BLACK_WALNUT_WALL_SIGN.get()));
     public static final RegistryObject<Item> COCONUT_PALM_LOG = ITEMS.register("coconut_palm_log", () -> new BlockItem(RankineBlocks.COCONUT_PALM_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> COCONUT_PALM_WOOD = ITEMS.register("coconut_palm_wood", () -> new BlockItem(RankineBlocks.COCONUT_PALM_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_COCONUT_PALM_LOG = ITEMS.register("stripped_coconut_palm_log", () -> new BlockItem(RankineBlocks.STRIPPED_COCONUT_PALM_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1712,6 +1724,7 @@ public class RankineItems {
     public static final RegistryObject<Item> COCONUT_PALM_DOOR = ITEMS.register("coconut_palm_door", () -> new BlockItem(RankineBlocks.COCONUT_PALM_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> COCONUT_PALM_TRAPDOOR = ITEMS.register("coconut_palm_trapdoor", () -> new BlockItem(RankineBlocks.COCONUT_PALM_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> COCONUT_PALM_BUTTON = ITEMS.register("coconut_palm_button", () -> new BlockItem(RankineBlocks.COCONUT_PALM_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> COCONUT_PALM_SIGN = ITEMS.register("coconut_palm_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.COCONUT_PALM_SIGN.get(),RankineBlocks.COCONUT_PALM_WALL_SIGN.get()));
     public static final RegistryObject<Item> CORK_OAK_LOG = ITEMS.register("cork_oak_log", () -> new BlockItem(RankineBlocks.CORK_OAK_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CORK_OAK_WOOD = ITEMS.register("cork_oak_wood", () -> new BlockItem(RankineBlocks.CORK_OAK_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_CORK_OAK_LOG = ITEMS.register("stripped_cork_oak_log", () -> new BlockItem(RankineBlocks.STRIPPED_CORK_OAK_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1727,6 +1740,7 @@ public class RankineItems {
     public static final RegistryObject<Item> CORK_OAK_DOOR = ITEMS.register("cork_oak_door", () -> new BlockItem(RankineBlocks.CORK_OAK_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CORK_OAK_TRAPDOOR = ITEMS.register("cork_oak_trapdoor", () -> new BlockItem(RankineBlocks.CORK_OAK_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CORK_OAK_BUTTON = ITEMS.register("cork_oak_button", () -> new BlockItem(RankineBlocks.CORK_OAK_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CORK_OAK_SIGN = ITEMS.register("cork_oak_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.CORK_OAK_SIGN.get(),RankineBlocks.CORK_OAK_WALL_SIGN.get()));
     public static final RegistryObject<Item> SHARINGA_LOG = ITEMS.register("sharinga_log", () -> new BlockItem(RankineBlocks.SHARINGA_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> SHARINGA_WOOD = ITEMS.register("sharinga_wood", () -> new BlockItem(RankineBlocks.SHARINGA_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_SHARINGA_LOG = ITEMS.register("stripped_sharinga_log", () -> new BlockItem(RankineBlocks.STRIPPED_SHARINGA_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1742,6 +1756,7 @@ public class RankineItems {
     public static final RegistryObject<Item> SHARINGA_DOOR = ITEMS.register("sharinga_door", () -> new BlockItem(RankineBlocks.SHARINGA_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> SHARINGA_TRAPDOOR = ITEMS.register("sharinga_trapdoor", () -> new BlockItem(RankineBlocks.SHARINGA_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> SHARINGA_BUTTON = ITEMS.register("sharinga_button", () -> new BlockItem(RankineBlocks.SHARINGA_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> SHARINGA_SIGN = ITEMS.register("sharinga_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.SHARINGA_SIGN.get(),RankineBlocks.SHARINGA_WALL_SIGN.get()));
     public static final RegistryObject<Item> CINNAMON_LOG = ITEMS.register("cinnamon_log", () -> new BlockItem(RankineBlocks.CINNAMON_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CINNAMON_WOOD = ITEMS.register("cinnamon_wood", () -> new BlockItem(RankineBlocks.CINNAMON_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_CINNAMON_LOG = ITEMS.register("stripped_cinnamon_log", () -> new BlockItem(RankineBlocks.STRIPPED_CINNAMON_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1757,6 +1772,7 @@ public class RankineItems {
     public static final RegistryObject<Item> CINNAMON_DOOR = ITEMS.register("cinnamon_door", () -> new BlockItem(RankineBlocks.CINNAMON_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CINNAMON_TRAPDOOR = ITEMS.register("cinnamon_trapdoor", () -> new BlockItem(RankineBlocks.CINNAMON_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CINNAMON_BUTTON = ITEMS.register("cinnamon_button", () -> new BlockItem(RankineBlocks.CINNAMON_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CINNAMON_SIGN = ITEMS.register("cinnamon_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.CINNAMON_SIGN.get(),RankineBlocks.CINNAMON_WALL_SIGN.get()));
     public static final RegistryObject<Item> HONEY_LOCUST_LOG = ITEMS.register("honey_locust_log", () -> new BlockItem(RankineBlocks.HONEY_LOCUST_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> HONEY_LOCUST_WOOD = ITEMS.register("honey_locust_wood", () -> new BlockItem(RankineBlocks.HONEY_LOCUST_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_HONEY_LOCUST_LOG = ITEMS.register("stripped_honey_locust_log", () -> new BlockItem(RankineBlocks.STRIPPED_HONEY_LOCUST_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1772,6 +1788,7 @@ public class RankineItems {
     public static final RegistryObject<Item> HONEY_LOCUST_DOOR = ITEMS.register("honey_locust_door", () -> new BlockItem(RankineBlocks.HONEY_LOCUST_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> HONEY_LOCUST_TRAPDOOR = ITEMS.register("honey_locust_trapdoor", () -> new BlockItem(RankineBlocks.HONEY_LOCUST_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> HONEY_LOCUST_BUTTON = ITEMS.register("honey_locust_button", () -> new BlockItem(RankineBlocks.HONEY_LOCUST_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> HONEY_LOCUST_SIGN = ITEMS.register("honey_locust_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.HONEY_LOCUST_SIGN.get(),RankineBlocks.HONEY_LOCUST_WALL_SIGN.get()));
     public static final RegistryObject<Item> WEEPING_WILLOW_LOG = ITEMS.register("weeping_willow_log", () -> new BlockItem(RankineBlocks.WEEPING_WILLOW_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> WEEPING_WILLOW_WOOD = ITEMS.register("weeping_willow_wood", () -> new BlockItem(RankineBlocks.WEEPING_WILLOW_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_WEEPING_WILLOW_LOG = ITEMS.register("stripped_weeping_willow_log", () -> new BlockItem(RankineBlocks.STRIPPED_WEEPING_WILLOW_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1787,6 +1804,7 @@ public class RankineItems {
     public static final RegistryObject<Item> WEEPING_WILLOW_DOOR = ITEMS.register("weeping_willow_door", () -> new BlockItem(RankineBlocks.WEEPING_WILLOW_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> WEEPING_WILLOW_TRAPDOOR = ITEMS.register("weeping_willow_trapdoor", () -> new BlockItem(RankineBlocks.WEEPING_WILLOW_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> WEEPING_WILLOW_BUTTON = ITEMS.register("weeping_willow_button", () -> new BlockItem(RankineBlocks.WEEPING_WILLOW_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> WEEPING_WILLOW_SIGN = ITEMS.register("weeping_willow_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.WEEPING_WILLOW_SIGN.get(),RankineBlocks.WEEPING_WILLOW_WALL_SIGN.get()));
     public static final RegistryObject<Item> ERYTHRINA_LOG = ITEMS.register("erythrina_log", () -> new BlockItem(RankineBlocks.ERYTHRINA_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ERYTHRINA_WOOD = ITEMS.register("erythrina_wood", () -> new BlockItem(RankineBlocks.ERYTHRINA_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_ERYTHRINA_LOG = ITEMS.register("stripped_erythrina_log", () -> new BlockItem(RankineBlocks.STRIPPED_ERYTHRINA_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1802,6 +1820,7 @@ public class RankineItems {
     public static final RegistryObject<Item> ERYTHRINA_DOOR = ITEMS.register("erythrina_door", () -> new BlockItem(RankineBlocks.ERYTHRINA_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ERYTHRINA_TRAPDOOR = ITEMS.register("erythrina_trapdoor", () -> new BlockItem(RankineBlocks.ERYTHRINA_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ERYTHRINA_BUTTON = ITEMS.register("erythrina_button", () -> new BlockItem(RankineBlocks.ERYTHRINA_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ERYTHRINA_SIGN = ITEMS.register("erythrina_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.ERYTHRINA_SIGN.get(),RankineBlocks.ERYTHRINA_WALL_SIGN.get()));
     public static final RegistryObject<Item> PETRIFIED_CHORUS_LOG = ITEMS.register("petrified_chorus_log", () -> new BlockItem(RankineBlocks.PETRIFIED_CHORUS_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> PETRIFIED_CHORUS_WOOD = ITEMS.register("petrified_chorus_wood", () -> new BlockItem(RankineBlocks.PETRIFIED_CHORUS_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_PETRIFIED_CHORUS_LOG = ITEMS.register("stripped_petrified_chorus_log", () -> new BlockItem(RankineBlocks.STRIPPED_PETRIFIED_CHORUS_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1817,6 +1836,7 @@ public class RankineItems {
     public static final RegistryObject<Item> PETRIFIED_CHORUS_DOOR = ITEMS.register("petrified_chorus_door", () -> new BlockItem(RankineBlocks.PETRIFIED_CHORUS_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> PETRIFIED_CHORUS_TRAPDOOR = ITEMS.register("petrified_chorus_trapdoor", () -> new BlockItem(RankineBlocks.PETRIFIED_CHORUS_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> PETRIFIED_CHORUS_BUTTON = ITEMS.register("petrified_chorus_button", () -> new BlockItem(RankineBlocks.PETRIFIED_CHORUS_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> PETRIFIED_CHORUS_SIGN = ITEMS.register("petrified_chorus_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.PETRIFIED_CHORUS_SIGN.get(),RankineBlocks.PETRIFIED_CHORUS_WALL_SIGN.get()));
     public static final RegistryObject<Item> CHARRED_LOG = ITEMS.register("charred_log", () -> new BlockItem(RankineBlocks.CHARRED_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CHARRED_WOOD = ITEMS.register("charred_wood", () -> new BlockItem(RankineBlocks.CHARRED_WOOD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STRIPPED_CHARRED_LOG = ITEMS.register("stripped_charred_log", () -> new BlockItem(RankineBlocks.STRIPPED_CHARRED_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1832,6 +1852,7 @@ public class RankineItems {
     public static final RegistryObject<Item> CHARRED_DOOR = ITEMS.register("charred_door", () -> new BlockItem(RankineBlocks.CHARRED_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CHARRED_TRAPDOOR = ITEMS.register("charred_trapdoor", () -> new BlockItem(RankineBlocks.CHARRED_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CHARRED_BUTTON = ITEMS.register("charred_button", () -> new BlockItem(RankineBlocks.CHARRED_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHARRED_SIGN = ITEMS.register("charred_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.CHARRED_SIGN.get(),RankineBlocks.CHARRED_WALL_SIGN.get()));
     public static final RegistryObject<Item> BAMBOO_PLANKS = ITEMS.register("bamboo_planks", () -> new BlockItem(RankineBlocks.BAMBOO_PLANKS.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BAMBOO_SLAB = ITEMS.register("bamboo_slab", () -> new BlockItem(RankineBlocks.BAMBOO_SLAB.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BAMBOO_STAIRS = ITEMS.register("bamboo_stairs", () -> new BlockItem(RankineBlocks.BAMBOO_STAIRS.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1843,6 +1864,7 @@ public class RankineItems {
     public static final RegistryObject<Item> BAMBOO_DOOR = ITEMS.register("bamboo_door", () -> new BlockItem(RankineBlocks.BAMBOO_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BAMBOO_TRAPDOOR = ITEMS.register("bamboo_trapdoor", () -> new BlockItem(RankineBlocks.BAMBOO_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BAMBOO_BUTTON = ITEMS.register("bamboo_button", () -> new BlockItem(RankineBlocks.BAMBOO_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BAMBOO_SIGN = ITEMS.register("bamboo_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.BAMBOO_SIGN.get(),RankineBlocks.BAMBOO_WALL_SIGN.get()));
     public static final RegistryObject<Item> BAMBOO_CULMS = ITEMS.register("bamboo_culms", () -> new BlockItem(RankineBlocks.BAMBOO_CULMS.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BAMBOO_CULMS_SLAB = ITEMS.register("bamboo_culms_slab", () -> new BlockItem(RankineBlocks.BAMBOO_CULMS_SLAB.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BAMBOO_CULMS_STAIRS = ITEMS.register("bamboo_culms_stairs", () -> new BlockItem(RankineBlocks.BAMBOO_CULMS_STAIRS.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1854,6 +1876,7 @@ public class RankineItems {
     public static final RegistryObject<Item> BAMBOO_CULMS_DOOR = ITEMS.register("bamboo_culms_door", () -> new BlockItem(RankineBlocks.BAMBOO_CULMS_DOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BAMBOO_CULMS_TRAPDOOR = ITEMS.register("bamboo_culms_trapdoor", () -> new BlockItem(RankineBlocks.BAMBOO_CULMS_TRAPDOOR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BAMBOO_CULMS_BUTTON = ITEMS.register("bamboo_culms_button", () -> new BlockItem(RankineBlocks.BAMBOO_CULMS_BUTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BAMBOO_CULMS_SIGN = ITEMS.register("bamboo_culms_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineWorld),RankineBlocks.BAMBOO_CULMS_SIGN.get(),RankineBlocks.BAMBOO_CULMS_WALL_SIGN.get()));
 
 
     public static final RegistryObject<Item> HUMUS_GRASS_BLOCK = ITEMS.register("humus_grass_block", () -> new BlockItem(RankineBlocks.HUMUS_GRASS_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -1995,7 +2018,7 @@ public class RankineItems {
 
     public static final RegistryObject<Item> PORCELAIN_BLOCK = ITEMS.register("porcelain_block", () -> new BlockItem(RankineBlocks.PORCELAIN_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BONE_CHAR_BLOCK = ITEMS.register("bone_char_block", () -> new BlockItem(RankineBlocks.BONE_CHAR_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
-    //public static final RegistryObject<Item> QUARRY_BARRIER = REGISTRY.register("quarry_barrier", () -> new BlockItem(RankineBlocks.QUARRY_BARRIER.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> QUARRY_BARRIER = REGISTRY.register("quarry_barrier", () -> new BlockItem(RankineBlocks.QUARRY_BARRIER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STICK_BLOCK = ITEMS.register("stick_block", () -> new FuelBlockItem(RankineBlocks.STICK_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld), 200));
     public static final RegistryObject<Item> GUN_COTTON = ITEMS.register("gun_cotton", () -> new BlockItem(RankineBlocks.GUN_COTTON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> MINERAL_WOOL = ITEMS.register("mineral_wool", () -> new BlockItem(RankineBlocks.MINERAL_WOOL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -2366,6 +2389,8 @@ public class RankineItems {
     public static final RegistryObject<Item> BLUE_MORNING_GLORY = ITEMS.register("blue_morning_glory", () -> new BlockItem(RankineBlocks.BLUE_MORNING_GLORY.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> PURPLE_MORNING_GLORY = ITEMS.register("purple_morning_glory", () -> new BlockItem(RankineBlocks.PURPLE_MORNING_GLORY.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> BLACK_MORNING_GLORY = ITEMS.register("black_morning_glory", () -> new BlockItem(RankineBlocks.BLACK_MORNING_GLORY.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> PINK_BELLFLOWER = ITEMS.register("pink_bellflower", () -> new BlockItem(RankineBlocks.PINK_BELLFLOWER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> VIOLET_BELLFLOWER = ITEMS.register("violet_bellflower", () -> new BlockItem(RankineBlocks.VIOLET_BELLFLOWER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> GOLDENROD = ITEMS.register("goldenrod", () -> new BlockItem(RankineBlocks.GOLDENROD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> SHORT_GRASS = ITEMS.register("short_grass", () -> new BlockItem(RankineBlocks.SHORT_GRASS.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> YELLOW_CLOVER = ITEMS.register("yellow_clover", () -> new BlockItem(RankineBlocks.YELLOW_CLOVER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
@@ -2392,7 +2417,7 @@ public class RankineItems {
     public static final RegistryObject<Item> WILLOW_BRANCHLET = ITEMS.register("willow_branchlet", () -> new BlockItem(RankineBlocks.WILLOW_BRANCHLET.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> LOCUST_SPINE = ITEMS.register("locust_spine", () -> new BlockItem(RankineBlocks.LOCUST_SPINE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> GARLAND = ITEMS.register("garland", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants)));
-    //public static final RegistryObject<Item> LARGE_DEAD_BUSH = REGISTRY.register("large_dead_bush", () -> new BlockItem(RankineBlocks.GOLDENROD.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
+    //public static final RegistryObject<Item> LARGE_DEAD_BUSH = REGISTRY.register("large_dead_bush", () -> new BlockItem(RankineBlocks.GOLDENROD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
 
     public static final RegistryObject<Item> ASPARAGUS_SEEDS = ITEMS.register("asparagus_seeds", () -> new ItemNameBlockItem(RankineBlocks.ASPARAGUS_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> BARLEY_SEEDS = ITEMS.register("barley_seeds", () -> new ItemNameBlockItem(RankineBlocks.BARLEY_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
@@ -2473,7 +2498,7 @@ public class RankineItems {
     public static final RegistryObject<Item> COOKED_TUNA = ITEMS.register("cooked_tuna", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.COOKED_TUNA)));
 
 
-    //public static final RegistryObject<Item> ASPARAGUS_ROOT = REGISTRY.register("asparagus_root", () -> new BlockItem(RankineBlocks.ASPARAGUS_ROOT.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
+    //public static final RegistryObject<Item> ASPARAGUS_ROOT = REGISTRY.register("asparagus_root", () -> new BlockItem(RankineBlocks.ASPARAGUS_ROOT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> CORN_STALK = ITEMS.register("corn_stalk", () -> new BlockItem(RankineBlocks.CORN_STALK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> PLANT_FIBER = ITEMS.register("plant_fiber", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants)));
 
@@ -2798,7 +2823,7 @@ public class RankineItems {
 
     public static final RegistryObject<Item> YELLOWCAKE = ITEMS.register("yellowcake", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ASBESTOS = ITEMS.register("asbestos", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
-    //public static final RegistryObject<Item> STISHOVITE = REGISTRY.register("stishovite", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    //public static final RegistryObject<Item> STISHOVITE = REGISTRY.register("stishovite", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> TRONA = ITEMS.register("trona", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> THENARDITE = ITEMS.register("thenardite", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BORAX = ITEMS.register("borax", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
@@ -2963,7 +2988,7 @@ public class RankineItems {
     public static final RegistryObject<Item> CADMIUM_TELLURIDE_CELL = ITEMS.register("cadmium_telluride_cell", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SILICON_GERMANIUM_THERMOCOUPLE = ITEMS.register("silicon_germanium_thermocouple", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SODIUM_ARC_TUBE = ITEMS.register("sodium_arc_tube", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
-    //public static final RegistryObject<Item> YAG_ROD = REGISTRY.register("yag_rod", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    //public static final RegistryObject<Item> YAG_ROD = REGISTRY.register("yag_rod", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ALLOY_BLOCK = ITEMS.register("alloy_block", () -> new AlloyBlockItem(RankineBlocks.ALLOY_BLOCK.get(),"80Hg-20Au",new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineComponents)));
     public static final RegistryObject<Item> ALLOY_DUST = ITEMS.register("alloy_dust", () -> new AlloyItem("80Hg-20Au",new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineComponents)));
     public static final RegistryObject<Item> ALLOY_GEAR = ITEMS.register("alloy_gear", () -> new AlloyItem("80Hg-20Au",new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineComponents)));
@@ -3257,22 +3282,22 @@ public class RankineItems {
     public static final RegistryObject<Item> PARTICLE_ACCELERATOR = ITEMS.register("particle_accelerator", () -> new BlockItem(RankineBlocks.PARTICLE_ACCELERATOR.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FUSION_FURNACE = ITEMS.register("fusion_furnace", () -> new BlockItem(RankineBlocks.FUSION_FURNACE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> BOTANIST_STATION = ITEMS.register("botanist_station", () -> new BlockItem(RankineBlocks.BOTANIST_STATION.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
-    //public static final RegistryObject<Item> LASER_QUARRY = REGISTRY.register("laser_quarry", () -> new BlockItem(RankineBlocks.LASER_QUARRY.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    //public static final RegistryObject<Item> LASER_PYLON_TOP = REGISTRY.register("laser_pylon_top", () -> new BlockItem(RankineBlocks.LASER_PYLON_TOP.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    //public static final RegistryObject<Item> LASER_PYLON_BASE = REGISTRY.register("laser_pylon_base", () -> new BlockItem(RankineBlocks.LASER_PYLON_BASE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    //public static final RegistryObject<Item> LASER_QUARRY = REGISTRY.register("laser_quarry", () -> new BlockItem(RankineBlocks.LASER_QUARRY.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+    //public static final RegistryObject<Item> LASER_PYLON_TOP = REGISTRY.register("laser_pylon_top", () -> new BlockItem(RankineBlocks.LASER_PYLON_TOP.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+    //public static final RegistryObject<Item> LASER_PYLON_BASE = REGISTRY.register("laser_pylon_base", () -> new BlockItem(RankineBlocks.LASER_PYLON_BASE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> DISTILLATION_TOWER = ITEMS.register("distillation_tower", () -> new BlockItem(RankineBlocks.DISTILLATION_TOWER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> AIR_DISTILLATION_PACKING = ITEMS.register("air_distillation_packing", () -> new BlockItem(RankineBlocks.AIR_DISTILLATION_PACKING.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> REACTION_CHAMBER_CORE = ITEMS.register("reaction_chamber_core", () -> new BlockItem(RankineBlocks.REACTION_CHAMBER_CORE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> REACTION_CHAMBER_CELL = ITEMS.register("reaction_chamber_cell", () -> new BlockItem(RankineBlocks.REACTION_CHAMBER_CELL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> CHARCOAL_PIT = ITEMS.register("charcoal_pit", () -> new BlockItem(RankineBlocks.CHARCOAL_PIT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TREE_TAP = ITEMS.register("tree_tap", () -> new BlockItem(RankineBlocks.TREE_TAP.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
-    //public static final RegistryObject<Item> TAP_BARREL = REGISTRY.register("tap_barrel", () -> new BlockItem(RankineBlocks.TAP_BARREL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    //public static final RegistryObject<Item> TAP_BARREL = REGISTRY.register("tap_barrel", () -> new BlockItem(RankineBlocks.TAP_BARREL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TAP_LINE = ITEMS.register("tap_line", () -> new BlockItem(RankineBlocks.TAP_LINE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> SIMPLE_ELECTROMAGNET = ITEMS.register("simple_electromagnet", () -> new BlockItem(RankineBlocks.SIMPLE_ELECTROMAGNET.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ALNICO_ELECTROMAGNET = ITEMS.register("alnico_electromagnet", () -> new BlockItem(RankineBlocks.ALNICO_ELECTROMAGNET.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> RARE_EARTH_ELECTROMAGNET = ITEMS.register("rare_earth_electromagnet", () -> new BlockItem(RankineBlocks.RARE_EARTH_ELECTROMAGNET.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> SEDIMENT_FAN = ITEMS.register("sediment_fan", () -> new BlockItem(RankineBlocks.SEDIMENT_FAN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
-    //public static final RegistryObject<Item> FLUID_DRAIN = REGISTRY.register("fluid_drain", () -> new BlockItem(RankineBlocks.FLUID_DRAIN.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    //public static final RegistryObject<Item> FLUID_DRAIN = REGISTRY.register("fluid_drain", () -> new BlockItem(RankineBlocks.FLUID_DRAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> SODIUM_VAPOR_LAMP = ITEMS.register("sodium_vapor_lamp", () -> new BlockItem(RankineBlocks.SODIUM_VAPOR_LAMP.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> GAS_BOTTLER = ITEMS.register("gas_bottler", () -> new BlockItem(RankineBlocks.GAS_BOTTLER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> GAS_VENT = ITEMS.register("gas_vent", () -> new BlockItem(RankineBlocks.GAS_VENT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
@@ -3310,7 +3335,7 @@ public class RankineItems {
 
 
     public static final RegistryObject<Item> HARDNESS_TESTER = ITEMS.register("hardness_tester", () -> new HardnessTesterItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    //public static final RegistryObject<Item> ORE_CYCLER = REGISTRY.register("ore_cycler", () -> new OreCyclerItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    //public static final RegistryObject<Item> ORE_CYCLER = REGISTRY.register("ore_cycler", () -> new OreCyclerItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ELEMENT_INDEXER = ITEMS.register("element_indexer", () -> new ElementIndexerItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> LODESTONE = ITEMS.register("lodestone", () -> new MagnetItem(4,new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> SIMPLE_MAGNET = ITEMS.register("simple_magnet", () -> new MagnetItem(1,new Item.Properties().durability(200).tab(ProjectRankine.setup.rankineTools)));
@@ -3787,7 +3812,7 @@ public class RankineItems {
     public static final RegistryObject<Item> ENDOSITUM_BLOCK = ITEMS.register("endositum_block", () -> new BlockItem(RankineBlocks.ENDOSITUM_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
 
 
-    //public static final RegistryObject<Item> HELIUM_GAS_TUBE = REGISTRY.register("helium_gas_tube", () -> new BlockItem(RankineBlocks.HELIUM_GAS_TUBE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
+    //public static final RegistryObject<Item> HELIUM_GAS_TUBE = REGISTRY.register("helium_gas_tube", () -> new BlockItem(RankineBlocks.HELIUM_GAS_TUBE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> HYDROGEN_GAS_BLOCK = ITEMS.register("hydrogen_gas_block", () -> new BlockItem(RankineBlocks.HYDROGEN_GAS_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> HELIUM_GAS_BLOCK = ITEMS.register("helium_gas_block", () -> new BlockItem(RankineBlocks.HELIUM_GAS_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> NITROGEN_GAS_BLOCK = ITEMS.register("nitrogen_gas_block", () -> new BlockItem(RankineBlocks.NITROGEN_GAS_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
@@ -3833,7 +3858,7 @@ public class RankineItems {
 /*
     public static void itemInit() {
         for (String registryName : RankineLists.GAS_BLOCKS) {
-            REGISTRY.register(registryName, () -> new BlockItem(RankineBlocks.getBlock(registryName),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
+            REGISTRY.register(registryName, () -> new BlockItem(RankineBlocks.getBlock(registryName),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
         }
     }
 

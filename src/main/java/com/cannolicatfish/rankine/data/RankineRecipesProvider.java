@@ -9,33 +9,24 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.JamRecipe;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.data.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.tags.Tag;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.function.Consumer;
-
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
-import net.minecraft.data.recipes.SingleItemRecipeBuilder;
-import net.minecraft.data.recipes.SpecialRecipeBuilder;
-import net.minecraft.data.recipes.UpgradeRecipeBuilder;
 
 public class RankineRecipesProvider extends RecipeProvider {
 
@@ -531,6 +522,8 @@ public class RankineRecipesProvider extends RecipeProvider {
         twoXtwo(consumer, Items.LIGHT_BLUE_DYE, RankineItems.AZURITE.get(), 16, "has_ingredient", RankineItems.AZURITE.get(), "light_blue_dye_from_azurite");
         //twoXtwo(consumer, Items.GREEN_DYE, RankineItems.MALACHITE.get(), 16, "has_ingredient", RankineItems.MALACHITE.get(), "_dye_from_");
         ShapelessRecipeBuilder.shapeless(Items.BLACK_DYE).requires(RankineItems.BONE_CHAR.get()).unlockedBy("has_ingredient", has(RankineItems.BONE_CHAR.get())).save(consumer, "rankine:black_dye_from_bone_char");
+        ShapelessRecipeBuilder.shapeless(Items.PINK_DYE).requires(RankineItems.PINK_BELLFLOWER.get()).unlockedBy("has_ingredient", has(RankineItems.PINK_BELLFLOWER.get())).save(consumer, "rankine:pink_dye_from_pink_bellflower");
+        ShapelessRecipeBuilder.shapeless(Items.MAGENTA_DYE).requires(RankineItems.VIOLET_BELLFLOWER.get()).unlockedBy("has_ingredient", has(RankineItems.VIOLET_BELLFLOWER.get())).save(consumer, "rankine:magenta_dye_from_violet_bellflower");
         ShapelessRecipeBuilder.shapeless(Items.YELLOW_DYE).requires(RankineItems.GOLDENROD.get()).unlockedBy("has_ingredient", has(RankineItems.GOLDENROD.get())).save(consumer, "rankine:yellow_dye_from_goldenrod");
         ShapelessRecipeBuilder.shapeless(Items.RED_DYE).requires(RankineItems.RED_LILY.get()).unlockedBy("has_ingredient", has(RankineItems.RED_LILY.get())).save(consumer, "rankine:red_dye_from_red_lily");
         ShapelessRecipeBuilder.shapeless(Items.ORANGE_DYE).requires(RankineItems.ORANGE_LILY.get()).unlockedBy("has_ingredient", has(RankineItems.ORANGE_LILY.get())).save(consumer, "rankine:orange_dye_from_orange_lily");
