@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:alloy_hammer"
+            "items": [
+              "rankine:alloy_hammer"
+            ]
           }
         ]
       }

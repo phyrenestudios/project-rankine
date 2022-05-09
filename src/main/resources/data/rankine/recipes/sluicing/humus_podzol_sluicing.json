@@ -1,38 +1,39 @@
 {
   "type": "rankine:sluicing",
-  "total": 7,
   "input": {
     "item": "rankine:humus_podzol"
   },
   "tool": {
     "tag": "rankine:gold_pans"
   },
-  "output1": {
-    "item": "minecraft:dirt",
-    "weight": 60
-  },
-  "output2": {
-    "item": "rankine:biomass",
-    "weight": 7.5
-  },
-  "output3": {
-    "item": "minecraft:sand",
-    "weight": 3
-  },
-  "output4": {
-    "item": "minecraft:clay_ball",
-    "weight": 1.5
-  },
-  "output5": {
-    "item": "rankine:silt",
-    "weight": 3
-  },
-  "output6": {
-    "item": "minecraft:stick",
-    "weight": 2
-  },
-  "output7": {
-    "tag": "minecraft:leaves",
-    "weight": 2
-  }
+  "outputs": [
+    {
+      "item": "minecraft:dirt",
+      "weight": 60
+    },
+    {
+      "item": "rankine:biomass",
+      "weight": 7.5
+    },
+    {
+      "item": "minecraft:sand",
+      "weight": 3
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "weight": 1.5
+    },
+    {
+      "item": "rankine:silt",
+      "weight": 3
+    },
+    {
+      "item": "minecraft:stick",
+      "weight": 2
+    },
+    {
+      "tag": "minecraft:leaves",
+      "weight": 2
+    }
+  ]
 }

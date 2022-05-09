@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:ground_tap"
+            "items": [
+              "rankine:ground_tap"
+            ]
           }
         ]
       }

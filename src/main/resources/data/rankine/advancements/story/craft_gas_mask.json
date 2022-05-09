@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:gas_mask"
+            "items": [
+              "rankine:gas_mask"
+            ]
           }
         ]
       }

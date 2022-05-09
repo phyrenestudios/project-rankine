@@ -21,7 +21,15 @@ public class RankineAdvancementProvider extends AdvancementProvider {
     @Override
     protected void registerAdvancements(Consumer<Advancement> consumer, ExistingFileHelper fileHelper) {
 
-
+        /*TODO: re-add challenge advancements
+            alloy_collector
+            dirt_collector
+            element_collector
+            geode_collector
+            rock_collector
+            totem_collector
+            find_meteoric_materials
+         */
 
         super.registerAdvancements(consumer, fileHelper);
     }

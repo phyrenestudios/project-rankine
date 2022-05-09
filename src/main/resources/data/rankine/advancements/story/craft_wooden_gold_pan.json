@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:wooden_gold_pan"
+            "items": [
+              "rankine:wooden_gold_pan"
+            ]
           }
         ]
       }

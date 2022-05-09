@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:induction_furnace"
+            "items": [
+              "rankine:induction_furnace"
+            ]
           }
         ]
       }

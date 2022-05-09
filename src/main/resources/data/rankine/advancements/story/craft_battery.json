@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:silver_zinc_battery"
+            "items": [
+              "rankine:silver_zinc_battery"
+            ]
           }
         ]
       }
@@ -31,7 +33,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:magnesium_battery"
+            "items": [
+              "rankine:magnesium_battery"
+            ]
           }
         ]
       }
@@ -41,7 +45,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:lead_acid_battery"
+            "items": [
+              "rankine:lead_acid_battery"
+            ]
           }
         ]
       }
@@ -51,7 +57,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:vanadium_redox_battery"
+            "items": [
+              "rankine:vanadium_redox_battery"
+            ]
           }
         ]
       }
@@ -61,7 +69,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:zinc_bromine_battery"
+            "items": [
+              "rankine:zinc_bromine_battery"
+            ]
           }
         ]
       }
@@ -71,7 +81,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:sodium_sulfur_battery"
+            "items": [
+              "rankine:sodium_sulfur_battery"
+            ]
           }
         ]
       }
@@ -81,7 +93,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:lithium_ion_battery"
+            "items": [
+              "rankine:lithium_ion_battery"
+            ]
           }
         ]
       }

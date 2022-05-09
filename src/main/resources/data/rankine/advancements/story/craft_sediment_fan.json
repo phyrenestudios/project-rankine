@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:sediment_fan"
+            "items": [
+              "rankine:sediment_fan"
+            ]
           }
         ]
       }

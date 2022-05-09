@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:bog_iron"
+            "items": [
+              "rankine:bog_iron"
+            ]
           }
         ]
       }

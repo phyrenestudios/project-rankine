@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:herbicide"
+            "items": [
+              "rankine:herbicide"
+            ]
           }
         ]
       }
