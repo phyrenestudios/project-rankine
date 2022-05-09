@@ -55,6 +55,8 @@ import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.blocks.plants.*;
 import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanBlock;
 import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
+import com.cannolicatfish.rankine.blocks.signs.RankineSignBlock;
+import com.cannolicatfish.rankine.blocks.signs.RankineWallSignBlock;
 import com.cannolicatfish.rankine.blocks.tap.TapLineBlock;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapTile;
@@ -67,6 +69,7 @@ import com.cannolicatfish.rankine.fluids.MercuryFlowingFluidBlock;
 import com.cannolicatfish.rankine.fluids.RankineFlowingFluidBlock;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import com.cannolicatfish.rankine.world.grower.*;
+import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.*;
@@ -74,6 +77,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.common.PlantType;
@@ -1983,7 +1987,32 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_MINERAL_WOOL = BLOCKS.register("black_mineral_wool", () -> new MineralWoolBlock(Block.Properties.of(Material.WOOL, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOL).strength(1F)));
     public static final RegistryObject<Block> GUN_COTTON = BLOCKS.register("gun_cotton", () -> new GunCottonBlock(Block.Properties.of(Material.WOOL, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOL).strength(1F)));
 
+
     //WOOD BLOCKS
+    public static final WoodType CEDAR = WoodType.create("rankine:cedar");
+    public static final WoodType BALSAM_FIR = WoodType.create("rankine:balsam_fir");
+    public static final WoodType EASTERN_HEMLOCK = WoodType.create("rankine:eastern_hemlock");
+    public static final WoodType WESTERN_HEMLOCK = WoodType.create("rankine:western_hemlock");
+    public static final WoodType PINYON_PINE = WoodType.create("rankine:pinyon_pine");
+    public static final WoodType JUNIPER = WoodType.create("rankine:juniper");
+    public static final WoodType BLACK_BIRCH = WoodType.create("rankine:black_birch");
+    public static final WoodType YELLOW_BIRCH = WoodType.create("rankine:yellow_birch");
+    public static final WoodType RED_BIRCH = WoodType.create("rankine:red_birch");
+    public static final WoodType MAPLE = WoodType.create("rankine:maple");
+    public static final WoodType MAGNOLIA = WoodType.create("rankine:magnolia");
+    public static final WoodType BLACK_WALNUT = WoodType.create("rankine:black_walnut");
+    public static final WoodType COCONUT_PALM = WoodType.create("rankine:coconut_palm");
+    public static final WoodType CORK_OAK = WoodType.create("rankine:cork_oak");
+    public static final WoodType SHARINGA = WoodType.create("rankine:sharinga");
+    public static final WoodType CINNAMON = WoodType.create("rankine:cinnamon");
+    public static final WoodType HONEY_LOCUST = WoodType.create("rankine:honey_locust");
+    public static final WoodType WEEPING_WILLOW = WoodType.create("rankine:weeping_willow");
+    public static final WoodType ERYTHRINA = WoodType.create("rankine:erythrina");
+    public static final WoodType PETRIFIED_CHORUS = WoodType.create("rankine:petrified_chorus");
+    public static final WoodType CHARRED = WoodType.create("rankine:charred");
+    public static final WoodType BAMBOO = WoodType.create("rankine:bamboo");
+    public static final WoodType BAMBOO_CULM = WoodType.create("rankine:bamboo_culm");
+
     public static final RegistryObject<Block> CEDAR_LOG = BLOCKS.register("cedar_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> CEDAR_WOOD = BLOCKS.register("cedar_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CEDAR_LOG = BLOCKS.register("stripped_cedar_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -1999,6 +2028,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CEDAR_DOOR = BLOCKS.register("cedar_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> CEDAR_TRAPDOOR = BLOCKS.register("cedar_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> CEDAR_BUTTON = BLOCKS.register("cedar_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> CEDAR_SIGN = BLOCKS.register("cedar_sign", () -> new RankineSignBlock(CEDAR));
+    public static final RegistryObject<Block> CEDAR_WALL_SIGN = BLOCKS.register("cedar_wall_sign", () -> new RankineWallSignBlock(CEDAR));
     public static final RegistryObject<Block> BALSAM_FIR_LOG = BLOCKS.register("balsam_fir_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> BALSAM_FIR_WOOD = BLOCKS.register("balsam_fir_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_BALSAM_FIR_LOG = BLOCKS.register("stripped_balsam_fir_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2014,6 +2045,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BALSAM_FIR_DOOR = BLOCKS.register("balsam_fir_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> BALSAM_FIR_TRAPDOOR = BLOCKS.register("balsam_fir_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> BALSAM_FIR_BUTTON = BLOCKS.register("balsam_fir_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> BALSAM_FIR_SIGN = BLOCKS.register("balsam_fir_sign", () -> new RankineSignBlock(BALSAM_FIR));
+    public static final RegistryObject<Block> BALSAM_FIR_WALL_SIGN = BLOCKS.register("balsam_fir_wall_sign", () -> new RankineWallSignBlock(BALSAM_FIR));
     public static final RegistryObject<Block> EASTERN_HEMLOCK_LOG = BLOCKS.register("eastern_hemlock_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> EASTERN_HEMLOCK_WOOD = BLOCKS.register("eastern_hemlock_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_EASTERN_HEMLOCK_LOG = BLOCKS.register("stripped_eastern_hemlock_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2029,6 +2062,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> EASTERN_HEMLOCK_DOOR = BLOCKS.register("eastern_hemlock_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> EASTERN_HEMLOCK_TRAPDOOR = BLOCKS.register("eastern_hemlock_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> EASTERN_HEMLOCK_BUTTON = BLOCKS.register("eastern_hemlock_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> EASTERN_HEMLOCK_SIGN = BLOCKS.register("eastern_hemlock_sign", () -> new RankineSignBlock(EASTERN_HEMLOCK));
+    public static final RegistryObject<Block> EASTERN_HEMLOCK_WALL_SIGN = BLOCKS.register("eastern_hemlock_wall_sign", () -> new RankineWallSignBlock(EASTERN_HEMLOCK));
     public static final RegistryObject<Block> WESTERN_HEMLOCK_LOG = BLOCKS.register("western_hemlock_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> WESTERN_HEMLOCK_WOOD = BLOCKS.register("western_hemlock_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_WESTERN_HEMLOCK_LOG = BLOCKS.register("stripped_western_hemlock_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2044,6 +2079,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> WESTERN_HEMLOCK_DOOR = BLOCKS.register("western_hemlock_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> WESTERN_HEMLOCK_TRAPDOOR = BLOCKS.register("western_hemlock_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> WESTERN_HEMLOCK_BUTTON = BLOCKS.register("western_hemlock_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_SIGN = BLOCKS.register("western_hemlock_sign", () -> new RankineSignBlock(WESTERN_HEMLOCK));
+    public static final RegistryObject<Block> WESTERN_HEMLOCK_WALL_SIGN = BLOCKS.register("western_hemlock_wall_sign", () -> new RankineWallSignBlock(WESTERN_HEMLOCK));
     public static final RegistryObject<Block> PINYON_PINE_LOG = BLOCKS.register("pinyon_pine_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> PINYON_PINE_WOOD = BLOCKS.register("pinyon_pine_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_PINYON_PINE_LOG = BLOCKS.register("stripped_pinyon_pine_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2059,6 +2096,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PINYON_PINE_DOOR = BLOCKS.register("pinyon_pine_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> PINYON_PINE_TRAPDOOR = BLOCKS.register("pinyon_pine_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> PINYON_PINE_BUTTON = BLOCKS.register("pinyon_pine_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> PINYON_PINE_SIGN = BLOCKS.register("pinyon_pine_sign", () -> new RankineSignBlock(PINYON_PINE));
+    public static final RegistryObject<Block> PINYON_PINE_WALL_SIGN = BLOCKS.register("pinyon_pine_wall_sign", () -> new RankineWallSignBlock(PINYON_PINE));
     public static final RegistryObject<Block> JUNIPER_LOG = BLOCKS.register("juniper_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> JUNIPER_WOOD = BLOCKS.register("juniper_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_JUNIPER_LOG = BLOCKS.register("stripped_juniper_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2074,6 +2113,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> JUNIPER_DOOR = BLOCKS.register("juniper_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> JUNIPER_TRAPDOOR = BLOCKS.register("juniper_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> JUNIPER_BUTTON = BLOCKS.register("juniper_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> JUNIPER_SIGN = BLOCKS.register("juniper_sign", () -> new RankineSignBlock(JUNIPER));
+    public static final RegistryObject<Block> JUNIPER_WALL_SIGN = BLOCKS.register("juniper_wall_sign", () -> new RankineWallSignBlock(JUNIPER));
     public static final RegistryObject<Block> BLACK_BIRCH_LOG = BLOCKS.register("black_birch_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_BIRCH_WOOD = BLOCKS.register("black_birch_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_BLACK_BIRCH_LOG = BLOCKS.register("stripped_black_birch_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2089,6 +2130,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_BIRCH_DOOR = BLOCKS.register("black_birch_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> BLACK_BIRCH_TRAPDOOR = BLOCKS.register("black_birch_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> BLACK_BIRCH_BUTTON = BLOCKS.register("black_birch_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> BLACK_BIRCH_SIGN = BLOCKS.register("black_birch_sign", () -> new RankineSignBlock(BLACK_BIRCH));
+    public static final RegistryObject<Block> BLACK_BIRCH_WALL_SIGN = BLOCKS.register("black_birch_wall_sign", () -> new RankineWallSignBlock(BLACK_BIRCH));
     public static final RegistryObject<Block> YELLOW_BIRCH_LOG = BLOCKS.register("yellow_birch_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> YELLOW_BIRCH_WOOD = BLOCKS.register("yellow_birch_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_YELLOW_BIRCH_LOG = BLOCKS.register("stripped_yellow_birch_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2104,6 +2147,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> YELLOW_BIRCH_DOOR = BLOCKS.register("yellow_birch_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> YELLOW_BIRCH_TRAPDOOR = BLOCKS.register("yellow_birch_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> YELLOW_BIRCH_BUTTON = BLOCKS.register("yellow_birch_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> YELLOW_BIRCH_SIGN = BLOCKS.register("yellow_birch_sign", () -> new RankineSignBlock(YELLOW_BIRCH));
+    public static final RegistryObject<Block> YELLOW_BIRCH_WALL_SIGN = BLOCKS.register("yellow_birch_wall_sign", () -> new RankineWallSignBlock(YELLOW_BIRCH));
     public static final RegistryObject<Block> RED_BIRCH_LOG = BLOCKS.register("red_birch_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> RED_BIRCH_WOOD = BLOCKS.register("red_birch_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_RED_BIRCH_LOG = BLOCKS.register("stripped_red_birch_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2119,6 +2164,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RED_BIRCH_DOOR = BLOCKS.register("red_birch_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> RED_BIRCH_TRAPDOOR = BLOCKS.register("red_birch_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> RED_BIRCH_BUTTON = BLOCKS.register("red_birch_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> RED_BIRCH_SIGN = BLOCKS.register("red_birch_sign", () -> new RankineSignBlock(RED_BIRCH));
+    public static final RegistryObject<Block> RED_BIRCH_WALL_SIGN = BLOCKS.register("red_birch_wall_sign", () -> new RankineWallSignBlock(RED_BIRCH));
     public static final RegistryObject<Block> MAPLE_LOG = BLOCKS.register("maple_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAPLE_WOOD = BLOCKS.register("maple_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_MAPLE_LOG = BLOCKS.register("stripped_maple_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2134,6 +2181,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MAPLE_DOOR = BLOCKS.register("maple_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> MAPLE_TRAPDOOR = BLOCKS.register("maple_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> MAPLE_BUTTON = BLOCKS.register("maple_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> MAPLE_SIGN = BLOCKS.register("maple_sign", () -> new RankineSignBlock(MAPLE));
+    public static final RegistryObject<Block> MAPLE_WALL_SIGN = BLOCKS.register("maple_wall_sign", () -> new RankineWallSignBlock(MAPLE));
     public static final RegistryObject<Block> MAGNOLIA_LOG = BLOCKS.register("magnolia_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAGNOLIA_WOOD = BLOCKS.register("magnolia_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_MAGNOLIA_LOG = BLOCKS.register("stripped_magnolia_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2149,6 +2198,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MAGNOLIA_DOOR = BLOCKS.register("magnolia_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> MAGNOLIA_TRAPDOOR = BLOCKS.register("magnolia_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> MAGNOLIA_BUTTON = BLOCKS.register("magnolia_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> MAGNOLIA_SIGN = BLOCKS.register("magnolia_sign", () -> new RankineSignBlock(MAGNOLIA));
+    public static final RegistryObject<Block> MAGNOLIA_WALL_SIGN = BLOCKS.register("magnolia_wall_sign", () -> new RankineWallSignBlock(MAGNOLIA));
     public static final RegistryObject<Block> BLACK_WALNUT_LOG = BLOCKS.register("black_walnut_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_WALNUT_WOOD = BLOCKS.register("black_walnut_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_BLACK_WALNUT_LOG = BLOCKS.register("stripped_black_walnut_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2164,6 +2215,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_WALNUT_DOOR = BLOCKS.register("black_walnut_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> BLACK_WALNUT_TRAPDOOR = BLOCKS.register("black_walnut_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> BLACK_WALNUT_BUTTON = BLOCKS.register("black_walnut_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> BLACK_WALNUT_SIGN = BLOCKS.register("black_walnut_sign", () -> new RankineSignBlock(BLACK_WALNUT));
+    public static final RegistryObject<Block> BLACK_WALNUT_WALL_SIGN = BLOCKS.register("black_walnut_wall_sign", () -> new RankineWallSignBlock(BLACK_WALNUT));
     public static final RegistryObject<Block> COCONUT_PALM_LOG = BLOCKS.register("coconut_palm_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> COCONUT_PALM_WOOD = BLOCKS.register("coconut_palm_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_COCONUT_PALM_LOG = BLOCKS.register("stripped_coconut_palm_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2179,6 +2232,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> COCONUT_PALM_DOOR = BLOCKS.register("coconut_palm_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> COCONUT_PALM_TRAPDOOR = BLOCKS.register("coconut_palm_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> COCONUT_PALM_BUTTON = BLOCKS.register("coconut_palm_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> COCONUT_PALM_SIGN = BLOCKS.register("coconut_palm_sign", () -> new RankineSignBlock(COCONUT_PALM));
+    public static final RegistryObject<Block> COCONUT_PALM_WALL_SIGN = BLOCKS.register("coconut_palm_wall_sign", () -> new RankineWallSignBlock(COCONUT_PALM));
     public static final RegistryObject<Block> CORK_OAK_LOG = BLOCKS.register("cork_oak_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> CORK_OAK_WOOD = BLOCKS.register("cork_oak_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CORK_OAK_LOG = BLOCKS.register("stripped_cork_oak_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2194,6 +2249,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CORK_OAK_DOOR = BLOCKS.register("cork_oak_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> CORK_OAK_TRAPDOOR = BLOCKS.register("cork_oak_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> CORK_OAK_BUTTON = BLOCKS.register("cork_oak_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> CORK_OAK_SIGN = BLOCKS.register("cork_oak_sign", () -> new RankineSignBlock(CORK_OAK));
+    public static final RegistryObject<Block> CORK_OAK_WALL_SIGN = BLOCKS.register("cork_oak_wall_sign", () -> new RankineWallSignBlock(CORK_OAK));
     public static final RegistryObject<Block> SHARINGA_LOG = BLOCKS.register("sharinga_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> SHARINGA_WOOD = BLOCKS.register("sharinga_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_SHARINGA_LOG = BLOCKS.register("stripped_sharinga_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2209,6 +2266,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SHARINGA_DOOR = BLOCKS.register("sharinga_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> SHARINGA_TRAPDOOR = BLOCKS.register("sharinga_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> SHARINGA_BUTTON = BLOCKS.register("sharinga_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> SHARINGA_SIGN = BLOCKS.register("sharinga_sign", () -> new RankineSignBlock(SHARINGA));
+    public static final RegistryObject<Block> SHARINGA_WALL_SIGN = BLOCKS.register("sharinga_wall_sign", () -> new RankineWallSignBlock(SHARINGA));
     public static final RegistryObject<Block> CINNAMON_LOG = BLOCKS.register("cinnamon_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> CINNAMON_WOOD = BLOCKS.register("cinnamon_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CINNAMON_LOG = BLOCKS.register("stripped_cinnamon_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2224,6 +2283,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CINNAMON_DOOR = BLOCKS.register("cinnamon_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> CINNAMON_TRAPDOOR = BLOCKS.register("cinnamon_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> CINNAMON_BUTTON = BLOCKS.register("cinnamon_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> CINNAMON_SIGN = BLOCKS.register("cinnamon_sign", () -> new RankineSignBlock(CINNAMON));
+    public static final RegistryObject<Block> CINNAMON_WALL_SIGN = BLOCKS.register("cinnamon_wall_sign", () -> new RankineWallSignBlock(CINNAMON));
     public static final RegistryObject<Block> HONEY_LOCUST_LOG = BLOCKS.register("honey_locust_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> HONEY_LOCUST_WOOD = BLOCKS.register("honey_locust_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_HONEY_LOCUST_LOG = BLOCKS.register("stripped_honey_locust_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2239,6 +2300,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HONEY_LOCUST_DOOR = BLOCKS.register("honey_locust_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> HONEY_LOCUST_TRAPDOOR = BLOCKS.register("honey_locust_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> HONEY_LOCUST_BUTTON = BLOCKS.register("honey_locust_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> HONEY_LOCUST_SIGN = BLOCKS.register("honey_locust_sign", () -> new RankineSignBlock(HONEY_LOCUST));
+    public static final RegistryObject<Block> HONEY_LOCUST_WALL_SIGN = BLOCKS.register("honey_locust_wall_sign", () -> new RankineWallSignBlock(HONEY_LOCUST));
     public static final RegistryObject<Block> WEEPING_WILLOW_LOG = BLOCKS.register("weeping_willow_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> WEEPING_WILLOW_WOOD = BLOCKS.register("weeping_willow_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_WEEPING_WILLOW_LOG = BLOCKS.register("stripped_weeping_willow_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2254,6 +2317,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> WEEPING_WILLOW_DOOR = BLOCKS.register("weeping_willow_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> WEEPING_WILLOW_TRAPDOOR = BLOCKS.register("weeping_willow_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> WEEPING_WILLOW_BUTTON = BLOCKS.register("weeping_willow_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> WEEPING_WILLOW_SIGN = BLOCKS.register("weeping_willow_sign", () -> new RankineSignBlock(WEEPING_WILLOW));
+    public static final RegistryObject<Block> WEEPING_WILLOW_WALL_SIGN = BLOCKS.register("weeping_willow_wall_sign", () -> new RankineWallSignBlock(WEEPING_WILLOW));
     public static final RegistryObject<Block> ERYTHRINA_LOG = BLOCKS.register("erythrina_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> ERYTHRINA_WOOD = BLOCKS.register("erythrina_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_ERYTHRINA_LOG = BLOCKS.register("stripped_erythrina_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2269,6 +2334,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ERYTHRINA_DOOR = BLOCKS.register("erythrina_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> ERYTHRINA_TRAPDOOR = BLOCKS.register("erythrina_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> ERYTHRINA_BUTTON = BLOCKS.register("erythrina_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> ERYTHRINA_SIGN = BLOCKS.register("erythrina_sign", () -> new RankineSignBlock(ERYTHRINA));
+    public static final RegistryObject<Block> ERYTHRINA_WALL_SIGN = BLOCKS.register("erythrina_wall_sign", () -> new RankineWallSignBlock(ERYTHRINA));
     public static final RegistryObject<Block> PETRIFIED_CHORUS_LOG = BLOCKS.register("petrified_chorus_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> PETRIFIED_CHORUS_WOOD = BLOCKS.register("petrified_chorus_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_PETRIFIED_CHORUS_LOG = BLOCKS.register("stripped_petrified_chorus_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2284,6 +2351,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PETRIFIED_CHORUS_DOOR = BLOCKS.register("petrified_chorus_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> PETRIFIED_CHORUS_TRAPDOOR = BLOCKS.register("petrified_chorus_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> PETRIFIED_CHORUS_BUTTON = BLOCKS.register("petrified_chorus_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> PETRIFIED_CHORUS_SIGN = BLOCKS.register("petrified_chorus_sign", () -> new RankineSignBlock(PETRIFIED_CHORUS));
+    public static final RegistryObject<Block> PETRIFIED_CHORUS_WALL_SIGN = BLOCKS.register("petrified_chorus_wall_sign", () -> new RankineWallSignBlock(PETRIFIED_CHORUS));
     public static final RegistryObject<Block> CHARRED_LOG = BLOCKS.register("charred_log", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> CHARRED_WOOD = BLOCKS.register("charred_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CHARRED_LOG = BLOCKS.register("stripped_charred_log", () -> new RankineLogBlock(DEF_WOOD));
@@ -2299,6 +2368,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CHARRED_DOOR = BLOCKS.register("charred_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> CHARRED_TRAPDOOR = BLOCKS.register("charred_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> CHARRED_BUTTON = BLOCKS.register("charred_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> CHARRED_SIGN = BLOCKS.register("charred_sign", () -> new RankineSignBlock(CHARRED));
+    public static final RegistryObject<Block> CHARRED_WALL_SIGN = BLOCKS.register("charred_wall_sign", () -> new RankineWallSignBlock(CHARRED));
     public static final RegistryObject<Block> BAMBOO_PLANKS = BLOCKS.register("bamboo_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_SLAB = BLOCKS.register("bamboo_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_STAIRS = BLOCKS.register("bamboo_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
@@ -2310,6 +2381,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BAMBOO_DOOR = BLOCKS.register("bamboo_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> BAMBOO_TRAPDOOR = BLOCKS.register("bamboo_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> BAMBOO_BUTTON = BLOCKS.register("bamboo_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> BAMBOO_SIGN = BLOCKS.register("bamboo_sign", () -> new RankineSignBlock(BAMBOO));
+    public static final RegistryObject<Block> BAMBOO_WALL_SIGN = BLOCKS.register("bamboo_wall_sign", () -> new RankineWallSignBlock(BAMBOO));
     public static final RegistryObject<Block> BAMBOO_CULMS = BLOCKS.register("bamboo_culms", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_CULMS_SLAB = BLOCKS.register("bamboo_culms_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_CULMS_STAIRS = BLOCKS.register("bamboo_culms_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
@@ -2321,6 +2394,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BAMBOO_CULMS_DOOR = BLOCKS.register("bamboo_culms_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> BAMBOO_CULMS_TRAPDOOR = BLOCKS.register("bamboo_culms_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> BAMBOO_CULMS_BUTTON = BLOCKS.register("bamboo_culms_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> BAMBOO_CULMS_SIGN = BLOCKS.register("bamboo_culms_sign", () -> new RankineSignBlock(BAMBOO_CULM));
+    public static final RegistryObject<Block> BAMBOO_CULMS_WALL_SIGN = BLOCKS.register("bamboo_culms_wall_sign", () -> new RankineWallSignBlock(BAMBOO_CULM));
 
 
     public static final RegistryObject<Block> HOLLOW_OAK_LOG = BLOCKS.register("hollow_oak_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
@@ -2397,6 +2472,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PURPLE_MORNING_GLORY = BLOCKS.register("purple_morning_glory", () -> new TallFlowerBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> BLUE_MORNING_GLORY = BLOCKS.register("blue_morning_glory", () -> new TallFlowerBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> BLACK_MORNING_GLORY = BLOCKS.register("black_morning_glory", () -> new TallFlowerBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> PINK_BELLFLOWER = BLOCKS.register("pink_bellflower", () -> new TallFlowerBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> VIOLET_BELLFLOWER = BLOCKS.register("violet_bellflower", () -> new TallFlowerBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> GOLDENROD = BLOCKS.register("goldenrod", () -> new TallFlowerBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> SHORT_GRASS = BLOCKS.register("short_grass", () -> new ShortGrassBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> STINGING_NETTLE = BLOCKS.register("stinging_nettle", () -> new StingingNettleBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
@@ -2407,14 +2484,14 @@ public class RankineBlocks {
     public static final RegistryObject<Block> WILLOW_BRANCHLET = BLOCKS.register("willow_branchlet", () -> new WillowBranchletTopBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.GRASS).noCollission().instabreak().sound(SoundType.VINE)));
     public static final RegistryObject<Block> WILLOW_BRANCHLET_PLANT = BLOCKS.register("willow_branchlet_plant", () -> new WillowBranchletBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.GRASS).noCollission().instabreak().sound(SoundType.VINE)));
     public static final RegistryObject<Block> LOCUST_SPINE = BLOCKS.register("locust_spine", () -> new LocustSpineBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).noCollission().instabreak().sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> OYSTER_MUSHROOM = BLOCKS.register("oyster_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_WHITE).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> LIONS_MANE_MUSHROOM = BLOCKS.register("lions_mane_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_WHITE).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> SULFUR_SHELF_MUSHROOM = BLOCKS.register("sulfur_shelf_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_WHITE).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> HONEY_MUSHROOM = BLOCKS.register("honey_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_WHITE).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> ARTIST_CONK_MUSHROOM = BLOCKS.register("artist_conk_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_WHITE).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> TINDER_CONK_MUSHROOM = BLOCKS.register("tinder_conk_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_WHITE).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> TURKEY_TAIL_MUSHROOM = BLOCKS.register("turkey_tail_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_WHITE).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> CINNABAR_POLYPORE_MUSHROOM = BLOCKS.register("cinnabar_polypore_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_WHITE).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> OYSTER_MUSHROOM = BLOCKS.register("oyster_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_OYSTER_MUSHROOM.getHolder().get()));
+    public static final RegistryObject<Block> LIONS_MANE_MUSHROOM = BLOCKS.register("lions_mane_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_LIONS_MANE_MUSHROOM.getHolder().get()));
+    public static final RegistryObject<Block> SULFUR_SHELF_MUSHROOM = BLOCKS.register("sulfur_shelf_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_SULFUR_SHELF_MUSHROOM.getHolder().get()));
+    public static final RegistryObject<Block> HONEY_MUSHROOM = BLOCKS.register("honey_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_HONEY_MUSHROOM.getHolder().get()));
+    public static final RegistryObject<Block> ARTIST_CONK_MUSHROOM = BLOCKS.register("artist_conk_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_ARTIST_CONK_MUSHROOM.getHolder().get()));
+    public static final RegistryObject<Block> TINDER_CONK_MUSHROOM = BLOCKS.register("tinder_conk_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_TINDER_CONK_MUSHROOM.getHolder().get()));
+    public static final RegistryObject<Block> TURKEY_TAIL_MUSHROOM = BLOCKS.register("turkey_tail_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_TURKEY_TAIL_MUSHROOM.getHolder().get()));
+    public static final RegistryObject<Block> CINNABAR_POLYPORE_MUSHROOM = BLOCKS.register("cinnabar_polypore_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_CINNABAR_POLYPORE_MUSHROOM.getHolder().get()));
     public static final RegistryObject<Block> OYSTER_MUSHROOM_BLOCK = BLOCKS.register("oyster_mushroom_block", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> LIONS_MANE_MUSHROOM_BLOCK = BLOCKS.register("lions_mane_mushroom_block", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> SULFUR_SHELF_MUSHROOM_BLOCK = BLOCKS.register("sulfur_shelf_mushroom_block", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));

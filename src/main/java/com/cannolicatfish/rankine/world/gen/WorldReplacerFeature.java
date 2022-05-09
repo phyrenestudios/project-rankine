@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.world.gen;
 
+import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -7,6 +8,7 @@ import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
@@ -16,6 +18,8 @@ import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -25,6 +29,7 @@ import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
+import java.util.Random;
 
 public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
     public static final int NOISE_SCALE = Config.MISC_WORLDGEN.NOISE_SCALE.get();
@@ -42,7 +47,7 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
 
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
-        /*
+
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
         Random rand = reader.getRandom();
@@ -52,11 +57,11 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
             for (int z = chunk.getPos().getMinBlockZ(); z <= chunk.getPos().getMaxBlockZ(); ++z) {
                 int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
                 double stoneNoise = Biome.BIOME_INFO_NOISE.getValue(((double)x) / NOISE_SCALE, ((double)z) / NOISE_SCALE, false);
-                Biome targetBiome = reader.getBiome(new BlockPos(x, 0, z)).value();
+                Biome targetBiome = reader.getBiome(new BlockPos(x, reader.getMaxBuildHeight(), z)).value();
 
                 if (GEN_BIOMES.contains(targetBiome.getRegistryName())) {
                     ResourceLocation biomeName = targetBiome.getRegistryName();
-                    for (int y = 0; y <= endY; ++y) {
+                    for (int y = -64; y <= endY; ++y) {
                         BlockState StoneBS = getStone(biomeName, stoneNoise, y);
                         if (StoneBS == null) return false;
                         BlockPos TARGET_POS = new BlockPos(x,y,z);
@@ -102,11 +107,12 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
             }
 
         }
-         */
+
         return true;
     }
 
     private static BlockState vanillaOre(Block ore) {
+        /*
         if (ore.equals(Blocks.IRON_ORE)) {
             return RankineBlocks.IRON_ORE.get().defaultBlockState();
         } else if (ore.equals(Blocks.GOLD_ORE)) {
@@ -127,13 +133,15 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
             return RankineBlocks.NETHER_QUARTZ_ORE.get().defaultBlockState();
         }
 
+         */
+
         return Blocks.AIR.defaultBlockState();
     }
 
     private static boolean canReplaceStone(BlockState target) {
         switch (Config.MISC_WORLDGEN.LAYER_GEN.get()) {
             case 1:
-                return target.equals(Blocks.STONE);
+                return target.getBlock().equals(Blocks.STONE) || target.getBlock().equals(Blocks.DEEPSLATE);
             case 2:
                 return target.is(BlockTags.BASE_STONE_OVERWORLD);
             case 3:
@@ -145,11 +153,11 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
 
     private static BlockState getStone(ResourceLocation biomeName, double noise, int y) {
         List<String> blockList = LAYER_LISTS.get(GEN_BIOMES.indexOf(biomeName));
-        int i = (int) Mth.clamp(Math.floor((y+noise/LAYER_BEND+20)/LAYER_THICKNESS),0,blockList.size()-1);
+        int i = (int) Mth.clamp(Math.floor((y+noise/LAYER_BEND+80)/LAYER_THICKNESS),0,blockList.size()-1);
         try {
             return ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(blockList.get(i))).defaultBlockState();
         } catch (Exception e) {
-            System.out.print("invalid stone layer entry for " + biomeName);
+            System.out.print("invalid stone layer entry of " + blockList.get(i) + " for " + biomeName);
             return null;
         }
     }

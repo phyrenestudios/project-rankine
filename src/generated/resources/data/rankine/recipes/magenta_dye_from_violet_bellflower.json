@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:violet_bellflower"
+    }
+  ],
+  "result": {
+    "item": "minecraft:magenta_dye"
+  }
+}

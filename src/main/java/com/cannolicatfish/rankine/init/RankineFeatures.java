@@ -1,9 +1,15 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.world.gen.MeteoriteFeature;
-import com.cannolicatfish.rankine.world.gen.MeteoriteFeatureConfig;
+import com.cannolicatfish.rankine.world.gen.*;
+import com.cannolicatfish.rankine.world.gen.mushrooms.*;
+import com.cannolicatfish.rankine.world.gen.trees.*;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockPileConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -12,9 +18,19 @@ public class RankineFeatures {
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, ProjectRankine.MODID);
 
     public static final RegistryObject<Feature<MeteoriteFeatureConfig>> METEORITE = FEATURES.register("meteorite", () -> new MeteoriteFeature(MeteoriteFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> WALL_MUSHROOMS = FEATURES.register("wall_mushrooms_feature", () -> new WallMushroomsFeature(NoneFeatureConfiguration.CODEC));
 
-    //public static final RegistryObject<Feature<TreeConfiguration>> CEDAR_TREE = FEATURES.register("cedar_tree", () -> new CedarTreeFeature(TreeConfiguration.CODEC));
-/*
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> WORLD_REPLACER = FEATURES.register("world_replacer_feature", () -> new WorldReplacerFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> POST_WORLD_REPLACER = FEATURES.register("post_world_replacer_feature", () -> new PostWorldReplacerFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> FLAT_BEDROCK_FEATURE = FEATURES.register("flat_bedrock", () -> new FlatBedrockFeature(NoneFeatureConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> END_METEORITE_FEATURE = FEATURES.register("end_meteorite_feature", () -> new EndMeteoriteFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> ANTIMATTER_BLOB_FEATURE = FEATURES.register("antimatter_blob_feature", () -> new AntimatterFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<RandomPatchConfiguration>> PATCH_COBBLES = FEATURES.register("patch_cobbles", () -> new CobblePatchFeature(RandomPatchConfiguration.CODEC));
+
+
+
+    public static final RegistryObject<Feature<TreeConfiguration>> CEDAR_TREE = FEATURES.register("cedar_tree", () -> new CedarTreeFeature(TreeConfiguration.CODEC));
     public static final RegistryObject<Feature<TreeConfiguration>> EASTERN_HEMLOCK_TREE = FEATURES.register("eastern_hemlock_tree", () -> new EasternHemlockTreeFeature(TreeConfiguration.CODEC));
     public static final RegistryObject<Feature<TreeConfiguration>> WESTERN_HEMLOCK_TREE = FEATURES.register("western_hemlock_tree", () -> new WesternHemlockTreeFeature(TreeConfiguration.CODEC));
     public static final RegistryObject<Feature<TreeConfiguration>> BALSAM_FIR_TREE = FEATURES.register("balsam_fir_tree", () -> new BalsamFirTreeFeature(TreeConfiguration.CODEC));
@@ -38,32 +54,22 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<RankineOreFeatureConfig>> SPHERE_ORE = REGISTRY.register("sphere_ore_feature", () -> new SphericalOreVeinFeature(RankineOreFeatureConfig.CODEC));
     public static final RegistryObject<Feature<RankineOreFeatureConfig>> DISK_ORE = REGISTRY.register("disk_ore_feature", () -> new DiskOreVeinFeature(RankineOreFeatureConfig.CODEC));
     public static final RegistryObject<Feature<DiskConfiguration>> LAND_DISK = REGISTRY.register("land_disk_feature", () -> new LandDiskFeature(DiskConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> END_METEORITE_FEATURE = REGISTRY.register("end_meteorite_feature", () -> new EndMeteoriteFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> ANTIMATTER_BLOB_FEATURE = REGISTRY.register("antimatter_blob_feature", () -> new AntimatterFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> FUMAROLE_FEATURE = REGISTRY.register("fumarole_feature", () -> new FumaroleFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> COLUMN_FEATURE = REGISTRY.register("column_feature", () -> new ColumnFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> WALL_MUSHROOMS = REGISTRY.register("wall_mushrooms_feature", () -> new WallMushroomsFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<ReplacerFeatureConfig>> FLAT_BEDROCK_FEATURE = REGISTRY.register("flat_bedrock_feature", () -> new FlatBedrockFeature(ReplacerFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> INTRUSION = REGISTRY.register("intrusion_feature", () -> new IntrusionFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> WORLD_REPLACER_FEATURE = REGISTRY.register("world_replacer_feature", () -> new WorldReplacerFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> POST_WORLD_REPLACER_FEATURE = REGISTRY.register("post_world_replacer_feature", () -> new PostWorldReplacerFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<RandomPatchConfiguration>> COBBLE_PATCH = REGISTRY.register("cobble_patch_feature", () -> new CobblePatchFeature(RandomPatchConfiguration.CODEC));
 
 
      */
 
-    /*
-    public static final RegistryObject<Feature<BlockPileConfiguration>> TINDER_CONK_FEATURE = FEATURES.register("tinder_conk_feature", () -> new TinderConkMushroomFeature(BlockPileConfiguration.CODEC));
-    public static final RegistryObject<Feature<BlockPileConfiguration>> LIONS_MANE_FEATURE = FEATURES.register("lions_mane_feature", () -> new LionsManeMushroomFeature(BlockPileConfiguration.CODEC));
-    public static final RegistryObject<Feature<BlockPileConfiguration>> TURKEY_TAIL_FEATURE = FEATURES.register("turkey_tail_feature", () -> new TurkeyTailMushroomFeature(BlockPileConfiguration.CODEC));
-    public static final RegistryObject<Feature<BlockPileConfiguration>> SULFUR_SHELF_FEATURE = FEATURES.register("sulfur_shelf_feature", () -> new SulfurShelfMushroomFeature(BlockPileConfiguration.CODEC));
-    public static final RegistryObject<Feature<BlockPileConfiguration>> HONEY_FEATURE = FEATURES.register("honey_feature", () -> new HoneyMushroomFeature(BlockPileConfiguration.CODEC));
-    public static final RegistryObject<Feature<BlockPileConfiguration>> ARTIST_CONK_FEATURE = FEATURES.register("artist_conk_feature", () -> new ArtistsConkMushroomFeature(BlockPileConfiguration.CODEC));
-    public static final RegistryObject<Feature<BlockPileConfiguration>> OYSTER_FEATURE = FEATURES.register("oyster_feature", () -> new OysterMushroomFeature(BlockPileConfiguration.CODEC));
-    public static final RegistryObject<Feature<BlockPileConfiguration>> CINNABAR_POLYPORE_FEATURE = FEATURES.register("cinnabar_polypore_feature", () -> new CinnbarPolyporeMushroomFeature(BlockPileConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockPileConfiguration>> TINDER_CONK = FEATURES.register("tinder_conk_feature", () -> new TinderConkMushroomFeature(BlockPileConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockPileConfiguration>> LIONS_MANE = FEATURES.register("lions_mane_feature", () -> new LionsManeMushroomFeature(BlockPileConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockPileConfiguration>> TURKEY_TAIL = FEATURES.register("turkey_tail_feature", () -> new TurkeyTailMushroomFeature(BlockPileConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockPileConfiguration>> SULFUR_SHELF = FEATURES.register("sulfur_shelf_feature", () -> new SulfurShelfMushroomFeature(BlockPileConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockPileConfiguration>> HONEY = FEATURES.register("honey_feature", () -> new HoneyMushroomFeature(BlockPileConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockPileConfiguration>> ARTIST_CONK = FEATURES.register("artist_conk_feature", () -> new ArtistsConkMushroomFeature(BlockPileConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockPileConfiguration>> OYSTER = FEATURES.register("oyster_feature", () -> new OysterMushroomFeature(BlockPileConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockPileConfiguration>> CINNABAR_POLYPORE = FEATURES.register("cinnabar_polypore_feature", () -> new CinnbarPolyporeMushroomFeature(BlockPileConfiguration.CODEC));
 
-
-     */
 
 
 

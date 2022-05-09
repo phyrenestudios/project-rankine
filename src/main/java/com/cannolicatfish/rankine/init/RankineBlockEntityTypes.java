@@ -20,9 +20,14 @@ import com.cannolicatfish.rankine.blocks.particleaccelerator.ParticleAccelerator
 import com.cannolicatfish.rankine.blocks.pedestal.PedestalTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
+import com.cannolicatfish.rankine.blocks.signs.RankineSignBlockEntity;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapTile;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilTile;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -115,5 +120,38 @@ public class RankineBlockEntityTypes {
             () -> BlockEntityType.Builder.of(PedestalTile::new, RankineBlocks.BRONZE_PEDESTAL.get())
                     .build(null));
 
+    public static final RegistryObject<BlockEntityType<RankineSignBlockEntity>> RANKINE_SIGN = BLOCK_ENTITY_TYPES.register("rankine_sign",
+            () -> BlockEntityType.Builder.of(RankineSignBlockEntity::new,
+                    RankineBlocks.CEDAR_SIGN.get(), RankineBlocks.CEDAR_WALL_SIGN.get(),
+                    RankineBlocks.BALSAM_FIR_SIGN.get(), RankineBlocks.BALSAM_FIR_WALL_SIGN.get(),
+                    RankineBlocks.EASTERN_HEMLOCK_SIGN.get(), RankineBlocks.EASTERN_HEMLOCK_WALL_SIGN.get(),
+                    RankineBlocks.WESTERN_HEMLOCK_SIGN.get(), RankineBlocks.WESTERN_HEMLOCK_WALL_SIGN.get(),
+                    RankineBlocks.PINYON_PINE_SIGN.get(), RankineBlocks.PINYON_PINE_WALL_SIGN.get(),
+                    RankineBlocks.JUNIPER_SIGN.get(), RankineBlocks.JUNIPER_WALL_SIGN.get(),
+                    RankineBlocks.BLACK_BIRCH_SIGN.get(), RankineBlocks.BLACK_BIRCH_WALL_SIGN.get(),
+                    RankineBlocks.YELLOW_BIRCH_SIGN.get(), RankineBlocks.YELLOW_BIRCH_WALL_SIGN.get(),
+                    RankineBlocks.RED_BIRCH_SIGN.get(), RankineBlocks.RED_BIRCH_WALL_SIGN.get(),
+                    RankineBlocks.MAPLE_SIGN.get(), RankineBlocks.MAPLE_WALL_SIGN.get(),
+                    RankineBlocks.MAGNOLIA_SIGN.get(), RankineBlocks.MAGNOLIA_WALL_SIGN.get(),
+                    RankineBlocks.BLACK_WALNUT_SIGN.get(), RankineBlocks.BLACK_WALNUT_WALL_SIGN.get(),
+                    RankineBlocks.COCONUT_PALM_SIGN.get(), RankineBlocks.COCONUT_PALM_WALL_SIGN.get(),
+                    RankineBlocks.CORK_OAK_SIGN.get(), RankineBlocks.CORK_OAK_WALL_SIGN.get(),
+                    RankineBlocks.SHARINGA_SIGN.get(), RankineBlocks.SHARINGA_WALL_SIGN.get(),
+                    RankineBlocks.CINNAMON_SIGN.get(), RankineBlocks.CINNAMON_WALL_SIGN.get(),
+                    RankineBlocks.HONEY_LOCUST_SIGN.get(), RankineBlocks.HONEY_LOCUST_WALL_SIGN.get(),
+                    RankineBlocks.WEEPING_WILLOW_SIGN.get(), RankineBlocks.WEEPING_WILLOW_WALL_SIGN.get(),
+                    RankineBlocks.ERYTHRINA_SIGN.get(), RankineBlocks.ERYTHRINA_WALL_SIGN.get(),
+                    RankineBlocks.PETRIFIED_CHORUS_SIGN.get(), RankineBlocks.PETRIFIED_CHORUS_WALL_SIGN.get(),
+                    RankineBlocks.CHARRED_SIGN.get(), RankineBlocks.CHARRED_WALL_SIGN.get(),
+                    RankineBlocks.BAMBOO_SIGN.get(), RankineBlocks.BAMBOO_WALL_SIGN.get(),
+                    RankineBlocks.BAMBOO_CULMS_SIGN.get(), RankineBlocks.BAMBOO_CULMS_WALL_SIGN.get()
+                    ).build(null));
+
+
+    @OnlyIn(Dist.CLIENT)
+    public static void registerBlockEntityRenders() {
+        BlockEntityRenderers.register(RANKINE_SIGN.get(), SignRenderer::new);
+
+    }
 
 }

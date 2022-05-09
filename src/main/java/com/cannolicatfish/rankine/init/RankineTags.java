@@ -1,14 +1,15 @@
 package com.cannolicatfish.rankine.init;
 
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.item.Item;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.Tags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 
 public final class RankineTags {
 
@@ -28,6 +29,15 @@ public final class RankineTags {
     }
 
 
+    public static final class Biomes {
+        public static final TagKey<Biome> IS_END = createBiomeTag("is_end");
+        public static final TagKey<Biome> IS_SAVANNA = createBiomeTag("is_savanna");
+
+    }
+
+    private static TagKey<Biome> createBiomeTag(String p_207631_) {
+        return TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(p_207631_));
+    }
 
 
     public static final class Blocks {

@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -24,31 +25,6 @@ import java.util.*;
 
 @Mod.EventBusSubscriber
 public class FeatureGeneration {
-    private static List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> getTopLayernFeatures() {
-        List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> topLayer = new ArrayList<>();
-        //if (Config.MISC_WORLDGEN.METEORITE_GEN.get()) {
-
-     //   if (Config.MISC_WORLDGEN.METEORITE_GEN.get()) {
-    //        topLayer.add(new AbstractMap.SimpleEntry<>(RankinePlacedFeatures.METEORITE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
-    //    }
-    //    topLayer.add(new AbstractMap.SimpleEntry<>(RankinePlacedFeatures.POST_WORLD_REPLACER, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
-
-
-
-        //}
-
-        return topLayer;
-    }
-
-    /*
-    private static List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> getLocalModificationFeatures() {
-        List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> LocalModifications = new ArrayList<>();
-
-
-        return LocalModifications;
-    }
-
-     */
 
     private static List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> getVegetalDecorationFeatures() {
         List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> VegetalDecor = new ArrayList<>();
@@ -77,9 +53,7 @@ public class FeatureGeneration {
             VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.BLUE_MORNING_GLORY_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.BiomeCategory.JUNGLE),true)));
             VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.PURPLE_MORNING_GLORY_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.BiomeCategory.TAIGA),true)));
         }
-        if (Config.MISC_WORLDGEN.MUSHROOMS.get()) {
-            VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankinePlacedFeatures.MUSHROOM, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
-        }
+
         if (Config.MISC_WORLDGEN.RANKINE_TREES.get()) {
 
             VegetalDecor.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.RICE_PLANT_PATCH, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.BiomeCategory.RIVER, Biome.BiomeCategory.SWAMP), true)));
@@ -172,9 +146,7 @@ public class FeatureGeneration {
     }
     private static List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> getAllOreFeatures() {
         List<AbstractMap.SimpleEntry<Holder<PlacedFeature>, List<ResourceLocation>>> AllOreFeatures = new ArrayList<>();
-        if (Config.MISC_WORLDGEN.LAYER_GEN.get() != 0) {
-          //  AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankinePlacedFeatures.WORLD_REPLACER, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
-        }
+
 
         //AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.WORLD_REPLACER_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
         //AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineBiomeFeatures.INTRUSION_FEATURE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
@@ -222,24 +194,65 @@ public class FeatureGeneration {
     public static void addFeaturesToBiomes(final BiomeLoadingEvent biome) {
 
         if (biome.getName() != null) {
-            biome.getGeneration().addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_METEORITE.getHolder().get());
+            //Disable features
+            disableGenerators(biome.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES), biome.getName(), Arrays.asList(Blocks.ANDESITE.defaultBlockState(),Blocks.DIORITE.defaultBlockState(),Blocks.GRANITE.defaultBlockState()));
 
-            if (biome.getCategory() == Biome.BiomeCategory.TAIGA) {
-            //if (ForgeRegistries.BIOMES.tags().getTag(BiomeTags.IS_TAIGA).contains(ForgeRegistries.BIOMES.getValue(biome.getName()))) {
-                //biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_CEDAR_TREE.getHolder().get());
+
+            if (Config.MISC_WORLDGEN.BEDROCK_LAYERS.get() != 0) {
+                biome.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_FLAT_BEDROCK.getHolder().get());
             }
-            //GenerationStep.Decoration ugDecorationStage = GenerationStep.Decoration.UNDERGROUND_ORES;
-     /*
-            List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> vegetalDecorationFeatures = getVegetalDecorationFeatures();
-            for (AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>> entry : vegetalDecorationFeatures) {
-                if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION.ordinal(), entry.getKey());
+            if (Config.MISC_WORLDGEN.LAYER_GEN.get() != 0) {
+                //biome.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_WORLD_REPLACER.getHolder().get());
+            }
+            biome.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, RankinePlacedFeatures.PLACED_POST_WORLD_REPLACER.getHolder().get());
+
+
+            biome.getGeneration().addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_METEORITE.getHolder().get());
+            if (Config.MISC_WORLDGEN.MUSHROOMS.get()) {
+                biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WALL_MUSHROOMS.getHolder().get());
+            }
+            if (Config.MISC_WORLDGEN.RANKINE_FLORA.get()) {
+                if (biome.getCategory() == Biome.BiomeCategory.SAVANNA) {
+                //if (ForgeRegistries.BIOMES.tags().getTag(RankineTags.Biomes.IS_SAVANNA).contains(ForgeRegistries.BIOMES.getValue(biome.getName()))) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_SAVANNA_FLOWERS.getHolder().get());
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_SAVANNA_PLANTS.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.FOREST) {
+                    //if (ForgeRegistries.BIOMES.tags().getTag(BiomeTags.IS_FOREST).contains(ForgeRegistries.BIOMES.getValue(biome.getName()))) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_LILIES.getHolder().get());
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_FOREST_PLANTS.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.JUNGLE) {
+                    //if (ForgeRegistries.BIOMES.tags().getTag(BiomeTags.IS_JUNGLE).contains(ForgeRegistries.BIOMES.getValue(biome.getName()))) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_MORNING_GLORIES.getHolder().get());
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_JUNGLE_PLANTS.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.PLAINS) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_PLAINS_PLANTS.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.SWAMP) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_SWAMP_PLANTS.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.TAIGA) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_TAIGA_PLANTS.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.MOUNTAIN || biome.getCategory() == Biome.BiomeCategory.EXTREME_HILLS) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_MOUNTAIN_PLANTS.getHolder().get());
                 }
             }
-            //---Disable vanilla features---
-            //final List<Holder<PlacedFeature>> ORES = event.getGeneration().getFeatures(ugDecorationStage);
-            //disableGenerators(ORES, event.getName(), Arrays.asList(Blocks.DIRT.defaultBlockState(),Blocks.ANDESITE.defaultBlockState(),Blocks.DIORITE.defaultBlockState(),Blocks.GRANITE.defaultBlockState(),Blocks.INFESTED_STONE.defaultBlockState(),Blocks.IRON_ORE.defaultBlockState(),Blocks.COAL_ORE.defaultBlockState(),Blocks.GOLD_ORE.defaultBlockState(),Blocks.DIAMOND_ORE.defaultBlockState(),Blocks.EMERALD_ORE.defaultBlockState(),Blocks.LAPIS_ORE.defaultBlockState(),Blocks.REDSTONE_ORE.defaultBlockState()));
-            //event.getGeneration().getFeatures(ugDecorationStage).removeIf(featureSupplier -> featureSupplier.toString().contains("net.minecraft.util.registry.WorldSettingsImport"));
+            if (Config.MISC_WORLDGEN.RANKINE_TREES.get()) {
+                if (biome.getCategory() == Biome.BiomeCategory.TAIGA) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_CEDAR_TREE.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.PLAINS) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_HONEY_LOCUST_TREE.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.MESA) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_ERYTHRINA_TREE.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.SWAMP) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WEEPING_WILLOW_TREE.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.RIVER) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BLACK_BIRCH_TREE.getHolder().get());
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_MAGNOLIA_TREE.getHolder().get());
+                }
+            }
+
+            biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_COBBLES.getHolder().get());
+
+
+     /*
 
           //  List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> OVERWORLD_FEATURES = new ArrayList<>();
           //  List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> NETHER_FEATURES = new ArrayList<>();
@@ -321,80 +334,6 @@ public class FeatureGeneration {
 
 
 
-/*
-            for (AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>> entry : getBedraockFeatures()) {
-                if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry.getKey());
-                }
-            }
-            for (AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>> entry : getAllOreFeatures()) {
-                if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry.getKey());
-                }
-            }
-
-            if (event.getCategory() != Biome.BiomeCategory.NETHER && event.getCategory() != Biome.BiomeCategory.THEEND) {
-                for (AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>> entry : getOverworldOreFeatures()) {
-                    if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry.getKey());
-                    }
-                }
-                for (AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>> entry : OVERWORLD_FEATURES) {
-                    if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry.getKey());
-                    }
-                }
-            } else if (event.getCategory() == Biome.BiomeCategory.NETHER) {
-                for (AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>> entry : NETHER_FEATURES) {
-                    if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry.getKey());
-                    }
-                }
-                for (AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>> entry : getNetherOreFeatures()) {
-                    if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry.getKey());
-                    }
-                }
-
-            } else if (event.getCategory() == Biome.BiomeCategory.THEEND) {
-                for (AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>> entry : getEndOreFeatures()) {
-                    if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry.getKey());
-                    }
-                }
-                for (AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>> entry : END_FEATURES) {
-                    if (entry.getValue().contains(event.getName())) {
-                        event.getGeneration().addFeature(ugDecorationStage.ordinal(),entry.getKey());
-                    }
-                }
-            }
-
-            for (AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>> entry : getAllUndDecFeatures()) {
-                if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION.ordinal(),entry.getKey());
-                }
-            }
-
-            List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> localModificationFeatures = getLocalModificationFeatures();
-            for (AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>> entry : localModificationFeatures) {
-                if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS.ordinal(),entry.getKey());
-                }
-            }4
-
-
-
-
-
-
-            List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> topLayernFeatures = getTopLayernFeatures();
-            for (AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>> entry : topLayernFeatures) {
-                if (entry.getValue().contains(event.getName())) {
-                    event.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION.ordinal(), entry.getKey());
-                }
-            }
-            */
-
         }
 
     }
@@ -414,16 +353,13 @@ public class FeatureGeneration {
 
     private static Optional<BlockState> findOreConfig(Holder<PlacedFeature> feature) {
         ConfiguredFeature<?,?> te = feature.value().feature().value();
-        final Iterator<ConfiguredFeature<?, ?>> features = te.config().getFeatures().iterator();
-        while (features.hasNext()) {
-            final FeatureConfiguration config = features.next().config();
-            if (config instanceof OreConfiguration) {
-                return Optional.of(((OreConfiguration) config).targetStates.get(0).state);
-            } else if (config instanceof SimpleBlockConfiguration) {
-                return Optional.of((((SimpleBlockConfiguration) config).toPlace().getState(new Random(), BlockPos.ZERO)));
-            } else if (config instanceof ReplaceBlockConfiguration) {
-                return Optional.of(((ReplaceBlockConfiguration) config).targetStates.get(0).state);
-            }
+        final FeatureConfiguration config = te.config();
+        if (config instanceof OreConfiguration) {
+            return Optional.of(((OreConfiguration) config).targetStates.get(0).state);
+        } else if (config instanceof SimpleBlockConfiguration) {
+            return Optional.of((((SimpleBlockConfiguration) config).toPlace().getState(new Random(), BlockPos.ZERO)));
+        } else if (config instanceof ReplaceBlockConfiguration) {
+            return Optional.of(((ReplaceBlockConfiguration) config).targetStates.get(0).state);
         }
         return Optional.empty();
     }

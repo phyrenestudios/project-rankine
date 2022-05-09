@@ -12,6 +12,7 @@ import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
@@ -24,6 +25,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -99,6 +101,9 @@ public class ProjectRankine {
             RankineRecipes.registerPotionRecipes();
             RankineRecipes.registerDispenserBehaviors();
         });
+        for (WoodType wood : RankineLists.WOOD_TYPES) {
+            WoodType.register(wood);
+        }
 
         LOGGER.info("Rankine: \"CommonSetup\" Event Complete!");
     }
@@ -107,7 +112,12 @@ public class ProjectRankine {
         LOGGER.debug("Rankine: \"ClientSetup Event\" Starting...");
 
         event.enqueueWork(ClientProxy::registerItemProperties);
-
+        RankineBlockEntityTypes.registerBlockEntityRenders();
+        event.enqueueWork(() -> {
+            for (WoodType wood : RankineLists.WOOD_TYPES) {
+                Sheets.addWoodType(wood);
+            }
+        });
         LOGGER.info("Rankine: \"ClientSetup\" Event Complete!");
     }
 

@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.blocks.HollowLogBlock;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -16,23 +17,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class RankineWallMushroomBlock extends BushBlock implements BonemealableBlock{
-   /* protected static final VoxelShape[] SHAPES = new VoxelShape[] {
-            Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 3.0D, 13.0D),
-            Block.makeCuboidShape(3.0D, 13.0D, 3.0D, 13.0D, 16.0D, 13.0D),
-            Block.makeCuboidShape(3.0D, 3.0D, 13.0D, 13.0D, 13.0D, 16.0D),
-            Block.makeCuboidShape(3.0D, 3.0D, 0.0D, 13.0D, 13.0D, 3.0D),
-            Block.makeCuboidShape(13.0D, 3.0D, 3.0D, 16.0D, 13.0D, 13.0D),
-            Block.makeCuboidShape(0.0D, 3.0D, 3.0D, 3.0D, 13.0D, 13.0D)};
-
-    */
+    private final Supplier<Holder<? extends ConfiguredFeature<?, ?>>> featureSupplier;
     protected static final VoxelShape[] SHAPES = new VoxelShape[] {
             Block.box(3.0D, 3.0D, 0.0D, 13.0D, 13.0D, 3.0D),
             Block.box(13.0D, 3.0D, 3.0D, 16.0D, 13.0D, 13.0D),
@@ -41,8 +36,9 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
 
     public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public RankineWallMushroomBlock(BlockBehaviour.Properties properties) {
+    public RankineWallMushroomBlock(BlockBehaviour.Properties properties, Supplier<Holder<? extends ConfiguredFeature<?, ?>>> p_153984_) {
         super(properties);
+        this.featureSupplier = p_153984_;
         this.registerDefaultState(this.stateDefinition.any().setValue(HORIZONTAL_FACING, Direction.SOUTH));
     }
 
@@ -108,68 +104,26 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
     }
 
 
-    public boolean grow(ServerLevel world, BlockPos pos, BlockState state, Random rand) {
-        world.removeBlock(pos, false);
-        /*
-        if (this == RankineBlocks.TINDER_CONK_MUSHROOM.get()) {
-            if (!TinderConkMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.TINDER_CONK_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
-                world.setBlock(pos, state, 3);
-                return false;
-            }
-        } else if (this == RankineBlocks.LIONS_MANE_MUSHROOM.get()) {
-            if (!LionsManeMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.LIONS_MANE_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
-                world.setBlock(pos, state, 3);
-                return false;
-            }
-        } else if (this == RankineBlocks.TURKEY_TAIL_MUSHROOM.get()) {
-            if (!TurkeyTailMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.TURKEY_TAIL_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
-                world.setBlock(pos, state, 3);
-                return false;
-            }
-        } else if (this == RankineBlocks.SULFUR_SHELF_MUSHROOM.get()) {
-            if (!SulfurShelfMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.SULFUR_SHELF_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
-                world.setBlock(pos, state, 3);
-                return false;
-            }
-        } else if (this == RankineBlocks.CINNABAR_POLYPORE_MUSHROOM.get()) {
-            if (!CinnbarPolyporeMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.CINNABAR_POLYPORE_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
-                world.setBlock(pos, state, 3);
-                return false;
-            }
-        } else if (this == RankineBlocks.HONEY_MUSHROOM.get()) {
-            if (!HoneyMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.HONEY_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
-                world.setBlock(pos, state, 3);
-                return false;
-            }
-        } else if (this == RankineBlocks.OYSTER_MUSHROOM.get()) {
-            if (!OysterMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.OYSTER_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
-                world.setBlock(pos, state, 3);
-                return false;
-            }
-        } else if (this == RankineBlocks.ARTIST_CONK_MUSHROOM.get()) {
-            if (!ArtistsConkMushroomFeature.growMushroom(world,rand,pos, (BlockPileConfiguration) RankineConfiguredFeatures.ARTIST_CONK_MUSHROOM.config(),state.getValue(HORIZONTAL_FACING))) {
-                world.setBlock(pos, state, 3);
-                return false;
-            }
+    public boolean growMushroom(ServerLevel worldIn, BlockPos pos, BlockState p_54862_, Random p_54863_) {
+        if (this.featureSupplier.get().value().place(worldIn, worldIn.getChunkSource().getGenerator(), p_54863_, pos)) {
+            worldIn.removeBlock(pos, false);
+            return true;
         } else {
-            world.setBlock(pos, state, 3);
+            worldIn.setBlock(pos, p_54862_, 3);
             return false;
         }
+    }
 
-         */
+    public boolean isValidBonemealTarget(BlockGetter p_54870_, BlockPos pos, BlockState p_54872_, boolean p_54873_) {
         return true;
     }
 
-    public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
-        return true;
+    public boolean isBonemealSuccess(Level p_54875_, Random p_54876_, BlockPos pos, BlockState p_54878_) {
+        return (double)p_54876_.nextFloat() < 0.4D;
     }
 
-    public boolean isBonemealSuccess(Level worldIn, Random rand, BlockPos pos, BlockState state) {
-        return (double)rand.nextFloat() < 0.4D;
-    }
-
-    public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
-        this.grow(worldIn, pos, state, rand);
+    public void performBonemeal(ServerLevel p_54865_, Random p_54866_, BlockPos pos, BlockState p_54868_) {
+        this.growMushroom(p_54865_, pos, p_54868_, p_54866_);
     }
 
 

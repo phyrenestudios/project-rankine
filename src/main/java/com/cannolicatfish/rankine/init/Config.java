@@ -748,8 +748,6 @@ public class Config {
 
     public static class MiscWorldGen {
         public final ForgeConfigSpec.IntValue BEDROCK_LAYERS;
-        public final ForgeConfigSpec.BooleanValue FLAT_BEDROCK;
-        public final ForgeConfigSpec.BooleanValue FLAT_BEDROCK_NETHER;
         public final ForgeConfigSpec.BooleanValue DISABLE_VANILLA_FEATURES;
         public final ForgeConfigSpec.BooleanValue RANKINE_FLORA;
         public final ForgeConfigSpec.BooleanValue RANKINE_TREES;
@@ -793,47 +791,43 @@ public class Config {
 
         public MiscWorldGen(ForgeConfigSpec.Builder b) {
             b.comment("Here are miscellaneous worldgen features").push("misc");
-            FLAT_BEDROCK = b.comment("Generates the Overworld with a flat bedrock layer.")
-                    .define("flatBedrock",false);
-            FLAT_BEDROCK_NETHER = b.comment("Generates the Nether with a flat bedrock layer.")
-                    .define("flatBedrockNether",false);
-            BEDROCK_LAYERS = b.comment("Layers of bedrock to generate if flatBedrock is true")
-                    .defineInRange("bedrockLayers", 1, 0, 5);
+            BEDROCK_LAYERS = b.comment("The number of flat bedrock layers to generate. Set to 0 to disable.")
+                    .defineInRange("flatBedrockLayers", 0, 0, 10);
 
             SOIL_NOISE_SCALE = b.comment("This determines how mixed the two types of soil are per biome. Larger numbers mean larger patches.")
                     .defineInRange("soilNoiseScale", 60, 1, Integer.MAX_VALUE);
             SECRET_GEN = b.comment("Generate antimatter in the End.")
-                    .define("antimatterGen",false);
+                    .define("antimatterGen",true);
             REPLACE_VANILLA_ORES = b.comment("If enabled, replaces vanilla ores with the Rankine counterparts (mostly for texture purposes). Results may vary due to the order of feature placements.")
-                    .define("replaceVanillaOres",false);
+                    .define("replaceVanillaOres",true);
             DISABLE_VANILLA_FEATURES = b.comment("Disable vanilla features in the overworld. Works by replacing the listed blocks in #rankine:vanilla_override with stones")
-                    .define("disableVanillaOres",false);
+                    .define("disableVanillaOres",true);
             RANKINE_FLORA = b.comment("Enable/Disable Project Rankine flowers and berry bushes in world.")
-                    .define("generateFlora",false);
+                    .define("generateFlora",true);
             RANKINE_TREES = b.comment("Enable/Disable Project Rankine trees in world.")
-                    .define("generateTrees",false);
+                    .define("generateTrees",true);
             WILD_CROPS = b.comment("Enable/Disable Project Rankine wild crops in world.")
-                    .define("generateWildCrops",false);
+                    .define("generateWildCrops",true);
             MUSHROOMS = b.comment("Enable/Disable Project Rankine mushrooms in world.")
-                    .define("generateMushrooms",false);
+                    .define("generateMushrooms",true);
             COBBLES_GEN = b.comment("Enable/Disable Project Rankine cobbles in world.")
                     .define("generateCobbles",true);
             EVAPORITE_GEN = b.comment("Enables the generation of evaporite disks.")
-                    .define("generateEvaporite",false);
+                    .define("generateEvaporite",true);
             FUMAROLE_GEN = b.comment("Enables the generation of fumaroles. More options to come.")
-                    .define("generateFumaroles",false);
+                    .define("generateFumaroles",true);
             ALLUVIUM_GEN = b.comment("Enables the generation of alluvium disks.")
-                    .define("generateAlluvium",false);
+                    .define("generateAlluvium",true);
             WHITE_SAND_GEN = b.comment("Enables the generation of white sand disks in beaches.")
-                    .define("generateWhiteSand",false);
+                    .define("generateWhiteSand",true);
             BLACK_SAND_GEN = b.comment("Enables the generation of black sand disks in the Nether.")
-                    .define("generateBlackSand",false);
+                    .define("generateBlackSand",true);
             END_METEORITE_GEN = b.comment("Enable to generate meteorites in the end.")
-                    .define("endMeteoriteGen",false);
+                    .define("endMeteoriteGen",true);
             END_METEORITE_CHANCE = b.comment("The chance for an end meteroite.")
                     .defineInRange("endMeteoriteChance", 0.03, 0.00, 1.00);
             METEORITE_GEN = b.comment("Enable to generate meteorites in the overworld.")
-                    .define("meteoriteGen",false);
+                    .define("meteoriteGen",true);
             METEORITE_SIZE = b.comment("Size parameter for meteorites. Higher number is bigger.")
                     .defineInRange("meteoriteSize", 1, 0, 5);
             METEORITE_CHANCE = b.comment("The chance a meteroite will spawn in the Overworld. Higher numbers increase rarity.")
@@ -846,11 +840,11 @@ public class Config {
 
             b.comment("Settings for stone layering").push("layers");
             LAYER_GEN = b.comment("Determines how stone layers generate. 0 means disabled, 1 means they replace minecraft:stone, 2 means they replace #minecraft:base_stone_overworld, 3 means they replace any non-Rankine stone in #minecraft:base_stone_overworld")
-                    .defineInRange("layerGenType", 0, 0, 3);
+                    .defineInRange("layerGenType", 1, 0, 3);
             LAYER_BEND = b.comment("Determines the vertical spread of stone layers. 1.0 is flat, closer to 0.0 is more extreme, 0.0 will crash.")
                     .defineInRange("layerWidth", 0.05D, 0.0D, 1.0D);
             LAYER_THICKNESS = b.comment("")
-                    .defineInRange("layerThickness", 13, 1, Integer.MAX_VALUE);
+                    .defineInRange("layerThickness", 23, 1, Integer.MAX_VALUE);
             NOISE_SCALE = b.comment("This determines how wide stone layers generate. Smaller values means it will look more like bedrock. Default value is 125.")
                     .defineInRange("noiseScale", 100, 1, Integer.MAX_VALUE);
             NETHERRACK_LAYER_THICKNESS = b.comment("The number of layers of netherrack to keep on top of stones in Warped and Crimson Forests.")
@@ -862,7 +856,7 @@ public class Config {
 
             b.comment("Settings for stone columns").push("columns");
             COLUMN_GEN = b.comment("Enables the generation of stone columns.")
-                    .define("generateColumns",false);
+                    .define("generateColumns",true);
             COLUMN_CHANCE = b.comment("Determines the chance per x,z coordinate for columns to generate.")
                     .defineInRange("columnChance", 0.15D, 0.0D, 1.0D);
             COLUMN_FREQUENCY = b.comment("The chance for columns to generate as full columns instead of stalactites.")
@@ -871,7 +865,7 @@ public class Config {
 
             b.comment("Settings for intrusions").push("intrusions");
             INTRUSION_GEN = b.comment("Enables the generation of intrusions.")
-                    .define("generateIntrusions",false);
+                    .define("generateIntrusions",true);
             OVERWORLD_INTRUSION_RADIUS = b.comment("Size of an intrusion")
                     .defineInRange("overworldIntrusionRadius", 2, 0, 8);
             OVERWORLD_INTRUSION_SHRINK = b.comment("Chance for an overworld intrusion to shrink as it goes up. Values closer to 0 result in longer intrusions")
@@ -1004,6 +998,14 @@ public class Config {
                     "rankine:desert_sand",
                     "rankine:desert_sandstone"));
             biomeSettings.add(Arrays.asList(Biome.BiomeCategory.EXTREME_HILLS.getName(),
+                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
+                    Arrays.asList("minecraft:air|10|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","minecraft:stone|10|minecraft:coal_ore|0.03","rankine:shonkinite|20|rankine:beryl_ore|0.04","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|5|rankine:malachite_ore|0.04"),
+                    Arrays.asList("rankine:ringwoodine","rankine:serpentinite","rankine:greenschist","rankine:mariposite","rankine:gray_marble","rankine:dolostone","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air",
+                    "minecraft:air",
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.MOUNTAIN.getName(),
                     Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
                     Arrays.asList("minecraft:air|10|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","minecraft:stone|10|minecraft:coal_ore|0.03","rankine:shonkinite|20|rankine:beryl_ore|0.04","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|5|rankine:malachite_ore|0.04"),
                     Arrays.asList("rankine:ringwoodine","rankine:serpentinite","rankine:greenschist","rankine:mariposite","rankine:gray_marble","rankine:dolostone","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),

@@ -617,13 +617,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         squareCross(RankineBlocks.WILLOW_BRANCHLET.get());
         squareCross(RankineBlocks.WILLOW_BRANCHLET_PLANT.get());
-        doublePlant(RankineBlocks.ORANGE_LILY.get());
-        doublePlant(RankineBlocks.WHITE_LILY.get());
-        doublePlant(RankineBlocks.RED_LILY.get());
-        doublePlant(RankineBlocks.GOLDENROD.get());
-        doublePlant(RankineBlocks.PURPLE_MORNING_GLORY.get());
-        doublePlant(RankineBlocks.BLUE_MORNING_GLORY.get());
-        doublePlant(RankineBlocks.BLACK_MORNING_GLORY.get());
+
+        for (Block blk : RankineLists.TALL_FLOWERS) {
+            doublePlant(blk);
+        }
         triplePlant(RankineBlocks.CORN_STALK.get());
         pillarFour(RankineBlocks.ROPE.get());
         simpleBlock(RankineBlocks.STICK_BLOCK.get(), models().cubeBottomTop(RankineBlocks.STICK_BLOCK.get().getRegistryName().getPath(), getBlockRSL("stick_block_side"), getBlockRSL("stick_block_top"), getBlockRSL("stick_block_top")));
@@ -723,7 +720,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
 
-
+        for (Block SIGN : RankineLists.WOODEN_SIGNS) {
+            Block PLANK = RankineLists.PLANKS.get((int) Math.floor(RankineLists.WOODEN_SIGNS.indexOf(SIGN)/2D));
+            signBlock(SIGN, getBlockRSL(PLANK.getRegistryName().getPath()));
+        }
 
 
     }
@@ -741,6 +741,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(name, mcLoc("block/block")).texture("particle", getBlockRSL(name+"_still"))).addModel();
     }
 
+    public void signBlock(Block blk, ResourceLocation plank) {
+        String name = blk.getRegistryName().getPath();
+        getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(name, modLoc("block/template_sign")).texture("particle", plank)).addModel();
+    }
 
     public void cobble(Block BLK) {
         String PATH = BLK.getRegistryName().getPath();

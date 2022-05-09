@@ -3,99 +3,71 @@ package com.cannolicatfish.rankine.init;
 import com.cannolicatfish.rankine.ProjectRankine;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
+import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class RankinePlacedFeatures {
 
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, ProjectRankine.MODID);
 
-    public static final RegistryObject<PlacedFeature> PLACED_METEORITE = PLACED_FEATURES.register("meteorite", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_METEORITE.getHolder().get(), Arrays.asList(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, RarityFilter.onAverageOnceEvery(Config.MISC_WORLDGEN.METEORITE_CHANCE.get()))));
-   // public static final RegistryObject<PlacedFeature> PLACED_CEDAR_TREE = PLACED_FEATURES.register("cedar_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_CEDAR_TREE.getHolder().get(), VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1))));
+    public static final RegistryObject<PlacedFeature> PLACED_METEORITE = PLACED_FEATURES.register("meteorite", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_METEORITE.getHolder().get(), Arrays.asList(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, RarityFilter.onAverageOnceEvery(Config.MISC_WORLDGEN.METEORITE_CHANCE.get()), BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_END_METEORITE = PLACED_FEATURES.register("end_meteorite", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_END_METEORITE.getHolder().get(), Collections.singletonList(BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_ANTIMATTER_BLOB = PLACED_FEATURES.register("antimatter_blob", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_ANTIMATTER_BLOB.getHolder().get(), Collections.singletonList(BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_WALL_MUSHROOMS = PLACED_FEATURES.register("wall_mushrooms", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_WALL_MUSHROOMS.getHolder().get(), Arrays.asList(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, RarityFilter.onAverageOnceEvery(3), BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_WORLD_REPLACER = PLACED_FEATURES.register("world_replacer", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_WORLD_REPLACER.getHolder().get(), Collections.emptyList()));
+    public static final RegistryObject<PlacedFeature> PLACED_POST_WORLD_REPLACER = PLACED_FEATURES.register("pos_world_replacer", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_POST_WORLD_REPLACER.getHolder().get(), Collections.emptyList()));
+    public static final RegistryObject<PlacedFeature> PLACED_FLAT_BEDROCK = PLACED_FEATURES.register("flat_bedrock", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_FLAT_BEDROCK.getHolder().get(), Collections.emptyList()));
 
+    public static final RegistryObject<PlacedFeature> PLACED_PATCH_LILIES = PLACED_FEATURES.register("patch_lilies", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PATCH_LILIES.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(9), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_PATCH_MORNING_GLORIES = PLACED_FEATURES.register("patch_morning_glories", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PATCH_MORNING_GLORIES.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(7), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_PATCH_SAVANNA_FLOWERS = PLACED_FEATURES.register("patch_savanna_flowers", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PATCH_SAVANNA_FLOWERS.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(8), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_PATCH_SAVANNA_PLANTS = PLACED_FEATURES.register("patch_savanna_plants", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PATCH_SAVANNA_PLANTS.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_PATCH_FOREST_PLANTS = PLACED_FEATURES.register("patch_forest_plants", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PATCH_FOREST_PLANTS.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_PATCH_SWAMP_PLANTS = PLACED_FEATURES.register("patch_swamp_plants", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PATCH_SWAMP_PLANTS.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_PATCH_JUNGLE_PLANTS = PLACED_FEATURES.register("patch_jungle_plants", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PATCH_JUNGLE_PLANTS.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_PATCH_PLAINS_PLANTS = PLACED_FEATURES.register("patch_plains_plants", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PATCH_PLAINS_PLANTS.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_PATCH_MOUNTAIN_PLANTS = PLACED_FEATURES.register("patch_mountain_plants", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PATCH_MOUNTAIN_PLANTS.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_PATCH_TAIGA_PLANTS = PLACED_FEATURES.register("patch_taiga_plants", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PATCH_TAIGA_PLANTS.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> PLACED_PATCH_COBBLES = PLACED_FEATURES.register("patch_cobbles", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PATCH_COBBLES.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 
+    public static final RegistryObject<PlacedFeature> PLACED_CEDAR_TREE = PLACED_FEATURES.register("cedar_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_CEDAR_TREE.getHolder().get(), VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1))));
+    public static final RegistryObject<PlacedFeature> PLACED_EASTERN_HEMLOCK_TREE = PLACED_FEATURES.register("eastern_hemlock_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_EASTERN_HEMLOCK_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_WESTERN_HEMLOCK_TREE = PLACED_FEATURES.register("western_hemlock_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_WESTERN_HEMLOCK_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_BALSAM_FIR_TREE = PLACED_FEATURES.register("balsam_fir_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_BALSAM_FIR_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_SHORT_BALSAM_FIR_TREE = PLACED_FEATURES.register("short_balsam_fir_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_SHORT_BALSAM_FIR_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_COCONUT_PALM_TREE = PLACED_FEATURES.register("coconut_palm_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_COCONUT_PALM_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_MODIFIED_BIRCH_TREE = PLACED_FEATURES.register("modified_birch_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_MODIFIED_BIRCH_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_BLACK_BIRCH_TREE = PLACED_FEATURES.register("black_birch_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_BLACK_BIRCH_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_YELLOW_BIRCH_TREE = PLACED_FEATURES.register("yellow_birch_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_YELLOW_BIRCH_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_RED_BIRCH_TREE = PLACED_FEATURES.register("red_birch_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_RED_BIRCH_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_MAGNOLIA_TREE = PLACED_FEATURES.register("magnolia_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_MAGNOLIA_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(6))));
+    public static final RegistryObject<PlacedFeature> PLACED_ERYTHRINA_TREE = PLACED_FEATURES.register("erythrina_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_ERYTHRINA_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(6))));
+    public static final RegistryObject<PlacedFeature> PLACED_HONEY_LOCUST_TREE = PLACED_FEATURES.register("honey_locust_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_HONEY_LOCUST_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_WEEPING_WILLOW_TREE = PLACED_FEATURES.register("weeping_willow_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_WEEPING_WILLOW_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(6))));
+    public static final RegistryObject<PlacedFeature> PLACED_BLACK_WALNUT_TREE = PLACED_FEATURES.register("black_walnut_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_BLACK_WALNUT_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_PINYON_PINE_TREE = PLACED_FEATURES.register("pinyon_pine_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PINYON_PINE_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_JUNIPER_TREE = PLACED_FEATURES.register("juniper_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_JUNIPER_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_MAPLE_TREE = PLACED_FEATURES.register("maple_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_MAPLE_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_SHARINGA_TREE = PLACED_FEATURES.register("sharinga_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_SHARINGA_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_CORK_OAK_TREE = PLACED_FEATURES.register("cork_oak_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_CORK_OAK_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_CINNAMON_TREE = PLACED_FEATURES.register("cinnamon_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_CINNAMON_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
+    public static final RegistryObject<PlacedFeature> PLACED_PETRIFIED_CHORUS_TREE = PLACED_FEATURES.register("petrified_chorus_tree", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_PETRIFIED_CHORUS_TREE.getHolder().get(), VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(4))));
 
-    /*
-    public static Holder<PlacedFeature> BALSAM_FIR_TREE;
-    public static Holder<PlacedFeature> SHORT_BALSAM_FIR_TREE;
-    public static Holder<PlacedFeature> COCONUT_PALM_TREE;
-    public static Holder<PlacedFeature> BLACK_WALNUT_TREE;
-    public static Holder<PlacedFeature> RED_BIRCH_TREE;
-    public static Holder<PlacedFeature> EASTERN_HEMLOCK_TREE;
-    public static Holder<PlacedFeature> WESTERN_HEMLOCK_TREE;
-    public static Holder<PlacedFeature> BLACK_BIRCH_TREE;
-    public static Holder<PlacedFeature> YELLOW_BIRCH_TREE;
-    public static Holder<PlacedFeature> MODIFIED_BIRCH_TREE;
-    public static Holder<PlacedFeature> PETRIFIED_CHORUS_TREE;
-    public static Holder<PlacedFeature> PINYON_PINE_TREE;
-    public static Holder<PlacedFeature> JUNIPER_TREE;
-    public static Holder<PlacedFeature> ERYTHRINA_TREE;
-    public static Holder<PlacedFeature> MAGNOLIA_TREE;
-    public static Holder<PlacedFeature> RED_CEDAR_TREE;
-    public static Holder<PlacedFeature> HONEY_LOCUST_TREE;
-    public static Holder<PlacedFeature> WEEPING_WILLOW_TREE;
-    public static Holder<PlacedFeature> MAPLE_TREE;
-    public static Holder<PlacedFeature> SHARINGA_TREE;
-    public static Holder<PlacedFeature> CORK_OAK_TREE;
-    public static Holder<PlacedFeature> CINNAMON_TREE;
-
-    public static Holder<PlacedFeature> MUSHROOM;
-
-    public static Holder<PlacedFeature> INTRUSION_FEATURE;
-    public static Holder<PlacedFeature> COLUMN_FEATURE;
-    public static Holder<PlacedFeature> FLAT_BEDROCK;
-    public static Holder<PlacedFeature> FLAT_BEDROCK_NETHER;
-    public static Holder<PlacedFeature> WORLD_REPLACER;
-    public static Holder<PlacedFeature> POST_WORLD_REPLACER;
-    public static Holder<PlacedFeature> WHITE_SAND;
-    public static Holder<PlacedFeature> ALLUVIUM;
-    public static Holder<PlacedFeature> EVAPORITE;
-    public static Holder<PlacedFeature> FUMAROLE;
-    public static Holder<PlacedFeature> BLACK_SAND;
-    public static Holder<PlacedFeature> METEORITE;
-    public static Holder<PlacedFeature> END_METEORITE;
-    public static Holder<PlacedFeature> ANTIMATTER_BLOB;
-
- */
 
 
     public static void registerAllFeatures() {
-/*        BALSAM_FIR_TREE = registerPlacedFeature("balsam_fir_tree", RankineConfiguredFeatures.BALSAM_FIR_TREE,RANKINE_TREE_CHANCE_PLACEMENT);
-        SHORT_BALSAM_FIR_TREE = registerPlacedFeature("short_balsam_fir_tree",RankineConfiguredFeatures.SHORT_BALSAM_FIR_TREE,RANKINE_TREE_CHANCE_PLACEMENT);
-        COCONUT_PALM_TREE = registerPlacedFeature("coconut_palm_tree",RankineConfiguredFeatures.COCONUT_PALM_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        BLACK_WALNUT_TREE = registerPlacedFeature("black_walnut_tree",RankineConfiguredFeatures.BLACK_WALNUT_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        RED_BIRCH_TREE = registerPlacedFeature("red_birch_tree",RankineConfiguredFeatures.RED_BIRCH_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        EASTERN_HEMLOCK_TREE = registerPlacedFeature("eastern_hemlock_tree",RankineConfiguredFeatures.EASTERN_HEMLOCK_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        WESTERN_HEMLOCK_TREE = registerPlacedFeature("western_hemlock_tree",RankineConfiguredFeatures.WESTERN_HEMLOCK_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        BLACK_BIRCH_TREE = registerPlacedFeature("black_birch_tree",RankineConfiguredFeatures.BLACK_BIRCH_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        YELLOW_BIRCH_TREE = registerPlacedFeature("yellow_birch_tree",RankineConfiguredFeatures.YELLOW_BIRCH_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        MODIFIED_BIRCH_TREE = registerPlacedFeature("modified_birch_tree",RankineConfiguredFeatures.MODIFIED_BIRCH_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        PETRIFIED_CHORUS_TREE = registerPlacedFeature("petrified_chorus_tree",RankineConfiguredFeatures.PETRIFIED_CHORUS_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        PINYON_PINE_TREE = registerPlacedFeature("pinyon_pine_tree",RankineConfiguredFeatures.PINYON_PINE_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        JUNIPER_TREE = registerPlacedFeature("juniper_tree",RankineConfiguredFeatures.JUNIPER_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        ERYTHRINA_TREE = registerPlacedFeature("erythrina_tree",RankineConfiguredFeatures.ERYTHRINA_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        MAGNOLIA_TREE = registerPlacedFeature("magnolia_tree",RankineConfiguredFeatures.MAGNOLIA_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        RED_CEDAR_TREE = registerPlacedFeature("red_cedar_tree",RankineConfiguredFeatures.RED_CEDAR_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        HONEY_LOCUST_TREE = registerPlacedFeature("honey_locust_tree",RankineConfiguredFeatures.HONEY_LOCUST_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        WEEPING_WILLOW_TREE = registerPlacedFeature("weeping_willow_tree",RankineConfiguredFeatures.WEEPING_WILLOW_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        MAPLE_TREE = registerPlacedFeature("maple_tree",RankineConfiguredFeatures.MAPLE_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        SHARINGA_TREE = registerPlacedFeature("sharinga_tree",RankineConfiguredFeatures.SHARINGA_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        CORK_OAK_TREE = registerPlacedFeature("cork_oak_tree",RankineConfiguredFeatures.CORK_OAK_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-        CINNAMON_TREE = registerPlacedFeature("cinnamon_tree",RankineConfiguredFeatures.CINNAMON_TREE, RANKINE_TREE_CHANCE_PLACEMENT);
-
+/*
         MUSHROOM = registerPlacedFeature("mushroom",RankineConfiguredFeatures.MUSHROOMS, (PlacementModifier) Collections.emptyList());
 
         INTRUSION_FEATURE = registerPlacedFeature("intrusion",RankineConfiguredFeatures.INTRUSION_FEATURE,(PlacementModifier) Collections.emptyList());
         COLUMN_FEATURE = registerPlacedFeature("column",RankineConfiguredFeatures.COLUMN,(PlacementModifier) Collections.emptyList());
         FLAT_BEDROCK = registerPlacedFeature("flat_bedrock",RankineConfiguredFeatures.FLAT_BEDROCK,(PlacementModifier) Collections.emptyList());
         FLAT_BEDROCK_NETHER = registerPlacedFeature("flat_bedrock_nether",RankineConfiguredFeatures.FLAT_BEDROCK_NETHER,(PlacementModifier) Collections.emptyList());
-        WORLD_REPLACER = registerPlacedFeature("world_replacer_feature",RankineConfiguredFeatures.WORLD_REPLACER_GEN,(PlacementModifier) Collections.emptyList());
-        POST_WORLD_REPLACER = registerPlacedFeature("post_world_replacer_feature",RankineConfiguredFeatures.POST_WORLD_REPLACER_GEN,(PlacementModifier) Collections.emptyList());
         WHITE_SAND = registerPlacedFeature("white_sand",RankineConfiguredFeatures.DISK_WHITE_SAND,(PlacementModifier) Collections.emptyList());
         FUMAROLE = registerPlacedFeature("fumarole",RankineConfiguredFeatures.FUMAROLE,(PlacementModifier) Collections.emptyList());
         BLACK_SAND = registerPlacedFeature("black_sand",RankineConfiguredFeatures.DISK_BLACK_SAND,(PlacementModifier) Collections.emptyList());
