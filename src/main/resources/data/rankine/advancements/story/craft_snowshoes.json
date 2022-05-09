@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:snowshoes"
+            "items": [
+              "rankine:snowshoes"
+            ]
           }
         ]
       }

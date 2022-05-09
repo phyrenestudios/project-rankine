@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:evaporation_tower"
+            "items": [
+              "rankine:evaporation_tower"
+            ]
           }
         ]
       }

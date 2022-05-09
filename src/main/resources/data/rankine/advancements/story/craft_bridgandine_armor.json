@@ -17,42 +17,29 @@
     "hidden": false
   },
   "criteria": {
-    "brigandine_helmet": {
+    "brigandine_armor": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:brigandine_helmet"
-          }
-        ]
-      }
-    },
-    "brigandine_chestplate": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+            "items": [
+              "rankine:brigandine_helmet"
+            ]
+          },
           {
-            "item": "rankine:brigandine_chestplate"
-          }
-        ]
-      }
-    },
-    "brigandine_leggings": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+            "items": [
+              "rankine:brigandine_chestplate"
+            ]
+          },
           {
-            "item": "rankine:brigandine_leggings"
-          }
-        ]
-      }
-    },
-    "brigandine_boots": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+            "items": [
+              "rankine:brigandine_leggings"
+            ]
+          },
           {
-            "item": "rankine:brigandine_boots"
+            "items": [
+              "rankine:brigandine_boots"
+            ]
           }
         ]
       }
@@ -60,13 +47,7 @@
   },
   "requirements": [
     [
-      "brigandine_helmet"
-    ], [
-      "brigandine_chestplate"
-    ], [
-      "brigandine_leggings"
-    ], [
-      "brigandine_boots"
+      "brigandine_armor"
     ]
   ]
 }

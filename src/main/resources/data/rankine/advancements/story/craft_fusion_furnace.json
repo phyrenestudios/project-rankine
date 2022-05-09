@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:fusion_furnace"
+            "items": [
+              "rankine:fusion_furnace"
+            ]
           }
         ]
       }

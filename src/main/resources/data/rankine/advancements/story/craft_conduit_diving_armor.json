@@ -17,42 +17,29 @@
     "hidden": false
   },
   "criteria": {
-    "conduit_diving_helmet": {
+    "conduit_diving_armor": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:conduit_diving_helmet"
-          }
-        ]
-      }
-    },
-    "conduit_diving_chestplate": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+            "items": [
+              "rankine:conduit_diving_helmet"
+            ]
+          },
           {
-            "item": "rankine:conduit_diving_chestplate"
-          }
-        ]
-      }
-    },
-    "conduit_diving_leggings": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+            "items": [
+              "rankine:conduit_diving_chestplate"
+            ]
+          },
           {
-            "item": "rankine:conduit_diving_leggings"
-          }
-        ]
-      }
-    },
-    "conduit_diving_boots": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+            "items": [
+              "rankine:conduit_diving_leggings"
+            ]
+          },
           {
-            "item": "rankine:conduit_diving_boots"
+            "items": [
+              "rankine:conduit_diving_boots"
+            ]
           }
         ]
       }
@@ -60,13 +47,7 @@
   },
   "requirements": [
     [
-      "conduit_diving_helmet"
-    ], [
-      "conduit_diving_chestplate"
-    ], [
-      "conduit_diving_leggings"
-    ], [
-      "conduit_diving_boots"
+      "conduit_diving_armor"
     ]
   ]
 }

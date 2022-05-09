@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:rock_drill"
+            "items": [
+              "rankine:rock_drill"
+            ]
           }
         ]
       }
