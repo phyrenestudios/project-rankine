@@ -1,0 +1,27 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:apatite"
+  },
+  "input2": {
+    "item": "rankine:apatite"
+  },
+  "fluidInput": {
+    "fluid": "rankine:sulfuric_acid"
+  },
+  "result1": {
+    "item": "rankine:phosphorus_nugget",
+    "count": 4
+  },
+  "result2": {
+    "item": "rankine:vanadium_nugget",
+    "count": 1
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:hydrogen_fluoride_gas_bottle"
+  }
+}
