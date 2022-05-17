@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.ProjectRankine;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -32,11 +33,12 @@ public final class RankineTags {
     public static final class Biomes {
         public static final TagKey<Biome> IS_END = createBiomeTag("is_end");
         public static final TagKey<Biome> IS_SAVANNA = createBiomeTag("is_savanna");
+        public static final TagKey<Biome> IS_BIRCH_FOREST = createBiomeTag("is_birch_forest");
 
     }
 
     private static TagKey<Biome> createBiomeTag(String p_207631_) {
-        return TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(p_207631_));
+        return TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(ProjectRankine.MODID, p_207631_));
     }
 
 

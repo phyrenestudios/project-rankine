@@ -1,12 +1,13 @@
 package com.cannolicatfish.rankine.world.features;
 
-import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankinePlacedFeatures;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -190,38 +191,44 @@ public class FeatureGeneration {
 
 
 
-    @SubscribeEvent(priority = EventPriority.NORMAL)
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void addFeaturesToBiomes(final BiomeLoadingEvent biome) {
 
         if (biome.getName() != null) {
             //Disable features
-            disableGenerators(biome.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES), biome.getName(), Arrays.asList(Blocks.ANDESITE.defaultBlockState(),Blocks.DIORITE.defaultBlockState(),Blocks.GRANITE.defaultBlockState()));
+            disableGenerators(biome.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES), biome.getName(), Arrays.asList(Blocks.ANDESITE.defaultBlockState(),Blocks.DIORITE.defaultBlockState(),Blocks.GRANITE.defaultBlockState(),
+                    Blocks.COPPER_ORE.defaultBlockState(),Blocks.IRON_ORE.defaultBlockState(),Blocks.COAL_ORE.defaultBlockState(),Blocks.GOLD_ORE.defaultBlockState(),Blocks.REDSTONE_ORE.defaultBlockState(),Blocks.LAPIS_ORE.defaultBlockState(),Blocks.DIAMOND_ORE.defaultBlockState(),Blocks.EMERALD_ORE.defaultBlockState(),
+                    Blocks.DEEPSLATE_COPPER_ORE.defaultBlockState(),Blocks.DEEPSLATE_IRON_ORE.defaultBlockState(),Blocks.DEEPSLATE_COAL_ORE.defaultBlockState(),Blocks.DEEPSLATE_GOLD_ORE.defaultBlockState(),Blocks.DEEPSLATE_REDSTONE_ORE.defaultBlockState(),Blocks.DEEPSLATE_LAPIS_ORE.defaultBlockState(),Blocks.DEEPSLATE_DIAMOND_ORE.defaultBlockState(),Blocks.DEEPSLATE_EMERALD_ORE.defaultBlockState()));
 
 
             if (Config.MISC_WORLDGEN.BEDROCK_LAYERS.get() != 0) {
                 biome.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_FLAT_BEDROCK.getHolder().get());
             }
             if (Config.MISC_WORLDGEN.LAYER_GEN.get() != 0) {
-                //biome.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_WORLD_REPLACER.getHolder().get());
+                biome.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_WORLD_REPLACER.getHolder().get());
             }
             biome.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, RankinePlacedFeatures.PLACED_POST_WORLD_REPLACER.getHolder().get());
 
-
-            biome.getGeneration().addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_METEORITE.getHolder().get());
-            if (Config.MISC_WORLDGEN.MUSHROOMS.get()) {
+            if (Config.MISC_WORLDGEN.METEORITE_CHANCE.get() > 0.0D && WorldgenUtils.isOverworld(biome)) {
+                biome.getGeneration().addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_METEORITE.getHolder().get());
+            }
+            if (Config.MISC_WORLDGEN.FUMAROLE_GEN.get() > 0) {
+                biome.getGeneration().addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_FUMAROLE.getHolder().get());
+            }
+            if (Config.MISC_WORLDGEN.INTRUSION_GEN.get()) {
+                biome.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_INTRUSION.getHolder().get());
+            }
+            if (Config.MISC_WORLDGEN.MUSHROOMS.get() && WorldgenUtils.isOverworld(biome)) {
                 biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WALL_MUSHROOMS.getHolder().get());
             }
-            if (Config.MISC_WORLDGEN.RANKINE_FLORA.get()) {
+            if (Config.MISC_WORLDGEN.RANKINE_FLORA.get() && WorldgenUtils.isOverworld(biome)) {
                 if (biome.getCategory() == Biome.BiomeCategory.SAVANNA) {
-                //if (ForgeRegistries.BIOMES.tags().getTag(RankineTags.Biomes.IS_SAVANNA).contains(ForgeRegistries.BIOMES.getValue(biome.getName()))) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_SAVANNA_FLOWERS.getHolder().get());
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_SAVANNA_PLANTS.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.FOREST) {
-                    //if (ForgeRegistries.BIOMES.tags().getTag(BiomeTags.IS_FOREST).contains(ForgeRegistries.BIOMES.getValue(biome.getName()))) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_LILIES.getHolder().get());
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_FOREST_PLANTS.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.JUNGLE) {
-                    //if (ForgeRegistries.BIOMES.tags().getTag(BiomeTags.IS_JUNGLE).contains(ForgeRegistries.BIOMES.getValue(biome.getName()))) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_MORNING_GLORIES.getHolder().get());
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_JUNGLE_PLANTS.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.PLAINS) {
@@ -234,23 +241,53 @@ public class FeatureGeneration {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_MOUNTAIN_PLANTS.getHolder().get());
                 }
             }
-            if (Config.MISC_WORLDGEN.RANKINE_TREES.get()) {
+            if (Config.MISC_WORLDGEN.RANKINE_TREES.get() && WorldgenUtils.isOverworld(biome)) {
+                if (biome.getName().toString().equals(Biomes.FOREST.location().toString()) || biome.getName().toString().equals(Biomes.FLOWER_FOREST.location().toString())) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_MAPLE_TREE.getHolder().get());
+                } if (biome.getName().toString().equals(Biomes.DARK_FOREST.location().toString())) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BLACK_WALNUT_TREE.getHolder().get());
+                } else if (biome.getName().toString().equals(Biomes.GROVE.location().toString())) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_SNOWY_SHORT_BALSAM_FIR_TREE.getHolder().get());
+                } else if (biome.getName().toString().equals(Biomes.WINDSWEPT_FOREST.location().toString())) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BALSAM_FIR_TREE.getHolder().get());
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_SHORT_BALSAM_FIR_TREE.getHolder().get());
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_RED_BIRCH_TREE.getHolder().get());
+                } else if (biome.getName().toString().equals(Biomes.BIRCH_FOREST.location().toString()) || biome.getName().toString().equals(Biomes.OLD_GROWTH_BIRCH_FOREST.location().toString())) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_YELLOW_BIRCH_TREE.getHolder().get());
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_MODIFIED_BIRCH_TREE.getHolder().get());
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BLACK_BIRCH_TREE.getHolder().get());
+                } else if (biome.getName().toString().equals(Biomes.TAIGA.location().toString()) || biome.getName().toString().equals(Biomes.SNOWY_TAIGA.location().toString())) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_EASTERN_HEMLOCK_TREE.getHolder().get());
+                } else if (biome.getName().toString().equals(Biomes.OLD_GROWTH_SPRUCE_TAIGA.location().toString()) || biome.getName().toString().equals(Biomes.OLD_GROWTH_PINE_TAIGA.location().toString())) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WESTERN_HEMLOCK_TREE.getHolder().get());
+                }
+
                 if (biome.getCategory() == Biome.BiomeCategory.TAIGA) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_CEDAR_TREE.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.PLAINS) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_HONEY_LOCUST_TREE.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.SAVANNA) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_JUNIPER_TREE.getHolder().get());
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PINYON_PINE_TREE.getHolder().get());
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_CORK_OAK_TREE.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.MESA) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_ERYTHRINA_TREE.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.SWAMP) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WEEPING_WILLOW_TREE.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.BEACH) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_COCONUT_PALM_TREE.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.RIVER) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BLACK_BIRCH_TREE.getHolder().get());
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_MAGNOLIA_TREE.getHolder().get());
+                } else if (biome.getCategory() == Biome.BiomeCategory.JUNGLE) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_SHARINGA_TREE.getHolder().get());
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_CINNAMON_TREE.getHolder().get());
                 }
             }
 
-            biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_COBBLES.getHolder().get());
-
+            if (Config.MISC_WORLDGEN.COBBLES_GEN.get() && WorldgenUtils.isOverworld(biome)) {
+                biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_COBBLES.getHolder().get());
+            }
 
      /*
 
@@ -343,7 +380,7 @@ public class FeatureGeneration {
         features.forEach(feature ->
                 findOreConfig(feature).ifPresent(ore -> {
                     if (DISABLE.contains(ore)) {
-                        ProjectRankine.LOGGER.debug("Removing {} from generation in {}.", ore, name);
+                        //ProjectRankine.LOGGER.debug("Removing {} from generation in {}.", ore, name);
                         drain.add(feature);
                     }
                 })

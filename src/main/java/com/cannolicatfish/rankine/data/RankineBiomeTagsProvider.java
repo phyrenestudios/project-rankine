@@ -21,6 +21,7 @@ public class RankineBiomeTagsProvider extends BiomeTagsProvider {
     protected void addTags() {
         this.tag(RankineTags.Biomes.IS_END).add(Biomes.THE_END).add(Biomes.END_HIGHLANDS).add(Biomes.END_BARRENS).add(Biomes.END_MIDLANDS).add(Biomes.SMALL_END_ISLANDS);
         this.tag(RankineTags.Biomes.IS_SAVANNA).add(Biomes.SAVANNA).add(Biomes.SAVANNA_PLATEAU).add(Biomes.WINDSWEPT_SAVANNA);
+        this.tag(RankineTags.Biomes.IS_BIRCH_FOREST).add(Biomes.BIRCH_FOREST).add(Biomes.OLD_GROWTH_BIRCH_FOREST);
 
     }
 

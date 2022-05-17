@@ -2,6 +2,13 @@ package com.cannolicatfish.rankine.blocks.plants;
 
 
 import com.cannolicatfish.rankine.init.RankineItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -9,41 +16,27 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.util.*;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.*;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.common.PlantType;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Random;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
-import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.GameRules;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.PlantType;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Random;
 
 public class RankineDoublePlantBlock extends BushBlock implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
@@ -83,22 +76,30 @@ public class RankineDoublePlantBlock extends BushBlock implements BonemealableBl
     }
 
     @Override
-    public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        if (!worldIn.isClientSide) {
-            worldIn.setBlock(pos.above(1), this.defaultBlockState().setValue(SECTION, DoubleBlockHalf.UPPER), 3);
-        }
-        super.setPlacedBy(worldIn, pos, state, placer, stack);
-    }
-
-    public void placeAt(LevelAccessor worldIn, BlockPos pos, int flags) {
-        worldIn.setBlock(pos, this.defaultBlockState().setValue(AGE, 3).setValue(SECTION, DoubleBlockHalf.LOWER), flags);
-        worldIn.setBlock(pos.above(), this.defaultBlockState().setValue(AGE, 3).setValue(SECTION, DoubleBlockHalf.UPPER), flags);
+    public void setPlacedBy(Level p_52872_, BlockPos p_52873_, BlockState p_52874_, LivingEntity p_52875_, ItemStack p_52876_) {
+        BlockPos blockpos = p_52873_.above();
+        p_52872_.setBlock(blockpos, copyWaterloggedFrom(p_52872_, blockpos, this.defaultBlockState().setValue(SECTION, DoubleBlockHalf.UPPER)), 3);
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
-        Block block = state.getBlock();
-        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.FARMLAND;
+    public boolean canSurvive(BlockState p_52887_, LevelReader p_52888_, BlockPos p_52889_) {
+        if (p_52887_.getValue(SECTION) != DoubleBlockHalf.UPPER) {
+            return super.canSurvive(p_52887_, p_52888_, p_52889_);
+        } else {
+            BlockState blockstate = p_52888_.getBlockState(p_52889_.below());
+            if (p_52887_.getBlock() != this) return super.canSurvive(p_52887_, p_52888_, p_52889_); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
+            return blockstate.is(this) && blockstate.getValue(SECTION) == DoubleBlockHalf.LOWER;
+        }
+    }
+
+    public static void placeAt(LevelAccessor p_153174_, BlockState p_153175_, BlockPos p_153176_, int p_153177_) {
+        BlockPos blockpos = p_153176_.above();
+        p_153174_.setBlock(p_153176_, copyWaterloggedFrom(p_153174_, p_153176_, p_153175_.setValue(SECTION, DoubleBlockHalf.LOWER).setValue(AGE, 3)), p_153177_);
+        p_153174_.setBlock(blockpos, copyWaterloggedFrom(p_153174_, blockpos, p_153175_.setValue(SECTION, DoubleBlockHalf.UPPER).setValue(AGE, 3)), p_153177_);
+    }
+
+    public static BlockState copyWaterloggedFrom(LevelReader p_182454_, BlockPos p_182455_, BlockState p_182456_) {
+        return p_182456_.hasProperty(BlockStateProperties.WATERLOGGED) ? p_182456_.setValue(BlockStateProperties.WATERLOGGED, p_182454_.isWaterAt(p_182455_)) : p_182456_;
     }
 
     @Override
@@ -115,17 +116,6 @@ public class RankineDoublePlantBlock extends BushBlock implements BonemealableBl
             net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
         }
 
-    }
-
-    @Override
-    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        if (state.getValue(SECTION) != DoubleBlockHalf.UPPER) {
-            return super.canSurvive(state, worldIn, pos);
-        } else {
-            BlockState blockstate = worldIn.getBlockState(pos.below());
-            if (state.getBlock() != this) return super.canSurvive(state, worldIn, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
-            return blockstate.is(this) && blockstate.getValue(SECTION) == DoubleBlockHalf.LOWER;
-        }
     }
 
     @Override

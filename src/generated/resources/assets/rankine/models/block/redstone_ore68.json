@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/frozen_meteorite",
+    "background": "rankine:block/meteorite",
     "overlay": "rankine:block/redstone_ore"
   }
 }

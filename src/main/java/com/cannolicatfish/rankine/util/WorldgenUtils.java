@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
@@ -49,7 +50,7 @@ public class WorldgenUtils {
     public static List<Block> ORE_STONES = new ArrayList<>();
     public static List<String> ORE_TEXTURES = new ArrayList<>();
 
-    public static List<String> ORES = Arrays.asList("minecraft:stone", "minecraft:granite", "minecraft:diorite", "minecraft:andesite", "minecraft:sandstone|minecraft:sandstone_bottom", "minecraft:red_sandstone|minecraft:red_sandstone_bottom", "minecraft:netherrack", "minecraft:blackstone", "minecraft:basalt|minecraft:basalt_top", "minecraft:end_stone", "minecraft:obsidian", "rankine:pegmatite", "rankine:gray_granite", "rankine:rhyolite", "rankine:comendite", "rankine:granodiorite", "rankine:red_porphyry", "rankine:purple_porphyry", "rankine:hornblende_andesite", "rankine:black_dacite", "rankine:red_dacite", "rankine:tholeiitic_basalt", "rankine:diabase","rankine:gabbro", "rankine:anorthosite", "rankine:dunite", "rankine:harzburgite", "rankine:lherzolite", "rankine:wehrlite", "rankine:troctolite", "rankine:kimberlite", "rankine:komatiite","rankine:shonkinite", "rankine:norite", "rankine:pyroxenite", "rankine:rose_marble", "rankine:white_marble", "rankine:gray_marble", "rankine:black_marble", "rankine:gneiss", "rankine:mica_schist", "rankine:phyllite", "rankine:slate", "rankine:quartzite","rankine:mariposite","rankine:eclogite","rankine:limestone", "rankine:dolostone", "rankine:chalk", "rankine:soapstone", "rankine:shale", "rankine:siltstone", "rankine:itacolumite", "rankine:arkose", "rankine:mudstone","rankine:serpentinite","rankine:marlstone", "rankine:graywacke", "rankine:blueschist", "rankine:greenschist", "rankine:whiteschist","rankine:sommanite","rankine:post_perovskite","rankine:bridgmanham","rankine:ringwoodine","rankine:wadsleyone","rankine:honeystone", "rankine:meteorite", "rankine:frozen_meteorite", "rankine:enstatite_chondrite", "rankine:soul_sandstone|rankine:soul_sandstone_bottom", "rankine:white_sandstone|rankine:white_sandstone_bottom", "rankine:black_sandstone|rankine:black_sandstone_bottom", "rankine:desert_sandstone|rankine:desert_sandstone_bottom");
+    public static List<String> ORES = Arrays.asList("minecraft:stone", "minecraft:granite", "minecraft:diorite", "minecraft:andesite", "minecraft:deepslate|minecraft:deepslate", "minecraft:sandstone|minecraft:sandstone_bottom", "minecraft:red_sandstone|minecraft:red_sandstone_bottom", "minecraft:netherrack", "minecraft:blackstone", "minecraft:basalt|minecraft:basalt_top", "minecraft:end_stone", "minecraft:obsidian", "rankine:pegmatite", "rankine:gray_granite", "rankine:rhyolite", "rankine:comendite", "rankine:granodiorite", "rankine:red_porphyry", "rankine:purple_porphyry", "rankine:hornblende_andesite", "rankine:black_dacite", "rankine:red_dacite", "rankine:tholeiitic_basalt", "rankine:diabase","rankine:gabbro", "rankine:anorthosite", "rankine:dunite", "rankine:harzburgite", "rankine:lherzolite", "rankine:wehrlite", "rankine:troctolite", "rankine:kimberlite", "rankine:komatiite","rankine:shonkinite", "rankine:norite", "rankine:pyroxenite", "rankine:rose_marble", "rankine:white_marble", "rankine:gray_marble", "rankine:black_marble", "rankine:gneiss", "rankine:mica_schist", "rankine:phyllite", "rankine:slate", "rankine:quartzite","rankine:mariposite","rankine:eclogite","rankine:limestone", "rankine:dolostone", "rankine:chalk", "rankine:soapstone", "rankine:shale", "rankine:siltstone", "rankine:itacolumite", "rankine:arkose", "rankine:mudstone","rankine:serpentinite","rankine:marlstone", "rankine:graywacke", "rankine:blueschist", "rankine:greenschist", "rankine:whiteschist","rankine:sommanite","rankine:post_perovskite","rankine:bridgmanham","rankine:ringwoodine","rankine:wadsleyone","rankine:honeystone", "rankine:meteorite", "rankine:frozen_meteorite", "rankine:enstatite_chondrite", "rankine:soul_sandstone|rankine:soul_sandstone_bottom", "rankine:white_sandstone|rankine:white_sandstone_bottom", "rankine:black_sandstone|rankine:black_sandstone_bottom", "rankine:desert_sandstone|rankine:desert_sandstone_bottom");
 
     public static void initOreTextures() {
 
@@ -317,5 +318,9 @@ public class WorldgenUtils {
         return RankineLists.GAS_BLOCKS.contains(reader.getBlockState(pos).getBlock()) || reader.getBlockState(pos).isAir();
     }
 
+
+    public static boolean isOverworld(BiomeLoadingEvent biome) {
+        return biome.getCategory() != Biome.BiomeCategory.NETHER && biome.getCategory() != Biome.BiomeCategory.THEEND;
+    }
 
 }

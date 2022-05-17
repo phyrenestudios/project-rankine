@@ -221,6 +221,9 @@
     },
     "type=73": {
       "model": "rankine:block/lignite_ore73"
+    },
+    "type=74": {
+      "model": "rankine:block/lignite_ore74"
     }
   }
 }
