@@ -221,6 +221,9 @@
     },
     "type=73": {
       "model": "rankine:block/sphalerite_ore73"
+    },
+    "type=74": {
+      "model": "rankine:block/sphalerite_ore74"
     }
   }
 }

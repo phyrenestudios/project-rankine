@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/red_dacite",
+    "background": "rankine:block/black_dacite",
     "overlay": "rankine:block/beryl_ore"
   }
 }

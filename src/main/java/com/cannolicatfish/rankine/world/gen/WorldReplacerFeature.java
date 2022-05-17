@@ -29,7 +29,6 @@ import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
-import java.util.Random;
 
 public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
     public static final int NOISE_SCALE = Config.MISC_WORLDGEN.NOISE_SCALE.get();
@@ -49,10 +48,8 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
 
         WorldGenLevel reader = p_159749_.level();
-        BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
 
-        ChunkAccess chunk = reader.getChunk(pos);
+        ChunkAccess chunk = reader.getChunk(p_159749_.origin());
         for (int x = chunk.getPos().getMinBlockX(); x <= chunk.getPos().getMaxBlockX(); ++x) {
             for (int z = chunk.getPos().getMinBlockZ(); z <= chunk.getPos().getMaxBlockZ(); ++z) {
                 int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);

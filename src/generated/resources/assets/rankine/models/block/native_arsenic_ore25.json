@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/dunite",
+    "background": "rankine:block/anorthosite",
     "overlay": "rankine:block/native_arsenic_ore"
   }
 }

@@ -221,6 +221,9 @@
     },
     "type=73": {
       "model": "rankine:block/native_selenium_ore73"
+    },
+    "type=74": {
+      "model": "rankine:block/native_selenium_ore74"
     }
   }
 }

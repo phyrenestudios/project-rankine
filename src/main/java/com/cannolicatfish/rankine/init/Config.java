@@ -755,10 +755,11 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue MUSHROOMS;
         public final ForgeConfigSpec.BooleanValue COBBLES_GEN;
         public final ForgeConfigSpec.BooleanValue EVAPORITE_GEN;
-        public final ForgeConfigSpec.BooleanValue FUMAROLE_GEN;
+        public final ForgeConfigSpec.IntValue FUMAROLE_GEN;
         public final ForgeConfigSpec.BooleanValue ALLUVIUM_GEN;
         public final ForgeConfigSpec.BooleanValue WHITE_SAND_GEN;
         public final ForgeConfigSpec.BooleanValue BLACK_SAND_GEN;
+        public final ForgeConfigSpec.BooleanValue SOIL_GEN;
         public final ForgeConfigSpec.BooleanValue SECRET_GEN;
         public final ForgeConfigSpec.BooleanValue REPLACE_VANILLA_ORES;
         public final ForgeConfigSpec.BooleanValue END_METEORITE_GEN;
@@ -798,6 +799,8 @@ public class Config {
                     .defineInRange("soilNoiseScale", 60, 1, Integer.MAX_VALUE);
             SECRET_GEN = b.comment("Generate antimatter in the End.")
                     .define("antimatterGen",true);
+            SOIL_GEN = b.comment("Generate soil stuff.")
+                    .define("soilGen",true);
             REPLACE_VANILLA_ORES = b.comment("If enabled, replaces vanilla ores with the Rankine counterparts (mostly for texture purposes). Results may vary due to the order of feature placements.")
                     .define("replaceVanillaOres",true);
             DISABLE_VANILLA_FEATURES = b.comment("Disable vanilla features in the overworld. Works by replacing the listed blocks in #rankine:vanilla_override with stones")
@@ -814,8 +817,8 @@ public class Config {
                     .define("generateCobbles",true);
             EVAPORITE_GEN = b.comment("Enables the generation of evaporite disks.")
                     .define("generateEvaporite",true);
-            FUMAROLE_GEN = b.comment("Enables the generation of fumaroles. More options to come.")
-                    .define("generateFumaroles",true);
+            FUMAROLE_GEN = b.comment("Average number of chuncks to generate a fumarole in. Set to 0 to disable.")
+                    .defineInRange("fumaroleGenerationChance", 10, 0, Integer.MAX_VALUE);
             ALLUVIUM_GEN = b.comment("Enables the generation of alluvium disks.")
                     .define("generateAlluvium",true);
             WHITE_SAND_GEN = b.comment("Enables the generation of white sand disks in beaches.")
@@ -831,7 +834,7 @@ public class Config {
             METEORITE_SIZE = b.comment("Size parameter for meteorites. Higher number is bigger.")
                     .defineInRange("meteoriteSize", 1, 0, 5);
             METEORITE_CHANCE = b.comment("The chance a meteroite will spawn in the Overworld. Higher numbers increase rarity.")
-                    .defineInRange("meteoriteChance", 50, 0, Integer.MAX_VALUE);
+                    .defineInRange("meteoriteChance", 75, 0, Integer.MAX_VALUE);
             SOUL_SANDSTONE_LAYER_THICKNESS = b.comment("The number of blocks that Soul Sandstone will generate up or down from Soul Sand.")
                     .defineInRange("soulSandstoneLayerThickness", 3, 0, Integer.MAX_VALUE);
             BIG_METEORITE_CHANCE = b.comment("The chance a meteroite will be big.")
@@ -931,6 +934,30 @@ public class Config {
                     Arrays.asList(),
                     Arrays.asList(),
                     "rankine:dark_gravel",
+                    "minecraft:air",
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList("minecraft:stony_shore",
+                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay"),
+                    Arrays.asList("minecraft:air|20|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","minecraft:stone|10|minecraft:redstone_ore|0.03","rankine:diabase|30|rankine:baddeleyite_ore|0.04","rankine:red_porphyry|10|rankine:porphyry_copper|0.04"),
+                    Arrays.asList("rankine:wadsleyone","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt","rankine:chalk","rankine:slate","rankine:shale"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
+                    "rankine:light_gravel",
+                    "minecraft:air",
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList("minecraft:grove",
+                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
+                    Arrays.asList("minecraft:air|10|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","minecraft:stone|10|minecraft:coal_ore|0.03","rankine:shonkinite|20|rankine:beryl_ore|0.04","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|5|rankine:malachite_ore|0.04"),
+                    Arrays.asList("rankine:ringwoodine","rankine:serpentinite","rankine:greenschist","rankine:mariposite","rankine:gray_marble","rankine:dolostone","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air",
+                    "minecraft:air",
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList("minecraft:windswept_forest",
+                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
+                    Arrays.asList("minecraft:air|10|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","minecraft:stone|10|minecraft:coal_ore|0.03","rankine:shonkinite|20|rankine:beryl_ore|0.04","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|5|rankine:malachite_ore|0.04"),
+                    Arrays.asList("rankine:ringwoodine","rankine:serpentinite","rankine:greenschist","rankine:mariposite","rankine:gray_marble","rankine:dolostone","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air",
                     "minecraft:air",
                     "minecraft:air"));
             biomeSettings.add(Arrays.asList(Biome.BiomeCategory.NONE.getName(),

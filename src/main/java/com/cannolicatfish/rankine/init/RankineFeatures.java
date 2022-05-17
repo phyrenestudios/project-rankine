@@ -6,10 +6,7 @@ import com.cannolicatfish.rankine.world.gen.mushrooms.*;
 import com.cannolicatfish.rankine.world.gen.trees.*;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.BlockPileConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -17,7 +14,11 @@ import net.minecraftforge.registries.RegistryObject;
 public class RankineFeatures {
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, ProjectRankine.MODID);
 
+    public static final RegistryObject<Feature<SimpleBlockConfiguration>> RANKINE_SIMPLE_BLOCK = FEATURES.register("rankine_simple_block", () -> new RankineSimpleBlockFeature(SimpleBlockConfiguration.CODEC));
+
     public static final RegistryObject<Feature<MeteoriteFeatureConfig>> METEORITE = FEATURES.register("meteorite", () -> new MeteoriteFeature(MeteoriteFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> FUMAROLE = FEATURES.register("fumarole", () -> new FumaroleFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> INTRUSION = FEATURES.register("intrusion", () -> new IntrusionFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> WALL_MUSHROOMS = FEATURES.register("wall_mushrooms_feature", () -> new WallMushroomsFeature(NoneFeatureConfiguration.CODEC));
 
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> WORLD_REPLACER = FEATURES.register("world_replacer_feature", () -> new WorldReplacerFeature(NoneFeatureConfiguration.CODEC));
@@ -54,9 +55,7 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<RankineOreFeatureConfig>> SPHERE_ORE = REGISTRY.register("sphere_ore_feature", () -> new SphericalOreVeinFeature(RankineOreFeatureConfig.CODEC));
     public static final RegistryObject<Feature<RankineOreFeatureConfig>> DISK_ORE = REGISTRY.register("disk_ore_feature", () -> new DiskOreVeinFeature(RankineOreFeatureConfig.CODEC));
     public static final RegistryObject<Feature<DiskConfiguration>> LAND_DISK = REGISTRY.register("land_disk_feature", () -> new LandDiskFeature(DiskConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> FUMAROLE_FEATURE = REGISTRY.register("fumarole_feature", () -> new FumaroleFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> COLUMN_FEATURE = REGISTRY.register("column_feature", () -> new ColumnFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> INTRUSION = REGISTRY.register("intrusion_feature", () -> new IntrusionFeature(NoneFeatureConfiguration.CODEC));
 
 
      */

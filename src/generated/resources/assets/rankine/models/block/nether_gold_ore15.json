@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/granodiorite",
+    "background": "rankine:block/comendite",
     "overlay": "rankine:block/nether_gold_ore"
   }
 }

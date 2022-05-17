@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/shale",
+    "background": "rankine:block/soapstone",
     "overlay": "rankine:block/cassiterite_ore"
   }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/desert_sandstone_bottom",
+    "background": "rankine:block/black_sandstone_bottom",
     "overlay": "rankine:block/cassiterite_ore"
   }
 }
