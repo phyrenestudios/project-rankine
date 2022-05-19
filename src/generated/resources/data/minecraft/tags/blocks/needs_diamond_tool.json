@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:anthracite_ore",
+    "rankine:celestine_ore",
+    "rankine:chromite_ore",
+    "rankine:cobaltite_ore",
+    "rankine:coltan_ore",
+    "rankine:greenockite_ore",
+    "rankine:ilmenite_ore",
+    "rankine:lonsdaleite_ore",
+    "rankine:magnetite_ore",
+    "rankine:molybdenite_ore",
+    "rankine:petalite_ore",
+    "rankine:pyrolusite_ore",
+    "rankine:rheniite_ore",
+    "rankine:uraninite_ore",
+    "rankine:wolframite_ore",
+    "rankine:xenotime_ore"
+  ]
+}

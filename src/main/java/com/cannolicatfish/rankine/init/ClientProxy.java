@@ -64,10 +64,6 @@ public class ClientProxy implements IProxy {
                 new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living, id) ->
                         stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F);
 
-        ItemProperties.register(RankineItems.PENNING_TRAP.get(),
-                new ResourceLocation(ProjectRankine.MODID, "filled"), (stack, world, living, id) ->
-                        stack.getTag() != null && stack.getTag().getInt("filled") != 0 ? 1 : 0);
-
         ItemProperties.register(RankineItems.ALLOY_SURF_ROD.get(), new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_, id) -> {
             if (p_239422_2_ == null) {
                 return 0.0F;

@@ -410,6 +410,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.CARCASS.get(),
             RankineItems.ENDERBALL.get(),
             RankineItems.PENNING_TRAP.get(),
+            RankineItems.FILLED_PENNING_TRAP.get(),
             RankineItems.PUMICE_SOAP.get(),
             RankineItems.REFRACTORY_BRICK.get(),
             RankineItems.HIGH_REFRACTORY_BRICK.get(),

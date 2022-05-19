@@ -29,6 +29,15 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
+        for (Block blk : Stream.of(RankineLists.NEEDS_STONE_TOOL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
+            tag(BlockTags.NEEDS_STONE_TOOL).add(blk);
+        }
+        for (Block blk : Stream.of(RankineLists.NEEDS_IRON_TOOL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
+            tag(BlockTags.NEEDS_IRON_TOOL).add(blk);
+        }
+        for (Block blk : Stream.of(RankineLists.NEEDS_DIAMOND_TOOL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
+            tag(BlockTags.NEEDS_DIAMOND_TOOL).add(blk);
+        }
 
         tag(RankineTags.Blocks.STONES_DACITE).add(RankineBlocks.BLACK_DACITE.get(),RankineBlocks.RED_DACITE.get());
         tag(RankineTags.Blocks.STONES_ANDESITE).add(RankineBlocks.HORNBLENDE_ANDESITE.get(),Blocks.ANDESITE);

@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:interspinifex_ore",
+    "rankine:iron_ore",
+    "rankine:lazurite_ore",
+    "rankine:native_arsenic_ore",
+    "rankine:native_bismuth_ore",
+    "rankine:native_gallium_ore",
+    "rankine:native_lead_ore",
+    "rankine:native_selenium_ore",
+    "rankine:native_tellurium_ore",
+    "rankine:sperrylite_ore"
+  ]
+}

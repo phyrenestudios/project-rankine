@@ -3332,7 +3332,7 @@ public class RankineItems {
     public static final RegistryObject<Item> FIRE_EXTINGUISHER = ITEMS.register("fire_extinguisher", () -> new FireExtinguisherItem(new Item.Properties().stacksTo(1).durability(15).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> GLASS_CUTTER = ITEMS.register("glass_cutter", () -> new GlassCutterItem(new Item.Properties().durability(256).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PENNING_TRAP = ITEMS.register("penning_trap", () -> new PenningTrapItem(new Item.Properties().stacksTo(1)));
-
+    public static final RegistryObject<Item> FILLED_PENNING_TRAP = ITEMS.register("filled_penning_trap", () -> new FilledPenningTrapItem(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> HARDNESS_TESTER = ITEMS.register("hardness_tester", () -> new HardnessTesterItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     //public static final RegistryObject<Item> ORE_CYCLER = REGISTRY.register("ore_cycler", () -> new OreCyclerItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
