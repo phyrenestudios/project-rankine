@@ -3,6 +3,10 @@ package com.cannolicatfish.rankine.init;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.world.gen.*;
 import com.cannolicatfish.rankine.world.gen.mushrooms.*;
+import com.cannolicatfish.rankine.world.gen.ores.DefaultOreVeinFeature;
+import com.cannolicatfish.rankine.world.gen.ores.DiskOreVeinFeature;
+import com.cannolicatfish.rankine.world.gen.ores.RankineOreFeatureConfig;
+import com.cannolicatfish.rankine.world.gen.ores.SphericalOreVeinFeature;
 import com.cannolicatfish.rankine.world.gen.trees.*;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
@@ -15,6 +19,10 @@ public class RankineFeatures {
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, ProjectRankine.MODID);
 
     public static final RegistryObject<Feature<SimpleBlockConfiguration>> RANKINE_SIMPLE_BLOCK = FEATURES.register("rankine_simple_block", () -> new RankineSimpleBlockFeature(SimpleBlockConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<RankineOreFeatureConfig>> DEFAULT_ORE_VEIN = FEATURES.register("default_ore_vein", () -> new DefaultOreVeinFeature(RankineOreFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<RankineOreFeatureConfig>> SPHERICAL_ORE_VEIN = FEATURES.register("spherical_ore_vein", () -> new SphericalOreVeinFeature(RankineOreFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<RankineOreFeatureConfig>> DISK_ORE_VEIN = FEATURES.register("disk_ore_vein", () -> new DiskOreVeinFeature(RankineOreFeatureConfig.CODEC));
 
     public static final RegistryObject<Feature<MeteoriteFeatureConfig>> METEORITE = FEATURES.register("meteorite", () -> new MeteoriteFeature(MeteoriteFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> FUMAROLE = FEATURES.register("fumarole", () -> new FumaroleFeature(NoneFeatureConfiguration.CODEC));
@@ -49,16 +57,6 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<TreeConfiguration>> SHARINGA_TREE = FEATURES.register("sharinga_tree_feature", () -> new TreeFeature(TreeConfiguration.CODEC));
     public static final RegistryObject<Feature<TreeConfiguration>> CORK_OAK_TREE = FEATURES.register("cork_oak_tree_feature", () -> new TreeFeature(TreeConfiguration.CODEC));
     public static final RegistryObject<Feature<TreeConfiguration>> CINNAMON_TREE = FEATURES.register("cinnamon_tree_feature", () -> new TreeFeature(TreeConfiguration.CODEC));
-
-    /*
-    public static final RegistryObject<Feature<RankineOreFeatureConfig>> DEFAULT_ORE = REGISTRY.register("default_ore_feature", () -> new DefaultOreVeinFeature(RankineOreFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<RankineOreFeatureConfig>> SPHERE_ORE = REGISTRY.register("sphere_ore_feature", () -> new SphericalOreVeinFeature(RankineOreFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<RankineOreFeatureConfig>> DISK_ORE = REGISTRY.register("disk_ore_feature", () -> new DiskOreVeinFeature(RankineOreFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<DiskConfiguration>> LAND_DISK = REGISTRY.register("land_disk_feature", () -> new LandDiskFeature(DiskConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> COLUMN_FEATURE = REGISTRY.register("column_feature", () -> new ColumnFeature(NoneFeatureConfiguration.CODEC));
-
-
-     */
 
     public static final RegistryObject<Feature<BlockPileConfiguration>> TINDER_CONK = FEATURES.register("tinder_conk_feature", () -> new TinderConkMushroomFeature(BlockPileConfiguration.CODEC));
     public static final RegistryObject<Feature<BlockPileConfiguration>> LIONS_MANE = FEATURES.register("lions_mane_feature", () -> new LionsManeMushroomFeature(BlockPileConfiguration.CODEC));

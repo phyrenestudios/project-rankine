@@ -20,7 +20,7 @@ public class FallenLogFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos pos = p_159749_.origin();
         Random rand = reader.getRandom();
 
-        if (rand.nextFloat() < Config.MISC_WORLDGEN.END_METEORITE_CHANCE.get()) {
+        if (rand.nextFloat() < Config.WORLDGEN.END_METEORITE_CHANCE.get()) {
 
         }
         return true;

@@ -33,10 +33,10 @@ public class FlatBedrockFeature extends Feature<NoneFeatureConfiguration> {
 
         for (int x = chunk.getPos().getMinBlockX(); x <= chunk.getPos().getMaxBlockX(); ++x) {
             for (int z = chunk.getPos().getMinBlockZ(); z <= chunk.getPos().getMaxBlockZ(); ++z) {
-                for (int y = reader.getMinBuildHeight(); y < reader.getMinBuildHeight() + Config.MISC_WORLDGEN.BEDROCK_LAYERS.get(); ++y) {
+                for (int y = reader.getMinBuildHeight(); y < reader.getMinBuildHeight() + Config.WORLDGEN.BEDROCK_LAYERS.get(); ++y) {
                     reader.setBlock(new BlockPos(x, y, z), Blocks.BEDROCK.defaultBlockState(), 2);
                 }
-                for (int y = reader.getMinBuildHeight() + Config.MISC_WORLDGEN.BEDROCK_LAYERS.get(); y <= reader.getMinBuildHeight() + 5; ++y) {
+                for (int y = reader.getMinBuildHeight() + Config.WORLDGEN.BEDROCK_LAYERS.get(); y <= reader.getMinBuildHeight() + 5; ++y) {
                     if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.BEDROCK) {
                         reader.setBlock(new BlockPos(x, y, z), baseBlock, 2);
                     }

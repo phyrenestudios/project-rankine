@@ -746,7 +746,7 @@ public class Config {
         }
     }
 
-    public static class MiscWorldGen {
+    public static class Worldgen {
         public final ForgeConfigSpec.IntValue BEDROCK_LAYERS;
         public final ForgeConfigSpec.BooleanValue DISABLE_VANILLA_FEATURES;
         public final ForgeConfigSpec.BooleanValue RANKINE_FLORA;
@@ -790,8 +790,8 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue NETHER_INTRUSION_SHRINK;
         public final ForgeConfigSpec.DoubleValue NETHER_INTRUSION_SHIFT;
 
-        public MiscWorldGen(ForgeConfigSpec.Builder b) {
-            b.comment("Here are miscellaneous worldgen features").push("misc");
+        public Worldgen(ForgeConfigSpec.Builder b) {
+            b.comment("Here are miscellaneous worldgen options.").push("worldgen");
             BEDROCK_LAYERS = b.comment("The number of flat bedrock layers to generate. Set to 0 to disable.")
                     .defineInRange("flatBedrockLayers", 0, 0, 10);
 
@@ -1014,8 +1014,8 @@ public class Config {
                     Arrays.asList("rankine:bridgmanham","rankine:rose_marble","rankine:red_dacite","rankine:rhyolite","rankine:quartzite","rankine:siltstone","rankine:arkose"),
                     Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
                     "rankine:light_gravel",
-                    "minecraft:air",
-                    "minecraft:air"));
+                    "rankine:desert_sand",
+                    "rankine:desert_sandstone"));
             biomeSettings.add(Arrays.asList(Biome.BiomeCategory.DESERT.getName(),
                     Arrays.asList("rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:loamy_sand","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:loamy_sand"),
                     Arrays.asList("minecraft:air|20|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","minecraft:stone|10|minecraft:lapis_ore|0.03","rankine:red_porphyry|20|rankine:porphyry_copper|0.05","rankine:red_porphyry|10|rankine:native_gold_ore|0.04","rankine:red_porphyry|3|rankine:molybdenum_ore|0.03","rankine:pegmatite|2|rankine:baddeleyite_ore|0.03","rankine:pegmatite|1|rankine:coltan_ore|0.03","rankine:pegmatite|1|rankine:beryl_ore|0.03","rankine:pegmatite|1|rankine:uraninite_ore|0.03","rankine:pegmatite|5|rankine:petalite_ore|0.04"),
@@ -1237,7 +1237,7 @@ public class Config {
     public static final Alloys ALLOYS;
     public static final HardMode HARD_MODE;
     public static final Gases GASES;
-    public static final MiscWorldGen MISC_WORLDGEN;
+    public static final Worldgen WORLDGEN;
     public static final BiomeGen BIOME_GEN;
     public static final BlockProperties BLOCK_PROPERTIES;
 
@@ -1249,7 +1249,7 @@ public class Config {
         ALLOYS = new Alloys(BUILDER);
         GASES = new Gases(BUILDER);
         BLOCK_PROPERTIES = new BlockProperties(BUILDER);
-        MISC_WORLDGEN = new MiscWorldGen(BUILDER);
+        WORLDGEN = new Worldgen(BUILDER);
         BIOME_GEN = new BiomeGen(BUILDER);
         HARD_MODE = new HardMode(BUILDER);
 

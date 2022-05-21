@@ -30,7 +30,7 @@ public class ColumnFeature extends Feature<NoneFeatureConfiguration> {
         Random rand = reader.getRandom();
         for (int X = 0; X < 16; ++ X) {
             for (int Z = 0; Z < 16; ++ Z) {
-                if (rand.nextFloat() < Config.MISC_WORLDGEN.COLUMN_CHANCE.get()) {
+                if (rand.nextFloat() < Config.WORLDGEN.COLUMN_CHANCE.get()) {
                     ChunkAccess chunk = reader.getChunk(pos);
                     int randX = chunk.getPos().getMinBlockX() + X;
                     int randZ = chunk.getPos().getMinBlockZ() + Z;
@@ -45,7 +45,7 @@ public class ColumnFeature extends Feature<NoneFeatureConfiguration> {
                                 bottomPos = getBottom(reader, topPos);
                                 if (bottomPos != null) {
                                     if (reader.getBlockState(bottomPos).canOcclude()) {
-                                        if (rand.nextFloat() < Config.MISC_WORLDGEN.COLUMN_FREQUENCY.get()) {
+                                        if (rand.nextFloat() < Config.WORLDGEN.COLUMN_FREQUENCY.get()) {
                                             createColumn(reader, topPos, bottomPos);
                                         } else {
                                             createStalactite(reader, topPos, bottomPos);

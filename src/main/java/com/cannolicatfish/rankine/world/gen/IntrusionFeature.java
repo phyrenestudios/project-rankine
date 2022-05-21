@@ -46,7 +46,7 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
 
             if (!INTRUSION.is(Blocks.AIR)) {
                 if (Biome.getBiomeCategory(Holder.direct(targetBiome)) == Biome.BiomeCategory.NETHER) {
-                    int radius = Config.MISC_WORLDGEN.NETHER_INTRUSION_RADIUS.get() + rand.nextInt(3);
+                    int radius = Config.WORLDGEN.NETHER_INTRUSION_RADIUS.get() + rand.nextInt(3);
                     int startY = 126;
                     int endY = 1;
                     int shiftx = 0;
@@ -57,7 +57,7 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
                     BlockPos posAvg;
 
                     for (int y = startY; y >= endY; --y) {
-                        if (rand.nextFloat() < Config.MISC_WORLDGEN.OVERWORLD_INTRUSION_SHIFT.get()) {
+                        if (rand.nextFloat() < Config.WORLDGEN.OVERWORLD_INTRUSION_SHIFT.get()) {
                             shiftx += rand.nextInt(3) - 1;
                             shiftz += rand.nextInt(3) - 1;
                         } else {
@@ -84,7 +84,7 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
                                 }
                             }
                         }
-                        if (rand.nextFloat() < Config.MISC_WORLDGEN.NETHER_INTRUSION_SHRINK.get()) {
+                        if (rand.nextFloat() < Config.WORLDGEN.NETHER_INTRUSION_SHRINK.get()) {
                             radius -= 1;
                             if (radius <= 0) {
                                 return true;
@@ -99,8 +99,8 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
                     pos = new BlockPos(pos.getX(),startY,pos.getZ());
 
                     for (int y = startY; y <= endY; ++y) {
-                        double radius = (Config.MISC_WORLDGEN.OVERWORLD_INTRUSION_RADIUS.get() + 1.25*rand.nextFloat() - 0.5);
-                        if (rand.nextFloat() < Config.MISC_WORLDGEN.OVERWORLD_INTRUSION_SHIFT.get()) {
+                        double radius = (Config.WORLDGEN.OVERWORLD_INTRUSION_RADIUS.get() + 1.25*rand.nextFloat() - 0.5);
+                        if (rand.nextFloat() < Config.WORLDGEN.OVERWORLD_INTRUSION_SHIFT.get()) {
                             pos = pos.offset(rand.nextBoolean() ? 1 : 0,1,rand.nextBoolean() ? 1 : 0);
                         } else {
                             pos = pos.offset(0,1,0);
@@ -118,7 +118,7 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
                                         } else {
                                             reader.setBlock(b, ORE, 3);
                                         }
-                                    } else if (rand.nextFloat() < Config.MISC_WORLDGEN.INTRUSION_CINNABAR_ORE.get()) {
+                                    } else if (rand.nextFloat() < Config.WORLDGEN.INTRUSION_CINNABAR_ORE.get()) {
                                         reader.setBlock(b, RankineBlocks.CINNABAR_ORE.get().defaultBlockState().setValue(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(INTRUSION.getBlock())), 3);
                                     } else {
                                         reader.setBlock(b, INTRUSION, 3);

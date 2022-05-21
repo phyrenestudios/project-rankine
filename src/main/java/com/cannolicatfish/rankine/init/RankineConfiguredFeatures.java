@@ -93,17 +93,8 @@ public class RankineConfiguredFeatures {
         return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(log), new StraightTrunkPlacer(height, randA, randB), BlockStateProvider.simple(leaves), new BlobFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), 0), new TwoLayersFeatureSize(0, 0, 0));
     }
 
-    // LOCAL_MODIFICATIONS
     /*
-    public static final ConfiguredFeature<?, ?> DISK_WHITE_SAND = new ConfiguredFeature<>(RankineFeatures.LAND_DISK.get(),new DiskConfiguration(RankineBlocks.WHITE_SAND.get().defaultBlockState(), UniformInt.of(5, 4), 4, ImmutableList.of(Blocks.SAND.defaultBlockState())));
-    public static final ConfiguredFeature<?, ?> DISK_BLACK_SAND = new ConfiguredFeature<>(RankineFeatures.LAND_DISK.get(),new DiskConfiguration(RankineBlocks.BLACK_SAND.get().defaultBlockState(), UniformInt.of(3, 4), 4, ImmutableList.of(Blocks.SOUL_SOIL.defaultBlockState(),Blocks.SOUL_SAND.defaultBlockState())));
-    public static final ConfiguredFeature<?, ?> END_METEORITE = new ConfiguredFeature<>(RankineFeatures.END_METEORITE_FEATURE.get(),new NoneFeatureConfiguration());
-    public static final ConfiguredFeature<?, ?> ANTIMATTER_BLOB = new ConfiguredFeature<>(RankineFeatures.ANTIMATTER_BLOB_FEATURE.get(),new NoneFeatureConfiguration());
-    public static final ConfiguredFeature<?, ?> FUMAROLE = new ConfiguredFeature<>(RankineFeatures.FUMAROLE_FEATURE.get(),new NoneFeatureConfiguration());
-    public static final ConfiguredFeature<?, ?> COLUMN = new ConfiguredFeature<>(RankineFeatures.COLUMN_FEATURE.get(),new NoneFeatureConfiguration());
-    public static final ConfiguredFeature<?, ?> MUSHROOMS = new ConfiguredFeature<>(RankineFeatures.WALL_MUSHROOMS.get(),new NoneFeatureConfiguration());
 
-    /*
     public static final ConfiguredFeature<?, ?> OAT_PLANT_PATCH =new ConfiguredFeature<>(Feature.RANDOM_PATCH,(new RandomPatchConfiguration.GrassConfigurationBuilder(BlockStateProvider.simple(RankineBlocks.OAT_PLANT.get().defaultBlockState().setValue(RankineCropsBlock.AGE,7)), CropsBlockPlacer.PLACER)).tries(20).whitelist(blks).noProjection().build());
     public static final ConfiguredFeature<?, ?> MILLET_PLANT_PATCH =new ConfiguredFeature<>(Feature.RANDOM_PATCH,(new RandomPatchConfiguration.GrassConfigurationBuilder(BlockStateProvider.simple(RankineBlocks.MILLET_PLANT.get().defaultBlockState().setValue(RankineCropsBlock.AGE,7)), CropsBlockPlacer.PLACER)).tries(20).whitelist(blks).noProjection().build());
     public static final ConfiguredFeature<?, ?> RICE_PLANT_PATCH =new ConfiguredFeature<>(Feature.RANDOM_PATCH,(new RandomPatchConfiguration.GrassConfigurationBuilder(BlockStateProvider.simple(RankineBlocks.RICE_PLANT.get().defaultBlockState().setValue(RankineCropsBlock.AGE,7)), CropsBlockPlacer.PLACER)).tries(20).whitelist(blks).noProjection().build());
@@ -115,22 +106,10 @@ public class RankineConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> SORGHUM_PLANT_PATCH =new ConfiguredFeature<>(Feature.RANDOM_PATCH,(new RandomPatchConfiguration.GrassConfigurationBuilder(BlockStateProvider.simple(RankineBlocks.SORGHUM_PLANT.get().defaultBlockState().setValue(TripleCropsBlock.AGE,7)), TripleCropsBlockPlacer.PLACER)).tries(20).whitelist(blks).noProjection().build());
     public static final ConfiguredFeature<?, ?> JUTE_PLANT_PATCH =new ConfiguredFeature<>(Feature.RANDOM_PATCH,(new RandomPatchConfiguration.GrassConfigurationBuilder(BlockStateProvider.simple(RankineBlocks.JUTE_PLANT.get().defaultBlockState().setValue(TripleCropsBlock.AGE,7)), TripleCropsBlockPlacer.PLACER)).tries(20).whitelist(blks).noProjection().build());
 
-    public static final ConfiguredFeature<?, ?> COBBLE_PATCH = RankineFeatures.COBBLE_PATCH.get(),(new RandomPatchConfiguration.GrassConfigurationBuilder(BlockStateProvider.simple(RankineBlocks.PEGMATITE_COBBLE.get().defaultBlockState()), SimpleBlockPlacer.INSTANCE)).tries(30).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT, Blocks.MYCELIUM, Blocks.SAND, Blocks.STONE)).noProjection().build())
-            .decorated(Features.Decorators.HEIGHTMAP_SQUARE).decorated(FeatureDecorator.CHANCE,new ChanceDecoratorConfiguration(1)));*/
-
-
-
     // UNDERGROUND_ORES
- //   public static final ConfiguredFeature<?, ?> FLAT_BEDROCK = new ConfiguredFeature<>(RankineFeatures.FLAT_BEDROCK_FEATURE.get(),
- //           new ReplacerFeatureConfig(Blocks.STONE.defaultBlockState(), Blocks.BEDROCK.defaultBlockState(), 0, Config.MISC_WORLDGEN.BEDROCK_LAYERS.get()));
-  //  public static final ConfiguredFeature<?, ?> FLAT_BEDROCK_NETHER = new ConfiguredFeature<>(RankineFeatures.FLAT_BEDROCK_FEATURE.get(),
-  //          new ReplacerFeatureConfig(Blocks.NETHERRACK.defaultBlockState(), Blocks.BEDROCK.defaultBlockState(), 0, Config.MISC_WORLDGEN.BEDROCK_LAYERS.get()));
-  //  public static final ConfiguredFeature<?, ?> ORE_ALLUVIUM =new ConfiguredFeature<>(Feature.DISK,new DiskConfiguration(RankineBlocks.ALLUVIUM.get().defaultBlockState(), UniformInt.of(1, 2), 1,
+//  public static final ConfiguredFeature<?, ?> ORE_ALLUVIUM =new ConfiguredFeature<>(Feature.DISK,new DiskConfiguration(RankineBlocks.ALLUVIUM.get().defaultBlockState(), UniformInt.of(1, 2), 1,
   //          Lists.newArrayList(Blocks.DIRT.defaultBlockState(), Blocks.CLAY.defaultBlockState(), Blocks.SAND.defaultBlockState(), Blocks.GRAVEL.defaultBlockState())));
-   // public static final ConfiguredFeature<?, ?> ORE_EVAPORITE =new ConfiguredFeature<>(Feature.DISK,new DiskConfiguration(RankineBlocks.EVAPORITE.get().defaultBlockState(), UniformInt.of(1, 1), 1,
-    //        Lists.newArrayList(Blocks.STONE.defaultBlockState(), Blocks.DIRT.defaultBlockState(), Blocks.CLAY.defaultBlockState(), Blocks.SAND.defaultBlockState(), Blocks.GRAVEL.defaultBlockState())));
 
-    //public static final ConfiguredFeature<?, ?> INTRUSION_FEATURE = new ConfiguredFeature<>(RankineFeatures.INTRUSION.get(), new NoneFeatureConfiguration());
-   // public static final ConfiguredFeature<?, ?> POST_WORLD_REPLACER_GEN = new ConfiguredFeature<>(RankineFeatures.POST_WORLD_REPLACER_FEATURE.get(),new NoneFeatureConfiguration());
 
+     */
 }
