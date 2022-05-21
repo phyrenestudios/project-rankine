@@ -90,6 +90,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BasicItemListing;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.TierSortingRegistry;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -136,6 +137,15 @@ public class RankineEventHandler {
                 totem.setDamageValue(Math.max(x,0));
 
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onAlloyToolHarvest(PlayerEvent.HarvestCheck event) {
+        ItemStack stack = event.getPlayer().getMainHandItem();
+        if (stack.getItem() instanceof IAlloyTool) {
+            List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
+            event.setCanHarvest(TierSortingRegistry.isCorrectTierForDrops(tiers.get(((IAlloyTool) stack.getItem()).getAlloyHarvestLevel(stack)),event.getTargetBlock()));
         }
     }
 

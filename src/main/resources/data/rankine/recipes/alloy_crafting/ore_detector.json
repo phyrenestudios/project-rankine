@@ -1,0 +1,36 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern":
+  [
+    "ssi",
+    "scs",
+    " sb"
+  ],
+  "key":
+  {
+    "b":
+    {
+      "item": "rankine:lead_acid_battery"
+    },
+    "c":
+    {
+      "item": "rankine:alloy_wire",
+      "langName": "item.rankine.duralumin_alloying",
+      "inheritRecipe": "rankine:alloying/duralumin_alloying",
+      "color": 8887223
+    },
+    "i":
+    {
+      "item": "rankine:indium_tin_oxide"
+    },
+    "s":
+    {
+      "item": "rankine:steel_ingot"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:ore_detector",
+    "count": 1
+  }
+}

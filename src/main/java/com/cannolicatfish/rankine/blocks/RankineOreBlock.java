@@ -6,10 +6,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.OreBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -18,13 +21,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RankineOreBlock extends Block {
+public class RankineOreBlock extends OreBlock {
     public int type = 0;
-    private List<String> hlpath = new ArrayList<>();
-    private int hl = -1;
     public static final IntegerProperty TYPE = IntegerProperty.create("type",0, WorldgenUtils.ORE_TEXTURES.size() -1);
     public RankineOreBlock(Properties properties) {
         super(properties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(TYPE,0));
+    }
+
+    public RankineOreBlock(Properties p_153992_, UniformInt p_153993_) {
+        super(p_153992_,p_153993_);
         this.registerDefaultState(this.stateDefinition.any().setValue(TYPE,0));
     }
 
@@ -60,25 +66,6 @@ public class RankineOreBlock extends Block {
                 worldIn.setBlockAndUpdate(pos,state.setValue(TYPE, WorldgenUtils.ORE_STONES.indexOf(BS.getBlock())));
                 break;
             }
-        }
-    }
-
-    @Override
-    public int getExpDrop(BlockState state, net.minecraft.world.level.LevelReader reader, BlockPos pos, int fortune, int silktouch) {
-        return silktouch == 0 ? this.getExperience(RANDOM) : 0;
-    }
-
-    protected int getExperience(Random rand) {
-        if (this == RankineBlocks.LIGNITE_ORE.get()  || this == RankineBlocks.SUBBITUMINOUS_ORE.get() || this == RankineBlocks.NATIVE_TIN_ORE.get() || this == RankineBlocks.NATIVE_SILVER_ORE.get() || this == RankineBlocks.NATIVE_LEAD_ORE.get()|| this == RankineBlocks.NATIVE_GOLD_ORE.get() || this == RankineBlocks.STIBNITE_ORE.get()) {
-            return Mth.nextInt(rand, 0, 2);
-        } else if (this == RankineBlocks.PORPHYRY_COPPER.get() || this == RankineBlocks.NATIVE_SULFUR_ORE.get() || this == RankineBlocks.NATIVE_BISMUTH_ORE.get() || this == RankineBlocks.NATIVE_ARSENIC_ORE.get()) {
-            return Mth.nextInt(rand, 1, 4);
-        } else if (this == RankineBlocks.ANTHRACITE_ORE.get() || this == RankineBlocks.BITUMINOUS_ORE.get() || this == RankineBlocks.LAZURITE_ORE.get() || this == RankineBlocks.NATIVE_INDIUM_ORE.get() || this == RankineBlocks.NATIVE_GALLIUM_ORE.get() || this == RankineBlocks.NATIVE_SELENIUM_ORE.get() || this == RankineBlocks.NATIVE_TELLURIUM_ORE.get()) {
-            return Mth.nextInt(rand, 2, 5);
-        } else if (this == RankineBlocks.BERYL_ORE.get()|| this == RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get() || this == RankineBlocks.PLUMBAGO_ORE.get()) {
-            return Mth.nextInt(rand, 3, 7);
-        } else {
-            return this == Blocks.NETHER_GOLD_ORE ? Mth.nextInt(rand, 0, 1) : 0;
         }
     }
 
