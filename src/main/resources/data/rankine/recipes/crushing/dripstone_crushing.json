@@ -1,0 +1,24 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "minecraft:dripstone_block"
+  },
+  "output1": {
+    "item": "rankine:calcite",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:dolomite",
+    "chance": 1
+  },
+  "output3": {
+    "item": "rankine:trona",
+    "chance": 0.75,
+    "additional": 0.15
+  },
+  "output4": {
+    "item": "rankine:thenardite",
+    "chance": 0.5,
+    "additional": 0.2
+  }
+}

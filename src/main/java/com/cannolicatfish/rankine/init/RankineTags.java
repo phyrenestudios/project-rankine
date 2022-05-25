@@ -106,6 +106,8 @@ public final class RankineTags {
         public static final TagKey<Block> TREE_LEAVES = modBlock("tree_leaves");
         public static final TagKey<Block> WORLD_STRIP = modBlock("world_strip");
         public static final TagKey<Block> VANILLA_OVERRIDE = modBlock("vanilla_override");
+        public static final TagKey<Block> DRIPSTONES = modBlock("dripstones");
+        public static final TagKey<Block> POINTED_DRIPSTONES = modBlock("pointed_dripstones");
 
         public static final TagKey<Block> ALLOY_STORAGE_BLOCKS = modBlock("alloy_storage_blocks");
 

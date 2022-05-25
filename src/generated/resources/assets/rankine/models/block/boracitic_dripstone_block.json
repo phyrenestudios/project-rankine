@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rankine:block/boracitic_dripstone_block"
+  }
+}

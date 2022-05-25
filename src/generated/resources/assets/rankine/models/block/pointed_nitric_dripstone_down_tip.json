@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "rankine:block/pointed_nitric_dripstone_down_tip"
+  }
+}

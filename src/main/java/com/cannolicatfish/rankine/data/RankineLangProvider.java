@@ -82,6 +82,8 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.SMOOTH_SANDSTONE_STAIRS,
                 RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,
                 RankineLists.SMOOTH_SANDSTONE_WALLS,
+                RankineLists.POINTED_DRIPSTONES,
+                RankineLists.DRIPSTONES,
                 RankineLists.SANDSTONES,
                 RankineLists.SANDSTONE_SLABS,
                 RankineLists.SANDSTONE_STAIRS,

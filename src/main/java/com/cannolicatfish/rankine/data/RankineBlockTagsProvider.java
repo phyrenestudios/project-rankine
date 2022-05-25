@@ -73,6 +73,8 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(Tags.Blocks.GRAVEL).add(RankineBlocks.DARK_GRAVEL.get(),RankineBlocks.LIGHT_GRAVEL.get());
         tag(RankineTags.Blocks.TUFF).add(RankineBlocks.ANDESITIC_TUFF.get(),RankineBlocks.BASALTIC_TUFF.get(),RankineBlocks.RHYOLITIC_TUFF.get(),RankineBlocks.KIMBERLITIC_TUFF.get(),RankineBlocks.KOMATIITIC_TUFF.get());
         tag(RankineTags.Blocks.CLAY).add(RankineBlocks.FIRE_CLAY.get(),Blocks.CLAY);
+        tag(RankineTags.Blocks.POINTED_DRIPSTONES).add(RankineBlocks.POINTED_BORACITIC_DRIPSTONE.get(),RankineBlocks.POINTED_NITRIC_DRIPSTONE.get(),RankineBlocks.POINTED_HALITIC_DRIPSTONE.get(),RankineBlocks.POINTED_GYPSIC_DRIPSTONE.get(),RankineBlocks.POINTED_ZIRCONIC_DRIPSTONE.get(),RankineBlocks.POINTED_FERRIC_DRIPSTONE.get(),RankineBlocks.POINTED_MAGNESITIC_DRIPSTONE.get());
+        tag(RankineTags.Blocks.DRIPSTONES).add(RankineBlocks.BORACITIC_DRIPSTONE_BLOCK.get(),RankineBlocks.NITRIC_DRIPSTONE_BLOCK.get(),RankineBlocks.HALITIC_DRIPSTONE_BLOCK.get(),RankineBlocks.GYPSIC_DRIPSTONE_BLOCK.get(),RankineBlocks.ZIRCONIC_DRIPSTONE_BLOCK.get(),RankineBlocks.FERRIC_DRIPSTONE_BLOCK.get(),RankineBlocks.MAGNESITIC_DRIPSTONE_BLOCK.get());
         tag(RankineTags.Blocks.SILT).add(RankineBlocks.SILT.get());
         tag(RankineTags.Blocks.HARDENED_GLASS).add(RankineBlocks.LEAD_GLASS.get(),RankineBlocks.BOROSILICATE_GLASS.get(),RankineBlocks.CVD_GLASS.get(),RankineBlocks.REACTION_CHAMBER_CELL.get());
         tag(BlockTags.SAND).add(RankineBlocks.BLACK_SAND.get(),RankineBlocks.WHITE_SAND.get());
