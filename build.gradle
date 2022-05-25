@@ -148,7 +148,7 @@ dependencies {
     //implementation fg.deobf("me.shedaniel:architectury-forge:${architectury_version}")
 
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-    annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
@@ -215,6 +215,6 @@ artifacts {
     archives deobfJar
 }
 
-/*mixin {
+mixin {
     add sourceSets.main, "rankine.refmap.json"
-}*/
+}

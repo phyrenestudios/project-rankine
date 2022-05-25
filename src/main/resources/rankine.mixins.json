@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "com.cannolicatfish.rankine.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "refmap": "rankine.refmap.json",
   "mixins": [
   ],

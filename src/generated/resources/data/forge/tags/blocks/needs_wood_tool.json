@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:lignite_ore",
+    "rankine:native_gold_ore",
+    "rankine:native_tin_ore",
+    "rankine:native_silver_ore",
+    "rankine:native_sulfur_ore",
+    "rankine:nether_quartz_ore",
+    "rankine:stibnite_ore"
+  ]
+}

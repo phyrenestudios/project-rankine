@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.items.alloys;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.google.common.collect.*;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -58,6 +59,12 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
         }
         return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
+
+    @Override
+    public float getDestroySpeed(ItemStack p_41004_, BlockState p_41005_) {
+        return p_41005_.is(BlockTags.MINEABLE_WITH_SHOVEL) ? getAlloyMiningSpeed(p_41004_) : 1.0F;
+    }
+
 
 
     /**
