@@ -53,6 +53,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
         for (Block BLOCK : Stream.of(
                 RankineLists.STONES,
+                RankineLists.DRIPSTONES,
                 RankineLists.SANDSTONES,
                 RankineLists.SMOOTH_SANDSTONES,
                 RankineLists.CUT_SANDSTONES,
@@ -430,7 +431,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItemAltTexture(RankineItems.YELLOW_CLOVER.get(), modLoc("block/" + "yellow_clover"));
         basicItemAltTexture(RankineItems.STINGING_NETTLE.get(), modLoc("block/" + "stinging_nettle"));
         basicItemAltTexture(RankineItems.SHORT_GRASS.get(), modLoc("block/" + "short_grass0"));
-
+        for (Block blk : RankineLists.POINTED_DRIPSTONES) {
+            basicItemAltTexture(blk.asItem(), modLoc("block/" + blk.getRegistryName().getPath() + "_down_tip"));
+        }
         for (Block blk : RankineLists.TALL_FLOWERS) {
             basicItemAltTexture(blk.asItem(), modLoc("block/" + blk.getRegistryName().getPath() + "_top"));
         }

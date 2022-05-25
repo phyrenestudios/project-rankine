@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:poinnted_nitric_dripstone"
+    }
+  },
+  "result": {
+    "item": "rankine:nitric_dripstone_block"
+  }
+}

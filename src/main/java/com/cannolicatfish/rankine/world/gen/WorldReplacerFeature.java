@@ -31,10 +31,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.List;
 
 public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
-    public static final int NOISE_SCALE = Config.MISC_WORLDGEN.NOISE_SCALE.get();
+    public static final int NOISE_SCALE = Config.WORLDGEN.NOISE_SCALE.get();
     //public static final int NOISE_OFFSET = Config.MISC_WORLDGEN.NOISE_OFFSET.get();
-    public static final int LAYER_THICKNESS = Config.MISC_WORLDGEN.LAYER_THICKNESS.get();
-    public static final double LAYER_BEND = Config.MISC_WORLDGEN.LAYER_BEND.get();
+    public static final int LAYER_THICKNESS = Config.WORLDGEN.LAYER_THICKNESS.get();
+    public static final double LAYER_BEND = Config.WORLDGEN.LAYER_BEND.get();
     public static List<ResourceLocation> GEN_BIOMES = WorldgenUtils.GEN_BIOMES;
     public static List<List<String>> LAYER_LISTS = WorldgenUtils.LAYER_LISTS;
 
@@ -64,7 +64,7 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
                         BlockPos TARGET_POS = new BlockPos(x,y,z);
                         BlockState TARGET_BS = reader.getBlockState(TARGET_POS);
                         Block TARGET_BLOCK = TARGET_BS.getBlock();
-                        if (Config.MISC_WORLDGEN.REPLACE_VANILLA_ORES.get() && vanillaOre(TARGET_BLOCK) != Blocks.AIR.defaultBlockState()) {
+                        if (Config.WORLDGEN.REPLACE_VANILLA_ORES.get() && vanillaOre(TARGET_BLOCK) != Blocks.AIR.defaultBlockState()) {
                             int TARGET_INDEX = WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock());
                             reader.setBlock(TARGET_POS, vanillaOre(TARGET_BLOCK).setValue(RankineOreBlock.TYPE, TARGET_INDEX == -1 ? 0 : TARGET_INDEX), 3);
                             continue;
@@ -136,7 +136,7 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     private static boolean canReplaceStone(BlockState target) {
-        switch (Config.MISC_WORLDGEN.LAYER_GEN.get()) {
+        switch (Config.WORLDGEN.LAYER_GEN.get()) {
             case 1:
                 return target.getBlock().equals(Blocks.STONE) || target.getBlock().equals(Blocks.DEEPSLATE);
             case 2:
@@ -178,13 +178,13 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
 
     private static boolean leaveNetherrack(WorldGenLevel reader, BlockPos pos, Biome biome) {
         if (biome.getRegistryName().toString().equals(Biomes.BASALT_DELTAS.location().toString()) || biome.getRegistryName().toString().equals(Biomes.SOUL_SAND_VALLEY.location().toString())) return false;
-        for (int i = 1; i <=Config.MISC_WORLDGEN.NETHERRACK_LAYER_THICKNESS.get(); i++) {
+        for (int i = 1; i <=Config.WORLDGEN.NETHERRACK_LAYER_THICKNESS.get(); i++) {
             if (reader.getBlockState(pos.above(i)).is(RankineTags.Blocks.NETHER_TOPS)) return true;
         }
         return false;
     }
     private static boolean placeSandstone(WorldGenLevel reader, BlockPos pos) {
-        for (int i = -1*Config.MISC_WORLDGEN.SOUL_SANDSTONE_LAYER_THICKNESS.get(); i <=Config.MISC_WORLDGEN.SOUL_SANDSTONE_LAYER_THICKNESS.get(); i++) {
+        for (int i = -1*Config.WORLDGEN.SOUL_SANDSTONE_LAYER_THICKNESS.get(); i <=Config.WORLDGEN.SOUL_SANDSTONE_LAYER_THICKNESS.get(); i++) {
             if (reader.getBlockState(pos.above(i)).is(BlockTags.SOUL_SPEED_BLOCKS)) return true;
         }
         return false;

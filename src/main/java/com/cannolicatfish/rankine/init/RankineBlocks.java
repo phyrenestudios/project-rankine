@@ -69,7 +69,6 @@ import com.cannolicatfish.rankine.fluids.MercuryFlowingFluidBlock;
 import com.cannolicatfish.rankine.fluids.RankineFlowingFluidBlock;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import com.cannolicatfish.rankine.world.grower.*;
-import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.*;
@@ -1784,6 +1783,24 @@ public class RankineBlocks {
     public static final RegistryObject<Block> KIMBERLITIC_TUFF = BLOCKS.register("kimberlitic_tuff", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 2.0F)));
     public static final RegistryObject<Block> KOMATIITIC_TUFF = BLOCKS.register("komatiitic_tuff", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 2.0F)));
 
+    public static final RegistryObject<Block> FERRIC_DRIPSTONE_BLOCK = BLOCKS.register("ferric_dripstone_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)));
+    public static final RegistryObject<Block> MAGNESITIC_DRIPSTONE_BLOCK = BLOCKS.register("magnesitic_dripstone_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)));
+    public static final RegistryObject<Block> ZIRCONIC_DRIPSTONE_BLOCK = BLOCKS.register("zirconic_dripstone_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)));
+    public static final RegistryObject<Block> GYPSIC_DRIPSTONE_BLOCK = BLOCKS.register("gypsic_dripstone_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)));
+    public static final RegistryObject<Block> HALITIC_DRIPSTONE_BLOCK = BLOCKS.register("halitic_dripstone_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)));
+    public static final RegistryObject<Block> NITRIC_DRIPSTONE_BLOCK = BLOCKS.register("nitric_dripstone_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)));
+    public static final RegistryObject<Block> BORACITIC_DRIPSTONE_BLOCK = BLOCKS.register("boracitic_dripstone_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)));
+
+    public static final RegistryObject<Block> POINTED_FERRIC_DRIPSTONE = BLOCKS.register("pointed_ferric_dripstone", () -> new RankinePointedDripstoneBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape(),FERRIC_DRIPSTONE_BLOCK.get()));
+    public static final RegistryObject<Block> POINTED_MAGNESITIC_DRIPSTONE = BLOCKS.register("pointed_magnesitic_dripstone", () -> new RankinePointedDripstoneBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape(),MAGNESITIC_DRIPSTONE_BLOCK.get()));
+    public static final RegistryObject<Block> POINTED_ZIRCONIC_DRIPSTONE = BLOCKS.register("pointed_zirconic_dripstone", () -> new RankinePointedDripstoneBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape(),ZIRCONIC_DRIPSTONE_BLOCK.get()));
+    public static final RegistryObject<Block> POINTED_GYPSIC_DRIPSTONE = BLOCKS.register("pointed_gypsic_dripstone", () -> new RankinePointedDripstoneBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape(),GYPSIC_DRIPSTONE_BLOCK.get()));
+    public static final RegistryObject<Block> POINTED_HALITIC_DRIPSTONE = BLOCKS.register("pointed_halitic_dripstone", () -> new RankinePointedDripstoneBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape(),HALITIC_DRIPSTONE_BLOCK.get()));
+    public static final RegistryObject<Block> POINTED_NITRIC_DRIPSTONE = BLOCKS.register("pointed_nitric_dripstone", () -> new RankinePointedDripstoneBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape(),NITRIC_DRIPSTONE_BLOCK.get()));
+    public static final RegistryObject<Block> POINTED_BORACITIC_DRIPSTONE = BLOCKS.register("pointed_boracitic_dripstone", () -> new RankinePointedDripstoneBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape(),BORACITIC_DRIPSTONE_BLOCK.get()));
+
+
+
     public static final RegistryObject<Block> WHITE_CEMENT = BLOCKS.register("white_cement", () -> new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(4)));
     public static final RegistryObject<Block> WHITE_CEMENT_SLAB = BLOCKS.register("white_cement_slab", () -> new QuarterSlabPoleBlock(Block.Properties.copy(WHITE_CEMENT.get()).noOcclusion()));
     public static final RegistryObject<Block> WHITE_CEMENT_STAIRS = BLOCKS.register("white_cement_stairs", () -> new RankineStairsBlock(Block.Properties.copy(WHITE_CEMENT.get())));
@@ -2427,30 +2444,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HOLLOW_HONEY_LOCUST_LOG = BLOCKS.register("hollow_honey_locust_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
     public static final RegistryObject<Block> HOLLOW_PETRIFIED_CHORUS_LOG = BLOCKS.register("hollow_petrified_chorus_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
     public static final RegistryObject<Block> HOLLOW_CHARRED_LOG = BLOCKS.register("hollow_charred_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-
-    /*
-    public static final RegistryObject<Block> BAMBOO_BOOKSHELF = REGISTRY.register("bamboo_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> BAMBOO_CULMS_BOOKSHELF = REGISTRY.register("bamboo_culms_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> PINYON_PINE_BOOKSHELF = REGISTRY.register("pinyon_pine_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> JUNIPER_BOOKSHELF = REGISTRY.register("juniper_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> COCONUT_PALM_BOOKSHELF = REGISTRY.register("coconut_palm_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> BALSAM_FIR_BOOKSHELF = REGISTRY.register("balsam_fir_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> MAGNOLIA_BOOKSHELF = REGISTRY.register("magnolia_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> EASTERN_HEMLOCK_BOOKSHELF = REGISTRY.register("eastern_hemlock_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> YELLOW_BIRCH_BOOKSHELF = REGISTRY.register("yellow_birch_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> BLACK_BIRCH_BOOKSHELF = REGISTRY.register("black_birch_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> RED_BIRCH_BOOKSHELF = REGISTRY.register("red_birch_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> MAPLE_BOOKSHELF = REGISTRY.register("maple_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> SHARINGA_BOOKSHELF = REGISTRY.register("sharinga_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> BLACK_WALNUT_BOOKSHELF = REGISTRY.register("black_walnut_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> CORK_OAK_BOOKSHELF = REGISTRY.register("cork_oak_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> CINNAMON_BOOKSHELF = REGISTRY.register("cinnamon_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> PETRIFIED_CHORUS_BOOKSHELF = REGISTRY.register("petrified_chorus_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> ERYTHRINA_BOOKSHELF = REGISTRY.register("erythrina_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> CHARRED_BOOKSHELF = REGISTRY.register("charred_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-
-
-     */
 
 
 

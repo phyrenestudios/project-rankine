@@ -1,0 +1,23 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:magnesitic_dripstone_block"
+  },
+  "output1": {
+    "item": "rankine:calcite",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:calcite",
+    "chance": 1
+  },
+  "output3": {
+    "item": "rankine:sodium_chloride",
+    "chance": 0.75,
+    "additional": 0.15
+  },
+  "output4": {
+    "item": "rankine:magnesite",
+    "chance": 0.03
+  }
+}

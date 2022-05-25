@@ -54,6 +54,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         for (Block blk : Stream.of(
                 RankineLists.STONES,
+                RankineLists.DRIPSTONES,
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.ELEMENT_BLOCKS,
                 RankineLists.SHEETMETALS,
@@ -259,6 +260,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
          */
 
+        for (Block BLK : RankineLists.POINTED_DRIPSTONES) {
+            createPointedDripstone(BLK);
+        }
 
 
         for (Block CROP : RankineLists.CROPS_SINGLE) {
@@ -804,6 +808,16 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         });
 
 
+    }
+
+    public void createPointedDripstone(Block blk) {
+        String path = blk.getRegistryName().getPath();
+        getVariantBuilder(blk).forAllStatesExcept(state -> {
+            String thickness = state.getValue(PointedDripstoneBlock.THICKNESS).toString();
+            String direction = state.getValue(PointedDripstoneBlock.TIP_DIRECTION).toString();
+            return ConfiguredModel.builder()
+                    .modelFile(models().cross(path+"_"+direction+"_"+thickness,getBlockRSL(path+"_"+direction+"_"+thickness))).build();
+        },BlockStateProperties.WATERLOGGED);
     }
 
 

@@ -116,6 +116,10 @@ public class RankineRecipesProvider extends RecipeProvider {
 
 
         //RANKINE
+        for (Block DRIP : RankineLists.DRIPSTONES) {
+            Block POINT = RankineLists.POINTED_DRIPSTONES.get(RankineLists.DRIPSTONES.indexOf(DRIP));
+            twoXtwo(consumer,DRIP.asItem(),POINT.asItem(),1,"has_ingredient",POINT.asItem());
+        }
         for (Block SHEET : RankineLists.SHEETMETALS) {
             String baseName = SHEET.getRegistryName().getPath();
             Block SLAB = RankineLists.SHEETMETAL_SLABS.get(RankineLists.SHEETMETALS.indexOf(SHEET));

@@ -43,7 +43,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
         }
 
 
-        if (rand.nextFloat() < Config.MISC_WORLDGEN.BIG_METEORITE_CHANCE.get().floatValue()) {
+        if (rand.nextFloat() < Config.WORLDGEN.BIG_METEORITE_CHANCE.get().floatValue()) {
             BlockState TEKTITE;
             float CHANCE2 = rand.nextFloat();
             if (CHANCE2 < 0.25F) {
@@ -84,9 +84,9 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
     }
 
     private void buildMeteor(WorldGenLevel reader, Random rand, BlockPos pos, BlockState ORE, BlockState TEKTITE) {
-        int j = Config.MISC_WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
-        int k = Config.MISC_WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
-        int l = Config.MISC_WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
+        int j = Config.WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
+        int k = Config.WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
+        int l = Config.WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
         float f = (float)(j + k + l) * 0.333F + 0.75F;
         for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-j, -k, -l), pos.offset(j, k, l))) {
             if (blockpos.distSqr(pos) <= (double)(f * f)) {

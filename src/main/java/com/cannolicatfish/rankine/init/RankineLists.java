@@ -47,6 +47,8 @@ public class RankineLists {
 
 
     //public static List<Block> MINERAL_COLUMNS = Arrays.asList(RankineBlocks.CALCITE_COLUMN.get(),RankineBlocks.DOLOMITE_COLUMN.get(),RankineBlocks.SALT_COLUMN.get(),RankineBlocks.PINK_SALT_COLUMN.get(),RankineBlocks.OPAL_COLUMN.get(),RankineBlocks.QUARTZ_COLUMN.get());
+    public static List<Block> DRIPSTONES = Arrays.asList(RankineBlocks.FERRIC_DRIPSTONE_BLOCK.get(),RankineBlocks.MAGNESITIC_DRIPSTONE_BLOCK.get(),RankineBlocks.ZIRCONIC_DRIPSTONE_BLOCK.get(),RankineBlocks.GYPSIC_DRIPSTONE_BLOCK.get(),RankineBlocks.HALITIC_DRIPSTONE_BLOCK.get(),RankineBlocks.NITRIC_DRIPSTONE_BLOCK.get(),RankineBlocks.BORACITIC_DRIPSTONE_BLOCK.get());
+    public static List<Block> POINTED_DRIPSTONES = Arrays.asList(RankineBlocks.POINTED_FERRIC_DRIPSTONE.get(),RankineBlocks.POINTED_MAGNESITIC_DRIPSTONE.get(),RankineBlocks.POINTED_ZIRCONIC_DRIPSTONE.get(),RankineBlocks.POINTED_GYPSIC_DRIPSTONE.get(),RankineBlocks.POINTED_HALITIC_DRIPSTONE.get(),RankineBlocks.POINTED_NITRIC_DRIPSTONE.get(),RankineBlocks.POINTED_BORACITIC_DRIPSTONE.get());
 
 
     public static List<Block> SANDS = Arrays.asList(RankineBlocks.WHITE_SAND.get(),RankineBlocks.BLACK_SAND.get(),RankineBlocks.DESERT_SAND.get(),Blocks.SOUL_SAND);
