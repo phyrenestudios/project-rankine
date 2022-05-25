@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.items.alloys;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.google.common.collect.ImmutableSet;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -45,6 +46,11 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
         super(tier, attackDamageIn, attackSpeedIn, properties);
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
+    }
+
+    @Override
+    public float getDestroySpeed(ItemStack p_41004_, BlockState p_41005_) {
+        return p_41005_.is(BlockTags.MINEABLE_WITH_PICKAXE) ? getAlloyMiningSpeed(p_41004_) : 1.0F;
     }
 
     @Override

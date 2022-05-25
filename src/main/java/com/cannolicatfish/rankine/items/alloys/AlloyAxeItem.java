@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.items.alloys;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -50,6 +51,11 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
     }
 
     @Override
+    public float getDestroySpeed(ItemStack p_41004_, BlockState p_41005_) {
+        return p_41005_.is(BlockTags.MINEABLE_WITH_AXE) ? getAlloyMiningSpeed(p_41004_) : 1.0F;
+    }
+
+    @Override
     public Component getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
             return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(IAlloyItem.getNameOverride(stack)));
@@ -79,17 +85,6 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
         } else {
             return InteractionResult.PASS;
         }
-    }
-
-    @Override
-    public float getDestroySpeed(ItemStack stack, BlockState state) {
-        Material material = state.getMaterial();
-        return !EFFECTIVE_ON_MATERIALS.contains(material) ? getToolItemDestroySpeed(stack,state) : getAlloyMiningSpeed(stack);
-    }
-
-    public float getToolItemDestroySpeed(ItemStack stack, BlockState state) {
-        if (isCorrectToolForDrops(stack, state)) return getAlloyMiningSpeed(stack);
-        return EFFECTIVE_ON_BLOCKS.contains(state.getBlock()) ? getAlloyMiningSpeed(stack) : 1.0F;
     }
 
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {

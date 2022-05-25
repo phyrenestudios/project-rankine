@@ -29,14 +29,25 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
+        for (Block blk : Stream.of(RankineLists.NEEDS_WOODEN_TOOL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
+            tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
+            tag(Tags.Blocks.NEEDS_WOOD_TOOL).add(blk);
+        }
         for (Block blk : Stream.of(RankineLists.NEEDS_STONE_TOOL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
+            tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
             tag(BlockTags.NEEDS_STONE_TOOL).add(blk);
         }
         for (Block blk : Stream.of(RankineLists.NEEDS_IRON_TOOL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
+            tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
             tag(BlockTags.NEEDS_IRON_TOOL).add(blk);
         }
         for (Block blk : Stream.of(RankineLists.NEEDS_DIAMOND_TOOL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
+            tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
             tag(BlockTags.NEEDS_DIAMOND_TOOL).add(blk);
+        }
+        for (Block blk : Stream.of(RankineLists.NEEDS_NETHERITE_TOOL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
+            tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
+            tag(Tags.Blocks.NEEDS_NETHERITE_TOOL).add(blk);
         }
 
         tag(RankineTags.Blocks.STONES_DACITE).add(RankineBlocks.BLACK_DACITE.get(),RankineBlocks.RED_DACITE.get());
@@ -166,6 +177,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(BlockTags.BASE_STONE_OVERWORLD).add(blk);
             tag(BlockTags.BASE_STONE_NETHER).add(blk);
             tag(RankineTags.Blocks.WG_STONE).add(blk);
+            tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
         }
         tag(RankineTags.Blocks.BASE_STONE_END).add(Blocks.END_STONE);
         for (Block blk : RankineLists.POLISHED_STONES) {
@@ -218,6 +230,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(RankineTags.Blocks.LEAF_LITTERS).add(blk);
         }
         for (Block blk : Stream.of(RankineLists.GRASS_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            tag(BlockTags.ANIMALS_SPAWNABLE_ON).add(blk);
             tag(RankineTags.Blocks.GRASS_BLOCKS).add(blk);
         }
         tag(RankineTags.Blocks.GRASS_BLOCKS).add(Blocks.GRASS_BLOCK);

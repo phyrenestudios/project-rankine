@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.google.common.collect.*;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -47,6 +48,11 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
             return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(IAlloyItem.getNameOverride(stack)));
         }
         return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
+    }
+
+    @Override
+    public float getDestroySpeed(ItemStack p_41004_, BlockState p_41005_) {
+        return p_41005_.is(BlockTags.MINEABLE_WITH_HOE) ? getAlloyMiningSpeed(p_41004_) : 1.0F;
     }
 
 /*

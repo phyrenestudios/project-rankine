@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:humus_grass_block",
+    "rankine:loam_grass_block",
+    "rankine:silty_clay_grass_block",
+    "rankine:sandy_clay_grass_block",
+    "rankine:silty_loam_grass_block",
+    "rankine:clay_loam_grass_block",
+    "rankine:sandy_loam_grass_block",
+    "rankine:loamy_sand_grass_block",
+    "rankine:sandy_clay_loam_grass_block",
+    "rankine:silty_clay_loam_grass_block"
+  ]
+}
