@@ -328,7 +328,7 @@ public class RankinePointedDripstoneBlock extends PointedDripstoneBlock {
         if (isUnmergedTipWithDirection(blockstate, p_154038_.getOpposite())) {
             createMergedTips(blockstate, levelIn, blockpos);
         } else if (blockstate.isAir() || blockstate.is(Blocks.WATER)) {
-            createDripstone(levelIn, blockpos, blockstate.getBlock(), p_154038_, DripstoneThickness.TIP);
+            createDripstone(levelIn, blockpos, levelIn.getBlockState(p_154037_).getBlock(), p_154038_, DripstoneThickness.TIP);
         }
 
     }
