@@ -20,6 +20,6 @@ public class RankinePodzolBlock extends SnowyDirtBlock {
 
     @Override
     public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
-        return plantable.getPlantType(world, pos.relative(facing)).equals(PlantType.CAVE);
+        return plantable.getPlantType(world, pos.relative(facing)).equals(PlantType.PLAINS) || plantable.getPlantType(world, pos.relative(facing)).equals(PlantType.BEACH);
     }
 }

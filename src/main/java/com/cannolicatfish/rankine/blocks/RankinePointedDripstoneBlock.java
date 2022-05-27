@@ -276,18 +276,18 @@ public class RankinePointedDripstoneBlock extends PointedDripstoneBlock {
     }
 
     @VisibleForTesting
-    public static void growStalactiteOrStalagmiteIfPossible(BlockState p_154226_, ServerLevel p_154227_, BlockPos p_154228_, Random p_154229_) {
-        BlockState blockstate = p_154227_.getBlockState(p_154228_.above(1));
-        BlockState blockstate1 = p_154227_.getBlockState(p_154228_.above(2));
+    public static void growStalactiteOrStalagmiteIfPossible(BlockState p_154226_, ServerLevel levelIn, BlockPos p_154228_, Random p_154229_) {
+        BlockState blockstate = levelIn.getBlockState(p_154228_.above(1));
+        BlockState blockstate1 = levelIn.getBlockState(p_154228_.above(2));
         if (canGrow(blockstate, blockstate1)) {
-            BlockPos blockpos = findTip(p_154226_, p_154227_, p_154228_, 7, false);
+            BlockPos blockpos = findTip(p_154226_, levelIn, p_154228_, 7, false);
             if (blockpos != null) {
-                BlockState blockstate2 = p_154227_.getBlockState(blockpos);
-                if (canDrip(blockstate2) && canTipGrow(blockstate2, p_154227_, blockpos)) {
+                BlockState blockstate2 = levelIn.getBlockState(blockpos);
+                if (canDrip(blockstate2) && canTipGrow(blockstate2, levelIn, blockpos)) {
                     if (p_154229_.nextBoolean()) {
-                        grow(p_154227_, blockpos, Direction.DOWN);
+                        grow(levelIn, blockpos, Direction.DOWN, levelIn.getBlockState(blockpos).getBlock());
                     } else {
-                        growStalagmiteBelow(p_154227_, blockpos);
+                        growStalagmiteBelow(levelIn, blockpos);
                     }
 
                 }
@@ -295,40 +295,40 @@ public class RankinePointedDripstoneBlock extends PointedDripstoneBlock {
         }
     }
 
-    private static void growStalagmiteBelow(ServerLevel p_154033_, BlockPos p_154034_) {
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = p_154034_.mutable();
+    private static void growStalagmiteBelow(ServerLevel levelIn, BlockPos blockPos) {
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = blockPos.mutable();
 
         for(int i = 0; i < 10; ++i) {
             blockpos$mutableblockpos.move(Direction.DOWN);
-            BlockState blockstate = p_154033_.getBlockState(blockpos$mutableblockpos);
+            BlockState blockstate = levelIn.getBlockState(blockpos$mutableblockpos);
             if (!blockstate.getFluidState().isEmpty()) {
                 return;
             }
 
-            if (isUnmergedTipWithDirection(blockstate, Direction.UP) && canTipGrow(blockstate, p_154033_, blockpos$mutableblockpos)) {
-                grow(p_154033_, blockpos$mutableblockpos, Direction.UP);
+            if (isUnmergedTipWithDirection(blockstate, Direction.UP) && canTipGrow(blockstate, levelIn, blockpos$mutableblockpos)) {
+                grow(levelIn, blockpos$mutableblockpos, Direction.UP, levelIn.getBlockState(blockPos).getBlock());
                 return;
             }
 
-            if (isValidPointedDripstonePlacement(p_154033_, blockpos$mutableblockpos, Direction.UP) && !p_154033_.isWaterAt(blockpos$mutableblockpos.below())) {
-                grow(p_154033_, blockpos$mutableblockpos.below(), Direction.UP);
+            if (isValidPointedDripstonePlacement(levelIn, blockpos$mutableblockpos, Direction.UP) && !levelIn.isWaterAt(blockpos$mutableblockpos.below())) {
+                grow(levelIn, blockpos$mutableblockpos.below(), Direction.UP, levelIn.getBlockState(blockPos).getBlock());
                 return;
             }
 
-            if (!canDripThrough(p_154033_, blockpos$mutableblockpos, blockstate)) {
+            if (!canDripThrough(levelIn, blockpos$mutableblockpos, blockstate)) {
                 return;
             }
         }
 
     }
 
-    private static void grow(ServerLevel levelIn, BlockPos p_154037_, Direction p_154038_) {
+    private static void grow(ServerLevel levelIn, BlockPos p_154037_, Direction p_154038_, Block tipBlock) {
         BlockPos blockpos = p_154037_.relative(p_154038_);
         BlockState blockstate = levelIn.getBlockState(blockpos);
         if (isUnmergedTipWithDirection(blockstate, p_154038_.getOpposite())) {
             createMergedTips(blockstate, levelIn, blockpos);
         } else if (blockstate.isAir() || blockstate.is(Blocks.WATER)) {
-            createDripstone(levelIn, blockpos, levelIn.getBlockState(p_154037_).getBlock(), p_154038_, DripstoneThickness.TIP);
+            createDripstone(levelIn, blockpos, tipBlock, p_154038_, DripstoneThickness.TIP);
         }
 
     }

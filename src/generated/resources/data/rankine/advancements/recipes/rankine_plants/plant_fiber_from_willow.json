@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:plant_fiber_from_twisting_vines"
+      "rankine:plant_fiber_from_willow"
     ]
   },
   "criteria": {
@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "minecraft:twisting_vines"
+              "rankine:willow_branchlet"
             ]
           }
         ]
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:plant_fiber_from_twisting_vines"
+        "recipe": "rankine:plant_fiber_from_willow"
       }
     }
   },
