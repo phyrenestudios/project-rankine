@@ -1,6 +1,12 @@
 package com.cannolicatfish.rankine.blocks.mtt;
 
+import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerTile;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
@@ -14,8 +20,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.Level;
 
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.Nullable;
 
-public class MaterialTestingTableBlock extends Block {
+public class MaterialTestingTableBlock extends BaseEntityBlock {
     public MaterialTestingTableBlock(Properties properties) {
         super(properties);
     }
@@ -47,4 +54,15 @@ public class MaterialTestingTableBlock extends Block {
             super.onRemove(state, worldIn, pos, newState, isMoving);
         }
     }
+
+    public RenderShape getRenderShape(BlockState p_49232_) {
+        return RenderShape.MODEL;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
+        return new MaterialTestingTableTile(p_153215_,p_153216_);
+    }
+
 }

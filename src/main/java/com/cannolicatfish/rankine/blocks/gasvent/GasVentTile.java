@@ -1,7 +1,9 @@
 package com.cannolicatfish.rankine.blocks.gasvent;
 
 import com.cannolicatfish.rankine.blocks.GasBlock;
+import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerTile;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -16,13 +18,13 @@ public class GasVentTile extends BlockEntity {
         super(GAS_VENT_TILE, posIn, stateIn);
     }
 
-    public void tick() {
-        if (!level.isAreaLoaded(worldPosition, 1)) return;
-        BlockState BS = level.getBlockState(worldPosition);
-        Block toMove = level.getBlockState(worldPosition.relative(BS.getValue(BlockStateProperties.FACING).getOpposite())).getBlock();
-        if (toMove instanceof GasBlock && level.getBlockState(worldPosition.relative(BS.getValue(BlockStateProperties.FACING))).is(Blocks.AIR)) {
-            level.removeBlock(worldPosition.relative(BS.getValue(BlockStateProperties.FACING).getOpposite()), false);
-            level.setBlock(worldPosition.relative(BS.getValue(BlockStateProperties.FACING)),toMove.defaultBlockState(),3);
+    public static void tick(Level level, BlockPos pos, BlockState bs, GasVentTile tile) {
+        if (!level.isAreaLoaded(tile.worldPosition, 1)) return;
+        BlockState BS = level.getBlockState(tile.worldPosition);
+        Block toMove = level.getBlockState(tile.worldPosition.relative(BS.getValue(BlockStateProperties.FACING).getOpposite())).getBlock();
+        if (toMove instanceof GasBlock && level.getBlockState(tile.worldPosition.relative(BS.getValue(BlockStateProperties.FACING))).is(Blocks.AIR)) {
+            level.removeBlock(tile.worldPosition.relative(BS.getValue(BlockStateProperties.FACING).getOpposite()), false);
+            level.setBlock(tile.worldPosition.relative(BS.getValue(BlockStateProperties.FACING)),toMove.defaultBlockState(),3);
         }
     }
 

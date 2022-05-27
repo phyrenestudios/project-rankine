@@ -178,29 +178,29 @@ public class RankineRecipes {
     }
 
     public static String generateAlloyString(Container inv) {
-        List<ElementRecipe> currentElements = new ArrayList<>();
-        List<Integer> currentMaterial = new ArrayList<>();
+        Map<ElementRecipe, Integer> currentElements = new HashMap<>();
         for (int i = 0; i < 6; i++) {
             ItemStack stack = inv.getItem(i);
             if (!stack.isEmpty() && AlloyCustomHelper.hasElement(stack.getItem())) {
-                Tuple<ElementRecipe,Integer> entry = AlloyCustomHelper.getEntryForElementItem(stack.getItem());
-                if (!currentElements.contains(entry.getA())) {
-                    currentElements.add(entry.getA());
-                    currentMaterial.add(entry.getB());
+                Tuple<ElementRecipe, Integer> entry = AlloyCustomHelper.getEntryForElementItem(stack.getItem());
+                if (!currentElements.containsKey(entry.getA())) {
+                    currentElements.put(entry.getA(), entry.getB() * stack.getCount());
+                } else {
+                    currentElements.put(entry.getA(), currentElements.get(entry.getA()) + entry.getB() * stack.getCount());
                 }
             }
         }
-        int sum = currentMaterial.stream().mapToInt(Integer::intValue).sum();
+        int sum = currentElements.values().stream().mapToInt(Integer::intValue).sum();
 
         List<Integer> percents = new ArrayList<>();
         List<String> symbols = new ArrayList<>();
-        for (int j = 0; j < currentElements.size(); j++) {
-            ElementRecipe curEl = currentElements.get(j);
-            int curPer = Math.round(currentMaterial.get(j) * 100f/sum);
+        for (Map.Entry<ElementRecipe, Integer> ent : currentElements.entrySet()) {
+            ElementRecipe curEl = ent.getKey();
+            int curPer = Math.round(ent.getValue() * 100f / sum);
             symbols.add(curEl.getSymbol());
             percents.add(curPer);
         }
-        return AlloyRecipeHelper.getDirectComposition(percents,symbols);
+        return AlloyRecipeHelper.getDirectComposition(percents, symbols);
     }
 
 }

@@ -1,7 +1,12 @@
 package com.cannolicatfish.rankine.blocks.tap;
 
+import com.cannolicatfish.rankine.blocks.tap.TreeTapTile;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -25,15 +30,10 @@ import javax.annotation.Nullable;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class TreeTapBlock extends Block {
+public class TreeTapBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     protected static final VoxelShape TAP_WEST_AABB = Block.box(5.0D, 0.0D, 4.0D, 16.0D, 13.0D, 12.0D);
     protected static final VoxelShape TAP_EAST_AABB = Block.box(0.0D, 0.0D, 4.0D, 11.0D, 13.0D, 12.0D);
@@ -109,4 +109,19 @@ public class TreeTapBlock extends Block {
         builder.add(FACING);
     }
 
+    public RenderShape getRenderShape(BlockState p_49232_) {
+        return RenderShape.MODEL;
+    }
+
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
+        return new TreeTapTile(p_153215_,p_153216_);
+    }
+
+    @javax.annotation.Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldIn, BlockState blockStateIn, BlockEntityType<T> blockEntityTypeIn) {
+        return worldIn.isClientSide ? null : createTickerHelper(blockEntityTypeIn, RankineBlockEntityTypes.TREE_TAP.get(), TreeTapTile::tick);
+    }
 }

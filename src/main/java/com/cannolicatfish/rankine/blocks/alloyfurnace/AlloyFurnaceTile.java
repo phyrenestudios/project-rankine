@@ -8,7 +8,9 @@ import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.entity.BrewingStandBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
@@ -120,46 +122,46 @@ public class AlloyFurnaceTile extends BlockEntity implements WorldlyContainer, M
         ContainerHelper.saveAllItems(compound, this.items);
     }
 
-    public void tick() {
-        boolean flag = this.isBurning();
+    public static void tick(Level level, BlockPos pos, BlockState bs, AlloyFurnaceTile tile) {
+        boolean flag = tile.isBurning();
         boolean flag1 = false;
-        if (this.isBurning()) {
-            --this.burnTime;
+        if (tile.isBurning()) {
+            --tile.burnTime;
         }
 
-        if (!this.level.isClientSide) {
-            ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2),this.items.get(3),this.items.get(4),this.items.get(5)};
-            ItemStack fuel = this.items.get(6);
-            if ((this.isBurning() || !fuel.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
-                AlloyingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, this, this.level).orElse(null);
-                if (!this.isBurning() && this.canSmelt(irecipe,this)) {
-                    this.burnTime = ForgeHooks.getBurnTime(fuel, RecipeType.SMELTING);
-                    this.currentBurnTime = this.burnTime;
-                    if (this.isBurning()) {
+        if (!level.isClientSide) {
+            ItemStack[] inputs = new ItemStack[]{tile.items.get(0), tile.items.get(1), tile.items.get(2),tile.items.get(3),tile.items.get(4),tile.items.get(5)};
+            ItemStack fuel = tile.items.get(6);
+            if ((tile.isBurning() || !fuel.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
+                AlloyingRecipe irecipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, tile, level).orElse(null);
+                if (!tile.isBurning() && tile.canSmelt(irecipe,tile)) {
+                    tile.burnTime = ForgeHooks.getBurnTime(fuel, RecipeType.SMELTING);
+                    tile.currentBurnTime = tile.burnTime;
+                    if (tile.isBurning()) {
                         flag1 = true;
                         if (fuel.hasContainerItem())
-                            this.items.set(6, fuel.getContainerItem());
+                            tile.items.set(6, fuel.getContainerItem());
                         else
                         if (!fuel.isEmpty()) {
                             Item item = fuel.getItem();
                             fuel.shrink(1);
                             if (fuel.isEmpty()) {
-                                this.items.set(6, fuel.getContainerItem());
+                                tile.items.set(6, fuel.getContainerItem());
                             }
                         }
                     }
                 }
 
-                if (this.isBurning() && this.canSmelt(irecipe,this)) {
-                    ++this.cookTime;
-                    if (this.cookTime == this.cookTimeTotal) {
+                if (tile.isBurning() && tile.canSmelt(irecipe,tile)) {
+                    ++tile.cookTime;
+                    if (tile.cookTime == tile.cookTimeTotal) {
                         int[] x;
                         ItemStack output;
 
                         ItemStack smelting = ItemStack.EMPTY;
-                        if (recipeMode)
+                        if (tile.recipeMode)
                         {
-                            ItemStack template = this.getItem(7);
+                            ItemStack template = tile.getItem(7);
                             output = AlloyTemplateItem.getResult(level,template).copy();
 
                             for (Map.Entry<Ingredient,Short> input : AlloyTemplateItem.getInputStacks(template).entrySet())
@@ -187,20 +189,20 @@ public class AlloyFurnaceTile extends BlockEntity implements WorldlyContainer, M
                                 }
                             }
                             smelting = output;
-                            if (this.items.get(8).getCount() > 0) {
-                                this.items.get(8).grow(smelting.getCount());
+                            if (tile.items.get(8).getCount() > 0) {
+                                tile.items.get(8).grow(smelting.getCount());
                             } else {
-                                this.items.set(8, smelting);
+                                tile.items.set(8, smelting);
                             }
                             smelting = ItemStack.EMPTY;
                         } else {
-                            output = irecipe.generateResult(level,this,1).copy();
+                            output = irecipe.generateResult(level,tile,1).copy();
                             x = new int[]{inputs[0].getCount(),inputs[1].getCount(),inputs[2].getCount(),inputs[3].getCount(),inputs[4].getCount(),inputs[5].getCount()};
                             smelting = output;
-                            if (this.items.get(8).getCount() > 0) {
-                                this.items.get(8).grow(smelting.getCount());
+                            if (tile.items.get(8).getCount() > 0) {
+                                tile.items.get(8).grow(smelting.getCount());
                             } else {
-                                this.items.set(8, smelting);
+                                tile.items.set(8, smelting);
                             }
                             inputs[0].shrink(x[0]);
                             inputs[1].shrink(x[1]);
@@ -212,25 +214,25 @@ public class AlloyFurnaceTile extends BlockEntity implements WorldlyContainer, M
                         }
 
 
-                        this.cookTime = 0;
+                        tile.cookTime = 0;
                         flag1 = true;
                         return;
                     }
                 } else {
-                    this.cookTime = 0;
+                    tile.cookTime = 0;
                 }
-            } else if (!this.isBurning() && this.cookTime > 0) {
-                this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            } else if (!tile.isBurning() && tile.cookTime > 0) {
+                tile.cookTime = Mth.clamp(tile.cookTime - 2, 0, tile.cookTimeTotal);
             }
 
-            if (flag != this.isBurning()) {
+            if (flag != tile.isBurning()) {
                 flag1 = true;
-                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
+                level.setBlock(tile.worldPosition, bs.setValue(AbstractFurnaceBlock.LIT, tile.isBurning()), 3);
             }
         }
 
         if (flag1) {
-            this.setChanged();
+            tile.setChanged();
         }
 
     }

@@ -1,6 +1,12 @@
 package com.cannolicatfish.rankine.blocks.pedestal;
 
+import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerTile;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
@@ -21,7 +27,7 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
-public class PedestalBlock extends Block {
+public class PedestalBlock extends BaseEntityBlock {
 
     public PedestalBlock() {
         super(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 10.0F));
@@ -75,6 +81,16 @@ public class PedestalBlock extends Block {
             }
             super.onRemove(state, worldIn, pos, newState, isMoving);
         }
+    }
+
+    public RenderShape getRenderShape(BlockState p_49232_) {
+        return RenderShape.MODEL;
+    }
+
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
+        return new PedestalTile(p_153215_,p_153216_);
     }
 
 }

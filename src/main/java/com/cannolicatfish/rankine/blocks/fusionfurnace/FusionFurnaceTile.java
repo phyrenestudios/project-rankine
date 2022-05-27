@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.BatteryItem;
@@ -10,6 +11,7 @@ import com.cannolicatfish.rankine.recipe.FusionFurnaceRecipe;
 import com.cannolicatfish.rankine.recipe.FusionFurnaceRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
@@ -122,93 +124,93 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
         compound.put("OutputTank",this.outputTank.writeToNBT(new CompoundTag()));
     }
 
-    public void tick() {
-        boolean flag = this.isBurning();
+    public static void tick(Level level, BlockPos pos, BlockState bs, FusionFurnaceTile tile) {
+        boolean flag = tile.isBurning();
         boolean flag1 = false;
-        if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(2),powerCost))) {
-            burnTime--;
+        if (tile.isBurning() && (!BatteryItem.hasPowerRequired(tile.items.get(2),tile.powerCost))) {
+            tile.burnTime--;
         }
-        if (!this.level.isClientSide) {
+        if (!level.isClientSide) {
 
-            ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(3)};
-            ItemStack battery = this.items.get(2);
-            if ((this.isBurning() || !battery.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
-                FusionFurnaceRecipe irecipe = getFusionFurnaceRecipe();
-                boolean canSmelt = this.canSmelt(irecipe);
+            ItemStack[] inputs = new ItemStack[]{tile.items.get(0), tile.items.get(1), tile.items.get(3)};
+            ItemStack battery = tile.items.get(2);
+            if ((tile.isBurning() || !battery.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
+                FusionFurnaceRecipe irecipe = tile.getFusionFurnaceRecipe();
+                boolean canSmelt = tile.canSmelt(irecipe);
                 if (!canSmelt) {
-                    this.burnTime = 0;
-                    this.currentBurnTime = this.burnTime;
+                    tile.burnTime = 0;
+                    tile.currentBurnTime = tile.burnTime;
                 }
-                if (!this.isBurning() && canSmelt) {
-                    this.burnTime = BatteryItem.hasPowerRequired(battery,powerCost) ? 50 : 0;
-                    this.currentBurnTime = this.burnTime;
-                    if (this.isBurning()) {
+                if (!tile.isBurning() && canSmelt) {
+                    tile.burnTime = BatteryItem.hasPowerRequired(battery,tile.powerCost) ? 50 : 0;
+                    tile.currentBurnTime = tile.burnTime;
+                    if (tile.isBurning()) {
                         flag1 = true;
                     }
                 }
 
-                if (this.isBurning() && canSmelt) {
-                    cookTime++;
-                    if (cookTime >= cookTimeTotal) {
-                        if (!this.items.get(0).isEmpty() && irecipe.getIngredient1().test(this.items.get(0)) || irecipe.getIngredient2().test(this.items.get(0))) {
-                            this.items.get(0).shrink(1);
+                if (tile.isBurning() && canSmelt) {
+                    tile.cookTime++;
+                    if (tile.cookTime >= tile.cookTimeTotal) {
+                        if (!tile.items.get(0).isEmpty() && irecipe.getIngredient1().test(tile.items.get(0)) || irecipe.getIngredient2().test(tile.items.get(0))) {
+                            tile.items.get(0).shrink(1);
                         }
-                        if (!this.items.get(1).isEmpty() && irecipe.getIngredient1().test(this.items.get(1)) || irecipe.getIngredient2().test(this.items.get(1))) {
-                            this.items.get(1).shrink(1);
+                        if (!tile.items.get(1).isEmpty() && irecipe.getIngredient1().test(tile.items.get(1)) || irecipe.getIngredient2().test(tile.items.get(1))) {
+                            tile.items.get(1).shrink(1);
                         }
                         if (!irecipe.getGasIn().isEmpty()) {
-                            this.items.get(3).shrink(irecipe.getGasIn().getCount());
+                            tile.items.get(3).shrink(irecipe.getGasIn().getCount());
                         }
                         List<ItemStack> results = irecipe.getResults();
                         if (!results.get(0).isEmpty()) {
-                            if (this.items.get(4).getCount() > 0) {
-                                this.items.get(4).grow(results.get(0).getCount());
-                            } if (this.items.get(4).getCount() <= 0) {
-                                this.items.set(4, results.get(0).copy());
+                            if (tile.items.get(4).getCount() > 0) {
+                                tile.items.get(4).grow(results.get(0).getCount());
+                            } if (tile.items.get(4).getCount() <= 0) {
+                                tile.items.set(4, results.get(0).copy());
                             }
                         }
                         if (!results.get(1).isEmpty()) {
-                            if (this.items.get(5).getCount() > 0) {
-                                this.items.get(5).grow(results.get(1).getCount());
-                            } if (this.items.get(5).getCount() <= 0) {
-                                this.items.set(5, results.get(1).copy());
+                            if (tile.items.get(5).getCount() > 0) {
+                                tile.items.get(5).grow(results.get(1).getCount());
+                            } if (tile.items.get(5).getCount() <= 0) {
+                                tile.items.set(5, results.get(1).copy());
                             }
                         }
 
                         if (!results.get(2).isEmpty()) {
-                            if (this.items.get(6).getCount() > 0) {
-                                this.items.get(6).grow(results.get(2).getCount());
-                            } if (this.items.get(6).getCount() <= 0) {
-                                this.items.set(6, results.get(2).copy());
+                            if (tile.items.get(6).getCount() > 0) {
+                                tile.items.get(6).grow(results.get(2).getCount());
+                            } if (tile.items.get(6).getCount() <= 0) {
+                                tile.items.set(6, results.get(2).copy());
                             }
                         }
 
                         if (!irecipe.getFluidIn().isEmpty()) {
-                            inputTank.drain(irecipe.getFluidIn(), IFluidHandler.FluidAction.EXECUTE);
+                            tile.inputTank.drain(irecipe.getFluidIn(), IFluidHandler.FluidAction.EXECUTE);
                         }
 
                         if (!irecipe.getFluidOut().isEmpty()) {
-                            outputTank.fill(irecipe.getFluidOut(), IFluidHandler.FluidAction.EXECUTE);
+                            tile.outputTank.fill(irecipe.getFluidOut(), IFluidHandler.FluidAction.EXECUTE);
                         }
-                        cookTime = 0;
-                        battery.setDamageValue(battery.getDamageValue() + powerCost);
+                        tile.cookTime = 0;
+                        battery.setDamageValue(battery.getDamageValue() + tile.powerCost);
                         return;
                     }
                 } else {
-                    this.cookTime = 0;
+                    tile.cookTime = 0;
                 }
-            } else if ((!this.isBurning()) && this.cookTime > 0) {
-                this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            } else if ((!tile.isBurning()) && tile.cookTime > 0) {
+                tile.cookTime = Mth.clamp(tile.cookTime - 2, 0, tile.cookTimeTotal);
             }
 
-            if (flag != this.isBurning()) {
+            if (flag != tile.isBurning()) {
                 flag1 = true;
-                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
+                level.setBlock(tile.worldPosition, level.getBlockState(tile.worldPosition).setValue(AbstractFurnaceBlock.LIT, tile.isBurning()), 3);
             }
         }
 
         if (flag1) {
-            this.setChanged();
+            tile.setChanged();
         }
 
     }

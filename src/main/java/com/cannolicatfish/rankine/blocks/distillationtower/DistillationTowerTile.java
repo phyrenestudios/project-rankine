@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.distillationtower;
 
+import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
@@ -39,26 +40,25 @@ public class DistillationTowerTile extends BlockEntity {
         compound.putInt("ProcessTime", this.proccessTime);
     }
 
-    public void tick() {
-        if (!level.isAreaLoaded(worldPosition, 1)) return;
-        int LAYERS = structureCheck(level,worldPosition);
+    public static void tick(Level level, BlockPos pos, BlockState bs, DistillationTowerTile tile) {
+        if (!level.isAreaLoaded(tile.worldPosition, 1)) return;
+        int LAYERS = tile.structureCheck(level,tile.worldPosition);
         if (!level.isClientSide && LAYERS > 0) {
-            ++proccessTime;
-            if (proccessTime >= Config.MACHINES.AIR_DISTILLATION_SPEED.get()) {
+            ++tile.proccessTime;
+            if (tile.proccessTime >= Config.MACHINES.AIR_DISTILLATION_SPEED.get()) {
                 System.out.println(level.dimension().location());
-                AirDistillationRecipe recipe =  getRecipe(level,level.getBiome(worldPosition).value().getRegistryName(), level.dimension().location());
+                AirDistillationRecipe recipe =  tile.getRecipe(level,level.getBiome(tile.worldPosition).value().getRegistryName(), level.dimension().location());
                 if (recipe != null) {
                     for (int i = 4; i < LAYERS * 3 + 2; i+=3) {
-                        if (level.getBlockState(worldPosition.above(i)).is(Blocks.AIR)) {
-                            ItemStack result = recipe.getDistillationWithChances(level, Math.floorDiv(i,3), level.getBiome(worldPosition).value().getRegistryName(), level.dimension().location());
+                        if (level.getBlockState(tile.worldPosition.above(i)).is(Blocks.AIR)) {
+                            ItemStack result = recipe.getDistillationWithChances(level, Math.floorDiv(i,3), level.getBiome(tile.worldPosition).value().getRegistryName(), level.dimension().location());
                             if (result.getItem() instanceof BlockItem) {
-                                level.setBlockAndUpdate(worldPosition.above(i), ((BlockItem) result.getItem()).getBlock().defaultBlockState());
+                                level.setBlockAndUpdate(tile.worldPosition.above(i), ((BlockItem) result.getItem()).getBlock().defaultBlockState());
                             }
                         }
                     }
-                    System.out.println("CCCC");
                 }
-                proccessTime = 0;
+                tile.proccessTime = 0;
             }
         }
     }

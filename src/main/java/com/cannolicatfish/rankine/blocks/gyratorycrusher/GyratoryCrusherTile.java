@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.gyratorycrusher;
 
+import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.BatteryItem;
@@ -7,6 +8,7 @@ import com.cannolicatfish.rankine.items.CrushingHeadItem;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
@@ -117,69 +119,69 @@ public class GyratoryCrusherTile  extends BlockEntity implements WorldlyContaine
         ContainerHelper.saveAllItems(compound, this.items);
     }
 
-    public void tick() {
-        boolean flag = this.isBurning();
+    public static void tick(Level level, BlockPos pos, BlockState bs, GyratoryCrusherTile tile) {
+        boolean flag = tile.isBurning();
         boolean flag1 = false;
-        if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(1),powerCost*currentLevel))) {
-            burnTime--;
+        if (tile.isBurning() && (!BatteryItem.hasPowerRequired(tile.items.get(1),tile.powerCost*tile.currentLevel))) {
+            tile.burnTime--;
         }
-        if (this.currentLevel != CrushingHeadItem.getTier(this.items.get(2))) {
-            this.currentLevel = CrushingHeadItem.getTier(this.items.get(2));
+        if (tile.currentLevel != CrushingHeadItem.getTier(tile.items.get(2))) {
+            tile.currentLevel = CrushingHeadItem.getTier(tile.items.get(2));
         }
-        if (!this.level.isClientSide) {
+        if (!tile.level.isClientSide) {
 
-            ItemStack input = this.items.get(0);
-            ItemStack battery = this.items.get(1);
-            ItemStack crusher = this.items.get(2);
-            if ((this.isBurning() || !battery.isEmpty() && !input.isEmpty() && !crusher.isEmpty())) {
-                CrushingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUSHING, this, this.level).orElse(null);
-                boolean canSmelt = this.canSmelt(irecipe);
+            ItemStack input = tile.items.get(0);
+            ItemStack battery = tile.items.get(1);
+            ItemStack crusher = tile.items.get(2);
+            if ((tile.isBurning() || !battery.isEmpty() && !input.isEmpty() && !crusher.isEmpty())) {
+                CrushingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUSHING, tile, tile.level).orElse(null);
+                boolean canSmelt = tile.canSmelt(irecipe);
                 if (input.isEmpty() || !canSmelt) {
-                    this.burnTime = 0;
-                    this.currentBurnTime = this.burnTime;
+                    tile.burnTime = 0;
+                    tile.currentBurnTime = tile.burnTime;
                 }
-                if (!this.isBurning() && canSmelt) {
-                    this.burnTime = BatteryItem.hasPowerRequired(battery,powerCost*(currentLevel+1)) ? 50 : 0;
-                    this.currentBurnTime = this.burnTime;
-                    this.currentLevel = CrushingHeadItem.getTier(crusher);
-                    if (this.isBurning()) {
+                if (!tile.isBurning() && canSmelt) {
+                    tile.burnTime = BatteryItem.hasPowerRequired(battery,tile.powerCost*(tile.currentLevel+1)) ? 50 : 0;
+                    tile.currentBurnTime = tile.burnTime;
+                    tile.currentLevel = CrushingHeadItem.getTier(crusher);
+                    if (tile.isBurning()) {
                         flag1 = true;
                     }
                 }
 
-                if (this.isBurning() && canSmelt) {
-                    cookTime++;
-                    if (cookTime >= cookTimeTotal) {
-                        List<ItemStack> results = irecipe.getResults(this.currentLevel,this.level);
+                if (tile.isBurning() && canSmelt) {
+                    tile.cookTime++;
+                    if (tile.cookTime >= tile.cookTimeTotal) {
+                        List<ItemStack> results = irecipe.getResults(tile.currentLevel,tile.level);
 
                         for (int i = 0; i < results.size(); i++) {
-                            if (this.items.get(3 + i).getCount() > 0) {
-                                this.items.get(3 + i).grow(results.get(i).getCount());
-                            } if (this.items.get(3 + i).getCount() <= 0) {
-                                this.items.set(3 + i, results.get(i).copy());
+                            if (tile.items.get(3 + i).getCount() > 0) {
+                                tile.items.get(3 + i).grow(results.get(i).getCount());
+                            } if (tile.items.get(3 + i).getCount() <= 0) {
+                                tile.items.set(3 + i, results.get(i).copy());
                             }
                         }
 
                         input.shrink(1);
-                        cookTime = 0;
-                        battery.setDamageValue(battery.getDamageValue() + powerCost*(currentLevel+1));
+                        tile.cookTime = 0;
+                        battery.setDamageValue(battery.getDamageValue() + tile.powerCost*(tile.currentLevel+1));
                         return;
                     }
                 } else {
-                    this.cookTime = 0;
+                    tile.cookTime = 0;
                 }
-            } else if ((!this.isBurning()) && this.cookTime > 0) {
-                this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            } else if ((!tile.isBurning()) && tile.cookTime > 0) {
+                tile.cookTime = Mth.clamp(tile.cookTime - 2, 0, tile.cookTimeTotal);
             }
 
-            if (flag != this.isBurning()) {
+            if (flag != tile.isBurning()) {
                 flag1 = true;
-                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
+                tile.level.setBlock(tile.worldPosition, tile.level.getBlockState(tile.worldPosition).setValue(AbstractFurnaceBlock.LIT, tile.isBurning()), 3);
             }
         }
 
         if (flag1) {
-            this.setChanged();
+            tile.setChanged();
         }
 
     }

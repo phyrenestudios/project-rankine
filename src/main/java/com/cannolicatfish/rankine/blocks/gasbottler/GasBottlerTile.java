@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.gasbottler;
 
 import com.cannolicatfish.rankine.blocks.GasBlock;
+import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
 import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,6 +24,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
@@ -89,31 +91,31 @@ public class GasBottlerTile extends BlockEntity implements WorldlyContainer, Men
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
     }
 
-    public void tick() {
-        Level worldIn = this.getLevel();
-        BlockState BS = this.getBlockState();
+    public static void tick(Level level, BlockPos pos, BlockState bs, GasBottlerTile tile) {
+        Level worldIn = tile.getLevel();
+        BlockState BS = tile.getBlockState();
         if (!worldIn.isClientSide) {
-            ItemStack input = this.items.get(0);
-            ItemStack output = this.items.get(1);
-            if (input.getItem().equals(Items.GLASS_BOTTLE) && worldIn.getBlockState(this.getBlockPos().relative(BS.getValue(GasBottlerBlock.FACING))).getBlock() instanceof GasBlock && ResourceLocation.tryParse(worldIn.getBlockState(this.getBlockPos().relative(BS.getValue(GasBottlerBlock.FACING))).getBlock().getRegistryName().toString().replace("block","bottle")) != null) {
-                Item OUT = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(worldIn.getBlockState(this.getBlockPos().relative(BS.getValue(GasBottlerBlock.FACING))).getBlock().getRegistryName().toString().replace("block","bottle")));
+            ItemStack input = tile.items.get(0);
+            ItemStack output = tile.items.get(1);
+            if (input.getItem().equals(Items.GLASS_BOTTLE) && worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock() instanceof GasBlock && ResourceLocation.tryParse(worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock().getRegistryName().toString().replace("block","bottle")) != null) {
+                Item OUT = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock().getRegistryName().toString().replace("block","bottle")));
                 if ((output.getItem() == OUT && output.getCount() < 64) || output.isEmpty()) {
-                    ++this.cookTime;
-                    if (this.cookTime >= this.cookTimeTotal) {
+                    ++tile.cookTime;
+                    if (tile.cookTime >= tile.cookTimeTotal) {
                         if (output.getItem() == OUT && output.getCount() < 64) {
-                            this.items.set(1, new ItemStack(OUT, output.getCount() + 1));
-                            worldIn.removeBlock(this.getBlockPos().relative(BS.getValue(GasBottlerBlock.FACING)), false);
+                            tile.items.set(1, new ItemStack(OUT, output.getCount() + 1));
+                            worldIn.removeBlock(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING)), false);
                             input.shrink(1);
                         } else if (output.isEmpty()) {
-                            this.items.set(1, new ItemStack(OUT, 1));
-                            worldIn.removeBlock(this.getBlockPos().relative(BS.getValue(GasBottlerBlock.FACING)), false);
+                            tile.items.set(1, new ItemStack(OUT, 1));
+                            worldIn.removeBlock(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING)), false);
                             input.shrink(1);
                         }
-                        cookTime = 0;
+                        tile.cookTime = 0;
                     }
                 }
-            } else if (cookTime > 0) {
-                this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            } else if (tile.cookTime > 0) {
+                tile.cookTime = Mth.clamp(tile.cookTime - 2, 0, tile.cookTimeTotal);
             }
         }
 
