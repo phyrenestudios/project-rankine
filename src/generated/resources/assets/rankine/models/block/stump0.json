@@ -1,7 +1,7 @@
 {
-  "parent": "rankine:block/template_stump",
+  "parent": "rankine:block/template_stump0",
   "textures": {
-    "side": "rankine:block/stump_side0",
-    "top": "rankine:block/stump_top0"
+    "side": "rankine:block/stump_side",
+    "top": "rankine:block/stump_top"
   }
 }
