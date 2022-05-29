@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 23,
+  "total": 24,
   "tier": 2,
   "color": 12769246,
   "input1": {
@@ -120,6 +120,11 @@
     "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.15
+  },
+  "input24": {
+    "element": "rankine:elements/nitrogen",
+    "min": 0.0,
+    "max": 0.05
   },
   "result": "rankine:nickel_superalloy_ingot",
   "durability": 600

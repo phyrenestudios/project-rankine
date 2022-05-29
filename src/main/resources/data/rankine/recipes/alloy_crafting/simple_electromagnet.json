@@ -12,7 +12,10 @@
       "item": "rankine:silver_zinc_battery"
     },
     "W": {
-      "item": "rankine:alloy_wire"
+      "item": "rankine:alloy_wire",
+      "alloyRecipe": "rankine:alloying/cupronickel_alloying",
+      "langName": "item.rankine.cupronickel_alloying",
+      "color": 11946807
     }
   },
   "result": {

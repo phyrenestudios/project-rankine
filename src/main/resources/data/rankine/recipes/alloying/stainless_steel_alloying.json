@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloying",
   "tier": 2,
-  "total": 24,
+  "total": 25,
   "color": 13292499,
   "input1": {
     "element": "rankine:elements/iron",
@@ -123,6 +123,11 @@
   },
   "input24": {
     "element": "rankine:elements/phosphorus",
+    "min": 0.0,
+    "max": 0.02
+  },
+  "input25": {
+    "element": "rankine:elements/nitrogen",
     "min": 0.0,
     "max": 0.02
   },

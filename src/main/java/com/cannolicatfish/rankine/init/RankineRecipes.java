@@ -144,8 +144,22 @@ public class RankineRecipes {
         public static void registerPotionRecipes() {
         BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.MERCURY::get), PotionUtils.setPotion(new ItemStack(Items.POTION), RankinePotions.MERCURY_POISON));
         BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.SODIUM_CHLORIDE::get,RankineItems.PINK_SALT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), RankinePotions.CONDUCTIVE_POTION));
-
-    }
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.AMBER::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.REGENERATION));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.HELIUM_INGOT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.LEAPING));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.OXYGEN_INGOT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER_BREATHING));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.ARSENIC::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.POISON));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WEAKNESS));
+        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.NIGHT_VISION));
+        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.FIRE_RESISTANCE));
+        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.SWIFTNESS));
+        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.SLOWNESS));
+        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.SLOW_FALLING));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.SULFUR_SHELF_MUSHROOM::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.HARMING));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.FOUR_LEAF_CLOVER::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.LUCK));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.LIONS_MANE_MUSHROOM::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.STRENGTH));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.NIGHT_VISION)),Ingredient.of(RankineItems.CALCITE_BLOCK::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.INVISIBILITY));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.STINGING_NETTLE::get, RankineItems.WILLOW_BRANCHLET::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.HEALING));
+        }
 
     public static void registerDispenserBehaviors() {
         for (Item i : RankineLists.GAS_BOTTLES) {

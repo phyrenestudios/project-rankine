@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 10,
+  "total": 11,
   "tier": 2,
   "color": 13750746,
   "input1": {
@@ -53,6 +53,11 @@
     "element": "rankine:elements/yttrium",
     "min": 0.0,
     "max": 0.1
+  },
+  "input11": {
+    "element": "rankine:elements/oxygen",
+    "min": 0.0,
+    "max": 0.05
   },
   "result": "rankine:niobium_alloy_ingot",
   "durability": 600,

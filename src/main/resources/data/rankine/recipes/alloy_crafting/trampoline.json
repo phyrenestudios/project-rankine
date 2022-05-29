@@ -11,7 +11,7 @@
     "R": {
       "item": "rankine:alloy_rod",
       "alloyRecipe": "rankine:alloying/cast_iron_alloying",
-      "name": "item.rankine.cast_iron_alloying",
+      "langName": "item.rankine.cast_iron_alloying",
       "color": 986895
     }
   },

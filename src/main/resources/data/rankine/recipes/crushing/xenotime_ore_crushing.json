@@ -28,7 +28,7 @@
     "additional": 0.05
   },
   "output6": {
-    "item": "rankine:ilmenite",
-    "chance": 0.05
+    "item": "rankine:terbium_nugget",
+    "chance": 0.02
   }
 }
