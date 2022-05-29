@@ -1,5 +1,11 @@
 package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
+import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -33,7 +39,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 
-public class FusionFurnaceBlock extends Block {
+public class FusionFurnaceBlock extends BaseEntityBlock {
     public FusionFurnaceBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
@@ -131,6 +137,22 @@ public class FusionFurnaceBlock extends Block {
     public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
         BlockEntity tileentity = worldIn.getBlockEntity(pos);
         return tileentity instanceof MenuProvider ? (MenuProvider)tileentity : null;
+    }
+
+    public RenderShape getRenderShape(BlockState p_49232_) {
+        return RenderShape.MODEL;
+    }
+
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
+        return new FusionFurnaceTile(p_153215_,p_153216_);
+    }
+
+    @javax.annotation.Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldIn, BlockState blockStateIn, BlockEntityType<T> blockEntityTypeIn) {
+        return worldIn.isClientSide ? null : createTickerHelper(blockEntityTypeIn, RankineBlockEntityTypes.FUSION_FURNACE.get(), FusionFurnaceTile::tick);
     }
 
 }

@@ -162,6 +162,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.ROASTED_WALNUT.get());
         basicItem(RankineItems.TOASTED_COCONUT.get());
         basicItem(RankineItems.GARLAND.get());
+        basicItem(RankineItems.FOUR_LEAF_CLOVER.get());
         basicItem(RankineItems.POPCORN.get());
         basicItem(RankineItems.DOUGH.get());
         basicItem(RankineItems.TOAST.get());

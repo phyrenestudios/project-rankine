@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.groundtap;
 
+import com.cannolicatfish.rankine.blocks.gasvent.GasVentTile;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
@@ -35,17 +36,17 @@ public class GroundTapTile extends BlockEntity {
         compound.putInt("ProcessTime", this.proccessTime);
     }
 
-    public void tick() {
+    public static void tick(Level level, BlockPos pos, BlockState bs, GroundTapTile tile) {
 
-        if (!this.getBlockState().getValue(GroundTapBlock.WATERLOGGED)) {
-            this.proccessTime++;
-            if (this.proccessTime % Config.MACHINES.GROUND_TAP_SPEED.get() == 0) {
-                Level worldIn = this.getLevel();
+        if (!tile.getBlockState().getValue(GroundTapBlock.WATERLOGGED)) {
+            tile.proccessTime++;
+            if (tile.proccessTime % Config.MACHINES.GROUND_TAP_SPEED.get() == 0) {
+                Level worldIn = tile.getLevel();
                 Set<BlockPos> checkedBlocks = new HashSet<>();
                 Stack<BlockPos> toCheck = new Stack<>();
                 boolean attached = false;
 
-                toCheck.add(worldPosition.below());
+                toCheck.add(tile.worldPosition.below());
                 while (!toCheck.isEmpty() && !attached) {
                     BlockPos cp = toCheck.pop();
                     if (!checkedBlocks.contains(cp)) {
@@ -54,7 +55,7 @@ public class GroundTapTile extends BlockEntity {
                             BlockState target = worldIn.getBlockState(cp.relative(dir).immutable());
                             if (target.is(RankineBlocks.METAL_PIPE.get())) {
                                 toCheck.add(cp.relative(dir).immutable());
-                            } else if (target.is(RankineBlocks.FLOOD_GATE.get()) && cp.getY() <= WorldgenUtils.waterTableHeight(worldIn, worldPosition)) {
+                            } else if (target.is(RankineBlocks.FLOOD_GATE.get()) && cp.getY() <= WorldgenUtils.waterTableHeight(worldIn, tile.worldPosition)) {
                                 attached = true;
                             }
                         }
@@ -62,13 +63,13 @@ public class GroundTapTile extends BlockEntity {
                 }
 
                 if (attached) {
-                    worldIn.setBlock(worldPosition, this.getBlockState().setValue(GroundTapBlock.WATERLOGGED, true), 2);
-                    proccessTime = 0;
+                    worldIn.setBlock(tile.worldPosition, tile.getBlockState().setValue(GroundTapBlock.WATERLOGGED, true), 2);
+                    tile.proccessTime = 0;
                 }
 
             }
         } else {
-            proccessTime = 0;
+            tile.proccessTime = 0;
         }
     }
 

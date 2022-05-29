@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.sedimentfan;
 
+import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
@@ -38,10 +39,10 @@ public class SedimentFanTile extends BlockEntity {
         super(SEDIMENT_FAN_TILE, posIn, stateIn);
     }
 
-    public void tick() {
-        if (!level.isAreaLoaded(worldPosition, 1) || level.getGameTime() % 20 != 0) return;
-        List<Fluid> adjPos = Arrays.asList(level.getFluidState(worldPosition.south().above()).getType(),level.getFluidState(worldPosition.north().above()).getType(), level.getFluidState(worldPosition.west().above()).getType(),level.getFluidState(worldPosition.east().above()).getType());
-        if (level.getFluidState(worldPosition.above()).isSource()) {
+    public static void tick(Level level, BlockPos pos, BlockState bs, SedimentFanTile tile) {
+        if (!level.isAreaLoaded(tile.worldPosition, 1) || level.getGameTime() % 20 != 0) return;
+        List<Fluid> adjPos = Arrays.asList(level.getFluidState(tile.worldPosition.south().above()).getType(),level.getFluidState(tile.worldPosition.north().above()).getType(), level.getFluidState(tile.worldPosition.west().above()).getType(),level.getFluidState(tile.worldPosition.east().above()).getType());
+        if (level.getFluidState(tile.worldPosition.above()).isSource()) {
             Direction dir = null;
             if (adjPos.contains(Fluids.FLOWING_WATER))
                 switch (adjPos.indexOf(Fluids.FLOWING_WATER)) {
@@ -60,12 +61,12 @@ public class SedimentFanTile extends BlockEntity {
                 }
 
             if (dir != null) {
-                List<Fluid> waterChecks = Arrays.asList(level.getFluidState(worldPosition.above().relative(dir, 2)).getType(), level.getFluidState(worldPosition.above().relative(dir, 3)).getType());
+                List<Fluid> waterChecks = Arrays.asList(level.getFluidState(tile.worldPosition.above().relative(dir, 2)).getType(), level.getFluidState(tile.worldPosition.above().relative(dir, 3)).getType());
                 if (waterChecks.stream().allMatch((e) -> e == Fluids.FLOWING_WATER)) {
-                    Block sediment = level.getBlockState(worldPosition.relative(dir)).getBlock();
-                    Block sediment2 = level.getBlockState(worldPosition.relative(dir, 2)).getBlock();
+                    Block sediment = level.getBlockState(tile.worldPosition.relative(dir)).getBlock();
+                    Block sediment2 = level.getBlockState(tile.worldPosition.relative(dir, 2)).getBlock();
                     List<Block> adjPos2 = Arrays.asList(sediment,sediment2);
-                    BlockPos end = worldPosition.above().relative(dir, 3);
+                    BlockPos end = tile.worldPosition.above().relative(dir, 3);
                     ItemStack[] items = adjPos2.stream().map(ItemStack::new).toArray(ItemStack[]::new);
                     RockGeneratorRecipe recipe = level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
                         if (r.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {
@@ -84,7 +85,7 @@ public class SedimentFanTile extends BlockEntity {
                         level.playSound(null, end, SoundEvents.SAND_HIT, SoundSource.BLOCKS, 1.0f, 1.0f);
                     }
                     if (level.getRandom().nextFloat() < Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get()) {
-                        level.removeBlock(worldPosition.relative(dir,level.random.nextBoolean() ? 1 : 2),false);
+                        level.removeBlock(tile.worldPosition.relative(dir,level.random.nextBoolean() ? 1 : 2),false);
                     }
                 }
             }

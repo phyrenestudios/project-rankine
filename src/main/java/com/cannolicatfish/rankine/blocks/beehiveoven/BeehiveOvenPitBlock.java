@@ -1,9 +1,15 @@
 package com.cannolicatfish.rankine.blocks.beehiveoven;
 
+import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.SimpleContainer;
@@ -37,23 +43,22 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 
-public class BeehiveOvenPitBlock extends Block {
+public class BeehiveOvenPitBlock extends BaseEntityBlock {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     private final Block blockType;
 
     public BeehiveOvenPitBlock(Block blockType, Properties properties) {
         super(properties);
         this.blockType = blockType;
+        this.registerDefaultState(this.getStateDefinition().any().setValue(LIT, Boolean.FALSE));
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(LIT, false);
     }
-
-    @Override
-    public boolean isRandomlyTicking(BlockState stateIn) {
-        return stateIn.getValue(LIT);
+    public RenderShape getRenderShape(BlockState p_49232_) {
+        return RenderShape.MODEL;
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
@@ -126,5 +131,15 @@ public class BeehiveOvenPitBlock extends Block {
         }
     }
 
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
+        return new BeehiveOvenTile(p_153215_, p_153216_);
+    }
 
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldIn, BlockState blockStateIn, BlockEntityType<T> blockEntityTypeIn) {
+        return worldIn.isClientSide ? null : createTickerHelper(blockEntityTypeIn, RankineBlockEntityTypes.BEEHIVE_OVEN_PIT.get(), BeehiveOvenTile::tick);
+    }
 }

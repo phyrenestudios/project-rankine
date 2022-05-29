@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
 
+import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
@@ -100,44 +101,44 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
         ContainerHelper.saveAllItems(compound, this.items);
     }
 
-    public void tick() {
-        boolean flag = this.isHeated(this.worldPosition,this.level);
-        boolean flag1 = this.isCooking();
+    public static void tick(Level level, BlockPos pos, BlockState bs, CrucibleTile tile) {
+        boolean flag = tile.isHeated(tile.worldPosition,level);
+        boolean flag1 = tile.isCooking();
         boolean flag2 = false;
 
-        if (!this.level.isClientSide) {
+        if (!level.isClientSide) {
             if (!flag1) {
-                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(CrucibleBlock.FLUID, false), 3);
-            } else if (this.getTileData().getInt("color") != this.color) {
-                this.getTileData().putInt("color",this.color);
-                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(CrucibleBlock.FLUID, this.isCooking()), 3);
+                level.setBlock(tile.worldPosition, bs.setValue(CrucibleBlock.FLUID, false), 3);
+            } else if (tile.getTileData().getInt("color") != tile.color) {
+                tile.getTileData().putInt("color",tile.color);
+                level.setBlock(tile.worldPosition, bs.setValue(CrucibleBlock.FLUID, tile.isCooking()), 3);
             }
-            ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2), this.items.get(3)};
-            if ((this.isCooking() && flag) || !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(3).isEmpty()) {
-                CrucibleRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE, this, this.level).orElse(null);
-                if (this.canSmelt(irecipe, this)) {
-                    if (this.cookTime == 0) {
-                        this.cookTimeTotal = getCookTime();
-                        this.color = irecipe.getColor();
+            ItemStack[] inputs = new ItemStack[]{tile.items.get(0), tile.items.get(1), tile.items.get(2), tile.items.get(3)};
+            if ((tile.isCooking() && flag) || !tile.items.get(0).isEmpty() && !tile.items.get(1).isEmpty() && !tile.items.get(2).isEmpty() && !tile.items.get(3).isEmpty()) {
+                CrucibleRecipe irecipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE, tile, level).orElse(null);
+                if (tile.canSmelt(irecipe, tile)) {
+                    if (tile.cookTime == 0) {
+                        tile.cookTimeTotal = tile.getCookTime();
+                        tile.color = irecipe.getColor();
 
                     }
-                    ++this.cookTime;
-                    if (this.cookTime >= this.cookTimeTotal) {
-                        ItemStack smelting = irecipe.generateResult(this);
-                        if (this.items.get(4).getCount() > 0) {
-                            this.items.get(4).grow(smelting.getCount());
+                    ++tile.cookTime;
+                    if (tile.cookTime >= tile.cookTimeTotal) {
+                        ItemStack smelting = irecipe.generateResult(tile);
+                        if (tile.items.get(4).getCount() > 0) {
+                            tile.items.get(4).grow(smelting.getCount());
                         } else {
-                            this.items.set(4, smelting);
+                            tile.items.set(4, smelting);
                         }
 
                         ItemStack extra = irecipe.getSecondaryOutput();
-                        if (this.items.get(5).getCount() > 0) {
-                            this.items.get(5).grow(extra.getCount());
+                        if (tile.items.get(5).getCount() > 0) {
+                            tile.items.get(5).grow(extra.getCount());
                         } else {
-                            this.items.set(5, extra);
+                            tile.items.set(5, extra);
                         }
 
-                        this.cookTime = 0;
+                        tile.cookTime = 0;
                         inputs[0].shrink(1);
                         inputs[1].shrink(1);
                         inputs[2].shrink(1);
@@ -145,20 +146,20 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
                         return;
                     }
                 } else {
-                    this.cookTime = 0;
+                    tile.cookTime = 0;
                 }
-            } else if ((flag) && this.cookTime > 0) {
-                this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            } else if ((flag) && tile.cookTime > 0) {
+                tile.cookTime = Mth.clamp(tile.cookTime - 2, 0, tile.cookTimeTotal);
             }
 
-            if (flag1 != this.isCooking()) {
+            if (flag1 != tile.isCooking()) {
                 flag2 = true;
-                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(CrucibleBlock.FLUID, this.isCooking()), 3);
+                level.setBlock(tile.worldPosition, bs.setValue(CrucibleBlock.FLUID, tile.isCooking()), 3);
             }
         }
 
         if (flag2) {
-            this.setChanged();
+            tile.setChanged();
         }
 
     }

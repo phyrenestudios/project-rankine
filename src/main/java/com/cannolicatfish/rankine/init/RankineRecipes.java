@@ -144,8 +144,22 @@ public class RankineRecipes {
         public static void registerPotionRecipes() {
         BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.MERCURY::get), PotionUtils.setPotion(new ItemStack(Items.POTION), RankinePotions.MERCURY_POISON));
         BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.SODIUM_CHLORIDE::get,RankineItems.PINK_SALT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), RankinePotions.CONDUCTIVE_POTION));
-
-    }
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.AMBER::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.REGENERATION));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.HELIUM_INGOT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.LEAPING));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.OXYGEN_INGOT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER_BREATHING));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.ARSENIC::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.POISON));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WEAKNESS));
+        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.NIGHT_VISION));
+        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.FIRE_RESISTANCE));
+        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.SWIFTNESS));
+        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.SLOWNESS));
+        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.SLOW_FALLING));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.SULFUR_SHELF_MUSHROOM::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.HARMING));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.FOUR_LEAF_CLOVER::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.LUCK));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.LIONS_MANE_MUSHROOM::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.STRENGTH));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.NIGHT_VISION)),Ingredient.of(RankineItems.CALCITE_BLOCK::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.INVISIBILITY));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.STINGING_NETTLE::get, RankineItems.WILLOW_BRANCHLET::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.HEALING));
+        }
 
     public static void registerDispenserBehaviors() {
         for (Item i : RankineLists.GAS_BOTTLES) {
@@ -178,29 +192,29 @@ public class RankineRecipes {
     }
 
     public static String generateAlloyString(Container inv) {
-        List<ElementRecipe> currentElements = new ArrayList<>();
-        List<Integer> currentMaterial = new ArrayList<>();
+        Map<ElementRecipe, Integer> currentElements = new HashMap<>();
         for (int i = 0; i < 6; i++) {
             ItemStack stack = inv.getItem(i);
             if (!stack.isEmpty() && AlloyCustomHelper.hasElement(stack.getItem())) {
-                Tuple<ElementRecipe,Integer> entry = AlloyCustomHelper.getEntryForElementItem(stack.getItem());
-                if (!currentElements.contains(entry.getA())) {
-                    currentElements.add(entry.getA());
-                    currentMaterial.add(entry.getB());
+                Tuple<ElementRecipe, Integer> entry = AlloyCustomHelper.getEntryForElementItem(stack.getItem());
+                if (!currentElements.containsKey(entry.getA())) {
+                    currentElements.put(entry.getA(), entry.getB() * stack.getCount());
+                } else {
+                    currentElements.put(entry.getA(), currentElements.get(entry.getA()) + entry.getB() * stack.getCount());
                 }
             }
         }
-        int sum = currentMaterial.stream().mapToInt(Integer::intValue).sum();
+        int sum = currentElements.values().stream().mapToInt(Integer::intValue).sum();
 
         List<Integer> percents = new ArrayList<>();
         List<String> symbols = new ArrayList<>();
-        for (int j = 0; j < currentElements.size(); j++) {
-            ElementRecipe curEl = currentElements.get(j);
-            int curPer = Math.round(currentMaterial.get(j) * 100f/sum);
+        for (Map.Entry<ElementRecipe, Integer> ent : currentElements.entrySet()) {
+            ElementRecipe curEl = ent.getKey();
+            int curPer = Math.round(ent.getValue() * 100f / sum);
             symbols.add(curEl.getSymbol());
             percents.add(curPer);
         }
-        return AlloyRecipeHelper.getDirectComposition(percents,symbols);
+        return AlloyRecipeHelper.getDirectComposition(percents, symbols);
     }
 
 }

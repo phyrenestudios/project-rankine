@@ -1,6 +1,12 @@
 package com.cannolicatfish.rankine.blocks.gasbottler;
 
+import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerTile;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.entity.player.Player;
@@ -18,8 +24,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.Level;
 
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.Nullable;
 
-public class GasBottlerBlock extends DirectionalBlock {
+public class GasBottlerBlock extends BaseEntityBlock {
     public GasBottlerBlock(Properties properties) {
         super(properties);
     }
@@ -41,7 +48,7 @@ public class GasBottlerBlock extends DirectionalBlock {
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection());
+        return this.defaultBlockState().setValue(BlockStateProperties.FACING, context.getNearestLookingDirection());
     }
 
     @Override
@@ -58,5 +65,21 @@ public class GasBottlerBlock extends DirectionalBlock {
             }
             super.onRemove(state, worldIn, pos, newState, isMoving);
         }
+    }
+
+    public RenderShape getRenderShape(BlockState p_49232_) {
+        return RenderShape.MODEL;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
+        return new GasBottlerTile(p_153215_,p_153216_);
+    }
+
+    @javax.annotation.Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldIn, BlockState blockStateIn, BlockEntityType<T> blockEntityTypeIn) {
+        return worldIn.isClientSide ? null : createTickerHelper(blockEntityTypeIn, RankineBlockEntityTypes.GAS_BOTTLER.get(), GasBottlerTile::tick);
     }
 }

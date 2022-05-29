@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.charcoalpit;
 
 import com.cannolicatfish.rankine.blocks.RankineEightLayerBlock;
+import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
@@ -43,13 +44,15 @@ public class CharcoalPitTile extends BlockEntity {
         compound.putInt("ProcessTime", this.proccessTime);
     }
 
-    public void tick() {
-        if (!level.isAreaLoaded(worldPosition, 1) || !this.getBlockState().getValue(CharcoalPitBlock.LIT) || level.getBlockState(worldPosition.below()).is(RankineBlocks.CHARCOAL_PIT.get())) return;
-        if (proccessTime == 0) {
-            totalTime = Mth.nextInt(level.random,(int) Math.round(0.8*Config.MACHINES.CHARCOAL_PIT_SPEED.get()),(int) Math.round(1.2*Config.MACHINES.CHARCOAL_PIT_SPEED.get()));
+    public static void tick(Level level, BlockPos pos, BlockState bs, CharcoalPitTile tile) {
+        BlockPos worldPosition = tile.worldPosition;
+
+        if (!level.isAreaLoaded(worldPosition, 1) || !bs.getValue(CharcoalPitBlock.LIT) || level.getBlockState(pos.below()).is(RankineBlocks.CHARCOAL_PIT.get())) return;
+        if (tile.proccessTime == 0) {
+            tile.totalTime = Mth.nextInt(level.random,(int) Math.round(0.8*Config.MACHINES.CHARCOAL_PIT_SPEED.get()),(int) Math.round(1.2*Config.MACHINES.CHARCOAL_PIT_SPEED.get()));
         }
 
-        if (proccessTime >= totalTime) {
+        if (tile.proccessTime >= tile.totalTime) {
             Set<BlockPos> checkedBlocks = new HashSet<>();
             Stack<BlockPos> toCheck = new Stack<>();
             Set<BlockPos> validLogs = new HashSet<>();
@@ -63,7 +66,7 @@ public class CharcoalPitTile extends BlockEntity {
                 if (!checkedBlocks.contains(cp)) {
                     checkedBlocks.add(cp);
                     for (Direction dir : Direction.values()) {
-                        if (cp.getY() - worldPosition.getY() <= MAX_HEIGHT && cp.getY() - worldPosition.getY() >= 0 && Math.pow(worldPosition.getX() - cp.getX(), 2) + Math.pow(worldPosition.getZ() - cp.getZ(), 2) <= RADIUS * RADIUS + 0.5) {
+                        if (cp.getY() - worldPosition.getY() <= tile.MAX_HEIGHT && cp.getY() - worldPosition.getY() >= 0 && Math.pow(worldPosition.getX() - cp.getX(), 2) + Math.pow(worldPosition.getZ() - cp.getZ(), 2) <= tile.RADIUS * tile.RADIUS + 0.5) {
                             BlockState target = level.getBlockState(cp.relative(dir));
                             if (target.is(BlockTags.LOGS_THAT_BURN) || target.is(RankineBlocks.CHARCOAL_PIT.get())) {
                                 boolean valid = true;
@@ -88,12 +91,12 @@ public class CharcoalPitTile extends BlockEntity {
 
 
             int k = 0;
-            while (level.getBlockState(worldPosition.above(k)).is(RankineBlocks.CHARCOAL_PIT.get()) && k <= MAX_HEIGHT) {
+            while (level.getBlockState(worldPosition.above(k)).is(RankineBlocks.CHARCOAL_PIT.get()) && k <= tile.MAX_HEIGHT) {
                 k++;
             }
 
             for (int i = 0; i<=k; ++i) {
-                for (BlockPos b : BlockPos.betweenClosed(worldPosition.offset(-RADIUS,i,-RADIUS),worldPosition.offset(RADIUS,i,RADIUS))) {
+                for (BlockPos b : BlockPos.betweenClosed(worldPosition.offset(-tile.RADIUS,i,-tile.RADIUS),worldPosition.offset(tile.RADIUS,i,tile.RADIUS))) {
                     if (validLogs.contains(b.immutable())) {
                         int layerCount = logLayerCount(level,level.getBlockState(b));
                         if (layerCount == 0) continue;
@@ -122,7 +125,7 @@ public class CharcoalPitTile extends BlockEntity {
                 }
             }
         } else {
-            proccessTime += 1;
+            tile.proccessTime += 1;
         }
     }
 

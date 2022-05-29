@@ -1,7 +1,13 @@
 package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
@@ -29,8 +35,9 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import org.jetbrains.annotations.Nullable;
 
-public class MixingBarrelBlock extends Block {
+public class MixingBarrelBlock extends BaseEntityBlock {
     //public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static IntegerProperty ANGLE = IntegerProperty.create("angle",0,3);
 
@@ -119,5 +126,19 @@ public class MixingBarrelBlock extends Block {
         }
     }
 
+    public RenderShape getRenderShape(BlockState p_49232_) {
+        return RenderShape.MODEL;
+    }
 
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
+        return new MixingBarrelTile(p_153215_,p_153216_);
+    }
+
+    @javax.annotation.Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldIn, BlockState blockStateIn, BlockEntityType<T> blockEntityTypeIn) {
+        return worldIn.isClientSide ? null : createTickerHelper(blockEntityTypeIn, RankineBlockEntityTypes.MIXING_BARREL.get(), MixingBarrelTile::tick);
+    }
 }

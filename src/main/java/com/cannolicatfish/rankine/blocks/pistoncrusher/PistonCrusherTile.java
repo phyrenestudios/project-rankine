@@ -1,10 +1,12 @@
 package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
@@ -109,68 +111,68 @@ public class PistonCrusherTile extends BlockEntity implements WorldlyContainer, 
         ContainerHelper.saveAllItems(compound, this.items);
     }
 
-    public void tick() {
-        boolean flag = this.isBurning();
+    public static void tick(Level level, BlockPos pos, BlockState bs, PistonCrusherTile tile) {
+        boolean flag = tile.isBurning();
         boolean flag1 = false;
-        if (this.isBurning()) {
-            --this.burnTime;
+        if (tile.isBurning()) {
+            --tile.burnTime;
         }
 
-        if (!this.level.isClientSide) {
-            ItemStack input = this.items.get(0);
-            ItemStack fuel = this.items.get(1);
-            if ((this.isBurning() || !fuel.isEmpty() && !this.items.get(0).isEmpty())) {
-                CrushingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUSHING, this, this.level).orElse(null);
-                if (!this.isBurning() && this.canSmelt(irecipe)) {
-                    this.burnTime = ForgeHooks.getBurnTime(fuel, RecipeType.SMELTING);
-                    this.currentBurnTime = this.burnTime;
-                    if (this.isBurning()) {
+        if (!tile.level.isClientSide) {
+            ItemStack input = tile.items.get(0);
+            ItemStack fuel = tile.items.get(1);
+            if ((tile.isBurning() || !fuel.isEmpty() && !tile.items.get(0).isEmpty())) {
+                CrushingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUSHING, tile, tile.level).orElse(null);
+                if (!tile.isBurning() && tile.canSmelt(irecipe)) {
+                    tile.burnTime = ForgeHooks.getBurnTime(fuel, RecipeType.SMELTING);
+                    tile.currentBurnTime = tile.burnTime;
+                    if (tile.isBurning()) {
                         flag1 = true;
                         if (fuel.hasContainerItem())
-                            this.items.set(1, fuel.getContainerItem());
+                            tile.items.set(1, fuel.getContainerItem());
                         else
                         if (!fuel.isEmpty()) {
                             Item item = fuel.getItem();
                             fuel.shrink(1);
                             if (fuel.isEmpty()) {
-                                this.items.set(1, fuel.getContainerItem());
+                                tile.items.set(1, fuel.getContainerItem());
                             }
                         }
                     }
                 }
 
-                if (this.isBurning() && this.canSmelt(irecipe)) {
-                    cookTime++;
-                    if (cookTime >= cookTimeTotal) {
-                        List<ItemStack> results = irecipe.getResults(2,this.level);
+                if (tile.isBurning() && tile.canSmelt(irecipe)) {
+                    tile.cookTime++;
+                    if (tile.cookTime >= tile.cookTimeTotal) {
+                        List<ItemStack> results = irecipe.getResults(2,tile.level);
 
                         for (int i = 0; i < results.size(); i++) {
-                            if (this.items.get(2 + i).getCount() > 0) {
-                                this.items.get(2 + i).grow(results.get(i).getCount());
-                            } if (this.items.get(2 + i).getCount() <= 0) {
-                                this.items.set(2 + i, results.get(i).copy());
+                            if (tile.items.get(2 + i).getCount() > 0) {
+                                tile.items.get(2 + i).grow(results.get(i).getCount());
+                            } if (tile.items.get(2 + i).getCount() <= 0) {
+                                tile.items.set(2 + i, results.get(i).copy());
                             }
                         }
 
                         input.shrink(1);
-                        cookTime = 0;
+                        tile.cookTime = 0;
                         return;
                         }
                     } else {
-                        this.cookTime = 0;
+                        tile.cookTime = 0;
                     }
-                } else if ((!this.isBurning()) && this.cookTime > 0) {
-                    this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                } else if ((!tile.isBurning()) && tile.cookTime > 0) {
+                    tile.cookTime = Mth.clamp(tile.cookTime - 2, 0, tile.cookTimeTotal);
                 }
 
-            if (flag != this.isBurning()) {
+            if (flag != tile.isBurning()) {
                 flag1 = true;
-                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
+                tile.level.setBlock(tile.worldPosition, tile.level.getBlockState(tile.worldPosition).setValue(AbstractFurnaceBlock.LIT, tile.isBurning()), 3);
             }
         }
 
         if (flag1) {
-            this.setChanged();
+            tile.setChanged();
         }
 
     }

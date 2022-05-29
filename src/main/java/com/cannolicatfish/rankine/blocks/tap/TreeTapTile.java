@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.tap;
 
 import com.cannolicatfish.rankine.blocks.FloodGateBlock;
+import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -29,26 +30,26 @@ public class TreeTapTile extends BlockEntity {
         super(TREE_TAP_TILE, posIn, stateIn);
     }
 
-    public void tick() {
-        if (level.getDayTime() % 24000 >2000 && level.getDayTime() % 24000 <10000 && isTreeAlive(worldPosition,level) && !level.isClientSide()) {
-            BlockPos logPos = worldPosition.relative(this.getBlockState().getValue(TreeTapBlock.FACING).getOpposite());
+    public static void tick(Level level, BlockPos pos, BlockState bs, TreeTapTile tile) {
+        if (level.getDayTime() % 24000 >2000 && level.getDayTime() % 24000 <10000 && tile.isTreeAlive(tile.worldPosition,level) && !level.isClientSide()) {
+            BlockPos logPos = tile.worldPosition.relative(tile.getBlockState().getValue(TreeTapBlock.FACING).getOpposite());
             for (BlockPos s : BlockPos.betweenClosed(logPos.offset(-1,-2,-1),logPos.offset(1,2,1))) {
                 BlockPos stupidPos = s.immutable();
-                if (!stupidPos.equals(worldPosition) && level.getBlockState(stupidPos).is(RankineBlocks.TREE_TAP.get())) {
+                if (!stupidPos.equals(tile.worldPosition) && level.getBlockState(stupidPos).is(RankineBlocks.TREE_TAP.get())) {
                     return;
                 }
             }
             Block log = level.getBlockState(logPos).getBlock();
-            TreetappingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.TREETAPPING, new SimpleContainer(new ItemStack(log)), this.level).orElse(null);
+            TreetappingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.TREETAPPING, new SimpleContainer(new ItemStack(log)), level).orElse(null);
             if (irecipe != null && level.getDayTime()%irecipe.getTapTime() == 0) {
-                outputTank.fill(irecipe.getResult(), IFluidHandler.FluidAction.EXECUTE);
+                tile.outputTank.fill(irecipe.getResult(), IFluidHandler.FluidAction.EXECUTE);
             }
 
-            if (outputTank.getFluidAmount() == 1000 && level.getBlockState(worldPosition.below()).getBlock().equals(RankineBlocks.TAP_LINE.get())) {
+            if (tile.outputTank.getFluidAmount() == 1000 && level.getBlockState(tile.worldPosition.below()).getBlock().equals(RankineBlocks.TAP_LINE.get())) {
                 BlockPos floodGate = null;
                 Set<BlockPos> checkedBlocks = new HashSet<>();
                 Stack<BlockPos> toCheck = new Stack<>();
-                toCheck.add(worldPosition.below());
+                toCheck.add(tile.worldPosition.below());
                 while (!toCheck.isEmpty()) {
                     BlockPos cp = toCheck.pop();
                     if (!checkedBlocks.contains(cp)) {
@@ -72,8 +73,8 @@ public class TreeTapTile extends BlockEntity {
                     }
                 }
 
-                if (floodGate != null && FloodGateBlock.placeFluid(level, floodGate, outputTank.getFluid().getFluid().defaultFluidState().createLegacyBlock())) {
-                    outputTank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+                if (floodGate != null && FloodGateBlock.placeFluid(level, floodGate, tile.outputTank.getFluid().getFluid().defaultFluidState().createLegacyBlock())) {
+                    tile.outputTank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
                 }
             }
 

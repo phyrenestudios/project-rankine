@@ -1,10 +1,12 @@
 package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
 
+import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.MixingRecipe;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -113,51 +115,51 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
         ContainerHelper.saveAllItems(compound, this.items);
     }
 
-    public void tick() {
-        boolean flag = this.isRedstonePowered();
-        boolean flag1 = this.getNeedsRefresh();
+    public static void tick(Level level, BlockPos pos, BlockState bs, MixingBarrelTile tile) {
+        boolean flag = tile.isRedstonePowered();
+        boolean flag1 = tile.getNeedsRefresh();
         boolean flag2 = false;
 
-        if (!this.level.isClientSide) {
+        if (!tile.level.isClientSide) {
             if (!flag && flag1) {
-                this.needsRefresh = 0;
+                tile.needsRefresh = 0;
                 flag1 = false;
             }
-            ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2), this.items.get(3)};
-            if ((!this.getNeedsRefresh() && flag) && (!this.items.get(0).isEmpty() || !this.items.get(1).isEmpty() || !this.items.get(2).isEmpty() || !this.items.get(3).isEmpty())) {
-                int angle = this.getBlockState().getValue(MixingBarrelBlock.ANGLE);
+            ItemStack[] inputs = new ItemStack[]{tile.items.get(0), tile.items.get(1), tile.items.get(2), tile.items.get(3)};
+            if ((!tile.getNeedsRefresh() && flag) && (!tile.items.get(0).isEmpty() || !tile.items.get(1).isEmpty() || !tile.items.get(2).isEmpty() || !tile.items.get(3).isEmpty())) {
+                int angle = tile.getBlockState().getValue(MixingBarrelBlock.ANGLE);
                 if (angle == 3) {
-                    level.setBlock(this.worldPosition, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,0),3);
+                    level.setBlock(tile.worldPosition, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,0),3);
                 } else {
-                    level.setBlock(this.worldPosition, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,angle+1),3);
+                    level.setBlock(tile.worldPosition, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,angle+1),3);
                 }
-                List<LivingEntity> entitiesOnBlock = level.getEntitiesOfClass(LivingEntity.class, new AABB(worldPosition, worldPosition.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
+                List<LivingEntity> entitiesOnBlock = level.getEntitiesOfClass(LivingEntity.class, new AABB(tile.worldPosition, tile.worldPosition.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
                 for (LivingEntity i : entitiesOnBlock) {
                     i.absMoveTo(i.getX(),i.getY()+2,i.getZ(),i.getYHeadRot() + 22.5F,i.getRotationVector().y);
                 }
 
-                this.needsRefresh = 1;
+                tile.needsRefresh = 1;
 
 
-                MixingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING, this, this.level).orElse(null);
-                if (this.canMix(irecipe, this)) {
-                    if (this.mixTime == 0) {
-                        this.mixTimeTotal = getMixTime();
+                MixingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING, tile, tile.level).orElse(null);
+                if (tile.canMix(irecipe, tile)) {
+                    if (tile.mixTime == 0) {
+                        tile.mixTimeTotal = tile.getMixTime();
                     }
-                    this.mixTime += getRedstonePower();
-                    if (this.mixTime >= this.mixTimeTotal) {
+                    tile.mixTime += tile.getRedstonePower();
+                    if (tile.mixTime >= tile.mixTimeTotal) {
                         if (!irecipe.getFluid().isEmpty()) {
-                            inputTank.drain(irecipe.getOutputFluidReq(this), IFluidHandler.FluidAction.EXECUTE);
+                            tile.inputTank.drain(irecipe.getOutputFluidReq(tile), IFluidHandler.FluidAction.EXECUTE);
                         }
-                        ItemStack smelting = irecipe.getMixingResult(this,level);
-                        if (this.items.get(4).getCount() > 0) {
-                            this.items.get(4).grow(smelting.getCount());
+                        ItemStack smelting = irecipe.getMixingResult(tile,level);
+                        if (tile.items.get(4).getCount() > 0) {
+                            tile.items.get(4).grow(smelting.getCount());
                         } else {
-                            this.items.set(4, smelting);
+                            tile.items.set(4, smelting);
                         }
 
 
-                        this.mixTime = 0;
+                        tile.mixTime = 0;
                         inputs[0].setCount(0);
                         inputs[1].setCount(0);
                         inputs[2].setCount(0);
@@ -165,17 +167,17 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
                         return;
                     }
                 } else {
-                    this.mixTime = 0;
+                    tile.mixTime = 0;
                 }
             }
 
-            if (flag1 != this.getNeedsRefresh()) {
+            if (flag1 != tile.getNeedsRefresh()) {
                 flag2 = true;
             }
         }
 
         if (flag2) {
-            this.setChanged();
+            tile.setChanged();
         }
 
     }

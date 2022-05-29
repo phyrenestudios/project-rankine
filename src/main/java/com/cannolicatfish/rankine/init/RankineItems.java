@@ -2432,6 +2432,7 @@ public class RankineItems {
     public static final RegistryObject<Item> WILLOW_BRANCHLET = ITEMS.register("willow_branchlet", () -> new BlockItem(RankineBlocks.WILLOW_BRANCHLET.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> LOCUST_SPINE = ITEMS.register("locust_spine", () -> new BlockItem(RankineBlocks.LOCUST_SPINE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> GARLAND = ITEMS.register("garland", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> FOUR_LEAF_CLOVER = ITEMS.register("four_leaf_clover", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants)));
     //public static final RegistryObject<Item> LARGE_DEAD_BUSH = REGISTRY.register("large_dead_bush", () -> new BlockItem(RankineBlocks.GOLDENROD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
 
     public static final RegistryObject<Item> ASPARAGUS_SEEDS = ITEMS.register("asparagus_seeds", () -> new ItemNameBlockItem(RankineBlocks.ASPARAGUS_PLANT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
@@ -3346,8 +3347,8 @@ public class RankineItems {
     public static final RegistryObject<Item> ROCK_DRILL = ITEMS.register("rock_drill", () -> new RockDrillItem(new Item.Properties().stacksTo(1).durability(15).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> FIRE_EXTINGUISHER = ITEMS.register("fire_extinguisher", () -> new FireExtinguisherItem(new Item.Properties().stacksTo(1).durability(15).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> GLASS_CUTTER = ITEMS.register("glass_cutter", () -> new GlassCutterItem(new Item.Properties().durability(256).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> PENNING_TRAP = ITEMS.register("penning_trap", () -> new PenningTrapItem(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> FILLED_PENNING_TRAP = ITEMS.register("filled_penning_trap", () -> new FilledPenningTrapItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> PENNING_TRAP = ITEMS.register("penning_trap", () -> new PenningTrapItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> FILLED_PENNING_TRAP = ITEMS.register("filled_penning_trap", () -> new FilledPenningTrapItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
 
     public static final RegistryObject<Item> HARDNESS_TESTER = ITEMS.register("hardness_tester", () -> new HardnessTesterItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     //public static final RegistryObject<Item> ORE_CYCLER = REGISTRY.register("ore_cycler", () -> new OreCyclerItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));

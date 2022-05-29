@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 15,
+  "total": 16,
   "color": 11946807,
   "input1": {
     "element": "rankine:elements/copper",
@@ -77,6 +77,11 @@
   "input15": {
     "element": "rankine:elements/phosphorus",
     "min": 0.0,
+    "max": 0.05
+  },
+  "input16": {
+    "element": "rankine:elements/chlorine",
+    "min": 0,
     "max": 0.05
   },
   "result": "rankine:cupronickel_ingot"

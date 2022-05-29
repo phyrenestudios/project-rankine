@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
+import com.cannolicatfish.rankine.blocks.distillationtower.DistillationTowerTile;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
 import com.cannolicatfish.rankine.recipe.EvaporationRecipe;
@@ -93,37 +94,37 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
     }
 
-    public void tick() {
-        Level worldIn = this.getLevel();
+    public static void tick(Level level, BlockPos pos, BlockState bs, EvaporationTowerTile tile) {
+        Level worldIn = tile.getLevel();
         if (!worldIn.isClientSide) {
-            ItemStack output = this.items.get(0);
-            BlockPos p = this.getBlockPos();
-            EvaporationRecipe recipe = this.getEvaporationRecipe(p.above());
+            ItemStack output = tile.items.get(0);
+            BlockPos p = tile.getBlockPos();
+            EvaporationRecipe recipe = tile.getEvaporationRecipe(p.above());
             if (recipe != null) {
-                if (this.cookTimeTotal != recipe.getTime()) {
-                    this.cookTimeTotal = recipe.getTime();
+                if (tile.cookTimeTotal != recipe.getTime()) {
+                    tile.cookTimeTotal = recipe.getTime();
                 }
                 if (recipe.isLarge()) {
-                    int h = checkStructure(p, worldIn, worldIn.getBlockState(p.above()).getBlock());
+                    int h = tile.checkStructure(p, worldIn, worldIn.getBlockState(p.above()).getBlock());
                     if (h > 0 && output.isEmpty()) {
-                        ++this.cookTime;
-                        if (this.cookTime >= this.cookTimeTotal / h) {
-                            this.items.set(0, recipe.getEvaporationResult(worldIn,worldIn.getBiome(p).value().getRegistryName()));
-                            cookTime = 0;
+                        ++tile.cookTime;
+                        if (tile.cookTime >= tile.cookTimeTotal / h) {
+                            tile.items.set(0, recipe.getEvaporationResult(worldIn,worldIn.getBiome(p).value().getRegistryName()));
+                            tile.cookTime = 0;
                         }
-                    } else if (cookTime > 0) {
-                        this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                    } else if (tile.cookTime > 0) {
+                        tile.cookTime = Mth.clamp(tile.cookTime - 2, 0, tile.cookTimeTotal);
                     }
                 } else {
-                    if (boilerStructure(p, worldIn) && output.isEmpty()) {
-                        ++this.cookTime;
-                        if (this.cookTime >= this.cookTimeTotal) {
+                    if (tile.boilerStructure(p, worldIn) && output.isEmpty()) {
+                        ++tile.cookTime;
+                        if (tile.cookTime >= tile.cookTimeTotal) {
                             worldIn.setBlock(p.above(), Blocks.AIR.defaultBlockState(), 3);
-                            this.items.set(0, recipe.getEvaporationResult(worldIn,worldIn.getBiome(p).value().getRegistryName()));
-                            cookTime = 0;
+                            tile.items.set(0, recipe.getEvaporationResult(worldIn,worldIn.getBiome(p).value().getRegistryName()));
+                            tile.cookTime = 0;
                         }
-                    } else if (cookTime > 0) {
-                        this.cookTime = Mth.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                    } else if (tile.cookTime > 0) {
+                        tile.cookTime = Mth.clamp(tile.cookTime - 2, 0, tile.cookTimeTotal);
                     }
                 }
             }

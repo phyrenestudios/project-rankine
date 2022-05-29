@@ -1,9 +1,6 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import com.cannolicatfish.rankine.init.RankineEnchantments;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.init.RankineTags;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.google.common.collect.Sets;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -107,7 +104,7 @@ public class HammerItem extends DiggerItem {
         if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && getLightningModifier(stack) == 1)
         {
             LightningBolt ent = new LightningBolt(EntityType.LIGHTNING_BOLT,attacker.level);
-            //ent.moveTo(Vector3d.atBottomCenterOf(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
+            //ent.moveTo(Vector3d.atBottomCenterOf(new BlockPos(target.getClickedPos()X(),target.getClickedPos()Y(),target.getClickedPos()Z())));
             ent.setPos(target.getX(),target.getY(),target.getZ());
             target.getCommandSenderWorld().addFreshEntity(ent);
         }
@@ -222,6 +219,20 @@ public class HammerItem extends DiggerItem {
                 worldIn.setBlock(pos,Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING,anvil.getValue(HorizontalDirectionalBlock.FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundSource.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
                 context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+                return InteractionResult.SUCCESS;
+            }
+        } else if (context.getPlayer() != null && context.getLevel().getBlockState(context.getClickedPos()).getBlock().equals(RankineBlocks.GEODE.get())) {
+            Level worldIn = context.getLevel();
+            if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots) {
+                Block randomGeode = RankineLists.GEODES.get(worldIn.getRandom().nextInt(RankineLists.GEODES.size()));
+                BlockPos pos = context.getClickedPos();
+                double d0 = (double) (worldIn.getRandom().nextFloat() * 0.5F) + 0.25D;
+                double d1 = (double) (worldIn.getRandom().nextFloat() * 0.5F) + 0.25D;
+                double d2 = (double) (worldIn.getRandom().nextFloat() * 0.5F) + 0.25D;
+                ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(randomGeode));
+                itementity.setDefaultPickUpDelay();
+                worldIn.addFreshEntity(itementity);
+                worldIn.destroyBlock(context.getClickedPos(), false);
                 return InteractionResult.SUCCESS;
             }
         }

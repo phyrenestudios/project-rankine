@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 72,
+  "total": 84,
   "tier": 2,
   "color": 13881539,
   "input1": {
@@ -363,6 +363,66 @@
     "element": "rankine:elements/lawrencium",
     "min": 0.0,
     "max": 0.50
+  },
+  "input73": {
+    "element": "rankine:elements/hydrogen",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input74": {
+    "element": "rankine:elements/helium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input75": {
+    "element": "rankine:elements/nitrogen",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input76": {
+    "element": "rankine:elements/oxygen",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input77": {
+    "element": "rankine:elements/fluorine",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input78": {
+    "element": "rankine:elements/neon",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input79": {
+    "element": "rankine:elements/chlorine",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input80": {
+    "element": "rankine:elements/argon",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input81": {
+    "element": "rankine:elements/krypton",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input82": {
+    "element": "rankine:elements/xenon",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input83": {
+    "element": "rankine:elements/radon",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input84": {
+    "element": "rankine:elements/oganesson",
+    "min": 0.0,
+    "max": 0.05
   },
   "result": "rankine:ender_amalgam_ingot",
   "mininglevel": 1,
