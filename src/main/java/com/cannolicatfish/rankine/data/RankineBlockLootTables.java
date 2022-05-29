@@ -96,6 +96,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.ALLOY_BARS,
                 RankineLists.LANTERNS,
                 RankineLists.WALL_MUSHROOMS,
+                RankineLists.BALES,
                 RankineLists.SAPLINGS
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(blk, createBlockLootTable(blk));

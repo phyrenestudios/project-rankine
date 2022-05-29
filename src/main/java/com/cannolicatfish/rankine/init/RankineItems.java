@@ -2517,6 +2517,11 @@ public class RankineItems {
     public static final RegistryObject<Item> CORN_STALK = ITEMS.register("corn_stalk", () -> new BlockItem(RankineBlocks.CORN_STALK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> PLANT_FIBER = ITEMS.register("plant_fiber", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants)));
 
+    public static final RegistryObject<Item> BARLEY_BALE = ITEMS.register("barley_bale", () -> new BlockItem(RankineBlocks.BARLEY_BALE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> OAT_BALE = ITEMS.register("oat_bale", () -> new BlockItem(RankineBlocks.OAT_BALE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> RYE_BALE = ITEMS.register("rye_bale", () -> new BlockItem(RankineBlocks.RYE_BALE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> SORGHUM_BALE = ITEMS.register("sorghum_bale", () -> new BlockItem(RankineBlocks.SORGHUM_BALE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> MILLET_BALE = ITEMS.register("millet_bale", () -> new BlockItem(RankineBlocks.MILLET_BALE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
 
 
     //METALLURGY TAB

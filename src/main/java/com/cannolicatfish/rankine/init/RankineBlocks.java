@@ -3075,6 +3075,12 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SOYBEAN_PLANT = BLOCKS.register("soybean_plant", () -> new SoybeanPlantBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
 
 
+    public static final RegistryObject<Block> BARLEY_BALE = BLOCKS.register("barley_bale", () -> new HayBlock(Block.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(0.5F).sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> OAT_BALE = BLOCKS.register("oat_bale", () -> new HayBlock(Block.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(0.5F).sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> RYE_BALE = BLOCKS.register("rye_bale", () -> new HayBlock(Block.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(0.5F).sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> SORGHUM_BALE = BLOCKS.register("sorghum_bale", () -> new HayBlock(Block.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(0.5F).sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> MILLET_BALE = BLOCKS.register("millet_bale", () -> new HayBlock(Block.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(0.5F).sound(SoundType.GRASS)));
+
     public static final RegistryObject<Block> DURALUMIN_LADDER = BLOCKS.register("duralumin_ladder", () -> new MetalLadderBlock(true, false, Block.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> CAST_IRON_LADDER = BLOCKS.register("cast_iron_ladder", () -> new MetalLadderBlock(false, true, Block.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> INVAR_LADDER = BLOCKS.register("invar_ladder", () -> new MetalLadderBlock(false, true, Block.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0F).noOcclusion()));

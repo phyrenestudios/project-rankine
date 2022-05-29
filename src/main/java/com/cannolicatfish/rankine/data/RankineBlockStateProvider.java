@@ -731,7 +731,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             Block PLANK = RankineLists.PLANKS.get((int) Math.floor(RankineLists.WOODEN_SIGNS.indexOf(SIGN)/2D));
             signBlock(SIGN, getBlockRSL(PLANK.getRegistryName().getPath()));
         }
-
+        for (Block BALE : RankineLists.BALES) {
+            axisBlock((RotatedPillarBlock) BALE, getBlockRSL(BALE.getRegistryName().getPath()+"_side"),getBlockRSL(BALE.getRegistryName().getPath()+"_top"));
+        }
 
     }
 

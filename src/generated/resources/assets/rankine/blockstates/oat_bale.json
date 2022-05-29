@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "rankine:block/oat_bale_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "rankine:block/oat_bale"
+    },
+    "axis=z": {
+      "model": "rankine:block/oat_bale_horizontal",
+      "x": 90
+    }
+  }
+}
