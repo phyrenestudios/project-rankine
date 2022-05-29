@@ -2,15 +2,16 @@ package com.cannolicatfish.rankine.blocks.pedestal;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.Container;
-import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -22,7 +23,6 @@ import javax.annotation.Nullable;
 
 public class PedestalTile extends ItemDisplayEntity implements Container {
     private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> new InvWrapper(this));
-    public float frames;
     public ItemEntity entity;
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
 
@@ -35,6 +35,29 @@ public class PedestalTile extends ItemDisplayEntity implements Container {
         super.load(compound);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(compound,this.items);
+    }
+
+    @Override
+    public AABB getRenderBoundingBox() {
+        return new AABB(this.getBlockPos(), this.getBlockPos().above(2));
+    }
+
+    public int getComparatorSignalLevel() {
+        if (!this.isEmpty()) {
+            ItemStack stack = this.items.get(0);
+            switch (stack.getRarity()) {
+                case EPIC:
+                    return 15;
+                case RARE:
+                    return 11;
+                case UNCOMMON:
+                    return 7;
+                case COMMON:
+                default:
+                    return 3;
+            }
+        }
+        return 0;
     }
 
     @Override

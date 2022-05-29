@@ -96,6 +96,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.ALLOY_BARS,
                 RankineLists.LANTERNS,
                 RankineLists.WALL_MUSHROOMS,
+                RankineLists.BALES,
                 RankineLists.SAPLINGS
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(blk, createBlockLootTable(blk));
@@ -106,6 +107,8 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineBlocks.WHITE_CEMENT.get(),
                 RankineBlocks.SOD_BLOCK.get(),
                 RankineBlocks.COB.get(),
+                RankineBlocks.REFINED_COB.get(),
+                RankineBlocks.STUMP.get(),
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
                 RankineBlocks.REACTION_CHAMBER_CORE.get(),
                 RankineBlocks.CHARCOAL_PIT.get(),

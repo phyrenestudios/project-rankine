@@ -22,65 +22,6 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue BRICKS_HARDNESS_MULT;
         public final ForgeConfigSpec.DoubleValue BRICKS_RESISTANCE_MULT;
 
-        public final ForgeConfigSpec.IntValue NATIVE_TIN_ORE_HL;
-        public final ForgeConfigSpec.IntValue NATIVE_GOLD_ORE_HL;
-        public final ForgeConfigSpec.IntValue NATIVE_LEAD_ORE_HL;
-        public final ForgeConfigSpec.IntValue NATIVE_SILVER_ORE_HL;
-        public final ForgeConfigSpec.IntValue NATIVE_ARSENIC_ORE_HL;
-        public final ForgeConfigSpec.IntValue NATIVE_BISMUTH_ORE_HL;
-        public final ForgeConfigSpec.IntValue NATIVE_SULFUR_ORE_HL;
-        public final ForgeConfigSpec.IntValue NATIVE_GALLIUM_ORE_HL;
-        public final ForgeConfigSpec.IntValue NATIVE_INDIUM_ORE_HL;
-        public final ForgeConfigSpec.IntValue NATIVE_TELLURIUM_ORE_HL;
-        public final ForgeConfigSpec.IntValue NATIVE_SELENIUM_ORE_HL;
-        public final ForgeConfigSpec.IntValue MALACHITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue CHALCOCITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue CASSITERITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue BAUXITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue SPHALERITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue CINNABAR_ORE_HL;
-        public final ForgeConfigSpec.IntValue MAGNETITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue HEMATITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue PENTLANDITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue MAGNESITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue GALENA_ORE_HL;
-        public final ForgeConfigSpec.IntValue BISMUTHINITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue ACANTHITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue PYROLUSITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue CHROMITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue MOLYBDENITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue ILMENITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue WOLFRAMITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue RHENIITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue PLUMBAGO_ORE_HL;
-        public final ForgeConfigSpec.IntValue SPERRYLITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue LIGNITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue SUBBITUMINOUS_ORE_HL;
-        public final ForgeConfigSpec.IntValue BITUMINOUS_ORE_HL;
-        public final ForgeConfigSpec.IntValue ANTHRACITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue LAZURITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue DIAMOND_ORE_HL;
-        public final ForgeConfigSpec.IntValue GREENOCKITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue EMERALD_ORE_HL;
-        public final ForgeConfigSpec.IntValue QUARTZ_ORE_HL;
-        public final ForgeConfigSpec.IntValue URANINITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue STIBNITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue XENOTIME_ORE_HL;
-        public final ForgeConfigSpec.IntValue BADDELEYITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue COLTAN_ORE_HL;
-        public final ForgeConfigSpec.IntValue INTERSPINIFEX_ORE_HL;
-        public final ForgeConfigSpec.IntValue PETALITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue COBALTITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue CRYOLITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue PYRITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue CELESTINE_ORE_HL;
-        public final ForgeConfigSpec.IntValue MONAZITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue KAMACITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue ANTITAENITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue TAENITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue TETRATAENITE_ORE_HL;
-        public final ForgeConfigSpec.IntValue LONSDALEITE_ORE_HL;
-
         public BlockProperties(ForgeConfigSpec.Builder b) {
             b.comment("Block Properties").push("blockProperties");
             BRICKS_HARDNESS_MULT = b.comment("A multiplier to determine how much higher the bricks variant hardness is than the stone.")
@@ -91,126 +32,6 @@ public class Config {
                     .defineInRange("polishedHardnessMultiplier", 1.1D, 0.0D, 20.0D);
             POLISHED_RESISTANCE_MULT = b.comment("A multiplier to determine how much higher the polished variant resistance is than the stone.")
                     .defineInRange("polishedResistanceMultiplier", 1.5D, 0.0D, 20.0D);
-            b.pop();
-
-
-            b.comment("Ore Harvest Levels").push("oreHarvestLevels");
-            NATIVE_TIN_ORE_HL = b.comment("Harvest Level of Native Tin Ore.")
-                    .defineInRange("nativeTinOreHL", 0, 0, 4);
-            NATIVE_GOLD_ORE_HL = b.comment("Harvest Level of Native Gold Ore.")
-                    .defineInRange("nativeGoldOreHL", 0, 0, 4);
-            NATIVE_LEAD_ORE_HL = b.comment("Harvest Level of Native Lead Ore.")
-                    .defineInRange("nativeLeadOreHL", 1, 0, 4);
-            NATIVE_SILVER_ORE_HL = b.comment("Harvest Level of Native Silver Ore.")
-                    .defineInRange("nativeSilverOreHL", 0, 0, 4);
-            NATIVE_ARSENIC_ORE_HL = b.comment("Harvest Level of Native Arsenic Ore.")
-                    .defineInRange("nativeArsenicOreHL", 1, 0, 4);
-            NATIVE_BISMUTH_ORE_HL = b.comment("Harvest Level of Native Bismuth Ore.")
-                    .defineInRange("nativeBismuthOreHL", 1, 0, 4);
-            NATIVE_SULFUR_ORE_HL = b.comment("Harvest Level of Native Sulfur Ore.")
-                    .defineInRange("nativeSulfurOreHL", 1, 0, 4);
-            NATIVE_GALLIUM_ORE_HL = b.comment("Harvest Level of Native Gallium Ore.")
-                    .defineInRange("nativeGalliumOreHL", 1, 0, 4);
-            NATIVE_INDIUM_ORE_HL = b.comment("Harvest Level of Native Indium Ore.")
-                    .defineInRange("nativeIndiumOreHL", 1, 0, 4);
-            NATIVE_TELLURIUM_ORE_HL = b.comment("Harvest Level of Native Tellurium Ore.")
-                    .defineInRange("nativeTelluriumOreHL", 1, 0, 4);
-            NATIVE_SELENIUM_ORE_HL = b.comment("Harvest Level of Native Selenium Ore.")
-                    .defineInRange("nativeSeleniumOreHL", 1, 0, 4);
-            MALACHITE_ORE_HL = b.comment("Harvest Level of Malachite Ore.")
-                    .defineInRange("malachiteOreHL", 3, 0, 4);
-            CHALCOCITE_ORE_HL = b.comment("Harvest Level of Chalcocite Ore.")
-                    .defineInRange("chalcociteOreHL", 2, 0, 4);
-            CASSITERITE_ORE_HL = b.comment("Harvest Level of Cassiterite Ore.")
-                    .defineInRange("cassiteriteOreHL", 2, 0, 4);
-            BAUXITE_ORE_HL = b.comment("Harvest Level of Bauxite Ore.")
-                    .defineInRange("bauxiteOreHL", 2, 0, 4);
-            SPHALERITE_ORE_HL = b.comment("Harvest Level of Sphalerite Ore.")
-                    .defineInRange("sphaleriteOreHL", 2, 0, 4);
-            CINNABAR_ORE_HL = b.comment("Harvest Level of Cinnabar Ore.")
-                    .defineInRange("cinnabarOreHL", 2, 0, 4);
-            MAGNETITE_ORE_HL = b.comment("Harvest Level of Magnetite Ore.")
-                    .defineInRange("magnetiteOreHL", 3, 0, 4);
-            HEMATITE_ORE_HL = b.comment("Harvest Level of Hematite Ore.")
-                    .defineInRange("hematiteOreHL", 2, 0, 4);
-            PENTLANDITE_ORE_HL = b.comment("Harvest Level of Pentlandite Ore.")
-                    .defineInRange("pentlanditeOreHL", 2, 0, 4);
-            MAGNESITE_ORE_HL = b.comment("Harvest Level of Magnesite Ore.")
-                    .defineInRange("magnesiteOreHL", 2, 0, 4);
-            GALENA_ORE_HL = b.comment("Harvest Level of Galena Ore.")
-                    .defineInRange("galenaOreHL", 2, 0, 4);
-            BISMUTHINITE_ORE_HL = b.comment("Harvest Level of Bismuthinite Ore.")
-                    .defineInRange("bismuthiniteOreHL", 3, 0, 4);
-            ACANTHITE_ORE_HL = b.comment("Harvest Level of Acanthite Ore.")
-                    .defineInRange("acanthiteOreHL", 2, 0, 4);
-            PYROLUSITE_ORE_HL = b.comment("Harvest Level of Pyrolusite Ore.")
-                    .defineInRange("pyrolusiteOreHL", 3, 0, 4);
-            CHROMITE_ORE_HL = b.comment("Harvest Level of Chromite Ore.")
-                    .defineInRange("chromiteOreHL", 3, 0, 4);
-            MOLYBDENITE_ORE_HL = b.comment("Harvest Level of Molybdenite Ore.")
-                    .defineInRange("molybdeniteOreHL", 4, 0, 4);
-            ILMENITE_ORE_HL = b.comment("Harvest Level of Ilmenite Ore.")
-                    .defineInRange("ilmeniteOreHL", 3, 0, 4);
-            WOLFRAMITE_ORE_HL = b.comment("Harvest Level of Wolframite Ore.")
-                    .defineInRange("wolframiteOreHL", 3, 0, 4);
-            RHENIITE_ORE_HL = b.comment("Harvest Level of Rheniite Ore.")
-                    .defineInRange("rheniiteOreHL", 4, 0, 4);
-            PLUMBAGO_ORE_HL = b.comment("Harvest Level of Plumbago Ore.")
-                    .defineInRange("plumbagoOreHL", 2, 0, 4);
-            SPERRYLITE_ORE_HL = b.comment("Harvest Level of Sperrylite Ore.")
-                    .defineInRange("sperryliteOreHL", 1, 0, 4);
-            LIGNITE_ORE_HL = b.comment("Harvest Level of Lignite Ore.")
-                    .defineInRange("ligniteOreHL", 1, 0, 4);
-            SUBBITUMINOUS_ORE_HL = b.comment("Harvest Level of Subbituminous Ore.")
-                    .defineInRange("subbituminousOreHL", 2, 0, 4);
-            BITUMINOUS_ORE_HL = b.comment("Harvest Level of Bituminous Ore.")
-                    .defineInRange("bituminousOreHL", 3, 0, 4);
-            ANTHRACITE_ORE_HL = b.comment("Harvest Level of Anthracite Ore.")
-                    .defineInRange("anthraciteOreHL", 4, 0, 4);
-            LAZURITE_ORE_HL = b.comment("Harvest Level of Lazurite Ore.")
-                    .defineInRange("lazuriteOreHL", 2, 0, 4);
-            DIAMOND_ORE_HL = b.comment("Harvest Level of Diamond Ore.")
-                    .defineInRange("diamondOreHL", 3, 0, 4);
-            GREENOCKITE_ORE_HL = b.comment("Harvest Level of Greenockite Ore.")
-                    .defineInRange("greenockiteOreHL", 4, 0, 4);
-            EMERALD_ORE_HL = b.comment("Harvest Level of Emerald Ore.")
-                    .defineInRange("emeraldOreHL", 3, 0, 4);
-            QUARTZ_ORE_HL = b.comment("Harvest Level of Quartz Ore.")
-                    .defineInRange("quartzOreHL", 2, 0, 4);
-            URANINITE_ORE_HL = b.comment("Harvest Level of Uraninite Ore.")
-                    .defineInRange("uraniniteOreHL", 4, 0, 4);
-            STIBNITE_ORE_HL = b.comment("Harvest Level of Stibnite Ore.")
-                    .defineInRange("stibniteOreHL", 0, 0, 4);
-            XENOTIME_ORE_HL = b.comment("Harvest Level of Xenotime Ore.")
-                    .defineInRange("xenotimeOreHL", 4, 0, 4);
-            BADDELEYITE_ORE_HL = b.comment("Harvest Level of Baddeleyite Ore.")
-                    .defineInRange("baddeleyiteOreHL", 2, 0, 4);
-            INTERSPINIFEX_ORE_HL = b.comment("Harvest Level of Interspinifex Ore.")
-                    .defineInRange("interspinifexOreHL", 3, 0, 4);
-            PETALITE_ORE_HL = b.comment("Harvest Level of Petalite Ore.")
-                    .defineInRange("petaliteOreHL", 3, 0, 4);
-            COBALTITE_ORE_HL = b.comment("Harvest Level of Cobaltite Ore.")
-                    .defineInRange("cobaltiteOreHL", 3, 0, 4);
-            CRYOLITE_ORE_HL = b.comment("Harvest Level of Cryolite Ore.")
-                    .defineInRange("cryoliteOreHL", 2, 0, 4);
-            COLTAN_ORE_HL = b.comment("Harvest Level of Coltan Ore.")
-                    .defineInRange("coltanOreHL", 4, 0, 4);
-            PYRITE_ORE_HL = b.comment("Harvest Level of Pyrite Ore.")
-                    .defineInRange("pyriteOreHL", 2, 0, 4);
-            CELESTINE_ORE_HL = b.comment("Harvest Level of Celestine Ore.")
-                    .defineInRange("celestineOreHL", 3, 0, 4);
-            MONAZITE_ORE_HL = b.comment("Harvest Level of Monazite Ore.")
-                    .defineInRange("monaziteOreHL", 4, 0, 4);
-            KAMACITE_ORE_HL = b.comment("Harvest Level of Kamacite Ore.")
-                    .defineInRange("kamaciteOreHL", 2, 0, 4);
-            ANTITAENITE_ORE_HL = b.comment("Harvest Level of Antitaenite Ore.")
-                    .defineInRange("antitaeniteOreHL", 2, 0, 4);
-            TAENITE_ORE_HL = b.comment("Harvest Level of Taenite Ore.")
-                    .defineInRange("taeniteOreHL", 2, 0, 4);
-            TETRATAENITE_ORE_HL = b.comment("Harvest Level of Tetrataenite Ore.")
-                    .defineInRange("tetrataeniteOreHL", 2, 0, 4);
-            LONSDALEITE_ORE_HL = b.comment("Harvest Level of Lonsdaleite Ore.")
-                    .defineInRange("lonsdaleiteOreHL", 5, 0, 5);
             b.pop();
         }
     }
@@ -420,6 +241,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
         public final ForgeConfigSpec.DoubleValue GRASS_GROW_CHANCE;
         public final ForgeConfigSpec.DoubleValue PODZOL_GROW_CHANCE;
+        public final ForgeConfigSpec.IntValue LEAF_LITTER_GROWTH;
         public final ForgeConfigSpec.BooleanValue MANDATORY_AXE;
         public final ForgeConfigSpec.BooleanValue REFRESH_ALLOYS;
         public final ForgeConfigSpec.BooleanValue STARTING_BOOK;
@@ -501,6 +323,8 @@ public class Config {
                             .defineInRange("foragingChance", 0.10D, 0.00D, 1.00D);
                     GRASS_GROW_CHANCE = b.comment("Chance for a grass block to grow something on a random tick")
                             .defineInRange("grassGrowChance", 0.0005D, 0.00D, 1.00D);
+                    LEAF_LITTER_GROWTH = b.comment("Chance for a leaf litters to age. Higher values slow decay.")
+                            .defineInRange("leafLitterDecay", 1, 1, Integer.MAX_VALUE);
                     PODZOL_GROW_CHANCE = b.comment("Chance for a podzol block to grow on grass")
                             .defineInRange("podzolGrowChance", 0.0005D, 0.00D, 1.00D);
                     ROCK_GENERATOR_REMOVAL_CHANCE = b.comment("Chance for a mineral block to be removed from any rock generator process.")
@@ -684,7 +508,7 @@ public class Config {
                 CHARCOAL_PIT_RADIUS = b.comment("Maximum radius the charcoal pit can convert logs.")
                         .defineInRange("charcoalPitRadius", 7, 3, 15);
                 CHARCOAL_PIT_SPEED = b.comment("The number of ticks it takes the Charcoal Pit to process. There is some randomization.")
-                        .defineInRange("charcoalPitSpeed", 3600, 1, Integer.MAX_VALUE);
+                        .defineInRange("charcoalPitSpeed", 200, 1, Integer.MAX_VALUE);
                 CHARCOAL_PIT_HEIGHT = b.comment("Maximum height a charcoal pile can be")
                         .defineInRange("charcoalPitHeight", 5, 1, 10);
                 EVAPORATION_TOWER_RANGE = b.comment("Maximum height of the evaporation tower. Height affects yields. Set to 0 to disable functionality.")

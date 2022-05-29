@@ -33,7 +33,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MISC_VERTICAL_SLABS,
                 RankineLists.MISC_STAIRS,
                 RankineLists.MISC_WALLS,
-
+                RankineLists.BALES,
                 RankineLists.MUSHROOM_BLOCKS,
                 RankineLists.CONCRETE_VERTICAL_SLABS,
                 RankineLists.CONCRETE_STAIRS,

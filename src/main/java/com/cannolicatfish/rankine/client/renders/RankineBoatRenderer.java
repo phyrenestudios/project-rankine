@@ -5,18 +5,17 @@ import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
+import com.mojang.math.Quaternion;
+import com.mojang.math.Vector3f;
+import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
-import com.mojang.math.Quaternion;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import com.mojang.math.Vector3f;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -34,27 +33,28 @@ public class RankineBoatRenderer extends EntityRenderer<RankineBoatEntity> {
             new ResourceLocation("textures/entity/boat/acacia.png"),
             new ResourceLocation("textures/entity/boat/dark_oak.png"),
             new ResourceLocation("rankine:textures/entity/boat/cedar.png"),
-            new ResourceLocation("rankine:textures/entity/boat/coconut_palm.png"),
+            new ResourceLocation("rankine:textures/entity/boat/balsam_fir.png"),
+            new ResourceLocation("rankine:textures/entity/boat/eastern_hemlock.png"),
+            new ResourceLocation("rankine:textures/entity/boat/western_hemlock.png"),
             new ResourceLocation("rankine:textures/entity/boat/pinyon_pine.png"),
             new ResourceLocation("rankine:textures/entity/boat/juniper.png"),
-            new ResourceLocation("rankine:textures/entity/boat/balsam_fir.png"),
-            new ResourceLocation("rankine:textures/entity/boat/magnolia.png"),
-            new ResourceLocation("rankine:textures/entity/boat/eastern_hemlock.png"),
-            new ResourceLocation("rankine:textures/entity/boat/maple.png"),
             new ResourceLocation("rankine:textures/entity/boat/black_birch.png"),
             new ResourceLocation("rankine:textures/entity/boat/yellow_birch.png"),
-            new ResourceLocation("rankine:textures/entity/boat/black_walnut.png"),
-            new ResourceLocation("rankine:textures/entity/boat/sharinga.png"),
-            new ResourceLocation("rankine:textures/entity/boat/cork_oak.png"),
-            new ResourceLocation("rankine:textures/entity/boat/cinnamon.png"),
-            new ResourceLocation("rankine:textures/entity/boat/bamboo.png"),
-            new ResourceLocation("rankine:textures/entity/boat/bamboo_culms.png"),
-            new ResourceLocation("rankine:textures/entity/boat/petrified_chorus.png"),
-            new ResourceLocation("rankine:textures/entity/boat/erythrina.png"),
-            new ResourceLocation("rankine:textures/entity/boat/charred.png"),
             new ResourceLocation("rankine:textures/entity/boat/red_birch.png"),
+            new ResourceLocation("rankine:textures/entity/boat/magnolia.png"),
+            new ResourceLocation("rankine:textures/entity/boat/maple.png"),
+            new ResourceLocation("rankine:textures/entity/boat/black_walnut.png"),
+            new ResourceLocation("rankine:textures/entity/boat/coconut_palm.png"),
+            new ResourceLocation("rankine:textures/entity/boat/cork_oak.png"),
+            new ResourceLocation("rankine:textures/entity/boat/sharinga.png"),
+            new ResourceLocation("rankine:textures/entity/boat/cinnamon.png"),
+            new ResourceLocation("rankine:textures/entity/boat/honey_locust.png"),
             new ResourceLocation("rankine:textures/entity/boat/weeping_willow.png"),
-            new ResourceLocation("rankine:textures/entity/boat/honey_locust.png")
+            new ResourceLocation("rankine:textures/entity/boat/erythrina.png"),
+            new ResourceLocation("rankine:textures/entity/boat/petrified_chorus.png"),
+            new ResourceLocation("rankine:textures/entity/boat/charred.png"),
+            new ResourceLocation("rankine:textures/entity/boat/bamboo.png"),
+            new ResourceLocation("rankine:textures/entity/boat/bamboo_culms.png")
 
     };
     private final Map<Boat.Type, Pair<ResourceLocation, BoatModel>> boatResources;

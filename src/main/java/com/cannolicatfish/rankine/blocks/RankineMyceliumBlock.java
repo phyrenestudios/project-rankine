@@ -2,26 +2,25 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.lighting.LayerLightEngine;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
-
-import java.util.Random;
-
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.MyceliumBlock;
 import net.minecraft.world.level.block.SnowLayerBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.lighting.LayerLightEngine;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.PlantType;
+
+import java.util.Random;
 
 public class RankineMyceliumBlock extends MyceliumBlock {
     public RankineMyceliumBlock() {
@@ -77,6 +76,7 @@ public class RankineMyceliumBlock extends MyceliumBlock {
 
     @Override
     public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
-        return plantable.getPlantType(world, pos.relative(facing)).equals(PlantType.CAVE);
+        return plantable.getPlantType(world, pos.relative(facing)).equals(PlantType.PLAINS) || plantable.getPlantType(world, pos.relative(facing)).equals(PlantType.BEACH);
     }
+
 }

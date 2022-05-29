@@ -23,6 +23,7 @@ import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
 import com.cannolicatfish.rankine.blocks.signs.RankineSignBlockEntity;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapTile;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilTile;
+import com.cannolicatfish.rankine.client.renders.PedestalRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -151,6 +152,7 @@ public class RankineBlockEntityTypes {
     @OnlyIn(Dist.CLIENT)
     public static void registerBlockEntityRenders() {
         BlockEntityRenderers.register(RANKINE_SIGN.get(), SignRenderer::new);
+        BlockEntityRenderers.register(PEDESTAL.get(), PedestalRenderer::new);
 
     }
 

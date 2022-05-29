@@ -91,6 +91,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.ELEMENT_BLOCKS,
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.MUSHROOM_BLOCKS,
+                RankineLists.BALES,
                 RankineLists.ROTATION_BLOCKS,
                 RankineLists.LIGHTNING_GLASSES,
                 RankineLists.WOODEN_BOOKSHELVES,

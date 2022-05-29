@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -49,9 +50,6 @@ public class GrassySoilBlock extends GrassBlock {
             } else {
                 worldIn.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
             }
-        } else if (random.nextFloat() < Config.GENERAL.PODZOL_GROW_CHANCE.get() && worldIn.getBlockState(pos.above()).getBlock() instanceof LeafLitterBlock) {
-            worldIn.setBlock(pos,RankineLists.PODZOL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(state.getBlock())).defaultBlockState(),2);
-            worldIn.removeBlock(pos.above(),false);
         } else if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get()) {
             Block ceillingBlock = Blocks.AIR;
             int i = 1;
@@ -77,8 +75,8 @@ public class GrassySoilBlock extends GrassBlock {
             }
             if (random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get() && !state.getValue(DEAD) && worldIn.getBlockState(pos.above()).is(Blocks.AIR)) {
                 Biome BIOME = worldIn.getBiome(pos).value();
-                //BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
-                //worldIn.setBlock(pos.above(), BLOCK, 3);
+                BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
+                worldIn.setBlock(pos.above(), BLOCK, 3);
             }
         }
     }

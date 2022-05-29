@@ -2518,6 +2518,11 @@ public class RankineItems {
     public static final RegistryObject<Item> CORN_STALK = ITEMS.register("corn_stalk", () -> new BlockItem(RankineBlocks.CORN_STALK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> PLANT_FIBER = ITEMS.register("plant_fiber", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants)));
 
+    public static final RegistryObject<Item> BARLEY_BALE = ITEMS.register("barley_bale", () -> new BlockItem(RankineBlocks.BARLEY_BALE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> OAT_BALE = ITEMS.register("oat_bale", () -> new BlockItem(RankineBlocks.OAT_BALE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> RYE_BALE = ITEMS.register("rye_bale", () -> new BlockItem(RankineBlocks.RYE_BALE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> SORGHUM_BALE = ITEMS.register("sorghum_bale", () -> new BlockItem(RankineBlocks.SORGHUM_BALE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> MILLET_BALE = ITEMS.register("millet_bale", () -> new BlockItem(RankineBlocks.MILLET_BALE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankinePlants)));
 
 
     //METALLURGY TAB
@@ -3381,8 +3386,8 @@ public class RankineItems {
     public static final RegistryObject<Item> JUNIPER_BOAT = ITEMS.register("juniper_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.JUNIPER, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> BALSAM_FIR_BOAT = ITEMS.register("balsam_fir_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.BALSAM_FIR, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> MAGNOLIA_BOAT = ITEMS.register("magnolia_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.MAGNOLIA, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> EASTERN_HEMLOCK_BOAT = ITEMS.register("eastern_hemlock_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.HEMLOCK, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> WESTERN_HEMLOCK_BOAT = ITEMS.register("western_hemlock_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.HEMLOCK, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> EASTERN_HEMLOCK_BOAT = ITEMS.register("eastern_hemlock_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.EASTERN_HEMLOCK, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> WESTERN_HEMLOCK_BOAT = ITEMS.register("western_hemlock_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.WESTERN_HEMLOCK, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> MAPLE_BOAT = ITEMS.register("maple_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.MAPLE, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> YELLOW_BIRCH_BOAT = ITEMS.register("yellow_birch_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.YELLOW_BIRCH, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> BLACK_BIRCH_BOAT = ITEMS.register("black_birch_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.BLACK_BIRCH, new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
