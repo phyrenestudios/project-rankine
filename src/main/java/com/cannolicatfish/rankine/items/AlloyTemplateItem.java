@@ -351,19 +351,19 @@ public class AlloyTemplateItem extends Item {
             {
                 case 0:
                 default:
-                    inputs = new ItemStack[]{new ItemStack(RankineItems.COPPER_INGOT.get(),8),new ItemStack(RankineItems.TIN_INGOT.get(),2),ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};
+                    inputs = new ItemStack[]{new ItemStack(Items.COPPER_INGOT,8),new ItemStack(RankineItems.TIN_INGOT.get(),2),ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};
                     break;
                 case 1:
                     inputs = new ItemStack[]{new ItemStack(RankineItems.TIN_INGOT.get(),9),new ItemStack(RankineItems.ANTIMONY.get(),1),ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};
                     break;
                 case 2:
-                    inputs = new ItemStack[]{new ItemStack(RankineItems.COPPER_INGOT.get(),6),new ItemStack(RankineItems.ZINC_INGOT.get(),4),ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};
+                    inputs = new ItemStack[]{new ItemStack(Items.COPPER_INGOT,6),new ItemStack(RankineItems.ZINC_INGOT.get(),4),ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};
                     break;
                 case 3:
                     inputs = new ItemStack[]{new ItemStack(Items.GOLD_INGOT,5),new ItemStack(RankineItems.COPPER_NUGGET.get(),13), new ItemStack(RankineItems.SILVER_NUGGET.get(),2),ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};
                     break;
                 case 4:
-                    inputs = new ItemStack[]{new ItemStack(RankineItems.COPPER_INGOT.get(),9),new ItemStack(RankineItems.ALUMINUM_INGOT.get(),1),ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};
+                    inputs = new ItemStack[]{new ItemStack(Items.COPPER_INGOT,9),new ItemStack(RankineItems.ALUMINUM_INGOT.get(),1),ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};
                     break;
                 case 5:
                     inputs = new ItemStack[]{new ItemStack(Items.IRON_INGOT,6),new ItemStack(RankineItems.NICKEL_INGOT.get(),4),ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};

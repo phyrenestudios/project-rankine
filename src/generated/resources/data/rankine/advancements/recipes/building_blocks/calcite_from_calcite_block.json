@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:copper_ingot_from_copper_nugget"
+      "rankine:calcite_from_calcite_block"
     ]
   },
   "criteria": {
@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "rankine:copper_nugget"
+              "minecraft:calcite"
             ]
           }
         ]
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:copper_ingot_from_copper_nugget"
+        "recipe": "rankine:calcite_from_calcite_block"
       }
     }
   },

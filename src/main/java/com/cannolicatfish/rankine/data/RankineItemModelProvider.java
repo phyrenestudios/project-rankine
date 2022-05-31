@@ -193,6 +193,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.FIRE_CLAY_BALL.get());
         basicItem(RankineItems.KAOLINITE.get());
         basicItem(RankineItems.BONE_CHAR.get());
+        basicItem(RankineItems.COPPER_NUGGET.get());
         basicItem(RankineItems.NETHERITE_NUGGET.get());
         basicItem(RankineItems.SLAG.get());
         basicItem(RankineItems.TRONA.get());
@@ -234,6 +235,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.HERBICIDE.get());
         basicItem(RankineItems.FERTILIZER.get());
         basicItem(RankineItems.SYNTHETIC_LEATHER.get());
+        basicItem(RankineItems.CALCITE.get());
         basicItem(RankineItems.PULP.get());
         basicItem(RankineItems.ALKALI_CELLULOSE.get());
         basicItem(RankineItems.DRY_RUBBER.get());

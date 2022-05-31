@@ -607,7 +607,11 @@ public class RankineRecipesProvider extends RecipeProvider {
         }
         OneToX(consumer, RankineItems.NETHERITE_NUGGET.get(), Items.NETHERITE_INGOT, 9, "has_ingredient", Items.NETHERITE_INGOT);
         threeXthree(consumer, Items.NETHERITE_INGOT, RankineItems.NETHERITE_NUGGET.get(), 1, "has_ingredient", Items.NETHERITE_INGOT, "netherite_ingot_from_netherite_nugget");
+        OneToX(consumer, RankineItems.COPPER_NUGGET.get(), Items.COPPER_INGOT, 9, "has_ingredient", Items.COPPER_INGOT);
+        threeXthree(consumer, Items.COPPER_INGOT, RankineItems.COPPER_NUGGET.get(), 1, "has_ingredient", Items.COPPER_INGOT, "copper_ingot_from_copper_nugget");
         //Misc Blocks
+        OneToX(consumer, RankineItems.CALCITE.get(), Items.CALCITE, 9, "has_ingredient", Items.CALCITE);
+        threeXthree(consumer, Items.CALCITE, RankineItems.CALCITE.get(), 1, "has_ingredient", Items.CALCITE, "calcite_from_calcite_block");
         OneToX(consumer, RankineItems.VULCANIZED_RUBBER.get(), RankineItems.VULCANIZED_RUBBER_BLOCK.get(), 9, "has_ingredient", RankineItems.VULCANIZED_RUBBER.get(), "vulcanized_rubber_from_block");
         threeXthree(consumer, RankineItems.VULCANIZED_RUBBER_BLOCK.get(), RankineItems.VULCANIZED_RUBBER.get(), 1, "has_ingredient", RankineItems.VULCANIZED_RUBBER.get());
         OneToX(consumer, RankineItems.BONE_CHAR.get(), RankineItems.BONE_CHAR_BLOCK.get(), 9, "has_ingredient", RankineItems.BONE_CHAR_BLOCK.get(), "bone_char_from_block");
@@ -841,8 +845,8 @@ public class RankineRecipesProvider extends RecipeProvider {
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_SELENIUM_ORE.get()), RankineItems.SELENIUM.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_SELENIUM_ORE.get().asItem())).save(consumer, "rankine:selenium_ingot_from_native_ore_blasting");
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.NATIVE_TELLURIUM_ORE.get()), RankineItems.TELLURIUM.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_TELLURIUM_ORE.get().asItem())).save(consumer, "rankine:tellurium_ingot_from_native_ore_smelting");
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.NATIVE_TELLURIUM_ORE.get()), RankineItems.TELLURIUM.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.NATIVE_TELLURIUM_ORE.get().asItem())).save(consumer, "rankine:tellurium_ingot_from_native_ore_blasting");
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.PORPHYRY_COPPER.get()), RankineItems.COPPER_INGOT.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.PORPHYRY_COPPER.get().asItem())).save(consumer, "rankine:copper_ingot_from_porphyry_copper_smelting");
-        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.PORPHYRY_COPPER.get()), RankineItems.COPPER_INGOT.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.PORPHYRY_COPPER.get().asItem())).save(consumer, "rankine:copper_ingot_from_porphyry_copper_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.PORPHYRY_COPPER.get()), Items.COPPER_INGOT, 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.PORPHYRY_COPPER.get().asItem())).save(consumer, "rankine:copper_ingot_from_porphyry_copper_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.PORPHYRY_COPPER.get()), Items.COPPER_INGOT, 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.PORPHYRY_COPPER.get().asItem())).save(consumer, "rankine:copper_ingot_from_porphyry_copper_blasting");
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.STIBNITE_ORE.get()), RankineItems.ANTIMONY.get(), 0.5F, 200).unlockedBy("has_ingredient", has(RankineBlocks.STIBNITE_ORE.get().asItem())).save(consumer, "rankine:antimony_ingot_from_stibnite_ore_smelting");
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.STIBNITE_ORE.get()), RankineItems.ANTIMONY.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineBlocks.STIBNITE_ORE.get().asItem())).save(consumer, "rankine:antimony_ingot_from_stibnite_ore_blasting");
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.IRON_ORE.get()), Items.IRON_INGOT, 0.7F, 200).unlockedBy("has_ingredient", has(RankineBlocks.IRON_ORE.get().asItem())).save(consumer, "rankine:iron_ingot_from_rankine_iron_ore_smelting");

@@ -176,7 +176,7 @@ public class RankineEventHandler {
         if (event.getType() == RankineVillagerProfessions.METALLURGIST) {
             level1.add(new BasicItemListing(1, new ItemStack(RankineItems.ALLOY_TEMPLATE.get()),12,1,0.05f));
             level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TIN_INGOT.get(), 8), new ItemStack(Items.EMERALD),12,2,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.COPPER_INGOT.get(), 4), new ItemStack(Items.EMERALD),12,2,0.05f));
+            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(Items.COPPER_INGOT, 4), new ItemStack(Items.EMERALD),12,2,0.05f));
             level2.add(new BasicItemListing(1, new ItemStack(RankineItems.ZINC_INGOT.get(), 2),12,10,0.05f));
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.METEORIC_IRON.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.COIN.get(), 16), new ItemStack(Items.EMERALD),12,10,0.05f));
@@ -1152,7 +1152,7 @@ public class RankineEventHandler {
     }
     
     @SubscribeEvent
-    public static void onToolUse(BlockEvent.BlockToolInteractEvent event) {
+    public static void onToolUse(BlockEvent.BlockToolModificationEvent event) {
         if (Config.TOOLS.DISABLE_WOODEN_SWORD.get() && event.getPlayer().getItemInHand(InteractionHand.MAIN_HAND).getItem() == Items.WOODEN_SWORD) { event.setCanceled(true); }
         if (Config.TOOLS.DISABLE_WOODEN_AXE.get() && event.getPlayer().getItemInHand(InteractionHand.MAIN_HAND).getItem() == Items.WOODEN_AXE) { event.setCanceled(true); }
         if (Config.TOOLS.DISABLE_WOODEN_SHOVEL.get() && event.getPlayer().getItemInHand(InteractionHand.MAIN_HAND).getItem() == Items.WOODEN_SHOVEL) { event.setCanceled(true); }

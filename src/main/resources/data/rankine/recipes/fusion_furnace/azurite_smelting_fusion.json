@@ -11,7 +11,7 @@
     "fluid": "rankine:sulfuric_acid"
   },
   "result1": {
-    "item": "rankine:copper_ingot",
+    "item": "minecraft:copper_ingot",
     "count": 2
   },
   "fluidOutput": {

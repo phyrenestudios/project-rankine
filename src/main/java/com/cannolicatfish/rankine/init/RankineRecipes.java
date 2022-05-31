@@ -157,7 +157,7 @@ public class RankineRecipes {
         BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.SULFUR_SHELF_MUSHROOM::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.HARMING));
         BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.FOUR_LEAF_CLOVER::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.LUCK));
         BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.LIONS_MANE_MUSHROOM::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.STRENGTH));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.NIGHT_VISION)),Ingredient.of(RankineItems.CALCITE_BLOCK::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.INVISIBILITY));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.NIGHT_VISION)),Ingredient.of(RankineItems.CALCITE::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.INVISIBILITY));
         BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.STINGING_NETTLE::get, RankineItems.WILLOW_BRANCHLET::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.HEALING));
         }
 

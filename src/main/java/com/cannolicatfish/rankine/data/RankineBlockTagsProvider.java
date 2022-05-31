@@ -365,7 +365,6 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(RankineTags.Blocks.STORAGE_BLOCKS_MANGANESE).add(RankineBlocks.MANGANESE_BLOCK.get());
         tag(RankineTags.Blocks.STORAGE_BLOCKS_COBALT).add(RankineBlocks.COBALT_BLOCK.get());
         tag(RankineTags.Blocks.STORAGE_BLOCKS_NICKEL).add(RankineBlocks.NICKEL_BLOCK.get());
-        tag(RankineTags.Blocks.STORAGE_BLOCKS_COPPER).add(RankineBlocks.COPPER_BLOCK.get());
         tag(RankineTags.Blocks.STORAGE_BLOCKS_ZINC).add(RankineBlocks.ZINC_BLOCK.get());
         tag(RankineTags.Blocks.STORAGE_BLOCKS_GALLIUM).add(RankineBlocks.GALLIUM_BLOCK.get());
         tag(RankineTags.Blocks.STORAGE_BLOCKS_GERMANIUM).add(RankineBlocks.GERMANIUM_BLOCK.get());

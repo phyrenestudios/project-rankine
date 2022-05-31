@@ -51,7 +51,7 @@ public class SpearEntityRenderer extends EntityRenderer<SpearEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(SpearEntity entity) {
-        return entity.type;
+        return entity.type == null ? new ResourceLocation("rankine:textures/entity/flint_spear.png") : entity.type;
 
     }
 
