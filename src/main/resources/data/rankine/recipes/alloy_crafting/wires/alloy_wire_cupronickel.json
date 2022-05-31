@@ -11,7 +11,7 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:ingots/constantan",
+      "item": "rankine:cupronickel_ingot",
       "alloyRecipe": "rankine:alloying/cupronickel_alloying",
       "name": "item.rankine.cupronickel_alloying"
     },

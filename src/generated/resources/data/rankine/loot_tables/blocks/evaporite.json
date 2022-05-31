@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:evaporite"
+          "name": "minecraft:air"
         }
       ],
       "conditions": [

@@ -2789,7 +2789,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> EVAPORITE = BLOCKS.register("evaporite", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
     public static final RegistryObject<Block> FULGURITE = BLOCKS.register("fulgurite", () -> new Block(Block.Properties.of(Material.GRASS).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
     public static final RegistryObject<Block> DOLOMITE_BLOCK = BLOCKS.register("dolomite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
-    public static final RegistryObject<Block> CALCITE_BLOCK = BLOCKS.register("calcite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
     public static final RegistryObject<Block> MAGNESIUM_CHLORIDE_BLOCK = BLOCKS.register("magnesium_chloride_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
     public static final RegistryObject<Block> SODIUM_CHLORIDE_BLOCK = BLOCKS.register("sodium_chloride_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F).noOcclusion()));
     public static final RegistryObject<Block> CALCIUM_CHLORIDE_BLOCK = BLOCKS.register("calcium_chloride_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
@@ -3149,7 +3148,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MANGANESE_BLOCK = BLOCKS.register("manganese_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> COBALT_BLOCK = BLOCKS.register("cobalt_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> NICKEL_BLOCK = BLOCKS.register("nickel_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> COPPER_BLOCK = BLOCKS.register("copper_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> ZINC_BLOCK = BLOCKS.register("zinc_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> GALLIUM_BLOCK = BLOCKS.register("gallium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> GERMANIUM_BLOCK = BLOCKS.register("germanium_block", () -> new Block(DEF_METAL_BLOCK));

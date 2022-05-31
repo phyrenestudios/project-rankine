@@ -484,7 +484,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineTags.Items.INGOTS_MANGANESE).add(RankineItems.MANGANESE_INGOT.get());
         tag(RankineTags.Items.INGOTS_COBALT).add(RankineItems.COBALT_INGOT.get());
         tag(RankineTags.Items.INGOTS_NICKEL).add(RankineItems.NICKEL_INGOT.get());
-        tag(RankineTags.Items.INGOTS_COPPER).add(RankineItems.COPPER_INGOT.get());
         tag(RankineTags.Items.INGOTS_ZINC).add(RankineItems.ZINC_INGOT.get());
         tag(RankineTags.Items.INGOTS_GALLIUM).add(RankineItems.GALLIUM_INGOT.get());
         tag(RankineTags.Items.GERMANIUM).add(RankineItems.GERMANIUM.get());

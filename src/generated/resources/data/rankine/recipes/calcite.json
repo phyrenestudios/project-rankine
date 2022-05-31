@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "rankine:copper_block"
+      "item": "minecraft:calcite"
     }
   ],
   "result": {
-    "item": "rankine:copper_ingot",
+    "item": "rankine:calcite",
     "count": 9
   }
 }

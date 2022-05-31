@@ -1994,7 +1994,6 @@ public class RankineItems {
     public static final RegistryObject<Item> IRONSTONE = ITEMS.register("ironstone", () -> new BlockItem(RankineBlocks.IRONSTONE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BOG_IRON = ITEMS.register("bog_iron", () -> new BlockItem(RankineBlocks.BOG_IRON.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> FUMAROLE_DEPOSIT = ITEMS.register("fumarole_deposit", () -> new BlockItem(RankineBlocks.FUMAROLE_DEPOSIT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> EVAPORITE = ITEMS.register("evaporite", () -> new BlockItem(RankineBlocks.EVAPORITE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FULGURITE = ITEMS.register("fulgurite", () -> new BlockItem(RankineBlocks.FULGURITE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> PHOSPHORITE = ITEMS.register("phosphorite", () -> new BlockItem(RankineBlocks.PHOSPHORITE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> SYLVINITE = ITEMS.register("sylvinite", () -> new BlockItem(RankineBlocks.SYLVINITE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -2630,7 +2629,6 @@ public class RankineItems {
     public static final RegistryObject<Item> BRIDGMANITE = ITEMS.register("bridgmanite", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BRIDGMANITE_BLOCK = ITEMS.register("bridgmanite_block", () -> new BlockItem(RankineBlocks.BRIDGMANITE_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> CALCITE = ITEMS.register("calcite", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> CALCITE_BLOCK = ITEMS.register("calcite_block", () -> new BlockItem(RankineBlocks.CALCITE_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> CALCIUM_CHLORIDE = ITEMS.register("calcium_chloride", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> CALCIUM_CHLORIDE_BLOCK = ITEMS.register("calcium_chloride_block", () -> new BlockItem(RankineBlocks.CALCIUM_CHLORIDE_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> CALCIUM_SILICATE = ITEMS.register("calcium_silicate", () -> new SimpleTooltipItem(Arrays.asList("Composition: Ca2SiO4"), new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
@@ -3623,7 +3621,6 @@ public class RankineItems {
     public static final RegistryObject<Item> MANGANESE_INGOT = ITEMS.register("manganese_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> COBALT_INGOT = ITEMS.register("cobalt_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> NICKEL_INGOT = ITEMS.register("nickel_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().tab(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> COPPER_INGOT = ITEMS.register("copper_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> ZINC_INGOT = ITEMS.register("zinc_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> GALLIUM_INGOT = ITEMS.register("gallium_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> GERMANIUM = ITEMS.register("germanium", () -> new ElementItem(0.0f, false, 0, new Item.Properties().tab(ProjectRankine.setup.rankineElements)));
@@ -3741,7 +3738,6 @@ public class RankineItems {
     public static final RegistryObject<Item> MANGANESE_BLOCK = ITEMS.register("manganese_block", () -> new BlockItem(RankineBlocks.MANGANESE_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> COBALT_BLOCK = ITEMS.register("cobalt_block", () -> new BlockItem(RankineBlocks.COBALT_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> NICKEL_BLOCK = ITEMS.register("nickel_block", () -> new BlockItem(RankineBlocks.NICKEL_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> COPPER_BLOCK = ITEMS.register("copper_block", () -> new BlockItem(RankineBlocks.COPPER_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> ZINC_BLOCK = ITEMS.register("zinc_block", () -> new BlockItem(RankineBlocks.ZINC_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> GALLIUM_BLOCK = ITEMS.register("gallium_block", () -> new BlockItem(RankineBlocks.GALLIUM_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> GERMANIUM_BLOCK = ITEMS.register("germanium_block", () -> new BlockItem(RankineBlocks.GERMANIUM_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));

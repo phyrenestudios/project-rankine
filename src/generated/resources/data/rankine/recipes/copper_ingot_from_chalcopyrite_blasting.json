@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "rankine:chalcopyrite"
   },
-  "result": "rankine:copper_ingot",
+  "result": "minecraft:copper_ingot",
   "experience": 0.5,
   "cookingtime": 100
 }
