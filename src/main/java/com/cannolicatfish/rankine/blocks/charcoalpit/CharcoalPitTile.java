@@ -1,20 +1,19 @@
 package com.cannolicatfish.rankine.blocks.charcoalpit;
 
 import com.cannolicatfish.rankine.blocks.RankineEightLayerBlock;
-import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.core.Direction;
-import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -120,8 +119,11 @@ public class CharcoalPitTile extends BlockEntity {
                             level.setBlock(b, RankineBlocks.CHARCOAL_BLOCK.get().defaultBlockState().setValue(RankineEightLayerBlock.LAYERS, layerCount),3);
                         }
                     } else if (invalidLogs.contains(b.immutable())) {
-                        level.setBlock(b, RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get().defaultBlockState(),3);
-                    }
+                        if (level.getRandom().nextFloat() < 0.2) {
+                            level.setBlock(b, RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get().defaultBlockState(),3);
+                        } else {
+                            level.setBlock(b, RankineBlocks.CHARRED_LOG.get().defaultBlockState(),3);
+                        }                    }
                 }
             }
         } else {

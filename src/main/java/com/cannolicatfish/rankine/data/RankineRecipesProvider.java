@@ -318,7 +318,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(Items.BLAZE_POWDER,1).requires(Items.MAGMA_CREAM).requires(RankineItems.PUMICE_SOAP.get()).unlockedBy("has_ingredient", has(RankineItems.PUMICE_SOAP.get())).save(consumer, "rankine:blaze_powder_from_puumice_soap");
         ShapelessRecipeBuilder.shapeless(Items.PISTON,1).requires(Items.STICKY_PISTON).requires(RankineItems.PUMICE_SOAP.get()).unlockedBy("has_ingredient", has(RankineItems.PUMICE_SOAP.get())).save(consumer, "rankine:piston_from_pumice_soap");
         ShapelessRecipeBuilder.shapeless(RankineItems.MINERAL_WOOL.get(),1).requires(RankineTags.Items.MINERAL_WOOL).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(RankineTags.Items.MINERAL_WOOL)).save(consumer, "rankine:mineral_wool_from_colors");
-        ShapelessRecipeBuilder.shapeless(Items.TERRACOTTA,1).requires(RankineTags.Items.TERRACOTTA).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(RankineTags.Items.MINERAL_WOOL)).save(consumer, "rankine:terracotta_from_colors");
+        ShapelessRecipeBuilder.shapeless(Items.TERRACOTTA,1).requires(ItemTags.TERRACOTTA).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(RankineTags.Items.MINERAL_WOOL)).save(consumer, "rankine:terracotta_from_colors");
         ShapelessRecipeBuilder.shapeless(Items.GLASS,1).requires(Tags.Items.GLASS).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(Tags.Items.GLASS)).save(consumer, "rankine:glass_from_colors");
         //
 

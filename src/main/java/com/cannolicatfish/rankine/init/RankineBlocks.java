@@ -1768,7 +1768,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PHOSPHORITE = BLOCKS.register("phosphorite", () -> new Block(DEF_STONE));
     public static final RegistryObject<Block> LATERITE = BLOCKS.register("laterite", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(1.0F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> SYLVINITE = BLOCKS.register("sylvinite", () -> new Block(DEF_STONE));
-    public static final RegistryObject<Block> FUMAROLE_DEPOSIT = BLOCKS.register("fumarole_deposit", () -> new FumaroleDepositBlock(DEF_STONE));
+    public static final RegistryObject<Block> FUMAROLE_DEPOSIT = BLOCKS.register("fumarole_deposit", () -> new Block(DEF_STONE));
     public static final RegistryObject<Block> IRONSTONE = BLOCKS.register("ironstone", () -> new Block(DEF_STONE));
     public static final RegistryObject<Block> BOG_IRON = BLOCKS.register("bog_iron", () -> new Block(DEF_STONE));
     public static final RegistryObject<Block> PORPHYRY_COPPER = BLOCKS.register("porphyry_copper", () -> new Block(DEF_STONE));

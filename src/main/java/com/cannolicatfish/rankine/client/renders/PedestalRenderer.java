@@ -44,6 +44,7 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalTile> {
         ItemStack stack = blockEntityIn.entity.getItem();
         BakedModel bakedmodel = itemRenderer.getModel(stack, blockEntityIn.getLevel(),  (LivingEntity)null, blockEntityIn.entity.getId());
         itemRenderer.render(stack, ItemTransforms.TransformType.FIXED, true, matrixStack, buffer, combinedLight, combinedOverlay, bakedmodel);
+        //Minecraft.getInstance().getEntityRenderDispatcher().render(blockEntityIn.entity, 0.5,1,0.5, blockEntityIn.entity., 2.0f,matrixStack, iRenderTypeBuffer,i);
         matrixStack.popPose();
     }
 

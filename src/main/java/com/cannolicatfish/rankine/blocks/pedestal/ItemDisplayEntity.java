@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.pedestal;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -18,7 +19,12 @@ public abstract class ItemDisplayEntity extends BlockEntity {
     @Override
     @Nullable
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag() {
+        return super.saveWithoutMetadata();
     }
 
     @Override

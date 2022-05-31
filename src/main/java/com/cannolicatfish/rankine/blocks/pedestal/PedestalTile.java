@@ -33,7 +33,6 @@ public class PedestalTile extends ItemDisplayEntity implements Container {
     @Override
     public void load(CompoundTag compound) {
         super.load(compound);
-        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(compound,this.items);
     }
 

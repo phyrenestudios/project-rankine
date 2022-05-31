@@ -31,7 +31,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
     @Override
     protected void addTags() {
 
-        copy(RankineTags.Blocks.ORES_COPPER, RankineTags.Items.ORES_COPPER);
+        copy(BlockTags.COPPER_ORES, RankineTags.Items.ORES_COPPER);
         copy(RankineTags.Blocks.ORES_LEAD, RankineTags.Items.ORES_LEAD);
         copy(RankineTags.Blocks.ORES_SILVER, RankineTags.Items.ORES_SILVER);
         copy(RankineTags.Blocks.ORES_BISMUTH, RankineTags.Items.ORES_BISMUTH);
@@ -840,8 +840,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(Tags.Blocks.GRAVEL, Tags.Items.GRAVEL);
         //copy(Tags.Blocks.DIRT, RankineTags.Items.DIRT);
         copy(RankineTags.Blocks.TUFF, RankineTags.Items.TUFF);
-        copy(RankineTags.Blocks.TERRACOTTA, RankineTags.Items.TERRACOTTA);
-        copy(RankineTags.Blocks.GLAZED_TERRACOTTA, RankineTags.Items.GLAZED_TERRACOTTA);
         copy(RankineTags.Blocks.CONCRETE, RankineTags.Items.CONCRETE);
         copy(RankineTags.Blocks.CONCRETE_POWDER, RankineTags.Items.CONCRETE_POWDER);
         copy(RankineTags.Blocks.LEDS, RankineTags.Items.LEDS);
@@ -906,22 +904,17 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
 
 
-
-
-
-        //MINECRAFT
         tag(ItemTags.STONE_CRAFTING_MATERIALS).add(RankineItems.SKARN.get(),RankineItems.BRECCIA.get());
         //getOrCreateBuilder(ItemTags.BEACON_PAYMENT_ITEMS).addTags();
 
         tag(ItemTags.FISHES).add(RankineItems.TUNA.get(),RankineItems.COOKED_TUNA.get());
         tag(ItemTags.ARROWS).add(RankineItems.ROPE_COIL_ARROW.get(),RankineItems.ALLOY_ARROW.get());
-        //getOrCreateBuilder(EntityTypeTags.ARROWS).add(RankineEntityTypes.THORIUM_ARROW,RankineEntityTypes.MAGNESIUM_ARROW,RankineEntityTypes.ALLOY_ARROW);
         tag(ItemTags.COALS).add(RankineItems.LIGNITE.get(),RankineItems.SUBBITUMINOUS_COAL.get(),RankineItems.BITUMINOUS_COAL.get(),RankineItems.ANTHRACITE_COAL.get());
         tag(ItemTags.STONE_TOOL_MATERIALS).add(RankineItems.SKARN.get(),RankineItems.BRECCIA.get());
         tag(ItemTags.PIGLIN_LOVED).addTag(RankineTags.Items.COLORED_GOLD_TOOLS).add(RankineItems.GREEN_GOLD_INGOT.get(),RankineItems.BLUE_GOLD_INGOT.get(),RankineItems.ROSE_GOLD_INGOT.get(),RankineItems.WHITE_GOLD_INGOT.get(),RankineItems.BLACK_GOLD_INGOT.get(),RankineItems.PURPLE_GOLD_INGOT.get(),RankineItems.GREEN_GOLD_BLOCK.get(),RankineItems.BLUE_GOLD_BLOCK.get(),RankineItems.ROSE_GOLD_BLOCK.get(),RankineItems.WHITE_GOLD_BLOCK.get(),RankineItems.BLACK_GOLD_BLOCK.get(),RankineItems.PURPLE_GOLD_BLOCK.get());
-        for (Block blk : RankineLists.SAPLINGS) {
-            tag(ItemTags.SAPLINGS).add(blk.asItem());
-        }
+        tag(ItemTags.CLUSTER_MAX_HARVESTABLES).addTag(RankineTags.Items.PICKAXES);
+        tag(ItemTags.FOX_FOOD).addTag(RankineTags.Items.BERRIES);
+
 
 
 
