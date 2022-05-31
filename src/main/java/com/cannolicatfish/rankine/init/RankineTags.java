@@ -127,8 +127,6 @@ public final class RankineTags {
         public static final TagKey<Block> MYCELIUM = forgeBlock("mycelium");
         public static final TagKey<Block> HARDENED_GLASS = forgeBlock("hardened_glass");
         public static final TagKey<Block> TUFF = forgeBlock("tuff");
-        public static final TagKey<Block> TERRACOTTA = forgeBlock("terracotta");
-        public static final TagKey<Block> GLAZED_TERRACOTTA = forgeBlock("glazed_terracotta");
         public static final TagKey<Block> CONCRETE_POWDER = forgeBlock("concrete_powder");
         public static final TagKey<Block> CONCRETE = forgeBlock("concrete");
         public static final TagKey<Block> MINERAL_WOOL = forgeBlock("mineral_wool");
@@ -328,7 +326,6 @@ public final class RankineTags {
         public static final TagKey<Block> STORAGE_BLOCKS_TOURMALINE = forgeBlock("storage_blocks/tourmaline");
         public static final TagKey<Block> STORAGE_BLOCKS_PEARL = forgeBlock("storage_blocks/pearl");
         //forge:ores/*
-        public static final TagKey<Block> ORES_COPPER = forgeBlock("ores/copper");
         public static final TagKey<Block> ORES_LEAD = forgeBlock("ores/lead");
         public static final TagKey<Block> ORES_SILVER = forgeBlock("ores/silver");
         public static final TagKey<Block> ORES_BISMUTH = forgeBlock("ores/bismuth");
@@ -1123,8 +1120,6 @@ public final class RankineTags {
         public static final TagKey<Item> COARSE_DIRT = forgeItem("coarse_dirt");
         public static final TagKey<Item> HARDENED_GLASS = forgeItem("hardened_glass");
         public static final TagKey<Item> TUFF = forgeItem("tuff");
-        public static final TagKey<Item> TERRACOTTA = forgeItem("terracotta");
-        public static final TagKey<Item> GLAZED_TERRACOTTA = forgeItem("glazed_terracotta");
         public static final TagKey<Item> CONCRETE_POWDER = forgeItem("concrete_powder");
         public static final TagKey<Item> CONCRETE = forgeItem("concrete");
         public static final TagKey<Item> MINERAL_WOOL = forgeItem("mineral_wool");

@@ -112,8 +112,9 @@ public class ProjectRankine {
         LOGGER.debug("Rankine: \"ClientSetup Event\" Starting...");
 
         event.enqueueWork(ClientProxy::registerItemProperties);
-        RankineBlockEntityTypes.registerBlockEntityRenders();
         event.enqueueWork(() -> {
+            RankineBlockEntityTypes.registerBlockEntityRenders();
+
             for (WoodType wood : RankineLists.WOOD_TYPES) {
                 Sheets.addWoodType(wood);
             }
