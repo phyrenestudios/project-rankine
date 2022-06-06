@@ -1765,6 +1765,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CVD_GLASS = BLOCKS.register("cvd_glass", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(12.0F, 60.0F).sound(SoundType.GLASS).noOcclusion()));
     public static final RegistryObject<Block> COB = BLOCKS.register("cob", () -> new Block(Block.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.GRAVEL).strength(1.0F)));
     public static final RegistryObject<Block> REFINED_COB = BLOCKS.register("refined_cob", () -> new Block(Block.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.GRAVEL).strength(2.0F)));
+    public static final RegistryObject<Block> BANDED_IRON_FORMATION = BLOCKS.register("banded_iron_formation", () -> new Block(DEF_STONE));
     public static final RegistryObject<Block> PHOSPHORITE = BLOCKS.register("phosphorite", () -> new Block(DEF_STONE));
     public static final RegistryObject<Block> LATERITE = BLOCKS.register("laterite", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(1.0F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> SYLVINITE = BLOCKS.register("sylvinite", () -> new Block(DEF_STONE));
