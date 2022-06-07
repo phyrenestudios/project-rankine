@@ -10,6 +10,8 @@ import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
+import com.cannolicatfish.rankine.capabilities.ChunkRetrogenProvider;
+import com.cannolicatfish.rankine.capabilities.IChunkRetrogenHandler;
 import com.cannolicatfish.rankine.commands.BlockWallCommand;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.commands.GiveTagCommand;
@@ -29,10 +31,7 @@ import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;
 import com.cannolicatfish.rankine.recipe.StrippingRecipe;
-import com.cannolicatfish.rankine.util.RankineMathHelper;
-import com.cannolicatfish.rankine.util.RankineVillagerTrades;
-import com.cannolicatfish.rankine.util.RockGeneratorUtils;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
+import com.cannolicatfish.rankine.util.*;
 import com.mojang.datafixers.DataFixUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -79,6 +78,9 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.ChunkStatus;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -91,10 +93,9 @@ import net.minecraftforge.common.BasicItemListing;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.TierSortingRegistry;
-import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.event.ItemAttributeModifierEvent;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.event.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -106,9 +107,11 @@ import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.event.world.SaplingGrowTreeEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -123,6 +126,28 @@ import java.util.stream.Stream;
 
 @Mod.EventBusSubscriber
 public class RankineEventHandler {
+
+    @SubscribeEvent
+    public static void attachCapabilities(AttachCapabilitiesEvent<LevelChunk> event) {
+        event.addCapability(new ResourceLocation("rankine:retrogen_chunk"), new ChunkRetrogenProvider());
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void retrogenChunk(ChunkEvent.Load event) {
+        if (!event.getWorld().isClientSide()) {
+            ChunkAccess chunkAccess = event.getChunk();
+            if (chunkAccess instanceof ICapabilityProvider) {
+                LazyOptional<IChunkRetrogenHandler> capability = ((ICapabilityProvider) chunkAccess).getCapability(ChunkRetrogenProvider.CAPABILITY, null);
+                if (capability.isPresent() && capability.resolve().isPresent()) {
+                    if (!capability.resolve().get().getValue() && chunkAccess.getStatus().isOrAfter(ChunkStatus.FULL)) {
+                        ReplacementUtils.performRetrogenReplacement(chunkAccess);
+                        capability.ifPresent(iChunkRetrogenHandler -> iChunkRetrogenHandler.setValue(true));
+                    }
+                }
+            }
+        }
+
+    }
 
     @SubscribeEvent
     public static void onItemPickup(PlayerEvent.ItemPickupEvent event) {
