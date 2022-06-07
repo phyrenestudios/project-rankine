@@ -3,13 +3,15 @@ package com.cannolicatfish.rankine.world.gen.ores;
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.BulkSectionAccess;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import java.util.Random;
+import java.util.function.Function;
 
 public class DiskOreVeinFeature extends Feature<RankineOreFeatureConfig> {
 
@@ -20,11 +22,12 @@ public class DiskOreVeinFeature extends Feature<RankineOreFeatureConfig> {
 
     @Override
     public boolean place(FeaturePlaceContext<RankineOreFeatureConfig> p_159749_) {
-        WorldGenLevel reader = p_159749_.level();
+        WorldGenLevel levelIn = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        Random rand = levelIn.getRandom();
         RankineOreFeatureConfig config = p_159749_.config();
         BlockPos posShift = pos.offset(8,0,8);
+        BulkSectionAccess bulksectionaccess = new BulkSectionAccess(levelIn);
 
         if (rand.nextFloat() < 1 - config.chance) {
             return false;
@@ -34,20 +37,43 @@ public class DiskOreVeinFeature extends Feature<RankineOreFeatureConfig> {
                 double ElipDist = Math.pow(BP.getX() - posShift.getX(), 2) + 9*Math.pow(BP.getY() - posShift.getY(), 2) + Math.pow(BP.getZ() - posShift.getZ(), 2);
                 double RadiusEffect = 1 - ElipDist / Math.pow(config.size,2);
                 if (RadiusEffect > 0 && rand.nextDouble() < RadiusEffect) {
-                    if (config.target.getPredicate().test(reader.getBlockState(BP))) {
-                        Block BLK = config.state.getBlock();
-                        if (BLK instanceof RankineOreBlock && WorldgenUtils.ORE_STONES.contains(reader.getBlockState(BP).getBlock())) {
-                            reader.setBlock(BP, BLK.defaultBlockState().setValue(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(BLK)), 2);
-                        } else {
-                            reader.setBlock(BP, BLK.defaultBlockState(), 2);
+                    BlockState blockstate = levelIn.getBlockState(BP);
+                    for(RankineOreFeatureConfig.TargetBlockState oreconfiguration$targetblockstate : config.targetStates) {
+                        if (canPlaceOre(blockstate, bulksectionaccess::getBlockState, rand, config, oreconfiguration$targetblockstate, BP.mutable())) {
+                            if (oreconfiguration$targetblockstate.state.getBlock() instanceof RankineOreBlock && WorldgenUtils.ORE_STONES.contains(blockstate.getBlock())) {
+                                levelIn.setBlock(BP, oreconfiguration$targetblockstate.state.setValue(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(blockstate.getBlock())), 3);
+                                break;
+                            }
+                            levelIn.setBlock(BP, oreconfiguration$targetblockstate.state, 3);
+                            break;
                         }
                     }
                 }
             }
         }
 
-
         return true;
+    }
+
+
+    public static boolean canPlaceOre(BlockState p_160170_, Function<BlockPos, BlockState> p_160171_, Random p_160172_, RankineOreFeatureConfig p_160173_, RankineOreFeatureConfig.TargetBlockState p_160174_, BlockPos.MutableBlockPos p_160175_) {
+        if (!p_160174_.target.test(p_160170_, p_160172_)) {
+            return false;
+        } else if (shouldSkipAirCheck(p_160172_, p_160173_.discardChanceOnAirExposure)) {
+            return true;
+        } else {
+            return !isAdjacentToAir(p_160171_, p_160175_);
+        }
+    }
+
+    protected static boolean shouldSkipAirCheck(Random p_160179_, float p_160180_) {
+        if (p_160180_ <= 0.0F) {
+            return true;
+        } else if (p_160180_ >= 1.0F) {
+            return false;
+        } else {
+            return p_160179_.nextFloat() >= p_160180_;
+        }
     }
 
 }

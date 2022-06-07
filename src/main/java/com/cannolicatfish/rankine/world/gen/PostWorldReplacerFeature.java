@@ -1,6 +1,9 @@
 package com.cannolicatfish.rankine.world.gen;
 
-import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineLists;
+import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -13,6 +16,7 @@ import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SnowyDirtBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -137,6 +141,13 @@ public class PostWorldReplacerFeature extends Feature<NoneFeatureConfiguration> 
                                 reader.setBlock(TARGET_POS, RankineBlocks.BASALTIC_TUFF.get().defaultBlockState(), 2);
                             } else if (BIOME.is(BiomeTags.IS_BADLANDS) || BIOME.is(Biomes.DESERT)) {
                                 reader.setBlock(TARGET_POS, RankineBlocks.RHYOLITIC_TUFF.get().defaultBlockState(), 2);
+                            } else if (BIOME.is(BiomeTags.IS_MOUNTAIN) || BIOME.is(BiomeTags.IS_HILL)) {
+                                reader.setBlock(TARGET_POS, RankineBlocks.ANDESITIC_TUFF.get().defaultBlockState(), 2);
+                            }
+                        } else if (TARGET.equals(Blocks.INFESTED_STONE) || TARGET.equals(Blocks.INFESTED_DEEPSLATE)) {
+                            BlockState stone = WorldReplacerFeature.getStone(TARGET_BIOME, TARGET_POS.getX(), TARGET_POS.getY(), TARGET_POS.getZ());
+                            if (stone != null && RankineLists.STONES.contains(stone.getBlock())) {
+                                reader.setBlock(TARGET_POS, RankineLists.INFESTED_STONES.get(RankineLists.STONES.indexOf(stone.getBlock())).defaultBlockState(),3);
                             }
                         }
 

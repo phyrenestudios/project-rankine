@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:grass_blocks",
+    "#minecraft:sand",
+    "rankine:silt",
+    "rankine:desert_sand"
+  ]
+}

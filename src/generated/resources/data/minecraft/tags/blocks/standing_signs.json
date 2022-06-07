@@ -1,0 +1,28 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:cedar_sign",
+    "rankine:balsam_fir_sign",
+    "rankine:eastern_hemlock_sign",
+    "rankine:western_hemlock_sign",
+    "rankine:pinyon_pine_sign",
+    "rankine:juniper_sign",
+    "rankine:black_birch_sign",
+    "rankine:yellow_birch_sign",
+    "rankine:red_birch_sign",
+    "rankine:maple_sign",
+    "rankine:magnolia_sign",
+    "rankine:black_walnut_sign",
+    "rankine:coconut_palm_sign",
+    "rankine:cork_oak_sign",
+    "rankine:sharinga_sign",
+    "rankine:cinnamon_sign",
+    "rankine:honey_locust_sign",
+    "rankine:weeping_willow_sign",
+    "rankine:erythrina_sign",
+    "rankine:petrified_chorus_sign",
+    "rankine:charred_sign",
+    "rankine:bamboo_sign",
+    "rankine:bamboo_culms_sign"
+  ]
+}

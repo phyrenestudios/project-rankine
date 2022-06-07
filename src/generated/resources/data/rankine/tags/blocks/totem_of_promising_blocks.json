@@ -6,7 +6,7 @@
     "#minecraft:dirt",
     "#minecraft:sand",
     "#minecraft:logs",
-    "#forge:terracotta",
+    "#minecraft:terracotta",
     "#forge:gravel"
   ]
 }

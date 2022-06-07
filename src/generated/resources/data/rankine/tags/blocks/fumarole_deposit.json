@@ -8,7 +8,7 @@
     "#minecraft:base_stone_overworld",
     "#minecraft:base_stone_nether",
     "#forge:base_stone_end",
-    "#forge:terracotta",
+    "#minecraft:terracotta",
     "minecraft:soul_sand",
     "minecraft:soul_soil"
   ]

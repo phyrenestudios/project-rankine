@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:ores/copper",
+    "#minecraft:copper_ores",
     "#forge:ores/lead",
     "#forge:ores/silver",
     "#forge:ores/bismuth",
