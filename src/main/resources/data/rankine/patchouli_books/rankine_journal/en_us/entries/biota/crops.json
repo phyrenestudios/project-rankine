@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_biota.crops.name",
   "icon": "rankine:stinging_nettle",
-  "category": "biota",
+  "category": "rankine:biota",
   "pages": [
     {
       "type": "text",

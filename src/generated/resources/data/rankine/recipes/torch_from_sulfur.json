@@ -7,14 +7,14 @@
   ],
   "key": {
     "C": {
-      "tag": "forge:coal_coke"
+      "tag": "forge:sulfur"
     },
     "S": {
       "tag": "forge:rods/wooden"
     }
   },
   "result": {
-    "item": "minecraft:torch",
-    "count": 8
+    "item": "minecraft:soul_torch",
+    "count": 2
   }
 }

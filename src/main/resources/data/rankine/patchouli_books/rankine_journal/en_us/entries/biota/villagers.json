@@ -1,7 +1,7 @@
 {
   "name": "Villagers",
   "icon": "minecraft:emerald",
-  "category": "biota",
+  "category": "rankine:biota",
   "pages": [
     {
       "type": "text",
