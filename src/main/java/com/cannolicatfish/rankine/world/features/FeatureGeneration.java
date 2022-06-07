@@ -1,26 +1,34 @@
 package com.cannolicatfish.rankine.world.features;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineFeatures;
 import com.cannolicatfish.rankine.init.RankinePlacedFeatures;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
+import com.cannolicatfish.rankine.world.gen.ores.RankineOreFeatureConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.ReplaceBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
 
@@ -125,25 +133,16 @@ public class FeatureGeneration {
                 biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_COBBLES.getHolder().get());
             }
 
-     /*
-
-          //  List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> OVERWORLD_FEATURES = new ArrayList<>();
-          //  List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> NETHER_FEATURES = new ArrayList<>();
-          //  List<AbstractMap.SimpleEntry<Holder<PlacedFeature>,List<ResourceLocation>>> END_FEATURES = new ArrayList<>();
-
             //---Ore Settings---
             for (List<Object> L : Config.BIOME_GEN.ORE_SETTINGS.get()) {
-                boolean inEnd = false;
-                boolean inNether = false;
-                boolean inOverworld = false;
                 Block oreBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(0)));
+                if (oreBlock == null) break;
                 List<String> biomeList = (List<String>) L.get(1);
                 List<ResourceLocation> genBiomes = WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), true);
                 if (biomeList.get(0).isEmpty()) {
                     break;
                 } else if (biomeList.get(0).equals("all")) {
                     genBiomes = WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false);
-                    inOverworld = true;
                 } else {
                     for (String b : biomeList) {
                         List<String> biomeName = Arrays.asList(b.split(":"));
@@ -151,59 +150,46 @@ public class FeatureGeneration {
                             genBiomes.add(ResourceLocation.tryParse(b));
                         } else {
                             genBiomes.addAll(WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.BiomeCategory.byName(b)), true));
-                            for (ResourceLocation RS : genBiomes) {
-                                Biome rsBiome = ForgeRegistries.BIOMES.getValue(RS);
-                                if (rsBiome != null) {
-                                    Biome.BiomeCategory biomeCat = Biome.getBiomeCategory(Holder.direct(rsBiome));
-                                    if (biomeCat == Biome.BiomeCategory.THEEND) {
-                                        inEnd = true;
-                                    }
-                                    if (biomeCat == Biome.BiomeCategory.NETHER) {
-                                        inNether = true;
-                                    }
-                                    inOverworld = true;
-                                }
-
-                            }
-
                         }
                     }
                 }
 
-                String type = (String) L.get(2);
-                int minHeight = (int) L.get(3);
-                int maxHeight = (int) L.get(4);
-                int size = (int) L.get(5);
-                float density = (float) (double) L.get(6);
-                int count = (int) L.get(7);
-                float chance = (float) (double) L.get(8);
+                String veinType = (String) L.get(2);
+                String distributionType = (String) L.get(3);
+                int minHeight = (int) L.get(4);
+                int maxHeight = (int) L.get(5);
+                int size = (int) L.get(6);
+                float density = (float) (double) L.get(7);
+                int count = (int) L.get(8);
+                float spawnChance = (float) (double) L.get(9);
+                float discardChance = (float) (double) L.get(10);
+
+                Holder<Feature<RankineOreFeatureConfig>> veinTypeFeature;
                 Holder<PlacedFeature> oreFeature;
 
-                /*
-                if (type.equals("sphere")) {
-                    oreFeature = Holder.direct(new PlacedFeature(Holder.direct(new ConfiguredFeature<>(RankineFeatures.SPHERE_ORE.get(),new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.defaultBlockState(), size, density, chance))),
-                        List.of(HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(minHeight), VerticalAnchor.absolute(maxHeight)))));
-                } else if (type.equals("disk")) {
-                    oreFeature = Holder.direct(new PlacedFeature(Holder.direct(new ConfiguredFeature<>(RankineFeatures.DISK_ORE.get(),new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.defaultBlockState(), size, density, chance))),
-                            List.of(HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(minHeight), VerticalAnchor.absolute(maxHeight)))));
+                if (veinType.equals("sphere")) {
+                    veinTypeFeature = RankineFeatures.SPHERICAL_ORE_VEIN.getHolder().get();
+                } else if (veinType.equals("disk")) {
+                    veinTypeFeature = RankineFeatures.DISK_ORE_VEIN.getHolder().get();
                 } else {
-                    oreFeature = Holder.direct(new PlacedFeature(Holder.direct(new ConfiguredFeature<>(RankineFeatures.DEFAULT_ORE.get(),new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.defaultBlockState(), size, density, chance))),
-                            List.of(HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(minHeight), VerticalAnchor.absolute(maxHeight)))));
+                    veinTypeFeature = RankineFeatures.DEFAULT_ORE_VEIN.getHolder().get();
+                }
+
+                if (distributionType.equals("triangle")) {
+                    oreFeature = Holder.direct(new PlacedFeature(Holder.direct(new ConfiguredFeature<>(veinTypeFeature.value(),new RankineOreFeatureConfig(new TagMatchTest(RankineTags.Blocks.RANKINE_ORE_REPLACEABLES), oreBlock.defaultBlockState(), size, discardChance, density, spawnChance))),
+                            List.of(CountPlacement.of(count), InSquarePlacement.spread(), HeightRangePlacement.triangle(VerticalAnchor.absolute(minHeight), VerticalAnchor.absolute(maxHeight)), BiomeFilter.biome())));
+                } else {
+                    oreFeature = Holder.direct(new PlacedFeature(Holder.direct(new ConfiguredFeature<>(veinTypeFeature.value(),new RankineOreFeatureConfig(new TagMatchTest(RankineTags.Blocks.RANKINE_ORE_REPLACEABLES), oreBlock.defaultBlockState(), size, discardChance, density, spawnChance))),
+                            List.of(CountPlacement.of(count), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.absolute(minHeight), VerticalAnchor.absolute(maxHeight)), BiomeFilter.biome())));
+                }
+
+                if (genBiomes.contains(biome.getName())) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, oreFeature);
                 }
 
 
-                if (inEnd) {
-                    END_FEATURES.add(new AbstractMap.SimpleEntry<>(oreFeature, genBiomes));
-                }
-                if (inNether) {
-                    NETHER_FEATURES.add(new AbstractMap.SimpleEntry<>(oreFeature, genBiomes));
-                }
-                if (inOverworld) {
-                    OVERWORLD_FEATURES.add(new AbstractMap.SimpleEntry<>(oreFeature, genBiomes));
-                }
 
             }
-            */
 
 
 

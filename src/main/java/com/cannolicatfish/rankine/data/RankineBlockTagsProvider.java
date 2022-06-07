@@ -627,8 +627,9 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(RankineTags.Blocks.PROMISING_TOTEM_BLOCKS).addTags(RankineTags.Blocks.TUFF,Tags.Blocks.STONE,BlockTags.DIRT,BlockTags.SAND,BlockTags.LOGS,BlockTags.TERRACOTTA,Tags.Blocks.GRAVEL);
 
 
-        tag(RankineTags.Blocks.WORLD_STRIP).addTags(RankineTags.Blocks.TUFF,BlockTags.LEAVES,BlockTags.LOGS,RankineTags.Blocks.CONSTRUCTION_SAND,BlockTags.DIRT,Tags.Blocks.GRAVEL,Tags.Blocks.STONE,BlockTags.BASE_STONE_OVERWORLD,BlockTags.BASE_STONE_NETHER,RankineTags.Blocks.BASE_STONE_END,BlockTags.TERRACOTTA).add(Blocks.SOUL_SAND,Blocks.SOUL_SOIL,Blocks.LAVA,Blocks.WATER,Blocks.BUBBLE_COLUMN,Blocks.OBSIDIAN,Blocks.KELP);
+        tag(RankineTags.Blocks.WORLD_STRIP).addTags(RankineTags.Blocks.TUFF,BlockTags.LEAVES,BlockTags.LOGS,RankineTags.Blocks.CONSTRUCTION_SAND,RankineTags.Blocks.CLAY,BlockTags.DIRT,Tags.Blocks.GRAVEL,Tags.Blocks.STONE,BlockTags.BASE_STONE_OVERWORLD,BlockTags.BASE_STONE_NETHER,RankineTags.Blocks.BASE_STONE_END,BlockTags.TERRACOTTA).add(Blocks.SOUL_SAND,Blocks.SOUL_SOIL,Blocks.LAVA,Blocks.WATER,Blocks.BUBBLE_COLUMN,Blocks.OBSIDIAN,Blocks.KELP,Blocks.SNOW_BLOCK,Blocks.SNOW,RankineBlocks.LATERITE.get());
         tag(RankineTags.Blocks.VANILLA_OVERRIDE).add(Blocks.EMERALD_ORE,Blocks.DIAMOND_ORE,Blocks.IRON_ORE,Blocks.COAL_ORE,Blocks.LAPIS_ORE,Blocks.REDSTONE_ORE,Blocks.NETHER_GOLD_ORE,Blocks.NETHER_QUARTZ_ORE,Blocks.GOLD_ORE,Blocks.ANDESITE,Blocks.DIORITE,Blocks.GRANITE);
+        tag(RankineTags.Blocks.RANKINE_ORE_REPLACEABLES).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER).addTag(RankineTags.Blocks.BASE_STONE_END);
 
         tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN).add(RankineBlocks.ROMAN_CONCRETE.get(),RankineBlocks.POLISHED_ROMAN_CONCRETE.get(),RankineBlocks.ROMAN_CONCRETE_BRICKS.get(),RankineBlocks.ROMAN_CONCRETE_SLAB.get(),RankineBlocks.POLISHED_ROMAN_CONCRETE_SLAB.get(),RankineBlocks.ROMAN_CONCRETE_BRICKS_SLAB.get(),RankineBlocks.ROMAN_CONCRETE_STAIRS.get(),RankineBlocks.POLISHED_ROMAN_CONCRETE_STAIRS.get(),RankineBlocks.ROMAN_CONCRETE_BRICKS_STAIRS.get());
         tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW).add(Blocks.SNOW,Blocks.SNOW_BLOCK);
@@ -654,7 +655,11 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.FOXES_SPAWNABLE_ON).addTag(RankineTags.Blocks.GRASS_BLOCKS).addTag(RankineTags.Blocks.PODZOL).addTag(RankineTags.Blocks.COARSE_DIRT);
         tag(BlockTags.WOLVES_SPAWNABLE_ON).addTag(RankineTags.Blocks.GRASS_BLOCKS);
 
-
+        tag(BlockTags.create(new ResourceLocation("twilight_forest", "portal/decoration"))).add(RankineBlocks.STINGING_NETTLE.get()).addTag(RankineTags.Blocks.LEAF_LITTERS);
+        tag(BlockTags.create(new ResourceLocation("twilight_forest", "portal/edge"))).add(RankineBlocks.FULGURITE.get(),RankineBlocks.TILLED_SOIL.get());
+        for (Block blk : Stream.of(RankineLists.GRASS_BLOCKS,RankineLists.PODZOL_BLOCKS,RankineLists.MYCELIUM_BLOCKS,RankineLists.MUD_BLOCKS,RankineLists.COARSE_SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            tag(BlockTags.create(new ResourceLocation("twilight_forest", "portal/edge"))).add(blk);
+        }
     }
 
 }

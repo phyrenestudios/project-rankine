@@ -6,7 +6,7 @@
     "#minecraft:dirt",
     "#minecraft:snow",
     "#minecraft:sand",
-    "#forge:terracotta",
+    "#minecraft:terracotta",
     "#forge:path_blocks"
   ]
 }

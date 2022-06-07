@@ -5,6 +5,7 @@
     "rankine:basaltic_tuff",
     "rankine:rhyolitic_tuff",
     "rankine:kimberlitic_tuff",
-    "rankine:komatiitic_tuff"
+    "rankine:komatiitic_tuff",
+    "minecraft:tuff"
   ]
 }

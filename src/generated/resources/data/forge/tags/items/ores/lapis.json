@@ -1,7 +1,4 @@
 {
   "replace": false,
-  "values": [
-    "rankine:lapis_ore",
-    "rankine:lazurite_ore"
-  ]
+  "values": []
 }

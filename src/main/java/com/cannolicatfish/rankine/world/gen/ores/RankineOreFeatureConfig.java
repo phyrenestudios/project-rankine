@@ -1,94 +1,69 @@
 package com.cannolicatfish.rankine.world.gen.ores;
 
-import com.cannolicatfish.rankine.init.RankineTags;
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.List;
 
 public class RankineOreFeatureConfig implements FeatureConfiguration {
-    public static final Codec<RankineOreFeatureConfig> CODEC = RecordCodecBuilder.create((p_236568_0_) -> {
-        return p_236568_0_.group(RankineOreFeatureConfig.RankineFillerBlockType.field_236571_d_.fieldOf("target").forGetter((p_236570_0_) -> {
-            return p_236570_0_.target;
-        }), BlockState.CODEC.fieldOf("state").forGetter((p_236569_0_) -> {
-            return p_236569_0_.state;
-        }), Codec.INT.fieldOf("size").orElse(0).forGetter((p_236567_0_) -> {
-            return p_236567_0_.size;
-        }), Codec.FLOAT.fieldOf("density").orElse(0.0F).forGetter((p_236567_0_) -> {
+    public static final Codec<RankineOreFeatureConfig> CODEC = RecordCodecBuilder.create((p_67849_) -> {
+        return p_67849_.group(
+            Codec.list(RankineOreFeatureConfig.TargetBlockState.CODEC).fieldOf("targets").forGetter((p_161027_) -> {
+            return p_161027_.targetStates;
+        }), Codec.intRange(0, 64).fieldOf("size").forGetter((p_161025_) -> {
+            return p_161025_.size;
+        }), Codec.floatRange(0.0F, 1.0F).fieldOf("discard_chance_on_air_exposure").forGetter((p_161020_) -> {
+            return p_161020_.discardChanceOnAirExposure;
+        }), Codec.floatRange(0.0F, 1.0F).fieldOf("density").orElse(0.0F).forGetter((p_236567_0_) -> {
             return p_236567_0_.density;
-        }), Codec.FLOAT.fieldOf("chance").orElse(0.0F).forGetter((p_236567_0_) -> {
+        }), Codec.floatRange(0.0F, 1.0F).fieldOf("chance").orElse(0.0F).forGetter((p_236567_0_) -> {
             return p_236567_0_.chance;
-        })).apply(p_236568_0_, RankineOreFeatureConfig::new);
+        })).apply(p_67849_, RankineOreFeatureConfig::new);
     });
-    public final RankineOreFeatureConfig.RankineFillerBlockType target;
+
+    public final List<RankineOreFeatureConfig.TargetBlockState> targetStates;
     public final int size;
+    public final float discardChanceOnAirExposure;
     public final float density;
     public final float chance;
-    public final BlockState state;
 
-    public RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType target, BlockState state, int size, float density, float chance) {
+    public RankineOreFeatureConfig(List<RankineOreFeatureConfig.TargetBlockState> targets, int size, float discardChance, float density, float spawnChance) {
         this.size = size;
         this.density = density;
-        this.chance = chance;
-        this.state = state;
-        this.target = target;
+        this.chance = spawnChance;
+        this.targetStates = targets;
+        this.discardChanceOnAirExposure = discardChance;
     }
 
-    public static enum RankineFillerBlockType implements StringRepresentable, net.minecraftforge.common.IExtensibleEnum {
+    public RankineOreFeatureConfig(RuleTest test, BlockState state, int size, float discardChance, float density, float spawnChance) {
+        this(ImmutableList.of(new RankineOreFeatureConfig.TargetBlockState(test, state)), size, discardChance, density, spawnChance);
+    }
 
-        ORE_FILLER("ore_filler", (blockstate) -> {
-            return blockstate.is(BlockTags.BASE_STONE_OVERWORLD) || blockstate.is(BlockTags.BASE_STONE_NETHER) || blockstate.is(RankineTags.Blocks.BASE_STONE_END);
+    public static RankineOreFeatureConfig.TargetBlockState target(RuleTest p_161022_, BlockState p_161023_) {
+        return new RankineOreFeatureConfig.TargetBlockState(p_161022_, p_161023_);
+    }
+
+    public static class TargetBlockState {
+        public static final Codec<RankineOreFeatureConfig.TargetBlockState> CODEC = RecordCodecBuilder.create((p_161039_) -> {
+            return p_161039_.group(RuleTest.CODEC.fieldOf("target").forGetter((p_161043_) -> {
+                return p_161043_.target;
+            }), BlockState.CODEC.fieldOf("state").forGetter((p_161041_) -> {
+                return p_161041_.state;
+            })).apply(p_161039_, RankineOreFeatureConfig.TargetBlockState::new);
         });
+        public final RuleTest target;
+        public final BlockState state;
 
-        public static final Codec<RankineOreFeatureConfig.RankineFillerBlockType> field_236571_d_ = StringRepresentable.fromEnum(RankineOreFeatureConfig.RankineFillerBlockType::values, RankineOreFeatureConfig.RankineFillerBlockType::byName);
-        /** maps the filler block type name to the corresponding enum value. */
-        private static final Map<String, RankineOreFeatureConfig.RankineFillerBlockType> VALUES_MAP = Arrays.stream(values()).collect(Collectors.toMap(RankineOreFeatureConfig.RankineFillerBlockType::getName, (p_236573_0_) -> {
-            return p_236573_0_;
-        }));
-        private final String name;
-        private final Predicate<BlockState> predicate;
-
-        private RankineFillerBlockType(String name, Predicate<BlockState> predicate) {
-            this.name = name;
-            this.predicate = predicate;
-        }
-
-        public String returnName() {
-            return this.name;
-        }
-
-        public static RankineOreFeatureConfig.RankineFillerBlockType byName(String nameIn) {
-            return VALUES_MAP.get(nameIn);
-        }
-
-        public Predicate<BlockState> getPredicate() {
-            return this.predicate;
-        }
-
-        public static RankineOreFeatureConfig.RankineFillerBlockType create(String enumName, String name, Predicate<BlockState> predicate) {
-            throw new IllegalStateException("Enum not extended");
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        @Override
-        @Deprecated
-        public void init() {
-            VALUES_MAP.put(getName(), this);
-        }
-
-        @Override
-        public String getSerializedName() {
-            return this.name;
+        TargetBlockState(RuleTest p_161036_, BlockState p_161037_) {
+            this.target = p_161036_;
+            this.state = p_161037_;
         }
     }
+
+
+
 }
