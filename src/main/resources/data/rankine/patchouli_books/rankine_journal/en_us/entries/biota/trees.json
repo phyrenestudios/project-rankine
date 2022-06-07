@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_biota.trees.name",
   "icon": "rankine:cedar_sapling",
-  "category": "biota",
+  "category": "rankine:biota",
   "pages": [
     {
       "type": "text",

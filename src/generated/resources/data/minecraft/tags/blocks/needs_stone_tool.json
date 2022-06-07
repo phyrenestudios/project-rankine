@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "rankine:bog_iron",
+    "rankine:ironstone",
     "rankine:interspinifex_ore",
     "rankine:iron_ore",
     "rankine:lazurite_ore",

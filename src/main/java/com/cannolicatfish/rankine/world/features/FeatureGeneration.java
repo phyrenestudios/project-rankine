@@ -104,6 +104,8 @@ public class FeatureGeneration {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_EASTERN_HEMLOCK_TREE.getHolder().get());
                 } else if (biome.getName().toString().equals(Biomes.OLD_GROWTH_SPRUCE_TAIGA.location().toString()) || biome.getName().toString().equals(Biomes.OLD_GROWTH_PINE_TAIGA.location().toString())) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WESTERN_HEMLOCK_TREE.getHolder().get());
+                } else if (biome.getName().toString().equals(Biomes.END_HIGHLANDS.location().toString()) || biome.getName().toString().equals(Biomes.END_MIDLANDS.location().toString()) || biome.getName().toString().equals(Biomes.END_BARRENS.location().toString()) || biome.getName().toString().equals(Biomes.SMALL_END_ISLANDS.location().toString())) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PETRIFIED_CHORUS_TREE.getHolder().get());
                 }
 
                 if (biome.getCategory() == Biome.BiomeCategory.TAIGA) {
@@ -132,6 +134,17 @@ public class FeatureGeneration {
             if (Config.WORLDGEN.COBBLES_GEN.get() && WorldgenUtils.isOverworld(biome)) {
                 biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_COBBLES.getHolder().get());
             }
+            if (Config.WORLDGEN.END_METEORITE_GEN.get()) {
+                if (biome.getName().toString().equals(Biomes.END_HIGHLANDS.location().toString()) || biome.getName().toString().equals(Biomes.END_MIDLANDS.location().toString()) || biome.getName().toString().equals(Biomes.END_BARRENS.location().toString()) || biome.getName().toString().equals(Biomes.SMALL_END_ISLANDS.location().toString())) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_END_METEORITE.getHolder().get());
+                }
+            }
+            if (Config.WORLDGEN.ANTIMATTER_GEN.get()) {
+                if (biome.getName().toString().equals(Biomes.END_HIGHLANDS.location().toString()) || biome.getName().toString().equals(Biomes.END_MIDLANDS.location().toString()) || biome.getName().toString().equals(Biomes.END_BARRENS.location().toString()) || biome.getName().toString().equals(Biomes.SMALL_END_ISLANDS.location().toString())) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_ANTIMATTER_BLOB.getHolder().get());
+                }
+            }
+
 
             //---Ore Settings---
             for (List<Object> L : Config.BIOME_GEN.ORE_SETTINGS.get()) {
@@ -142,7 +155,7 @@ public class FeatureGeneration {
                 if (biomeList.get(0).isEmpty()) {
                     break;
                 } else if (biomeList.get(0).equals("all")) {
-                    genBiomes = WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false);
+                    genBiomes = WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.BiomeCategory.THEEND, Biome.BiomeCategory.NETHER), false);
                 } else {
                     for (String b : biomeList) {
                         List<String> biomeName = Arrays.asList(b.split(":"));

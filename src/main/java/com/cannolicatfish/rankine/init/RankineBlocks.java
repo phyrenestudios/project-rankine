@@ -2787,7 +2787,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PYROXENE_BLOCK = BLOCKS.register("pyroxene_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
     public static final RegistryObject<Block> MICA_BLOCK = BLOCKS.register("mica_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
     public static final RegistryObject<Block> AMPHIBOLE_BLOCK = BLOCKS.register("amphibole_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
-    public static final RegistryObject<Block> EVAPORITE = BLOCKS.register("evaporite", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
     public static final RegistryObject<Block> FULGURITE = BLOCKS.register("fulgurite", () -> new Block(Block.Properties.of(Material.GRASS).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
     public static final RegistryObject<Block> DOLOMITE_BLOCK = BLOCKS.register("dolomite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
     public static final RegistryObject<Block> MAGNESIUM_CHLORIDE_BLOCK = BLOCKS.register("magnesium_chloride_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(0.5F, 0.5F)));
@@ -3025,7 +3024,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GAS_VENT = BLOCKS.register("gas_vent", () -> new GasVentBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> CHARCOAL_PIT = BLOCKS.register("charcoal_pit", () -> new CharcoalPitBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", () -> new TreeTapBlock(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD).requiresCorrectToolForDrops().strength(2.0F).noOcclusion()));
-    public static final RegistryObject<Block> TAP_LINE = BLOCKS.register("tap_line", () -> new TapLineBlock(0.125f, BlockBehaviour.Properties.of(Material.WOOL).sound(SoundType.WOOL).requiresCorrectToolForDrops().strength(0.5F).noOcclusion()));
+    public static final RegistryObject<Block> TAP_LINE = BLOCKS.register("tap_line", () -> new TapLineBlock(0.125f, BlockBehaviour.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.5F).noOcclusion()));
 
 
     public static final RegistryObject<Block> RED_LED = BLOCKS.register("red_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));

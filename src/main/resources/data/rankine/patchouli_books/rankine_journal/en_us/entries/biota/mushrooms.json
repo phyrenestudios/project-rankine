@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_biota.mushrooms.name",
   "icon": "rankine:oyster_mushroom",
-  "category": "biota",
+  "category": "rankine:biota",
   "pages": [
     {
       "type": "text",
