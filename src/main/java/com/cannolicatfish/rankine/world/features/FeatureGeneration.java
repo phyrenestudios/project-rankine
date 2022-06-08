@@ -51,7 +51,7 @@ public class FeatureGeneration {
             if (Config.WORLDGEN.LAYER_GEN.get() != 0) {
                 biome.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_WORLD_REPLACER.getHolder().get());
             }
-            biome.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, RankinePlacedFeatures.PLACED_POST_WORLD_REPLACER.getHolder().get());
+            //biome.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, RankinePlacedFeatures.PLACED_POST_WORLD_REPLACER.getHolder().get());
 
             if (Config.WORLDGEN.METEORITE_CHANCE.get() > 0.0D && WorldgenUtils.isOverworld(biome)) {
                 biome.getGeneration().addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_METEORITE.getHolder().get());

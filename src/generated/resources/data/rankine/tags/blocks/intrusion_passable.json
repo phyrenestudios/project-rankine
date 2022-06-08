@@ -8,7 +8,6 @@
     "#forge:base_stone_end",
     "#minecraft:terracotta",
     "minecraft:soul_sand",
-    "minecraft:soul_soil",
-    "minecraft:lava"
+    "minecraft:soul_soil"
   ]
 }

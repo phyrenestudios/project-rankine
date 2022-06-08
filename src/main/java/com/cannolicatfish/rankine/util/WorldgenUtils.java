@@ -187,7 +187,7 @@ public class WorldgenUtils {
         return b;
     }
 
-    public static boolean isWet(WorldGenLevel reader, BlockPos pos) {
+    public static boolean isWet(LevelAccessor reader, BlockPos pos) {
         for(BlockPos POS : BlockPos.betweenClosed(pos.offset(-2,0,-2),pos.offset(2,2,2))) {
             if (reader.getFluidState(POS).is(FluidTags.WATER)) {
                 return true;

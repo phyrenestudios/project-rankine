@@ -71,7 +71,7 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
 
                         for (BlockPos b : BlockPos.betweenClosed(posAvg.offset(-2 * radius, 0, -2 * radius), posAvg.offset(2 * radius, 0, 2 * radius))) {
                             if (WorldgenUtils.inArea(b, radius, true, pos1, pos2, pos3)) {
-                                if (reader.getBlockState(b).is(RankineTags.Blocks.INTRUSION_PASSABLE) || reader.isEmptyBlock(b)) {
+                                if (reader.getBlockState(b).is(RankineTags.Blocks.INTRUSION_PASSABLE) || reader.getBlockState(b).is(Blocks.LAVA) || reader.isEmptyBlock(b)) {
                                     if (rand.nextFloat() < WorldgenUtils.INTRUSION_ORE_CHANCES.get(WorldgenUtils.GEN_BIOMES.indexOf(biomeName)).get(WorldgenUtils.INTRUSION_BLOCKS.get(WorldgenUtils.GEN_BIOMES.indexOf(biomeName)).indexOf(INTRUSION.getBlock()))) {
                                         BlockState ORE = WorldgenUtils.INTRUSION_ORES.get(WorldgenUtils.GEN_BIOMES.indexOf(biomeName)).get(WorldgenUtils.INTRUSION_BLOCKS.get(WorldgenUtils.GEN_BIOMES.indexOf(biomeName)).indexOf(INTRUSION.getBlock())).defaultBlockState();
                                         if (ORE.getBlock() instanceof RankineOreBlock) {

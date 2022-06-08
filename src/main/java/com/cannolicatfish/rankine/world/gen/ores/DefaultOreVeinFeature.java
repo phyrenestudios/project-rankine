@@ -1,7 +1,5 @@
 package com.cannolicatfish.rankine.world.gen.ores;
 
-import com.cannolicatfish.rankine.blocks.RankineOreBlock;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
@@ -135,11 +133,14 @@ public class DefaultOreVeinFeature extends Feature<RankineOreFeatureConfig> {
 
                                                         for(RankineOreFeatureConfig.TargetBlockState oreconfiguration$targetblockstate : config.targetStates) {
                                                             if (canPlaceOre(blockstate, bulksectionaccess::getBlockState, random, config, oreconfiguration$targetblockstate, blockpos$mutableblockpos) && random.nextFloat() < config.density) {
+                                                                /*
                                                                 if (oreconfiguration$targetblockstate.state.getBlock() instanceof RankineOreBlock && WorldgenUtils.ORE_STONES.contains(blockstate.getBlock())) {
                                                                     levelchunksection.setBlockState(i3, j3, k3, oreconfiguration$targetblockstate.state.setValue(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(blockstate.getBlock())), false);
                                                                     ++i;
                                                                     break;
                                                                 }
+
+                                                                 */
                                                                 levelchunksection.setBlockState(i3, j3, k3, oreconfiguration$targetblockstate.state, false);
                                                                 ++i;
                                                                 break;

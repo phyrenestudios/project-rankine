@@ -583,6 +583,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue ALLUVIUM_GEN;
         public final ForgeConfigSpec.BooleanValue WHITE_SAND_GEN;
         public final ForgeConfigSpec.BooleanValue BLACK_SAND_GEN;
+        public final ForgeConfigSpec.BooleanValue RETRO_GEN;
         public final ForgeConfigSpec.BooleanValue SOIL_GEN;
         public final ForgeConfigSpec.BooleanValue ANTIMATTER_GEN;
         public final ForgeConfigSpec.BooleanValue REPLACE_VANILLA_ORES;
@@ -624,6 +625,8 @@ public class Config {
             ANTIMATTER_GEN = b.comment("Generate antimatter in the End.")
                     .define("antimatterGen",true);
             SOIL_GEN = b.comment("Generate soil stuff.")
+                    .define("soilGen",true);
+            RETRO_GEN = b.comment("Enable the retrogen of chunks for Rankine generation. This controls soils, grasses, gravels, sands, and matching ores to the stone layer.")
                     .define("soilGen",true);
             REPLACE_VANILLA_ORES = b.comment("If enabled, replaces vanilla ores with the Rankine counterparts (mostly for texture purposes). Results may vary due to the order of feature placements.")
                     .define("replaceVanillaOres",true);
@@ -991,7 +994,7 @@ public class Config {
             oreSettings.add(Arrays.asList("rankine:galena_ore", Arrays.asList("all"), "sphere", "uniform", -30, 10, 4, 0.2D, 1, 0.2D, 0.0D));
             oreSettings.add(Arrays.asList("rankine:acanthite_ore", Arrays.asList("all"), "sphere", "uniform", -30, 10, 4, 0.2D, 1, 0.2D, 0.0D));
             oreSettings.add(Arrays.asList("rankine:plumbago_ore", Arrays.asList("all"), "default", "triangle", -60, -20, 7, 1.0D, 3, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:lazurite_ore", Arrays.asList("all"), "sphere", "uniform", 0, 64, 3, 0.2D, 2, 1.0, 0.0D));
+            oreSettings.add(Arrays.asList("rankine:lazurite_ore", Arrays.asList("all"), "sphere", "uniform", 0, 40, 3, 0.2D, 1, 1.0, 0.0D));
 
             //Rare ores
             oreSettings.add(Arrays.asList("rankine:sperrylite_ore", Arrays.asList("all"), "default", "triangle", -84, -40, 8, 1.0D, 1, 1.0, 0.0D));

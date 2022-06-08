@@ -627,7 +627,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(RankineTags.Blocks.LIGHTNING_VITRIFIED).addTags(RankineTags.Blocks.TUFF,Tags.Blocks.STONE,BlockTags.DIRT,Tags.Blocks.GRAVEL);
         tag(RankineTags.Blocks.NETHER_TOPS).add(Blocks.AIR,Blocks.CRIMSON_NYLIUM,Blocks.WARPED_NYLIUM);
         tag(RankineTags.Blocks.METEORITE_REPLACEABLE).addTags(RankineTags.Blocks.TUFF,Tags.Blocks.STONE,BlockTags.DIRT,BlockTags.SNOW,BlockTags.SAND,BlockTags.TERRACOTTA,RankineTags.Blocks.PATH_BLOCKS);
-        tag(RankineTags.Blocks.INTRUSION_PASSABLE).addTags(RankineTags.Blocks.TUFF,Tags.Blocks.STONE,BlockTags.BASE_STONE_OVERWORLD,BlockTags.BASE_STONE_NETHER,RankineTags.Blocks.BASE_STONE_END,BlockTags.TERRACOTTA).add(Blocks.SOUL_SAND,Blocks.SOUL_SOIL,Blocks.LAVA);
+        tag(RankineTags.Blocks.INTRUSION_PASSABLE).addTags(RankineTags.Blocks.TUFF,Tags.Blocks.STONE,BlockTags.BASE_STONE_OVERWORLD,BlockTags.BASE_STONE_NETHER,RankineTags.Blocks.BASE_STONE_END,BlockTags.TERRACOTTA).add(Blocks.SOUL_SAND,Blocks.SOUL_SOIL);
         tag(RankineTags.Blocks.FUMAROLE_DEPOSIT).addTags(RankineTags.Blocks.TUFF,Tags.Blocks.STONE,BlockTags.DIRT,Tags.Blocks.SAND,BlockTags.BASE_STONE_OVERWORLD,BlockTags.BASE_STONE_NETHER,RankineTags.Blocks.BASE_STONE_END,BlockTags.TERRACOTTA).add(Blocks.SOUL_SAND,Blocks.SOUL_SOIL);
         tag(RankineTags.Blocks.FLOWER_SEEDS).add(Blocks.POPPY,Blocks.AZURE_BLUET,Blocks.DANDELION,Blocks.BLUE_ORCHID,Blocks.ORANGE_TULIP,Blocks.PINK_TULIP,Blocks.RED_TULIP,Blocks.WHITE_TULIP,Blocks.ALLIUM,Blocks.OXEYE_DAISY,Blocks.LILY_OF_THE_VALLEY,Blocks.CORNFLOWER);
         tag(RankineTags.Blocks.GLASS_CUTTER).addTags(RankineTags.Blocks.HARDENED_GLASS,Tags.Blocks.GLASS,Tags.Blocks.GLASS_PANES);
