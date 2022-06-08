@@ -1,7 +1,5 @@
 package com.cannolicatfish.rankine.world.gen.ores;
 
-import com.cannolicatfish.rankine.blocks.RankineOreBlock;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
@@ -42,10 +40,13 @@ public class SphericalOreVeinFeature extends Feature<RankineOreFeatureConfig> {
                     BlockState blockstate = levelIn.getBlockState(BP);
                     for(RankineOreFeatureConfig.TargetBlockState oreconfiguration$targetblockstate : config.targetStates) {
                         if (canPlaceOre(blockstate, bulksectionaccess::getBlockState, rand, config, oreconfiguration$targetblockstate, BP.mutable())) {
+                            /*
                             if (oreconfiguration$targetblockstate.state.getBlock() instanceof RankineOreBlock && WorldgenUtils.ORE_STONES.contains(blockstate.getBlock())) {
                                 levelIn.setBlock(BP, oreconfiguration$targetblockstate.state.setValue(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(blockstate.getBlock())), 3);
                                 break;
                             }
+
+                             */
                             levelIn.setBlock(BP, oreconfiguration$targetblockstate.state, 3);
                             break;
                         }
