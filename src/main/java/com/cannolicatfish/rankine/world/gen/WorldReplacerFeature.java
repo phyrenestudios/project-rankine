@@ -54,11 +54,13 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
             for (int z = chunk.getPos().getMinBlockZ(); z <= chunk.getPos().getMaxBlockZ(); ++z) {
                 int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
                 Biome targetBiome = reader.getBiome(new BlockPos(x, reader.getMaxBuildHeight(), z)).value();
-
-                if (GEN_BIOMES.contains(targetBiome.getRegistryName())) {
+                int biomeIndex = GEN_BIOMES.indexOf(targetBiome.getRegistryName());
+                if (biomeIndex != -1) {
                     ResourceLocation biomeName = targetBiome.getRegistryName();
+                    double stoneNoise = Biome.BIOME_INFO_NOISE.getValue(((double)x) / NOISE_SCALE, ((double)z) / NOISE_SCALE, false);
+                    List<String> blockList = LAYER_LISTS.get(GEN_BIOMES.indexOf(biomeName));
                     for (int y = -64; y <= endY; ++y) {
-                        BlockState StoneBS = getStone(biomeName, x, y, z);
+                        BlockState StoneBS = getStone(blockList,y,stoneNoise);
                         if (StoneBS == null) return false;
                         BlockPos TARGET_POS = new BlockPos(x,y,z);
                         BlockState TARGET_BS = reader.getBlockState(TARGET_POS);
@@ -147,14 +149,11 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
         }
     }
 
-    public static BlockState getStone(ResourceLocation biomeName, int x, int y, int z) {
-        double stoneNoise = Biome.BIOME_INFO_NOISE.getValue(((double)x) / NOISE_SCALE, ((double)z) / NOISE_SCALE, false);
-        List<String> blockList = LAYER_LISTS.get(GEN_BIOMES.indexOf(biomeName));
-        int i = (int) Mth.clamp(Math.floor((y+stoneNoise/LAYER_BEND+80)/LAYER_THICKNESS),0,blockList.size()-1);
+    public static BlockState getStone(List<String> blockList,int y,double stoneNoise) {
         try {
-            return ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(blockList.get(i))).defaultBlockState();
+            return ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(blockList.get((int) Mth.clamp(Math.floor((y+stoneNoise/LAYER_BEND+80)/LAYER_THICKNESS),0,blockList.size()-1)))).defaultBlockState();
         } catch (Exception e) {
-            System.out.print("invalid stone layer entry for " + biomeName);
+            System.out.print("invalid stone layer entry detected");
             return null;
         }
     }
