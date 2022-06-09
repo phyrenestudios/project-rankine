@@ -225,8 +225,8 @@ public class WorldgenUtils {
     }
 
     public static int waterTableHeight(Level worldIn, BlockPos pos) {
-        Biome biome = worldIn.getBiome(pos).value();
-        int surface = worldIn.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ());
+       // Biome biome = worldIn.getBiome(pos).value();
+        //int surface = worldIn.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ());
         return worldIn.getSeaLevel() + 1;
         //return biome.getBiomeCategory() == Biome.BiomeCategory.OCEAN || biome.getBiomeCategory() == Biome.BiomeCategory.BEACH || biome.getBiomeCategory() == Biome.BiomeCategory.SWAMP || biome.getBiomeCategory() == Biome.BiomeCategory.RIVER ? worldIn.getSeaLevel() + 1 : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
     }
