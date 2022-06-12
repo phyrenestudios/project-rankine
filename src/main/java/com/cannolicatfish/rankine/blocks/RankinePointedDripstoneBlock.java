@@ -46,7 +46,7 @@ import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public class RankinePointedDripstoneBlock extends PointedDripstoneBlock {
-    private final Block dripstoneBlock;
+    public Block dripstoneBlock;
     private static final VoxelShape TIP_MERGE_SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
     private static final VoxelShape TIP_SHAPE_UP = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 11.0D, 11.0D);
     private static final VoxelShape TIP_SHAPE_DOWN = Block.box(5.0D, 5.0D, 5.0D, 11.0D, 16.0D, 11.0D);
@@ -59,6 +59,10 @@ public class RankinePointedDripstoneBlock extends PointedDripstoneBlock {
         super(p_154025_);
         this.registerDefaultState(this.stateDefinition.any().setValue(TIP_DIRECTION, Direction.UP).setValue(THICKNESS, DripstoneThickness.TIP).setValue(WATERLOGGED, Boolean.valueOf(false)));
         this.dripstoneBlock = dripstoneBlock;
+    }
+
+    public Block getParentDripstone() {
+        return dripstoneBlock;
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_154157_) {

@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_tools.ore_detection.name",
   "icon": "rankine:ore_detector",
-  "category": "tools",
+  "category": "rankine:tools",
   "pages": [
     {
       "type": "text",

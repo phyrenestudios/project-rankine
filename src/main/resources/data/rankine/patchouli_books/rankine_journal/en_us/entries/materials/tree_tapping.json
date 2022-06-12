@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_materials.tree_tapping.name",
   "icon": "rankine:tree_tap",
-  "category": "materials",
+  "category": "rankine:materials",
   "pages": [
     {
       "type": "text",

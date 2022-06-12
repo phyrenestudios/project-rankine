@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -43,6 +42,7 @@ public class WorldgenUtils {
     public static List<List<String>> LAYER_LISTS = new ArrayList<>();
     public static List<List<String>> VEGETATION_LISTS = new ArrayList<>();
     public static List<WeightedCollection<BlockState>> VEGETATION_COLLECTIONS = new ArrayList<>();
+    public static List<Block> DRIPSTONES = new ArrayList<>();
     public static List<Block> GRAVELS = new ArrayList<>();
     public static List<Block> SANDS = new ArrayList<>();
     public static List<Block> SANDSTONES = new ArrayList<>();
@@ -78,13 +78,15 @@ public class WorldgenUtils {
                 Block gravel = ResourceLocation.tryParse((String) L.get(5)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(5)));
                 Block sand = ResourceLocation.tryParse((String) L.get(6)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(6)));
                 Block sandstone = ResourceLocation.tryParse((String) L.get(7)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(7)));
-                populateLists(ResourceLocation.tryParse(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone);
+                Block dripstone = ResourceLocation.tryParse((String) L.get(8)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(8)));
+                populateLists(ResourceLocation.tryParse(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone, dripstone);
             } else {
                 for (ResourceLocation RS : getBiomeNamesFromCategory(Collections.singletonList(Biome.BiomeCategory.byName(biomeToAdd)), true)) {
                     Block gravel = ResourceLocation.tryParse((String) L.get(5)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(5)));
                     Block sand = ResourceLocation.tryParse((String) L.get(6)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(6)));
                     Block sandstone = ResourceLocation.tryParse((String) L.get(7)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(7)));
-                    populateLists(RS,(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone);
+                    Block dripstone = ResourceLocation.tryParse((String) L.get(8)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(8)));
+                    populateLists(RS,(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone, dripstone);
                 }
             }
 
@@ -139,7 +141,7 @@ public class WorldgenUtils {
 
     }
 
-    private static void populateLists(ResourceLocation BIOME, List<String> SOILS, List<String> INTRUSIONS, List<String> STONES, List<String> VEGETATION, Block GRAVEL, Block SAND, Block SANDSTONE) {
+    private static void populateLists(ResourceLocation BIOME, List<String> SOILS, List<String> INTRUSIONS, List<String> STONES, List<String> VEGETATION, Block GRAVEL, Block SAND, Block SANDSTONE, Block DRIPSTONE) {
         GEN_BIOMES.add(BIOME);
         if (SOILS.isEmpty()) {
             O1.add(Blocks.AIR);
@@ -162,6 +164,7 @@ public class WorldgenUtils {
         GRAVELS.add(GRAVEL);
         SANDS.add(SAND);
         SANDSTONES.add(SANDSTONE);
+        DRIPSTONES.add(DRIPSTONE);
 
     }
 
@@ -171,13 +174,10 @@ public class WorldgenUtils {
 
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (!biomeCats.isEmpty()) {
-                for (Biome.BiomeCategory cat : biomeCats) {
-                    if (Biome.getBiomeCategory(Holder.direct(biome)) == cat && include){
-                        b.add(biome.getRegistryName());
-                    }
-                    if (!include && Biome.getBiomeCategory(Holder.direct(biome)) != cat) {
-                        b.add(biome.getRegistryName());
-                    }
+                if (biomeCats.contains(Biome.getBiomeCategory(Holder.direct(biome)))) {
+                    if (include) b.add(biome.getRegistryName());
+                } else {
+                    if (!include) b.add(biome.getRegistryName());
                 }
             } else if (!include) {
                 b.add(biome.getRegistryName());

@@ -1,7 +1,7 @@
 {
   "name": "Alloying",
   "icon": "rankine:element",
-  "category": "mechanics",
+  "category": "rankine:mechanics",
   "pages": [
     {
       "type": "text",

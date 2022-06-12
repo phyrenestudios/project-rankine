@@ -5,7 +5,6 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -292,7 +291,7 @@ public class Config {
                     LIGHTNING_CONVERSION = b.comment("Lightning strikes creating fulgurite and glasses")
                             .define("enableLightningConversion",true);
                     FUEL_VALUES_LIST = b.comment("List of blocks and their respective burn time. Works with tags.")
-                            .defineList("fuelValues", Arrays.asList("#forge:rods/wooden|50","#minecraft:saplings|100","#minecraft:wooden_doors|200","#minecraft:wooden_trapdoors|300","#minecraft:wooden_fence_gates|400","#minecraft:wooden_fences|150","#minecraft:wooden_pressure_plates|200","#minecraft:wooden_stairs|75","#minecraft:wooden_slabs|50","#minecraft:wooden_buttons|100","#minecraft:planks|100","#minecraft:oak_logs|520","#minecraft:acacia_logs|500","#minecraft:birch_logs|450","#minecraft:spruce_logs|410","#minecraft:jungle_logs|450","#minecraft:dark_oak_logs|520","#rankine:magnolia_logs|450","#rankine:balsam_fir_logs|390","#rankine:eastern_hemlock_logs|440","#rankine:juniper_logs|480","#rankine:black_birch_logs|470","#rankine:yellow_birch_logs|490","#rankine:pinyon_pine_logs|520","#rankine:maple_logs|500","#rankine:cedar_logs|410","#rankine:black_walnut_logs|470","#rankine:cedar_logs|410","#rankine:coconut_palm_logs|450","#rankine:sharinga_logs|450","#rankine:cork_oak_logs|480","#rankine:erythrina_logs|550","#rankine:cinnamon_logs|500","#rankine:charred_logs|400","#rankine:petrified_chorus_logs|450","#forge:sulfur|400","#forge:storage_blocks/sulfur|4000","minecraft:charcoal|800"), o -> o instanceof String);
+                            .defineList("fuelValues", List.of("#forge:rods/wooden|50","#minecraft:saplings|100","#minecraft:wooden_doors|200","#minecraft:wooden_trapdoors|300","#minecraft:wooden_fence_gates|400","#minecraft:wooden_fences|150","#minecraft:wooden_pressure_plates|200","#minecraft:wooden_stairs|75","#minecraft:wooden_slabs|50","#minecraft:wooden_buttons|100","#minecraft:planks|100","#minecraft:oak_logs|520","#minecraft:acacia_logs|500","#minecraft:birch_logs|450","#minecraft:spruce_logs|410","#minecraft:jungle_logs|450","#minecraft:dark_oak_logs|520","#rankine:magnolia_logs|450","#rankine:balsam_fir_logs|390","#rankine:eastern_hemlock_logs|440","#rankine:juniper_logs|480","#rankine:black_birch_logs|470","#rankine:yellow_birch_logs|490","#rankine:pinyon_pine_logs|520","#rankine:maple_logs|500","#rankine:cedar_logs|410","#rankine:black_walnut_logs|470","#rankine:cedar_logs|410","#rankine:coconut_palm_logs|450","#rankine:sharinga_logs|450","#rankine:cork_oak_logs|480","#rankine:erythrina_logs|550","#rankine:cinnamon_logs|500","#rankine:charred_logs|400","#rankine:petrified_chorus_logs|450","#forge:sulfur|400","#forge:storage_blocks/sulfur|4000","minecraft:charcoal|800"), o -> o instanceof String);
                     FIRE_EXTINGUISHER_RANGE = b.comment("The range of the fire extinguisher.")
                             .defineInRange("fireExtinguisherRange", 16, 0, 64);
                     TRAMPOLINE_SIZE = b.comment("The maximum size of a trampoline. Jump factor depends on size. Set to 0 to have a fixed jump factor of 1.3 which is just enough to have the player gain height over time.")
@@ -585,6 +584,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue BLACK_SAND_GEN;
         public final ForgeConfigSpec.BooleanValue RETRO_GEN;
         public final ForgeConfigSpec.BooleanValue SOIL_GEN;
+        public final ForgeConfigSpec.BooleanValue DRIPSTONE_GEN;
         public final ForgeConfigSpec.BooleanValue ANTIMATTER_GEN;
         public final ForgeConfigSpec.BooleanValue REPLACE_VANILLA_ORES;
         public final ForgeConfigSpec.BooleanValue END_METEORITE_GEN;
@@ -624,8 +624,10 @@ public class Config {
                     .defineInRange("soilNoiseScale", 60, 1, Integer.MAX_VALUE);
             ANTIMATTER_GEN = b.comment("Generate antimatter in the End.")
                     .define("antimatterGen",true);
-            SOIL_GEN = b.comment("Generate soil stuff.")
+            SOIL_GEN = b.comment("Generate soil varieties.")
                     .define("soilGen",true);
+            DRIPSTONE_GEN = b.comment("Generate dripstone varieties.")
+                    .define("dripstoneGen",true);
             RETRO_GEN = b.comment("Enable the retrogen of chunks for Rankine generation. This controls soils, grasses, gravels, sands, and matching ores to the stone layer.")
                     .define("soilGen",true);
             REPLACE_VANILLA_ORES = b.comment("If enabled, replaces vanilla ores with the Rankine counterparts (mostly for texture purposes). Results may vary due to the order of feature placements.")
@@ -723,205 +725,238 @@ public class Config {
         private static final List<List<Object>> oreSettings = new ArrayList<>();
 
         public BiomeGen(ForgeConfigSpec.Builder b) {
-            biomeSettings.add(Arrays.asList("minecraft:soul_sand_valley",
-                    Arrays.asList(),
-                    Arrays.asList("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
-                    Arrays.asList("rankine:blueschist","rankine:blueschist","rankine:blueschist","rankine:blueschist","rankine:honeystone","rankine:honeystone","rankine:honeystone","rankine:wehrlite"),
-                    Arrays.asList(),
+            biomeSettings.add(List.of("minecraft:soul_sand_valley",
+                    List.of(),
+                    List.of("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    List.of("rankine:blueschist","rankine:blueschist","rankine:blueschist","rankine:blueschist","rankine:honeystone","rankine:honeystone","rankine:honeystone","rankine:wehrlite"),
+                    List.of(),
                     "rankine:dark_gravel",
                     "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList("minecraft:basalt_deltas",
-                    Arrays.asList(),
-                    Arrays.asList("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
-                    Arrays.asList("minecraft:blackstone","minecraft:blackstone","minecraft:blackstone","minecraft:blackstone","minecraft:basalt","minecraft:basalt","minecraft:basalt","rankine:dunite"),
-                    Arrays.asList(),
-                    "rankine:dark_gravel",
                     "minecraft:air",
                     "minecraft:air"));
-            biomeSettings.add(Arrays.asList("minecraft:crimson_forest",
-                    Arrays.asList(),
-                    Arrays.asList("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
-                    Arrays.asList("rankine:purple_porphyry","rankine:purple_porphyry","rankine:purple_porphyry","rankine:purple_porphyry","rankine:komatiite","rankine:komatiite","rankine:komatiite","rankine:red_porphyry"),
-                    Arrays.asList(),
+            biomeSettings.add(List.of("minecraft:basalt_deltas",
+                    List.of(),
+                    List.of("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    List.of("minecraft:blackstone","minecraft:blackstone","minecraft:blackstone","minecraft:blackstone","minecraft:basalt","minecraft:basalt","minecraft:basalt","rankine:dunite"),
+                    List.of(),
                     "rankine:dark_gravel",
                     "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList("minecraft:warped_forest",
-                    Arrays.asList(),
-                    Arrays.asList("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
-                    Arrays.asList("rankine:lherzolite","rankine:lherzolite","rankine:lherzolite","rankine:lherzolite","rankine:pyroxenite","rankine:pyroxenite","rankine:pyroxenite","rankine:harzburgite"),
-                    Arrays.asList(),
-                    "rankine:dark_gravel",
                     "minecraft:air",
                     "minecraft:air"));
-            biomeSettings.add(Arrays.asList("minecraft:nether_wastes",
-                    Arrays.asList(),
-                    Arrays.asList("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
-                    Arrays.asList(),
-                    Arrays.asList(),
+            biomeSettings.add(List.of("minecraft:crimson_forest",
+                    List.of(),
+                    List.of("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    List.of("rankine:purple_porphyry","rankine:purple_porphyry","rankine:purple_porphyry","rankine:purple_porphyry","rankine:komatiite","rankine:komatiite","rankine:komatiite","rankine:red_porphyry"),
+                    List.of(),
                     "rankine:dark_gravel",
                     "minecraft:air",
+                    "minecraft:air",
                     "minecraft:air"));
-            biomeSettings.add(Arrays.asList("minecraft:stony_shore",
-                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:diabase|30|rankine:baddeleyite_ore|0.04","rankine:red_porphyry|10|rankine:porphyry_copper|0.04"),
-                    Arrays.asList("rankine:wadsleyone","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt","rankine:chalk","rankine:slate","rankine:shale"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
+            biomeSettings.add(List.of("minecraft:warped_forest",
+                    List.of(),
+                    List.of("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    List.of("rankine:lherzolite","rankine:lherzolite","rankine:lherzolite","rankine:lherzolite","rankine:pyroxenite","rankine:pyroxenite","rankine:pyroxenite","rankine:harzburgite"),
+                    List.of(),
+                    "rankine:dark_gravel",
+                    "minecraft:air",
+                    "minecraft:air",
+                    "minecraft:air"));
+            biomeSettings.add(List.of("minecraft:nether_wastes",
+                    List.of(),
+                    List.of("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    List.of("minecraft:netherrack"),
+                    List.of(),
+                    "rankine:dark_gravel",
+                    "minecraft:air",
+                    "minecraft:air",
+                    "minecraft:air"));
+            biomeSettings.add(List.of("minecraft:stony_shore",
+                    List.of("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:diabase|30|rankine:baddeleyite_ore|0.04","rankine:red_porphyry|10|rankine:porphyry_copper|0.04"),
+                    List.of("rankine:wadsleyone","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt","rankine:chalk","rankine:slate","rankine:shale"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
                     "rankine:light_gravel",
                     "minecraft:air",
+                    "minecraft:air",
+                    "rankine:pointed_boracitic_dripstone"));
+            biomeSettings.add(List.of("minecraft:grove",
+                    List.of("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
+                    List.of("minecraft:air|20|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:shonkinite|20|rankine:beryl_ore|0.04","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|5|rankine:malachite_ore|0.04"),
+                    List.of("rankine:ringwoodine","rankine:serpentinite","rankine:greenschist","rankine:mariposite","rankine:gray_marble","rankine:dolostone","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air",
+                    "minecraft:air",
+                    "minecraft:air",
+                    "rankine:pointed_zirconic_dripstone"));
+            biomeSettings.add(List.of("minecraft:windswept_forest",
+                    List.of("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
+                    List.of("minecraft:air|20|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:shonkinite|20|rankine:beryl_ore|0.04","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|5|rankine:malachite_ore|0.04"),
+                    List.of("rankine:ringwoodine","rankine:serpentinite","rankine:greenschist","rankine:mariposite","rankine:gray_marble","rankine:dolostone","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air",
+                    "minecraft:air",
+                    "minecraft:air",
+                    "rankine:pointed_zirconic_dripstone"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.THEEND.getName(),
+                    List.of(),
+                    List.of(),
+                    List.of("minecraft:end_stone"),
+                    List.of(),
+                    "minecraft:air",
+                    "minecraft:air",
+                    "minecraft:air",
                     "minecraft:air"));
-            biomeSettings.add(Arrays.asList("minecraft:grove",
-                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
-                    Arrays.asList("minecraft:air|20|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:shonkinite|20|rankine:beryl_ore|0.04","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|5|rankine:malachite_ore|0.04"),
-                    Arrays.asList("rankine:ringwoodine","rankine:serpentinite","rankine:greenschist","rankine:mariposite","rankine:gray_marble","rankine:dolostone","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
-                    "minecraft:air",
-                    "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList("minecraft:windswept_forest",
-                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
-                    Arrays.asList("minecraft:air|20|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:shonkinite|20|rankine:beryl_ore|0.04","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|5|rankine:malachite_ore|0.04"),
-                    Arrays.asList("rankine:ringwoodine","rankine:serpentinite","rankine:greenschist","rankine:mariposite","rankine:gray_marble","rankine:dolostone","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
-                    "minecraft:air",
-                    "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.NONE.getName(),
-                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:diabase|30|rankine:baddeleyite_ore|0.04","rankine:red_porphyry|10|rankine:porphyry_copper|0.04"),
-                    Arrays.asList("rankine:wadsleyone","rankine:troctolite","rankine:gabbro","rankine:slate","rankine:shale","rankine:tholeiitic_basalt"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10"),
+            biomeSettings.add(List.of(Biome.BiomeCategory.NONE.getName(),
+                    List.of("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:diabase|30|rankine:baddeleyite_ore|0.04","rankine:red_porphyry|10|rankine:porphyry_copper|0.04"),
+                    List.of("rankine:wadsleyone","rankine:troctolite","rankine:gabbro","rankine:slate","rankine:shale","rankine:tholeiitic_basalt"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10"),
                     "rankine:dark_gravel",
                     "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.MUSHROOM.getName(),
-                    Arrays.asList("rankine:humus_grass_block","rankine:humus","rankine:clay_loam","rankine:clay_loam_grass_block","rankine:clay_loam","rankine:clay_loam"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:diabase|30|rankine:baddeleyite_ore|0.04","rankine:red_porphyry|10|rankine:porphyry_copper|0.04","rankine:pegmatite|1|rankine:coltan_ore|0.03","rankine:pegmatite|1|rankine:beryl_ore|0.03","rankine:pegmatite|1|rankine:uraninite_ore|0.03","rankine:pegmatite|5|rankine:petalite_ore|0.04"),
-                    Arrays.asList("rankine:wadsleyone","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt","rankine:marlstone"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","minecraft:red_mushroom|10","minecraft:brown_mushroom|10","rankine:crimson_clover|10"),
-                    "rankine:light_gravel",
                     "minecraft:air",
                     "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.OCEAN.getName(),
-                    Arrays.asList("rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay","rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:silty_clay"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:diabase|30|rankine:baddeleyite_ore|0.04","rankine:red_porphyry|10|rankine:porphyry_copper|0.04"),
-                    Arrays.asList("rankine:wadsleyone","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10"),
+            biomeSettings.add(List.of(Biome.BiomeCategory.MUSHROOM.getName(),
+                    List.of("rankine:humus_grass_block","rankine:humus","rankine:clay_loam","rankine:clay_loam_grass_block","rankine:clay_loam","rankine:clay_loam"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:diabase|30|rankine:baddeleyite_ore|0.04","rankine:red_porphyry|10|rankine:porphyry_copper|0.04","rankine:pegmatite|1|rankine:coltan_ore|0.03","rankine:pegmatite|1|rankine:beryl_ore|0.03","rankine:pegmatite|1|rankine:uraninite_ore|0.03","rankine:pegmatite|5|rankine:petalite_ore|0.04"),
+                    List.of("rankine:wadsleyone","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt","rankine:marlstone"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","minecraft:red_mushroom|10","minecraft:brown_mushroom|10","rankine:crimson_clover|10"),
                     "rankine:light_gravel",
                     "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.BEACH.getName(),
-                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:diabase|30|rankine:baddeleyite_ore|0.04","rankine:red_porphyry|10|rankine:porphyry_copper|0.04"),
-                    Arrays.asList("rankine:wadsleyone","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt","rankine:chalk","rankine:shale","rankine:marlstone"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air",
+                    "rankine:pointed_halitic_dripstone"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.OCEAN.getName(),
+                    List.of("rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay","rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:silty_clay"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:diabase|30|rankine:baddeleyite_ore|0.04","rankine:red_porphyry|10|rankine:porphyry_copper|0.04"),
+                    List.of("rankine:wadsleyone","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10"),
                     "rankine:light_gravel",
                     "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.RIVER.getName(),
-                    Arrays.asList("rankine:clay_loam_grass_block","rankine:clay_loam","rankine:silty_clay","rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:silty_clay"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|5|rankine:kimberlitic_diamond_ore|0.05"),
-                    Arrays.asList("rankine:post_perovskite","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt","rankine:chalk","rankine:shale","rankine:shale","rankine:anorthosite"),
-                    Arrays.asList("rankine:short_grass|20","minecraft:grass|50","rankine:stinging_nettle|1"),
+                    "minecraft:air",
+                    "rankine:pointed_halitic_dripstone"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.BEACH.getName(),
+                    List.of("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:diabase|30|rankine:baddeleyite_ore|0.04","rankine:red_porphyry|10|rankine:porphyry_copper|0.04"),
+                    List.of("rankine:wadsleyone","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt","rankine:chalk","rankine:shale","rankine:marlstone"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
+                    "rankine:light_gravel",
+                    "minecraft:air",
+                    "minecraft:air",
+                    "rankine:pointed_boracitic_dripstone"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.RIVER.getName(),
+                    List.of("rankine:clay_loam_grass_block","rankine:clay_loam","rankine:silty_clay","rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:silty_clay"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|5|rankine:kimberlitic_diamond_ore|0.05"),
+                    List.of("rankine:post_perovskite","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt","rankine:chalk","rankine:shale","rankine:shale","rankine:anorthosite"),
+                    List.of("rankine:short_grass|20","minecraft:grass|50","rankine:stinging_nettle|1"),
                     "minecraft:air",
                     "rankine:silt",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.SAVANNA.getName(),
-                    Arrays.asList("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam","rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:norite|20|rankine:magnetite_ore|0.04","rankine:norite|5|rankine:chromite_ore|0.04","rankine:granodiorite|10|rankine:magnetite_ore|0.04","rankine:granodiorite|5|rankine:wolframite_ore|0.04"),
-                    Arrays.asList("rankine:bridgmanham","rankine:rose_marble","rankine:red_dacite","rankine:rhyolite","rankine:quartzite","rankine:siltstone","rankine:graywacke"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air",
+                    "rankine:pointed_boracitic_dripstone"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.SAVANNA.getName(),
+                    List.of("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam","rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:norite|20|rankine:magnetite_ore|0.04","rankine:norite|5|rankine:chromite_ore|0.04","rankine:granodiorite|10|rankine:magnetite_ore|0.04","rankine:granodiorite|5|rankine:wolframite_ore|0.04"),
+                    List.of("rankine:bridgmanham","rankine:rose_marble","rankine:red_dacite","rankine:rhyolite","rankine:quartzite","rankine:siltstone","rankine:graywacke"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
                     "rankine:light_gravel",
                     "minecraft:air",
+                    "minecraft:air",
                     "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.MESA.getName(),
-                    Arrays.asList("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam","rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:red_porphyry|20|rankine:porphyry_copper|0.05","rankine:red_porphyry|10|rankine:native_gold_ore|0.04","rankine:red_porphyry|3|rankine:molybdenum_ore|0.03","rankine:pegmatite|2|rankine:baddeleyite_ore|0.03","rankine:pegmatite|1|rankine:coltan_ore|0.03","rankine:pegmatite|1|rankine:beryl_ore|0.03","rankine:pegmatite|1|rankine:uraninite_ore|0.03","rankine:pegmatite|5|rankine:petalite_ore|0.04"),
-                    Arrays.asList("rankine:bridgmanham","rankine:rose_marble","rankine:red_dacite","rankine:rhyolite","rankine:quartzite","rankine:siltstone","rankine:arkose"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
-                    "rankine:light_gravel",
-                    "rankine:desert_sand",
-                    "rankine:desert_sandstone"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.DESERT.getName(),
-                    Arrays.asList("rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:loamy_sand","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:loamy_sand"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:red_porphyry|20|rankine:porphyry_copper|0.05","rankine:red_porphyry|10|rankine:native_gold_ore|0.04","rankine:red_porphyry|3|rankine:molybdenum_ore|0.03","rankine:pegmatite|2|rankine:baddeleyite_ore|0.03","rankine:pegmatite|1|rankine:coltan_ore|0.03","rankine:pegmatite|1|rankine:beryl_ore|0.03","rankine:pegmatite|1|rankine:uraninite_ore|0.03","rankine:pegmatite|5|rankine:petalite_ore|0.04"),
-                    Arrays.asList("rankine:bridgmanham","rankine:rose_marble","rankine:red_dacite","rankine:rhyolite","rankine:quartzite","rankine:siltstone","rankine:itacolumite"),
-                    Arrays.asList("rankine:short_grass|30","minecraft:dead_bush|10","rankine:stinging_nettle|1"),
+            biomeSettings.add(List.of(Biome.BiomeCategory.MESA.getName(),
+                    List.of("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam","rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:red_porphyry|20|rankine:porphyry_copper|0.05","rankine:red_porphyry|10|rankine:native_gold_ore|0.04","rankine:red_porphyry|3|rankine:molybdenum_ore|0.03","rankine:pegmatite|2|rankine:baddeleyite_ore|0.03","rankine:pegmatite|1|rankine:coltan_ore|0.03","rankine:pegmatite|1|rankine:beryl_ore|0.03","rankine:pegmatite|1|rankine:uraninite_ore|0.03","rankine:pegmatite|5|rankine:petalite_ore|0.04"),
+                    List.of("rankine:bridgmanham","rankine:rose_marble","rankine:red_dacite","rankine:rhyolite","rankine:quartzite","rankine:siltstone","rankine:arkose"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
                     "rankine:light_gravel",
                     "rankine:desert_sand",
-                    "rankine:desert_sandstone"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.EXTREME_HILLS.getName(),
-                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
-                    Arrays.asList("minecraft:air|20|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:shonkinite|20|rankine:beryl_ore|0.04","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|5|rankine:malachite_ore|0.04"),
-                    Arrays.asList("rankine:ringwoodine","rankine:serpentinite","rankine:greenschist","rankine:mariposite","rankine:gray_marble","rankine:dolostone","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "rankine:desert_sandstone",
+                    "rankine:pointed_gypsic_dripstone"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.DESERT.getName(),
+                    List.of("rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:loamy_sand","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:loamy_sand"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:red_porphyry|20|rankine:porphyry_copper|0.05","rankine:red_porphyry|10|rankine:native_gold_ore|0.04","rankine:red_porphyry|3|rankine:molybdenum_ore|0.03","rankine:pegmatite|2|rankine:baddeleyite_ore|0.03","rankine:pegmatite|1|rankine:coltan_ore|0.03","rankine:pegmatite|1|rankine:beryl_ore|0.03","rankine:pegmatite|1|rankine:uraninite_ore|0.03","rankine:pegmatite|5|rankine:petalite_ore|0.04"),
+                    List.of("rankine:bridgmanham","rankine:rose_marble","rankine:red_dacite","rankine:rhyolite","rankine:quartzite","rankine:siltstone","rankine:itacolumite"),
+                    List.of("rankine:short_grass|30","minecraft:dead_bush|10","rankine:stinging_nettle|1"),
+                    "rankine:light_gravel",
+                    "rankine:desert_sand",
+                    "rankine:desert_sandstone",
+                    "rankine:pointed_nitric_dripstone"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.EXTREME_HILLS.getName(),
+                    List.of("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
+                    List.of("minecraft:air|20|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:shonkinite|20|rankine:beryl_ore|0.04","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|5|rankine:malachite_ore|0.04"),
+                    List.of("rankine:ringwoodine","rankine:serpentinite","rankine:greenschist","rankine:mariposite","rankine:gray_marble","rankine:dolostone","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
                     "minecraft:air",
                     "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.MOUNTAIN.getName(),
-                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
-                    Arrays.asList("minecraft:air|20|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:shonkinite|20|rankine:beryl_ore|0.04","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|5|rankine:malachite_ore|0.04"),
-                    Arrays.asList("rankine:ringwoodine","rankine:serpentinite","rankine:greenschist","rankine:mariposite","rankine:gray_marble","rankine:dolostone","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air",
+                    "rankine:pointed_zirconic_dripstone"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.MOUNTAIN.getName(),
+                    List.of("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
+                    List.of("minecraft:air|20|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:shonkinite|20|rankine:beryl_ore|0.04","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|5|rankine:malachite_ore|0.04"),
+                    List.of("rankine:ringwoodine","rankine:serpentinite","rankine:greenschist","rankine:mariposite","rankine:gray_marble","rankine:dolostone","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
                     "minecraft:air",
                     "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.FOREST.getName(),
-                    Arrays.asList("rankine:loam_grass_block","rankine:loam","rankine:clay_loam","rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","minecraft:granite|10|rankine:cassiterite_ore|0.04","minecraft:granite|15|rankine:malachite_ore|0.04","rankine:granodiorite|15|rankine:magnetite_ore|0.04","rankine:granodiorite|5|rankine:wolframite_ore|0.03"),
-                    Arrays.asList("minecraft:deepslate","rankine:black_dacite","rankine:comendite","rankine:black_marble","rankine:soapstone","rankine:anorthosite","rankine:limestone"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
                     "minecraft:air",
+                    "rankine:pointed_zirconic_dripstone"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.FOREST.getName(),
+                    List.of("rankine:loam_grass_block","rankine:loam","rankine:clay_loam","rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","minecraft:granite|10|rankine:cassiterite_ore|0.04","minecraft:granite|15|rankine:malachite_ore|0.04","rankine:granodiorite|15|rankine:magnetite_ore|0.04","rankine:granodiorite|5|rankine:wolframite_ore|0.03"),
+                    List.of("minecraft:deepslate","rankine:black_dacite","rankine:comendite","rankine:black_marble","rankine:soapstone","rankine:anorthosite","rankine:limestone"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
                     "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.TAIGA.getName(),
-                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:gray_granite|15|rankine:cassiterite_ore|0.04","rankine:gray_granite|15|rankine:malachite_ore|0.04","minecraft:diorite|15|rankine:magnetite_ore|0.04"),
-                    Arrays.asList("rankine:sommanite","rankine:black_dacite","rankine:comendite","rankine:white_marble","rankine:soapstone","rankine:anorthosite","rankine:dolostone"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:fern|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
-                    "minecraft:air",
-                    "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.PLAINS.getName(),
-                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:clay_loam"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","minecraft:granite|15|rankine:cassiterite_ore|0.04","minecraft:granite|10|rankine:malachite_ore|0.04","rankine:granodiorite|15|rankine:magnetite_ore|0.04","rankine:granodiorite|5|rankine:wolframite_ore|0.03"),
-                    Arrays.asList("rankine:bridgmanham","rankine:red_dacite","rankine:rhyolite","rankine:gray_marble","rankine:anorthosite","rankine:limestone","rankine:siltstone"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:crimson_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
                     "minecraft:air",
                     "minecraft:air",
                     "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.ICY.getName(),
-                    Arrays.asList("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:permafrost","rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:permafrost"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","minecraft:diorite|5|rankine:plumbago_ore|0.03","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:pegmatite|2|rankine:baddeleyite_ore|0.03","rankine:pegmatite|1|rankine:coltan_ore|0.03","rankine:pegmatite|1|rankine:beryl_ore|0.03","rankine:pegmatite|1|rankine:uraninite_ore|0.03","rankine:pegmatite|10|rankine:petalite_ore|0.04"),
-                    Arrays.asList("rankine:whiteschist","rankine:white_marble","rankine:comendite","rankine:mica_schist","rankine:phyllite","minecraft:andesite","rankine:chalk"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:fern|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+            biomeSettings.add(List.of(Biome.BiomeCategory.TAIGA.getName(),
+                    List.of("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:gray_granite|15|rankine:cassiterite_ore|0.04","rankine:gray_granite|15|rankine:malachite_ore|0.04","minecraft:diorite|15|rankine:magnetite_ore|0.04"),
+                    List.of("rankine:sommanite","rankine:black_dacite","rankine:comendite","rankine:white_marble","rankine:soapstone","rankine:anorthosite","rankine:dolostone"),
+                    List.of("rankine:short_grass|70","minecraft:fern|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air",
                     "minecraft:air",
                     "minecraft:air",
                     "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.JUNGLE.getName(),
-                    Arrays.asList("rankine:humus_grass_block","rankine:humus","rankine:laterite","rankine:clay_loam_grass_block","rankine:clay_loam","rankine:laterite"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:norite|20|rankine:magnetite_ore|0.04","rankine:norite|5|rankine:chromite_ore|0.04","rankine:pegmatite|4|rankine:baddeleyite_ore|0.03","rankine:pegmatite|2|rankine:coltan_ore|0.03","rankine:pegmatite|2|rankine:beryl_ore|0.03","rankine:pegmatite|2|rankine:uraninite_ore|0.03","rankine:pegmatite|15|rankine:petalite_ore|0.04"),
-                    Arrays.asList("minecraft:deepslate","rankine:eclogite","rankine:gneiss","rankine:mica_schist","rankine:phyllite","rankine:slate","rankine:mudstone"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:crimson_clover|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
+            biomeSettings.add(List.of(Biome.BiomeCategory.PLAINS.getName(),
+                    List.of("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:clay_loam"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","minecraft:granite|15|rankine:cassiterite_ore|0.04","minecraft:granite|10|rankine:malachite_ore|0.04","rankine:granodiorite|15|rankine:magnetite_ore|0.04","rankine:granodiorite|5|rankine:wolframite_ore|0.03"),
+                    List.of("rankine:bridgmanham","rankine:red_dacite","rankine:rhyolite","rankine:gray_marble","rankine:anorthosite","rankine:limestone","rankine:siltstone"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","rankine:crimson_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air",
+                    "minecraft:air",
+                    "minecraft:air",
+                    "minecraft:air"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.ICY.getName(),
+                    List.of("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:permafrost","rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:permafrost"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","minecraft:diorite|5|rankine:plumbago_ore|0.03","minecraft:diorite|5|rankine:ilmenite_ore|0.04","minecraft:diorite|10|rankine:magnetite_ore|0.04","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:pegmatite|2|rankine:baddeleyite_ore|0.03","rankine:pegmatite|1|rankine:coltan_ore|0.03","rankine:pegmatite|1|rankine:beryl_ore|0.03","rankine:pegmatite|1|rankine:uraninite_ore|0.03","rankine:pegmatite|10|rankine:petalite_ore|0.04"),
+                    List.of("rankine:whiteschist","rankine:white_marble","rankine:comendite","rankine:mica_schist","rankine:phyllite","minecraft:andesite","rankine:chalk"),
+                    List.of("rankine:short_grass|70","minecraft:fern|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air",
+                    "minecraft:air",
+                    "minecraft:air",
+                    "minecraft:air"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.JUNGLE.getName(),
+                    List.of("rankine:humus_grass_block","rankine:humus","rankine:laterite","rankine:clay_loam_grass_block","rankine:clay_loam","rankine:laterite"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:norite|20|rankine:magnetite_ore|0.04","rankine:norite|5|rankine:chromite_ore|0.04","rankine:pegmatite|4|rankine:baddeleyite_ore|0.03","rankine:pegmatite|2|rankine:coltan_ore|0.03","rankine:pegmatite|2|rankine:beryl_ore|0.03","rankine:pegmatite|2|rankine:uraninite_ore|0.03","rankine:pegmatite|15|rankine:petalite_ore|0.04"),
+                    List.of("minecraft:deepslate","rankine:eclogite","rankine:gneiss","rankine:mica_schist","rankine:phyllite","rankine:slate","rankine:mudstone"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","rankine:crimson_clover|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
                     "rankine:dark_gravel",
                     "minecraft:air",
-                    "minecraft:air"));
-            biomeSettings.add(Arrays.asList(Biome.BiomeCategory.SWAMP.getName(),
-                    Arrays.asList("rankine:loam_grass_block","rankine:loam","rankine:clay_loam","rankine:humus_grass_block","rankine:humus","rankine:clay_loam"),
-                    Arrays.asList("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:shonkinite|20|rankine:magnetite_ore|0.04","rankine:shonkinite|5|rankine:plumbago_ore|0.03","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|10|rankine:malachite_ore|0.04"),
-                    Arrays.asList("rankine:post_perovskite","rankine:eclogite","rankine:gneiss","rankine:mica_schist","rankine:phyllite","rankine:slate","rankine:mudstone"),
-                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air",
+                    "rankine:pointed_magnesitic_dripstone"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.SWAMP.getName(),
+                    List.of("rankine:loam_grass_block","rankine:loam","rankine:clay_loam","rankine:humus_grass_block","rankine:humus","rankine:clay_loam"),
+                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.05","rankine:shonkinite|20|rankine:magnetite_ore|0.04","rankine:shonkinite|5|rankine:plumbago_ore|0.03","rankine:gray_granite|10|rankine:cassiterite_ore|0.04","rankine:gray_granite|10|rankine:malachite_ore|0.04"),
+                    List.of("rankine:post_perovskite","rankine:eclogite","rankine:gneiss","rankine:mica_schist","rankine:phyllite","rankine:slate","rankine:mudstone"),
+                    List.of("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:stinging_nettle|1"),
                     "rankine:dark_gravel",
                     "minecraft:air",
-                    "minecraft:air"));
+                    "minecraft:air",
+                    "rankine:pointed_feric_dripstone"));
 
 
 
             b.comment("Biome Feature Settings").push("biomeGen");
             BIOME_SETTINGS = b.comment("Custom generations per biome or biome category. The defaults are created with biome categories for the overworld. Specific biomes can be used and should be put first in the list.",
                     "Syntax: [[List1], [List2], [List3], ...]",
-                    "   [ListX]: [Biome, [Soils], [Intrusions], [Layers], [Vegetation], Gravel, Sand]",
+                    "   [ListX]: [Biome, [Soils], [Intrusions], [Layers], [Vegetation], Gravel, Sand, Sandstone, Pointed Dripstone]",
                     "   Biome: biome resource location or category (ex: \"minecraft:nether_wastes\" or \"jungle\")",
                     "   [Soils]: O1, A1, B1, O2, A2, B2",
                     "       O1: resource location of the primary block to replace grass (ex: \"rankine:loam_grass_block\")",
@@ -947,101 +982,101 @@ public class Config {
 
 ///fill ~ ~ ~ ~30 ~-30 ~30 air replace #rankine:world_strip
             //lower natives
-            oreSettings.add(Arrays.asList("rankine:stibnite_ore", Arrays.asList("all"), "default", "uniform", 50, 85, 4, 1.0D, 11, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_tin_ore", Arrays.asList("all"), "default", "uniform", 50, 85, 4, 1.0D, 14, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_lead_ore", Arrays.asList("all"), "default", "uniform", 50, 85, 4, 1.0D, 10, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_silver_ore", Arrays.asList("all"), "default", "uniform", 50, 85, 4, 1.0D, 8, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_bismuth_ore", Arrays.asList("all"), "default", "uniform", 50, 85, 4, 1.0D, 8, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:lignite_ore", Arrays.asList("all"), "default", "uniform", 50, 85, 15, 0.8D, 4, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:stibnite_ore", List.of("overworld"), "default", "uniform", 50, 85, 4, 1.0D, 11, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_tin_ore", List.of("overworld"), "default", "uniform", 50, 85, 4, 1.0D, 14, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_lead_ore", List.of("overworld"), "default", "uniform", 50, 85, 4, 1.0D, 10, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_silver_ore", List.of("overworld"), "default", "uniform", 50, 85, 4, 1.0D, 8, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_bismuth_ore", List.of("overworld"), "default", "uniform", 50, 85, 4, 1.0D, 8, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:lignite_ore", List.of("overworld"), "default", "uniform", 50, 85, 15, 0.8D, 4, 1.0, 0.0D));
             //upper natives
-            oreSettings.add(Arrays.asList("rankine:stibnite_ore", Arrays.asList("all"), "default", "triangle", 50, 250, 5, 1.0D, 22, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_tin_ore", Arrays.asList("all"), "default", "triangle", 50, 250, 5, 1.0D, 28, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_lead_ore", Arrays.asList("all"), "default", "triangle", 50, 250, 5, 1.0D, 20, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_silver_ore", Arrays.asList("all"), "default", "triangle", 50, 250, 5, 1.0D, 16, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_bismuth_ore", Arrays.asList("all"), "default", "triangle", 50, 250, 5, 1.0D, 16, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:lignite_ore", Arrays.asList("all"), "default", "triangle", 50, 250, 10, 0.8D, 30, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:stibnite_ore", List.of("overworld"), "default", "triangle", 50, 250, 5, 1.0D, 22, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_tin_ore", List.of("overworld"), "default", "triangle", 50, 250, 5, 1.0D, 28, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_lead_ore", List.of("overworld"), "default", "triangle", 50, 250, 5, 1.0D, 20, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_silver_ore", List.of("overworld"), "default", "triangle", 50, 250, 5, 1.0D, 16, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_bismuth_ore", List.of("overworld"), "default", "triangle", 50, 250, 5, 1.0D, 16, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:lignite_ore", List.of("overworld"), "default", "triangle", 50, 250, 10, 0.8D, 30, 1.0, 0.0D));
 
-            oreSettings.add(Arrays.asList("rankine:native_gold_ore", Arrays.asList("all"), "default", "triangle", -63, 63, 6, 1.0D, 12, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_gold_ore", Arrays.asList("mesa"), "default", "triangle", 20, 120, 6, 1.0D, 12, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:pyrite_ore", Arrays.asList("all"), "default", "triangle", -40, 80, 4, 1.0D, 10, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_gold_ore", List.of("overworld"), "default", "triangle", -63, 63, 6, 1.0D, 12, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_gold_ore", List.of("mesa"), "default", "triangle", 20, 120, 6, 1.0D, 12, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:pyrite_ore", List.of("overworld"), "default", "triangle", -40, 80, 4, 1.0D, 10, 1.0, 0.0D));
 
-            oreSettings.add(Arrays.asList("rankine:subbituminous_ore", Arrays.asList("all"), "sphere", "uniform", 20, 60, 3, 0.5D, 1, 0.5, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:bituminous_ore", Arrays.asList("all"), "sphere", "uniform", -30, 30, 3, 0.5D, 1, 0.3, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:anthracite_ore", Arrays.asList("all"), "sphere", "uniform", -64, -20, 3, 0.5D, 1, 0.2, 0.0D));
-
-
-            oreSettings.add(Arrays.asList("rankine:hematite_ore", Arrays.asList("all"), "sphere", "uniform", -10, 80, 3, 0.4D, 2, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:hematite_ore", Arrays.asList("all"), "default", "triangle", 64, 384, 3, 1.0D, 50, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:chalcocite_ore", Arrays.asList("all"), "sphere", "uniform", 0, 96, 3, 0.6D, 1, 0.4, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:chalcocite_ore", Arrays.asList("all"), "default", "triangle", 0, 96, 3, 1.0D, 30, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:magnesite_ore", Arrays.asList("all"), "sphere", "uniform", -30, 20, 3, 0.3D, 1, 0.5, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:magnesite_ore", Arrays.asList("all"), "default", "triangle", -64, 30, 3, 1.0D, 25, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:pyrolusite_ore", Arrays.asList("all"), "sphere", "uniform", -30, 10, 4, 0.3D, 1, 0.2D, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:pyrolusite_ore", Arrays.asList("all"), "default", "triangle", -96, 10, 3, 1.0D, 25, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:pentlandite_ore", Arrays.asList("ocean","beach","mushroom","desert","mesa"), "sphere", "uniform", -30, 20, 3, 0.3D, 1, 0.5, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:pentlandite_ore", Arrays.asList("all"), "default", "triangle", -40, 40, 3, 1.0D, 20, 1.0, 0.0D));
-
-            oreSettings.add(Arrays.asList("rankine:sphalerite_ore", Arrays.asList("desert","mesa","savanna","plains"), "sphere", "uniform", 10, 60, 3, 0.6D, 1, 0.3, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:sphalerite_ore", Arrays.asList("all"), "default", "triangle", 0, 128, 3, 1.0D, 8, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:subbituminous_ore", List.of("overworld"), "sphere", "uniform", 20, 60, 3, 0.5D, 1, 0.5, 0.0D));
+            oreSettings.add(List.of("rankine:bituminous_ore", List.of("overworld"), "sphere", "uniform", -30, 30, 3, 0.5D, 1, 0.3, 0.0D));
+            oreSettings.add(List.of("rankine:anthracite_ore", List.of("overworld"), "sphere", "uniform", -64, -20, 3, 0.5D, 1, 0.2, 0.0D));
 
 
-            //oreSettings.add(Arrays.asList("rankine:chromite_ore", Arrays.asList("all"), "sphere", "uniform", -60, -35, 3, 0.2D, 1, 0.3, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:cryolite_ore", Arrays.asList("extreme_hills","mountain","taiga","icy"), "sphere", "uniform", -60, -30, 3, 0.6D, 1, 0.3, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:bauxite_ore", Arrays.asList("desert","mesa","savanna","jungle","swamp","plains","forest","taiga"), "sphere", "uniform", 10, 40, 3, 0.2D, 1, 0.3, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:celestine_ore", Arrays.asList("jungle","swamp","plains","forest","taiga"), "sphere", "uniform", 10, 40, 3, 0.6D, 1, 0.1, 0.0D));
+            oreSettings.add(List.of("rankine:hematite_ore", List.of("overworld"), "sphere", "uniform", -10, 80, 3, 0.4D, 2, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:hematite_ore", List.of("overworld"), "default", "triangle", 64, 384, 3, 1.0D, 50, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:chalcocite_ore", List.of("overworld"), "sphere", "uniform", 0, 96, 3, 0.6D, 1, 0.4, 0.0D));
+            oreSettings.add(List.of("rankine:chalcocite_ore", List.of("overworld"), "default", "triangle", 0, 96, 3, 1.0D, 30, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:magnesite_ore", List.of("overworld"), "sphere", "uniform", -30, 20, 3, 0.3D, 1, 0.5, 0.0D));
+            oreSettings.add(List.of("rankine:magnesite_ore", List.of("overworld"), "default", "triangle", -64, 30, 3, 1.0D, 25, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:pyrolusite_ore", List.of("overworld"), "sphere", "uniform", -30, 10, 4, 0.3D, 1, 0.2D, 0.0D));
+            oreSettings.add(List.of("rankine:pyrolusite_ore", List.of("overworld"), "default", "triangle", -96, 10, 3, 1.0D, 25, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:pentlandite_ore", List.of("ocean","beach","mushroom","desert","mesa"), "sphere", "uniform", -30, 20, 3, 0.3D, 1, 0.5, 0.0D));
+            oreSettings.add(List.of("rankine:pentlandite_ore", List.of("overworld"), "default", "triangle", -40, 40, 3, 1.0D, 20, 1.0, 0.0D));
 
-            oreSettings.add(Arrays.asList("rankine:cobaltite_ore", Arrays.asList("all"), "sphere", "uniform", -60, -35, 3, 0.2D, 1, 0.1, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:galena_ore", Arrays.asList("all"), "sphere", "uniform", -30, 10, 4, 0.2D, 1, 0.2D, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:acanthite_ore", Arrays.asList("all"), "sphere", "uniform", -30, 10, 4, 0.2D, 1, 0.2D, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:plumbago_ore", Arrays.asList("all"), "default", "triangle", -60, -20, 7, 1.0D, 3, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:lazurite_ore", Arrays.asList("all"), "sphere", "uniform", 0, 40, 3, 0.2D, 1, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:sphalerite_ore", List.of("desert","mesa","savanna","plains"), "sphere", "uniform", 10, 60, 3, 0.6D, 1, 0.3, 0.0D));
+            oreSettings.add(List.of("rankine:sphalerite_ore", List.of("overworld"), "default", "triangle", 0, 128, 3, 1.0D, 8, 1.0, 0.0D));
+
+
+            //oreSettings.add(List.of("rankine:chromite_ore", List.of("overworld"), "sphere", "uniform", -60, -35, 3, 0.2D, 1, 0.3, 0.0D));
+            oreSettings.add(List.of("rankine:cryolite_ore", List.of("extreme_hills","mountain","taiga","icy"), "sphere", "uniform", -60, -30, 3, 0.6D, 1, 0.3, 0.0D));
+            oreSettings.add(List.of("rankine:bauxite_ore", List.of("desert","mesa","savanna","jungle","swamp","plains","forest","taiga"), "sphere", "uniform", 10, 40, 3, 0.2D, 1, 0.3, 0.0D));
+            oreSettings.add(List.of("rankine:celestine_ore", List.of("jungle","swamp","plains","forest","taiga"), "sphere", "uniform", 10, 40, 3, 0.6D, 1, 0.1, 0.0D));
+
+            oreSettings.add(List.of("rankine:cobaltite_ore", List.of("overworld"), "sphere", "uniform", -60, -35, 3, 0.2D, 1, 0.1, 0.0D));
+            oreSettings.add(List.of("rankine:galena_ore", List.of("overworld"), "sphere", "uniform", -30, 10, 4, 0.2D, 1, 0.2D, 0.0D));
+            oreSettings.add(List.of("rankine:acanthite_ore", List.of("overworld"), "sphere", "uniform", -30, 10, 4, 0.2D, 1, 0.2D, 0.0D));
+            oreSettings.add(List.of("rankine:plumbago_ore", List.of("overworld"), "default", "triangle", -60, -20, 7, 1.0D, 3, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:lazurite_ore", List.of("overworld"), "sphere", "uniform", 0, 40, 3, 0.2D, 1, 1.0, 0.0D));
 
             //Rare ores
-            oreSettings.add(Arrays.asList("rankine:sperrylite_ore", Arrays.asList("all"), "default", "triangle", -84, -40, 8, 1.0D, 1, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:ilmenite_ore", Arrays.asList("all"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:wolframite_ore", Arrays.asList("all"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:uraninite_ore", Arrays.asList("all"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:molybdenite_ore", Arrays.asList("all"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:coltan_ore", Arrays.asList("all"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:chromite_ore", Arrays.asList("all"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:sperrylite_ore", List.of("overworld"), "default", "triangle", -84, -40, 8, 1.0D, 1, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:ilmenite_ore", List.of("overworld"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:wolframite_ore", List.of("overworld"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:uraninite_ore", List.of("overworld"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:molybdenite_ore", List.of("overworld"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:coltan_ore", List.of("overworld"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:chromite_ore", List.of("overworld"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
 
-            oreSettings.add(Arrays.asList("rankine:bog_iron", Arrays.asList("swamp","jungle"), "disk", "uniform", 30, 70, 4, 0.3D, 1, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:ironstone", Arrays.asList("desert","savanna","mesa"), "disk", "uniform", 30, 70, 4, 0.3D, 1, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:kaolin", Arrays.asList("swamp","jungle","mushroom"), "disk", "uniform", 40, 70, 4, 0.7D, 1, 0.4, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:fire_clay", Arrays.asList("all"), "disk", "uniform", 55, 70, 3, 0.6D, 1, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:sylvinite", Arrays.asList("beach","ocean","desert"), "default", "triangle", 20, 50, 3, 1.0D, 15, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:phosphorite", Arrays.asList("beach","ocean","desert"), "disk", "uniform", 30, 50, 4, 0.6D, 1, 0.4, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:phosphorite", Arrays.asList("extreme_hills","mountain"), "disk", "uniform", 70, 100, 4, 0.6D, 1, 0.5, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:snowflake_obsidian", Arrays.asList("all"), "disk", "uniform", -60, -45, 4, 1.0D, 1, 0.4, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:blood_obsidian", Arrays.asList("all"), "disk", "uniform", -60, -45, 4, 1.0D, 1, 0.4, 0.0D));
+            oreSettings.add(List.of("rankine:bog_iron", List.of("swamp","jungle"), "disk", "uniform", 30, 70, 4, 0.3D, 1, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:ironstone", List.of("desert","savanna","mesa"), "disk", "uniform", 30, 70, 4, 0.3D, 1, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:kaolin", List.of("swamp","jungle","mushroom"), "disk", "uniform", 40, 70, 4, 0.7D, 1, 0.4, 0.0D));
+            oreSettings.add(List.of("rankine:fire_clay", List.of("overworld"), "disk", "uniform", 55, 70, 3, 0.6D, 1, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:sylvinite", List.of("beach","ocean","desert"), "default", "triangle", 20, 50, 3, 1.0D, 15, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:phosphorite", List.of("beach","ocean","desert"), "disk", "uniform", 30, 50, 4, 0.6D, 1, 0.4, 0.0D));
+            oreSettings.add(List.of("rankine:phosphorite", List.of("extreme_hills","mountain"), "disk", "uniform", 70, 100, 4, 0.6D, 1, 0.5, 0.0D));
+            oreSettings.add(List.of("rankine:snowflake_obsidian", List.of("overworld"), "disk", "uniform", -60, -45, 4, 1.0D, 1, 0.4, 0.0D));
+            oreSettings.add(List.of("rankine:blood_obsidian", List.of("overworld"), "disk", "uniform", -60, -45, 4, 1.0D, 1, 0.4, 0.0D));
 
-            //oreSettings.add(Arrays.asList("rankine:basaltic_tuff", Arrays.asList("ocean","beach","mushroom","none"), "disk", "uniform",20, 50, 6, 1.0D, 1, 0.4, 0.0D));
-            //oreSettings.add(Arrays.asList("rankine:andesitic_tuff", Arrays.asList("extreme_hills"), "disk", "uniform",70, 100, 6, 1.0D, 1, 0.4, 0.0D));
-            //oreSettings.add(Arrays.asList("rankine:rhyolitic_tuff", Arrays.asList("savanna","mesa","desert","plains"), "disk", "uniform",10, 40, 6, 1.0D, 1, 0.4, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:kimberlitic_tuff", Arrays.asList("all"), "disk", "uniform",-60, -45, 4, 1.0D, 1, 0.4, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:komatiitic_tuff", Arrays.asList("minecraft:nether_wastes"), "disk", "uniform",10, 30, 6, 1.0D, 1, 0.4, 0.0D));
+            //oreSettings.add(List.of("rankine:basaltic_tuff", List.of("ocean","beach","mushroom","none"), "disk", "uniform",20, 50, 6, 1.0D, 1, 0.4, 0.0D));
+            //oreSettings.add(List.of("rankine:andesitic_tuff", List.of("extreme_hills"), "disk", "uniform",70, 100, 6, 1.0D, 1, 0.4, 0.0D));
+            //oreSettings.add(List.of("rankine:rhyolitic_tuff", List.of("savanna","mesa","desert","plains"), "disk", "uniform",10, 40, 6, 1.0D, 1, 0.4, 0.0D));
+            oreSettings.add(List.of("rankine:kimberlitic_tuff", List.of("all"), "disk", "uniform",-60, -45, 4, 1.0D, 1, 0.4, 0.0D));
+            oreSettings.add(List.of("rankine:komatiitic_tuff", List.of("minecraft:nether_wastes"), "disk", "uniform",10, 30, 6, 1.0D, 1, 0.4, 0.0D));
 
             //Nether ores
-            oreSettings.add(Arrays.asList("rankine:native_sulfur_ore", Arrays.asList("nether"), "default", "uniform",20, 75, 5, 1.0D, 12, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_arsenic_ore", Arrays.asList("nether"), "default", "uniform",20, 75, 5, 1.0D, 12, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:magnetite_ore", Arrays.asList("nether"), "sphere", "uniform",60, 120, 3, 0.6D, 1, 0.1, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:cobaltite_ore", Arrays.asList("nether"), "sphere", "uniform",60, 120, 3, 0.6D, 1, 0.1, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:wolframite_ore", Arrays.asList("nether"), "sphere", "uniform",60, 120, 3, 0.6D, 1, 0.1, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:ilmenite_ore", Arrays.asList("nether"), "sphere", "uniform",60, 120, 3, 0.6D, 1, 0.1, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:sperrylite_ore", Arrays.asList("nether"), "sphere", "uniform",90, 120, 2, 0.6D, 1, 0.1, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:coltan_ore", Arrays.asList("nether"), "sphere", "uniform",10, 40, 2, 0.5D, 1, 0.2, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:monazite_ore", Arrays.asList("nether"), "sphere", "uniform",10, 40, 2, 0.5D, 1, 0.2, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:interspinifex_ore", Arrays.asList("minecraft:crimson_forest"), "default", "uniform",50, 90, 6, 1.0D, 8, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_sulfur_ore", List.of("nether"), "default", "triangle", -30, 130, 5, 1.0D, 20, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_arsenic_ore", List.of("nether"), "default", "triangle", -30, 130, 5, 1.0D, 20, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:magnetite_ore", List.of("nether"), "sphere", "uniform",60, 120, 3, 0.6D, 1, 0.1, 0.0D));
+            oreSettings.add(List.of("rankine:cobaltite_ore", List.of("nether"), "sphere", "uniform",60, 120, 3, 0.6D, 1, 0.1, 0.0D));
+            oreSettings.add(List.of("rankine:wolframite_ore", List.of("nether"), "sphere", "uniform",60, 120, 3, 0.6D, 1, 0.1, 0.0D));
+            oreSettings.add(List.of("rankine:ilmenite_ore", List.of("nether"), "sphere", "uniform",60, 120, 3, 0.6D, 1, 0.1, 0.0D));
+            oreSettings.add(List.of("rankine:sperrylite_ore", List.of("nether"), "sphere", "uniform",90, 120, 3, 0.6D, 1, 0.1, 0.0D));
+            oreSettings.add(List.of("rankine:coltan_ore", List.of("nether"), "sphere", "uniform",10, 40, 3, 0.5D, 1, 0.2, 0.0D));
+            oreSettings.add(List.of("rankine:monazite_ore", List.of("nether"), "sphere", "uniform",10, 40, 3, 0.5D, 1, 0.2, 0.0D));
+            oreSettings.add(List.of("rankine:interspinifex_ore", List.of("minecraft:crimson_forest"), "default", "triangle", 30, 90, 6, 1.0D, 15, 1.0, 0.0D));
 
             //End ores
-            oreSettings.add(Arrays.asList("rankine:native_gallium_ore", Arrays.asList("the_end"), "default", "uniform",10, 60, 4, 1.0D, 15, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_indium_ore", Arrays.asList("the_end"), "default", "uniform",10, 60, 4, 1.0D, 15, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_selenium_ore", Arrays.asList("the_end"), "default", "uniform",10, 60, 4, 1.0D, 15, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:native_tellurium_ore", Arrays.asList("the_end"), "default", "uniform",10, 60, 4, 1.0D, 15, 1.0, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:molybdenite_ore", Arrays.asList("the_end"), "sphere", "uniform",10, 60, 3, 0.6D, 1, 0.5, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:uraninite_ore", Arrays.asList("the_end"), "sphere", "uniform",10, 60, 3, 0.6D, 1, 0.5, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:xenotime_ore", Arrays.asList("the_end"), "sphere", "uniform",10, 60, 3, 0.6D, 1, 0.5, 0.0D));
-            oreSettings.add(Arrays.asList("rankine:greenockite_ore", Arrays.asList("the_end"), "sphere", "uniform",10, 60, 3, 0.6D, 1, 0.5, 0.0D));
+            oreSettings.add(List.of("rankine:native_gallium_ore", List.of("the_end"), "default", "triangle",-50, 70, 4, 1.0D, 15, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_indium_ore", List.of("the_end"), "default", "triangle",-50, 70, 4, 1.0D, 15, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_selenium_ore", List.of("the_end"), "default", "triangle",-50, 70, 4, 1.0D, 15, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_tellurium_ore", List.of("the_end"), "default", "triangle",-50, 70, 4, 1.0D, 15, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:molybdenite_ore", List.of("the_end"), "sphere", "uniform",10, 40, 3, 0.5D, 1, 0.3, 0.0D));
+            oreSettings.add(List.of("rankine:uraninite_ore", List.of("the_end"), "sphere", "uniform",10, 40, 3, 0.5D, 1, 0.3, 0.0D));
+            oreSettings.add(List.of("rankine:xenotime_ore", List.of("the_end"), "sphere", "uniform",10, 40, 3, 0.5D, 1, 0.3, 0.0D));
+            oreSettings.add(List.of("rankine:greenockite_ore", List.of("the_end"), "sphere", "uniform",10, 40, 3, 0.5D, 1, 0.3, 0.0D));
 
 
 
@@ -1056,7 +1091,7 @@ public class Config {
             ORE_SETTINGS = b.comment("Ore Settings",
                     "[OreGen]: [Ore, [Biomes], Type, Min Height, Max Height, Size, Density, Count, spawnChance, discardChance]",
                     "   Ore: resource loacation of the block to generate",
-                    "   [Biomes]: String list of biome resource locations to generate in. Use \"all\" to generate in all biomes. Can use biome categories by using the category name: ex \"ocean\".",
+                    "   [Biomes]: String list of biome resource locations to generate in. Use \"overworld\" to generate in all biomes. Can use biome categories by using the category name: ex \"ocean\".",
                     "   VeinType: String type of vein to generate. Options include \"default\" (works like vanilla veins), \"sphere\" (generates veins more radially, like an explosion), \"disk\" (like the sphere except flatter)",
                     "   DistributionType: String type of distribution to generate. Options include \"uniform\" (evenly distributes ore between the two heights), \"triangle\" (concentrates ores in the middle of the two heights)",
                     "   Min Height: Int to generate",

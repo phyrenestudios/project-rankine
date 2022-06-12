@@ -35,9 +35,9 @@ public class EndMeteoriteFeature extends Feature<NoneFeatureConfiguration> {
             BlockPos POS = new BlockPos(randX, randY, randZ);
 
 
-            int I1 = rand.nextInt(80)+20;
-            int I2 = rand.nextInt(80)+20;
-            int I3 = rand.nextInt(80)+20;
+            int I1 = rand.nextInt(60)+20;
+            int I2 = I1 + rand.nextInt(30)-15;
+            int I3 = I1 + rand.nextInt(30)-15;
             double d1 = 1/((double) I1);
             double d2 = 1/((double) I2);
             double d3 = 1/((double) I3);

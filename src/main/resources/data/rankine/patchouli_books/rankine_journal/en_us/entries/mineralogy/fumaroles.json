@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_mineralogy.fumaroles.name",
   "icon": "rankine:meteorite",
-  "category": "mineralogy",
+  "category": "rankine:mineralogy",
   "pages": [
     {
       "type": "text",

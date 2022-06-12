@@ -2588,6 +2588,7 @@ public class RankineItems {
 
     public static final RegistryObject<Item> COAL_ORE = ITEMS.register("coal_ore", () -> new BlockItem(RankineBlocks.COAL_ORE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> IRON_ORE = ITEMS.register("iron_ore", () -> new BlockItem(RankineBlocks.IRON_ORE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> COPPER_ORE = ITEMS.register("copper_ore", () -> new BlockItem(RankineBlocks.COPPER_ORE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> GOLD_ORE = ITEMS.register("gold_ore", () -> new BlockItem(RankineBlocks.GOLD_ORE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> REDSTONE_ORE = ITEMS.register("redstone_ore", () -> new BlockItem(RankineBlocks.REDSTONE_ORE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> LAPIS_ORE = ITEMS.register("lapis_ore", () -> new BlockItem(RankineBlocks.LAPIS_ORE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));

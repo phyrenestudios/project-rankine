@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_mineralogy.mineral_stones.name",
   "icon": "rankine:phosphorite",
-  "category": "mineralogy",
+  "category": "rankine:mineralogy",
   "pages": [
     {
       "type": "text",

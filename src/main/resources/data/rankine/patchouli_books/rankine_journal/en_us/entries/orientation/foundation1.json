@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_orientation.foundation1.name",
   "icon": "minecraft:flint",
-  "category": "orientation",
+  "category": "rankine:orientation",
   "sortnum": 3,
   "pages": [
     {

@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_mineralogy.gem_ores.name",
   "icon": "rankine:beryl_ore",
-  "category": "mineralogy",
+  "category": "rankine:mineralogy",
   "pages": [
     {
       "type": "text",

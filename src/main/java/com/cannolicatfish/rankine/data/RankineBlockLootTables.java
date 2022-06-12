@@ -234,6 +234,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.NETHER_QUARTZ_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.NETHER_QUARTZ_ORE.get(), Items.QUARTZ));
         lootTables.put(RankineBlocks.COAL_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.COAL_ORE.get(), Items.COAL));
         lootTables.put(RankineBlocks.IRON_ORE.get(), createBlockLootTable(RankineBlocks.IRON_ORE.get()));
+        lootTables.put(RankineBlocks.COPPER_ORE.get(), createBlockLootTable(RankineBlocks.COPPER_ORE.get()));
         lootTables.put(RankineBlocks.GOLD_ORE.get(), createBlockLootTable(RankineBlocks.GOLD_ORE.get()));
         lootTables.put(RankineBlocks.LAPIS_ORE.get(), droppingWithSilkTouch(RankineBlocks.LAPIS_ORE.get(), withExplosionDecay(RankineBlocks.LAPIS_ORE.get(), LootItem.lootTableItem(Items.LAPIS_LAZULI).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 9.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));
         lootTables.put(RankineBlocks.REDSTONE_ORE.get(), droppingWithSilkTouch(RankineBlocks.REDSTONE_ORE.get(), withExplosionDecay(RankineBlocks.REDSTONE_ORE.get(), LootItem.lootTableItem(Items.REDSTONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 5.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));

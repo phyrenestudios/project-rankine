@@ -1,7 +1,7 @@
 {
   "name": "Evaporation Tower",
   "icon": "rankine:evaporation_tower",
-  "category": "materials",
+  "category": "rankine:materials",
   "pages": [
 	{
       "type": "text",

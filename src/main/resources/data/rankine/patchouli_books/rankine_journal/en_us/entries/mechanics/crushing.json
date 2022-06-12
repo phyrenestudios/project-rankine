@@ -1,7 +1,7 @@
 {
   "name": "Crushing",
   "icon": "rankine:wooden_hammer",
-  "category": "mechanics",
+  "category": "rankine:mechanics",
   "pages": [
     {
       "type": "text",

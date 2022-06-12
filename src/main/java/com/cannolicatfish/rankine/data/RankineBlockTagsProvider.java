@@ -534,7 +534,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(Tags.Blocks.ORES_QUARTZ).add(RankineBlocks.NETHER_QUARTZ_ORE.get());
         tag(BlockTags.GOLD_ORES).add(RankineBlocks.NETHER_GOLD_ORE.get(),RankineBlocks.GOLD_ORE.get(),RankineBlocks.NATIVE_GOLD_ORE.get());
         tag(BlockTags.IRON_ORES).add(RankineBlocks.IRON_ORE.get(),RankineBlocks.MAGNETITE_ORE.get(),RankineBlocks.HEMATITE_ORE.get(),RankineBlocks.PYRITE_ORE.get(),RankineBlocks.KAMACITE_ORE.get(),RankineBlocks.TAENITE_ORE.get(),RankineBlocks.TETRATAENITE_ORE.get(),RankineBlocks.ANTITAENITE_ORE.get(),RankineBlocks.BOG_IRON.get(),RankineBlocks.IRONSTONE.get());
-        tag(BlockTags.COPPER_ORES).add(RankineBlocks.MALACHITE_ORE.get(),RankineBlocks.CHALCOCITE_ORE.get(),RankineBlocks.PORPHYRY_COPPER.get());
+        tag(BlockTags.COPPER_ORES).add(RankineBlocks.COPPER_ORE.get(),RankineBlocks.MALACHITE_ORE.get(),RankineBlocks.CHALCOCITE_ORE.get(),RankineBlocks.PORPHYRY_COPPER.get());
         tag(RankineTags.Blocks.ORES_LEAD).add(RankineBlocks.GALENA_ORE.get(),RankineBlocks.NATIVE_LEAD_ORE.get());
         tag(RankineTags.Blocks.ORES_SILVER).add(RankineBlocks.ACANTHITE_ORE.get(),RankineBlocks.NATIVE_SILVER_ORE.get());
         tag(RankineTags.Blocks.ORES_BISMUTH).add(RankineBlocks.BISMUTHINITE_ORE.get(),RankineBlocks.NATIVE_BISMUTH_ORE.get());

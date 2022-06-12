@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_mechanics.finite_water.name",
   "icon": "minecraft:water_bucket",
-  "category": "mechanics",
+  "category": "rankine:mechanics",
   "pages": [
     {
       "type": "text",

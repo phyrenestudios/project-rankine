@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_stones.metamorphic.name",
   "icon": "rankine:mica_schist",
-  "category": "stones",
+  "category": "rankine:stones",
   "pages": [
     {
       "type": "text",

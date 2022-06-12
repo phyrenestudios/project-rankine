@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_orientation.foundation2.name",
   "icon": "rankine:bismuth_nugget",
-  "category": "orientation",
+  "category": "rankine:orientation",
   "sortnum": 4,
   "pages": [
     {

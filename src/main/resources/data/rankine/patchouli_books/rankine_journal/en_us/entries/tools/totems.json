@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_tools.totems.name",
   "icon": "rankine:totem_of_hastening",
-  "category": "tools",
+  "category": "rankine:tools",
   "pages": [
     {
       "type": "text",

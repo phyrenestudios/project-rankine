@@ -154,7 +154,7 @@ public class FeatureGeneration {
                 List<ResourceLocation> genBiomes = WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), true);
                 if (biomeList.get(0).isEmpty()) {
                     break;
-                } else if (biomeList.get(0).equals("all")) {
+                } else if (biomeList.get(0).equals("overworld")) {
                     genBiomes = WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.BiomeCategory.THEEND, Biome.BiomeCategory.NETHER), false);
                 } else {
                     for (String b : biomeList) {
