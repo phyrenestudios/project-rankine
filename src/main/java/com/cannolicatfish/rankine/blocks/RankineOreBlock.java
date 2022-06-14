@@ -52,4 +52,6 @@ public class RankineOreBlock extends OreBlock {
         } else return currentType == 0;
     }
 
+
+
 }

@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_orientation.foundation3.name",
   "icon": "rankine:steel_ingot",
-  "category": "orientation",
+  "category": "rankine:orientation",
   "sortnum": 4,
   "pages": [
     {

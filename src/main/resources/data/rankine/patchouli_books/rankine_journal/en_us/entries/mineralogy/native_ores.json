@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_mineralogy.native_ores.name",
   "icon": "rankine:native_bismuth_ore",
-  "category": "mineralogy",
+  "category": "rankine:mineralogy",
   "pages": [
     {
       "type": "text",

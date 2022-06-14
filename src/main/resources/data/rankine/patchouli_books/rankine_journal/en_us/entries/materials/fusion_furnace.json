@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_materials.fusion_furnace.name",
   "icon": "rankine:fusion_furnace",
-  "category": "materials",
+  "category": "rankine:materials",
   "pages": [
     {
       "type": "text",

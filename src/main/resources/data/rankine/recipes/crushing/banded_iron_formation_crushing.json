@@ -28,7 +28,7 @@
     "additional": 0.10
   },
   "output6": {
-    "item": "minecraft:hedenbergite",
+    "item": "rankine:hedenbergite",
     "chance": 0.02
   }
 }

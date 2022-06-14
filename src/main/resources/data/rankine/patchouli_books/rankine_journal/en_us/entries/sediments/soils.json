@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_sediments.soils.name",
   "icon": "minecraft:dirt",
-  "category": "sediments",
+  "category": "rankine:sediments",
   "pages": [
     {
       "type": "text",

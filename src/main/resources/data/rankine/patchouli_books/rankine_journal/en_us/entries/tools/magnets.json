@@ -1,7 +1,7 @@
 {
   "name": "Magnets",
   "icon": "rankine:alnico_magnet",
-  "category": "tools",
+  "category": "rankine:tools",
   "pages": [
     {
       "type": "text",

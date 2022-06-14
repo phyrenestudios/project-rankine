@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_mechanics.sluicing.name",
   "icon": "rankine:steel_gold_pan",
-  "category": "mechanics",
+  "category": "rankine:mechanics",
   "pages": [
     {
       "type": "text",

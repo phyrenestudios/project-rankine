@@ -2906,6 +2906,7 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> COAL_ORE = BLOCKS.register("coal_ore", () -> new RankineOreBlock(BlockBehaviour.Properties.copy(Blocks.COAL_ORE)));
     public static final RegistryObject<Block> IRON_ORE = BLOCKS.register("iron_ore", () -> new RankineOreBlock(BlockBehaviour.Properties.copy(Blocks.IRON_ORE)));
+    public static final RegistryObject<Block> COPPER_ORE = BLOCKS.register("copper_ore", () -> new RankineOreBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_ORE)));
     public static final RegistryObject<Block> GOLD_ORE = BLOCKS.register("gold_ore", () -> new RankineOreBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_ORE)));
     public static final RegistryObject<Block> REDSTONE_ORE = BLOCKS.register("redstone_ore", () -> new RankineOreBlock(BlockBehaviour.Properties.copy(Blocks.LAPIS_ORE)));
     public static final RegistryObject<Block> LAPIS_ORE = BLOCKS.register("lapis_ore", () -> new RankineOreBlock(BlockBehaviour.Properties.copy(Blocks.LAPIS_ORE)));

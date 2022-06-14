@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_stones.otherworldly.name",
   "icon": "rankine:ringwoodine",
-  "category": "stones",
+  "category": "rankine:stones",
   "pages": [
     {
       "type": "text",

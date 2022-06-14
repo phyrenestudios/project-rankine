@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_tools.utility_tools.name",
   "icon": "rankine:altimeter",
-  "category": "tools",
+  "category": "rankine:tools",
   "pages": [
     {
       "type": "text",

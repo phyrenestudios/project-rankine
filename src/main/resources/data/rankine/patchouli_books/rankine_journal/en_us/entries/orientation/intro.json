@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_orientation.intro.name",
   "icon": "minecraft:writable_book",
-  "category": "orientation",
+  "category": "rankine:orientation",
   "sortnum": 0,
   "pages": [
     {

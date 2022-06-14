@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_materials.gasses.name",
   "icon": "rankine:shulker_gas_vacuum",
-  "category": "materials",
+  "category": "rankine:materials",
   "pages": [
     {
       "type": "text",

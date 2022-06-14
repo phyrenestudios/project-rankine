@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_sediments.silts.name",
   "icon": "rankine:silt",
-  "category": "sediments",
+  "category": "rankine:sediments",
   "pages": [
     {
       "type": "text",

@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_tools.building_tool.name",
   "icon": "rankine:building_tool",
-  "category": "tools",
+  "category": "rankine:tools",
   "pages": [
     {
       "type": "text",

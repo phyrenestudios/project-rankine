@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_sediments.sands.name",
   "icon": "minecraft:sand",
-  "category": "sediments",
+  "category": "rankine:sediments",
   "pages": [
     {
       "type": "text",

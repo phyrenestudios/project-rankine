@@ -31,8 +31,6 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
     protected void addTags() {
         for (Block blk : RankineLists.MINERAL_WOOL) {
             tag(BlockTags.WOOL).add(blk);
-        }
-        for (Block blk : RankineLists.MINERAL_WOOL) {
             tag(RankineTags.Blocks.MINERAL_WOOL).add(blk);
         }
         for (Block blk : RankineLists.PLANKS) {
@@ -178,6 +176,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.GOLD_ORES).add(RankineBlocks.NATIVE_GOLD_ORE.get());
         tag(BlockTags.ICE).add(RankineBlocks.METEORIC_ICE.get());
         tag(BlockTags.CROPS).add(RankineBlocks.JUTE_PLANT.get(),RankineBlocks.CORN_PLANT.get(),RankineBlocks.RICE_PLANT.get(),RankineBlocks.COTTON_PLANT.get(),RankineBlocks.ASPARAGUS_PLANT.get(),RankineBlocks.CAMPHOR_BASIL_PLANT.get(),RankineBlocks.ALOE_PLANT.get(),RankineBlocks.PINEAPPLE_BUSH.get(),RankineBlocks.CRANBERRY_BUSH.get(),RankineBlocks.POKEBERRY_BUSH.get(),RankineBlocks.BLUEBERRY_BUSH.get(),RankineBlocks.ELDERBERRY_BUSH.get(),RankineBlocks.STRAWBERRY_BUSH.get(),RankineBlocks.SNOWBERRY_BUSH.get(),RankineBlocks.RASPBERRY_BUSH.get(),RankineBlocks.BLACKBERRY_BUSH.get(),RankineBlocks.BANANA_YUCCA_BUSH.get(),RankineBlocks.RYE_PLANT.get(),RankineBlocks.SORGHUM_PLANT.get(),RankineBlocks.BARLEY_PLANT.get(),RankineBlocks.MILLET_PLANT.get(),RankineBlocks.OAT_PLANT.get(),RankineBlocks.SOYBEAN_PLANT.get());
+        tag(RankineTags.Blocks.KNIFE_SHEARABLE).add(Blocks.GRASS,Blocks.TALL_GRASS,Blocks.FERN,Blocks.LARGE_FERN,Blocks.SEAGRASS,Blocks.TALL_SEAGRASS,Blocks.VINE,Blocks.TWISTING_VINES,Blocks.WEEPING_VINES,Blocks.DEAD_BUSH,RankineBlocks.WILLOW_BRANCHLET.get(),RankineBlocks.WILLOW_BRANCHLET_PLANT.get(),RankineBlocks.SHORT_GRASS.get(),RankineBlocks.STINGING_NETTLE.get(),RankineBlocks.YELLOW_CLOVER.get(),RankineBlocks.RED_CLOVER.get(),RankineBlocks.CRIMSON_CLOVER.get(),RankineBlocks.WHITE_CLOVER.get());
 
         for (Block blk : RankineLists.WOODEN_BOOKSHELVES) {
             tag(RankineTags.Blocks.BOOKSHELVES).add(blk);
@@ -187,6 +186,9 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         }
         for (Block blk : RankineLists.ELECTROMAGNETS) {
             tag(RankineTags.Blocks.ELECTROMAGNETS).add(blk);
+        }
+        for (Block blk : RankineLists.BALES) {
+            tag(RankineTags.Blocks.BALES).add(blk);
         }
         for (Block blk : RankineLists.FLOWER_POTS) {
             tag(BlockTags.FLOWER_POTS).add(blk);
@@ -534,7 +536,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(Tags.Blocks.ORES_QUARTZ).add(RankineBlocks.NETHER_QUARTZ_ORE.get());
         tag(BlockTags.GOLD_ORES).add(RankineBlocks.NETHER_GOLD_ORE.get(),RankineBlocks.GOLD_ORE.get(),RankineBlocks.NATIVE_GOLD_ORE.get());
         tag(BlockTags.IRON_ORES).add(RankineBlocks.IRON_ORE.get(),RankineBlocks.MAGNETITE_ORE.get(),RankineBlocks.HEMATITE_ORE.get(),RankineBlocks.PYRITE_ORE.get(),RankineBlocks.KAMACITE_ORE.get(),RankineBlocks.TAENITE_ORE.get(),RankineBlocks.TETRATAENITE_ORE.get(),RankineBlocks.ANTITAENITE_ORE.get(),RankineBlocks.BOG_IRON.get(),RankineBlocks.IRONSTONE.get());
-        tag(BlockTags.COPPER_ORES).add(RankineBlocks.MALACHITE_ORE.get(),RankineBlocks.CHALCOCITE_ORE.get(),RankineBlocks.PORPHYRY_COPPER.get());
+        tag(BlockTags.COPPER_ORES).add(RankineBlocks.COPPER_ORE.get(),RankineBlocks.MALACHITE_ORE.get(),RankineBlocks.CHALCOCITE_ORE.get(),RankineBlocks.PORPHYRY_COPPER.get());
         tag(RankineTags.Blocks.ORES_LEAD).add(RankineBlocks.GALENA_ORE.get(),RankineBlocks.NATIVE_LEAD_ORE.get());
         tag(RankineTags.Blocks.ORES_SILVER).add(RankineBlocks.ACANTHITE_ORE.get(),RankineBlocks.NATIVE_SILVER_ORE.get());
         tag(RankineTags.Blocks.ORES_BISMUTH).add(RankineBlocks.BISMUTHINITE_ORE.get(),RankineBlocks.NATIVE_BISMUTH_ORE.get());

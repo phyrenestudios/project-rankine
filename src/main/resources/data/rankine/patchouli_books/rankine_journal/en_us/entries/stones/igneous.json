@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_stones.igneous.name",
   "icon": "rankine:red_porphyry",
-  "category": "stones",
+  "category": "rankine:stones",
   "pages": [
     {
       "type": "text",

@@ -87,7 +87,7 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction direction = context.getClickedFace();
-        if (direction.getAxis().isVertical()) return Blocks.AIR.defaultBlockState();
+        if (direction.getAxis().isVertical() && context.getPlayer() != null) return Blocks.AIR.defaultBlockState();
         return this.defaultBlockState().setValue(HORIZONTAL_FACING, direction);
     }
 
@@ -105,6 +105,7 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
 
 
     public boolean growMushroom(ServerLevel worldIn, BlockPos pos, BlockState p_54862_, Random p_54863_) {
+        /*
         if (this.featureSupplier.get().value().place(worldIn, worldIn.getChunkSource().getGenerator(), p_54863_, pos)) {
             worldIn.removeBlock(pos, false);
             return true;
@@ -112,10 +113,13 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
             worldIn.setBlock(pos, p_54862_, 3);
             return false;
         }
+
+         */
+        return false;
     }
 
     public boolean isValidBonemealTarget(BlockGetter p_54870_, BlockPos pos, BlockState p_54872_, boolean p_54873_) {
-        return true;
+        return false;
     }
 
     public boolean isBonemealSuccess(Level p_54875_, Random p_54876_, BlockPos pos, BlockState p_54878_) {

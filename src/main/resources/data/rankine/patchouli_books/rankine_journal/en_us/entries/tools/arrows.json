@@ -1,7 +1,7 @@
 {
   "name": "Arrows",
   "icon": "rankine:alloy_arrow",
-  "category": "tools",
+  "category": "rankine:tools",
   "pages": [
     {
       "type": "text",

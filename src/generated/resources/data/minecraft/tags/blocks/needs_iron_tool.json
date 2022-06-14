@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "rankine:gold_ore",
+    "rankine:redstone_ore",
     "rankine:acanthite_ore",
     "rankine:antitaenite_ore",
     "rankine:baddeleyite_ore",

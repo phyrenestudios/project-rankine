@@ -1,15 +1,16 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.tags.Tag;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
@@ -259,8 +260,25 @@ public class VanillaIntegration {
 
     }
 
-    @Deprecated
     public static void populateFuelMap() {
+        fuelValueMap.put(RankineItems.LIGNITE.get(),1200);
+        fuelValueMap.put(RankineItems.LIGNITE_BLOCK.get(),1200*9);
+        fuelValueMap.put(RankineItems.SUBBITUMINOUS_COAL.get(),1600);
+        fuelValueMap.put(RankineItems.SUBBITUMINOUS_COAL_BLOCK.get(),1600*9);
+        fuelValueMap.put(RankineItems.BITUMINOUS_COAL.get(),2400);
+        fuelValueMap.put(RankineItems.BITUMINOUS_COAL_BLOCK.get(),2400*9);
+        fuelValueMap.put(RankineItems.ANTHRACITE_COAL.get(),3200);
+        fuelValueMap.put(RankineItems.ANTHRACITE_COAL_BLOCK.get(),3200*9);
+        fuelValueMap.put(RankineItems.COKE.get(),3200);
+        fuelValueMap.put(RankineItems.COKE_BLOCK.get(),3200*9);
+        fuelValueMap.put(RankineItems.DRIED_BAMBOO.get(),50);
+        fuelValueMap.put(RankineItems.BIOMASS.get(),25);
+        fuelValueMap.put(RankineItems.COMPRESSED_BIOMASS.get(),200);
+        fuelValueMap.put(RankineItems.STICK_BLOCK.get(),200);
+        fuelValueMap.put(RankineItems.COMPRESSED_BIOMASS.get(),200);
+        fuelValueMap.put(RankineItems.COMPRESSED_BIOMASS.get(),200);
+        fuelValueMap.put(RankineItems.COMPRESSED_BIOMASS.get(),200);
+
         if (!Config.GENERAL.FUEL_VALUES_LIST.get().isEmpty()) {
             for (String s : Config.GENERAL.FUEL_VALUES_LIST.get()) {
                 if (Arrays.asList(s.split("\\|")).size() == 2) {
@@ -281,14 +299,12 @@ public class VanillaIntegration {
                         continue;
                     }
 
-                    /*if (RS.contains("#")) {
+                    if (RS.contains("#")) {
                         ResourceLocation newRS = ResourceLocation.tryParse(RS.replace("#",""));
-                        Tag<Item> tag = SerializationTags.getInstance().getItems().getTag(newRS);
-                        if (tag != null) {
-                            for (Item item : tag.getValues()) {
-                                if (item != null && !fuelValueMap.containsKey(item)) {
-                                    fuelValueMap.put(item, burnTime);
-                                }
+                        TagKey<Item> tag = TagKey.create(Registry.ITEM_REGISTRY,newRS);
+                        for (Item item : ForgeRegistries.ITEMS.tags().getTag(tag).stream().toList()) {
+                            if (item != null && !fuelValueMap.containsKey(item)) {
+                                fuelValueMap.put(item, burnTime);
                             }
                         }
                     } else {
@@ -296,7 +312,7 @@ public class VanillaIntegration {
                         if (item != null && !fuelValueMap.containsKey(item)) {
                             fuelValueMap.put(item,burnTime);
                         }
-                    }*/
+                    }
                 }
 
             }

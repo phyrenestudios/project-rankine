@@ -46,7 +46,7 @@ public class MudBlock extends Block {
 
     @Override
     public void randomTick(BlockState blockState, ServerLevel levelIn, BlockPos pos, Random p_60554_) {
-        if (!WorldgenUtils.isWet(levelIn, pos)) {
+        if (!WorldgenUtils.isWet(levelIn.getChunk(pos), pos)) {
             levelIn.setBlock(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.MUD_BLOCKS.indexOf(blockState.getBlock())).defaultBlockState(), 3);
         }
         super.randomTick(blockState, levelIn, pos, p_60554_);

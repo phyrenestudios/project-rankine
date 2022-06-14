@@ -6,7 +6,6 @@ import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitBlock;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
-import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
@@ -661,7 +660,6 @@ public class RankineEventHandler {
     public static void fuelValues(WorldEvent.Load event) {
         VanillaIntegration.populateFuelMap();
     }
-
 
     @SubscribeEvent
     public static void fuelValues(FurnaceFuelBurnTimeEvent event) {
@@ -1929,6 +1927,7 @@ public class RankineEventHandler {
                 player.swing(hand);
                 if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !world.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                     Block.popResource(world, pos.above(), new ItemStack(Items.GRASS, 1));
+                    if (world.getRandom().nextFloat() < 0.2) Block.popResource(world, pos.above(), new ItemStack(RankineItems.GRASS_SEEDS.get(), 1));
                 }
                 if (!world.isClientSide) {
                     player.getItemInHand(hand).hurtAndBreak(1, player, (p_220038_0_) -> {
@@ -2170,7 +2169,7 @@ public class RankineEventHandler {
         Player player = event.getPlayer();
         BlockPos pos = event.getPos();
         Block target = worldIn.getBlockState(pos).getBlock();
-        Item mainHandItem = player.getMainHandItem().getItem();
+        ItemStack mainHandItem = player.getMainHandItem();
         Item offHandItem = player.getOffhandItem().getItem();
         float CHANCE = worldIn.getRandom().nextFloat();
 
@@ -2322,7 +2321,7 @@ public class RankineEventHandler {
 
             //Nugget Drops
             if (ForgeRegistries.BLOCKS.tags().getTag(Tags.Blocks.STONE).contains(target)) {
-                if (mainHandItem instanceof PickaxeItem) {
+                if (mainHandItem.getItem() instanceof PickaxeItem) {
                     BlockPos foundPos = null;
                     for (int x = 1; x < Config.GENERAL.NUGGET_DISTANCE.get(); x++) {
                         if (worldIn.getBlockState(pos.below(x)).getBlock() instanceof RankineOreBlock) {
@@ -2368,44 +2367,12 @@ public class RankineEventHandler {
             } //end stone check
 
             //knife stuff
-            if (player.getMainHandItem().is(RankineTags.Items.KNIVES)) {
-                ItemStack drops = null;
-
-                if (target == Blocks.GRASS) {
-                    drops = new ItemStack(Items.GRASS, 1);
-                } else if (target == Blocks.TALL_GRASS) {
-                    drops = new ItemStack(Items.GRASS, 2);
-                } else if (target == Blocks.FERN) {
-                    drops = new ItemStack(Items.FERN, 1);
-                } else if (target == Blocks.LARGE_FERN) {
-                    drops = new ItemStack(Items.LARGE_FERN, 1);
-                } else if (target == Blocks.VINE) {
-                    drops = new ItemStack(Items.VINE, 1);
-                } else if (target == Blocks.TWISTING_VINES) {
-                    drops = new ItemStack(Items.TWISTING_VINES, 1);
-                } else if (target == Blocks.WEEPING_VINES_PLANT) {
-                    drops = new ItemStack(Items.WEEPING_VINES, 1);
-                } else if (target == RankineBlocks.SHORT_GRASS.get()) {
-                    drops = new ItemStack(RankineItems.SHORT_GRASS.get(), 1);
-                } else if (target == RankineBlocks.STINGING_NETTLE.get()) {
-                    drops = new ItemStack(RankineItems.STINGING_NETTLE.get(), 1);
-                } else if (target == RankineBlocks.YELLOW_CLOVER.get()) {
-                    drops = new ItemStack(RankineItems.YELLOW_CLOVER.get(), 1);
-                } else if (target == RankineBlocks.WHITE_CLOVER.get()) {
-                    drops = new ItemStack(RankineItems.WHITE_CLOVER.get(), 1);
-                } else if (target == RankineBlocks.CRIMSON_CLOVER.get()) {
-                    drops = new ItemStack(RankineItems.CRIMSON_CLOVER.get(), 1);
-                } else if (target == RankineBlocks.RED_CLOVER.get()) {
-                    drops = new ItemStack(RankineItems.RED_CLOVER.get(), 1);
-                } else if (target == Blocks.DEAD_BUSH || target instanceof RankinePlantBlock || target instanceof SweetBerryBushBlock) {
-                    drops = new ItemStack(Items.STICK, 2 + worldIn.getRandom().nextInt(4));
-                }
-                if (drops != null && !worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots) {
-                    Block.popResource(worldIn, pos, drops);
-                }
-                if (drops != null && !worldIn.isClientSide) {
-                    player.getMainHandItem().hurtAndBreak(1, player, (p_220038_0_) -> {
-                        p_220038_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+            if (mainHandItem.is(RankineTags.Items.KNIVES)) {
+                if (worldIn.getBlockState(pos).is(RankineTags.Blocks.KNIFE_SHEARABLE)) {
+                    worldIn.destroyBlock(pos,false);
+                    Block.popResource(worldIn, pos, new ItemStack(target.asItem()));
+                    player.getItemInHand(event.getPlayer().swingingArm).hurtAndBreak(1, player, (p_220040_1_) -> {
+                        p_220040_1_.broadcastBreakEvent(event.getPlayer().swingingArm);
                     });
                 }
             }

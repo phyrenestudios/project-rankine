@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_sediments.gravels.name",
   "icon": "minecraft:gravel",
-  "category": "sediments",
+  "category": "rankine:sediments",
   "pages": [
     {
       "type": "text",

@@ -36,7 +36,7 @@
     "max": 0.20
   },
   "input6": {
-    "tag": "forge:dirt",
+    "tag": "minecraft:dirt",
     "min": 0,
     "max": 0.10
   },

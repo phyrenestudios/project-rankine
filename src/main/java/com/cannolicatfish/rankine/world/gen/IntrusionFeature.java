@@ -40,7 +40,7 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
             try {
                 INTRUSION = WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(biomeName)).getRandomElement();
             } catch (NullPointerException e) {
-                System.out.println("Invalid intrusion entry for " + biomeName);
+                //System.out.println("Invalid intrusion entry for " + biomeName);
                 INTRUSION = Blocks.AIR.defaultBlockState();
             }
 
