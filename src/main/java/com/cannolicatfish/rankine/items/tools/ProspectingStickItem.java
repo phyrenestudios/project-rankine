@@ -6,17 +6,24 @@ import com.cannolicatfish.rankine.init.VanillaIntegration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.TierSortingRegistry;
+
+import java.util.List;
+import java.util.Locale;
 
 public class ProspectingStickItem extends Item {
 
@@ -60,7 +67,23 @@ public class ProspectingStickItem extends Item {
                     if (player != null) {
                         worldIn.playSound(player, pos, SoundEvents.NOTE_BLOCK_BELL, SoundSource.PLAYERS, 1.0F, worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
                         if (!worldIn.isClientSide()) {
-                            player.displayClientMessage(new TranslatableComponent("item.rankine.prospecting_stick.message", ORE.getBlock().getName(), "UNKNOWN"), true);
+                            List<Tier> tiers = TierSortingRegistry.getSortedTiers();
+                            Tier currentTier = Tiers.WOOD;
+                            for (Tier tier : tiers) {
+                                if (TierSortingRegistry.isTierSorted(tier) && TierSortingRegistry.isCorrectTierForDrops(tier,ORE)) {
+                                    currentTier = tier;
+                                    break;
+                                }
+                            }
+
+                            ResourceLocation rs = TierSortingRegistry.getName(currentTier);
+                            String cons;
+                            if (rs != null) {
+                                cons = rs.getPath().toUpperCase(Locale.ROOT).charAt(0) + rs.getPath().substring(1);
+                            } else {
+                                cons = "None";
+                            }
+                            player.displayClientMessage(new TranslatableComponent("item.rankine.prospecting_stick.message", ORE.getBlock().getName(), cons), true);
                             context.getItemInHand().hurtAndBreak(1, player, (p) -> {
                                 p.broadcastBreakEvent(context.getHand());
                             });

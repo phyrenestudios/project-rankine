@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -187,9 +188,9 @@ public class WorldgenUtils {
         return b;
     }
 
-    public static boolean isWet(LevelAccessor reader, BlockPos pos) {
-        for(BlockPos POS : BlockPos.betweenClosed(pos.offset(-2,0,-2),pos.offset(2,2,2))) {
-            if (reader.getFluidState(POS).is(FluidTags.WATER)) {
+    public static boolean isWet(ChunkAccess chunk, BlockPos pos) {
+        for(BlockPos POS : BlockPos.betweenClosed(pos.offset(-2,0,-2),pos.offset(2,1,2))) {
+            if (Math.abs(POS.getX() - pos.getX()) <= 2 && Math.abs(POS.getZ() - pos.getZ()) <= 2 && chunk.getFluidState(POS).is(FluidTags.WATER)) {
                 return true;
             }
         }

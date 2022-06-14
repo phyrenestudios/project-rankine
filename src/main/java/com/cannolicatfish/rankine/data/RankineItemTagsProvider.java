@@ -4,14 +4,14 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineTags;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.world.item.Items;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -712,6 +712,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         for (Block blk : RankineLists.WALL_MUSHROOMS) {
             tag(Tags.Items.MUSHROOMS).add(blk.asItem());
         }
+        tag(RankineTags.Items.SEEDS_GRASS).add(RankineItems.GRASS_SEEDS.get());
         tag(RankineTags.Items.SEEDS_FLOWER).add(RankineItems.FLOWER_SEEDS.get());
         tag(RankineTags.Items.SEEDS_ASPARAGUS).add(RankineItems.ASPARAGUS_SEEDS.get());
         tag(RankineTags.Items.SEEDS_CORN).add(RankineItems.CORN_SEEDS.get());
@@ -725,7 +726,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineTags.Items.SEEDS_MILLET).add(RankineItems.MILLET_SEEDS.get());
         tag(RankineTags.Items.SEEDS_OATS).add(RankineItems.OAT_SEEDS.get());
         tag(RankineTags.Items.SEEDS_SOYBEAN).add(RankineItems.OAT_SEEDS.get());
-        tag(Tags.Items.SEEDS).addTags(RankineTags.Items.SEEDS_FLOWER,RankineTags.Items.SEEDS_ASPARAGUS,RankineTags.Items.SEEDS_CORN,RankineTags.Items.SEEDS_COTTON,RankineTags.Items.SEEDS_RICE,RankineTags.Items.SEEDS_JUTE,RankineTags.Items.SEEDS_CAMPHOR_BASIL,RankineTags.Items.SEEDS_BARLEY,RankineTags.Items.SEEDS_RYE,RankineTags.Items.SEEDS_SORGHUM,RankineTags.Items.SEEDS_OATS,RankineTags.Items.SEEDS_MILLET,RankineTags.Items.SEEDS_SOYBEAN);
+        tag(Tags.Items.SEEDS).addTags(RankineTags.Items.SEEDS_GRASS,RankineTags.Items.SEEDS_FLOWER,RankineTags.Items.SEEDS_ASPARAGUS,RankineTags.Items.SEEDS_CORN,RankineTags.Items.SEEDS_COTTON,RankineTags.Items.SEEDS_RICE,RankineTags.Items.SEEDS_JUTE,RankineTags.Items.SEEDS_CAMPHOR_BASIL,RankineTags.Items.SEEDS_BARLEY,RankineTags.Items.SEEDS_RYE,RankineTags.Items.SEEDS_SORGHUM,RankineTags.Items.SEEDS_OATS,RankineTags.Items.SEEDS_MILLET,RankineTags.Items.SEEDS_SOYBEAN);
 
         tag(RankineTags.Items.CROPS_ASPARAGUS).add(RankineItems.ASPARAGUS.get());
         tag(RankineTags.Items.CROPS_CORN).add(RankineItems.CORN_EAR.get());
@@ -775,11 +776,12 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineTags.Items.BREEDABLES_COW).addTags(RankineTags.Items.CROPS_BARLEY,RankineTags.Items.CROPS_RYE,RankineTags.Items.CROPS_SORGHUM,RankineTags.Items.CROPS_MILLET,RankineTags.Items.CROPS_OATS,Tags.Items.CROPS_WHEAT,RankineTags.Items.CROPS_CORN);
         tag(RankineTags.Items.BREEDABLES_SHEEP).addTags(RankineTags.Items.CROPS_BARLEY,RankineTags.Items.CROPS_RYE,RankineTags.Items.CROPS_SORGHUM,RankineTags.Items.CROPS_MILLET,RankineTags.Items.CROPS_OATS,Tags.Items.CROPS_WHEAT,RankineTags.Items.CROPS_CORN);
         tag(RankineTags.Items.BREEDABLES_PIG).addTags(RankineTags.Items.CROPS_SOYBEAN,RankineTags.Items.CROPS_ASPARAGUS,RankineTags.Items.CROPS_CORN,Tags.Items.CROPS_BEETROOT,Tags.Items.CROPS_POTATO,Tags.Items.CROPS_CARROT);
-        tag(RankineTags.Items.BREEDABLES_CHICKEN).addTags(Tags.Items.SEEDS);
-        tag(RankineTags.Items.BREEDABLES_FOX).addTags(RankineTags.Items.BERRIES);
+        tag(RankineTags.Items.BREEDABLES_CHICKEN).addTag(Tags.Items.SEEDS);
+        tag(RankineTags.Items.BREEDABLES_FOX).addTag(RankineTags.Items.BERRIES);
         tag(RankineTags.Items.BREEDABLES_CAT).add(Items.SALMON,Items.COD,RankineItems.TUNA.get());
         tag(RankineTags.Items.BREEDABLES_HORSE).add(Items.GOLDEN_APPLE,Items.ENCHANTED_GOLDEN_APPLE,Items.GOLDEN_CARROT);
         tag(RankineTags.Items.BREEDABLES_RABBIT).add(Items.DANDELION,Items.CARROT,Items.GOLDEN_CARROT);
+        tag(RankineTags.Items.BREEDABLES_LLAMA).addTag(RankineTags.Items.GRAIN).addTag(RankineTags.Items.BALES);
 
 
         tag(RankineTags.Items.FLOUR).add(RankineItems.WHEAT_GRAIN.get(),RankineItems.BARLEY_GRAIN.get(),RankineItems.RYE_GRAIN.get(),RankineItems.CORN_GRAIN.get(),RankineItems.OAT_GRAIN.get(),RankineItems.MILLET_GRAIN.get(),RankineItems.RICE_GRAIN.get(),RankineItems.SORGHUM_GRAIN.get());
@@ -837,11 +839,12 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.MUD, RankineTags.Items.MUD);
         copy(RankineTags.Blocks.COARSE_DIRT, RankineTags.Items.COARSE_DIRT);
         copy(Tags.Blocks.GRAVEL, Tags.Items.GRAVEL);
-        //copy(Tags.Blocks.DIRT, RankineTags.Items.DIRT);
+        copy(BlockTags.DIRT, ItemTags.DIRT);
         copy(RankineTags.Blocks.TUFF, RankineTags.Items.TUFF);
         copy(RankineTags.Blocks.CONCRETE, RankineTags.Items.CONCRETE);
         copy(RankineTags.Blocks.CONCRETE_POWDER, RankineTags.Items.CONCRETE_POWDER);
         copy(RankineTags.Blocks.LEDS, RankineTags.Items.LEDS);
+        copy(RankineTags.Blocks.BALES, RankineTags.Items.BALES);
         copy(RankineTags.Blocks.MINERAL_WOOL, RankineTags.Items.MINERAL_WOOL);
         copy(RankineTags.Blocks.GEODES, RankineTags.Items.GEODES);
 
@@ -852,6 +855,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
 
         copy(BlockTags.STONE_BRICKS, ItemTags.STONE_BRICKS);
+        copy(BlockTags.WOOL, ItemTags.WOOL);
         copy(BlockTags.CARPETS, ItemTags.CARPETS);
         copy(BlockTags.DOORS, ItemTags.DOORS);
         copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
@@ -880,6 +884,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(Tags.Blocks.STONE, Tags.Items.STONE);
         copy(Tags.Blocks.SAND, Tags.Items.SAND);
         copy(Tags.Blocks.GLASS, Tags.Items.GLASS);
+        copy(Tags.Blocks.COBBLESTONE_NORMAL, Tags.Items.COBBLESTONE_NORMAL);
         copy(Tags.Blocks.COBBLESTONE, Tags.Items.COBBLESTONE);
         //copy(BlockTags.CAMPFIRES, RankineTags.Items.CAMPFIRES);
         tag(RankineTags.Items.CAMPFIRES).add(Items.CAMPFIRE,Items.SOUL_CAMPFIRE);
@@ -904,8 +909,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
 
         tag(ItemTags.STONE_CRAFTING_MATERIALS).add(RankineItems.SKARN.get(),RankineItems.BRECCIA.get());
-        //getOrCreateBuilder(ItemTags.BEACON_PAYMENT_ITEMS).addTags();
-
         tag(ItemTags.FISHES).add(RankineItems.TUNA.get(),RankineItems.COOKED_TUNA.get());
         tag(ItemTags.ARROWS).add(RankineItems.ROPE_COIL_ARROW.get(),RankineItems.ALLOY_ARROW.get());
         tag(ItemTags.COALS).add(RankineItems.LIGNITE.get(),RankineItems.SUBBITUMINOUS_COAL.get(),RankineItems.BITUMINOUS_COAL.get(),RankineItems.ANTHRACITE_COAL.get());

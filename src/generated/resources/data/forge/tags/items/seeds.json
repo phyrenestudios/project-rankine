@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#forge:seeds/grass",
     "#forge:seeds/flower",
     "#forge:seeds/asparagus",
     "#forge:seeds/corn",

@@ -58,6 +58,8 @@ public final class RankineTags {
         public static final TagKey<Block> MOVEMENT_MODIFIERS_WOOD = modBlock("movement_modifiers/wood");
 
 
+        public static final TagKey<Block> KNIFE_SHEARABLE = modBlock("knife_shearable");
+        public static final TagKey<Block> BALES = modBlock("bales");
         public static final TagKey<Block> FIREPROOF_LOGS = modBlock("fireproof_logs");
         public static final TagKey<Block> ELECTROMAGNETS = modBlock("electromagnets");
         public static final TagKey<Block> MAGNET_BANNED = modBlock("magnet_banned");
@@ -454,6 +456,7 @@ public final class RankineTags {
 
         public static final TagKey<Item> GEODES = modItem("geodes");
         public static final TagKey<Item> LEDS = modItem("leds");
+        public static final TagKey<Item> BALES = modItem("bales");
         public static final TagKey<Item> CANNONBALLS = modItem("cannonballs");
         public static final TagKey<Item> COBBLES = modItem("cobbles");
 
@@ -497,6 +500,7 @@ public final class RankineTags {
         public static final TagKey<Item> BREEDABLES_HORSE = forgeItem("breedables/horse");
         public static final TagKey<Item> BREEDABLES_FOX = forgeItem("breedables/fox");
         public static final TagKey<Item> BREEDABLES_RABBIT = forgeItem("breedables/rabbit");
+        public static final TagKey<Item> BREEDABLES_LLAMA = forgeItem("breedables/llama");
 
 
 
@@ -1025,6 +1029,7 @@ public final class RankineTags {
         public static final TagKey<Item> BOWS = forgeItem("bows");
         public static final TagKey<Item> SHIELDS = forgeItem("shields");
 
+        public static final TagKey<Item> SEEDS_GRASS = forgeItem("seeds/grass");
         public static final TagKey<Item> SEEDS_FLOWER = forgeItem("seeds/flower");
         public static final TagKey<Item> SEEDS_CORN = forgeItem("seeds/corn");
         public static final TagKey<Item> SEEDS_ASPARAGUS = forgeItem("seeds/asparagus");

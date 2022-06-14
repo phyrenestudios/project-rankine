@@ -29,13 +29,13 @@ public class EndMeteoriteFeature extends Feature<NoneFeatureConfiguration> {
 
         if (rand.nextFloat() < Config.WORLDGEN.END_METEORITE_CHANCE.get()) {
             ChunkAccess chunk = reader.getChunk(pos);
-            int randX = chunk.getPos().getMinBlockX() + rand.nextInt(16) + 8;
+            int randX = chunk.getPos().getMinBlockX() + rand.nextInt(16);
             int randY = rand.nextInt(70) + 20;
-            int randZ = chunk.getPos().getMaxBlockZ() + rand.nextInt(16 + 8);
+            int randZ = chunk.getPos().getMaxBlockZ() + rand.nextInt(16);
             BlockPos POS = new BlockPos(randX, randY, randZ);
 
 
-            int I1 = rand.nextInt(60)+20;
+            int I1 = rand.nextInt(50)+30;
             int I2 = I1 + rand.nextInt(30)-15;
             int I3 = I1 + rand.nextInt(30)-15;
             double d1 = 1/((double) I1);

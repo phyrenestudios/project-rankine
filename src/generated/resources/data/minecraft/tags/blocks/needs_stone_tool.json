@@ -1,9 +1,11 @@
 {
   "replace": false,
   "values": [
+    "rankine:lapis_ore",
     "rankine:bog_iron",
     "rankine:ironstone",
     "rankine:interspinifex_ore",
+    "rankine:copper_ore",
     "rankine:iron_ore",
     "rankine:lazurite_ore",
     "rankine:native_arsenic_ore",

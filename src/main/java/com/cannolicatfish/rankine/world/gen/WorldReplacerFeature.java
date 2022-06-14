@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.world.gen;
 
-import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -65,6 +64,7 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
                         BlockPos TARGET_POS = new BlockPos(x,y,z);
                         BlockState TARGET_BS = reader.getBlockState(TARGET_POS);
                         Block TARGET_BLOCK = TARGET_BS.getBlock();
+                        /*
                         if (Config.WORLDGEN.REPLACE_VANILLA_ORES.get() && vanillaOre(TARGET_BLOCK) != Blocks.AIR.defaultBlockState()) {
                             int TARGET_INDEX = WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock());
                             reader.setBlock(TARGET_POS, vanillaOre(TARGET_BLOCK).setValue(RankineOreBlock.TYPE, TARGET_INDEX == -1 ? 0 : TARGET_INDEX), 3);
@@ -76,6 +76,8 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
                             }
                             continue;
                         }
+
+                         */
 
                         switch (Biome.getBiomeCategory(Holder.direct(targetBiome))) {
                             case NETHER:
