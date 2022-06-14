@@ -2,7 +2,121 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
+
+## Project Rankine Version 1.3.3 (1.18.2 Port) Changelog [14Jun2022]
+
+- This update is the initial port to 1.18.2 from 1.16.5. Many minor changes may have occured during the update, but the significant ones are recorded below.
+
+### BLOCKS
+- Added dripstone and pointed dripstone variants (ferric, magnesitic, gypsic, zirconic, nitric, boracitic)
+- Mineral Deposits no longer generate Gwihabaite
+- Added Rankine Copper Ore equivalent
+- Added Banded Iron Formations
+- Removed Evaporite
+- Removed Copper Block
+- Removed Calcite Block
+- Updated loottables of vanilla ore equivalents to match vanilla
+- Adjusted xp drop from ores
+- Unlit campfires can be lit using flint
+
+### ITEMS
+- Removed Copper Ingot
+
+### WORLDGEN
+- Added a retrogen system to handle block replacements. Config option available. This should improve continuity of replacements across chunk borders
+- Larger patches of white sand
+- White sandstone generates under white sand
+- Desert sand and desert sandstone replace default sand in badlands biomes
+- Adjusted biome placement of trees and plants
+- Adjusted ore placements
+
+### TAGS
+- Added blocks to respective needs_tool tags
+- Added blocks to respective minable tags
+- Added Rankine blocks to animal spawn on tags
+
+### MISC
+- Changed misc item textures
+- Removed AnimalSpawning mixin
+- Fixed Fusion Furnace recipes not working when an item was not included in the gas slot
+- Fixed shonkinite crushing recipe
+- Adjusted output of alternative gunpowder recipes from 4 to 2
+- Added conversion crafting recipes for vanilla based ores
+
+## Project Rankine Version 1.3.2 Changelog [28Apr2022]
+### Hotfix 2 [13Jun2022]
+- Fixed bug related to block placement of wall mushrooms
+### Hotfix 1 [29Apr2022]
+- Added Apatite fusion furnace recipe
+- Added pulp recipe involving talc
+- Added alternative methods to get certain potions
+- Added special item that has a chance to drop when breaking clover blocks
+- Fixed lang for Conductivity potions
+- Fixed connection issue to multiplayer servers
+- Fixed tag errors for added recipes
+- Fixed penning trap recipe 
+
+### BLOCKS
+- Added model variants for stumps
+- Blocks under stumps take longer to mine unless using a shovel
+- Stumps break if floating
+- Leaf Litters will only convert grass blocks to podzol under light level 10
+- Leaf Litters can convert cobblestone and stone bricks to their mossy equivalents
+- Introduced an age blockstate to leaf litters to control growth
+- Added signs for all wood types
+- Added Bales for grain crops
+- Charred Logs can be obtained from an improperly built charcoal pit
+- Shrunk collision box of mud blocks to be 15 pixels tall
+- Updated some wood textures (primarily doors and trapdoors)
+
+### ITEMS
+- Updated Boat and Door item textures
+- Added/updated miscellaneous textures
+
+### RECIPES
+- Optimized and changed format of Sluicing Recipe JSON (now uses a JSON array for outputs rather than numbered outputs)
+- Added Fusion Furnace recipes to obtain previously unobtainable elements (Note: These recipes will be removed in the next major update)
+- Changed Steel Wire recipe to Duralumin Wire
+- Fixed Alloy Crafting recipes not linking to the right ingredients
+- Changed all crafting recipes involving Alloy Wire to use specific types
+- Added Terbium Nugget to Xenotime Crushing
+- Removed Geode sluicing recipe (changed to be an innate feature of hammers)
+
+### ALLOYING
+- Added alloy stats to gaseous elements
+- Added gaseous elements to various alloys
+
+### CONFIG
+- Removed unused configs
+- Added option to disable fire clay generation under coal veins
+- Added option to disable soil replacement independently of the biomeSettings config
+- Added option to disable mud block generation near water. Mud placing can be a slightly laggy process
+- Added option to disable Stone and Wooden Hammers similar to other vanilla tools
+- Added leafLitterDecay config to adjust rate of Leaf Litter decay.
+
+### MISC
+- Added recipe for plant fiber from willow branchlet
+- Added tag #rankine:knife_shearable to dictate which blocks knives can harvest, effectively silk touching them
+- Added tag #forge:breedables/llama and added associated crops and bales for breeding llamas
+- Added clovers to #minecraft:small_flowers
+- Added sounds to miscellaneous actions
+- Added applicable blocks to #twilight_forest:portal/edge and #twilight_forest:portal/decoration
+
+### Bug Fixes
+- Fixed crash with Ore Detector and related devices on server
+- Alloy furnace will now drop inventory when broken
+- Fixed flowers and other plants not being placable on rankine podzols and mycelliums
+- Added missing lootables
+
 ## Project Rankine Version 1.3.1 Changelog [9Mar2022]
+
+### Hotfix 1 [11Mar2022]
+- Corrected generated recipe names for alloy tools
+- Fixed issue where generated alloy tool recipes did not have the inheritRecipe variable when using multiple alloy recipes, which made certain tools uncraftable
+- Fix crash related to specific instances of incorrect ore blockstates
+- Added missing lang entries
+- Added a crafting recipe and use for the Totem of Blazing
+- Added element stats to Neptunium
 
 ### BLOCKS
 - Blocks under a stone cobble or stump take twice as long to mine
