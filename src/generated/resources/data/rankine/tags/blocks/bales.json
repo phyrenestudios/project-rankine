@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:barley_bale",
+    "rankine:rye_bale",
+    "rankine:millet_bale",
+    "rankine:sorghum_bale",
+    "rankine:oat_bale"
+  ]
+}
