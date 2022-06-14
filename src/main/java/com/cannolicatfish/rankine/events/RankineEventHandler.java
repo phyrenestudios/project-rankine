@@ -10,13 +10,12 @@ import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.capabilities.ChunkRetrogenProvider;
-import com.cannolicatfish.rankine.capabilities.IChunkRetrogenHandler;
 import com.cannolicatfish.rankine.commands.BlockWallCommand;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.commands.GiveTagCommand;
 import com.cannolicatfish.rankine.compatibility.Patchouli;
 import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
-import com.cannolicatfish.rankine.entities.goals.EatGrassGoalModified;
+import com.cannolicatfish.rankine.events.handlers.common.*;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.InformationItem;
 import com.cannolicatfish.rankine.items.alloys.*;
@@ -25,19 +24,18 @@ import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
 import com.cannolicatfish.rankine.items.totems.InvigoratingTotemItem;
-import com.cannolicatfish.rankine.items.totems.SofteningTotemItem;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;
 import com.cannolicatfish.rankine.recipe.StrippingRecipe;
-import com.cannolicatfish.rankine.util.*;
+import com.cannolicatfish.rankine.util.RankineMathHelper;
+import com.cannolicatfish.rankine.util.RockGeneratorUtils;
 import com.mojang.datafixers.DataFixUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
-import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -46,39 +44,36 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.*;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.EatBlockGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
-import net.minecraft.world.entity.animal.*;
+import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.monster.*;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.chunk.ChunkStatus;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -86,20 +81,14 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.BasicItemListing;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.TierSortingRegistry;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
@@ -131,36 +120,6 @@ public class RankineEventHandler {
         event.addCapability(new ResourceLocation("rankine:retrogen_chunk"), new ChunkRetrogenProvider());
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void retrogenChunk(ChunkEvent.Load event) {
-        if (!event.getWorld().isClientSide() && Config.WORLDGEN.RETRO_GEN.get()) {
-            ChunkAccess chunkAccess = event.getChunk();
-            if (chunkAccess instanceof ICapabilityProvider && chunkAccess.getStatus().isOrAfter(ChunkStatus.FULL)) {
-                LazyOptional<IChunkRetrogenHandler> capability = ((ICapabilityProvider) chunkAccess).getCapability(ChunkRetrogenProvider.CAPABILITY, null);
-                if (capability.isPresent() && capability.resolve().isPresent() && !capability.resolve().get().getValue()) {
-                    ReplacementUtils.performRetrogenReplacement(chunkAccess);
-                    capability.ifPresent(iChunkRetrogenHandler -> iChunkRetrogenHandler.setValue(true));
-                }
-            }
-        }
-
-    }
-
-    @SubscribeEvent
-    public static void onItemPickup(PlayerEvent.ItemPickupEvent event) {
-
-        // Totem of Cobbling
-        if (((ForgeRegistries.ITEMS.tags().getTag(Tags.Items.STONE).contains(event.getStack().getItem()) || event.getStack().getItem() == Items.COBBLESTONE) && (event.getPlayer().getMainHandItem().getItem() == RankineItems.TOTEM_OF_COBBLING.get() || event.getPlayer().getOffhandItem().getItem() == RankineItems.TOTEM_OF_COBBLING.get()))) {
-            Player player = event.getPlayer();
-            ItemStack totem = player.getMainHandItem().getItem() == RankineItems.TOTEM_OF_COBBLING.get() ? player.getMainHandItem() : player.getOffhandItem();
-            if (totem.getDamageValue() != 0) {
-                int x = totem.getDamageValue() - event.getStack().copy().getCount();
-                player.getInventory().getItem(event.getPlayer().getInventory().findSlotMatchingItem(event.getStack())).shrink(totem.getDamageValue());
-                totem.setDamageValue(Math.max(x,0));
-
-            }
-        }
-    }
 
 
     @SubscribeEvent
@@ -170,163 +129,7 @@ public class RankineEventHandler {
         BlockWallCommand.register(event.getDispatcher());
     }
 
-    @SubscribeEvent
-    public static void addWandererTrades(WandererTradesEvent event) {
-        if (Config.GENERAL.VILLAGER_TRADES.get()) {
-            event.getGenericTrades().add(new BasicItemListing(1,new ItemStack(RankineItems.PINEAPPLE.get(), 1),4,1,0.5f));
-            event.getGenericTrades().add(new BasicItemListing(1,new ItemStack(RankineBlocks.LIMESTONE.get(), 8),8,1,0.05f));
-            event.getRareTrades().add(new BasicItemListing(3,new ItemStack(RankineItems.METEORIC_IRON.get()),6,1,0.5f));
-        }
-    }
 
-    @SubscribeEvent
-    public static void addVillagerTrades(VillagerTradesEvent event) {
-        List<VillagerTrades.ItemListing> level1 = event.getTrades().get(1);
-        List<VillagerTrades.ItemListing> level2 = event.getTrades().get(2);
-        List<VillagerTrades.ItemListing> level3 = event.getTrades().get(3);
-        List<VillagerTrades.ItemListing> level4 = event.getTrades().get(4);
-        List<VillagerTrades.ItemListing> level5 = event.getTrades().get(5);
-
-        if (event.getType() == RankineVillagerProfessions.METALLURGIST) {
-            level1.add(new BasicItemListing(1, new ItemStack(RankineItems.ALLOY_TEMPLATE.get()),12,1,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TIN_INGOT.get(), 8), new ItemStack(Items.EMERALD),12,2,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(Items.COPPER_INGOT, 4), new ItemStack(Items.EMERALD),12,2,0.05f));
-            level2.add(new BasicItemListing(1, new ItemStack(RankineItems.ZINC_INGOT.get(), 2),12,10,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.METEORIC_IRON.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.COIN.get(), 16), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(RankineItems.MANGANESE_INGOT.get(), 2),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(RankineItems.MOLYBDENUM_INGOT.get(), 2),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(RankineItems.VANADIUM_INGOT.get(), 2),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(RankineItems.NIOBIUM_INGOT.get(), 2),12,10,0.05f));
-            level4.add(new BasicItemListing(6, new ItemStack(RankineItems.ELEMENT_INDEXER.get()),12,15,0.05f));
-            level5.add(new BasicItemListing(10, new ItemStack(RankineItems.ORE_DETECTOR.get()),12,30,0.05f));
-            level5.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.STEEL_PICKAXE.get(),"76Fe-15Cr-4V-4W-1C","rankine:alloying/damascus_steel_alloying","item.rankine.damascus_steel_alloying",15,3,30,0.2f));
-            level5.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.STEEL_SWORD.get(),"76Fe-15Cr-4V-4W-1C","rankine:alloying/damascus_steel_alloying","item.rankine.damascus_steel_alloying",15,3,30,0.2f));
-        } else if (event.getType() == RankineVillagerProfessions.MINERALOGIST) {
-            level1.add(new BasicItemListing(1, new ItemStack(RankineItems.STIBNITE.get()),12,1,0.05f));
-            level1.add(new BasicItemListing(1, new ItemStack(RankineItems.PROSPECTING_STICK.get()),12,1,0.05f));
-            level1.add(new BasicItemListing(1, new ItemStack(RankineItems.HARDNESS_TESTER.get()),12,1,0.05f));
-            level2.add(new BasicItemListing(1, new ItemStack(RankineItems.CHALCOPYRITE.get()),12,5,0.05f));
-            level2.add(new BasicItemListing(1, new ItemStack(RankineItems.BORAX.get()),12,5,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.MICA.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.AMPHIBOLE.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PLAGIOCLASE_FELDSPAR.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level3.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.INVAR_HAMMER.get(),"90Fe-10Ni","rankine:invar_alloying","item.rankine.invar_alloying",8,3,10,0.2f));
-            level3.add(new BasicItemListing(1, new ItemStack(RankineItems.ZIRCON.get()),12,15,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(RankineItems.BAUXITE.get()),12,15,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(RankineItems.MAGNESITE.get()),12,15,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(RankineItems.VANADINITE.get()),12,15,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(RankineItems.PETALITE.get()),12,15,0.05f));
-            level4.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.OLIVINE.get(), 4), new ItemStack(Items.EMERALD),12,20,0.05f));
-            level4.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PYROXENE.get(), 4), new ItemStack(Items.EMERALD),12,20,0.05f));
-            level5.add(new BasicItemListing(1, new ItemStack(RankineItems.WOLFRAMITE.get()),12,30,0.05f));
-            level5.add(new BasicItemListing(1, new ItemStack(RankineItems.COBALTITE.get()),12,30,0.05f));
-            level5.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.STEEL_HAMMER.get(),"76Fe-15Cr-4V-4W-1C","rankine:alloying/damascus_steel_alloying","item.rankine.damascus_steel_alloying",15,3,30,0.2f));
-        } else if (event.getType() == RankineVillagerProfessions.BOTANIST) {
-            level1.addAll(RankineVillagerTrades.returnTagTrades(ItemTags.SMALL_FLOWERS,Items.DANDELION,3,1,12,10,0.05f));
-            level1.addAll(RankineVillagerTrades.returnTagTrades(ItemTags.TALL_FLOWERS,Items.ROSE_BUSH,2,1,12,10,0.05f));
-            level1.addAll(RankineVillagerTrades.returnTagTrades(RankineTags.Items.BERRIES,RankineItems.ELDERBERRIES.get(),2,1,12,10,0.05f));
-            level2.addAll(RankineVillagerTrades.returnTagTrades(ItemTags.SAPLINGS,Items.OAK_SAPLING,2,1,12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.BAMBOO, 4),12,15,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.VINE, 4),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.LILY_PAD, 4),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.RED_MUSHROOM, 4),12,15,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.BROWN_MUSHROOM, 4),12,15,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.SEA_PICKLE, 4),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.KELP, 4),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.SUGAR_CANE, 4),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.CACTUS, 4),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.DEAD_BUSH, 4),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.NETHER_WART, 4),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.POISONOUS_POTATO, 4),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(RankineItems.ALOE.get(), 4),12,30,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(Items.WARPED_NYLIUM, 1),12,15,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(Items.CRIMSON_NYLIUM, 1),12,15,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(Items.BRAIN_CORAL, 2),12,15,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(Items.BUBBLE_CORAL, 2),12,15,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(Items.FIRE_CORAL, 2),12,15,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(Items.HORN_CORAL, 2),12,15,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(Items.TUBE_CORAL, 2),12,15,0.05f));
-            level5.add(new BasicItemListing(1, new ItemStack(Items.SHROOMLIGHT, 2),12,15,0.05f));
-            level5.add(new BasicItemListing(1, new ItemStack(Items.MYCELIUM, 1),12,30,0.05f));
-            level5.add(new BasicItemListing(5, new ItemStack(Items.CHORUS_FLOWER, 1),12,30,0.05f));
-            level5.add(new BasicItemListing(10, new ItemStack(Items.WITHER_ROSE),12,30,0.05f));
-
-        } else if (event.getType() == RankineVillagerProfessions.GEM_CUTTER) {
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.AQUAMARINE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.OPAL.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.GARNET.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.RUBY.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.SAPPHIRE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PERIDOT.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TOPAZ.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PEARL.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TOURMALINE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TIGER_IRON.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.LABRADORITE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.RHODONITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.RHODOCHROSITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.CHROME_ENSTATITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.FLUORITE.get(), 3), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level4.addAll(RankineVillagerTrades.returnTagTrades(Tags.Items.GEMS,RankineItems.OPAL.get(),1,12,16,10,0.05f));
-            level5.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.LONSDALEITE_DIAMOND.get(), 1), new ItemStack(Items.EMERALD, 6),12,20,0.05f));
-            level5.add(new BasicItemListing(20, new ItemStack(RankineItems.LONSDALEITE_DIAMOND.get(), 1),12,50,0.05f));
-            level5.add((entity,rand) -> new MerchantOffer(new ItemStack(Items.NETHER_STAR, 1), new ItemStack(Items.EMERALD, 64),12,50,0.05f));
-
-        } else if (event.getType() == RankineVillagerProfessions.ROCK_COLLECTOR) {
-            level1.addAll(RankineVillagerTrades.returnTagTrades(Tags.Items.STONE,RankineItems.ANORTHOSITE.get(),16,1,16,10,0.05f));
-            List<Block> rocks = ForgeRegistries.BLOCKS.tags().getTag(Tags.Blocks.STONE).stream().toList();
-            if (!rocks.isEmpty()) {
-                for (Block rock : rocks) {
-                    level2.add((entity, rand) -> new MerchantOffer(new ItemStack(rock.asItem(), 24), new ItemStack(Items.EMERALD, 1), 16, 10, 0.05f));
-                }
-            } else {
-                level2.add((entity, rand) -> new MerchantOffer(new ItemStack(Items.SANDSTONE, 24), new ItemStack(Items.EMERALD, 1), 16, 10, 0.05f));
-                level2.add((entity, rand) -> new MerchantOffer(new ItemStack(Items.RED_SANDSTONE, 12), new ItemStack(Items.EMERALD, 1), 16, 10, 0.05f));
-            }
-            level3.add(new BasicItemListing(1, new ItemStack(Items.OBSIDIAN, 1),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.NETHERRACK, 8),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.END_STONE, 2),12,10,0.05f));
-            level3.add(new BasicItemListing(1, new ItemStack(Items.PURPUR_BLOCK, 2),12,10,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(RankineItems.PHOSPHORITE.get(), 2),12,10,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(RankineItems.IRONSTONE.get(), 2),12,10,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(RankineItems.METEORITE.get(), 2),12,10,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(RankineItems.ENSTATITE_CHONDRITE.get(), 2),12,10,0.05f));
-            level5.add(new BasicItemListing(1, new ItemStack(RankineItems.ROMAN_CONCRETE.get(), 1),24,10,0.05f));
-        }
-
-        if (Config.GENERAL.VILLAGER_TRADES.get()) {
-            if (event.getType() == VillagerProfession.MASON) {
-                event.getTrades().get(1).add(new BasicItemListing(1,new ItemStack(RankineItems.MORTAR.get(), 16),16,1,0.05f));
-                event.getTrades().get(1).add(new BasicItemListing(1,new ItemStack(RankineItems.REFRACTORY_BRICK.get(), 10),16,1,0.05f));
-            } else if (event.getType() == VillagerProfession.CLERIC) {
-                event.getTrades().get(1).add(new BasicItemListing(1, new ItemStack(RankineItems.SALTPETER.get(),2),12,1,0.05f));
-            }
-        }
-
-    }
-
-    @SubscribeEvent
-    public static void onSaplingGrow(SaplingGrowTreeEvent event) {
-        if (event.getRand().nextFloat() < 1-Config.GENERAL.SAPLING_GROW.get()) {
-            event.setResult(Event.Result.DENY);
-        }
-        BlockPos pos = event.getPos();
-        LevelAccessor worldIn = event.getWorld();
-        if (worldIn.getBlockState(pos).is(Blocks.SPRUCE_SAPLING)) {
-
-        }
-    }
-
-    @SubscribeEvent
-    public static void onCropTrample(BlockEvent.FarmlandTrampleEvent event) {
-        if (event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
-            if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SofteningTotemItem || player.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof SofteningTotemItem) {
-                event.setCanceled(true);
-            }
-        }
-    }
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
@@ -480,41 +283,6 @@ public class RankineEventHandler {
     }
 
     @SubscribeEvent
-    public static void onLightningEvent(EntityJoinWorldEvent event) {
-        if (event.getEntity() instanceof LightningBolt) {
-            LightningBolt entity = (LightningBolt) event.getEntity();
-            Level worldIn = event.getWorld();
-            BlockPos startPos = entity.blockPosition().below();
-            if (!worldIn.isClientSide && Config.GENERAL.LIGHTNING_CONVERSION.get()) {
-                Iterable<BlockPos> positions = BlockPos.withinManhattan(startPos,2,2,2);
-                for (BlockPos pos : positions) {
-                    double rand;
-                    if (startPos.getX() == pos.getX() && startPos.getZ() == pos.getZ()) {
-                        rand = 1/(1f + Math.abs(startPos.getY() - pos.getY()));
-                    } else {
-                        rand = pos.distSqr(new Vec3i(startPos.getX(),startPos.getY(),startPos.getZ()));
-                    }
-
-                    Block BLK = worldIn.getBlockState(pos).getBlock();
-                    if (worldIn.getRandom().nextFloat() < 1/rand && ForgeRegistries.BLOCKS.tags().getTag(RankineTags.Blocks.LIGHTNING_VITRIFIED).contains(BLK)) {
-                        worldIn.setBlock(pos,RankineBlocks.FULGURITE.get().defaultBlockState(),3);
-                    } else if (worldIn.getRandom().nextFloat() < 1/rand && BLK.equals(Blocks.SAND) || BLK.equals(RankineBlocks.SILT.get()) || BLK.equals(RankineBlocks.DESERT_SAND.get())) {
-                        worldIn.setBlock(pos,RankineBlocks.LIGHTNING_GLASS.get().defaultBlockState(),3);
-                    } else if (worldIn.getRandom().nextFloat() < 1/rand && BLK.equals(Blocks.RED_SAND)) {
-                        worldIn.setBlock(pos,RankineBlocks.RED_LIGHTNING_GLASS.get().defaultBlockState(),3);
-                    } else if (worldIn.getRandom().nextFloat() < 1/rand && BLK.equals(Blocks.SOUL_SAND)) {
-                        worldIn.setBlock(pos,RankineBlocks.SOUL_LIGHTNING_GLASS.get().defaultBlockState(),3);
-                    } else if (worldIn.getRandom().nextFloat() < 1/rand && BLK.equals(RankineBlocks.BLACK_SAND.get())) {
-                        worldIn.setBlock(pos,RankineBlocks.BLACK_LIGHTNING_GLASS.get().defaultBlockState(),3);
-                    } else if (worldIn.getRandom().nextFloat() < 1/rand && BLK.equals(RankineBlocks.WHITE_SAND.get())) {
-                        worldIn.setBlock(pos,RankineBlocks.WHITE_LIGHTNING_GLASS.get().defaultBlockState(),3);
-                    }
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
     public static void onLivingDamaged(LivingDamageEvent event) {
         if (event.getEntityLiving() instanceof Player) {
             Player player = (Player) event.getEntityLiving();
@@ -647,18 +415,54 @@ public class RankineEventHandler {
 
     }
 
-
     @SubscribeEvent
-    public static void fuelValues(WorldEvent.Load event) {
-        VanillaIntegration.populateFuelMap();
+    public static void worldLoadEvent(WorldEvent.Load event) {
+        WorldLoadHandler.updateFuelValues(event);
     }
-
     @SubscribeEvent
-    public static void fuelValues(FurnaceFuelBurnTimeEvent event) {
-        Item Fuel = event.getItemStack().getItem();
-        if (VanillaIntegration.fuelValueMap.containsKey(Fuel)) {
-            event.setBurnTime(VanillaIntegration.fuelValueMap.get(Fuel));
-        }
+    public static void furnaceFuelBurnTimeEvent(FurnaceFuelBurnTimeEvent event) {
+        FurnaceFuelBurnTimeHandler.updateFuelValues(event);
+    }
+    @SubscribeEvent
+    public static void entityInteractEvent(PlayerInteractEvent.EntityInteract event) {
+        EntityInteractHandler.breedables(event);
+    }
+    @SubscribeEvent
+    public static void noWater(BlockEvent.CreateFluidSourceEvent event) {
+        CreateFluidSourceHandler.noWater(event);
+    }
+    @SubscribeEvent
+    public static void entityJoinWorldEvent(EntityJoinWorldEvent event) {
+        EntityJoinWorldHandler.onLightningEvent(event);
+        EntityJoinWorldHandler.onSheepJoinWorld(event);
+    }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void chunkLoadEvent(ChunkEvent.Load event) {
+        ChunkLoadHandler.retrogenChunk(event);
+    }
+    @SubscribeEvent
+    public static void itemPickupEvent(PlayerEvent.ItemPickupEvent event) {
+        ItemPickupHandler.onItemPickup(event);
+    }
+    @SubscribeEvent
+    public static void wandererTradesEvent(WandererTradesEvent event) {
+        WandererTradesHandler.addWandererTrades(event);
+    }
+    @SubscribeEvent
+    public static void villagerTradesEvent(VillagerTradesEvent event) {
+        VillagerTradesHandler.addVillagerTrades(event);
+    }
+    @SubscribeEvent
+    public static void saplingGrowTreeEvent(SaplingGrowTreeEvent event) {
+        SaplingGrowTreeHandler.onSaplingGrow(event);
+    }
+    @SubscribeEvent
+    public static void onCropTrample(BlockEvent.FarmlandTrampleEvent event) {
+        FarmlandTrampleHandler.onCropTrample(event);
+    }
+    @SubscribeEvent
+    public static void anvilUpdateEvent(AnvilUpdateEvent event) {
+        AnvilUpdateHandler.specialEnchants(event);
     }
 
     @SubscribeEvent
@@ -831,35 +635,6 @@ public class RankineEventHandler {
     }
 
 
-    @SubscribeEvent
-    public static void specialEnchants(AnvilUpdateEvent event) {
-        ItemStack input = event.getLeft();
-        if (event.getRight().getItem() == RankineItems.SANDALS.get() && input.getItem() instanceof ArmorItem && ((ArmorItem)input.getItem()).getSlot() == EquipmentSlot.FEET) {
-            event.setOutput(input.copy());
-            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.DUNE_WALKER,event.getOutput()) != 1) {
-                event.getOutput().enchant(RankineEnchantments.DUNE_WALKER, 1);
-                event.setCost(20);
-            }
-        } else if (event.getRight().getItem() == RankineItems.SNOWSHOES.get() && input.getItem() instanceof ArmorItem && ((ArmorItem)input.getItem()).getSlot() == EquipmentSlot.FEET) {
-            event.setOutput(input.copy());
-            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.SNOW_DRIFTER,event.getOutput()) != 1) {
-                event.getOutput().enchant(RankineEnchantments.SNOW_DRIFTER, 1);
-                event.setCost(20);
-            }
-        } else if (event.getRight().getItem() == RankineItems.ICE_SKATES.get() && input.getItem() instanceof ArmorItem && ((ArmorItem)input.getItem()).getSlot() == EquipmentSlot.FEET) {
-            event.setOutput(input.copy());
-            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.SPEED_SKATER,event.getOutput()) != 1) {
-                event.getOutput().enchant(RankineEnchantments.SPEED_SKATER, 1);
-                event.setCost(20);
-            }
-        } else if (event.getRight().getItem() == RankineItems.GAS_MASK.get() && input.getItem() instanceof ArmorItem && ((ArmorItem)input.getItem()).getSlot() == EquipmentSlot.HEAD) {
-            event.setOutput(input.copy());
-            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.GAS_PROTECTION,event.getOutput()) != 1) {
-                event.getOutput().enchant(RankineEnchantments.GAS_PROTECTION, 1);
-                event.setCost(20);
-            }
-        }
-    }
 
 
     @SubscribeEvent
@@ -978,13 +753,6 @@ public class RankineEventHandler {
             }
         }
     }
-/*
-    @SubscribeEvent
-    public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
-        if (event.getBlockSnapshot().getReplacedBlock().getBlock() instanceof GasBlock && event.getPlacedBlock().getBlock() instanceof AbstractFireBlock) {
-            event.setCanceled(true);
-        }
-    }*/
 
     private static final String NBT_KEY = "rankine.firstjoin";
     @SubscribeEvent
@@ -1382,41 +1150,6 @@ public class RankineEventHandler {
 
     }
 
-    @OnlyIn(Dist.CLIENT)
-    @SubscribeEvent
-    public static void onTooltipCheck(ItemTooltipEvent event) {
-        if (Config.TOOLS.DISABLE_WOODEN_SWORD.get() && event.getItemStack().getItem() == Items.WOODEN_SWORD) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_WOODEN_AXE.get() && event.getItemStack().getItem() == Items.WOODEN_AXE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_WOODEN_SHOVEL.get() && event.getItemStack().getItem() == Items.WOODEN_SHOVEL) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_WOODEN_PICKAXE.get() && event.getItemStack().getItem() == Items.WOODEN_PICKAXE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_WOODEN_HOE.get() && event.getItemStack().getItem() == Items.WOODEN_HOE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_STONE_SWORD.get() && event.getItemStack().getItem() == Items.STONE_SWORD) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_STONE_AXE.get() && event.getItemStack().getItem() == Items.STONE_AXE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_STONE_SHOVEL.get() && event.getItemStack().getItem() == Items.STONE_SHOVEL) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_STONE_PICKAXE.get() && event.getItemStack().getItem() == Items.STONE_PICKAXE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_STONE_HOE.get() && event.getItemStack().getItem() == Items.STONE_HOE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_IRON_SWORD.get() && event.getItemStack().getItem() == Items.IRON_SWORD) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_IRON_AXE.get() && event.getItemStack().getItem() == Items.IRON_AXE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_IRON_SHOVEL.get() && event.getItemStack().getItem() == Items.IRON_SHOVEL) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_IRON_PICKAXE.get() && event.getItemStack().getItem() == Items.IRON_PICKAXE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_IRON_HOE.get() && event.getItemStack().getItem() == Items.IRON_HOE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_GOLDEN_SWORD.get() && event.getItemStack().getItem() == Items.GOLDEN_SWORD) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_GOLDEN_AXE.get() && event.getItemStack().getItem() == Items.GOLDEN_AXE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_GOLDEN_SHOVEL.get() && event.getItemStack().getItem() == Items.GOLDEN_SHOVEL) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_GOLDEN_PICKAXE.get() && event.getItemStack().getItem() == Items.GOLDEN_PICKAXE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_GOLDEN_HOE.get() && event.getItemStack().getItem() == Items.GOLDEN_HOE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_DIAMOND_SWORD.get() && event.getItemStack().getItem() == Items.DIAMOND_SWORD) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_DIAMOND_AXE.get() && event.getItemStack().getItem() == Items.DIAMOND_AXE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_DIAMOND_SHOVEL.get() && event.getItemStack().getItem() == Items.DIAMOND_SHOVEL) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_DIAMOND_PICKAXE.get() && event.getItemStack().getItem() == Items.DIAMOND_PICKAXE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_DIAMOND_HOE.get() && event.getItemStack().getItem() == Items.DIAMOND_HOE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_NETHERITE_SWORD.get() && event.getItemStack().getItem() == Items.NETHERITE_SWORD) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_NETHERITE_AXE.get() && event.getItemStack().getItem() == Items.NETHERITE_AXE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_NETHERITE_SHOVEL.get() && event.getItemStack().getItem() == Items.NETHERITE_SHOVEL) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_NETHERITE_PICKAXE.get() && event.getItemStack().getItem() == Items.NETHERITE_PICKAXE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-        if (Config.TOOLS.DISABLE_NETHERITE_HOE.get() && event.getItemStack().getItem() == Items.NETHERITE_HOE) { event.getToolTip().add(new TextComponent("This tool is disabled in the config.").withStyle(ChatFormatting.RED)); }
-    }
-
     @SubscribeEvent
     public static void onLeftClick(PlayerInteractEvent.LeftClickBlock event) {
         if (event.getPlayer().getMainHandItem().getItem() instanceof HammerItem) {
@@ -1452,65 +1185,6 @@ public class RankineEventHandler {
             }
         }
     }
-
-/*
-    @SubscribeEvent
-    public static void onPistonCrush(PistonEvent event)
-    {
-        Direction pistonDir = event.getDirection();
-        BlockPos end = event.getFaceOffsetPos();
-        BlockPos barrier = event.getFaceOffsetPos().offset(pistonDir,1);
-        IWorld world = event.getWorld();
-        World worldIn = world.getWorld();
-
-        if (event.getPistonMoveType() == PistonEvent.PistonMoveType.EXTEND && !PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(world.getBlockState(end).getBlock())).getKey().isEmpty() && event.getState().getBlock() != Blocks.STICKY_PISTON && world.getBlockState(barrier).getBlock() == ModBlocks.CAST_IRON_BLOCK)
-        {
-            world.destroyBlock(end, false);
-            if (!worldIn.isRemote() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots)
-            {
-                Pair<ItemStack, Float[]> p = PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(world.getBlockState(end).getBlock()));
-                float f = 0.5F;
-                Random rand = rand;
-                double d0 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double)end.getX() + d0, (double)end.getY() + d1, (double)end.getZ() + d2, new ItemStack(p.getKey().getItem(),p.getValue()[0].intValue()));
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void glassCheck(ProjectileImpactEvent event)
-    {
-        World worldIn = event.getEntity().getEntityWorld();
-        RayTraceResult e = event.getRayTraceResult(); // Only works at certain angle/look position
-        BlockPos hit = new BlockPos(e.getHitVec().getX(), e.getHitVec().getY(), e.getHitVec().getZ());
-        System.out.println(hit);
-        System.out.println(worldIn.getBlockState(hit).getBlock());
-        if (worldIn.getBlockState(hit).getBlock() instanceof GlassBlock && !worldIn.isRemote() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots)
-        {
-            System.out.println("SUCCESS");
-            double d0 = (double)hit.getX() + 0.5D;
-            double d1 = (double)hit.getY();
-            double d2 = (double)hit.getZ() + 0.5D;
-            worldIn.playSound(d0, d1, d2, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
-            worldIn.removeBlock(new BlockPos(hit),false);
-            float f = 0.5F;
-            Random rand = rand;
-            double e0 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
-            double e1 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
-            double e2 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
-            ItemEntity itementity = new ItemEntity(worldIn, (double)hit.getX() + e0, (double)hit.getY() + e1, (double)hit.getZ() + e2, new ItemStack(Items.GLASS,1));
-            itementity.setDefaultPickupDelay();
-            worldIn.addEntity(itementity);
-        }
-
-    }
-
- */
-
 
     @SubscribeEvent
     public static void worldDye(PlayerInteractEvent.RightClickBlock event) {
@@ -1883,6 +1557,16 @@ public class RankineEventHandler {
                         }
                     }
                     world.playSound(player, blockpos1, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
+                } else if (world.getBlockState(pos) == Blocks.CAMPFIRE.defaultBlockState().setValue(BlockStateProperties.LIT, false)) {
+                    if (!world.isClientSide()) {
+                        world.setBlock(pos, world.getBlockState(pos).setValue(BlockStateProperties.LIT, Boolean.TRUE), 3);
+                        player.swing(InteractionHand.MAIN_HAND);
+                        if (rand.nextFloat() < Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
+                            player.getItemInHand(InteractionHand.MAIN_HAND).shrink(1);
+                            player.getItemInHand(InteractionHand.OFF_HAND).shrink(1);
+                        }
+                    }
+                    world.playSound(player, blockpos1, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
                 } else if (BaseFireBlock.canBePlacedAt(world, blockpos1, event.getFace()) && !world.isClientSide && !(world.getBlockState(pos).getBlock() instanceof BeehiveOvenPitBlock) &&
                     world.getBlockState(pos) != RankineBlocks.CHARCOAL_PIT.get().defaultBlockState().setValue(CharcoalPitBlock.LIT, true)) {
                     world.setBlock(blockpos1, BaseFireBlock.getState(world, blockpos1), 11);
@@ -2092,29 +1776,6 @@ public class RankineEventHandler {
         }
     }
 
-    @SubscribeEvent
-    public static void noWater(BlockEvent.CreateFluidSourceEvent event) {
-        /*
-        List<ResourceLocation> waterBiomes = WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), true);
-
-        for (String b : Config.GENERAL.INFI_WATER_BIOMES.get()) {
-            List<String> biomeName = Arrays.asList(b.split(":"));
-            if (biomeName.size() > 1) {
-                waterBiomes.add(ResourceLocation.tryCreate(b));
-            } else {
-                waterBiomes.addAll(WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.byName(b)), true));
-            }
-        }
-        if (Config.GENERAL.DISABLE_WATER.get() && !waterBiomes.contains(event.getWorld().getBiome(event.getPos()).toString())) {
-            event.setResult(Event.Result.DENY);
-        }
-
-         */
-        if (Config.GENERAL.DISABLE_WATER.get() && event.getPos().getY() > WorldgenUtils.waterTableHeight((Level) event.getWorld(), event.getPos())) {
-            event.setResult(Event.Result.DENY);
-        }
-
-    }
 
     @SubscribeEvent
     public static void treeChop(PlayerEvent.BreakSpeed event) {
@@ -2417,35 +2078,6 @@ public class RankineEventHandler {
 
 
     }
-
-    @SubscribeEvent
-    public static void onSheepJoinWorld(EntityJoinWorldEvent event) {
-        Entity entity = event.getEntity();
-        if (entity instanceof Sheep) {
-            Sheep ent = (Sheep) entity;
-            ent.goalSelector.removeGoal(new EatBlockGoal(ent));
-            ent.goalSelector.addGoal(5,new EatGrassGoalModified(ent));
-            ent.goalSelector.removeGoal(new TemptGoal(ent, 1.1D, Ingredient.of(Items.WHEAT), false));
-            ent.goalSelector.addGoal(3,new TemptGoal(ent, 1.1D, Ingredient.of(RankineTags.Items.BREEDABLES_SHEEP), false));
-        } else if (entity instanceof Cow) {
-            Cow ent = (Cow) entity;
-            //ent.goalSelector.removeGoal(new TemptGoal(ent, 1.1D, Ingredient.fromItems(Items.WHEAT), false));
-            ent.goalSelector.addGoal(3,new TemptGoal(ent, 1.25D, Ingredient.of(RankineTags.Items.BREEDABLES_COW), false));
-        } else if (entity instanceof Pig) {
-            Pig ent = (Pig) entity;
-            //ent.goalSelector.removeGoal(new TemptGoal(ent, 1.1D, Ingredient.fromItems(Items.WHEAT), false));
-            ent.goalSelector.addGoal(4,new TemptGoal(ent, 1.2D, Ingredient.of(RankineTags.Items.BREEDABLES_PIG), false));
-        } else if (entity instanceof Chicken) {
-            Chicken ent = (Chicken) entity;
-            //ent.goalSelector.removeGoal(new TemptGoal(ent, 1.1D, Ingredient.fromItems(Items.WHEAT), false));
-            ent.goalSelector.addGoal(3,new TemptGoal(ent, 1.0D, Ingredient.of(RankineTags.Items.BREEDABLES_CHICKEN), false));
-        } else if (entity instanceof Rabbit) {
-            Rabbit ent = (Rabbit) entity;
-            //ent.goalSelector.removeGoal(new TemptGoal(ent, 1.1D, Ingredient.fromItems(Items.WHEAT), false));
-            ent.goalSelector.addGoal(3,new TemptGoal(ent, 1.0D, Ingredient.of(RankineTags.Items.BREEDABLES_RABBIT), false));
-        }
-    }
-
     @SubscribeEvent
     public static void onLivingSetAttackTarget(LivingSetAttackTargetEvent event) {
         if (event.getEntityLiving() instanceof Monster && event.getTarget() != null) {
@@ -2465,62 +2097,5 @@ public class RankineEventHandler {
     }
 
 
-    @SubscribeEvent
-    public static void onBreedEvent(PlayerInteractEvent.EntityInteract event) {
-        Player player = event.getPlayer();
-        Entity ent = event.getTarget();
-        ItemStack itemStack = event.getItemStack();
-
-        if (ent instanceof Animal) {
-            Animal entA = (Animal) ent;
-            EntityType<?> type = ent.getType();
-            boolean flag = false;
-            if (type.equals(EntityType.PIG) && itemStack.is(RankineTags.Items.BREEDABLES_PIG)) {
-                flag = true;
-            } else if ((type.equals(EntityType.COW) || type.equals(EntityType.MOOSHROOM)) && itemStack.is(RankineTags.Items.BREEDABLES_COW)) {
-                flag = true;
-            } else if (type.equals(EntityType.SHEEP) && itemStack.is(RankineTags.Items.BREEDABLES_SHEEP)) {
-                flag = true;
-            } else if (type.equals(EntityType.CHICKEN) && itemStack.is(RankineTags.Items.BREEDABLES_CHICKEN)) {
-                flag = true;
-            } else if (type.equals(EntityType.FOX) && itemStack.is(RankineTags.Items.BREEDABLES_FOX)) {
-                flag = true;
-            } else if (type.equals(EntityType.RABBIT) && itemStack.is(RankineTags.Items.BREEDABLES_RABBIT)) {
-                flag = true;
-            } else if (type.equals(EntityType.CAT) && itemStack.is(RankineTags.Items.BREEDABLES_CAT)) {
-                flag = true;
-            } else if ((type.equals(EntityType.HORSE) || type.equals(EntityType.DONKEY)) && itemStack.is(RankineTags.Items.BREEDABLES_HORSE)) {
-                flag = true;
-            }
-
-            if (flag) {
-                int i = entA.getAge();
-                if (!entA.level.isClientSide && i == 0 && entA.canFallInLove()) {
-                    if (!player.getAbilities().instabuild) {
-                        itemStack.shrink(1);
-                    }
-                    entA.setInLove(player);
-                    event.setResult(Event.Result.ALLOW);
-                }
-
-                if (entA.isBaby()) {
-                    if (!player.getAbilities().instabuild) {
-                        itemStack.shrink(1);
-                    }
-                    entA.ageUp((int) ((float) (-i / 20) * 0.1F), true);
-                    event.setResult(Event.Result.ALLOW);
-                }
-
-                if (entA.level.isClientSide) {
-                    event.setResult(Event.Result.ALLOW);
-                }
-            } else {
-                event.setResult(Event.Result.DENY);
-            }
-
-        }
-
-
-    }
 
 }

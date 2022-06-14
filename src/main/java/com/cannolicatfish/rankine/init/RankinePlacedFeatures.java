@@ -22,7 +22,7 @@ public class RankinePlacedFeatures {
 
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, ProjectRankine.MODID);
 
-    public static final RegistryObject<PlacedFeature> PLACED_FUMAROLE = PLACED_FEATURES.register("fumarole", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_FUMAROLE.getHolder().get(), Arrays.asList(BiomeFilter.biome(), RarityFilter.onAverageOnceEvery(Config.WORLDGEN.FUMAROLE_GEN.get()))));
+    public static final RegistryObject<PlacedFeature> PLACED_FUMAROLE = PLACED_FEATURES.register("fumarole", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_FUMAROLE.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(Config.WORLDGEN.FUMAROLE_GEN.get()), BiomeFilter.biome())));
     public static final RegistryObject<PlacedFeature> PLACED_INTRUSION = PLACED_FEATURES.register("intrusion", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_INTRUSION.getHolder().get(), Arrays.asList(BiomeFilter.biome())));
     public static final RegistryObject<PlacedFeature> PLACED_METEORITE = PLACED_FEATURES.register("meteorite", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_METEORITE.getHolder().get(), Arrays.asList(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, RarityFilter.onAverageOnceEvery(Config.WORLDGEN.METEORITE_CHANCE.get()), BiomeFilter.biome())));
     public static final RegistryObject<PlacedFeature> PLACED_END_METEORITE = PLACED_FEATURES.register("end_meteorite", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_END_METEORITE.getHolder().get(), Collections.singletonList(BiomeFilter.biome())));

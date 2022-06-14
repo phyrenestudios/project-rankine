@@ -1,13 +1,13 @@
 {
   "components": [
     {
-      "type": "header",
+      "type": "patchouli:header",
       "text": "#heading",
       "x": -1,
       "y": -1
     },
     {
-      "type": "item",
+      "type": "patchouli:item",
       "item": "#item1",
       "framed": "true",
       "link_recipe": true,
@@ -15,7 +15,7 @@
       "y": 15
     },
     {
-      "type": "item",
+      "type": "patchouli:item",
       "item": "#item2",
       "framed": "true",
       "link_recipe": true,
@@ -23,7 +23,7 @@
       "y": 15
     },
     {
-      "type": "item",
+      "type": "patchouli:item",
       "item": "#item3",
       "framed": "true",
       "link_recipe": true,
@@ -31,7 +31,7 @@
       "y": 15
     },
     {
-      "type": "item",
+      "type": "patchouli:item",
       "item": "#item4",
       "framed": "true",
       "link_recipe": true,
@@ -39,7 +39,7 @@
       "y": 15
     },
     {
-      "type": "item",
+      "type": "patchouli:item",
       "item": "#item5",
       "framed": "true",
       "link_recipe": true,
@@ -47,7 +47,7 @@
       "y": 35
     },
     {
-      "type": "item",
+      "type": "patchouli:item",
       "item": "#item6",
       "framed": "true",
       "link_recipe": true,
@@ -55,7 +55,7 @@
       "y": 35
     },
     {
-      "type": "item",
+      "type": "patchouli:item",
       "item": "#item7",
       "framed": "true",
       "link_recipe": true,
@@ -63,7 +63,7 @@
       "y": 35
     },
     {
-      "type": "item",
+      "type": "patchouli:item",
       "item": "#item8",
       "framed": "true",
       "link_recipe": true,
@@ -71,7 +71,7 @@
       "y": 35
     },
     {
-      "type": "text",
+      "type": "patchouli:text",
       "text": "#text",
       "x": 0,
       "y": 60

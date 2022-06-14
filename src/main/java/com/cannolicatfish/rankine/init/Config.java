@@ -650,7 +650,7 @@ public class Config {
             EVAPORITE_GEN = b.comment("Enables the generation of evaporite disks.")
                     .define("generateEvaporite",true);
             FUMAROLE_GEN = b.comment("Average number of chuncks to generate a fumarole in. Set to 0 to disable.")
-                    .defineInRange("fumaroleGenerationChance", 10, 0, Integer.MAX_VALUE);
+                    .defineInRange("fumaroleGenerationChance", 40, 0, Integer.MAX_VALUE);
             ALLUVIUM_GEN = b.comment("Enables the generation of alluvium disks.")
                     .define("generateAlluvium",true);
             WHITE_SAND_GEN = b.comment("Enables the generation of white sand disks in beaches.")
@@ -730,7 +730,7 @@ public class Config {
         public BiomeGen(ForgeConfigSpec.Builder b) {
             biomeSettings.add(List.of("minecraft:soul_sand_valley",
                     List.of(),
-                    List.of("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    List.of("minecraft:air|20|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
                     List.of("rankine:blueschist","rankine:blueschist","rankine:blueschist","rankine:blueschist","rankine:honeystone","rankine:honeystone","rankine:honeystone","rankine:wehrlite"),
                     List.of(),
                     "rankine:dark_gravel",
@@ -739,7 +739,7 @@ public class Config {
                     "minecraft:air"));
             biomeSettings.add(List.of("minecraft:basalt_deltas",
                     List.of(),
-                    List.of("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    List.of("minecraft:air|20|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
                     List.of("minecraft:blackstone","minecraft:blackstone","minecraft:blackstone","minecraft:blackstone","minecraft:basalt","minecraft:basalt","minecraft:basalt","rankine:dunite"),
                     List.of(),
                     "rankine:dark_gravel",
@@ -748,7 +748,7 @@ public class Config {
                     "minecraft:air"));
             biomeSettings.add(List.of("minecraft:crimson_forest",
                     List.of(),
-                    List.of("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    List.of("minecraft:air|20|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
                     List.of("rankine:purple_porphyry","rankine:purple_porphyry","rankine:purple_porphyry","rankine:purple_porphyry","rankine:komatiite","rankine:komatiite","rankine:komatiite","rankine:red_porphyry"),
                     List.of(),
                     "rankine:dark_gravel",
@@ -757,7 +757,7 @@ public class Config {
                     "minecraft:air"));
             biomeSettings.add(List.of("minecraft:warped_forest",
                     List.of(),
-                    List.of("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    List.of("minecraft:air|20|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
                     List.of("rankine:lherzolite","rankine:lherzolite","rankine:lherzolite","rankine:lherzolite","rankine:pyroxenite","rankine:pyroxenite","rankine:pyroxenite","rankine:harzburgite"),
                     List.of(),
                     "rankine:dark_gravel",
@@ -766,7 +766,7 @@ public class Config {
                     "minecraft:air"));
             biomeSettings.add(List.of("minecraft:nether_wastes",
                     List.of(),
-                    List.of("minecraft:air|15|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    List.of("minecraft:air|20|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
                     List.of("minecraft:netherrack"),
                     List.of(),
                     "rankine:dark_gravel",
@@ -1043,6 +1043,7 @@ public class Config {
             oreSettings.add(List.of("rankine:coltan_ore", List.of("overworld"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
             oreSettings.add(List.of("rankine:chromite_ore", List.of("overworld"), "default", "triangle", -84, -40, 6, 1.0D, 1, 1.0, 0.0D));
 
+            oreSettings.add(List.of("rankine:banded_iron_formation", List.of("overworld"), "disk", "uniform", 30, 70, 4, 0.6D, 1, 0.4, 0.0D));
             oreSettings.add(List.of("rankine:bog_iron", List.of("swamp","jungle"), "disk", "uniform", 30, 70, 4, 0.3D, 1, 1.0, 0.0D));
             oreSettings.add(List.of("rankine:ironstone", List.of("desert","savanna","mesa"), "disk", "uniform", 30, 70, 4, 0.3D, 1, 1.0, 0.0D));
             oreSettings.add(List.of("rankine:kaolin", List.of("swamp","jungle","mushroom"), "disk", "uniform", 40, 70, 4, 0.7D, 1, 0.4, 0.0D));
