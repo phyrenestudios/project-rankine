@@ -162,14 +162,6 @@ public class RankineEventHandler {
         }
     }
 
-    @SubscribeEvent
-    public static void onAlloyToolHarvest(PlayerEvent.HarvestCheck event) {
-        ItemStack stack = event.getPlayer().getMainHandItem();
-        if (stack.getItem() instanceof IAlloyTool) {
-            List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
-            event.setCanHarvest(TierSortingRegistry.isCorrectTierForDrops(tiers.get(((IAlloyTool) stack.getItem()).getAlloyHarvestLevel(stack)),event.getTargetBlock()));
-        }
-    }
 
     @SubscribeEvent
     public static void registerCommands(RegisterCommandsEvent event) {

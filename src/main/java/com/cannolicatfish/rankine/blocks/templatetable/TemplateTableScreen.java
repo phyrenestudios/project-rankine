@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.init.packets.SelectAlloyPacket;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.GameRenderer;
@@ -33,12 +34,16 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
     private static final Component DEPRECATED_TOOLTIP = new TranslatableComponent("rankine.deprecated");
     private int scrollOff;
     private boolean isSelected;
+    private static final int TEXTURE_WIDTH = 512;
+    private static final int TEXTURE_HEIGHT = 256;
 
     public TemplateTableScreen(TemplateTableContainer container, Inventory inv, Component name) {
         super(container, inv, name);
         this.imageWidth = 276;
         this.inventoryLabelX = 107;
     }
+
+
 
     private void setSelectedAlloyRecipe() {
         this.menu.setCurrentRecipeIndex(this.selectedAlloyRecipe);
@@ -89,7 +94,7 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
         RenderSystem.setShaderTexture(0, this.GUI);
         int i = (this.width - this.imageWidth) / 2;
         int j = (this.height - this.imageHeight) / 2;
-        blit(matrixStack, i, j, this.getBlitOffset(), 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 512);
+        blit(matrixStack, i, j, this.getBlitOffset(), 0.0F, 0.0F, this.imageWidth, this.imageHeight, 512, 256);
         List<AlloyingRecipe> alloyRecipes = this.menu.getAlloyRecipes();
         if (!alloyRecipes.isEmpty()) {
             int k = this.selectedAlloyRecipe;
@@ -119,7 +124,8 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
             int l = i + 5 + 5;
             //RenderSystem.pushMatrix();
             //RenderSystem.enableRescaleNormal();
-            this.minecraft.getTextureManager().bindForSetup(GUI);
+            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShaderTexture(0, GUI);
             //this.renderScroller(matrixStack, i, j, alloyingRecipes);
             int i1 = 0;
 
@@ -143,10 +149,10 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
                     ItemStack itemstack3 = alloy.getResultItem();
 
                     //this.renderItemOverlay(matrixStack, itemstack1, itemstack, l, j1);
-                    /*if (!itemstack2.isEmpty()) {
-                        this.itemRenderer.renderItemAndEffectIntoGuiWithoutEntity(itemstack2, i + 5 + 35, j1);
-                        this.itemRenderer.renderItemOverlays(this.font, itemstack2, i + 5 + 35, j1);
-                    }*/
+                    if (!itemstack2.isEmpty()) {
+                        this.itemRenderer.renderAndDecorateFakeItem(itemstack2, i + 5 + 35, j1);
+                        this.itemRenderer.renderGuiItemDecorations(this.font, itemstack2, i + 5 + 35, j1);
+                    }
 
                     this.checkIfValid(matrixStack, alloy, i, j1);
                     this.itemRenderer.renderAndDecorateFakeItem(itemstack3, i + 5 + 68, j1);
@@ -168,11 +174,14 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
             }*/
 
             for(AlloyButton alloyButton : this.tradeOfferButtons) {
-                if (alloyButton.isActive()) {
-                    alloyButton.renderToolTip(matrixStack, mouseX, mouseY);
+                if (alloyButton != null) {
+                    if (alloyButton.isActive()) {
+                        alloyButton.renderToolTip(matrixStack, mouseX, mouseY);
+                    }
+                    alloyButton.visible = alloyButton.index < this.menu.getAlloyRecipes().size();
                 }
 
-                alloyButton.visible = alloyButton.index < this.menu.getAlloyRecipes().size();
+
             }
 
             //RenderSystem.popMatrix();
@@ -189,7 +198,8 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
         } else {
             this.itemRenderer.renderGuiItemDecorations(this.font, p_238841_3_, p_238841_4_, p_238841_5_, p_238841_3_.getCount() == 1 ? "1" : null);
             this.itemRenderer.renderGuiItemDecorations(this.font, p_238841_2_, p_238841_4_ + 14, p_238841_5_, p_238841_2_.getCount() == 1 ? "1" : null);
-            this.minecraft.getTextureManager().bindForSetup(GUI);
+                        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShaderTexture(0, GUI);
             this.setBlitOffset(this.getBlitOffset() + 300);
             blit(p_238841_1_, p_238841_4_ + 7, p_238841_5_ + 12, this.getBlitOffset(), 0.0F, 176.0F, 9, 2, 256, 512);
             this.setBlitOffset(this.getBlitOffset() - 300);
@@ -201,9 +211,11 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
         return p_214135_1_ > 7;
     }
 
+
     private void checkIfValid(PoseStack p_238842_1_, AlloyingRecipe p_238842_2_, int p_238842_3_, int p_238842_4_) {
         RenderSystem.enableBlend();
-        this.minecraft.getTextureManager().bindForSetup(GUI);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderTexture(0, GUI);
         /*if (p_238842_2_.cannotMake(this.inventory,this.menu.getWorld())) {
             blit(p_238842_1_, p_238842_3_ + 5 + 35 + 20, p_238842_4_ + 3, this.getBlitOffset(), 25.0F, 171.0F, 10, 9, 256, 512);
         } else {

@@ -79,7 +79,7 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
         boolean fluidOutCheck = this.fluidIn.isEmpty() || tankOut.isFluidValid(this.fluidOut);
         return (this.ingredient1.test(inv.getItem(0)) || this.ingredient1.test(inv.getItem(1)))
                 && (this.ingredient2.test(inv.getItem(1)) || this.ingredient2.test(inv.getItem(0)))
-                && inv.getItem(3).sameItem(this.gasIn) && fluidInCheck && fluidOutCheck;
+                && (this.gasIn.isEmpty() || inv.getItem(3).sameItem(this.gasIn)) && fluidInCheck && fluidOutCheck;
     }
 
     public Ingredient getIngredient1() {
