@@ -1,19 +1,17 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
@@ -25,8 +23,10 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.TierSortingRegistry;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 
 public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool {
@@ -36,6 +36,12 @@ public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool {
         super(tier, (int) attackDamageIn, attackSpeedIn, builderIn);
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
+    }
+
+    @Override
+    public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
+        List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
+        return state.is(RankineTags.Blocks.CROWBAR_EFFECTIVE) && !state.is(RankineTags.Blocks.CROWBAR_RESISTANT) && TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);
     }
 
     @Override
@@ -60,7 +66,7 @@ public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool {
             });
         }
 
-        if ((isCorrectToolForDrops(state) || (canHarvestWithRetrieval(stack,state) && worldIn.getBlockEntity(pos) == null && worldIn.getFluidState(pos).isEmpty())) && !worldIn.isClientSide && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots)
+        if ((isCorrectToolForDrops(stack,state) || (canHarvestWithRetrieval(stack,state) && worldIn.getBlockEntity(pos) == null && worldIn.getFluidState(pos).isEmpty())) && !worldIn.isClientSide && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots)
         {
             double d0 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
             double d1 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;

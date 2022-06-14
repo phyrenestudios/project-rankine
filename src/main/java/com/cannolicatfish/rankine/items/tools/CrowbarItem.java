@@ -4,6 +4,8 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.google.common.collect.ImmutableSet;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -21,6 +23,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.world.item.Item.Properties;
@@ -35,6 +39,7 @@ import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.GrassBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.TierSortingRegistry;
 
 public class CrowbarItem extends DiggerItem {
     private static final Set<Block> effectiveBlocks = ImmutableSet.of(Blocks.ACACIA_PLANKS);
@@ -76,12 +81,8 @@ public class CrowbarItem extends DiggerItem {
     }
 
     @Override
-    public boolean isCorrectToolForDrops(BlockState blockIn) {
-        int i = this.getTier().getLevel();
-        if (blockIn.is(RankineTags.Blocks.CROWBAR_EFFECTIVE) && !blockIn.is(RankineTags.Blocks.CROWBAR_RESISTANT)) {
-            return true;
-        }
-        return false;
+    public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
+        return state.is(RankineTags.Blocks.CROWBAR_EFFECTIVE) && !state.is(RankineTags.Blocks.CROWBAR_RESISTANT) && TierSortingRegistry.isCorrectTierForDrops(this.getTier(),state);
     }
 
     @Override

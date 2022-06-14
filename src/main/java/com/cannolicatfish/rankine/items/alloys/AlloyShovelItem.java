@@ -4,8 +4,8 @@ import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.google.common.collect.*;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,17 +29,13 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ShovelItem;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.TierSortingRegistry;
 
 public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.CLAY, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.FARMLAND, Blocks.GRASS_BLOCK, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.RED_SAND, Blocks.SNOW_BLOCK, Blocks.SNOW, Blocks.SOUL_SAND, Blocks.DIRT_PATH, Blocks.WHITE_CONCRETE_POWDER, Blocks.ORANGE_CONCRETE_POWDER, Blocks.MAGENTA_CONCRETE_POWDER, Blocks.LIGHT_BLUE_CONCRETE_POWDER, Blocks.YELLOW_CONCRETE_POWDER, Blocks.LIME_CONCRETE_POWDER, Blocks.PINK_CONCRETE_POWDER, Blocks.GRAY_CONCRETE_POWDER, Blocks.LIGHT_GRAY_CONCRETE_POWDER, Blocks.CYAN_CONCRETE_POWDER, Blocks.PURPLE_CONCRETE_POWDER, Blocks.BLUE_CONCRETE_POWDER, Blocks.BROWN_CONCRETE_POWDER, Blocks.GREEN_CONCRETE_POWDER, Blocks.RED_CONCRETE_POWDER, Blocks.BLACK_CONCRETE_POWDER, Blocks.SOUL_SOIL);
@@ -50,6 +46,12 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
         super(tier, attackDamageIn, attackSpeedIn, builder);
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
+    }
+
+    @Override
+    public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
+        List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
+        return state.is(BlockTags.MINEABLE_WITH_SHOVEL) && TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);
     }
 
     @Override

@@ -4,11 +4,11 @@ import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,17 +25,12 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.TierSortingRegistry;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Tier;
 
 public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
     private final String defaultComposition;
@@ -46,6 +41,12 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
         super(tier, attackDamageIn, attackSpeedIn, properties);
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
+    }
+
+    @Override
+    public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
+        List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
+        return state.is(BlockTags.MINEABLE_WITH_PICKAXE) && TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);
     }
 
     @Override

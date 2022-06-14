@@ -1,12 +1,13 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,6 +28,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.world.item.Item.Properties;
@@ -36,14 +38,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.AnvilBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.TierSortingRegistry;
 
 public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     private final String defaultComposition;
@@ -52,6 +52,12 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
         super(attackDamageIn, attackSpeedIn, tier, properties);
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
+    }
+
+    @Override
+    public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
+        List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
+        return TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);
     }
 
     @Override
@@ -99,7 +105,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
         {
             creativeFlag = ((Player) entityLiving).isCreative();
         }
-        if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isEmptyBlock(pos)) {
+        if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isEmptyBlock(pos) && this.isCorrectToolForDrops(stack,state)) {
             for (CrushingRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING)) {
                 for (ItemStack s : recipe.getIngredientAsStackList()) {
                     if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem()) {

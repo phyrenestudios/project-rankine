@@ -37,6 +37,7 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.common.TierSortingRegistry;
 
 public class HammerItem extends DiggerItem {
 
@@ -49,6 +50,10 @@ public class HammerItem extends DiggerItem {
         super(attackDamageIn, attackSpeedIn, tier, RankineTags.Blocks.HARDENED_GLASS, builder);
     }
 
+    @Override
+    public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
+        return TierSortingRegistry.isCorrectTierForDrops(this.getTier(),state);
+    }
 
     @Override
     public boolean mineBlock(ItemStack stack, Level worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
@@ -57,7 +62,7 @@ public class HammerItem extends DiggerItem {
         {
             creativeFlag = ((Player) entityLiving).isCreative();
         }
-        if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isEmptyBlock(pos)) {
+        if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isEmptyBlock(pos) && this.isCorrectToolForDrops(stack,state)) {
             for (CrushingRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING)) {
                 for (ItemStack s : recipe.getIngredientAsStackList().clone()) {
                     if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem()) {
