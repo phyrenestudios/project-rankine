@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
-  "genName": true,
+  "langName": "item.rankine.stainless_steel_alloying",
   "inheritRecipe": "rankine:alloying/stainless_steel_alloying",
   "color": 13292499,
   "pattern": [
@@ -11,7 +11,9 @@
   ],
   "key": {
     "T": {
-      "tag": "forge:ingots/stainless_steel"
+      "tag": "forge:ingots/stainless_steel",
+      "alloyRecipe": "rankine:alloying/stainless_steel_alloying",
+      "langName": "item.rankine.stainless_steel_alloying"
     },
     "S": {
       "tag": "forge:rods/wooden"

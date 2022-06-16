@@ -79,7 +79,11 @@ public class MixingRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        return !getMixingResult(inv,worldIn).isEmpty();
+        if (inv instanceof MixingBarrelTile) {
+            return ((MixingBarrelTile)inv).getInputTank().getFluid().containsFluid(getOutputFluidReq(inv)) && !getMixingResult(inv,worldIn).isEmpty();
+        } else {
+            return !getMixingResult(inv,worldIn).isEmpty();
+        }
     }
 
     @Override
@@ -200,9 +204,6 @@ public class MixingRecipe implements IRecipe<IInventory> {
         int sum = currentMaterial.stream().mapToInt(Integer::intValue).sum();
         float matFactor = getMatScale();
 
-        if (inv instanceof MixingBarrelTile && !((MixingBarrelTile)inv).getInputTank().getFluid().containsFluid(getOutputFluidReq(inv))) {
-            return ItemStack.EMPTY;
-        }
 
         if (currentIngredients.size() > 1 && (Math.round(sum*matFactor) > 64 || Math.round(sum*matFactor) < 1)){
             return ItemStack.EMPTY;

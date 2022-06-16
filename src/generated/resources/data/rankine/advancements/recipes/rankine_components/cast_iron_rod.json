@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:bronze__gear"
+      "rankine:cast_iron_rod"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:bronze_ingot"
+            "item": "rankine:cast_iron_ingot"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:bronze__gear"
+        "recipe": "rankine:cast_iron_rod"
       }
     }
   },

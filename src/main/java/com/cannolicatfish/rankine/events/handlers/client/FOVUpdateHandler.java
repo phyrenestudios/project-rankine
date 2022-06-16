@@ -10,7 +10,7 @@ import net.minecraftforge.client.event.FOVUpdateEvent;
 
 public class FOVUpdateHandler {
     public static void fovUpdate( FOVUpdateEvent event) {
-        if (!Config.GENERAL.MOVEMENT_MODIFIERS.get()){
+        if (!Config.GENERAL.MOVEMENT_MODIFIERS.get() || !Config.GENERAL.MOVEMENT_MODIFIERS_FOV.get()){
             return;
         }
         PlayerEntity player = event.getEntity();
@@ -23,7 +23,7 @@ public class FOVUpdateHandler {
                 movementSpeed.hasModifier(RankineAttributes.ROMAN_CONCRETE_MS) || movementSpeed.hasModifier(RankineAttributes.DIRT_MS) || movementSpeed.hasModifier(RankineAttributes.POLISHED_STONE_MS) ||
                 movementSpeed.hasModifier(RankineAttributes.WOODEN_MS) || movementSpeed.hasModifier(RankineAttributes.CONCRETE_MS) || movementSpeed.hasModifier(RankineAttributes.SNOW_MS) ||
                 movementSpeed.hasModifier(RankineAttributes.MUD_MS)) {
-            event.setNewfov(Minecraft.getInstance().gameSettings.fovScaleEffect * (player.isSprinting() ? 1.3f : 1));
+            event.setNewfov(1/Minecraft.getInstance().gameSettings.fovScaleEffect * (player.isSprinting() ? 1.3f : 1));
         }
     }
 }

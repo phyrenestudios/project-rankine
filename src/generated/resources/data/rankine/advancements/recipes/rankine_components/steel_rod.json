@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:cupronickel__rod"
+      "rankine:steel_rod"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:cupronickel_ingot"
+            "item": "rankine:steel_ingot"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:cupronickel__rod"
+        "recipe": "rankine:steel_rod"
       }
     }
   },
