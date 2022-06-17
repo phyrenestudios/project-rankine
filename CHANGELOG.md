@@ -2,7 +2,62 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
+
+## Project Rankine Version 1.3.3 (1.18.2 Port) Changelog [14Jun2022]
+
+- This update is the initial port to 1.18.2 from 1.16.5. Many minor changes may have occured during the update, but the significant ones are recorded below.
+
+### BLOCKS
+- Added dripstone and pointed dripstone variants (ferric, magnesitic, gypsic, zirconic, nitric, boracitic)
+- Mineral Deposits no longer generate Gwihabaite
+- Added Rankine Copper Ore equivalent
+- Added Banded Iron Formations
+- Removed Evaporite
+- Removed Copper Block
+- Removed Calcite Block
+- Updated loottables of vanilla ore equivalents to match vanilla
+- Adjusted xp drop from ores
+- Unlit campfires can be lit using flint
+
+### ITEMS
+- Removed Copper Ingot
+
+### WORLDGEN
+- Added a retrogen system to handle block replacements. Config option available. This should improve continuity of replacements across chunk borders
+- Larger patches of white sand
+- White sandstone generates under white sand
+- Desert sand and desert sandstone replace default sand in badlands biomes
+- Adjusted biome placement of trees and plants
+- Adjusted ore placements
+
+### TAGS
+- Added blocks to respective needs_tool tags
+- Added blocks to respective minable tags
+- Added Rankine blocks to animal spawn on tags
+
+### MISC
+- Changed misc item textures
+- Removed AnimalSpawning mixin
+- Fixed Fusion Furnace recipes not working when an item was not included in the gas slot
+- Fixed shonkinite crushing recipe
+- Adjusted output of alternative gunpowder recipes from 4 to 2
+- Added conversion crafting recipes for vanilla based ores
+
 ## Project Rankine Version 1.3.2 Changelog [28Apr2022]
+### Hotfix 2 [17Jun2022]
+- Added config to enable/disable FOV effects on movement modifier blocks, set to false by default
+- Added alloy crafting recipes for Cupronickel and Duralumin Arrows
+- Changed texture for Alloy Rod
+- Fixed bug related to block placement of wall mushrooms
+- Fixed Fusion Furnace recipes not working when an item was not included in the gas slot
+- Fixed alloy arrows and related alloy crafting recipes
+- Fixed alloy crafting recipes for alloy gears
+- Fixed recipe names for alloy gears and rods
+- Fixed fluid calculations for Mixing recipes
+- Fixed charcoal pit client-side behavior
+- Fixed ability to light fires with two flint
+- Fixed shonkinite crushing recipe
+
 ### Hotfix 1 [29Apr2022]
 - Added Apatite fusion furnace recipe
 - Added pulp recipe involving talc
