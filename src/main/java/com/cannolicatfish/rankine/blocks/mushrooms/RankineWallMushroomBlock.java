@@ -94,7 +94,7 @@ public class RankineWallMushroomBlock extends BushBlock implements IGrowable{
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         Direction direction = context.getFace();
         if (direction.getAxis().isVertical() && context.getPlayer() != null) return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlayer().getHorizontalFacing().getOpposite());
-        return this.getDefaultState().with(HORIZONTAL_FACING, direction);
+        return this.getDefaultState().with(HORIZONTAL_FACING, direction.equals(Direction.UP) || direction.equals(Direction.DOWN) ? Direction.SOUTH : direction);
     }
 
     @Override
