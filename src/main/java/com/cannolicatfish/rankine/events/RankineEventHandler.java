@@ -255,7 +255,7 @@ public class RankineEventHandler {
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         RightClickBlockHandler.worldDye(event);
         RightClickBlockHandler.onRightClickBlock(event);
-        RightClickBlockHandler.axeStrip(event);
+        RightClickBlockHandler.flintFire(event);
         RightClickBlockHandler.axeStrip(event);
     }
 

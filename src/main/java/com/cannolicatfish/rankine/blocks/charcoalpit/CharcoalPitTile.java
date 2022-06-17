@@ -24,7 +24,7 @@ import java.util.Stack;
 public class CharcoalPitTile extends TileEntity implements ITickableTileEntity {
     int MAX_HEIGHT = Config.MACHINES.CHARCOAL_PIT_HEIGHT.get();
     double RADIUS = Config.MACHINES.CHARCOAL_PIT_RADIUS.get()+0.5;
-    int totalTime;
+    int totalTime = Config.MACHINES.CHARCOAL_PIT_SPEED.get();
     int proccessTime = 0;
 
     public CharcoalPitTile() {
@@ -35,17 +35,19 @@ public class CharcoalPitTile extends TileEntity implements ITickableTileEntity {
     public void read(BlockState state, CompoundNBT nbt) {
         super.read(state, nbt);
         this.proccessTime = nbt.getInt("ProcessTime");
+        this.totalTime = nbt.getInt("TotalTime");
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
         super.write(compound);
         compound.putInt("ProcessTime", this.proccessTime);
+        compound.putInt("TotalTime", this.proccessTime);
         return compound;
     }
 
     public void tick() {
-        if (!world.isAreaLoaded(pos, 1) || !world.isRemote() || !this.getBlockState().get(CharcoalPitBlock.LIT) || world.getBlockState(pos.down()).matchesBlock(RankineBlocks.CHARCOAL_PIT.get())) return;
+        if (!world.isAreaLoaded(pos, 1)|| !this.getBlockState().get(CharcoalPitBlock.LIT) || world.getBlockState(pos.down()).matchesBlock(RankineBlocks.CHARCOAL_PIT.get())) return;
         if (proccessTime == 0) {
             totalTime = MathHelper.nextInt(world.rand,(int) Math.round(0.8*Config.MACHINES.CHARCOAL_PIT_SPEED.get()),(int) Math.round(1.2*Config.MACHINES.CHARCOAL_PIT_SPEED.get()));
         }
