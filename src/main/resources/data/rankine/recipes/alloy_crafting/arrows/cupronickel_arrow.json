@@ -1,0 +1,29 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "langName": "item.rankine.cupronickel_alloying",
+  "inheritRecipe": "rankine:alloying/cupronickel_alloying",
+  "color": 11946807,
+  "pattern": [
+    "T",
+    "S",
+    "F"
+  ],
+  "key": {
+    "T": {
+      "item": "rankine:cupronickel_ingot",
+      "alloyRecipe": "rankine:alloying/cupronickel_alloying",
+      "name": "item.rankine.cupronickel_alloying"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_arrow",
+    "count": 4
+  }
+}

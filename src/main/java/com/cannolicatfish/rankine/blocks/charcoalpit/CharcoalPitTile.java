@@ -24,7 +24,7 @@ import static com.cannolicatfish.rankine.init.RankineBlocks.CHARCOAL_PIT_TILE;
 public class CharcoalPitTile extends BlockEntity {
     int MAX_HEIGHT = Config.MACHINES.CHARCOAL_PIT_HEIGHT.get();
     double RADIUS = Config.MACHINES.CHARCOAL_PIT_RADIUS.get()+0.5;
-    int totalTime;
+    int totalTime = Config.MACHINES.CHARCOAL_PIT_SPEED.get();
     int proccessTime = 0;
 
     public CharcoalPitTile(BlockPos posIn, BlockState stateIn) {
@@ -35,12 +35,14 @@ public class CharcoalPitTile extends BlockEntity {
     public void load(CompoundTag nbt) {
         super.load(nbt);
         this.proccessTime = nbt.getInt("ProcessTime");
+        this.totalTime = nbt.getInt("TotalTime");
     }
 
     @Override
     public void saveAdditional(CompoundTag compound) {
         super.saveAdditional(compound);
         compound.putInt("ProcessTime", this.proccessTime);
+        compound.putInt("TotalTime", this.proccessTime);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState bs, CharcoalPitTile tile) {

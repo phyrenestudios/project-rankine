@@ -88,7 +88,7 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction direction = context.getClickedFace();
         if (direction.getAxis().isVertical() && context.getPlayer() != null) return Blocks.AIR.defaultBlockState();
-        return this.defaultBlockState().setValue(HORIZONTAL_FACING, direction);
+        return this.defaultBlockState().setValue(HORIZONTAL_FACING, direction.equals(Direction.UP) || direction.equals(Direction.DOWN) ? Direction.SOUTH : direction);
     }
 
     @Override
