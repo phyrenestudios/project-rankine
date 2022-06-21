@@ -244,6 +244,7 @@ public class ProjectRankine {
             event.getRegistry().register(RockGeneratorRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"rock_generator"));
             event.getRegistry().register(TreetappingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"treetapping"));
             event.getRegistry().register(StrippingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"stripping"));
+            event.getRegistry().register(ForagingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"foraging"));
             event.getRegistry().register(AirDistillationRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"air_distillation"));
             event.getRegistry().register(MixingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"mixing"));
             event.getRegistry().register(AlloyModifierRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloy_modifier"));

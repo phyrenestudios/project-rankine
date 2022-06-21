@@ -36,7 +36,8 @@ public class Config {
     }
 
     public static class Tools {
-        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_MALLET;
+        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_HAMMER;
+        public final ForgeConfigSpec.BooleanValue DISABLE_STONE_HAMMER;
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_SWORD;
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_AXE;
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_SHOVEL;
@@ -89,8 +90,10 @@ public class Config {
 
             b.comment("Rankine Tools").push("rankineTools");
 
-                DISABLE_WOODEN_MALLET = b.comment("Disable the use of the wooden mallet (still allows crafting for other recipes). This is enabled by default for progression.")
-                        .define("disableWoodenMallet", true);
+                DISABLE_WOODEN_HAMMER = b.comment("Disable the use of the wooden hammer (still allows crafting for other recipes). This is enabled by default for progression.")
+                        .define("disableWoodenHammer", false);
+                DISABLE_STONE_HAMMER = b.comment("Disable the use of the stone hammer (still allows crafting for other recipes). This is enabled by default for progression.")
+                        .define("disableStoneHammer", false);
                 DISABLE_COMPASS = b.comment("Disable status bar message from compass.")
                         .define("disableCompass",false);
                 DISABLE_CLOCK = b.comment("Disable status bar message from clock.")

@@ -1,0 +1,17 @@
+{
+  "type": "rankine:foraging",
+  "biomes": {
+    "biome": "minecraft:forest"
+  },
+  "outputs": [
+    {
+      "item": "minecraft:diamond",
+      "weight": 1,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:thorium_nugget",
+      "weight": 1
+    }
+  ]
+}

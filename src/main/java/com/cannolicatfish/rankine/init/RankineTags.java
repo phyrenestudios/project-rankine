@@ -1095,6 +1095,7 @@ public final class RankineTags {
 
 
 
+        public static final TagKey<Item> FLINT = forgeItem("flint");
         public static final TagKey<Item> SOLDER = forgeItem("solder");
         public static final TagKey<Item> FELDSPAR = forgeItem("feldspar");
         public static final TagKey<Item> SALT = forgeItem("salt");
