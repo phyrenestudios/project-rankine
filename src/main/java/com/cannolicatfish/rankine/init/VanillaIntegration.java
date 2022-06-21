@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
@@ -20,9 +21,10 @@ import java.util.Map;
 public class VanillaIntegration {
     public static Map<Item, Integer> fuelValueMap = new HashMap<Item, Integer>();
     public static Map<Block, Item> oreNuggetMap = new HashMap<Block, Item>();
-    public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
     public static Map<Block, Block> pathBlocks_map = new HashMap<Block, Block>();
     public static Map<Block, TilledSoilTypes> hoeables_map = new HashMap<Block, TilledSoilTypes>();
+    public static final Map<Item, ForgeConfigSpec.BooleanValue> DISABLED_ITEMS = new HashMap<>();
+
 
     public static void init() {
 
@@ -196,47 +198,7 @@ public class VanillaIntegration {
         hoeables_map.put(RankineBlocks.SILTY_CLAY_MUD.get(), TilledSoilTypes.SILTY_CLAY);
 
         
-        
-        stripping_map.put(RankineBlocks.CEDAR_LOG.get(), RankineBlocks.STRIPPED_CEDAR_LOG.get());
-        stripping_map.put(RankineBlocks.CEDAR_WOOD.get(), RankineBlocks.STRIPPED_CEDAR_WOOD.get());
-        stripping_map.put(RankineBlocks.PETRIFIED_CHORUS_LOG.get(), RankineBlocks.STRIPPED_PETRIFIED_CHORUS_LOG.get());
-        stripping_map.put(RankineBlocks.PETRIFIED_CHORUS_WOOD.get(), RankineBlocks.STRIPPED_PETRIFIED_CHORUS_WOOD.get());
-        stripping_map.put(RankineBlocks.ERYTHRINA_LOG.get(), RankineBlocks.STRIPPED_ERYTHRINA_LOG.get());
-        stripping_map.put(RankineBlocks.ERYTHRINA_WOOD.get(), RankineBlocks.STRIPPED_ERYTHRINA_WOOD.get());
-        stripping_map.put(RankineBlocks.CHARRED_LOG.get(), RankineBlocks.STRIPPED_CHARRED_LOG.get());
-        stripping_map.put(RankineBlocks.CHARRED_WOOD.get(), RankineBlocks.STRIPPED_CHARRED_WOOD.get());
-        stripping_map.put(RankineBlocks.PINYON_PINE_LOG.get(), RankineBlocks.STRIPPED_PINYON_PINE_LOG.get());
-        stripping_map.put(RankineBlocks.PINYON_PINE_WOOD.get(), RankineBlocks.STRIPPED_PINYON_PINE_WOOD.get());
-        stripping_map.put(RankineBlocks.BALSAM_FIR_LOG.get(), RankineBlocks.STRIPPED_BALSAM_FIR_LOG.get());
-        stripping_map.put(RankineBlocks.BALSAM_FIR_WOOD.get(), RankineBlocks.STRIPPED_BALSAM_FIR_WOOD.get());
-        stripping_map.put(RankineBlocks.COCONUT_PALM_LOG.get(), RankineBlocks.STRIPPED_COCONUT_PALM_LOG.get());
-        stripping_map.put(RankineBlocks.COCONUT_PALM_WOOD.get(), RankineBlocks.STRIPPED_COCONUT_PALM_WOOD.get());
-        stripping_map.put(RankineBlocks.MAGNOLIA_LOG.get(), RankineBlocks.STRIPPED_MAGNOLIA_LOG.get());
-        stripping_map.put(RankineBlocks.MAGNOLIA_WOOD.get(), RankineBlocks.STRIPPED_MAGNOLIA_WOOD.get());
-        stripping_map.put(RankineBlocks.JUNIPER_LOG.get(), RankineBlocks.STRIPPED_JUNIPER_LOG.get());
-        stripping_map.put(RankineBlocks.JUNIPER_WOOD.get(), RankineBlocks.STRIPPED_JUNIPER_WOOD.get());
-        stripping_map.put(RankineBlocks.EASTERN_HEMLOCK_LOG.get(), RankineBlocks.STRIPPED_EASTERN_HEMLOCK_LOG.get());
-        stripping_map.put(RankineBlocks.EASTERN_HEMLOCK_WOOD.get(), RankineBlocks.STRIPPED_EASTERN_HEMLOCK_WOOD.get());
-        stripping_map.put(RankineBlocks.YELLOW_BIRCH_LOG.get(), RankineBlocks.STRIPPED_YELLOW_BIRCH_LOG.get());
-        stripping_map.put(RankineBlocks.YELLOW_BIRCH_WOOD.get(), RankineBlocks.STRIPPED_YELLOW_BIRCH_WOOD.get());
-        stripping_map.put(RankineBlocks.BLACK_BIRCH_LOG.get(), RankineBlocks.STRIPPED_BLACK_BIRCH_LOG.get());
-        stripping_map.put(RankineBlocks.BLACK_BIRCH_WOOD.get(), RankineBlocks.STRIPPED_BLACK_BIRCH_WOOD.get());
-        stripping_map.put(RankineBlocks.RED_BIRCH_LOG.get(), RankineBlocks.STRIPPED_RED_BIRCH_LOG.get());
-        stripping_map.put(RankineBlocks.RED_BIRCH_WOOD.get(), RankineBlocks.STRIPPED_RED_BIRCH_WOOD.get());
-        stripping_map.put(RankineBlocks.WEEPING_WILLOW_LOG.get(), RankineBlocks.STRIPPED_WEEPING_WILLOW_LOG.get());
-        stripping_map.put(RankineBlocks.WEEPING_WILLOW_WOOD.get(), RankineBlocks.STRIPPED_WEEPING_WILLOW_WOOD.get());
-        stripping_map.put(RankineBlocks.HONEY_LOCUST_LOG.get(), RankineBlocks.STRIPPED_HONEY_LOCUST_LOG.get());
-        stripping_map.put(RankineBlocks.HONEY_LOCUST_WOOD.get(), RankineBlocks.STRIPPED_HONEY_LOCUST_WOOD.get());
-        stripping_map.put(RankineBlocks.MAPLE_LOG.get(), RankineBlocks.STRIPPED_MAPLE_LOG.get());
-        stripping_map.put(RankineBlocks.MAPLE_WOOD.get(), RankineBlocks.STRIPPED_MAPLE_WOOD.get());
-        stripping_map.put(RankineBlocks.SHARINGA_LOG.get(), RankineBlocks.STRIPPED_SHARINGA_LOG.get());
-        stripping_map.put(RankineBlocks.SHARINGA_WOOD.get(), RankineBlocks.STRIPPED_SHARINGA_WOOD.get());
-        stripping_map.put(RankineBlocks.BLACK_WALNUT_LOG.get(), RankineBlocks.STRIPPED_BLACK_WALNUT_LOG.get());
-        stripping_map.put(RankineBlocks.BLACK_WALNUT_WOOD.get(), RankineBlocks.STRIPPED_BLACK_WALNUT_WOOD.get());
-        stripping_map.put(RankineBlocks.CORK_OAK_LOG.get(), RankineBlocks.STRIPPED_CORK_OAK_LOG.get());
-        stripping_map.put(RankineBlocks.CORK_OAK_WOOD.get(), RankineBlocks.STRIPPED_CORK_OAK_WOOD.get());
-        stripping_map.put(RankineBlocks.CINNAMON_LOG.get(), RankineBlocks.STRIPPED_CINNAMON_LOG.get());
-        stripping_map.put(RankineBlocks.CINNAMON_WOOD.get(), RankineBlocks.STRIPPED_CINNAMON_WOOD.get());
+
 
         
         addFlowerPot(RankineBlocks.CEDAR_SAPLING.get(), RankineBlocks.POTTED_CEDAR_SAPLING.get());
@@ -318,6 +280,63 @@ public class VanillaIntegration {
             }
 
         }
+
+        // Wood
+        DISABLED_ITEMS.put(Items.WOODEN_SWORD, Config.TOOLS.DISABLE_WOODEN_SWORD);
+        DISABLED_ITEMS.put(Items.WOODEN_AXE, Config.TOOLS.DISABLE_WOODEN_AXE);
+        DISABLED_ITEMS.put(Items.WOODEN_SHOVEL, Config.TOOLS.DISABLE_WOODEN_SHOVEL);
+        DISABLED_ITEMS.put(Items.WOODEN_PICKAXE, Config.TOOLS.DISABLE_WOODEN_PICKAXE);
+        DISABLED_ITEMS.put(Items.WOODEN_HOE, Config.TOOLS.DISABLE_WOODEN_HOE);
+        // Stone
+        DISABLED_ITEMS.put(Items.STONE_SWORD, Config.TOOLS.DISABLE_STONE_SWORD);
+        DISABLED_ITEMS.put(Items.STONE_AXE, Config.TOOLS.DISABLE_STONE_AXE);
+        DISABLED_ITEMS.put(Items.STONE_SHOVEL, Config.TOOLS.DISABLE_STONE_SHOVEL);
+        DISABLED_ITEMS.put(Items.STONE_PICKAXE, Config.TOOLS.DISABLE_STONE_PICKAXE);
+        DISABLED_ITEMS.put(Items.STONE_HOE, Config.TOOLS.DISABLE_STONE_HOE);
+        // Iron
+        DISABLED_ITEMS.put(Items.IRON_SWORD, Config.TOOLS.DISABLE_IRON_SWORD);
+        DISABLED_ITEMS.put(Items.IRON_AXE, Config.TOOLS.DISABLE_IRON_AXE);
+        DISABLED_ITEMS.put(Items.IRON_SHOVEL, Config.TOOLS.DISABLE_IRON_SHOVEL);
+        DISABLED_ITEMS.put(Items.IRON_PICKAXE, Config.TOOLS.DISABLE_IRON_PICKAXE);
+        DISABLED_ITEMS.put(Items.IRON_HOE, Config.TOOLS.DISABLE_IRON_HOE);
+        // Gold
+        DISABLED_ITEMS.put(Items.GOLDEN_SWORD, Config.TOOLS.DISABLE_GOLDEN_SWORD);
+        DISABLED_ITEMS.put(Items.GOLDEN_AXE, Config.TOOLS.DISABLE_GOLDEN_AXE);
+        DISABLED_ITEMS.put(Items.GOLDEN_SHOVEL, Config.TOOLS.DISABLE_GOLDEN_SHOVEL);
+        DISABLED_ITEMS.put(Items.GOLDEN_PICKAXE, Config.TOOLS.DISABLE_GOLDEN_PICKAXE);
+        DISABLED_ITEMS.put(Items.GOLDEN_HOE, Config.TOOLS.DISABLE_GOLDEN_HOE);
+        // Diamond
+        DISABLED_ITEMS.put(Items.DIAMOND_SWORD, Config.TOOLS.DISABLE_DIAMOND_SWORD);
+        DISABLED_ITEMS.put(Items.DIAMOND_AXE, Config.TOOLS.DISABLE_DIAMOND_AXE);
+        DISABLED_ITEMS.put(Items.DIAMOND_SHOVEL, Config.TOOLS.DISABLE_DIAMOND_SHOVEL);
+        DISABLED_ITEMS.put(Items.DIAMOND_PICKAXE, Config.TOOLS.DISABLE_DIAMOND_PICKAXE);
+        DISABLED_ITEMS.put(Items.DIAMOND_HOE, Config.TOOLS.DISABLE_DIAMOND_HOE);
+        // Netherite
+        DISABLED_ITEMS.put(Items.NETHERITE_SWORD, Config.TOOLS.DISABLE_NETHERITE_SWORD);
+        DISABLED_ITEMS.put(Items.NETHERITE_AXE, Config.TOOLS.DISABLE_NETHERITE_AXE);
+        DISABLED_ITEMS.put(Items.NETHERITE_SHOVEL, Config.TOOLS.DISABLE_NETHERITE_SHOVEL);
+        DISABLED_ITEMS.put(Items.NETHERITE_PICKAXE, Config.TOOLS.DISABLE_NETHERITE_PICKAXE);
+        DISABLED_ITEMS.put(Items.NETHERITE_HOE, Config.TOOLS.DISABLE_NETHERITE_HOE);
+
+        // Compass
+        DISABLED_ITEMS.put(Items.COMPASS, Config.TOOLS.DISABLE_COMPASS);
+        // Clock
+        DISABLED_ITEMS.put(Items.CLOCK, Config.TOOLS.DISABLE_CLOCK);
+        // Wooden Hammer
+        DISABLED_ITEMS.put(RankineItems.WOODEN_HAMMER.get(), Config.TOOLS.DISABLE_WOODEN_HAMMER);
+        DISABLED_ITEMS.put(RankineItems.STONE_HAMMER.get(), Config.TOOLS.DISABLE_STONE_HAMMER);
+        // Altimeter
+        DISABLED_ITEMS.put(RankineItems.ALTIMETER.get(), Config.TOOLS.DISABLE_ALTIMETER);
+        // Thermometer
+        DISABLED_ITEMS.put(RankineItems.THERMOMETER.get(), Config.TOOLS.DISABLE_THERMOMETER);
+        // Photometer
+        DISABLED_ITEMS.put(RankineItems.PHOTOMETER.get(), Config.TOOLS.DISABLE_PHOTOMETER);
+        // Speedometer
+        DISABLED_ITEMS.put(RankineItems.SPEEDOMETER.get(), Config.TOOLS.DISABLE_SPEEDOMETER);
+        // Biometer
+        DISABLED_ITEMS.put(RankineItems.BIOMETER.get(), Config.TOOLS.DISABLE_BIOMETER);
+        // Magnetometer
+        DISABLED_ITEMS.put(RankineItems.MAGNETOMETER.get(), Config.TOOLS.DISABLE_MAGNETOMETER);
     }
 
     public static void registerCompostable(float chance, ItemLike itemIn) {

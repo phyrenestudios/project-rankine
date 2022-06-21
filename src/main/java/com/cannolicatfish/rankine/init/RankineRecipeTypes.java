@@ -86,6 +86,13 @@ public class RankineRecipeTypes {
         }
     };
 
+    public static final RecipeType<ForagingRecipe> FORAGING = new RecipeType<ForagingRecipe>() {
+        @Override
+        public <C extends Container> Optional<ForagingRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
+            return recipe.matches(inv, worldIn) ? Optional.of((ForagingRecipe) recipe) : Optional.empty();
+        }
+    };
+
     public static final RecipeType<AirDistillationRecipe> AIR_DISTILLATION = new RecipeType<AirDistillationRecipe>() {
         @Override
         public <C extends Container> Optional<AirDistillationRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {

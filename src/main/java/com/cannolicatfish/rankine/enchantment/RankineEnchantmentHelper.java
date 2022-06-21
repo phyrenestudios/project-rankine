@@ -26,6 +26,9 @@ public class RankineEnchantmentHelper {
     public static boolean hasFlippers(LivingEntity entityIn) {
         return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.FLIPPERS, entityIn) > 0;
     }
+    public static boolean hasForaging(LivingEntity entityIn) {
+        return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.FORAGING, entityIn) > 0;
+    }
 
 
 }

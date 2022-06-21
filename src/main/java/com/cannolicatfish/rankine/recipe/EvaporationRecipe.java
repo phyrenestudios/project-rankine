@@ -2,34 +2,35 @@ package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
-import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.core.Holder;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
 public class EvaporationRecipe implements Recipe<Container> {
 
@@ -278,7 +279,6 @@ public class EvaporationRecipe implements Recipe<Container> {
             for (int i = 0; i < biomesSize; i++) {
                 biomeArray[i] = buffer.readUtf();
             }
-
             List<String> biomes = Arrays.asList(biomeArray);
 
             NonNullList<ItemStack> stacks = NonNullList.withSize(t, ItemStack.EMPTY);
