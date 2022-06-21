@@ -78,7 +78,11 @@ public class MixingRecipe implements Recipe<Container> {
 
     @Override
     public boolean matches(Container inv, Level worldIn) {
-        return !getMixingResult(inv,worldIn).isEmpty();
+        if (inv instanceof MixingBarrelTile) {
+            return ((MixingBarrelTile)inv).getInputTank().getFluid().containsFluid(getOutputFluidReq(inv)) && !getMixingResult(inv,worldIn).isEmpty();
+        } else {
+            return !getMixingResult(inv,worldIn).isEmpty();
+        }
     }
 
     @Override

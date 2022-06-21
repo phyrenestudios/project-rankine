@@ -8,7 +8,7 @@
     "amount": 50
   },
   "input1": {
-    "tag": "forge:dirt",
+    "tag": "minecraft:dirt",
     "required": true,
     "min": 0.40,
     "max": 0.60

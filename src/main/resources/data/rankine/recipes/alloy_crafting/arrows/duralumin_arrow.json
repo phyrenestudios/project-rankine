@@ -1,3 +1,4 @@
+
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
@@ -5,22 +6,25 @@
   "inheritRecipe": "rankine:alloying/duralumin_alloying",
   "color": 8887223,
   "pattern": [
-    " I ",
-    "ISI",
-    " I "
+    "T",
+    "S",
+    "F"
   ],
   "key": {
-    "I": {
+    "T": {
       "item": "rankine:duralumin_ingot",
       "alloyRecipe": "rankine:alloying/duralumin_alloying",
       "langName": "item.rankine.duralumin_alloying"
     },
     "S": {
-      "tag": "forge:solder"
+      "tag": "forge:rods/wooden"
+    },
+    "F": {
+      "item": "minecraft:feather"
     }
   },
   "result": {
-    "item": "rankine:alloy_wire",
-    "count": 8
+    "item": "rankine:alloy_arrow",
+    "count": 4
   }
 }

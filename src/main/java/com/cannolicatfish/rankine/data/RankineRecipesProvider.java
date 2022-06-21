@@ -1000,13 +1000,13 @@ public class RankineRecipesProvider extends RecipeProvider {
         mimicToolRecipes(consumer, (AlloyItem) RankineItems.OSMIRIDIUM.get(), RankineItems.OSMIRIDIUM_INGOT.get(), 13212593, "item.rankine.osmiridium_alloying", false, "rankine:native_osmiridium_");
 
 
-        alloyGear(consumer, RankineItems.ALLOY_GEAR.get(), new AlloyIngredient(Ingredient.of(RankineItems.BRONZE_INGOT.get()), "", null, null, 16777215),RankineItems.BRONZE_INGOT.get(),2236962, "item.rankine.bronze_alloying", "rankine:bronze_",null);
-        alloyGear(consumer, RankineItems.ALLOY_GEAR.get(), new AlloyIngredient(Ingredient.of(RankineItems.CUPRONICKEL_INGOT.get()), "", null, null, 16777215),RankineItems.CUPRONICKEL_INGOT.get(),11946807, "item.rankine.cupronickel_alloying", "rankine:cupronickel_",null);
+        alloyGear(consumer, RankineItems.ALLOY_GEAR.get(), new AlloyIngredient(Ingredient.of(RankineItems.BRONZE_INGOT.get()), "", null, null, 16777215),RankineItems.BRONZE_INGOT.get(),15510384, "item.rankine.bronze_alloying", "rankine:bronze",null);
+        alloyGear(consumer, RankineItems.ALLOY_GEAR.get(), new AlloyIngredient(Ingredient.of(RankineItems.CUPRONICKEL_INGOT.get()), "", null, null, 16777215),RankineItems.CUPRONICKEL_INGOT.get(),11946807, "item.rankine.cupronickel_alloying", "rankine:cupronickel",null);
 
-        alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.of(RankineItems.CAST_IRON_INGOT.get()), "", null, null, 16777215),RankineItems.CAST_IRON_INGOT.get(),2236962, "item.rankine.cast_iron_alloying", "rankine:cast_iron_",null);
-        alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.of(RankineItems.CUPRONICKEL_INGOT.get()), "", null, null, 16777215),RankineItems.CUPRONICKEL_INGOT.get(),11946807, "item.rankine.cupronickel_alloying", "rankine:cupronickel_",null);
-        alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.of(RankineItems.STEEL_INGOT.get()), "", null, null, 16777215),RankineItems.STEEL_INGOT.get(),7634311, "item.rankine.steel_alloying", "rankine:steel_",null);
-        alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.of(RankineItems.FERROCERIUM_INGOT.get()), "", null, null, 16777215),RankineItems.FERROCERIUM_INGOT.get(),7433071, "item.rankine.ferrocerium_alloying", "rankine:ferrocerium_",null);
+        alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.of(RankineItems.CAST_IRON_INGOT.get()), "", null, null, 16777215),RankineItems.CAST_IRON_INGOT.get(),2236962, "item.rankine.cast_iron_alloying", "rankine:cast_iron",null);
+        alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.of(RankineItems.CUPRONICKEL_INGOT.get()), "", null, null, 16777215),RankineItems.CUPRONICKEL_INGOT.get(),11946807, "item.rankine.cupronickel_alloying", "rankine:cupronickel",null);
+        alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.of(RankineItems.STEEL_INGOT.get()), "", null, null, 16777215),RankineItems.STEEL_INGOT.get(),7634311, "item.rankine.steel_alloying", "rankine:steel",null);
+        alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.of(RankineItems.FERROCERIUM_INGOT.get()), "", null, null, 16777215),RankineItems.FERROCERIUM_INGOT.get(),7433071, "item.rankine.ferrocerium_alloying", "rankine:ferrocerium",null);
     }
 
     private void slab(Consumer<FinishedRecipe> consumer, Item output, Item input) {

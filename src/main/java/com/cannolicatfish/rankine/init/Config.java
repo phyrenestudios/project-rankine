@@ -200,6 +200,7 @@ public class Config {
 
     public static class General {
         public final ForgeConfigSpec.BooleanValue MOVEMENT_MODIFIERS;
+        public final ForgeConfigSpec.BooleanValue MOVEMENT_MODIFIERS_FOV;
         public final ForgeConfigSpec.DoubleValue MOVEMENT_SAND;
         public final ForgeConfigSpec.DoubleValue MOVEMENT_GRASS_PATH;
         public final ForgeConfigSpec.DoubleValue MOVEMENT_BRICKS;
@@ -368,6 +369,8 @@ public class Config {
                 b.comment("Movement speed modifiers").push("movementModifiers");
                     MOVEMENT_MODIFIERS = b.comment("Set to false to disable movement speed modifiers.")
                             .define("movementModifiersEnabled",true);
+                    MOVEMENT_MODIFIERS_FOV = b.comment("When set to true, attempts to disable the FOV changes of walking slower on movement modifier blocks. The FOV effects setting can also be used to disable this (at 0%), and if used this variable should be set to false.")
+                            .define("movementModifiersFOVReset",false);
                     MOVEMENT_SAND = b.comment("Movement speed modifier for walking on Sand blocks.")
                             .defineInRange("movementSand", -0.02D, -1.0D, 1.0D);
                     MOVEMENT_BRICKS = b.comment("Movement speed modifier for walking on Brick / Stone Bricks and variants.")

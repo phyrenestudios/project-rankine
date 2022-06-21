@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:cast_iron__rod"
+      "rankine:cast_iron_rod"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:cast_iron__rod"
+        "recipe": "rankine:cast_iron_rod"
       }
     }
   },

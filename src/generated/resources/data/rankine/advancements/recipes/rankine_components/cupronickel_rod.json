@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:cupronickel__rod"
+      "rankine:cupronickel_rod"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:cupronickel__rod"
+        "recipe": "rankine:cupronickel_rod"
       }
     }
   },

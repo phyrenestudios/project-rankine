@@ -9,6 +9,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -57,27 +58,26 @@ public class RenderGameOverlayHandler {
 
             Block bl = worldIn.getBlockState(new BlockPos(player.getX(),player.getEyeY(),player.getZ())).getBlock();
             if (bl instanceof GasBlock) {
-                GL11.glPushMatrix();
-                GL11.glEnable(GL11.GL_BLEND);
+                ResourceLocation gasBlock = new ResourceLocation("rankine:textures/block/"+bl.getRegistryName().getPath()+".png");
+
                 RenderSystem.disableDepthTest();
                 RenderSystem.depthMask(false);
+                RenderSystem.enableBlend();
                 RenderSystem.defaultBlendFunc();
-                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                //RenderSystem.disableAlphaTest();
-                Minecraft.getInstance().getTextureManager().bindForSetup(new ResourceLocation("rankine:textures/block/"+bl.getRegistryName().getPath()+".png"));
-                Tesselator tessellator = Tesselator.getInstance();
-                BufferBuilder bufferbuilder = tessellator.getBuilder();
+                RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.05F);
+                RenderSystem.setShaderTexture(0, gasBlock);
+                Tesselator tesselator = Tesselator.getInstance();
+                BufferBuilder bufferbuilder = tesselator.getBuilder();
                 bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-                bufferbuilder.vertex(0.0D, (double)event.getWindow().getGuiScaledHeight(), -90.0D).uv(0.0F, 1.0F).endVertex();
-                bufferbuilder.vertex((double)event.getWindow().getGuiScaledWidth(), (double)event.getWindow().getGuiScaledHeight(), -90.0D).uv(1.0F, 1.0F).endVertex();
-                bufferbuilder.vertex((double)event.getWindow().getGuiScaledWidth(), 0.0D, -90.0D).uv(1.0F, 0.0F).endVertex();
+                bufferbuilder.vertex(0.0D, (double)event.getWindow().getScreenHeight(), -90.0D).uv(0.0F, 1.0F).endVertex();
+                bufferbuilder.vertex((double)event.getWindow().getScreenWidth(), (double)event.getWindow().getScreenHeight(), -90.0D).uv(1.0F, 1.0F).endVertex();
+                bufferbuilder.vertex((double)event.getWindow().getScreenWidth(), 0.0D, -90.0D).uv(1.0F, 0.0F).endVertex();
                 bufferbuilder.vertex(0.0D, 0.0D, -90.0D).uv(0.0F, 0.0F).endVertex();
-                tessellator.end();
+                tesselator.end();
                 RenderSystem.depthMask(true);
                 RenderSystem.enableDepthTest();
-                //RenderSystem.enableAlphaTest();
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                GL11.glPopMatrix();
             }
         }
     }

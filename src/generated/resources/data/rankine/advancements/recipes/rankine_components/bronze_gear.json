@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:ferrocerium__rod"
+      "rankine:bronze_gear"
     ]
   },
   "criteria": {
@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "rankine:ferrocerium_ingot"
+              "rankine:bronze_ingot"
             ]
           }
         ]
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:ferrocerium__rod"
+        "recipe": "rankine:bronze_gear"
       }
     }
   },
