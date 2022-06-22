@@ -203,10 +203,6 @@ public class MixingRecipe implements Recipe<Container> {
         int sum = currentMaterial.stream().mapToInt(Integer::intValue).sum();
         float matFactor = getMatScale();
 
-        if (inv instanceof MixingBarrelTile && !((MixingBarrelTile)inv).getInputTank().getFluid().containsFluid(getOutputFluidReq(inv))) {
-            return ItemStack.EMPTY;
-        }
-
         if (currentIngredients.size() > 1 && (Math.round(sum*matFactor) > 64 || Math.round(sum*matFactor) < 1)){
             return ItemStack.EMPTY;
         }
