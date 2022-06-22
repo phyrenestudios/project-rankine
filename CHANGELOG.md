@@ -2,10 +2,33 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
-
 ## Project Rankine Version 1.3.3 (1.18.2 Port) Changelog [14Jun2022]
-
-- This update is the initial port to 1.18.2 from 1.16.5. Many minor changes may have occured during the update, but the significant ones are recorded below.
+This update is the initial port to 1.18.2 from 1.16.5. Many minor changes may have occured during the update, but the significant ones are recorded below.
+### Hotfix 1 [22Jun2022]
+- Removed the ability to dye various blocks in-world (may be reimplemented)
+- Changed textures for compound gas blocks
+- Added alloy crafting recipes for Cupronickel and Duralumin Arrows
+- Changed texture for Alloy Rod
+- Added Foraging json recipe type
+- Added foraging recipes for grass blocks, podzols and myceliums in certain biomes
+- Adjusted sluicing recipes of soil variants 
+- Fixed campfire cooking recipe for bone ash and dried bamboo
+- Fixed pentlandite_block_to_nickel_block beehive oven recipe
+- Added forge:podzol and forge:mycelium item tags
+- Added config to enable/disable FOV effects on movement modifier blocks, set to false by default
+- Fixed Fusion Furnace recipes not working when an item was not included in the gas slot
+- Fixed alloy arrows and related alloy crafting recipes
+- Fixed alloy crafting recipes for alloy gears
+- Fixed recipe names for alloy gears and rods
+- Fixed fluid calculations for Mixing recipes
+- Fixed a server crash due to entity rendering
+- Fixed wall mushroom related crashes
+- Fixed crash relating to walking into gas blocks
+- Fixed crash upon opening/using Element Indexer
+- Fixed missing tag alloy crafting recipes
+- General event code restructuring to reduce lag
+- Added the ability for flint to light campfires and soul capfires
+- Fixed GUIs using fluids having no graphical representation of fluid in tanks
 
 ### BLOCKS
 - Added dripstone and pointed dripstone variants (ferric, magnesitic, gypsic, zirconic, nitric, boracitic)
@@ -44,8 +67,20 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - Added conversion crafting recipes for vanilla based ores
 
 ## Project Rankine Version 1.3.2 Changelog [28Apr2022]
-### Hotfix 2 [13Jun2022]
+### Hotfix 2 [17Jun2022]
+- Added config to enable/disable FOV effects on movement modifier blocks, set to false by default
+- Added alloy crafting recipes for Cupronickel and Duralumin Arrows
+- Changed texture for Alloy Rod
 - Fixed bug related to block placement of wall mushrooms
+- Fixed Fusion Furnace recipes not working when an item was not included in the gas slot
+- Fixed alloy arrows and related alloy crafting recipes
+- Fixed alloy crafting recipes for alloy gears
+- Fixed recipe names for alloy gears and rods
+- Fixed fluid calculations for Mixing recipes
+- Fixed charcoal pit client-side behavior
+- Fixed ability to light fires with two flint
+- Fixed shonkinite crushing recipe
+
 ### Hotfix 1 [29Apr2022]
 - Added Apatite fusion furnace recipe
 - Added pulp recipe involving talc
