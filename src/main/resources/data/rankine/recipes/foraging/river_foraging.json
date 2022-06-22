@@ -1,7 +1,7 @@
 {
   "type": "rankine:foraging",
   "biomes": {
-    "biome": "minecraft:forest"
+    "biome": "minecraft:river"
   },
   "input": {
     "tag": "forge:grass_blocks"
@@ -19,15 +19,23 @@
       "weight": 2
     },
     {
+      "item": "rankine:rice_seeds",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:sugar_cane",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:potato",
+      "weight": 1
+    },
+    {
       "item": "minecraft:carrot",
       "weight": 1
     },
     {
-      "item": "rankine:elderberries",
-      "weight": 1
-    },
-    {
-      "item": "rankine:pokeberries",
+      "item": "minecraft:beetroot",
       "weight": 1
     },
     {

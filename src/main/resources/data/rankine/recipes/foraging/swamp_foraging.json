@@ -1,7 +1,7 @@
 {
   "type": "rankine:foraging",
   "biomes": {
-    "biome": "minecraft:forest"
+    "biome": "minecraft:swamp"
   },
   "input": {
     "tag": "forge:grass_blocks"
@@ -19,15 +19,11 @@
       "weight": 2
     },
     {
-      "item": "minecraft:carrot",
+      "tag": "minecraft:mushrooms",
       "weight": 1
     },
     {
-      "item": "rankine:elderberries",
-      "weight": 1
-    },
-    {
-      "item": "rankine:pokeberries",
+      "item": "rankine:cranberries",
       "weight": 1
     },
     {

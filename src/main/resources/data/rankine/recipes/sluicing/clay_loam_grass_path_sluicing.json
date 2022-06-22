@@ -9,39 +9,19 @@
   "outputs": [
     {
       "item": "minecraft:dirt",
-      "weight": 60
+      "weight": 40
     },
     {
       "item": "minecraft:sand",
-      "weight": 4.875
+      "weight": 3.25
     },
     {
       "item": "minecraft:clay_ball",
-      "weight": 5.25
+      "weight": 3.5
     },
     {
       "item": "rankine:silt",
-      "weight": 4.875
-    },
-    {
-      "item": "rankine:plant_fiber",
-      "weight": 15
-    },
-    {
-      "item": "minecraft:bone",
-      "weight": 2.5
-    },
-    {
-      "item": "minecraft:feather",
-      "weight": 2.5
-    },
-    {
-      "item": "minecraft:rotten_flesh",
-      "weight": 2.5
-    },
-    {
-      "item": "rankine:saltpeter",
-      "weight": 2.5
+      "weight": 3.25
     }
   ]
 }

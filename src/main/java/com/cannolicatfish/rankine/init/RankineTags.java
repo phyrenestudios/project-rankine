@@ -33,6 +33,7 @@ public final class RankineTags {
     public static final class Biomes {
         public static final TagKey<Biome> IS_END = createBiomeTag("is_end");
         public static final TagKey<Biome> IS_SAVANNA = createBiomeTag("is_savanna");
+        public static final TagKey<Biome> IS_PLAINS = createBiomeTag("is_plains");
         public static final TagKey<Biome> IS_BIRCH_FOREST = createBiomeTag("is_birch_forest");
 
     }
@@ -1126,6 +1127,8 @@ public final class RankineTags {
         public static final TagKey<Item> MUD = forgeItem("mud");
         public static final TagKey<Item> COARSE_DIRT = forgeItem("coarse_dirt");
         public static final TagKey<Item> HARDENED_GLASS = forgeItem("hardened_glass");
+        public static final TagKey<Item> MYCELIUM = forgeItem("mycelium");
+        public static final TagKey<Item> PODZOL = forgeItem("podzol");
         public static final TagKey<Item> TUFF = forgeItem("tuff");
         public static final TagKey<Item> CONCRETE_POWDER = forgeItem("concrete_powder");
         public static final TagKey<Item> CONCRETE = forgeItem("concrete");

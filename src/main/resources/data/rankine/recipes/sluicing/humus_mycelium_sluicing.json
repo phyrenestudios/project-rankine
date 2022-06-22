@@ -9,30 +9,22 @@
   "outputs": [
     {
       "item": "minecraft:dirt",
-      "weight": 60
+      "weight": 40
     },
     {
       "item": "rankine:biomass",
-      "weight": 7.5
+      "weight": 5
     },
     {
       "item": "minecraft:sand",
-      "weight": 3
-    },
-    {
-      "item": "minecraft:clay_ball",
-      "weight": 1.5
-    },
-    {
-      "item": "rankine:silt",
-      "weight": 3
-    },
-    {
-      "item": "minecraft:brown_mushroom",
       "weight": 2
     },
     {
-      "item": "minecraft:red_mushroom",
+      "item": "minecraft:clay_ball",
+      "weight": 1
+    },
+    {
+      "item": "rankine:silt",
       "weight": 2
     }
   ]

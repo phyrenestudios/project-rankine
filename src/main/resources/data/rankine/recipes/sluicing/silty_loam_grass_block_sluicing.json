@@ -9,35 +9,19 @@
   "outputs": [
     {
       "item": "minecraft:dirt",
-      "weight": 60
+      "weight": 40
     },
     {
       "item": "minecraft:sand",
-      "weight": 3
+      "weight": 2
     },
     {
       "item": "minecraft:clay_ball",
-      "weight": 1.5
+      "weight": 1
     },
     {
       "item": "rankine:silt",
-      "weight": 10.5
-    },
-    {
-      "item": "minecraft:beetroot_seeds",
-      "weight": 7.5
-    },
-    {
-      "item": "rankine:flower_seeds",
-      "weight": 7.5
-    },
-    {
-      "item": "rankine:banana_yucca",
-      "weight": 5
-    },
-    {
-      "item": "rankine:aloe",
-      "weight": 5
+      "weight": 7
     }
   ]
 }

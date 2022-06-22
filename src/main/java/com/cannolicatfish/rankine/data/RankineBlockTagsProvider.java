@@ -283,6 +283,8 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(RankineTags.Blocks.MYCELIUM).add(blk);
             tag(BlockTags.MUSHROOM_GROW_BLOCK).add(blk);
         }
+        tag(RankineTags.Blocks.MYCELIUM).add(Blocks.MYCELIUM);
+        tag(RankineTags.Blocks.PODZOL).add(Blocks.PODZOL);
         for (Block blk : Stream.of(RankineLists.PODZOL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(RankineTags.Blocks.PODZOL).add(blk);
             tag(BlockTags.MUSHROOM_GROW_BLOCK).add(blk);

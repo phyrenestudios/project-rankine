@@ -1,7 +1,7 @@
 {
   "type": "rankine:foraging",
   "biomes": {
-    "biome": "minecraft:forest"
+    "biome": "minecraft:taiga"
   },
   "input": {
     "tag": "forge:grass_blocks"
@@ -19,16 +19,20 @@
       "weight": 2
     },
     {
-      "item": "minecraft:carrot",
+      "item": "minecraft:beetroot",
       "weight": 1
     },
     {
-      "item": "rankine:elderberries",
-      "weight": 1
+      "item": "minecraft:sweet_berries",
+      "weight": 0.5
     },
     {
-      "item": "rankine:pokeberries",
-      "weight": 1
+      "item": "rankine:raspberries",
+      "weight": 0.5
+    },
+    {
+      "item": "rankine:blackberries",
+      "weight": 0.5
     },
     {
       "item": "rankine:saltpeter",

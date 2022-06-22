@@ -240,7 +240,6 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue STRIPPABLES_STICKS;
         public final ForgeConfigSpec.DoubleValue FLINT_FIRE_CHANCE;
         public final ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
-        public final ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
         public final ForgeConfigSpec.DoubleValue GRASS_GROW_CHANCE;
         public final ForgeConfigSpec.DoubleValue PODZOL_GROW_CHANCE;
         public final ForgeConfigSpec.IntValue LEAF_LITTER_GROWTH;
@@ -321,8 +320,6 @@ public class Config {
                             .defineInRange("fumaroleDepositChance", 0.1D, 0.00D, 1.00D);
                     FLINT_DROP_CHANCE = b.comment("Chance for a stone block to drop a flint")
                             .defineInRange("flintDropChance", 0.15D, 0.00D, 1.00D);
-                    FORAGING_CHANCE = b.comment("Chance for a dirt block to drop a vegetable/seed")
-                            .defineInRange("foragingChance", 0.10D, 0.00D, 1.00D);
                     GRASS_GROW_CHANCE = b.comment("Chance for a grass block to grow something on a random tick")
                             .defineInRange("grassGrowChance", 0.0005D, 0.00D, 1.00D);
                     LEAF_LITTER_GROWTH = b.comment("Chance for a leaf litters to age. Higher values slow decay.")

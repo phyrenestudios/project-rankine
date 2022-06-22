@@ -9,43 +9,19 @@
   "outputs": [
     {
       "item": "minecraft:dirt",
-      "weight": 60
+      "weight": 40
     },
     {
       "item": "minecraft:sand",
-      "weight": 9.75
+      "weight": 6.5
     },
     {
       "item": "minecraft:clay_ball",
-      "weight": 3.75
+      "weight": 2.5
     },
     {
       "item": "rankine:silt",
-      "weight": 1.5
-    },
-    {
-      "item": "rankine:jute_seeds",
-      "weight": 5
-    },
-    {
-      "item": "rankine:camphor_basil_seeds",
-      "weight": 5
-    },
-    {
-      "item": "rankine:flower_seeds",
-      "weight": 5
-    },
-    {
-      "item": "rankine:asparagus_seeds",
-      "weight": 5
-    },
-    {
-      "item": "rankine:blackberries",
-      "weight": 2.5
-    },
-    {
-      "item": "rankine:snowberries",
-      "weight": 2.5
+      "weight": 1
     }
   ]
 }

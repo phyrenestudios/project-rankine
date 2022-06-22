@@ -9,27 +9,19 @@
   "outputs": [
     {
       "item": "minecraft:dirt",
-      "weight": 60
+      "weight": 40
     },
     {
       "item": "minecraft:sand",
-      "weight": 7.875
+      "weight": 5.25
     },
     {
       "item": "minecraft:clay_ball",
-      "weight": 6.375
+      "weight": 4.25
     },
     {
       "item": "rankine:silt",
-      "weight": 0.75
-    },
-    {
-      "item": "minecraft:stick",
-      "weight": 2
-    },
-    {
-      "tag": "minecraft:leaves",
-      "weight": 2
+      "weight": 0.5
     }
   ]
 }
