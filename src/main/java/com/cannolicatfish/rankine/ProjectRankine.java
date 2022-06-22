@@ -265,6 +265,7 @@ public class ProjectRankine {
         }
 
         @SubscribeEvent
+        @OnlyIn(Dist.CLIENT)
         public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
         {
             event.registerEntityRenderer(RankineEntityTypes.ALLOY_SPEAR.get(), SpearEntityRenderer.instance);
