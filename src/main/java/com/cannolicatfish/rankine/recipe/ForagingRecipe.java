@@ -37,14 +37,16 @@ public class ForagingRecipe implements Recipe<Container> {
     private final NonNullList<Ingredient> recipeOutputs;
     private final NonNullList<Float> weights;
     private final NonNullList<Boolean> enchantments;
+    private final boolean allBiomes;
 
-    public ForagingRecipe(ResourceLocation id, List<String> biomes, Ingredient ingredientIn, NonNullList<Ingredient> recipeOutputsIn, NonNullList<Float> weights, NonNullList<Boolean> enchantments) {
+    public ForagingRecipe(ResourceLocation id, List<String> biomes, Ingredient ingredientIn, NonNullList<Ingredient> recipeOutputsIn, NonNullList<Float> weights, NonNullList<Boolean> enchantments, boolean allBiomes) {
         this.id = id;
         this.biomes = biomes;
         this.ingredient = ingredientIn;
         this.recipeOutputs = recipeOutputsIn;
         this.weights = weights;
         this.enchantments = enchantments;
+        this.allBiomes = allBiomes;
     }
 
     @Override
@@ -107,7 +109,7 @@ public class ForagingRecipe implements Recipe<Container> {
         if (levelIn != null) {
             List<ForagingRecipe> recipes = new ArrayList<>();
             for (ForagingRecipe recipe : levelIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.FORAGING)) {
-                if (recipe.getBiomes().contains(biomeName.toString()) && recipe.getIngredient().test(new ItemStack(state.getBlock().asItem()))) {
+                if ((recipe.allBiomes || recipe.getBiomes().contains(biomeName.toString())) && recipe.getIngredient().test(new ItemStack(state.getBlock().asItem()))) {
                     recipes.add(recipe);
                 }
             }
@@ -162,12 +164,9 @@ public class ForagingRecipe implements Recipe<Container> {
         public ForagingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             JsonElement biomesArray = json.has("biomes") ? json.get("biomes") : null;
             List<String> biomes = new ArrayList<>();
-
-            if (biomesArray == null) {
-                for (Biome b : ForgeRegistries.BIOMES.getValues()) {
-                    biomes.add(b.getRegistryName().toString());
-                }
-            } else if (biomesArray.isJsonObject()) {
+            boolean allBiomes = true;
+            if (biomesArray != null && biomesArray.isJsonObject()) {
+                allBiomes = false;
                 JsonObject object = biomesArray.getAsJsonObject();
                 if (object.has("biome")){
                     biomes.add(object.get("biome").getAsString());
@@ -207,7 +206,7 @@ public class ForagingRecipe implements Recipe<Container> {
                 i++;
             }
 
-            return new ForagingRecipe(recipeId,biomes,ingredient,stacks,weights,enchantements);
+            return new ForagingRecipe(recipeId,biomes,ingredient,stacks,weights,enchantements,allBiomes);
         }
 
         @Nullable
@@ -215,9 +214,14 @@ public class ForagingRecipe implements Recipe<Container> {
         public ForagingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             int biomesSize = buffer.readInt();
             List<String> biomes = new ArrayList<>();
-            for (int i = 0; i < biomesSize; i++) {
-                biomes.set(i,buffer.readUtf());
+            boolean allBiomes = true;
+            if (biomesSize > 0) {
+                allBiomes = false;
+                for (int i = 0; i < biomesSize; i++) {
+                    biomes.set(i,buffer.readUtf());
+                }
             }
+
             Ingredient input = Ingredient.fromNetwork(buffer);
 
             int t = buffer.readVarInt();
@@ -231,15 +235,18 @@ public class ForagingRecipe implements Recipe<Container> {
                 enchantements.set(i,buffer.readBoolean());
             }
 
-            return new ForagingRecipe(recipeId, biomes, input, stacks, weights, enchantements);
+            return new ForagingRecipe(recipeId, biomes, input, stacks, weights, enchantements, allBiomes);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buffer, ForagingRecipe recipe) {
             buffer.writeInt(recipe.getBiomes().size());
-            for (int i = 0; i < recipe.getBiomes().size(); i++) {
-                buffer.writeUtf(recipe.getBiomes().get(i));
+            if (recipe.getBiomes().size() > 0) {
+                for (int i = 0; i < recipe.getBiomes().size(); i++) {
+                    buffer.writeUtf(recipe.getBiomes().get(i));
+                }
             }
+
             recipe.getIngredient().toNetwork(buffer);
 
             buffer.writeVarInt(recipe.getOutputs().size());

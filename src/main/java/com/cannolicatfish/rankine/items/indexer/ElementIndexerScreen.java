@@ -3,11 +3,13 @@ package com.cannolicatfish.rankine.items.indexer;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.Util;
@@ -103,16 +105,17 @@ public class ElementIndexerScreen extends AbstractContainerScreen<ElementIndexer
     }
 
     public void drawScaledString(PoseStack stack, Font fontRendererIn, String text, int x, int y, float size, int color) {
-        GL11.glScalef(size,size,size);
+        stack.scale(size,size,size);
         float mSize = (float)Math.pow(size,-1);
         drawString(stack, fontRendererIn,text,Math.round(x / size),Math.round(y / size),color);
-        GL11.glScalef(mSize,mSize,mSize);
+        stack.scale(mSize,mSize,mSize);
     }
 
     @Override
     protected void renderBg(PoseStack matrixStack, float partialTicks, int x, int y) {
-        GlStateManager._clearColor(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindForSetup(this.GUI);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, this.GUI);
         int i = this.leftPos;
         int j = this.topPos;
         this.blit(matrixStack, i, j, 0, 0, this.imageWidth, this.imageHeight);
