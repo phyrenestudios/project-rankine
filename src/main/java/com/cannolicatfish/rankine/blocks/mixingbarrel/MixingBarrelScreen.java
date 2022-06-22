@@ -71,7 +71,6 @@ public class MixingBarrelScreen extends AbstractContainerScreen<MixingBarrelCont
     }
 
     protected void drawFluidTank(PoseStack ms,FluidTank tankIn,int x,int y) {
-        GlStateManager._clearColor(1.0F, 1.0F, 1.0F, 1.0F);
         FluidStack input = tankIn.getFluid();
         TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(input.getFluid().getAttributes().getStillTexture());
 
@@ -83,13 +82,12 @@ public class MixingBarrelScreen extends AbstractContainerScreen<MixingBarrelCont
 
 
         Color color = new Color(input.getFluid().getAttributes().getColor());
-        //this.minecraft.getTextureManager().bindTexture(new ResourceLocation(sprite.getName().getNamespace(),"textures/"+sprite.getName().getPath()+".png"));
-        this.minecraft.getTextureManager().bindForSetup(sprite.atlas().location());
-        GlStateManager._clearColor(color.getRed(),color.getGreen(),color.getBlue(),color.getAlpha());
-        if (tankIn.getFluid().getFluid().equals(Fluids.WATER)) {
-            GlStateManager._clearColor(63,118,228,color.getAlpha());
-        }
+        RenderSystem.setShaderTexture(0, new ResourceLocation(sprite.getName().getNamespace(),"textures/"+sprite.getName().getPath()+".png"));
+        RenderSystem.setShaderColor(color.getRed(), color.getBlue(),
+                color.getGreen(), color.getAlpha());
+
         blit(ms,x, y + (fluidTankHeight - fluidAmount),0,16, fluidAmount,sprite);
+        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 
     }
 
