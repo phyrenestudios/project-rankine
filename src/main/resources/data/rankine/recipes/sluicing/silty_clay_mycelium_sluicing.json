@@ -22,14 +22,6 @@
     {
       "item": "rankine:silt",
       "weight": 4.5
-    },
-    {
-      "item": "minecraft:brown_mushroom",
-      "weight": 2
-    },
-    {
-      "item": "minecraft:red_mushroom",
-      "weight": 2
     }
   ]
 }

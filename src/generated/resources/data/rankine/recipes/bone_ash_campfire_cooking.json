@@ -1,9 +1,9 @@
 {
   "type": "minecraft:campfire_cooking",
   "ingredient": {
-    "item": "rankine:bone_ash"
+    "item": "minecraft:bone"
   },
-  "result": "minecraft:bone",
+  "result": "rankine:bone_ash",
   "experience": 0.35,
   "cookingtime": 200
 }

@@ -128,10 +128,14 @@ public class BlockBreakHandler {
 
                     event.setCanceled(true);
                     return;
-
                 }
+            }
 
 
+            //Foraging Enchantment - disabled cause doesn't quite work
+            if (mainHandItem.is(RankineTags.Items.CRUDE_TOOLS)) {
+                ItemStack itemStack = ForagingRecipe.getForagingResult(levelIn, levelIn.getBiome(pos).value().getRegistryName(), targetBlockState, RankineEnchantmentHelper.hasForaging(player));
+                if (!itemStack.isEmpty()) Block.popResource(levelIn, pos, itemStack);
             }
 
             if (ForgeRegistries.BLOCKS.tags().getTag(BlockTags.LOGS_THAT_BURN).contains(targetBlock) && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTHERMIC,player.getMainHandItem()) > 0 && !levelIn.isClientSide) {
@@ -232,41 +236,6 @@ public class BlockBreakHandler {
                     });
                 }
             }
-
-            //Foraging Enchantment
-            if (mainHandItem.is(RankineTags.Items.CRUDE_TOOLS) && targetBlockState.is(BlockTags.DIRT)) {
-                ForagingRecipe recipe = ForagingRecipe.getForagingRecipe(levelIn, levelIn.getBiome(pos).value().getRegistryName());
-                if (recipe != null && rand.nextFloat() < Config.GENERAL.FORAGING_CHANCE.get()) {
-                    Block.popResource(levelIn,pos,recipe.getForagingResult(levelIn, RankineEnchantmentHelper.hasForaging(player)));
-                }
-                        /*
-                        case JUNGLE:
-                            possibleItems = Arrays.asList(RankineItems.SALTPETER.get(), Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT, RankineItems.PINEAPPLE.get(), Items.COCOA_BEANS, Items.MELON_SEEDS);
-                            break;
-                        case SWAMP:
-                        case MUSHROOM:
-                            possibleItems = Arrays.asList(RankineItems.SALTPETER.get(),Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT,Items.BROWN_MUSHROOM,Items.RED_MUSHROOM);
-                            break;
-                        case EXTREME_HILLS:
-                        case MOUNTAIN:
-                            possibleItems = Arrays.asList(RankineItems.SALTPETER.get(),Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT, RankineItems.FIRE_CLAY_BALL.get(), RankineItems.SNOWBERRIES.get());
-                            break;
-                        case RIVER:
-                            possibleItems = Arrays.asList(RankineItems.SALTPETER.get(),Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT,Items.CLAY_BALL,Items.KELP,Items.SUGAR_CANE);
-                            break;
-                        case PLAINS:
-                            possibleItems = Arrays.asList(RankineItems.SALTPETER.get(),Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT,Items.PUMPKIN_SEEDS,Items.FEATHER,Items.LEATHER);
-                            break;
-                        case DESERT:
-                            possibleItems = Arrays.asList(RankineItems.SALTPETER.get(), RankineItems.SALTPETER.get(),Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT,Items.RABBIT_HIDE,Items.BONE);
-                            break;
-                        default:
-                            possibleItems = Arrays.asList(RankineItems.SALTPETER.get(),Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT);
-                            break;
-
-                         */
-            }
-
 
         } //end creative check
 

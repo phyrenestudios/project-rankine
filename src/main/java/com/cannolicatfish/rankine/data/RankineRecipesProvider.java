@@ -950,8 +950,8 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         
         //Campfire
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.DRIED_BAMBOO.get()), Items.BAMBOO, 0.35F, 40, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BAMBOO)).save(consumer, "rankine:dried_bamboo_campfire_cooking");
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.BONE_ASH.get()), Items.BONE, 0.35F, 200, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BONE)).save(consumer, "rankine:bone_ash_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.BAMBOO), RankineItems.DRIED_BAMBOO.get(), 0.35F, 40, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BAMBOO)).save(consumer, "rankine:dried_bamboo_campfire_cooking");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.BONE), RankineItems.BONE_ASH.get(), 0.35F, 200, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BONE)).save(consumer, "rankine:bone_ash_campfire_cooking");
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.FIRE_CLAY_BALL.get()), RankineItems.REFRACTORY_BRICK.get(), 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.FIRE_CLAY_BALL.get())).save(consumer, "rankine:refractory_brick_campfire_cooking");
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.PANCAKE_BATTER.get()), RankineItems.PANCAKE.get(), 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.PANCAKE_BATTER.get())).save(consumer, "rankine:pancake_campfire_cooking");
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.CORN_EAR.get()), RankineItems.POPCORN.get(), 0.35F, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.CORN_EAR.get())).save(consumer, "rankine:popcorn_campfire_cooking");

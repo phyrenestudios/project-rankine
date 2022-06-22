@@ -3,15 +3,11 @@
   "values": [
     "#forge:wooden_tools",
     "#forge:stone_tools",
-    "#forge:iron_tools",
     "#forge:golden_tools",
     "#rankine:colored_gold_tools",
     "#forge:flint_tools",
     "#forge:pewter_tools",
-    "#forge:bronze_tools",
-    "#forge:invar_tools",
     "#forge:osmiridium_tools",
-    "#forge:amalgam_tools",
-    "#forge:alloy_tools"
+    "#forge:amalgam_tools"
   ]
 }

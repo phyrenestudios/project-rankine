@@ -22,14 +22,6 @@
     {
       "item": "rankine:silt",
       "weight": 4.5
-    },
-    {
-      "item": "minecraft:stick",
-      "weight": 2
-    },
-    {
-      "tag": "minecraft:leaves",
-      "weight": 2
     }
   ]
 }
