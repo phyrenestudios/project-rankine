@@ -3,39 +3,48 @@
   "input": {
     "item": "rankine:tetrataenite_ore"
   },
-  "output1": {
-    "item": "rankine:meteoric_iron",
-    "alloyComp": "50Fe-50Ni",
-    "alloyRecipe": "rankine:alloying/invar_alloying",
-    "chance": 1
-  },
-  "output2": {
-    "item": "rankine:nickel_nugget",
-    "count": 3,
-    "chance": 0.75,
-    "additional": 0.15
-  },
-  "output3": {
-    "item": "rankine:copper_nugget",
-    "count": 3,
-    "chance": 0.5,
-    "additional": 0.2
-  },
-  "output4": {
-    "item": "rankine:germanium_nugget",
-    "count": 3,
-    "chance": 0.15,
-    "additional": 0.15
-  },
-  "output5": {
-    "item": "rankine:osmium_nugget",
-    "count": 3,
-    "chance": 0.1,
-    "additional": 0.05
-  },
-  "output6": {
-    "item": "rankine:gallium_nugget",
-    "count": 3,
-    "chance": 0.05
-  }
+  "guaranteed": [
+    {
+      "item": "rankine:meteoric_iron",
+      "alloyComp": "50Fe-50Ni",
+      "alloyRecipe": "rankine:alloying/invar_alloying"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "count": 3,
+      "weight": 12
+    },
+    {
+      "item": "rankine:nickel_nugget",
+      "count": 3,
+      "weight": 12
+    },
+    {
+      "item": "rankine:germanium_nugget",
+      "count": 3,
+      "weight": 16
+    },
+    {
+      "item": "minecraft:copper_nugget",
+      "count": 3,
+      "weight": 10
+    },
+    {
+      "item": "rankine:osmium_nugget",
+      "count": 3,
+      "weight": 5,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:gallium_nugget",
+      "count": 3,
+      "weight": 5,
+      "tier": "minecraft:diamond"
+    }
+  ]
 }

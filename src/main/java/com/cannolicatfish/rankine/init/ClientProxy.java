@@ -6,11 +6,9 @@ import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerScreen;
-import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelScreen;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableScreen;
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableScreen;
 import com.cannolicatfish.rankine.items.alloys.AlloySurfRodItem;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
@@ -82,7 +80,6 @@ public class ClientProxy implements IProxy {
     public void init() {
         MenuScreens.register(RankineBlocks.MIXING_BARREL_CONTAINER, MixingBarrelScreen::new);
         MenuScreens.register(RankineBlocks.ALLOY_FURNACE_CONTAINER, AlloyFurnaceScreen::new);
-        MenuScreens.register(RankineBlocks.PISTON_CRUSHER_CONTAINER, PistonCrusherScreen::new);
         MenuScreens.register(RankineBlocks.EVAPORATION_TOWER_CONTAINER, EvaporationTowerScreen::new);
         MenuScreens.register(RankineBlocks.GAS_CONDENSER_CONTAINER, GasBottlerScreen::new);
         MenuScreens.register(RankineItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
@@ -91,7 +88,6 @@ public class ClientProxy implements IProxy {
         MenuScreens.register(RankineBlocks.CRUCIBLE_CONTAINER, CrucibleScreen::new);
         MenuScreens.register(RankineBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
         MenuScreens.register(RankineBlocks.FUSION_FURNACE_CONTAINER, FusionFurnaceScreen::new);
-        MenuScreens.register(RankineBlocks.GYRATORY_CRUSHER_CONTAINER, GyratoryCrusherScreen::new);
 
         addCutout(RankineLists.WOODEN_DOORS);
         addCutout(RankineLists.METAL_DOORS);

@@ -3,39 +3,48 @@
   "input": {
     "item": "rankine:kamacite_ore"
   },
-  "output1": {
-    "item": "rankine:meteoric_iron",
-    "alloyComp": "90Fe-10Ni",
-    "alloyRecipe": "rankine:alloying/invar_alloying",
-    "chance": 1
-  },
-  "output2": {
-    "item": "minecraft:iron_nugget",
-    "count": 3,
-    "chance": 0.75,
-    "additional": 0.15
-  },
-  "output3": {
-    "item": "rankine:cobalt_nugget",
-    "count": 3,
-    "chance": 0.1,
-    "additional": 0.05
-  },
-  "output4": {
-    "item": "rankine:germanium_nugget",
-    "count": 3,
-    "chance": 0.15,
-    "additional": 0.15
-  },
-  "output5": {
-    "item": "rankine:copper_nugget",
-    "count": 3,
-    "chance": 0.5,
-    "additional": 0.2
-  },
-  "output6": {
-    "item": "rankine:platinum_nugget",
-    "count": 3,
-    "chance": 0.05
-  }
+  "guaranteed": [
+    {
+      "item": "rankine:meteoric_iron",
+      "alloyComp": "90Fe-10Ni",
+      "alloyRecipe": "rankine:alloying/invar_alloying"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "count": 3,
+      "weight": 22
+    },
+    {
+      "item": "rankine:nickel_nugget",
+      "count": 3,
+      "weight": 3
+    },
+    {
+      "item": "rankine:germanium_nugget",
+      "count": 3,
+      "weight": 15
+    },
+    {
+      "item": "minecraft:copper_nugget",
+      "count": 3,
+      "weight": 10
+    },
+    {
+      "item": "rankine:cobalt_nugget",
+      "count": 3,
+      "weight": 5,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:platinum_nugget",
+      "count": 3,
+      "weight": 5,
+      "tier": "minecraft:diamond"
+    }
+  ]
 }

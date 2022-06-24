@@ -76,15 +76,7 @@ public class HammerItem extends DiggerItem {
                         double d2 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
 
                         if (!creativeFlag) {
-                            List<ItemStack> results = recipe.getResults(getTier().getLevel(), worldIn);
-                            if (getAtomizeModifier(stack) >= 1) {
-                                for (int i = 0; i < results.size(); i++) {
-                                    if (results.get(i).isEmpty()) {
-                                        ItemStack resu = recipe.getSpecificResult(getTier().getLevel(),i,worldIn);
-                                        results.set(i,resu);
-                                    }
-                                }
-                            }
+                            List<ItemStack> results = recipe.getResults(getTier(), worldIn, getTier().getLevel() + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ATOMIZE,stack));
                             for (ItemStack t : results) {
                                 ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, t.copy());
                                 itementity.setDefaultPickUpDelay();

@@ -9,6 +9,8 @@ import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -280,6 +282,16 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         } else {
             return 1;
         }
+    }
+
+    default Tier getAlloyTier(ItemStack stack) {
+        return switch (getAlloyHarvestLevel(stack)) {
+            case 1 -> Tiers.STONE;
+            case 2 -> Tiers.IRON;
+            case 3 -> Tiers.DIAMOND;
+            case 4 -> Tiers.NETHERITE;
+            default -> Tiers.WOOD;
+        };
     }
 
     default int getAlloyHarvestLevel(ItemStack stack) {

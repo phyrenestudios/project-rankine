@@ -12,13 +12,11 @@ import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerTile;
 import com.cannolicatfish.rankine.blocks.gasvent.GasVentTile;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
-import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherTile;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableTile;
 import com.cannolicatfish.rankine.blocks.particleaccelerator.ParticleAcceleratorTile;
 import com.cannolicatfish.rankine.blocks.pedestal.PedestalTile;
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
 import com.cannolicatfish.rankine.blocks.signs.RankineSignBlockEntity;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapTile;
@@ -41,10 +39,6 @@ public class RankineBlockEntityTypes {
             () -> BlockEntityType.Builder.of(AlloyFurnaceTile::new, RankineBlocks.ALLOY_FURNACE.get())
                     .build(null));
 
-    public static final RegistryObject<BlockEntityType<PistonCrusherTile>> PISTON_CRUSHER = BLOCK_ENTITY_TYPES.register("piston_crusher",
-            () -> BlockEntityType.Builder.of(PistonCrusherTile::new, RankineBlocks.PISTON_CRUSHER.get())
-                    .build(null));
-
     public static final RegistryObject<BlockEntityType<CrucibleTile>> CRUCIBLE = BLOCK_ENTITY_TYPES.register("crucible",
             () -> BlockEntityType.Builder.of(CrucibleTile::new, RankineBlocks.CRUCIBLE_BLOCK.get())
                     .build(null));
@@ -55,10 +49,6 @@ public class RankineBlockEntityTypes {
 
     public static final RegistryObject<BlockEntityType<FusionFurnaceTile>> FUSION_FURNACE = BLOCK_ENTITY_TYPES.register("fusion_furnace",
             () -> BlockEntityType.Builder.of(FusionFurnaceTile::new, RankineBlocks.FUSION_FURNACE.get())
-                    .build(null));
-
-    public static final RegistryObject<BlockEntityType<GyratoryCrusherTile>> GYRATORY_CRUSHER = BLOCK_ENTITY_TYPES.register("gyratory_crusher",
-            () -> BlockEntityType.Builder.of(GyratoryCrusherTile::new, RankineBlocks.GYRATORY_CRUSHER.get())
                     .build(null));
 
     public static final RegistryObject<BlockEntityType<EvaporationTowerTile>> EVAPORATION_TOWER = BLOCK_ENTITY_TYPES.register("evaporation_tower",

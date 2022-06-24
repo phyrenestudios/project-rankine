@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherContainer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;

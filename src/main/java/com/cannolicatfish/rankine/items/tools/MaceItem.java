@@ -1,11 +1,8 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TieredItem;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 
-public class MaceItem extends TieredItem {
+public class MaceItem extends TieredItem implements Vanishable {
     public MaceItem(Tier p_43308_, Properties p_43309_) {
         super(p_43308_, p_43309_);
     }

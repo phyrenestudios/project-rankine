@@ -1,69 +1,71 @@
 package com.cannolicatfish.rankine.util;
 
-import java.util.*;
+import net.minecraft.util.Tuple;
 
-public class WeightedCollection<I> {
-    private final NavigableMap<Float, I> map = new TreeMap<>();
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class WeightedRemovableCollection<I> {
+    private final NavigableMap<Float, Tuple<I,Boolean>> map = new TreeMap<>();
     private final Random random;
     private float total = 0;
 
-    public WeightedCollection() {
+    public WeightedRemovableCollection() {
         this(new Random());
     }
 
-    public WeightedCollection(Random random) {
+    public WeightedRemovableCollection(Random random) {
         this.random = random;
     }
 
-    public WeightedCollection(Random random, List<Float> weights, List<I> items, List<Integer> totals) {
+    public WeightedRemovableCollection(Random random, List<Float> weights, List<I> items, List<Integer> totals, List<Boolean> removes) {
         this(random);
         for (int i = 0; i < items.size(); i++) {
             for (int j = 0; j < totals.get(i); j++) {
-                this.add(weights.get(i),items.get(i));
+                this.add(weights.get(i),items.get(i),removes.get(i));
             }
         }
     }
 
-    public WeightedCollection<I> add(float weight, I result) {
+    public WeightedRemovableCollection<I> add(float weight, I result, boolean remove) {
         if (weight <= 0) {
             return this;
         }
         total += weight;
-        map.put(total, result);
+        map.put(total, new Tuple<>(result,remove));
         return this;
     }
 
-    public I getRandomElement() {
-        if (map.size() == 1) {
-            return map.firstEntry().getValue();
-        }
-        float value = random.nextFloat() * total;
-        return map.higherEntry(value).getValue();
-    }
 
-    public I getRandomElementWithRemoval() {
-        I output;
+    public I getRandomElement() {
+        Tuple<I,Boolean> output;
 
         if (map.size() == 1) {
             output = map.firstEntry().getValue();
-            map.remove(map.firstEntry().getKey());
-            return output;
+            if (output.getB()) {
+                map.remove(map.firstEntry().getKey());
+            }
+
+            return output.getA();
         }
 
         float value = random.nextFloat() * total;
         output = map.higherEntry(value).getValue();
-        map.remove(map.higherEntry(value).getKey());
-        return output;
+        if (output.getB()) {
+            map.remove(map.higherEntry(value).getKey());
+        }
+
+        return output.getA();
     }
 
-    public NavigableMap<Float, I> getMap()
+    public NavigableMap<Float, Tuple<I,Boolean>> getMap()
     {
         return map;
     }
 
     public Collection<I> getEntries()
     {
-        return this.getMap().values();
+        return this.getMap().values().stream().map(Tuple::getA).collect(Collectors.toList());
     }
 
     public Set<Float> getWeights()
@@ -85,4 +87,5 @@ public class WeightedCollection<I> {
         }
         return ret;
     }
+
 }

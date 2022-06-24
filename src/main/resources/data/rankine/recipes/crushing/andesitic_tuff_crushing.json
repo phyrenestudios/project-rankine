@@ -3,32 +3,34 @@
   "input": {
     "item": "rankine:andesitic_tuff"
   },
-  "output1": {
-    "item": "rankine:ash",
-    "chance": 1
-  },
-  "output2": {
-    "item": "rankine:andesine",
-    "chance": 0.75,
-    "additional": 0.15
-  },
-  "output3": {
-    "item": "rankine:plagioclase_feldspar",
-    "chance": 0.5,
-    "additional": 0.2
-  },
-  "output4": {
-    "item": "rankine:calcite",
-    "chance": 0.25,
-    "additional": 0.15
-  },
-  "output5": {
-    "item": "minecraft:quartz",
-    "chance": 0.1,
-    "additional": 0.05
-  },
-  "output6": {
-    "item": "rankine:chlorite",
-    "chance": 0.05
-  }
+  "guaranteed": [
+    {
+      "item": "rankine:ash"
+    }
+  ],
+  "outputs": [
+    {
+      "item": "minecraft:andesite",
+      "weight": 80
+    },
+    {
+      "item": "rankine:hornblende_andesite",
+      "weight": 80
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "rankine:chlorite",
+      "weight": 2,
+      "remove": false
+    }
+  ]
 }

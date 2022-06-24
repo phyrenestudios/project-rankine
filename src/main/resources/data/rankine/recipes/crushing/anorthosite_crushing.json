@@ -1,34 +1,46 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:anorthosite"
+    "item": "minecraft:anorthosite"
   },
-  "output1": {
-    "item": "minecraft:cobblestone",
-    "chance": 1
-  },
-  "output2": {
-    "item": "rankine:labradorite",
-    "chance": 0.75,
-    "additional": 0.15
-  },
-  "output3": {
-    "item": "rankine:olivine",
-    "chance": 0.5,
-    "additional": 0.2
-  },
-  "output4": {
-    "item": "rankine:pyroxene",
-    "chance": 0.25,
-    "additional": 0.15
-  },
-  "output5": {
-    "item": "rankine:amphibole",
-    "chance": 0.1,
-    "additional": 0.05
-  },
-  "output6": {
-    "item": "rankine:magnetite",
-    "chance": 0.02
-  }
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:labradorite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyroxene",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:ilmenite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:magnetite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
 }

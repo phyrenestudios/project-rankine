@@ -32,9 +32,6 @@ import com.cannolicatfish.rankine.blocks.gasvent.GasVentBlock;
 import com.cannolicatfish.rankine.blocks.gasvent.GasVentTile;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapBlock;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
-import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherBlock;
-import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherContainer;
-import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherTile;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
@@ -49,9 +46,6 @@ import com.cannolicatfish.rankine.blocks.particleaccelerator.ParticleAccelerator
 import com.cannolicatfish.rankine.blocks.particleaccelerator.ParticleAcceleratorTile;
 import com.cannolicatfish.rankine.blocks.pedestal.PedestalBlock;
 import com.cannolicatfish.rankine.blocks.pedestal.PedestalTile;
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherBlock;
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.blocks.plants.*;
 import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanBlock;
 import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
@@ -3005,10 +2999,10 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MATERIAL_TESTING_TABLE = BLOCKS.register("material_testing_table", () -> new MaterialTestingTableBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.0F)));
     public static final RegistryObject<Block> TEMPLATE_TABLE = BLOCKS.register("template_table", () -> new TemplateTableBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.0F)));
     public static final RegistryObject<Block> ALLOY_FURNACE = BLOCKS.register("alloy_furnace", () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).lightLevel((p_235418_0_) -> 13)));
-    public static final RegistryObject<Block> PISTON_CRUSHER = BLOCKS.register("piston_crusher", () -> new PistonCrusherBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).lightLevel((p_235418_0_) -> 7)));
+    public static final RegistryObject<Block> PISTON_CRUSHER = BLOCKS.register("piston_crusher", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).lightLevel((p_235418_0_) -> 7)));
     public static final RegistryObject<Block> PCF = BLOCKS.register("pcf", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> INDUCTION_FURNACE = BLOCKS.register("induction_furnace", () -> new InductionFurnaceBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F).lightLevel((p_235418_0_) -> 13)));
-    public static final RegistryObject<Block> GYRATORY_CRUSHER = BLOCKS.register("gyratory_crusher", () -> new GyratoryCrusherBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
+    public static final RegistryObject<Block> GYRATORY_CRUSHER = BLOCKS.register("gyratory_crusher", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> EVAPORATION_TOWER = BLOCKS.register("evaporation_tower", () -> new EvaporationTowerBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> DIAMOND_ANVIL_CELL = BLOCKS.register("diamond_anvil_cell", () -> new DiamondAnvilCellBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> PARTICLE_ACCELERATOR = BLOCKS.register("particle_accelerator", () -> new ParticleAcceleratorBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
@@ -3262,12 +3256,6 @@ public class RankineBlocks {
     @ObjectHolder("rankine:alloy_furnace")
     public static BlockEntityType<AlloyFurnaceTile> ALLOY_FURNACE_TILE;
 
-    @ObjectHolder("rankine:piston_crusher")
-    public static MenuType<PistonCrusherContainer> PISTON_CRUSHER_CONTAINER;
-
-    @ObjectHolder("rankine:piston_crusher")
-    public static BlockEntityType<PistonCrusherTile> PISTON_CRUSHER_TILE;
-
     @ObjectHolder("rankine:induction_furnace")
     public static MenuType<InductionFurnaceContainer> INDUCTION_FURNACE_CONTAINER;
 
@@ -3291,11 +3279,6 @@ public class RankineBlocks {
 
 
      */
-    @ObjectHolder("rankine:gyratory_crusher")
-    public static MenuType<GyratoryCrusherContainer> GYRATORY_CRUSHER_CONTAINER;
-
-    @ObjectHolder("rankine:gyratory_crusher")
-    public static BlockEntityType<GyratoryCrusherTile> GYRATORY_CRUSHER_TILE;
 
     @ObjectHolder("rankine:evaporation_tower")
     public static MenuType<EvaporationTowerContainer> EVAPORATION_TOWER_CONTAINER;

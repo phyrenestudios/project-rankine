@@ -1,11 +1,13 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.entity.Entity;
@@ -119,15 +121,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
                         double d2 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
 
                         if (!creativeFlag) {
-                            List<ItemStack> results = recipe.getResults(getAlloyHarvestLevel(stack),worldIn);
-                            if (getAtomizeModifier(stack) >= 1) {
-                                for (int i = 0; i < results.size(); i++) {
-                                    if (results.get(i).isEmpty()) {
-                                        ItemStack resu = recipe.getSpecificResult(getTier().getLevel(),i,worldIn);
-                                        results.set(i,resu);
-                                    }
-                                }
-                            }
+                            List<ItemStack> results = recipe.getResults(getAlloyTier(stack), worldIn, getAlloyTier(stack).getLevel() + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ATOMIZE,stack));
                             for (ItemStack t : results)
                             {
                                 ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, t.copy());
