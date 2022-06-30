@@ -518,7 +518,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder basicItem(String name) {
         return getBuilder(name).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "item/" + name);
     }
-    private ItemModelBuilder basicItem(Item name) {
+    public ItemModelBuilder basicItem(Item name) {
         return getBuilder(name.getRegistryName().getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "item/" + name.getRegistryName().getPath());
     }
     private ItemModelBuilder basicItemHandheld(Item name) {

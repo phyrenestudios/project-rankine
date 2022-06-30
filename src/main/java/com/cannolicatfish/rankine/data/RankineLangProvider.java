@@ -751,6 +751,13 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.vacuum", "Vacuum Shot");
         add("enchantment.rankine.vacuum.desc", "Charging the Blunderbuss now also sucks enemies toward you. On firing, do minor damage and knockback to enemies in front of you.");
         add("jei.description.crushing_basic", "Can be obtained by crushing ores using a machine or a Bronze Hammer.");
+        add("rankine.jei.tooltip_chance", "Chance: ");
+        add("rankine.jei.tooltip_failure_chance", "Failure Chance: ");
+        add("rankine.jei.tooltip_guaranteed", "Guaranteed");
+        add("rankine.jei.tooltip_limited", "Can obtain once");
+        add("rankine.jei.tooltip_max_rolls", "Max outputs: ");
+        add("rankine.jei.tooltip_nonlimited", "Can obtain multiple times");
+        add("rankine.jei.tooltip_tier", "Tier: ");
         add("rankine.jei.crushing", "Crushing");
         add("rankine.jei.crucible", "Crucible");
         add("rankine.jei.alloying", "Alloying");

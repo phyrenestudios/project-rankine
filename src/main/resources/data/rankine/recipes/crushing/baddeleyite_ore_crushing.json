@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:baddeleyite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:baddeleyite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "rankine:fluorite",
+      "weight": 8,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:pyrolusite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:uraninite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:ilmenite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:magnetite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

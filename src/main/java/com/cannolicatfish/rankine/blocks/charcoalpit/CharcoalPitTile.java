@@ -42,7 +42,7 @@ public class CharcoalPitTile extends BlockEntity {
     public void saveAdditional(CompoundTag compound) {
         super.saveAdditional(compound);
         compound.putInt("ProcessTime", this.proccessTime);
-        compound.putInt("TotalTime", this.proccessTime);
+        compound.putInt("TotalTime", this.totalTime);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState bs, CharcoalPitTile tile) {

@@ -1,0 +1,46 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:bauxite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:bauxite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "rankine:kaolinite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:fire_clay_ball",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:hematite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:goethite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:ilmenite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:rutile",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

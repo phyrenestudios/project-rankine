@@ -1,8 +1,6 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "side": "rankine:block/piston_crusher_side",
-    "front": "rankine:block/piston_crusher_front",
-    "top": "rankine:block/piston_crusher_top"
+    "all": "rankine:block/piston_crusher"
   }
 }

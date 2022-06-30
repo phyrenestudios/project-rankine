@@ -1,0 +1,53 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:banded_iron_formation"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:flint"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 60
+    },
+    {
+      "item": "minecraft:flint",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:quicklime",
+      "weight": 2,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:hematite",
+      "weight": 20,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:magnesia",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:magnetite",
+      "weight": 10,
+      "tier": "minecraft:diamond",
+      "remove": false
+    },
+    {
+      "item": "rankine:hedenbergite",
+      "weight": 2,
+      "tier": "minecraft:netherite"
+    },
+    {
+      "item": "rankine:lodestone",
+      "weight": 2,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

@@ -1,8 +1,6 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "side": "rankine:block/gyratory_crusher_side",
-    "front": "rankine:block/gyratory_crusher_front",
-    "top": "rankine:block/gyratory_crusher_top"
+    "all": "rankine:block/gyratory_crusher"
   }
 }

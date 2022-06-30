@@ -45,6 +45,11 @@
       "count": 3,
       "weight": 5,
       "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:chromite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
     }
   ]
 }

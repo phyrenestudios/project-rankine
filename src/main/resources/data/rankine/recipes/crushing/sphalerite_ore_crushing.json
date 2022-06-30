@@ -1,0 +1,74 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:sphalerite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:sphalerite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:germanium_nugget",
+      "count": 3,
+      "weight": 20
+    },
+    {
+      "item": "rankine:chalcopyrite",
+      "weight": 6,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:pyrite",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:rhodochrosite",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:fluorite",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:gallium_nugget",
+      "count": 3,
+      "weight": 6,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:indium_nugget",
+      "count": 3,
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:cadmium_nugget",
+      "count": 3,
+      "weight": 4,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

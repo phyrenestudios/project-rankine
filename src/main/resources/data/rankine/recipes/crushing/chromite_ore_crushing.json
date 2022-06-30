@@ -1,0 +1,51 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:cassiterite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:cassiterite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:serpentine",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:ruby",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:sapphire",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:laurite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:garnet",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:magnetite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

@@ -28,17 +28,17 @@
       "weight": 20
     },
     {
+      "item": "rankine:chalcopyrite",
+      "weight": 5,
+      "tier": "minecraft:stone"
+    },
+    {
       "item": "rankine:galena",
       "weight": 5,
       "tier": "minecraft:iron"
     },
     {
       "item": "rankine:sphalerite",
-      "weight": 5,
-      "tier": "minecraft:iron"
-    },
-    {
-      "item": "rankine:chalcopyrite",
       "weight": 5,
       "tier": "minecraft:iron"
     }

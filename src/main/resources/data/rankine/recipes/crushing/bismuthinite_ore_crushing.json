@@ -1,0 +1,51 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:bismuthinite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:bismuthinite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:tourmaline",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:chalcopyrite",
+      "weight": 6,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:cassiterite",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:pyrite",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:galena",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:wolframite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

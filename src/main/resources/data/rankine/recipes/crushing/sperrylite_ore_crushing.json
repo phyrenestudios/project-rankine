@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:sperrylite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:platinum_arsenide"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "rankine:osmiridium",
+      "weight": 45
+    },
+    {
+      "item": "rankine:cooperite",
+      "weight": 10,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:chalcopyrite",
+      "weight": 5,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:garnet",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

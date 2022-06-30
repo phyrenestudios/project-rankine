@@ -68,7 +68,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             ).flatMap(Collection::stream).collect(Collectors.toList())) {
             simpleBlock(blk);
         }
-        
+
         for (Block blk : Arrays.asList(
                 RankineBlocks.ENDER_SHIRO.get(),
                 RankineBlocks.ANTIMATTER.get(),
@@ -664,9 +664,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         onOffBlock(RankineBlocks.ALLOY_FURNACE.get(), models().cubeBottomTop(RankineBlocks.ALLOY_FURNACE.get().getRegistryName().getPath(), getBlockRSL("alloy_furnace_front"), getBlockRSL("refractory_bricks"), getBlockRSL("alloy_furnace_top")), models().cubeBottomTop(RankineBlocks.ALLOY_FURNACE.get().getRegistryName().getPath()+"_on", getBlockRSL("alloy_furnace_front_on"), getBlockRSL("refractory_bricks"), getBlockRSL("alloy_furnace_top")));
         rotateableMachineBlock(RankineBlocks.INDUCTION_FURNACE.get(), models().orientable(RankineBlocks.INDUCTION_FURNACE.get().getRegistryName().getPath(), getBlockRSL("induction_furnace_side"), getBlockRSL("induction_furnace_front"), getBlockRSL("induction_furnace_top")), models().orientable(RankineBlocks.INDUCTION_FURNACE.get().getRegistryName().getPath()+"_on", getBlockRSL("induction_furnace_side"), getBlockRSL("induction_furnace_front"), getBlockRSL("induction_furnace_top_on")));
         rotateableMachineBlock(RankineBlocks.FUSION_FURNACE.get(), models().orientable(RankineBlocks.FUSION_FURNACE.get().getRegistryName().getPath(), getBlockRSL("fusion_furnace_side"), getBlockRSL("fusion_furnace_front"), getBlockRSL("fusion_furnace_top")), models().orientable(RankineBlocks.FUSION_FURNACE.get().getRegistryName().getPath()+"_on", getBlockRSL("fusion_furnace_side"), getBlockRSL("fusion_furnace_front_on"), getBlockRSL("fusion_furnace_top")));
-        rotateableMachineBlock(RankineBlocks.PISTON_CRUSHER.get(), models().orientable(RankineBlocks.PISTON_CRUSHER.get().getRegistryName().getPath(), getBlockRSL("piston_crusher_side"), getBlockRSL("piston_crusher_front"), getBlockRSL("piston_crusher_top")), models().orientable(RankineBlocks.PISTON_CRUSHER.get().getRegistryName().getPath()+"_on", getBlockRSL("piston_crusher_side"), getBlockRSL("piston_crusher_front_on"), getBlockRSL("piston_crusher_top")));
-        rotateableMachineBlock(RankineBlocks.GYRATORY_CRUSHER.get(), models().orientable(RankineBlocks.GYRATORY_CRUSHER.get().getRegistryName().getPath(), getBlockRSL("gyratory_crusher_side"), getBlockRSL("gyratory_crusher_front"), getBlockRSL("gyratory_crusher_top")), models().orientable(RankineBlocks.GYRATORY_CRUSHER.get().getRegistryName().getPath()+"_on", getBlockRSL("gyratory_crusher_side"), getBlockRSL("gyratory_crusher_front"), getBlockRSL("gyratory_crusher_top_on")));
-
+        simpleBlock(RankineBlocks.PISTON_CRUSHER.get());
+        simpleBlock(RankineBlocks.GYRATORY_CRUSHER.get());
 
         SVLBlock((SodiumVaporLampBlock) RankineBlocks.SODIUM_VAPOR_LAMP.get());
 

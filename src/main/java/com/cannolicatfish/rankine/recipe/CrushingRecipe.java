@@ -61,6 +61,10 @@ public class CrushingRecipe implements Recipe<Container> {
         return weights;
     }
 
+    public int getMaxRolls() {
+        return maxRolls;
+    }
+
     public NonNullList<Tier> getTiers() {
         return tiers;
     }
@@ -79,6 +83,11 @@ public class CrushingRecipe implements Recipe<Container> {
 
     public List<Tuple<ItemStack, Tier>> getGuaranteedOutputsAsItemStack() {
         return guaranteedOutputs.stream().map(tuple -> new Tuple<>(tuple.getA(), tuple.getB())).collect(Collectors.toList());
+    }
+
+    public Float getChance(int index) {
+        float in = getWeights().get(index);
+        return (in/getWeights().stream().reduce(0f, Float::sum));
     }
 
 
@@ -235,7 +244,7 @@ public class CrushingRecipe implements Recipe<Container> {
                         }
                     }
 
-                    constants.set(index,object.has("remove") && object.get("remove").getAsBoolean());
+                    constants.set(index,!object.has("remove") || object.get("remove").getAsBoolean());
 
                 }
                 index++;
