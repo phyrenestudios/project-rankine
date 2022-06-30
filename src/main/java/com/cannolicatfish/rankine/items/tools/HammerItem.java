@@ -76,7 +76,7 @@ public class HammerItem extends DiggerItem {
                         double d2 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
 
                         if (!creativeFlag) {
-                            List<ItemStack> results = recipe.getResults(getTier(), worldIn, getTier().getLevel() + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ATOMIZE,stack));
+                            List<ItemStack> results = recipe.getResults(getTier(), worldIn, getTier().getLevel() + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE,stack));
                             for (ItemStack t : results) {
                                 ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, t.copy());
                                 itementity.setDefaultPickUpDelay();
@@ -194,7 +194,7 @@ public class HammerItem extends DiggerItem {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment == Enchantments.BLOCK_EFFICIENCY || enchantment == Enchantments.SILK_TOUCH || enchantment == Enchantments.BLOCK_FORTUNE ) {
+        if (enchantment == Enchantments.BLOCK_EFFICIENCY || enchantment == Enchantments.SILK_TOUCH) {
             return false;
         }
         return super.canApplyAtEnchantingTable(stack,enchantment);

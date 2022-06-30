@@ -1,0 +1,51 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:ironstone"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:hematite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 60
+    },
+    {
+      "item": "rankine:chlorite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:laterite",
+      "weight": 5,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:tiger_iron",
+      "weight": 5,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:hematite",
+      "weight": 10,
+      "tier": "minecraft:diamond",
+      "remove": false
+    },
+    {
+      "item": "rankine:magnetite",
+      "weight": 10,
+      "tier": "minecraft:diamond",
+      "remove": false
+    },
+    {
+      "item": "rankine:opal",
+      "weight": 5,
+      "tier": "minecraft:diamond",
+      "remove": false
+    }
+  ]
+}

@@ -259,7 +259,7 @@ public class CrushingRecipe implements Recipe<Container> {
             int glen = buffer.readVarInt();
             NonNullList<Tuple<ItemStack,Tier>> guaranteedOutputs = NonNullList.withSize(glen, new Tuple<>(ItemStack.EMPTY,Tiers.WOOD));
             for (int i = 0; i < glen; i++) {
-                guaranteedOutputs.add(new Tuple<>(buffer.readItem(),TierSortingRegistry.byName(buffer.readResourceLocation())));
+                guaranteedOutputs.set(i,new Tuple<>(buffer.readItem(),TierSortingRegistry.byName(buffer.readResourceLocation())));
             }
 
             int len = buffer.readVarInt();
@@ -268,10 +268,10 @@ public class CrushingRecipe implements Recipe<Container> {
             NonNullList<Tier> minTiers = NonNullList.withSize(len, Tiers.WOOD);
             NonNullList<Boolean> removals = NonNullList.withSize(len,true);
             for (int i = 0; i < len; i++) {
-                outputs.add(buffer.readItem());
-                weights.add(buffer.readFloat());
-                minTiers.add(TierSortingRegistry.byName(buffer.readResourceLocation()));
-                removals.add(buffer.readBoolean());
+                outputs.set(i,buffer.readItem());
+                weights.set(i,buffer.readFloat());
+                minTiers.set(i,TierSortingRegistry.byName(buffer.readResourceLocation()));
+                removals.set(i,buffer.readBoolean());
             }
 
             return new CrushingRecipe(recipeId,input,guaranteedOutputs,outputs,weights,minTiers,removals,totalRolls);

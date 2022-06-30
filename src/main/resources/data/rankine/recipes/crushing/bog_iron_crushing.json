@@ -1,0 +1,44 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:bog_iron"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:goethite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 60
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "rankine:lead_nugget",
+      "count": 3,
+      "weight": 5
+    },
+    {
+      "item": "rankine:hematite",
+      "weight": 20,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:goethite",
+      "weight": 10,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:magnetite",
+      "weight": 5,
+      "tier": "minecraft:diamond",
+      "remove": false
+    }
+  ]
+}

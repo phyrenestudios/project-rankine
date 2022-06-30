@@ -1,11 +1,15 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:cassiterite_ore"
+    "item": "rankine:beryl_ore"
   },
   "guaranteed": [
     {
-      "item": "rankine:cassiterite"
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "rankine:aquamarine",
+      "tier": "minecraft:diamond"
     }
   ],
   "outputs": [
@@ -18,24 +22,25 @@
       "remove": false
     },
     {
-      "item": "rankine:tourmaline",
+      "item": "rankine:mica",
       "weight": 8,
       "remove": false
     },
     {
-      "item": "rankine:fluorite",
-      "weight": 4,
-      "remove": false
-    },
-    {
-      "item": "rankine:apatite",
-      "weight": 6,
-      "tier": "minecraft:stone"
-    },
-    {
-      "item": "rankine:topaz",
+      "item": "rankine:pyrite",
       "weight": 4,
       "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:aquamarine",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "minecraft:emerald",
+      "weight": 4,
+      "tier": "minecraft:diamond",
+      "remove": false
     },
     {
       "item": "rankine:scheelite",
@@ -46,11 +51,10 @@
       "item": "rankine:molybdenite",
       "weight": 2,
       "tier": "minecraft:diamond"
-    },
-    {
-      "item": "rankine:wolframite",
+    },    {
+      "item": "rankine:spodumene",
       "weight": 2,
-      "tier": "minecraft:netherite"
+      "tier": "minecraft:diamond"
     }
   ]
 }
