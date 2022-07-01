@@ -71,9 +71,11 @@ public class LeafLitterBlock extends FallingBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
-        if (worldIn.isEmptyBlock(pos.below()) || canFallThrough(worldIn.getBlockState(pos.below())) && pos.getY() >= 0) {
-            FallingBlockEntity.fall(worldIn, pos, state);
+    public void tick(BlockState state, ServerLevel levelIn, BlockPos pos, Random rand) {
+        if (levelIn.isEmptyBlock(pos.below()) || canFallThrough(levelIn.getBlockState(pos.below())) && pos.getY() >= 0) {
+            FallingBlockEntity.fall(levelIn, pos, state);
+        } else if (!canSurvive(state,levelIn,pos)) {
+            levelIn.removeBlock(pos,false);
         }
     }
 
@@ -84,7 +86,7 @@ public class LeafLitterBlock extends FallingBlock {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.below()).isRedstoneConductor(worldIn,pos.below()) && worldIn.getBlockState(pos.below()).getBlock() != this;
+        return worldIn.getBlockState(pos.below()).isCollisionShapeFullBlock(worldIn,pos.below());
     }
 
     @Override

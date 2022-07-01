@@ -5,7 +5,7 @@ import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.BaseAsphaltBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.*;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelBlock;
-import com.cannolicatfish.rankine.blocks.mushrooms.RankineWallMushroomBlock;
+import com.cannolicatfish.rankine.blocks.RankineWallMushroomBlock;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankineDoublePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
@@ -63,7 +63,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 RankineLists.MINERAL_WOOL,
                 RankineLists.LIGHTNING_GLASSES,
                 RankineLists.STANDARD_BLOCKS,
-                RankineLists.MUSHROOM_BLOCKS,
                 RankineLists.MINERAL_BLOCKS
             ).flatMap(Collection::stream).collect(Collectors.toList())) {
             simpleBlock(blk);
@@ -77,11 +76,25 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 RankineBlocks.DARK_GRAVEL.get(),
                 RankineBlocks.KAOLIN.get(),
                 RankineBlocks.FIRE_CLAY.get(),
+                RankineBlocks.TINDER_CONK_MUSHROOM_BLOCK.get(),
+                RankineBlocks.LIONS_MANE_MUSHROOM_BLOCK.get(),
+                RankineBlocks.OYSTER_MUSHROOM_BLOCK.get(),
+                RankineBlocks.CINNABAR_POLYPORE_MUSHROOM_BLOCK.get(),
                 RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(),
                 RankineBlocks.PORPHYRY_COPPER.get()
         )) {
             simpleBlock(blk);
         }
+
+        for (Block blk : Arrays.asList(
+                RankineBlocks.HONEY_MUSHROOM_BLOCK.get(),
+                RankineBlocks.ARTIST_CONK_MUSHROOM_BLOCK.get(),
+                RankineBlocks.SULFUR_SHELF_MUSHROOM_BLOCK.get(),
+                RankineBlocks.TURKEY_TAIL_MUSHROOM_BLOCK.get()
+        )) {
+            cubeTopBottomBLock(blk);
+        }
+
         for (Block blk : RankineLists.POLISHED_STONES) {
             fancyPolishedBlock(blk);
         }
@@ -1533,6 +1546,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .partialState().with(LanternBlock.HANGING,false).modelForState().modelFile(models().withExistingParent(NAME,getBlockRSL("minecraft","template_lantern")).texture("lantern",blockTexture(BLK))).addModel()
                 .partialState().with(LanternBlock.HANGING,true).modelForState().modelFile(models().withExistingParent(NAME+"_hanging",getBlockRSL("minecraft","template_hanging_lantern")).texture("lantern",blockTexture(BLK))).addModel();
 
+    }
+
+    public void cubeTopBottomBLock(Block BLK) {
+        String pathName = BLK.getRegistryName().getPath();
+        simpleBlock(BLK,models().cubeBottomTop(pathName,blockTexture(BLK),getBlockRSL(pathName+"_end"),getBlockRSL(pathName+"_end")));
     }
 
 

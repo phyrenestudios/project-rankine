@@ -1,52 +1,36 @@
 package com.cannolicatfish.rankine.world.gen.mushrooms;
 
-import com.cannolicatfish.rankine.blocks.mushrooms.RankineWallMushroomBlock;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockPileConfiguration;
 
-import java.util.Random;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
-public class HoneyMushroomFeature extends Feature<BlockPileConfiguration> {
-
+public class HoneyMushroomFeature extends AbstractWallMushroomFeature {
 
     public HoneyMushroomFeature(Codec<BlockPileConfiguration> configFactoryIn) {
         super(configFactoryIn);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<BlockPileConfiguration> config) {
-        WorldGenLevel reader = config.level();
-        BlockPos pos = config.origin();
-        Random rand = reader.getRandom();
-        return growMushroom(reader, reader.getRandom(), pos, config.config());
-    }
-
-    public static boolean growMushroom(WorldGenLevel reader, Random rand, BlockPos pos, BlockPileConfiguration config) {
-        boolean flag = true;
-        Direction dir = reader.getBlockState(pos).getValue(RankineWallMushroomBlock.HORIZONTAL_FACING);
-        for (BlockPos b : BlockPos.betweenClosed(pos.relative(dir.getClockWise()),pos.relative(dir).relative(dir.getCounterClockWise()).above())) {
-            if (!WorldgenUtils.isAirOrLeaves(reader,b)) {
-                flag = false;
+    protected List<BlockPos> validDir(WorldGenLevel levelIn, BlockPos pos) {
+        for (Direction dir : Direction.values()) {
+            boolean flag = true;
+            if (dir.getAxis().equals(Direction.Axis.Y)) continue;
+            List<BlockPos> blockList = Arrays.asList(pos, pos.above(), pos.above().relative(dir.getCounterClockWise()),pos.above().relative(dir.getClockWise()),pos.above().relative(dir));
+            for (BlockPos b : blockList) {
+                if (!TreeFeature.validTreePos(levelIn, b)) {
+                    flag = false;
+                    break;
+                }
             }
+            if (flag) return blockList;
         }
-
-        if (flag) {
-            BlockState state = config.stateProvider.getState(rand, pos);
-            reader.setBlock(pos, state, 3);
-            reader.setBlock(pos.above(), state, 3);
-            reader.setBlock(pos.above().relative(dir.getCounterClockWise()), state, 3);
-            reader.setBlock(pos.above().relative(dir.getClockWise()), state, 3);
-            reader.setBlock(pos.above().relative(dir), state, 3);
-
-            return true;
-        }
-        return false;
+        return Collections.emptyList();
     }
 }

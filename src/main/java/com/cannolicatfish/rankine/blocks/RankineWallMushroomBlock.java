@@ -1,6 +1,5 @@
-package com.cannolicatfish.rankine.blocks.mushrooms;
+package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.blocks.HollowLogBlock;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -104,22 +103,14 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
     }
 
 
-    public boolean growMushroom(ServerLevel worldIn, BlockPos pos, BlockState p_54862_, Random p_54863_) {
-        /*
-        if (this.featureSupplier.get().value().place(worldIn, worldIn.getChunkSource().getGenerator(), p_54863_, pos)) {
-            worldIn.removeBlock(pos, false);
-            return true;
-        } else {
-            worldIn.setBlock(pos, p_54862_, 3);
-            return false;
+    public void growMushroom(ServerLevel worldIn, BlockPos pos, BlockState p_54862_, Random p_54863_) {
+        if (!this.featureSupplier.get().value().place(worldIn, worldIn.getChunkSource().getGenerator(), p_54863_, pos)) {
+            worldIn.setBlock(pos,p_54862_,3);
         }
-
-         */
-        return false;
     }
 
     public boolean isValidBonemealTarget(BlockGetter p_54870_, BlockPos pos, BlockState p_54872_, boolean p_54873_) {
-        return false;
+        return true;
     }
 
     public boolean isBonemealSuccess(Level p_54875_, Random p_54876_, BlockPos pos, BlockState p_54878_) {

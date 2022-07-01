@@ -41,7 +41,7 @@ import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableBlock;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableTile;
-import com.cannolicatfish.rankine.blocks.mushrooms.RankineWallMushroomBlock;
+import com.cannolicatfish.rankine.blocks.RankineWallMushroomBlock;
 import com.cannolicatfish.rankine.blocks.particleaccelerator.ParticleAcceleratorBlock;
 import com.cannolicatfish.rankine.blocks.particleaccelerator.ParticleAcceleratorTile;
 import com.cannolicatfish.rankine.blocks.pedestal.PedestalBlock;
@@ -2464,12 +2464,12 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PINK_BELLFLOWER = BLOCKS.register("pink_bellflower", () -> new TallFlowerBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> VIOLET_BELLFLOWER = BLOCKS.register("violet_bellflower", () -> new TallFlowerBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> GOLDENROD = BLOCKS.register("goldenrod", () -> new TallFlowerBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> SHORT_GRASS = BLOCKS.register("short_grass", () -> new ShortGrassBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> STINGING_NETTLE = BLOCKS.register("stinging_nettle", () -> new StingingNettleBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> YELLOW_CLOVER = BLOCKS.register("yellow_clover", () -> new CloverBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> WHITE_CLOVER = BLOCKS.register("white_clover", () -> new CloverBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> RED_CLOVER = BLOCKS.register("red_clover", () -> new CloverBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> CRIMSON_CLOVER = BLOCKS.register("crimson_clover", () -> new CloverBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> SHORT_GRASS = BLOCKS.register("short_grass", () -> new ShortGrassBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> STINGING_NETTLE = BLOCKS.register("stinging_nettle", () -> new StingingNettleBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> YELLOW_CLOVER = BLOCKS.register("yellow_clover", () -> new CloverBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> WHITE_CLOVER = BLOCKS.register("white_clover", () -> new CloverBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> RED_CLOVER = BLOCKS.register("red_clover", () -> new CloverBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> CRIMSON_CLOVER = BLOCKS.register("crimson_clover", () -> new CloverBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> WILLOW_BRANCHLET = BLOCKS.register("willow_branchlet", () -> new WillowBranchletTopBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.GRASS).noCollission().instabreak().sound(SoundType.VINE)));
     public static final RegistryObject<Block> WILLOW_BRANCHLET_PLANT = BLOCKS.register("willow_branchlet_plant", () -> new WillowBranchletBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.GRASS).noCollission().instabreak().sound(SoundType.VINE)));
     public static final RegistryObject<Block> LOCUST_SPINE = BLOCKS.register("locust_spine", () -> new LocustSpineBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).noCollission().instabreak().sound(SoundType.WOOD)));
@@ -3007,10 +3007,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> DIAMOND_ANVIL_CELL = BLOCKS.register("diamond_anvil_cell", () -> new DiamondAnvilCellBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> PARTICLE_ACCELERATOR = BLOCKS.register("particle_accelerator", () -> new ParticleAcceleratorBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> FUSION_FURNACE = BLOCKS.register("fusion_furnace", () -> new FusionFurnaceBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
-    //public static final RegistryObject<Block> LASER_QUARRY = REGISTRY.register("laser_quarry", () -> new LaserQuarryBlock(DEF_METAL_BLOCK));
-    //public static final RegistryObject<Block> LASER_PYLON_TOP = REGISTRY.register("laser_pylon_top", () -> new Block(DEF_METAL_BLOCK));
-    //public static final RegistryObject<Block> LASER_PYLON_TOP = REGISTRY.register("laser_pylon_top", () -> new Block(DEF_METAL_BLOCK));
-    //public static final RegistryObject<Block> LASER_PYLON_BASE = REGISTRY.register("laser_pylon_base", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> DISTILLATION_TOWER = BLOCKS.register("distillation_tower", () -> new DistillationTowerBlock(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> AIR_DISTILLATION_PACKING = BLOCKS.register("air_distillation_packing", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> REACTION_CHAMBER_CORE = BLOCKS.register("reaction_chamber_core", () -> new Block(DEF_METAL_BLOCK));
@@ -3018,8 +3014,8 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> GAS_BOTTLER = BLOCKS.register("gas_bottler", () -> new GasBottlerBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> GAS_VENT = BLOCKS.register("gas_vent", () -> new GasVentBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
-    public static final RegistryObject<Block> CHARCOAL_PIT = BLOCKS.register("charcoal_pit", () -> new CharcoalPitBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).requiresCorrectToolForDrops().strength(2.0F)));
-    public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", () -> new TreeTapBlock(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD).requiresCorrectToolForDrops().strength(2.0F).noOcclusion()));
+    public static final RegistryObject<Block> CHARCOAL_PIT = BLOCKS.register("charcoal_pit", () -> new CharcoalPitBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F)));
+    public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", () -> new TreeTapBlock(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> TAP_LINE = BLOCKS.register("tap_line", () -> new TapLineBlock(0.125f, BlockBehaviour.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.5F).noOcclusion()));
 
 
