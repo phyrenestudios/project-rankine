@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.world.gen;
 
-import com.cannolicatfish.rankine.blocks.mushrooms.RankineWallMushroomBlock;
+import com.cannolicatfish.rankine.blocks.RankineWallMushroomBlock;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;

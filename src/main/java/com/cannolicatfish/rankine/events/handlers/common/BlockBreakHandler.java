@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
 import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.items.alloys.AlloyPickaxeItem;
 import com.cannolicatfish.rankine.recipe.ForagingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -18,7 +19,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Block;
@@ -181,7 +181,7 @@ public class BlockBreakHandler {
 
             //Nugget Drops
             if (ForgeRegistries.BLOCKS.tags().getTag(Tags.Blocks.STONE).contains(targetBlock)) {
-                if (mainHandItem.getItem() instanceof PickaxeItem) {
+                if (mainHandItem.getItem() instanceof AlloyPickaxeItem) {
                     BlockPos foundPos = null;
                     for (int x = 1; x < Config.GENERAL.NUGGET_DISTANCE.get(); x++) {
                         if (levelIn.getBlockState(pos.below(x)).getBlock() instanceof RankineOreBlock) {

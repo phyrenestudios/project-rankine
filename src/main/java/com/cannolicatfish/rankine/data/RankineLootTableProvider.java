@@ -13,21 +13,32 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.BlockPos;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.HashCache;
 import net.minecraft.data.DataProvider;
+import net.minecraft.data.HashCache;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.block.state.properties.SlabType;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.util.StringRepresentable;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.storage.loot.IntRange;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.LootTables;
+import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.functions.*;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraft.world.level.storage.loot.providers.number.BinomialDistributionGenerator;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -42,46 +53,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
-
-import net.minecraft.advancements.critereon.BlockPredicate;
-import net.minecraft.advancements.critereon.EnchantmentPredicate;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.advancements.critereon.LocationPredicate;
-import net.minecraft.advancements.critereon.MinMaxBounds;
-import net.minecraft.advancements.critereon.StatePropertiesPredicate;
-import net.minecraft.world.level.block.BeehiveBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.block.ShulkerBoxBlock;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StemBlock;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.LootTables;
-import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
-import net.minecraft.world.level.storage.loot.entries.DynamicLoot;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
-import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
-import net.minecraft.world.level.storage.loot.functions.CopyBlockState;
-import net.minecraft.world.level.storage.loot.functions.CopyNameFunction;
-import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
-import net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder;
-import net.minecraft.world.level.storage.loot.functions.LimitCount;
-import net.minecraft.world.level.storage.loot.functions.SetContainerContents;
-import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
-import net.minecraft.world.level.storage.loot.predicates.ConditionUserBuilder;
-import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
-import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 
 public abstract class RankineLootTableProvider extends LootTableProvider {
 
@@ -296,58 +267,77 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
     }
     protected LootTable.Builder singleCrop(Block CROP, Item DROP, Item SEED) {
         return LootTable.lootTable()
-                .withPool(LootPool.lootPool()
+                .withPool(
+                    LootPool.lootPool()
                     .setRolls(ConstantValue.exactly(1))
-                        .add(AlternativesEntry.alternatives(
-                            LootItem.lootTableItem(DROP)
-                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))),
-                            LootItem.lootTableItem(SEED)))
-                    .when(ExplosionCondition.survivesExplosion()))
-                .withPool(LootPool.lootPool()
+                    .add(
+                        AlternativesEntry.alternatives(
+                        LootItem.lootTableItem(DROP)
+                            .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))),
+                        LootItem.lootTableItem(SEED))
+                    )
+                )
+                .withPool(
+                    LootPool.lootPool()
                     .setRolls(ConstantValue.exactly(1))
-                        .add(LootItem.lootTableItem(SEED)
-                            .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 2)))
-                    .when(ExplosionCondition.survivesExplosion()));
+                    .add(
+                        LootItem.lootTableItem(SEED)
+                        .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 2))
+                    )
+                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7)))
+                )
+                .apply(ApplyExplosionDecay.explosionDecay());
     }
 
     protected LootTable.Builder doubleCrop(Block CROP, Item DROP, Item SEED, int Count) {
         return LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(AlternativesEntry.alternatives(
-                                LootItem.lootTableItem(DROP)
-                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(Count)))
-                                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7).hasProperty(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER))),
-                                LootItem.lootTableItem(SEED)))
-                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER)))
-                        .when(ExplosionCondition.survivesExplosion()))
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(
-                                LootItem.lootTableItem(SEED)
-                                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER)))
-                                        .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 2)))
-                        .when(ExplosionCondition.survivesExplosion()));
+                .withPool(
+                    LootPool.lootPool()
+                    .setRolls(ConstantValue.exactly(1))
+                    .add(
+                        AlternativesEntry.alternatives(
+                            LootItem.lootTableItem(DROP)
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(Count)))
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7).hasProperty(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER))),
+                            LootItem.lootTableItem(SEED)
+                        )
+                    )
+                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER))))
+                .withPool(
+                    LootPool.lootPool()
+                    .setRolls(ConstantValue.exactly(1))
+                    .add(
+                        LootItem.lootTableItem(SEED)
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7).hasProperty(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER)))
+                        .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 2)))
+                )
+                .apply(ApplyExplosionDecay.explosionDecay());
     }
 
     protected LootTable.Builder tripleCrop(Block CROP, Item DROP, Item SEED, int Count) {
         return LootTable.lootTable()
-                .withPool(LootPool.lootPool()
+                .withPool(
+                    LootPool.lootPool()
                     .setRolls(ConstantValue.exactly(1))
-                    .add(AlternativesEntry.alternatives(
-                        LootItem.lootTableItem(DROP)
-                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(Count)))
-                            .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7).hasProperty(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM))),
-                        LootItem.lootTableItem(SEED)))
-                            .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM)))
-                    .when(ExplosionCondition.survivesExplosion()))
-                .withPool(LootPool.lootPool()
+                    .add(
+                        AlternativesEntry.alternatives(
+                            LootItem.lootTableItem(DROP)
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(Count)))
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7).hasProperty(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM))),
+                            LootItem.lootTableItem(SEED)
+                        )
+                    )
+                )
+                .withPool(
+                    LootPool.lootPool()
                     .setRolls(ConstantValue.exactly(1))
                     .add(
                         LootItem.lootTableItem(SEED)
-                            .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM)))
-                            .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 2)))
-                    .when(ExplosionCondition.survivesExplosion()));
+                        .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 2))
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7).hasProperty(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM)))
+                    )
+                )
+                .apply(ApplyExplosionDecay.explosionDecay());
     }
 
     protected LootTable.Builder doubleBushOneDrop(Block BUSH, Item DROP) {

@@ -283,30 +283,28 @@ public class WorldgenUtils {
         }
     }
 
-    public static void placeLogAt(LevelWriter reader, BlockPos pos, Random rand, TreeConfiguration config, Direction.Axis axis) {
+    public static void placeLogAt(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, Direction.Axis axis) {
         setLogState(reader, pos, config.trunkProvider.getState(rand, pos).setValue(BlockStateProperties.AXIS, axis));
     }
 
-    public static void setLogState(LevelWriter reader, BlockPos pos, BlockState state) {
+    public static void setLogState(WorldGenLevel reader, BlockPos pos, BlockState state) {
         reader.setBlock(pos, state, 18);
     }
 
-    public static void placeLeafAt(LevelSimulatedRW world, BlockPos pos, Random rand, TreeConfiguration config) {
+    public static void placeLeafAt(WorldGenLevel world, BlockPos pos, Random rand, TreeConfiguration config) {
         if (isAirOrLeaves(world, pos)) {
             setLogState(world, pos, config.foliageProvider.getState(rand, pos).setValue(LeavesBlock.DISTANCE, 1));
         }
     }
 
-    public static boolean isAirOrLeaves(LevelSimulatedReader reader, BlockPos pos) {
+    public static boolean isAirOrLeaves(WorldGenLevel levelIn, BlockPos pos) {
         /*/if (reader instanceof net.minecraft.world.level.LevelReader) {
             return reader.isStateAtPosition(pos, state -> state.canBeReplacedByLeaves((net.minecraft.world.level.LevelReader) reader, pos));
         }*/
-        return reader.isStateAtPosition(pos, (state) -> {
-            return state.isAir() || state.is(BlockTags.LEAVES);
-        });
+        return levelIn.isStateAtPosition(pos, (state) -> state.isAir() || state.is(BlockTags.LEAVES));
     }
 
-    public static boolean isAir(LevelSimulatedReader reader, BlockPos pos) {
+    public static boolean isAir(WorldGenLevel reader, BlockPos pos) {
         if (!(reader instanceof net.minecraft.world.level.BlockGetter)) {
             return reader.isStateAtPosition(pos, BlockState::isAir);
         }
