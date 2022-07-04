@@ -370,6 +370,8 @@ public final class RankineTags {
         public static final TagKey<Block> STONES_PEGMATITE = forgeBlock("stones/pegmatite");
         public static final TagKey<Block> STONES_GRANITE = forgeBlock("stones/granite");
         public static final TagKey<Block> STONES_RHYOLITE = forgeBlock("stones/rhyolite");
+        public static final TagKey<Block> STONES_SYENITE = forgeBlock("stones/syenite");
+        public static final TagKey<Block> STONES_PHONOLITE = forgeBlock("stones/phonolite");
         public static final TagKey<Block> STONES_GRANODIORITE = forgeBlock("stones/granodiorite");
         public static final TagKey<Block> STONES_PORPHYRY = forgeBlock("stones/porphyry");
         public static final TagKey<Block> STONES_ANDESITE = forgeBlock("stones/andesite");
@@ -1202,6 +1204,8 @@ public final class RankineTags {
         public static final TagKey<Item> STONES_PEGMATITE = forgeItem("stones/pegmatite");
         public static final TagKey<Item> STONES_GRANITE = forgeItem("stones/granite");
         public static final TagKey<Item> STONES_RHYOLITE = forgeItem("stones/rhyolite");
+        public static final TagKey<Item> STONES_SYENITE = forgeItem("stones/syenite");
+        public static final TagKey<Item> STONES_PHONOLITE = forgeItem("stones/phonolite");
         public static final TagKey<Item> STONES_GRANODIORITE = forgeItem("stones/granodiorite");
         public static final TagKey<Item> STONES_PORPHYRY = forgeItem("stones/porphyry");
         public static final TagKey<Item> STONES_ANDESITE = forgeItem("stones/andesite");

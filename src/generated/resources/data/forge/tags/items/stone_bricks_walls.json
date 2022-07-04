@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:phonolite_bricks_wall",
+    "rankine:nepheline_syenite_bricks_wall",
+    "rankine:episyenite_bricks_wall",
     "rankine:pegmatite_bricks_wall",
     "rankine:gray_granite_bricks_wall",
     "rankine:rhyolite_bricks_wall",

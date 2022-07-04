@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_rotation",
+  "textures": {
+    "all": "rankine:block/nepheline_syenite_bricks"
+  }
+}

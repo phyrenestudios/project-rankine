@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:episyenite_stairs"
+    },
+    {
+      "item": "rankine:episyenite_stairs"
+    },
+    {
+      "item": "rankine:episyenite_stairs"
+    },
+    {
+      "item": "rankine:episyenite_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:episyenite",
+    "count": 6
+  }
+}

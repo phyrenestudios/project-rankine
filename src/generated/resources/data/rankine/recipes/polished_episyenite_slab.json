@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:polished_episyenite"
+    }
+  },
+  "result": {
+    "item": "rankine:polished_episyenite_slab",
+    "count": 6
+  }
+}

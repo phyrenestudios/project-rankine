@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_pressure_plate",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:nepheline_syenite"
+    }
+  },
+  "result": {
+    "item": "rankine:nepheline_syenite_pressure_plate"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:nepheline_syenite_bricks"
+  },
+  "result": "rankine:nepheline_syenite_bricks_vertical_slab",
+  "count": 2
+}

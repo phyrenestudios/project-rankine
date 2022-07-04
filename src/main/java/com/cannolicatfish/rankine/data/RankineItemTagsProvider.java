@@ -93,6 +93,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STONES_MARLSTONE, RankineTags.Items.STONES_MARLSTONE);
         copy(RankineTags.Blocks.STONES_MUDSTONE, RankineTags.Items.STONES_MUDSTONE);
         copy(RankineTags.Blocks.STONES_RHYOLITE, RankineTags.Items.STONES_RHYOLITE);
+        copy(RankineTags.Blocks.STONES_SYENITE, RankineTags.Items.STONES_SYENITE);
+        copy(RankineTags.Blocks.STONES_PHONOLITE, RankineTags.Items.STONES_PHONOLITE);
         copy(RankineTags.Blocks.STONES_GRANODIORITE, RankineTags.Items.STONES_GRANODIORITE);
         copy(RankineTags.Blocks.STONES_KIMBERLITE, RankineTags.Items.STONES_KIMBERLITE);
         copy(RankineTags.Blocks.STONES_KOMATIITE, RankineTags.Items.STONES_KOMATIITE);

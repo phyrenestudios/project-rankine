@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:phonolite_button",
+    "rankine:nepheline_syenite_button",
+    "rankine:episyenite_button",
     "rankine:pegmatite_button",
     "rankine:gray_granite_button",
     "rankine:rhyolite_button",

@@ -6,7 +6,7 @@
     ]
   },
   "criteria": {
-    "has_pyrolusite": {
+    "has_ingredient": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_pyrolusite",
+      "has_ingredient",
       "has_the_recipe"
     ]
   ]

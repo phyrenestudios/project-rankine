@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:episyenite_bricks"
+  },
+  "result": "rankine:episyenite_bricks_wall",
+  "count": 1
+}

@@ -26,10 +26,56 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Consumer;
 
 public class RankineRecipesProvider extends RecipeProvider {
 
+    private static final Map<Item,Item> blastingMap = new HashMap<>();
+    static {
+        blastingMap.put(RankineItems.CASSITERITE.get(),RankineItems.TIN_INGOT.get());
+        blastingMap.put(RankineItems.SPHALERITE.get(),RankineItems.ZINC_INGOT.get());
+        blastingMap.put(RankineItems.PENTLANDITE.get(),RankineItems.NICKEL_INGOT.get());
+        blastingMap.put(RankineItems.MAGNETITE.get(),Items.IRON_INGOT);
+        blastingMap.put(RankineItems.HEMATITE.get(),Items.IRON_INGOT);
+        blastingMap.put(RankineItems.GALENA.get(),RankineItems.LEAD_INGOT.get());
+        blastingMap.put(RankineItems.VANADINITE.get(),RankineItems.VANADIUM_INGOT.get());
+        blastingMap.put(RankineItems.BISMUTHINITE.get(),RankineItems.BISMUTH_INGOT.get());
+        blastingMap.put(RankineItems.ACANTHITE.get(),RankineItems.SILVER_INGOT.get());
+        blastingMap.put(RankineItems.PYROLUSITE.get(),RankineItems.MANGANESE_INGOT.get());
+        blastingMap.put(RankineItems.CHROMITE.get(),RankineItems.CHROMIUM_INGOT.get());
+        blastingMap.put(RankineItems.MOLYBDENITE.get(),RankineItems.MOLYBDENUM_INGOT.get());
+        blastingMap.put(RankineItems.ILMENITE.get(),RankineItems.TITANIUM_INGOT.get());
+        blastingMap.put(RankineItems.COLUMBITE.get(),RankineItems.NIOBIUM_INGOT.get());
+        blastingMap.put(RankineItems.WOLFRAMITE.get(),RankineItems.TUNGSTEN_INGOT.get());
+        blastingMap.put(RankineItems.TANTALITE.get(),RankineItems.TANTALUM_INGOT.get());
+        blastingMap.put(RankineItems.GREENOCKITE.get(),RankineItems.CADMIUM_INGOT.get());
+        blastingMap.put(RankineItems.URANINITE.get(),RankineItems.URANIUM_INGOT.get());
+        blastingMap.put(RankineItems.STIBNITE.get(),RankineItems.ANTIMONY.get());
+        blastingMap.put(RankineItems.XENOTIME.get(),RankineItems.YTTRIUM_INGOT.get());
+        blastingMap.put(RankineItems.PETALITE.get(),RankineItems.LITHIUM_INGOT.get());
+        blastingMap.put(RankineItems.COBALTITE.get(),RankineItems.COBALT_INGOT.get());
+        blastingMap.put(RankineItems.CRYOLITE.get(),RankineItems.SODIUM_INGOT.get());
+        blastingMap.put(RankineItems.CELESTINE.get(),RankineItems.STRONTIUM_INGOT.get());
+        blastingMap.put(RankineItems.CHALCOPYRITE.get(),Items.COPPER_INGOT);
+        blastingMap.put(RankineItems.PLATINUM_ARSENIDE.get(),RankineItems.PLATINUM_INGOT.get());
+        blastingMap.put(RankineItems.RHENIITE.get(),RankineItems.RHENIUM_INGOT.get());
+        blastingMap.put(RankineItems.THORITE.get(),RankineItems.THORIUM_INGOT.get());
+        blastingMap.put(RankineItems.GOETHITE.get(),Items.IRON_INGOT);
+        blastingMap.put(RankineItems.REALGAR.get(),RankineItems.ARSENIC.get());
+        blastingMap.put(RankineItems.COOPERITE.get(),RankineItems.PALLADIUM_INGOT.get());
+        blastingMap.put(RankineItems.HEDENBERGITE.get(),Items.IRON_INGOT);
+        blastingMap.put(RankineItems.LAURITE.get(),RankineItems.RUTHENIUM_INGOT.get());
+        blastingMap.put(RankineItems.LAUTARITE.get(),RankineItems.IODINE.get());
+        blastingMap.put(RankineItems.RUTILE.get(),RankineItems.TITANIUM_INGOT.get());
+        blastingMap.put(RankineItems.SPODUMENE.get(),RankineItems.LITHIUM_INGOT.get());
+        blastingMap.put(RankineItems.CHALCOCITE.get(),Items.COPPER_INGOT);
+        blastingMap.put(RankineItems.LORANDITE.get(),RankineItems.THALLIUM_INGOT.get());
+        blastingMap.put(RankineItems.POLLUCITE.get(),RankineItems.CESIUM_INGOT.get());
+
+    }
+    
     public RankineRecipesProvider(DataGenerator generatorIn) {
         super(generatorIn);
     }
@@ -464,18 +510,11 @@ public class RankineRecipesProvider extends RecipeProvider {
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.PULP.get()), Items.PAPER, 0.1F, 100).unlockedBy("has_ingredient", has(RankineItems.PULP.get())).save(consumer, "rankine:paper_from_pulp_smelting");
 
         //blasting recipes
-        for (Item MINERAL : RankineLists.BLASTING_MINERALS) {
-            String baseName = MINERAL.getRegistryName().getPath();
-            Item INGOT = RankineLists.BLASTING_INGOTS.get(RankineLists.BLASTING_MINERALS.indexOf(MINERAL));
-            Item MINERAL_BLOCK = RankineLists.BLASTING_MINERAL_BLOCKS.get(RankineLists.BLASTING_MINERALS.indexOf(MINERAL));
-            Item INGOT_BLOCK = RankineLists.BLASTING_BLOCKS.get(RankineLists.BLASTING_MINERALS.indexOf(MINERAL));
-            SimpleCookingRecipeBuilder.blasting(Ingredient.of(MINERAL), INGOT, 0.5F, 100).unlockedBy("has_"+baseName, has(MINERAL)).save(consumer, "rankine:"+INGOT.getRegistryName().getPath()+"_from_"+baseName+"_blasting");
-            //CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(MINERAL_BLOCK), INGOT_BLOCK, 5.0F, 800).addCriterion("has_"+baseName, hasItem(MINERAL)).build(consumer, "rankine:"+INGOT_BLOCK.getRegistryName().getPath()+"_from_"+baseName+"_block_blasting");
-            //beehive oven
+        for (Item MINERAL : blastingMap.keySet()) {
+            SimpleCookingRecipeBuilder.blasting(Ingredient.of(MINERAL), blastingMap.get(MINERAL), 0.5F, 100).unlockedBy("has_ingredient", has(MINERAL)).save(consumer, "rankine:"+blastingMap.get(MINERAL).getRegistryName().getPath()+"_from_"+MINERAL.getRegistryName().getPath()+"_blasting");
         }
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.APATITE.get()), RankineItems.PHOSPHORUS_NUGGET.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.APATITE.get())).save(consumer, "rankine:phosphorus_nugget_from_apatite_blasting");
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.BADDELEYITE.get()), RankineItems.ZIRCONIA.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.BADDELEYITE.get())).save(consumer, "rankine:zirconia_from_baddeleyite_blasting");
-        //CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RankineItems.APATITE_BLOCK.get()), RankineItems.PHOSPHORUS.get(), 5.0F, 800).addCriterion("has_ingredient", hasItem(RankineItems.APATITE.get())).build(consumer, RankineItems.PHOSPHORUS.get().getRegistryName().getPath()+"_from_apatite_block_blasting");
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.METEORIC_IRON.get()), Items.IRON_INGOT, 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.METEORIC_IRON.get())).save(consumer, "rankine:iron_from_meteoric_iron_blasting");
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.TRONA.get()), RankineItems.SODIUM_CARBONATE.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.TRONA.get())).save(consumer, "rankine:sodium_carbonate_from_trona_blasting");
 

@@ -140,6 +140,8 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(RankineTags.Blocks.STONES_MARLSTONE).add(RankineBlocks.MARLSTONE.get());
         tag(RankineTags.Blocks.STONES_MUDSTONE).add(RankineBlocks.MUDSTONE.get());
         tag(RankineTags.Blocks.STONES_RHYOLITE).add(RankineBlocks.RHYOLITE.get(),RankineBlocks.COMENDITE.get());
+        tag(RankineTags.Blocks.STONES_SYENITE).add(RankineBlocks.NEPHELINE_SYENITE.get(),RankineBlocks.EPISYENITE.get());
+        tag(RankineTags.Blocks.STONES_PHONOLITE).add(RankineBlocks.PHONOLITE.get());
         tag(RankineTags.Blocks.STONES_GRANODIORITE).add(RankineBlocks.GRANODIORITE.get());
         tag(RankineTags.Blocks.STONES_KIMBERLITE).add(RankineBlocks.KIMBERLITE.get());
         tag(RankineTags.Blocks.STONES_KOMATIITE).add(RankineBlocks.KOMATIITE.get());
