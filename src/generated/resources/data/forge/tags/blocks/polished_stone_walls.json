@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:polished_phonolite_wall",
+    "rankine:polished_nepheline_syenite_wall",
+    "rankine:polished_episyenite_wall",
     "rankine:polished_pegmatite_wall",
     "rankine:polished_gray_granite_wall",
     "rankine:polished_rhyolite_wall",

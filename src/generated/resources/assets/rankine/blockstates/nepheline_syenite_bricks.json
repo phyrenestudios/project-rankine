@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "mode=0": {
+      "model": "rankine:block/nepheline_syenite_bricks"
+    },
+    "mode=1": {
+      "model": "rankine:block/nepheline_syenite_bricks_vertical"
+    },
+    "mode=2": {
+      "model": "rankine:block/nepheline_syenite_bricks_mossy"
+    },
+    "mode=3": {
+      "model": "rankine:block/nepheline_syenite_bricks_snowy"
+    }
+  }
+}

@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:phonolite_pressure_plate",
+    "rankine:nepheline_syenite_pressure_plate",
+    "rankine:episyenite_pressure_plate",
     "rankine:pegmatite_pressure_plate",
     "rankine:gray_granite_pressure_plate",
     "rankine:rhyolite_pressure_plate",
@@ -57,6 +60,9 @@
     "rankine:arkose_pressure_plate",
     "rankine:graywacke_pressure_plate",
     "rankine:honeystone_pressure_plate",
+    "rankine:phonolite_bricks_pressure_plate",
+    "rankine:nepheline_syenite_bricks_pressure_plate",
+    "rankine:episyenite_bricks_pressure_plate",
     "rankine:pegmatite_bricks_pressure_plate",
     "rankine:gray_granite_bricks_pressure_plate",
     "rankine:rhyolite_bricks_pressure_plate",

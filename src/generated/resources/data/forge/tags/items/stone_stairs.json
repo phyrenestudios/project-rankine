@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:phonolite_stairs",
+    "rankine:nepheline_syenite_stairs",
+    "rankine:episyenite_stairs",
     "rankine:pegmatite_stairs",
     "rankine:gray_granite_stairs",
     "rankine:rhyolite_stairs",

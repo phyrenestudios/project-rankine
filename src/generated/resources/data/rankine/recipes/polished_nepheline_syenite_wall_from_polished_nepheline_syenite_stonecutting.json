@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_nepheline_syenite"
+  },
+  "result": "rankine:polished_nepheline_syenite_wall",
+  "count": 1
+}

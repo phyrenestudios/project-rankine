@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:phonolite_cobble",
+    "rankine:nepheline_syenite_cobble",
+    "rankine:episyenite_cobble",
     "rankine:pegmatite_cobble",
     "rankine:gray_granite_cobble",
     "rankine:rhyolite_cobble",

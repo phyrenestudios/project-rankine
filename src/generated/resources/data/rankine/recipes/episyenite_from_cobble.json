@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:episyenite_cobble"
+    },
+    {
+      "item": "rankine:episyenite_cobble"
+    },
+    {
+      "item": "rankine:episyenite_cobble"
+    },
+    {
+      "item": "rankine:episyenite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:episyenite"
+  }
+}

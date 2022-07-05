@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_nepheline_syenite"
+    ]
+  },
+  "criteria": {
+    "has_ingredient": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:nepheline_syenite"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_nepheline_syenite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ingredient",
+      "has_the_recipe"
+    ]
+  ]
+}

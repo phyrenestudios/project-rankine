@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:polished_phonolite_stairs",
+    "rankine:polished_nepheline_syenite_stairs",
+    "rankine:polished_episyenite_stairs",
     "rankine:polished_pegmatite_stairs",
     "rankine:polished_gray_granite_stairs",
     "rankine:polished_rhyolite_stairs",

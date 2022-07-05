@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:phonolite_slab",
+    "rankine:nepheline_syenite_slab",
+    "rankine:episyenite_slab",
     "rankine:pegmatite_slab",
     "rankine:gray_granite_slab",
     "rankine:rhyolite_slab",
