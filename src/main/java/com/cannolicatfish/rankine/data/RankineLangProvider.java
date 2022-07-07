@@ -176,6 +176,7 @@ public class RankineLangProvider extends LanguageProvider {
 
         // Misc Blocks
         for (Block blk : Arrays.asList(
+                RankineBlocks.SLATE_STEPPING_STONES.get(),
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.TILLED_SOIL.get(),

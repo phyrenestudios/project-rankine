@@ -1726,7 +1726,7 @@ public class RankineBlocks {
      */
     public static final RegistryObject<Block> SOD_BLOCK = BLOCKS.register("sod_block", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRASS)));
 
-    public static final RegistryObject<Block> SILT = BLOCKS.register("silt", () -> new SandBlock(00000000, Block.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.SAND).strength(0.5F)));
+    public static final RegistryObject<Block> SILT = BLOCKS.register("silt", () -> new SiltBlock(11770483, Block.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.SAND).strength(0.5F)));
     public static final RegistryObject<Block> PERMAFROST = BLOCKS.register("permafrost", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(1.5F).sound(SoundType.GRAVEL)));
 
     public static final RegistryObject<Block> HUMUS = BLOCKS.register("humus", SoilBlock::new);
@@ -1814,7 +1814,6 @@ public class RankineBlocks {
 
 
 
-
     public static final RegistryObject<Block> DARK_GRAVEL = BLOCKS.register("dark_gravel", () -> new GravelBlock(BlockBehaviour.Properties.of(Material.SAND, MaterialColor.STONE).strength(0.6F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> LIGHT_GRAVEL = BLOCKS.register("light_gravel", () -> new GravelBlock(BlockBehaviour.Properties.of(Material.SAND, MaterialColor.STONE).strength(0.6F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> ALLUVIUM = BLOCKS.register("alluvium", () -> new SandBlock(14406560, BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.5F).sound(SoundType.SAND)));
@@ -1861,6 +1860,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> POINTED_NITRIC_DRIPSTONE = BLOCKS.register("pointed_nitric_dripstone", () -> new RankinePointedDripstoneBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape(),NITRIC_DRIPSTONE_BLOCK.get()));
     public static final RegistryObject<Block> POINTED_BORACITIC_DRIPSTONE = BLOCKS.register("pointed_boracitic_dripstone", () -> new RankinePointedDripstoneBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BROWN).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape(),BORACITIC_DRIPSTONE_BLOCK.get()));
 
+    public static final RegistryObject<Block> SLATE_STEPPING_STONES = BLOCKS.register("slate_stepping_stones", SteppingStonesBlock::new);
 
 
     public static final RegistryObject<Block> WHITE_CEMENT = BLOCKS.register("white_cement", () -> new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(4)));

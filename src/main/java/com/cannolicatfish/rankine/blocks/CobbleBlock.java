@@ -73,7 +73,7 @@ public class CobbleBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.below()).isRedstoneConductor(worldIn,pos.below());
+        return worldIn.getBlockState(pos.below()).isCollisionShapeFullBlock(worldIn,pos.below());
     }
 
     public OffsetType getOffsetType() {
@@ -93,6 +93,6 @@ public class CobbleBlock extends Block implements SimpleWaterloggedBlock {
         popResource(p_60504_,pos,new ItemStack(p_60503_.getBlock().asItem()));
         p_60504_.removeBlock(pos,false);
         p_60504_.playSound(player,pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1.0F, p_60504_.getRandom().nextFloat() * 0.4F + 1.0F);
-        return InteractionResult.PASS;
+        return InteractionResult.SUCCESS;
     }
 }

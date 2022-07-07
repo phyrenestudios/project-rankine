@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine.items.alloys;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.SoundType;
@@ -41,7 +40,7 @@ public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool {
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
-        return state.is(RankineTags.Blocks.CROWBAR_EFFECTIVE) && !state.is(RankineTags.Blocks.CROWBAR_RESISTANT) && TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);
+        return state.is(RankineTags.Blocks.MINEABLE_WITH_CROWBAR) && !state.is(RankineTags.Blocks.CROWBAR_RESISTANT) && TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);
     }
 
     @Override

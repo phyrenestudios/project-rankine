@@ -73,7 +73,7 @@ public class LeafLitterBlock extends FallingBlock {
     @Override
     public void tick(BlockState state, ServerLevel levelIn, BlockPos pos, Random rand) {
         if (levelIn.isEmptyBlock(pos.below()) || canFallThrough(levelIn.getBlockState(pos.below())) && pos.getY() >= 0) {
-            FallingBlockEntity.fall(levelIn, pos, state);
+            FallingBlockEntity.fall(levelIn, pos, state).dropItem = false;
         } else if (!canSurvive(state,levelIn,pos)) {
             levelIn.removeBlock(pos,false);
         }

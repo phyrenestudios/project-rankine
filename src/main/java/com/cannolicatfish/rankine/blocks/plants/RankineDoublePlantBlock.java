@@ -174,7 +174,7 @@ public class RankineDoublePlantBlock extends BushBlock implements BonemealableBl
                     break;
             }
 
-            return InteractionResult.SUCCESS;
+            return InteractionResult.sidedSuccess(worldIn.isClientSide);
         } else {
             return super.use(state, worldIn, pos, player, handIn, hit);
         }

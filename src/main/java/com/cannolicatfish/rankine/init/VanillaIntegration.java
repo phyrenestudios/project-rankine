@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -25,8 +26,13 @@ public class VanillaIntegration {
     public static Map<Block, TilledSoilTypes> hoeables_map = new HashMap<Block, TilledSoilTypes>();
     public static final Map<Item, ForgeConfigSpec.BooleanValue> DISABLED_ITEMS = new HashMap<>();
 
+    public static final Map<BlockState,BlockState> vegetationMap = new HashMap<>();
 
     public static void init() {
+
+        vegetationMap.put(RankineBlocks.SHORT_GRASS.get().defaultBlockState(), Blocks.GRASS.defaultBlockState());
+        vegetationMap.put(Blocks.GRASS.defaultBlockState(), Blocks.TALL_GRASS.defaultBlockState());
+
 
         oreNuggetMap.put(RankineBlocks.MALACHITE_ORE.get(),RankineItems.COPPER_NUGGET.get());
         oreNuggetMap.put(RankineBlocks.CHALCOCITE_ORE.get(),RankineItems.COPPER_NUGGET.get());

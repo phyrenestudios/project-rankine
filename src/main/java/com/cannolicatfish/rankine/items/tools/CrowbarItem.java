@@ -4,8 +4,6 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -18,16 +16,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.util.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
-
-import net.minecraft.world.item.Item.Properties;
 
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -45,7 +38,7 @@ public class CrowbarItem extends DiggerItem {
     private static final Set<Block> effectiveBlocks = ImmutableSet.of(Blocks.ACACIA_PLANKS);
 
     public CrowbarItem(Tier tier, float attackDamageIn, float attackSpeedIn, Properties p_i48512_5_) {
-        super(attackDamageIn, attackSpeedIn, tier, RankineTags.Blocks.CROWBAR_EFFECTIVE, p_i48512_5_);
+        super(attackDamageIn, attackSpeedIn, tier, RankineTags.Blocks.MINEABLE_WITH_CROWBAR, p_i48512_5_);
     }
 
     @Override
@@ -82,7 +75,7 @@ public class CrowbarItem extends DiggerItem {
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
-        return state.is(RankineTags.Blocks.CROWBAR_EFFECTIVE) && !state.is(RankineTags.Blocks.CROWBAR_RESISTANT) && TierSortingRegistry.isCorrectTierForDrops(this.getTier(),state);
+        return state.is(RankineTags.Blocks.MINEABLE_WITH_CROWBAR) && !state.is(RankineTags.Blocks.CROWBAR_RESISTANT) && TierSortingRegistry.isCorrectTierForDrops(this.getTier(),state);
     }
 
     @Override

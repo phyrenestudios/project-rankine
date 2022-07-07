@@ -577,10 +577,15 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         layerBlock(RankineBlocks.WHITE_CLOVER.get());
         layerBlock(RankineBlocks.YELLOW_CLOVER.get());
 
+        steppingStoneBlock(RankineBlocks.SLATE_STEPPING_STONES.get(), blockTexture(RankineBlocks.SLATE.get()));
+
+
+
+
         getVariantBuilder(RankineBlocks.SHORT_GRASS.get())
                 .partialState().modelForState()
-                .modelFile(models().withExistingParent(RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"0", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"0")).weight(3).nextModel()
-                .modelFile(models().withExistingParent(RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"1", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"1")).weight(2).nextModel()
+                .modelFile(models().withExistingParent(RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"0", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"0")).weight(2).nextModel()
+                .modelFile(models().withExistingParent(RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"1", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"1")).weight(1).nextModel()
                 .modelFile(models().withExistingParent(RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"2", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"2")).weight(1).addModel();
 
         for (Block blk : RankineLists.WALL_MUSHROOMS) {
@@ -824,6 +829,17 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .build();
         });
 
+
+    }
+
+    public void steppingStoneBlock(Block BLK, ResourceLocation texture) {
+        ModelFile MODEL = models().withExistingParent(BLK.getRegistryName().getPath()+"0", modLoc("block/template_stepping_stones0")).texture("all", texture);
+        getVariantBuilder(BLK)
+                .partialState().modelForState()
+                .modelFile(MODEL).rotationY(0).nextModel()
+                .modelFile(MODEL).rotationY(90).nextModel()
+                .modelFile(MODEL).rotationY(180).nextModel()
+                .modelFile(MODEL).rotationY(270).addModel();
 
     }
 
