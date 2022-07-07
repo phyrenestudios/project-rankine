@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:anorthosite"
+    "item": "rankine:nepheline_syenite"
   },
   "guaranteed": [
     {
@@ -13,17 +13,17 @@
       "weight": 80
     },
     {
-      "item": "rankine:plagioclase_feldspar",
+      "item": "rankine:orthoclase_feldspar",
       "weight": 40,
       "remove": false
     },
     {
-      "item": "rankine:labradorite",
+      "item": "rankine:nepheline",
       "weight": 20,
       "remove": false
     },
     {
-      "item": "rankine:olivine",
+      "item": "rankine:amphibole",
       "weight": 15,
       "remove": false
     },
@@ -31,6 +31,26 @@
       "item": "rankine:pyroxene",
       "weight": 10,
       "remove": false
+    },
+    {
+      "item": "rankine:mica",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyrochlore",
+      "weight": 5,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:apatite",
+      "weight": 5,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "minecraft:lapis_lazuli",
+      "weight": 4,
+      "tier": "minecraft:diamond"
     },
     {
       "item": "rankine:ilmenite",

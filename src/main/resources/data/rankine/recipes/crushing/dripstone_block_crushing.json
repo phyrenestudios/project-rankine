@@ -1,11 +1,11 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:anorthosite"
+    "item": "minecraft:deepslate"
   },
   "guaranteed": [
     {
-      "item": "minecraft:cobblestone"
+      "item": "minecraft:cobbled_deepslate"
     }
   ],
   "outputs": [
@@ -13,32 +13,32 @@
       "weight": 80
     },
     {
-      "item": "rankine:plagioclase_feldspar",
-      "weight": 40,
-      "remove": false
-    },
-    {
-      "item": "rankine:labradorite",
+      "item": "rankine:mica",
       "weight": 20,
       "remove": false
     },
     {
-      "item": "rankine:olivine",
-      "weight": 15,
+      "item": "minecraft:quartz",
+      "weight": 20,
       "remove": false
     },
     {
-      "item": "rankine:pyroxene",
-      "weight": 10,
+      "item": "rankine:chlorite",
+      "weight": 5,
       "remove": false
     },
     {
-      "item": "rankine:ilmenite",
+      "item": "rankine:potash",
       "weight": 2,
-      "tier": "minecraft:diamond"
+      "remove": false
     },
     {
-      "item": "rankine:magnetite",
+      "item": "rankine:graphite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:pyrite",
       "weight": 2,
       "tier": "minecraft:diamond"
     }

@@ -1,0 +1,51 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "minecraft:deepslate"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobbled_deepslate"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "rankine:mica",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:mica",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:chlorite",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:potash",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:graphite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:pyrite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

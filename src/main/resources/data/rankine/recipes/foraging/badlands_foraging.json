@@ -1,0 +1,36 @@
+{
+  "type": "rankine:foraging",
+  "biomes": {
+    "biome": "minecraft:badlands"
+  },
+  "input": {
+    "tag": "forge:grass_blocks"
+  },
+  "outputs": [
+    {
+      "weight": 40
+    },
+    {
+      "item": "rankine:grass_seeds",
+      "weight": 1
+    },
+    {
+      "item": "rankine:plant_fiber",
+      "weight": 2
+    },
+    {
+      "item": "minecraft:stick",
+      "weight": 1
+    },
+    {
+      "item": "rankine:saltpeter",
+      "weight": 1,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "minecraft:bone",
+      "weight": 1,
+      "enchantmentRequired": true
+    }
+  ]
+}

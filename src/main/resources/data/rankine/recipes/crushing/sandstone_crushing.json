@@ -1,11 +1,11 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:anorthosite"
+    "item": "minecraft:sandstone"
   },
   "guaranteed": [
     {
-      "item": "minecraft:cobblestone"
+      "item": "rankine:breccia"
     }
   ],
   "outputs": [
@@ -13,33 +13,33 @@
       "weight": 80
     },
     {
-      "item": "rankine:plagioclase_feldspar",
+      "item": "minecraft:sand",
       "weight": 40,
       "remove": false
     },
     {
-      "item": "rankine:labradorite",
+      "item": "rankine:plagioclase_feldspar",
       "weight": 20,
       "remove": false
     },
     {
-      "item": "rankine:olivine",
+      "item": "minecraft:quartz",
       "weight": 15,
       "remove": false
     },
     {
-      "item": "rankine:pyroxene",
-      "weight": 10,
+      "item": "rankine:olivine",
+      "weight": 6,
       "remove": false
     },
     {
-      "item": "rankine:ilmenite",
-      "weight": 2,
+      "item": "rankine:barite",
+      "weight": 4,
       "tier": "minecraft:diamond"
     },
     {
-      "item": "rankine:magnetite",
-      "weight": 2,
+      "item": "rankine:rutile",
+      "weight": 1,
       "tier": "minecraft:diamond"
     }
   ]

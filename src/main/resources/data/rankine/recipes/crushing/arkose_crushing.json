@@ -1,0 +1,51 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:arkose"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:breccia"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "rankine:sandy_loam",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:sanadine",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:mica",
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "rankine:tourmaline",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:hematite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

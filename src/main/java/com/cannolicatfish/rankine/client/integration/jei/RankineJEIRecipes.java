@@ -26,6 +26,10 @@ public class RankineJEIRecipes {
         return recipeManager.getAllRecipesFor(RankineRecipeTypes.CRUSHING);
     }
 
+    public List<ForagingRecipe> getForagingRecipes() {
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.FORAGING);
+    }
+
     public List<AlloyingRecipe> getAlloyingRecipes() {
         return recipeManager.getAllRecipesFor(RankineRecipeTypes.ALLOYING);
     }

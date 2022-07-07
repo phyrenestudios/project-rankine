@@ -78,6 +78,10 @@ public class ForagingRecipe implements Recipe<Container> {
         return ItemStack.EMPTY;
     }
 
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return NonNullList.withSize(1,this.ingredient);
+    }
 
     public Float getChance(int index) {
         float in = getWeights().get(index);
@@ -218,7 +222,7 @@ public class ForagingRecipe implements Recipe<Container> {
             if (biomesSize > 0) {
                 allBiomes = false;
                 for (int i = 0; i < biomesSize; i++) {
-                    biomes.set(i,buffer.readUtf());
+                    biomes.add(buffer.readUtf());
                 }
             }
 
