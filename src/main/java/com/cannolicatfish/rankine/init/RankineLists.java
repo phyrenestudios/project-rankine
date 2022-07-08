@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -236,6 +237,8 @@ public class RankineLists {
     public static List<Item> COOKED_FISH = Arrays.asList(RankineItems.COOKED_TUNA.get());
 
     public static List<Item> HAMMERS = Arrays.asList(RankineItems.WOODEN_HAMMER.get(),RankineItems.STONE_HAMMER.get(),RankineItems.PEWTER_HAMMER.get(),RankineItems.ALLOY_HAMMER.get(),RankineItems.BRONZE_HAMMER.get(),RankineItems.INVAR_HAMMER.get(),RankineItems.STEEL_HAMMER.get(),RankineItems.STAINLESS_STEEL_HAMMER.get(),RankineItems.NICKEL_SUPERALLOY_HAMMER.get(),RankineItems.COBALT_SUPERALLOY_HAMMER.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_HAMMER.get(),RankineItems.ROSE_GOLD_HAMMER.get(),RankineItems.BLUE_GOLD_HAMMER.get(),RankineItems.GREEN_GOLD_HAMMER.get(),RankineItems.WHITE_GOLD_HAMMER.get(),RankineItems.PURPLE_GOLD_HAMMER.get(),RankineItems.BLACK_GOLD_HAMMER.get(),RankineItems.AMALGAM_HAMMER.get(),RankineItems.ENDER_AMALGAM_HAMMER.get(),RankineItems.TITANIUM_ALLOY_HAMMER.get(),RankineItems.NIOBIUM_ALLOY_HAMMER.get(),RankineItems.ZIRCONIUM_ALLOY_HAMMER.get(),RankineItems.OSMIRIDIUM_HAMMER.get());
+
+    public static List<Item> CRUDE_TOOLS = Arrays.asList(Items.WOODEN_SHOVEL,Items.STONE_SHOVEL,Items.GOLDEN_SHOVEL,RankineItems.FLINT_SHOVEL.get(),RankineItems.PEWTER_SHOVEL.get(),RankineItems.OSMIRIDIUM_SHOVEL.get(),RankineItems.AMALGAM_SHOVEL.get(),RankineItems.ROSE_GOLD_SHOVEL.get(),RankineItems.BLUE_GOLD_SHOVEL.get(),RankineItems.GREEN_GOLD_SHOVEL.get(),RankineItems.WHITE_GOLD_SHOVEL.get(),RankineItems.PURPLE_GOLD_SHOVEL.get(),RankineItems.BLACK_GOLD_SHOVEL.get());
 
     //For Tags
     public static List<TagKey<Item>> DYES = Arrays.asList(Tags.Items.DYES_BLACK,Tags.Items.DYES_BLUE,Tags.Items.DYES_LIGHT_BLUE,Tags.Items.DYES_BROWN,Tags.Items.DYES_LIME,Tags.Items.DYES_CYAN,Tags.Items.DYES_GRAY,Tags.Items.DYES_GREEN,Tags.Items.DYES_LIGHT_GRAY,Tags.Items.DYES_MAGENTA,Tags.Items.DYES_ORANGE,Tags.Items.DYES_PINK,Tags.Items.DYES_PURPLE,Tags.Items.DYES_RED,Tags.Items.DYES_WHITE,Tags.Items.DYES_YELLOW);

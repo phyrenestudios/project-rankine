@@ -758,10 +758,12 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.tooltip_limited", "Can obtain once");
         add("rankine.jei.tooltip_max_rolls", "Max outputs: ");
         add("rankine.jei.tooltip_nonlimited", "Can obtain multiple times");
+        add("rankine.jei.tooltip_enchantment_required", "Requires Foraging enchantment");
         add("rankine.jei.tooltip_tier", "Tier: ");
         add("rankine.jei.crushing", "Crushing");
         add("rankine.jei.crucible", "Crucible");
         add("rankine.jei.alloying", "Alloying");
+        add("rankine.jei.foraging", "Foraging");
         add("rankine.jei.induction_alloying", "Advanced Alloying");
         add("rankine.jei.sluicing", "Gold Panning");
         add("rankine.jei.mixing", "Mixing");

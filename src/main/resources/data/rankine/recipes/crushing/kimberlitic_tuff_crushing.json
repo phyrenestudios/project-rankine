@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:andesitic_tuff"
+    "item": "rankine:kimberlitic_tuff"
   },
   "guaranteed": [
     {
@@ -13,25 +13,25 @@
       "weight": 20
     },
     {
-      "item": "minecraft:andesite",
+      "item": "rankine:kimberlite",
       "weight": 80
     },
     {
-      "item": "rankine:hornblende_andesite",
+      "item": "rankine:serpentinite",
       "weight": 80
     },
     {
-      "item": "rankine:calcite",
+      "item": "rankine:foresterite",
       "weight": 10,
       "remove": false
     },
     {
-      "item": "minecraft:quartz",
+      "item": "rankine:calcite",
       "weight": 8,
       "remove": false
     },
     {
-      "item": "rankine:chlorite",
+      "item": "rankine:amphibole",
       "weight": 2,
       "remove": false
     }
