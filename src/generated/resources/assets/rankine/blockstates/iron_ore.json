@@ -224,6 +224,15 @@
     },
     "type=74": {
       "model": "rankine:block/iron_ore74"
+    },
+    "type=75": {
+      "model": "rankine:block/iron_ore75"
+    },
+    "type=76": {
+      "model": "rankine:block/iron_ore76"
+    },
+    "type=77": {
+      "model": "rankine:block/iron_ore77"
     }
   }
 }

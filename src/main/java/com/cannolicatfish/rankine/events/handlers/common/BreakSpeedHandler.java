@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.items.alloys.AlloyShovelItem;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
@@ -77,10 +78,6 @@ public class BreakSpeedHandler {
             event.setNewSpeed(event.getNewSpeed() + 3);
         }
 
-        if (targetBS.is(RankineTags.Blocks.COBBLES) || targetBS.is(RankineBlocks.STUMP.get())) {
-            event.setNewSpeed(event.getNewSpeed()/2f);
-        }
-
         if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.QUAKE,event.getPlayer().getMainHandItem()) > 0) {
             int enchant = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.QUAKE,event.getPlayer().getMainHandItem());
             int height = event.getPos().getY();
@@ -99,5 +96,8 @@ public class BreakSpeedHandler {
             }
         }
 
+        if (event.getPlayer().getLevel().getBlockState(event.getPos().above()).is(RankineBlocks.STUMP.get()) && !(event.getPlayer().getMainHandItem().getItem() instanceof AlloyShovelItem)) {
+            event.setNewSpeed(event.getNewSpeed()/2f);
+        }
     }
 }

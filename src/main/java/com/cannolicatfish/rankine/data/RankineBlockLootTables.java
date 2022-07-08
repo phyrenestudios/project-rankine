@@ -103,8 +103,8 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
 
         for (Block blk : Arrays.asList(
+                RankineBlocks.SLATE_STEPPING_STONES.get(),
                 RankineBlocks.ORNAMENT.get(),
-                RankineBlocks.WHITE_CEMENT.get(),
                 RankineBlocks.SOD_BLOCK.get(),
                 RankineBlocks.COB.get(),
                 RankineBlocks.REFINED_COB.get(),

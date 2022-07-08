@@ -155,7 +155,7 @@ public class RankinePlantBlock extends BushBlock implements BonemealableBlock {
                 worldIn.playSound((Player) null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.1F + worldIn.random.nextFloat() * 0.4F);
             }
             worldIn.setBlock(pos, state.setValue(AGE, 1), 2);
-            return InteractionResult.SUCCESS;
+            return InteractionResult.sidedSuccess(worldIn.isClientSide);
         } else {
             return super.use(state, worldIn, pos, player, handIn, hit);
         }

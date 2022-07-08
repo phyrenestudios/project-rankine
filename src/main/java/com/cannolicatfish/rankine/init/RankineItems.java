@@ -1441,6 +1441,7 @@ public class RankineItems {
     public static final RegistryObject<Item> POINTED_BORACITIC_DRIPSTONE = ITEMS.register("poinnted_boracitic_dripstone", () -> new BlockItem(RankineBlocks.POINTED_BORACITIC_DRIPSTONE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BORACITIC_DRIPSTONE_BLOCK = ITEMS.register("boracitic_dripstone_block", () -> new BlockItem(RankineBlocks.BORACITIC_DRIPSTONE_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
 
+    public static final RegistryObject<Item> SLATE_STEPPING_STONES = ITEMS.register("slate_stepping_stones", () -> new BlockItem(RankineBlocks.SLATE_STEPPING_STONES.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
 
     public static final RegistryObject<Item> WHITE_CEMENT = ITEMS.register("white_cement", () -> new BlockItem(RankineBlocks.WHITE_CEMENT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> WHITE_CEMENT_SLAB = ITEMS.register("white_cement_slab", () -> new BlockItem(RankineBlocks.WHITE_CEMENT_SLAB.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));

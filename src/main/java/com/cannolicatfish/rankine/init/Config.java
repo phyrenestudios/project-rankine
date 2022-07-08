@@ -322,9 +322,9 @@ public class Config {
                     FLINT_DROP_CHANCE = b.comment("Chance for a stone block to drop a flint")
                             .defineInRange("flintDropChance", 0.15D, 0.00D, 1.00D);
                     GRASS_GROW_CHANCE = b.comment("Chance for a grass block to grow something on a random tick")
-                            .defineInRange("grassGrowChance", 0.0005D, 0.00D, 1.00D);
-                    LEAF_LITTER_GROWTH = b.comment("Chance for a leaf litters to age. Higher values slow decay.")
-                            .defineInRange("leafLitterDecay", 1, 1, Integer.MAX_VALUE);
+                            .defineInRange("grassGrowChance", 0.001D, 0.00D, 1.00D);
+                    LEAF_LITTER_GROWTH = b.comment("Chance on random tick for a leaf litters to age. Higher values slow decay.")
+                            .defineInRange("leafLitterDecay", 2, 1, Integer.MAX_VALUE);
                     PODZOL_GROW_CHANCE = b.comment("Chance for a podzol block to grow on grass")
                             .defineInRange("podzolGrowChance", 0.0005D, 0.00D, 1.00D);
                     ROCK_GENERATOR_REMOVAL_CHANCE = b.comment("Chance for a mineral block to be removed from any rock generator process.")

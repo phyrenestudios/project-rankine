@@ -6,12 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.UseAnim;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.item.ItemUtils;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.Level;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class JamItem extends Item {
     public JamItem(Properties properties) {
@@ -32,6 +27,10 @@ public class JamItem extends Item {
 
     public ItemStack finishUsingItem(ItemStack stack, Level worldIn, LivingEntity entityLiving) {
         ItemStack itemstack = super.finishUsingItem(stack, worldIn, entityLiving);
-        return entityLiving instanceof Player && ((Player)entityLiving).getAbilities().instabuild ? itemstack : new ItemStack(Items.GLASS_BOTTLE);
+        if (entityLiving instanceof Player && !((Player)entityLiving).getAbilities().instabuild) {
+            itemstack.shrink(1);
+            ((Player) entityLiving).getInventory().add(new ItemStack(Items.GLASS_BOTTLE));
+        }
+        return itemstack;
     }
 }

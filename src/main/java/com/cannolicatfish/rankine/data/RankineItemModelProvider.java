@@ -185,6 +185,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItemAltTexture(RankineItems.GEODE.get(), modLoc("item/geode"));
         basicItemAltTexture(RankineItems.WILLOW_BRANCHLET.get(), modLoc("block/willow_branchlet_plant"));
         basicItemAltTexture(RankineItems.LOCUST_SPINE.get(), modLoc("block/locust_spine"));
+        basicItemAltTexture(RankineItems.SLATE_STEPPING_STONES.get(), modLoc("item/slate_stepping_stones"));
         basicItemHandheld(RankineItems.DOWSING_ROD.get());
 
         basicItem(RankineItems.VULCANIZED_RUBBER.get());
