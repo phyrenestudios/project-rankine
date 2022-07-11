@@ -1,8 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#rankine:petrified_chorus_logs",
-    "#rankine:charred_logs",
+    "minecraft:crying_obsidian",
     "rankine:snowflake_obsidian",
     "rankine:blood_obsidian"
   ]

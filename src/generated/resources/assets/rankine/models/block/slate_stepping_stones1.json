@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_stepping_stones1",
+  "textures": {
+    "all": "rankine:block/slate"
+  }
+}

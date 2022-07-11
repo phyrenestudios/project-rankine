@@ -833,13 +833,28 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public void steppingStoneBlock(Block BLK, ResourceLocation texture) {
-        ModelFile MODEL = models().withExistingParent(BLK.getRegistryName().getPath()+"0", modLoc("block/template_stepping_stones0")).texture("all", texture);
+        ModelFile MODEL0 = models().withExistingParent(BLK.getRegistryName().getPath()+"0", modLoc("block/template_stepping_stones0")).texture("all", texture);
+        ModelFile MODEL1 = models().withExistingParent(BLK.getRegistryName().getPath()+"1", modLoc("block/template_stepping_stones1")).texture("all", texture);
+        ModelFile MODEL2 = models().withExistingParent(BLK.getRegistryName().getPath()+"2", modLoc("block/template_stepping_stones2")).texture("all", texture);
+        ModelFile MODEL3 = models().withExistingParent(BLK.getRegistryName().getPath()+"3", modLoc("block/template_stepping_stones3")).texture("all", texture);
         getVariantBuilder(BLK)
                 .partialState().modelForState()
-                .modelFile(MODEL).rotationY(0).nextModel()
-                .modelFile(MODEL).rotationY(90).nextModel()
-                .modelFile(MODEL).rotationY(180).nextModel()
-                .modelFile(MODEL).rotationY(270).addModel();
+                .modelFile(MODEL0).rotationY(0).weight(1).nextModel()
+                .modelFile(MODEL0).rotationY(90).weight(1).nextModel()
+                .modelFile(MODEL0).rotationY(180).weight(1).nextModel()
+                .modelFile(MODEL0).rotationY(270).weight(1).nextModel()
+                .modelFile(MODEL1).rotationY(0).weight(2).nextModel()
+                .modelFile(MODEL1).rotationY(90).weight(2).nextModel()
+                .modelFile(MODEL1).rotationY(180).weight(2).nextModel()
+                .modelFile(MODEL1).rotationY(270).weight(2).nextModel()
+                .modelFile(MODEL2).rotationY(0).weight(1).nextModel()
+                .modelFile(MODEL2).rotationY(90).weight(1).nextModel()
+                .modelFile(MODEL2).rotationY(180).weight(1).nextModel()
+                .modelFile(MODEL2).rotationY(270).weight(1).nextModel()
+                .modelFile(MODEL3).rotationY(0).weight(1).nextModel()
+                .modelFile(MODEL3).rotationY(90).weight(1).nextModel()
+                .modelFile(MODEL3).rotationY(180).weight(1).nextModel()
+                .modelFile(MODEL3).rotationY(270).weight(1).addModel();
 
     }
 

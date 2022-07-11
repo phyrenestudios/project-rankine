@@ -28,7 +28,6 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.FrostedIceBlock;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.Tags;
@@ -204,14 +203,6 @@ public class PlayerTickHandler {
         }
         Block ground = world.getBlockState(pos).getBlock();
 
-
-        // Path Creation
-        if (Config.GENERAL.PATH_CREATION.get() && !player.isCreative() && player.tickCount%(Config.GENERAL.PATH_CREATION_TIME.get()*20)==0 && !world.isClientSide) {
-            if (VanillaIntegration.pathBlocks_map.get(ground) != null && world.getBlockState(pos.above()).is(Blocks.AIR) && world.getBlockState(pos.above()).getBlock() instanceof BushBlock) {
-                world.setBlock(pos, VanillaIntegration.pathBlocks_map.get(ground).defaultBlockState(),2);
-            }
-
-        }
 
 
         Item feetEquipment = player.getItemBySlot(EquipmentSlot.FEET).getItem();

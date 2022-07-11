@@ -380,10 +380,11 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RankineItems.MINERAL_WOOL.get(),1).requires(RankineTags.Items.MINERAL_WOOL).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(RankineTags.Items.MINERAL_WOOL)).save(consumer, "rankine:mineral_wool_from_colors");
         ShapelessRecipeBuilder.shapeless(Items.TERRACOTTA,1).requires(ItemTags.TERRACOTTA).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(RankineTags.Items.MINERAL_WOOL)).save(consumer, "rankine:terracotta_from_colors");
         ShapelessRecipeBuilder.shapeless(Items.GLASS,1).requires(Tags.Items.GLASS).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(Tags.Items.GLASS)).save(consumer, "rankine:glass_from_colors");
-        //
+
+
+        ShapedRecipeBuilder.shaped(RankineBlocks.SLATE_STEPPING_STONES.get(), 4).pattern("###").define('#', RankineTags.Items.STONES_SLATE).unlockedBy("has_ingredient", has(RankineTags.Items.STONES_SLATE)).save(consumer);
 
         ShapedRecipeBuilder.shaped(RankineItems.EMERGENCY_FLOTATION_DEVICE.get(), 1).pattern(" # ").pattern("#C#").pattern(" # ").define('C', RankineItems.CARBON_DIOXIDE_GAS_BOTTLE.get()).define('#', RankineTags.Items.RUBBER).unlockedBy("has_ingredient", has(RankineTags.Items.RUBBER)).save(consumer);
-        ShapedRecipeBuilder.shaped(Blocks.COBBLESTONE, 1).pattern("###").pattern("###").pattern("###").define('#', RankineTags.Items.COBBLES).unlockedBy("has_ingredient", has(RankineTags.Items.COBBLES)).save(consumer,"rankine:cobblestone_from_cobbles");
         ShapedRecipeBuilder.shaped(RankineBlocks.SOD_BLOCK.get(), 4).pattern("##").pattern("##").define('#', RankineTags.Items.GRASS_BLOCKS).unlockedBy("has_ingredient", has(RankineTags.Items.GRASS_BLOCKS)).save(consumer);
         ShapedRecipeBuilder.shaped(RankineBlocks.BLASTING_POWDER.get(), 1).pattern("#R").pattern("R#").define('#', Tags.Items.GUNPOWDER).define('R', RankineTags.Items.ROPE).unlockedBy("has_ingredient", has(Tags.Items.GUNPOWDER)).save(consumer);
         ShapelessRecipeBuilder.shapeless(RankineItems.CARBON_NUGGET.get(),1).requires(RankineTags.Items.COKE).unlockedBy("has_ingredient", has(RankineTags.Items.COKE)).group("carbon_nugget").save(consumer, "rankine:carbon_from_coke");

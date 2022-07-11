@@ -275,8 +275,8 @@ public class Config {
             b.comment("Settings for general mechanics").push("general");
 
                 b.comment("Miscellaneous").push("misc");
-                    PATH_CREATION_TIME = b.comment("Roughly the time in seconds between chance for blocks to be changed to a path block when stepped on.")
-                            .defineInRange("pathCreationTime", 10, 0, 600);
+                    PATH_CREATION_TIME = b.comment("The 1 in X chance for grass blocks to convert to path blocks while a player is on them.")
+                            .defineInRange("pathCreationTime", 8, 1, Integer.MAX_VALUE);
                     PATH_CREATION = b.comment("If enabled, walking on grass blocks, mycelium and podzol has a chance to create a path block underfoot.")
                             .define("pathCreation",true);
                     COLOR_WORLD = b.comment("If enabled, dyes can be used on blocks in-world to dye them (includes concrete, concrete powder, terracotta, glazed terracotta, stained glass, stained glass panes, leds, wool)")
@@ -397,7 +397,7 @@ public class Config {
                     NUGGET_CHANCE = b.comment("Chance for a block in #rankine:nugget_stones to drop a nugget of a nearby ore.")
                             .defineInRange("nuggetChance", 0.04D, 0.00D, 1.00D);
                     NUGGET_DISTANCE = b.comment("Distance from an ore block in which nuggets have a chance to drop from blocks.")
-                            .defineInRange("nuggetRange", 9, 1, 64);
+                            .defineInRange("nuggetRange", 4, 1, 16);
                 b.pop();
 
                 b.comment("Enchantments").push("enchantments");

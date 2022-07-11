@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:cobblestone_from_cobbles"
+      "rankine:manganese_ingot_from_rhodochrosite_blasting"
     ]
   },
   "criteria": {
@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "rankine:cobbles"
+            "items": [
+              "rankine:rhodochrosite"
+            ]
           }
         ]
       }
@@ -19,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:cobblestone_from_cobbles"
+        "recipe": "rankine:manganese_ingot_from_rhodochrosite_blasting"
       }
     }
   },

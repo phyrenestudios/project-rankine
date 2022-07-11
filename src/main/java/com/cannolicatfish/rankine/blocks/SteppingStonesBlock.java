@@ -26,7 +26,7 @@ public class SteppingStonesBlock extends Block implements SimpleWaterloggedBlock
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public SteppingStonesBlock() {
-        super(Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.0F, 3.0F).dynamicShape().noOcclusion());
+        super(Properties.of(Material.STONE).sound(SoundType.STONE).strength(0.5F, 2.0F).dynamicShape().noOcclusion());
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.FALSE));
     }
 

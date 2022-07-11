@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#forge:obsidian",
     "#forge:tuff",
     "#minecraft:leaves",
     "#minecraft:logs",
@@ -18,7 +19,6 @@
     "minecraft:lava",
     "minecraft:water",
     "minecraft:bubble_column",
-    "minecraft:obsidian",
     "minecraft:kelp",
     "minecraft:snow_block",
     "minecraft:snow",

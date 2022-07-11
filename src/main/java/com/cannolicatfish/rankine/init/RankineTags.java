@@ -123,7 +123,6 @@ public final class RankineTags {
         public static final TagKey<Block> SILT = forgeBlock("silt");
         public static final TagKey<Block> FARMLAND = forgeBlock("farmland");
         public static final TagKey<Block> GRASS_BLOCKS = forgeBlock("grass_blocks");
-        public static final TagKey<Block> GRASS = forgeBlock("grass");
         public static final TagKey<Block> PATH_BLOCKS = forgeBlock("path_blocks");
         public static final TagKey<Block> MUD = forgeBlock("mud");
         public static final TagKey<Block> COARSE_DIRT = forgeBlock("coarse_dirt");

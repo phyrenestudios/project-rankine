@@ -16,6 +16,8 @@
     "rankine:rheniite_ore",
     "rankine:uraninite_ore",
     "rankine:wolframite_ore",
-    "rankine:xenotime_ore"
+    "rankine:xenotime_ore",
+    "rankine:blood_obsidian",
+    "rankine:snowflake_obsidian"
   ]
 }
