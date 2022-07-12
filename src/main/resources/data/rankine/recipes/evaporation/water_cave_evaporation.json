@@ -1,0 +1,52 @@
+{
+  "type": "rankine:evaporation",
+  "total": 10,
+  "cookTime": 200,
+  "biomeTags": ["forge:is_underground"],
+  "input": {
+    "fluid": "minecraft:water"
+  },
+  "bucket": {
+    "item": "minecraft:water_bucket"
+  },
+  "output1": {
+    "item": "minecraft:gravel",
+    "weight": 30
+  },
+  "output2": {
+    "item": "rankine:calcite",
+    "weight": 30
+  },
+  "output3": {
+    "item": "rankine:dolomite",
+    "weight": 30
+  },
+  "output4": {
+    "item": "rankine:gypsum",
+    "weight": 10
+  },
+  "output5": {
+    "item": "rankine:gwihabaite",
+    "weight": 10
+  },
+  "output6": {
+    "item": "rankine:asbestos",
+    "weight": 5
+  },
+  "output7": {
+    "item": "rankine:zirconium_nugget",
+    "weight": 1
+  },
+  "output8": {
+    "item": "rankine:cobalt_nugget",
+    "weight": 1
+  },
+  "output9": {
+    "item": "rankine:titanium_nugget",
+    "weight": 1
+  },
+  "output10": {
+    "item": "rankine:chromium_nugget",
+    "weight": 1
+  }
+}

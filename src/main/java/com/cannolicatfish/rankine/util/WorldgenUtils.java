@@ -2,14 +2,13 @@ package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
-import net.minecraft.core.Vec3i;
+import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.level.*;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -322,4 +321,11 @@ public class WorldgenUtils {
         return biome.getCategory() != Biome.BiomeCategory.NETHER && biome.getCategory() != Biome.BiomeCategory.THEEND;
     }
 
+    public static boolean biomeTagCheck(Level level, Biome biome, TagKey<Biome> tag)
+    {
+        var reg = level.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY);
+        return reg.getResourceKey(biome)
+                .flatMap(reg::getHolder)
+                .map(holder -> holder.is(tag)).orElse(false);
+    }
 }

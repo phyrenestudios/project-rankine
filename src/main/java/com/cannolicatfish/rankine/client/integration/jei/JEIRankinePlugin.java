@@ -8,36 +8,28 @@ import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelScreen;
 import com.cannolicatfish.rankine.client.integration.jei.categories.*;
-import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.ForagingRecipe;
-import com.cannolicatfish.rankine.recipe.StrippingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.constants.RecipeTypes;
-import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.subtypes.IIngredientSubtypeInterpreter;
-import mezz.jei.api.ingredients.subtypes.UidContext;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.*;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.world.level.block.Blocks;
 
 import javax.annotation.Nonnull;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @JeiPlugin
 public class JEIRankinePlugin implements IModPlugin {
@@ -158,7 +150,7 @@ public class JEIRankinePlugin implements IModPlugin {
         for (Item item: RankineLists.HAMMERS) {
             registry.addRecipeCatalyst(new ItemStack(item), CRUSHING);
         }
-        for (Item item : RankineLists.CRUDE_TOOLS) {
+        for (Item item : RankineLists.FORAGING_TOOLS) {
             registry.addRecipeCatalyst(new ItemStack(item), FORAGING);
         }
 

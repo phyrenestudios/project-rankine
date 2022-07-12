@@ -1,7 +1,7 @@
 {
   "type": "rankine:foraging",
   "biomes": {
-    "biome": "minecraft:swamp"
+    "biomeTag": "forge:is_swamp"
   },
   "input": {
     "tag": "forge:grass_blocks"
@@ -19,7 +19,7 @@
       "weight": 2
     },
     {
-      "tag": "minecraft:mushrooms",
+      "tag": "forge:mushrooms",
       "weight": 1
     },
     {

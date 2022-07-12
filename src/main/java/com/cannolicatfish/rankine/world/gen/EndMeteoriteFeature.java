@@ -59,9 +59,9 @@ public class EndMeteoriteFeature extends Feature<NoneFeatureConfiguration> {
                         float chance = rand.nextFloat();
                         if (chance < 0.02) {
                             this.setBlock(reader, blockpos1, RankineBlocks.LONSDALEITE_ORE.get().defaultBlockState().setValue(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
-                        } else if (chance < 0.07) {
+                        } else if (chance < 0.1) {
                             this.setBlock(reader, blockpos1, ORE.setValue(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
-                        } else if (chance < 0.3) {
+                        } else if (chance < 0.5) {
                             this.setBlock(reader, blockpos1, RankineBlocks.METEORIC_ICE.get().defaultBlockState());
                         } else {
                             this.setBlock(reader, blockpos1, BLOCK);
@@ -72,9 +72,9 @@ public class EndMeteoriteFeature extends Feature<NoneFeatureConfiguration> {
                         float chance = rand.nextFloat();
                         if (chance < 0.02) {
                             this.setBlock(reader, blockpos1, RankineBlocks.LONSDALEITE_ORE.get().defaultBlockState().setValue(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
-                        } else if (chance < 0.07) {
+                        } else if (chance < 0.1) {
                             this.setBlock(reader, blockpos1, ORE.setValue(RankineOreBlock.TYPE,WorldgenUtils.ORE_STONES.indexOf(BLOCK.getBlock())));
-                        } else if (chance < 0.3) {
+                        } else if (chance < 0.5) {
                             this.setBlock(reader, blockpos1, TEKTITE);
                         } else {
                             this.setBlock(reader, blockpos1, BLOCK);

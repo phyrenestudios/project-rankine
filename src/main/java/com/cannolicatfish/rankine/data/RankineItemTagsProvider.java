@@ -895,6 +895,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         //copy(BlockTags.CAMPFIRES, RankineTags.Items.CAMPFIRES);
         tag(RankineTags.Items.CAMPFIRES).add(Items.CAMPFIRE,Items.SOUL_CAMPFIRE);
         tag(RankineTags.Items.CANNONBALLS).add(Items.FIRE_CHARGE,RankineItems.CANNONBALL.get(),RankineItems.CARCASS.get(),RankineItems.ENDERBALL.get());
+        tag(RankineTags.Items.MUSHROOMS).add(RankineItems.HONEY_MUSHROOM.get(),RankineItems.SULFUR_SHELF_MUSHROOM.get(),RankineItems.OYSTER_MUSHROOM.get(),RankineItems.LIONS_MANE_MUSHROOM.get(),RankineItems.ARTIST_CONK_MUSHROOM.get(),RankineItems.TINDER_CONK_MUSHROOM_BLOCK.get(),RankineItems.CINNABAR_POLYPORE_MUSHROOM.get(),RankineItems.TURKEY_TAIL_MUSHROOM.get(),Items.BROWN_MUSHROOM,Items.RED_MUSHROOM);
         tag(RankineTags.Items.EDIBLE_MUSHROOMS).add(RankineItems.HONEY_MUSHROOM.get(),RankineItems.SULFUR_SHELF_MUSHROOM.get(),RankineItems.OYSTER_MUSHROOM.get(),RankineItems.LIONS_MANE_MUSHROOM.get(),Items.BROWN_MUSHROOM,Items.RED_MUSHROOM);
 
         tag(RankineTags.Items.CRAFTING_METAL_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN);

@@ -80,19 +80,19 @@ public class EvaporationRecipeCategory implements IRecipeCategory<EvaporationRec
 
 
         int ymod = 0;
-        if (!recipe.getBiomeString().isEmpty()) {
+        if (!recipe.getBiomes().isEmpty()) {
             StringBuilder str = new StringBuilder();
             str.append("Biomes: ");
             int count = 1;
-            for (int i = 0; i < recipe.getBiomeString().size(); i++) {
-                str.append(recipe.getBiomeString().get(i));
+            for (int i = 0; i < recipe.getBiomes().size(); i++) {
+                str.append(recipe.getBiomes().get(i));
                 count++;
-                if (count == 3 || i == recipe.getBiomeString().size() - 1) {
+                if (count == 3 || i == recipe.getBiomes().size() - 1) {
                     font.draw(ms, str.toString(), (float)(ymod >= 50 ? 32 : 0), ymod, 0x000000);
                     count = 0;
                     ymod += 10;
                     str = new StringBuilder();
-                } else if (i != recipe.getBiomeString().size() - 1) {
+                } else if (i != recipe.getBiomes().size() - 1) {
                     str.append(", ");
                 }
             }

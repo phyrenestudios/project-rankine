@@ -104,6 +104,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Block blk : Arrays.asList(
 
                 RankineBlocks.ANTIMATTER.get(),
+                RankineBlocks.ALLUVIUM.get(),
                 RankineBlocks.SOD_BLOCK.get(),
                 RankineBlocks.UNAMED_EXPLOSIVE.get(),
                 RankineBlocks.ENDER_SHIRO.get(),

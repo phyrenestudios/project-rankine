@@ -1,7 +1,7 @@
 {
   "type": "rankine:foraging",
   "biomes": {
-    "biome": "minecraft:taiga"
+    "biomeTag": "minecraft:is_taiga"
   },
   "input": {
     "tag": "forge:grass_blocks"

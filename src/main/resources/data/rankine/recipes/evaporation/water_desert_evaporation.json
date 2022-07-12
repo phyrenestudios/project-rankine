@@ -1,8 +1,9 @@
 {
   "type": "rankine:evaporation",
-  "total": 9,
+  "total": 8,
   "cookTime": 200,
-  "biomeTags": ["minecraft:is_ocean","forge:is_beach"],
+  "biomes": ["minecraft:desert"],
+  "biomeTags": ["minecraft:is_badlands"],
   "input": {
     "fluid": "minecraft:water"
   },
@@ -10,39 +11,35 @@
     "item": "minecraft:water_bucket"
   },
   "output1": {
-    "item": "minecraft:sand",
+    "item": "rankine:desert_sand",
     "weight": 80
   },
   "output2": {
     "item": "rankine:sodium_chloride",
-    "weight": 40
+    "weight": 10
   },
   "output3": {
-    "item": "minecraft:kelp",
-    "weight": 20
+    "item": "rankine:saltpeter",
+    "weight": 5
   },
   "output4": {
     "item": "rankine:calcium_nugget",
-    "weight": 4
+    "weight": 2
   },
   "output5": {
-    "item": "rankine:magnesium_nugget",
-    "weight": 2
+    "item": "rankine:iodine_nugget",
+    "weight": 1
   },
   "output6": {
-    "item": "rankine:potassium_nugget",
-    "weight": 2
+    "item": "rankine:lithium_nugget",
+    "weight": 1
   },
   "output7": {
     "item": "rankine:bromine_nugget",
     "weight": 1
   },
   "output8": {
-    "item": "rankine:iodine_nugget",
-    "weight": 1
-  },
-  "output9": {
-    "item": "rankine:boron_nugget",
+    "item": "rankine:strontium_nugget",
     "weight": 1
   }
 }

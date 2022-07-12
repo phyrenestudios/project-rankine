@@ -25,12 +25,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 public class EvaporationRecipe implements Recipe<Container> {
 
@@ -38,6 +36,7 @@ public class EvaporationRecipe implements Recipe<Container> {
     private final int time;
     private final FluidStack fluid;
     private final List<String> biomes;
+    private final List<String> biomeTags;
     private final NonNullList<ItemStack> recipeOutputs;
     private final ResourceLocation id;
     private final NonNullList<Float> weights;
@@ -47,13 +46,14 @@ public class EvaporationRecipe implements Recipe<Container> {
 
     public static final EvaporationRecipe.Serializer SERIALIZER = new EvaporationRecipe.Serializer();
 
-    public EvaporationRecipe(ResourceLocation idIn, boolean largeIn, int totalIn, int timeIn, FluidStack fluidIn, List<String> biomesIn, NonNullList<ItemStack> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn) {
+    public EvaporationRecipe(ResourceLocation idIn, boolean largeIn, int totalIn, int timeIn, FluidStack fluidIn, List<String> biomesIn, List<String> biomesTagsIn, NonNullList<ItemStack> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn) {
         this.large = largeIn;
         this.total = totalIn;
         this.time = timeIn;
         this.id = idIn;
         this.fluid = fluidIn;
         this.biomes = biomesIn;
+        this.biomeTags = biomesTagsIn;
         this.recipeOutputs = recipeOutputsIn;
         this.weights = weightsIn;
         this.mins = minsIn;
@@ -84,44 +84,12 @@ public class EvaporationRecipe implements Recipe<Container> {
     public List<String> getBiomes() {
         return this.biomes;
     }
+    public List<String> getBiomeTags() {
+        return this.biomeTags;
+    }
 
     public NonNullList<ItemStack> getRecipeOutputs() {
         return recipeOutputs;
-    }
-
-
-    public List<Biome> getBiomeList() {
-        List<Biome> biomeList = new ArrayList<>();
-        for (String s : this.getBiomes()) {
-            if (s.contains("T#")) {
-                TagKey<Biome> tag = TagKey.create(ForgeRegistries.BIOMES.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
-                biomeList.addAll(ForgeRegistries.BIOMES.tags().getTag(tag).stream().toList());
-            } else if (s.contains("B#")) {
-                for (Biome b : ForgeRegistries.BIOMES) {
-                    if (b.getRegistryName() != null && b.getRegistryName().equals(new ResourceLocation(s.split("B#")[1]))) {
-                        biomeList.add(b);
-                    }
-                }
-            }
-        }
-        return biomeList;
-    }
-
-    public List<String> getBiomeString() {
-        List<String> list = new ArrayList<>();
-        for (String s : this.getBiomes()) {
-            if (s.contains("T#")) {
-                TagKey<Biome> tag = TagKey.create(ForgeRegistries.BIOMES.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
-                list.addAll(ForgeRegistries.BIOMES.tags().getTag(tag).stream().map(biome -> biome.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " ")).toList());
-            } else if (s.contains("B#")) {
-                for (Biome b : ForgeRegistries.BIOMES) {
-                    if (b.getRegistryName() != null && b.getRegistryName().equals(new ResourceLocation(s.split("B#")[1])) && !list.contains(b.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " "))) {
-                        list.add(b.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " "));
-                    }
-                }
-            }
-        }
-        return list;
     }
 
     public Float getChance(int index) {
@@ -160,25 +128,31 @@ public class EvaporationRecipe implements Recipe<Container> {
         return maxes;
     }
 
-    public ItemStack getEvaporationResult(Level worldIn, ResourceLocation biome) {
-        if (this.getBiomeList().isEmpty()) {
+    public ItemStack getEvaporationResult(Level levelIn, ResourceLocation biomeName) {
+        if ((this.getBiomes().isEmpty() && this.getBiomeTags().isEmpty()) || this.getBiomes().contains(biomeName.toString()) || biomeTagCheck(levelIn, biomeName, this.getBiomeTags())) {
             WeightedCollection<ItemStack> col = new WeightedCollection<>();
             for (int i = 0; i < this.recipeOutputs.size(); i++) {
-                col.add(this.weights.get(i),new ItemStack(this.recipeOutputs.get(i).getItem(), this.maxes.get(i).equals(this.mins.get(i)) ? this.maxes.get(i) : worldIn.getRandom().nextInt(this.maxes.get(i) - this.mins.get(i)) + this.mins.get(i)));
+                col.add(this.weights.get(i),new ItemStack(this.recipeOutputs.get(i).getItem(), this.maxes.get(i).equals(this.mins.get(i)) ? this.maxes.get(i) : levelIn.getRandom().nextInt(this.maxes.get(i) - this.mins.get(i)) + this.mins.get(i)));
             }
             return col.getRandomElement().copy();
-        } else {
-            for (Biome b : getBiomeList()) {
-                if (b.getRegistryName() != null && b.getRegistryName().equals(biome)) {
-                    WeightedCollection<ItemStack> col = new WeightedCollection<>();
-                    for (int i = 0; i < this.recipeOutputs.size(); i++) {
-                        col.add(this.weights.get(i),new ItemStack(this.recipeOutputs.get(i).getItem(), this.maxes.get(i).equals(this.mins.get(i)) ? this.maxes.get(i) : worldIn.getRandom().nextInt(this.maxes.get(i) - this.mins.get(i)) + this.mins.get(i)));
-                    }
-                    return col.getRandomElement().copy();
+        }
+        return ItemStack.EMPTY;
+    }
+
+    private static boolean biomeTagCheck(Level levelIn, ResourceLocation biomeName, List<String> recipeBiomes) {
+
+        for (String b : recipeBiomes) {
+            ResourceLocation RS = ResourceLocation.tryParse(b);
+            if (RS != null) {
+                TagKey<Biome> biomeTagKey = TagKey.create(Registry.BIOME_REGISTRY, RS);
+                var reg = levelIn.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY);
+                Biome biome = reg.getOptional(biomeName).orElseThrow();
+                if (reg.getHolderOrThrow(reg.getResourceKey(biome).orElseThrow()).is(biomeTagKey)) {
+                    return true;
                 }
             }
-            return ItemStack.EMPTY;
         }
+        return false;
     }
 
     @Override
@@ -233,6 +207,11 @@ public class EvaporationRecipe implements Recipe<Container> {
             for (int i = 0; i < b.size(); i++) {
                 biomes.add(b.get(i).getAsString());
             }
+            JsonArray bt = json.has("biomeTags") ? GsonHelper.getAsJsonArray(json, "biomeTags") : new JsonArray();
+            List<String> biomeTags = new ArrayList<>();
+            for (int i = 0; i < bt.size(); i++) {
+                biomeTags.add(bt.get(i).getAsString());
+            }
             NonNullList<ItemStack> stacks = NonNullList.withSize(t, ItemStack.EMPTY);
             NonNullList<Float> weights = NonNullList.withSize(t, 0f);
             NonNullList<Integer> mins = NonNullList.withSize(t, 1);
@@ -264,7 +243,7 @@ public class EvaporationRecipe implements Recipe<Container> {
                 }
             }
 
-            return new EvaporationRecipe(recipeId,l, t, w, fluid, biomes, stacks, weights, mins,maxes);
+            return new EvaporationRecipe(recipeId,l, t, w, fluid, biomes, biomeTags, stacks, weights, mins,maxes);
         }
 
         public EvaporationRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
@@ -280,6 +259,13 @@ public class EvaporationRecipe implements Recipe<Container> {
                 biomeArray[i] = buffer.readUtf();
             }
             List<String> biomes = Arrays.asList(biomeArray);
+            
+            int biomeTagsSize = buffer.readInt();
+            String[] biomeTagArray = new String[biomeTagsSize];
+            for (int i = 0; i < biomeTagsSize; i++) {
+                biomeTagArray[i] = buffer.readUtf();
+            }
+            List<String> biomeTags = Arrays.asList(biomeTagArray);
 
             NonNullList<ItemStack> stacks = NonNullList.withSize(t, ItemStack.EMPTY);
             for(int k = 0; k < stacks.size(); ++k) {
@@ -301,7 +287,7 @@ public class EvaporationRecipe implements Recipe<Container> {
                 maxes.set(k, buffer.readInt());
             }
 
-            return new EvaporationRecipe(recipeId, l, t, w,input,biomes, stacks, weights, mins, maxes);
+            return new EvaporationRecipe(recipeId, l, t, w,input, biomes, biomeTags, stacks, weights, mins, maxes);
         }
 
         public void toNetwork(FriendlyByteBuf buffer, EvaporationRecipe recipe) {
@@ -313,6 +299,10 @@ public class EvaporationRecipe implements Recipe<Container> {
             buffer.writeInt(recipe.getBiomes().size());
             for (int i = 0; i < recipe.getBiomes().size(); i++) {
                 buffer.writeUtf(recipe.getBiomes().get(i));
+            }
+            buffer.writeInt(recipe.getBiomeTags().size());
+            for (int i = 0; i < recipe.getBiomeTags().size(); i++) {
+                buffer.writeUtf(recipe.getBiomeTags().get(i));
             }
 
             int count = 0;
