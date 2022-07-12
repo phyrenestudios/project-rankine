@@ -48,7 +48,7 @@ public class VillagerTradesHandler {
             level1.add(new BasicItemListing(1, new ItemStack(RankineItems.HARDNESS_TESTER.get()),12,1,0.05f));
             level2.add(new BasicItemListing(1, new ItemStack(RankineItems.CHALCOPYRITE.get()),12,5,0.05f));
             level2.add(new BasicItemListing(1, new ItemStack(RankineItems.BORAX.get()),12,5,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.MICA.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.MUSCOVITE.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.AMPHIBOLE.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PLAGIOCLASE_FELDSPAR.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
             level3.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.INVAR_HAMMER.get(),"90Fe-10Ni","rankine:invar_alloying","item.rankine.invar_alloying",8,3,10,0.2f));

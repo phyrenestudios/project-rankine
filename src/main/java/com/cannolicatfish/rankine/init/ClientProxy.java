@@ -153,7 +153,8 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.WHITE_CLOVER.get(),
                 RankineBlocks.YELLOW_CLOVER.get(),
                 RankineBlocks.CALCIUM_SILICATE_BLOCK.get(),
-                RankineBlocks.MICA_BLOCK.get(),
+                RankineBlocks.BIOTITE_BLOCK.get(),
+                RankineBlocks.MUSCOVITE_BLOCK.get(),
                 RankineBlocks.SODIUM_CHLORIDE_BLOCK.get(),
                 RankineBlocks.PINK_SALT_BLOCK.get()
 

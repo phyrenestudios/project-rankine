@@ -1,0 +1,36 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "minecraft:blackstone"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:dark_gravel"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "rankine:black_sand",
+      "weight": 60,
+      "remove": false
+    },
+    {
+      "item": "minecraft:pyroxene",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "minecraft:olivine",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "minecraft:flint",
+      "weight": 2,
+      "remove": false
+    }
+  ]
+}

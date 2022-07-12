@@ -1,0 +1,36 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:black_marble"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:skarn"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 60,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "weight": 2,
+      "remove": false
+    },
+    {
+      "item": "rankine:ruby",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

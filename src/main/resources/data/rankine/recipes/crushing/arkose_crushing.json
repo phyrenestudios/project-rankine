@@ -18,7 +18,7 @@
       "remove": false
     },
     {
-      "item": "rankine:sanadine",
+      "item": "rankine:sanidine",
       "weight": 20,
       "remove": false
     },
@@ -28,8 +28,13 @@
       "remove": false
     },
     {
-      "item": "rankine:mica",
-      "weight": 6,
+      "item": "rankine:biotite",
+      "weight": 3,
+      "remove": false
+    },
+    {
+      "item": "rankine:muscovite",
+      "weight": 3,
       "remove": false
     },
     {

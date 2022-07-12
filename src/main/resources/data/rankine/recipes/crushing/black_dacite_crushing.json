@@ -1,11 +1,11 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "minecraft:deepslate"
+    "item": "rankine:black_dacite"
   },
   "guaranteed": [
     {
-      "item": "minecraft:cobbled_deepslate"
+      "item": "minecraft:cobblestone"
     }
   ],
   "outputs": [
@@ -13,7 +13,12 @@
       "weight": 80
     },
     {
-      "item": "rankine:muscovite",
+      "item": "rankine:amphibole",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:labradorite",
       "weight": 20,
       "remove": false
     },
@@ -25,27 +30,20 @@
     {
       "item": "rankine:biotite",
       "weight": 10,
+      "tier": "minecraft:stone",
       "remove": false
     },
     {
-      "item": "rankine:chlorite",
-      "weight": 5,
+      "item": "rankine:talc",
+      "weight": 8,
+      "tier": "minecraft:iron",
       "remove": false
     },
     {
-      "item": "rankine:potash",
-      "weight": 5,
+      "item": "rankine:serpentine",
+      "weight": 6,
+      "tier": "minecraft:diamond",
       "remove": false
-    },
-    {
-      "item": "rankine:graphite",
-      "weight": 2,
-      "tier": "minecraft:iron"
-    },
-    {
-      "item": "rankine:pyrite",
-      "weight": 2,
-      "tier": "minecraft:diamond"
     }
   ]
 }

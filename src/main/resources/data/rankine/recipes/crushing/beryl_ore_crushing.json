@@ -22,8 +22,13 @@
       "remove": false
     },
     {
-      "item": "rankine:mica",
-      "weight": 8,
+      "item": "rankine:biotite",
+      "weight": 4,
+      "remove": false
+    },
+    {
+      "item": "rankine:muscovite",
+      "weight": 4,
       "remove": false
     },
     {

@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:black_marble"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:skarn"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:serpentine",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:graphite",
+      "weight": 4,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:sapphire",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

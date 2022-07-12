@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:nepheline_syenite"
+    "item": "rankine:episyenite"
   },
   "guaranteed": [
     {

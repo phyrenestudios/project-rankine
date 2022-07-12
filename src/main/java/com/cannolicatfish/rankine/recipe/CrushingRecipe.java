@@ -21,6 +21,7 @@ import net.minecraftforge.common.TierSortingRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class CrushingRecipe implements Recipe<Container> {
@@ -109,7 +110,7 @@ public class CrushingRecipe implements Recipe<Container> {
         return ItemStack.EMPTY;
     }
 
-    public List<ItemStack> getResults(Tier harvestLevel,Level worldIn, int rolls) {
+    public List<ItemStack> getResults(Tier harvestLevel,Random random, int rolls) {
         int totalRolls = Math.min(rolls,maxRolls);
         List<ItemStack> outputs = new ArrayList<>();
         for (Tuple<ItemStack, Tier> tuple : getGuaranteedOutputsAsItemStack()) {
@@ -117,7 +118,7 @@ public class CrushingRecipe implements Recipe<Container> {
                 outputs.add(tuple.getA());
             }
         }
-        WeightedRemovableCollection<ItemStack> possibleResults = getPossibleResults(harvestLevel,worldIn);
+        WeightedRemovableCollection<ItemStack> possibleResults = getPossibleResults(harvestLevel,random);
         for (int i = 0; i < totalRolls; i++) {
             if (possibleResults.getMap().isEmpty()) {
                 return outputs;
@@ -128,8 +129,8 @@ public class CrushingRecipe implements Recipe<Container> {
         return outputs;
     }
 
-    public WeightedRemovableCollection<ItemStack> getPossibleResults(Tier harvestLevel, Level worldIn) {
-        WeightedRemovableCollection<ItemStack> outputs = new WeightedRemovableCollection<>(worldIn.getRandom());
+    public WeightedRemovableCollection<ItemStack> getPossibleResults(Tier harvestLevel, Random random) {
+        WeightedRemovableCollection<ItemStack> outputs = new WeightedRemovableCollection<>(random);
         for (int i = 0; i < this.getRecipeOutputs().size(); i++) {
             if (!TierSortingRegistry.getTiersLowerThan(this.tiers.get(i)).contains(harvestLevel)) {
                 outputs.add(this.weights.get(i),this.getRecipeOutputs().get(i),this.getRecipeConstants().get(i));

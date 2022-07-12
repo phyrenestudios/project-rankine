@@ -29,6 +29,7 @@ public class RankineRemappings {
 
         itemRemappings.put(new ResourceLocation("rankine:feldspar"),RankineItems.ORTHOCLASE_FELDSPAR.get());
         itemRemappings.put(new ResourceLocation("rankine:salt"),RankineItems.SODIUM_CHLORIDE.get());
+        itemRemappings.put(new ResourceLocation("rankine:mica"),RankineItems.BIOTITE.get());
 
         itemRemappings.put(new ResourceLocation("rankine:alnico_alloy"),RankineItems.ALNICO_INGOT.get());
         itemRemappings.put(new ResourceLocation("rankine:amalgam_alloy"),RankineItems.AMALGAM_INGOT.get());
@@ -120,6 +121,7 @@ public class RankineRemappings {
         blockRemappings.put(new ResourceLocation("rankine:etched_glass2"), Blocks.GLASS);
 
         blockRemappings.put(new ResourceLocation("rankine:feldspar_block"), RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get());
+        blockRemappings.put(new ResourceLocation("rankine:mica_block"), RankineBlocks.BIOTITE_BLOCK.get());
 
         blockRemappings.put(new ResourceLocation("rankine:gravel_concrete"), RankineBlocks.CONCRETE.get());
         blockRemappings.put(new ResourceLocation("rankine:uncolored_concrete"), RankineBlocks.CONCRETE.get());

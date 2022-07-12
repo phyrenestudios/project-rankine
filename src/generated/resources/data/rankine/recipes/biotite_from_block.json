@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "rankine:mica_block"
+      "item": "rankine:biotite_block"
     }
   ],
   "result": {
-    "item": "rankine:mica",
+    "item": "rankine:biotite",
     "count": 9
   }
 }
