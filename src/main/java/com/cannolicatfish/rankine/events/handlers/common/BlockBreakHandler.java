@@ -5,7 +5,9 @@ import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
 import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyPickaxeItem;
+import com.cannolicatfish.rankine.items.alloys.AlloyShovelItem;
 import com.cannolicatfish.rankine.recipe.ForagingRecipe;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -132,8 +134,8 @@ public class BlockBreakHandler {
             }
 
 
-            //Foraging Enchantment - disabled cause doesn't quite work
-            if (mainHandItem.is(RankineTags.Items.CRUDE_TOOLS)) {
+            //Foraging Enchantment
+            if (mainHandItem.getItem() instanceof AlloyShovelItem) {
                 ItemStack itemStack = ForagingRecipe.getForagingResult(levelIn, levelIn.getBiome(pos).value().getRegistryName(), targetBlockState, RankineEnchantmentHelper.hasForaging(player));
                 if (!itemStack.isEmpty()) Block.popResource(levelIn, pos, itemStack);
             }
@@ -151,13 +153,13 @@ public class BlockBreakHandler {
 
 
 
-            if (targetBlock.equals(Blocks.GLOWSTONE) && !levelIn.isClientSide) {
+            if (targetBlock.equals(Blocks.GLOWSTONE)) {
                 Block gas = Arrays.asList(RankineBlocks.ARGON_GAS_BLOCK.get(),RankineBlocks.NEON_GAS_BLOCK.get(),RankineBlocks.KRYPTON_GAS_BLOCK.get()).get(rand.nextInt(3));
-                if (ForgeRegistries.BIOMES.tags().getTag(BiomeTags.IS_NETHER).contains(levelIn.getBiome(pos).value()) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()) {
+                if (WorldgenUtils.biomeTagCheck(levelIn, levelIn.getBiome(pos).value(), BiomeTags.IS_NETHER) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()) {
+                    levelIn.setBlock(pos, gas.defaultBlockState(),3);
+                } else if (WorldgenUtils.biomeTagCheck(levelIn, levelIn.getBiome(pos).value(), Tags.Biomes.IS_END) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()*5) {
                     levelIn.setBlock(pos, gas.defaultBlockState(),3);
                 } else if (rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()/5f) {
-                    levelIn.setBlock(pos, gas.defaultBlockState(),3);
-                } else if (ForgeRegistries.BIOMES.tags().getTag(RankineTags.Biomes.IS_END).contains(levelIn.getBiome(pos).value()) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()*5) {
                     levelIn.setBlock(pos, gas.defaultBlockState(),3);
                 }
             }

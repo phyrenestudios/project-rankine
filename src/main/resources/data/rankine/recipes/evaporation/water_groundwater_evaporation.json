@@ -1,7 +1,8 @@
 {
   "type": "rankine:evaporation",
-  "total": 11,
-  "biomes": ["C#taiga","C#extreme_hills","C#jungle","C#plains","C#savanna","C#beach","C#forest","C#swamp","C#mushroom"],
+  "total": 8,
+  "cookTime": 200,
+  "biomeTags": ["minecraft:is_taiga","minecraft:is_forest","forge:is_plains","minecraft:is_jungle","minecraft:is_hill","minecraft:is_mountain","forge:is_mushroom","forge:is_savannah"],
   "input": {
     "fluid": "minecraft:water"
   },
@@ -9,47 +10,35 @@
     "item": "minecraft:water_bucket"
   },
   "output1": {
-    "item": "rankine:zinc_nugget",
-    "weight": 1
+    "item": "minecraft:coarse_dirt",
+    "weight": 40
   },
   "output2": {
-    "item": "rankine:cobalt_nugget",
-    "weight": 1
+    "item": "rankine:silt",
+    "weight": 40
   },
   "output3": {
-    "item": "rankine:titanium_nugget",
-    "weight": 1
+    "item": "rankine:calcite",
+    "weight": 10
   },
   "output4": {
-    "item": "rankine:zirconium_nugget",
-    "weight": 1
+    "item": "rankine:pink_salt",
+    "weight": 5
   },
   "output5": {
-    "item": "rankine:silver_nugget",
+    "item": "rankine:lead_nugget",
     "weight": 1
   },
   "output6": {
-    "item": "rankine:manganese_nugget",
-    "weight": 2
+    "item": "minecraft:iron_nugget",
+    "weight": 1
   },
   "output7": {
-    "item": "rankine:lead_nugget",
-    "weight": 2
+    "item": "rankine:bismuth_nugget",
+    "weight": 1
   },
   "output8": {
-    "item": "rankine:bismuth_nugget",
-    "weight": 2
-  },
-  "output9": {
-    "item": "rankine:pink_salt",
-    "weight": 4
-  },
-  "output10": {
-    "item": "rankine:calcite",
-    "weight": 8
-  },
-  "output11": {
-    "item": "minecraft:dirt",
-    "weight": 10
+    "item": "rankine:zinc_nugget",
+    "weight": 1
   }
 }

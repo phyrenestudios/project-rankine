@@ -73,6 +73,8 @@ public class RankineRecipesProvider extends RecipeProvider {
         blastingMap.put(RankineItems.CHALCOCITE.get(),Items.COPPER_INGOT);
         blastingMap.put(RankineItems.LORANDITE.get(),RankineItems.THALLIUM_INGOT.get());
         blastingMap.put(RankineItems.POLLUCITE.get(),RankineItems.CESIUM_INGOT.get());
+        blastingMap.put(RankineItems.PYROCHLORE.get(),RankineItems.NIOBIUM_INGOT.get());
+        blastingMap.put(RankineItems.SCHEELITE.get(),RankineItems.TUNGSTEN_INGOT.get());
         blastingMap.put(RankineItems.RHODOCHROSITE.get(),RankineItems.MANGANESE_INGOT.get());
 
     }
@@ -515,6 +517,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         for (Item MINERAL : blastingMap.keySet()) {
             SimpleCookingRecipeBuilder.blasting(Ingredient.of(MINERAL), blastingMap.get(MINERAL), 0.5F, 100).unlockedBy("has_ingredient", has(MINERAL)).save(consumer, "rankine:"+blastingMap.get(MINERAL).getRegistryName().getPath()+"_from_"+MINERAL.getRegistryName().getPath()+"_blasting");
         }
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineTags.Items.SLAG), Items.IRON_NUGGET, 0.5F, 100).unlockedBy("has_ingredient", has(RankineTags.Items.SLAG)).save(consumer, "rankine:iron_nugget_from_slag_blasting");
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.APATITE.get()), RankineItems.PHOSPHORUS_NUGGET.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.APATITE.get())).save(consumer, "rankine:phosphorus_nugget_from_apatite_blasting");
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.BADDELEYITE.get()), RankineItems.ZIRCONIA.get(), 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.BADDELEYITE.get())).save(consumer, "rankine:zirconia_from_baddeleyite_blasting");
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(RankineItems.METEORIC_IRON.get()), Items.IRON_INGOT, 0.5F, 100).unlockedBy("has_ingredient", has(RankineItems.METEORIC_IRON.get())).save(consumer, "rankine:iron_from_meteoric_iron_blasting");

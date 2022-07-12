@@ -95,12 +95,20 @@
     },
     {
       "item": "minecraft:clay_ball",
-      "weight": 10,
+      "weight": 20,
       "min": 2,
       "max": 4
     },
     {
       "item": "minecraft:sand",
+      "weight": 30
+    },
+    {
+      "item": "rankine:silt",
+      "weight": 30
+    },
+    {
+      "tag": "forge:gravel",
       "weight": 20
     }
   ]

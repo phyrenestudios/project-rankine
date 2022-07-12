@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:scheelite"
+  },
+  "result": "rankine:tungsten_ingot",
+  "experience": 0.5,
+  "cookingtime": 100
+}

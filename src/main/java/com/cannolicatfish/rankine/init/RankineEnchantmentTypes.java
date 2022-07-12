@@ -30,6 +30,9 @@ public class RankineEnchantmentTypes {
     public static EnchantmentCategory HOE = EnchantmentCategory.create("hoe", (itemIn) -> {
         return itemIn instanceof HoeItem; });
 
+    public static EnchantmentCategory ALLOY_SHOVEL = EnchantmentCategory.create("alloy_shovel", (itemIn) -> {
+        return itemIn instanceof AlloyShovelItem; });
+
     public static EnchantmentCategory MINING = EnchantmentCategory.create("mining", (itemIn) -> {
         return itemIn instanceof ShovelItem || itemIn instanceof PickaxeItem; });
 

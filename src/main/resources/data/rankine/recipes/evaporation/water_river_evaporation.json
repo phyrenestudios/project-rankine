@@ -1,7 +1,8 @@
 {
   "type": "rankine:evaporation",
-  "total": 12,
-  "biomes": ["C#river"],
+  "total": 13,
+  "cookTime": 200,
+  "biomeTags": ["minecraft:is_river","forge:is_swamp"],
   "input": {
     "fluid": "minecraft:water"
   },
@@ -9,51 +10,55 @@
     "item": "minecraft:water_bucket"
   },
   "output1": {
-    "item": "rankine:cadmium_nugget",
-    "weight": 1
+    "item": "minecraft:sand",
+    "weight": 30
   },
   "output2": {
-    "item": "rankine:chromium_nugget",
-    "weight": 1
+    "item": "rankine:silt",
+    "weight": 50
   },
   "output3": {
-    "item": "rankine:mercury_nugget",
-    "weight": 1
+    "item": "minecraft:clay_ball",
+    "weight": 20
   },
   "output4": {
-    "item": "minecraft:iron_nugget",
-    "weight": 1
+    "item": "rankine:alluvium",
+    "weight": 6
   },
   "output5": {
-    "item": "minecraft:gold_nugget",
-    "weight": 2
+    "item": "rankine:slag",
+    "weight": 6
   },
   "output6": {
-    "item": "rankine:copper_nugget",
-    "weight": 2
-  },
-  "output7": {
     "item": "rankine:borax",
     "weight": 4
   },
-  "output8": {
+  "output7": {
     "item": "rankine:thenardite",
     "weight": 4
   },
-  "output9": {
+  "output8": {
     "item": "rankine:trona",
     "weight": 4
   },
+  "output9": {
+    "item": "rankine:cadmium_nugget",
+    "weight": 1
+  },
   "output10": {
-    "item": "rankine:slag",
-    "weight": 4
+    "item": "rankine:chromium_nugget",
+    "weight": 1
   },
   "output11": {
-    "item": "minecraft:clay_ball",
-    "weight": 5
+    "item": "rankine:mercury_nugget",
+    "weight": 1
   },
   "output12": {
-    "item": "minecraft:sand",
-    "weight": 15
+    "item": "minecraft:gold_nugget",
+    "weight": 1
+  },
+  "output13": {
+    "item": "rankine:copper_nugget",
+    "weight": 2
   }
 }

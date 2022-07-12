@@ -1,7 +1,7 @@
 {
   "type": "rankine:foraging",
   "biomes": {
-    "biome": "minecraft:jungle"
+    "biomeTag": "minecraft:is_jungle"
   },
   "input": {
     "tag": "forge:grass_blocks"

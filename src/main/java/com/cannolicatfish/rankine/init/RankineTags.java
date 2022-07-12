@@ -31,9 +31,6 @@ public final class RankineTags {
 
 
     public static final class Biomes {
-        public static final TagKey<Biome> IS_END = createBiomeTag("is_end");
-        public static final TagKey<Biome> IS_SAVANNA = createBiomeTag("is_savanna");
-        public static final TagKey<Biome> IS_PLAINS = createBiomeTag("is_plains");
         public static final TagKey<Biome> IS_BIRCH_FOREST = createBiomeTag("is_birch_forest");
 
     }
@@ -1112,6 +1109,7 @@ public final class RankineTags {
         public static final TagKey<Item> SALTPETER = forgeItem("saltpeter");
         public static final TagKey<Item> ROPE = forgeItem("rope");
         public static final TagKey<Item> CHEESE = forgeItem("cheese");
+        public static final TagKey<Item> MUSHROOMS = forgeItem("mushrooms");
         public static final TagKey<Item> EDIBLE_MUSHROOMS = forgeItem("edible_mushrooms");
         public static final TagKey<Item> FLOUR = forgeItem("flour");
         public static final TagKey<Item> CLAY_BALLS = forgeItem("clay_balls");

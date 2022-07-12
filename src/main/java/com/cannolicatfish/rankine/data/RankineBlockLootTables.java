@@ -106,6 +106,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineBlocks.SLATE_STEPPING_STONES.get(),
                 RankineBlocks.ORNAMENT.get(),
                 RankineBlocks.SOD_BLOCK.get(),
+                RankineBlocks.ALLUVIUM.get(),
                 RankineBlocks.COB.get(),
                 RankineBlocks.REFINED_COB.get(),
                 RankineBlocks.STUMP.get(),

@@ -149,6 +149,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         sixSideCrossBlock(RankineBlocks.GWIHABAITE_CRYSTAL.get());
         crossBlock(RankineBlocks.STINGING_NETTLE.get());
         axisBlock((RotatedPillarBlock) RankineBlocks.BONE_CHAR_BLOCK.get());
+        simpleBlock(RankineBlocks.ALLUVIUM.get(), models().cubeColumn(RankineBlocks.ALLUVIUM.get().getRegistryName().getPath(), blockTexture(RankineBlocks.ALLUVIUM.get()), getBlockRSL("alluvium_end")));
 
         for (Block BLK : RankineLists.LANTERNS) {
             lanternBlock(BLK);

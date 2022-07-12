@@ -1,15 +1,10 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
-import net.minecraft.core.Holder;
-import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.OreBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -42,16 +37,5 @@ public class RankineOreBlock extends OreBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(TYPE);
     }
-
-
-    public static boolean isDefaultOreType(Holder<Biome> biomeIn, int currentType) {
-        if (biomeIn.is(BiomeTags.IS_NETHER) && currentType == WorldgenUtils.ORE_STONES.indexOf(Blocks.NETHERRACK)) {
-            return true;
-        } else if (biomeIn.is(RankineTags.Biomes.IS_END) && currentType == WorldgenUtils.ORE_STONES.indexOf(Blocks.END_STONE)) {
-            return true;
-        } else return currentType == 0;
-    }
-
-
 
 }
