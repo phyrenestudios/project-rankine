@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:black_marble"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:skarn"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:bitumen",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "minecraft:flint",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:biotite",
+      "weight": 4,
+      "tier": "minecraft:stone",
+      "remove": false
+    },
+    {
+      "item": "rankine:sapphire",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

@@ -66,11 +66,7 @@ public class CrowbarItem extends DiggerItem {
     }
 
     public boolean canHarvestWithRetrieval(ItemStack stack, BlockState blockIn) {
-        int i = this.getTier().getLevel();
-        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.RETRIEVAL,stack) >= 1 && !blockIn.is(RankineTags.Blocks.CROWBAR_RESISTANT)) {
-            return true;
-        }
-        return false;
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.RETRIEVAL, stack) >= 1 && !blockIn.is(RankineTags.Blocks.CROWBAR_RESISTANT);
     }
 
     @Override

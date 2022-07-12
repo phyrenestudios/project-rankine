@@ -7,10 +7,10 @@
   ],
   "key": {
     "#": {
-      "item": "rankine:mica"
+      "item": "rankine:biotite"
     }
   },
   "result": {
-    "item": "rankine:mica_block"
+    "item": "rankine:biotite_block"
   }
 }

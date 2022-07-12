@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "rankine:block/mica_block"
+    "all": "rankine:block/muscovite_block"
   }
 }

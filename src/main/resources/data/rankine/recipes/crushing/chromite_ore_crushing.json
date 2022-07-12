@@ -1,11 +1,11 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:cassiterite_ore"
+    "item": "rankine:chromite_ore"
   },
   "guaranteed": [
     {
-      "item": "rankine:cassiterite"
+      "item": "rankine:chromite"
     }
   ],
   "outputs": [

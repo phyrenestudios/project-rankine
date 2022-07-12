@@ -1,11 +1,11 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:itacolumite"
+    "item": "minecraft:obsidian"
   },
   "guaranteed": [
     {
-      "item": "rankine:breccia"
+      "item": "rankine:perlite"
     }
   ],
   "outputs": [
@@ -13,7 +13,7 @@
       "weight": 80
     },
     {
-      "item": "rankine:loamy_sand",
+      "item": "rankine:orthoclase_feldspar",
       "weight": 40,
       "remove": false
     },
@@ -23,24 +23,19 @@
       "remove": false
     },
     {
+      "item": "rankine:sanidine",
+      "weight": 20,
+      "remove": false
+    },
+    {
       "item": "rankine:biotite",
       "weight": 10,
       "remove": false
     },
     {
-      "item": "rankine:muscovite",
-      "weight": 10,
-      "remove": false
-    },
-    {
-      "item": "rankine:tourmaline",
-      "weight": 2,
-      "tier": "minecraft:iron"
-    },
-    {
-      "item": "minecraft:diamond",
-      "weight": 0.05,
-      "tier": "minecraft:diamond"
+      "item": "rankine:magnetite",
+      "weight": 0.5,
+      "tier": "minecraft:netherite"
     }
   ]
 }

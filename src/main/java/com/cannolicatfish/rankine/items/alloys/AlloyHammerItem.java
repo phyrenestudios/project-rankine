@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
+import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -122,7 +123,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
                         double d2 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
 
                         if (!creativeFlag) {
-                            List<ItemStack> results = recipe.getResults(getAlloyTier(stack), worldIn, getAlloyTier(stack).getLevel() + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE,stack));
+                            List<ItemStack> results = recipe.getResults(getAlloyTier(stack), worldIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(getAlloyTier(stack))  + 1 + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE,stack));
                             for (ItemStack t : results)
                             {
                                 ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, t.copy());

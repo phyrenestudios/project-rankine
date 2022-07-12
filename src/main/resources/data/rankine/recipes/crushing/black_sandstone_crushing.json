@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:itacolumite"
+    "item": "rankine:black_sandstone"
   },
   "guaranteed": [
     {
@@ -13,34 +13,29 @@
       "weight": 80
     },
     {
-      "item": "rankine:loamy_sand",
+      "item": "rankine:black_sand",
       "weight": 40,
       "remove": false
     },
     {
-      "item": "minecraft:quartz",
+      "item": "rankine:pyroxene",
       "weight": 20,
       "remove": false
     },
     {
-      "item": "rankine:biotite",
-      "weight": 10,
+      "item": "minecraft:quartz",
+      "weight": 15,
       "remove": false
     },
     {
-      "item": "rankine:muscovite",
-      "weight": 10,
+      "item": "minecraft:iron_nugget",
+      "weight": 6,
       "remove": false
     },
     {
       "item": "rankine:tourmaline",
-      "weight": 2,
+      "weight": 6,
       "tier": "minecraft:iron"
-    },
-    {
-      "item": "minecraft:diamond",
-      "weight": 0.05,
-      "tier": "minecraft:diamond"
     }
   ]
 }

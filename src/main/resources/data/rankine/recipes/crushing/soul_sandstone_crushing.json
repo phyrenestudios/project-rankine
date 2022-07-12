@@ -1,0 +1,41 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:soul_sandstone"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:breccia"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "minecraft:soul_sand",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:ash",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "minecraft:bone",
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "minecraft:nether_wart",
+      "weight": 2,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:ghast_tear",
+      "weight": 1,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

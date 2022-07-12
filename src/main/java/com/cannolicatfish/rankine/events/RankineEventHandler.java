@@ -17,10 +17,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.ChunkEvent;
-import net.minecraftforge.event.world.SaplingGrowTreeEvent;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.world.*;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -63,6 +60,10 @@ public class RankineEventHandler {
     public static void entityJoinWorldEvent(EntityJoinWorldEvent event) {
         EntityJoinWorldHandler.onLightningEvent(event);
         EntityJoinWorldHandler.onSheepJoinWorld(event);
+    }
+    @SubscribeEvent
+    public static void onPistonExtend(PistonEvent.Post event) {
+        PistonHandler.onPistonExtend(event);
     }
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void chunkLoadEvent(ChunkEvent.Load event) {
