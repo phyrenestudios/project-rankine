@@ -1,0 +1,47 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:fumarole_deposit"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:sodium_fluorosilicate",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:vanadium_pentoxide",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:ringwoodite",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:post_perovskite",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:fluorite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:rheniite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

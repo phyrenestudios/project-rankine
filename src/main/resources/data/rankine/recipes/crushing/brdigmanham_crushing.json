@@ -1,0 +1,40 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:bridgmanham"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:bridgmanite",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:orthoclase_feldspar",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:spinel",
+      "weight": 6
+    },
+    {
+      "item": "rankine:potash",
+      "weight": 4
+    },
+    {
+      "item": "rankine:magnesia",
+      "weight": 2,
+      "tier": "minecraft:stone"
+    }
+  ]
+}

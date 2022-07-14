@@ -1,0 +1,70 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:cinnabar_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:cinnabar"
+    },
+    {
+      "item": "minecraft:redstone",
+      "count": 2,
+      "tier": "minecraft:diamond"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:redstone",
+      "count": 2,
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:stibnite",
+      "weight": 12,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:realgar",
+      "weight": 6,
+      "remove": false,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:opal",
+      "weight": 4,
+      "remove": false,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:lorandite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:barite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

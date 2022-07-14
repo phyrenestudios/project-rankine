@@ -25,6 +25,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.common.TierSortingRegistry;
@@ -90,15 +91,6 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
     public void draw(CrushingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
         Font font = Minecraft.getInstance().font;
         int index = recipe.getRecipeOutputs().indexOf(ItemStack.EMPTY);
-        if (index != -1) {
-            DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
-                p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
-            });
-            float percent = recipe.getChance(index);
-            font.draw(stack,new TextComponent(df.format(percent*100)+"%"),100,20,0xFF0000);
-        } else {
-            font.draw(stack,new TextComponent("0.00%"),100,20,0xFF0000);
-        }
         font.draw(stack,new TextComponent("<=" + recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA),100,32,0xFF0000);
 
         IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
@@ -111,16 +103,8 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
         DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
-        int index = recipe.getRecipeOutputs().indexOf(ItemStack.EMPTY);
-        if (index != -1) {
-            builder.addSlot(RecipeIngredientRole.INPUT,78,20).addIngredients(recipe.getIngredients().get(0)).addTooltipCallback((recipeSlotView, tooltip) ->
-                    tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_failure_chance")+df.format(recipe.getChance(index)*100)+"%").withStyle(ChatFormatting.RED)))
-                    .addTooltipCallback((recipeSlotView, tooltip) ->
-                            tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_max_rolls")+recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA)));
-        } else {
-            builder.addSlot(RecipeIngredientRole.INPUT,78,20).addIngredients(recipe.getIngredients().get(0)).addTooltipCallback((recipeSlotView, tooltip) ->
-                    tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_max_rolls")+recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA)));
-        }
+        builder.addSlot(RecipeIngredientRole.INPUT,78,20).addIngredients(recipe.getIngredients().get(0)).addTooltipCallback((recipeSlotView, tooltip) ->
+                tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_max_rolls")+recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA)));
 
 
         int count = 1;
@@ -150,17 +134,19 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
             }
             int x = (count*18);
             int y = 56 + (ycount*18);
-            if (!outputs.get(i).isEmpty()) {
-                int currentI = i;
-                boolean limited = recipe.getRecipeConstants().get(currentI);
-                Tuple<ChatFormatting,IDrawable> format = colorForTier(recipe.getTiers().get(currentI));
-                builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addItemStack(outputs.get(i))
-                        .setBackground(format.getB(), -1, -1)
-                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_tier")+recipe.getTiers().get(currentI)).withStyle(format.getA())))
-                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_chance")+df.format(recipe.getChance(currentI)*100)+"%")))
-                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(limited ? I18n.get("rankine.jei.tooltip_limited") : I18n.get("rankine.jei.tooltip_nonlimited")).withStyle(limited ? ChatFormatting.RED : ChatFormatting.GREEN)));
-                count++;
+            ItemStack currentOutput = outputs.get(i);
+            if (currentOutput.isEmpty()) {
+                currentOutput = new ItemStack(Items.BARRIER).setHoverName(new TextComponent(I18n.get("rankine.jei.tooltip_nothing")));
             }
+            int currentI = i;
+            boolean limited = recipe.getRecipeConstants().get(currentI);
+            Tuple<ChatFormatting,IDrawable> format = colorForTier(recipe.getTiers().get(currentI));
+            builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addItemStack(currentOutput)
+                    .setBackground(format.getB(), -1, -1)
+                    .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_tier")+recipe.getTiers().get(currentI)).withStyle(format.getA())))
+                    .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_chance")+df.format(recipe.getChance(currentI)*100)+"%")))
+                    .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(limited ? I18n.get("rankine.jei.tooltip_limited") : I18n.get("rankine.jei.tooltip_nonlimited")).withStyle(limited ? ChatFormatting.RED : ChatFormatting.GREEN)));
+            count++;
 
 
         }

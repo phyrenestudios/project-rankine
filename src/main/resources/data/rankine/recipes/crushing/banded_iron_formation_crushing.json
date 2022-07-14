@@ -10,7 +10,8 @@
   ],
   "outputs": [
     {
-      "weight": 60
+      "weight": 60,
+      "remove": false
     },
     {
       "item": "minecraft:flint",

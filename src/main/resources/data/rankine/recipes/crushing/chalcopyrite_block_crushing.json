@@ -1,0 +1,62 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:chalcopyrite_block"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:copper_nugget",
+      "count": 6
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "count": 6,
+      "tier": "minecraft:iron"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:copper_nugget",
+      "count": 3,
+      "weight": 24,
+      "remove": false
+    },
+    {
+      "item": "rankine:bismuth_nugget",
+      "count": 3,
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:arsenic_nugget",
+      "count": 3,
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "count": 3,
+      "weight": 16,
+      "remove": false,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:selenium_nugget",
+      "count": 3,
+      "weight": 4,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:tellurium_nugget",
+      "count": 3,
+      "weight": 2,
+      "tier": "minecraft:iron",
+      "remove": false
+    }
+  ]
+}

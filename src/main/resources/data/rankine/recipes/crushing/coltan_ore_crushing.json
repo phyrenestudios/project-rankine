@@ -1,0 +1,46 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:coltan_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:columbite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:tantalite",
+      "weight": 100
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 14,
+      "remove": false
+    },
+    {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 12,
+      "remove": false
+    },
+    {
+      "item": "rankine:muscovite",
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "rankine:lepidolite",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:emerald",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

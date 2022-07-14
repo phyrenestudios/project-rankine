@@ -1,0 +1,43 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 4,
+  "input": {
+    "item": "rankine:halitic_dripstone_block"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:sodium_chloride"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:sodium_chloride",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:magnesium_chloride",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:fluorite",
+      "weight": 0.2,
+      "remove": false
+    }
+  ]
+}

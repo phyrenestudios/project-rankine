@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:black_marble"
+    "item": "rankine:gray_marble"
   },
   "guaranteed": [
     {
@@ -10,7 +10,8 @@
   ],
   "outputs": [
     {
-      "weight": 80
+      "weight": 80,
+      "remove": false
     },
     {
       "item": "rankine:calcite",

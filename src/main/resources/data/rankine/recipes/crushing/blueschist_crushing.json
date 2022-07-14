@@ -1,0 +1,47 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:blueschist"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:skarn"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:talc",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "rankine:amphibole",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:chlorite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:muscovite",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:serpentine",
+      "weight": 4,
+      "remove": false
+    },
+    {
+      "item": "rankine:garnet",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 4,
+  "input": {
+    "item": "rankine:nitric_dripstone_block"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:gypsum"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:saltpeter",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:gwihabaite",
+      "weight": 5,
+      "remove": false
+    }
+  ]
+}

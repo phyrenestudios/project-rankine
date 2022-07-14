@@ -1,0 +1,38 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 4,
+  "input": {
+    "item": "rankine:gypsic_dripstone_block"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:gypsum"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:gypsum",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:barite",
+      "weight": 5,
+      "remove": false
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:cobaltite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:cobaltite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "rankine:chalcopyrite",
+      "weight": 8,
+      "remove": false,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:pentlandite",
+      "weight": 6,
+      "remove": false,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:sphalerite",
+      "weight": 4,
+      "remove": false,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:galena",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:magnetite",
+      "weight": 2,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

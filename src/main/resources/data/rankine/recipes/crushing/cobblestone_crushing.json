@@ -1,0 +1,38 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 2,
+  "input": {
+    "item": "minecraft:cobblestone"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:gravel"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:orthoclase_feldspar",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "minecraft:flint",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 5,
+      "remove": false
+    }
+  ]
+}

@@ -173,10 +173,13 @@ public class AlloyCustomHelper {
 
     public static ItemStack getItemstackForSearching(Item item, @Nullable Level worldIn) {
         ItemStack list = ALLOY_SEARCH_LISTS.get(item);
-        if (list == null && item instanceof IAlloyTool) {
-            IAlloyTool tool = (IAlloyTool) item;
+        if (list == null && item instanceof IAlloyTool tool) {
             list = new ItemStack(item);
             tool.createAlloyNBT(list,worldIn,tool.getDefaultComposition(),tool.getDefaultRecipe(),null);
+            if (worldIn != null) {
+                tool.initStats(list,tool.getElementMap(tool.getDefaultComposition(),worldIn),tool.getAlloyingRecipe(tool.getDefaultRecipe(),worldIn),null);
+                tool.applyAlloyEnchantments(list,worldIn);
+            }
             ALLOY_SEARCH_LISTS.put(item, list);
         }
         return list;

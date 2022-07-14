@@ -4322,6 +4322,7 @@
   "rankine.jei.tooltip_limited": "Can obtain once",
   "rankine.jei.tooltip_max_rolls": "Max outputs: ",
   "rankine.jei.tooltip_nonlimited": "Can obtain multiple times",
+  "rankine.jei.tooltip_nothing": "Skip Output",
   "rankine.jei.tooltip_tier": "Tier: ",
   "rankine.jei.treetapping": "Treetap",
   "rankine.jei.volcanic": "Volcanic Rock Generator",

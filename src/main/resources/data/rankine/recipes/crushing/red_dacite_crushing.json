@@ -10,7 +10,8 @@
   ],
   "outputs": [
     {
-      "weight": 80
+      "weight": 80,
+      "remove": false
     },
     {
       "item": "rankine:biotite",

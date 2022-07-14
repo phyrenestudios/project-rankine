@@ -1,0 +1,36 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 8,
+  "input": {
+    "item": "rankine:oat_bale"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:oat_grain",
+      "count": 2
+    }
+  ],
+  "outputs": [
+    {
+      "item": "rankine:oat_grain",
+      "count": 2,
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:oat_seeds",
+      "weight": 25,
+      "remove": false
+    },
+    {
+      "item": "rankine:plant_fiber",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:biomass",
+      "weight": 10,
+      "remove": false
+    }
+  ]
+}

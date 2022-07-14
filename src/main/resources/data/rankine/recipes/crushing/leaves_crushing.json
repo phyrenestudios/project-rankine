@@ -1,0 +1,24 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 1,
+  "input": {
+    "tag": "minecraft:leaves"
+  },
+  "outputs": [
+    {
+      "item": "rankine:biomass",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:stick",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:compost",
+      "weight": 10,
+      "remove": false
+    }
+  ]
+}
