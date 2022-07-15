@@ -1,0 +1,41 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:petalite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:petalite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "rankine:cassiterite",
+      "weight": 15
+    },
+    {
+      "item": "rankine:spodumene",
+      "weight": 10,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:lepidolite",
+      "weight": 8,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:tourmaline",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "type": "rankine:rock_generator",
   "genType": "intrusive_igneous",
   "input1": {
-    "item": "rankine:plagioclase_feldspar_block"
+    "item": "rankine:labradorite_block"
   },
   "input2": {
     "item": "rankine:diopside_block"

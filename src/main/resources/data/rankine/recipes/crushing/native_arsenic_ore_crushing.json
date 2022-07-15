@@ -1,0 +1,30 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:native_arsenic_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:arsenic_nugget",
+      "count": 3
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:arsenic_nugget",
+      "count": 3,
+      "weight": 14,
+      "remove": false
+    },
+    {
+      "item": "rankine:silver_nugget",
+      "count": 3,
+      "weight": 2,
+      "remove": false
+    }
+  ]
+}

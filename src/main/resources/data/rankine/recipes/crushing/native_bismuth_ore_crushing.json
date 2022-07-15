@@ -1,0 +1,29 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:native_bismuth_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:bismuth_nugget",
+      "count": 3
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:bismuth_nugget",
+      "count": 3,
+      "weight": 14,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 2,
+      "remove": false
+    }
+  ]
+}

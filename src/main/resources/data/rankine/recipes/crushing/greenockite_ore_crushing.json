@@ -1,0 +1,47 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:greenockite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:greenockite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:gypsum",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:sphalerite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:fluorite",
+      "weight": 8,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:galena",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:pyrite",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

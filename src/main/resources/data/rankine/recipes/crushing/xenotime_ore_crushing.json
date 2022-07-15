@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:greenockite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:greenockite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:sanidine",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "rankine:zircon",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:thortveitite",
+      "weight": 10
+    },
+    {
+      "item": "rankine:cerium_monazite",
+      "weight": 8,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:terbium_nugget",
+      "count": 3,
+      "weight": 6,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

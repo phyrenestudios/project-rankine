@@ -10,7 +10,8 @@
   ],
   "outputs": [
     {
-      "weight": 20
+      "weight": 20,
+      "remove": false
     },
     {
       "item": "minecraft:andesite",

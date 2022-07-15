@@ -1,0 +1,48 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:pegmatite"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:biotite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:muscovite",
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "rankine:thortveitite",
+      "weight": 1,
+      "remove": false,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:pyrochlore",
+      "weight": 0.8,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:pollucite",
+      "weight": 0.2,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

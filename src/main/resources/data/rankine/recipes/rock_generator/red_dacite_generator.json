@@ -2,7 +2,7 @@
   "type": "rankine:rock_generator",
   "genType": "extrusive_igneous",
   "input1": {
-    "item": "rankine:mica_block"
+    "item": "rankine:biotite_block"
   },
   "result": {
     "block": "rankine:red_dacite"

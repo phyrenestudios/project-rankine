@@ -1,0 +1,48 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:plumbago_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:graphite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:biotite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:muscovite",
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "rankine:tourmaline",
+      "weight": 8,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:diopside",
+      "weight": 6,
+      "tier": "minecraft:iron",
+      "remove": false
+    }
+  ]
+}

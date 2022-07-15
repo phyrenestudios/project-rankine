@@ -1,0 +1,63 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "minecraft:basalt"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:blackstone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:andesine",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:labradorite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:apatite",
+      "weight": 4,
+      "tier": "minecraft:stone",
+      "remove": false
+    },
+    {
+      "item": "rankine:magnesia",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:barite",
+      "weight": 1,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:celestine",
+      "weight": 1,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:ilmenite",
+      "weight": 0.5,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:cerium_monazite",
+      "weight": 0.5,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

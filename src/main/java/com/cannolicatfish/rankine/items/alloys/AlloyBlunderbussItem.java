@@ -38,6 +38,11 @@ public class AlloyBlunderbussItem extends BlunderbussItem implements IAlloyTiere
     }
 
     @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
+    }
+
+    @Override
     public Component getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
             return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(IAlloyItem.getNameOverride(stack)));

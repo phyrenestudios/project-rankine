@@ -1,0 +1,43 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:troctolite"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyroxene",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:magnesia",
+      "weight": 5,
+      "remove": false,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:ruby",
+      "weight": 1,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:shonkinite"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:sanidine",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:biotite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:apatite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:zircon",
+      "weight": 1,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

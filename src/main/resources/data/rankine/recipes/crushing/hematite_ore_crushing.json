@@ -1,0 +1,56 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:hematite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:hematite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 25,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyrite",
+      "weight": 10
+    },
+    {
+      "item": "rankine:rutile",
+      "weight": 8,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "minecraft:amethyst_shard",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:fluorite",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:goethite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:magnetite",
+      "weight": 1,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

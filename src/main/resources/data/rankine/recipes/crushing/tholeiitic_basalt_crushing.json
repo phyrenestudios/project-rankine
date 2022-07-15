@@ -1,0 +1,58 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:tholeiitic_basalt"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:blackstone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyroxene",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:enstatite",
+      "weight": 2,
+      "remove": false
+    },
+    {
+      "item": "rankine:apatite",
+      "weight": 4,
+      "tier": "minecraft:stone",
+      "remove": false
+    },
+    {
+      "item": "rankine:magnetite",
+      "weight": 4,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:rutile",
+      "weight": 2,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

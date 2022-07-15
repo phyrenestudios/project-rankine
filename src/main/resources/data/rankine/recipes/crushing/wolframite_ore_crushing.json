@@ -1,0 +1,52 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:wolframite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:wolframite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "rankine:cassiterite",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:sphalerite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:fluroite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:galena",
+      "weight": 8,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:bismuthinite",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:scheelite",
+      "weight": 2,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

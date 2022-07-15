@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.events.handlers.client;
 
+import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
@@ -7,6 +8,7 @@ import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
 
@@ -29,6 +31,11 @@ public class RecipesUpdatedHandler {
                     .map(AlloyCraftingRecipe.class::cast)
                     .collect(Collectors.toList());
             AlloyCustomHelper.setCraftingRecipes(alloyCraftingRecipes);
+
+            for (Item item : RankineLists.ALLOY_TOOLS) {
+                AlloyCustomHelper.getItemstackForSearching(item,world);
+            }
+
         }
     }
 }

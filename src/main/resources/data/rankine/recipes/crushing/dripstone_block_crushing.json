@@ -1,0 +1,38 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 4,
+  "input": {
+    "item": "minecraft:dripstone_block"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:calcite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:trona",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:thenardite",
+      "weight": 5,
+      "remove": false
+    }
+  ]
+}

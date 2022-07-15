@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:ringwoodine"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:ringwoodite",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:diopside",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:zircon",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:columbite",
+      "weight": 0.5,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

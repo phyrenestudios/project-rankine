@@ -34,6 +34,11 @@ public class AlloySurfRodItem extends FishingRodItem implements IAlloyTieredItem
     }
 
     @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
+    }
+
+    @Override
     public Component getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
             return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(IAlloyItem.getNameOverride(stack)));

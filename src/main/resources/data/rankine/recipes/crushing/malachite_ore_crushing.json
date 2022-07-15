@@ -1,0 +1,52 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:malachite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:malachite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 25,
+      "remove": false
+    },
+    {
+      "item": "rankine:chalcopyrite",
+      "weight": 10,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:azurite",
+      "weight": 8,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:goethite",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:barite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:azurmalachite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

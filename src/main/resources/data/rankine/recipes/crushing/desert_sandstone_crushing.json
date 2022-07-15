@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:desert_sandstone"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:breccia"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:desert_sand",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 22,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 16,
+      "remove": false
+    },
+    {
+      "item": "rankine:sanidine",
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "rankine:tourmaline",
+      "weight": 4,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

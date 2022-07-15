@@ -1,0 +1,48 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 4,
+  "input": {
+    "item": "rankine:monazite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:cerium_monazite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:cerium_monazite",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "rankine:lanthanum_monazite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:neodymium_monazite",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:samarium_monazite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:gadolinium_monazite",
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "rankine:yttrium_monazite",
+      "weight": 2,
+      "remove": false
+    }
+  ]
+}

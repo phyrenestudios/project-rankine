@@ -1,0 +1,49 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:phosphorite"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:apatite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:fire_clay_ball",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "rankine:potash",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:kaolinite",
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "rankine:potash",
+      "weight": 12,
+      "remove": false,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:pyrite",
+      "weight": 6,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "minecraft:nautilus_shell",
+      "weight": 1,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

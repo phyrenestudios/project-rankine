@@ -86,6 +86,11 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
     }
 
     @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
+    }
+
+    @Override
     public int getMaxDamage(ItemStack stack) {
         return this.getAlloyDurability(stack);
     }

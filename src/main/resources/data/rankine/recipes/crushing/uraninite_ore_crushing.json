@@ -1,0 +1,71 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:uraninite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:uraninite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "rankine:biotite",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:yellowcake",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:zircon",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:lead_nugget",
+      "count": 3,
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "minecraft:gold_nugget",
+      "count": 3,
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:fluorite",
+      "weight": 8,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:thorite",
+      "weight": 6,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:technetium_nugget",
+      "count": 3,
+      "weight": 0.8,
+      "tier": "minecraft:netherite"
+    },
+    {
+      "item": "rankine:promethium_nugget",
+      "count": 3,
+      "weight": 0.2,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

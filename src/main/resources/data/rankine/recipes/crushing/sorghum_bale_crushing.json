@@ -1,0 +1,36 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 8,
+  "input": {
+    "item": "rankine:sorghum_bale"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:sorghum_grain",
+      "count": 2
+    }
+  ],
+  "outputs": [
+    {
+      "item": "rankine:sorghum_grain",
+      "count": 2,
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:sorghum_seeds",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:plant_fiber",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:biomass",
+      "weight": 5,
+      "remove": false
+    }
+  ]
+}

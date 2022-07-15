@@ -1,0 +1,58 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:pentlandite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:pentlandite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:chalcopyrite",
+      "weight": 7,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:sperrylite",
+      "weight": 5,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:pyrite",
+      "weight": 8,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:spinel",
+      "weight": 6,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:cobaltite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:magnetite",
+      "weight": 2,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

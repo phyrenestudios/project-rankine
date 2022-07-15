@@ -1,0 +1,47 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:celestine_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:celestine"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:sodium_chloride",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "rankine:gypsum",
+      "weight": 12,
+      "remove": false
+    },
+    {
+      "item": "rankine:thenardite",
+      "weight": 4,
+      "remove": false
+    },
+    {
+      "item": "rankine:sulfur",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:fluorite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:barite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 {
   "type": "rankine:crushing",
+  "maxRolls": 2,
   "input": {
     "item": "minecraft:blackstone"
   },
@@ -10,7 +11,8 @@
   ],
   "outputs": [
     {
-      "weight": 80
+      "weight": 80,
+      "remove": false
     },
     {
       "item": "rankine:black_sand",

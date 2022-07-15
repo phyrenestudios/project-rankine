@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:quartzite"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:breccia"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:muscovite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:chlorite",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:serpentine",
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "rankine:zircon",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

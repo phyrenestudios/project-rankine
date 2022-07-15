@@ -49,6 +49,11 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
     }
 
     @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
+    }
+
+    @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
         return state.is(BlockTags.MINEABLE_WITH_SHOVEL) && TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);

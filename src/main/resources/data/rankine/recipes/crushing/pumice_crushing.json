@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 4,
+  "input": {
+    "item": "rankine:pumice"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:pozzolana"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:rhyolitic_tuff",
+      "weight": 60
+    },
+    {
+      "item": "rankine:andesitic_tuff",
+      "weight": 60
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 12,
+      "remove": false
+    },
+    {
+      "item": "rankine:orthoclase_feldspar",
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "rankine:zircon",
+      "weight": 4,
+      "tier": "minecraft:iron",
+      "remove": false
+    }
+  ]
+}

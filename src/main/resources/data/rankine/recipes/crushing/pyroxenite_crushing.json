@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:pyroxenite"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:blackstone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyroxene",
+      "weight": 35,
+      "remove": false
+    },
+    {
+      "item": "rankine:diopside",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:amphibole",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 4,
+      "remove": false
+    },
+    {
+      "item": "rankine:chromite",
+      "weight": 0.5,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:native_selenium_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:selenium_nugget",
+      "count": 3
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:selenium_nugget",
+      "count": 3,
+      "weight": 16,
+      "remove": false
+    }
+  ]
+}

@@ -5,7 +5,7 @@
     "item": "rankine:loamy_sand"
   },
   "input2": {
-    "item": "rankine:mica_block"
+    "item": "rankine:muscovite_block"
   },
   "result": {
     "block": "rankine:itacolumite"

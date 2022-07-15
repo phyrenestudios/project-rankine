@@ -1,0 +1,58 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:chalcocite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:chalcocite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 12,
+      "remove": false
+    },
+    {
+      "item": "rankine:silver_nugget",
+      "count": 2,
+      "weight": 4,
+      "remove": false
+    },
+    {
+      "item": "rankine:chalcopyrite",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:pyrite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:sphalerite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:galena",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:malachite",
+      "weight": 8,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

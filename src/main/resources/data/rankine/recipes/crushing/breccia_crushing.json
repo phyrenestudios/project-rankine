@@ -1,0 +1,45 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 2,
+  "input": {
+    "item": "rankine:breccia"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:light_gravel"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:saltpeter",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:alluvium",
+      "weight": 5,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:nautilus_shell",
+      "weight": 0.5,
+      "tier": "minecraft:diamond",
+      "remove": false
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:phyllite"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:skarn"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "rankine:muscovite",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:chlorite",
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "rankine:graphite",
+      "weight": 0.5,
+      "remove": false,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

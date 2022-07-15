@@ -1,0 +1,43 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:serpentinite"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:skarn"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:serpentine",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:chlorite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:asbestos",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:magnesite",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:nickel_nugget",
+      "count": 3,
+      "weight": 4,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

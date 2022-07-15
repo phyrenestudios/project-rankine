@@ -1,0 +1,49 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:interspinifex_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:pentlandite"
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "count": 3
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "count": 3,
+      "weight": 16,
+      "remove": false
+    },
+    {
+      "item": "rankine:chalcopyrite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:platinum_nugget",
+      "count": 3,
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "rankine:ruthenium_nugget",
+      "count": 3,
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "rankine:chromite",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    }
+  ]
+}
