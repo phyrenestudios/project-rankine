@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:quartz_ore"
+    "item": "rankine:nether_quartz_ore"
   },
   "guaranteed": [
     {

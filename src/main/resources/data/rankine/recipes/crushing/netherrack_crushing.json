@@ -1,0 +1,49 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "minecraft:netherrack"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyroxene",
+      "weight": 25,
+      "remove": false
+    },
+    {
+      "item": "rankine:montroydite",
+      "weight": 20
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:bitumen",
+      "weight": 4
+    },
+    {
+      "item": "minecraft:bone",
+      "weight": 2
+    },
+    {
+      "item": "minecraft:nether_wart",
+      "weight": 0.4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:cinnabar",
+      "weight": 0.2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}
