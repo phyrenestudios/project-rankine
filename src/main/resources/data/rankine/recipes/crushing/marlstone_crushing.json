@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:marlstone"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:breccia"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:silty_clay_loam",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "minecraft:dead_horn_coral",
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "rankine:potash",
+      "weight": 4,
+      "remove": false
+    },
+    {
+      "item": "rankine:magnesia",
+      "weight": 2,
+      "remove": false
+    }
+  ]
+}

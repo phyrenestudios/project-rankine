@@ -1,0 +1,30 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:native_tin_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:tin_nugget",
+      "count": 3
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:tin_nugget",
+      "count": 3,
+      "weight": 14,
+      "remove": false
+    },
+    {
+      "item": "rankine:lead_nugget",
+      "count": 3,
+      "weight": 2,
+      "remove": false
+    }
+  ]
+}

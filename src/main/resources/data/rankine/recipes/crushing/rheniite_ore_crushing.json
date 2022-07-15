@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:rheniite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:rheniite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "rankine:gypsum",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:chalcopyrite",
+      "weight": 6,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:laurite",
+      "weight": 8,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:molybdenite",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

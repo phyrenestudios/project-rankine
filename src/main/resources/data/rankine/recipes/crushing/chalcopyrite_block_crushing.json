@@ -38,6 +38,12 @@
       "remove": false
     },
     {
+      "item": "rankine:sulfur_nugget",
+      "count": 3,
+      "weight": 6,
+      "remove": false
+    },
+    {
       "item": "minecraft:iron_nugget",
       "count": 3,
       "weight": 16,

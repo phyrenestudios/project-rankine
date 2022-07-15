@@ -2,12 +2,12 @@
   "type": "rankine:rock_generator",
   "genType": "intrusive_igneous",
   "input1": {
-    "item": "rankine:andesine_block"
+    "item": "rankine:enstatite_block"
   },
   "input2": {
-    "item": "rankine:biotite_block"
+    "item": "minecraft:end_stone"
   },
   "result": {
-    "block": "minecraft:diorite"
+    "block": "rankine:enstatite_chondrite"
   }
 }

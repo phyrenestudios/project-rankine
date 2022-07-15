@@ -1,0 +1,41 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:stibnite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:stibnite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "rankine:realgar",
+      "weight": 10
+    },
+    {
+      "item": "rankine:cinnabar",
+      "weight": 10,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:barite",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:galena",
+      "weight": 4,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:purple_porphyry"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:labradoite",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:biotite",
+      "weight": 18,
+      "remove": false
+    },
+    {
+      "item": "rankine:amphibole",
+      "weight": 14,
+      "remove": false
+    },
+    {
+      "item": "rankine:lapis_lazuli",
+      "weight": 2,
+      "remove": false,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

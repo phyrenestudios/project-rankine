@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:pyrite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:pyrite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:cooperite",
+      "weight": 10,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:sphalerite",
+      "weight": 8,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:rhodochrosite",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

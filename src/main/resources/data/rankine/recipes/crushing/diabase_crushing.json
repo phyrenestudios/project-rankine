@@ -1,0 +1,64 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:diabase"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:blackstone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:labradorite",
+      "weight": 35,
+      "remove": false
+    },
+    {
+      "item": "rankine:diopside",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyroxene",
+      "weight": 4,
+      "remove": false
+    },
+    {
+      "item": "rankine:serpentine",
+      "weight": 2,
+      "remove": false,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:chlorite",
+      "weight": 2,
+      "remove": false,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:apatite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:ilmenite",
+      "weight": 0.5,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:magnetite",
+      "weight": 0.5,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

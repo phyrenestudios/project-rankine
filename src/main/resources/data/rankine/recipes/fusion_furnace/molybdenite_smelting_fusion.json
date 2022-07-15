@@ -11,6 +11,10 @@
     "item":"rankine:molybdenum_ingot",
     "count": 2
   },
+  "result2": {
+    "item":"rankine:rhenium_nugget",
+    "count": 1
+  },
   "gasInput": {
     "item": "minecraft:glass_bottle"
   },

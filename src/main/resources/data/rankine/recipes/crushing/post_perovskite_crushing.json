@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:post_perovskite"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:talc",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:bridgmanite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:spinel",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:thorite",
+      "weight": 0.5,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

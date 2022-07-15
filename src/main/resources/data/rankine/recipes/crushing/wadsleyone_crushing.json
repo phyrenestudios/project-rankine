@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:wadsleyone"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:wadsleyite",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:forsterite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:garnet",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:tantalite",
+      "weight": 0.5,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

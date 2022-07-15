@@ -1,0 +1,41 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:norite"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:labradorite",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:enstatite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyroxene",
+      "weight": 5
+    },
+    {
+      "item": "rankine:ilmenite",
+      "weight": 0.5,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

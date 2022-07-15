@@ -1,0 +1,43 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "minecraft:end_stone"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:light_gravel"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:gypsum",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:white_sand",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:chlorite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:silicon_carbide",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "minecraft:ender_pearl",
+      "weight": 1,
+      "tier": "minecraft:netherite",
+      "remove": false
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:lazurite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 2
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 2,
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:diopside",
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "rankine:forsterite",
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "rankine:,uscovite",
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyrite",
+      "weight": 6,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:nepheline",
+      "weight": 4,
+      "remove": false,
+      "tier": "minecraft:stone"
+    }
+  ]
+}

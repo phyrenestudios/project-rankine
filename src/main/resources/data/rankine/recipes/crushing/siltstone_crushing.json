@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:siltstone"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:breccia"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:silt",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:fire_clay_ball",
+      "weight": 6,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 4,
+      "remove": false
+    }
+  ]
+}

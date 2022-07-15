@@ -1,0 +1,62 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:zircon_block"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:zirconium_nugget",
+      "count": 3
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:zirconium_nugget",
+      "count": 3,
+      "weight": 24,
+      "remove": false
+    },
+    {
+      "item": "rankine:phosphorus_nugget",
+      "count": 3,
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:scandium_nugget",
+      "count": 3,
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "rankine:uranium_nugget",
+      "count": 3,
+      "weight": 6,
+      "remove": false,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:thorium_nugget",
+      "count": 3,
+      "weight": 4,
+      "remove": false,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:hafnium_nugget",
+      "count": 3,
+      "weight": 2,
+      "tier": "minecraft:netherite",
+      "remove": false
+    },
+    {
+      "item": "rankine:pyrochlore",
+      "weight": 1,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

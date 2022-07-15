@@ -1,0 +1,60 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:molybdenite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:molybdenite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:gypsum",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:muscovite",
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "rankine:chalcopyrite",
+      "weight": 5,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 8,
+      "tier": "minecraft:stone",
+      "remove": false
+    },
+    {
+      "item": "rankine:pyrite",
+      "weight": 6,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:bismuth_nugget",
+      "count": 3,
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:scheelite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:mudstone"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:breccia"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:loam",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:kaolinite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:plagiclase_feldspar",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:orthoclase_feldspar",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 4,
+      "remove": false
+    }
+  ]
+}

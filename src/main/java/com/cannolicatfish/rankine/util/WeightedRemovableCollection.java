@@ -50,10 +50,19 @@ public class WeightedRemovableCollection<I> {
         }
 
         float value = random.nextFloat() * total;
-        output = map.higherEntry(value).getValue();
-        if (output.getB()) {
-            map.remove(map.higherEntry(value).getKey());
+        if (map.higherEntry(value) != null) {
+            output = map.higherEntry(value).getValue();
+            if (output.getB()) {
+                map.remove(map.higherEntry(value).getKey());
+            }
+        } else if (map.firstEntry() != null) {
+            output = map.firstEntry().getValue();
+        } else {
+            output = null;
         }
+
+
+
 
         return output.getA();
     }

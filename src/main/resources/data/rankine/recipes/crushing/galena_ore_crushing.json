@@ -1,0 +1,67 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:galena_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:galena"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:chalcopyrite",
+      "weight": 8,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:bismuthinite",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:vanadinite",
+      "weight": 4,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:fluorite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:barite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:sphalerite",
+      "weight": 4,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:greenockite",
+      "weight": 2,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

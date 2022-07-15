@@ -1,0 +1,46 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 2,
+  "input": {
+    "item": "minecraft:cobblestone"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:dark_gravel"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 60,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyroxene",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:apatite",
+      "weight": 2,
+      "remove": false,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:barite",
+      "weight": 0.4,
+      "remove": false,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:hedenbergite",
+      "weight": 0.2,
+      "remove": false,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:magnesite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:magnesite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:forsterite",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:tourmaline",
+      "weight": 7,
+      "remove": false
+    },
+    {
+      "item": "rankine:fluorite",
+      "weight": 5,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:talc",
+      "weight": 8,
+      "tier": "minecraft:stone",
+      "remove": false
+    },
+    {
+      "item": "rankine:serpentine",
+      "weight": 6,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:hematite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:opal",
+      "weight": 1,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:meteorite"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:sanidine",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:wadsleyite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:graphite",
+      "weight": 4,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "minecraft:chromite",
+      "weight": 2,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

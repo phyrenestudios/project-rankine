@@ -1,0 +1,42 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:pyrolusite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:pyrolusite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:rhodochrosite",
+      "weight": 8,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:goethite",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:barite",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    }
+  ]
+}

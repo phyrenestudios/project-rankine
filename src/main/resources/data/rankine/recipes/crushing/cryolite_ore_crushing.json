@@ -1,0 +1,55 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:cryolite_ore"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:cryolite"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:chalcopyrite",
+      "weight": 16,
+      "tier": "minecraft:stone",
+      "remove": false
+    },
+    {
+      "item": "rankine:galena",
+      "weight": 8,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:zircon",
+      "weight": 4,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:fluorite",
+      "weight": 2,
+      "tier": "minecraft:iron",
+      "remove": false
+    },
+    {
+      "item": "rankine:peridot",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:topaz",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}
