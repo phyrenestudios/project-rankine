@@ -1,0 +1,47 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:honeystone"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:breccia"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:mellite",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:gypsum",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:biotite",
+      "weight": 8,
+      "remove": false
+    },
+    {
+      "item": "rankine:lignite",
+      "weight": 2,
+      "tier": "minecraft:stone"
+    }
+  ]
+}

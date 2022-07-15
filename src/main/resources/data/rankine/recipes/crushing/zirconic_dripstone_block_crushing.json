@@ -2,7 +2,7 @@
   "type": "rankine:crushing",
   "maxRolls": 4,
   "input": {
-    "item": "rankine:magnesitic_dripstone_block"
+    "item": "rankine:zirconic_dripstone_block"
   },
   "guaranteed": [
     {

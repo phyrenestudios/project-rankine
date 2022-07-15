@@ -1,0 +1,38 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 2,
+  "input": {
+    "item": "minecraft:cobbled_deepslate"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:dark_gravel"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:muscovite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:biotite",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:chlorite",
+      "weight": 2,
+      "remove": false
+    }
+  ]
+}
