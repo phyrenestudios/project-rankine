@@ -2,6 +2,87 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
+## Project Rankine Version 1.3.4 Changelog [15Jul2022]
+
+### BLOCKS
+- Cobbles can be picked up by right clicking
+- Fixed loottable of crops in inmature stages of growth
+- Removed Piston Crusher and Gyratory Crusher Functionality
+- Changed hardness value of some machines
+- Fixed leaf litters floating on non-solid blocks
+- Leaf litters no longer drop when landing
+- Fixed a crash with leaf litter spawning
+- Added Scheelite Block, Nepheline Block, Pyrochlore Block
+- Added Episyenite, Nepheline Syenite, Phonolite as stones with variants. 
+- Blocks under stumps take longer to mine unless using an alloy shovel
+- On grassy soils, short grass can grow to grass, and grass to tall grass
+- Fixed crash with grassy soils in modded biomes
+- Added dust color for Desert Sand particles
+- Sugarcane and cactus can be placed on Silt
+- Added Slate Stepping Stones
+- Fixed the bonemealing of wall mushrooms
+- Updated wall mushroom block textures
+- Obsidian variants are no longer pushable by a piston
+- Changed the texture of Alluvium
+- Fixed saplings not growing into their respective trees
+- Added Tiered Crushing Heads which are used on a piston to crush blocks in world
+
+### ITEMS
+- Added Nepheline, Scheelite, Pyrochlore
+- Changed text for Alloy Harvest Level to Tier
+- Fixed stacks of Fruit Jam being consumed at once
+- Only alloy pickaxes can be used to obtain random nuggets from nearby ores
+- Only alloy shovels can forage
+- Foraging enchantment can only be applied to alloy shovels
+- Fortune can now be applied to Hammers (increases the number of potential outputs from crushing; see below)
+- Fixed Rankine Journal
+- Removed Crushing Heads 0-5
+- Added textures for missing nuggets and other placeholder textures
+
+### WORLDGEN
+- Added Nepheline Syenite and Episyenite intrusion to beach biomes
+- Added Phonolite stone layer to Badlands biomes
+- Alluvium spawns as a soil variant in rivers
+- Sand in oceans is replaced with silt
+
+### TAGS
+- Added new stones to relevant tags
+- Renamed #rankine:crowbar_effective to #rankine:mineable/crowbar
+- Added Stump to #rankine:mineable/crowbar
+- Added Charcoal Pit to #minecraft:minable_with_axe
+- Added Snowflake Obsidian and Blood Obsidian to #forge:obsidian and #minecraft:requires_diamond_tool and #minecraft:dragon_immune
+- Added #forge:mushrooms
+
+### RECIPES
+- Changed format and functionality for Crushing recipes (see below)
+- White Gold Alloy now gives Fortune to Hammers if enchantability requirements are met
+- Fixed inversion of Saddle Tree recipe
+- Added rock generator recipes for new stones
+- Added blasting recipe for Rhodochrosite to Manganeese Ingot
+- Added/changed Fusion Furnace recipe for Chalcopyrite and Molybdenite smelting
+- Removed Ilmenite to Titanium blasting recipe
+- Removed Cobblestone from cobbles recipe
+- Fixed Foraging and Evaporation biome based recipes
+- Adjusted outputs of Alluvium and Black Sand sluicing
+- Added evaporation recipes for water in desert/badlands biomes and in dripstone/lush caves biomes
+- Added rock generator recipe for Meteorite, Frozen Meteorite and Enstatite
+
+### CRUSHING
+- Crushing results are now handled by a weighted system similar to Slucing
+- Crushing at the exact tier an output is available no longer gives an additional chance of obtaining said output
+- Each tier level increases the total number of potential outputs by +1
+- Each level of Fortune increases the total number of potential outputs by +1
+- Atomize enchantment now turns all non-guaranteed outputs from crushing into experience and cannot be used with Fortune
+- Certain items for each crushing recipe are guaranteed, meaning that every time the input is crushed that output will always drop and not count toward total number of potential outputs
+- Some outputs can be obtained multiple times or only once per crushed input
+- Recipes have a failure rate, which indicate the chance that a potential output is skipped (weighted as an empty item, meaning that outputs only available in higher tiers will offset chance of failure compared to crushing at lower tiers)
+- Piston Crusher and Gyratory Crusher have been replaced by in-world crushing using the piston and a crushing head. Place the crushing head on the face of the piston and power
+- The in-world crushing system is work-in-progress and likely to change in a future update
+- All crushing recipes have been changed to accomodate the new system
+- Crushing JEI has also changed to accomodate the new system, and shows the number of potential rolls and the failure rate at max tier (by default, Netherite)
+
+
+
 ## Project Rankine Version 1.3.3 (1.18.2 Port) Changelog [14Jun2022]
 This update is the initial port to 1.18.2 from 1.16.5. Many minor changes may have occured during the update, but the significant ones are recorded below.
 ### Hotfix 1 [22Jun2022]
