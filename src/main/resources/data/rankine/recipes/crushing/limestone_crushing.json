@@ -1,0 +1,57 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:limestone"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:breccia"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 25,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "minecraft:sand",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "minecraft:bone",
+      "weight": 1,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:dead_brain_coral",
+      "weight": 1,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:barite",
+      "weight": 1,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:nepheline_syenite"
+    "item": "rankine:phonolite"
   },
   "guaranteed": [
     {
@@ -14,12 +14,12 @@
       "remove": false
     },
     {
-      "item": "rankine:orthoclase_feldspar",
+      "item": "rankine:nepheline",
       "weight": 40,
       "remove": false
     },
     {
-      "item": "rankine:nepheline",
+      "item": "rankine:sanidine",
       "weight": 20,
       "remove": false
     },
@@ -29,7 +29,7 @@
       "remove": false
     },
     {
-      "item": "rankine:pyroxene",
+      "item": "rankine:orthoclase_feldspar",
       "weight": 10,
       "remove": false
     },
@@ -39,19 +39,20 @@
       "remove": false
     },
     {
-      "item": "rankine:pyrochlore",
+      "item": "rankine:olivine",
       "weight": 5,
-      "tier": "minecraft:iron"
+      "remove": false
     },
     {
-      "item": "rankine:apatite",
+      "item": "rankine:pyroxene",
       "weight": 5,
-      "tier": "minecraft:iron"
+      "remove": false
     },
     {
       "item": "minecraft:lapis_lazuli",
-      "weight": 4,
-      "tier": "minecraft:diamond"
+      "weight": 2,
+      "remove": false,
+      "tier": "minecraft:iron"
     },
     {
       "item": "rankine:ilmenite",

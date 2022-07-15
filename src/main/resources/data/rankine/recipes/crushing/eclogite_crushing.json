@@ -1,0 +1,57 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:eclogite"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:skarn"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:kyanite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyroxene",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 5,
+      "remove": false
+    },
+    {
+      "item": "rankine:amphibole",
+      "weight": 4,
+      "remove": false
+    },
+    {
+      "item": "rankine:garnet",
+      "weight": 3,
+      "remove": false
+    },
+    {
+      "item": "rankine:sapphire",
+      "weight": 0.2,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:diamond",
+      "weight": 0.1,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

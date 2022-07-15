@@ -1,0 +1,53 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:gabbro"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:blackstone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyroxene",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 25,
+      "remove": false
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:amphibole",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:platinum_nugget",
+      "count": 3,
+      "weight": 2,
+      "tier": "minecraft:stone"
+    },
+    {
+      "item": "rankine:chalcocite",
+      "weight": 0.3,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:pentlandite",
+      "weight": 0.2,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

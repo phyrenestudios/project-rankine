@@ -36,6 +36,6 @@
   },
   "result": "rankine:purple_gold_ingot",
   "durability": 50,
-  "enchantments": ["minecraft:silk_touch","rankine:daze","minecraft:silk_touch","minecraft:silk_touch","minecraft:silk_touch","rankine:impact","minecraft:knockback","rankine:grafting","rankine:retrieval","minecraft:thorns"],
+  "enchantments": ["minecraft:silk_touch","rankine:atomize","minecraft:silk_touch","minecraft:silk_touch","minecraft:silk_touch","rankine:impact","minecraft:knockback","rankine:grafting","rankine:retrieval","minecraft:thorns"],
   "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"]
 }

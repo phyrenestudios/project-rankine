@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:harzbergite"
+    "item": "rankine:kimberlite"
   },
   "guaranteed": [
     {
@@ -14,12 +14,12 @@
       "remove": false
     },
     {
-      "item": "rankine:olivine",
-      "weight": 35,
+      "item": "rankine:forsterite",
+      "weight": 40,
       "remove": false
     },
     {
-      "item": "rankine:pyroxene",
+      "item": "rankine:calcite",
       "weight": 20,
       "remove": false
     },
@@ -29,15 +29,20 @@
       "remove": false
     },
     {
+      "item": "rankine:enstatite",
+      "weight": 8,
+      "remove": false
+    },
+    {
       "item": "rankine:garnet",
-      "weight": 2,
-      "remove": false,
+      "weight": 0.8,
       "tier": "minecraft:diamond"
     },
     {
-      "item": "rankine:chromite",
+      "item": "minecraft:diamond",
       "weight": 0.5,
-      "tier": "minecraft:netherite"
+      "tier": "minecraft:netherite",
+      "remove": false
     }
   ]
 }

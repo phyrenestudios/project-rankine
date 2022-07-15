@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:nepheline_syenite"
+    "item": "rankine:granodiorite"
   },
   "guaranteed": [
     {
@@ -14,23 +14,18 @@
       "remove": false
     },
     {
-      "item": "rankine:orthoclase_feldspar",
+      "item": "rankine:andesine",
       "weight": 40,
       "remove": false
     },
     {
-      "item": "rankine:nepheline",
+      "item": "minecraft:quartz",
       "weight": 20,
       "remove": false
     },
     {
-      "item": "rankine:amphibole",
+      "item": "rankine:plagioclase_feldspar",
       "weight": 15,
-      "remove": false
-    },
-    {
-      "item": "rankine:pyroxene",
-      "weight": 10,
       "remove": false
     },
     {
@@ -39,28 +34,24 @@
       "remove": false
     },
     {
-      "item": "rankine:pyrochlore",
-      "weight": 5,
-      "tier": "minecraft:iron"
+      "item": "rankine:muscovite",
+      "weight": 8,
+      "remove": false
     },
     {
-      "item": "rankine:apatite",
+      "item": "rankine:orthoclase_feldspar",
       "weight": 5,
-      "tier": "minecraft:iron"
+      "remove": false
     },
     {
-      "item": "minecraft:lapis_lazuli",
-      "weight": 4,
+      "item": "rankine:spinel",
+      "weight": 2,
+      "remove": false,
       "tier": "minecraft:diamond"
     },
     {
-      "item": "rankine:ilmenite",
+      "item": "rankine:realgar",
       "weight": 1,
-      "tier": "minecraft:diamond"
-    },
-    {
-      "item": "rankine:magnetite",
-      "weight": 0.5,
       "tier": "minecraft:netherite"
     }
   ]

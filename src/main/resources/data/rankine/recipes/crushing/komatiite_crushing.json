@@ -1,0 +1,52 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:komatiite"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:blackstone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 35,
+      "remove": false
+    },
+    {
+      "item": "rankine:forsterite",
+      "weight": 20,
+      "remove": false
+    },
+    {
+      "item": "rankine:enstatite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:magnesia",
+      "weight": 2,
+      "remove": false
+    },
+    {
+      "item": "rankine:serpentine",
+      "weight": 2,
+      "remove": false
+    },
+    {
+      "item": "rankine:baddeleyite",
+      "weight": 0.5,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:chromite",
+      "weight": 0.5,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:purple_porphyry"
+    "item": "rankine:white_sandstone"
   },
   "guaranteed": [
     {
-      "item": "minecraft:cobblestone"
+      "item": "rankine:breccia"
     }
   ],
   "outputs": [
@@ -14,29 +14,28 @@
       "remove": false
     },
     {
-      "item": "rankine:labradorite",
+      "item": "rankine:white_sand",
       "weight": 40,
       "remove": false
     },
     {
       "item": "minecraft:quartz",
-      "weight": 20,
+      "weight": 35,
       "remove": false
     },
     {
-      "item": "rankine:biotite",
-      "weight": 18,
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 10,
       "remove": false
     },
     {
-      "item": "rankine:amphibole",
-      "weight": 14,
+      "item": "rankine:calcite",
+      "weight": 6,
       "remove": false
     },
     {
-      "item": "minecraft:lapis_lazuli",
+      "item": "rankine:tourmaline",
       "weight": 2,
-      "remove": false,
       "tier": "minecraft:iron"
     }
   ]

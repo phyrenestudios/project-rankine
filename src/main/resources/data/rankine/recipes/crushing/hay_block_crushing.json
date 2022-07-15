@@ -2,7 +2,7 @@
   "type": "rankine:crushing",
   "maxRolls": 8,
   "input": {
-    "item": "minecraft:wheat_bale"
+    "item": "minecraft:hay_block"
   },
   "guaranteed": [
     {

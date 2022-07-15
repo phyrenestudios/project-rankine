@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:lazurite_ore"
+    "item": "rankine:lapis_ore"
   },
   "guaranteed": [
     {

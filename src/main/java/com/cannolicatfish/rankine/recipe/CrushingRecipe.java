@@ -121,12 +121,34 @@ public class CrushingRecipe implements Recipe<Container> {
         WeightedRemovableCollection<ItemStack> possibleResults = getPossibleResults(harvestLevel,random);
         for (int i = 0; i < totalRolls; i++) {
             if (possibleResults.getMap().isEmpty()) {
+                outputs.removeIf(itemStack -> itemStack.is(Items.AIR) || itemStack.equals(ItemStack.EMPTY));
                 return outputs;
             }
             outputs.add(possibleResults.getRandomElement().copy());
         }
         outputs.removeIf(itemStack -> itemStack.is(Items.AIR) || itemStack.equals(ItemStack.EMPTY));
         return outputs;
+    }
+
+    public Tuple<List<ItemStack>,Integer> getAtomizeResults(Tier harvestLevel,Random random, int rolls) {
+        int totalRolls = Math.min(rolls,maxRolls);
+        List<ItemStack> guaranteed = new ArrayList<>();
+        for (Tuple<ItemStack, Tier> tuple : getGuaranteedOutputsAsItemStack()) {
+            if (!TierSortingRegistry.getTiersLowerThan(tuple.getB()).contains(harvestLevel))  {
+                guaranteed.add(tuple.getA());
+            }
+        }
+        List<ItemStack> outputs = new ArrayList<>();
+        WeightedRemovableCollection<ItemStack> possibleResults = getPossibleResults(harvestLevel,random);
+        for (int i = 0; i < totalRolls; i++) {
+            if (possibleResults.getMap().isEmpty()) {
+                outputs.removeIf(itemStack -> itemStack.is(Items.AIR) || itemStack.equals(ItemStack.EMPTY));
+                return new Tuple<>(guaranteed,outputs.size());
+            }
+            outputs.add(possibleResults.getRandomElement().copy());
+        }
+        outputs.removeIf(itemStack -> itemStack.is(Items.AIR) || itemStack.equals(ItemStack.EMPTY));
+        return new Tuple<>(guaranteed,outputs.size());
     }
 
     public WeightedRemovableCollection<ItemStack> getPossibleResults(Tier harvestLevel, Random random) {

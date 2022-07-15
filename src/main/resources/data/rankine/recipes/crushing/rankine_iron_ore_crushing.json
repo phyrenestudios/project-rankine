@@ -1,42 +1,46 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:wherlite"
+    "item": "rankine:iron_ore"
   },
   "guaranteed": [
     {
-      "item": "minecraft:blackstone"
+      "item": "minecraft:raw_iron"
     }
   ],
   "outputs": [
     {
-      "weight": 80,
+      "weight": 64,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 32,
       "remove": false
     },
     {
       "item": "rankine:olivine",
-      "weight": 35,
-      "remove": false
-    },
-    {
-      "item": "rankine:diopside",
-      "weight": 20,
+      "weight": 16,
       "remove": false
     },
     {
       "item": "rankine:pyroxene",
-      "weight": 10,
+      "weight": 8,
       "remove": false
     },
     {
-      "item": "rankine:garnet",
+      "item": "rankine:amphibole",
+      "weight": 4,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyrite",
       "weight": 2,
-      "remove": false,
       "tier": "minecraft:diamond"
     },
     {
-      "item": "rankine:chromite",
-      "weight": 0.5,
+      "item": "rankine:goethite",
+      "weight": 1,
       "tier": "minecraft:netherite"
     }
   ]

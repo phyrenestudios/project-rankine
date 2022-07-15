@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:nepheline_syenite"
+    "item": "rankine:gray_granite"
   },
   "guaranteed": [
     {
@@ -19,49 +19,36 @@
       "remove": false
     },
     {
-      "item": "rankine:nepheline",
+      "item": "rankine:amphibole",
       "weight": 20,
       "remove": false
     },
     {
-      "item": "rankine:amphibole",
+      "item": "minecraft:quartz",
       "weight": 15,
       "remove": false
     },
     {
-      "item": "rankine:pyroxene",
+      "item": "rankine:sanidine",
       "weight": 10,
       "remove": false
     },
     {
       "item": "rankine:biotite",
-      "weight": 10,
+      "weight": 8,
       "remove": false
     },
     {
-      "item": "rankine:pyrochlore",
-      "weight": 5,
+      "item": "rankine:kaolinite",
+      "weight": 2,
+      "remove": false,
       "tier": "minecraft:iron"
     },
     {
-      "item": "rankine:apatite",
-      "weight": 5,
-      "tier": "minecraft:iron"
-    },
-    {
-      "item": "minecraft:lapis_lazuli",
-      "weight": 4,
+      "item": "rankine:sapphire",
+      "weight": 0.2,
+      "remove": false,
       "tier": "minecraft:diamond"
-    },
-    {
-      "item": "rankine:ilmenite",
-      "weight": 1,
-      "tier": "minecraft:diamond"
-    },
-    {
-      "item": "rankine:magnetite",
-      "weight": 0.5,
-      "tier": "minecraft:netherite"
     }
   ]
 }
