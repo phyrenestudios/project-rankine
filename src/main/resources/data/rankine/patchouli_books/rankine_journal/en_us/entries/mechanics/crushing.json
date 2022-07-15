@@ -17,7 +17,7 @@
     },
     {
       "type": "text",
-      "text": "Explain JEI here"
+      "text": "Hovering over each item in JEI will also let you know if you can obtain multiple of an item or only obtain it once. Besides showing the drops you can potentially get, there can also be an output that looks like a barrier. When this output is rolled, it acts as a skip that reduces the total number of outputs by 1. The cyan text tells you the max number of outputs (besides guaranteed outputs) that you can obtain from crushing."
     },
     {
     "type": "text",

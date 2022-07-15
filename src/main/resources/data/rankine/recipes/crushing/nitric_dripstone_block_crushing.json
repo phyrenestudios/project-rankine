@@ -33,6 +33,11 @@
       "item": "rankine:gwihabaite",
       "weight": 5,
       "remove": false
+    },
+    {
+      "item": "rankine:lautarite",
+      "weight": 1,
+      "remove": false
     }
   ]
 }
