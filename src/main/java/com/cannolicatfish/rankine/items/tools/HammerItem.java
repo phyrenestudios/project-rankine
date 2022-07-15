@@ -3,49 +3,38 @@ package com.cannolicatfish.rankine.items.tools;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import com.google.common.collect.Sets;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.level.GameRules;
-import net.minecraft.world.level.Level;
-
-import java.util.*;
-
-import net.minecraft.world.item.Item.Properties;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.block.AnvilBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.TierSortingRegistry;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class HammerItem extends DiggerItem {
-
-    private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.STONE, Blocks.COBBLESTONE, Blocks.SMOOTH_STONE, Blocks.SANDSTONE, Blocks.RED_SANDSTONE, RankineBlocks.GRAY_GRANITE.get(), RankineBlocks.HORNBLENDE_ANDESITE.get(), RankineBlocks.GRANODIORITE.get(), RankineBlocks.LIMESTONE.get(), RankineBlocks.THOLEIITIC_BASALT.get(), RankineBlocks.RHYOLITE.get(),
-            RankineBlocks.GNEISS.get(), RankineBlocks.WHITE_MARBLE.get(), RankineBlocks.SHALE.get(), RankineBlocks.IRONSTONE.get(), RankineBlocks.ANORTHOSITE.get(), RankineBlocks.MAGNETITE_ORE.get(), RankineBlocks.MALACHITE_ORE.get(), RankineBlocks.BAUXITE_ORE.get(), RankineBlocks.CASSITERITE_ORE.get(), RankineBlocks.SPHALERITE_ORE.get(), RankineBlocks.CINNABAR_ORE.get(), RankineBlocks.PENTLANDITE_ORE.get(),
-            RankineBlocks.LIGNITE_ORE.get(), RankineBlocks.SUBBITUMINOUS_ORE.get(), RankineBlocks.BITUMINOUS_ORE.get(), RankineBlocks.METEORITE.get());
-
 
     public HammerItem(float attackDamageIn, float attackSpeedIn, Tier tier, Properties builder) {
         super(attackDamageIn, attackSpeedIn, tier, RankineTags.Blocks.HARDENED_GLASS, builder);

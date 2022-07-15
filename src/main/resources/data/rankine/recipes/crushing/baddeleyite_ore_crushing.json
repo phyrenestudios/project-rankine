@@ -14,6 +14,16 @@
       "remove": false
     },
     {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:orthoclase_feldspar",
+      "weight": 15,
+      "remove": false
+    },
+    {
       "item": "rankine:fluorite",
       "weight": 8,
       "tier": "minecraft:iron",

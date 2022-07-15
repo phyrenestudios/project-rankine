@@ -2,48 +2,40 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.util.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Tuple;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.TierSortingRegistry;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
-
-import net.minecraft.world.item.Item.Properties;
-
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.block.AnvilBlock;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.TierSortingRegistry;
 
 public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     private final String defaultComposition;
@@ -119,9 +111,6 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
                                 p_220038_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
                             });
                         }
-                        double d0 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
-                        double d1 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
-                        double d2 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
 
                         if (!creativeFlag) {
                             List<ItemStack> results;
@@ -129,16 +118,13 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
                                 Tuple<List<ItemStack>,Integer> atomizeResults = recipe.getAtomizeResults(getAlloyTier(stack), worldIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(getAlloyTier(stack))  + 1 + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE,stack));
                                 results = atomizeResults.getA();
                                 for (int i = 0; i < atomizeResults.getB(); i++) {
-                                    worldIn.addFreshEntity(new ExperienceOrb(worldIn, pos.getX(), pos.getY() + 0.5D, pos.getZ(), worldIn.getRandom().nextInt(6) + 1));
+                                    worldIn.addFreshEntity(new ExperienceOrb(worldIn, pos.getX(), pos.getY() + 0.5D, pos.getZ(), worldIn.getRandom().nextInt(2) + 1));
                                 }
                             } else {
                                 results = recipe.getResults(getAlloyTier(stack), worldIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(getAlloyTier(stack))  + 1 + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE,stack));
                             }
-                            for (ItemStack t : results)
-                            {
-                                ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, t.copy());
-                                itementity.setDefaultPickUpDelay();
-                                worldIn.addFreshEntity(itementity);
+                            for (ItemStack t : results) {
+                                Block.popResource(worldIn, pos, t.copy());
                             }
 
                         }
