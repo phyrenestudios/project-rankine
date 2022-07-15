@@ -2644,6 +2644,13 @@ public class RankineBlocks {
     public static final RegistryObject<Block> POTTED_WEEPING_WILLOW_SAPLING = BLOCKS.register("potted_weeping_willow_sapling", () -> new FlowerPotBlock(null, WEEPING_WILLOW_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
     public static final RegistryObject<Block> POTTED_HONEY_LOCUST_SAPLING = BLOCKS.register("potted_honey_locust_sapling", () -> new FlowerPotBlock(null, HONEY_LOCUST_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
 
+    public static final RegistryObject<Block> WOOD_TIER_CRUSHING_HEAD = BLOCKS.register("wood_tier_crushing_head", CrushingHeadBlock::new);
+    public static final RegistryObject<Block> STONE_TIER_CRUSHING_HEAD = BLOCKS.register("stone_tier_crushing_head", CrushingHeadBlock::new);
+    public static final RegistryObject<Block> IRON_TIER_CRUSHING_HEAD = BLOCKS.register("iron_tier_crushing_head", CrushingHeadBlock::new);
+    public static final RegistryObject<Block> DIAMOND_TIER_CRUSHING_HEAD = BLOCKS.register("diamond_tier_crushing_head", CrushingHeadBlock::new);
+    public static final RegistryObject<Block> NETHERITE_TIER_CRUSHING_HEAD = BLOCKS.register("netherite_tier_crushing_head", CrushingHeadBlock::new);
+
+
 
     //ALLOY BLOCKS
     public static final RegistryObject<Block> ROSE_GOLD_BLOCK = BLOCKS.register("rose_gold_block", () -> new AlloyBlock(DEF_METAL_BLOCK));

@@ -548,6 +548,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             tintedBarsBlock((IronBarsBlock) blk,getBlockRSL("alloy_bars1"),getBlockRSL("alloy_bars_edge"));
         }
 
+        for (Block blk : RankineLists.CRUSHING_HEADS) {
+            crushingHeadBlock(blk);
+        }
+
         for (Block blk : RankineLists.GEODES) {
             geodeBlock(blk);
         }
@@ -1097,6 +1101,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .rotationY(((dir.get2DDataValue() + 2) % 4) * 90)
                     .build();
         },BlockStateProperties.WATERLOGGED);
+    }
+    public void crushingHeadBlock(Block blk) {
+        String name = blk.getRegistryName().getPath();
+        ModelFile MODEL = models().withExistingParent(name, modLoc("block/template_crushing_head")).texture("all", blockTexture(blk));
+        directionalBlock(blk, MODEL);
     }
     public void pedestalBlock(Block blk) {
         getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(blk.getRegistryName().getPath(), modLoc("block/template_pedestal")).texture("all", modLoc("block/"+blk.getRegistryName().getPath().replace("_pedestal","_block")))).addModel();

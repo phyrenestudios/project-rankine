@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_crushing_head",
+  "textures": {
+    "all": "rankine:block/diamond_tier_crushing_head"
+  }
+}

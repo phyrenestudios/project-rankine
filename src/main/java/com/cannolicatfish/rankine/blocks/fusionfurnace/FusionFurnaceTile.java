@@ -1,35 +1,31 @@
 package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
-import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.BatteryItem;
-import com.cannolicatfish.rankine.items.CrushingHeadItem;
 import com.cannolicatfish.rankine.items.GasBottleItem;
-import com.cannolicatfish.rankine.recipe.CrushingRecipe;
-import com.cannolicatfish.rankine.recipe.FusionFurnaceRecipe;
 import com.cannolicatfish.rankine.recipe.FusionFurnaceRecipe;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.util.Mth;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.BottleItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.WorldlyContainer;
-import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.item.BottleItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.core.Direction;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.core.NonNullList;
-import net.minecraft.util.Mth;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
@@ -37,7 +33,6 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 import javax.annotation.Nullable;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,7 +45,7 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
     private static final int[] SLOTS_UP = new int[]{0,1,2,3};
     private static final int[] SLOTS_DOWN = new int[]{3,4,5,6};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
-    private final int powerCost = Config.MACHINES.GYRATORY_CRUSHER_POWER.get();
+    private final int powerCost = 1;
     public FusionFurnaceTile(BlockPos posIn, BlockState stateIn) {
         super(FUSION_FURNACE_TILE, posIn, stateIn);
     }

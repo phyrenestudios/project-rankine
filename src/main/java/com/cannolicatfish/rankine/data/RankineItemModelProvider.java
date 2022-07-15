@@ -77,6 +77,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.WOODEN_FENCE_GATES,
                 RankineLists.FIBER_BLOCK,
                 RankineLists.FIBER_MAT,
+                RankineLists.CRUSHING_HEADS,
                 RankineLists.SOIL_BLOCKS,
                 RankineLists.MUD_BLOCKS,
                 RankineLists.COARSE_SOIL_BLOCKS,
@@ -345,12 +346,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.POLONIUM_RTG.get());
         basicItem(RankineItems.PLUTONIUM_RTG.get());
         basicItem(RankineItems.STRONTIUM_RTG.get());
-        basicItem(RankineItems.CRUSHING_HEAD_HL0.get());
-        basicItem(RankineItems.CRUSHING_HEAD_HL1.get());
-        basicItem(RankineItems.CRUSHING_HEAD_HL2.get());
-        basicItem(RankineItems.CRUSHING_HEAD_HL3.get());
-        basicItem(RankineItems.CRUSHING_HEAD_HL4.get());
-        basicItem(RankineItems.CRUSHING_HEAD_HL5.get());
         basicItem(RankineItems.ORNAMENT.get());
 
         basicItem("rankine_journal");

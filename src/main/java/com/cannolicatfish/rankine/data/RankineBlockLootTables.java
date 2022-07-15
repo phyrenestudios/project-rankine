@@ -95,6 +95,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.ELECTROMAGNETS,
                 RankineLists.ALLOY_BARS,
                 RankineLists.LANTERNS,
+                RankineLists.CRUSHING_HEADS,
                 RankineLists.WALL_MUSHROOMS,
                 RankineLists.BALES,
                 RankineLists.SAPLINGS

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "IGI",
+    "#B#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stonecutter"
+    },
+    "G": {
+      "item": "minecraft:grindstone"
+    },
+    "I": {
+      "tag": "forge:ingots/steel"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/steel"
+    }
+  },
+  "result": {
+    "item": "rankine:iron_tier_crushing_head"
+  }
+}

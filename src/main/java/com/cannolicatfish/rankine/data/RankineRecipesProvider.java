@@ -46,7 +46,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         blastingMap.put(RankineItems.PYROLUSITE.get(),RankineItems.MANGANESE_INGOT.get());
         blastingMap.put(RankineItems.CHROMITE.get(),RankineItems.CHROMIUM_INGOT.get());
         blastingMap.put(RankineItems.MOLYBDENITE.get(),RankineItems.MOLYBDENUM_INGOT.get());
-        blastingMap.put(RankineItems.ILMENITE.get(),RankineItems.TITANIUM_INGOT.get());
+        //blastingMap.put(RankineItems.ILMENITE.get(),RankineItems.TITANIUM_INGOT.get());
         blastingMap.put(RankineItems.COLUMBITE.get(),RankineItems.NIOBIUM_INGOT.get());
         blastingMap.put(RankineItems.WOLFRAMITE.get(),RankineItems.TUNGSTEN_INGOT.get());
         blastingMap.put(RankineItems.TANTALITE.get(),RankineItems.TANTALUM_INGOT.get());
@@ -459,6 +459,12 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RankineItems.FINS.get(), 1).pattern("L  ").pattern("LRR").define('L', Tags.Items.LEATHER).define('R', RankineTags.Items.RUBBER).unlockedBy("has_ingredient", has(RankineTags.Items.RUBBER)).save(consumer);
         ShapedRecipeBuilder.shaped(RankineItems.GAS_MASK.get(), 1).pattern("RRR").pattern("MRM").pattern("CMC").define('R', RankineTags.Items.RUBBER).define('C', RankineTags.Items.CARBON).define('M', RankineItems.BIOTITE.get()).unlockedBy("has_ingredient", has(RankineTags.Items.RUBBER)).save(consumer);
         ShapedRecipeBuilder.shaped(RankineItems.GOGGLES.get(), 1).pattern("GRG").pattern("RSR").define('R', RankineTags.Items.RUBBER).define('G', Tags.Items.GLASS_PANES).define('S', Tags.Items.STRING).unlockedBy("has_ingredient", has(RankineTags.Items.RUBBER)).save(consumer);
+        
+        ShapedRecipeBuilder.shaped(RankineItems.WOOD_TIER_CRUSHING_HEAD.get(), 1).pattern(" I ").pattern("IGI").pattern("#B#").define('#', Items.STONECUTTER).define('G', Items.GRINDSTONE).define('I', RankineTags.Items.INGOTS_ROSE_METAL).define('B', RankineTags.Items.STORAGE_BLOCKS_ROSE_METAL).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_ROSE_METAL)).save(consumer);
+        ShapedRecipeBuilder.shaped(RankineItems.STONE_TIER_CRUSHING_HEAD.get(), 1).pattern(" I ").pattern("IGI").pattern("#B#").define('#', Items.STONECUTTER).define('G', Items.GRINDSTONE).define('I', RankineTags.Items.INGOTS_BRASS).define('B', RankineTags.Items.STORAGE_BLOCKS_BRASS).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_BRASS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RankineItems.IRON_TIER_CRUSHING_HEAD.get(), 1).pattern(" I ").pattern("IGI").pattern("#B#").define('#', Items.STONECUTTER).define('G', Items.GRINDSTONE).define('I', RankineTags.Items.INGOTS_STEEL).define('B', RankineTags.Items.STORAGE_BLOCKS_STEEL).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_STEEL)).save(consumer);
+        ShapedRecipeBuilder.shaped(RankineItems.DIAMOND_TIER_CRUSHING_HEAD.get(), 1).pattern(" I ").pattern("IGI").pattern("#B#").define('#', Items.STONECUTTER).define('G', Items.GRINDSTONE).define('I', RankineTags.Items.INGOTS_TITANIUM_ALLOY).define('B', RankineTags.Items.STORAGE_BLOCKS_TITANIUM_ALLOY).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_TITANIUM_ALLOY)).save(consumer);
+        ShapedRecipeBuilder.shaped(RankineItems.NETHERITE_TIER_CRUSHING_HEAD.get(), 1).pattern(" I ").pattern("IGI").pattern("#B#").define('#', Items.STONECUTTER).define('G', Items.GRINDSTONE).define('I', RankineTags.Items.INGOTS_TUNGSTEN_HEAVY_ALLOY).define('B', RankineTags.Items.STORAGE_BLOCKS_TUNGSTEN_HEAVY_ALLOY).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_TUNGSTEN_HEAVY_ALLOY)).save(consumer);
 
         ShapedRecipeBuilder.shaped(RankineItems.DOWSING_ROD.get(), 1).pattern("#R#").pattern(" # ").define('#', ItemTags.PLANKS).define('R', RankineTags.Items.ROPE).unlockedBy("has_ingredient", has(RankineTags.Items.ROPE)).save(consumer);
         ShapedRecipeBuilder.shaped(RankineItems.WOODEN_GOLD_PAN.get(), 1).pattern("###").pattern(" # ").define('#', ItemTags.PLANKS).unlockedBy("has_ingredient", has(ItemTags.PLANKS)).save(consumer);

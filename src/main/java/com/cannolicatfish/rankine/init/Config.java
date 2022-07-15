@@ -493,10 +493,9 @@ public class Config {
         public final ForgeConfigSpec.IntValue LASER_QUARRY_RANGE;
         public final ForgeConfigSpec.IntValue LASER_QUARRY_SPEED;
         public final ForgeConfigSpec.IntValue GAS_BOTTLER_SPEED;
-        public final ForgeConfigSpec.IntValue GYRATORY_CRUSHER_POWER;
         public final ForgeConfigSpec.IntValue INDUCTION_FURNACE_POWER;
-
         public final ForgeConfigSpec.IntValue AIR_DISTILLATION_SPEED;
+        public final ForgeConfigSpec.DoubleValue CRUSHING_SUCCESS_CHANCE;
 
 
         public Machines(ForgeConfigSpec.Builder b) {
@@ -527,10 +526,10 @@ public class Config {
                         .defineInRange("laserQuarryRange", 31, 0, 63);
                 LASER_QUARRY_SPEED = b.comment("Max speed of the laser quarry in ticks.")
                         .defineInRange("laserQuarrySpeed", 20, 1, 300);
-                GYRATORY_CRUSHER_POWER = b.comment("Defines the power requirement for one process in the gyratory crusher (multiplied by the tier of the current crushing head).")
-                        .defineInRange("gyratoryCrusherPower", 1, 0, 10000);
                 INDUCTION_FURNACE_POWER = b.comment("Defines the power requirement for one process in the induction furnace.")
                         .defineInRange("inductionFurnacePower", 16, 0, 10000);
+                CRUSHING_SUCCESS_CHANCE = b.comment("Chance for a piston/crushing head to crush a block.")
+                        .defineInRange("crushingSuccessChance", 0.2D, 0.0D, 1.0D);
             b.pop();
         }
     }

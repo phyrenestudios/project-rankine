@@ -25,6 +25,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import javax.annotation.Nonnull;
@@ -150,9 +151,13 @@ public class JEIRankinePlugin implements IModPlugin {
         for (Item item: RankineLists.HAMMERS) {
             registry.addRecipeCatalyst(new ItemStack(item), CRUSHING);
         }
+        for (Block blk: RankineLists.CRUSHING_HEADS) {
+            registry.addRecipeCatalyst(new ItemStack(blk), CRUSHING);
+        }
         for (Item item : RankineLists.FORAGING_TOOLS) {
             registry.addRecipeCatalyst(new ItemStack(item), FORAGING);
         }
+        registry.addRecipeCatalyst(new ItemStack(RankineItems.FLINT_SHOVEL.get()), FORAGING);
 
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.MIXING_BARREL.get()), MixingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()), AlloyingRecipeCategory.UID);

@@ -135,7 +135,7 @@ public class BlockBreakHandler {
 
 
             //Foraging Enchantment
-            if (mainHandItem.getItem() instanceof AlloyShovelItem) {
+            if (mainHandItem.getItem() instanceof AlloyShovelItem || mainHandItem.getItem().equals(RankineItems.FLINT_SHOVEL.get())) {
                 ItemStack itemStack = ForagingRecipe.getForagingResult(levelIn, levelIn.getBiome(pos).value().getRegistryName(), targetBlockState, RankineEnchantmentHelper.hasForaging(player));
                 if (!itemStack.isEmpty()) Block.popResource(levelIn, pos, itemStack);
             }

@@ -3529,6 +3529,13 @@ public class RankineItems {
     public static final RegistryObject<Item> AMERICIUM_RTG = ITEMS.register("americium_rtg", () -> new BatteryItem(new Item.Properties().durability(9600).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> CURIUM_RTG = ITEMS.register("curium_rtg", () -> new BatteryItem(new Item.Properties().durability(9600).tab(ProjectRankine.setup.rankineTools)));
 
+    public static final RegistryObject<Item> WOOD_TIER_CRUSHING_HEAD = ITEMS.register("wood_tier_crushing_head", () -> new BlockItem(RankineBlocks.WOOD_TIER_CRUSHING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> STONE_TIER_CRUSHING_HEAD = ITEMS.register("stone_tier_crushing_head", () -> new BlockItem(RankineBlocks.STONE_TIER_CRUSHING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> IRON_TIER_CRUSHING_HEAD = ITEMS.register("iron_tier_crushing_head", () -> new BlockItem(RankineBlocks.IRON_TIER_CRUSHING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> DIAMOND_TIER_CRUSHING_HEAD = ITEMS.register("diamond_tier_crushing_head", () -> new BlockItem(RankineBlocks.DIAMOND_TIER_CRUSHING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> NETHERITE_TIER_CRUSHING_HEAD = ITEMS.register("netherite_tier_crushing_head", () -> new BlockItem(RankineBlocks.NETHERITE_TIER_CRUSHING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+
+    /*
     public static final RegistryObject<Item> CRUSHING_HEAD_HL0 = ITEMS.register("crushing_head_hl0", () -> new CrushingHeadItem(0,new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> CRUSHING_HEAD_HL1 = ITEMS.register("crushing_head_hl1", () -> new CrushingHeadItem(1,new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> CRUSHING_HEAD_HL2 = ITEMS.register("crushing_head_hl2", () -> new CrushingHeadItem(2,new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
@@ -3536,6 +3543,8 @@ public class RankineItems {
     public static final RegistryObject<Item> CRUSHING_HEAD_HL4 = ITEMS.register("crushing_head_hl4", () -> new CrushingHeadItem(4,new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> CRUSHING_HEAD_HL5 = ITEMS.register("crushing_head_hl5", () -> new CrushingHeadItem(5,new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
 
+
+     */
     public static final RegistryObject<Item> PACKAGED_TOOL = ITEMS.register("packaged_tool", () -> new PackagedToolItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PACKAGED_ARMOR = ITEMS.register("packaged_armor", () -> new PackagedArmorItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
 

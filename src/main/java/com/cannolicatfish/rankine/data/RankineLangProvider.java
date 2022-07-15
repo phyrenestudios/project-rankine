@@ -142,6 +142,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MYCELIUM_BLOCKS,
                 RankineLists.PATH_BLOCKS,
                 RankineLists.ELECTROMAGNETS,
+                RankineLists.CRUSHING_HEADS,
                 RankineLists.LANTERNS,
                 RankineLists.QUARTER_SLABS,
                 RankineLists.ASPHALT_BLOCKS,
@@ -512,13 +513,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.CURIUM_RTG.get(),
             RankineItems.PLUTONIUM_RTG.get(),
             RankineItems.POLONIUM_RTG.get(),
-            RankineItems.STRONTIUM_RTG.get(),
-            RankineItems.CRUSHING_HEAD_HL0.get(),
-            RankineItems.CRUSHING_HEAD_HL1.get(),
-            RankineItems.CRUSHING_HEAD_HL2.get(),
-            RankineItems.CRUSHING_HEAD_HL3.get(),
-            RankineItems.CRUSHING_HEAD_HL4.get(),
-            RankineItems.CRUSHING_HEAD_HL5.get())) {
+            RankineItems.STRONTIUM_RTG.get())) {
             add(item, parseLangName(item.getRegistryName().getPath()));
         }
 
@@ -681,7 +676,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.quake", "Quake");
         add("enchantment.rankine.quake.desc", "Increases mining speed based on depth.");
         add("enchantment.rankine.foraging", "Foraging");
-        add("enchantment.rankine.foraging.desc", "Adds chance to gain various items from digging in dirt.");
+        add("enchantment.rankine.foraging.desc", "Adds chance to gain various items from digging in grass blocks. Only works with flint and alloy based shovels. The foraging enchantment can be aquired to increase the pool of drops. See JEI for details.");
         add("enchantment.rankine.impact", "Impact");
         add("enchantment.rankine.impact.desc", "Increases knockback of thrown spears.");
         add("enchantment.rankine.antiquated", "Antiquated");

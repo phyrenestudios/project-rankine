@@ -13,45 +13,26 @@
     },
     {
       "type": "text",
-      "text": "The main thing that you need to consider when crushing a block is the crushing/harvest level of your tool. Similar to pickaxes, hammers cannot break blocks greater than its harvest level. However, the hammer's harvest level also influences what drops from the block you crush. JEI is the best source of information on the potential drops of any block when crushing it."
+      "text": "The main thing that you need to consider when crushing a block is the crushing/harvest level of your tool. Similar to pickaxes, hammers cannot break blocks greater than its harvest level. However, the hammer's harvest level also influences how many rolls of the drops you will receive. JEI is the best source of information on the potential drops of any block when crushing it."
     },
     {
       "type": "text",
-      "text": "Each block can have up to 6 possible outputs, with each output corresponding to a certain harvest level. This means that crushing a block with a tool that has a harvest level of 3 will give you the chance to obtain the outputs from crushing level 3, 2, 1, and 0. Drops from crushing are determined by random chance."
-    },
-    {
-      "type": "text",
-      "text": "Each output has two types of chances. The innate chance represents the chance you obtain the drop provided your harvest level is greater than or equal to the crushing level of the drop. The additional chance is a bonus chance that is added if your harvest level is equal to the crushing level of the drop."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:piston_crusher",
-      "text": "If you want to automate the crushing process, there are currently two machines that you can use"
+      "text": "Explain JEI here"
     },
     {
     "type": "text",
-    "anchor": "piston_crusher",
-    "text": "Crushing materials is the best method of obtaining resources for refinement. Simply place materials into the input slot and fuel the machine. The Piston Crusher acts as an automated Iron Hammer and is considered to have a crushing level of 3 (Invar)."
+    "anchor": "crushing_heads",
+    "text": "To automate the crushing process, pistons can be used to push a crushing head into a block. Place the crushing head on the face of the piston and then a one block gap before the desired block to be crushed. Works in any direction."
     },
     {
-      "type": "text",
-      "text": "This means that the Piston Crusher can only obtain up to three drops from the block. The Piston Crusher can crush blocks with a crushing level greater than 3, but only the outputs requiring a crushing level equal to or less than 3 can be obtained."
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:gyratory_crusher",
-      "link_recipe": true,
-      "text": "Similar to the Piston Crusher, simply place materials into the middle slot and ensure the installation of a battery and crushing head. The tier of the crushing head will determine the crushing level of the machine."
-    },
-    {
-      "type": "crafting",
+      "type": "rankine:item5",
       "header": "Crushing Heads",
-      "item1": "rankine:crushing_head_h0",
-      "item2": "rankine:crushing_head_h1",
-      "item3": "rankine:crushing_head_h2",
-      "item4": "rankine:crushing_head_h3",
-      "item5": "rankine:crushing_head_h4",
-      "item6": "rankine:crushing_head_h5"
+      "item1": "rankine:wood_tier_crushing_head",
+      "item2": "rankine:stone_tier_crushing_head",
+      "item3": "rankine:iron_tier_crushing_head",
+      "item4": "rankine:diamond_tier_crushing_head",
+      "item5": "rankine:netherite_tier_crushing_head",
+      "text": "The tier of the Crushing Head affects the drops much like the Hammers."
     }
   ]
 }

@@ -1,24 +1,22 @@
 package com.cannolicatfish.rankine.blocks.distillationtower;
 
-import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.AirDistillationRecipe;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.Tag;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.*;
 
@@ -46,7 +44,6 @@ public class DistillationTowerTile extends BlockEntity {
         if (!level.isClientSide && LAYERS > 0) {
             ++tile.proccessTime;
             if (tile.proccessTime >= Config.MACHINES.AIR_DISTILLATION_SPEED.get()) {
-                System.out.println(level.dimension().location());
                 AirDistillationRecipe recipe =  tile.getRecipe(level,level.getBiome(tile.worldPosition).value().getRegistryName(), level.dimension().location());
                 if (recipe != null) {
                     for (int i = 4; i < LAYERS * 3 + 2; i+=3) {

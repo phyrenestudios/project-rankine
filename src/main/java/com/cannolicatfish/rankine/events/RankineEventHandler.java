@@ -62,8 +62,8 @@ public class RankineEventHandler {
         EntityJoinWorldHandler.onSheepJoinWorld(event);
     }
     @SubscribeEvent
-    public static void onPistonExtend(PistonEvent.Post event) {
-        PistonHandler.onPistonExtend(event);
+    public static void onPistonExtend(PistonEvent.Pre event) {
+        PistonHandler.onPistonExtendPre(event);
     }
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void chunkLoadEvent(ChunkEvent.Load event) {
