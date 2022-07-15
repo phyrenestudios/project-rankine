@@ -2,7 +2,7 @@
   "type": "rankine:crushing",
   "maxRolls": 2,
   "input": {
-    "item": "minecraft:cobblestone"
+    "item": "rankine:skarn"
   },
   "guaranteed": [
     {

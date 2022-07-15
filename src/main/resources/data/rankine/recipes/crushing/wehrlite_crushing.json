@@ -1,11 +1,11 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:meteorite"
+    "item": "rankine:wehrlite"
   },
   "guaranteed": [
     {
-      "item": "minecraft:cobblestone"
+      "item": "minecraft:blackstone"
     }
   ],
   "outputs": [
@@ -14,29 +14,29 @@
       "remove": false
     },
     {
-      "item": "minecraft:quartz",
+      "item": "rankine:olivine",
+      "weight": 35,
+      "remove": false
+    },
+    {
+      "item": "rankine:diopside",
       "weight": 20,
       "remove": false
     },
     {
-      "item": "rankine:sanidine",
+      "item": "rankine:pyroxene",
       "weight": 10,
       "remove": false
     },
     {
-      "item": "rankine:wadsleyite",
-      "weight": 10,
-      "remove": false
-    },
-    {
-      "item": "rankine:graphite",
-      "weight": 4,
-      "tier": "minecraft:iron",
-      "remove": false
+      "item": "rankine:garnet",
+      "weight": 2,
+      "remove": false,
+      "tier": "minecraft:diamond"
     },
     {
       "item": "rankine:chromite",
-      "weight": 2,
+      "weight": 0.5,
       "tier": "minecraft:netherite"
     }
   ]

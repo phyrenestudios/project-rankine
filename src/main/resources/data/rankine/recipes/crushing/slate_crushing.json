@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:soapstone"
+    "item": "rankine:slate"
   },
   "guaranteed": [
     {
@@ -35,7 +35,7 @@
       "remove": false
     },
     {
-      "item": "rankine:mica",
+      "item": "rankine:biotite",
       "weight": 2,
       "remove": false,
       "tier": "minecraft:iron"

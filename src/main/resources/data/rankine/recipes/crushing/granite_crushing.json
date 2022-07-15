@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:purple_porphyry"
+    "item": "minecraft:granite"
   },
   "guaranteed": [
     {
@@ -14,7 +14,7 @@
       "remove": false
     },
     {
-      "item": "rankine:labradorite",
+      "item": "rankine:orthoclase_feldspar",
       "weight": 40,
       "remove": false
     },
@@ -24,20 +24,31 @@
       "remove": false
     },
     {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 15,
+      "remove": false
+    },
+    {
       "item": "rankine:biotite",
-      "weight": 18,
+      "weight": 10,
       "remove": false
     },
     {
-      "item": "rankine:amphibole",
-      "weight": 14,
+      "item": "rankine:kyanite",
+      "weight": 8,
       "remove": false
     },
     {
-      "item": "minecraft:lapis_lazuli",
+      "item": "rankine:kaolinite",
       "weight": 2,
       "remove": false,
       "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:ruby",
+      "weight": 0.2,
+      "remove": false,
+      "tier": "minecraft:diamond"
     }
   ]
 }

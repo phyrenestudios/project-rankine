@@ -1,0 +1,43 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:lherzolite"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:blackstone"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:olivine",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "rankine:diopside",
+      "weight": 30,
+      "remove": false
+    },
+    {
+      "item": "rankine:pyroxene",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:garnet",
+      "weight": 2,
+      "remove": false,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:spinel",
+      "weight": 0.5,
+      "tier": "minecraft:netherite"
+    }
+  ]
+}

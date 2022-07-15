@@ -1,0 +1,47 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:dolostone"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:breccia"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 45,
+      "remove": false
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 25,
+      "remove": false
+    },
+    {
+      "item": "rankine:gypsum",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:magnesite",
+      "weight": 2,
+      "tier": "minecraft:iron"
+    },
+    {
+      "item": "minecraft:dead_tube_coral",
+      "weight": 1,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:dead_bubble_coral",
+      "weight": 1,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}

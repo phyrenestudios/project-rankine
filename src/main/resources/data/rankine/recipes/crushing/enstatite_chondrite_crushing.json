@@ -35,7 +35,7 @@
       "remove": false
     },
     {
-      "item": "minecraft:chromite_enstatite",
+      "item": "rankine:chrome_enstatite",
       "weight": 2,
       "tier": "minecraft:diamond"
     }

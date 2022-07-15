@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.enchantment.Enchantments;
 
 public class AtomizeEnchantment extends Enchantment {
     public AtomizeEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlot... p_i46721_2_) {
@@ -24,6 +25,9 @@ public class AtomizeEnchantment extends Enchantment {
     }
 
     public boolean checkCompatibility(Enchantment p_77326_1_) {
+        if (p_77326_1_.equals(Enchantments.BLOCK_FORTUNE)) {
+            return false;
+        }
         return super.checkCompatibility(p_77326_1_);
     }
 }

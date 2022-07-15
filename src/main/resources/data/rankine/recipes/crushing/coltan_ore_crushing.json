@@ -38,7 +38,7 @@
       "tier": "minecraft:iron"
     },
     {
-      "item": "rankine:emerald",
+      "item": "minecraft:emerald",
       "weight": 2,
       "tier": "minecraft:diamond"
     }

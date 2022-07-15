@@ -1,11 +1,11 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:greenockite_ore"
+    "item": "rankine:xenotime_ore"
   },
   "guaranteed": [
     {
-      "item": "rankine:greenockite"
+      "item": "rankine:xenotime"
     }
   ],
   "outputs": [

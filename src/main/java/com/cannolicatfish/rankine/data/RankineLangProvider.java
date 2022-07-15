@@ -641,7 +641,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.minecraft.splash_potion.effect.mercury_poison", "Splash Potion of Mercury Poisoning");
         add("item.minecraft.lingering_potion.effect.mercury_poison", "Lingering Potion of Mercury Poisoning");
         add("item.minecraft.tipped_arrow.effect.mercury_poison", "Arrow of Mercury Poisoning");
-        add("effect.rankine.conductive_potion", "Conductive");
+        add("effect.rankine.conductive", "Conductive");
         add("item.minecraft.potion.effect.conductive_potion", "Potion of Conductivity");
         add("item.minecraft.splash_potion.effect.conductive_potion", "Splash Potion of Conductivity");
         add("item.minecraft.lingering_potion.effect.conductive_potion", "Lingering Potion of Conductivity");
@@ -652,7 +652,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.blast", "Blast");
         add("enchantment.rankine.blast.desc", "Causes the hammer to explode blocks in a radius.");
         add("enchantment.rankine.atomize", "Atomize");
-        add("enchantment.rankine.atomize.desc", "Rolls specific outputs again if they were missed on the first roll when crushing.");
+        add("enchantment.rankine.atomize.desc", "All additional outputs are turned into experience.");
         add("enchantment.rankine.lightning_aspect", "Lightning Aspect");
         add("enchantment.rankine.lightning_aspect.desc", "Causes lightning to strike when attacking targets.");
         add("enchantment.rankine.swing", "Swing");
@@ -676,7 +676,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.quake", "Quake");
         add("enchantment.rankine.quake.desc", "Increases mining speed based on depth.");
         add("enchantment.rankine.foraging", "Foraging");
-        add("enchantment.rankine.foraging.desc", "Adds chance to gain various items from digging in grass blocks. Only works with flint and alloy based shovels. The foraging enchantment can be aquired to increase the pool of drops. See JEI for details.");
+        add("enchantment.rankine.foraging.desc", "Adds a chance to obtain new items from various blocks.");
         add("enchantment.rankine.impact", "Impact");
         add("enchantment.rankine.impact.desc", "Increases knockback of thrown spears.");
         add("enchantment.rankine.antiquated", "Antiquated");

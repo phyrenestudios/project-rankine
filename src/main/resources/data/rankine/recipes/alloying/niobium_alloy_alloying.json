@@ -62,5 +62,7 @@
   "result": "rankine:niobium_alloy_ingot",
   "durability": 600,
   "miningspeed": 3,
-  "toughness": 0.1
+  "toughness": 0.1,
+  "enchantments": ["rankine:daze"],
+  "enchantmentTypes": ["HAMMER"]
 }

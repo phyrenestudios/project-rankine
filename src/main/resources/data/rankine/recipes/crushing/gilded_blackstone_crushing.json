@@ -25,12 +25,12 @@
       "remove": false
     },
     {
-      "item": "minecraft:pyroxene",
+      "item": "rankine:pyroxene",
       "weight": 5,
       "remove": false
     },
     {
-      "item": "minecraft:olivine",
+      "item": "rankine:olivine",
       "weight": 5,
       "remove": false
     },
