@@ -37,9 +37,9 @@ public class ProspectingStickItem extends Item {
             if (worldIn.getRandom().nextFloat() < Config.TOOLS.SAMPLE_CHANCE.get()/2f) {
                 for (int i = 1; i < pos.getY(); ++i) {
                     Block target = worldIn.getBlockState(pos.down(i)).getBlock();
-                    if (VanillaIntegration.oreNuggetMap.containsKey(target) && player != null && !worldIn.isRemote()) {
-                        player.sendStatusMessage(new TranslationTextComponent("item.rankine.prospecting_stick_cobbles.message", new TranslationTextComponent(target.getTranslationKey()).getString()), true);
-                        if (this.isDamageable() && !worldIn.isRemote()) {
+                    if (VanillaIntegration.oreNuggetMap.containsKey(target) && player != null) {
+                        if (!worldIn.isRemote()) {
+                            player.sendStatusMessage(new TranslationTextComponent("item.rankine.prospecting_stick_cobbles.message", new TranslationTextComponent(target.getTranslationKey()).getString()), true);
                             context.getItem().damageItem(1, player, (p_219998_1_) -> {
                                 p_219998_1_.sendBreakAnimation(context.getHand());
                             });
@@ -60,7 +60,7 @@ public class ProspectingStickItem extends Item {
                     if (player != null) {
                         worldIn.playSound(player, pos, SoundEvents.BLOCK_NOTE_BLOCK_BELL, SoundCategory.PLAYERS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
                         if (!worldIn.isRemote()) {
-                            player.sendStatusMessage(new TranslationTextComponent("item.rankine.prospecting_stick.message", ORE.getBlock().getTranslatedName(), Integer.toString(ORE.getBlock().getHarvestLevel(ORE))), true);
+                            player.sendStatusMessage(new TranslationTextComponent("item.rankine.prospecting_stick.message", ORE.getBlock().getTranslationKey(), Integer.toString(ORE.getBlock().getHarvestLevel(ORE))), true);
                             context.getItem().damageItem(1, player, (p) -> {
                                 p.sendBreakAnimation(context.getHand());
                             });

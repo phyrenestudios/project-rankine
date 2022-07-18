@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "rankine:block/alluvium"
+    "side": "rankine:block/alluvium",
+    "end": "rankine:block/alluvium_end"
   }
 }

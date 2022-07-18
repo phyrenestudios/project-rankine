@@ -61,7 +61,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 RankineLists.MINERAL_WOOL,
                 RankineLists.LIGHTNING_GLASSES,
                 RankineLists.STANDARD_BLOCKS,
-                RankineLists.MUSHROOM_BLOCKS,
                 RankineLists.MINERAL_BLOCKS
             ).flatMap(Collection::stream).collect(Collectors.toList())) {
             simpleBlock(blk);
@@ -75,10 +74,22 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 RankineBlocks.DARK_GRAVEL.get(),
                 RankineBlocks.KAOLIN.get(),
                 RankineBlocks.FIRE_CLAY.get(),
+                RankineBlocks.TINDER_CONK_MUSHROOM_BLOCK.get(),
+                RankineBlocks.LIONS_MANE_MUSHROOM_BLOCK.get(),
+                RankineBlocks.OYSTER_MUSHROOM_BLOCK.get(),
+                RankineBlocks.CINNABAR_POLYPORE_MUSHROOM_BLOCK.get(),
                 RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(),
                 RankineBlocks.PORPHYRY_COPPER.get()
         )) {
             simpleBlock(blk);
+        }
+        for (Block blk : Arrays.asList(
+                RankineBlocks.HONEY_MUSHROOM_BLOCK.get(),
+                RankineBlocks.ARTIST_CONK_MUSHROOM_BLOCK.get(),
+                RankineBlocks.SULFUR_SHELF_MUSHROOM_BLOCK.get(),
+                RankineBlocks.TURKEY_TAIL_MUSHROOM_BLOCK.get()
+        )) {
+            cubeTopBottomBLock(blk);
         }
         for (Block blk : RankineLists.POLISHED_STONES) {
             fancyPolishedBlock(blk);
@@ -134,6 +145,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         sixSideCrossBlock(RankineBlocks.GWIHABAITE_CRYSTAL.get());
         crossBlock(RankineBlocks.STINGING_NETTLE.get());
         axisBlock((RotatedPillarBlock) RankineBlocks.BONE_CHAR_BLOCK.get());
+        simpleBlock(RankineBlocks.ALLUVIUM.get(), models().cubeColumn(RankineBlocks.ALLUVIUM.get().getRegistryName().getPath(), blockTexture(RankineBlocks.ALLUVIUM.get()), getBlockRSL("alluvium_end")));
 
         for (Block BLK : RankineLists.LANTERNS) {
             lanternBlock(BLK);
@@ -1531,7 +1543,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
     }
 
-
+    public void cubeTopBottomBLock(Block BLK) {
+        String pathName = BLK.getRegistryName().getPath();
+        simpleBlock(BLK,models().cubeBottomTop(pathName,blockTexture(BLK),getBlockRSL(pathName+"_end"),getBlockRSL(pathName+"_end")));
+    }
     
     public void slabBlock(Block BLK) {
         String regName = BLK.getRegistryName().getPath();

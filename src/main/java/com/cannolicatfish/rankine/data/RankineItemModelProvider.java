@@ -110,6 +110,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.DARK_GRAVEL.get(),
                 RankineBlocks.FIRE_CLAY.get(),
                 RankineBlocks.KAOLIN.get(),
+                RankineBlocks.ALLUVIUM.get(),
                 RankineBlocks.COB.get(),
                 RankineBlocks.STICK_BLOCK.get(),
                 RankineBlocks.MYCELIUM_PATH.get(),

@@ -456,8 +456,8 @@ public class Config {
             b.comment("Settings for general mechanics").push("general");
 
                 b.comment("Miscellaneous").push("misc");
-                    PATH_CREATION_TIME = b.comment("Roughly the time in seconds between chance for blocks to be changed to a path block when stepped on.")
-                            .defineInRange("pathCreationTime", 10, 0, 600);
+                    PATH_CREATION_TIME = b.comment("The 1 in X chance for grass blocks to convert to path blocks while a player is on them.")
+                            .defineInRange("pathCreationTime", 8, 1, Integer.MAX_VALUE);
                     PATH_CREATION = b.comment("If enabled, walking on grass blocks, mycelium and podzol has a chance to create a path block underfoot.")
                             .define("pathCreation",true);
                     COLOR_WORLD = b.comment("If enabled, dyes can be used on blocks in-world to dye them (includes concrete, concrete powder, terracotta, glazed terracotta, stained glass, stained glass panes, leds, wool)")
@@ -578,7 +578,7 @@ public class Config {
                     NUGGET_CHANCE = b.comment("Chance for a block in #rankine:nugget_stones to drop a nugget of a nearby ore.")
                             .defineInRange("nuggetChance", 0.04D, 0.00D, 1.00D);
                     NUGGET_DISTANCE = b.comment("Distance from an ore block in which nuggets have a chance to drop from blocks.")
-                            .defineInRange("nuggetRange", 9, 1, 64);
+                            .defineInRange("nuggetRange", 4, 1, 64);
                 b.pop();
 
                 b.comment("Enchantments").push("enchantments");
@@ -761,7 +761,6 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue GENERATE_MUD;
         public final ForgeConfigSpec.BooleanValue EVAPORITE_GEN;
         public final ForgeConfigSpec.BooleanValue FUMAROLE_GEN;
-        public final ForgeConfigSpec.BooleanValue ALLUVIUM_GEN;
         public final ForgeConfigSpec.BooleanValue WHITE_SAND_GEN;
         public final ForgeConfigSpec.BooleanValue BLACK_SAND_GEN;
         public final ForgeConfigSpec.BooleanValue SECRET_GEN;
@@ -832,8 +831,6 @@ public class Config {
                     .define("generateMud",true);
             FUMAROLE_GEN = b.comment("Enables the generation of fumaroles. More options to come.")
                     .define("generateFumaroles",true);
-            ALLUVIUM_GEN = b.comment("Enables the generation of alluvium disks.")
-                    .define("generateAlluvium",true);
             WHITE_SAND_GEN = b.comment("Enables the generation of white sand disks in beaches.")
                     .define("generateWhiteSand",true);
             BLACK_SAND_GEN = b.comment("Enables the generation of black sand disks in the Nether.")
@@ -971,7 +968,7 @@ public class Config {
                     Arrays.asList("rankine:wadsleyone","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt"),
                     Arrays.asList("rankine:short_grass|70","minecraft:grass|10"),
                     "rankine:light_gravel",
-                    "minecraft:air",
+                    "rankine:silt",
                     "minecraft:air"));
             biomeSettings.add(Arrays.asList(Biome.Category.BEACH.getName(),
                     Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay"),
@@ -982,7 +979,7 @@ public class Config {
                     "minecraft:air",
                     "minecraft:air"));
             biomeSettings.add(Arrays.asList(Biome.Category.RIVER.getName(),
-                    Arrays.asList("rankine:clay_loam_grass_block","rankine:clay_loam","rankine:silty_clay","rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:silty_clay"),
+                    Arrays.asList("rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:silty_clay","rankine:alluvium","rankine:alluvium","rankine:alluvium"),
                     Arrays.asList("minecraft:air|20|minecraft:air|0.0","rankine:kimberlite|5|rankine:kimberlitic_diamond_ore|0.05"),
                     Arrays.asList("rankine:post_perovskite","rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt","rankine:chalk","rankine:shale","rankine:shale","rankine:anorthosite"),
                     Arrays.asList("rankine:short_grass|20","minecraft:grass|50","rankine:stinging_nettle|1"),

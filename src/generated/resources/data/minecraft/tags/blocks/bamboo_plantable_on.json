@@ -5,6 +5,7 @@
     "#forge:gravel",
     "#forge:sand",
     "rankine:silt",
+    "rankine:alluvium",
     "rankine:desert_sand"
   ]
 }

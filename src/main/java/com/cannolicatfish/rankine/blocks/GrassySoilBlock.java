@@ -1,16 +1,22 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
+import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -20,6 +26,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.List;
 import java.util.Random;
 
 public class GrassySoilBlock extends GrassBlock {
@@ -49,19 +56,6 @@ public class GrassySoilBlock extends GrassBlock {
             } else {
                 worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
             }
-        } else if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get()) {
-            Block ceillingBlock = Blocks.AIR;
-            int i = 1;
-            while (i <= 40) {
-                if (!worldIn.isAirBlock(pos.offset(Direction.UP, i)) && !(worldIn.getBlockState(pos.up(i)).isReplaceable(Fluids.WATER))) {
-                    ceillingBlock = worldIn.getBlockState(pos.up(i)).getBlock();
-                    break;
-                }
-                ++i;
-            }
-            if (ceillingBlock instanceof LeavesBlock && !(ceillingBlock instanceof RankineLeavesBlock) && (worldIn.getBlockState(pos.up(i - 1)).isReplaceable(Fluids.WATER) || worldIn.getBlockState(pos.up(i - 1)).matchesBlock(Blocks.AIR))) {
-                worldIn.setBlockState(pos.up(i - 1), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate("rankine:"+ceillingBlock.getRegistryName().getPath().toString().replace("leaves", "leaf_litter"))).getDefaultState(), 3);
-            }
         } else if (worldIn.getLight(pos.up()) >= 9) {
             BlockState blockstate = this.getDefaultState();
             for (int i = 0; i < 4; ++i) {
@@ -72,10 +66,49 @@ public class GrassySoilBlock extends GrassBlock {
                     worldIn.setBlockState(blockpos, RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(worldIn.getBlockState(blockpos).getBlock())).getDefaultState().with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)).with(DEAD, blockstate.get(DEAD)));
                 }
             }
-            if (random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get() && !state.get(DEAD) && worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR)) {
-                Biome BIOME = worldIn.getBiome(pos);
-                BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
-                worldIn.setBlockState(pos.up(), BLOCK, 3);
+
+            if (random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get() && !state.get(DEAD)) {
+                BlockState aboveState = worldIn.getBlockState(pos.up());
+                if (aboveState.matchesBlock(RankineBlocks.SHORT_GRASS.get())) {
+                    if (random.nextFloat() < 0.5f) {
+                        worldIn.setBlockState(pos.up(), Blocks.GRASS.getDefaultState(), 3);
+                    }
+                } else if (aboveState.matchesBlock(Blocks.GRASS) && worldIn.getBlockState(pos.up(2)).matchesBlock(Blocks.AIR)) {
+                    if (random.nextFloat() < 0.3f) {
+                        worldIn.setBlockState(pos.up(), Blocks.TALL_GRASS.getDefaultState().with(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER), 3);
+                        worldIn.setBlockState(pos.up(2), Blocks.TALL_GRASS.getDefaultState().with(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER), 3);
+                    }
+                } else if (aboveState.matchesBlock(Blocks.AIR)) {
+                    Biome BIOME = worldIn.getBiome(pos);
+                    if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
+                        BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
+                        worldIn.setBlockState(pos.up(), BLOCK, 3);
+                    }
+                }
+            }
+        }
+
+        if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get()) {
+            Block ceillingBlock = Blocks.AIR;
+            int i = 1;
+            while (i <= 40) {
+                if (!worldIn.isAirBlock(pos.offset(Direction.UP, i)) && !(worldIn.getBlockState(pos.up(i)).isReplaceable(Fluids.WATER))) {
+                    ceillingBlock = worldIn.getBlockState(pos.up(i)).getBlock();
+                    break;
+                }
+                ++i;
+            }
+            if (ceillingBlock instanceof LeavesBlock && !(ceillingBlock instanceof RankineLeavesBlock) && (worldIn.getBlockState(pos.up(i - 1)).isReplaceable(Fluids.WATER) || worldIn.getBlockState(pos.up(i - 1)).matchesBlock(Blocks.AIR))) {
+                if (ResourceLocation.tryCreate("rankine:"+ceillingBlock.getRegistryName().getPath().replace("leaves", "leaf_litter")) != null) {
+                    worldIn.setBlockState(pos.up(i - 1), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate("rankine:"+ceillingBlock.getRegistryName().getPath().replace("leaves", "leaf_litter"))).getDefaultState(), 3);
+                }
+            }
+        }
+
+        if (Config.GENERAL.PATH_CREATION.get() && random.nextInt(Config.GENERAL.PATH_CREATION_TIME.get()) == 0) {
+            List<LivingEntity> entitiesOnBlock = worldIn.getEntitiesWithinAABB(LivingEntity.class, new AxisAlignedBB(pos.up(), pos.up()).expand(1, 1, 1), (e) -> e instanceof PlayerEntity);
+            if (!entitiesOnBlock.isEmpty() && VanillaIntegration.pathBlocks_map.containsKey(state.getBlock()) && !worldIn.getBlockState(pos.up()).getMaterial().blocksMovement()) {
+                worldIn.setBlockState(pos, VanillaIntegration.pathBlocks_map.get(state.getBlock()).getDefaultState(), 3);
             }
         }
     }

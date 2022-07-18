@@ -1,9 +1,9 @@
 {
   "type": "minecraft:blasting",
   "ingredient": {
-    "item": "rankine:ilmenite"
+    "item": "rankine:rhodochrosite"
   },
-  "result": "rankine:titanium_ingot",
+  "result": "rankine:manganese_ingot",
   "experience": 0.5,
   "cookingtime": 100
 }

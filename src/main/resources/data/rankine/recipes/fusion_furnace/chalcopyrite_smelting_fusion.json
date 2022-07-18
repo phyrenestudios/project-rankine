@@ -2,17 +2,17 @@
   "type": "rankine:fusion_furnace",
   "cookTime": 400,
   "input1": {
-    "item": "rankine:molybdenite"
+    "item": "rankine:chalcopyrite"
   },
   "input2": {
-    "item": "rankine:molybdenite"
+    "item": "rankine:white_sand"
   },
   "result1": {
-    "item":"rankine:molybdenum_ingot",
-    "count": 2
+    "item":"minecraft:copper_ingot",
+    "count": 1
   },
   "result2": {
-    "item":"rankine:rhenium_nugget",
+    "item":"rankine:enstatite",
     "count": 1
   },
   "gasInput": {

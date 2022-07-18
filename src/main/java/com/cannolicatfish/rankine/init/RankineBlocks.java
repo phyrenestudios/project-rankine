@@ -1628,7 +1628,7 @@ public class RankineBlocks {
      */
     public static final RegistryObject<Block> SOD_BLOCK = BLOCKS.register("sod_block", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
 
-    public static final RegistryObject<Block> SILT = BLOCKS.register("silt", () -> new SandBlock(00000000, Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> SILT = BLOCKS.register("silt", () -> new RankineSandBlock(10913636, Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> PERMAFROST = BLOCKS.register("permafrost", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)));
 
     public static final RegistryObject<Block> HUMUS = BLOCKS.register("humus", SoilBlock::new);
@@ -1719,7 +1719,7 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> DARK_GRAVEL = BLOCKS.register("dark_gravel", () -> new GravelBlock(AbstractBlock.Properties.create(Material.SAND, MaterialColor.STONE).hardnessAndResistance(0.6F).sound(SoundType.GROUND)));
     public static final RegistryObject<Block> LIGHT_GRAVEL = BLOCKS.register("light_gravel", () -> new GravelBlock(AbstractBlock.Properties.create(Material.SAND, MaterialColor.STONE).hardnessAndResistance(0.6F).sound(SoundType.GROUND)));
-    public static final RegistryObject<Block> ALLUVIUM = BLOCKS.register("alluvium", () -> new SandBlock(14406560, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
+    public static final RegistryObject<Block> ALLUVIUM = BLOCKS.register("alluvium", () -> new RankineSandBlock(14406560, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> BLACK_SAND = BLOCKS.register("black_sand", () -> new RankineSandBlock(00000000, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> WHITE_SAND = BLOCKS.register("white_sand", () -> new RankineSandBlock(16777215, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> DESERT_SAND = BLOCKS.register("desert_sand", () -> new RankineSandBlock(14865335, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));

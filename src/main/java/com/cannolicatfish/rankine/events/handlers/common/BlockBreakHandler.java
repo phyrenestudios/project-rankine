@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.events.handlers.common;
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
 import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.items.alloys.AlloyPickaxeItem;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -11,7 +12,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.PickaxeItem;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
@@ -185,7 +185,7 @@ public class BlockBreakHandler {
 
             //Nugget Drops
             if (Tags.Blocks.STONE.contains(target)) {
-                if (mainHandItem instanceof PickaxeItem) {
+                if (mainHandItem instanceof AlloyPickaxeItem) {
                     BlockPos foundPos = null;
                     for (int x = 1; x < Config.GENERAL.NUGGET_DISTANCE.get(); x++) {
                         if (worldIn.getBlockState(pos.down(x)).getBlock() instanceof RankineOreBlock) {

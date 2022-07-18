@@ -54,6 +54,13 @@
       ],
       "conditions": [
         {
+          "condition": "minecraft:block_state_property",
+          "block": "rankine:oat_plant",
+          "properties": {
+            "age": "7"
+          }
+        },
+        {
           "condition": "minecraft:survives_explosion"
         }
       ]

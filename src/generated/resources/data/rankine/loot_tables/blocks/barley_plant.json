@@ -22,7 +22,7 @@
               "functions": [
                 {
                   "function": "minecraft:set_count",
-                  "count": 2
+                  "count": 1
                 }
               ],
               "name": "rankine:barley"
@@ -57,8 +57,12 @@
               "condition": "minecraft:block_state_property",
               "block": "rankine:barley_plant",
               "properties": {
+                "age": "7",
                 "half": "lower"
               }
+            },
+            {
+              "condition": "minecraft:survives_explosion"
             }
           ],
           "functions": [
@@ -73,11 +77,6 @@
             }
           ],
           "name": "rankine:barley_seeds"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
         }
       ]
     }

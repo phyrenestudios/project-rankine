@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:cobblestone_from_cobbles"
+      "rankine:iron_nugget_from_slag_blasting"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "rankine:cobbles"
+            "tag": "forge:slag"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:cobblestone_from_cobbles"
+        "recipe": "rankine:iron_nugget_from_slag_blasting"
       }
     }
   },

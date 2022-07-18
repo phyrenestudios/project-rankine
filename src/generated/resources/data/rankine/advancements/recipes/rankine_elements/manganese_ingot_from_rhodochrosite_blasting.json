@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:titanium_ingot_from_ilmenite_blasting"
+      "rankine:manganese_ingot_from_rhodochrosite_blasting"
     ]
   },
   "criteria": {
-    "has_ilmenite": {
+    "has_ingredient": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:ilmenite"
+            "item": "rankine:rhodochrosite"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:titanium_ingot_from_ilmenite_blasting"
+        "recipe": "rankine:manganese_ingot_from_rhodochrosite_blasting"
       }
     }
   },
   "requirements": [
     [
-      "has_ilmenite",
+      "has_ingredient",
       "has_the_recipe"
     ]
   ]

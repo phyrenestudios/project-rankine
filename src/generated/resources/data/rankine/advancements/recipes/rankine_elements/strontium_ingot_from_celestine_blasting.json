@@ -6,7 +6,7 @@
     ]
   },
   "criteria": {
-    "has_celestine": {
+    "has_ingredient": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_celestine",
+      "has_ingredient",
       "has_the_recipe"
     ]
   ]

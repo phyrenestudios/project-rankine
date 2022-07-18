@@ -70,6 +70,8 @@ public class LeafLitterBlock extends FallingBlock {
             fallingblockentity.shouldDropItem = false;
             this.onStartFalling(fallingblockentity);
             worldIn.addEntity(fallingblockentity);
+        } else if (!isValidPosition(state,worldIn,pos)) {
+            worldIn.removeBlock(pos,false);
         }
     }
 
@@ -80,7 +82,7 @@ public class LeafLitterBlock extends FallingBlock {
 
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.down()).isNormalCube(worldIn,pos.down()) && worldIn.getBlockState(pos.down()).getBlock() != this;
+        return worldIn.getBlockState(pos.down()).isNormalCube(worldIn,pos.down());
     }
 
     @Override

@@ -219,6 +219,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.WHITE_CLOVER.get(),
                 RankineBlocks.YELLOW_CLOVER.get(),
 
+                RankineBlocks.ALLUVIUM.get(),
                 RankineBlocks.COB.get(),
                 RankineBlocks.SOD_BLOCK.get(),
                 RankineBlocks.MYCELIUM_PATH.get(),

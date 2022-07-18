@@ -36,13 +36,6 @@
       ],
       "conditions": [
         {
-          "condition": "minecraft:block_state_property",
-          "block": "rankine:jute_plant",
-          "properties": {
-            "section": "bottom"
-          }
-        },
-        {
           "condition": "minecraft:survives_explosion"
         }
       ]
@@ -57,6 +50,7 @@
               "condition": "minecraft:block_state_property",
               "block": "rankine:jute_plant",
               "properties": {
+                "age": "7",
                 "section": "bottom"
               }
             }

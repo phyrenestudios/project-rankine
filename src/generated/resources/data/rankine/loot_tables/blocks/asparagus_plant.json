@@ -57,8 +57,12 @@
               "condition": "minecraft:block_state_property",
               "block": "rankine:asparagus_plant",
               "properties": {
+                "age": "7",
                 "half": "lower"
               }
+            },
+            {
+              "condition": "minecraft:survives_explosion"
             }
           ],
           "functions": [
@@ -73,11 +77,6 @@
             }
           ],
           "name": "rankine:asparagus_seeds"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
         }
       ]
     }

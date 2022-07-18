@@ -1,17 +1,11 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineAttributes;
-import com.cannolicatfish.rankine.init.RankineEnchantments;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.init.VanillaIntegration;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.InformationItem;
 import com.cannolicatfish.rankine.items.totems.InvigoratingTotemItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.BushBlock;
 import net.minecraft.block.FrostedIceBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -43,11 +37,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.TickEvent;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class PlayerTickHandler {
@@ -306,16 +296,6 @@ public class PlayerTickHandler {
             pos = player.getPosition();
         }
         Block ground = world.getBlockState(pos).getBlock();
-
-
-        // Path Creation
-        if (Config.GENERAL.PATH_CREATION.get() && !player.isCreative() && player.ticksExisted%(Config.GENERAL.PATH_CREATION_TIME.get()*20)==0 && !world.isRemote) {
-            if (VanillaIntegration.pathBlocks_map.get(ground.getBlock()) != null && world.getBlockState(pos.up()).matchesBlock(Blocks.AIR) && world.getBlockState(pos.up()).getBlock() instanceof BushBlock) {
-                world.setBlockState(pos, VanillaIntegration.pathBlocks_map.get(ground).getDefaultState(),2);
-            }
-
-        }
-
 
         Item feetEquipment = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem();
         Item headEquipment = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem();

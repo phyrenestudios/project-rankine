@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.items.alloys.AlloyShovelItem;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
@@ -24,7 +25,6 @@ import java.util.Stack;
 public class BreakSpeedHandler {
 
     public static void onBreakSpeed( PlayerEvent.BreakSpeed event) {
-        BlockState targetBS = event.getState();
         Item heldItem = event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem();
 
         if (!(heldItem instanceof AxeItem ) && event.getState().isIn(BlockTags.LOGS) && Config.GENERAL.MANDATORY_AXE.get()) { event.setNewSpeed(0f); }
@@ -39,7 +39,7 @@ public class BreakSpeedHandler {
             event.setNewSpeed(event.getNewSpeed() + 3);
         }
 
-        if (targetBS.isIn(RankineTags.Blocks.COBBLES) || targetBS.matchesBlock(RankineBlocks.STUMP.get())) {
+        if (event.getPlayer().getEntityWorld().getBlockState(event.getPos().up()).matchesBlock(RankineBlocks.STUMP.get()) && !(event.getPlayer().getHeldItemMainhand().getItem() instanceof AlloyShovelItem)) {
             event.setNewSpeed(event.getNewSpeed()/2f);
         }
 
