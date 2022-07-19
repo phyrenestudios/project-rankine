@@ -60,7 +60,7 @@ public class ProspectingStickItem extends Item {
                     if (player != null) {
                         worldIn.playSound(player, pos, SoundEvents.BLOCK_NOTE_BLOCK_BELL, SoundCategory.PLAYERS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
                         if (!worldIn.isRemote()) {
-                            player.sendStatusMessage(new TranslationTextComponent("item.rankine.prospecting_stick.message", ORE.getBlock().getTranslationKey(), Integer.toString(ORE.getBlock().getHarvestLevel(ORE))), true);
+                            player.sendStatusMessage(new TranslationTextComponent("item.rankine.prospecting_stick.message", new TranslationTextComponent(ORE.getBlock().getTranslationKey()).getString(), Integer.toString(ORE.getBlock().getHarvestLevel(ORE))), true);
                             context.getItem().damageItem(1, player, (p) -> {
                                 p.sendBreakAnimation(context.getHand());
                             });

@@ -157,7 +157,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
             lootTables.put(MYCELIUM, droppingWithSilkTouch(MYCELIUM,SOIL));
         }
         lootTables.put(RankineBlocks.ENDER_SHIRO.get(), droppingWithSilkTouch(RankineBlocks.ENDER_SHIRO.get(),Blocks.END_STONE));
-
+        lootTables.put(RankineBlocks.BONE_CHAR_BLOCK.get(), createBlockLootTable(RankineBlocks.BONE_CHAR_BLOCK.get()));
         lootTables.put(RankineBlocks.FIRE_CLAY.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.FIRE_CLAY.get(), RankineItems.FIRE_CLAY_BALL.get(), ConstantRange.of(4)));
         lootTables.put(RankineBlocks.KAOLIN.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.KAOLIN.get(), RankineItems.KAOLINITE.get(), ConstantRange.of(4)));
         lootTables.put(RankineBlocks.DARK_GRAVEL.get(), droppingWithSilkTouch(RankineBlocks.DARK_GRAVEL.get(), withSurvivesExplosion(RankineBlocks.DARK_GRAVEL.get(), ItemLootEntry.builder(Items.FLINT).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.2F, 0.5F, 1.0F, 1.0F)).alternatively(ItemLootEntry.builder(RankineBlocks.DARK_GRAVEL.get())))));

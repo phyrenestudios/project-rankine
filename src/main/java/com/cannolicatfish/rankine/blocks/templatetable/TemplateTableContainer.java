@@ -22,6 +22,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 public class TemplateTableContainer extends Container {
@@ -226,7 +228,8 @@ public class TemplateTableContainer extends Container {
 
     public List<AlloyingRecipe> getAlloyRecipes() {
         //&& !alloyingRecipe.cannotMake(player.inventory, this.world)
-        return world.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(this.world).isEmpty()).collect(Collectors.toList());
+        World worldIn = this.world;
+        return world.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty()).sorted((o1, o2) -> Boolean.compare(o1.cannotMake(player.inventory, worldIn), o2.cannotMake(player.inventory, worldIn))).collect(Collectors.toList());
     }
 
     public void func_217046_g(int p_217046_1_) {

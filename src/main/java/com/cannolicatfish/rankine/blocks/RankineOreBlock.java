@@ -77,7 +77,7 @@ public class RankineOreBlock extends Block {
 
     private int modifyHarvestLevel(BlockState state) {
         if (this.hlpath.size() == 0 && this.getRegistryName() != null) {
-            this.hlpath.add("oregen");
+            this.hlpath.add("oreHarvestLevels");
             StringBuilder s = new StringBuilder();
             int count = 0;
             for (String s1 : this.getRegistryName().getPath().split("_")) {

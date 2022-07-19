@@ -40,6 +40,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
     private static final ITextComponent field_243353_D = new TranslationTextComponent("rankine.deprecated");
     private int field_214139_n;
     private boolean isSelected;
+    private List<AlloyingRecipe> alloyRecipes;
 
     public TemplateTableScreen(TemplateTableContainer container, PlayerInventory inv, ITextComponent name) {
         super(container, inv, name);
@@ -55,6 +56,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
 
     protected void init() {
         super.init();
+        this.alloyRecipes = this.container.getAlloyRecipes();
         int i = (this.width - this.xSize) / 2;
         int j = (this.height - this.ySize) / 2;
         int k = j + 16 + 2;
@@ -96,7 +98,6 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
         int i = (this.width - this.xSize) / 2;
         int j = (this.height - this.ySize) / 2;
         blit(matrixStack, i, j, this.getBlitOffset(), 0.0F, 0.0F, this.xSize, this.ySize, 256, 512);
-        List<AlloyingRecipe> alloyRecipes = this.container.getAlloyRecipes();
         if (!alloyRecipes.isEmpty()) {
             int k = this.selectedAlloyRecipe;
             if (k < 0 || k >= alloyRecipes.size()) {
@@ -117,8 +118,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
-        List<AlloyingRecipe> alloyingRecipes = this.container.getAlloyRecipes();
-        if (!alloyingRecipes.isEmpty()) {
+        if (!alloyRecipes.isEmpty()) {
             int i = (this.width - this.xSize) / 2;
             int j = (this.height - this.ySize) / 2;
             int k = j + 16 + 1;
@@ -126,11 +126,11 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
             RenderSystem.pushMatrix();
             RenderSystem.enableRescaleNormal();
             this.minecraft.getTextureManager().bindTexture(GUI);
-            //this.func_238840_a_(matrixStack, i, j, alloyingRecipes);
+            //this.func_238840_a_(matrixStack, i, j, alloyRecipes);
             int i1 = 0;
 
-            for(AlloyingRecipe alloy : alloyingRecipes) {
-                if (this.checkSeven(alloyingRecipes.size()) && (i1 < this.field_214139_n || i1 >= 7 + this.field_214139_n)) {
+            for(AlloyingRecipe alloy : alloyRecipes) {
+                if (this.checkSeven(alloyRecipes.size()) && (i1 < this.field_214139_n || i1 >= 7 + this.field_214139_n)) {
                     ++i1;
                 } else {
                     World worldIn = this.container.getWorld();
@@ -164,7 +164,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
             }
 
             int k1 = this.selectedAlloyRecipe;
-            AlloyingRecipe alloy1 = alloyingRecipes.get(k1);
+            AlloyingRecipe alloy1 = alloyRecipes.get(k1);
             /*if (this.container.func_217042_i()) {
                 this.func_238839_a_(matrixStack, i, j, alloy1);
             }*/
@@ -178,7 +178,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
                     alloyButton.renderToolTip(matrixStack, mouseX, mouseY);
                 }
 
-                alloyButton.visible = alloyButton.field_212938_a < this.container.getAlloyRecipes().size();
+                alloyButton.visible = alloyButton.field_212938_a < alloyRecipes.size();
             }
 
             RenderSystem.popMatrix();
@@ -219,7 +219,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
     }
 
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
-        int i = this.container.getAlloyRecipes().size();
+        int i = alloyRecipes.size();
         if (this.checkSeven(i)) {
             int j = i - 7;
             this.field_214139_n = (int)((double)this.field_214139_n - delta);
@@ -230,7 +230,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
     }
 
     public boolean mouseDragged(double mouseX, double mouseY, int button, double dragX, double dragY) {
-        int i = this.container.getAlloyRecipes().size();
+        int i = alloyRecipes.size();
         if (this.isSelected) {
             int j = this.guiTop + 18;
             int k = j + 139;
@@ -248,7 +248,7 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
         this.isSelected = false;
         int i = (this.width - this.xSize) / 2;
         int j = (this.height - this.ySize) / 2;
-        if (this.checkSeven(this.container.getAlloyRecipes().size()) && mouseX > (double)(i + 94) && mouseX < (double)(i + 94 + 6) && mouseY > (double)(j + 18) && mouseY <= (double)(j + 18 + 139 + 1)) {
+        if (this.checkSeven(alloyRecipes.size()) && mouseX > (double)(i + 94) && mouseX < (double)(i + 94 + 6) && mouseY > (double)(j + 18) && mouseY <= (double)(j + 18 + 139 + 1)) {
             this.isSelected = true;
         }
 
@@ -270,21 +270,21 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
         }
 
         public void renderToolTip(MatrixStack matrixStack, int mouseX, int mouseY) {
-            if (this.isHovered && TemplateTableScreen.this.container.getAlloyRecipes().size() > this.field_212938_a + TemplateTableScreen.this.field_214139_n) {
+            if (this.isHovered && alloyRecipes.size() > this.field_212938_a + TemplateTableScreen.this.field_214139_n) {
                 /*if (mouseX < this.x + 20) {
-                    ItemStack itemstack = TemplateTableScreen.this.container.getAlloyRecipes().get(this.field_212938_a + TemplateTableScreen.this.field_214139_n).getRecipeOutput();
+                    ItemStack itemstack = alloyRecipes.get(this.field_212938_a + TemplateTableScreen.this.field_214139_n).getRecipeOutput();
                     TemplateTableScreen.this.renderTooltip(matrixStack, itemstack, mouseX, mouseY);
                 } else if (mouseX < this.x + 50 && mouseX > this.x + 30) {
-                    ItemStack itemstack2 = TemplateTableScreen.this.container.getAlloyRecipes().get(this.field_212938_a + TemplateTableScreen.this.field_214139_n).getRecipeOutput();
+                    ItemStack itemstack2 = alloyRecipes.get(this.field_212938_a + TemplateTableScreen.this.field_214139_n).getRecipeOutput();
                     if (!itemstack2.isEmpty()) {
                         TemplateTableScreen.this.renderTooltip(matrixStack, itemstack2, mouseX, mouseY);
                     }
                 } else*/ if (mouseX > this.x + 65) {
-                    ItemStack itemstack1 = TemplateTableScreen.this.container.getAlloyRecipes().get(this.field_212938_a + TemplateTableScreen.this.field_214139_n).getRecipeOutput();
+                    ItemStack itemstack1 = alloyRecipes.get(this.field_212938_a + TemplateTableScreen.this.field_214139_n).getRecipeOutput();
                     TemplateTableScreen.this.renderTooltip(matrixStack, itemstack1, mouseX, mouseY);
                 } else {
                     World worldIn = TemplateTableScreen.this.container.getWorld();
-                    AlloyingRecipe alloy = TemplateTableScreen.this.container.getAlloyRecipes().get(this.field_212938_a + TemplateTableScreen.this.field_214139_n);
+                    AlloyingRecipe alloy = alloyRecipes.get(this.field_212938_a + TemplateTableScreen.this.field_214139_n);
                     int mouseXsub = mouseX - this.x - 10;
                     List<Ingredient> e = alloy.getIngredientsList(worldIn,true);
                     int currentIndex = Math.floorDiv(mouseXsub,8);

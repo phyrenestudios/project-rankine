@@ -130,7 +130,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
         if (!this.world.isRemote) {
             ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2), this.items.get(3), this.items.get(4), this.items.get(5)};
             ItemStack battery = this.items.get(6);
-            if ((this.isBurning() || !battery.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
+            if ((this.isBurning() || !battery.isEmpty() && BatteryItem.hasPowerRequired(battery,powerCost) && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
                 AlloyingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, this, this.world).orElse(null);
                 if (!this.isBurning() && this.canSmelt(irecipe, this)) {
                     this.burnTime = 50; //BatteryItem.hasPowerRequired(battery,powerCost) ? 50 : 0;

@@ -131,7 +131,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
             ItemStack input = this.items.get(0);
             ItemStack battery = this.items.get(1);
             ItemStack crusher = this.items.get(2);
-            if ((this.isBurning() || !battery.isEmpty() && !input.isEmpty() && !crusher.isEmpty())) {
+            if ((this.isBurning() || !battery.isEmpty()  && BatteryItem.hasPowerRequired(battery,powerCost) && !input.isEmpty() && !crusher.isEmpty())) {
                 CrushingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUSHING, this, this.world).orElse(null);
                 boolean canSmelt = this.canSmelt(irecipe);
                 if (input.isEmpty() || !canSmelt) {

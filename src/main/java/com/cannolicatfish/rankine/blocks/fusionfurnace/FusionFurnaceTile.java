@@ -128,7 +128,7 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
 
             ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(3)};
             ItemStack battery = this.items.get(2);
-            if ((this.isBurning() || !battery.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
+            if ((this.isBurning() || !battery.isEmpty() && BatteryItem.hasPowerRequired(battery,powerCost) && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
                 FusionFurnaceRecipe irecipe = getFusionFurnaceRecipe();
                 boolean canSmelt = this.canSmelt(irecipe);
                 if (!canSmelt) {

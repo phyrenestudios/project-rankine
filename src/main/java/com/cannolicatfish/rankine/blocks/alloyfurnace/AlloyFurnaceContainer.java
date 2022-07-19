@@ -69,7 +69,6 @@ public class AlloyFurnaceContainer extends Container {
         this.trackIntArray(furnaceData);
     }
 
-    @OnlyIn(Dist.CLIENT)
     public AbstractMap.SimpleEntry<String[],Integer> getOutputString() {
         if (furnaceInventory.getStackInSlot(7).getItem() instanceof AlloyTemplateItem) {
             ItemStack template = furnaceInventory.getStackInSlot(7);
