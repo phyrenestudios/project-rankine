@@ -2,10 +2,114 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
+## Project Rankine Version 1.3.4 Changelog [15Jul2022]
+
+### BLOCKS
+- Cobbles can be picked up by right clicking
+- Fixed loottable of crops in inmature stages of growth
+- Removed Piston Crusher and Gyratory Crusher Functionality
+- Changed hardness value of some machines
+- Fixed leaf litters floating on non-solid blocks
+- Leaf litters no longer drop when landing
+- Fixed a crash with leaf litter spawning
+- Added Scheelite Block, Nepheline Block, Pyrochlore Block
+- Added Episyenite, Nepheline Syenite, Phonolite as stones with variants. 
+- Blocks under stumps take longer to mine unless using an alloy shovel
+- On grassy soils, short grass can grow to grass, and grass to tall grass
+- Fixed crash with grassy soils in modded biomes
+- Added dust color for Desert Sand particles
+- Sugarcane and cactus can be placed on Silt
+- Added Slate Stepping Stones
+- Fixed the bonemealing of wall mushrooms
+- Updated wall mushroom block textures
+- Obsidian variants are no longer pushable by a piston
+- Changed the texture of Alluvium
+- Fixed saplings not growing into their respective trees
+- Added Tiered Crushing Heads which are used on a piston to crush blocks in world
+
+### ITEMS
+- Added Nepheline, Scheelite, Pyrochlore
+- Changed text for Alloy Harvest Level to Tier
+- Fixed stacks of Fruit Jam being consumed at once
+- Only alloy pickaxes can be used to obtain random nuggets from nearby ores
+- Only alloy shovels can forage
+- Foraging enchantment can only be applied to alloy shovels
+- Fortune can now be applied to Hammers (increases the number of potential outputs from crushing; see below)
+- Fixed Rankine Journal
+- Removed Crushing Heads 0-5
+- Added textures for missing nuggets and other placeholder textures
+
+### WORLDGEN
+- Added Nepheline Syenite and Episyenite intrusion to beach biomes
+- Added Phonolite stone layer to Badlands biomes
+- Alluvium spawns as a soil variant in rivers
+- Sand in oceans is replaced with silt
+
+### TAGS
+- Added new stones to relevant tags
+- Renamed #rankine:crowbar_effective to #rankine:mineable/crowbar
+- Added Stump to #rankine:mineable/crowbar
+- Added Charcoal Pit to #minecraft:minable_with_axe
+- Added Snowflake Obsidian and Blood Obsidian to #forge:obsidian and #minecraft:requires_diamond_tool and #minecraft:dragon_immune
+- Added #forge:mushrooms
+
+### RECIPES
+- Changed format and functionality for Crushing recipes (see below)
+- White Gold Alloy now gives Fortune to Hammers if enchantability requirements are met
+- Fixed inversion of Saddle Tree recipe
+- Added rock generator recipes for new stones
+- Added blasting recipe for Rhodochrosite to Manganeese Ingot
+- Added/changed Fusion Furnace recipe for Chalcopyrite and Molybdenite smelting
+- Removed Ilmenite to Titanium blasting recipe
+- Removed Cobblestone from cobbles recipe
+- Fixed Foraging and Evaporation biome based recipes
+- Adjusted outputs of Alluvium and Black Sand sluicing
+- Added evaporation recipes for water in desert/badlands biomes and in dripstone/lush caves biomes
+- Added rock generator recipe for Meteorite, Frozen Meteorite and Enstatite
+
+### CRUSHING
+- Crushing results are now handled by a weighted system similar to Slucing
+- Crushing at the exact tier an output is available no longer gives an additional chance of obtaining said output
+- Each tier level increases the total number of potential outputs by +1
+- Each level of Fortune increases the total number of potential outputs by +1
+- Atomize enchantment now turns all non-guaranteed outputs from crushing into experience and cannot be used with Fortune
+- Certain items for each crushing recipe are guaranteed, meaning that every time the input is crushed that output will always drop and not count toward total number of potential outputs
+- Some outputs can be obtained multiple times or only once per crushed input
+- Recipes have a failure rate, which indicate the chance that a potential output is skipped (weighted as an empty item, meaning that outputs only available in higher tiers will offset chance of failure compared to crushing at lower tiers)
+- Piston Crusher and Gyratory Crusher have been replaced by in-world crushing using the piston and a crushing head. Place the crushing head on the face of the piston and power
+- The in-world crushing system is work-in-progress and likely to change in a future update
+- All crushing recipes have been changed to accomodate the new system
+- Crushing JEI has also changed to accomodate the new system, and shows the number of potential rolls and the failure rate at max tier (by default, Netherite)
+
+
 
 ## Project Rankine Version 1.3.3 (1.18.2 Port) Changelog [14Jun2022]
-
-- This update is the initial port to 1.18.2 from 1.16.5. Many minor changes may have occured during the update, but the significant ones are recorded below.
+This update is the initial port to 1.18.2 from 1.16.5. Many minor changes may have occured during the update, but the significant ones are recorded below.
+### Hotfix 1 [22Jun2022]
+- Removed the ability to dye various blocks in-world (may be reimplemented)
+- Changed textures for compound gas blocks
+- Added alloy crafting recipes for Cupronickel and Duralumin Arrows
+- Changed texture for Alloy Rod
+- Added Foraging json recipe type
+- Added foraging recipes for grass blocks, podzols and myceliums in certain biomes
+- Adjusted sluicing recipes of soil variants 
+- Fixed campfire cooking recipe for bone ash and dried bamboo
+- Fixed pentlandite_block_to_nickel_block beehive oven recipe
+- Added forge:podzol and forge:mycelium item tags
+- Added config to enable/disable FOV effects on movement modifier blocks, set to false by default
+- Fixed Fusion Furnace recipes not working when an item was not included in the gas slot
+- Fixed alloy arrows and related alloy crafting recipes
+- Fixed alloy crafting recipes for alloy gears
+- Fixed recipe names for alloy gears and rods
+- Fixed fluid calculations for Mixing recipes
+- Fixed a server crash due to entity rendering
+- Fixed wall mushroom related crashes
+- Fixed crash relating to walking into gas blocks
+- Fixed crash upon opening/using Element Indexer
+- Fixed missing tag alloy crafting recipes
+- General event code restructuring to reduce lag
+- Added the ability for flint to light campfires and soul capfires
+- Fixed GUIs using fluids having no graphical representation of fluid in tanks
 
 ### BLOCKS
 - Added dripstone and pointed dripstone variants (ferric, magnesitic, gypsic, zirconic, nitric, boracitic)
@@ -44,6 +148,54 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - Added conversion crafting recipes for vanilla based ores
 
 ## Project Rankine Version 1.3.2 Changelog [28Apr2022]
+### Hotfix 3 [20Jul2022]
+- Alloy Template Table now shows recipes that can be made from ingredients in the user's inventory first
+- Changed how the Alloy Template Table loads recipes to improve performance
+- Composition previews will now change colors and give the item that can be made by its current inventory
+- Alloy Furnace and Induction Furnace now show composition previews on servers
+- Updated shift-click logic for Alloy Furnace and Induction Furnace for servers
+- Improved logic for determining if an inventory can make an alloy recipe
+- Batteries will now be extracted from machines if they do not have enough power
+- Batteries can be smelted in a Blast Furnace to recycle materials
+- Changed bounds for Carbon and Iron in Cast Iron alloying
+- Increased tin max bound in Bronze alloying
+- Backported nugget textures from V1.18.2-1.3.4
+- Cobbles can be picked up by right clicking
+- Removed Cobblestone from cobbles recipe
+- Added Alluvium to #minecraft:bamboo_plantable_on
+- Added obsidiant variants to #forge:obsidian
+- Added Stump to #rankine:crowbar_effective
+- Alluvium now spawns in place of soil in rivers
+- Silt additionally spawns in place of sand in oceans
+- Only alloy pickaxes can mine nuggets from nearby ores
+- Added rhodochrosite to manganese ingot blasting recipe
+- Removed ilmenite to titanium ingot blasting recipe
+- Added slag to iron nugget blasting recipe
+- Short grass slowly grows into tall grass
+- Updated path creation on grassy soils
+- Added chalcopyrite fusion furnace recipe
+- Changed molybdenite fusion furnace recipe
+- Changed Induction Furnace GUI to use new battery texture in battery slot
+- Changed how items are inserted into Alloy Furnace, Induction Furnace, Fusion Furnace, and Gyratory Crusher
+
+#### Bug Fixes
+- Fixed bug where fuels other than batteries could be used for Gyratory Crusher, Fusion Furnace, and Induction Furnace
+- Fixed bug where batteries that did not have enough energy could be used
+- Fixed missing loot table for Block of Bone Char
+- Fixed Rankine Ore configs not changing harvest level
+- Fixed issue where alloy output strings in Alloy Furnace, Template Table, and Induction Furnace were not shown server-side (TODO: CHECK ON SERVER)
+- Fixed obsidian variants being pushed by piston
+- Fixed placing sugarcane and cactus on silt and alluvium
+- Fixed eating more than one fruit jam at once
+- Rankine vanilla ore variants will now drop xp
+- Fixed Saddle recipe
+- Fixed backwards campfire recipes
+- Fixed crash with leaf litters spawning from modded trees
+- Fixed crash with grassy soils in modded biomes
+- Fixed loottable issue with non-mature crops
+- Fixed server crash while using prospecting stick
+
+
 ### Hotfix 2 [17Jun2022]
 - Added config to enable/disable FOV effects on movement modifier blocks, set to false by default
 - Added alloy crafting recipes for Cupronickel and Duralumin Arrows
