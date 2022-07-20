@@ -1,10 +1,8 @@
 package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineContainers;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineRecipes;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,6 +12,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
@@ -86,8 +85,9 @@ public class AlloyFurnaceContainer extends Container {
                     AlloyTemplateItem.getAlloyComp(template)},
                     correctInputs ? 0x55FF55 : 0xFF5555);
         }
-        String ret = RankineRecipes.generateAlloyString(furnaceInventory);
-        return new AbstractMap.SimpleEntry<>(ret.isEmpty() ? new String[]{""} : new String[]{"",ret},0xFFFFFF);
+        String ret = RankineRecipes.generateAlloyString(furnaceInventory,playerEntity.world);
+        AlloyingRecipe recipe = hasAlloyRecipe(furnaceInventory);
+        return new AbstractMap.SimpleEntry<>(ret.isEmpty() ? new String[]{""} : new String[]{recipe != null ? recipe.getRecipeOutput().getDisplayName().getString() : "",ret},recipe != null ? 0x55FF55 : 0xFF5555);
     }
 
     private int countMaterial(IInventory inv, ElementRecipe element) {
@@ -128,6 +128,14 @@ public class AlloyFurnaceContainer extends Container {
         return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.ALLOY_FURNACE.get());
     }
 
+    protected boolean hasElementRecipe(ItemStack stack) {
+        return this.playerEntity.world.getRecipeManager().getRecipe(RankineRecipeTypes.ELEMENT, new Inventory(stack), this.playerEntity.world).isPresent();
+    }
+
+    protected AlloyingRecipe hasAlloyRecipe(IInventory inv) {
+        return this.playerEntity.world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, inv, this.playerEntity.world).orElse(null);
+    }
+
     //TO-DO: REDO +3
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
@@ -145,7 +153,7 @@ public class AlloyFurnaceContainer extends Container {
                 }
                 slot.onSlotChange(stack, itemstack);
             } else if (index > 8) {
-                if (AlloyCustomHelper.hasElement(itemstack.getItem())) {
+                if (AlloyCustomHelper.hasElement(itemstack.getItem()) || hasElementRecipe(stack)) {
                     if (!this.mergeItemStack(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;
                     }

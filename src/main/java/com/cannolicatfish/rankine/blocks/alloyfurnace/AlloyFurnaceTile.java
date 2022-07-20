@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks.alloyfurnace;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
+import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.block.AbstractFurnaceBlock;
@@ -427,7 +428,7 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
             case 3:
             case 4:
             case 5:
-                return AlloyCustomHelper.hasElement(stack.getItem());
+                return !(AbstractFurnaceTileEntity.isFuel(stack)) || !(stack.getItem() instanceof AlloyTemplateItem);
             case 6:
                 return AbstractFurnaceTileEntity.isFuel(stack);
             case 7:

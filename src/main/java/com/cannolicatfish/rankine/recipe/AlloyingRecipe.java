@@ -153,7 +153,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return ret;
     }
 
-    public boolean cannotMake(PlayerInventory inv, World world) {
+    public boolean cannotMake(IInventory inv, World world) {
         for (Ingredient i : this.getIngredientsList(world,true)) {
             if (!inv.hasAny(Arrays.stream(i.getMatchingStacks()).map(ItemStack::getItem).collect(Collectors.toSet())))
             {
@@ -398,11 +398,11 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
     @Override
     public boolean matches(IInventory inv, World worldIn) {
         if (inv instanceof AlloyFurnaceTile) {
-            return !generateResult(worldIn,inv,1).isEmpty();
+            return !cannotMake(inv,worldIn) && !generateResult(worldIn,inv,1).isEmpty();
         } else if (inv instanceof InductionFurnaceTile) {
-            return !generateResult(worldIn, inv,2).isEmpty();
+            return !cannotMake(inv,worldIn) && !generateResult(worldIn, inv,2).isEmpty();
         } else if (getTier() != 0){
-            return !generateResult(worldIn, inv,3).isEmpty();
+            return !cannotMake(inv,worldIn) && !generateResult(worldIn, inv,3).isEmpty();
         } else {
             return false;
         }

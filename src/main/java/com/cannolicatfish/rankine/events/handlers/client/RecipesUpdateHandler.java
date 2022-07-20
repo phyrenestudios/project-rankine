@@ -15,16 +15,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RecipesUpdateHandler {
-    public static void onRecipesUpdated( RecipesUpdatedEvent event) {
-        ClientWorld world = Minecraft.getInstance().world;
-        if (world != null) {
-            List<AlloyingRecipe> alloyingRecipes = new ArrayList<>(world.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING));
+    public static void onRecipesUpdated(RecipesUpdatedEvent event) {
+        if (event.getRecipeManager() != null) {
+            List<AlloyingRecipe> alloyingRecipes = new ArrayList<>(event.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING));
             AlloyCustomHelper.setAlloyingRecipes(alloyingRecipes);
 
-            List<ElementRecipe> elementRecipes = new ArrayList<>(world.getRecipeManager().getRecipesForType(RankineRecipeTypes.ELEMENT));
+            List<ElementRecipe> elementRecipes = new ArrayList<>(event.getRecipeManager().getRecipesForType(RankineRecipeTypes.ELEMENT));
             AlloyCustomHelper.setElementRecipes(elementRecipes);
 
-            List<AlloyCraftingRecipe> alloyCraftingRecipes = world.getRecipeManager().getRecipesForType(IRecipeType.CRAFTING).stream()
+            List<AlloyCraftingRecipe> alloyCraftingRecipes = event.getRecipeManager().getRecipesForType(IRecipeType.CRAFTING).stream()
                                                                   .filter((iCraftingRecipe -> iCraftingRecipe instanceof AlloyCraftingRecipe))
                                                                   .map(AlloyCraftingRecipe.class::cast)
                                                                   .collect(Collectors.toList());

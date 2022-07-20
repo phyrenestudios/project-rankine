@@ -32,8 +32,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
-    private static final int[] SLOTS_UP = new int[]{0};
-    private static final int[] SLOTS_DOWN = new int[]{3,4,5,6,7,8};
+    private static final int[] SLOTS_UP = new int[]{0,1};
+    private static final int[] SLOTS_DOWN = new int[]{1,3,4,5,6,7,8};
     private static final int[] SLOTS_HORIZONTAL = new int[]{1,2};
     private final int powerCost = Config.MACHINES.GYRATORY_CRUSHER_POWER.get();
     public GyratoryCrusherTile() {
@@ -131,7 +131,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
             ItemStack input = this.items.get(0);
             ItemStack battery = this.items.get(1);
             ItemStack crusher = this.items.get(2);
-            if ((this.isBurning() || !battery.isEmpty()  && BatteryItem.hasPowerRequired(battery,powerCost) && !input.isEmpty() && !crusher.isEmpty())) {
+            if ((this.isBurning() || !battery.isEmpty()  && BatteryItem.hasPowerRequired(battery,powerCost*(currentLevel+1)) && !input.isEmpty() && !crusher.isEmpty())) {
                 CrushingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUSHING, this, this.world).orElse(null);
                 boolean canSmelt = this.canSmelt(irecipe);
                 if (input.isEmpty() || !canSmelt) {
@@ -275,6 +275,9 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
 
     @Override
     public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+        if (stack.getItem() instanceof BatteryItem) {
+            return !BatteryItem.hasPowerRequired(stack,powerCost*(currentLevel+1));
+        }
         return true;
     }
 
@@ -339,7 +342,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
         switch (index)
         {
             case 0:
-                return true;
+                return !(stack.getItem() instanceof BatteryItem);
             case 1:
                 return stack.getItem() instanceof BatteryItem;
             case 2:

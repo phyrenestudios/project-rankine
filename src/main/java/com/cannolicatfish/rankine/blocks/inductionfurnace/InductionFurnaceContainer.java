@@ -1,11 +1,9 @@
 package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineContainers;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineRecipes;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.items.BatteryItem;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.entity.player.PlayerEntity;
@@ -86,8 +84,9 @@ public class InductionFurnaceContainer extends Container {
             return new AbstractMap.SimpleEntry<>(new String[]{template.getItem().getDisplayName(template).getString(), AlloyTemplateItem.getAlloyComp(template)},
                     correctInputs ? 0x55FF55 : 0xFF5555);
         }
-        String ret = RankineRecipes.generateAlloyString(furnaceInventory);
-        return new AbstractMap.SimpleEntry<>(ret.isEmpty() ? new String[]{""} : new String[]{"",ret},0xFFFFFF);
+        String ret = RankineRecipes.generateAlloyString(furnaceInventory,playerEntity.getEntityWorld());
+        AlloyingRecipe recipe = hasAlloyRecipe(furnaceInventory);
+        return new AbstractMap.SimpleEntry<>(ret.isEmpty() ? new String[]{""} : new String[]{recipe != null ? recipe.getRecipeOutput().getDisplayName().getString() : "",ret},recipe != null ? 0x55FF55 : 0xFF5555);
     }
 
     private int countMaterial(IInventory inv, ElementRecipe element) {
@@ -129,6 +128,14 @@ public class InductionFurnaceContainer extends Container {
         return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.INDUCTION_FURNACE.get());
     }
 
+    protected boolean hasElementRecipe(ItemStack stack) {
+        return this.playerEntity.world.getRecipeManager().getRecipe(RankineRecipeTypes.ELEMENT, new Inventory(stack), this.playerEntity.world).isPresent();
+    }
+
+    protected AlloyingRecipe hasAlloyRecipe(IInventory inv) {
+        return this.playerEntity.world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, inv, this.playerEntity.world).orElse(null);
+    }
+
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
     {
@@ -145,7 +152,7 @@ public class InductionFurnaceContainer extends Container {
                 }
                 slot.onSlotChange(stack, itemstack);
             } else if (index > 8) {
-                if (AlloyCustomHelper.hasElement(itemstack.getItem())) {
+                if (AlloyCustomHelper.hasElement(itemstack.getItem()) || hasElementRecipe(stack)) {
                     if (!this.mergeItemStack(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;
                     }

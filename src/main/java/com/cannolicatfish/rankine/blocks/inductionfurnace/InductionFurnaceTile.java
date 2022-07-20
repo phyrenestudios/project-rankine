@@ -42,7 +42,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     private static final int[] SLOTS_EAST = new int[]{0, 1};
     private static final int[] SLOTS_WEST = new int[]{2, 3};
     private static final int[] SLOTS_BACK = new int[]{4, 5};
-    private static final int[] SLOTS_DOWN = new int[]{8};
+    private static final int[] SLOTS_DOWN = new int[]{6,8};
 
     public InductionFurnaceTile() {
         super(RankineTileEntities.INDUCTION_FURNACE.get());
@@ -339,6 +339,9 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
 
     @Override
     public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+        if (stack.getItem() instanceof BatteryItem) {
+            return !BatteryItem.hasPowerRequired(stack,powerCost);
+        }
         return true;
     }
 
@@ -407,7 +410,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
             case 3:
             case 4:
             case 5:
-                return AlloyCustomHelper.hasElement(stack.getItem());
+                return !(stack.getItem() instanceof BatteryItem) || !(stack.getItem() instanceof AlloyTemplateItem);
             case 6:
                 return stack.getItem() instanceof BatteryItem;
             case 7:

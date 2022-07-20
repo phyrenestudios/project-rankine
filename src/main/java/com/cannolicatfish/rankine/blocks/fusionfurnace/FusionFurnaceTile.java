@@ -40,8 +40,8 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
     FluidTank outputTank = new FluidTank(64000);
     protected NonNullList<ItemStack> items = NonNullList.withSize(7, ItemStack.EMPTY);
     private static final int[] SLOTS_UP = new int[]{0,1,2,3};
-    private static final int[] SLOTS_DOWN = new int[]{3,4,5,6};
-    private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
+    private static final int[] SLOTS_DOWN = new int[]{2,3,4,5,6};
+    private static final int[] SLOTS_HORIZONTAL = new int[]{3};
     private final int powerCost = Config.MACHINES.GYRATORY_CRUSHER_POWER.get();
     public FusionFurnaceTile() {
         super(RankineTileEntities.FUSION_FURNACE.get());
@@ -319,6 +319,9 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
 
     @Override
     public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+        if (stack.getItem() instanceof BatteryItem) {
+            return !BatteryItem.hasPowerRequired(stack,powerCost);
+        }
         return true;
     }
 
@@ -384,7 +387,7 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
         {
             case 0:
             case 1:
-                return true;
+                return !(stack.getItem() instanceof BatteryItem);
             case 2:
                 return stack.getItem() instanceof BatteryItem;
             case 3:

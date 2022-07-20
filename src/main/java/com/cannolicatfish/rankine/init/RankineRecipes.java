@@ -20,6 +20,7 @@ import net.minecraft.dispenser.IDispenseItemBehavior;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -190,17 +191,29 @@ public class RankineRecipes {
         ItemPredicate.register(new ResourceLocation("rankine","includes_composition"), IncludesCompositionPredicate::new);
     }
 
-    public static String generateAlloyString(IInventory inv) {
+    public static String generateAlloyString(IInventory inv,World world) {
         Map<ElementRecipe, Integer> currentElements = new HashMap<>();
         for (int i = 0; i < 6; i++) {
             ItemStack stack = inv.getStackInSlot(i);
-            if (!stack.isEmpty() && AlloyCustomHelper.hasElement(stack.getItem())) {
-                Tuple<ElementRecipe,Integer> entry = AlloyCustomHelper.getEntryForElementItem(stack.getItem());
-                if (!currentElements.containsKey(entry.getA())) {
-                    currentElements.put(entry.getA(),entry.getB()*stack.getCount());
-                } else {
-                    currentElements.put(entry.getA(), currentElements.get(entry.getA())+entry.getB()*stack.getCount());
+            if (!stack.isEmpty()) {
+                if (AlloyCustomHelper.hasElement(stack.getItem())) {
+                    Tuple<ElementRecipe,Integer> entry = AlloyCustomHelper.getEntryForElementItem(stack.getItem());
+                    if (!currentElements.containsKey(entry.getA())) {
+                        currentElements.put(entry.getA(),entry.getB()*stack.getCount());
+                    } else {
+                        currentElements.put(entry.getA(), currentElements.get(entry.getA())+entry.getB()*stack.getCount());
+                    }
+                } else if (world != null){
+                    ElementRecipe recipe = world.getRecipeManager().getRecipe(RankineRecipeTypes.ELEMENT,new Inventory(stack),world).orElse(null);
+                    if (recipe != null) {
+                        if (!currentElements.containsKey(recipe)) {
+                            currentElements.put(recipe,recipe.getMaterialCount(stack.getItem())*stack.getCount());
+                        } else {
+                            currentElements.put(recipe, currentElements.get(recipe) + recipe.getMaterialCount(stack.getItem()) * stack.getCount());
+                        }
+                    }
                 }
+
             }
         }
         int sum = currentElements.values().stream().mapToInt(Integer::intValue).sum();
