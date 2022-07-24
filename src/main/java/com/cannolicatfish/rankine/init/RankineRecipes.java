@@ -13,6 +13,8 @@ import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -191,16 +193,28 @@ public class RankineRecipes {
         ItemPredicate.register(new ResourceLocation("rankine","includes_composition"), IncludesCompositionPredicate::new);
     }
 
-    public static String generateAlloyString(Container inv) {
+    public static String generateAlloyString(Container inv, Level level) {
         Map<ElementRecipe, Integer> currentElements = new HashMap<>();
         for (int i = 0; i < 6; i++) {
             ItemStack stack = inv.getItem(i);
-            if (!stack.isEmpty() && AlloyCustomHelper.hasElement(stack.getItem())) {
-                Tuple<ElementRecipe, Integer> entry = AlloyCustomHelper.getEntryForElementItem(stack.getItem());
-                if (!currentElements.containsKey(entry.getA())) {
-                    currentElements.put(entry.getA(), entry.getB() * stack.getCount());
+            if (!stack.isEmpty()) {
+                if (AlloyCustomHelper.hasElement(stack.getItem())) {
+                    Tuple<ElementRecipe, Integer> entry = AlloyCustomHelper.getEntryForElementItem(stack.getItem());
+                    if (!currentElements.containsKey(entry.getA())) {
+                        currentElements.put(entry.getA(), entry.getB() * stack.getCount());
+                    } else {
+                        currentElements.put(entry.getA(), currentElements.get(entry.getA()) + entry.getB() * stack.getCount());
+                    }
                 } else {
-                    currentElements.put(entry.getA(), currentElements.get(entry.getA()) + entry.getB() * stack.getCount());
+                    ElementRecipe recipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, new SimpleContainer(stack), level).orElse(null);
+                    if (recipe != null) {
+                        if (!currentElements.containsKey(recipe)) {
+                            currentElements.put(recipe, recipe.getMaterialCount(stack.getItem()) * stack.getCount());
+                        } else {
+                            currentElements.put(recipe, currentElements.get(recipe) + recipe.getMaterialCount(stack.getItem()) * stack.getCount());
+                        }
+                    }
+
                 }
             }
         }

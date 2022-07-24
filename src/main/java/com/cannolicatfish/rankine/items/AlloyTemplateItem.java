@@ -154,7 +154,7 @@ public class AlloyTemplateItem extends Item {
         listnbt.putShort("stackSize", (short) output.getCount());
         listnbt.putString("output",output.getItem().getRegistryName().toString());
         String nbt = IAlloyItem.getAlloyComposition(output);
-        listnbt.putString("alloyComp",!nbt.isEmpty() ? nbt : RankineRecipes.generateAlloyString(inv));
+        listnbt.putString("alloyComp",!nbt.isEmpty() ? nbt : RankineRecipes.generateAlloyString(inv,worldIn));
         listnbt.putString("alloyName",IAlloyItem.getNameOverride(output));
         ResourceLocation alloyRecipe = IAlloyItem.getAlloyRecipe(output);
         listnbt.putString("alloyRecipe",alloyRecipe != null ? alloyRecipe.toString() : "");

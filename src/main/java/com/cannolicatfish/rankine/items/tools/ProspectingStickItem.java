@@ -83,7 +83,7 @@ public class ProspectingStickItem extends Item {
                             } else {
                                 cons = "None";
                             }
-                            player.displayClientMessage(new TranslatableComponent("item.rankine.prospecting_stick.message", ORE.getBlock().getName(), cons), true);
+                            player.displayClientMessage(new TranslatableComponent("item.rankine.prospecting_stick.message", new TranslatableComponent(ORE.getBlock().getDescriptionId()), cons), true);
                             context.getItemInHand().hurtAndBreak(1, player, (p) -> {
                                 p.broadcastBreakEvent(context.getHand());
                             });

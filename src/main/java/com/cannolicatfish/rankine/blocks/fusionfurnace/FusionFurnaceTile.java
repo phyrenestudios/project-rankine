@@ -43,7 +43,7 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
     FluidTank outputTank = new FluidTank(64000);
     protected NonNullList<ItemStack> items = NonNullList.withSize(7, ItemStack.EMPTY);
     private static final int[] SLOTS_UP = new int[]{0,1,2,3};
-    private static final int[] SLOTS_DOWN = new int[]{3,4,5,6};
+    private static final int[] SLOTS_DOWN = new int[]{2,4,5,6};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
     private final int powerCost = 1;
     public FusionFurnaceTile(BlockPos posIn, BlockState stateIn) {
@@ -129,7 +129,7 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
 
             ItemStack[] inputs = new ItemStack[]{tile.items.get(0), tile.items.get(1), tile.items.get(3)};
             ItemStack battery = tile.items.get(2);
-            if ((tile.isBurning() || !battery.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
+            if ((tile.isBurning() || !battery.isEmpty() && BatteryItem.hasPowerRequired(battery,tile.powerCost) && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
                 FusionFurnaceRecipe irecipe = tile.getFusionFurnaceRecipe();
                 boolean canSmelt = tile.canSmelt(irecipe);
                 if (!canSmelt) {
@@ -316,6 +316,9 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
+        if (stack.getItem() instanceof BatteryItem) {
+            return !BatteryItem.hasPowerRequired(stack,powerCost);
+        }
         return true;
     }
 
@@ -381,7 +384,7 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
         {
             case 0:
             case 1:
-                return true;
+                return !(stack.getItem() instanceof BatteryItem);
             case 2:
                 return stack.getItem() instanceof BatteryItem;
             case 3:
