@@ -4,14 +4,14 @@
   "color": 2236962,
   "input1": {
     "element": "rankine:elements/iron",
-    "min": 0.86,
-    "max": 0.98,
+    "min": 0.85,
+    "max": 0.97,
     "required": true
   },
   "input2": {
     "element": "rankine:elements/carbon",
-    "min": 0.02,
-    "max": 0.04,
+    "min": 0.03,
+    "max": 0.05,
     "required": true
   },
   "input3": {

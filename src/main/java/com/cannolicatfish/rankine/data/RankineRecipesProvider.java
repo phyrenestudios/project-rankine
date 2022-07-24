@@ -77,6 +77,20 @@ public class RankineRecipesProvider extends RecipeProvider {
         blastingMap.put(RankineItems.SCHEELITE.get(),RankineItems.TUNGSTEN_INGOT.get());
         blastingMap.put(RankineItems.RHODOCHROSITE.get(),RankineItems.MANGANESE_INGOT.get());
 
+        blastingMap.put(RankineItems.SILVER_ZINC_BATTERY.get(),RankineItems.ZINC_NUGGET.get());
+        blastingMap.put(RankineItems.MAGNESIUM_BATTERY.get(),RankineItems.ZINC_NUGGET.get());
+        blastingMap.put(RankineItems.LEAD_ACID_BATTERY.get(),RankineItems.LEAD_NUGGET.get());
+        blastingMap.put(RankineItems.VANADIUM_REDOX_BATTERY.get(),RankineItems.VANADIUM_NUGGET.get());
+        blastingMap.put(RankineItems.ZINC_BROMINE_BATTERY.get(),RankineItems.ZINC_NUGGET.get());
+        blastingMap.put(RankineItems.SODIUM_SULFUR_BATTERY.get(),RankineItems.SULFUR_NUGGET.get());
+        blastingMap.put(RankineItems.LITHIUM_ION_BATTERY.get(),RankineItems.COBALT_NUGGET.get());
+
+        blastingMap.put(RankineItems.STRONTIUM_RTG.get(),RankineItems.YTTRIUM_NUGGET.get());
+        blastingMap.put(RankineItems.POLONIUM_RTG.get(),RankineItems.LEAD_NUGGET.get());
+        blastingMap.put(RankineItems.PLUTONIUM_RTG.get(),RankineItems.URANIUM_NUGGET.get());
+        blastingMap.put(RankineItems.AMERICIUM_RTG.get(),RankineItems.NEPTUNIUM_NUGGET.get());
+        blastingMap.put(RankineItems.CURIUM_RTG.get(),RankineItems.PLUTONIUM_NUGGET.get());
+
     }
     
     public RankineRecipesProvider(DataGenerator generatorIn) {

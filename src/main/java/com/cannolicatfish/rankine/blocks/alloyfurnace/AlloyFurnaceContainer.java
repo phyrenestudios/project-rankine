@@ -2,8 +2,10 @@ package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
@@ -71,7 +73,14 @@ public class AlloyFurnaceContainer extends AbstractContainerMenu {
         this.addDataSlots(furnaceData);
     }
 
-    @OnlyIn(Dist.CLIENT)
+    protected boolean hasElementRecipe(ItemStack stack) {
+        return this.playerEntity.getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, new SimpleContainer(stack), this.playerEntity.getLevel()).isPresent();
+    }
+
+    protected AlloyingRecipe hasAlloyRecipe(Container inv) {
+        return this.playerEntity.getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, inv, this.playerEntity.getLevel()).orElse(null);
+    }
+
     public AbstractMap.SimpleEntry<String[],Integer> getOutputString() {
         if (furnaceInventory.getItem(7).getItem() instanceof AlloyTemplateItem) {
             ItemStack template = furnaceInventory.getItem(7);
@@ -89,8 +98,9 @@ public class AlloyFurnaceContainer extends AbstractContainerMenu {
                     AlloyTemplateItem.getAlloyComp(template)},
                     correctInputs ? 0x55FF55 : 0xFF5555);
         }
-        String ret = RankineRecipes.generateAlloyString(furnaceInventory);
-        return new AbstractMap.SimpleEntry<>(ret.isEmpty() ? new String[]{""} : new String[]{"",ret},0xFFFFFF);
+        String ret = RankineRecipes.generateAlloyString(furnaceInventory,tileEntity.getLevel());
+        AlloyingRecipe recipe = hasAlloyRecipe(furnaceInventory);
+        return new AbstractMap.SimpleEntry<>(ret.isEmpty() ? new String[]{""} : new String[]{recipe != null ? recipe.getResultItem().getDisplayName().getString() : "",ret},recipe != null ? 0x55FF55 : 0xFF5555);
     }
 
     private int countMaterial(Container inv, ElementRecipe element) {
@@ -148,7 +158,7 @@ public class AlloyFurnaceContainer extends AbstractContainerMenu {
                 }
                 slot.onQuickCraft(stack, itemstack);
             } else if (index > 8) {
-                if (AlloyCustomHelper.hasElement(itemstack.getItem())) {
+                if (AlloyCustomHelper.hasElement(itemstack.getItem()) || hasElementRecipe(stack)) {
                     if (!this.moveItemStackTo(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;
                     }

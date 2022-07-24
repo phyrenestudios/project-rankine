@@ -228,8 +228,11 @@ public class TemplateTableContainer extends AbstractContainerMenu {
     }
 
     public List<AlloyingRecipe> getAlloyRecipes() {
-        //&& !alloyingRecipe.cannotMake(player.inventory, this.world)
-        return world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING).stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(this.world).isEmpty()).collect(Collectors.toList());
+        Level worldIn = this.world;
+        return world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING).stream()
+                .filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty())
+                .sorted((o1, o2) -> Boolean.compare(o1.cannotMake(player.getInventory(), worldIn), o2.cannotMake(player.getInventory(), worldIn)))
+                .collect(Collectors.toList());
     }
 
     public void tryMoveItems(int p_217046_1_) {

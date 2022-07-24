@@ -429,7 +429,7 @@ public class AlloyFurnaceTile extends BlockEntity implements WorldlyContainer, M
             case 3:
             case 4:
             case 5:
-                return AlloyCustomHelper.hasElement(stack.getItem());
+                return !(AbstractFurnaceBlockEntity.isFuel(stack)) || !(stack.getItem() instanceof AlloyTemplateItem);
             case 6:
                 return AbstractFurnaceBlockEntity.isFuel(stack);
             case 7:
