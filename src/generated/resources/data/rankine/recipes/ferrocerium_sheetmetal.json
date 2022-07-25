@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sheetmetal",
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "key": {
+    "I": {
+      "item": "rankine:ferrocerium_ingot"
+    },
+    "#": {
+      "item": "rankine:ferrocerium_nugget"
+    }
+  },
+  "result": {
+    "item": "rankine:ferrocerium_sheetmetal",
+    "count": 8
+  }
+}

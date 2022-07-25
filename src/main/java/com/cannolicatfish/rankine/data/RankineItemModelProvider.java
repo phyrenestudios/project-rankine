@@ -38,11 +38,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Item item : Stream.of(RankineLists.SEEDS,RankineLists.GRAINS,RankineLists.RAW_FISH,RankineLists.COOKED_FISH,RankineLists.GAS_BOTTLES,RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(item);
         }
-        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_SLABS,RankineLists.STONE_SLABS,RankineLists.POLISHED_STONE_SLABS,RankineLists.STONE_BRICKS_SLABS,RankineLists.SHEETMETAL_SLABS,RankineLists.WOODEN_SLABS,RankineLists.BRICKS_SLAB,RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_SLABS,RankineLists.STONE_SLABS,RankineLists.POLISHED_STONE_SLABS,RankineLists.STONE_BRICKS_SLABS,RankineLists.WOODEN_SLABS,RankineLists.BRICKS_SLAB,RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabParent(BLOCK);
-        }
-        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_VERTICAL_SLABS,RankineLists.STONE_VERTICAL_SLABS,RankineLists.POLISHED_STONE_VERTICAL_SLABS,RankineLists.STONE_BRICKS_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS,RankineLists.WOODEN_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.CUT_SANDSTONE_VERTICAL_SLABS,RankineLists.SANDSTONE_VERTICAL_SLABS,RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,RankineLists.MISC_VERTICAL_SLABS,RankineLists.CONCRETE_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            verticalSlabParent(BLOCK);
         }
         for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_STAIRS,RankineLists.STONE_STAIRS,RankineLists.POLISHED_STONE_STAIRS,RankineLists.STONE_BRICKS_STAIRS,RankineLists.WOODEN_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsParent(BLOCK);
@@ -65,6 +62,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.BRICKS,
                 //RankineLists.GAS_TUBES,
                 RankineLists.ALLOY_PEDESTALS,
+                RankineLists.ALLOY_SHEETMETALS,
                 RankineLists.ALLOY_POLES,
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.HOLLOW_LOGS,

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:breccia"
-  },
-  "result": "rankine:breccia_vertical_slab",
-  "count": 2
-}

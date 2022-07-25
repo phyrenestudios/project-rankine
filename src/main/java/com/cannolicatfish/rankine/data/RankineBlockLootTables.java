@@ -94,6 +94,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.QUARTER_SLABS,
                 RankineLists.ELECTROMAGNETS,
                 RankineLists.ALLOY_BARS,
+                RankineLists.ALLOY_SHEETMETALS,
                 RankineLists.LANTERNS,
                 RankineLists.CRUSHING_HEADS,
                 RankineLists.WALL_MUSHROOMS,
@@ -176,7 +177,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.POLISHED_STONE_SLABS,
                 RankineLists.STONE_BRICKS_SLABS,
                 RankineLists.VANILLA_BRICKS_SLABS,
-                RankineLists.SHEETMETAL_SLABS,
                 RankineLists.BRICKS_SLAB,
                 RankineLists.SANDSTONE_SLABS,
                 RankineLists.SMOOTH_SANDSTONE_SLABS,
@@ -187,24 +187,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
             lootTables.put(blk, slabBlockLootTable(blk));
         }
 
-        for (Block blk : Stream.of(
-                RankineLists.STONE_VERTICAL_SLABS,
-                RankineLists.POLISHED_STONE_VERTICAL_SLABS,
-                RankineLists.STONE_BRICKS_VERTICAL_SLABS,
-                RankineLists.VANILLA_BRICKS_VERTICAL_SLABS,
-                RankineLists.SHEETMETAL_VERTICAL_SLABS,
-                RankineLists.BRICKS_VERTICAL_SLAB,
-                RankineLists.SANDSTONE_VERTICAL_SLABS,
-                RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,
-                RankineLists.CUT_SANDSTONE_VERTICAL_SLABS,
-                RankineLists.MISC_VERTICAL_SLABS,
-                RankineLists.CONCRETE_VERTICAL_SLABS,
-                RankineLists.WOODEN_VERTICAL_SLABS
-        ).flatMap(Collection::stream).collect(Collectors.toList())) {
-            lootTables.put(blk, verticalSlabBlockLootTable(blk));
-        }
-
-        
         lootTables.put(RankineBlocks.NATIVE_ARSENIC_ORE.get(), nativeOreBlockLootTable(RankineBlocks.NATIVE_ARSENIC_ORE.get(), RankineItems.ARSENIC_NUGGET.get()));
         lootTables.put(RankineBlocks.NATIVE_BISMUTH_ORE.get(), nativeOreBlockLootTable(RankineBlocks.NATIVE_BISMUTH_ORE.get(), RankineItems.BISMUTH_NUGGET.get()));
         lootTables.put(RankineBlocks.NATIVE_SILVER_ORE.get(), nativeOreBlockLootTable(RankineBlocks.NATIVE_SILVER_ORE.get(), RankineItems.SILVER_NUGGET.get()));

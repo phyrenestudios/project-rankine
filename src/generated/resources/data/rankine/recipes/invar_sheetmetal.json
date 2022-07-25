@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:ingots/invar"
+      "item": "rankine:invar_ingot"
     },
     "#": {
-      "tag": "forge:nuggets/invar"
+      "item": "rankine:invar_nugget"
     }
   },
   "result": {

@@ -680,14 +680,14 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.BRICKS_SLAB, RankineTags.Items.BRICKS_SLABS);
         copy(RankineTags.Blocks.BRICKS_STAIRS, RankineTags.Items.BRICKS_STAIRS);
         copy(RankineTags.Blocks.BRICKS_WALL, RankineTags.Items.BRICKS_WALLS);
-        copy(RankineTags.Blocks.BRICKS_VERTICAL_SLAB, RankineTags.Items.BRICKS_VERTICAL_SLABS);
-
-        copy(RankineTags.Blocks.WOODEN_VERTICAL_SLABS, RankineTags.Items.WOODEN_VERTICAL_SLABS);
-        copy(RankineTags.Blocks.VERTICAL_SLABS, RankineTags.Items.VERTICAL_SLABS);
         copy(RankineTags.Blocks.SHEETMETAL, RankineTags.Items.SHEETMETAL);
-        copy(RankineTags.Blocks.SHEETMETAL_VERTICAL_SALBS, RankineTags.Items.SHEETMETAL_VERTICAL_SALBS);
         copy(RankineTags.Blocks.SHEETMETAL_SALBS, RankineTags.Items.SHEETMETAL_SALBS);
         for (Block blk : RankineLists.SHEETMETALS) {
+            String name = blk.getRegistryName().getPath();
+            String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
+            tag(ItemTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName))).add(blk.asItem());
+        }
+        for (Block blk : RankineLists.ALLOY_SHEETMETALS) {
             String name = blk.getRegistryName().getPath();
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
             tag(ItemTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName))).add(blk.asItem());
@@ -703,9 +703,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STONE_WALL, RankineTags.Items.STONE_WALL);
         copy(RankineTags.Blocks.POLISHED_STONE_WALL, RankineTags.Items.POLISHED_STONE_WALL);
         copy(RankineTags.Blocks.STONE_BRICKS_WALL, RankineTags.Items.STONE_BRICKS_WALL);
-        copy(RankineTags.Blocks.STONE_VERTICAL_SLAB, RankineTags.Items.STONE_VERTICAL_SLAB);
-        copy(RankineTags.Blocks.POLISHED_STONE_VERTICAL_SLAB, RankineTags.Items.POLISHED_STONE_VERTICAL_SLAB);
-        copy(RankineTags.Blocks.STONE_BRICKS_VERTICAL_SLAB, RankineTags.Items.STONE_BRICKS_VERTICAL_SLAB);
         copy(BlockTags.STONE_PRESSURE_PLATES, RankineTags.Items.STONE_PRESSURE_PLATES);
 
         copy(RankineTags.Blocks.COBBLES, RankineTags.Items.COBBLES);

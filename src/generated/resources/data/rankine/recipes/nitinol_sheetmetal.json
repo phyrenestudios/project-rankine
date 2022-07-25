@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sheetmetal",
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "key": {
+    "I": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "#": {
+      "item": "rankine:nitinol_nugget"
+    }
+  },
+  "result": {
+    "item": "rankine:nitinol_sheetmetal",
+    "count": 8
+  }
+}

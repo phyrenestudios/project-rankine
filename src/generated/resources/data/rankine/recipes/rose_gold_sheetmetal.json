@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sheetmetal",
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "key": {
+    "I": {
+      "item": "rankine:rose_gold_ingot"
+    },
+    "#": {
+      "item": "rankine:rose_gold_nugget"
+    }
+  },
+  "result": {
+    "item": "rankine:rose_gold_sheetmetal",
+    "count": 8
+  }
+}

@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:ingots/bronze"
+      "item": "rankine:bronze_ingot"
     },
     "#": {
-      "tag": "forge:nuggets/bronze"
+      "item": "rankine:bronze_nugget"
     }
   },
   "result": {

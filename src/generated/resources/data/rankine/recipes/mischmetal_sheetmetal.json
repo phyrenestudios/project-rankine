@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sheetmetal",
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "key": {
+    "I": {
+      "item": "rankine:mischmetal_ingot"
+    },
+    "#": {
+      "item": "rankine:mischmetal_nugget"
+    }
+  },
+  "result": {
+    "item": "rankine:mischmetal_sheetmetal",
+    "count": 8
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_komatiite"
-  },
-  "result": "rankine:polished_komatiite_vertical_slab",
-  "count": 2
-}

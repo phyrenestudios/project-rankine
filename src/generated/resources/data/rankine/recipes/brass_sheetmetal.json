@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:ingots/brass"
+      "item": "rankine:brass_ingot"
     },
     "#": {
-      "tag": "forge:nuggets/brass"
+      "item": "rankine:brass_nugget"
     }
   },
   "result": {

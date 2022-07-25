@@ -1,27 +1,24 @@
 package com.cannolicatfish.rankine.items;
 
-import com.cannolicatfish.rankine.blocks.RankineVerticalSlabBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 import java.util.Random;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class MortarItem extends Item {
     public MortarItem(Properties properties) {
@@ -70,10 +67,6 @@ public class MortarItem extends Item {
                     return InteractionResult.SUCCESS;
                 } else if (block == RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get() && !worldIn.isClientSide()) {
                     worldIn.setBlockAndUpdate(pos, RankineBlocks.CONCRETE_STAIRS.get().defaultBlockState().setValue(StairBlock.SHAPE, state.getValue(StairBlock.SHAPE)).setValue(StairBlock.FACING, state.getValue(StairBlock.FACING)).setValue(StairBlock.HALF, state.getValue(StairBlock.HALF)).setValue(BlockStateProperties.WATERLOGGED, state.getValue(BlockStateProperties.WATERLOGGED)));
-                    context.getItemInHand().shrink(1);
-                    return InteractionResult.SUCCESS;
-                } else if (block == RankineBlocks.CONCRETE_VERTICAL_SLAB.get() && !worldIn.isClientSide()) {
-                    worldIn.setBlockAndUpdate(pos, RankineBlocks.CONCRETE_VERTICAL_SLAB.get().defaultBlockState().setValue(RankineVerticalSlabBlock.HORIZONTAL_FACING, state.getValue(RankineVerticalSlabBlock.HORIZONTAL_FACING)).setValue(RankineVerticalSlabBlock.TYPE, state.getValue(RankineVerticalSlabBlock.TYPE)));
                     context.getItemInHand().shrink(1);
                     return InteractionResult.SUCCESS;
                 }

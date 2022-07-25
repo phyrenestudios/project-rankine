@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:graywacke_bricks"
-  },
-  "result": "rankine:graywacke_bricks_vertical_slab",
-  "count": 2
-}

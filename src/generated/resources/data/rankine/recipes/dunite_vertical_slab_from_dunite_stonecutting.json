@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:dunite"
-  },
-  "result": "rankine:dunite_vertical_slab",
-  "count": 2
-}
