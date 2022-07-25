@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sheetmetal",
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "key": {
+    "I": {
+      "item": "rankine:osmiridium_ingot"
+    },
+    "#": {
+      "item": "rankine:osmiridium_nugget"
+    }
+  },
+  "result": {
+    "item": "rankine:osmiridium_sheetmetal",
+    "count": 8
+  }
+}

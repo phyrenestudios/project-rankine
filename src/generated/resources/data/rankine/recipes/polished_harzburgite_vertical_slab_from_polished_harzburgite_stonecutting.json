@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_harzburgite"
-  },
-  "result": "rankine:polished_harzburgite_vertical_slab",
-  "count": 2
-}

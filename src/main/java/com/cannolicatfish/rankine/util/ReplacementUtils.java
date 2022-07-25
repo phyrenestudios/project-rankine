@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.blocks.GrassySoilBlock;
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.blocks.RankinePointedDripstoneBlock;
 import com.cannolicatfish.rankine.init.*;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
@@ -17,6 +18,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -29,7 +33,7 @@ public class ReplacementUtils {
     public static final double LAYER_BEND = Config.WORLDGEN.LAYER_BEND.get();
     public static final List<ResourceLocation> GEN_BIOMES = WorldgenUtils.GEN_BIOMES;
     public static final List<List<String>> LAYER_LISTS = WorldgenUtils.LAYER_LISTS;
-    private static double NOISE = 0;
+    private static double STONE_NOISE = 0;
     private static double SAND_NOISE = 0;
     private static Holder<Biome> BIOME;
     private static final Map<Block, Function<Integer,Block>> replacerMap = new HashMap<>();
@@ -107,12 +111,12 @@ public class ReplacementUtils {
         mudMap.put(RankineBlocks.SILTY_CLAY_MYCELIUM.get(), RankineBlocks.SILTY_CLAY_MUD.get());
 
         //replacerMap.put(Blocks.GRASS_BLOCK, index -> Config.WORLDGEN.SOIL_GEN.get() ? (NOISE > 0.3 ? WorldgenUtils.O1.get(index) : WorldgenUtils.O2.get(index)) : Blocks.AIR);
-        replacerMap.put(Blocks.DIRT_PATH, index -> Config.WORLDGEN.SOIL_GEN.get() ? (NOISE > 0.3 ? VanillaIntegration.pathBlocks_map.getOrDefault(WorldgenUtils.O1.get(index),Blocks.AIR) : VanillaIntegration.pathBlocks_map.getOrDefault(WorldgenUtils.O2.get(index),Blocks.AIR)) : Blocks.AIR);
+        replacerMap.put(Blocks.DIRT_PATH, index -> Config.WORLDGEN.SOIL_GEN.get() ? (STONE_NOISE > 0.3 ? VanillaIntegration.pathBlocks_map.getOrDefault(WorldgenUtils.O1.get(index),Blocks.AIR) : VanillaIntegration.pathBlocks_map.getOrDefault(WorldgenUtils.O2.get(index),Blocks.AIR)) : Blocks.AIR);
         replacerMap.put(Blocks.COARSE_DIRT, index -> {
             if (!Config.WORLDGEN.SOIL_GEN.get()) {
                 return Blocks.AIR;
             }
-            Block b = NOISE > 0.3 ? WorldgenUtils.A1.get(index) : WorldgenUtils.A2.get(index);
+            Block b = STONE_NOISE > 0.3 ? WorldgenUtils.A1.get(index) : WorldgenUtils.A2.get(index);
             if (RankineLists.SOIL_BLOCKS.contains(b)) {
                 return RankineLists.COARSE_SOIL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(b));
             }
@@ -122,7 +126,7 @@ public class ReplacementUtils {
             if (!Config.WORLDGEN.SOIL_GEN.get()) {
                 return Blocks.AIR;
             }
-            Block b = NOISE > 0.3 ? WorldgenUtils.A1.get(index) : WorldgenUtils.A2.get(index);
+            Block b = STONE_NOISE > 0.3 ? WorldgenUtils.A1.get(index) : WorldgenUtils.A2.get(index);
             if (RankineLists.SOIL_BLOCKS.contains(b)) {
                 return RankineLists.MYCELIUM_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(b));
             }
@@ -132,7 +136,7 @@ public class ReplacementUtils {
             if (!Config.WORLDGEN.SOIL_GEN.get()) {
                 return Blocks.AIR;
             }
-            Block b = NOISE > 0.3 ? WorldgenUtils.A1.get(index) : WorldgenUtils.A2.get(index);
+            Block b = STONE_NOISE > 0.3 ? WorldgenUtils.A1.get(index) : WorldgenUtils.A2.get(index);
             if (RankineLists.SOIL_BLOCKS.contains(b)) {
                 return RankineLists.PODZOL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(b));
             }
@@ -152,14 +156,16 @@ public class ReplacementUtils {
     public static void performRetrogenReplacement(ChunkAccess chunk) {
 
         if (chunk.getWorldForge() == null) return;
+        PerlinSimplexNoise NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(4321L)), ImmutableList.of(0));
+
         LevelAccessor levelIn = chunk.getWorldForge();
         Random rand = levelIn.getRandom();
         BlockState returnedBlock;
         for (int x = chunk.getPos().getMinBlockX(); x <= chunk.getPos().getMaxBlockX(); ++x) {
             for (int z = chunk.getPos().getMinBlockZ(); z <= chunk.getPos().getMaxBlockZ(); ++z) {
                 
-                NOISE = Biome.BIOME_INFO_NOISE.getValue((double) x / NOISE_SCALE, (double) z / NOISE_SCALE, false);
-                SAND_NOISE = Biome.BIOME_INFO_NOISE.getValue((double) x / 80, (double) z / 80, false);
+                STONE_NOISE = NOISE.getValue((double) x / NOISE_SCALE, (double) z / NOISE_SCALE, false);
+                SAND_NOISE = NOISE.getValue((double) x / 80, (double) z / 80, false);
                 BIOME = levelIn.getBiome(new BlockPos(x, chunk.getMaxBuildHeight(), z));
                 ResourceLocation TARGET_BIOME = BIOME.value().getRegistryName();
                 int genBiomesIndex = GEN_BIOMES.indexOf(TARGET_BIOME);
@@ -175,7 +181,7 @@ public class ReplacementUtils {
                         if (chunk.getBlockState(TARGET_POS.below()).is(Tags.Blocks.STONE) && rand.nextFloat() < 0.7) {
                             chunk.setBlockState(TARGET_POS.below(), RankineBlocks.FIRE_CLAY.get().defaultBlockState(), false);
                             if (genBiomesIndex != -1 && TARGET_BS.getBlock() instanceof RankineOreBlock && TARGET_BS.getValue(RankineOreBlock.TYPE) == 0) {
-                                BlockState stone = getStone(blockList,y,NOISE);
+                                BlockState stone = getStone(blockList,y,STONE_NOISE);
 
                                 if (stone != null && RankineLists.STONES.contains(stone.getBlock())) {
                                     chunk.setBlockState(TARGET_POS, TARGET_BS.setValue(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(stone.getBlock())),false);
@@ -192,7 +198,7 @@ public class ReplacementUtils {
                                 chunk.setBlockState(TARGET_POS, returnedBlock, false);
                             }
                         } else if (TARGET.equals(Blocks.GRASS_BLOCK) && Config.WORLDGEN.SOIL_GEN.get()) {
-                            Block grass = NOISE > 0.3 ? WorldgenUtils.O1.get(genBiomesIndex) : WorldgenUtils.O2.get(genBiomesIndex);
+                            Block grass = STONE_NOISE > 0.3 ? WorldgenUtils.O1.get(genBiomesIndex) : WorldgenUtils.O2.get(genBiomesIndex);
                             if (grass == Blocks.AIR ) continue;
                             /*if (mudMap.containsKey(grass) && WorldgenUtils.isWet(chunk, TARGET_POS)) {
                                 chunk.setBlockState(TARGET_POS, RankineLists.MUD_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(grass)).defaultBlockState(), false);
@@ -203,12 +209,12 @@ public class ReplacementUtils {
                                 chunk.setBlockState(TARGET_POS, grass.defaultBlockState(), false);
                             }
                         } else if (TARGET.equals(Blocks.DIRT) && Config.WORLDGEN.SOIL_GEN.get()) {
-                            chunk.setBlockState(TARGET_POS, NOISE > 0.3 ? WorldgenUtils.A1.get(genBiomesIndex).defaultBlockState() : WorldgenUtils.A2.get(genBiomesIndex).defaultBlockState(), false);
+                            chunk.setBlockState(TARGET_POS, STONE_NOISE > 0.3 ? WorldgenUtils.A1.get(genBiomesIndex).defaultBlockState() : WorldgenUtils.A2.get(genBiomesIndex).defaultBlockState(), false);
                             if (chunk.getBlockState(TARGET_POS.below()).is(Tags.Blocks.STONE)) {
-                                chunk.setBlockState(TARGET_POS.below(), NOISE > 0.3 ? WorldgenUtils.B1.get(genBiomesIndex).defaultBlockState() : WorldgenUtils.B2.get(genBiomesIndex).defaultBlockState(), false);
+                                chunk.setBlockState(TARGET_POS.below(), STONE_NOISE > 0.3 ? WorldgenUtils.B1.get(genBiomesIndex).defaultBlockState() : WorldgenUtils.B2.get(genBiomesIndex).defaultBlockState(), false);
                             }
                         } else if (TARGET_BS.getBlock() instanceof RankineOreBlock && TARGET_BS.getValue(RankineOreBlock.TYPE) == 0) {
-                            BlockState stone = getStone(blockList,y,NOISE);
+                            BlockState stone = getStone(blockList,y,STONE_NOISE);
                             boolean flag = false;
                             if (stone != null && WorldgenUtils.ORE_STONES.contains(stone.getBlock())) {
                                 if (BIOME.is(Biomes.CRIMSON_FOREST) || BIOME.is(Biomes.WARPED_FOREST)) {
@@ -227,7 +233,7 @@ public class ReplacementUtils {
                             }
                         } else if (vanillaOresMap.containsKey(TARGET)) {
                             if (!Config.WORLDGEN.REPLACE_VANILLA_ORES.get()) continue;
-                            BlockState stone = getStone(blockList,y,NOISE);
+                            BlockState stone = getStone(blockList,y,STONE_NOISE);
                             boolean flag = false;
                             if (stone != null && WorldgenUtils.ORE_STONES.contains(stone.getBlock())) {
                                 if (BIOME.is(Biomes.CRIMSON_FOREST) || BIOME.is(Biomes.WARPED_FOREST)) {
@@ -246,7 +252,7 @@ public class ReplacementUtils {
                             }
 
                         } else if (TARGET.equals(Blocks.INFESTED_STONE) || TARGET.equals(Blocks.INFESTED_DEEPSLATE)) {
-                            BlockState stone = getStone(blockList,y,NOISE);
+                            BlockState stone = getStone(blockList,y,STONE_NOISE);
                             if (stone != null && RankineLists.STONES.contains(stone.getBlock())) {
                                 chunk.setBlockState(TARGET_POS, RankineLists.INFESTED_STONES.get(RankineLists.STONES.indexOf(stone.getBlock())).defaultBlockState(),false);
                             }

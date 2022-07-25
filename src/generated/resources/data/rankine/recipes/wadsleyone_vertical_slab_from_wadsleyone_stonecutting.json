@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:wadsleyone"
-  },
-  "result": "rankine:wadsleyone_vertical_slab",
-  "count": 2
-}

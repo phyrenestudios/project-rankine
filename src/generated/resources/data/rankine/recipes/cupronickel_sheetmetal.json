@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:ingots/constantan"
+      "item": "rankine:cupronickel_ingot"
     },
     "#": {
-      "tag": "forge:nuggets/constantan"
+      "item": "rankine:cupronickel_nugget"
     }
   },
   "result": {

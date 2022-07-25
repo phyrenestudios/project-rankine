@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:hornblende_andesite_bricks"
-  },
-  "result": "rankine:hornblende_andesite_bricks_vertical_slab",
-  "count": 2
-}

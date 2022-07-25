@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sheetmetal",
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "key": {
+    "I": {
+      "item": "rankine:black_gold_ingot"
+    },
+    "#": {
+      "item": "rankine:black_gold_nugget"
+    }
+  },
+  "result": {
+    "item": "rankine:black_gold_sheetmetal",
+    "count": 8
+  }
+}

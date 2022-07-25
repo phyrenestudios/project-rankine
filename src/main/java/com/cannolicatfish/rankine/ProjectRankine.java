@@ -141,6 +141,9 @@ public class ProjectRankine {
             for (Block b : RankineLists.GRASS_BLOCKS) {
                 event.getItemColors().register(new GrassItemBaseColor(), b.asItem());
             }
+            for (Block b : RankineLists.ALLOY_SHEETMETALS) {
+                event.getItemColors().register(new NonAlloyItemColor(), b);
+            }
             for (Block b : RankineLists.ALLOY_POLES) {
                 event.getItemColors().register(new NonAlloyItemColor(), b);
             }
@@ -195,6 +198,9 @@ public class ProjectRankine {
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK.get());
             event.getBlockColors().register(new LeavesBlockBaseColor(), RankineBlocks.BIRCH_LEAF_LITTER.get(), RankineBlocks.SPRUCE_LEAF_LITTER.get(), RankineBlocks.ACACIA_LEAF_LITTER.get(), RankineBlocks.JUNGLE_LEAF_LITTER.get(), RankineBlocks.DARK_OAK_LEAF_LITTER.get(), RankineBlocks.OAK_LEAF_LITTER.get());
 
+            for (Block b : RankineLists.ALLOY_SHEETMETALS) {
+                event.getBlockColors().register(new NonAlloyBlockColor(), b);
+            }
             for (Block b : RankineLists.ALLOY_POLES) {
                 event.getBlockColors().register(new NonAlloyBlockColor(), b);
             }

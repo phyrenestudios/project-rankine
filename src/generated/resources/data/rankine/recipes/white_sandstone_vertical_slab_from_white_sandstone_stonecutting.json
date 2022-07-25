@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:white_sandstone"
-  },
-  "result": "rankine:white_sandstone_vertical_slab",
-  "count": 2
-}

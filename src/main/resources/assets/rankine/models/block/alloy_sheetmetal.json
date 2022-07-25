@@ -1,0 +1,21 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"all": "rankine:block/alloy_sheetmetal",
+		"particle": "rankine:block/alloy_sheetmetal"
+	},
+	"elements": [
+		{
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down":  { "uv": [ 0, 0, 16, 16 ], "tintindex": 0, "texture": "#all", "cullface": "down" },
+				"up":    { "uv": [ 0, 0, 16, 16 ], "tintindex": 0, "texture": "#all", "cullface": "up" },
+				"north": { "uv": [ 0, 0, 16, 16 ], "tintindex": 0, "texture": "#all", "cullface": "north" },
+				"south": { "uv": [ 0, 0, 16, 16 ], "tintindex": 0, "texture": "#all", "cullface": "south" },
+				"west":  { "uv": [ 0, 0, 16, 16 ], "tintindex": 0, "texture": "#all", "cullface": "west" },
+				"east":  { "uv": [ 0, 0, 16, 16 ], "tintindex": 0, "texture": "#all", "cullface": "east" }
+			}
+		}
+	]
+}

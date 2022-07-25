@@ -1,12 +1,13 @@
 package com.cannolicatfish.rankine.util.colors;
 
 import com.cannolicatfish.rankine.blocks.MetalPoleBlock;
+import com.cannolicatfish.rankine.blocks.SheetmetalBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.MetalBarsBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class NonAlloyBlockColor implements BlockColor {
@@ -17,6 +18,8 @@ public class NonAlloyBlockColor implements BlockColor {
             return ((MetalPoleBlock) blk).getColor();
         } else if (blk instanceof MetalBarsBlock) {
             return ((MetalBarsBlock) blk).getColor();
+        } else if (blk instanceof SheetmetalBlock) {
+            return ((SheetmetalBlock) blk).getColor();
         }
 
         return 16777215;

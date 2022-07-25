@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/stainless_steel"
+            "items": [
+              "rankine:stainless_steel_ingot"
+            ]
           }
         ]
       }

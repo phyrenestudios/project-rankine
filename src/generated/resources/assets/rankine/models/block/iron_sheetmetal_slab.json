@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/iron_sheetmetal",
-    "bottom": "rankine:block/iron_sheetmetal",
-    "top": "rankine:block/iron_sheetmetal"
-  }
-}
