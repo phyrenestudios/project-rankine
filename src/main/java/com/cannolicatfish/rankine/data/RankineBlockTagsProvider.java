@@ -494,6 +494,8 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(RankineTags.Blocks.STORAGE_BLOCKS_COBALT_SUPERALLOY).add(RankineBlocks.COBALT_SUPERALLOY_BLOCK.get());
         tag(RankineTags.Blocks.STORAGE_BLOCKS_TUNGSTEN_HEAVY_ALLOY).add(RankineBlocks.TUNGSTEN_HEAVY_ALLOY_BLOCK.get());
         tag(RankineTags.Blocks.STORAGE_BLOCKS_TITANIUM_ALLOY).add(RankineBlocks.TITANIUM_ALLOY_BLOCK.get());
+        tag(RankineTags.Blocks.STORAGE_BLOCKS_NIOBIUM_ALLOY).add(RankineBlocks.NIOBIUM_ALLOY_BLOCK.get());
+        tag(RankineTags.Blocks.STORAGE_BLOCKS_ZIRCONIUM_ALLOY).add(RankineBlocks.ZIRCONIUM_ALLOY_BLOCK.get());
 
         tag(RankineTags.Blocks.STORAGE_BLOCKS_AMBER).add(RankineBlocks.AMBER_BLOCK.get());
         tag(RankineTags.Blocks.STORAGE_BLOCKS_AQUAMARINE).add(RankineBlocks.AQUAMARINE_BLOCK.get());
@@ -615,7 +617,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(RankineTags.Blocks.GLASS_CUTTER).addTags(RankineTags.Blocks.HARDENED_GLASS,Tags.Blocks.GLASS,Tags.Blocks.GLASS_PANES);
         tag(RankineTags.Blocks.MINEABLE_WITH_CROWBAR).addTags(RankineTags.Blocks.SHEETMETAL,BlockTags.PLANKS,BlockTags.WOODEN_SLABS,BlockTags.WOODEN_STAIRS,BlockTags.WOODEN_DOORS,BlockTags.WOODEN_TRAPDOORS,BlockTags.WOODEN_FENCES,BlockTags.FENCE_GATES,BlockTags.RAILS,RankineTags.Blocks.METAL_BARS).add(RankineBlocks.STUMP.get());
         tag(BlockTags.CLIMBABLE).add(RankineBlocks.ROPE.get(),RankineBlocks.CAST_IRON_SUPPORT.get(),RankineBlocks.INVAR_LADDER.get(),RankineBlocks.CAST_IRON_LADDER.get(),RankineBlocks.DURALUMIN_LADDER.get(),RankineBlocks.BRASS_LADDER.get(),RankineBlocks.CUPRONICKEL_LADDER.get());
-        tag(BlockTags.GUARDED_BY_PIGLINS).add(RankineBlocks.NATIVE_GOLD_ORE.get()).add(RankineBlocks.GOLD_SHEETMETAL.get()).add(RankineBlocks.BLACK_GOLD_PEDESTAL.get()).add(RankineBlocks.PURPLE_GOLD_PEDESTAL.get()).add(RankineBlocks.ROSE_GOLD_PEDESTAL.get()).add(RankineBlocks.WHITE_GOLD_PEDESTAL.get()).add(RankineBlocks.GREEN_GOLD_PEDESTAL.get()).add(RankineBlocks.BLUE_GOLD_PEDESTAL.get()).add(RankineBlocks.BLACK_GOLD_BLOCK.get()).add(RankineBlocks.PURPLE_GOLD_BLOCK.get()).add(RankineBlocks.ROSE_GOLD_BLOCK.get()).add(RankineBlocks.WHITE_GOLD_BLOCK.get()).add(RankineBlocks.GREEN_GOLD_BLOCK.get()).add(RankineBlocks.BLUE_GOLD_BLOCK.get());
+        tag(BlockTags.GUARDED_BY_PIGLINS).add(RankineBlocks.GOLD_ORE.get()).add(RankineBlocks.NATIVE_GOLD_ORE.get()).add(RankineBlocks.BLACK_GOLD_PEDESTAL.get()).add(RankineBlocks.PURPLE_GOLD_PEDESTAL.get()).add(RankineBlocks.ROSE_GOLD_PEDESTAL.get()).add(RankineBlocks.WHITE_GOLD_PEDESTAL.get()).add(RankineBlocks.GREEN_GOLD_PEDESTAL.get()).add(RankineBlocks.BLUE_GOLD_PEDESTAL.get()).add(RankineBlocks.BLACK_GOLD_BLOCK.get()).add(RankineBlocks.PURPLE_GOLD_BLOCK.get()).add(RankineBlocks.ROSE_GOLD_BLOCK.get()).add(RankineBlocks.WHITE_GOLD_BLOCK.get()).add(RankineBlocks.GREEN_GOLD_BLOCK.get()).add(RankineBlocks.BLUE_GOLD_BLOCK.get());
         tag(RankineTags.Blocks.TREE_LOGS).addTags(BlockTags.LOGS);
         for (Block blk : RankineLists.HOLLOW_LOGS) {
             tag(RankineTags.Blocks.TREE_LOGS).add(blk);

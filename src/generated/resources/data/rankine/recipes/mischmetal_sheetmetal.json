@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:mischmetal_ingot"
+      "tag": "forge:ingots/mischmetal"
     },
     "#": {
-      "item": "rankine:mischmetal_nugget"
+      "tag": "forge:nuggets/mischmetal"
     }
   },
   "result": {

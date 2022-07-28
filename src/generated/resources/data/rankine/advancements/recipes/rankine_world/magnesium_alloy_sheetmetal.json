@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "rankine:magnesium_alloy_ingot"
-            ]
+            "tag": "forge:ingots/magnesium_alloy"
           }
         ]
       }

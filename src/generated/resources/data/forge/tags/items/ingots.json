@@ -149,6 +149,8 @@
     "#forge:ingots/nickel_superalloy",
     "#forge:ingots/cobalt_superalloy",
     "#forge:ingots/tungsten_heavy_alloy",
-    "#forge:ingots/titanium_alloy"
+    "#forge:ingots/titanium_alloy",
+    "#forge:ingots/niobium_alloy",
+    "#forge:ingots/zirconium_alloy"
   ]
 }

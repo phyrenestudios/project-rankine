@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "rankine:cobalt_superalloy_ingot"
-            ]
+            "tag": "forge:ingots/cobalt_superalloy"
           }
         ]
       }

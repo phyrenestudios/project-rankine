@@ -1,31 +1,35 @@
 package com.cannolicatfish.rankine.blocks.alloys;
 
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootContext;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
-public class AlloyBlock extends Block {
+public class AlloyBlock extends BaseEntityBlock {
     public AlloyBlock(Properties properties) {
         super(properties);
     }
 
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
+        return new AlloyBlockTile(p_153215_, p_153216_);
+    }
 
-    public boolean triggerEvent(BlockState state, Level worldIn, BlockPos pos, int id, int param) {
-        super.triggerEvent(state, worldIn, pos, id, param);
-        BlockEntity tileentity = worldIn.getBlockEntity(pos);
-        return tileentity != null && tileentity.triggerEvent(id, param);
+    public RenderShape getRenderShape(BlockState p_49232_) {
+        return RenderShape.MODEL;
     }
 
     @Override
@@ -40,23 +44,18 @@ public class AlloyBlock extends Block {
     }
 
     @Override
-    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
-        if (!worldIn.isClientSide && !player.isCreative() && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
-            BlockEntity tileentity = worldIn.getBlockEntity(pos);
-            if (tileentity instanceof AlloyBlockTile) {
-                AlloyBlockTile alloyBlockTile = (AlloyBlockTile)tileentity;
-                if (canHarvestBlock(state,worldIn,pos,player)) {
-                    ItemStack itemstack = new ItemStack(this);
+    public void playerWillDestroy(Level levelIn, BlockPos pos, BlockState state, Player player) {
+        if (!player.isCreative() && levelIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
+            if (levelIn.getBlockEntity(pos) instanceof AlloyBlockTile alloyBlockTile) {
+                if (canHarvestBlock(state,levelIn,pos,player)) {
+                    ItemStack itemstack = new ItemStack(state.getBlock());
                     itemstack.setTag(alloyBlockTile.getAlloyData());
-                    ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemstack);
-                    itementity.setDefaultPickUpDelay();
-                    worldIn.addFreshEntity(itementity);
+                    popResource(levelIn, pos, itemstack);
                 }
             }
         }
 
-
-        //super.onBlockHarvested(worldIn, pos, state, player);
+        super.playerWillDestroy(levelIn,pos,state,player);
     }
 
     @Override

@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:zirconium_alloy_ingot"
+      "tag": "forge:ingots/zirconium_alloy"
     },
     "#": {
-      "item": "rankine:zirconium_alloy_nugget"
+      "tag": "forge:nuggets/zirconium_alloy"
     }
   },
   "result": {

@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "rankine:niobium_alloy_ingot"
-            ]
+            "tag": "forge:ingots/niobium_alloy"
           }
         ]
       }

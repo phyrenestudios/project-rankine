@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:white_gold_ingot"
+      "tag": "forge:ingots/white_gold"
     },
     "#": {
-      "item": "rankine:white_gold_nugget"
+      "tag": "forge:nuggets/white_gold"
     }
   },
   "result": {

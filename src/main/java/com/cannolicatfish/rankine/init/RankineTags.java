@@ -304,6 +304,8 @@ public final class RankineTags {
         public static final TagKey<Block> STORAGE_BLOCKS_COBALT_SUPERALLOY = forgeBlock("storage_blocks/cobalt_superalloy");
         public static final TagKey<Block> STORAGE_BLOCKS_TUNGSTEN_HEAVY_ALLOY = forgeBlock("storage_blocks/tungsten_heavy_alloy");
         public static final TagKey<Block> STORAGE_BLOCKS_TITANIUM_ALLOY = forgeBlock("storage_blocks/titanium_alloy");
+        public static final TagKey<Block> STORAGE_BLOCKS_NIOBIUM_ALLOY = forgeBlock("storage_blocks/niobium_alloy");
+        public static final TagKey<Block> STORAGE_BLOCKS_ZIRCONIUM_ALLOY = forgeBlock("storage_blocks/zirconium_alloy");
 
         public static final TagKey<Block> STORAGE_BLOCKS_AMBER = forgeBlock("storage_blocks/amber");
         public static final TagKey<Block> STORAGE_BLOCKS_AQUAMARINE = forgeBlock("storage_blocks/aquamarine");
@@ -646,6 +648,8 @@ public final class RankineTags {
         public static final TagKey<Item> NUGGETS_COBALT_SUPERALLOY = forgeItem("nuggets/cobalt_superalloy");
         public static final TagKey<Item> NUGGETS_TUNGSTEN_HEAVY_ALLOY = forgeItem("nuggets/tungsten_heavy_alloy");
         public static final TagKey<Item> NUGGETS_TITANIUM_ALLOY = forgeItem("nuggets/titanium_alloy");
+        public static final TagKey<Item> NUGGETS_NIOBIUM_ALLOY = forgeItem("nuggets/niobium_alloy");
+        public static final TagKey<Item> NUGGETS_ZIRCONIUM_ALLOY = forgeItem("nuggets/zirconium_alloy");
 
 
         public static final TagKey<Item> INGOTS_HYDROGEN = forgeItem("ingots/hydrogen");
@@ -798,6 +802,8 @@ public final class RankineTags {
         public static final TagKey<Item> INGOTS_COBALT_SUPERALLOY = forgeItem("ingots/cobalt_superalloy");
         public static final TagKey<Item> INGOTS_TUNGSTEN_HEAVY_ALLOY = forgeItem("ingots/tungsten_heavy_alloy");
         public static final TagKey<Item> INGOTS_TITANIUM_ALLOY = forgeItem("ingots/titanium_alloy");
+        public static final TagKey<Item> INGOTS_NIOBIUM_ALLOY = forgeItem("ingots/niobium_alloy");
+        public static final TagKey<Item> INGOTS_ZIRCONIUM_ALLOY = forgeItem("ingots/zirconium_alloy");
 
         public static final TagKey<Item> GEMS_AMBER = forgeItem("gems/amber");
         public static final TagKey<Item> GEMS_AQUAMARINE = forgeItem("gems/aquamarine");
@@ -965,6 +971,8 @@ public final class RankineTags {
         public static final TagKey<Item> STORAGE_BLOCKS_COBALT_SUPERALLOY = forgeItem("storage_blocks/cobalt_superalloy");
         public static final TagKey<Item> STORAGE_BLOCKS_TUNGSTEN_HEAVY_ALLOY = forgeItem("storage_blocks/tungsten_heavy_alloy");
         public static final TagKey<Item> STORAGE_BLOCKS_TITANIUM_ALLOY = forgeItem("storage_blocks/titanium_alloy");
+        public static final TagKey<Item> STORAGE_BLOCKS_NIOBIUM_ALLOY = forgeItem("storage_blocks/niobium_alloy");
+        public static final TagKey<Item> STORAGE_BLOCKS_ZIRCONIUM_ALLOY = forgeItem("storage_blocks/zirconium_alloy");
 
         public static final TagKey<Item> STORAGE_BLOCKS_AMBER = forgeItem("storage_blocks/amber");
         public static final TagKey<Item> STORAGE_BLOCKS_AQUAMARINE = forgeItem("storage_blocks/aquamarine");

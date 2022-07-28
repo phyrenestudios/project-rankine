@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:pewter_ingot"
+      "tag": "forge:ingots/pewter"
     },
     "#": {
-      "item": "rankine:pewter_nugget"
+      "tag": "forge:nuggets/pewter"
     }
   },
   "result": {

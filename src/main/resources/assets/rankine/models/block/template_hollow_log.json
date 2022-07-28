@@ -1,9 +1,7 @@
 {
+	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"stripped": "rankine:block/stripped_cedar_log",
-		"log": "rankine:block/cedar_log",
-		"log_top": "rankine:block/cedar_log_top",
 		"particle": "#log"
 	},
 	"elements": [

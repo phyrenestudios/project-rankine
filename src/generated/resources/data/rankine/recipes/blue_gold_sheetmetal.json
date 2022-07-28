@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:blue_gold_ingot"
+      "tag": "forge:ingots/blue_gold"
     },
     "#": {
-      "item": "rankine:blue_gold_nugget"
+      "tag": "forge:nuggets/blue_gold"
     }
   },
   "result": {

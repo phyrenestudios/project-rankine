@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:sterling_silver_ingot"
+      "tag": "forge:ingots/sterling_silver"
     },
     "#": {
-      "item": "rankine:sterling_silver_nugget"
+      "tag": "forge:nuggets/sterling_silver"
     }
   },
   "result": {

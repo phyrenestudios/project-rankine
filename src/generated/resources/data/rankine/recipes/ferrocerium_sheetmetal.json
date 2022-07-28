@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:ferrocerium_ingot"
+      "tag": "forge:ingots/ferrocerium"
     },
     "#": {
-      "item": "rankine:ferrocerium_nugget"
+      "tag": "forge:nuggets/ferrocerium"
     }
   },
   "result": {

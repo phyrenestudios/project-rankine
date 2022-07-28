@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "rankine:green_gold_ingot"
-            ]
+            "tag": "forge:ingots/green_gold"
           }
         ]
       }

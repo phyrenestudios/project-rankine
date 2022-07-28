@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:nickel_superalloy_ingot"
+      "tag": "forge:ingots/nickel_superalloy"
     },
     "#": {
-      "item": "rankine:nickel_superalloy_nugget"
+      "tag": "forge:nuggets/nickel_superalloy"
     }
   },
   "result": {

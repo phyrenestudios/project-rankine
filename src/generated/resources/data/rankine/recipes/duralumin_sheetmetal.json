@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:duralumin_ingot"
+      "tag": "forge:ingots/duralumin"
     },
     "#": {
-      "item": "rankine:duralumin_nugget"
+      "tag": "forge:nuggets/duralumin"
     }
   },
   "result": {

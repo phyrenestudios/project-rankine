@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:niobium_alloy_ingot"
+      "tag": "forge:ingots/niobium_alloy"
     },
     "#": {
-      "item": "rankine:niobium_alloy_nugget"
+      "tag": "forge:nuggets/niobium_alloy"
     }
   },
   "result": {
