@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:tholeiitic_basalt"
-  },
-  "result": "rankine:tholeiitic_basalt_vertical_slab",
-  "count": 2
-}

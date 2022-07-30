@@ -96,6 +96,7 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.METAL_LADDERS);
         addCutout(RankineLists.ALLOY_POLES);
         addCutout(RankineLists.ALLOY_BARS);
+        addCutout(RankineLists.HOLLOW_LOGS);
         addCutout(RankineLists.LEAVES);
         addCutout(RankineLists.LEAF_LITTERS);
         addCutout(RankineLists.SAPLINGS);
@@ -140,7 +141,6 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.CAST_IRON_SUPPORT.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_SLAB.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get(),
-                RankineBlocks.CAST_IRON_SUPPORT_VERTICAL_SLAB.get(),
 
                 RankineBlocks.COB.get(),
                 RankineBlocks.CORN_STALK.get(),
@@ -169,7 +169,6 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.ICE_BRICKS.get(),
                 RankineBlocks.ICE_BRICKS_SLAB.get(),
                 RankineBlocks.ICE_BRICKS_STAIRS.get(),
-                RankineBlocks.ICE_BRICKS_VERTICAL_SLAB.get(),
                 RankineBlocks.ICE_BRICKS_WALL.get(),
 
                 RankineBlocks.HYDROGEN_GAS_BLOCK.get(),

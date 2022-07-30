@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sheetmetal",
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/sterling_silver"
+    },
+    "#": {
+      "tag": "forge:nuggets/sterling_silver"
+    }
+  },
+  "result": {
+    "item": "rankine:sterling_silver_sheetmetal",
+    "count": 8
+  }
+}

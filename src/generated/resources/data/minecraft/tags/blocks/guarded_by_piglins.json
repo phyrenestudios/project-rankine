@@ -1,9 +1,8 @@
 {
   "replace": false,
   "values": [
+    "rankine:gold_ore",
     "rankine:native_gold_ore",
-    "rankine:gold_sheetmetal",
-    "rankine:gold_sheetmetal_vertical_slab",
     "rankine:black_gold_pedestal",
     "rankine:purple_gold_pedestal",
     "rankine:rose_gold_pedestal",

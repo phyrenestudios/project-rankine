@@ -5,7 +5,6 @@ import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.BaseAsphaltBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.*;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelBlock;
-import com.cannolicatfish.rankine.blocks.RankineWallMushroomBlock;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankineDoublePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
@@ -18,13 +17,13 @@ import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
+import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -57,7 +56,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 RankineLists.DRIPSTONES,
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.ELEMENT_BLOCKS,
-                RankineLists.SHEETMETALS,
                 RankineLists.SMOOTH_SANDSTONES,
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
@@ -128,11 +126,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             String pathName = SANDSTONE.getRegistryName().getPath();
             simpleBlock(SANDSTONE,models().cubeColumn(pathName,blockTexture(SANDSTONE),getBlockRSL(pathName.replace("chiseled","smooth"))));
         }
-        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_SLABS,RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS,RankineLists.SHEETMETAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_SLABS,RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabBlock(blk);
-        }
-        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_VERTICAL_SLABS,RankineLists.CUT_SANDSTONE_VERTICAL_SLABS,RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,RankineLists.SANDSTONE_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.MISC_VERTICAL_SLABS,RankineLists.CONCRETE_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            verticalSlabBlock(blk);
         }
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_WALLS,RankineLists.SMOOTH_SANDSTONE_WALLS,RankineLists.SANDSTONE_WALLS,RankineLists.BRICKS_WALL,RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             wallBlock(blk);
@@ -153,6 +148,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         for (Block BLK : RankineLists.LANTERNS) {
             lanternBlock(BLK);
+        }
+        for (Block BLK : Stream.of(RankineLists.SHEETMETALS,RankineLists.ALLOY_SHEETMETALS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), modLoc("alloy_sheetmetal"))).addModel();
         }
         //getVariantBuilder(RankineBlocks.ENDER_SHIRO.get()).partialState().modelForState().modelFile(models().cubeBottomTop(RankineBlocks.ENDER_SHIRO.get().getRegistryName().getPath(), getRSL("ender_shiro_side"), getRSL("minecraft","end_stone"), getRSL("ender_shiro_top"))).addModel();
 
@@ -367,13 +365,14 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 nameSpace = "rankine";
             }
             ModelFile MODEL = models().withExistingParent(PATH, modLoc("block/template_hollow_log")).texture("log", getBlockRSL(nameSpace,PATH.replace("hollow_",""))).texture("log_top", getBlockRSL(nameSpace,PATH.replace("hollow_","")+"_top")).texture("stripped_log", getBlockRSL(nameSpace,PATH.replace("hollow_","stripped_")));
+            ModelFile MODEL_MOSSY = models().withExistingParent(PATH+"_mossy", modLoc("block/template_hollow_log_mossy")).texture("log", getBlockRSL(nameSpace,PATH.replace("hollow_",""))).texture("log_top", getBlockRSL(nameSpace,PATH.replace("hollow_","")+"_top")).texture("stripped_log", getBlockRSL(nameSpace,PATH.replace("hollow_","stripped_")));
             getVariantBuilder(blk)
-                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
-                    .modelForState().modelFile(MODEL).addModel()
-                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z)
-                    .modelForState().modelFile(MODEL).rotationX(90).addModel()
-                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X)
-                    .modelForState().modelFile(MODEL).rotationX(90).rotationY(90).addModel();
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y).with(HollowLogBlock.MOSSY, false).modelForState().modelFile(MODEL).addModel()
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y).with(HollowLogBlock.MOSSY, true).modelForState().modelFile(MODEL).addModel()
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z).with(HollowLogBlock.MOSSY, false).modelForState().modelFile(MODEL).rotationX(90).addModel()
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z).with(HollowLogBlock.MOSSY, true).modelForState().modelFile(MODEL_MOSSY).addModel()
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X).with(HollowLogBlock.MOSSY, false).modelForState().modelFile(MODEL).rotationX(90).rotationY(90).addModel()
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X).with(HollowLogBlock.MOSSY, true).modelForState().modelFile(MODEL_MOSSY).rotationY(90).addModel();
         }
         /*
         for (Block blk : RankineLists.GAS_TUBES) {
@@ -419,11 +418,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             Block BASE = RankineLists.PLANKS.get(RankineLists.WOODEN_SLABS.indexOf(blk));
             String name = blk.getRegistryName().getPath();
             slabBlock((RankineSlabBlock) blk, new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()), new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()));
-        }
-        for (Block blk : Stream.of(RankineLists.WOODEN_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            Block BASE = RankineLists.PLANKS.get(RankineLists.WOODEN_VERTICAL_SLABS.indexOf(blk));
-            String name = blk.getRegistryName().getPath();
-            verticalSlabBlock((RankineVerticalSlabBlock) blk, new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()));
         }
         for (Block blk : Stream.of(RankineLists.WOODEN_FENCES).flatMap(Collection::stream).collect(Collectors.toList())) {
             Block BASE = RankineLists.PLANKS.get(RankineLists.WOODEN_FENCES.indexOf(blk));
@@ -491,11 +485,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             String name = blk.getRegistryName().getPath();
             String baseStone = Arrays.asList(name.split("_wall")).get(0);
             wallBlock((RankineWallBlock) blk, new ResourceLocation("rankine", "block/" + baseStone));
-        }
-        for (Block blk : Stream.of(RankineLists.STONE_VERTICAL_SLABS, RankineLists.POLISHED_STONE_VERTICAL_SLABS, RankineLists.STONE_BRICKS_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            String baseStone = Arrays.asList(name.split("_vertical_slab")).get(0);
-            verticalSlabBlock((RankineVerticalSlabBlock) blk, new ResourceLocation("rankine", "block/" + baseStone));
         }
         for (Block blk : Stream.of(RankineLists.STONE_PRESSURE_PLATES, RankineLists.STONE_BRICKS_PRESSURE_PLATES, RankineLists.VANILLA_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();

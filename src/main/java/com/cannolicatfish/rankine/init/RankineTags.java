@@ -131,17 +131,12 @@ public final class RankineTags {
         public static final TagKey<Block> CONCRETE = forgeBlock("concrete");
         public static final TagKey<Block> MINERAL_WOOL = forgeBlock("mineral_wool");
         public static final TagKey<Block> SHEETMETAL = forgeBlock("sheetmetal");
-        public static final TagKey<Block> SHEETMETAL_VERTICAL_SALBS = forgeBlock("sheetmetal_vertical_slabs");
         public static final TagKey<Block> SHEETMETAL_SALBS = forgeBlock("sheetmetal_slabs");
 
         public static final TagKey<Block> BRICKS = forgeBlock("bricks");
         public static final TagKey<Block> BRICKS_SLAB = forgeBlock("bricks_slabs");
         public static final TagKey<Block> BRICKS_STAIRS = forgeBlock("bricks_stairs");
         public static final TagKey<Block> BRICKS_WALL = forgeBlock("bricks_walls");
-        public static final TagKey<Block> BRICKS_VERTICAL_SLAB = forgeBlock("bricks_vertical_slabs");
-
-        public static final TagKey<Block> WOODEN_VERTICAL_SLABS = forgeBlock("wooden_vertical_slabs");
-        public static final TagKey<Block> VERTICAL_SLABS = forgeBlock("vertical_slabs");
 
         public static final TagKey<Block> POLISHED_STONE = forgeBlock("polished_stone");
         public static final TagKey<Block> STONE_SLAB = forgeBlock("stone_slabs");
@@ -153,9 +148,6 @@ public final class RankineTags {
         public static final TagKey<Block> STONE_WALL = forgeBlock("stone_walls");
         public static final TagKey<Block> POLISHED_STONE_WALL = forgeBlock("polished_stone_walls");
         public static final TagKey<Block> STONE_BRICKS_WALL = forgeBlock("stone_bricks_walls");
-        public static final TagKey<Block> STONE_VERTICAL_SLAB = forgeBlock("stone_vertical_slabs");
-        public static final TagKey<Block> POLISHED_STONE_VERTICAL_SLAB = forgeBlock("polished_stone_vertical_slabs");
-        public static final TagKey<Block> STONE_BRICKS_VERTICAL_SLAB = forgeBlock("stone_bricks_vertical_slabs");
 
         public static final TagKey<Block> STORAGE_BLOCKS_COKE = forgeBlock("storage_blocks/coal_coke");
         public static final TagKey<Block> STORAGE_BLOCKS_GRAPHITE = forgeBlock("storage_blocks/graphite");
@@ -312,6 +304,8 @@ public final class RankineTags {
         public static final TagKey<Block> STORAGE_BLOCKS_COBALT_SUPERALLOY = forgeBlock("storage_blocks/cobalt_superalloy");
         public static final TagKey<Block> STORAGE_BLOCKS_TUNGSTEN_HEAVY_ALLOY = forgeBlock("storage_blocks/tungsten_heavy_alloy");
         public static final TagKey<Block> STORAGE_BLOCKS_TITANIUM_ALLOY = forgeBlock("storage_blocks/titanium_alloy");
+        public static final TagKey<Block> STORAGE_BLOCKS_NIOBIUM_ALLOY = forgeBlock("storage_blocks/niobium_alloy");
+        public static final TagKey<Block> STORAGE_BLOCKS_ZIRCONIUM_ALLOY = forgeBlock("storage_blocks/zirconium_alloy");
 
         public static final TagKey<Block> STORAGE_BLOCKS_AMBER = forgeBlock("storage_blocks/amber");
         public static final TagKey<Block> STORAGE_BLOCKS_AQUAMARINE = forgeBlock("storage_blocks/aquamarine");
@@ -654,6 +648,8 @@ public final class RankineTags {
         public static final TagKey<Item> NUGGETS_COBALT_SUPERALLOY = forgeItem("nuggets/cobalt_superalloy");
         public static final TagKey<Item> NUGGETS_TUNGSTEN_HEAVY_ALLOY = forgeItem("nuggets/tungsten_heavy_alloy");
         public static final TagKey<Item> NUGGETS_TITANIUM_ALLOY = forgeItem("nuggets/titanium_alloy");
+        public static final TagKey<Item> NUGGETS_NIOBIUM_ALLOY = forgeItem("nuggets/niobium_alloy");
+        public static final TagKey<Item> NUGGETS_ZIRCONIUM_ALLOY = forgeItem("nuggets/zirconium_alloy");
 
 
         public static final TagKey<Item> INGOTS_HYDROGEN = forgeItem("ingots/hydrogen");
@@ -806,6 +802,8 @@ public final class RankineTags {
         public static final TagKey<Item> INGOTS_COBALT_SUPERALLOY = forgeItem("ingots/cobalt_superalloy");
         public static final TagKey<Item> INGOTS_TUNGSTEN_HEAVY_ALLOY = forgeItem("ingots/tungsten_heavy_alloy");
         public static final TagKey<Item> INGOTS_TITANIUM_ALLOY = forgeItem("ingots/titanium_alloy");
+        public static final TagKey<Item> INGOTS_NIOBIUM_ALLOY = forgeItem("ingots/niobium_alloy");
+        public static final TagKey<Item> INGOTS_ZIRCONIUM_ALLOY = forgeItem("ingots/zirconium_alloy");
 
         public static final TagKey<Item> GEMS_AMBER = forgeItem("gems/amber");
         public static final TagKey<Item> GEMS_AQUAMARINE = forgeItem("gems/aquamarine");
@@ -973,6 +971,8 @@ public final class RankineTags {
         public static final TagKey<Item> STORAGE_BLOCKS_COBALT_SUPERALLOY = forgeItem("storage_blocks/cobalt_superalloy");
         public static final TagKey<Item> STORAGE_BLOCKS_TUNGSTEN_HEAVY_ALLOY = forgeItem("storage_blocks/tungsten_heavy_alloy");
         public static final TagKey<Item> STORAGE_BLOCKS_TITANIUM_ALLOY = forgeItem("storage_blocks/titanium_alloy");
+        public static final TagKey<Item> STORAGE_BLOCKS_NIOBIUM_ALLOY = forgeItem("storage_blocks/niobium_alloy");
+        public static final TagKey<Item> STORAGE_BLOCKS_ZIRCONIUM_ALLOY = forgeItem("storage_blocks/zirconium_alloy");
 
         public static final TagKey<Item> STORAGE_BLOCKS_AMBER = forgeItem("storage_blocks/amber");
         public static final TagKey<Item> STORAGE_BLOCKS_AQUAMARINE = forgeItem("storage_blocks/aquamarine");
@@ -1133,7 +1133,6 @@ public final class RankineTags {
         public static final TagKey<Item> CONCRETE = forgeItem("concrete");
         public static final TagKey<Item> MINERAL_WOOL = forgeItem("mineral_wool");
         public static final TagKey<Item> SHEETMETAL = forgeItem("sheetmetal");
-        public static final TagKey<Item> SHEETMETAL_VERTICAL_SALBS = forgeItem("sheetmetal_vertical_slabs");
         public static final TagKey<Item> SHEETMETAL_SALBS = forgeItem("sheetmetal_slabs");
         public static final TagKey<Item> FENCE_GATES = forgeItem("fence_gates");
 
@@ -1141,10 +1140,6 @@ public final class RankineTags {
         public static final TagKey<Item> BRICKS_SLABS = forgeItem("bricks_slabs");
         public static final TagKey<Item> BRICKS_STAIRS = forgeItem("bricks_stairs");
         public static final TagKey<Item> BRICKS_WALLS = forgeItem("bricks_walls");
-        public static final TagKey<Item> BRICKS_VERTICAL_SLABS = forgeItem("bricks_vertical_slabs");
-
-        public static final TagKey<Item> WOODEN_VERTICAL_SLABS = forgeItem("wooden_vertical_slabs");
-        public static final TagKey<Item> VERTICAL_SLABS = forgeItem("vertical_slabs");
 
         public static final TagKey<Item> POLISHED_STONE = forgeItem("polished_stone");
         public static final TagKey<Item> STONE_SLAB = forgeItem("stone_slabs");
@@ -1156,9 +1151,6 @@ public final class RankineTags {
         public static final TagKey<Item> STONE_WALL = forgeItem("stone_walls");
         public static final TagKey<Item> POLISHED_STONE_WALL = forgeItem("polished_stone_walls");
         public static final TagKey<Item> STONE_BRICKS_WALL = forgeItem("stone_bricks_walls");
-        public static final TagKey<Item> STONE_VERTICAL_SLAB = forgeItem("stone_vertical_slabs");
-        public static final TagKey<Item> POLISHED_STONE_VERTICAL_SLAB = forgeItem("polished_stone_vertical_slabs");
-        public static final TagKey<Item> STONE_BRICKS_VERTICAL_SLAB = forgeItem("stone_bricks_vertical_slabs");
         public static final TagKey<Item> STONE_PRESSURE_PLATES = forgeItem("stone_pressure_plates");
 
 

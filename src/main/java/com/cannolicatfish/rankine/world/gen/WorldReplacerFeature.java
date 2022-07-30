@@ -14,9 +14,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
@@ -31,12 +32,11 @@ import java.util.List;
 
 public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
     public static final int NOISE_SCALE = Config.WORLDGEN.NOISE_SCALE.get();
-    //public static final int NOISE_OFFSET = Config.MISC_WORLDGEN.NOISE_OFFSET.get();
     public static final int LAYER_THICKNESS = Config.WORLDGEN.LAYER_THICKNESS.get();
     public static final double LAYER_BEND = Config.WORLDGEN.LAYER_BEND.get();
     public static List<ResourceLocation> GEN_BIOMES = WorldgenUtils.GEN_BIOMES;
     public static List<List<String>> LAYER_LISTS = WorldgenUtils.LAYER_LISTS;
-
+    public static final PerlinSimplexNoise NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(4321L)), ImmutableList.of(0));
     public static final PerlinSimplexNoise INTRUSION_NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(9183)), ImmutableList.of(0));
 
     public WorldReplacerFeature(Codec<NoneFeatureConfiguration> configFactoryIn) {
@@ -56,28 +56,13 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
                 int biomeIndex = GEN_BIOMES.indexOf(targetBiome.getRegistryName());
                 if (biomeIndex != -1) {
                     ResourceLocation biomeName = targetBiome.getRegistryName();
-                    double stoneNoise = Biome.BIOME_INFO_NOISE.getValue(((double)x) / NOISE_SCALE, ((double)z) / NOISE_SCALE, false);
+                    double stoneNoise = NOISE.getValue((double) x / NOISE_SCALE, (double) z / NOISE_SCALE, false);
                     List<String> blockList = LAYER_LISTS.get(GEN_BIOMES.indexOf(biomeName));
                     for (int y = -64; y <= endY; ++y) {
                         BlockState StoneBS = getStone(blockList,y,stoneNoise);
                         if (StoneBS == null) return false;
                         BlockPos TARGET_POS = new BlockPos(x,y,z);
                         BlockState TARGET_BS = reader.getBlockState(TARGET_POS);
-                        Block TARGET_BLOCK = TARGET_BS.getBlock();
-                        /*
-                        if (Config.WORLDGEN.REPLACE_VANILLA_ORES.get() && vanillaOre(TARGET_BLOCK) != Blocks.AIR.defaultBlockState()) {
-                            int TARGET_INDEX = WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock());
-                            reader.setBlock(TARGET_POS, vanillaOre(TARGET_BLOCK).setValue(RankineOreBlock.TYPE, TARGET_INDEX == -1 ? 0 : TARGET_INDEX), 3);
-                            continue;
-                        } else if (TARGET_BLOCK instanceof RankineOreBlock && WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
-                            if (TARGET_BS.getValue(RankineOreBlock.TYPE) != 67 && TARGET_BS.getValue(RankineOreBlock.TYPE) != 68 && TARGET_BS.getValue(RankineOreBlock.TYPE) != 69) {
-                                int TARGET_INDEX = WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock());
-                                reader.setBlock(TARGET_POS, TARGET_BLOCK.defaultBlockState().setValue(RankineOreBlock.TYPE, TARGET_INDEX == -1 ? 0 : TARGET_INDEX), 3);
-                            }
-                            continue;
-                        }
-
-                         */
 
                         switch (Biome.getBiomeCategory(Holder.direct(targetBiome))) {
                             case NETHER:
@@ -99,6 +84,11 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
                             default:
                                 if (canReplaceStone(TARGET_BS)) {
                                     reader.setBlock(TARGET_POS, StoneBS, 3);
+                                } else if (TARGET_BS.hasProperty(BlockStateProperties.SLAB_TYPE)) {
+                                    ResourceLocation RS = ResourceLocation.tryParse(TARGET_BS.getBlock().getRegistryName().toString().replace("_slab",""));
+                                    if (RS != Blocks.AIR.getRegistryName() && canReplaceStone(ForgeRegistries.BLOCKS.getValue(RS).defaultBlockState())) {
+                                        reader.setBlock(TARGET_POS, ForgeRegistries.BLOCKS.getValue(RS).defaultBlockState().setValue(BlockStateProperties.SLAB_TYPE, SlabType.BOTTOM), 3);
+                                    }
                                 }
                                 break;
                         }
@@ -109,33 +99,6 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
         }
 
         return true;
-    }
-
-    private static BlockState vanillaOre(Block ore) {
-        /*
-        if (ore.equals(Blocks.IRON_ORE)) {
-            return RankineBlocks.IRON_ORE.get().defaultBlockState();
-        } else if (ore.equals(Blocks.GOLD_ORE)) {
-            return RankineBlocks.GOLD_ORE.get().defaultBlockState();
-        } else if (ore.equals(Blocks.DIAMOND_ORE)) {
-            return RankineBlocks.DIAMOND_ORE.get().defaultBlockState();
-        } else if (ore.equals(Blocks.EMERALD_ORE)) {
-            return RankineBlocks.EMERALD_ORE.get().defaultBlockState();
-        } else if (ore.equals(Blocks.COAL_ORE)) {
-            return RankineBlocks.COAL_ORE.get().defaultBlockState();
-        } else if (ore.equals(Blocks.LAPIS_ORE)) {
-            return RankineBlocks.LAPIS_ORE.get().defaultBlockState();
-        } else if (ore.equals(Blocks.REDSTONE_ORE)) {
-            return RankineBlocks.REDSTONE_ORE.get().defaultBlockState();
-        } else if (ore.equals(Blocks.NETHER_GOLD_ORE)) {
-            return RankineBlocks.NETHER_GOLD_ORE.get().defaultBlockState();
-        } else if (ore.equals(Blocks.NETHER_QUARTZ_ORE)) {
-            return RankineBlocks.NETHER_QUARTZ_ORE.get().defaultBlockState();
-        }
-
-         */
-
-        return Blocks.AIR.defaultBlockState();
     }
 
     private static boolean canReplaceStone(BlockState target) {

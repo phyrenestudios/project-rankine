@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rankine:block/cobalt_superalloy_sheetmetal"
+    }
+  }
+}

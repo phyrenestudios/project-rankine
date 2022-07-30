@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sheetmetal",
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/nickel_superalloy"
+    },
+    "#": {
+      "tag": "forge:nuggets/nickel_superalloy"
+    }
+  },
+  "result": {
+    "item": "rankine:nickel_superalloy_sheetmetal",
+    "count": 8
+  }
+}

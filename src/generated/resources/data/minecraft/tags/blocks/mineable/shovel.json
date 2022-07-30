@@ -82,7 +82,6 @@
     "rankine:packed_snow",
     "rankine:packed_snow_slab",
     "rankine:packed_snow_wall",
-    "rankine:packed_snow_stairs",
-    "rankine:packed_snow_vertical_slab"
+    "rankine:packed_snow_stairs"
   ]
 }

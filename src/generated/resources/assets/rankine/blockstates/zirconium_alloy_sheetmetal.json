@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rankine:block/zirconium_alloy_sheetmetal"
+    }
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:basalt_bricks"
-  },
-  "result": "rankine:basalt_bricks_vertical_slab",
-  "count": 2
-}

@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "rankine:block/stainless_steel_sheetmetal"
-  }
+  "parent": "rankine:block/alloy_sheetmetal"
 }

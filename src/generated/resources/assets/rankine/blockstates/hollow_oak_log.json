@@ -1,16 +1,26 @@
 {
   "variants": {
-    "axis=x": {
+    "axis=x,mossy=false": {
       "model": "rankine:block/hollow_oak_log",
       "x": 90,
       "y": 90
     },
-    "axis=y": {
+    "axis=y,mossy=false": {
       "model": "rankine:block/hollow_oak_log"
     },
-    "axis=z": {
+    "axis=z,mossy=false": {
       "model": "rankine:block/hollow_oak_log",
       "x": 90
+    },
+    "axis=x,mossy=true": {
+      "model": "rankine:block/hollow_oak_log_mossy",
+      "y": 90
+    },
+    "axis=y,mossy=true": {
+      "model": "rankine:block/hollow_oak_log"
+    },
+    "axis=z,mossy=true": {
+      "model": "rankine:block/hollow_oak_log_mossy"
     }
   }
 }

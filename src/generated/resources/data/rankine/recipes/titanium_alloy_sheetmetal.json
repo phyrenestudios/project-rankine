@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sheetmetal",
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/titanium_alloy"
+    },
+    "#": {
+      "tag": "forge:nuggets/titanium_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:titanium_alloy_sheetmetal",
+    "count": 8
+  }
+}
