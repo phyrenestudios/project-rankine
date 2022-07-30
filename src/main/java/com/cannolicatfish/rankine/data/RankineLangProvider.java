@@ -743,6 +743,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.tooltip_nonlimited", "Can obtain multiple times");
         add("rankine.jei.tooltip_nothing", "Skip Output");
         add("rankine.jei.tooltip_enchantment_required", "Requires Foraging enchantment");
+        add("rankine.jei.tooltip_biomes_info", "Biomes: ");
+        add("rankine.jei.tooltip_biomes_tags_info", "Biome Tags: ");
+        add("rankine.jei.tooltip_none", "None");
+        add("rankine.jei.tooltip_any", "Any");
         add("rankine.jei.tooltip_tier", "Tier: ");
         add("rankine.jei.crushing", "Crushing");
         add("rankine.jei.crucible", "Crucible");

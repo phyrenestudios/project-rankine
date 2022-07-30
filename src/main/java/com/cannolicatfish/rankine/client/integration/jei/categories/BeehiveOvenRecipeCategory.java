@@ -2,22 +2,34 @@ package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
+import com.cannolicatfish.rankine.recipe.CrushingRecipe;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.drawable.IDrawableAnimated;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,78 +38,109 @@ import java.util.List;
 public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRecipe> {
 
     public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "beeoven");
+    private final IGuiHelper guiHelper;
     private final IDrawable background;
     private final String localizedName;
-    private final IDrawable overlay;
-    private final IDrawable icon;
+    private final LoadingCache<Integer, IDrawableAnimated> cachedFlames;
+    private final LoadingCache<Integer, IDrawableAnimated> cachedArrows;
 
     public BeehiveOvenRecipeCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createBlankDrawable(145, 95);
+        this.guiHelper = guiHelper;
+        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"), 0,0,116, 64)
+                .build();
         localizedName = I18n.get("rankine.jei.beeoven");
-        overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"),
-                0, 15, 140, 90);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get()));
+        this.cachedFlames = CacheBuilder.newBuilder()
+                .maximumSize(25)
+                .build(new CacheLoader<>() {
+                    @Override
+                    public IDrawableAnimated load(Integer burnTime) {
+                        return guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"), 232, 0, 14, 14)
+                                .buildAnimated(burnTime, IDrawableAnimated.StartDirection.TOP, true);
+                    }
+                });
+        this.cachedArrows = CacheBuilder.newBuilder()
+                .maximumSize(25)
+                .build(new CacheLoader<>() {
+                    @Override
+                    public IDrawableAnimated load(Integer cookTime) {
+                        return guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"), 232, 14, 24, 17)
+                                .buildAnimated(cookTime, IDrawableAnimated.StartDirection.LEFT, false);
+                    }
+                });
     }
 
+    protected IDrawableAnimated getArrow(BeehiveOvenRecipe recipe) {
+        int cookTime = 800;
+        if (cookTime <= 0) {
+            cookTime = 800;
+        }
+        return this.cachedArrows.getUnchecked(cookTime);
+    }
+
+    protected void drawCookTime(BeehiveOvenRecipe recipe, PoseStack poseStack, int y) {
+        int cookTime = 8000;
+        if (cookTime > 0) {
+            int cookTimeSeconds = cookTime / 20;
+            TranslatableComponent timeString = new TranslatableComponent("gui.jei.category.smelting.time.seconds", cookTimeSeconds);
+            Minecraft minecraft = Minecraft.getInstance();
+            Font fontRenderer = minecraft.font;
+            int stringWidth = fontRenderer.width(timeString);
+            fontRenderer.draw(poseStack, timeString, background.getWidth() - stringWidth, y, 0xFF808080);
+        }
+    }
+
+    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
+    public @NotNull ResourceLocation getUid() {
         return UID;
     }
 
+    @SuppressWarnings("removal")
     @Override
-    public Class<? extends BeehiveOvenRecipe> getRecipeClass() {
+    public @NotNull Class<? extends BeehiveOvenRecipe> getRecipeClass() {
         return BeehiveOvenRecipe.class;
     }
 
     @Override
-    public Component getTitle() {
+    public @NotNull Component getTitle() {
         return new TextComponent(localizedName);
     }
 
     @Override
-    public IDrawable getBackground() {
+    public @NotNull IDrawable getBackground() {
         return background;
     }
 
     @Override
-    public IDrawable getIcon() {
-        return icon;
+    public @NotNull IDrawable getIcon() {
+        return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(RankineItems.BEEHIVE_OVEN_PIT.get()));
     }
 
     @Override
-    public void draw(BeehiveOvenRecipe recipe, PoseStack ms, double mouseX, double mouseY) {
-        //RenderSystem.enableAlphaTest();
-        RenderSystem.enableBlend();
-        overlay.draw(ms, 0, 4);
-        RenderSystem.disableBlend();
-        //RenderSystem.disableAlphaTest();
+    public void draw(BeehiveOvenRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+        int burnTime = 800;
+        IDrawableAnimated flame = cachedFlames.getUnchecked(burnTime);
+        flame.draw(stack, 20, 20);
+
+        IDrawableAnimated arrow = getArrow(recipe);
+        arrow.draw(stack, 55, 19);
+
+        drawCookTime(recipe, stack, 55);
+
+        IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
     }
 
     @Override
-    public void setIngredients(BeehiveOvenRecipe recipe, IIngredients iIngredients) {
-        ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
-        for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getItems()));
-        }
-        iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getResultItem()));
-    }
+    public void setRecipe(IRecipeLayoutBuilder builder, BeehiveOvenRecipe recipe, IFocusGroup focuses) {
+        List<Ingredient> ingredients = recipe.getIngredients();
+        int posX = 20;
 
-    @Override
-    public void setRecipe(IRecipeLayout recipeLayout, BeehiveOvenRecipe recipe, IIngredients ingredients) {
-        int index = 0, posX = 31;
-        for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
-            recipeLayout.getItemStacks().init(index, true, posX, 21);
-            recipeLayout.getItemStacks().set(index, o);
-            index++;
+        for (Ingredient i : ingredients) {
+            builder.addSlot(RecipeIngredientRole.INPUT,posX,1).addIngredients(i);
             posX += 18;
         }
 
-        for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
-            List<ItemStack> stacks = ingredients.getOutputs(VanillaTypes.ITEM).get(i);
-            recipeLayout.getItemStacks().init(index + i, false, 106, 34);
-            recipeLayout.getItemStacks().set(index + i, stacks);
-        }
+        builder.addSlot(RecipeIngredientRole.OUTPUT,92,20).addItemStack(recipe.getResultItem());
     }
 }
 

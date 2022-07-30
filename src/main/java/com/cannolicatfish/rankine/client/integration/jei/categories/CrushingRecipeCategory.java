@@ -38,7 +38,7 @@ import java.util.Locale;
 public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
     private final IDrawable background;
     public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "crushing");
-    private IGuiHelper guiHelper;
+    private final IGuiHelper guiHelper;
     private final IDrawable slotDrawable;
     private final IDrawable guaranteedDrawable;
     private final IDrawable woodDrawable;
