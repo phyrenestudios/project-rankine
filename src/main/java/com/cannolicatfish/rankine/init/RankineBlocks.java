@@ -2228,35 +2228,35 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BAMBOO_CULMS_WALL_SIGN = BLOCKS.register("bamboo_culms_wall_sign", () -> new RankineWallSignBlock(BAMBOO_CULM));
 
 
-    public static final RegistryObject<Block> HOLLOW_OAK_LOG = BLOCKS.register("hollow_oak_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_SPRUCE_LOG = BLOCKS.register("hollow_spruce_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_BIRCH_LOG = BLOCKS.register("hollow_birch_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_JUNGLE_LOG = BLOCKS.register("hollow_jungle_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_ACACIA_LOG = BLOCKS.register("hollow_acacia_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_DARK_OAK_LOG = BLOCKS.register("hollow_dark_oak_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_WARPED_STEM = BLOCKS.register("hollow_warped_stem", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_CRIMSON_STEM = BLOCKS.register("hollow_crimson_stem", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_CEDAR_LOG = BLOCKS.register("hollow_cedar_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_PINYON_PINE_LOG = BLOCKS.register("hollow_pinyon_pine_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_JUNIPER_LOG = BLOCKS.register("hollow_juniper_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_COCONUT_PALM_LOG = BLOCKS.register("hollow_coconut_palm_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_BALSAM_FIR_LOG = BLOCKS.register("hollow_balsam_fir_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_MAGNOLIA_LOG = BLOCKS.register("hollow_magnolia_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_EASTERN_HEMLOCK_LOG = BLOCKS.register("hollow_eastern_hemlock_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_WESTERN_HEMLOCK_LOG = BLOCKS.register("hollow_western_hemlock_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_YELLOW_BIRCH_LOG = BLOCKS.register("hollow_yellow_birch_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_BLACK_BIRCH_LOG = BLOCKS.register("hollow_black_birch_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_RED_BIRCH_LOG = BLOCKS.register("hollow_red_birch_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_MAPLE_LOG = BLOCKS.register("hollow_maple_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_SHARINGA_LOG = BLOCKS.register("hollow_sharinga_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_BLACK_WALNUT_LOG = BLOCKS.register("hollow_black_walnut_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_CORK_OAK_LOG = BLOCKS.register("hollow_cork_oak_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_CINNAMON_LOG = BLOCKS.register("hollow_cinnamon_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_ERYTHRINA_LOG = BLOCKS.register("hollow_erythrina_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_WEEPING_WILLOW_LOG = BLOCKS.register("hollow_weeping_willow_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_HONEY_LOCUST_LOG = BLOCKS.register("hollow_honey_locust_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_PETRIFIED_CHORUS_LOG = BLOCKS.register("hollow_petrified_chorus_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
-    public static final RegistryObject<Block> HOLLOW_CHARRED_LOG = BLOCKS.register("hollow_charred_log", () -> new HollowLogBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 1.0F)));
+    public static final RegistryObject<Block> HOLLOW_OAK_LOG = BLOCKS.register("hollow_oak_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_SPRUCE_LOG = BLOCKS.register("hollow_spruce_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_BIRCH_LOG = BLOCKS.register("hollow_birch_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_JUNGLE_LOG = BLOCKS.register("hollow_jungle_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_ACACIA_LOG = BLOCKS.register("hollow_acacia_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_DARK_OAK_LOG = BLOCKS.register("hollow_dark_oak_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_WARPED_STEM = BLOCKS.register("hollow_warped_stem", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_CRIMSON_STEM = BLOCKS.register("hollow_crimson_stem", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_CEDAR_LOG = BLOCKS.register("hollow_cedar_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_PINYON_PINE_LOG = BLOCKS.register("hollow_pinyon_pine_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_JUNIPER_LOG = BLOCKS.register("hollow_juniper_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_COCONUT_PALM_LOG = BLOCKS.register("hollow_coconut_palm_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_BALSAM_FIR_LOG = BLOCKS.register("hollow_balsam_fir_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_MAGNOLIA_LOG = BLOCKS.register("hollow_magnolia_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_EASTERN_HEMLOCK_LOG = BLOCKS.register("hollow_eastern_hemlock_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_WESTERN_HEMLOCK_LOG = BLOCKS.register("hollow_western_hemlock_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_YELLOW_BIRCH_LOG = BLOCKS.register("hollow_yellow_birch_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_BLACK_BIRCH_LOG = BLOCKS.register("hollow_black_birch_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_RED_BIRCH_LOG = BLOCKS.register("hollow_red_birch_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_MAPLE_LOG = BLOCKS.register("hollow_maple_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_SHARINGA_LOG = BLOCKS.register("hollow_sharinga_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_BLACK_WALNUT_LOG = BLOCKS.register("hollow_black_walnut_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_CORK_OAK_LOG = BLOCKS.register("hollow_cork_oak_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_CINNAMON_LOG = BLOCKS.register("hollow_cinnamon_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_ERYTHRINA_LOG = BLOCKS.register("hollow_erythrina_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_WEEPING_WILLOW_LOG = BLOCKS.register("hollow_weeping_willow_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_HONEY_LOCUST_LOG = BLOCKS.register("hollow_honey_locust_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_PETRIFIED_CHORUS_LOG = BLOCKS.register("hollow_petrified_chorus_log", HollowLogBlock::new);
+    public static final RegistryObject<Block> HOLLOW_CHARRED_LOG = BLOCKS.register("hollow_charred_log", HollowLogBlock::new);
 
 
 

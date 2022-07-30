@@ -65,9 +65,6 @@ public class FeatureGeneration {
             if (Config.WORLDGEN.MUSHROOMS.get() && WorldgenUtils.isOverworld(biome)) {
                 biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WALL_MUSHROOMS.getHolder().get());
             }
-            if (Config.WORLDGEN.FALLEN_LOGS.get() && biome.getCategory() == Biome.BiomeCategory.FOREST) {
-                biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_FALLEN_LOG.getHolder().get());
-            }
             if (Config.WORLDGEN.RANKINE_FLORA.get() && WorldgenUtils.isOverworld(biome)) {
                 if (biome.getCategory() == Biome.BiomeCategory.SAVANNA) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_SAVANNA_FLOWERS.getHolder().get());
@@ -91,49 +88,75 @@ public class FeatureGeneration {
             if (Config.WORLDGEN.RANKINE_TREES.get() && WorldgenUtils.isOverworld(biome)) {
                 if (biome.getName().toString().equals(Biomes.FOREST.location().toString()) || biome.getName().toString().equals(Biomes.FLOWER_FOREST.location().toString())) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_MAPLE_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_MAPLE_FALLEN_LOG.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_OAK_FALLEN_LOG.getHolder().get());
                 } if (biome.getName().toString().equals(Biomes.DARK_FOREST.location().toString())) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BLACK_WALNUT_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BLACK_WALNUT_FALLEN_LOG.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_DARK_OAK_FALLEN_LOG.getHolder().get());
+                } else if (biome.getName().toString().equals(Biomes.BEACH.location().toString())) {
+                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_COCONUT_PALM_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_COCONUT_PALM_FALLEN_LOG.getHolder().get());
                 } else if (biome.getName().toString().equals(Biomes.GROVE.location().toString())) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_SNOWY_SHORT_BALSAM_FIR_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BALSAM_FIR_FALLEN_LOG.getHolder().get());
                 } else if (biome.getName().toString().equals(Biomes.WINDSWEPT_FOREST.location().toString())) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BALSAM_FIR_TREE.getHolder().get());
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_SHORT_BALSAM_FIR_TREE.getHolder().get());
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_RED_BIRCH_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BALSAM_FIR_FALLEN_LOG.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_RED_BIRCH_FALLEN_LOG.getHolder().get());
                 } else if (biome.getName().toString().equals(Biomes.BIRCH_FOREST.location().toString()) || biome.getName().toString().equals(Biomes.OLD_GROWTH_BIRCH_FOREST.location().toString())) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_YELLOW_BIRCH_TREE.getHolder().get());
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_MODIFIED_BIRCH_TREE.getHolder().get());
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BLACK_BIRCH_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_YELLOW_BIRCH_FALLEN_LOG.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BLACK_BIRCH_FALLEN_LOG.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BIRCH_FALLEN_LOG.getHolder().get());
                 } else if (biome.getName().toString().equals(Biomes.TAIGA.location().toString()) || biome.getName().toString().equals(Biomes.SNOWY_TAIGA.location().toString())) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_EASTERN_HEMLOCK_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_EASTERN_HEMLOCK_FALLEN_LOG.getHolder().get());
                 } else if (biome.getName().toString().equals(Biomes.OLD_GROWTH_SPRUCE_TAIGA.location().toString()) || biome.getName().toString().equals(Biomes.OLD_GROWTH_PINE_TAIGA.location().toString())) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WESTERN_HEMLOCK_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WESTERN_HEMLOCK_FALLEN_LOG.getHolder().get());
                 }
 
                 if (biome.getCategory() == Biome.BiomeCategory.TAIGA) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_CEDAR_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_CEDAR_FALLEN_LOG.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_SPRUCE_FALLEN_LOG.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.PLAINS) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_HONEY_LOCUST_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_HONEY_LOCUST_FALLEN_LOG.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.SAVANNA) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_JUNIPER_TREE.getHolder().get());
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PINYON_PINE_TREE.getHolder().get());
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_CORK_OAK_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_CORK_OAK_FALLEN_LOG.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_JUNIPER_FALLEN_LOG.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PINYON_PINE_FALLEN_LOG.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_ACACIA_FALLEN_LOG.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.MESA) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_ERYTHRINA_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_ERYTHRINA_FALLEN_LOG.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.SWAMP) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WEEPING_WILLOW_TREE.getHolder().get());
-                } else if (biome.getCategory() == Biome.BiomeCategory.BEACH) {
-                    biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_COCONUT_PALM_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WEEPING_WILLOW_FALLEN_LOG.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.RIVER) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_BLACK_BIRCH_TREE.getHolder().get());
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_MAGNOLIA_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_MAGNOLIA_FALLEN_LOG.getHolder().get());
                 } else if (biome.getCategory() == Biome.BiomeCategory.JUNGLE) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_SHARINGA_TREE.getHolder().get());
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_CINNAMON_TREE.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_SHARINGA_FALLEN_LOG.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_CINNAMON_FALLEN_LOG.getHolder().get());
+                    if (Config.WORLDGEN.FALLEN_LOGS.get()) biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_JUNGLE_FALLEN_LOG.getHolder().get());
                 }
             }
 
             if (Config.WORLDGEN.COBBLES_GEN.get() && WorldgenUtils.isOverworld(biome)) {
-                biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_COBBLES.getHolder().get());
+                biome.getGeneration().addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_PATCH_COBBLES.getHolder().get());
             }
             if (Config.WORLDGEN.END_METEORITE_GEN.get()) {
                 if (biome.getName().toString().equals(Biomes.END_HIGHLANDS.location().toString()) || biome.getName().toString().equals(Biomes.END_MIDLANDS.location().toString()) || biome.getName().toString().equals(Biomes.END_BARRENS.location().toString()) || biome.getName().toString().equals(Biomes.SMALL_END_ISLANDS.location().toString())) {

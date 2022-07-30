@@ -87,7 +87,10 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
                                 } else if (TARGET_BS.hasProperty(BlockStateProperties.SLAB_TYPE)) {
                                     ResourceLocation RS = ResourceLocation.tryParse(TARGET_BS.getBlock().getRegistryName().toString().replace("_slab",""));
                                     if (RS != Blocks.AIR.getRegistryName() && canReplaceStone(ForgeRegistries.BLOCKS.getValue(RS).defaultBlockState())) {
-                                        reader.setBlock(TARGET_POS, ForgeRegistries.BLOCKS.getValue(RS).defaultBlockState().setValue(BlockStateProperties.SLAB_TYPE, SlabType.BOTTOM), 3);
+                                        ResourceLocation RS2 = ResourceLocation.tryParse(StoneBS.getBlock().getRegistryName().toString() + "_slab");
+                                        if (RS2 != Blocks.AIR.getRegistryName()) {
+                                            reader.setBlock(TARGET_POS, ForgeRegistries.BLOCKS.getValue(RS2).defaultBlockState().setValue(BlockStateProperties.SLAB_TYPE, SlabType.BOTTOM), 3);
+                                        }
                                     }
                                 }
                                 break;

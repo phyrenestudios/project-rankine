@@ -677,7 +677,7 @@ public class Config {
 
             b.comment("Settings for stone layering").push("layers");
             LAYER_GEN = b.comment("Determines how stone layers generate. 0 means disabled, 1 means they replace minecraft:stone, 2 means they replace #minecraft:base_stone_overworld, 3 means they replace any non-Rankine stone in #minecraft:base_stone_overworld")
-                    .defineInRange("layerGenType", 1, 0, 3);
+                    .defineInRange("layerGenType", 3, 0, 3);
             LAYER_BEND = b.comment("Determines the vertical spread of stone layers. 1.0 is flat, closer to 0.0 is more extreme, 0.0 will crash.")
                     .defineInRange("layerWidth", 0.05D, 0.0D, 1.0D);
             LAYER_THICKNESS = b.comment("")
