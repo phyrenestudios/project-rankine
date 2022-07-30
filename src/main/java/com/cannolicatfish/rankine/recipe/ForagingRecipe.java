@@ -84,6 +84,10 @@ public class ForagingRecipe implements Recipe<Container> {
         return NonNullList.withSize(1,this.ingredient);
     }
 
+    public boolean isAllBiomes() {
+        return allBiomes;
+    }
+
     public Float getChance(int index) {
         float in = getWeights().get(index);
         return (in/getWeights().stream().reduce(0f, Float::sum));
