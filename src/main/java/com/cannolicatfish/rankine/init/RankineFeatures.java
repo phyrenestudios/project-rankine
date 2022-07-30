@@ -28,7 +28,7 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> FUMAROLE = FEATURES.register("fumarole", () -> new FumaroleFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> INTRUSION = FEATURES.register("intrusion", () -> new IntrusionFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> WALL_MUSHROOMS = FEATURES.register("wall_mushrooms_feature", () -> new WallMushroomsFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> FALLEN_LOG = FEATURES.register("fallen_log", () -> new FallenLogFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<SimpleBlockConfiguration>> FALLEN_LOG = FEATURES.register("fallen_log", () -> new FallenLogFeature(SimpleBlockConfiguration.CODEC));
 
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> WORLD_REPLACER = FEATURES.register("world_replacer_feature", () -> new WorldReplacerFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> POST_WORLD_REPLACER = FEATURES.register("post_world_replacer_feature", () -> new PostWorldReplacerFeature(NoneFeatureConfiguration.CODEC));
