@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:tungsten_heavy_alloy_ingot"
+      "tag": "forge:ingots/tungsten_heavy_alloy"
     },
     "#": {
-      "item": "rankine:tungsten_heavy_alloy_nugget"
+      "tag": "forge:nuggets/tungsten_heavy_alloy"
     }
   },
   "result": {

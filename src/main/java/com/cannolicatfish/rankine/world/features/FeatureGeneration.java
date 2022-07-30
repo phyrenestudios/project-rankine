@@ -65,6 +65,9 @@ public class FeatureGeneration {
             if (Config.WORLDGEN.MUSHROOMS.get() && WorldgenUtils.isOverworld(biome)) {
                 biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WALL_MUSHROOMS.getHolder().get());
             }
+            if (Config.WORLDGEN.FALLEN_LOGS.get() && biome.getCategory() == Biome.BiomeCategory.FOREST) {
+                biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_FALLEN_LOG.getHolder().get());
+            }
             if (Config.WORLDGEN.RANKINE_FLORA.get() && WorldgenUtils.isOverworld(biome)) {
                 if (biome.getCategory() == Biome.BiomeCategory.SAVANNA) {
                     biome.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_PATCH_SAVANNA_FLOWERS.getHolder().get());

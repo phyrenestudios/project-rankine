@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:nickel_silver_ingot"
+      "tag": "forge:ingots/nickel_silver"
     },
     "#": {
-      "item": "rankine:nickel_silver_nugget"
+      "tag": "forge:nuggets/nickel_silver"
     }
   },
   "result": {

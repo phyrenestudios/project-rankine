@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:rose_gold_ingot"
+      "tag": "forge:ingots/rose_gold"
     },
     "#": {
-      "item": "rankine:rose_gold_nugget"
+      "tag": "forge:nuggets/rose_gold"
     }
   },
   "result": {

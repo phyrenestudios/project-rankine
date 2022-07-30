@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:alnico_ingot"
+      "tag": "forge:ingots/alnico"
     },
     "#": {
-      "item": "rankine:alnico_nugget"
+      "tag": "forge:nuggets/alnico"
     }
   },
   "result": {

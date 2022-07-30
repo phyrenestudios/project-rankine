@@ -2791,18 +2791,15 @@ public class RankineBlocks {
     public static final RegistryObject<Block> FLOOD_GATE = BLOCKS.register("flood_gate", () -> new FloodGateBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F).noOcclusion()));
 
 
-    public static final RegistryObject<Block> ALUMINUM_SHEETMETAL = BLOCKS.register("aluminum_sheetmetal", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F)));
-    public static final RegistryObject<Block> TITANIUM_SHEETMETAL = BLOCKS.register("titanium_sheetmetal", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F)));
-    public static final RegistryObject<Block> IRON_SHEETMETAL = BLOCKS.register("iron_sheetmetal", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F)));
-    public static final RegistryObject<Block> NICKEL_SHEETMETAL = BLOCKS.register("nickel_sheetmetal", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F)));
-    public static final RegistryObject<Block> COPPER_SHEETMETAL = BLOCKS.register("copper_sheetmetal", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F)));
-    public static final RegistryObject<Block> SILVER_SHEETMETAL = BLOCKS.register("silver_sheetmetal", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F)));
-    public static final RegistryObject<Block> TIN_SHEETMETAL = BLOCKS.register("tin_sheetmetal", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F)));
-    public static final RegistryObject<Block> TUNGSTEN_SHEETMETAL = BLOCKS.register("tungsten_sheetmetal", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F)));
-    public static final RegistryObject<Block> PLATINUM_SHEETMETAL = BLOCKS.register("platinum_sheetmetal", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F)));
-    public static final RegistryObject<Block> GOLD_SHEETMETAL = BLOCKS.register("gold_sheetmetal", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F)));
-    public static final RegistryObject<Block> LEAD_SHEETMETAL = BLOCKS.register("lead_sheetmetal", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F)));
-    public static final RegistryObject<Block> BISMUTH_SHEETMETAL = BLOCKS.register("bismuth_sheetmetal", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(3.0F, 10.0F)));
+    public static final RegistryObject<Block> ALUMINUM_SHEETMETAL = BLOCKS.register("aluminum_sheetmetal", () -> new SheetmetalBlock(14734290));
+    public static final RegistryObject<Block> TITANIUM_SHEETMETAL = BLOCKS.register("titanium_sheetmetal", () -> new SheetmetalBlock(11711163));
+    public static final RegistryObject<Block> IRON_SHEETMETAL = BLOCKS.register("iron_sheetmetal", () -> new SheetmetalBlock(14211288));
+    public static final RegistryObject<Block> NICKEL_SHEETMETAL = BLOCKS.register("nickel_sheetmetal", () -> new SheetmetalBlock(13558993));
+    public static final RegistryObject<Block> COPPER_SHEETMETAL = BLOCKS.register("copper_sheetmetal", () -> new SheetmetalBlock(15170646));
+    public static final RegistryObject<Block> TIN_SHEETMETAL = BLOCKS.register("tin_sheetmetal", () -> new SheetmetalBlock(10595770));
+    public static final RegistryObject<Block> TUNGSTEN_SHEETMETAL = BLOCKS.register("tungsten_sheetmetal", () -> new SheetmetalBlock(9272689));
+    public static final RegistryObject<Block> LEAD_SHEETMETAL = BLOCKS.register("lead_sheetmetal", () -> new SheetmetalBlock(9341867));
+    public static final RegistryObject<Block> BISMUTH_SHEETMETAL = BLOCKS.register("bismuth_sheetmetal", () -> new SheetmetalBlock(14401722));
     public static final RegistryObject<Block> CAST_IRON_SUPPORT = BLOCKS.register("cast_iron_support", () -> new Block(Block.Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).noOcclusion()));
     public static final RegistryObject<Block> CAST_IRON_SUPPORT_SLAB = BLOCKS.register("cast_iron_support_slab", () -> new RankineSlabBlock(Block.Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).noOcclusion()));
     public static final RegistryObject<Block> CAST_IRON_SUPPORT_STAIRS = BLOCKS.register("cast_iron_support_stairs", () -> new RankineStairsBlock(Block.Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).noOcclusion()));

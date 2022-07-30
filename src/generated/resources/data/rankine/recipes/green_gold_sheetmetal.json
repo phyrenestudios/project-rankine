@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:green_gold_ingot"
+      "tag": "forge:ingots/green_gold"
     },
     "#": {
-      "item": "rankine:green_gold_nugget"
+      "tag": "forge:nuggets/green_gold"
     }
   },
   "result": {

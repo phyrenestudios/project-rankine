@@ -56,7 +56,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 RankineLists.DRIPSTONES,
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.ELEMENT_BLOCKS,
-                RankineLists.SHEETMETALS,
                 RankineLists.SMOOTH_SANDSTONES,
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
@@ -150,7 +149,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block BLK : RankineLists.LANTERNS) {
             lanternBlock(BLK);
         }
-        for (Block BLK : RankineLists.ALLOY_SHEETMETALS) {
+        for (Block BLK : Stream.of(RankineLists.SHEETMETALS,RankineLists.ALLOY_SHEETMETALS).flatMap(Collection::stream).collect(Collectors.toList())) {
             getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), modLoc("alloy_sheetmetal"))).addModel();
         }
         //getVariantBuilder(RankineBlocks.ENDER_SHIRO.get()).partialState().modelForState().modelFile(models().cubeBottomTop(RankineBlocks.ENDER_SHIRO.get().getRegistryName().getPath(), getRSL("ender_shiro_side"), getRSL("minecraft","end_stone"), getRSL("ender_shiro_top"))).addModel();
@@ -366,13 +365,14 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 nameSpace = "rankine";
             }
             ModelFile MODEL = models().withExistingParent(PATH, modLoc("block/template_hollow_log")).texture("log", getBlockRSL(nameSpace,PATH.replace("hollow_",""))).texture("log_top", getBlockRSL(nameSpace,PATH.replace("hollow_","")+"_top")).texture("stripped_log", getBlockRSL(nameSpace,PATH.replace("hollow_","stripped_")));
+            ModelFile MODEL_MOSSY = models().withExistingParent(PATH+"_mossy", modLoc("block/template_hollow_log_mossy")).texture("log", getBlockRSL(nameSpace,PATH.replace("hollow_",""))).texture("log_top", getBlockRSL(nameSpace,PATH.replace("hollow_","")+"_top")).texture("stripped_log", getBlockRSL(nameSpace,PATH.replace("hollow_","stripped_")));
             getVariantBuilder(blk)
-                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
-                    .modelForState().modelFile(MODEL).addModel()
-                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z)
-                    .modelForState().modelFile(MODEL).rotationX(90).addModel()
-                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X)
-                    .modelForState().modelFile(MODEL).rotationX(90).rotationY(90).addModel();
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y).with(HollowLogBlock.MOSSY, false).modelForState().modelFile(MODEL).addModel()
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y).with(HollowLogBlock.MOSSY, true).modelForState().modelFile(MODEL).addModel()
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z).with(HollowLogBlock.MOSSY, false).modelForState().modelFile(MODEL).rotationX(90).addModel()
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z).with(HollowLogBlock.MOSSY, true).modelForState().modelFile(MODEL_MOSSY).addModel()
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X).with(HollowLogBlock.MOSSY, false).modelForState().modelFile(MODEL).rotationX(90).rotationY(90).addModel()
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X).with(HollowLogBlock.MOSSY, true).modelForState().modelFile(MODEL_MOSSY).rotationY(90).addModel();
         }
         /*
         for (Block blk : RankineLists.GAS_TUBES) {

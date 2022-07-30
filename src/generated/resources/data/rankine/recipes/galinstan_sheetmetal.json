@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:galinstan_ingot"
+      "tag": "forge:ingots/galinstan"
     },
     "#": {
-      "item": "rankine:galinstan_nugget"
+      "tag": "forge:nuggets/galinstan"
     }
   },
   "result": {

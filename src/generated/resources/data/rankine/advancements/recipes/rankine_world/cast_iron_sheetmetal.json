@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "rankine:cast_iron_ingot"
-            ]
+            "tag": "forge:ingots/cast_iron"
           }
         ]
       }

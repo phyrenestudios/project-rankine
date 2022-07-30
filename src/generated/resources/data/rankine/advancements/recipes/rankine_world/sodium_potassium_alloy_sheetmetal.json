@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "rankine:sodium_potassium_alloy_ingot"
-            ]
+            "tag": "forge:ingots/sodium_potassium_alloy"
           }
         ]
       }

@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:sodium_potassium_alloy_ingot"
+      "tag": "forge:ingots/sodium_potassium_alloy"
     },
     "#": {
-      "item": "rankine:sodium_potassium_alloy_nugget"
+      "tag": "forge:nuggets/sodium_potassium_alloy"
     }
   },
   "result": {

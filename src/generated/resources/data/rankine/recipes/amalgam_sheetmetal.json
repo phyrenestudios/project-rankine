@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:amalgam_ingot"
+      "tag": "forge:ingots/amalgam"
     },
     "#": {
-      "item": "rankine:amalgam_nugget"
+      "tag": "forge:nuggets/amalgam"
     }
   },
   "result": {

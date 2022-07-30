@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:nitinol_ingot"
+      "tag": "forge:ingots/nitinol"
     },
     "#": {
-      "item": "rankine:nitinol_nugget"
+      "tag": "forge:nuggets/nitinol"
     }
   },
   "result": {

@@ -51,7 +51,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Mod("rankine")
 public class ProjectRankine {
@@ -141,7 +144,7 @@ public class ProjectRankine {
             for (Block b : RankineLists.GRASS_BLOCKS) {
                 event.getItemColors().register(new GrassItemBaseColor(), b.asItem());
             }
-            for (Block b : RankineLists.ALLOY_SHEETMETALS) {
+            for (Block b : Stream.of(RankineLists.SHEETMETALS,RankineLists.ALLOY_SHEETMETALS).flatMap(Collection::stream).collect(Collectors.toList())) {
                 event.getItemColors().register(new NonAlloyItemColor(), b);
             }
             for (Block b : RankineLists.ALLOY_POLES) {
@@ -198,7 +201,7 @@ public class ProjectRankine {
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK.get());
             event.getBlockColors().register(new LeavesBlockBaseColor(), RankineBlocks.BIRCH_LEAF_LITTER.get(), RankineBlocks.SPRUCE_LEAF_LITTER.get(), RankineBlocks.ACACIA_LEAF_LITTER.get(), RankineBlocks.JUNGLE_LEAF_LITTER.get(), RankineBlocks.DARK_OAK_LEAF_LITTER.get(), RankineBlocks.OAK_LEAF_LITTER.get());
 
-            for (Block b : RankineLists.ALLOY_SHEETMETALS) {
+            for (Block b : Stream.of(RankineLists.SHEETMETALS,RankineLists.ALLOY_SHEETMETALS).flatMap(Collection::stream).collect(Collectors.toList())) {
                 event.getBlockColors().register(new NonAlloyBlockColor(), b);
             }
             for (Block b : RankineLists.ALLOY_POLES) {

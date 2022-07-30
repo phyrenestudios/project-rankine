@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:ender_amalgam_ingot"
+      "tag": "forge:ingots/ender_amalgam"
     },
     "#": {
-      "item": "rankine:ender_amalgam_nugget"
+      "tag": "forge:nuggets/ender_amalgam"
     }
   },
   "result": {

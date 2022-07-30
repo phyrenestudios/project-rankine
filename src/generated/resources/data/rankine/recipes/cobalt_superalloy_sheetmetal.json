@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:cobalt_superalloy_ingot"
+      "tag": "forge:ingots/cobalt_superalloy"
     },
     "#": {
-      "item": "rankine:cobalt_superalloy_nugget"
+      "tag": "forge:nuggets/cobalt_superalloy"
     }
   },
   "result": {

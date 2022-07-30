@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:cupronickel_ingot"
+      "tag": "forge:ingots/cupronickel"
     },
     "#": {
-      "item": "rankine:cupronickel_nugget"
+      "tag": "forge:nuggets/cupronickel"
     }
   },
   "result": {

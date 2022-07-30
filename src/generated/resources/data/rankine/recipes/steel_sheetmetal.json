@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:steel_ingot"
+      "tag": "forge:ingots/steel"
     },
     "#": {
-      "item": "rankine:steel_nugget"
+      "tag": "forge:nuggets/steel"
     }
   },
   "result": {

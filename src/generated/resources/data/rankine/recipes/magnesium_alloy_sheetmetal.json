@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:magnesium_alloy_ingot"
+      "tag": "forge:ingots/magnesium_alloy"
     },
     "#": {
-      "item": "rankine:magnesium_alloy_nugget"
+      "tag": "forge:nuggets/magnesium_alloy"
     }
   },
   "result": {

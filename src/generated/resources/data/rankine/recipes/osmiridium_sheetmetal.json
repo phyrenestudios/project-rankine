@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "rankine:osmiridium_ingot"
+      "tag": "forge:ingots/osmiridium"
     },
     "#": {
-      "item": "rankine:osmiridium_nugget"
+      "tag": "forge:nuggets/osmiridium"
     }
   },
   "result": {

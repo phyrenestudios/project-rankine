@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "rankine:cupronickel_ingot"
-            ]
+            "tag": "forge:ingots/cupronickel"
           }
         ]
       }

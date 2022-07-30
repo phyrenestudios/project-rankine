@@ -9,6 +9,7 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.JamRecipe;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -26,9 +27,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RankineRecipesProvider extends RecipeProvider {
 
@@ -562,7 +566,6 @@ public class RankineRecipesProvider extends RecipeProvider {
         twoXtwo(consumer, Items.WHITE_DYE, RankineItems.RUTILE.get(), 16, "has_ingredient", RankineItems.RUTILE.get(), "white_dye_from_ilmenite");
         twoXtwo(consumer, Items.YELLOW_DYE, RankineItems.CHROMITE.get(), 16, "has_ingredient", RankineItems.CHROMITE.get(), "yellow_dye_from_chromite");
         twoXtwo(consumer, Items.LIGHT_BLUE_DYE, RankineItems.AZURITE.get(), 16, "has_ingredient", RankineItems.AZURITE.get(), "light_blue_dye_from_azurite");
-        //twoXtwo(consumer, Items.GREEN_DYE, RankineItems.MALACHITE.get(), 16, "has_ingredient", RankineItems.MALACHITE.get(), "_dye_from_");
         ShapelessRecipeBuilder.shapeless(Items.BLACK_DYE).requires(RankineItems.BONE_CHAR.get()).unlockedBy("has_ingredient", has(RankineItems.BONE_CHAR.get())).save(consumer, "rankine:black_dye_from_bone_char");
         ShapelessRecipeBuilder.shapeless(Items.PINK_DYE).requires(RankineItems.PINK_BELLFLOWER.get(),2).unlockedBy("has_ingredient", has(RankineItems.PINK_BELLFLOWER.get())).save(consumer, "rankine:pink_dye_from_pink_bellflower");
         ShapelessRecipeBuilder.shapeless(Items.MAGENTA_DYE).requires(RankineItems.VIOLET_BELLFLOWER.get(),2).unlockedBy("has_ingredient", has(RankineItems.VIOLET_BELLFLOWER.get())).save(consumer, "rankine:magenta_dye_from_violet_bellflower");
@@ -918,25 +921,13 @@ public class RankineRecipesProvider extends RecipeProvider {
         trapdoor(consumer, RankineItems.STEEL_TRAPDOOR.get(), RankineItems.STEEL_INGOT.get(), "metal_trapdoor", "has_ingredient", RankineItems.STEEL_INGOT.get());
 
         //SHEETMETALS
-        for (Block BLK : RankineLists.ALLOY_SHEETMETALS) {
-            Item INGOT = RankineLists.ALLOY_INGOTS.get(RankineLists.ALLOY_SHEETMETALS.indexOf(BLK));
-            Item NUG = RankineLists.ALLOY_NUGGETS.get(RankineLists.ALLOY_SHEETMETALS.indexOf(BLK));
-            ShapedRecipeBuilder.shaped(BLK, 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', INGOT).define('#', NUG).group("sheetmetal").unlockedBy("has_ingredient", has(INGOT)).save(consumer);
+        for (Block BLK : Stream.of(RankineLists.SHEETMETALS,RankineLists.ALLOY_SHEETMETALS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            String PATH = BLK.getRegistryName().getPath();
+            TagKey<Item> ingotTag = TagKey.create(Registry.ITEM_REGISTRY, ResourceLocation.tryParse("forge:ingots/"+PATH.replace("_sheetmetal","")));
+            TagKey<Item> nugTag = TagKey.create(Registry.ITEM_REGISTRY, ResourceLocation.tryParse("forge:nuggets/"+PATH.replace("_sheetmetal","")));
+
+            ShapedRecipeBuilder.shaped(BLK, 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', ingotTag).define('#', nugTag).group("sheetmetal").unlockedBy("has_ingredient", has(ingotTag)).save(consumer);
         }
-
-
-        ShapedRecipeBuilder.shaped(RankineBlocks.COPPER_SHEETMETAL.get(), 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', RankineTags.Items.INGOTS_COPPER).define('#', RankineTags.Items.NUGGETS_COPPER).group("sheetmetal").unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_COPPER)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineBlocks.TIN_SHEETMETAL.get(), 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', RankineTags.Items.INGOTS_TIN).define('#', RankineTags.Items.NUGGETS_TIN).group("sheetmetal").unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_TIN)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineBlocks.ALUMINUM_SHEETMETAL.get(), 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', RankineTags.Items.INGOTS_ALUMINUM).define('#', RankineTags.Items.NUGGETS_ALUMINUM).group("sheetmetal").unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_ALUMINUM)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineBlocks.LEAD_SHEETMETAL.get(), 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', RankineTags.Items.INGOTS_LEAD).define('#', RankineTags.Items.NUGGETS_LEAD).group("sheetmetal").unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_LEAD)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineBlocks.BISMUTH_SHEETMETAL.get(), 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', RankineTags.Items.INGOTS_BISMUTH).define('#', RankineTags.Items.NUGGETS_BISMUTH).group("sheetmetal").unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_BISMUTH)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineBlocks.SILVER_SHEETMETAL.get(), 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', RankineTags.Items.INGOTS_SILVER).define('#', RankineTags.Items.NUGGETS_SILVER).group("sheetmetal").unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_SILVER)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineBlocks.GOLD_SHEETMETAL.get(), 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', Tags.Items.INGOTS_GOLD).define('#', Tags.Items.NUGGETS_GOLD).group("sheetmetal").unlockedBy("has_ingredient", has(Tags.Items.INGOTS_GOLD)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineBlocks.IRON_SHEETMETAL.get(), 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', Tags.Items.INGOTS_IRON).define('#', Tags.Items.NUGGETS_IRON).group("sheetmetal").unlockedBy("has_ingredient", has(Tags.Items.INGOTS_IRON)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineBlocks.TITANIUM_SHEETMETAL.get(), 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', RankineTags.Items.INGOTS_TITANIUM).define('#', RankineTags.Items.NUGGETS_TITANIUM).group("sheetmetal").unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_TITANIUM)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineBlocks.TUNGSTEN_SHEETMETAL.get(), 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', RankineTags.Items.INGOTS_TUNGSTEN).define('#', RankineTags.Items.NUGGETS_TUNGSTEN).group("sheetmetal").unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_TUNGSTEN)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineBlocks.PLATINUM_SHEETMETAL.get(), 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', RankineTags.Items.INGOTS_PLATINUM).define('#', RankineTags.Items.NUGGETS_PLATINUM).group("sheetmetal").unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_PLATINUM)).save(consumer);
-        ShapedRecipeBuilder.shaped(RankineBlocks.NICKEL_SHEETMETAL.get(), 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', RankineTags.Items.INGOTS_NICKEL).define('#', RankineTags.Items.NUGGETS_NICKEL).group("sheetmetal").unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_NICKEL)).save(consumer);
 
         
         hLine(consumer,RankineItems.TAP_LINE.get(),3,RankineItems.VULCANIZED_RUBBER.get(),"has_ingredient",RankineItems.VULCANIZED_RUBBER.get());
