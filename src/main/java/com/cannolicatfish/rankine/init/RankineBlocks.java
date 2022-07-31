@@ -28,6 +28,7 @@ import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerBlock;
 import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerContainer;
 import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerTile;
+import com.cannolicatfish.rankine.blocks.gases.NitrogenGasBlock;
 import com.cannolicatfish.rankine.blocks.gasvent.GasVentBlock;
 import com.cannolicatfish.rankine.blocks.gasvent.GasVentTile;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapBlock;
@@ -1418,7 +1419,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SULFUR_DIOXIDE_FUMAROLE = BLOCKS.register("sulfur_dioxide_fumarole", () -> new FumaroleBlock(GasUtilsEnum.SULFUR_DIOXIDE,BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
     public static final RegistryObject<Block> HYDROGEN_GAS_BLOCK = BLOCKS.register("hydrogen_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
     public static final RegistryObject<Block> HELIUM_GAS_BLOCK = BLOCKS.register("helium_gas_block", () -> new GasBlock(GasUtilsEnum.HELIUM, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> NITROGEN_GAS_BLOCK = BLOCKS.register("nitrogen_gas_block", () -> new GasBlock(GasUtilsEnum.NITROGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> NITROGEN_GAS_BLOCK = BLOCKS.register("nitrogen_gas_block", () -> new NitrogenGasBlock(GasUtilsEnum.NITROGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
     public static final RegistryObject<Block> OXYGEN_GAS_BLOCK = BLOCKS.register("oxygen_gas_block", () -> new GasBlock(GasUtilsEnum.OXYGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
     public static final RegistryObject<Block> FLUORINE_GAS_BLOCK = BLOCKS.register("fluorine_gas_block", () -> new GasBlock(GasUtilsEnum.FLUORINE, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
     public static final RegistryObject<Block> NEON_GAS_BLOCK = BLOCKS.register("neon_gas_block", () -> new GasBlock(GasUtilsEnum.NEON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
@@ -1747,8 +1748,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> FIRE_CLAY = BLOCKS.register("fire_clay", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(1.0F, 3.0F)));
     public static final RegistryObject<Block> KAOLIN = BLOCKS.register("kaolin", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(1.5F, 3.0F)));
     public static final RegistryObject<Block> PORCELAIN_BLOCK = BLOCKS.register("porcelain_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.0F, 3.0F)));
-    public static final RegistryObject<Block> BLOOD_OBSIDIAN = BLOCKS.register("blood_obsidian", () -> new NonpushableBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
-    public static final RegistryObject<Block> SNOWFLAKE_OBSIDIAN = BLOCKS.register("snowflake_obsidian", () -> new NonpushableBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
+    public static final RegistryObject<Block> BLOOD_OBSIDIAN = BLOCKS.register("blood_obsidian", () -> new RankineObsidianBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
+    public static final RegistryObject<Block> SNOWFLAKE_OBSIDIAN = BLOCKS.register("snowflake_obsidian", () -> new RankineObsidianBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
     public static final RegistryObject<Block> CHECKERED_MARBLE = BLOCKS.register("checkered_marble", () -> new Block(Block.Properties.of(Material.STONE).strength(2)));
     public static final RegistryObject<Block> CHECKERED_MARBLE_SLAB = BLOCKS.register("checkered_marble_slab", () -> new RankineSlabBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2)));
     public static final RegistryObject<Block> CHECKERED_MARBLE_STAIRS = BLOCKS.register("checkered_marble_stairs", () -> new RankineStairsBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2)));

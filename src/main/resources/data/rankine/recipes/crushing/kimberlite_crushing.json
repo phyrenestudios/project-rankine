@@ -15,7 +15,7 @@
     },
     {
       "item": "rankine:forsterite",
-      "weight": 40,
+      "weight": 30,
       "remove": false
     },
     {
@@ -25,6 +25,11 @@
     },
     {
       "item": "rankine:diopside",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:perovskite",
       "weight": 10,
       "remove": false
     },
