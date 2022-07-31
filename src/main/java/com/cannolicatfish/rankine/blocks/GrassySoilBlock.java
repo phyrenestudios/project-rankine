@@ -71,23 +71,7 @@ public class GrassySoilBlock extends GrassBlock {
                 }
             }
             if (random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get() && !state.getValue(DEAD)) {
-                BlockState aboveState = levelIn.getBlockState(pos.above());
-                if (aboveState.is(RankineBlocks.SHORT_GRASS.get())) {
-                    if (random.nextFloat() < 0.5f) {
-                        levelIn.setBlock(pos.above(), Blocks.GRASS.defaultBlockState(), 3);
-                    }
-                } else if (aboveState.is(Blocks.GRASS) && levelIn.getBlockState(pos.above(2)).is(Blocks.AIR)) {
-                    if (random.nextFloat() < 0.3f) {
-                        levelIn.setBlock(pos.above(), Blocks.TALL_GRASS.defaultBlockState().setValue(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER), 3);
-                        levelIn.setBlock(pos.above(2), Blocks.TALL_GRASS.defaultBlockState().setValue(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER), 3);
-                    }
-                } else if (aboveState.is(Blocks.AIR)) {
-                    Biome BIOME = levelIn.getBiome(pos).value();
-                    if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
-                        BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
-                        levelIn.setBlock(pos.above(), BLOCK, 3);
-                    }
-                }
+                growGrassBlock(state,levelIn,pos,random);
             }
         }
 
@@ -115,6 +99,26 @@ public class GrassySoilBlock extends GrassBlock {
             }
         }
 
+    }
+
+    public void growGrassBlock(BlockState state, ServerLevel levelIn, BlockPos pos, Random random) {
+        BlockState aboveState = levelIn.getBlockState(pos.above());
+        if (aboveState.is(RankineBlocks.SHORT_GRASS.get())) {
+            if (random.nextFloat() < 0.5f) {
+                levelIn.setBlock(pos.above(), Blocks.GRASS.defaultBlockState(), 3);
+            }
+        } else if (aboveState.is(Blocks.GRASS) && levelIn.getBlockState(pos.above(2)).is(Blocks.AIR)) {
+            if (random.nextFloat() < 0.3f) {
+                levelIn.setBlock(pos.above(), Blocks.TALL_GRASS.defaultBlockState().setValue(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER), 3);
+                levelIn.setBlock(pos.above(2), Blocks.TALL_GRASS.defaultBlockState().setValue(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER), 3);
+            }
+        } else if (aboveState.is(Blocks.AIR)) {
+            Biome BIOME = levelIn.getBiome(pos).value();
+            if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
+                BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
+                levelIn.setBlock(pos.above(), BLOCK, 3);
+            }
+        }
     }
 
     private static boolean isSnowyAndNotUnderwater(BlockState state, LevelReader worldReader, BlockPos pos) {

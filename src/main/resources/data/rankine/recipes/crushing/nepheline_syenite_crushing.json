@@ -15,7 +15,7 @@
     },
     {
       "item": "rankine:orthoclase_feldspar",
-      "weight": 40,
+      "weight": 30,
       "remove": false
     },
     {
@@ -26,6 +26,11 @@
     {
       "item": "rankine:amphibole",
       "weight": 15,
+      "remove": false
+    },
+    {
+      "item": "rankine:perovskite",
+      "weight": 10,
       "remove": false
     },
     {

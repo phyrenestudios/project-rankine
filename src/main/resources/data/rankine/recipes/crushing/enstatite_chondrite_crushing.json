@@ -29,6 +29,11 @@
       "remove": false
     },
     {
+      "item": "rankine:perovskite",
+      "weight": 10,
+      "remove": false
+    },
+    {
       "item": "rankine:graphite",
       "weight": 4,
       "tier": "minecraft:iron",
