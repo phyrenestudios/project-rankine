@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.event.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -28,6 +29,10 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void attachCapabilities(AttachCapabilitiesEvent<LevelChunk> event) {
         event.addCapability(new ResourceLocation("rankine:retrogen_chunk"), new ChunkRetrogenProvider());
+    }
+    @SubscribeEvent
+    public static void playSoundAtEntityEvent(PlaySoundAtEntityEvent event) {
+        PlaySoundAtEntityHandler.onPlaySound(event);
     }
     @SubscribeEvent
     public static void registerCommands(RegisterCommandsEvent event) {
