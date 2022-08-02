@@ -34,11 +34,15 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
     protected Ingredient ingredient;
     protected ItemStack result;
     protected final ResourceLocation id;
+    protected final int minCookTime;
+    protected final int maxCookTime;
 
-    public BeehiveOvenRecipe(ResourceLocation id, Ingredient input, ItemStack output) {
+    public BeehiveOvenRecipe(ResourceLocation id, Ingredient input, ItemStack output, int minCookTimeIn, int maxCookTimeIn) {
         this.id = id;
         this.ingredient = input;
         this.result = output;
+        this.minCookTime = minCookTimeIn;
+        this.maxCookTime = maxCookTimeIn;
     }
 
     @Override
@@ -72,6 +76,14 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
 
     public Ingredient getIngredient() {
         return ingredient;
+    }
+
+    public int getMinCookTime() {
+        return minCookTime;
+    }
+
+    public int getMaxCookTime() {
+        return maxCookTime;
     }
 
     @Override
@@ -112,24 +124,29 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
 
         @Override
         public BeehiveOvenRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+            int min = json.has("minCookTime") ? 1600 : json.get("minCookTime").getAsInt();
+            int max = json.has("maxCookTime") ? 8000 : json.get("maxCookTime").getAsInt();
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
             ItemStack result = deserializeBlock(GsonHelper.getAsJsonObject(json, "result"));
-            return new BeehiveOvenRecipe(recipeId,ingredient,result);
+            return new BeehiveOvenRecipe(recipeId,ingredient,result,min,max);
         }
 
         @Nullable
         @Override
         public BeehiveOvenRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
-
+            int min = buffer.readInt();
+            int max = buffer.readInt();
             Ingredient input = Ingredient.fromNetwork(buffer);
 
             ItemStack output = buffer.readItem();
 
-            return new BeehiveOvenRecipe(recipeId,input,output);
+            return new BeehiveOvenRecipe(recipeId,input,output,min,max);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buffer, BeehiveOvenRecipe recipe) {
+            buffer.writeInt(recipe.getMinCookTime());
+            buffer.writeInt(recipe.getMaxCookTime());
             recipe.getIngredient().toNetwork(buffer);
             buffer.writeItem(recipe.getResultItem());
         }
