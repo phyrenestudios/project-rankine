@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:kyanite"
+    },
+    {
+      "item": "rankine:kaolinite"
+    },
+    {
+      "item": "rankine:mica"
+    },
+    {
+      "item": "minecraft:quartz"
+    }
+  ],
+  "result": {
+    "item": "rankine:fire_clay_ball"
+  }
+}

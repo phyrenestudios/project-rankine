@@ -1,0 +1,20 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:asbestos"
+  },
+  "input2": {
+    "item": "rankine:asbestos"
+  },
+  "result1": {
+    "item":"rankine:forsterite",
+    "count": 3
+  },
+  "result2": {
+    "item":"minecraft:quartz"
+  },
+  "fluidOutput": {
+    "fluid": "minecraft:water"
+  }
+}

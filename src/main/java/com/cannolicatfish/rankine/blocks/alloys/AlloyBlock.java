@@ -16,6 +16,7 @@ import net.minecraft.nbt.INBT;
 import net.minecraft.tileentity.ShulkerBoxTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -75,6 +76,19 @@ public class AlloyBlock extends Block {
 
 
         //super.onBlockHarvested(worldIn, pos, state, player);
+    }
+
+    @Override
+    public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
+        if (world.getTileEntity(pos) instanceof AlloyBlockTile) {
+            AlloyBlockTile alloyBlockTile = (AlloyBlockTile) world.getTileEntity(pos);
+            if (alloyBlockTile != null) {
+                ItemStack itemstack = new ItemStack(state.getBlock());
+                itemstack.setTag(alloyBlockTile.getAlloyData());
+                return itemstack;
+            }
+        }
+        return super.getPickBlock(state, target, world, pos, player);
     }
 
     @Override
