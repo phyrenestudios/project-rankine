@@ -1,19 +1,18 @@
 package com.cannolicatfish.rankine.blocks.tap;
 
-import com.cannolicatfish.rankine.blocks.FloodGateBlock;
-import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.TreetappingRecipe;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
@@ -25,6 +24,7 @@ import static com.cannolicatfish.rankine.init.RankineBlocks.TREE_TAP_TILE;
 
 public class TreeTapTile extends BlockEntity {
     FluidTank outputTank = new FluidTank(1000);
+    private int proccessTime;
 
     public TreeTapTile(BlockPos posIn, BlockState stateIn) {
         super(TREE_TAP_TILE, posIn, stateIn);
@@ -39,41 +39,48 @@ public class TreeTapTile extends BlockEntity {
                     return;
                 }
             }
+            tile.proccessTime += 1;
             Block log = level.getBlockState(logPos).getBlock();
             TreetappingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.TREETAPPING, new SimpleContainer(new ItemStack(log)), level).orElse(null);
-            if (irecipe != null && level.getDayTime()%irecipe.getTapTime() == 0) {
+            if (irecipe != null && tile.proccessTime > irecipe.getTapTime()) {
                 tile.outputTank.fill(irecipe.getResult(), IFluidHandler.FluidAction.EXECUTE);
+                tile.proccessTime = 0;
             }
 
-            if (tile.outputTank.getFluidAmount() == 1000 && level.getBlockState(tile.worldPosition.below()).getBlock().equals(RankineBlocks.TAP_LINE.get())) {
-                BlockPos floodGate = null;
-                Set<BlockPos> checkedBlocks = new HashSet<>();
-                Stack<BlockPos> toCheck = new Stack<>();
-                toCheck.add(tile.worldPosition.below());
-                while (!toCheck.isEmpty()) {
-                    BlockPos cp = toCheck.pop();
-                    if (!checkedBlocks.contains(cp)) {
-                        checkedBlocks.add(cp);
-                        if (level.hasChunkAt(cp)) {
-                            BlockState s = level.getBlockState(cp);
-                            if (s.getBlock().equals(RankineBlocks.FLOOD_GATE.get())) {
-                                floodGate = cp;
+            if (tile.outputTank.getFluidAmount() == 1000) {
+                BlockPos cauldron = null;
+                if (level.getBlockState(tile.worldPosition.below()).is(Blocks.CAULDRON)) {
+                    cauldron = tile.worldPosition.below();
+                } else if (level.getBlockState(tile.worldPosition.below()).is(RankineBlocks.TAP_LINE.get())) {
+                    Set<BlockPos> checkedBlocks = new HashSet<>();
+                    Stack<BlockPos> toCheck = new Stack<>();
+                    toCheck.add(tile.worldPosition.below());
+                    while (!toCheck.isEmpty()) {
+                        BlockPos cp = toCheck.pop();
+                        if (!checkedBlocks.contains(cp)) {
+                            checkedBlocks.add(cp);
+                            if (level.hasChunkAt(cp)) {
+                                BlockState s = level.getBlockState(cp);
+                                if (s.is(Blocks.CAULDRON)) {
+                                    cauldron = cp;
+                                    break;
+                                } else if (s.getBlock().equals(RankineBlocks.TAP_LINE.get())) {
+                                    toCheck.add(cp.north());
+                                    toCheck.add(cp.east());
+                                    toCheck.add(cp.south());
+                                    toCheck.add(cp.west());
+                                    toCheck.add(cp.below());
+                                }
+                            }
+                            if (checkedBlocks.size() > 200) {
                                 break;
-                            } else if (s.getBlock().equals(RankineBlocks.TAP_LINE.get())) {
-                                toCheck.add(cp.north());
-                                toCheck.add(cp.east());
-                                toCheck.add(cp.south());
-                                toCheck.add(cp.west());
-                                toCheck.add(cp.below());
                             }
                         }
-                        if (checkedBlocks.size() > 200) {
-                            break;
-                        }
                     }
-                }
 
-                if (floodGate != null && FloodGateBlock.placeFluid(level, floodGate, tile.outputTank.getFluid().getFluid().defaultFluidState().createLegacyBlock())) {
+                }
+                if (cauldron != null) {
+                    level.setBlockAndUpdate(cauldron, getCauldron(level, cauldron, tile.outputTank.getFluid().getFluid().getRegistryName().getPath()));
                     tile.outputTank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
                 }
             }
@@ -81,6 +88,18 @@ public class TreeTapTile extends BlockEntity {
         }
     }
 
+    private static BlockState getCauldron(Level levelIn, BlockPos posIn, String fluidIn) {
+        return switch (fluidIn) {
+            case "lava" -> Blocks.LAVA_CAULDRON.defaultBlockState();
+            case "sap" -> RankineBlocks.SAP_CAULDRON.get().defaultBlockState();
+            case "maple_sap" -> RankineBlocks.MAPLE_SAP_CAULDRON.get().defaultBlockState();
+            case "latex" -> RankineBlocks.LATEX_CAULDRON.get().defaultBlockState();
+            case "resin" -> RankineBlocks.RESIN_CAULDRON.get().defaultBlockState();
+            case "juglone" -> RankineBlocks.JUGLONE_CAULDRON.get().defaultBlockState();
+            case "water" -> Blocks.WATER_CAULDRON.defaultBlockState();
+            default -> Blocks.CAULDRON.defaultBlockState();
+        };
+    }
 
 
 
@@ -92,12 +111,14 @@ public class TreeTapTile extends BlockEntity {
     public void load(CompoundTag nbt) {
         super.load(nbt);
         this.outputTank = this.outputTank.readFromNBT(nbt.getCompound("OutputTank"));
+        this.proccessTime = nbt.getInt("ProcessTime");
     }
 
     @Override
     public void saveAdditional(CompoundTag compound) {
         super.saveAdditional(compound);
         compound.put("OutputTank",this.outputTank.writeToNBT(new CompoundTag()));
+        compound.putInt("ProcessTime", this.proccessTime);
     }
 
     private boolean isTreeAlive(BlockPos pos, Level worldIn) {

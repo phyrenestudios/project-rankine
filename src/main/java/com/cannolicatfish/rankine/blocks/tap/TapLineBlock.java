@@ -2,25 +2,24 @@ package com.cannolicatfish.rankine.blocks.tap;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.google.common.collect.Maps;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.core.Direction;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 import java.util.Map;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class TapLineBlock extends Block {
     private static final Direction[] FACING_VALUES = Direction.values();
@@ -100,19 +99,18 @@ public class TapLineBlock extends Block {
     }
 
     public BlockState makeConnections(BlockGetter blockReader, BlockPos pos) {
-        Block block = blockReader.getBlockState(pos.below()).getBlock();
-        Block block1 = blockReader.getBlockState(pos.above()).getBlock();
-        BlockState bs1 = blockReader.getBlockState(pos.above());
-        Block block2 = blockReader.getBlockState(pos.north()).getBlock();
-        Block block3 = blockReader.getBlockState(pos.east()).getBlock();
-        Block block4 = blockReader.getBlockState(pos.south()).getBlock();
-        Block block5 = blockReader.getBlockState(pos.west()).getBlock();
-        return this.defaultBlockState().setValue(DOWN, block == this || block == RankineBlocks.FLOOD_GATE.get())
-                .setValue(NORTH, block2 == this || block2 == RankineBlocks.FLOOD_GATE.get())
-                .setValue(EAST, block3 == this || block3 == RankineBlocks.FLOOD_GATE.get())
-                .setValue(SOUTH, block4 == this || block4 == RankineBlocks.FLOOD_GATE.get())
-                .setValue(WEST, block5 == this || block5 == RankineBlocks.FLOOD_GATE.get())
-                .setValue(UP, block1 == this || (block1 == RankineBlocks.TREE_TAP.get()));
+        BlockState blockD = blockReader.getBlockState(pos.below());
+        BlockState blockU = blockReader.getBlockState(pos.above());
+        BlockState blockN = blockReader.getBlockState(pos.north());
+        BlockState blockE = blockReader.getBlockState(pos.east());
+        BlockState blockS = blockReader.getBlockState(pos.south());
+        BlockState blockW = blockReader.getBlockState(pos.west());
+        return this.defaultBlockState().setValue(DOWN, blockD.is(this))
+                .setValue(NORTH, blockN.is(this) || blockN.is(BlockTags.CAULDRONS))
+                .setValue(EAST, blockE.is(this) || blockE.is(BlockTags.CAULDRONS))
+                .setValue(SOUTH, blockS.is(this) || blockS.is(BlockTags.CAULDRONS))
+                .setValue(WEST, blockW.is(this) || blockW.is(BlockTags.CAULDRONS))
+                .setValue(UP, blockU.is(this) || blockU.is(RankineBlocks.TREE_TAP.get()));
     }
 
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
@@ -121,17 +119,18 @@ public class TapLineBlock extends Block {
             return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
         } else {
             boolean flag = false;
-            Block fsb = facingState.getBlock();
             switch (facing) {
                 case UP:
-                    flag = fsb == this || (fsb == RankineBlocks.TREE_TAP.get());
+                    flag = facingState.is(this) || facingState.is(RankineBlocks.TREE_TAP.get());
                     break;
                 case DOWN:
+                    flag = facingState.is(this);
+                    break;
                 case NORTH:
                 case SOUTH:
                 case EAST:
                 case WEST:
-                    flag = fsb == this || fsb.equals(RankineBlocks.FLOOD_GATE.get());
+                    flag = facingState.is(this) || facingState.is(BlockTags.CAULDRONS);
                     break;
             }
             return stateIn.setValue(FACING_TO_PROPERTY_MAP.get(facing), flag);

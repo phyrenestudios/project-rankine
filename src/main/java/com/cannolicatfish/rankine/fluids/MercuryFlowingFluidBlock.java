@@ -1,22 +1,20 @@
 package com.cannolicatfish.rankine.fluids;
 
 import com.cannolicatfish.rankine.potion.RankineEffects;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.material.FlowingFluid;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FlowingFluid;
 
 import java.util.function.Supplier;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 public class MercuryFlowingFluidBlock extends RankineFlowingFluidBlock{
-    public MercuryFlowingFluidBlock(Supplier<? extends FlowingFluid> supplier, Properties properties) {
-        super(supplier, properties);
+    public MercuryFlowingFluidBlock(Supplier<? extends FlowingFluid> supplier, boolean evaporates, Properties properties) {
+        super(supplier, evaporates, properties);
     }
 
     @Override

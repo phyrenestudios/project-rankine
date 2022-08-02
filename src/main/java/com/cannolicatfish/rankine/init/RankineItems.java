@@ -2304,7 +2304,6 @@ public class RankineItems {
     public static final RegistryObject<Item> CHEESE = ITEMS.register("cheese", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.CHEESE)));
     public static final RegistryObject<Item> CAKE_SLICE = ITEMS.register("cake_slice", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.CHEESE)));
     public static final RegistryObject<Item> PINA_COLADA = ITEMS.register("pina_colada", () -> new DrinkItem(new Item.Properties().tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.PINA_COLADA)));
-    public static final RegistryObject<Item> MAPLE_SYRUP = ITEMS.register("maple_syrup", () -> new DrinkItem(new Item.Properties().tab(ProjectRankine.setup.rankinePlants).craftRemainder(Items.GLASS_BOTTLE).food(RankineFoods.MAPLE_SYRUP)));
     public static final RegistryObject<Item> PANCAKE_BATTER = ITEMS.register("pancake_batter", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.PANCAKE_BATTER)));
     public static final RegistryObject<Item> PANCAKE = ITEMS.register("pancake", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.PANCAKE)));
     public static final RegistryObject<Item> PANCAKE_BREAKFAST = ITEMS.register("pancake_breakfast", () -> new Item(new Item.Properties().tab(ProjectRankine.setup.rankinePlants).food(RankineFoods.PANCAKE_BREAKFAST)));
@@ -3248,11 +3247,11 @@ public class RankineItems {
     public static final RegistryObject<Item> ASH = ITEMS.register("ash", () -> new BlockItem(RankineBlocks.ASH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> BONE_ASH = ITEMS.register("bone_ash", () -> new BlockItem(RankineBlocks.BONE_ASH.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> POZZOLANA = ITEMS.register("pozzolana", () -> new BlockItem(RankineBlocks.POZZOLANA.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> MAPLE_SAP_BUCKET = ITEMS.register("maple_sap_bucket", () -> new BucketItem(() -> RankineFluids.MAPLE_SAP, (new Item.Properties().craftRemainder(Items.BUCKET)).stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> SAP_BUCKET = ITEMS.register("sap_bucket",  () -> new BucketItem(() -> RankineFluids.SAP, (new Item.Properties().craftRemainder(Items.BUCKET)).stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> RESIN_BUCKET = ITEMS.register("resin_bucket",  () -> new BucketItem(() -> RankineFluids.RESIN, (new Item.Properties().craftRemainder(Items.BUCKET)).stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> LATEX_BUCKET = ITEMS.register("latex_bucket", () -> new BucketItem(() -> RankineFluids.LATEX, (new Item.Properties().craftRemainder(Items.BUCKET)).stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> JUGLONE_BUCKET = ITEMS.register("juglone_bucket", () -> new Item(new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> MAPLE_SAP_BUCKET = ITEMS.register("maple_sap_bucket", () -> new BucketItem(() -> RankineFluids.MAPLE_SAP, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> SAP_BUCKET = ITEMS.register("sap_bucket",  () -> new BucketItem(() -> RankineFluids.SAP, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> RESIN_BUCKET = ITEMS.register("resin_bucket",  () -> new BucketItem(() -> RankineFluids.RESIN, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> LATEX_BUCKET = ITEMS.register("latex_bucket", () -> new BucketItem(() -> RankineFluids.LATEX, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> JUGLONE_BUCKET = ITEMS.register("juglone_bucket", () -> new BucketItem(() -> RankineFluids.JUGLONE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> SADDLE_TREE = ITEMS.register("saddle_tree", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> CANNONBALL = ITEMS.register("cannonball", () -> new CannonballItem(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> CARCASS = ITEMS.register("carcass", () -> new CannonballItem(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
@@ -3696,6 +3695,8 @@ public class RankineItems {
     public static final RegistryObject<Item> HYDROGEN_FLUORIDE_GAS_BOTTLE = ITEMS.register("hydrogen_fluoride_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN_FLUORIDE,new Item.Properties().tab(ProjectRankine.setup.rankineElements).craftRemainder(Items.GLASS_BOTTLE)));
     public static final RegistryObject<Item> HYDROGEN_SULFIDE_GAS_BOTTLE = ITEMS.register("hydrogen_sulfide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN_SULFIDE,new Item.Properties().tab(ProjectRankine.setup.rankineElements).craftRemainder(Items.GLASS_BOTTLE)));
     public static final RegistryObject<Item> SULFUR_DIOXIDE_GAS_BOTTLE = ITEMS.register("sulfur_dioxide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.SULFUR_DIOXIDE,new Item.Properties().tab(ProjectRankine.setup.rankineElements).craftRemainder(Items.GLASS_BOTTLE)));
+
+    public static final RegistryObject<Item> MAPLE_SYRUP = ITEMS.register("maple_syrup", () -> new DrinkItem(new Item.Properties().tab(ProjectRankine.setup.rankinePlants).craftRemainder(Items.GLASS_BOTTLE).food(RankineFoods.MAPLE_SYRUP)));
 
 
     @ObjectHolder("rankine:element_indexer")

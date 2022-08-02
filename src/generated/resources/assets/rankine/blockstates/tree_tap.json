@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=north": {
+    "connected=false,facing=north": {
       "model": "rankine:block/tree_tap"
     },
-    "facing=south": {
+    "connected=true,facing=north": {
+      "model": "rankine:block/tree_tap_connected"
+    },
+    "connected=false,facing=south": {
       "model": "rankine:block/tree_tap",
       "y": 180
     },
-    "facing=west": {
+    "connected=true,facing=south": {
+      "model": "rankine:block/tree_tap_connected",
+      "y": 180
+    },
+    "connected=false,facing=west": {
       "model": "rankine:block/tree_tap",
       "y": 270
     },
-    "facing=east": {
+    "connected=true,facing=west": {
+      "model": "rankine:block/tree_tap_connected",
+      "y": 270
+    },
+    "connected=false,facing=east": {
       "model": "rankine:block/tree_tap",
+      "y": 90
+    },
+    "connected=true,facing=east": {
+      "model": "rankine:block/tree_tap_connected",
       "y": 90
     }
   }

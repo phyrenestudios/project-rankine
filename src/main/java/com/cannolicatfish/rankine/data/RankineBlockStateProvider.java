@@ -145,6 +145,12 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         crossBlock(RankineBlocks.STINGING_NETTLE.get());
         axisBlock((RotatedPillarBlock) RankineBlocks.BONE_CHAR_BLOCK.get());
         simpleBlock(RankineBlocks.ALLUVIUM.get(), models().cubeColumn(RankineBlocks.ALLUVIUM.get().getRegistryName().getPath(), blockTexture(RankineBlocks.ALLUVIUM.get()), getBlockRSL("alluvium_end")));
+        simpleBlock(RankineBlocks.SAP_CAULDRON.get(), models().withExistingParent(RankineBlocks.SAP_CAULDRON.get().getRegistryName().getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("sap_still")));
+        simpleBlock(RankineBlocks.MAPLE_SAP_CAULDRON.get(), models().withExistingParent(RankineBlocks.MAPLE_SAP_CAULDRON.get().getRegistryName().getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("maple_sap_still")));
+        simpleBlock(RankineBlocks.MAPLE_SYRUP_CAULDRON.get(), models().withExistingParent(RankineBlocks.MAPLE_SYRUP_CAULDRON.get().getRegistryName().getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("maple_syrup_still")));
+        simpleBlock(RankineBlocks.RESIN_CAULDRON.get(), models().withExistingParent(RankineBlocks.RESIN_CAULDRON.get().getRegistryName().getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("resin_still")));
+        simpleBlock(RankineBlocks.LATEX_CAULDRON.get(), models().withExistingParent(RankineBlocks.LATEX_CAULDRON.get().getRegistryName().getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("latex_still")));
+        simpleBlock(RankineBlocks.JUGLONE_CAULDRON.get(), models().withExistingParent(RankineBlocks.JUGLONE_CAULDRON.get().getRegistryName().getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("juglone_still")));
 
         for (Block BLK : RankineLists.LANTERNS) {
             lanternBlock(BLK);
@@ -646,7 +652,12 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(RankineBlocks.GROUND_TAP.get())
                 .partialState().modelForState().modelFile(models().withExistingParent(RankineBlocks.GROUND_TAP.get().getRegistryName().getPath(), modLoc("block/template_ground_tap")).texture("side","block/metal_pipe")).addModel();
         getVariantBuilder(RankineBlocks.TREE_TAP.get())
-                .forAllStates(state -> ConfiguredModel.builder().modelFile(models().getExistingFile(getBlockRSL("tree_tap"))).rotationY(((int) state.getValue(TreeTapBlock.FACING).toYRot()+180)%360).build());
+                .forAllStates(state -> {
+                    boolean CONNECTED = state.getValue(TreeTapBlock.CONNECTED);
+                    return ConfiguredModel.builder().modelFile(CONNECTED ? models().getExistingFile(getBlockRSL("tree_tap_connected")) : models().getExistingFile(getBlockRSL("tree_tap"))).rotationY(((int) state.getValue(TreeTapBlock.FACING).toYRot()+180)%360).build();
+                });
+
+
 
 
         //simpleBlock(RankineBlocks.LASER_QUARRY.get());

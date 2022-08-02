@@ -2,23 +2,21 @@ package com.cannolicatfish.rankine.fluids;
 
 import com.cannolicatfish.rankine.blocks.GasBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.material.FlowingFluid;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FlowingFluid;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 public class CarbonDisulfideFlowingFluidBlock extends RankineFlowingFluidBlock {
-    public CarbonDisulfideFlowingFluidBlock(Supplier<? extends FlowingFluid> supplier, Properties properties) {
-        super(supplier, properties);
+    public CarbonDisulfideFlowingFluidBlock(Supplier<? extends FlowingFluid> supplier, boolean evaporates, Properties properties) {
+        super(supplier, evaporates,  properties);
     }
 
     @Override
