@@ -1,0 +1,73 @@
+{
+  "type": "rankine:foraging",
+  "input": {
+    "item": "rankine:black_sand"
+  },
+  "outputs": [
+    {
+      "weight": 100
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "weight": 10
+    },
+    {
+      "item": "rankine:titanium_nugget",
+      "weight": 3
+    },
+    {
+      "item": "rankine:zircon",
+      "weight": 2
+    },
+    {
+      "item": "rankine:uranium_nugget",
+      "weight": 2,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:iridium_nugget",
+      "weight": 2,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:palladium_nugget",
+      "weight": 2,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:ilmenite",
+      "weight": 1,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:chromite",
+      "weight": 1,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:magnetite",
+      "weight": 4,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:ruby",
+      "weight": 1.5,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:sapphire",
+      "weight": 1.5,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:thorite",
+      "weight": 1,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:garnet",
+      "weight": 2,
+      "enchantmentRequired": true
+    }
+  ]
+}

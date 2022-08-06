@@ -19,6 +19,8 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -102,22 +104,33 @@ public class RightClickBlockHandler {
     public static void rightClickBlockEvent(PlayerInteractEvent.RightClickBlock event) {
         if (event.getFace() == null) return;
         Player playerIn = event.getPlayer();
+        Level levelIn = event.getWorld();
+        BlockPos posIn = event.getPos();
         ItemStack itemStack = playerIn.getItemInHand(event.getHand());
-        
-        if (event.getWorld().getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+
+
+        if (itemStack.getItem() instanceof PotionItem && PotionUtils.getPotion(itemStack).equals(Potions.WATER)) {
+            if (RankineLists.SOIL_BLOCKS.contains(levelIn.getBlockState(posIn).getBlock())) {
+                levelIn.setBlockAndUpdate(posIn, RankineLists.MUD_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(levelIn.getBlockState(posIn).getBlock())).defaultBlockState());
+                playerIn.getInventory().add(ItemUtils.createFilledResult(itemStack, playerIn, new ItemStack(Items.GLASS_BOTTLE)));
+                return;
+            }
+        }
+
+        if (levelIn.getBlockState(posIn).is(Blocks.CAULDRON)) {
             if (cauldron_map.containsKey(itemStack.getItem())) {
                 if (itemStack.is(RankineItems.MAPLE_SYRUP.get())) {
                     AbstractRankineCauldronBlock.emptyBottle(event.getWorld(), event.getPos(), playerIn, event.getHand(), itemStack, cauldron_map.get(itemStack.getItem()).defaultBlockState(), SoundEvents.BOTTLE_EMPTY, new ItemStack(Items.GLASS_BOTTLE));
                 } else {
                     AbstractRankineCauldronBlock.emptyBottle(event.getWorld(), event.getPos(), playerIn, event.getHand(), itemStack, cauldron_map.get(itemStack.getItem()).defaultBlockState(), SoundEvents.BUCKET_EMPTY, new ItemStack(Items.BUCKET));
                 }
+                return;
             }
         }
 
         if (playerIn.getMainHandItem().is(RankineTags.Items.FLINT) && playerIn.getOffhandItem().is(RankineTags.Items.FLINT) && Config.GENERAL.FLINT_FIRE.get()) {
             BlockPos pos = event.getPos();
             BlockPos blockpos1 = event.getPos().relative(event.getFace());
-            Level levelIn = event.getWorld();
             Random rand = levelIn.random;
             BlockState blockState = levelIn.getBlockState(pos);
             boolean flag = false;
