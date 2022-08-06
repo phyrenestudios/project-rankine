@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "tag": "forge:stones/limestone"
+  },
+  "result": "minecraft:terracotta",
+  "minCookTime": 1600,
+  "maxCookTime": 8000
+}

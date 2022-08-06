@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -22,11 +23,6 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
 
 public class BeehiveOvenRecipe implements Recipe<Container> {
 
@@ -107,10 +103,10 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
     }
 
     public static ItemStack deserializeBlock(JsonObject object) {
-        String s = GsonHelper.getAsString(object, "block");
+        String s = GsonHelper.getAsString(object, "item");
 
         Block block = Registry.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
-            return new JsonParseException("Unknown block '" + s + "'");
+            return new JsonParseException("Unknown item '" + s + "'");
         });
 
         if (object.has("data")) {
@@ -124,10 +120,20 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
 
         @Override
         public BeehiveOvenRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            int min = json.has("minCookTime") ? 1600 : json.get("minCookTime").getAsInt();
-            int max = json.has("maxCookTime") ? 8000 : json.get("maxCookTime").getAsInt();
+            int min = json.has("minCookTime") ? json.get("minCookTime").getAsInt() : 1600;
+            int max = json.has("maxCookTime") ? json.get("maxCookTime").getAsInt() : 8000;
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
-            ItemStack result = deserializeBlock(GsonHelper.getAsJsonObject(json, "result"));
+
+            if (!json.has("result")) throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
+            ItemStack result;
+            if (json.get("result").isJsonObject()) result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
+            else {
+                String s1 = GsonHelper.getAsString(json, "result");
+                ResourceLocation resourcelocation = new ResourceLocation(s1);
+                result = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> {
+                    return new IllegalStateException("Item: " + s1 + " does not exist");
+                }));
+            }
             return new BeehiveOvenRecipe(recipeId,ingredient,result,min,max);
         }
 

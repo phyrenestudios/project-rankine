@@ -1,9 +1,0 @@
-{
-  "type": "rankine:beehive_oven",
-  "input": {
-      "item": "minecraft:brown_terracotta"
-    },
-  "result": {
-    "block": "minecraft:brown_glazed_terracotta"
-  }
-}

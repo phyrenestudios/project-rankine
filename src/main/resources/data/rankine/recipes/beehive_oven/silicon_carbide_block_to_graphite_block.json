@@ -1,9 +1,0 @@
-{
-  "type": "rankine:beehive_oven",
-  "input": {
-    "item": "rankine:silicon_carbide_block"
-  },
-  "result": {
-    "block": "rankine:graphite_block"
-  }
-}

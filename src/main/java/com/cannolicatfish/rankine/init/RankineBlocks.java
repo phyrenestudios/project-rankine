@@ -1435,6 +1435,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HYDROGEN_FLUORIDE_GAS_BLOCK = BLOCKS.register("hydrogen_fluoride_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN_FLUORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
     public static final RegistryObject<Block> HYDROGEN_SULFIDE_GAS_BLOCK = BLOCKS.register("hydrogen_sulfide_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN_SULFIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
     public static final RegistryObject<Block> SULFUR_DIOXIDE_GAS_BLOCK = BLOCKS.register("sulfur_dioxide_gas_block", () -> new GasBlock(GasUtilsEnum.SULFUR_DIOXIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> TUNGSTEN_HEXAFLUORIDE_GAS_BLOCK = BLOCKS.register("tungsten_hexafluoride_gas_block", () -> new GasBlock(GasUtilsEnum.TUNGSTEN_HEXAFLUORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
 
     //public static final RegistryObject<Block> HELIUM_GAS_TUBE = REGISTRY.register("helium_gas_tube", () -> new GasTubeBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
 

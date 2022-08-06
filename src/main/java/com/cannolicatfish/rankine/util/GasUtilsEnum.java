@@ -26,7 +26,9 @@ public enum GasUtilsEnum {
     HYDROGEN_CHLORIDE(1.5f,0.17f, Collections.emptyList(),true,10345635),
     HYDROGEN_FLUORIDE(1.15f,0.22f, Collections.emptyList(),true,10345635),
     HYDROGEN_SULFIDE(1.35f,0.17f, Collections.emptyList(),true,13676874),
-    SULFUR_DIOXIDE(2.9f,0.13f, Collections.emptyList(),true,6118148);
+    SULFUR_DIOXIDE(2.9f,0.13f, Collections.emptyList(),true,6118148),
+    TUNGSTEN_HEXAFLUORIDE(2.4f,0.13f, Collections.emptyList(),true,11048836);
+
 
     private final float density;
     private final float dissipationRate;

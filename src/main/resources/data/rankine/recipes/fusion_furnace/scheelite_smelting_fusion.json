@@ -1,0 +1,27 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:scheelite"
+  },
+  "result1": {
+    "item":"rankine:tungsten_trioxide"
+  },
+  "result2": {
+    "item":"rankine:calcium_chloride"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_chloride_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:lava",
+    "amount": 250
+  },
+  "fluidOutput": {
+    "fluid": "minecraft:water",
+    "amount": 250
+  }
+}

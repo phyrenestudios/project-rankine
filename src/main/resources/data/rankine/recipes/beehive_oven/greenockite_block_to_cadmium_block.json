@@ -1,9 +1,0 @@
-{
-  "type": "rankine:beehive_oven",
-  "input": {
-    "item": "rankine:greenockite_block"
-  },
-  "result": {
-    "block": "rankine:cadmium_block"
-  }
-}

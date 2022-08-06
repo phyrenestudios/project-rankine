@@ -1,0 +1,23 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:tungsten_trioxide"
+  },
+  "input2": {
+    "item": "rankine:graphite"
+  },
+  "result1": {
+    "item":"rankine:tungsten_carbide"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:lava",
+    "amount": 250
+  }
+}

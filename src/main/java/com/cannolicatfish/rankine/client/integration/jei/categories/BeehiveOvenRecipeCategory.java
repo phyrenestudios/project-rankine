@@ -70,18 +70,20 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
     }
 
     protected IDrawableAnimated getArrow(BeehiveOvenRecipe recipe) {
-        int cookTime = 800;
+        int cookTime = recipe.getMinCookTime();
         if (cookTime <= 0) {
-            cookTime = 800;
+            cookTime = 1600;
         }
         return this.cachedArrows.getUnchecked(cookTime);
     }
 
     protected void drawCookTime(BeehiveOvenRecipe recipe, PoseStack poseStack, int y) {
-        int cookTime = 8000;
-        if (cookTime > 0) {
-            int cookTimeSeconds = cookTime / 20;
-            TranslatableComponent timeString = new TranslatableComponent("gui.jei.category.smelting.time.seconds", cookTimeSeconds);
+        int minCookTime = recipe.getMinCookTime();
+        int maxCookTime = recipe.getMaxCookTime();
+        if (minCookTime > 0 && maxCookTime > 0) {
+            int minCookTimeSeconds = minCookTime / 20;
+            int maxCookTimeSeconds = maxCookTime / 20;
+            TextComponent timeString = new TextComponent(new TranslatableComponent("gui.jei.category.smelting.time.seconds", minCookTimeSeconds).getString() + " - " + new TranslatableComponent("gui.jei.category.smelting.time.seconds", maxCookTimeSeconds).getString());
             Minecraft minecraft = Minecraft.getInstance();
             Font fontRenderer = minecraft.font;
             int stringWidth = fontRenderer.width(timeString);
@@ -118,7 +120,7 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
 
     @Override
     public void draw(BeehiveOvenRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        int burnTime = 800;
+        int burnTime = recipe.getMinCookTime();
         IDrawableAnimated flame = cachedFlames.getUnchecked(burnTime);
         flame.draw(stack, 20, 20);
 

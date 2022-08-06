@@ -11,7 +11,7 @@
     "fluid": "minecraft:water"
   },
   "result1": {
-    "item": "rankine:tungsten_ingot"
+    "item": "rankine:tungsten_trioxide"
   },
   "result2": {
     "item": "rankine:manganese_nugget"
