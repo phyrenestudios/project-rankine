@@ -200,6 +200,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.TRONA.get());
         basicItem(RankineItems.POTASH.get());
         basicItem(RankineItems.BORON_TRIOXIDE.get());
+        basicItem(RankineItems.TUNGSTEN_TRIOXIDE.get());
         basicItem(RankineItems.VANADIUM_PENTOXIDE.get());
         basicItem(RankineItems.SODIUM_FLUOROSILICATE.get());
         basicItem(RankineItems.YELLOWCAKE.get());
@@ -214,6 +215,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.CESIUM_HYDROXIDE.get());
         basicItem(RankineItems.FRANCIUM_HYDROXIDE.get());
         basicItem(RankineItems.BETA_ALUMINA_SOLID_ELECTROLYTE.get());
+        basicItem(RankineItems.TUNGSTEN_CARBIDE.get());
         basicItem(RankineItems.LITHIUM_COBALT_OXIDE.get());
         basicItem(RankineItems.SODIUM_CARBONATE.get());
         basicItem(RankineItems.SALTPETER.get());

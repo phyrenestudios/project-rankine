@@ -1,9 +1,0 @@
-{
-  "type": "rankine:beehive_oven",
-  "input": {
-    "item": "rankine:ilmenite_block"
-  },
-  "result": {
-    "block": "rankine:titanium_block"
-  }
-}

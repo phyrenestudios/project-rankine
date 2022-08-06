@@ -285,6 +285,7 @@ public class ProjectRankine {
             event.registerEntityRenderer(RankineEntityTypes.CANNONBALL.get(), CannonballRenderer::new);
             event.registerEntityRenderer(RankineEntityTypes.ENDERBALL.get(), EnderballRenderer::new);
             event.registerEntityRenderer(RankineEntityTypes.CARCASS.get(), CarcassRenderer::new);
+            event.registerEntityRenderer(RankineEntityTypes.BALLOON.get(), BalloonRenderer::new);
         }
 
 

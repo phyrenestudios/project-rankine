@@ -1,0 +1,17 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "result1": {
+    "item":"rankine:tungsten_trioxide"
+  },
+  "gasInput": {
+    "item": "rankine:tungsten_hexafluoride_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:hydrogen_fluoride_gas_bottle"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 1000
+  }
+}

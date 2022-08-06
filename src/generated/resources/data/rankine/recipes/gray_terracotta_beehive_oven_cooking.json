@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "minecraft:gray_terracotta"
+  },
+  "result": "minecraft:gray_glazed_terracotta",
+  "minCookTime": 1600,
+  "maxCookTime": 8000
+}

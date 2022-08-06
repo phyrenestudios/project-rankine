@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "rankine:sphalerite_block"
+  },
+  "result": "rankine:zinc_block",
+  "minCookTime": 3600,
+  "maxCookTime": 18000
+}

@@ -2666,6 +2666,7 @@ public class RankineItems {
     public static final RegistryObject<Item> BORAX = ITEMS.register("borax", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SALTPETER = ITEMS.register("saltpeter", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BORON_TRIOXIDE = ITEMS.register("boron_trioxide", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> TUNGSTEN_TRIOXIDE = ITEMS.register("tungsten_trioxide", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> VANADIUM_PENTOXIDE = ITEMS.register("vanadium_pentoxide", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SODIUM_CARBONATE = ITEMS.register("sodium_carbonate", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SODIUM_FLUOROSILICATE = ITEMS.register("sodium_fluorosilicate", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
@@ -2676,6 +2677,7 @@ public class RankineItems {
     public static final RegistryObject<Item> RUBIDIUM_HYDROXIDE = ITEMS.register("rubidium_hydroxide", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> CESIUM_HYDROXIDE = ITEMS.register("cesium_hydroxide", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> FRANCIUM_HYDROXIDE = ITEMS.register("francium_hydroxide", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> TUNGSTEN_CARBIDE = ITEMS.register("tungsten_carbide", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> POTASH = ITEMS.register("potash", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BETA_ALUMINA_SOLID_ELECTROLYTE = ITEMS.register("beta_alumina_solid_electrolyte", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> LITHIUM_COBALT_OXIDE = ITEMS.register("lithium_cobalt_oxide", () -> new Item(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
@@ -3676,6 +3678,7 @@ public class RankineItems {
     public static final RegistryObject<Item> HYDROGEN_FLUORIDE_GAS_BLOCK = ITEMS.register("hydrogen_fluoride_gas_block", () -> new BlockItem(RankineBlocks.HYDROGEN_FLUORIDE_GAS_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> HYDROGEN_SULFIDE_GAS_BLOCK = ITEMS.register("hydrogen_sulfide_gas_block", () -> new BlockItem(RankineBlocks.HYDROGEN_SULFIDE_GAS_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> SULFUR_DIOXIDE_GAS_BLOCK = ITEMS.register("sulfur_dioxide_gas_block", () -> new BlockItem(RankineBlocks.SULFUR_DIOXIDE_GAS_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> TUNGSTEN_HEXAFLUORIDE_GAS_BLOCK = ITEMS.register("tungsten_hexafluoride_gas_block", () -> new BlockItem(RankineBlocks.TUNGSTEN_HEXAFLUORIDE_GAS_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
 
     public static final RegistryObject<Item> HYDROGEN_GAS_BOTTLE = ITEMS.register("hydrogen_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN,new Item.Properties().tab(ProjectRankine.setup.rankineElements).craftRemainder(Items.GLASS_BOTTLE)));
     public static final RegistryObject<Item> HELIUM_GAS_BOTTLE = ITEMS.register("helium_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HELIUM,new Item.Properties().tab(ProjectRankine.setup.rankineElements).craftRemainder(Items.GLASS_BOTTLE)));
@@ -3695,6 +3698,7 @@ public class RankineItems {
     public static final RegistryObject<Item> HYDROGEN_FLUORIDE_GAS_BOTTLE = ITEMS.register("hydrogen_fluoride_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN_FLUORIDE,new Item.Properties().tab(ProjectRankine.setup.rankineElements).craftRemainder(Items.GLASS_BOTTLE)));
     public static final RegistryObject<Item> HYDROGEN_SULFIDE_GAS_BOTTLE = ITEMS.register("hydrogen_sulfide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN_SULFIDE,new Item.Properties().tab(ProjectRankine.setup.rankineElements).craftRemainder(Items.GLASS_BOTTLE)));
     public static final RegistryObject<Item> SULFUR_DIOXIDE_GAS_BOTTLE = ITEMS.register("sulfur_dioxide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.SULFUR_DIOXIDE,new Item.Properties().tab(ProjectRankine.setup.rankineElements).craftRemainder(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> TUNGSTEN_HEXAFLUORIDE_GAS_BOTTLE = ITEMS.register("tungsten_hexafluoride_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.TUNGSTEN_HEXAFLUORIDE,new Item.Properties().tab(ProjectRankine.setup.rankineElements).craftRemainder(Items.GLASS_BOTTLE)));
 
     public static final RegistryObject<Item> MAPLE_SYRUP = ITEMS.register("maple_syrup", () -> new DrinkItem(new Item.Properties().tab(ProjectRankine.setup.rankinePlants).craftRemainder(Items.GLASS_BOTTLE).food(RankineFoods.MAPLE_SYRUP)));
 

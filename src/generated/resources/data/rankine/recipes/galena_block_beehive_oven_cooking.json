@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "rankine:galena_block"
+  },
+  "result": "rankine:lead_block",
+  "minCookTime": 3600,
+  "maxCookTime": 18000
+}

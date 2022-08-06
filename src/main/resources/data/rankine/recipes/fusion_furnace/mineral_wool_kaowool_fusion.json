@@ -1,0 +1,17 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:kaolin"
+  },
+  "input2": {
+    "item": "rankine:slag"
+  },
+  "result1": {
+    "item":"rankine:mineral_wool"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:lava",
+    "amount": 250
+  }
+}

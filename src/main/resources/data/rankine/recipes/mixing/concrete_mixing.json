@@ -1,7 +1,7 @@
 {
   "type": "rankine:mixing",
   "mixTime": 80,
-  "ingredientTotal": 3,
+  "ingredientTotal": 4,
   "matScale": 1,
   "fluidInput": {
     "fluid": "minecraft:water",
@@ -23,6 +23,11 @@
     "tag": "forge:gravel",
     "required": true,
     "min": 0.10,
+    "max": 0.20
+  },
+  "input4": {
+    "item": "rankine:perlite",
+    "min": 0,
     "max": 0.20
   },
   "result": {

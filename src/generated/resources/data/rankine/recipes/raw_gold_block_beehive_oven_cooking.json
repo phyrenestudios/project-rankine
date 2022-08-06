@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "minecraft:raw_gold_block"
+  },
+  "result": "minecraft:gold_block",
+  "minCookTime": 3600,
+  "maxCookTime": 18000
+}

@@ -61,4 +61,11 @@ public class RankineEntityTypes {
                     .clientTrackingRange(4)
                     .updateInterval(4)
                     .build(new ResourceLocation(ProjectRankine.MODID, "carcass").toString()));
+
+    public static final RegistryObject<EntityType<BalloonEntity>> BALLOON =  ENTITY_TYPES.register("balloon",
+            () -> EntityType.Builder.<BalloonEntity>of(BalloonEntity::new, MobCategory.MISC)
+                    .sized(0.98F, 0.98F)
+                    .clientTrackingRange(10)
+                    .updateInterval(20)
+                    .build(new ResourceLocation(ProjectRankine.MODID, "balloon").toString()));
 }

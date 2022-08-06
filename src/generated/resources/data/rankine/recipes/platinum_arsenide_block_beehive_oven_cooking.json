@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "rankine:platinum_arsenide_block"
+  },
+  "result": "rankine:platinum_block",
+  "minCookTime": 3600,
+  "maxCookTime": 18000
+}

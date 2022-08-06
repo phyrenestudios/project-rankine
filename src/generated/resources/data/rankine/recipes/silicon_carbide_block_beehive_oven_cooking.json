@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "rankine:silicon_carbide_block"
+  },
+  "result": "rankine:graphite_block",
+  "minCookTime": 3600,
+  "maxCookTime": 18000
+}

@@ -1,0 +1,13 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:tungsten_ingot"
+  },
+  "gasInput": {
+    "item": "rankine:fluorine_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:tungsten_hexafluoride_gas_bottle"
+  }
+}

@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.data.builders.AlloyCraftingRecipeBuilder;
 import com.cannolicatfish.rankine.data.builders.AlloyIngredient;
+import com.cannolicatfish.rankine.data.builders.BeehiveOvenRecipeBuilder;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
@@ -20,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
@@ -44,21 +46,15 @@ public class RankineRecipesProvider extends RecipeProvider {
         blastingMap.put(RankineItems.MAGNETITE.get(),Items.IRON_INGOT);
         blastingMap.put(RankineItems.HEMATITE.get(),Items.IRON_INGOT);
         blastingMap.put(RankineItems.GALENA.get(),RankineItems.LEAD_INGOT.get());
-        blastingMap.put(RankineItems.VANADINITE.get(),RankineItems.VANADIUM_INGOT.get());
         blastingMap.put(RankineItems.BISMUTHINITE.get(),RankineItems.BISMUTH_INGOT.get());
         blastingMap.put(RankineItems.ACANTHITE.get(),RankineItems.SILVER_INGOT.get());
         blastingMap.put(RankineItems.PYROLUSITE.get(),RankineItems.MANGANESE_INGOT.get());
         blastingMap.put(RankineItems.CHROMITE.get(),RankineItems.CHROMIUM_INGOT.get());
         blastingMap.put(RankineItems.MOLYBDENITE.get(),RankineItems.MOLYBDENUM_INGOT.get());
-        //blastingMap.put(RankineItems.ILMENITE.get(),RankineItems.TITANIUM_INGOT.get());
-        blastingMap.put(RankineItems.COLUMBITE.get(),RankineItems.NIOBIUM_INGOT.get());
-        blastingMap.put(RankineItems.WOLFRAMITE.get(),RankineItems.TUNGSTEN_INGOT.get());
-        blastingMap.put(RankineItems.TANTALITE.get(),RankineItems.TANTALUM_INGOT.get());
         blastingMap.put(RankineItems.GREENOCKITE.get(),RankineItems.CADMIUM_INGOT.get());
         blastingMap.put(RankineItems.URANINITE.get(),RankineItems.URANIUM_INGOT.get());
         blastingMap.put(RankineItems.STIBNITE.get(),RankineItems.ANTIMONY.get());
         blastingMap.put(RankineItems.XENOTIME.get(),RankineItems.YTTRIUM_INGOT.get());
-        blastingMap.put(RankineItems.PETALITE.get(),RankineItems.LITHIUM_INGOT.get());
         blastingMap.put(RankineItems.COBALTITE.get(),RankineItems.COBALT_INGOT.get());
         blastingMap.put(RankineItems.CRYOLITE.get(),RankineItems.SODIUM_INGOT.get());
         blastingMap.put(RankineItems.CELESTINE.get(),RankineItems.STRONTIUM_INGOT.get());
@@ -71,14 +67,12 @@ public class RankineRecipesProvider extends RecipeProvider {
         blastingMap.put(RankineItems.COOPERITE.get(),RankineItems.PALLADIUM_INGOT.get());
         blastingMap.put(RankineItems.HEDENBERGITE.get(),Items.IRON_INGOT);
         blastingMap.put(RankineItems.LAURITE.get(),RankineItems.RUTHENIUM_INGOT.get());
-        blastingMap.put(RankineItems.LAUTARITE.get(),RankineItems.IODINE.get());
         blastingMap.put(RankineItems.RUTILE.get(),RankineItems.TITANIUM_INGOT.get());
         blastingMap.put(RankineItems.SPODUMENE.get(),RankineItems.LITHIUM_INGOT.get());
         blastingMap.put(RankineItems.CHALCOCITE.get(),Items.COPPER_INGOT);
         blastingMap.put(RankineItems.LORANDITE.get(),RankineItems.THALLIUM_INGOT.get());
         blastingMap.put(RankineItems.POLLUCITE.get(),RankineItems.CESIUM_INGOT.get());
         blastingMap.put(RankineItems.PYROCHLORE.get(),RankineItems.NIOBIUM_INGOT.get());
-        blastingMap.put(RankineItems.SCHEELITE.get(),RankineItems.TUNGSTEN_INGOT.get());
         blastingMap.put(RankineItems.RHODOCHROSITE.get(),RankineItems.MANGANESE_INGOT.get());
 
         blastingMap.put(RankineItems.SILVER_ZINC_BATTERY.get(),RankineItems.ZINC_NUGGET.get());
@@ -95,6 +89,62 @@ public class RankineRecipesProvider extends RecipeProvider {
         blastingMap.put(RankineItems.AMERICIUM_RTG.get(),RankineItems.NEPTUNIUM_NUGGET.get());
         blastingMap.put(RankineItems.CURIUM_RTG.get(),RankineItems.PLUTONIUM_NUGGET.get());
 
+    }
+
+    public static final Map<Ingredient, Block> BEEHIVE_OVEN_MINERAL_MAP = new HashMap<>();
+    static {
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.ACANTHITE_BLOCK.get()), RankineBlocks.SILVER_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.AZURMALACHITE_BLOCK.get()), Blocks.COPPER_BLOCK);
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.BADDELEYITE_BLOCK.get()), RankineBlocks.ZIRCONIA_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.BISMUTHINITE_ORE.get()), RankineBlocks.BISMUTH_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.BITUMINOUS_COAL_BLOCK.get()), RankineBlocks.COKE_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.CASSITERITE_BLOCK.get()), RankineBlocks.TIN_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.CELESTINE_BLOCK.get()), RankineBlocks.STRONTIUM_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.CHALCOPYRITE_BLOCK.get()), Blocks.COPPER_BLOCK);
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.CHROMITE_BLOCK.get()), RankineBlocks.CHROMIUM_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(Blocks.COAL_BLOCK), RankineBlocks.BITUMINOUS_COAL_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.COBALTITE_BLOCK.get()), RankineBlocks.COBALT_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.COOPERITE_BLOCK.get()), RankineBlocks.PALLADIUM_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.GALENA_BLOCK.get()), RankineBlocks.LEAD_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.GREENOCKITE_BLOCK.get()), RankineBlocks.CADMIUM_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.GOETHITE_BLOCK.get()), Blocks.IRON_BLOCK);
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.HEDENBERGITE_BLOCK.get()), Blocks.IRON_BLOCK);
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.HEMATITE_BLOCK.get()), Blocks.IRON_BLOCK);
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.LAURITE_BLOCK.get()), RankineBlocks.RUTHENIUM_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.LORANDITE_BLOCK.get()), RankineBlocks.THALLIUM_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.MAGNETITE_BLOCK.get()), Blocks.IRON_BLOCK);
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.MOLYBDENITE_BLOCK.get()), RankineBlocks.MOLYBDENUM_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.PENTLANDITE_BLOCK.get()), RankineBlocks.NICKEL_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.PLATINUM_ARSENIDE_BLOCK.get()), RankineBlocks.PLATINUM_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.PYROLUSITE_BLOCK.get()), RankineBlocks.MANGANESE_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.REALGAR_BLOCK.get()), RankineBlocks.ARSENIC_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.RHODOCHROSITE_BLOCK.get()), RankineBlocks.MANGANESE_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.RUTILE_BLOCK.get()), RankineBlocks.TITANIUM_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.SCHEELITE_BLOCK.get()), RankineBlocks.TUNGSTEN_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.SILICON_BLOCK.get()), RankineBlocks.SILICON_CARBIDE_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.SILICON_CARBIDE_BLOCK.get()), RankineBlocks.GRAPHITE_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.SPHALERITE_BLOCK.get()), RankineBlocks.ZINC_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.SPODUMENE_BLOCK.get()), RankineBlocks.LITHIUM_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.STIBNITE_BLOCK.get()), RankineBlocks.ANTIMONY_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.SUBBITUMINOUS_COAL_BLOCK.get()), RankineBlocks.BITUMINOUS_COAL_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(Blocks.RAW_COPPER_BLOCK), Blocks.COPPER_BLOCK);
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(Blocks.RAW_GOLD_BLOCK), Blocks.GOLD_BLOCK);
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(Blocks.RAW_IRON_BLOCK), Blocks.IRON_BLOCK);
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.ZIRCON_BLOCK.get()), RankineBlocks.ZIRCONIA_BLOCK.get());
+    }
+
+    public static final Map<Ingredient, Block> BEEHIVE_OVEN_OTHER_MAP = new HashMap<>();
+    static {
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.BONE_BLOCK), RankineBlocks.BONE_CHAR_BLOCK.get());
+
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.CLAY), Blocks.TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(RankineTags.Items.STONES_LIMESTONE), Blocks.TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.BLACK_TERRACOTTA), Blocks.BLACK_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.BLUE_TERRACOTTA), Blocks.BLUE_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.BROWN_TERRACOTTA), Blocks.BROWN_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.CYAN_TERRACOTTA), Blocks.CYAN_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.GRAY_TERRACOTTA), Blocks.GRAY_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.GREEN_TERRACOTTA), Blocks.GREEN_GLAZED_TERRACOTTA);
     }
     
     public RankineRecipesProvider(DataGenerator generatorIn) {
@@ -922,7 +972,14 @@ public class RankineRecipesProvider extends RecipeProvider {
         ladder(consumer,RankineItems.DURALUMIN_LADDER.get(),8,RankineTags.Items.INGOTS_DURALUMIN);
         ladder(consumer,RankineItems.INVAR_LADDER.get(),8,RankineTags.Items.INGOTS_INVAR);
 
-        
+        //Beehive Oven
+        for (Map.Entry<Ingredient,Block> entry : BEEHIVE_OVEN_MINERAL_MAP.entrySet()) {
+            BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue(), 3600, 18000).save(consumer,new ResourceLocation("rankine:"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
+        }
+        for (Map.Entry<Ingredient,Block> entry : BEEHIVE_OVEN_OTHER_MAP.entrySet()) {
+            BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue()).save(consumer,new ResourceLocation("rankine:"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
+        }
+
         //Campfire
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.BAMBOO), RankineItems.DRIED_BAMBOO.get(), 0.35F, 40, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BAMBOO)).save(consumer, "rankine:dried_bamboo_campfire_cooking");
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.BONE), RankineItems.BONE_ASH.get(), 0.35F, 200, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BONE)).save(consumer, "rankine:bone_ash_campfire_cooking");

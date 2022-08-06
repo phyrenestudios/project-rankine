@@ -29,7 +29,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.List;
 import java.util.Random;
 
-public abstract class AbstractGasBlock extends AirBlock {
+public abstract class AbstractGasBlock extends AirBlock implements PitchModulating {
 
     private final float density;
     private final float dissipationChance;
@@ -155,5 +155,10 @@ public abstract class AbstractGasBlock extends AirBlock {
 
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return Shapes.empty();
+    }
+
+    @Override
+    public float getPitchMultiplier() {
+        return 1/this.getDensity();
     }
 }

@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "rankine:realgar_block"
+  },
+  "result": "rankine:arsenic_block",
+  "minCookTime": 3600,
+  "maxCookTime": 18000
+}

@@ -1,9 +1,0 @@
-{
-  "type": "rankine:beehive_oven",
-  "input": {
-    "item": "rankine:platinum_arsenide_block"
-  },
-  "result": {
-    "block": "rankine:platinum_block"
-  }
-}

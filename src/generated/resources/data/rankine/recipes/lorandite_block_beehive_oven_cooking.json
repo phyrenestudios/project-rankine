@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "rankine:lorandite_block"
+  },
+  "result": "rankine:thallium_block",
+  "minCookTime": 3600,
+  "maxCookTime": 18000
+}

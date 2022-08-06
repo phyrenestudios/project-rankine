@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.events.handlers.client;
 
 import com.cannolicatfish.rankine.blocks.GasBlock;
+import com.cannolicatfish.rankine.blocks.gases.AbstractGasBlock;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -57,7 +58,7 @@ public class RenderGameOverlayHandler {
             Level worldIn = player.getCommandSenderWorld();
 
             Block bl = worldIn.getBlockState(new BlockPos(player.getX(),player.getEyeY(),player.getZ())).getBlock();
-            if (bl instanceof GasBlock) {
+            if (bl instanceof AbstractGasBlock) {
                 ResourceLocation gasBlock = new ResourceLocation("rankine:textures/block/"+bl.getRegistryName().getPath()+".png");
 
                 RenderSystem.disableDepthTest();

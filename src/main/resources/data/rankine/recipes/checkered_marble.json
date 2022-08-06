@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "bw",
+    "wb"
+  ],
+  "key":
+  {
+    "b":
+    {
+      "item": "rankine:black_marble"
+    },
+    "w":
+    {
+      "item": "rankine:white_marble"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:checkered_marble",
+    "count": 4
+  }
+}
