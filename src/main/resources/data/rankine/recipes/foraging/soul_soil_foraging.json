@@ -1,0 +1,34 @@
+{
+  "type": "rankine:foraging",
+  "input": {
+    "item": "minecraft:soul_soil"
+  },
+  "outputs": [
+    {
+      "weight": 70
+    },
+    {
+      "item": "rankine:ash",
+      "weight": 5
+    },
+    {
+      "item": "rankine:bone_ash",
+      "weight": 5
+    },
+    {
+      "item": "minecraft:bone",
+      "weight": 3,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "minecraft:ghast_tear",
+      "weight": 1,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "minecraft:ender_pearl",
+      "weight": 1,
+      "enchantmentRequired": true
+    }
+  ]
+}

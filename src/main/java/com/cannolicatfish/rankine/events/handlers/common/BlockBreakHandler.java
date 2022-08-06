@@ -2,7 +2,6 @@ package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
-import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyPickaxeItem;
 import com.cannolicatfish.rankine.items.alloys.AlloyShovelItem;
@@ -22,6 +21,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -134,10 +134,13 @@ public class BlockBreakHandler {
             }
 
 
-            //Foraging Enchantment
-            if (mainHandItem.getItem() instanceof AlloyShovelItem || mainHandItem.getItem().equals(RankineItems.FLINT_SHOVEL.get())) {
-                ItemStack itemStack = ForagingRecipe.getForagingResult(levelIn, levelIn.getBiome(pos).value().getRegistryName(), targetBlockState, RankineEnchantmentHelper.hasForaging(player));
-                if (!itemStack.isEmpty()) Block.popResource(levelIn, pos, itemStack);
+            //Foraging
+            if (mainHandItem.getItem() instanceof AlloyShovelItem || mainHandItem.getItem().equals(RankineItems.FLINT_SHOVEL.get()) && !(EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, mainHandItem) > 0)) {
+                ItemStack itemStack = ForagingRecipe.getForagingResult(levelIn, levelIn.getBiome(pos).value().getRegistryName(), targetBlockState, EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.FORAGING, mainHandItem) > 0);
+                if (!itemStack.isEmpty()) {
+                    Block.popResource(levelIn, pos, itemStack);
+                    levelIn.destroyBlock(pos, false);
+                }
             }
 
             if (ForgeRegistries.BLOCKS.tags().getTag(BlockTags.LOGS_THAT_BURN).contains(targetBlock) && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTHERMIC,player.getMainHandItem()) > 0 && !levelIn.isClientSide) {

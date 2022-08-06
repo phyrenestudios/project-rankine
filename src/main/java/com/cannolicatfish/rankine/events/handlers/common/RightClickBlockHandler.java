@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
+import com.cannolicatfish.rankine.blocks.cauldrons.AbstractRankineCauldronBlock;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
@@ -18,6 +19,8 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -39,6 +42,7 @@ public class RightClickBlockHandler {
 
     private static Map<Block, BlockState> flintLightMap = new HashMap<>();
     private static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
+    private static Map<Item, Block> cauldron_map = new HashMap<Item, Block>();
 
     static {
         flintLightMap.put(Blocks.CAMPFIRE, Blocks.CAMPFIRE.defaultBlockState().setValue(BlockStateProperties.LIT,true));
@@ -46,6 +50,12 @@ public class RightClickBlockHandler {
         flintLightMap.put(RankineBlocks.CHARCOAL_PIT.get(), RankineBlocks.CHARCOAL_PIT.get().defaultBlockState().setValue(BlockStateProperties.LIT,true));
         flintLightMap.put(RankineBlocks.BEEHIVE_OVEN_PIT.get(), RankineBlocks.BEEHIVE_OVEN_PIT.get().defaultBlockState().setValue(BlockStateProperties.LIT,true));
 
+        cauldron_map.put(RankineItems.SAP_BUCKET.get(), RankineBlocks.SAP_CAULDRON.get());
+        cauldron_map.put(RankineItems.MAPLE_SAP_BUCKET.get(), RankineBlocks.MAPLE_SAP_CAULDRON.get());
+        cauldron_map.put(RankineItems.MAPLE_SYRUP.get(), RankineBlocks.MAPLE_SYRUP_CAULDRON.get());
+        cauldron_map.put(RankineItems.LATEX_BUCKET.get(), RankineBlocks.LATEX_CAULDRON.get());
+        cauldron_map.put(RankineItems.RESIN_BUCKET.get(), RankineBlocks.RESIN_CAULDRON.get());
+        cauldron_map.put(RankineItems.JUGLONE_BUCKET.get(), RankineBlocks.JUGLONE_CAULDRON.get());
 
         stripping_map.put(RankineBlocks.CEDAR_LOG.get(), RankineBlocks.STRIPPED_CEDAR_LOG.get());
         stripping_map.put(RankineBlocks.CEDAR_WOOD.get(), RankineBlocks.STRIPPED_CEDAR_WOOD.get());
@@ -94,12 +104,33 @@ public class RightClickBlockHandler {
     public static void rightClickBlockEvent(PlayerInteractEvent.RightClickBlock event) {
         if (event.getFace() == null) return;
         Player playerIn = event.getPlayer();
+        Level levelIn = event.getWorld();
+        BlockPos posIn = event.getPos();
         ItemStack itemStack = playerIn.getItemInHand(event.getHand());
+
+
+        if (itemStack.getItem() instanceof PotionItem && PotionUtils.getPotion(itemStack).equals(Potions.WATER)) {
+            if (RankineLists.SOIL_BLOCKS.contains(levelIn.getBlockState(posIn).getBlock())) {
+                levelIn.setBlockAndUpdate(posIn, RankineLists.MUD_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(levelIn.getBlockState(posIn).getBlock())).defaultBlockState());
+                playerIn.getInventory().add(ItemUtils.createFilledResult(itemStack, playerIn, new ItemStack(Items.GLASS_BOTTLE)));
+                return;
+            }
+        }
+
+        if (levelIn.getBlockState(posIn).is(Blocks.CAULDRON)) {
+            if (cauldron_map.containsKey(itemStack.getItem())) {
+                if (itemStack.is(RankineItems.MAPLE_SYRUP.get())) {
+                    AbstractRankineCauldronBlock.emptyBottle(event.getWorld(), event.getPos(), playerIn, event.getHand(), itemStack, cauldron_map.get(itemStack.getItem()).defaultBlockState(), SoundEvents.BOTTLE_EMPTY, new ItemStack(Items.GLASS_BOTTLE));
+                } else {
+                    AbstractRankineCauldronBlock.emptyBottle(event.getWorld(), event.getPos(), playerIn, event.getHand(), itemStack, cauldron_map.get(itemStack.getItem()).defaultBlockState(), SoundEvents.BUCKET_EMPTY, new ItemStack(Items.BUCKET));
+                }
+                return;
+            }
+        }
 
         if (playerIn.getMainHandItem().is(RankineTags.Items.FLINT) && playerIn.getOffhandItem().is(RankineTags.Items.FLINT) && Config.GENERAL.FLINT_FIRE.get()) {
             BlockPos pos = event.getPos();
             BlockPos blockpos1 = event.getPos().relative(event.getFace());
-            Level levelIn = event.getWorld();
             Random rand = levelIn.random;
             BlockState blockState = levelIn.getBlockState(pos);
             boolean flag = false;
@@ -112,7 +143,7 @@ public class RightClickBlockHandler {
                 levelIn.setBlockAndUpdate(pos, flintLightMap.get(blockState.getBlock()));
                 flag = true;
             } else if (BaseFireBlock.canBePlacedAt(levelIn,blockpos1,event.getFace())) {
-                levelIn.setBlockAndUpdate(pos, BaseFireBlock.getState(levelIn, blockpos1));
+                levelIn.setBlockAndUpdate(pos.relative(event.getFace()), BaseFireBlock.getState(levelIn, blockpos1));
                 flag = true;
             }
 

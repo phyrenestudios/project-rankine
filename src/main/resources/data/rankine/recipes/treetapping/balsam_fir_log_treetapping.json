@@ -1,11 +1,11 @@
 {
   "type": "rankine:treetapping",
-  "tapTime": 400,
+  "tapTime": 80,
   "input": {
     "item": "rankine:balsam_fir_log"
   },
   "result": {
     "fluid": "rankine:resin",
-    "amount": 200
+    "amount": 10
   }
 }

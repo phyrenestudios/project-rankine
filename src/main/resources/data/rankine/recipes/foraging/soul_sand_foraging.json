@@ -1,0 +1,29 @@
+{
+  "type": "rankine:foraging",
+  "input": {
+    "item": "minecraft:soul_sand"
+  },
+  "outputs": [
+    {
+      "weight": 80
+    },
+    {
+      "item": "rankine:ash",
+      "weight": 4
+    },
+    {
+      "item": "rankine:bone_ash",
+      "weight": 4
+    },
+    {
+      "item": "minecraft:bone",
+      "weight": 2,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "minecraft:blaze_powder",
+      "weight": 1,
+      "enchantmentRequired": true
+    }
+  ]
+}

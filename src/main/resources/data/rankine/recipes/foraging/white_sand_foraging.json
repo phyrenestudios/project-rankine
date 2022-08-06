@@ -1,0 +1,45 @@
+{
+  "type": "rankine:foraging",
+  "input": {
+    "item": "rankine:white_sand"
+  },
+  "outputs": [
+    {
+      "weight": 70
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 5
+    },
+    {
+      "item": "minecraft:dead_brain_coral",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:dead_fire_coral",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:dead_tube_coral",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:dead_horn_coral",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:dead_bubble_coral",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:prismarine_shard",
+      "weight": 5,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "minecraft:prismarine_crystals",
+      "weight": 5,
+      "enchantmentRequired": true
+    }
+  ]
+}

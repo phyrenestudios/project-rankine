@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:sap_cauldron",
+    "rankine:maple_sap_cauldron",
+    "rankine:maple_syrup_cauldron",
+    "rankine:latex_cauldron",
+    "rankine:resin_cauldron",
+    "rankine:juglone_cauldron"
+  ]
+}

@@ -358,7 +358,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(Items.BLAZE_POWDER,1).requires(Items.MAGMA_CREAM).requires(RankineItems.PUMICE_SOAP.get()).unlockedBy("has_ingredient", has(RankineItems.PUMICE_SOAP.get())).save(consumer, "rankine:blaze_powder_from_puumice_soap");
         ShapelessRecipeBuilder.shapeless(Items.PISTON,1).requires(Items.STICKY_PISTON).requires(RankineItems.PUMICE_SOAP.get()).unlockedBy("has_ingredient", has(RankineItems.PUMICE_SOAP.get())).save(consumer, "rankine:piston_from_pumice_soap");
         ShapelessRecipeBuilder.shapeless(RankineItems.MINERAL_WOOL.get(),1).requires(RankineTags.Items.MINERAL_WOOL).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(RankineTags.Items.MINERAL_WOOL)).save(consumer, "rankine:mineral_wool_from_colors");
-        ShapelessRecipeBuilder.shapeless(Items.TERRACOTTA,1).requires(ItemTags.TERRACOTTA).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(RankineTags.Items.MINERAL_WOOL)).save(consumer, "rankine:terracotta_from_colors");
+        ShapelessRecipeBuilder.shapeless(Items.TERRACOTTA,1).requires(ItemTags.TERRACOTTA).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(ItemTags.TERRACOTTA)).save(consumer, "rankine:terracotta_from_colors");
         ShapelessRecipeBuilder.shapeless(Items.GLASS,1).requires(Tags.Items.GLASS).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(Tags.Items.GLASS)).save(consumer, "rankine:glass_from_colors");
 
 
@@ -532,24 +532,6 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         twoXtwo(consumer, RankineItems.ROPE.get(), RankineItems.PLANT_FIBER.get(), 1, "has_plant_fiber", RankineItems.PLANT_FIBER.get());
         threeXthree(consumer, RankineItems.FIBER_BLOCK.get(), RankineItems.PLANT_FIBER.get(), 1, "has_plant_fiber", RankineItems.PLANT_FIBER.get());
-        ShapelessRecipeBuilder.shapeless(RankineItems.MINERAL_WOOL.get()).requires(RankineTags.Items.MINERAL_WOOL).requires(RankineItems.BLEACH.get()).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.WHITE_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.WHITE_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.ORANGE_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.ORANGE_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.YELLOW_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.YELLOW_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.RED_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.RED_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.MAGENTA_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.MAGENTA_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.PINK_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.PINK_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.PURPLE_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.PURPLE_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.BLUE_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.BLUE_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.CYAN_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.CYAN_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.GREEN_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.GREEN_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.LIGHT_BLUE_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.LIGHT_BLUE_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.BROWN_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.BROWN_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.LIME_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.LIME_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.LIGHT_GRAY_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.LIGHT_GRAY_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.GRAY_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.GRAY_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RankineItems.BLACK_MINERAL_WOOL.get()).requires(RankineItems.MINERAL_WOOL.get()).requires(Items.BLACK_WOOL).unlockedBy("has_slag", has(RankineTags.Items.SLAG)).save(consumer);
-
 
         twoXtwo(consumer, Items.PURPLE_DYE, RankineItems.ELDERBERRIES.get(), 1, "has_ingredient", RankineItems.ELDERBERRIES.get(), "purple_dye_from_elderberries");
         twoXtwo(consumer, Items.BLUE_DYE, RankineItems.BLUEBERRIES.get(), 1, "has_ingredient", RankineItems.BLUEBERRIES.get(), "blue_dye_from_blueberries");

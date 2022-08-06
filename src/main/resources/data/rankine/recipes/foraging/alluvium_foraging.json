@@ -1,0 +1,83 @@
+{
+  "type": "rankine:foraging",
+  "input": {
+    "item": "rankine:alluvium"
+  },
+  "outputs": [
+    {
+      "weight": 100
+    },
+    {
+      "item": "rankine:copper_nugget",
+      "weight": 5
+    },
+    {
+      "item": "rankine:tin_nugget",
+      "weight": 5
+    },
+    {
+      "item": "minecraft:gold_nugget",
+      "weight": 5
+    },
+    {
+      "item": "minecraft:diamond",
+      "weight": 1,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:thorium_nugget",
+      "weight": 1,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:uranium_nugget",
+      "weight": 1,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:ruby",
+      "weight": 1.5,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:sapphire",
+      "weight": 1.5,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:peridot",
+      "weight": 1.5,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:topaz",
+      "weight": 1.5,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:iridium_nugget",
+      "weight": 2,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:osmium_nugget",
+      "weight": 2,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:rhodium_nugget",
+      "weight": 2,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:ruthenium_nugget",
+      "weight": 2,
+      "enchantmentRequired": true
+    },
+    {
+      "item": "rankine:platinum_nugget",
+      "weight": 2,
+      "enchantmentRequired": true
+    }
+  ]
+}

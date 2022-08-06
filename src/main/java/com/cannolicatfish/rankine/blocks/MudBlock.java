@@ -1,9 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.init.RankineLists;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -15,13 +12,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.Random;
-
 public class MudBlock extends Block {
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
 
     public MudBlock() {
-        super(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.GRAVEL).strength(0.5F));
+        super(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.SOUL_SOIL).strength(0.7F));
     }
 
     @Override
@@ -37,19 +32,6 @@ public class MudBlock extends Block {
     @Override
     public VoxelShape getVisualShape(BlockState p_56684_, BlockGetter p_56685_, BlockPos p_56686_, CollisionContext p_56687_) {
         return Shapes.block();
-    }
-
-    @Override
-    public boolean isRandomlyTicking(BlockState p_49921_) {
-        return true;
-    }
-
-    @Override
-    public void randomTick(BlockState blockState, ServerLevel levelIn, BlockPos pos, Random p_60554_) {
-        if (!WorldgenUtils.isWet(levelIn.getChunk(pos), pos)) {
-            levelIn.setBlock(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.MUD_BLOCKS.indexOf(blockState.getBlock())).defaultBlockState(), 3);
-        }
-        super.randomTick(blockState, levelIn, pos, p_60554_);
     }
 
 

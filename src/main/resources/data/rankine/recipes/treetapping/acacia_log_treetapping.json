@@ -1,11 +1,11 @@
 {
   "type": "rankine:treetapping",
-  "tapTime": 400,
+  "tapTime": 80,
   "input": {
     "item": "minecraft:acacia_log"
   },
   "result": {
     "fluid": "rankine:sap",
-    "amount": 200
+    "amount": 10
   }
 }
