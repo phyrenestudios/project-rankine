@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.entities;
 
-import com.cannolicatfish.rankine.blocks.GasBlock;
+import com.cannolicatfish.rankine.blocks.gases.GasBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.EntityType;

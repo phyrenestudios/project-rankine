@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.blocks.gases.GasBlock;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -20,8 +21,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class FumaroleBlock extends Block {
     GasUtilsEnum gas;

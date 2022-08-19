@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.blocks.gasvent;
 
-import com.cannolicatfish.rankine.blocks.GasBlock;
-import com.cannolicatfish.rankine.blocks.gasbottler.GasBottlerTile;
+import com.cannolicatfish.rankine.blocks.gases.GasBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;

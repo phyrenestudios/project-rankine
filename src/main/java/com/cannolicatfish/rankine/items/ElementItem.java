@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.blocks.FumaroleBlock;
-import com.cannolicatfish.rankine.blocks.GasBlock;
+import com.cannolicatfish.rankine.blocks.gases.GasBlock;
 import com.cannolicatfish.rankine.entities.ReactiveItemEntity;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
@@ -24,8 +24,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class ElementItem extends Item {
     float waterReactive;

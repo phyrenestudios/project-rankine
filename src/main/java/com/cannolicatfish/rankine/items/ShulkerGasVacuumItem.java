@@ -1,21 +1,18 @@
 package com.cannolicatfish.rankine.items;
 
-import com.cannolicatfish.rankine.blocks.GasBlock;
+import com.cannolicatfish.rankine.blocks.gases.GasBlock;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineSoundEvents;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import net.minecraft.world.item.Item.Properties;
 
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -77,10 +74,10 @@ public class ShulkerGasVacuumItem extends Item {
             if (!worldIn.isClientSide) {
                 if (playerIn.getItemInHand(other).getItem() == Items.GLASS_BOTTLE) {
                     playerIn.getItemInHand(other).shrink(1);
-                    playerIn.getInventory().add(new ItemStack(getGasBottle(((GasBlock) bl).getGasEnum())));
+                    playerIn.getInventory().add(new ItemStack(((GasBlock) bl).getGasBottle()));
                 } else {
                     stack.getOrCreateTag().putString("gas",bl.getRegistryName().toString());
-                    stack.getTag().putInt("color",((GasBlock) bl).getGas().getColor());
+                    stack.getTag().putInt("color",((GasBlock) bl).getColor());
                 }
                 worldIn.removeBlock(pos,false);
             }
@@ -98,48 +95,6 @@ public class ShulkerGasVacuumItem extends Item {
         return 16777215;
     }
 
-    public Item getGasBottle(GasUtilsEnum gas) {
-        switch (gas) {
-            case HYDROGEN:
-                return RankineItems.HYDROGEN_GAS_BOTTLE.get();
-            case HELIUM:
-                return RankineItems.HELIUM_GAS_BOTTLE.get();
-            case NITROGEN:
-                return RankineItems.NITROGEN_GAS_BOTTLE.get();
-            case OXYGEN:
-                return RankineItems.OXYGEN_GAS_BOTTLE.get();
-            case FLUORINE:
-                return RankineItems.FLUORINE_GAS_BOTTLE.get();
-            case NEON:
-                return RankineItems.NEON_GAS_BOTTLE.get();
-            case CHLORINE:
-                return RankineItems.CHLORINE_GAS_BOTTLE.get();
-            case ARGON:
-                return RankineItems.ARGON_GAS_BOTTLE.get();
-            case KRYPTON:
-                return RankineItems.KRYPTON_GAS_BOTTLE.get();
-            case XENON:
-                return RankineItems.XENON_GAS_BOTTLE.get();
-            case RADON:
-                return RankineItems.RADON_GAS_BOTTLE.get();
-            case OGANESSON:
-                return RankineItems.OGANESSON_GAS_BOTTLE.get();
-            case AMMONIA:
-                return RankineItems.AMMONIA_GAS_BOTTLE.get();
-            case CARBON_DIOXIDE:
-                return RankineItems.CARBON_DIOXIDE_GAS_BOTTLE.get();
-            case HYDROGEN_CHLORIDE:
-                return RankineItems.HYDROGEN_CHLORIDE_GAS_BOTTLE.get();
-            case HYDROGEN_FLUORIDE:
-                return RankineItems.HYDROGEN_FLUORIDE_GAS_BOTTLE.get();
-            case HYDROGEN_SULFIDE:
-                return RankineItems.HYDROGEN_SULFIDE_GAS_BOTTLE.get();
-            case SULFUR_DIOXIDE:
-                return RankineItems.SULFUR_DIOXIDE_GAS_BOTTLE.get();
-            default:
-                return Items.GLASS_BOTTLE;
-        }
-    }
 
 
 }

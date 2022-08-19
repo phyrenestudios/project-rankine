@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.blocks.gasbottler;
 
-import com.cannolicatfish.rankine.blocks.GasBlock;
-import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
+import com.cannolicatfish.rankine.blocks.gases.GasBlock;
 import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
