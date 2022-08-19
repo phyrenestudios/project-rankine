@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoulFireBlock;
@@ -13,15 +14,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
 
-public class OxygenGasBlock extends AbstractGasBlock {
+public class OxygenGasBlock extends GasBlock {
 
-    public OxygenGasBlock(float densityIn, float dissipationChanceIn, List<MobEffectInstance> effectInstancesIn, boolean suffocatingIn, int colorIn, Properties properties) {
-        super(densityIn, dissipationChanceIn, effectInstancesIn, suffocatingIn, colorIn, properties);
+    public OxygenGasBlock(Supplier<? extends Item> gasBottle, float densityIn, float dissipationChanceIn, List<MobEffectInstance> effectInstancesIn, boolean suffocatingIn, int colorIn, Properties properties) {
+        super(gasBottle,densityIn, dissipationChanceIn, effectInstancesIn, suffocatingIn, colorIn, properties);
     }
 
-    public OxygenGasBlock(GasUtilsEnum gasUtilsEnum, Properties properties) {
-        super(gasUtilsEnum, properties);
+    public OxygenGasBlock(Supplier<? extends Item> gasBottle, GasUtilsEnum gasUtilsEnum, Properties properties) {
+        super(gasBottle,gasUtilsEnum, properties);
     }
 
     @Override

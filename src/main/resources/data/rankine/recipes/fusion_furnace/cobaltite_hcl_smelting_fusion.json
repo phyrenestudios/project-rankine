@@ -2,21 +2,25 @@
   "type": "rankine:fusion_furnace",
   "cookTime": 400,
   "input1": {
-    "item": "rankine:tungsten_trioxide"
+    "item": "rankine:cobaltite"
   },
   "input2": {
     "tag": "forge:nuggets/carbon"
   },
   "result1": {
-    "item":"rankine:tungsten_ingot"
+    "item":"rankine:cobalt_ingot"
+  },
+  "result2": {
+    "item":"rankine:sulfur_nugget",
+    "count": 3
   },
   "gasInput": {
-    "item": "minecraft:glass_bottle"
+    "item": "rankine:hydrogen_chloride_gas_bottle"
   },
   "gasOutput": {
     "item": "rankine:carbon_dioxide_gas_bottle"
   },
   "fluidInput": {
-    "fluid": "minecraft:lava"
+    "fluid": "minecraft:water"
   }
 }

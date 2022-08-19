@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.blocks.gases;
 
-import com.cannolicatfish.rankine.blocks.GasBlock;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineDamageSources;
 import com.cannolicatfish.rankine.init.RankineEnchantments;

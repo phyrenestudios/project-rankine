@@ -2,13 +2,13 @@
   "type": "rankine:fusion_furnace",
   "cookTime": 400,
   "input1": {
-    "item": "rankine:tungsten_trioxide"
+    "item": "rankine:vanadinite"
   },
   "input2": {
-    "item": "rankine:graphite"
+    "item":"rankine:sodium_carbonate"
   },
   "result1": {
-    "item":"rankine:tungsten_carbide"
+    "item":"rankine:vanadium_pentoxide"
   },
   "gasInput": {
     "item": "rankine:hydrogen_gas_bottle"
@@ -18,6 +18,10 @@
   },
   "fluidInput": {
     "fluid": "minecraft:lava",
+    "amount": 250
+  },
+  "fluidOutput": {
+    "fluid": "minecraft:water",
     "amount": 250
   }
 }

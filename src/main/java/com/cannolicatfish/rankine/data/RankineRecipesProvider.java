@@ -55,8 +55,6 @@ public class RankineRecipesProvider extends RecipeProvider {
         blastingMap.put(RankineItems.URANINITE.get(),RankineItems.URANIUM_INGOT.get());
         blastingMap.put(RankineItems.STIBNITE.get(),RankineItems.ANTIMONY.get());
         blastingMap.put(RankineItems.XENOTIME.get(),RankineItems.YTTRIUM_INGOT.get());
-        blastingMap.put(RankineItems.COBALTITE.get(),RankineItems.COBALT_INGOT.get());
-        blastingMap.put(RankineItems.CRYOLITE.get(),RankineItems.SODIUM_INGOT.get());
         blastingMap.put(RankineItems.CELESTINE.get(),RankineItems.STRONTIUM_INGOT.get());
         blastingMap.put(RankineItems.CHALCOPYRITE.get(),Items.COPPER_INGOT);
         blastingMap.put(RankineItems.PLATINUM_ARSENIDE.get(),RankineItems.PLATINUM_INGOT.get());
@@ -71,8 +69,6 @@ public class RankineRecipesProvider extends RecipeProvider {
         blastingMap.put(RankineItems.SPODUMENE.get(),RankineItems.LITHIUM_INGOT.get());
         blastingMap.put(RankineItems.CHALCOCITE.get(),Items.COPPER_INGOT);
         blastingMap.put(RankineItems.LORANDITE.get(),RankineItems.THALLIUM_INGOT.get());
-        blastingMap.put(RankineItems.POLLUCITE.get(),RankineItems.CESIUM_INGOT.get());
-        blastingMap.put(RankineItems.PYROCHLORE.get(),RankineItems.NIOBIUM_INGOT.get());
         blastingMap.put(RankineItems.RHODOCHROSITE.get(),RankineItems.MANGANESE_INGOT.get());
 
         blastingMap.put(RankineItems.SILVER_ZINC_BATTERY.get(),RankineItems.ZINC_NUGGET.get());

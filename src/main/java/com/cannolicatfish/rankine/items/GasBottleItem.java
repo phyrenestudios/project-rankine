@@ -15,16 +15,15 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 
 import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.level.material.Fluid;
+
+import java.util.function.Supplier;
 
 public class GasBottleItem extends Item {
-    GasUtilsEnum gas;
-    public GasBottleItem(GasUtilsEnum gas, Properties properties) {
+    private final java.util.function.Supplier<? extends Block> gasSupplier;
+    public GasBottleItem(Supplier<? extends Block> gas, Properties properties) {
         super(properties);
-        this.gas = gas;
-    }
-
-    public GasUtilsEnum getGasEnum() {
-        return gas;
+        this.gasSupplier = gas;
     }
 
     @Override
@@ -44,46 +43,6 @@ public class GasBottleItem extends Item {
         }
     }
 
-    public Block getGas() {
-        switch (gas) {
-            case HYDROGEN:
-                return RankineBlocks.HYDROGEN_GAS_BLOCK.get();
-            case HELIUM:
-                return RankineBlocks.HELIUM_GAS_BLOCK.get();
-            case NITROGEN:
-                return RankineBlocks.NITROGEN_GAS_BLOCK.get();
-            case OXYGEN:
-                return RankineBlocks.OXYGEN_GAS_BLOCK.get();
-            case FLUORINE:
-                return RankineBlocks.FLUORINE_GAS_BLOCK.get();
-            case NEON:
-                return RankineBlocks.NEON_GAS_BLOCK.get();
-            case CHLORINE:
-                return RankineBlocks.CHLORINE_GAS_BLOCK.get();
-            case ARGON:
-                return RankineBlocks.ARGON_GAS_BLOCK.get();
-            case KRYPTON:
-                return RankineBlocks.KRYPTON_GAS_BLOCK.get();
-            case XENON:
-                return RankineBlocks.XENON_GAS_BLOCK.get();
-            case RADON:
-                return RankineBlocks.RADON_GAS_BLOCK.get();
-            case OGANESSON:
-                return RankineBlocks.OGANESSON_GAS_BLOCK.get();
-            case AMMONIA:
-                return RankineBlocks.AMMONIA_GAS_BLOCK.get();
-            case CARBON_DIOXIDE:
-                return RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get();
-            case HYDROGEN_CHLORIDE:
-                return RankineBlocks.HYDROGEN_CHLORIDE_GAS_BLOCK.get();
-            case HYDROGEN_FLUORIDE:
-                return RankineBlocks.HYDROGEN_FLUORIDE_GAS_BLOCK.get();
-            case HYDROGEN_SULFIDE:
-                return RankineBlocks.HYDROGEN_SULFIDE_GAS_BLOCK.get();
-            case SULFUR_DIOXIDE:
-                return RankineBlocks.SULFUR_DIOXIDE_GAS_BLOCK.get();
-            default:
-                return Blocks.AIR;
-        }
-    }
+
+    public Block getGas() { return gasSupplier.get(); }
 }

@@ -1,0 +1,16 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:vanadium_pentoxide"
+  },
+  "input2": {
+    "tag": "forge:ingots/aluminum"
+  },
+  "result1": {
+    "item":"rankine:vanadium_ingot"
+  },
+  "result2": {
+    "item":"rankine:alumina"
+  }
+}

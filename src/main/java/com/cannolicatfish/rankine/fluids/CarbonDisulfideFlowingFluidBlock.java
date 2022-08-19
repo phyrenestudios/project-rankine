@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.fluids;
 
-import com.cannolicatfish.rankine.blocks.GasBlock;
+import com.cannolicatfish.rankine.blocks.gases.GasBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

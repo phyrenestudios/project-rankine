@@ -1,0 +1,22 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:vanadium_pentoxide"
+  },
+  "input2": {
+    "tag": "forge:nuggets/carbon"
+  },
+  "result1": {
+    "item":"rankine:vanadium_ingot"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:lava"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_fluoride_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:fluorine_gas_bottle"
+  }
+}

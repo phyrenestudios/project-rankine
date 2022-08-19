@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.events.handlers.client;
 
-import com.cannolicatfish.rankine.blocks.GasBlock;
 import com.cannolicatfish.rankine.blocks.gases.AbstractGasBlock;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;

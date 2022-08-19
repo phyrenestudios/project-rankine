@@ -1417,25 +1417,25 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HYDROGEN_CHLORIDE_FUMAROLE = BLOCKS.register("hydrogen_chloride_fumarole", () -> new FumaroleBlock(GasUtilsEnum.HYDROGEN_CHLORIDE,BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
     public static final RegistryObject<Block> HYDROGEN_SULFIDE_FUMAROLE = BLOCKS.register("hydrogen_sulfide_fumarole", () -> new FumaroleBlock(GasUtilsEnum.HYDROGEN_SULFIDE,BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
     public static final RegistryObject<Block> SULFUR_DIOXIDE_FUMAROLE = BLOCKS.register("sulfur_dioxide_fumarole", () -> new FumaroleBlock(GasUtilsEnum.SULFUR_DIOXIDE,BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
-    public static final RegistryObject<Block> HYDROGEN_GAS_BLOCK = BLOCKS.register("hydrogen_gas_block", () -> new HydrogenGasBlock(GasUtilsEnum.HYDROGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> HELIUM_GAS_BLOCK = BLOCKS.register("helium_gas_block", () -> new HeliumGasBlock(GasUtilsEnum.HELIUM, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> NITROGEN_GAS_BLOCK = BLOCKS.register("nitrogen_gas_block", () -> new NitrogenGasBlock(GasUtilsEnum.NITROGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> OXYGEN_GAS_BLOCK = BLOCKS.register("oxygen_gas_block", () -> new OxygenGasBlock(GasUtilsEnum.OXYGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> FLUORINE_GAS_BLOCK = BLOCKS.register("fluorine_gas_block", () -> new GasBlock(GasUtilsEnum.FLUORINE, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> NEON_GAS_BLOCK = BLOCKS.register("neon_gas_block", () -> new NeonGasBlock(GasUtilsEnum.NEON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> CHLORINE_GAS_BLOCK = BLOCKS.register("chlorine_gas_block", () -> new GasBlock(GasUtilsEnum.CHLORINE, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> ARGON_GAS_BLOCK = BLOCKS.register("argon_gas_block", () -> new GasBlock(GasUtilsEnum.ARGON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> KRYPTON_GAS_BLOCK = BLOCKS.register("krypton_gas_block", () -> new GasBlock(GasUtilsEnum.KRYPTON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> XENON_GAS_BLOCK = BLOCKS.register("xenon_gas_block", () -> new XenonGasBlock(GasUtilsEnum.XENON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> RADON_GAS_BLOCK = BLOCKS.register("radon_gas_block", () -> new GasBlock(GasUtilsEnum.RADON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> OGANESSON_GAS_BLOCK = BLOCKS.register("oganesson_gas_block", () -> new OganessonGasBlock(GasUtilsEnum.OGANESSON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> AMMONIA_GAS_BLOCK = BLOCKS.register("ammonia_gas_block", () -> new GasBlock(GasUtilsEnum.AMMONIA,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> CARBON_DIOXIDE_GAS_BLOCK = BLOCKS.register("carbon_dioxide_gas_block", () -> new GasBlock(GasUtilsEnum.CARBON_DIOXIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> HYDROGEN_CHLORIDE_GAS_BLOCK = BLOCKS.register("hydrogen_chloride_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN_CHLORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> HYDROGEN_FLUORIDE_GAS_BLOCK = BLOCKS.register("hydrogen_fluoride_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN_FLUORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> HYDROGEN_SULFIDE_GAS_BLOCK = BLOCKS.register("hydrogen_sulfide_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN_SULFIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> SULFUR_DIOXIDE_GAS_BLOCK = BLOCKS.register("sulfur_dioxide_gas_block", () -> new GasBlock(GasUtilsEnum.SULFUR_DIOXIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> TUNGSTEN_HEXAFLUORIDE_GAS_BLOCK = BLOCKS.register("tungsten_hexafluoride_gas_block", () -> new GasBlock(GasUtilsEnum.TUNGSTEN_HEXAFLUORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> HYDROGEN_GAS_BLOCK = BLOCKS.register("hydrogen_gas_block", () -> new HydrogenGasBlock(RankineItems.HYDROGEN_GAS_BOTTLE,GasUtilsEnum.HYDROGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> HELIUM_GAS_BLOCK = BLOCKS.register("helium_gas_block", () -> new HeliumGasBlock(RankineItems.HELIUM_GAS_BOTTLE,GasUtilsEnum.HELIUM, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> NITROGEN_GAS_BLOCK = BLOCKS.register("nitrogen_gas_block", () -> new NitrogenGasBlock(RankineItems.NITROGEN_GAS_BOTTLE,GasUtilsEnum.NITROGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> OXYGEN_GAS_BLOCK = BLOCKS.register("oxygen_gas_block", () -> new OxygenGasBlock(RankineItems.OXYGEN_GAS_BOTTLE,GasUtilsEnum.OXYGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> FLUORINE_GAS_BLOCK = BLOCKS.register("fluorine_gas_block", () -> new GasBlock(RankineItems.FLUORINE_GAS_BOTTLE,GasUtilsEnum.FLUORINE, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> NEON_GAS_BLOCK = BLOCKS.register("neon_gas_block", () -> new NeonGasBlock(RankineItems.NEON_GAS_BOTTLE,GasUtilsEnum.NEON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> CHLORINE_GAS_BLOCK = BLOCKS.register("chlorine_gas_block", () -> new GasBlock(RankineItems.CHLORINE_GAS_BOTTLE,GasUtilsEnum.CHLORINE, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> ARGON_GAS_BLOCK = BLOCKS.register("argon_gas_block", () -> new GasBlock(RankineItems.ARGON_GAS_BOTTLE,GasUtilsEnum.ARGON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> KRYPTON_GAS_BLOCK = BLOCKS.register("krypton_gas_block", () -> new GasBlock(RankineItems.KRYPTON_GAS_BOTTLE,GasUtilsEnum.KRYPTON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> XENON_GAS_BLOCK = BLOCKS.register("xenon_gas_block", () -> new XenonGasBlock(RankineItems.XENON_GAS_BOTTLE,GasUtilsEnum.XENON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> RADON_GAS_BLOCK = BLOCKS.register("radon_gas_block", () -> new GasBlock(RankineItems.RADON_GAS_BOTTLE,GasUtilsEnum.RADON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> OGANESSON_GAS_BLOCK = BLOCKS.register("oganesson_gas_block", () -> new OganessonGasBlock(RankineItems.OGANESSON_GAS_BOTTLE,GasUtilsEnum.OGANESSON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> AMMONIA_GAS_BLOCK = BLOCKS.register("ammonia_gas_block", () -> new GasBlock(RankineItems.AMMONIA_GAS_BOTTLE,GasUtilsEnum.AMMONIA,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> CARBON_DIOXIDE_GAS_BLOCK = BLOCKS.register("carbon_dioxide_gas_block", () -> new GasBlock(RankineItems.CARBON_DIOXIDE_GAS_BOTTLE,GasUtilsEnum.CARBON_DIOXIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> HYDROGEN_CHLORIDE_GAS_BLOCK = BLOCKS.register("hydrogen_chloride_gas_block", () -> new GasBlock(RankineItems.HYDROGEN_CHLORIDE_GAS_BOTTLE,GasUtilsEnum.HYDROGEN_CHLORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> HYDROGEN_FLUORIDE_GAS_BLOCK = BLOCKS.register("hydrogen_fluoride_gas_block", () -> new GasBlock(RankineItems.HYDROGEN_FLUORIDE_GAS_BOTTLE,GasUtilsEnum.HYDROGEN_FLUORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> HYDROGEN_SULFIDE_GAS_BLOCK = BLOCKS.register("hydrogen_sulfide_gas_block", () -> new GasBlock(RankineItems.HYDROGEN_SULFIDE_GAS_BOTTLE,GasUtilsEnum.HYDROGEN_SULFIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> SULFUR_DIOXIDE_GAS_BLOCK = BLOCKS.register("sulfur_dioxide_gas_block", () -> new GasBlock(RankineItems.SULFUR_DIOXIDE_GAS_BOTTLE,GasUtilsEnum.SULFUR_DIOXIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> TUNGSTEN_HEXAFLUORIDE_GAS_BLOCK = BLOCKS.register("tungsten_hexafluoride_gas_block", () -> new GasBlock(RankineItems.TUNGSTEN_HEXAFLUORIDE_GAS_BOTTLE,GasUtilsEnum.TUNGSTEN_HEXAFLUORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
 
     //public static final RegistryObject<Block> HELIUM_GAS_TUBE = REGISTRY.register("helium_gas_tube", () -> new GasTubeBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
 
@@ -2631,7 +2631,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> LORANDITE_BLOCK = BLOCKS.register("lorandite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> POLLUCITE_BLOCK = BLOCKS.register("pollucite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> CELESTINE_BLOCK = BLOCKS.register("celestine_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 5.0F)));
-    public static final RegistryObject<Block> CINNABAR_BLOCK = BLOCKS.register("cinnabar_block", () -> new CinnabarBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(5.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> CINNABAR_BLOCK = BLOCKS.register("cinnabar_block", () -> new CinnabarBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(5.0F, 6.0F).sound(SoundType.METAL))));
     public static final RegistryObject<Block> PERLITE_BLOCK = BLOCKS.register("perlite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> IRON_CHLORIDE_BLOCK = BLOCKS.register("iron_chloride_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> RHODONITE_BLOCK = BLOCKS.register("rhodonite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 5.0F)));
@@ -2820,13 +2820,13 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> BEEHIVE_OVEN_PIT = BLOCKS.register("beehive_oven_pit", () -> new BeehiveOvenPitBlock(REFRACTORY_BRICKS.get(), Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> MIXING_BARREL = BLOCKS.register("mixing_barrel", () -> new MixingBarrelBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).noOcclusion()));
-    public static final RegistryObject<Block> CRUCIBLE_BLOCK = BLOCKS.register("crucible", () -> new CrucibleBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).lightLevel((p_235418_0_) -> 7)));
+    public static final RegistryObject<Block> CRUCIBLE_BLOCK = BLOCKS.register("crucible", () -> new CrucibleBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).lightLevel(litCrucibleEmission(13))));
     public static final RegistryObject<Block> MATERIAL_TESTING_TABLE = BLOCKS.register("material_testing_table", () -> new MaterialTestingTableBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.0F)));
     public static final RegistryObject<Block> TEMPLATE_TABLE = BLOCKS.register("template_table", () -> new TemplateTableBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.0F)));
-    public static final RegistryObject<Block> ALLOY_FURNACE = BLOCKS.register("alloy_furnace", () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).lightLevel((p_235418_0_) -> 13)));
-    public static final RegistryObject<Block> PISTON_CRUSHER = BLOCKS.register("piston_crusher", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).lightLevel((p_235418_0_) -> 7)));
+    public static final RegistryObject<Block> ALLOY_FURNACE = BLOCKS.register("alloy_furnace", () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).lightLevel(litBlockEmission(13))));
+    public static final RegistryObject<Block> PISTON_CRUSHER = BLOCKS.register("piston_crusher", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> PCF = BLOCKS.register("pcf", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
-    public static final RegistryObject<Block> INDUCTION_FURNACE = BLOCKS.register("induction_furnace", () -> new InductionFurnaceBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F).lightLevel((p_235418_0_) -> 13)));
+    public static final RegistryObject<Block> INDUCTION_FURNACE = BLOCKS.register("induction_furnace", () -> new InductionFurnaceBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F).lightLevel(litBlockEmission(13))));
     public static final RegistryObject<Block> GYRATORY_CRUSHER = BLOCKS.register("gyratory_crusher", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> EVAPORATION_TOWER = BLOCKS.register("evaporation_tower", () -> new EvaporationTowerBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> DIAMOND_ANVIL_CELL = BLOCKS.register("diamond_anvil_cell", () -> new DiamondAnvilCellBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
@@ -2844,22 +2844,22 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TAP_LINE = BLOCKS.register("tap_line", () -> new TapLineBlock(0.125f, BlockBehaviour.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.5F).noOcclusion()));
 
 
-    public static final RegistryObject<Block> RED_LED = BLOCKS.register("red_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> ORANGE_LED = BLOCKS.register("orange_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> YELLOW_LED = BLOCKS.register("yellow_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> LIME_LED = BLOCKS.register("lime_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> GREEN_LED = BLOCKS.register("green_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> CYAN_LED = BLOCKS.register("cyan_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> LIGHT_BLUE_LED = BLOCKS.register("light_blue_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> BLUE_LED = BLOCKS.register("blue_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> MAGENTA_LED = BLOCKS.register("magenta_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> PURPLE_LED = BLOCKS.register("purple_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> PINK_LED = BLOCKS.register("pink_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> BROWN_LED = BLOCKS.register("brown_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> BLACK_LED = BLOCKS.register("black_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> GRAY_LED = BLOCKS.register("gray_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> LIGHT_GRAY_LED = BLOCKS.register("light_gray_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
-    public static final RegistryObject<Block> WHITE_LED = BLOCKS.register("white_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(getLightValueLit(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> RED_LED = BLOCKS.register("red_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> ORANGE_LED = BLOCKS.register("orange_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> YELLOW_LED = BLOCKS.register("yellow_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> LIME_LED = BLOCKS.register("lime_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> GREEN_LED = BLOCKS.register("green_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> CYAN_LED = BLOCKS.register("cyan_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> LIGHT_BLUE_LED = BLOCKS.register("light_blue_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> BLUE_LED = BLOCKS.register("blue_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> MAGENTA_LED = BLOCKS.register("magenta_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> PURPLE_LED = BLOCKS.register("purple_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> PINK_LED = BLOCKS.register("pink_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> BROWN_LED = BLOCKS.register("brown_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> BLACK_LED = BLOCKS.register("black_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> GRAY_LED = BLOCKS.register("gray_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> LIGHT_GRAY_LED = BLOCKS.register("light_gray_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
+    public static final RegistryObject<Block> WHITE_LED = BLOCKS.register("white_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));
 
 
     public static final RegistryObject<Block> UNAGED_CHEESE = BLOCKS.register("unaged_cheese", () -> new UnagedCheeseBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).sound(SoundType.WOOL)));
@@ -3170,9 +3170,15 @@ public class RankineBlocks {
     }
 
 
-    private static ToIntFunction<BlockState> getLightValueLit(int lightValue) {
-        return (state) -> {
-            return state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
+    private static ToIntFunction<BlockState> litBlockEmission(int p_50760_) {
+        return (p_50763_) -> {
+            return p_50763_.getValue(BlockStateProperties.LIT) ? p_50760_ : 0;
+        };
+    }
+
+    private static ToIntFunction<BlockState> litCrucibleEmission(int p_50760_) {
+        return (p_50763_) -> {
+            return p_50763_.getValue(CrucibleBlock.FLUID) ? p_50760_ : 0;
         };
     }
 }
