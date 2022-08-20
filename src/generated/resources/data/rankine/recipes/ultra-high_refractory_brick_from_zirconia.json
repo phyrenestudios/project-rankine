@@ -5,11 +5,10 @@
       "item": "rankine:high_refractory_brick"
     },
     {
-      "item": "rankine:hafnia"
+      "item": "rankine:zirconia"
     }
   ],
   "result": {
-    "item": "rankine:ultra_high_refractory_brick",
-    "count": 1
+    "item": "rankine:ultra_high_refractory_brick"
   }
 }

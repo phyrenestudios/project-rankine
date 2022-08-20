@@ -21,7 +21,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
@@ -74,6 +73,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         blastingMap.put(RankineItems.POLLUCITE.get(),RankineItems.CESIUM_INGOT.get());
         blastingMap.put(RankineItems.PYROCHLORE.get(),RankineItems.NIOBIUM_INGOT.get());
         blastingMap.put(RankineItems.RHODOCHROSITE.get(),RankineItems.MANGANESE_INGOT.get());
+        blastingMap.put(RankineItems.MAGNESITE.get(),RankineItems.MAGNESIA.get());
 
         blastingMap.put(RankineItems.SILVER_ZINC_BATTERY.get(),RankineItems.ZINC_NUGGET.get());
         blastingMap.put(RankineItems.MAGNESIUM_BATTERY.get(),RankineItems.ZINC_NUGGET.get());
@@ -96,7 +96,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.ACANTHITE_BLOCK.get()), RankineBlocks.SILVER_BLOCK.get());
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.AZURMALACHITE_BLOCK.get()), Blocks.COPPER_BLOCK);
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.BADDELEYITE_BLOCK.get()), RankineBlocks.ZIRCONIA_BLOCK.get());
-        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.BISMUTHINITE_ORE.get()), RankineBlocks.BISMUTH_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.BISMUTHINITE_BLOCK.get()), RankineBlocks.BISMUTH_BLOCK.get());
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.BITUMINOUS_COAL_BLOCK.get()), RankineBlocks.COKE_BLOCK.get());
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.CASSITERITE_BLOCK.get()), RankineBlocks.TIN_BLOCK.get());
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.CELESTINE_BLOCK.get()), RankineBlocks.STRONTIUM_BLOCK.get());
@@ -131,6 +131,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(Blocks.RAW_GOLD_BLOCK), Blocks.GOLD_BLOCK);
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(Blocks.RAW_IRON_BLOCK), Blocks.IRON_BLOCK);
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.ZIRCON_BLOCK.get()), RankineBlocks.ZIRCONIA_BLOCK.get());
+        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.MAGNESIA_BLOCK.get()), RankineBlocks.MAGNESIA_BLOCK.get());
     }
 
     public static final Map<Ingredient, Block> BEEHIVE_OVEN_OTHER_MAP = new HashMap<>();
@@ -138,13 +139,24 @@ public class RankineRecipesProvider extends RecipeProvider {
         BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.BONE_BLOCK), RankineBlocks.BONE_CHAR_BLOCK.get());
 
         BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.CLAY), Blocks.TERRACOTTA);
-        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(RankineTags.Items.STONES_LIMESTONE), Blocks.TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(RankineBlocks.FIRE_CLAY.get()), Blocks.TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(RankineBlocks.KAOLIN.get()), RankineBlocks.PORCELAIN_BLOCK.get());
         BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.BLACK_TERRACOTTA), Blocks.BLACK_GLAZED_TERRACOTTA);
         BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.BLUE_TERRACOTTA), Blocks.BLUE_GLAZED_TERRACOTTA);
         BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.BROWN_TERRACOTTA), Blocks.BROWN_GLAZED_TERRACOTTA);
         BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.CYAN_TERRACOTTA), Blocks.CYAN_GLAZED_TERRACOTTA);
         BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.GRAY_TERRACOTTA), Blocks.GRAY_GLAZED_TERRACOTTA);
         BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.GREEN_TERRACOTTA), Blocks.GREEN_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.MAGENTA_TERRACOTTA), Blocks.MAGENTA_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.ORANGE_TERRACOTTA), Blocks.ORANGE_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.LIME_TERRACOTTA), Blocks.LIME_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.YELLOW_TERRACOTTA), Blocks.YELLOW_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.WHITE_TERRACOTTA), Blocks.WHITE_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.PINK_TERRACOTTA), Blocks.PINK_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.PURPLE_TERRACOTTA), Blocks.PURPLE_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.LIGHT_GRAY_TERRACOTTA), Blocks.LIGHT_GRAY_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.LIGHT_BLUE_TERRACOTTA), Blocks.LIGHT_BLUE_GLAZED_TERRACOTTA);
+        BEEHIVE_OVEN_OTHER_MAP.put(Ingredient.of(Blocks.RED_TERRACOTTA), Blocks.RED_GLAZED_TERRACOTTA);
     }
     
     public RankineRecipesProvider(DataGenerator generatorIn) {
@@ -440,6 +452,13 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RankineItems.VULCANIZED_RUBBER.get(),2).requires(RankineItems.DRY_RUBBER.get()).requires(Items.BONE_MEAL).requires(RankineItems.SODIUM_SULFIDE.get()).requires(RankineTags.Items.NUGGETS_CARBON).unlockedBy("has_ingredient", has(RankineItems.DRY_RUBBER.get())).save(consumer, "rankine:vulcanized_rubber_from_sodium_sulfide");
         ShapelessRecipeBuilder.shapeless(RankineItems.VULCANIZED_RUBBER.get(),4).requires(RankineItems.DRY_RUBBER.get()).requires(Items.BONE_MEAL).requires(RankineItems.TELLURIUM.get()).requires(RankineTags.Items.NUGGETS_CARBON).unlockedBy("has_ingredient", has(RankineItems.DRY_RUBBER.get())).save(consumer, "rankine:vulcanized_rubber_from_tellurium");
         ShapelessRecipeBuilder.shapeless(RankineItems.COMPRESSED_BIOMASS.get(),1).requires(RankineItems.BIOMASS.get()).requires(RankineItems.BIOMASS.get()).requires(RankineItems.BIOMASS.get()).requires(RankineItems.BIOMASS.get()).unlockedBy("has_ingredient", has(RankineItems.BIOMASS.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RankineItems.HIGH_REFRACTORY_BRICK.get(),1).requires(RankineItems.REFRACTORY_BRICK.get()).requires(RankineTags.Items.CARBON).requires(RankineTags.Items.CARBON).unlockedBy("has_ingredient", has(RankineItems.REFRACTORY_BRICK.get())).save(consumer, "rankine:high_refractory_brick_from_carbon");
+        ShapelessRecipeBuilder.shapeless(RankineItems.HIGH_REFRACTORY_BRICK.get(),1).requires(RankineItems.REFRACTORY_BRICK.get()).requires(RankineTags.Items.SILICON_CARBIDE).requires(RankineTags.Items.SILICON_CARBIDE).unlockedBy("has_ingredient", has(RankineItems.REFRACTORY_BRICK.get())).save(consumer, "rankine:high_refractory_brick_from_silicon_carbide");
+        ShapelessRecipeBuilder.shapeless(RankineItems.HIGH_REFRACTORY_BRICK.get(),1).requires(RankineItems.REFRACTORY_BRICK.get()).requires(RankineItems.MAGNESIA.get()).unlockedBy("has_ingredient", has(RankineItems.REFRACTORY_BRICK.get())).save(consumer, "rankine:high_refractory_brick_from_magnesia");
+        ShapelessRecipeBuilder.shapeless(RankineItems.HIGH_REFRACTORY_BRICK.get(),1).requires(RankineItems.REFRACTORY_BRICK.get()).requires(RankineItems.MAGNESITE.get()).requires(RankineTags.Items.NUGGETS_CHROMIUM).unlockedBy("has_ingredient", has(RankineItems.REFRACTORY_BRICK.get())).save(consumer, "rankine:high_refractory_brick_from_magnesite");
+        ShapelessRecipeBuilder.shapeless(RankineItems.ULTRA_HIGH_REFRACTORY_BRICK.get(),1).requires(RankineItems.HIGH_REFRACTORY_BRICK.get()).requires(RankineItems.ALUMINA.get()).unlockedBy("has_ingredient", has(RankineItems.REFRACTORY_BRICK.get())).save(consumer, "rankine:ultra-high_refractory_brick_from_alumina");
+        ShapelessRecipeBuilder.shapeless(RankineItems.ULTRA_HIGH_REFRACTORY_BRICK.get(),1).requires(RankineItems.HIGH_REFRACTORY_BRICK.get()).requires(RankineItems.HAFNIA.get()).unlockedBy("has_ingredient", has(RankineItems.REFRACTORY_BRICK.get())).save(consumer, "rankine:ultra-high_refractory_brick_from_hafnia");
+        ShapelessRecipeBuilder.shapeless(RankineItems.ULTRA_HIGH_REFRACTORY_BRICK.get(),1).requires(RankineItems.HIGH_REFRACTORY_BRICK.get()).requires(RankineItems.ZIRCONIA.get()).unlockedBy("has_ingredient", has(RankineItems.REFRACTORY_BRICK.get())).save(consumer, "rankine:ultra-high_refractory_brick_from_zirconia");
         ShapedRecipeBuilder.shaped(RankineItems.SYNTHETIC_LEATHER.get(), 1).pattern("PPP").pattern("CSC").pattern("PPP").define('S', RankineTags.Items.SALTPETER).define('C', RankineItems.CAMPHOR_BASIL_LEAF.get()).define('P', RankineItems.PULP.get()).unlockedBy("has_ingredient", has(RankineItems.PULP.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(RankineItems.TOFU_CURRY.get(),1).requires(Items.BOWL).requires(RankineItems.TOFU.get()).requires(Items.PUMPKIN).requires(RankineItems.MAPLE_SYRUP.get()).requires(RankineTags.Items.NUTS_COCONUT).unlockedBy("has_ingredient", has(RankineItems.TOFU.get())).save(consumer);
 
@@ -974,11 +993,16 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         //Beehive Oven
         for (Map.Entry<Ingredient,Block> entry : BEEHIVE_OVEN_MINERAL_MAP.entrySet()) {
-            BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue(), 3600, 18000).save(consumer,new ResourceLocation("rankine:"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
+            BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue(), 2400, 4800).save(consumer,new ResourceLocation("rankine:"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
         }
         for (Map.Entry<Ingredient,Block> entry : BEEHIVE_OVEN_OTHER_MAP.entrySet()) {
             BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue()).save(consumer,new ResourceLocation("rankine:"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
         }
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.STONES_LIMESTONE), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:quicklime_from_limestone_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.STONES_DOLOMITE), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:quicklime_from_dolomite_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(ItemTags.SAND), Blocks.GLASS).save(consumer, new ResourceLocation("rankine:glass_from_sand_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.SILT), Blocks.GLASS).save(consumer, new ResourceLocation("rankine:glass_from_silt_beehive_oven_cooking"));
+
 
         //Campfire
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.BAMBOO), RankineItems.DRIED_BAMBOO.get(), 0.35F, 40, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_ingredient", has(Items.BAMBOO)).save(consumer, "rankine:dried_bamboo_campfire_cooking");

@@ -4,6 +4,6 @@
     "item": "rankine:galena_block"
   },
   "result": "rankine:lead_block",
-  "minCookTime": 3600,
-  "maxCookTime": 18000
+  "minCookTime": 2400,
+  "maxCookTime": 4800
 }

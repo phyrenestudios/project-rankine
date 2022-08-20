@@ -1,47 +1,36 @@
 package com.cannolicatfish.rankine.blocks.beehiveoven;
 
-import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
-import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
-import com.cannolicatfish.rankine.init.*;
-import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.sounds.SoundEvents;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
-import net.minecraft.world.item.BlockItem;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
+import java.util.Random;
 
 public class BeehiveOvenPitBlock extends BaseEntityBlock {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -78,26 +67,7 @@ public class BeehiveOvenPitBlock extends BaseEntityBlock {
             itemstack.shrink(1);
             worldIn.setBlock(pos, worldIn.getBlockState(pos).setValue(BlockStateProperties.LIT, Boolean.TRUE), 2);
         } else if (player.getMainHandItem().getItem() == Items.BLAZE_POWDER && state.getValue((LIT))) {
-            boolean flag = true;
-            for (BlockPos p: BlockPos.betweenClosed(pos.offset(-1,1,-1),pos.offset(1,2,1))) {
-                BeehiveOvenRecipe recipe = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.BEEHIVE, new SimpleContainer(new ItemStack(worldIn.getBlockState(p).getBlock())), worldIn).orElse(null);
-                if (recipe != null) {
-                    ItemStack output = recipe.getResultItem();
-                    if (!output.isEmpty()) {
-                        if (output.getItem() instanceof BlockItem) {
-                            worldIn.setBlock(p, ((BlockItem) output.getItem()).getBlock().defaultBlockState(), 2);
-                            flag = false;
-                            break;
-                        }
-                    }
-                }
-            }
-            if (flag) {
-                worldIn.setBlock(pos, worldIn.getBlockState(pos).setValue(BlockStateProperties.LIT, Boolean.FALSE), 2);
-            }
-            if (!player.isCreative()) {
-                player.getMainHandItem().shrink(1);
-            }
+            ((BeehiveOvenTile) worldIn.getBlockEntity(pos)).cookingProgress += 300;
             worldIn.playLocalSound((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 0.5F, 0.7F + 0.6F, false);
         }
 

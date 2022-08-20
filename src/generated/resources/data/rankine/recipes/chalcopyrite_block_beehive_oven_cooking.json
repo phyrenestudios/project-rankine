@@ -4,6 +4,6 @@
     "item": "rankine:chalcopyrite_block"
   },
   "result": "minecraft:copper_block",
-  "minCookTime": 3600,
-  "maxCookTime": 18000
+  "minCookTime": 2400,
+  "maxCookTime": 4800
 }

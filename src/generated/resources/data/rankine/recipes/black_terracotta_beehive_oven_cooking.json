@@ -4,6 +4,6 @@
     "item": "minecraft:black_terracotta"
   },
   "result": "minecraft:black_glazed_terracotta",
-  "minCookTime": 1600,
-  "maxCookTime": 8000
+  "minCookTime": 300,
+  "maxCookTime": 600
 }

@@ -1,19 +1,20 @@
 package com.cannolicatfish.rankine.blocks.beehiveoven;
 
-import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
-import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AirBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,8 +22,8 @@ import java.util.List;
 import static com.cannolicatfish.rankine.init.RankineBlocks.BEEHIVE_OVEN_TILE;
 
 public class BeehiveOvenTile extends BlockEntity {
-    private int proccessTime;
-    private int nextRecipe;
+    int cookingProgress;
+    int cookingTotalTime;
     public BeehiveOvenTile(BlockPos posIn, BlockState stateIn) {
         super(BEEHIVE_OVEN_TILE, posIn, stateIn);
     }
@@ -30,126 +31,141 @@ public class BeehiveOvenTile extends BlockEntity {
     @Override
     public void load(CompoundTag nbt) {
         super.load(nbt);
-        this.proccessTime = nbt.getInt("ProcessTime");
+        this.cookingProgress = nbt.getInt("CookTime");
+        this.cookingTotalTime = nbt.getInt("CookTimeTotal");
     }
 
     @Override
     public void saveAdditional(CompoundTag compound) {
         super.saveAdditional(compound);
-        compound.putInt("ProcessTime", this.proccessTime);
+        compound.putInt("CookTime", this.cookingProgress);
+        compound.putInt("CookTimeTotal", this.cookingTotalTime);
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState bs, BeehiveOvenTile tile) {
-        if (!level.isAreaLoaded(pos, 1)) return;
-        if (tile.nextRecipe == 0) {
-            tile.nextRecipe = level.getRandom().nextInt(tile.structureCheck(level, pos)) + 100;
-        }
-        if (canSeeSky(level, pos) ) {
-            if (bs.getValue(BeehiveOvenPitBlock.LIT)) {
-                tile.proccessTime += 1;
-                if (tile.proccessTime >= tile.nextRecipe) {
-                    boolean flag = true;
-                    for (BlockPos p: BlockPos.betweenClosed(pos.offset(-1,1,-1),pos.offset(1,2,1))) {
-                        BeehiveOvenRecipe recipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.BEEHIVE, new SimpleContainer(new ItemStack(level.getBlockState(p).getBlock())), level).orElse(null);
-                        if (recipe != null) {
-                            ItemStack output = recipe.getResultItem();
-                            if (!output.isEmpty()) {
-                                if (output.getItem() instanceof BlockItem) {
-                                    level.setBlock(p, ((BlockItem) output.getItem()).getBlock().defaultBlockState(), 2);
-                                    tile.proccessTime = 0;
-                                    flag = false;
-                                    break;
-                                }
-                            }
+    public static void tick(Level levelIn, BlockPos posIn, BlockState stateIn, BeehiveOvenTile tileIn) {
+        if (!levelIn.isAreaLoaded(posIn, 1)) return;
+        if (!stateIn.getValue(BeehiveOvenPitBlock.LIT)) return;
+        float speedMod = structureCheck(levelIn, posIn);
+        if (speedMod == 0.0f) {
+            levelIn.setBlock(posIn, stateIn.setValue(BlockStateProperties.LIT, Boolean.FALSE), 3);
+        } else {
+            if (tileIn.cookingTotalTime == 0) tileIn.cookingTotalTime = Math.round(cookTime(levelIn, posIn) * speedMod);
+            tileIn.cookingProgress += 1;
+            if (tileIn.cookingProgress >= tileIn.cookingTotalTime) {
+                if (Math.round(cookTime(levelIn, posIn) * speedMod) > tileIn.cookingTotalTime) {
+                    tileIn.cookingTotalTime = Math.round(cookTime(levelIn, posIn) * speedMod) + tileIn.cookingTotalTime;
+                    return;
+                }
+
+                for (BlockPos p: BlockPos.betweenClosed(posIn.offset(-1,1,-1),posIn.offset(1,2,1))) {
+                    Block target = levelIn.getBlockState(p).getBlock();
+                    if (target == Blocks.AIR) levelIn.setBlockAndUpdate(p, RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get().defaultBlockState());
+                    BeehiveOvenRecipe recipe = levelIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.BEEHIVE, new SimpleContainer(new ItemStack(target)), levelIn).orElse(null);
+                    if (recipe != null) {
+                        ItemStack output = recipe.getResultItem();
+                        if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
+                            levelIn.setBlockAndUpdate(p, ((BlockItem) output.getItem()).getBlock().defaultBlockState());
                         }
                     }
-                    if (flag) level.setBlock(pos, bs.setValue(BlockStateProperties.LIT, Boolean.FALSE), 3);
-                    tile.nextRecipe = level.getRandom().nextInt(tile.structureCheck(level, pos)) + 100;
                 }
+                levelIn.setBlockAndUpdate(posIn, stateIn.setValue(BlockStateProperties.LIT, Boolean.FALSE));
+                tileIn.cookingProgress = 0;
+
             }
-        } else {
-            level.setBlock(pos, bs.setValue(BlockStateProperties.LIT, Boolean.FALSE), 3);
         }
     }
 
-    private static boolean canSeeSky(Level worldIn, BlockPos pos) {
-        if (Config.MACHINES.BEEHIVE_OVEN_SKYLIGHT.get() != 0) {
-            for (int i = 1; i <= Config.MACHINES.BEEHIVE_OVEN_SKYLIGHT.get(); i++) {
-                if (!worldIn.isEmptyBlock(pos.above(i))) {
-                    return false;
+
+    private static int cookTime(Level levelIn, BlockPos posIn) {
+        int time = 0;
+        for (BlockPos p: BlockPos.betweenClosed(posIn.offset(-1,1,-1),posIn.offset(1,2,1))) {
+            Block target = levelIn.getBlockState(p).getBlock();
+            if (target instanceof AirBlock) continue;
+            BeehiveOvenRecipe recipe = levelIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.BEEHIVE, new SimpleContainer(new ItemStack(target)), levelIn).orElse(null);
+            if (recipe != null) {
+                ItemStack output = recipe.getResultItem();
+                if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
+                    time += levelIn.getRandom().nextInt(recipe.getMinCookTime(), recipe.getMaxCookTime());
                 }
             }
         }
-        return true;
+        return time;
     }
 
-    private int structureCheck(Level world, BlockPos pos) {
+    private static float structureCheck(Level levelIn, BlockPos posIn) {
+        for (int i = 1; i <= 6; i++) {
+            if (!levelIn.isEmptyBlock(posIn.above(i))) {
+                return 0.0f;
+            }
+        }
         List<BlockPos> oven = Arrays.asList(
-                pos.offset(-1,0,-1),
-                pos.offset(-1,0,0),
-                pos.offset(-1,0,1),
-                pos.offset(1,0,-1),
-                pos.offset(1,0,0),
-                pos.offset(1,0,1),
-                pos.offset(0,0,-1),
-                pos.offset(0,0,1),
+                posIn.offset(-1,0,-1),
+                posIn.offset(-1,0,0),
+                posIn.offset(-1,0,1),
+                posIn.offset(1,0,-1),
+                posIn.offset(1,0,0),
+                posIn.offset(1,0,1),
+                posIn.offset(0,0,-1),
+                posIn.offset(0,0,1),
 
-                pos.offset(-2,0,-1),
-                pos.offset(-2,0,0),
-                pos.offset(-2,0,1),
-                pos.offset(2,0,-1),
-                pos.offset(2,0,0),
-                pos.offset(2,0,1),
-                pos.offset(-1,0,-2),
-                pos.offset(0,0,-2),
-                pos.offset(1,0,-2),
-                pos.offset(-1,0,2),
-                pos.offset(0,0,2),
-                pos.offset(1,0,2),
+                posIn.offset(-2,0,-1),
+                posIn.offset(-2,0,0),
+                posIn.offset(-2,0,1),
+                posIn.offset(2,0,-1),
+                posIn.offset(2,0,0),
+                posIn.offset(2,0,1),
+                posIn.offset(-1,0,-2),
+                posIn.offset(0,0,-2),
+                posIn.offset(1,0,-2),
+                posIn.offset(-1,0,2),
+                posIn.offset(0,0,2),
+                posIn.offset(1,0,2),
 
-                pos.offset(-2,1,-1),
-                pos.offset(-2,1,1),
-                pos.offset(2,1,-1),
-                pos.offset(2,1,1),
-                pos.offset(-1,1,-2),
-                pos.offset(1,1,-2),
-                pos.offset(-1,1,2),
-                pos.offset(1,1,2),
+                posIn.offset(-2,1,-1),
+                posIn.offset(-2,1,1),
+                posIn.offset(2,1,-1),
+                posIn.offset(2,1,1),
+                posIn.offset(-1,1,-2),
+                posIn.offset(1,1,-2),
+                posIn.offset(-1,1,2),
+                posIn.offset(1,1,2),
 
-                pos.offset(-2,2,-1),
-                pos.offset(-2,2,1),
-                pos.offset(2,2,-1),
-                pos.offset(2,2,1),
-                pos.offset(-1,2,-2),
-                pos.offset(1,2,-2),
-                pos.offset(-1,2,2),
-                pos.offset(1,2,2),
+                posIn.offset(-2,2,-1),
+                posIn.offset(-2,2,1),
+                posIn.offset(2,2,-1),
+                posIn.offset(2,2,1),
+                posIn.offset(-1,2,-2),
+                posIn.offset(1,2,-2),
+                posIn.offset(-1,2,2),
+                posIn.offset(1,2,2),
 
-                pos.offset(-1,3,-1),
-                pos.offset(-2,3,0),
-                pos.offset(-1,3,1),
-                pos.offset(1,3,-1),
-                pos.offset(2,3,0),
-                pos.offset(1,3,1),
-                pos.offset(0,3,-2),
-                pos.offset(0,3,2),
-                pos.offset(0,3,-1),
-                pos.offset(0,3,1),
-                pos.offset(-1,3,0),
-                pos.offset(1,3,0)
+                posIn.offset(-1,3,-1),
+                posIn.offset(-2,3,0),
+                posIn.offset(-1,3,1),
+                posIn.offset(1,3,-1),
+                posIn.offset(2,3,0),
+                posIn.offset(1,3,1),
+                posIn.offset(0,3,-2),
+                posIn.offset(0,3,2),
+                posIn.offset(0,3,-1),
+                posIn.offset(0,3,1),
+                posIn.offset(-1,3,0),
+                posIn.offset(1,3,0)
         );
 
-        int count = 8000;
+        float speedMod = 0.0f;
         for (BlockPos b : oven) {
-            if (world.getBlockState(b) == RankineBlocks.REFRACTORY_BRICKS.get().defaultBlockState()) {
-                count -= 70;
-            } else if (world.getBlockState(b) != RankineBlocks.REFRACTORY_BRICKS.get().defaultBlockState() && world.getBlockState(b) == RankineBlocks.HIGH_REFRACTORY_BRICKS.get().defaultBlockState()) {
-                count -= 110;
-            } else if (world.getBlockState(b) == RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.get().defaultBlockState() && world.getBlockState(b) == RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.get().defaultBlockState()) {
-                count -= 160;
+            if (levelIn.getBlockState(b).is(RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.get())) {
+                speedMod = Math.max(speedMod, 0.25f);
+            } else if (levelIn.getBlockState(b).is(RankineBlocks.HIGH_REFRACTORY_BRICKS.get())) {
+                speedMod = Math.max(speedMod, 0.5f);
+            } else if (levelIn.getBlockState(b).is(RankineBlocks.REFRACTORY_BRICKS.get())) {
+                speedMod = 1.0f;
+            } else {
+                return 0.0f;
             }
         }
-        return count;
+        return speedMod;
     }
 
 }

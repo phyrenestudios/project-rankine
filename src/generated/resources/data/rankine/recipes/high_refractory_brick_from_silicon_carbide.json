@@ -5,11 +5,13 @@
       "item": "rankine:refractory_brick"
     },
     {
-      "item": "rankine:magnesia"
+      "tag": "forge:silicon_carbide"
+    },
+    {
+      "tag": "forge:silicon_carbide"
     }
   ],
   "result": {
-    "item": "rankine:high_refractory_brick",
-    "count": 1
+    "item": "rankine:high_refractory_brick"
   }
 }

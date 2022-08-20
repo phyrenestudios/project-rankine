@@ -3,7 +3,7 @@
   "input": {
     "tag": "forge:stones/limestone"
   },
-  "result": "minecraft:terracotta",
-  "minCookTime": 1600,
-  "maxCookTime": 8000
+  "result": "rankine:quicklime_block",
+  "minCookTime": 300,
+  "maxCookTime": 600
 }

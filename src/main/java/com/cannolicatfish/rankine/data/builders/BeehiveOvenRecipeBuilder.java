@@ -2,17 +2,10 @@ package com.cannolicatfish.rankine.data.builders;
 
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
 import com.google.gson.JsonObject;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.advancements.RequirementsStrategy;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
@@ -39,7 +32,7 @@ public class BeehiveOvenRecipeBuilder {
     }
 
     public static BeehiveOvenRecipeBuilder beehiveOvenRecipe(Ingredient inputIn,ItemLike resultIn) {
-        return beehiveOvenRecipe(inputIn, resultIn, 1600, 8000);
+        return beehiveOvenRecipe(inputIn, resultIn, 300, 600);
     }
 
 
