@@ -5,14 +5,10 @@
       "item": "rankine:refractory_brick"
     },
     {
-      "item": "rankine:silicon_carbide"
-    },
-    {
-      "item": "rankine:silicon_carbide"
+      "item": "rankine:magnesia"
     }
   ],
   "result": {
-    "item": "rankine:high_refractory_brick",
-    "count": 1
+    "item": "rankine:high_refractory_brick"
   }
 }

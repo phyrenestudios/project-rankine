@@ -4,6 +4,6 @@
     "item": "minecraft:clay"
   },
   "result": "minecraft:terracotta",
-  "minCookTime": 1600,
-  "maxCookTime": 8000
+  "minCookTime": 300,
+  "maxCookTime": 600
 }

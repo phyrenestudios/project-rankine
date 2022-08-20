@@ -1,28 +1,22 @@
 package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
-import net.minecraft.world.item.crafting.*;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class BeehiveOvenRecipe implements Recipe<Container> {
 
@@ -126,8 +120,9 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
 
             if (!json.has("result")) throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
             ItemStack result;
-            if (json.get("result").isJsonObject()) result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-            else {
+            if (json.get("result").isJsonObject()) {
+                result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
+            } else {
                 String s1 = GsonHelper.getAsString(json, "result");
                 ResourceLocation resourcelocation = new ResourceLocation(s1);
                 result = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> {

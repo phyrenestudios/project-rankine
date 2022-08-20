@@ -5,14 +5,13 @@
       "item": "rankine:refractory_brick"
     },
     {
-      "item": "rankine:magnesite"
+      "tag": "forge:carbon"
     },
     {
-      "tag": "forge:nuggets/chromium"
+      "tag": "forge:carbon"
     }
   ],
   "result": {
-    "item": "rankine:high_refractory_brick",
-    "count": 1
+    "item": "rankine:high_refractory_brick"
   }
 }

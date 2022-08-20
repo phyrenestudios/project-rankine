@@ -666,6 +666,7 @@ public final class RankineTags {
         public static final TagKey<Item> INGOTS_MAGNESIUM = forgeItem("ingots/magnesium");
         public static final TagKey<Item> INGOTS_ALUMINUM = forgeItem("ingots/aluminum");
         public static final TagKey<Item> SILICON = forgeItem("silicon");
+        public static final TagKey<Item> SILICON_CARBIDE = forgeItem("silicon_carbide");
         public static final TagKey<Item> PHOSPHORUS = forgeItem("phosphorus");
         public static final TagKey<Item> SULFUR = forgeItem("sulfur");
         public static final TagKey<Item> INGOTS_CHLORINE = forgeItem("ingots/chlorine");

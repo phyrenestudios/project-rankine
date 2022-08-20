@@ -4,6 +4,6 @@
     "item": "minecraft:bone_block"
   },
   "result": "rankine:bone_char_block",
-  "minCookTime": 1600,
-  "maxCookTime": 8000
+  "minCookTime": 300,
+  "maxCookTime": 600
 }

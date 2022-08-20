@@ -808,6 +808,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineTags.Items.SLAG).add(RankineItems.SLAG.get());
         tag(RankineTags.Items.TRONA).add(RankineItems.TRONA.get());
         tag(RankineTags.Items.SILICON).add(RankineItems.SILICON.get());
+        tag(RankineTags.Items.SILICON_CARBIDE).add(RankineItems.SILICON_CARBIDE.get());
         tag(RankineTags.Items.ASTATINE).add(RankineItems.ASTATINE.get());
         tag(RankineTags.Items.SULFUR).add(RankineItems.SULFUR.get());
         tag(RankineTags.Items.PHOSPHORUS).add(RankineItems.PHOSPHORUS.get());

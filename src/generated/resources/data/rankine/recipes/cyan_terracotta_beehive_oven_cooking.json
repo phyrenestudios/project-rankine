@@ -4,6 +4,6 @@
     "item": "minecraft:cyan_terracotta"
   },
   "result": "minecraft:cyan_glazed_terracotta",
-  "minCookTime": 1600,
-  "maxCookTime": 8000
+  "minCookTime": 300,
+  "maxCookTime": 600
 }
