@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class OganessonGasBlock extends GasBlock implements PitchModulating {
-    public OganessonGasBlock(Supplier<? extends Item> gasBottle, float densityIn, float dissipationChanceIn, List<MobEffectInstance> effectInstancesIn, boolean suffocatingIn, int colorIn, Properties properties) {
-        super(gasBottle,densityIn, dissipationChanceIn, effectInstancesIn, suffocatingIn, colorIn, properties);
-    }
 
     public OganessonGasBlock(Supplier<? extends Item> gasBottle, GasUtilsEnum gasUtilsEnum, Properties properties) {
         super(gasBottle,gasUtilsEnum, properties);

@@ -8,17 +8,20 @@ import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -26,6 +29,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public abstract class AbstractGasBlock extends AirBlock implements PitchModulating {
@@ -35,19 +39,25 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
     private final List<MobEffectInstance> effectInstances;
     private final boolean suffocating;
     private final int color;
+    private final Tuple<Explosion.BlockInteraction,Float> flammability;
 
 
-    public AbstractGasBlock(float densityIn, float dissipationChanceIn, List<MobEffectInstance> effectInstancesIn, boolean suffocatingIn, int colorIn, Properties properties) {
+    public AbstractGasBlock(float densityIn, float dissipationChanceIn, List<MobEffectInstance> effectInstancesIn, boolean suffocatingIn, Tuple<Explosion.BlockInteraction,Float> flammabilityIn, int colorIn, Properties properties) {
         super(properties);
         this.density = densityIn;
         this.dissipationChance = dissipationChanceIn;
         this.effectInstances = effectInstancesIn;
         this.suffocating = suffocatingIn;
+        this.flammability = flammabilityIn;
         this.color = colorIn;
     }
 
     public AbstractGasBlock(GasUtilsEnum gasUtilsEnum, Properties properties) {
-        this(gasUtilsEnum.getDensity(),gasUtilsEnum.getDissipationRate(),gasUtilsEnum.getEffects(),gasUtilsEnum.isSuffocating(),gasUtilsEnum.getColor(),properties);
+        this(gasUtilsEnum.getDensity(),gasUtilsEnum.getDissipationRate(),gasUtilsEnum.getEffects(),gasUtilsEnum.isSuffocating(),gasUtilsEnum.getFlammability(),gasUtilsEnum.getColor(),properties);
+    }
+
+    public Tuple<Explosion.BlockInteraction, Float> getGasFlammability() {
+        return flammability;
     }
 
     @Override
@@ -64,10 +74,24 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
         return super.skipRendering(state, adjacentBlockState, side);
     }
 
+    public boolean canBeReplaced(BlockPlaceContext p_60630_) {
+        return true;
+    }
+
+    @Override
+    public boolean canBeReplaced(BlockState p_60535_, Fluid p_60536_) {
+        return true;
+    }
+
     @Override
     public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (newState.getBlock() instanceof BaseFireBlock) {
-            worldIn.explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1F, Explosion.BlockInteraction.NONE);
+        if (newState.getBlock() instanceof BaseFireBlock && this.getGasFlammability().getB() > 0F) {
+            worldIn.explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.getGasFlammability().getB(), this.getGasFlammability().getA());
+        } else if (!newState.isAir()) {
+            BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> worldIn.isEmptyBlock(B) && !(worldIn.getBlockState(B).getBlock() instanceof AbstractGasBlock)).orElse(null);
+            if (close != null) {
+                worldIn.setBlock(close,state,3);
+            }
         }
         super.onRemove(state, worldIn, pos, newState, isMoving);
     }

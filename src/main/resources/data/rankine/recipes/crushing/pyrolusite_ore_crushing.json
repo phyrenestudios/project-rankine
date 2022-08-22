@@ -37,6 +37,11 @@
       "item": "rankine:barite",
       "weight": 6,
       "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:vanadinite",
+      "weight": 4,
+      "tier": "minecraft:diamond"
     }
   ]
 }
