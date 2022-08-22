@@ -80,6 +80,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.SHEETMETALS,
                 RankineLists.GEODES,
                 RankineLists.LEDS,
+                RankineLists.GLAZED_PORCELAIN_BLOCKS,
                 RankineLists.MINERAL_WOOL,
                 RankineLists.FIBER_BLOCK,
                 RankineLists.FIBER_MAT,

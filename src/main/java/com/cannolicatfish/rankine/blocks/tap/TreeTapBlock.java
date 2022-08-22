@@ -73,13 +73,11 @@ public class TreeTapBlock extends BaseEntityBlock {
                 if (fillContainerAndStowOutput.isSuccess()) {
                     player.setItemInHand(hand, fillContainerAndStowOutput.getResult());
                     world.blockEntityChanged(pos);
-                    return InteractionResult.CONSUME;
+                    return InteractionResult.FAIL;
                 }
             }
-            return InteractionResult.CONSUME;
-        } else {
-            return InteractionResult.FAIL;
         }
+        return super.use(state, world, pos, player, hand, result);
     }
 
     private boolean canAttachTo(BlockGetter blockReader, BlockPos pos, Direction direction) {

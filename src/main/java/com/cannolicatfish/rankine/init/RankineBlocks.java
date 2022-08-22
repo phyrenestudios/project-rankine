@@ -1398,9 +1398,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RED_FIBER_MAT = BLOCKS.register("red_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
     public static final RegistryObject<Block> BLACK_FIBER_MAT = BLOCKS.register("black_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
 
-    public static final RegistryObject<Block> DRY_ICE = BLOCKS.register("dry_ice", () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID).strength(3.5F).friction(1.00F).sound(SoundType.GLASS)));
+    public static final RegistryObject<Block> DRY_ICE = BLOCKS.register("dry_ice", () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID).strength(3.5F).friction(0.999F).sound(SoundType.GLASS)));
 
-    public static final RegistryObject<Block> METEORIC_ICE = BLOCKS.register("meteoric_ice", () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID).strength(3.5F).friction(0.995F).sound(SoundType.GLASS)));
+    public static final RegistryObject<Block> METEORIC_ICE = BLOCKS.register("meteoric_ice", () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID).strength(3.5F).friction(1.02F).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> DIAMOND_GEODE = BLOCKS.register("diamond_geode", () -> new GeodeBlock(DEF_STONE));
     public static final RegistryObject<Block> EMERALD_GEODE = BLOCKS.register("emerald_geode", () -> new GeodeBlock(DEF_STONE));
     public static final RegistryObject<Block> AQUAMARINE_GEODE = BLOCKS.register("aquamarine_geode", () -> new GeodeBlock(DEF_STONE));
@@ -1749,6 +1749,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> FIRE_CLAY = BLOCKS.register("fire_clay", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(1.0F, 3.0F)));
     public static final RegistryObject<Block> KAOLIN = BLOCKS.register("kaolin", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(1.5F, 3.0F)));
     public static final RegistryObject<Block> PORCELAIN_BLOCK = BLOCKS.register("porcelain_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.0F, 3.0F)));
+    public static final RegistryObject<Block> BLUE_GLAZED_PORCELAIN = BLOCKS.register("blue_glazed_porcelain", () -> new GlazedPorcelainBlock(8323072));
     public static final RegistryObject<Block> BLOOD_OBSIDIAN = BLOCKS.register("blood_obsidian", () -> new RankineObsidianBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
     public static final RegistryObject<Block> SNOWFLAKE_OBSIDIAN = BLOCKS.register("snowflake_obsidian", () -> new RankineObsidianBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
     public static final RegistryObject<Block> CHECKERED_MARBLE = BLOCKS.register("checkered_marble", () -> new Block(Block.Properties.of(Material.STONE).strength(2)));

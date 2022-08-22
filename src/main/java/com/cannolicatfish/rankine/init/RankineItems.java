@@ -1852,6 +1852,7 @@ public class RankineItems {
 
 
     public static final RegistryObject<Item> PORCELAIN_BLOCK = ITEMS.register("porcelain_block", () -> new BlockItem(RankineBlocks.PORCELAIN_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> BLUE_GLAZED_PORCELAIN = ITEMS.register("blue_glazed_porcelain", () -> new BlockItem(RankineBlocks.BLUE_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BONE_CHAR_BLOCK = ITEMS.register("bone_char_block", () -> new BlockItem(RankineBlocks.BONE_CHAR_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     //public static final RegistryObject<Item> QUARRY_BARRIER = REGISTRY.register("quarry_barrier", () -> new BlockItem(RankineBlocks.QUARRY_BARRIER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STICK_BLOCK = ITEMS.register("stick_block", () -> new BlockItem(RankineBlocks.STICK_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));

@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.util.colors;
 
 import com.cannolicatfish.rankine.blocks.MetalPoleBlock;
 import com.cannolicatfish.rankine.blocks.SheetmetalBlock;
+import com.cannolicatfish.rankine.blocks.buildingmodes.GlazedPorcelainBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.MetalBarsBlock;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.core.BlockPos;
@@ -20,6 +21,8 @@ public class NonAlloyBlockColor implements BlockColor {
             return ((MetalBarsBlock) blk).getColor();
         } else if (blk instanceof SheetmetalBlock) {
             return ((SheetmetalBlock) blk).getColor();
+        } else if (blk instanceof GlazedPorcelainBlock) {
+            return ((GlazedPorcelainBlock) blk).getColor();
         }
 
         return 16777215;

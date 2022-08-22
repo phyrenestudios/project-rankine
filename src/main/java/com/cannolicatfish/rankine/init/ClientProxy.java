@@ -97,6 +97,7 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.ALLOY_POLES);
         addCutout(RankineLists.ALLOY_BARS);
         addCutout(RankineLists.HOLLOW_LOGS);
+        addCutout(RankineLists.GLAZED_PORCELAIN_BLOCKS);
         addCutout(RankineLists.LEAVES);
         addCutout(RankineLists.LEAF_LITTERS);
         addCutout(RankineLists.SAPLINGS);

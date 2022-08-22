@@ -67,6 +67,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.SHEETMETALS,
                 RankineLists.GEODES,
                 RankineLists.LEDS,
+                RankineLists.GLAZED_PORCELAIN_BLOCKS,
                 RankineLists.COARSE_SOIL_BLOCKS,
                 RankineLists.MUD_BLOCKS,
                 RankineLists.MINERAL_WOOL,

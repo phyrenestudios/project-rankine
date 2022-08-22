@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "mode=0": {
+      "model": "rankine:block/blue_glazed_porcelain"
+    },
+    "mode=1": {
+      "model": "rankine:block/blue_glazed_porcelain"
+    }
+  }
+}
