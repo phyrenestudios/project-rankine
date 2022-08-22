@@ -86,6 +86,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
                 RankineLists.LEDS,
+                RankineLists.GLAZED_PORCELAIN_BLOCKS,
                 RankineLists.MINERAL_BLOCKS,
                 RankineLists.ELEMENT_BLOCKS,
                 RankineLists.STANDARD_BLOCKS,

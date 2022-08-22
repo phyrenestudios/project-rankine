@@ -643,6 +643,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : RankineLists.TALL_FLOWERS) {
             doublePlant(blk);
         }
+        for (Block blk : RankineLists.GLAZED_PORCELAIN_BLOCKS) {
+            getVariantBuilder(blk).forAllStates(state -> ConfiguredModel.builder().modelFile(models().withExistingParent(blk.getRegistryName().getPath(), modLoc("template_glazed_porcelain")).texture("overlay", getBlockRSL("glazed_porcelain0"))).build());
+        }
         triplePlant(RankineBlocks.CORN_STALK.get());
         pillarFour(RankineBlocks.ROPE.get());
         simpleBlock(RankineBlocks.STICK_BLOCK.get(), models().cubeBottomTop(RankineBlocks.STICK_BLOCK.get().getRegistryName().getPath(), getBlockRSL("stick_block_side"), getBlockRSL("stick_block_top"), getBlockRSL("stick_block_top")));

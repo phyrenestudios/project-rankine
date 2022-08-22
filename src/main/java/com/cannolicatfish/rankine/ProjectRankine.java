@@ -147,6 +147,9 @@ public class ProjectRankine {
             for (Block b : Stream.of(RankineLists.SHEETMETALS,RankineLists.ALLOY_SHEETMETALS).flatMap(Collection::stream).collect(Collectors.toList())) {
                 event.getItemColors().register(new NonAlloyItemColor(), b);
             }
+            for (Block b : RankineLists.GLAZED_PORCELAIN_BLOCKS) {
+                event.getItemColors().register(new NonAlloyItemColor(), b);
+            }
             for (Block b : RankineLists.ALLOY_POLES) {
                 event.getItemColors().register(new NonAlloyItemColor(), b);
             }
@@ -202,6 +205,9 @@ public class ProjectRankine {
             event.getBlockColors().register(new LeavesBlockBaseColor(), RankineBlocks.BIRCH_LEAF_LITTER.get(), RankineBlocks.SPRUCE_LEAF_LITTER.get(), RankineBlocks.ACACIA_LEAF_LITTER.get(), RankineBlocks.JUNGLE_LEAF_LITTER.get(), RankineBlocks.DARK_OAK_LEAF_LITTER.get(), RankineBlocks.OAK_LEAF_LITTER.get());
 
             for (Block b : Stream.of(RankineLists.SHEETMETALS,RankineLists.ALLOY_SHEETMETALS).flatMap(Collection::stream).collect(Collectors.toList())) {
+                event.getBlockColors().register(new NonAlloyBlockColor(), b);
+            }
+            for (Block b : RankineLists.GLAZED_PORCELAIN_BLOCKS) {
                 event.getBlockColors().register(new NonAlloyBlockColor(), b);
             }
             for (Block b : RankineLists.ALLOY_POLES) {

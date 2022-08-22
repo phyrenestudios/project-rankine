@@ -6,7 +6,6 @@ import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyPickaxeItem;
 import com.cannolicatfish.rankine.items.alloys.AlloyShovelItem;
 import com.cannolicatfish.rankine.recipe.ForagingRecipe;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -157,14 +156,17 @@ public class BlockBreakHandler {
 
 
             if (targetBlock.equals(Blocks.GLOWSTONE)) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, mainHandItem) > 0) return;
+                levelIn.destroyBlock(pos, true);
                 Block gas = Arrays.asList(RankineBlocks.ARGON_GAS_BLOCK.get(),RankineBlocks.NEON_GAS_BLOCK.get(),RankineBlocks.KRYPTON_GAS_BLOCK.get()).get(rand.nextInt(3));
-                if (WorldgenUtils.biomeTagCheck(levelIn, levelIn.getBiome(pos).value(), BiomeTags.IS_NETHER) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()) {
-                    levelIn.setBlock(pos, gas.defaultBlockState(),3);
-                } else if (WorldgenUtils.biomeTagCheck(levelIn, levelIn.getBiome(pos).value(), Tags.Biomes.IS_END) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()*5) {
-                    levelIn.setBlock(pos, gas.defaultBlockState(),3);
+                if (levelIn.getBiome(pos).is(BiomeTags.IS_NETHER) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()) {
+                    levelIn.setBlockAndUpdate(pos, gas.defaultBlockState());
+                } else if (levelIn.getBiome(pos).is(Tags.Biomes.IS_END) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()*5) {
+                    levelIn.setBlockAndUpdate(pos, gas.defaultBlockState());
                 } else if (rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()/5f) {
-                    levelIn.setBlock(pos, gas.defaultBlockState(),3);
+                    levelIn.setBlockAndUpdate(pos, gas.defaultBlockState());
                 }
+                return;
             }
 
 
