@@ -12,6 +12,7 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
+import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.ForagingRecipe;
@@ -37,6 +38,7 @@ public class JEIRankinePlugin implements IModPlugin {
 
     private static final RecipeType<CrushingRecipe> CRUSHING = RecipeType.create("rankine","crushing", CrushingRecipe.class);
     private static final RecipeType<ForagingRecipe> FORAGING = RecipeType.create("rankine","foraging", ForagingRecipe.class);
+    private static final RecipeType<BeehiveOvenRecipe> BEEHIVE_OVEN = RecipeType.create("rankine","beehive_oven", BeehiveOvenRecipe.class);
     @Nonnull
     @Override
     public ResourceLocation getPluginUid() {
@@ -73,8 +75,8 @@ public class JEIRankinePlugin implements IModPlugin {
         RankineJEIRecipes rankineJEIRecipes = new RankineJEIRecipes();
         registry.addRecipes(CRUSHING, getSortedRecipes(rankineJEIRecipes.getCrushingRecipes()));
         registry.addRecipes(FORAGING, getSortedRecipes(rankineJEIRecipes.getForagingRecipes()));
+        registry.addRecipes(BEEHIVE_OVEN, getSortedRecipes(rankineJEIRecipes.getBeehiveRecipes()));
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getMixingRecipes()), MixingRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getBeehiveRecipes()), BeehiveOvenRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getSluicingRecipes()), SluicingRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getEvaporationRecipes()), EvaporationRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getAlloyFurnaceRecipes()), AlloyingRecipeCategory.UID);
@@ -159,11 +161,16 @@ public class JEIRankinePlugin implements IModPlugin {
         }
         registry.addRecipeCatalyst(new ItemStack(RankineItems.FLINT_SHOVEL.get()), FORAGING);
 
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get()), BEEHIVE_OVEN);
+        registry.addRecipeCatalyst(new ItemStack(RankineItems.REFRACTORY_BRICKS.get()),BEEHIVE_OVEN);
+        registry.addRecipeCatalyst(new ItemStack(RankineItems.HIGH_REFRACTORY_BRICKS.get()),BEEHIVE_OVEN);
+        registry.addRecipeCatalyst(new ItemStack(RankineItems.ULTRA_HIGH_REFRACTORY_BRICKS.get()),BEEHIVE_OVEN);
+
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.MIXING_BARREL.get()), MixingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()), AlloyingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.INDUCTION_FURNACE.get()), InductionAlloyingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.FUSION_FURNACE.get()), FusionFurnaceRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
+
         registry.addRecipeCatalyst(new ItemStack(RankineItems.STEEL_GOLD_PAN.get()), SluicingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineItems.ELEMENT_INDEXER.get()), ElementRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()), EvaporationRecipeCategory.UID);

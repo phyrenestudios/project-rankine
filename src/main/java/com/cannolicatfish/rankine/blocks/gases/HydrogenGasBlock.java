@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks.gases;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
@@ -17,10 +18,6 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public class HydrogenGasBlock extends GasBlock {
-    public HydrogenGasBlock(Supplier<? extends Item> gasBottle, float densityIn, float dissipationChanceIn, List<MobEffectInstance> effectInstancesIn, boolean suffocatingIn, int colorIn, Properties properties) {
-        super(gasBottle,densityIn, dissipationChanceIn, effectInstancesIn, suffocatingIn, colorIn, properties);
-    }
-
     public HydrogenGasBlock(Supplier<? extends Item> gasBottle, GasUtilsEnum gasUtilsEnum, Properties properties) {
         super(gasBottle,gasUtilsEnum, properties);
     }

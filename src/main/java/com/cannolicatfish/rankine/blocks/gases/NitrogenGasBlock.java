@@ -15,12 +15,9 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public class NitrogenGasBlock extends GasBlock {
-    public NitrogenGasBlock(Supplier<? extends Item> gasBottle, float densityIn, float dissipationChanceIn, List<MobEffectInstance> effectInstancesIn, boolean suffocatingIn, int colorIn, Properties properties) {
-        super(gasBottle,densityIn, dissipationChanceIn, effectInstancesIn, suffocatingIn, colorIn, properties);
-    }
 
     public NitrogenGasBlock(Supplier<? extends Item> gasBottle, GasUtilsEnum gasUtilsEnum, Properties properties) {
-        this(gasBottle,gasUtilsEnum.getDensity(),gasUtilsEnum.getDissipationRate(),gasUtilsEnum.getEffects(),gasUtilsEnum.isSuffocating(),gasUtilsEnum.getColor(),properties);
+        super(gasBottle,gasUtilsEnum, properties);
     }
 
     @Override

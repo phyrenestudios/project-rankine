@@ -8,6 +8,7 @@ import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -34,8 +35,8 @@ public class GasBlock extends AbstractGasBlock {
 
     private final java.util.function.Supplier<? extends Item> gasBottleSupplier;
 
-    public GasBlock(Supplier<? extends Item> gasBottle, float densityIn, float dissipationChanceIn, List<MobEffectInstance> effectInstancesIn, boolean suffocatingIn, int colorIn, Properties properties) {
-        super(densityIn, dissipationChanceIn, effectInstancesIn, suffocatingIn, colorIn, properties);
+    public GasBlock(Supplier<? extends Item> gasBottle, float densityIn, float dissipationChanceIn, List<MobEffectInstance> effectInstancesIn, boolean suffocatingIn, Tuple<Explosion.BlockInteraction,Float> flammabilityIn, int colorIn, Properties properties) {
+        super(densityIn, dissipationChanceIn, effectInstancesIn, suffocatingIn, flammabilityIn, colorIn, properties);
         gasBottleSupplier = gasBottle;
     }
 

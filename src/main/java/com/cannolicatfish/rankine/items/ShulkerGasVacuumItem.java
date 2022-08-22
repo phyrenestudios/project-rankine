@@ -12,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import net.minecraft.core.Direction;
@@ -79,7 +80,7 @@ public class ShulkerGasVacuumItem extends Item {
                     stack.getOrCreateTag().putString("gas",bl.getRegistryName().toString());
                     stack.getTag().putInt("color",((GasBlock) bl).getColor());
                 }
-                worldIn.removeBlock(pos,false);
+                worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(),3);
             }
             playerIn.playSound(RankineSoundEvents.SHULKER_GAS_VACUUM_ABSORB.get(),1.0F, 1.0F);
             return InteractionResultHolder.success(stack);

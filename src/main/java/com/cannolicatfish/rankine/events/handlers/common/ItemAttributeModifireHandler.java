@@ -3,8 +3,10 @@ package com.cannolicatfish.rankine.events.handlers.common;
 import com.cannolicatfish.rankine.init.RankineAttributes;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.AlloyArmorItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
+import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
@@ -78,11 +80,14 @@ public class ItemAttributeModifireHandler {
                     EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ANTIQUATED,stack),
                     AttributeModifier.Operation.ADDITION));
         }
+        if ((stack.getItem() instanceof CrowbarItem || stack.getItem().equals(RankineItems.BUILDING_TOOL.get())) && (event.getSlotType() == EquipmentSlot.MAINHAND || event.getSlotType() == EquipmentSlot.OFFHAND)) {
+            event.addModifier(RankineAttributes.ATTACK_RANGE, new AttributeModifier(RankineAttributes.REACH_MODIFIER,"Reach modifier", 1, AttributeModifier.Operation.ADDITION));
+        }
         if (stack.getItem() instanceof SpearItem && event.getSlotType() == EquipmentSlot.MAINHAND) {
-            event.addModifier(RankineAttributes.REACH_DISTANCE, new AttributeModifier(RankineAttributes.SPEAR_REACH_MODIFIER,"Weapon modifier", 1, AttributeModifier.Operation.ADDITION));
+            event.addModifier(RankineAttributes.ATTACK_RANGE, new AttributeModifier(RankineAttributes.SPEAR_RANGE_MODIFIER,"Weapon modifier", 1, AttributeModifier.Operation.ADDITION));
         }
         if (stack.getItem() instanceof KnifeItem && event.getSlotType() == EquipmentSlot.MAINHAND) {
-            event.addModifier(RankineAttributes.REACH_DISTANCE, new AttributeModifier(RankineAttributes.KNIFE_REACH_MODIFIER,"Weapon modifier", -2, AttributeModifier.Operation.ADDITION));
+            event.addModifier(RankineAttributes.ATTACK_RANGE, new AttributeModifier(RankineAttributes.KNIFE_RANGE_MODIFIER,"Weapon modifier", -2, AttributeModifier.Operation.ADDITION));
         }
         if (stack.getItem() == RankineItems.TOTEM_OF_PROMISING.get() && event.getSlotType() == EquipmentSlot.OFFHAND) {
             event.addModifier(Attributes.LUCK, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fd1"), "Rankine Totem modifier",

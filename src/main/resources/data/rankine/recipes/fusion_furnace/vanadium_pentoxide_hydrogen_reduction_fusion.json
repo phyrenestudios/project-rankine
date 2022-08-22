@@ -13,6 +13,9 @@
   "fluidInput": {
     "fluid": "minecraft:lava"
   },
+  "fluidOutput": {
+    "fluid": "minecraft:water"
+  },
   "gasInput": {
     "item": "rankine:hydrogen_fluoride_gas_bottle"
   },
