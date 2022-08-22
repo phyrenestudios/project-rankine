@@ -194,7 +194,7 @@ public class AlloyingRecipe implements Recipe<Container> {
 
         int sum = currentMaterial.stream().mapToInt(Integer::intValue).sum();
 
-        if (currentElements.size() > 1 && (Math.round(sum/10f) > 64 || Math.round(sum/10f) < 1) && currentElements.size() >= getTotalRequired()){
+        if (currentElements.size() > 1 && (Math.floorDiv(sum,9) > 64 || Math.floorDiv(sum,9) < 1) && currentElements.size() >= getTotalRequired()){
             //System.out.println("Required total " + this.required + " not present or material total not between 1 and 64!");
             return ItemStack.EMPTY;
         }
@@ -218,7 +218,7 @@ public class AlloyingRecipe implements Recipe<Container> {
         if (percents.stream().mapToInt(Integer::intValue).sum() != 100 || percents.contains(0)) {
             return ItemStack.EMPTY;
         }
-        ItemStack out = new ItemStack(this.recipeOutput.copy().getItem(),Math.round(sum/10f));
+        ItemStack out = new ItemStack(this.recipeOutput.copy().getItem(),Math.floorDiv(sum,9));
         if (out.getItem() instanceof IAlloyItem || this.forceNBT) {
             ((IAlloyItem) out.getItem()).createAlloyNBT(out, worldIn, AlloyRecipeHelper.getDirectComposition(percents,symbols), this.id, !this.getLocalName().isEmpty() ? this.getLocalName() : null);
             if (this.getColor() != 16777215) {

@@ -131,7 +131,7 @@ public class RankineEventHandler {
     }
     @SubscribeEvent
     public static void onItemAttributeModification(ItemAttributeModifierEvent event) {
-        ItemAttributeModifireHandler.onItemAttributeModification(event);
+        ItemAttributeModifierHandler.onItemAttributeModification(event);
     }
 
     @SubscribeEvent

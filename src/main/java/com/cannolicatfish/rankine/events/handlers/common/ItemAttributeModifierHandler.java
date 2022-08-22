@@ -20,7 +20,7 @@ import net.minecraftforge.event.ItemAttributeModifierEvent;
 
 import java.util.UUID;
 
-public class ItemAttributeModifireHandler {
+public class ItemAttributeModifierHandler {
     public static void onItemAttributeModification(ItemAttributeModifierEvent event) {
         ItemStack stack = event.getItemStack();
         if (stack.getItem() instanceof IAlloyTool && event.getSlotType() == EquipmentSlot.MAINHAND && ((IAlloyTool) stack.getItem()).isAlloyInit(stack)) {
@@ -81,7 +81,7 @@ public class ItemAttributeModifireHandler {
                     AttributeModifier.Operation.ADDITION));
         }
         if ((stack.getItem() instanceof CrowbarItem || stack.getItem().equals(RankineItems.BUILDING_TOOL.get())) && (event.getSlotType() == EquipmentSlot.MAINHAND || event.getSlotType() == EquipmentSlot.OFFHAND)) {
-            event.addModifier(RankineAttributes.ATTACK_RANGE, new AttributeModifier(RankineAttributes.REACH_MODIFIER,"Reach modifier", 1, AttributeModifier.Operation.ADDITION));
+            event.addModifier(RankineAttributes.REACH_DISTANCE, new AttributeModifier(RankineAttributes.REACH_MODIFIER,"Reach modifier", 1, AttributeModifier.Operation.ADDITION));
         }
         if (stack.getItem() instanceof SpearItem && event.getSlotType() == EquipmentSlot.MAINHAND) {
             event.addModifier(RankineAttributes.ATTACK_RANGE, new AttributeModifier(RankineAttributes.SPEAR_RANGE_MODIFIER,"Weapon modifier", 1, AttributeModifier.Operation.ADDITION));

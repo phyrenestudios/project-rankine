@@ -1,0 +1,27 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:phosphorite"
+  },
+  "input2": {
+    "tag": "minecraft:sand"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:lava"
+  },
+  "result1": {
+    "item": "rankine:phosphorus",
+    "count": 1
+  },
+  "result2": {
+    "item": "rankine:calcium_silicate",
+    "count": 6
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  }
+}
