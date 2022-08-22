@@ -119,13 +119,14 @@ public class RightClickBlockHandler {
 
         if (levelIn.getBlockState(posIn).is(Blocks.CAULDRON)) {
             if (cauldron_map.containsKey(itemStack.getItem())) {
+                event.setUseItem(Event.Result.DENY);
                 if (itemStack.is(RankineItems.MAPLE_SYRUP.get())) {
                     AbstractRankineCauldronBlock.emptyBottle(event.getWorld(), event.getPos(), playerIn, event.getHand(), itemStack, cauldron_map.get(itemStack.getItem()).defaultBlockState(), SoundEvents.BOTTLE_EMPTY, new ItemStack(Items.GLASS_BOTTLE));
                 } else {
                     AbstractRankineCauldronBlock.emptyBottle(event.getWorld(), event.getPos(), playerIn, event.getHand(), itemStack, cauldron_map.get(itemStack.getItem()).defaultBlockState(), SoundEvents.BUCKET_EMPTY, new ItemStack(Items.BUCKET));
                 }
-                return;
             }
+            return;
         }
 
         if (playerIn.getMainHandItem().is(RankineTags.Items.FLINT) && playerIn.getOffhandItem().is(RankineTags.Items.FLINT) && Config.GENERAL.FLINT_FIRE.get()) {

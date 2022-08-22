@@ -46,32 +46,34 @@ public class BeehiveOvenTile extends BlockEntity {
         if (!levelIn.isAreaLoaded(posIn, 1)) return;
         if (!stateIn.getValue(BeehiveOvenPitBlock.LIT)) return;
         float speedMod = structureCheck(levelIn, posIn);
-        if (speedMod == 0.0f) {
-            levelIn.setBlock(posIn, stateIn.setValue(BlockStateProperties.LIT, Boolean.FALSE), 3);
-        } else {
-            if (tileIn.cookingTotalTime == 0) tileIn.cookingTotalTime = Math.round(cookTime(levelIn, posIn) * speedMod);
-            tileIn.cookingProgress += 1;
-            if (tileIn.cookingProgress >= tileIn.cookingTotalTime) {
-                if (Math.round(cookTime(levelIn, posIn) * speedMod) > tileIn.cookingTotalTime) {
-                    tileIn.cookingTotalTime = Math.round(cookTime(levelIn, posIn) * speedMod) + tileIn.cookingTotalTime;
-                    return;
-                }
+        if (speedMod == 0.0f || cookTime(levelIn, posIn) == 0) {
+            levelIn.setBlockAndUpdate(posIn, stateIn.setValue(BlockStateProperties.LIT, Boolean.FALSE));
+            tileIn.cookingProgress = 0;
+            return;
+        }
+        if (tileIn.cookingTotalTime == 0) tileIn.cookingTotalTime = Math.round(cookTime(levelIn, posIn) * speedMod);
+        tileIn.cookingProgress += 1;
+        if (tileIn.cookingProgress >= tileIn.cookingTotalTime) {
+            int time = Math.round(cookTime(levelIn, posIn) * speedMod);
+            if (time > tileIn.cookingTotalTime) {
+                tileIn.cookingTotalTime += time - tileIn.cookingTotalTime;
+                return;
+            }
 
-                for (BlockPos p: BlockPos.betweenClosed(posIn.offset(-1,1,-1),posIn.offset(1,2,1))) {
-                    Block target = levelIn.getBlockState(p).getBlock();
-                    if (target == Blocks.AIR) levelIn.setBlockAndUpdate(p, RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get().defaultBlockState());
-                    BeehiveOvenRecipe recipe = levelIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.BEEHIVE, new SimpleContainer(new ItemStack(target)), levelIn).orElse(null);
-                    if (recipe != null) {
-                        ItemStack output = recipe.getResultItem();
-                        if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
-                            levelIn.setBlockAndUpdate(p, ((BlockItem) output.getItem()).getBlock().defaultBlockState());
-                        }
+            for (BlockPos p: BlockPos.betweenClosed(posIn.offset(-1,1,-1),posIn.offset(1,2,1))) {
+                Block target = levelIn.getBlockState(p).getBlock();
+                if (target == Blocks.AIR) levelIn.setBlockAndUpdate(p, RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get().defaultBlockState());
+                BeehiveOvenRecipe recipe = levelIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.BEEHIVE, new SimpleContainer(new ItemStack(target)), levelIn).orElse(null);
+                if (recipe != null) {
+                    ItemStack output = recipe.getResultItem();
+                    if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
+                        levelIn.setBlockAndUpdate(p, ((BlockItem) output.getItem()).getBlock().defaultBlockState());
                     }
                 }
-                levelIn.setBlockAndUpdate(posIn, stateIn.setValue(BlockStateProperties.LIT, Boolean.FALSE));
-                tileIn.cookingProgress = 0;
-
             }
+            levelIn.setBlockAndUpdate(posIn, stateIn.setValue(BlockStateProperties.LIT, Boolean.FALSE));
+            tileIn.cookingProgress = 0;
+
         }
     }
 
@@ -98,7 +100,24 @@ public class BeehiveOvenTile extends BlockEntity {
                 return 0.0f;
             }
         }
-        List<BlockPos> oven = Arrays.asList(
+
+        float speedMod = 0.0f;
+        for (BlockPos b : ovenStructure(posIn)) {
+            if (levelIn.getBlockState(b).is(RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.get())) {
+                speedMod = Math.max(speedMod, 0.25f);
+            } else if (levelIn.getBlockState(b).is(RankineBlocks.HIGH_REFRACTORY_BRICKS.get())) {
+                speedMod = Math.max(speedMod, 0.5f);
+            } else if (levelIn.getBlockState(b).is(RankineBlocks.REFRACTORY_BRICKS.get())) {
+                speedMod = 1.0f;
+            } else {
+                return 0.0f;
+            }
+        }
+        return speedMod;
+    }
+
+    public static List<BlockPos> ovenStructure(BlockPos posIn) {
+        return Arrays.asList(
                 posIn.offset(-1,0,-1),
                 posIn.offset(-1,0,0),
                 posIn.offset(-1,0,1),
@@ -152,20 +171,6 @@ public class BeehiveOvenTile extends BlockEntity {
                 posIn.offset(-1,3,0),
                 posIn.offset(1,3,0)
         );
-
-        float speedMod = 0.0f;
-        for (BlockPos b : oven) {
-            if (levelIn.getBlockState(b).is(RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.get())) {
-                speedMod = Math.max(speedMod, 0.25f);
-            } else if (levelIn.getBlockState(b).is(RankineBlocks.HIGH_REFRACTORY_BRICKS.get())) {
-                speedMod = Math.max(speedMod, 0.5f);
-            } else if (levelIn.getBlockState(b).is(RankineBlocks.REFRACTORY_BRICKS.get())) {
-                speedMod = 1.0f;
-            } else {
-                return 0.0f;
-            }
-        }
-        return speedMod;
     }
 
 }
