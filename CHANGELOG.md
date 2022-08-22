@@ -2,9 +2,67 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
-## Project Rankine Version 1.3.5 Changelog [XXxxx2022]
+## Project Rankine Version 1.3.5 Changelog [22Aug2022]
+### Overview
+- Treetapping fluids now use cauldrons with heat sources to produce outputs
+- Building Tool can now be used to construct/upgrade the Beehive Oven when right-clicking the Beehive Oven Pit if any tier of Refractory Bricks are in the offhand 
+- Beehive Oven now requires the full structure to begin cooking and cooks all blocks at once (based on the combined cook times of all blocks inside the oven)
+- Beehive Oven and Foraging JEI pages have been updated and give more indications about cook times, related biomes, and other important information
+- Cobalt, Niobium, Tantalum, Tungsten, and Vanadium now are obtained primarily through the Fusion Furnace and respective ores can no longer be blasted or cooked on the Beehive Oven
+    - Materials related to these elements have also been added or had their relevant recipes changed, such as Vanadium Pentoxide and Tungsten Carbide
+- Gases no longer disappear when replaced by a block and some have individually defined properties, such as growing nearby Rankine Soil blocks with Nitrogen or expanding fires with Oxygen
+- Mineral wool can now be made through Fusion Furnace recipes, allowing for the creation of RTGs that currently act as longer-term batteries
+- All alloys now have sheetmetals; Vertical slabs and Sheetmetal slabs have been removed
+- Updated Simplified Chinese (zh_cn) translation (Mies97)
+----
 
+### BLOCKS
+- Gas blocks now move to the nearest empty air block if they are replaced
+- Removed all Vertical Slabs (use a companion mod that adds them in)
+- Removed Sheetmetal Slabs
+- Removed Gold, Silver, and Platinum Sheetmetal
+- Added a sheetmetal for all alloys
+- Alloy Blocks now store composition properly and can be pick-blocked in creative
+- Blood Obsidian and Snowflake Obsidian can now be used to make Nether Portals
+- Added cauldron variants for tree tapping fluids
+- Altered Tree Tap and Tap Line functionality to work with new cauldron system
+- Removed ability for muds to convert back to soils
+- Beehive Oven requires full structure and will procss all blocks at once
 
+### ITEMS
+- Spears and Knives now give/reduce Attack Range rather than Reach Distance
+- Crowbars and the Building Tool now provide Reach Distance
+- Building tool can be used to place blocks for Beehive Oven
+
+### TAGS
+- Added rankine:gold_ore to #minecraft:guarded_by_piglins
+- Added #forge:nuggets/niobium_alloy
+- Added #forge:ingots/niobium_alloy
+- Added #forge:storage_blocks/niobium_alloy
+- Added #forge:nuggets/zirconium_alloy
+- Added #forge:ingots/zirconium_alloy
+- Added #forge:storage_blocks/zirconium_alloy
+
+### RECIPES
+- Beehive Cooking recipe json now includes a minimum and maximum cook time
+- Alloy outputs are now based on 9 material rather than 10 and are rounded down to the nearest whole number
+- Sheetmetal recipes now use tags
+- Updated JEI page for Beehive Oven recipes, adding buttons to see cook time for each tier
+- Updated JEI page for Foraging recipes, adding a hover-over icon to see applicable biomes and biome tags
+- Added Perovskite to several crushing recipes
+- Added Vanadinite to Pyrolusite Ore crushing
+- Removed tree tapping fluid recipes from evaporation
+- Removed Cryolite, Petalite, Pyrochlore, Pollucite, Scheelite, Vanadinite, Wolframite blasting recipes
+- Added mixing recipe for Fire Clay Balls
+- Added fusion furnace recipes for Mineral Wool and Phosphorite
+- Ported recipes from 1.3.2 Hotfix 4
+- Removed recipes for Piston Crusher and Gyratory Crusher
+
+### FIXES
+- Fixed bug where Tree Taps could sometimes stop indefinitely
+- Fixed the creation of fire blocks from using flint
+- Fixed furnace-type tile entities emitting light when they are not on
+- Fixed bug where blocks with Foraging recipes were not removed on successful foraging
 
 
 ## Project Rankine Version 1.3.4 Changelog [15Jul2022]
@@ -165,6 +223,20 @@ This update is the initial port to 1.18.2 from 1.16.5. Many minor changes may ha
 - Added conversion crafting recipes for vanilla based ores
 
 ## Project Rankine Version 1.3.2 Changelog [28Apr2022]
+### Hotfix 4 [02Aug2022]
+- (Backport) Changed the texture of compound gases (Carbon Dioxide, Hydrogen Sulfide, etc.)
+- (Backport) Alloy Blocks now give the proper composition when picked in Creative mode
+- (Backport) Updated textures for Block of Goethite
+- (Backport) Obsidian variants can now be used to make Nether Portals
+- Added alternative Mortar recipe using Perlite
+- Added Fusion Furnace recipe for Asbestos
+- Added Fire Clay crafting recipe
+- Added Dry Ice crafting recipe
+- Added crafting recipe for Checkered Marble
+- Fixed recipe error for backported Chalcopyrite Fusion Furnace recipe
+- Updated textures for Block of Zirconium Alloy, Block of Niobium Alloy, Block of Bridgmanite, and Block of Forsterite
+- Updated Simplified Chinese (zh_cn) translation (Mies97)
+
 ### Hotfix 3 [20Jul2022]
 - Alloy Template Table now shows recipes that can be made from ingredients in the user's inventory first
 - Changed how the Alloy Template Table loads recipes to improve performance
