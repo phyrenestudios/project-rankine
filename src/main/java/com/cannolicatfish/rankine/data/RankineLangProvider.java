@@ -1229,10 +1229,11 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_materials.fusion_furnace.rtg", "RTGs are radioactively powered batteries with a much higher capacity.");
 
         add("rankine.journal.cat_materials.beehive_oven.name", "Beehive Oven");
-        add("rankine.journal.cat_materials.beehive_oven.text1", "The beehive oven is an in-world furnace that slowly converts blocks. It will convert blocks one at a time in a 3x3 ring for the two blocks above it (16 blocks total). The beehive oven pit must have access to the sky. Light the pit block with the conventional methods. The pit block will go off it doesn't detect a valid structure or no longer has blocks to process.");
-        add("rankine.journal.cat_materials.beehive_oven.text2", "The bricks used in the structure can be upgraded one at a time to the high and ultra high tiers to increase processing speed.");
-        add("rankine.journal.cat_materials.beehive_oven.text4", "The minimum requirements for an oven.");
-        add("rankine.journal.cat_materials.beehive_oven.text5", "The full structure for the oven.");
+        add("rankine.journal.cat_materials.beehive_oven.text1", "The beehive oven is an in-world furnace that slowly smelts blocks placed inside it. While holding bricks in the offhand, right click with Building Tool on the Oven Pit to place blocks. Or you can place the blocks manually by matching the structure on the next page.");
+        add("rankine.journal.cat_materials.beehive_oven.text2", "It will smelt blocks in a 3x2x3 area above it, minus the center column (16 blocks total). Once the structure is built, place your blocks in any of those smelting spaces and light the pit block with the conventional fire starting methods. The oven pit will un-light if an invalid structure is detected, or once the process is complete. Carbon Dioxide gas will be generated in any empty spaces inside the oven.");
+        add("rankine.journal.cat_materials.beehive_oven.text4", "The full structure for the oven. The Oven Pit requires 6 empty blocks above it for the smoke to escape and to function properly.");
+        add("rankine.journal.cat_materials.beehive_oven.text5", "Replacing the bricks for High Refractory Bricks will decrease the cooking speed to 50% the default time. Can be upgraded using the Building Tool");
+        add("rankine.journal.cat_materials.beehive_oven.text6", "Replacing the bricks for Ultra High Refractory Bricks will decrease the cooking speed to 25% the default time. Can be upgraded using the Building Tool");
 
 
         add("rankine.journal.cat_materials.tree_tapping.name", "Tree Tapping");

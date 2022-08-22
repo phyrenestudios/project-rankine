@@ -1398,9 +1398,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RED_FIBER_MAT = BLOCKS.register("red_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
     public static final RegistryObject<Block> BLACK_FIBER_MAT = BLOCKS.register("black_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
 
-    public static final RegistryObject<Block> DRY_ICE = BLOCKS.register("dry_ice", () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID).strength(3.5F).friction(1.1F).sound(SoundType.GLASS)));
+    public static final RegistryObject<Block> DRY_ICE = BLOCKS.register("dry_ice", () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID).strength(3.5F).friction(1.00F).sound(SoundType.GLASS)));
 
-    public static final RegistryObject<Block> METEORIC_ICE = BLOCKS.register("meteoric_ice", () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID).strength(3.5F).friction(1.0F).sound(SoundType.GLASS)));
+    public static final RegistryObject<Block> METEORIC_ICE = BLOCKS.register("meteoric_ice", () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID).strength(3.5F).friction(0.995F).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> DIAMOND_GEODE = BLOCKS.register("diamond_geode", () -> new GeodeBlock(DEF_STONE));
     public static final RegistryObject<Block> EMERALD_GEODE = BLOCKS.register("emerald_geode", () -> new GeodeBlock(DEF_STONE));
     public static final RegistryObject<Block> AQUAMARINE_GEODE = BLOCKS.register("aquamarine_geode", () -> new GeodeBlock(DEF_STONE));

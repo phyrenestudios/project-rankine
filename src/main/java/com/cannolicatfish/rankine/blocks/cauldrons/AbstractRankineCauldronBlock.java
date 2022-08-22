@@ -141,23 +141,20 @@ public abstract class AbstractRankineCauldronBlock extends Block {
 
     public static void emptyBottle(Level levelIn, BlockPos posIn, Player playerIn, InteractionHand handIn, ItemStack stackIn, BlockState stateIn, SoundEvent soundIn, ItemStack returnItem) {
         if (!levelIn.isClientSide) {
-            Item item = stackIn.getItem();
             playerIn.setItemInHand(handIn, ItemUtils.createFilledResult(stackIn, playerIn, returnItem));
             playerIn.awardStat(Stats.FILL_CAULDRON);
-            playerIn.awardStat(Stats.ITEM_USED.get(item));
+            playerIn.awardStat(Stats.ITEM_USED.get(stackIn.getItem()));
             levelIn.setBlockAndUpdate(posIn, stateIn);
             levelIn.playSound(null, playerIn, soundIn, SoundSource.BLOCKS, 1.0F, 1.0F);
-
         }
         playerIn.swing(handIn);
     }
 
     private static InteractionResult fillBottle(Level levelIn, BlockPos posIn, Player playerIn, InteractionHand handIn, ItemStack stackIn, ItemStack bottleOut, SoundEvent soundIn) {
         if (!levelIn.isClientSide) {
-            Item item = stackIn.getItem();
             playerIn.setItemInHand(handIn, ItemUtils.createFilledResult(stackIn, playerIn, bottleOut));
             playerIn.awardStat(Stats.USE_CAULDRON);
-            playerIn.awardStat(Stats.ITEM_USED.get(item));
+            playerIn.awardStat(Stats.ITEM_USED.get(stackIn.getItem()));
             levelIn.setBlockAndUpdate(posIn, Blocks.CAULDRON.defaultBlockState());
             levelIn.playSound((Player)null, playerIn, soundIn, SoundSource.BLOCKS, 1.0F, 1.0F);
         }

@@ -62,16 +62,19 @@ public class BeehiveOvenPitBlock extends BaseEntityBlock {
             itemstack.hurtAndBreak(1, player, (p_220287_1_) -> {
                 p_220287_1_.broadcastBreakEvent(handIn);
             });
-            worldIn.setBlock(pos, worldIn.getBlockState(pos).setValue(BlockStateProperties.LIT, Boolean.TRUE), 2);
+            worldIn.setBlockAndUpdate(pos, worldIn.getBlockState(pos).setValue(BlockStateProperties.LIT, Boolean.TRUE));
+            return InteractionResult.sidedSuccess(worldIn.isClientSide);
         } else if (item == Items.FIRE_CHARGE) {
             itemstack.shrink(1);
-            worldIn.setBlock(pos, worldIn.getBlockState(pos).setValue(BlockStateProperties.LIT, Boolean.TRUE), 2);
+            worldIn.setBlockAndUpdate(pos, worldIn.getBlockState(pos).setValue(BlockStateProperties.LIT, Boolean.TRUE));
+            return InteractionResult.sidedSuccess(worldIn.isClientSide);
         } else if (player.getMainHandItem().getItem() == Items.BLAZE_POWDER && state.getValue((LIT))) {
             ((BeehiveOvenTile) worldIn.getBlockEntity(pos)).cookingProgress += 300;
             worldIn.playLocalSound((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 0.5F, 0.7F + 0.6F, false);
+            return InteractionResult.sidedSuccess(worldIn.isClientSide);
         }
 
-        return InteractionResult.SUCCESS;
+        return super.use(state, worldIn, pos, player, handIn, p_225533_6_);
     }
 
     public static void spawnSmokeParticles(Level worldIn, BlockPos pos, boolean spawnExtraSmoke) {

@@ -8,33 +8,8 @@
       "text": "rankine.journal.cat_materials.beehive_oven.text1"
     },
     {
-      "type": "text",
-      "text": "rankine.journal.cat_materials.beehive_oven.text2"
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:refactory_bricks",
-      "recipe2": "rankine:beehive_oven_pit"
-    },
-    {
       "type": "multiblock",
       "text": "rankine.journal.cat_materials.beehive_oven.text4",
-      "multiblock_id": "multiblock",
-      "multiblock": {
-        "pattern": [
-          [ "   ", " 0 ", "   " ],
-          [ "WWW", "WPW", "WWW" ]
-        ],
-        "mapping": {
-          "P": "rankine:beehive_oven_pit",
-          "W": "rankine:refractory_bricks"
-        },
-        "symmetrical": true
-      }
-    },
-    {
-      "type": "multiblock",
-      "text": "rankine.journal.cat_materials.beehive_oven.text5",
       "multiblock_id": "multiblock",
       "multiblock": {
         "pattern": [
@@ -50,21 +25,40 @@
             " R R " ],
           [ " R R ",
             "R   R",
-            "  0  ",
+            "     ",
             "R   R",
             " R R " ],
           [ " RRR ",
             "RRRRR",
-            "RRPRR",
+            "RR0RR",
             "RRRRR",
             " RRR " ]
         ],
         "mapping": {
-          "P": "rankine:beehive_oven_pit",
+          "0": "rankine:beehive_oven_pit",
           "R": "rankine:refractory_bricks"
         },
         "symmetrical": true
       }
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:refractory_bricks",
+      "recipe2": "rankine:beehive_oven_pit"
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_materials.beehive_oven.text2"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:high_refractory_bricks",
+      "text": "rankine.journal.cat_materials.beehive_oven.text5"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:ultra_high_refractory_bricks",
+      "text": "rankine.journal.cat_materials.beehive_oven.text6"
     }
   ]
 }
