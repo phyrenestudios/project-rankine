@@ -168,6 +168,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.SLATE_STEPPING_STONES.get(),
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
+                RankineBlocks.HEATING_ELEMENT_1.get(),
                 RankineBlocks.TILLED_SOIL.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
                 RankineBlocks.ORNAMENT.get(),

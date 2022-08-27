@@ -86,7 +86,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
                 RankineLists.LEDS,
-                RankineLists.GLAZED_PORCELAIN_BLOCKS,
                 RankineLists.MINERAL_BLOCKS,
                 RankineLists.ELEMENT_BLOCKS,
                 RankineLists.STANDARD_BLOCKS,
@@ -358,6 +357,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Block BLK : Arrays.asList(
                 RankineBlocks.BONE_CHAR_BLOCK.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
+                RankineBlocks.HEATING_ELEMENT_1.get(),
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.PCF.get(),
@@ -399,6 +399,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
         }
 
          */
+        for (Block BLK : RankineLists.GLAZED_PORCELAIN_BLOCKS) {
+            withExistingParent(BLK.getRegistryName().getPath(), RankineBlockStateProvider.getBlockRSL(BLK.getRegistryName().getPath()+"0"));
+        }
         for (Block BLK : RankineLists.STONE_COBBLES) {
             withExistingParent(BLK.getRegistryName().getPath(), RankineBlockStateProvider.getBlockRSL(BLK.getRegistryName().getPath()+"1"));
         }

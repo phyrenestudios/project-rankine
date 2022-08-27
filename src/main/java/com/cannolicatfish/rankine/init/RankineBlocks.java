@@ -1749,7 +1749,25 @@ public class RankineBlocks {
     public static final RegistryObject<Block> FIRE_CLAY = BLOCKS.register("fire_clay", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(1.0F, 3.0F)));
     public static final RegistryObject<Block> KAOLIN = BLOCKS.register("kaolin", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(1.5F, 3.0F)));
     public static final RegistryObject<Block> PORCELAIN_BLOCK = BLOCKS.register("porcelain_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.0F, 3.0F)));
-    public static final RegistryObject<Block> BLUE_GLAZED_PORCELAIN = BLOCKS.register("blue_glazed_porcelain", () -> new GlazedPorcelainBlock(8323072));
+
+    public static final RegistryObject<Block> WHITE_GLAZED_PORCELAIN = BLOCKS.register("white_glazed_porcelain", () -> new GlazedPorcelainBlock(32639));
+    public static final RegistryObject<Block> ORANGE_GLAZED_PORCELAIN = BLOCKS.register("orange_glazed_porcelain", () -> new GlazedPorcelainBlock(8336128));
+    public static final RegistryObject<Block> MAGENTA_GLAZED_PORCELAIN = BLOCKS.register("magenta_glazed_porcelain", () -> new GlazedPorcelainBlock(8323182));
+    public static final RegistryObject<Block> LIGHT_BLUE_GLAZED_PORCELAIN = BLOCKS.register("light_blue_glazed_porcelain", () -> new GlazedPorcelainBlock(32639));
+    public static final RegistryObject<Block> YELLOW_GLAZED_PORCELAIN = BLOCKS.register("yellow_glazed_porcelain", () -> new GlazedPorcelainBlock(8350208));
+    public static final RegistryObject<Block> LIME_GLAZED_PORCELAIN = BLOCKS.register("lime_glazed_porcelain", () -> new GlazedPorcelainBlock(32639));
+    public static final RegistryObject<Block> PINK_GLAZED_PORCELAIN = BLOCKS.register("pink_glazed_porcelain", () -> new GlazedPorcelainBlock(32639));
+    public static final RegistryObject<Block> GRAY_GLAZED_PORCELAIN = BLOCKS.register("gray_glazed_porcelain", () -> new GlazedPorcelainBlock(32639));
+    public static final RegistryObject<Block> LIGHT_GRAY_GLAZED_PORCELAIN = BLOCKS.register("light_gray_glazed_porcelain", () -> new GlazedPorcelainBlock(32639));
+    public static final RegistryObject<Block> CYAN_GLAZED_PORCELAIN = BLOCKS.register("cyan_glazed_porcelain", () -> new GlazedPorcelainBlock(32639));
+    public static final RegistryObject<Block> PURPLE_GLAZED_PORCELAIN = BLOCKS.register("purple_glazed_porcelain", () -> new GlazedPorcelainBlock(5701759));
+    public static final RegistryObject<Block> BLUE_GLAZED_PORCELAIN = BLOCKS.register("blue_glazed_porcelain", () -> new GlazedPorcelainBlock(4991));
+    public static final RegistryObject<Block> GREEN_GLAZED_PORCELAIN = BLOCKS.register("green_glazed_porcelain", () -> new GlazedPorcelainBlock(32526));
+    public static final RegistryObject<Block> BROWN_GLAZED_PORCELAIN = BLOCKS.register("brown_glazed_porcelain", () -> new GlazedPorcelainBlock(32639));
+    public static final RegistryObject<Block> RED_GLAZED_PORCELAIN = BLOCKS.register("red_glazed_porcelain", () -> new GlazedPorcelainBlock(8323072));
+    public static final RegistryObject<Block> BLACK_GLAZED_PORCELAIN = BLOCKS.register("black_glazed_porcelain", () -> new GlazedPorcelainBlock(32639));
+
+
     public static final RegistryObject<Block> BLOOD_OBSIDIAN = BLOCKS.register("blood_obsidian", () -> new RankineObsidianBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
     public static final RegistryObject<Block> SNOWFLAKE_OBSIDIAN = BLOCKS.register("snowflake_obsidian", () -> new RankineObsidianBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
     public static final RegistryObject<Block> CHECKERED_MARBLE = BLOCKS.register("checkered_marble", () -> new Block(Block.Properties.of(Material.STONE).strength(2)));
@@ -2843,6 +2861,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CHARCOAL_PIT = BLOCKS.register("charcoal_pit", () -> new CharcoalPitBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F)));
     public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", () -> new TreeTapBlock(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> TAP_LINE = BLOCKS.register("tap_line", () -> new TapLineBlock(0.125f, BlockBehaviour.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.5F).noOcclusion()));
+    public static final RegistryObject<Block> HEATING_ELEMENT_1 = BLOCKS.register("heating_element_1", () -> new Block(Block.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(4)));
 
 
     public static final RegistryObject<Block> RED_LED = BLOCKS.register("red_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));

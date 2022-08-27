@@ -1,8 +1,10 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -17,7 +19,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 public class BuildingToolItem extends Item {
-    private int maxModes = 8;
+    private final int maxModes = 8;
     public BuildingToolItem(Properties properties) {
         super(properties);
     }
@@ -46,6 +48,21 @@ public class BuildingToolItem extends Item {
                 if (offhandItem.is(RankineItems.REFRACTORY_BRICKS.get()) || offhandItem.is(RankineItems.HIGH_REFRACTORY_BRICKS.get()) || offhandItem.is(RankineItems.ULTRA_HIGH_REFRACTORY_BRICKS.get())) {
                     for (BlockPos b : BeehiveOvenTile.ovenStructure(posIn)) {
                         if (!levelIn.getBlockState(b).is(((BlockItem) offhandItem.getItem()).getBlock())) {
+                            levelIn.destroyBlock(b, true);
+                            levelIn.setBlockAndUpdate(b, ((BlockItem) offhandItem.getItem()).getBlock().defaultBlockState());
+                            offhandItem.shrink(1);
+                            return InteractionResult.sidedSuccess(levelIn.isClientSide);
+                        }
+                    }
+                }
+            }
+        } else if (levelIn.getBlockState(posIn).is(RankineBlocks.EVAPORATION_TOWER.get())) {
+            Player playerIn = context.getPlayer();
+            if (playerIn != null) {
+                ItemStack offhandItem = playerIn.getOffhandItem();
+                if (offhandItem.is(RankineTags.Items.SHEETMETAL)) {
+                    for (BlockPos b : ((EvaporationTowerTile) levelIn.getBlockEntity(posIn)).wallStructure(posIn)) {
+                        if (!levelIn.getBlockState(b).is(RankineTags.Blocks.SHEETMETAL)) {
                             levelIn.destroyBlock(b, true);
                             levelIn.setBlockAndUpdate(b, ((BlockItem) offhandItem.getItem()).getBlock().defaultBlockState());
                             offhandItem.shrink(1);

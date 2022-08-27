@@ -21,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
@@ -543,6 +544,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RankineItems.ALNICO_ELECTROMAGNET.get(), 1).pattern("WBW").pattern("WMW").define('W', RankineItems.ALLOY_WIRE.get()).define('B', RankineItems.LEAD_ACID_BATTERY.get()).define('M', RankineItems.ALNICO_MAGNET.get()).unlockedBy("has_ingredient", has(RankineItems.RARE_EARTH_MAGNET.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RankineBlocks.AIR_DISTILLATION_PACKING.get(), 1).pattern("##").pattern("##").define('#', RankineItems.STAINLESS_STEEL_SHEETMETAL.get()).unlockedBy("has_ingredient", has(RankineItems.STAINLESS_STEEL_SHEETMETAL.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RankineBlocks.DISTILLATION_TOWER.get(), 1).pattern("IBI").pattern("I#I").pattern("IMI").define('I', RankineTags.Items.INGOTS_STAINLESS_STEEL).define('B', RankineTags.Items.ICE).define('M', Items.MAGMA_BLOCK).define('#', RankineItems.MUSCOVITE_BLOCK.get()).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_STAINLESS_STEEL)).save(consumer);
+        ShapedRecipeBuilder.shaped(RankineBlocks.HEATING_ELEMENT_1.get(), 1).pattern("IMI").pattern("IMI").pattern("IMI").define('I', Tags.Items.INGOTS_IRON).define('M', Items.MAGMA_BLOCK).unlockedBy("has_ingredient", has(Tags.Items.INGOTS_IRON)).save(consumer);
 
         //Smithing Recipes
         UpgradeRecipeBuilder.smithing(Ingredient.of(Items.LEATHER_BOOTS),Ingredient.of(RankineTags.Items.INGOTS_STEEL),RankineItems.BRIGADINE_BOOTS.get()).unlocks("has_ingredient", has(RankineTags.Items.INGOTS_STEEL)).save(consumer,"rankine:brigadine_boots_from_smithing");
@@ -675,6 +677,10 @@ public class RankineRecipesProvider extends RecipeProvider {
             Block SOIL = RankineLists.SOIL_BLOCKS.get(RankineLists.COARSE_SOIL_BLOCKS.indexOf(COARSE_SOIL));
             ShapedRecipeBuilder.shaped(COARSE_SOIL.asItem(), 4).pattern("#G").pattern("G#").define('#', SOIL).define('G', Tags.Items.GRAVEL).group("rankine:coarse_soil").unlockedBy("has_ingredient", has(SOIL)).save(consumer);
 
+        }
+        for (Block BLK : RankineLists.GLAZED_PORCELAIN_BLOCKS) {
+            TagKey<Item> DYE = RankineLists.DYES.get(RankineLists.GLAZED_PORCELAIN_BLOCKS.indexOf(BLK));
+            centerRing(consumer, BLK.asItem(), 8, Ingredient.of(RankineItems.PORCELAIN_BLOCK.get()), Ingredient.of(DYE), "rankine:glazed_porcelain", RankineItems.PORCELAIN_BLOCK.get());
         }
 
         for (Item MINERAL_ITEM : RankineLists.MINERAL_ITEMS) {
@@ -1324,6 +1330,17 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .define('#', input)
                 //.setGroup("rankine")
                 .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
+                .save(consumer);
+    }
+    private void centerRing(Consumer<FinishedRecipe> consumer, Item output, int count, Ingredient ring, Ingredient center, String group, ItemLike trigger) {
+        ShapedRecipeBuilder.shaped(output, count)
+                .pattern("###")
+                .pattern("#A#")
+                .pattern("###")
+                .define('A', center)
+                .define('#', ring)
+                .group(group)
+                .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
     }
 

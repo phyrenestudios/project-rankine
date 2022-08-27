@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IMI",
+    "IMI",
+    "IMI"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "M": {
+      "item": "minecraft:magma_block"
+    }
+  },
+  "result": {
+    "item": "rankine:heating_element_1"
+  }
+}

@@ -644,7 +644,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             doublePlant(blk);
         }
         for (Block blk : RankineLists.GLAZED_PORCELAIN_BLOCKS) {
-            getVariantBuilder(blk).forAllStates(state -> ConfiguredModel.builder().modelFile(models().withExistingParent(blk.getRegistryName().getPath(), modLoc("template_glazed_porcelain")).texture("overlay", getBlockRSL("glazed_porcelain0"))).build());
+            getVariantBuilder(blk).forAllStates(state -> ConfiguredModel.builder().modelFile(models().withExistingParent(blk.getRegistryName().getPath()+state.getValue(GlazedPorcelainBlock.MODE), modLoc("template_glazed_porcelain")).texture("overlay", getBlockRSL("glazed_porcelain"+state.getValue(GlazedPorcelainBlock.MODE)))).build());
         }
         triplePlant(RankineBlocks.CORN_STALK.get());
         pillarFour(RankineBlocks.ROPE.get());
@@ -678,6 +678,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         simpleBlock(RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get());
         simpleBlock(RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get());
         simpleBlock(RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get());
+        simpleBlock(RankineBlocks.HEATING_ELEMENT_1.get());
         simpleBlock(RankineBlocks.PCF.get(), models().orientable(RankineBlocks.PCF.get().getRegistryName().getPath(), getBlockRSL("pcf_side"), getBlockRSL("pcf_front"), getBlockRSL("pcf_top")));
         simpleBlock(RankineBlocks.BOTANIST_STATION.get(), models().orientable(RankineBlocks.BOTANIST_STATION.get().getRegistryName().getPath(), getBlockRSL("botanist_station_side"), getBlockRSL("botanist_station_front"), getBlockRSL("botanist_station_top")));
         simpleBlock(RankineBlocks.TEMPLATE_TABLE.get(), models().orientable(RankineBlocks.TEMPLATE_TABLE.get().getRegistryName().getPath(), getBlockRSL("template_table_side"), getBlockRSL("template_table_front"), getBlockRSL("template_table_top")));

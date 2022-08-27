@@ -14,7 +14,7 @@ import net.minecraft.world.level.material.Material;
 import javax.annotation.Nullable;
 
 public class GlazedPorcelainBlock extends Block {
-    public static final IntegerProperty MODE = IntegerProperty.create("mode", 0, 1);
+    public static final IntegerProperty MODE = IntegerProperty.create("mode", 0, 3);
     int alloyColor;
 
     public GlazedPorcelainBlock(int color) {
@@ -32,7 +32,7 @@ public class GlazedPorcelainBlock extends Block {
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         ItemStack heldItem = context.getPlayer().getOffhandItem();
         if (heldItem.getItem() == RankineItems.BUILDING_TOOL.get()) {
-            return this.defaultBlockState().setValue(MODE, Math.min(BuildingToolItem.getBuildingMode(heldItem),1));
+            return this.defaultBlockState().setValue(MODE, Math.min(BuildingToolItem.getBuildingMode(heldItem),3));
         }
         return this.defaultBlockState();
     }

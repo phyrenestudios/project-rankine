@@ -9,7 +9,6 @@ import com.cannolicatfish.rankine.items.indexer.ElementIndexerItem;
 import com.cannolicatfish.rankine.items.tools.*;
 import com.cannolicatfish.rankine.items.tools.arrows.RopeCoilArrowItem;
 import com.cannolicatfish.rankine.items.totems.*;
-import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.inventory.MenuType;
@@ -1852,7 +1851,24 @@ public class RankineItems {
 
 
     public static final RegistryObject<Item> PORCELAIN_BLOCK = ITEMS.register("porcelain_block", () -> new BlockItem(RankineBlocks.PORCELAIN_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
-    //public static final RegistryObject<Item> BLUE_GLAZED_PORCELAIN = ITEMS.register("blue_glazed_porcelain", () -> new BlockItem(RankineBlocks.BLUE_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> WHITE_GLAZED_PORCELAIN = ITEMS.register("white_glazed_porcelain", () -> new BlockItem(RankineBlocks.WHITE_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ORANGE_GLAZED_PORCELAIN = ITEMS.register("orange_glazed_porcelain", () -> new BlockItem(RankineBlocks.ORANGE_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> MAGENTA_GLAZED_PORCELAIN = ITEMS.register("magenta_glazed_porcelain", () -> new BlockItem(RankineBlocks.MAGENTA_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> LIGHT_BLUE_GLAZED_PORCELAIN = ITEMS.register("light_blue_glazed_porcelain", () -> new BlockItem(RankineBlocks.LIGHT_BLUE_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> YELLOW_GLAZED_PORCELAIN = ITEMS.register("yellow_glazed_porcelain", () -> new BlockItem(RankineBlocks.YELLOW_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> LIME_GLAZED_PORCELAIN = ITEMS.register("lime_glazed_porcelain", () -> new BlockItem(RankineBlocks.LIME_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> PINK_GLAZED_PORCELAIN = ITEMS.register("pink_glazed_porcelain", () -> new BlockItem(RankineBlocks.PINK_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> GRAY_GLAZED_PORCELAIN = ITEMS.register("gray_glazed_porcelain", () -> new BlockItem(RankineBlocks.GRAY_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> LIGHT_GRAY_GLAZED_PORCELAIN = ITEMS.register("light_gray_glazed_porcelain", () -> new BlockItem(RankineBlocks.LIGHT_GRAY_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CYAN_GLAZED_PORCELAIN = ITEMS.register("cyan_glazed_porcelain", () -> new BlockItem(RankineBlocks.CYAN_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> PURPLE_GLAZED_PORCELAIN = ITEMS.register("purple_glazed_porcelain", () -> new BlockItem(RankineBlocks.PURPLE_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BLUE_GLAZED_PORCELAIN = ITEMS.register("blue_glazed_porcelain", () -> new BlockItem(RankineBlocks.BLUE_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> GREEN_GLAZED_PORCELAIN = ITEMS.register("green_glazed_porcelain", () -> new BlockItem(RankineBlocks.GREEN_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BROWN_GLAZED_PORCELAIN = ITEMS.register("brown_glazed_porcelain", () -> new BlockItem(RankineBlocks.BROWN_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> RED_GLAZED_PORCELAIN = ITEMS.register("red_glazed_porcelain", () -> new BlockItem(RankineBlocks.RED_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BLACK_GLAZED_PORCELAIN = ITEMS.register("black_glazed_porcelain", () -> new BlockItem(RankineBlocks.BLACK_GLAZED_PORCELAIN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+
+
     public static final RegistryObject<Item> BONE_CHAR_BLOCK = ITEMS.register("bone_char_block", () -> new BlockItem(RankineBlocks.BONE_CHAR_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     //public static final RegistryObject<Item> QUARRY_BARRIER = REGISTRY.register("quarry_barrier", () -> new BlockItem(RankineBlocks.QUARRY_BARRIER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> STICK_BLOCK = ITEMS.register("stick_block", () -> new BlockItem(RankineBlocks.STICK_BLOCK.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -3141,6 +3157,7 @@ public class RankineItems {
     public static final RegistryObject<Item> SODIUM_VAPOR_LAMP = ITEMS.register("sodium_vapor_lamp", () -> new BlockItem(RankineBlocks.SODIUM_VAPOR_LAMP.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> GAS_BOTTLER = ITEMS.register("gas_bottler", () -> new BlockItem(RankineBlocks.GAS_BOTTLER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> GAS_VENT = ITEMS.register("gas_vent", () -> new BlockItem(RankineBlocks.GAS_VENT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> HEATING_ELEMENT_1 = ITEMS.register("heating_element_1", () -> new BlockItem(RankineBlocks.HEATING_ELEMENT_1.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> CARBON_DIOXIDE_FUMAROLE = ITEMS.register("carbon_dioxide_fumarole", () -> new BlockItem(RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> HYDROGEN_CHLORIDE_FUMAROLE = ITEMS.register("hydrogen_chloride_fumarole", () -> new BlockItem(RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> HYDROGEN_SULFIDE_FUMAROLE = ITEMS.register("hydrogen_sulfide_fumarole", () -> new BlockItem(RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));

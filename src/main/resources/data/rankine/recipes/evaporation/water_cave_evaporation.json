@@ -1,7 +1,7 @@
 {
   "type": "rankine:evaporation",
   "total": 10,
-  "cookTime": 200,
+  "cookTime": 12000,
   "biomeTags": ["forge:is_underground"],
   "input": {
     "fluid": "minecraft:water"

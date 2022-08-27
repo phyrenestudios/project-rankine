@@ -128,6 +128,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineBlocks.TRAMPOLINE.get(),
                 RankineBlocks.METAL_PIPE.get(),
                 RankineBlocks.GROUND_TAP.get(),
+                RankineBlocks.HEATING_ELEMENT_1.get(),
                 RankineBlocks.AIR_DISTILLATION_PACKING.get()
         )) {
             lootTables.put(blk, createBlockLootTable(blk));

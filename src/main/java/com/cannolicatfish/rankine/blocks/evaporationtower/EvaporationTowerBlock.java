@@ -1,25 +1,25 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
-import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.Level;
-
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Random;
 
 public class EvaporationTowerBlock extends BaseEntityBlock {
     public EvaporationTowerBlock(Properties properties) {
@@ -59,5 +59,20 @@ public class EvaporationTowerBlock extends BaseEntityBlock {
         return worldIn.isClientSide ? null : createTickerHelper(blockEntityTypeIn, RankineBlockEntityTypes.EVAPORATION_TOWER.get(), EvaporationTowerTile::tick);
     }
 
+    @Override
+    public boolean isRandomlyTicking(BlockState p_49921_) {
+        return true;
+    }
+
+    @Override
+    public void randomTick(BlockState stateIn, ServerLevel levelIn, BlockPos posIn, Random rand) {
+        if (rand.nextFloat() < 0.05) {
+            EvaporationTowerTile tileIn = (EvaporationTowerTile) levelIn.getBlockEntity(posIn);
+            if (tileIn.structureHeight(levelIn, posIn) > 2) {
+                levelIn.removeBlock(tileIn.wallStructure(posIn).get(rand.nextInt(tileIn.wallStructure(posIn).size())).above(rand.nextInt(tileIn.structureHeight(levelIn, posIn)-3)+3),false);
+            }
+        }
+        super.randomTick(stateIn, levelIn, posIn, rand);
+    }
 }
 
