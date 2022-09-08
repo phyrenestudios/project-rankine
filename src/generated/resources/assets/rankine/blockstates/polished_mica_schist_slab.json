@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_mica_schist_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_mica_schist"
+      "model": "rankine:block/polished_mica_schist1"
     }
   }
 }

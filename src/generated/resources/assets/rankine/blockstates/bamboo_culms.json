@@ -1,16 +1,16 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/bamboo_culms"
+    "style=1": {
+      "model": "rankine:block/bamboo_culms1"
     },
-    "mode=1": {
-      "model": "rankine:block/bamboo_culms_vertical"
+    "style=2": {
+      "model": "rankine:block/bamboo_culms2"
     },
-    "mode=2": {
-      "model": "rankine:block/bamboo_culms"
+    "style=3": {
+      "model": "rankine:block/bamboo_culms3"
     },
-    "mode=3": {
-      "model": "rankine:block/bamboo_culms"
+    "style=4": {
+      "model": "rankine:block/bamboo_culms4"
     }
   }
 }

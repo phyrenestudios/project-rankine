@@ -1,10 +1,10 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/coconut_palm_bookshelf"
+    "style=1": {
+      "model": "rankine:block/coconut_palm_bookshelf1"
     },
-    "mode=1": {
-      "model": "rankine:block/coconut_palm_bookshelfvertical"
+    "style=2": {
+      "model": "rankine:block/coconut_palm_bookshelf2"
     }
   }
 }

@@ -10,19 +10,20 @@ import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelScreen;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableScreen;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableScreen;
+import com.cannolicatfish.rankine.items.BuildingModeBlockItem;
 import com.cannolicatfish.rankine.items.alloys.AlloySurfRodItem;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -56,6 +57,10 @@ public class ClientProxy implements IProxy {
                 ItemProperties.register(ITEM, new ResourceLocation("throwing"), (stack, world, living, id) ->
                         living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F);
             }
+        }
+
+        for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.STONE_BRICKS,RankineLists.BRICKS,RankineLists.POLISHED_STONES,RankineLists.PLANKS,RankineLists.WOODEN_BOOKSHELVES).flatMap(Collection::stream).collect(Collectors.toList())) {
+            ItemProperties.register(BLK.asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) BLK.asItem()).getBuildingMode(stack) : 1.0F);
         }
 
         ItemProperties.register(RankineItems.SHULKER_GAS_VACUUM.get(),

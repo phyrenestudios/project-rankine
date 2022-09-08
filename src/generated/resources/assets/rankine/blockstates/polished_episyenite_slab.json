@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_episyenite_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_episyenite"
+      "model": "rankine:block/polished_episyenite1"
     }
   }
 }

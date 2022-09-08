@@ -1,16 +1,16 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/polished_gray_granite"
+    "style=1": {
+      "model": "rankine:block/polished_gray_granite1"
     },
-    "mode=1": {
-      "model": "rankine:block/polished_gray_granite_offset"
+    "style=2": {
+      "model": "rankine:block/polished_gray_granite2"
     },
-    "mode=2": {
-      "model": "rankine:block/polished_gray_granite_offset_ns"
+    "style=3": {
+      "model": "rankine:block/polished_gray_granite3"
     },
-    "mode=3": {
-      "model": "rankine:block/polished_gray_granite_offset_ew"
+    "style=4": {
+      "model": "rankine:block/polished_gray_granite4"
     }
   }
 }

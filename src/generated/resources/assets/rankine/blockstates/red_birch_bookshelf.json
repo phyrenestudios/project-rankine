@@ -1,10 +1,10 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/red_birch_bookshelf"
+    "style=1": {
+      "model": "rankine:block/red_birch_bookshelf1"
     },
-    "mode=1": {
-      "model": "rankine:block/red_birch_bookshelfvertical"
+    "style=2": {
+      "model": "rankine:block/red_birch_bookshelf2"
     }
   }
 }

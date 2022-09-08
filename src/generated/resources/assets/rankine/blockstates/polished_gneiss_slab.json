@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_gneiss_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_gneiss"
+      "model": "rankine:block/polished_gneiss1"
     }
   }
 }

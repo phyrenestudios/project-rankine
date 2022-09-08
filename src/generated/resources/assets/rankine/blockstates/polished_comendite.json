@@ -1,16 +1,16 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/polished_comendite"
+    "style=1": {
+      "model": "rankine:block/polished_comendite1"
     },
-    "mode=1": {
-      "model": "rankine:block/polished_comendite_offset"
+    "style=2": {
+      "model": "rankine:block/polished_comendite2"
     },
-    "mode=2": {
-      "model": "rankine:block/polished_comendite_offset_ns"
+    "style=3": {
+      "model": "rankine:block/polished_comendite3"
     },
-    "mode=3": {
-      "model": "rankine:block/polished_comendite_offset_ew"
+    "style=4": {
+      "model": "rankine:block/polished_comendite4"
     }
   }
 }

@@ -1,0 +1,37 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 20,
+  "ingredientTotal": 4,
+  "matScale": 0.5,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 25
+  },
+  "input1": {
+    "item": "rankine:kaolinite",
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
+  },
+  "input2": {
+    "item": "rankine:plagioclase_feldspar",
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
+  },
+  "input3": {
+    "tag": "forge:gems/quartz",
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
+  },
+  "input4": {
+    "item": "rankine:gypsum",
+    "required": true,
+    "min": 0.20,
+    "max": 0.40
+  },
+  "result": {
+    "item": "rankine:porcelain_clay_ball"
+  }
+}

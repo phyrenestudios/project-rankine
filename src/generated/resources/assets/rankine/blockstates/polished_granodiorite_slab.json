@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_granodiorite_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_granodiorite"
+      "model": "rankine:block/polished_granodiorite1"
     }
   }
 }

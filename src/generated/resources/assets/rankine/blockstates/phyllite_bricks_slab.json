@@ -7,7 +7,7 @@
       "model": "rankine:block/phyllite_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/phyllite_bricks"
+      "model": "rankine:block/phyllite_bricks1"
     }
   }
 }

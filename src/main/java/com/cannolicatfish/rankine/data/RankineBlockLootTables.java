@@ -111,6 +111,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineBlocks.SOD_BLOCK.get(),
                 RankineBlocks.ALLUVIUM.get(),
                 RankineBlocks.COB.get(),
+                RankineBlocks.KAOLIN.get(),
                 RankineBlocks.REFINED_COB.get(),
                 RankineBlocks.STUMP.get(),
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
@@ -169,7 +170,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.ENDER_SHIRO.get(), droppingWithSilkTouch(RankineBlocks.ENDER_SHIRO.get(),Blocks.END_STONE));
         lootTables.put(RankineBlocks.BONE_CHAR_BLOCK.get(), createBlockLootTable(RankineBlocks.BONE_CHAR_BLOCK.get()));
         lootTables.put(RankineBlocks.FIRE_CLAY.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.FIRE_CLAY.get(), RankineItems.FIRE_CLAY_BALL.get(), ConstantValue.exactly(4)));
-        lootTables.put(RankineBlocks.KAOLIN.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.KAOLIN.get(), RankineItems.KAOLINITE.get(), ConstantValue.exactly(4)));
+        lootTables.put(RankineBlocks.PORCELAIN_CLAY.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.PORCELAIN_CLAY.get(), RankineItems.PORCELAIN_CLAY_BALL.get(), ConstantValue.exactly(4)));
         lootTables.put(RankineBlocks.DARK_GRAVEL.get(), droppingWithSilkTouch(RankineBlocks.DARK_GRAVEL.get(), withSurvivesExplosion(RankineBlocks.DARK_GRAVEL.get(), LootItem.lootTableItem(Items.FLINT).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.2F, 0.5F, 1.0F, 1.0F)).otherwise(LootItem.lootTableItem(RankineBlocks.DARK_GRAVEL.get())))));
         lootTables.put(RankineBlocks.LIGHT_GRAVEL.get(), droppingWithSilkTouch(RankineBlocks.LIGHT_GRAVEL.get(), withSurvivesExplosion(RankineBlocks.LIGHT_GRAVEL.get(), LootItem.lootTableItem(Items.FLINT).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.05F, 0.1F, 0.2F, 0.5F)).otherwise(LootItem.lootTableItem(RankineBlocks.LIGHT_GRAVEL.get())))));
 

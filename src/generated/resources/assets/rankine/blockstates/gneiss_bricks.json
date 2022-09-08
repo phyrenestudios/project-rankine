@@ -1,16 +1,16 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/gneiss_bricks"
+    "style=1": {
+      "model": "rankine:block/gneiss_bricks1"
     },
-    "mode=1": {
-      "model": "rankine:block/gneiss_bricks_vertical"
+    "style=2": {
+      "model": "rankine:block/gneiss_bricks2"
     },
-    "mode=2": {
-      "model": "rankine:block/gneiss_bricks_mossy"
+    "style=3": {
+      "model": "rankine:block/gneiss_bricks3"
     },
-    "mode=3": {
-      "model": "rankine:block/gneiss_bricks_snowy"
+    "style=4": {
+      "model": "rankine:block/gneiss_bricks4"
     }
   }
 }

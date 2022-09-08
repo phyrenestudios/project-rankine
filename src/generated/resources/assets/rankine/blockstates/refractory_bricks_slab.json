@@ -7,7 +7,7 @@
       "model": "rankine:block/refractory_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/refractory_bricks"
+      "model": "rankine:block/refractory_bricks1"
     }
   }
 }

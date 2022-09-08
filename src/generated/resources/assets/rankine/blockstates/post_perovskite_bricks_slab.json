@@ -7,7 +7,7 @@
       "model": "rankine:block/post_perovskite_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/post_perovskite_bricks"
+      "model": "rankine:block/post_perovskite_bricks1"
     }
   }
 }

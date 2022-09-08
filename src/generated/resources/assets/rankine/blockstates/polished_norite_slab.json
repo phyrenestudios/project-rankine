@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_norite_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_norite"
+      "model": "rankine:block/polished_norite1"
     }
   }
 }

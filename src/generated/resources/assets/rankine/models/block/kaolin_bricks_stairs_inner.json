@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "rankine:block/kaolin_bricks",
-    "bottom": "rankine:block/kaolin_bricks",
-    "top": "rankine:block/kaolin_bricks"
-  }
-}

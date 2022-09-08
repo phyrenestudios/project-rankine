@@ -1,16 +1,16 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/polished_dolostone"
+    "style=1": {
+      "model": "rankine:block/polished_dolostone1"
     },
-    "mode=1": {
-      "model": "rankine:block/polished_dolostone_offset"
+    "style=2": {
+      "model": "rankine:block/polished_dolostone2"
     },
-    "mode=2": {
-      "model": "rankine:block/polished_dolostone_offset_ns"
+    "style=3": {
+      "model": "rankine:block/polished_dolostone3"
     },
-    "mode=3": {
-      "model": "rankine:block/polished_dolostone_offset_ew"
+    "style=4": {
+      "model": "rankine:block/polished_dolostone4"
     }
   }
 }

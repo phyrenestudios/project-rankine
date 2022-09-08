@@ -1,3 +1,11 @@
 {
-  "parent": "rankine:block/balsam_fir_bookshelf"
+  "parent": "rankine:block/balsam_fir_bookshelf1",
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:block/balsam_fir_bookshelf2"
+    }
+  ]
 }

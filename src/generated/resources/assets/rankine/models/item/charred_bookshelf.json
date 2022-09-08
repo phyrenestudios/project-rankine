@@ -1,3 +1,11 @@
 {
-  "parent": "rankine:block/charred_bookshelf"
+  "parent": "rankine:block/charred_bookshelf1",
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:block/charred_bookshelf2"
+    }
+  ]
 }

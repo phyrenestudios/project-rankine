@@ -1,3 +1,11 @@
 {
-  "parent": "rankine:block/black_birch_bookshelf"
+  "parent": "rankine:block/black_birch_bookshelf1",
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:block/black_birch_bookshelf2"
+    }
+  ]
 }

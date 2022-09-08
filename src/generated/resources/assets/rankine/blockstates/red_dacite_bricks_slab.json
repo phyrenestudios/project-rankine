@@ -7,7 +7,7 @@
       "model": "rankine:block/red_dacite_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/red_dacite_bricks"
+      "model": "rankine:block/red_dacite_bricks1"
     }
   }
 }

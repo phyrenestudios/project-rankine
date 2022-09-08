@@ -7,7 +7,7 @@
       "model": "rankine:block/bridgmanham_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/bridgmanham_bricks"
+      "model": "rankine:block/bridgmanham_bricks1"
     }
   }
 }

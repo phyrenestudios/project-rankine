@@ -232,6 +232,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.LIGHT_GRAVEL.get(),
                 RankineBlocks.DARK_GRAVEL.get(),
                 RankineBlocks.FIRE_CLAY.get(),
+                RankineBlocks.PORCELAIN_CLAY.get(),
                 RankineBlocks.KAOLIN.get(),
                 RankineBlocks.STUMP.get(),
                 RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(),
@@ -356,6 +357,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.BITUMEN.get(),
             RankineItems.GWIHABAITE.get(),
             RankineItems.FIRE_CLAY_BALL.get(),
+            RankineItems.PORCELAIN_CLAY_BALL.get(),
             RankineItems.KAOLINITE.get(),
             RankineItems.BONE_CHAR.get(),
             RankineItems.COPPER_NUGGET.get(),
@@ -1446,9 +1448,9 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.journal.cat_sediments.clays.name", "Clays");
         add("rankine.journal.cat_sediments.clays.text1", "");
-        add("rankine.journal.cat_sediments.clays.clay",  "");
-        add("rankine.journal.cat_sediments.clays.fire_clay",  "");
-        add("rankine.journal.cat_sediments.clays.kaolin",  "");
+        add("rankine.journal.cat_sediments.clays.clay", "Found in the usual locations. Namely in River and Swamp beds and in Lush Caves.");
+        add("rankine.journal.cat_sediments.clays.fire_clay", "A special type of clay that can withstand high temperatures. Mainly found under various coal ore veins and on occasion freely in stone.");
+        add("rankine.journal.cat_sediments.clays.porcelain_clay", "A white clay mixture composed mainly of kaolinite. Crafted in the Mixing Barrel.");
 
         add("rankine.journal.cat_sediments.soils.name", "Soils");
         add("rankine.journal.cat_sediments.soils.text1", "");

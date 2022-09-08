@@ -7,7 +7,7 @@
       "model": "rankine:block/mudstone_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/mudstone_bricks"
+      "model": "rankine:block/mudstone_bricks1"
     }
   }
 }

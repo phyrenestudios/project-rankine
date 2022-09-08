@@ -7,7 +7,7 @@
       "model": "rankine:block/ringwoodine_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/ringwoodine_bricks"
+      "model": "rankine:block/ringwoodine_bricks1"
     }
   }
 }

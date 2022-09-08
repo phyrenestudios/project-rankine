@@ -1,9 +1,0 @@
-{
-  "type": "rankine:beehive_oven",
-  "input": {
-    "item": "rankine:kaolin"
-  },
-  "result": "rankine:porcelain_block",
-  "minCookTime": 300,
-  "maxCookTime": 600
-}

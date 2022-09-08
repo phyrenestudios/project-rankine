@@ -7,7 +7,7 @@
       "model": "rankine:block/gabbro_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/gabbro_bricks"
+      "model": "rankine:block/gabbro_bricks1"
     }
   }
 }

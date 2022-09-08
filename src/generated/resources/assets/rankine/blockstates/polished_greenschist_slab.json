@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_greenschist_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_greenschist"
+      "model": "rankine:block/polished_greenschist1"
     }
   }
 }

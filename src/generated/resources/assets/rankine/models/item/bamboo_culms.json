@@ -1,3 +1,23 @@
 {
-  "parent": "rankine:block/bamboo_culms"
+  "parent": "rankine:block/bamboo_culms1",
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:block/bamboo_culms2"
+    },
+    {
+      "predicate": {
+        "rankine:building_mode": 3.0
+      },
+      "model": "rankine:block/bamboo_culms3"
+    },
+    {
+      "predicate": {
+        "rankine:building_mode": 4.0
+      },
+      "model": "rankine:block/bamboo_culms4"
+    }
+  ]
 }

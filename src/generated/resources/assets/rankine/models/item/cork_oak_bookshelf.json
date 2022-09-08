@@ -1,3 +1,11 @@
 {
-  "parent": "rankine:block/cork_oak_bookshelf"
+  "parent": "rankine:block/cork_oak_bookshelf1",
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:block/cork_oak_bookshelf2"
+    }
+  ]
 }

@@ -7,7 +7,7 @@
       "model": "rankine:block/dunite_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/dunite_bricks"
+      "model": "rankine:block/dunite_bricks1"
     }
   }
 }

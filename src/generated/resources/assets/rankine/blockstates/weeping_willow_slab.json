@@ -7,7 +7,7 @@
       "model": "rankine:block/weeping_willow_slab"
     },
     "type=double": {
-      "model": "rankine:block/weeping_willow_planks"
+      "model": "rankine:block/weeping_willow_planks1"
     }
   }
 }

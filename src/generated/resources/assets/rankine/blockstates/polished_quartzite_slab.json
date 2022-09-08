@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_quartzite_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_quartzite"
+      "model": "rankine:block/polished_quartzite1"
     }
   }
 }
