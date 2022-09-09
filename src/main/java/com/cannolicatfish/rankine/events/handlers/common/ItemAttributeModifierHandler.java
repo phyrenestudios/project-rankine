@@ -87,7 +87,7 @@ public class ItemAttributeModifierHandler {
             event.addModifier(RankineAttributes.ATTACK_RANGE, new AttributeModifier(RankineAttributes.SPEAR_RANGE_MODIFIER,"Weapon modifier", 1, AttributeModifier.Operation.ADDITION));
         }
         if (stack.getItem() instanceof KnifeItem && event.getSlotType() == EquipmentSlot.MAINHAND) {
-            event.addModifier(RankineAttributes.ATTACK_RANGE, new AttributeModifier(RankineAttributes.KNIFE_RANGE_MODIFIER,"Weapon modifier", -2, AttributeModifier.Operation.ADDITION));
+            event.addModifier(RankineAttributes.ATTACK_RANGE, new AttributeModifier(RankineAttributes.KNIFE_RANGE_MODIFIER,"Weapon modifier", -1, AttributeModifier.Operation.ADDITION));
         }
         if (stack.getItem() == RankineItems.TOTEM_OF_PROMISING.get() && event.getSlotType() == EquipmentSlot.OFFHAND) {
             event.addModifier(Attributes.LUCK, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fd1"), "Rankine Totem modifier",

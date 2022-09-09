@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:blue_glazed_porcelain"
+          "name": "minecraft:air"
         }
       ],
       "conditions": [
