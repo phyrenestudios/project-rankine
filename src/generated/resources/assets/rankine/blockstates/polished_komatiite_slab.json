@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_komatiite_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_komatiite"
+      "model": "rankine:block/polished_komatiite1"
     }
   }
 }

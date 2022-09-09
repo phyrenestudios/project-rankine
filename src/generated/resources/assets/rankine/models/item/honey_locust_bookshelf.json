@@ -1,3 +1,11 @@
 {
-  "parent": "rankine:block/honey_locust_bookshelf"
+  "parent": "rankine:block/honey_locust_bookshelf1",
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:block/honey_locust_bookshelf2"
+    }
+  ]
 }

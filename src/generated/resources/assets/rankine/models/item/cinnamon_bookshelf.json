@@ -1,3 +1,11 @@
 {
-  "parent": "rankine:block/cinnamon_bookshelf"
+  "parent": "rankine:block/cinnamon_bookshelf1",
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:block/cinnamon_bookshelf2"
+    }
+  ]
 }

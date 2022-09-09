@@ -1,10 +1,10 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/weeping_willow_bookshelf"
+    "style=1": {
+      "model": "rankine:block/weeping_willow_bookshelf1"
     },
-    "mode=1": {
-      "model": "rankine:block/weeping_willow_bookshelfvertical"
+    "style=2": {
+      "model": "rankine:block/weeping_willow_bookshelf2"
     }
   }
 }

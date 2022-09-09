@@ -1,16 +1,16 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/polished_mica_schist"
+    "style=1": {
+      "model": "rankine:block/polished_mica_schist1"
     },
-    "mode=1": {
-      "model": "rankine:block/polished_mica_schist_offset"
+    "style=2": {
+      "model": "rankine:block/polished_mica_schist2"
     },
-    "mode=2": {
-      "model": "rankine:block/polished_mica_schist_offset_ns"
+    "style=3": {
+      "model": "rankine:block/polished_mica_schist3"
     },
-    "mode=3": {
-      "model": "rankine:block/polished_mica_schist_offset_ew"
+    "style=4": {
+      "model": "rankine:block/polished_mica_schist4"
     }
   }
 }

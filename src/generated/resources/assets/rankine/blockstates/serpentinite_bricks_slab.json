@@ -7,7 +7,7 @@
       "model": "rankine:block/serpentinite_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/serpentinite_bricks"
+      "model": "rankine:block/serpentinite_bricks1"
     }
   }
 }

@@ -1,16 +1,16 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/purple_porphyry_bricks"
+    "style=1": {
+      "model": "rankine:block/purple_porphyry_bricks1"
     },
-    "mode=1": {
-      "model": "rankine:block/purple_porphyry_bricks_vertical"
+    "style=2": {
+      "model": "rankine:block/purple_porphyry_bricks2"
     },
-    "mode=2": {
-      "model": "rankine:block/purple_porphyry_bricks_mossy"
+    "style=3": {
+      "model": "rankine:block/purple_porphyry_bricks3"
     },
-    "mode=3": {
-      "model": "rankine:block/purple_porphyry_bricks_snowy"
+    "style=4": {
+      "model": "rankine:block/purple_porphyry_bricks4"
     }
   }
 }

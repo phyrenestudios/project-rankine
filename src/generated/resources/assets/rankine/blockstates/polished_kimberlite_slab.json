@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_kimberlite_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_kimberlite"
+      "model": "rankine:block/polished_kimberlite1"
     }
   }
 }

@@ -1,8 +1,8 @@
 {
   "type": "rankine:evaporation",
   "total": 8,
-  "cookTime": 200,
-  "biomeTags": ["minecraft:is_taiga","minecraft:is_forest","forge:is_plains","minecraft:is_jungle","minecraft:is_hill","minecraft:is_mountain","forge:is_mushroom","forge:is_savannah"],
+  "cookTime": 12000,
+  "biomeTags": ["minecraft:is_taiga","minecraft:is_forest","forge:is_plains","minecraft:is_jungle","minecraft:is_hill","minecraft:is_mountain","forge:is_mushroom","forge:is_savanna"],
   "input": {
     "fluid": "minecraft:water"
   },

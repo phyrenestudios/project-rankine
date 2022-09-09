@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine:glazed_porcelain",
+  "pattern": [
+    "###",
+    "#A#",
+    "###"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:dyes/light_gray"
+    },
+    "#": {
+      "item": "rankine:porcelain"
+    }
+  },
+  "result": {
+    "item": "rankine:light_gray_glazed_porcelain",
+    "count": 8
+  }
+}

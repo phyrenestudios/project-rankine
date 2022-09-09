@@ -7,7 +7,7 @@
       "model": "rankine:block/soapstone_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/soapstone_bricks"
+      "model": "rankine:block/soapstone_bricks1"
     }
   }
 }

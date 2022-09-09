@@ -1,7 +1,7 @@
 {
 	"parent": "block/block",
 	"textures": {
-		"background": "rankine:block/porcelain_block",
+		"background": "rankine:block/porcelain",
 		"particle": "#background"
 	},
 	"elements": [

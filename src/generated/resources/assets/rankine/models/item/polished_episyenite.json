@@ -1,3 +1,23 @@
 {
-  "parent": "rankine:block/polished_episyenite"
+  "parent": "rankine:block/polished_episyenite1",
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:block/polished_episyenite2"
+    },
+    {
+      "predicate": {
+        "rankine:building_mode": 3.0
+      },
+      "model": "rankine:block/polished_episyenite3"
+    },
+    {
+      "predicate": {
+        "rankine:building_mode": 4.0
+      },
+      "model": "rankine:block/polished_episyenite4"
+    }
+  ]
 }

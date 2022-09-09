@@ -35,7 +35,6 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidAttributes;
@@ -218,13 +217,6 @@ public class ProjectRankine {
             }
 
         }
-
-        @SubscribeEvent
-        public static void addEntityAttributes(final EntityAttributeCreationEvent event) {
-
-        }
-
-
 
         @SubscribeEvent
         public static void onPOIRegistry(final RegistryEvent.Register<PoiType> event) {

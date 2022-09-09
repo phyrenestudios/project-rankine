@@ -129,7 +129,7 @@ public class EvaporationRecipe implements Recipe<Container> {
     }
 
     public ItemStack getEvaporationResult(Level levelIn, ResourceLocation biomeName) {
-        if ((this.getBiomes().isEmpty() && this.getBiomeTags().isEmpty()) || this.getBiomes().contains(biomeName.toString()) || biomeTagCheck(levelIn, biomeName, this.getBiomeTags())) {
+        if (this.getBiomes().contains(biomeName.toString()) || biomeTagCheck(levelIn, biomeName, this.getBiomeTags())) {
             WeightedCollection<ItemStack> col = new WeightedCollection<>();
             for (int i = 0; i < this.recipeOutputs.size(); i++) {
                 col.add(this.weights.get(i),new ItemStack(this.recipeOutputs.get(i).getItem(), this.maxes.get(i).equals(this.mins.get(i)) ? this.maxes.get(i) : levelIn.getRandom().nextInt(this.maxes.get(i) - this.mins.get(i)) + this.mins.get(i)));

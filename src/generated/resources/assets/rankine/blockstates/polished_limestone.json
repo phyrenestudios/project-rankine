@@ -1,16 +1,16 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/polished_limestone"
+    "style=1": {
+      "model": "rankine:block/polished_limestone1"
     },
-    "mode=1": {
-      "model": "rankine:block/polished_limestone_offset"
+    "style=2": {
+      "model": "rankine:block/polished_limestone2"
     },
-    "mode=2": {
-      "model": "rankine:block/polished_limestone_offset_ns"
+    "style=3": {
+      "model": "rankine:block/polished_limestone3"
     },
-    "mode=3": {
-      "model": "rankine:block/polished_limestone_offset_ew"
+    "style=4": {
+      "model": "rankine:block/polished_limestone4"
     }
   }
 }

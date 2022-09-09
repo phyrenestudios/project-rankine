@@ -485,7 +485,6 @@ public class Config {
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_SPEED;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
-        public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_RANGE;
         public final ForgeConfigSpec.IntValue ELECTROMAGNET_RANGE;
         public final ForgeConfigSpec.IntValue MAGNET_RANGE;
         public final ForgeConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
@@ -511,8 +510,6 @@ public class Config {
                         .defineInRange("charcoalPitSpeed", 3600, 1, Integer.MAX_VALUE);
                 CHARCOAL_PIT_HEIGHT = b.comment("Maximum height a charcoal pile can be")
                         .defineInRange("charcoalPitHeight", 5, 1, 10);
-                EVAPORATION_TOWER_RANGE = b.comment("Maximum height of the evaporation tower. Height affects yields. Set to 0 to disable functionality.")
-                        .defineInRange("evaporationTowerHeight", 15, 0, 30);
                 MAGNET_RANGE = b.comment("Range for the Simple Magnet. The Alnico and Rare Earth versions scale at x2 and x3 respectively.")
                         .defineInRange("magnetRange",3,1,8);
                 ELECTROMAGNET_RANGE = b.comment("Range for the Simple Electromagnet. The Alnico and Rare Earth versions scale at x2 and x3 respectively.")

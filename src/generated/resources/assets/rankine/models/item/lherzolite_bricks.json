@@ -1,3 +1,23 @@
 {
-  "parent": "rankine:block/lherzolite_bricks"
+  "parent": "rankine:block/lherzolite_bricks1",
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:block/lherzolite_bricks2"
+    },
+    {
+      "predicate": {
+        "rankine:building_mode": 3.0
+      },
+      "model": "rankine:block/lherzolite_bricks3"
+    },
+    {
+      "predicate": {
+        "rankine:building_mode": 4.0
+      },
+      "model": "rankine:block/lherzolite_bricks4"
+    }
+  ]
 }

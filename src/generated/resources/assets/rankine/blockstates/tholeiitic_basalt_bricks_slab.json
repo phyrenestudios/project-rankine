@@ -7,7 +7,7 @@
       "model": "rankine:block/tholeiitic_basalt_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/tholeiitic_basalt_bricks"
+      "model": "rankine:block/tholeiitic_basalt_bricks1"
     }
   }
 }

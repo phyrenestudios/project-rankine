@@ -1,10 +1,28 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/blue_glazed_porcelain"
+    "style=1": {
+      "model": "rankine:block/blue_glazed_porcelain1"
     },
-    "mode=1": {
-      "model": "rankine:block/blue_glazed_porcelain"
+    "style=2": {
+      "model": "rankine:block/blue_glazed_porcelain2"
+    },
+    "style=3": {
+      "model": "rankine:block/blue_glazed_porcelain3"
+    },
+    "style=4": {
+      "model": "rankine:block/blue_glazed_porcelain4"
+    },
+    "style=5": {
+      "model": "rankine:block/blue_glazed_porcelain5"
+    },
+    "style=6": {
+      "model": "rankine:block/blue_glazed_porcelain6"
+    },
+    "style=7": {
+      "model": "rankine:block/blue_glazed_porcelain7"
+    },
+    "style=8": {
+      "model": "rankine:block/blue_glazed_porcelain8"
     }
   }
 }

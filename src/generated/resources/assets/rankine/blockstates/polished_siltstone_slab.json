@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_siltstone_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_siltstone"
+      "model": "rankine:block/polished_siltstone1"
     }
   }
 }

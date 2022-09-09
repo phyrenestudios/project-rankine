@@ -1,16 +1,16 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/polished_mudstone"
+    "style=1": {
+      "model": "rankine:block/polished_mudstone1"
     },
-    "mode=1": {
-      "model": "rankine:block/polished_mudstone_offset"
+    "style=2": {
+      "model": "rankine:block/polished_mudstone2"
     },
-    "mode=2": {
-      "model": "rankine:block/polished_mudstone_offset_ns"
+    "style=3": {
+      "model": "rankine:block/polished_mudstone3"
     },
-    "mode=3": {
-      "model": "rankine:block/polished_mudstone_offset_ew"
+    "style=4": {
+      "model": "rankine:block/polished_mudstone4"
     }
   }
 }

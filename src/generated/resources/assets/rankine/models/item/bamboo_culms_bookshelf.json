@@ -1,3 +1,11 @@
 {
-  "parent": "rankine:block/bamboo_culms_bookshelf"
+  "parent": "rankine:block/bamboo_culms_bookshelf1",
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:block/bamboo_culms_bookshelf2"
+    }
+  ]
 }

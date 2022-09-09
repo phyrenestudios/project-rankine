@@ -7,7 +7,7 @@
       "model": "rankine:block/rhyolite_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/rhyolite_bricks"
+      "model": "rankine:block/rhyolite_bricks1"
     }
   }
 }

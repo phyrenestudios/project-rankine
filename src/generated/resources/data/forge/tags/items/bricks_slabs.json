@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     "rankine:clay_bricks_slab",
-    "rankine:kaolin_bricks_slab",
+    "rankine:porcelain_clay_bricks_slab",
     "rankine:fire_clay_bricks_slab",
     "rankine:refractory_bricks_slab",
     "rankine:high_refractory_bricks_slab",

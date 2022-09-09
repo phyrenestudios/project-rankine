@@ -1,3 +1,11 @@
 {
-  "parent": "rankine:block/weeping_willow_bookshelf"
+  "parent": "rankine:block/weeping_willow_bookshelf1",
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:block/weeping_willow_bookshelf2"
+    }
+  ]
 }

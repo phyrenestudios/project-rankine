@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine:glazed_porcelain",
+  "pattern": [
+    "###",
+    "#A#",
+    "###"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:dyes/green"
+    },
+    "#": {
+      "item": "rankine:porcelain"
+    }
+  },
+  "result": {
+    "item": "rankine:green_glazed_porcelain",
+    "count": 8
+  }
+}

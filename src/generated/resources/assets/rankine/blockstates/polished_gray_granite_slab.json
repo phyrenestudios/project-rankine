@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_gray_granite_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_gray_granite"
+      "model": "rankine:block/polished_gray_granite1"
     }
   }
 }

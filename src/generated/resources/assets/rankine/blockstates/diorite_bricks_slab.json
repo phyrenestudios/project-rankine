@@ -7,7 +7,7 @@
       "model": "rankine:block/diorite_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/diorite_bricks"
+      "model": "rankine:block/diorite_bricks1"
     }
   }
 }

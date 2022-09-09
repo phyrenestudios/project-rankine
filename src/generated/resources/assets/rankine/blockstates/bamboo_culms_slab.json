@@ -7,7 +7,7 @@
       "model": "rankine:block/bamboo_culms_slab"
     },
     "type=double": {
-      "model": "rankine:block/bamboo_culms"
+      "model": "rankine:block/bamboo_culms1"
     }
   }
 }

@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_graywacke_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_graywacke"
+      "model": "rankine:block/polished_graywacke1"
     }
   }
 }

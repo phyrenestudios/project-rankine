@@ -9,21 +9,33 @@
     },
     {
       "type": "spotlight",
-      "item": "minecraft:clay",
-      "link_recipe": true,
+      "item": "minecraft:clay_ball",
       "text": "rankine.journal.cat_sediments.clays.clay"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:fire_clay",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_sediments.clays.fire_clay"
+      "type": "crafting",
+      "recipe": "minecraft:clay",
+      "recipe2": "rankine:clay_bricks"
     },
     {
       "type": "spotlight",
-      "item": "rankine:kaolin",
-      "link_recipe": true,
-      "text": "rankine.journal.cat_sediments.clays.kaolin"
+      "item": "rankine:fire_clay_ball",
+      "text": "rankine.journal.cat_sediments.clays.fire_clay"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:fire_clay",
+      "recipe2": "rankine:fire_clay_bricks"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:porcelain_clay_ball",
+      "text": "rankine.journal.cat_sediments.clays.porcelain_clay"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:porcelain_clay",
+      "recipe2": "rankine:porcelain_clay_bricks"
     }
   ]
 }

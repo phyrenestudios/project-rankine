@@ -1,12 +1,11 @@
 package com.cannolicatfish.rankine.blocks;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 
-public class SheetmetalBlock extends Block implements SimpleWaterloggedBlock {
+public class SheetmetalBlock extends Block {
     int alloyColor;
 
     public SheetmetalBlock(int color) {

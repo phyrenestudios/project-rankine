@@ -1,16 +1,16 @@
 {
   "variants": {
-    "mode=0": {
-      "model": "rankine:block/polished_chalk"
+    "style=1": {
+      "model": "rankine:block/polished_chalk1"
     },
-    "mode=1": {
-      "model": "rankine:block/polished_chalk_offset"
+    "style=2": {
+      "model": "rankine:block/polished_chalk2"
     },
-    "mode=2": {
-      "model": "rankine:block/polished_chalk_offset_ns"
+    "style=3": {
+      "model": "rankine:block/polished_chalk3"
     },
-    "mode=3": {
-      "model": "rankine:block/polished_chalk_offset_ew"
+    "style=4": {
+      "model": "rankine:block/polished_chalk4"
     }
   }
 }

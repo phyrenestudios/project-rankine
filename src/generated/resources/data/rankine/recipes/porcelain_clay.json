@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:porcelain_clay_ball"
+    }
+  },
+  "result": {
+    "item": "rankine:porcelain_clay"
+  }
+}

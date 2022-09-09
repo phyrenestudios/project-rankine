@@ -7,7 +7,7 @@
       "model": "rankine:block/arkose_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/arkose_bricks"
+      "model": "rankine:block/arkose_bricks1"
     }
   }
 }

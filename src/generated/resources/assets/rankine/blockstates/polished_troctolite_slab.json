@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_troctolite_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_troctolite"
+      "model": "rankine:block/polished_troctolite1"
     }
   }
 }

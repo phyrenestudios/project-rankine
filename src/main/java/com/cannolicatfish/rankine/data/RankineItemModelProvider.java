@@ -1,15 +1,16 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.items.alloys.AlloyCrowbarItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.item.Item;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -56,11 +57,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.CUT_SANDSTONES,
                 RankineLists.CHISELED_SANDSTONES,
                 RankineLists.INFESTED_STONES,
-                RankineLists.STONE_BRICKS,
-                RankineLists.VANILLA_BRICKS,
-                RankineLists.POLISHED_STONES,
-                RankineLists.BRICKS,
-                //RankineLists.GAS_TUBES,
                 RankineLists.ALLOY_PEDESTALS,
                 RankineLists.ALLOY_SHEETMETALS,
                 RankineLists.ALLOY_POLES,
@@ -69,7 +65,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.LEAF_LITTERS,
                 RankineLists.WOODS,
                 RankineLists.LOGS,
-                RankineLists.PLANKS,
                 RankineLists.STRIPPED_WOODS,
                 RankineLists.STRIPPED_LOGS,
                 RankineLists.WOODEN_FENCE_GATES,
@@ -86,7 +81,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
                 RankineLists.LEDS,
-                RankineLists.GLAZED_PORCELAIN_BLOCKS,
                 RankineLists.MINERAL_BLOCKS,
                 RankineLists.ELEMENT_BLOCKS,
                 RankineLists.STANDARD_BLOCKS,
@@ -94,7 +88,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.BALES,
                 RankineLists.ROTATION_BLOCKS,
                 RankineLists.LIGHTNING_GLASSES,
-                RankineLists.WOODEN_BOOKSHELVES,
                 RankineLists.ELECTROMAGNETS,
                 RankineLists.SHEETMETALS
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -111,6 +104,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.LIGHT_GRAVEL.get(),
                 RankineBlocks.DARK_GRAVEL.get(),
                 RankineBlocks.FIRE_CLAY.get(),
+                RankineBlocks.PORCELAIN_CLAY.get(),
                 RankineBlocks.KAOLIN.get(),
                 RankineBlocks.COB.get(),
                 RankineBlocks.STICK_BLOCK.get(),
@@ -193,6 +187,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.BITUMEN.get());
         basicItem(RankineItems.GWIHABAITE.get());
         basicItem(RankineItems.FIRE_CLAY_BALL.get());
+        basicItem(RankineItems.PORCELAIN_CLAY_BALL.get());
         basicItem(RankineItems.KAOLINITE.get());
         basicItem(RankineItems.BONE_CHAR.get());
         basicItem(RankineItems.COPPER_NUGGET.get());
@@ -358,6 +353,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Block BLK : Arrays.asList(
                 RankineBlocks.BONE_CHAR_BLOCK.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
+                RankineBlocks.HEATING_ELEMENT_1.get(),
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.PCF.get(),
@@ -399,6 +395,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
         }
 
          */
+        for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.VANILLA_BRICKS,RankineLists.STONE_BRICKS,RankineLists.BRICKS,RankineLists.POLISHED_STONES,RankineLists.PLANKS,RankineLists.WOODEN_BOOKSHELVES).flatMap(Collection::stream).collect(Collectors.toList())) {
+            buildingModeItem(BLK.asItem(), ((BuildingModeBlock) BLK).getMaxStyles());
+        }
         for (Block BLK : RankineLists.STONE_COBBLES) {
             withExistingParent(BLK.getRegistryName().getPath(), RankineBlockStateProvider.getBlockRSL(BLK.getRegistryName().getPath()+"1"));
         }
@@ -545,6 +544,15 @@ public class RankineItemModelProvider extends ItemModelProvider {
         return withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/" + BLK.getRegistryName().getPath()+"_inventory"));
     }
 
+
+    private void buildingModeItem(Item item, int maxModes) {
+        String Path = item.getRegistryName().getPath();
+        ItemModelBuilder thing = withExistingParent(Path, RankineBlockStateProvider.getBlockRSL(Path+"1"));
+
+        for (int i = 2; i <= maxModes; i++) {
+            thing.override().predicate(new ResourceLocation("rankine:building_mode"), (float) i).model(getExistingFile(RankineBlockStateProvider.getBlockRSL(Path+i))).end();
+        }
+    }
 
     private void spearItem(Item item) {
         String Path = item.getRegistryName().getPath();

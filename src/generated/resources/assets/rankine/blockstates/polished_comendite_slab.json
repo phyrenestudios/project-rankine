@@ -7,7 +7,7 @@
       "model": "rankine:block/polished_comendite_slab"
     },
     "type=double": {
-      "model": "rankine:block/polished_comendite"
+      "model": "rankine:block/polished_comendite1"
     }
   }
 }
