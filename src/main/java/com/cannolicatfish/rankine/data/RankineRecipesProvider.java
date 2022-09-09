@@ -14,6 +14,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -1529,7 +1530,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                     .patternLine("ss#")
                     .patternLine("  s")
                     .directAlloyKey('#', input)
-                    .key('s', RankineTags.Items.FIREPROOF_LOGS)
+                    .key('s', ItemTags.LOGS)
                     .key('f', Items.FLINT_AND_STEEL)
                     .setGroup("rankine:alloy_blunderbuss")
                     .addCriterion("has_alloy", InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
