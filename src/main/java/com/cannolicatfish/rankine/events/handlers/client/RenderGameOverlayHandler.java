@@ -28,27 +28,24 @@ public class RenderGameOverlayHandler {
             if (!stack.isEmpty()) {
                 int i = stack.getItem().getUseDuration(stack) - player.getUseItemRemainingTicks();
                 if (i < (10 + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.PREPARATION,stack))) {
-                    GL11.glPushMatrix();
-                    GL11.glEnable(GL11.GL_BLEND);
                     RenderSystem.disableDepthTest();
                     RenderSystem.depthMask(false);
+                    RenderSystem.enableBlend();
                     RenderSystem.defaultBlendFunc();
-                    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                    //RenderSystem.disableAlphaTest();
-                    Minecraft.getInstance().getTextureManager().bindForSetup(new ResourceLocation("rankine:textures/misc/parry_overlay.png"));
-                    Tesselator tessellator = Tesselator.getInstance();
-                    BufferBuilder bufferbuilder = tessellator.getBuilder();
+                    RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.05F);
+                    RenderSystem.setShaderTexture(0, new ResourceLocation("rankine:textures/misc/parry_overlay.png"));
+                    Tesselator tesselator = Tesselator.getInstance();
+                    BufferBuilder bufferbuilder = tesselator.getBuilder();
                     bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-                    bufferbuilder.vertex(0.0D, (double)event.getWindow().getGuiScaledHeight(), -90.0D).uv(0.0F, 1.0F).endVertex();
-                    bufferbuilder.vertex((double)event.getWindow().getGuiScaledWidth(), (double)event.getWindow().getGuiScaledHeight(), -90.0D).uv(1.0F, 1.0F).endVertex();
-                    bufferbuilder.vertex((double)event.getWindow().getGuiScaledWidth(), 0.0D, -90.0D).uv(1.0F, 0.0F).endVertex();
+                    bufferbuilder.vertex(0.0D, (double)event.getWindow().getScreenHeight(), -90.0D).uv(0.0F, 1.0F).endVertex();
+                    bufferbuilder.vertex((double)event.getWindow().getScreenWidth(), (double)event.getWindow().getScreenHeight(), -90.0D).uv(1.0F, 1.0F).endVertex();
+                    bufferbuilder.vertex((double)event.getWindow().getScreenWidth(), 0.0D, -90.0D).uv(1.0F, 0.0F).endVertex();
                     bufferbuilder.vertex(0.0D, 0.0D, -90.0D).uv(0.0F, 0.0F).endVertex();
-                    tessellator.end();
+                    tesselator.end();
                     RenderSystem.depthMask(true);
                     RenderSystem.enableDepthTest();
-                    //RenderSystem.enableAlphaTest();
                     RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                    GL11.glPopMatrix();
                 }
             }
         }

@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.entities.EnderballEntity;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineTags;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -119,7 +120,9 @@ public class BlunderbussItem extends ProjectileWeaponItem implements Vanishable 
                             playerentity.getInventory().removeItem(itemstack);
                         }
                     }
-
+                    if (playerentity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE) < 1 && !playerentity.isCreative()) {
+                        playerentity.knockback(1 - playerentity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE),playerentity.getLookAngle().x(),playerentity.getLookAngle().z());
+                    }
                     playerentity.awardStat(Stats.ITEM_USED.get(this));
                 }
             }
