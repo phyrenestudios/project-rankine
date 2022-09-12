@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:mossy_marlstone_bricks"
+  },
+  "result": "rankine:mossy_marlstone_bricks_stairs",
+  "count": 1
+}

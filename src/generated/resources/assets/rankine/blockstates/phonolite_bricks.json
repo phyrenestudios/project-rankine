@@ -5,12 +5,6 @@
     },
     "style=2": {
       "model": "rankine:block/phonolite_bricks2"
-    },
-    "style=3": {
-      "model": "rankine:block/phonolite_bricks3"
-    },
-    "style=4": {
-      "model": "rankine:block/phonolite_bricks4"
     }
   }
 }

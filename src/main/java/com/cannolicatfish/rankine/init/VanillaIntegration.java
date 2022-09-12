@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.blocks.RankineStone;
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -25,11 +26,72 @@ public class VanillaIntegration {
     public static Map<Block, Block> pathBlocks_map = new HashMap<Block, Block>();
     public static Map<Block, TilledSoilTypes> hoeables_map = new HashMap<Block, TilledSoilTypes>();
     public static final Map<Item, ForgeConfigSpec.BooleanValue> DISABLED_ITEMS = new HashMap<>();
+    public static final Map<Block, RankineStone> RankineStonesMap = new HashMap<>();
 
     public static final Map<BlockState,BlockState> vegetationMap = new HashMap<>();
 
     public static void init() {
-
+        RankineStonesMap.put(RankineBlocks.PEGMATITE.getStone(), RankineBlocks.PEGMATITE);
+        RankineStonesMap.put(RankineBlocks.GRAY_GRANITE.getStone(), RankineBlocks.GRAY_GRANITE);
+        RankineStonesMap.put(RankineBlocks.RHYOLITE.getStone(), RankineBlocks.RHYOLITE);
+        RankineStonesMap.put(RankineBlocks.COMENDITE.getStone(), RankineBlocks.COMENDITE);
+        RankineStonesMap.put(RankineBlocks.EPISYENITE.getStone(), RankineBlocks.EPISYENITE);
+        RankineStonesMap.put(RankineBlocks.NEPHELINE_SYENITE.getStone(), RankineBlocks.NEPHELINE_SYENITE);
+        RankineStonesMap.put(RankineBlocks.PHONOLITE.getStone(), RankineBlocks.PHONOLITE);
+        RankineStonesMap.put(RankineBlocks.GRANODIORITE.getStone(), RankineBlocks.GRANODIORITE);
+        RankineStonesMap.put(RankineBlocks.RED_PORPHYRY.getStone(), RankineBlocks.RED_PORPHYRY);
+        RankineStonesMap.put(RankineBlocks.PURPLE_PORPHYRY.getStone(), RankineBlocks.PURPLE_PORPHYRY);
+        RankineStonesMap.put(RankineBlocks.BLACK_DACITE.getStone(), RankineBlocks.BLACK_DACITE);
+        RankineStonesMap.put(RankineBlocks.RED_DACITE.getStone(), RankineBlocks.RED_DACITE);
+        RankineStonesMap.put(RankineBlocks.HORNBLENDE_ANDESITE.getStone(), RankineBlocks.HORNBLENDE_ANDESITE);
+        RankineStonesMap.put(RankineBlocks.SHONKINITE.getStone(), RankineBlocks.SHONKINITE);
+        RankineStonesMap.put(RankineBlocks.ANORTHOSITE.getStone(), RankineBlocks.ANORTHOSITE);
+        RankineStonesMap.put(RankineBlocks.NORITE.getStone(), RankineBlocks.NORITE);
+        RankineStonesMap.put(RankineBlocks.TROCTOLITE.getStone(), RankineBlocks.TROCTOLITE);
+        RankineStonesMap.put(RankineBlocks.GABBRO.getStone(), RankineBlocks.GABBRO);
+        RankineStonesMap.put(RankineBlocks.DIABASE.getStone(), RankineBlocks.DIABASE);
+        RankineStonesMap.put(RankineBlocks.THOLEIITIC_BASALT.getStone(), RankineBlocks.THOLEIITIC_BASALT);
+        RankineStonesMap.put(RankineBlocks.DUNITE.getStone(), RankineBlocks.DUNITE);
+        RankineStonesMap.put(RankineBlocks.HARZBURGITE.getStone(), RankineBlocks.HARZBURGITE);
+        RankineStonesMap.put(RankineBlocks.LHERZOLITE.getStone(), RankineBlocks.LHERZOLITE);
+        RankineStonesMap.put(RankineBlocks.WEHRLITE.getStone(), RankineBlocks.WEHRLITE);
+        RankineStonesMap.put(RankineBlocks.PYROXENITE.getStone(), RankineBlocks.PYROXENITE);
+        RankineStonesMap.put(RankineBlocks.KOMATIITE.getStone(), RankineBlocks.KOMATIITE);
+        RankineStonesMap.put(RankineBlocks.KIMBERLITE.getStone(), RankineBlocks.KIMBERLITE);
+        RankineStonesMap.put(RankineBlocks.SOMMANITE.getStone(), RankineBlocks.SOMMANITE);
+        RankineStonesMap.put(RankineBlocks.RINGWOODINE.getStone(), RankineBlocks.RINGWOODINE);
+        RankineStonesMap.put(RankineBlocks.WADSLEYONE.getStone(), RankineBlocks.WADSLEYONE);
+        RankineStonesMap.put(RankineBlocks.BRIDGMANHAM.getStone(), RankineBlocks.BRIDGMANHAM);
+        RankineStonesMap.put(RankineBlocks.POST_PEROVSKITE.getStone(), RankineBlocks.POST_PEROVSKITE);
+        RankineStonesMap.put(RankineBlocks.BLACK_MARBLE.getStone(), RankineBlocks.BLACK_MARBLE);
+        RankineStonesMap.put(RankineBlocks.GRAY_MARBLE.getStone(), RankineBlocks.GRAY_MARBLE);
+        RankineStonesMap.put(RankineBlocks.WHITE_MARBLE.getStone(), RankineBlocks.WHITE_MARBLE);
+        RankineStonesMap.put(RankineBlocks.ROSE_MARBLE.getStone(), RankineBlocks.ROSE_MARBLE);
+        RankineStonesMap.put(RankineBlocks.SLATE.getStone(), RankineBlocks.SLATE);
+        RankineStonesMap.put(RankineBlocks.PHYLLITE.getStone(), RankineBlocks.PHYLLITE);
+        RankineStonesMap.put(RankineBlocks.MICA_SCHIST.getStone(), RankineBlocks.MICA_SCHIST);
+        RankineStonesMap.put(RankineBlocks.BLUESCHIST.getStone(), RankineBlocks.BLUESCHIST);
+        RankineStonesMap.put(RankineBlocks.GREENSCHIST.getStone(), RankineBlocks.GREENSCHIST);
+        RankineStonesMap.put(RankineBlocks.WHITESCHIST.getStone(), RankineBlocks.WHITESCHIST);
+        RankineStonesMap.put(RankineBlocks.GNEISS.getStone(), RankineBlocks.GNEISS);
+        RankineStonesMap.put(RankineBlocks.QUARTZITE.getStone(), RankineBlocks.QUARTZITE);
+        RankineStonesMap.put(RankineBlocks.SERPENTINITE.getStone(), RankineBlocks.SERPENTINITE);
+        RankineStonesMap.put(RankineBlocks.MARIPOSITE.getStone(), RankineBlocks.MARIPOSITE);
+        RankineStonesMap.put(RankineBlocks.ECLOGITE.getStone(), RankineBlocks.ECLOGITE);
+        RankineStonesMap.put(RankineBlocks.LIMESTONE.getStone(), RankineBlocks.LIMESTONE);
+        RankineStonesMap.put(RankineBlocks.DOLOSTONE.getStone(), RankineBlocks.DOLOSTONE);
+        RankineStonesMap.put(RankineBlocks.CHALK.getStone(), RankineBlocks.CHALK);
+        RankineStonesMap.put(RankineBlocks.MARLSTONE.getStone(), RankineBlocks.MARLSTONE);
+        RankineStonesMap.put(RankineBlocks.SOAPSTONE.getStone(), RankineBlocks.SOAPSTONE);
+        RankineStonesMap.put(RankineBlocks.SHALE.getStone(), RankineBlocks.SHALE);
+        RankineStonesMap.put(RankineBlocks.MUDSTONE.getStone(), RankineBlocks.MUDSTONE);
+        RankineStonesMap.put(RankineBlocks.SILTSTONE.getStone(), RankineBlocks.SILTSTONE);
+        RankineStonesMap.put(RankineBlocks.ITACOLUMITE.getStone(), RankineBlocks.ITACOLUMITE);
+        RankineStonesMap.put(RankineBlocks.ARKOSE.getStone(), RankineBlocks.ARKOSE);
+        RankineStonesMap.put(RankineBlocks.GRAYWACKE.getStone(), RankineBlocks.GRAYWACKE);
+        RankineStonesMap.put(RankineBlocks.HONEYSTONE.getStone(), RankineBlocks.HONEYSTONE);
+        
+        
         vegetationMap.put(RankineBlocks.SHORT_GRASS.get().defaultBlockState(), Blocks.GRASS.defaultBlockState());
         vegetationMap.put(Blocks.GRASS.defaultBlockState(), Blocks.TALL_GRASS.defaultBlockState());
 

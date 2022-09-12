@@ -52,11 +52,34 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
+        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
+            simpleBlock(Stone.getStone());
+            fancyPolishedBlock(Stone.getPolished());
+            fancyStoneBricksBlock(Stone.getBricks());
+            fancyMossyStoneBricksBlock(Stone.getMossyBricks());
+            slabBlock(Stone.getSlab(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
+            slabBlock(Stone.getPolishedSlab(), new ResourceLocation("rankine", "block/polished_"+Stone.getBaseName()+"1"), new ResourceLocation("rankine", "block/polished_"+Stone.getBaseName()));
+            slabBlock(Stone.getBricksSlab(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks1"), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            slabBlock(Stone.getMossyBricksSlab(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks1"), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            stairsBlock(Stone.getStairs(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
+            stairsBlock(Stone.getPolishedStairs(), new ResourceLocation("rankine", "block/polished_"+Stone.getBaseName()));
+            stairsBlock(Stone.getBricksStairs(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            stairsBlock(Stone.getMossyBricksStairs(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            wallBlock(Stone.getWall(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
+            wallBlock(Stone.getPolishedWall(), new ResourceLocation("rankine", "block/polished_"+Stone.getBaseName()));
+            wallBlock(Stone.getBricksWall(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            wallBlock(Stone.getMossyBricksWall(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            pressurePlateBlock(Stone.getPressurePlate(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
+            pressurePlateBlock(Stone.getBricksPressurePlate(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            buttonBlock(Stone.getButton(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
+            cobble(Stone.getCobble());
+            columnBlock(Stone.getColumn(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
+            simpleBlock(Stone.getInfested(),models().withExistingParent(Stone.getInfested().getRegistryName().getPath(), new ResourceLocation("rankine", "block/"+Stone.getBaseName())));
+        }
+
         for (Block blk : Stream.of(
-                RankineLists.STONES,
                 RankineLists.DRIPSTONES,
                 RankineLists.ALLOY_BLOCKS,
-                RankineLists.ELEMENT_BLOCKS,
                 RankineLists.SMOOTH_SANDSTONES,
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
@@ -95,11 +118,15 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             cubeTopBottomBLock(blk);
         }
 
-        for (Block blk : RankineLists.POLISHED_STONES) {
-            fancyPolishedBlock(blk);
-        }
-        for (Block blk : Stream.of(RankineLists.STONE_BRICKS,RankineLists.VANILLA_BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             fancyStoneBricksBlock(blk);
+        }
+        for (Block blk : RankineLists.ELEMENT_BLOCKS) {
+            if (blk == RankineBlocks.HELIUM_BLOCK.get() || blk == RankineBlocks.NEON_BLOCK.get() || blk == RankineBlocks.ARGON_BLOCK.get() || blk == RankineBlocks.KRYPTON_BLOCK.get() || blk == RankineBlocks.RADON_BLOCK.get() || blk == RankineBlocks.XENON_BLOCK.get() || blk == RankineBlocks.OGANESSON_BLOCK.get()) {
+                simpleBlock(blk, models().withExistingParent(blk.getRegistryName().getPath(), modLoc("template_solid_gas")).texture("all", getBlockRSL(blk.getRegistryName().getPath())));
+            } else {
+                simpleBlock(blk);
+            }
         }
         for (Block blk : RankineLists.BRICKS) {
             fancyBricksBlock(blk);
@@ -112,9 +139,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
         for (Block blk : RankineLists.LEAVES) {
             leavesBlock(blk);
-        }
-        for (Block INFESTED_STONE : RankineLists.INFESTED_STONES) {
-            simpleBlock(INFESTED_STONE,models().withExistingParent(INFESTED_STONE.getRegistryName().getPath(), getBlockRSL(INFESTED_STONE.getRegistryName().getPath().replace("infested_",""))));
         }
         for (Block SANDSTONE : RankineLists.SANDSTONES) {
             String pathName = SANDSTONE.getRegistryName().getPath();
@@ -150,6 +174,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             rotationBlock(blk);
         }
 
+        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
+            String name = blk.getRegistryName().getPath();
+            String baseStone = Arrays.asList(name.split("_pressure_plate")).get(0);
+            pressurePlateBlock((RankineStonePressurePlate) blk, new ResourceLocation("rankine", "block/" + baseStone));
+        }
 
         sixSideCrossBlock(RankineBlocks.LOCUST_SPINE.get());
         sixSideCrossBlock(RankineBlocks.GWIHABAITE_CRYSTAL.get());
@@ -272,23 +301,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
 
          */
-
-
-        for (Block BLOCK : RankineLists.STONE_COLUMNS) {
-            String NAME = BLOCK.getRegistryName().getPath();
-            columnBlock(BLOCK,new ResourceLocation("rankine","block/"+NAME.replace("_column","")));
-        }
-        /*
-        columnBlock(RankineBlocks.CALCITE_COLUMN.get(),new ResourceLocation("rankine","block/calcite_block"));
-        columnBlock(RankineBlocks.DOLOMITE_COLUMN.get(),new ResourceLocation("rankine","block/dolomite_block"));
-        columnBlock(RankineBlocks.SALT_COLUMN.get(),new ResourceLocation("rankine","block/sodium_chloride_block"));
-        columnBlock(RankineBlocks.PINK_SALT_COLUMN.get(),new ResourceLocation("rankine","block/pink_salt_block"));
-        columnBlock(RankineBlocks.OPAL_COLUMN.get(),new ResourceLocation("rankine","block/opal_column"));
-        columnBlock(RankineBlocks.QUARTZ_COLUMN.get(),new ResourceLocation("rankine","block/quartz_column"));
-
-
-         */
-
         for (Block BLK : RankineLists.POINTED_DRIPSTONES) {
             createPointedDripstone(BLK);
         }
@@ -487,44 +499,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             });
         }
 
-        //STONES
-        for (Block blk : Stream.of(RankineLists.STONE_SLABS, RankineLists.POLISHED_STONE_SLABS, RankineLists.STONE_BRICKS_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            String baseStone = Arrays.asList(name.split("_slab")).get(0);
-            if (name.contains("polished") || name.contains("bricks")) {
-                slabBlock((RankineSlabBlock) blk, new ResourceLocation("rankine", "block/" + baseStone + "1"), new ResourceLocation("rankine", "block/" + baseStone));
-            } else {
-                slabBlock((RankineSlabBlock) blk, new ResourceLocation("rankine", "block/" + baseStone), new ResourceLocation("rankine", "block/" + baseStone));
-            }
-        }
-        for (Block blk : Stream.of(RankineLists.STONE_STAIRS, RankineLists.POLISHED_STONE_STAIRS, RankineLists.STONE_BRICKS_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            String baseStone = Arrays.asList(name.split("_stairs")).get(0);
-         //   if (name.contains("polished") || name.contains("bricks")) {
-         //       stairsBlock((RankineStairsBlock) blk, baseStone, new ResourceLocation("rankine", "block/" + baseStone + "1"));
-         // //  } else {
-                stairsBlock((RankineStairsBlock) blk, baseStone, new ResourceLocation("rankine", "block/" + baseStone));
-          //  }
-        }
-        for (Block blk : Stream.of(RankineLists.STONE_WALLS, RankineLists.POLISHED_STONE_WALLS, RankineLists.STONE_BRICKS_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            String baseStone = Arrays.asList(name.split("_wall")).get(0);
-          //  if (name.contains("polished") || name.contains("bricks")) {
-          //      wallBlock((RankineWallBlock) blk, new ResourceLocation("rankine", "block/" + baseStone + "1"));
-          //  } else {
-                wallBlock((RankineWallBlock) blk, new ResourceLocation("rankine", "block/" + baseStone));
-          //  }
-        }
-        for (Block blk : Stream.of(RankineLists.STONE_PRESSURE_PLATES, RankineLists.STONE_BRICKS_PRESSURE_PLATES, RankineLists.VANILLA_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            String baseStone = Arrays.asList(name.split("_pressure_plate")).get(0);
-            pressurePlateBlock((RankineStonePressurePlate) blk, new ResourceLocation("rankine", "block/" + baseStone));
-        }
-        for (Block blk : Stream.of(RankineLists.STONE_BUTTONS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            String baseStone = Arrays.asList(name.split("_button")).get(0);
-            buttonBlock((RankineStoneButton) blk, new ResourceLocation("rankine", "block/" + baseStone));
-        }
 
 
         mixingBarrelBlock(RankineBlocks.MIXING_BARREL.get());
@@ -600,7 +574,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         layerBlock(RankineBlocks.WHITE_CLOVER.get());
         layerBlock(RankineBlocks.YELLOW_CLOVER.get());
 
-        steppingStoneBlock(RankineBlocks.SLATE_STEPPING_STONES.get(), blockTexture(RankineBlocks.SLATE.get()));
+        steppingStoneBlock(RankineBlocks.SLATE_STEPPING_STONES.get(), blockTexture(RankineBlocks.SLATE.getStone()));
 
 
 
@@ -613,9 +587,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         for (Block blk : RankineLists.WALL_MUSHROOMS) {
             wallMushroom(blk);
-        }
-        for (Block blk : RankineLists.STONE_COBBLES) {
-            cobble(blk);
         }
         for (Block blk : RankineLists.ASPHALT_BLOCKS) {
             if (blk.equals(RankineBlocks.ASPHALT.get())) {
@@ -1518,24 +1489,30 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .modelForState().modelFile(models().withExistingParent(name+4, modLoc("block/polished_stone_offset_ew")).texture("all",blockTexture(BLK))).addModel();
     }
 
-
     public void fancyStoneBricksBlock(Block block) {
         String name = block.getRegistryName().getPath();
         ResourceLocation large = modLoc("block/"+name);
         IntegerProperty STYLE = ((BuildingModeBlock) block).getProperty();
         getVariantBuilder(block)
                 .partialState().with(STYLE, 1)
-                    .modelForState().modelFile(models().withExistingParent(name+1, mcLoc("block/cube_all")).texture("all", large)).addModel()
+                .modelForState().modelFile(models().withExistingParent(name+1, mcLoc("block/cube_all")).texture("all", large)).addModel()
                 .partialState().with(STYLE, 2)
-                    .modelForState().modelFile(models().withExistingParent(name+2, modLoc("block/template_rotation")).texture("all", large)).addModel()
-                .partialState().with(STYLE, 3)
-                    .modelForState().modelFile(models().withExistingParent(name+3, modLoc("block/template_cube_all_overlay")).texture("all", large).texture("overlay", getBlockRSL("stone_bricks_mossy_overlay"))).addModel()
-                .partialState().with(STYLE, 4)
-                    .modelForState().modelFile(models().withExistingParent(name+4, modLoc("block/template_cube_all_overlay")).texture("all", large).texture("overlay", getBlockRSL("stone_bricks_snowy_overlay"))).addModel();
+                .modelForState().modelFile(models().withExistingParent(name+2, modLoc("block/template_rotation")).texture("all", large)).addModel();
+    }
+    public void fancyMossyStoneBricksBlock(Block block) {
+        String name = block.getRegistryName().getPath();
+        ResourceLocation large = modLoc("block/"+name.replace("mossy_",""));
+        IntegerProperty STYLE = ((BuildingModeBlock) block).getProperty();
+        getVariantBuilder(block)
+                .partialState().with(STYLE, 1)
+                    .modelForState().modelFile(models().withExistingParent(name+1, modLoc("block/template_cube_all_overlay")).texture("all", large).texture("overlay", getBlockRSL("stone_bricks_mossy_overlay"))).addModel()
+                .partialState().with(STYLE, 2)
+                    .modelForState().modelFile(models().withExistingParent(name+2, modLoc("block/template_cube_all_rotated_overlay")).texture("all", large).texture("overlay", getBlockRSL("stone_bricks_mossy_overlay"))).addModel();
     }
     public void fancyBricksBlock(Block block) {
         String name = block.getRegistryName().getPath();
         ResourceLocation normal = modLoc("block/"+name);
+        ResourceLocation alt = modLoc("block/"+name+"_alt");
         IntegerProperty STYLE = ((BuildingModeBlock) block).getProperty();
         getVariantBuilder(block)
                 .partialState().with(STYLE, 1)
@@ -1543,9 +1520,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .partialState().with(STYLE, 2)
                     .modelForState().modelFile(models().withExistingParent(name+2, modLoc("block/template_rotation")).texture("all", normal)).addModel()
                 .partialState().with(STYLE, 3)
-                    .modelForState().modelFile(models().withExistingParent(name+3, mcLoc("block/cube_all")).texture("all", normal)).addModel()
+                    .modelForState().modelFile(models().withExistingParent(name+3, mcLoc("block/cube_all")).texture("all", alt)).addModel()
                 .partialState().with(STYLE, 4)
-                    .modelForState().modelFile(models().withExistingParent(name+4, mcLoc("block/cube_all")).texture("all", normal)).addModel();
+                    .modelForState().modelFile(models().withExistingParent(name+4, modLoc("block/template_rotation")).texture("all", alt)).addModel();
     }
     public void fancyPlanksBlock(Block block) {
         String name = block.getRegistryName().getPath();

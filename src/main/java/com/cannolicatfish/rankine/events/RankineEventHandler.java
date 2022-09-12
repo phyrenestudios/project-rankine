@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.capabilities.ChunkRetrogenProvider;
 import com.cannolicatfish.rankine.commands.BlockWallCommand;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.commands.GiveTagCommand;
+import com.cannolicatfish.rankine.commands.PeriodicTableCommand;
 import com.cannolicatfish.rankine.events.handlers.common.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.chunk.LevelChunk;
@@ -39,6 +40,7 @@ public class RankineEventHandler {
         CreateAlloyCommand.register(event.getDispatcher());
         GiveTagCommand.register(event.getDispatcher());
         BlockWallCommand.register(event.getDispatcher());
+        PeriodicTableCommand.register(event.getDispatcher());
     }
     @SubscribeEvent
     public static void playerTick(TickEvent.PlayerTickEvent event) {

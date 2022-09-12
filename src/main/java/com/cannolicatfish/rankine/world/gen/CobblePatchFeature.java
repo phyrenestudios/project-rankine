@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.world.gen;
 
-import com.cannolicatfish.rankine.init.RankineLists;
+import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -38,10 +38,10 @@ public class CobblePatchFeature extends Feature<RandomPatchConfiguration> {
 
         if (rockList.size() < 1) return false;
         Block stoneBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(rockList.get(random.nextInt(rockList.size()))));
-        if (!RankineLists.STONES.contains(stoneBlock)) {
+        if (!VanillaIntegration.RankineStonesMap.containsKey(stoneBlock)) {
             return false;
         }
-        BlockState blockstate = RankineLists.STONE_COBBLES.get(RankineLists.STONES.indexOf(stoneBlock)).defaultBlockState();
+        BlockState blockstate = VanillaIntegration.RankineStonesMap.get(stoneBlock).getCobble().defaultBlockState();
 
 
         int i = 0;

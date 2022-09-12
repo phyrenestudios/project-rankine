@@ -139,7 +139,6 @@ public class RankineRemappings {
         blockRemappings.put(new ResourceLocation("rankine:laser_pylon"), RankineBlocks.LONSDALEITE_DIAMOND_BLOCK.get());
         blockRemappings.put(new ResourceLocation("rankine:quarry_barrier"), Blocks.OBSIDIAN);
 
-        blockRemappings.put(new ResourceLocation("rankine:limestone_nodule"), RankineBlocks.LIMESTONE.get());
 
         blockRemappings.put(new ResourceLocation("rankine:liquid_mercury_block"), RankineBlocks.LIQUID_MERCURY.get());
 
@@ -149,13 +148,6 @@ public class RankineRemappings {
 
         blockRemappings.put(new ResourceLocation("rankine:salt_block"), RankineBlocks.SODIUM_CHLORIDE_BLOCK.get());
 
-        blockRemappings.put(new ResourceLocation("rankine:checkered_dacite"),RankineBlocks.BLACK_DACITE.get());
-        blockRemappings.put(new ResourceLocation("rankine:checkered_dacite_slab"), RankineBlocks.BLACK_DACITE_SLAB.get());
-        blockRemappings.put(new ResourceLocation("rankine:checkered_dacite_stairs"), RankineBlocks.BLACK_DACITE_STAIRS.get());
-
-        blockRemappings.put(new ResourceLocation("rankine:checkered_porphyry"),RankineBlocks.RED_PORPHYRY.get());
-        blockRemappings.put(new ResourceLocation("rankine:checkered_porphyry_slab"), RankineBlocks.RED_PORPHYRY_SLAB.get());
-        blockRemappings.put(new ResourceLocation("rankine:checkered_porphyry_stairs"), RankineBlocks.RED_PORPHYRY_STAIRS.get());
 
         blockRemappings.put(new ResourceLocation("rankine:polished_breccia"),RankineBlocks.BRECCIA.get());
         blockRemappings.put(new ResourceLocation("rankine:breccia_bricks"),RankineBlocks.BRECCIA.get());
@@ -192,7 +184,7 @@ public class RankineRemappings {
         blockRemappings.put(new ResourceLocation("rankine:scoria_pressure_plate"),Blocks.STONE_PRESSURE_PLATE);
         blockRemappings.put(new ResourceLocation("rankine:scoria_bricks_pressure_plate"),Blocks.STONE_PRESSURE_PLATE);
         blockRemappings.put(new ResourceLocation("rankine:scoria_button"),Blocks.STONE_BUTTON);
-
+/*
         blockRemappings.put(new ResourceLocation("rankine:tufa_limestone"),RankineBlocks.LIMESTONE.get());
         blockRemappings.put(new ResourceLocation("rankine:polished_tufa_limestone"),RankineBlocks.POLISHED_LIMESTONE.get());
         blockRemappings.put(new ResourceLocation("rankine:tufa_limestone_bricks"),RankineBlocks.LIMESTONE_BRICKS.get());
@@ -370,7 +362,7 @@ public class RankineRemappings {
         blockRemappings.put(new ResourceLocation("rankine:peridodite_pressure_plate"),RankineBlocks.DUNITE_PRESSURE_PLATE.get());
         blockRemappings.put(new ResourceLocation("rankine:peridodite_bricks_pressure_plate"),RankineBlocks.DUNITE_BRICKS_PRESSURE_PLATE.get());
         blockRemappings.put(new ResourceLocation("rankine:peridodite_button"),RankineBlocks.DUNITE_BUTTON.get());
-
+*/
         return blockRemappings;
     }
 }

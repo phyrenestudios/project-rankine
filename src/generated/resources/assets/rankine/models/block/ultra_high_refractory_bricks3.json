@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "rankine:block/ultra_high_refractory_bricks"
+    "all": "rankine:block/ultra_high_refractory_bricks_alt"
   }
 }

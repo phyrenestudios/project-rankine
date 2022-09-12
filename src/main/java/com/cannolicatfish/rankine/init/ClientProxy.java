@@ -1,7 +1,9 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.RankineStone;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
+import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceScreen;
@@ -25,6 +27,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -59,8 +62,14 @@ public class ClientProxy implements IProxy {
             }
         }
 
-        for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.STONE_BRICKS,RankineLists.BRICKS,RankineLists.POLISHED_STONES,RankineLists.PLANKS,RankineLists.WOODEN_BOOKSHELVES).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.BRICKS,RankineLists.PLANKS,RankineLists.WOODEN_BOOKSHELVES).flatMap(Collection::stream).collect(Collectors.toList())) {
             ItemProperties.register(BLK.asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) BLK.asItem()).getBuildingMode(stack) : 1.0F);
+        }
+
+        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
+            ItemProperties.register(Stone.getPolished().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getPolished().asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(Stone.getBricks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getBricks().asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(Stone.getMossyBricks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getMossyBricks().asItem()).getBuildingMode(stack) : 1.0F);
         }
 
         ItemProperties.register(RankineItems.SHULKER_GAS_VACUUM.get(),
@@ -94,6 +103,15 @@ public class ClientProxy implements IProxy {
         MenuScreens.register(RankineBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
         MenuScreens.register(RankineBlocks.FUSION_FURNACE_CONTAINER, FusionFurnaceScreen::new);
 
+        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
+            List<Block> blockList = new ArrayList<>();
+            for (Block blk : Stone.getStoneBlocks()) {
+                if (blk instanceof RankineStoneBricksBlock) {
+                    blockList.add(blk);
+                }
+            }
+            addCutout(blockList);
+        }
         addCutout(RankineLists.WOODEN_DOORS);
         addCutout(RankineLists.METAL_DOORS);
         addCutout(RankineLists.WOODEN_TRAPDOORS);
@@ -106,7 +124,6 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.LEAVES);
         addCutout(RankineLists.LEAF_LITTERS);
         addCutout(RankineLists.SAPLINGS);
-        addCutout(RankineLists.STONE_BRICKS);
         addCutout(RankineLists.VANILLA_BRICKS);
         addCutout(RankineLists.NATIVE_ORES);
         addCutout(RankineLists.CRUSHING_ORES);

@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "rankine:block/template_rotation",
   "textures": {
-    "all": "rankine:block/clay_bricks"
+    "all": "rankine:block/clay_bricks_alt"
   }
 }

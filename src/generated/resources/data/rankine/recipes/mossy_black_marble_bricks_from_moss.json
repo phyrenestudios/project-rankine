@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "mossy_bricks_moss",
+  "ingredients": [
+    {
+      "item": "rankine:black_marble"
+    },
+    {
+      "item": "minecraft:moss_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:mossy_black_marble_bricks"
+  }
+}

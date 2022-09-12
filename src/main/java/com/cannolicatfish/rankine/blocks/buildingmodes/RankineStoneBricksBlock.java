@@ -8,7 +8,7 @@ public class RankineStoneBricksBlock extends BuildingModeBlock {
 
     @Override
     public int getMaxStyles() {
-        return 4;
+        return 2;
     }
 
 }

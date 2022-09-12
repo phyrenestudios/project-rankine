@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/mossy_eclogite_bricks_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/mossy_eclogite_bricks_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/eclogite_bricks1"
+    }
+  }
+}

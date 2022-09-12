@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:mossy_dunite_bricks_stairs"
+    },
+    {
+      "item": "rankine:mossy_dunite_bricks_stairs"
+    },
+    {
+      "item": "rankine:mossy_dunite_bricks_stairs"
+    },
+    {
+      "item": "rankine:mossy_dunite_bricks_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:mossy_dunite_bricks",
+    "count": 6
+  }
+}

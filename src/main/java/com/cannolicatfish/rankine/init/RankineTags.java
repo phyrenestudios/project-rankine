@@ -139,15 +139,6 @@ public final class RankineTags {
         public static final TagKey<Block> BRICKS_WALL = forgeBlock("bricks_walls");
 
         public static final TagKey<Block> POLISHED_STONE = forgeBlock("polished_stone");
-        public static final TagKey<Block> STONE_SLAB = forgeBlock("stone_slabs");
-        public static final TagKey<Block> POLISHED_STONE_SLAB = forgeBlock("polished_stone_slabs");
-        public static final TagKey<Block> STONE_BRICKS_SLAB = forgeBlock("stone_bricks_slabs");
-        public static final TagKey<Block> STONE_STAIRS = forgeBlock("stone_stairs");
-        public static final TagKey<Block> POLISHED_STONE_STAIRS = forgeBlock("polished_stone_stairs");
-        public static final TagKey<Block> STONE_BRICKS_STAIRS = forgeBlock("stone_bricks_stairs");
-        public static final TagKey<Block> STONE_WALL = forgeBlock("stone_walls");
-        public static final TagKey<Block> POLISHED_STONE_WALL = forgeBlock("polished_stone_walls");
-        public static final TagKey<Block> STONE_BRICKS_WALL = forgeBlock("stone_bricks_walls");
 
         public static final TagKey<Block> STORAGE_BLOCKS_COKE = forgeBlock("storage_blocks/coal_coke");
         public static final TagKey<Block> STORAGE_BLOCKS_GRAPHITE = forgeBlock("storage_blocks/graphite");
@@ -1143,15 +1134,6 @@ public final class RankineTags {
         public static final TagKey<Item> BRICKS_WALLS = forgeItem("bricks_walls");
 
         public static final TagKey<Item> POLISHED_STONE = forgeItem("polished_stone");
-        public static final TagKey<Item> STONE_SLAB = forgeItem("stone_slabs");
-        public static final TagKey<Item> POLISHED_STONE_SLAB = forgeItem("polished_stone_slabs");
-        public static final TagKey<Item> STONE_BRICKS_SLAB = forgeItem("stone_bricks_slabs");
-        public static final TagKey<Item> STONE_STAIRS = forgeItem("stone_stairs");
-        public static final TagKey<Item> POLISHED_STONE_STAIRS = forgeItem("polished_stone_stairs");
-        public static final TagKey<Item> STONE_BRICKS_STAIRS = forgeItem("stone_bricks_stairs");
-        public static final TagKey<Item> STONE_WALL = forgeItem("stone_walls");
-        public static final TagKey<Item> POLISHED_STONE_WALL = forgeItem("polished_stone_walls");
-        public static final TagKey<Item> STONE_BRICKS_WALL = forgeItem("stone_bricks_walls");
         public static final TagKey<Item> STONE_PRESSURE_PLATES = forgeItem("stone_pressure_plates");
 
 
