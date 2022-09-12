@@ -1,9 +1,7 @@
 package com.cannolicatfish.rankine.commands;
 
-import com.cannolicatfish.rankine.init.RankineLists;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
@@ -21,6 +19,7 @@ public class BlockWallCommand {
 
     private static int blockWall(CommandSourceStack source, BlockPos pos) throws CommandSyntaxException {
         ServerLevel serverworld = source.getLevel();
+        /*
         for (Block BLK : RankineLists.STONES) {
             int i = RankineLists.STONES.indexOf(BLK);
             serverworld.setBlockAndUpdate(pos.north(2*i),BLK.defaultBlockState());
@@ -63,6 +62,8 @@ public class BlockWallCommand {
             serverworld.setBlockAndUpdate(pos.above(11).north(2*i),BLK.defaultBlockState());
             serverworld.setBlockAndUpdate(pos.above(11).north(2*i+1),BLK.defaultBlockState());
         }
+
+         */
 
         return 1;
     }

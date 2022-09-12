@@ -11,7 +11,7 @@ public class WandererTradesHandler {
     public static void addWandererTrades(WandererTradesEvent event) {
         if (Config.GENERAL.VILLAGER_TRADES.get()) {
             event.getGenericTrades().add(new BasicItemListing(1,new ItemStack(RankineItems.PINEAPPLE.get(), 1),4,1,0.5f));
-            event.getGenericTrades().add(new BasicItemListing(1,new ItemStack(RankineBlocks.LIMESTONE.get(), 8),8,1,0.05f));
+            event.getGenericTrades().add(new BasicItemListing(1,new ItemStack(RankineBlocks.LIMESTONE.getStone(), 8),8,1,0.05f));
             event.getRareTrades().add(new BasicItemListing(3,new ItemStack(RankineItems.METEORIC_IRON.get()),6,1,0.5f));
         }
     }

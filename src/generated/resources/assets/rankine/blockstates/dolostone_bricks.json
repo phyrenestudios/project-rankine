@@ -5,12 +5,6 @@
     },
     "style=2": {
       "model": "rankine:block/dolostone_bricks2"
-    },
-    "style=3": {
-      "model": "rankine:block/dolostone_bricks3"
-    },
-    "style=4": {
-      "model": "rankine:block/dolostone_bricks4"
     }
   }
 }

@@ -700,18 +700,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
             tag(ItemTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName))).add(blk.asItem());
         }
 
-
-        copy(RankineTags.Blocks.STONE_SLAB, RankineTags.Items.STONE_SLAB);
-        copy(RankineTags.Blocks.POLISHED_STONE_SLAB, RankineTags.Items.POLISHED_STONE_SLAB);
-        copy(RankineTags.Blocks.STONE_BRICKS_SLAB, RankineTags.Items.STONE_BRICKS_SLAB);
-        copy(RankineTags.Blocks.STONE_STAIRS, RankineTags.Items.STONE_STAIRS);
-        copy(RankineTags.Blocks.POLISHED_STONE_STAIRS, RankineTags.Items.POLISHED_STONE_STAIRS);
-        copy(RankineTags.Blocks.STONE_BRICKS_STAIRS, RankineTags.Items.STONE_BRICKS_STAIRS);
-        copy(RankineTags.Blocks.STONE_WALL, RankineTags.Items.STONE_WALL);
-        copy(RankineTags.Blocks.POLISHED_STONE_WALL, RankineTags.Items.POLISHED_STONE_WALL);
-        copy(RankineTags.Blocks.STONE_BRICKS_WALL, RankineTags.Items.STONE_BRICKS_WALL);
         copy(BlockTags.STONE_PRESSURE_PLATES, RankineTags.Items.STONE_PRESSURE_PLATES);
-
         copy(RankineTags.Blocks.COBBLES, RankineTags.Items.COBBLES);
 
         //plants

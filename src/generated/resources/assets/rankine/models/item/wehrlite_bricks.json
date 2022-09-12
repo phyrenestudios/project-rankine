@@ -6,18 +6,6 @@
         "rankine:building_mode": 2.0
       },
       "model": "rankine:block/wehrlite_bricks2"
-    },
-    {
-      "predicate": {
-        "rankine:building_mode": 3.0
-      },
-      "model": "rankine:block/wehrlite_bricks3"
-    },
-    {
-      "predicate": {
-        "rankine:building_mode": 4.0
-      },
-      "model": "rankine:block/wehrlite_bricks4"
     }
   ]
 }

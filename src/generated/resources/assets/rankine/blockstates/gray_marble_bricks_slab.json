@@ -1,13 +1,28 @@
 {
   "variants": {
-    "type=top": {
-      "model": "rankine:block/gray_marble_bricks_slab_top"
-    },
-    "type=bottom": {
-      "model": "rankine:block/gray_marble_bricks_slab"
-    },
-    "type=double": {
-      "model": "rankine:block/gray_marble_bricks1"
-    }
+    "type=top": [
+      {
+        "model": "rankine:block/gray_marble_bricks_slab_top"
+      },
+      {
+        "model": "rankine:block/gray_marble_bricks_slab_top"
+      }
+    ],
+    "type=bottom": [
+      {
+        "model": "rankine:block/gray_marble_bricks_slab"
+      },
+      {
+        "model": "rankine:block/gray_marble_bricks_slab"
+      }
+    ],
+    "type=double": [
+      {
+        "model": "rankine:block/gray_marble_bricks1"
+      },
+      {
+        "model": "rankine:block/gray_marble_bricks1"
+      }
+    ]
   }
 }

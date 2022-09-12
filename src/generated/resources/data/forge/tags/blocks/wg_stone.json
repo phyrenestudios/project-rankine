@@ -1,13 +1,13 @@
 {
   "replace": false,
   "values": [
-    "rankine:phonolite",
-    "rankine:nepheline_syenite",
-    "rankine:episyenite",
     "rankine:pegmatite",
     "rankine:gray_granite",
     "rankine:rhyolite",
     "rankine:comendite",
+    "rankine:episyenite",
+    "rankine:nepheline_syenite",
+    "rankine:phonolite",
     "rankine:granodiorite",
     "rankine:red_porphyry",
     "rankine:purple_porphyry",

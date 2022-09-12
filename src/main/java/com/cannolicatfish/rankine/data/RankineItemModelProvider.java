@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.RankineStone;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
@@ -35,28 +36,53 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+
+        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
+            withExistingParent(Stone.getStone());
+            buildingModeItem(Stone.getPolished().asItem(), ((BuildingModeBlock) Stone.getPolished()).getMaxStyles());
+            buildingModeItem(Stone.getBricks().asItem(), ((BuildingModeBlock) Stone.getBricks()).getMaxStyles());
+            buildingModeItem(Stone.getMossyBricks().asItem(), ((BuildingModeBlock) Stone.getMossyBricks()).getMaxStyles());
+            slabParent(Stone.getSlab());
+            slabParent(Stone.getPolishedSlab());
+            slabParent(Stone.getBricksSlab());
+            slabParent(Stone.getMossyBricksSlab());
+            stairsParent(Stone.getStairs());
+            stairsParent(Stone.getPolishedStairs());
+            stairsParent(Stone.getBricksStairs());
+            stairsParent(Stone.getMossyBricksStairs());
+            wallParent(Stone.getWall());
+            wallParent(Stone.getPolishedWall());
+            wallParent(Stone.getBricksWall());
+            wallParent(Stone.getMossyBricksWall());
+            withExistingParent(Stone.getPressurePlate().getRegistryName().getPath(), modLoc("block/" + Stone.getPressurePlate().getRegistryName().getPath() + "_up"));
+            withExistingParent(Stone.getBricksPressurePlate().getRegistryName().getPath(), modLoc("block/" + Stone.getBricksPressurePlate().getRegistryName().getPath() + "_up"));
+            withExistingParent(Stone.getButton().getRegistryName().getPath(), modLoc("block/" + Stone.getButton().getRegistryName().getPath() + "_inventory"));
+            withExistingParent(Stone.getCobble().getRegistryName().getPath(), RankineBlockStateProvider.getBlockRSL(Stone.getCobble().getRegistryName().getPath()+"1"));
+            withExistingParent(Stone.getColumn().getRegistryName().getPath(), RankineBlockStateProvider.getBlockRSL(Stone.getColumn().getRegistryName().getPath()+"1"));
+            withExistingParent(Stone.getInfested());
+        }
+
+
         //food items
         for (Item item : Stream.of(RankineLists.SEEDS,RankineLists.GRAINS,RankineLists.RAW_FISH,RankineLists.COOKED_FISH,RankineLists.GAS_BOTTLES,RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(item);
         }
-        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_SLABS,RankineLists.STONE_SLABS,RankineLists.POLISHED_STONE_SLABS,RankineLists.STONE_BRICKS_SLABS,RankineLists.WOODEN_SLABS,RankineLists.BRICKS_SLAB,RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_SLABS,RankineLists.WOODEN_SLABS,RankineLists.BRICKS_SLAB,RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabParent(BLOCK);
         }
-        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_STAIRS,RankineLists.STONE_STAIRS,RankineLists.POLISHED_STONE_STAIRS,RankineLists.STONE_BRICKS_STAIRS,RankineLists.WOODEN_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_STAIRS,RankineLists.WOODEN_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsParent(BLOCK);
         }
-        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_WALLS,RankineLists.STONE_WALLS,RankineLists.POLISHED_STONE_WALLS,RankineLists.STONE_BRICKS_WALLS,RankineLists.BRICKS_WALL,RankineLists.SANDSTONE_WALLS,RankineLists.SMOOTH_SANDSTONE_WALLS,RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_WALLS,RankineLists.BRICKS_WALL,RankineLists.SANDSTONE_WALLS,RankineLists.SMOOTH_SANDSTONE_WALLS,RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             wallParent(BLOCK);
         }
 
         for (Block BLOCK : Stream.of(
-                RankineLists.STONES,
                 RankineLists.DRIPSTONES,
                 RankineLists.SANDSTONES,
                 RankineLists.SMOOTH_SANDSTONES,
                 RankineLists.CUT_SANDSTONES,
                 RankineLists.CHISELED_SANDSTONES,
-                RankineLists.INFESTED_STONES,
                 RankineLists.ALLOY_PEDESTALS,
                 RankineLists.ALLOY_SHEETMETALS,
                 RankineLists.ALLOY_POLES,
@@ -395,14 +421,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
         }
 
          */
-        for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.VANILLA_BRICKS,RankineLists.STONE_BRICKS,RankineLists.BRICKS,RankineLists.POLISHED_STONES,RankineLists.PLANKS,RankineLists.WOODEN_BOOKSHELVES).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.VANILLA_BRICKS,RankineLists.BRICKS,RankineLists.PLANKS,RankineLists.WOODEN_BOOKSHELVES).flatMap(Collection::stream).collect(Collectors.toList())) {
             buildingModeItem(BLK.asItem(), ((BuildingModeBlock) BLK).getMaxStyles());
-        }
-        for (Block BLK : RankineLists.STONE_COBBLES) {
-            withExistingParent(BLK.getRegistryName().getPath(), RankineBlockStateProvider.getBlockRSL(BLK.getRegistryName().getPath()+"1"));
-        }
-        for (Block BLK : RankineLists.STONE_COLUMNS) {
-            withExistingParent(BLK.getRegistryName().getPath(), RankineBlockStateProvider.getBlockRSL(BLK.getRegistryName().getPath()+"1"));
         }
         withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/tilled_soil_loam"));
         withExistingParent(RankineBlocks.STUMP.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/stump0"));
@@ -482,11 +502,11 @@ public class RankineItemModelProvider extends ItemModelProvider {
             withExistingParent(name, modLoc("block/"+name));
         }
 
-        for (Block blk : Stream.of(RankineLists.WOODEN_FENCES, RankineLists.STONE_BUTTONS, RankineLists.WOODEN_BUTTONS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.WOODEN_FENCES, RankineLists.WOODEN_BUTTONS).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
             withExistingParent(name, modLoc("block/" + name + "_inventory"));
         }
-        for (Block blk : Stream.of(RankineLists.WOODEN_PRESSURE_PLATES,RankineLists.STONE_PRESSURE_PLATES, RankineLists.STONE_BRICKS_PRESSURE_PLATES, RankineLists.VANILLA_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.WOODEN_PRESSURE_PLATES,RankineLists.VANILLA_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
             withExistingParent(name, modLoc("block/" + name + "_up"));
         }

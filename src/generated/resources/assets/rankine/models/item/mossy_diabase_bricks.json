@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/mossy_diabase_bricks1",
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:block/mossy_diabase_bricks2"
+    }
+  ]
+}

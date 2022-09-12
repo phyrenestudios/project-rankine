@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:mossy_pyroxenite_bricks"
+  },
+  "result": "rankine:mossy_pyroxenite_bricks_slab",
+  "count": 2
+}

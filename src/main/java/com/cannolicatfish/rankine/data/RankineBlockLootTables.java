@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.data;
 
+import com.cannolicatfish.rankine.blocks.RankineStone;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
@@ -7,10 +8,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
@@ -33,20 +31,19 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
 
     @Override
     protected void addTables() {
+        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
+            for (Block blk : Stone.getStoneBlocks()) {
+                if (blk instanceof SlabBlock) {
+                    lootTables.put(blk, slabBlockLootTable(blk));
+                } else if (blk instanceof InfestedBlock) {
+                    lootTables.put(blk, droppingWithSilkTouch(blk, Stone.getStone()));
+                } else {
+                    lootTables.put(blk, createBlockLootTable(blk));
+                }
+            }
+        }
+
         for (Block blk : Stream.of(
-                RankineLists.STONES,
-                RankineLists.POLISHED_STONES,
-                RankineLists.STONE_BRICKS,
-                RankineLists.POLISHED_STONES,
-                RankineLists.STONE_STAIRS,
-                RankineLists.POLISHED_STONE_STAIRS,
-                RankineLists.STONE_BRICKS_STAIRS,
-                RankineLists.STONE_WALLS,
-                RankineLists.POLISHED_STONE_WALLS,
-                RankineLists.STONE_BRICKS_WALLS,
-                RankineLists.STONE_PRESSURE_PLATES,
-                RankineLists.STONE_BRICKS_PRESSURE_PLATES,
-                RankineLists.STONE_BUTTONS,
                 RankineLists.VANILLA_BRICKS,
                 RankineLists.VANILLA_BRICKS_PRESSURE_PLATES,
                 RankineLists.VANILLA_BRICKS_WALLS,
@@ -59,8 +56,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.SANDSTONES,
                 RankineLists.SANDSTONE_STAIRS,
                 RankineLists.SANDSTONE_WALLS,
-                RankineLists.STONE_COLUMNS,
-                RankineLists.STONE_COBBLES,
                 RankineLists.BRICKS,
                 RankineLists.BRICKS_STAIRS,
                 RankineLists.BRICKS_WALL,
@@ -134,9 +129,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         )) {
             lootTables.put(blk, createBlockLootTable(blk));
         }
-        for (Block blk : RankineLists.INFESTED_STONES) {
-            lootTables.put(blk, droppingWithSilkTouch(blk, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(blk.getRegistryName().getPath().replace("infested_","")))));
-        }
         for (Block blk : RankineLists.ASPHALT_BLOCKS) {
             lootTables.put(blk, createBlockLootTable(RankineBlocks.ASPHALT.get()));
         }
@@ -176,9 +168,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
 
 
         for (Block blk : Stream.of(
-                RankineLists.STONE_SLABS,
-                RankineLists.POLISHED_STONE_SLABS,
-                RankineLists.STONE_BRICKS_SLABS,
                 RankineLists.VANILLA_BRICKS_SLABS,
                 RankineLists.BRICKS_SLAB,
                 RankineLists.SANDSTONE_SLABS,

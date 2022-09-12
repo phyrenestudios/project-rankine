@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "block_from_vslab",
+  "group": "block_from_slab",
   "ingredients": [
     {
       "item": "rankine:troctolite_slab"

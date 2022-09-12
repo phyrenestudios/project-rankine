@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/mossy_norite_bricks_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/mossy_norite_bricks_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/norite_bricks1"
+    }
+  }
+}

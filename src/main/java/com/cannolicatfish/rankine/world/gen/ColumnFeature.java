@@ -1,15 +1,13 @@
 package com.cannolicatfish.rankine.world.gen;
 
-import com.cannolicatfish.rankine.blocks.StoneColumnBlock;
 import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineLists;
 import com.mojang.serialization.Codec;
-import net.minecraft.core.Holder;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -41,7 +39,8 @@ public class ColumnFeature extends Feature<NoneFeatureConfiguration> {
                     if (Biome.getBiomeCategory(Holder.direct(reader.getBiome(topPos).value())) != Biome.BiomeCategory.NETHER && Biome.getBiomeCategory(Holder.direct(reader.getBiome(topPos).value())) != Biome.BiomeCategory.THEEND) {
                         for (int y = endY; y > 1; --y) {
                             topPos = new BlockPos(randX, y, randZ);
-                            if (RankineLists.STONES.contains(reader.getBlockState(topPos).getBlock()) && reader.getBlockState(topPos.below()).isAir()) {
+                            //if (RankineLists.STONES.contains(reader.getBlockState(topPos).getBlock()) && reader.getBlockState(topPos.below()).isAir()) {
+                            if (reader.getBlockState(topPos.below()).isAir()) {
                                 bottomPos = getBottom(reader, topPos);
                                 if (bottomPos != null) {
                                     if (reader.getBlockState(bottomPos).canOcclude()) {
@@ -79,7 +78,7 @@ public class ColumnFeature extends Feature<NoneFeatureConfiguration> {
         for (int i = 1; i <= length; ++i) {
             int SIZE = Math.max(Math.round(maxSize * (1 - (i / (length)))), 0);
             BlockState BS = reader.getBlockState(topPos.below(i));
-            reader.setBlock(topPos.below(i), SIZE < 1 ? BS : RankineLists.STONE_COLUMNS.get(RankineLists.STONES.indexOf(reader.getBlockState(topPos).getBlock())).defaultBlockState().setValue(StoneColumnBlock.SIZE, Math.min(SIZE,7)).setValue(StoneColumnBlock.WATERLOGGED, BS.is(Blocks.WATER)), 3);
+            //reader.setBlock(topPos.below(i), SIZE < 1 ? BS : RankineLists.STONE_COLUMNS.get(RankineLists.STONES.indexOf(reader.getBlockState(topPos).getBlock())).defaultBlockState().setValue(StoneColumnBlock.SIZE, Math.min(SIZE,7)).setValue(StoneColumnBlock.WATERLOGGED, BS.is(Blocks.WATER)), 3);
         }
     }
 
@@ -92,7 +91,7 @@ public class ColumnFeature extends Feature<NoneFeatureConfiguration> {
         for (int i = 1; i < length; ++i) {
             int SIZE = i < length/2f ? Math.max(Math.round(maxSize * (1 - (i / (usedLength)))), 0) : Math.max(Math.round(maxSize * ((i-(length-usedLength)) / (usedLength))), 0);
             BlockState BS = reader.getBlockState(topPos.below(i));
-            reader.setBlock(topPos.below(i), SIZE < 1 ? BS : RankineLists.STONE_COLUMNS.get(RankineLists.STONES.indexOf(reader.getBlockState(topPos).getBlock())).defaultBlockState().setValue(StoneColumnBlock.SIZE, Math.min(SIZE,7)).setValue(StoneColumnBlock.WATERLOGGED, BS.is(Blocks.WATER)), 3);
+            //reader.setBlock(topPos.below(i), SIZE < 1 ? BS : RankineLists.STONE_COLUMNS.get(RankineLists.STONES.indexOf(reader.getBlockState(topPos).getBlock())).defaultBlockState().setValue(StoneColumnBlock.SIZE, Math.min(SIZE,7)).setValue(StoneColumnBlock.WATERLOGGED, BS.is(Blocks.WATER)), 3);
         }
     }
 

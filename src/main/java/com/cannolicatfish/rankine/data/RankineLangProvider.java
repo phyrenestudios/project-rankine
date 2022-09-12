@@ -1,12 +1,13 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.RankineStone;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import java.util.Arrays;
@@ -28,6 +29,14 @@ public class RankineLangProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
+
+
+        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
+            for (Block blk : Stone.getStoneBlocks()) {
+                add(blk, parseLangName(blk.getRegistryName().getPath()));
+            }
+        }
+
         for (Block blk : Stream.of(
                 RankineLists.MISC_SLABS,
                 RankineLists.MISC_STAIRS,
@@ -36,25 +45,8 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MUSHROOM_BLOCKS,
                 RankineLists.CONCRETE_STAIRS,
                 RankineLists.CONCRETE_WALLS,
-                RankineLists.STONE_COLUMNS,
                 RankineLists.HOLLOW_LOGS,
                 RankineLists.LEAF_LITTERS,
-                RankineLists.INFESTED_STONES,
-                RankineLists.STONES,
-                RankineLists.POLISHED_STONES,
-                RankineLists.STONE_BRICKS,
-                RankineLists.STONE_SLABS,
-                RankineLists.POLISHED_STONE_SLABS,
-                RankineLists.STONE_BRICKS_SLABS,
-                RankineLists.STONE_STAIRS,
-                RankineLists.POLISHED_STONE_STAIRS,
-                RankineLists.STONE_BRICKS_STAIRS,
-                RankineLists.STONE_WALLS,
-                RankineLists.POLISHED_STONE_WALLS,
-                RankineLists.STONE_BRICKS_WALLS,
-                RankineLists.STONE_PRESSURE_PLATES,
-                RankineLists.STONE_BRICKS_PRESSURE_PLATES,
-                RankineLists.STONE_BUTTONS,
                 RankineLists.VANILLA_BRICKS,
                 RankineLists.VANILLA_BRICKS_SLABS,
                 RankineLists.VANILLA_BRICKS_WALLS,
@@ -118,7 +110,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.EIGHT_LAYER_BLOCKS,
                 RankineLists.FLUID_BLOCKS,
                 RankineLists.GAS_BLOCKS,
-                RankineLists.STONE_COBBLES,
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.ROTATION_BLOCKS,
                 RankineLists.LIGHTNING_GLASSES,

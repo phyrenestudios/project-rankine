@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:mossy_hornblende_andesite_bricks"
+  },
+  "result": "rankine:mossy_hornblende_andesite_bricks_slab",
+  "count": 2
+}

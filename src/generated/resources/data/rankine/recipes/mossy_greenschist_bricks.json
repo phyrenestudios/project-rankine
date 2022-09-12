@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "mossy",
+  "ingredients": [
+    {
+      "item": "rankine:greenschist"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "rankine:mossy_greenschist_bricks"
+  }
+}

@@ -5,12 +5,6 @@
     },
     "style=2": {
       "model": "rankine:block/black_marble_bricks2"
-    },
-    "style=3": {
-      "model": "rankine:block/black_marble_bricks3"
-    },
-    "style=4": {
-      "model": "rankine:block/black_marble_bricks4"
     }
   }
 }

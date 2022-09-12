@@ -237,7 +237,11 @@ public class BlockBreakHandler {
             if (mainHandItem.is(RankineTags.Items.KNIVES)) {
                 if (levelIn.getBlockState(pos).is(RankineTags.Blocks.KNIFE_SHEARABLE)) {
                     levelIn.destroyBlock(pos,false);
-                    Block.popResource(levelIn, pos, new ItemStack(targetBlock.asItem()));
+                    if (levelIn.getBlockState(pos).is(Blocks.TALL_SEAGRASS)) {
+                        Block.popResource(levelIn, pos, new ItemStack(Items.SEAGRASS,2));
+                    } else {
+                        Block.popResource(levelIn, pos, new ItemStack(targetBlock.asItem()));
+                    }
                     player.getItemInHand(event.getPlayer().swingingArm).hurtAndBreak(1, player, (p_220040_1_) -> {
                         p_220040_1_.broadcastBreakEvent(event.getPlayer().swingingArm);
                     });

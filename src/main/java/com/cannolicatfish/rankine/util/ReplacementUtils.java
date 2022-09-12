@@ -183,7 +183,7 @@ public class ReplacementUtils {
                             if (genBiomesIndex != -1 && TARGET_BS.getBlock() instanceof RankineOreBlock && TARGET_BS.getValue(RankineOreBlock.TYPE) == 0) {
                                 BlockState stone = getStone(blockList,y,STONE_NOISE);
 
-                                if (stone != null && RankineLists.STONES.contains(stone.getBlock())) {
+                                if (stone != null && WorldgenUtils.ORE_STONES.contains(stone.getBlock())) {
                                     chunk.setBlockState(TARGET_POS, TARGET_BS.setValue(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(stone.getBlock())),false);
                                 }
                             }
@@ -253,8 +253,8 @@ public class ReplacementUtils {
 
                         } else if (TARGET.equals(Blocks.INFESTED_STONE) || TARGET.equals(Blocks.INFESTED_DEEPSLATE)) {
                             BlockState stone = getStone(blockList,y,STONE_NOISE);
-                            if (stone != null && RankineLists.STONES.contains(stone.getBlock())) {
-                                chunk.setBlockState(TARGET_POS, RankineLists.INFESTED_STONES.get(RankineLists.STONES.indexOf(stone.getBlock())).defaultBlockState(),false);
+                            if (stone != null && VanillaIntegration.RankineStonesMap.containsKey(stone.getBlock())) {
+                                chunk.setBlockState(TARGET_POS, VanillaIntegration.RankineStonesMap.get(stone.getBlock()).getInfested().defaultBlockState(),false);
                             }
                         } else if (TARGET_BS.is(Blocks.POINTED_DRIPSTONE)) {
                             Block DRIP = WorldgenUtils.DRIPSTONES.get(GEN_BIOMES.indexOf(TARGET_BIOME));

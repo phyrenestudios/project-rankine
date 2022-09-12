@@ -1,13 +1,13 @@
 {
   "replace": false,
   "values": [
-    "rankine:polished_phonolite",
-    "rankine:polished_nepheline_syenite",
-    "rankine:polished_episyenite",
     "rankine:polished_pegmatite",
     "rankine:polished_gray_granite",
     "rankine:polished_rhyolite",
     "rankine:polished_comendite",
+    "rankine:polished_episyenite",
+    "rankine:polished_nepheline_syenite",
+    "rankine:polished_phonolite",
     "rankine:polished_granodiorite",
     "rankine:polished_red_porphyry",
     "rankine:polished_purple_porphyry",

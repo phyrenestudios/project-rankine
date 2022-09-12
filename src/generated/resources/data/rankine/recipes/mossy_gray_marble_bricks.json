@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "mossy",
+  "ingredients": [
+    {
+      "item": "rankine:gray_marble"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "rankine:mossy_gray_marble_bricks"
+  }
+}

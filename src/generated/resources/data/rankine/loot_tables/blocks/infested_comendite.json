@@ -34,7 +34,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "minecraft:air"
+              "name": "rankine:comendite"
             }
           ]
         }

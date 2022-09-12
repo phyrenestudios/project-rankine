@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:mossy_ringwoodine_bricks"
+  },
+  "result": "rankine:mossy_ringwoodine_bricks_wall",
+  "count": 1
+}

@@ -138,13 +138,3 @@ public class GrassySoilBlock extends GrassBlock {
     }
 
 }
-/*
-// Path Creation
-        if (Config.GENERAL.PATH_CREATION.get() && !player.isCreative() && player.tickCount%(Config.GENERAL.PATH_CREATION_TIME.get()*20)==0 && !world.isClientSide) {
-                if (VanillaIntegration.pathBlocks_map.get(ground) != null && world.getBlockState(pos.above()).is(Blocks.AIR) && world.getBlockState(pos.above()).getBlock() instanceof BushBlock) {
-                world.setBlock(pos, VanillaIntegration.pathBlocks_map.get(ground).defaultBlockState(),2);
-                }
-
-                }
-
- */
