@@ -839,7 +839,8 @@ public class RankineRecipesProvider extends RecipeProvider {
             pressurePlate(consumer, STONE_PRESSURE_PLATE.asItem(), STONE.asItem(), "stone_pressure_plate");
             pressurePlate(consumer, STONE_BRICKS_PRESSURE_PLATE.asItem(), STONE_BRICKS.asItem(), "stone_pressure_plate");
             ShapelessRecipeBuilder.shapeless(STONE_BUTTON).requires(STONE).group("stone_button").unlockedBy("has_ingredient", has(STONE)).save(consumer);
-            ShapelessRecipeBuilder.shapeless(MOSSY_STONE_BRICKS).requires(STONE).requires(Items.VINE).group("mossy").unlockedBy("has_ingredient", has(STONE)).save(consumer);
+            ShapelessRecipeBuilder.shapeless(MOSSY_STONE_BRICKS).requires(STONE).requires(Items.VINE).group("mossy_bricks_vines").unlockedBy("has_ingredient", has(STONE)).save(consumer,"rankine:mossy_"+baseStone+"_bricks_from_vine");
+            ShapelessRecipeBuilder.shapeless(MOSSY_STONE_BRICKS).requires(STONE).requires(Items.MOSS_BLOCK).group("mossy_bricks_moss").unlockedBy("has_ingredient", has(STONE)).save(consumer,"rankine:mossy_"+baseStone+"_bricks_from_moss");
 
             SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), POLISHED_STONE, 1).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:polished_"+baseStone+"_from_"+baseStone+"_stonecutting");
             SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), STONE_BRICKS, 1).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_bricks_from_"+baseStone+"_stonecutting");

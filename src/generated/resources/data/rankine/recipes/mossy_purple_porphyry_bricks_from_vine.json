@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "mossy_bricks_vines",
+  "ingredients": [
+    {
+      "item": "rankine:purple_porphyry"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "rankine:mossy_purple_porphyry_bricks"
+  }
+}

@@ -80,7 +80,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : Stream.of(
                 RankineLists.DRIPSTONES,
                 RankineLists.ALLOY_BLOCKS,
-                RankineLists.ELEMENT_BLOCKS,
                 RankineLists.SMOOTH_SANDSTONES,
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
@@ -121,6 +120,13 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             fancyStoneBricksBlock(blk);
+        }
+        for (Block blk : RankineLists.ELEMENT_BLOCKS) {
+            if (blk == RankineBlocks.HELIUM_BLOCK.get() || blk == RankineBlocks.NEON_BLOCK.get() || blk == RankineBlocks.ARGON_BLOCK.get() || blk == RankineBlocks.KRYPTON_BLOCK.get() || blk == RankineBlocks.RADON_BLOCK.get() || blk == RankineBlocks.XENON_BLOCK.get() || blk == RankineBlocks.OGANESSON_BLOCK.get()) {
+                simpleBlock(blk, models().withExistingParent(blk.getRegistryName().getPath(), modLoc("template_solid_gas")).texture("all", getBlockRSL(blk.getRegistryName().getPath())));
+            } else {
+                simpleBlock(blk);
+            }
         }
         for (Block blk : RankineLists.BRICKS) {
             fancyBricksBlock(blk);
@@ -1506,6 +1512,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     public void fancyBricksBlock(Block block) {
         String name = block.getRegistryName().getPath();
         ResourceLocation normal = modLoc("block/"+name);
+        ResourceLocation alt = modLoc("block/"+name+"_alt");
         IntegerProperty STYLE = ((BuildingModeBlock) block).getProperty();
         getVariantBuilder(block)
                 .partialState().with(STYLE, 1)
@@ -1513,9 +1520,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .partialState().with(STYLE, 2)
                     .modelForState().modelFile(models().withExistingParent(name+2, modLoc("block/template_rotation")).texture("all", normal)).addModel()
                 .partialState().with(STYLE, 3)
-                    .modelForState().modelFile(models().withExistingParent(name+3, mcLoc("block/cube_all")).texture("all", normal)).addModel()
+                    .modelForState().modelFile(models().withExistingParent(name+3, mcLoc("block/cube_all")).texture("all", alt)).addModel()
                 .partialState().with(STYLE, 4)
-                    .modelForState().modelFile(models().withExistingParent(name+4, mcLoc("block/cube_all")).texture("all", normal)).addModel();
+                    .modelForState().modelFile(models().withExistingParent(name+4, modLoc("block/template_rotation")).texture("all", alt)).addModel();
     }
     public void fancyPlanksBlock(Block block) {
         String name = block.getRegistryName().getPath();
