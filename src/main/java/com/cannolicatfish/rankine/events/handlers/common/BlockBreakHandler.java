@@ -91,6 +91,11 @@ public class BlockBreakHandler {
                 }
 
                 if (alive) {
+                    if (worldIn.getBlockState(pos).getBlockHardness(worldIn, pos) != 0.0F) {
+                        player.getHeldItemMainhand().damageItem(logs.size()-1, player, (p_220038_0_) -> {
+                            p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                        });
+                    }
                     for (BlockPos b : logs) {
                         if (Config.GENERAL.STUMP_CREATION.get() && (worldIn.getBlockState(b.down()).getMaterial().equals(Material.EARTH) || worldIn.getBlockState(b.down()).getMaterial().equals(Material.SAND))) {
                             worldIn.setBlockState(b, RankineBlocks.STUMP.get().getDefaultState(), 3);
@@ -115,11 +120,7 @@ public class BlockBreakHandler {
                     }
                     worldIn.playSound(null, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0f, 0.8f);
 
-                    if (worldIn.getBlockState(pos).getBlockHardness(worldIn, pos) != 0.0F) {
-                        player.getHeldItemMainhand().damageItem(logs.size()-1, player, (p_220038_0_) -> {
-                            p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-                        });
-                    }
+                    
 
                     event.setCanceled(true);
                     return;
