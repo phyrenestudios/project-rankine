@@ -691,7 +691,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PORCELAIN = BLOCKS.register("porcelain", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.0F, 3.0F)));
 
     public static final RegistryObject<Block> WHITE_GLAZED_PORCELAIN = BLOCKS.register("white_glazed_porcelain", () -> new GlazedPorcelainBlock(16777215));
-    public static final RegistryObject<Block> ORANGE_GLAZED_PORCELAIN = BLOCKS.register("orange_glazed_porcelain", () -> new GlazedPorcelainBlock(8336128));
+    public static final RegistryObject<Block> ORANGE_GLAZED_PORCELAIN = BLOCKS.register("orange_glazed_porcelain", () -> new GlazedPorcelainBlock(13392384));
     public static final RegistryObject<Block> MAGENTA_GLAZED_PORCELAIN = BLOCKS.register("magenta_glazed_porcelain", () -> new GlazedPorcelainBlock(8323182));
     public static final RegistryObject<Block> LIGHT_BLUE_GLAZED_PORCELAIN = BLOCKS.register("light_blue_glazed_porcelain", () -> new GlazedPorcelainBlock(32639));
     public static final RegistryObject<Block> YELLOW_GLAZED_PORCELAIN = BLOCKS.register("yellow_glazed_porcelain", () -> new GlazedPorcelainBlock(8350208));
@@ -703,7 +703,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PURPLE_GLAZED_PORCELAIN = BLOCKS.register("purple_glazed_porcelain", () -> new GlazedPorcelainBlock(5701759));
     public static final RegistryObject<Block> BLUE_GLAZED_PORCELAIN = BLOCKS.register("blue_glazed_porcelain", () -> new GlazedPorcelainBlock(4991));
     public static final RegistryObject<Block> GREEN_GLAZED_PORCELAIN = BLOCKS.register("green_glazed_porcelain", () -> new GlazedPorcelainBlock(32526));
-    public static final RegistryObject<Block> BROWN_GLAZED_PORCELAIN = BLOCKS.register("brown_glazed_porcelain", () -> new GlazedPorcelainBlock(32639));
+    public static final RegistryObject<Block> BROWN_GLAZED_PORCELAIN = BLOCKS.register("brown_glazed_porcelain", () -> new GlazedPorcelainBlock(8336128));
     public static final RegistryObject<Block> RED_GLAZED_PORCELAIN = BLOCKS.register("red_glazed_porcelain", () -> new GlazedPorcelainBlock(8323072));
     public static final RegistryObject<Block> BLACK_GLAZED_PORCELAIN = BLOCKS.register("black_glazed_porcelain", () -> new GlazedPorcelainBlock(0));
 
@@ -1898,24 +1898,24 @@ public class RankineBlocks {
     public static final RegistryObject<Block> WHITE_LIQUOR = BLOCKS.register("white_liquor", () -> new RankineFlowingFluidBlock(()-> RankineFluids.WHITE_LIQUOR, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
 
     //ELEMENT BLOCKS
-    public static final RegistryObject<Block> HYDROGEN_BLOCK = BLOCKS.register("hydrogen_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> HELIUM_BLOCK = BLOCKS.register("helium_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> HYDROGEN_BLOCK = BLOCKS.register("hydrogen_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
+    public static final RegistryObject<Block> HELIUM_BLOCK = BLOCKS.register("helium_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
     public static final RegistryObject<Block> LITHIUM_BLOCK = BLOCKS.register("lithium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> BERYLLIUM_BLOCK = BLOCKS.register("beryllium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> BORON_BLOCK = BLOCKS.register("boron_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> CARBON_BLOCK = BLOCKS.register("carbon_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> NITROGEN_BLOCK = BLOCKS.register("nitrogen_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> OXYGEN_BLOCK = BLOCKS.register("oxygen_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> FLUORINE_BLOCK = BLOCKS.register("fluorine_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> NEON_BLOCK = BLOCKS.register("neon_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> NITROGEN_BLOCK = BLOCKS.register("nitrogen_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
+    public static final RegistryObject<Block> OXYGEN_BLOCK = BLOCKS.register("oxygen_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
+    public static final RegistryObject<Block> FLUORINE_BLOCK = BLOCKS.register("fluorine_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
+    public static final RegistryObject<Block> NEON_BLOCK = BLOCKS.register("neon_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
     public static final RegistryObject<Block> SODIUM_BLOCK = BLOCKS.register("sodium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> MAGNESIUM_BLOCK = BLOCKS.register("magnesium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> ALUMINUM_BLOCK = BLOCKS.register("aluminum_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> SILICON_BLOCK = BLOCKS.register("silicon_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> PHOSPHORUS_BLOCK = BLOCKS.register("phosphorus_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> SULFUR_BLOCK = BLOCKS.register("sulfur_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> CHLORINE_BLOCK = BLOCKS.register("chlorine_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> ARGON_BLOCK = BLOCKS.register("argon_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> CHLORINE_BLOCK = BLOCKS.register("chlorine_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
+    public static final RegistryObject<Block> ARGON_BLOCK = BLOCKS.register("argon_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
     public static final RegistryObject<Block> POTASSIUM_BLOCK = BLOCKS.register("potassium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> CALCIUM_BLOCK = BLOCKS.register("calcium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> SCANDIUM_BLOCK = BLOCKS.register("scandium_block", () -> new Block(DEF_METAL_BLOCK));
@@ -1931,7 +1931,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ARSENIC_BLOCK = BLOCKS.register("arsenic_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> SELENIUM_BLOCK = BLOCKS.register("selenium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> BROMINE_BLOCK = BLOCKS.register("bromine_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> KRYPTON_BLOCK = BLOCKS.register("krypton_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> KRYPTON_BLOCK = BLOCKS.register("krypton_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
     public static final RegistryObject<Block> RUBIDIUM_BLOCK = BLOCKS.register("rubidium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> STRONTIUM_BLOCK = BLOCKS.register("strontium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> YTTRIUM_BLOCK = BLOCKS.register("yttrium_block", () -> new Block(DEF_METAL_BLOCK));
@@ -1949,7 +1949,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ANTIMONY_BLOCK = BLOCKS.register("antimony_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> TELLURIUM_BLOCK = BLOCKS.register("tellurium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> IODINE_BLOCK = BLOCKS.register("iodine_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> XENON_BLOCK = BLOCKS.register("xenon_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> XENON_BLOCK = BLOCKS.register("xenon_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
     public static final RegistryObject<Block> CESIUM_BLOCK = BLOCKS.register("cesium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> BARIUM_BLOCK = BLOCKS.register("barium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> LANTHANUM_BLOCK = BLOCKS.register("lanthanum_block", () -> new Block(DEF_METAL_BLOCK));
@@ -1980,7 +1980,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BISMUTH_BLOCK = BLOCKS.register("bismuth_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> POLONIUM_BLOCK = BLOCKS.register("polonium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> ASTATINE_BLOCK = BLOCKS.register("astatine_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> RADON_BLOCK = BLOCKS.register("radon_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> RADON_BLOCK = BLOCKS.register("radon_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
     public static final RegistryObject<Block> FRANCIUM_BLOCK = BLOCKS.register("francium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> RADIUM_BLOCK = BLOCKS.register("radium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> ACTINIUM_BLOCK = BLOCKS.register("actinium_block", () -> new Block(DEF_METAL_BLOCK));
@@ -2012,7 +2012,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MOSCOVIUM_BLOCK = BLOCKS.register("moscovium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> LIVERMORIUM_BLOCK = BLOCKS.register("livermorium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> TENNESSINE_BLOCK = BLOCKS.register("tennessine_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> OGANESSON_BLOCK = BLOCKS.register("oganesson_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> OGANESSON_BLOCK = BLOCKS.register("oganesson_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
     public static final RegistryObject<Block> ENDOSITUM_BLOCK = BLOCKS.register("endositum_block", () -> new Block(DEF_METAL_BLOCK));
 
 

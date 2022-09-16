@@ -11,10 +11,10 @@
 			"faces": {
 				"down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#background",   "cullface": "down" },
 				"up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#background",   "cullface": "up" },
-				"north": { "uv": [ 0, 0, 16, 16 ], "texture": "#background",   "cullface": "north" },
-				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#background",   "cullface": "south" },
-				"west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#background",   "cullface": "west" },
-				"east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#background",   "cullface": "east" }
+				"north": { "uv": [ 0,  0, 16, 16 ], "texture": "#background", "cullface": "north", "rotation": 90 },
+				"south": { "uv": [ 0,  0, 16, 16 ], "texture": "#background", "cullface": "south", "rotation": 270 },
+				"west":  { "uv": [ 0,  0, 16, 16 ], "texture": "#background", "cullface": "west", "rotation": 0 },
+				"east":  { "uv": [ 0,  0, 16, 16 ], "texture": "#background", "cullface": "east", "rotation": 180 }
 			}
 		},
 		{
@@ -23,10 +23,10 @@
 			"faces": {
 				"down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "down" },
 				"up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "up" },
-				"north": { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "north" },
-				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "south" },
-				"west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "west" },
-				"east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "east" }
+				"north": { "uv": [ 0,  0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "north", "rotation": 90 },
+				"south": { "uv": [ 0,  0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "south", "rotation": 270 },
+				"west":  { "uv": [ 0,  0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "west", "rotation": 0 },
+				"east":  { "uv": [ 0,  0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "east", "rotation": 180 }
 			}
 		}
 	]

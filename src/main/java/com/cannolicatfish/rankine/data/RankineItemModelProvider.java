@@ -413,7 +413,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.CRUCIBLE.get());
 
         for (Block LEAF : RankineLists.LEAVES) {
-            withExistingParent(LEAF.getRegistryName().getPath(), new ResourceLocation("rankine","block/"+LEAF.getRegistryName().getPath()+"age0"));
+            withExistingParent(LEAF.getRegistryName().getPath(), new ResourceLocation("rankine","block/"+LEAF.getRegistryName().getPath()+"_age0"));
         }
         /*
         for (Block BLK : RankineLists.STONE_PILLARS) {

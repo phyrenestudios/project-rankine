@@ -1,28 +1,169 @@
 {
   "variants": {
-    "style=1": {
+    "facing=north,style=1": {
+      "model": "rankine:block/light_gray_glazed_porcelain1",
+      "y": 180
+    },
+    "facing=south,style=1": {
       "model": "rankine:block/light_gray_glazed_porcelain1"
     },
-    "style=2": {
+    "facing=west,style=1": {
+      "model": "rankine:block/light_gray_glazed_porcelain1",
+      "y": 90
+    },
+    "facing=east,style=1": {
+      "model": "rankine:block/light_gray_glazed_porcelain1",
+      "y": 270
+    },
+    "facing=north,style=2": {
+      "model": "rankine:block/light_gray_glazed_porcelain2",
+      "y": 180
+    },
+    "facing=south,style=2": {
       "model": "rankine:block/light_gray_glazed_porcelain2"
     },
-    "style=3": {
+    "facing=west,style=2": {
+      "model": "rankine:block/light_gray_glazed_porcelain2",
+      "y": 90
+    },
+    "facing=east,style=2": {
+      "model": "rankine:block/light_gray_glazed_porcelain2",
+      "y": 270
+    },
+    "facing=north,style=3": {
+      "model": "rankine:block/light_gray_glazed_porcelain3",
+      "y": 180
+    },
+    "facing=south,style=3": {
       "model": "rankine:block/light_gray_glazed_porcelain3"
     },
-    "style=4": {
+    "facing=west,style=3": {
+      "model": "rankine:block/light_gray_glazed_porcelain3",
+      "y": 90
+    },
+    "facing=east,style=3": {
+      "model": "rankine:block/light_gray_glazed_porcelain3",
+      "y": 270
+    },
+    "facing=north,style=4": {
+      "model": "rankine:block/light_gray_glazed_porcelain4",
+      "y": 180
+    },
+    "facing=south,style=4": {
       "model": "rankine:block/light_gray_glazed_porcelain4"
     },
-    "style=5": {
+    "facing=west,style=4": {
+      "model": "rankine:block/light_gray_glazed_porcelain4",
+      "y": 90
+    },
+    "facing=east,style=4": {
+      "model": "rankine:block/light_gray_glazed_porcelain4",
+      "y": 270
+    },
+    "facing=north,style=5": {
+      "model": "rankine:block/light_gray_glazed_porcelain5",
+      "y": 180
+    },
+    "facing=south,style=5": {
       "model": "rankine:block/light_gray_glazed_porcelain5"
     },
-    "style=6": {
+    "facing=west,style=5": {
+      "model": "rankine:block/light_gray_glazed_porcelain5",
+      "y": 90
+    },
+    "facing=east,style=5": {
+      "model": "rankine:block/light_gray_glazed_porcelain5",
+      "y": 270
+    },
+    "facing=north,style=6": {
+      "model": "rankine:block/light_gray_glazed_porcelain6",
+      "y": 180
+    },
+    "facing=south,style=6": {
       "model": "rankine:block/light_gray_glazed_porcelain6"
     },
-    "style=7": {
+    "facing=west,style=6": {
+      "model": "rankine:block/light_gray_glazed_porcelain6",
+      "y": 90
+    },
+    "facing=east,style=6": {
+      "model": "rankine:block/light_gray_glazed_porcelain6",
+      "y": 270
+    },
+    "facing=north,style=7": {
+      "model": "rankine:block/light_gray_glazed_porcelain7",
+      "y": 180
+    },
+    "facing=south,style=7": {
       "model": "rankine:block/light_gray_glazed_porcelain7"
     },
-    "style=8": {
+    "facing=west,style=7": {
+      "model": "rankine:block/light_gray_glazed_porcelain7",
+      "y": 90
+    },
+    "facing=east,style=7": {
+      "model": "rankine:block/light_gray_glazed_porcelain7",
+      "y": 270
+    },
+    "facing=north,style=8": {
+      "model": "rankine:block/light_gray_glazed_porcelain8",
+      "y": 180
+    },
+    "facing=south,style=8": {
       "model": "rankine:block/light_gray_glazed_porcelain8"
+    },
+    "facing=west,style=8": {
+      "model": "rankine:block/light_gray_glazed_porcelain8",
+      "y": 90
+    },
+    "facing=east,style=8": {
+      "model": "rankine:block/light_gray_glazed_porcelain8",
+      "y": 270
+    },
+    "facing=north,style=9": {
+      "model": "rankine:block/light_gray_glazed_porcelain9",
+      "y": 180
+    },
+    "facing=south,style=9": {
+      "model": "rankine:block/light_gray_glazed_porcelain9"
+    },
+    "facing=west,style=9": {
+      "model": "rankine:block/light_gray_glazed_porcelain9",
+      "y": 90
+    },
+    "facing=east,style=9": {
+      "model": "rankine:block/light_gray_glazed_porcelain9",
+      "y": 270
+    },
+    "facing=north,style=10": {
+      "model": "rankine:block/light_gray_glazed_porcelain10",
+      "y": 180
+    },
+    "facing=south,style=10": {
+      "model": "rankine:block/light_gray_glazed_porcelain10"
+    },
+    "facing=west,style=10": {
+      "model": "rankine:block/light_gray_glazed_porcelain10",
+      "y": 90
+    },
+    "facing=east,style=10": {
+      "model": "rankine:block/light_gray_glazed_porcelain10",
+      "y": 270
+    },
+    "facing=north,style=11": {
+      "model": "rankine:block/light_gray_glazed_porcelain11",
+      "y": 180
+    },
+    "facing=south,style=11": {
+      "model": "rankine:block/light_gray_glazed_porcelain11"
+    },
+    "facing=west,style=11": {
+      "model": "rankine:block/light_gray_glazed_porcelain11",
+      "y": 90
+    },
+    "facing=east,style=11": {
+      "model": "rankine:block/light_gray_glazed_porcelain11",
+      "y": 270
     }
   }
 }
