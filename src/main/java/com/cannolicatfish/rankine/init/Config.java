@@ -488,6 +488,7 @@ public class Config {
         public final ForgeConfigSpec.IntValue ELECTROMAGNET_RANGE;
         public final ForgeConfigSpec.IntValue MAGNET_RANGE;
         public final ForgeConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
+        public final ForgeConfigSpec.BooleanValue EVAPORATION_TOWER_MAINTENANCE;
         public final ForgeConfigSpec.IntValue LASER_QUARRY_RANGE;
         public final ForgeConfigSpec.IntValue LASER_QUARRY_SPEED;
         public final ForgeConfigSpec.IntValue GAS_BOTTLER_SPEED;
@@ -524,6 +525,8 @@ public class Config {
                         .defineInRange("inductionFurnacePower", 16, 0, 10000);
                 CRUSHING_SUCCESS_CHANCE = b.comment("Chance for a piston/crushing head to crush a block.")
                         .defineInRange("crushingSuccessChance", 0.2D, 0.0D, 1.0D);
+                EVAPORATION_TOWER_MAINTENANCE = b.comment("If enabled, sheetmetal from the evaporation tower will occasionally break.")
+                        .define("evaporationTowerMaintenance",true);
             b.pop();
         }
     }
@@ -573,9 +576,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue MUSHROOMS;
         public final ForgeConfigSpec.BooleanValue FALLEN_LOGS;
         public final ForgeConfigSpec.BooleanValue COBBLES_GEN;
-        public final ForgeConfigSpec.BooleanValue EVAPORITE_GEN;
         public final ForgeConfigSpec.IntValue FUMAROLE_GEN;
-        public final ForgeConfigSpec.BooleanValue ALLUVIUM_GEN;
         public final ForgeConfigSpec.BooleanValue FIRE_CLAY_GEN;
         public final ForgeConfigSpec.BooleanValue WHITE_SAND_GEN;
         public final ForgeConfigSpec.BooleanValue BLACK_SAND_GEN;
@@ -601,7 +602,6 @@ public class Config {
         public final ForgeConfigSpec.IntValue LAYER_THICKNESS;
         public final ForgeConfigSpec.IntValue NOISE_SCALE;
         public final ForgeConfigSpec.IntValue SOIL_NOISE_SCALE;
-        //public final ForgeConfigSpec.IntValue NOISE_OFFSET;
 
         public final ForgeConfigSpec.BooleanValue INTRUSION_GEN;
         public final ForgeConfigSpec.IntValue OVERWORLD_INTRUSION_RADIUS;
@@ -643,12 +643,8 @@ public class Config {
                     .define("generateMushrooms",true);
             COBBLES_GEN = b.comment("Enable/Disable Project Rankine cobbles in world.")
                     .define("generateCobbles",true);
-            EVAPORITE_GEN = b.comment("Enables the generation of evaporite disks.")
-                    .define("generateEvaporite",true);
             FUMAROLE_GEN = b.comment("Average number of chuncks to generate a fumarole in. Set to 0 to disable.")
                     .defineInRange("fumaroleGenerationChance", 20, 0, Integer.MAX_VALUE);
-            ALLUVIUM_GEN = b.comment("Enables the generation of alluvium disks.")
-                    .define("generateAlluvium",true);
             WHITE_SAND_GEN = b.comment("Enables the generation of white sand disks in beaches.")
                     .define("generateWhiteSand",true);
             BLACK_SAND_GEN = b.comment("Enables the generation of black sand disks in the Nether.")

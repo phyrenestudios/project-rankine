@@ -9,10 +9,6 @@
       "text": "rankine.journal.cat_orientation.intro.text1"
     },
     {
-      "type": "text",
-      "text": "rankine.journal.cat_orientation.intro.text2"
-    },
-    {
       "type": "link",
       "url": "https://www.curseforge.com/minecraft/mc-mods/project-rankine",
       "link_text": "CurseForge Page"
