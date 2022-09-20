@@ -10,6 +10,7 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.event.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
+import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -56,6 +57,10 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void entityInteractEvent(PlayerInteractEvent.EntityInteract event) {
         EntityInteractHandler.breedables(event);
+    }
+    @SubscribeEvent
+    public static void itemExpireEvent(ItemExpireEvent event) {
+        ItemExpireHandler.onItemPickup(event);
     }
     @SubscribeEvent
     public static void noWater(BlockEvent.CreateFluidSourceEvent event) {
