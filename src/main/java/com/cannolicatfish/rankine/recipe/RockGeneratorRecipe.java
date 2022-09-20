@@ -61,7 +61,8 @@ public class RockGeneratorRecipe implements Recipe<Container> {
 
     @Override
     public boolean matches(Container inv, Level worldIn) {
-        if (this.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS) || this.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC) || this.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC)) {
+        if (this.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS) || this.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC) || this.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC) ||
+        this.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {
             boolean test;
             for (int i = 0; i < inv.getContainerSize(); i++) {
                 test = this.ingredient1.test(inv.getItem(i));
