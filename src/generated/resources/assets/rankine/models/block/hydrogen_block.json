@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "rankine:block/template_solid_gas",
   "textures": {
     "all": "rankine:block/hydrogen_block"
   }

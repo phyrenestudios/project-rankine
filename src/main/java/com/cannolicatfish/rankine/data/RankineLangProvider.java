@@ -1070,15 +1070,14 @@ public class RankineLangProvider extends LanguageProvider {
 
 
         //JOURNAL==============================================================================
-        add("rankine.journal.landing_text", "A mere collection of discoveries, awaiting application.");
+        add("rankine.journal.landing_text", "Project Rankine is about material acquisition and usage. Explore the variety of items and blocks and the new methods to obtain them.");
 
         //Orientation
         add("rankine.journal.cat_orientation.name", "Orientation");
-        add("rankine.journal.cat_orientation.desc", "Notes from very brief orientation to the Project. These are all I have to look over for now.");
+        add("rankine.journal.cat_orientation.desc", "A general guide for working with Project Rankine systems.");
 
-        add("rankine.journal.cat_orientation.intro.name", "Greetings");
-        add("rankine.journal.cat_orientation.intro.text1", "$(o)If you find this journal, then I welcome to a new world. You may find it familiar to the standards that you are used to. However, this is a Rankine world. In short that means I've changed some things to make it a little bit more interesting. Enjoy. $(br2)But seriously, if you want to know what's going on, read the foundation entries series.");
-        add("rankine.journal.cat_orientation.intro.text2", "$(o)For more resources see the following pages.");
+        add("rankine.journal.cat_orientation.intro.name", "Resources");
+        add("rankine.journal.cat_orientation.intro.text1", "$(o)For more resources see the following pages.");
 
         add("rankine.journal.cat_orientation.foundation1.name", "Foundation I");
         add("rankine.journal.cat_orientation.foundation1.text1", "Lesson one, not all information can be shared via this journal. Some of it requires discovering it for yourself and utilizing JEI for many recipe related inquiries. The new changes are all about variety. There are more ground blocks, more ores, more processing mechanics, more ways to achieve. Utilize this variety to bolster creativity or just to have pretty colors. Regardless, let's see some changes.");

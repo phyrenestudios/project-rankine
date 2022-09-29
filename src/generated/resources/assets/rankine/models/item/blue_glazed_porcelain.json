@@ -42,6 +42,24 @@
         "rankine:building_mode": 8.0
       },
       "model": "rankine:block/blue_glazed_porcelain8"
+    },
+    {
+      "predicate": {
+        "rankine:building_mode": 9.0
+      },
+      "model": "rankine:block/blue_glazed_porcelain9"
+    },
+    {
+      "predicate": {
+        "rankine:building_mode": 10.0
+      },
+      "model": "rankine:block/blue_glazed_porcelain10"
+    },
+    {
+      "predicate": {
+        "rankine:building_mode": 11.0
+      },
+      "model": "rankine:block/blue_glazed_porcelain11"
     }
   ]
 }

@@ -1,38 +1,13 @@
 {
   "variants": {
     "age=0": {
-      "model": "rankine:block/honey_locust_leavesage0"
+      "model": "rankine:block/honey_locust_leaves_age0"
     },
     "age=1": {
-      "model": "rankine:block/honey_locust_leavesage1"
+      "model": "rankine:block/honey_locust_leaves_age1"
     },
     "age=2": {
-      "model": "rankine:block/honey_locust_leavesage2"
-    },
-    "age=3": {
-      "model": "rankine:block/honey_locust_leavesage3"
-    },
-    "age=4": [
-      {
-        "model": "rankine:block/honey_locust_leavessnowy3"
-      },
-      {
-        "model": "rankine:block/honey_locust_leavessnowy1"
-      },
-      {
-        "model": "rankine:block/honey_locust_leavessnowy2"
-      }
-    ],
-    "age=5": [
-      {
-        "model": "rankine:block/honey_locust_leavessnowy_top3"
-      },
-      {
-        "model": "rankine:block/honey_locust_leavessnowy_top1"
-      },
-      {
-        "model": "rankine:block/honey_locust_leavessnowy_top2"
-      }
-    ]
+      "model": "rankine:block/honey_locust_leaves_age3"
+    }
   }
 }

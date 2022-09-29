@@ -68,6 +68,7 @@ public final class RankineTags {
         public static final TagKey<Block> COBBLES = modBlock("cobbles");
         public static final TagKey<Block> LEAF_LITTERS = modBlock("leaf_litters");
         public static final TagKey<Block> HEAT_SOURCES = modBlock("heat_sources");
+        public static final TagKey<Block> HEATING_ELEMENTS = modBlock("heating_elements");
         public static final TagKey<Block> MINEABLE_WITH_CROWBAR = modBlock("mineable/crowbar");
         public static final TagKey<Block> CROWBAR_RESISTANT = modBlock("crowbar_resistant");
 

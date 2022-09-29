@@ -122,7 +122,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             fancyStoneBricksBlock(blk);
         }
         for (Block blk : RankineLists.ELEMENT_BLOCKS) {
-            if (blk == RankineBlocks.HELIUM_BLOCK.get() || blk == RankineBlocks.NEON_BLOCK.get() || blk == RankineBlocks.ARGON_BLOCK.get() || blk == RankineBlocks.KRYPTON_BLOCK.get() || blk == RankineBlocks.RADON_BLOCK.get() || blk == RankineBlocks.XENON_BLOCK.get() || blk == RankineBlocks.OGANESSON_BLOCK.get()) {
+            if (blk == RankineBlocks.HELIUM_BLOCK.get() || blk == RankineBlocks.FLUORINE_BLOCK.get() || blk == RankineBlocks.CHLORINE_BLOCK.get() || blk == RankineBlocks.OXYGEN_BLOCK.get() || blk == RankineBlocks.NITROGEN_BLOCK.get() || blk == RankineBlocks.HYDROGEN_BLOCK.get() || blk == RankineBlocks.NEON_BLOCK.get() || blk == RankineBlocks.ARGON_BLOCK.get() || blk == RankineBlocks.KRYPTON_BLOCK.get() || blk == RankineBlocks.RADON_BLOCK.get() || blk == RankineBlocks.XENON_BLOCK.get() || blk == RankineBlocks.OGANESSON_BLOCK.get()) {
                 simpleBlock(blk, models().withExistingParent(blk.getRegistryName().getPath(), modLoc("template_solid_gas")).texture("all", getBlockRSL(blk.getRegistryName().getPath())));
             } else {
                 simpleBlock(blk);
@@ -639,7 +639,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             doublePlant(blk);
         }
         for (Block blk : RankineLists.GLAZED_PORCELAIN_BLOCKS) {
-            getVariantBuilder(blk).forAllStates(state -> ConfiguredModel.builder().modelFile(models().withExistingParent(blk.getRegistryName().getPath()+state.getValue(((BuildingModeBlock) blk).getProperty()), modLoc("template_glazed_porcelain")).texture("overlay", getBlockRSL("glazed_porcelain"+state.getValue(((BuildingModeBlock) blk).getProperty())))).build());
+            getVariantBuilder(blk).forAllStates(state -> ConfiguredModel.builder().modelFile(models().withExistingParent(blk.getRegistryName().getPath()+state.getValue(((BuildingModeBlock) blk).getProperty()), modLoc("template_glazed_porcelain")).texture("overlay", getBlockRSL("glazed_porcelain"+state.getValue(((BuildingModeBlock) blk).getProperty())))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build());
         }
         triplePlant(RankineBlocks.CORN_STALK.get());
         pillarFour(RankineBlocks.ROPE.get());
@@ -957,18 +957,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     public void leavesBlock(Block BLK) {
         String PATH = BLK.getRegistryName().getPath();
         getVariantBuilder(BLK)
-            .partialState().with(RankineLeavesBlock.AGE, 0).modelForState().modelFile(models().withExistingParent(PATH +"age0", getBlockRSL("minecraft","leaves")).texture("all", getBlockRSL(PATH))).addModel()
-            .partialState().with(RankineLeavesBlock.AGE, 1).modelForState().modelFile(models().withExistingParent(PATH +"age1", getBlockRSL("minecraft","leaves")).texture("all", getBlockRSL(PATH))).addModel()
-            .partialState().with(RankineLeavesBlock.AGE, 2).modelForState().modelFile(models().withExistingParent(PATH +"age2", getBlockRSL("minecraft","leaves")).texture("all", getBlockRSL(PATH))).addModel()
-            .partialState().with(RankineLeavesBlock.AGE, 3).modelForState().modelFile(models().withExistingParent(PATH +"age3", getBlockRSL("minecraft","leaves")).texture("all", getBlockRSL(PATH))).addModel()
-            .partialState().with(RankineLeavesBlock.AGE, 4).modelForState()
-                .modelFile(models().withExistingParent(PATH +"snowy3", getBlockRSL("leaves_age4")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay3"))).nextModel()
-                .modelFile(models().withExistingParent(PATH +"snowy1", getBlockRSL("leaves_age4")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay1"))).nextModel()
-                .modelFile(models().withExistingParent(PATH +"snowy2", getBlockRSL("leaves_age4")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay2"))).addModel()
-            .partialState().with(RankineLeavesBlock.AGE, 5).modelForState()
-                .modelFile(models().withExistingParent(PATH +"snowy_top3", getBlockRSL("leaves_age5")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay3")).texture("snowy_top_overlay", getBlockRSL("snowy_leaves_top_overlay3"))).nextModel()
-                .modelFile(models().withExistingParent(PATH +"snowy_top1", getBlockRSL("leaves_age5")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay1")).texture("snowy_top_overlay", getBlockRSL("snowy_leaves_top_overlay1"))).nextModel()
-                .modelFile(models().withExistingParent(PATH +"snowy_top2", getBlockRSL("leaves_age5")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay2")).texture("snowy_top_overlay", getBlockRSL("snowy_leaves_top_overlay2"))).addModel();
+            .partialState().with(RankineLeavesBlock.AGE, 0).modelForState().modelFile(models().withExistingParent(PATH +"_age0", getBlockRSL("minecraft","leaves")).texture("all", getBlockRSL(PATH))).addModel()
+            .partialState().with(RankineLeavesBlock.AGE, 1).modelForState().modelFile(models().withExistingParent(PATH +"_age1", getBlockRSL("minecraft","leaves")).texture("all", getBlockRSL(PATH))).addModel()
+            .partialState().with(RankineLeavesBlock.AGE, 2).modelForState().modelFile(models().withExistingParent(PATH +"_age3", getBlockRSL("leaves_age5")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay"))).addModel();
     }
     public void layerBlock(Block BLK) {
         ModelFile model = models().withExistingParent(BLK.getRegistryName().getPath(), mcLoc("block/block"))

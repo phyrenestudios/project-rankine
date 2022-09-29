@@ -66,7 +66,7 @@ public class EvaporationTowerBlock extends BaseEntityBlock {
 
     @Override
     public void randomTick(BlockState stateIn, ServerLevel levelIn, BlockPos posIn, Random rand) {
-        if (rand.nextFloat() < 0.05) {
+        if (rand.nextFloat() < 0.01) {
             EvaporationTowerTile tileIn = (EvaporationTowerTile) levelIn.getBlockEntity(posIn);
             if (tileIn.structureHeight(levelIn, posIn) > 2) {
                 levelIn.removeBlock(tileIn.wallStructure(posIn).get(rand.nextInt(tileIn.wallStructure(posIn).size())).above(rand.nextInt(tileIn.structureHeight(levelIn, posIn)-3)+3),false);
