@@ -10,6 +10,7 @@ import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
@@ -17,6 +18,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RankineItemTagsProvider extends ItemTagsProvider {
 
@@ -702,6 +706,11 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
         copy(BlockTags.STONE_PRESSURE_PLATES, RankineTags.Items.STONE_PRESSURE_PLATES);
         copy(RankineTags.Blocks.COBBLES, RankineTags.Items.COBBLES);
+
+        for (Item item : Stream.of(RankineLists.ELEMENT_INGOTS,RankineLists.ALLOY_INGOTS,
+                Arrays.asList(RankineItems.OPAL.get(),RankineItems.TOURMALINE.get(),RankineItems.AQUAMARINE.get(),RankineItems.TOPAZ.get(),RankineItems.RUBY.get(),RankineItems.SAPPHIRE.get(),RankineItems.GARNET.get(),RankineItems.PERIDOT.get(),RankineItems.LONSDALEITE_DIAMOND.get())).flatMap(Collection::stream).collect(Collectors.toList())) {
+            tag(ItemTags.BEACON_PAYMENT_ITEMS).add(item);
+        }
 
         //plants
         for (Block blk : RankineLists.WALL_MUSHROOMS) {

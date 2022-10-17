@@ -17,7 +17,9 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -224,11 +226,23 @@ public class WorldgenUtils {
         }
     }
 
-    public static int waterTableHeight(Level worldIn, BlockPos pos) {
-       // Biome biome = worldIn.getBiome(pos).value();
-        //int surface = worldIn.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ());
-        return worldIn.getSeaLevel() + 1;
-        //return biome.getBiomeCategory() == Biome.BiomeCategory.OCEAN || biome.getBiomeCategory() == Biome.BiomeCategory.BEACH || biome.getBiomeCategory() == Biome.BiomeCategory.SWAMP || biome.getBiomeCategory() == Biome.BiomeCategory.RIVER ? worldIn.getSeaLevel() + 1 : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
+    public static boolean inInfiniteSource(Level levelIn, BlockPos posIn) {
+        int i = 0;
+        for (Direction dir : Direction.values()) {
+            if (dir.getAxis().isVertical()) continue;
+            FluidState fluid = levelIn.getFluidState(posIn.relative(dir));
+            if (levelIn.getFluidState(posIn.relative(dir)).is(Fluids.WATER)) {
+                i++;
+                if (i>1) return true;
+            }
+        }
+        return false;
+    }
+
+    public static int waterTableHeight(Level levelIn, BlockPos posIn) {
+        if (!Config.GENERAL.DISABLE_WATER.get()) return levelIn.getMaxBuildHeight();
+        int surface = levelIn.getHeight(Heightmap.Types.WORLD_SURFACE_WG,posIn.getX(),posIn.getZ());
+        return levelIn.getSeaLevel() + Math.max(0, Math.round((surface-levelIn.getSeaLevel()) * (1 - levelIn.getBiome(posIn).value().getDownfall())));
     }
 
     public static boolean inArea(BlockPos b, double radius, boolean center, BlockPos... targets) {

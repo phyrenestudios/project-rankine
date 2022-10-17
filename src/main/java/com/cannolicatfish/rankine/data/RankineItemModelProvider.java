@@ -123,6 +123,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Block blk : Arrays.asList(
 
                 RankineBlocks.ANTIMATTER.get(),
+                RankineBlocks.FLOOD_GATE.get(),
                 RankineBlocks.ALLUVIUM.get(),
                 RankineBlocks.SOD_BLOCK.get(),
                 RankineBlocks.UNAMED_EXPLOSIVE.get(),
@@ -380,6 +381,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.BONE_CHAR_BLOCK.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
                 RankineBlocks.HEATING_ELEMENT_1.get(),
+                RankineBlocks.HEATING_ELEMENT_2.get(),
+                RankineBlocks.HEATING_ELEMENT_3.get(),
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.PCF.get(),

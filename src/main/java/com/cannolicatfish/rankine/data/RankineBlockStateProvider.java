@@ -3,7 +3,8 @@ package com.cannolicatfish.rankine.data;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.BaseAsphaltBlock;
-import com.cannolicatfish.rankine.blocks.buildingmodes.*;
+import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
+import com.cannolicatfish.rankine.blocks.groundtap.GroundTapBlock;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelBlock;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankineDoublePlantBlock;
@@ -647,15 +648,23 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
         //MACHINES
-        getVariantBuilder(RankineBlocks.GROUND_TAP.get())
-                .partialState().modelForState().modelFile(models().withExistingParent(RankineBlocks.GROUND_TAP.get().getRegistryName().getPath(), modLoc("block/template_ground_tap")).texture("side","block/metal_pipe")).addModel();
+        getVariantBuilder(RankineBlocks.GROUND_TAP.get()).forAllStatesExcept(state -> {
+            Direction facing = state.getValue(GroundTapBlock.FACING);
+            int yRot = (int) facing.toYRot();
+            return ConfiguredModel.builder()
+                    .modelFile(models().withExistingParent(RankineBlocks.GROUND_TAP.get().getRegistryName().getPath(), modLoc("block/template_ground_tap")).texture("side","block/metal_pipe"))
+                    .rotationY(facing.getAxis() == Direction.Axis.Y ? 0 : (yRot+180)%360)
+                    .rotationX(facing == Direction.UP ? 0 : facing == Direction.DOWN ? 180 : 90)
+                    .build();
+        },BlockStateProperties.WATERLOGGED);
+
         getVariantBuilder(RankineBlocks.TREE_TAP.get())
                 .forAllStates(state -> {
                     boolean CONNECTED = state.getValue(TreeTapBlock.CONNECTED);
                     return ConfiguredModel.builder().modelFile(CONNECTED ? models().getExistingFile(getBlockRSL("tree_tap_connected")) : models().getExistingFile(getBlockRSL("tree_tap"))).rotationY(((int) state.getValue(TreeTapBlock.FACING).toYRot()+180)%360).build();
                 });
 
-
+        getVariantBuilder(RankineBlocks.FLOOD_GATE.get()).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(models().cubeAll(RankineBlocks.FLOOD_GATE.get().getRegistryName().getPath(), getBlockRSL(RankineBlocks.FLOOD_GATE.get().getRegistryName().getPath()))).build(), BlockStateProperties.WATERLOGGED);
 
 
         //simpleBlock(RankineBlocks.LASER_QUARRY.get());
@@ -674,6 +683,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         simpleBlock(RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get());
         simpleBlock(RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get());
         simpleBlock(RankineBlocks.HEATING_ELEMENT_1.get());
+        simpleBlock(RankineBlocks.HEATING_ELEMENT_2.get());
+        simpleBlock(RankineBlocks.HEATING_ELEMENT_3.get());
         simpleBlock(RankineBlocks.PCF.get(), models().orientable(RankineBlocks.PCF.get().getRegistryName().getPath(), getBlockRSL("pcf_side"), getBlockRSL("pcf_front"), getBlockRSL("pcf_top")));
         simpleBlock(RankineBlocks.BOTANIST_STATION.get(), models().orientable(RankineBlocks.BOTANIST_STATION.get().getRegistryName().getPath(), getBlockRSL("botanist_station_side"), getBlockRSL("botanist_station_front"), getBlockRSL("botanist_station_top")));
         simpleBlock(RankineBlocks.TEMPLATE_TABLE.get(), models().orientable(RankineBlocks.TEMPLATE_TABLE.get().getRegistryName().getPath(), getBlockRSL("template_table_side"), getBlockRSL("template_table_front"), getBlockRSL("template_table_top")));
@@ -780,6 +791,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         String PATH = BLK.getRegistryName().getPath();
         ModelFile model = models().withExistingParent(PATH+"1", modLoc("block/template_cobble1")).texture("all", getBlockRSL(PATH.replace("_cobble","")));
         ModelFile model2 = models().withExistingParent(PATH+"2", modLoc("block/template_cobble2")).texture("all", getBlockRSL(PATH.replace("_cobble","")));
+        ModelFile model3 = models().withExistingParent(PATH+"3", modLoc("block/template_cobble3")).texture("all", getBlockRSL(PATH.replace("_cobble","")));
         getVariantBuilder(BLK).partialState().modelForState()
                 .modelFile(model).rotationY(0).nextModel()
                 .modelFile(model).rotationY(90).nextModel()
@@ -788,7 +800,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .modelFile(model2).rotationY(0).nextModel()
                 .modelFile(model2).rotationY(90).nextModel()
                 .modelFile(model2).rotationY(180).nextModel()
-                .modelFile(model2).rotationY(270).addModel();
+                .modelFile(model2).rotationY(270).nextModel()
+                .modelFile(model3).rotationY(0).nextModel()
+                .modelFile(model3).rotationY(90).nextModel()
+                .modelFile(model3).rotationY(180).nextModel()
+                .modelFile(model3).rotationY(270).addModel();
     }
 
     public void quarterSlab(Block BLK) {

@@ -1,30 +1,24 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
-import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.google.common.collect.Maps;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.core.Direction;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.*;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 import java.util.Map;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
 
 public class MetalPipeBlock extends Block {
 
@@ -49,6 +43,10 @@ public class MetalPipeBlock extends Block {
         super(properties);
         this.shapes = this.makeShapes(apothem);
         this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.FALSE).setValue(EAST, Boolean.FALSE).setValue(SOUTH, Boolean.FALSE).setValue(WEST, Boolean.FALSE).setValue(UP, Boolean.FALSE).setValue(DOWN, Boolean.FALSE));
+    }
+
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN);
     }
 
     private VoxelShape[] makeShapes(float apothem) {
@@ -105,46 +103,26 @@ public class MetalPipeBlock extends Block {
     }
 
     public BlockState makeConnections(BlockGetter blockReader, BlockPos pos) {
-        Block block = blockReader.getBlockState(pos.below()).getBlock();
-        Block block1 = blockReader.getBlockState(pos.above()).getBlock();
-        BlockState bs1 = blockReader.getBlockState(pos.above());
-        Block block2 = blockReader.getBlockState(pos.north()).getBlock();
-        Block block3 = blockReader.getBlockState(pos.east()).getBlock();
-        Block block4 = blockReader.getBlockState(pos.south()).getBlock();
-        Block block5 = blockReader.getBlockState(pos.west()).getBlock();
-        return this.defaultBlockState().setValue(DOWN, block == this)
-                .setValue(DOWN, block == this || block == RankineBlocks.FLOOD_GATE.get())
-                .setValue(NORTH, block2 == this)
-                .setValue(EAST, block3 == this)
-                .setValue(SOUTH, block4 == this)
-                .setValue(WEST, block5 == this)
-                .setValue(UP, block1 == this || block1 == RankineBlocks.GROUND_TAP.get());
+        return this.defaultBlockState()
+                .setValue(DOWN, isAttachable(blockReader.getBlockState(pos.below())))
+                .setValue(NORTH, isAttachable(blockReader.getBlockState(pos.north())))
+                .setValue(EAST, isAttachable(blockReader.getBlockState(pos.east())))
+                .setValue(SOUTH, isAttachable(blockReader.getBlockState(pos.south())))
+                .setValue(WEST, isAttachable(blockReader.getBlockState(pos.west())))
+                .setValue(UP, isAttachable(blockReader.getBlockState(pos.above())));
     }
 
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (!stateIn.canSurvive(worldIn, currentPos)) {
-            worldIn.getBlockTicks().willTickThisTick(currentPos, this);
-            return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor levelIn, BlockPos currentPos, BlockPos facingPos) {
+        if (!stateIn.canSurvive(levelIn, currentPos)) {
+            levelIn.getBlockTicks().willTickThisTick(currentPos, this);
+            return super.updateShape(stateIn, facing, facingState, levelIn, currentPos, facingPos);
         } else {
-            boolean flag = false;
-            Block fsb = facingState.getBlock();
-            switch (facing) {
-                case UP:
-                    flag = fsb == this || fsb == RankineBlocks.GROUND_TAP.get();
-                    break;
-                case DOWN:
-                case NORTH:
-                case SOUTH:
-                case EAST:
-                case WEST:
-                    flag = fsb == this;
-                    break;
-            }
-            return stateIn.setValue(FACING_TO_PROPERTY_MAP.get(facing), flag);
+            return stateIn.setValue(FACING_TO_PROPERTY_MAP.get(facing), levelIn.isStateAtPosition(facingPos, this::isAttachable));
         }
     }
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN);
+    private boolean isAttachable(BlockState stateIn) {
+        return stateIn.is(this) || stateIn.is(RankineBlocks.GROUND_TAP.get()) || stateIn.is(RankineBlocks.FLOOD_GATE.get());
     }
+
 }

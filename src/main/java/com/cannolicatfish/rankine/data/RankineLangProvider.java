@@ -156,10 +156,13 @@ public class RankineLangProvider extends LanguageProvider {
 
         // Misc Blocks
         for (Block blk : Arrays.asList(
+                RankineBlocks.FLOOD_GATE.get(),
                 RankineBlocks.SLATE_STEPPING_STONES.get(),
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.HEATING_ELEMENT_1.get(),
+                RankineBlocks.HEATING_ELEMENT_2.get(),
+                RankineBlocks.HEATING_ELEMENT_3.get(),
                 RankineBlocks.TILLED_SOIL.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
                 RankineBlocks.ORNAMENT.get(),
@@ -589,6 +592,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.rankine.prospecting_stick.message", "%1$s (HL:%2$s) was detected nearby");
         add("item.rankine.ore_detector.message", "%1$s (HL:%2$s) was detected at x:%3$s y:%4$s z:%5$s");
         add("item.rankine.magnetometer.message1", "Field Strength: %s");
+        add("item.rankine.dowsing_rod.message", "Water table height is y=%s");
 
 
         //Death Messages
@@ -1112,19 +1116,23 @@ public class RankineLangProvider extends LanguageProvider {
 
         //Biota
         add("rankine.journal.cat_biota.name", "Biota");
-        add("rankine.journal.cat_biota.desc", "Plants be cool.");
+        add("rankine.journal.cat_biota.desc", "The plant and animal like additions of Project Rankine. ");
 
-        add("rankine.journal.cat_biota.trees.text1", "Trees be cool.");
-        add("rankine.journal.cat_biota.trees.text2", "Cedar");
-        add("rankine.journal.cat_biota.trees.text3", "Balsam Fir");
-
-
-        add("rankine.journal.cat_biota.mushrooms.name", "Mushrooms");
-        add("rankine.journal.cat_biota.mushrooms.text1", "New types of fungi populate the undergrowth of wooded ecosystems. Although they have a different growth pattern, some can be used similar to the common red and brown varieties.");
-        add("rankine.journal.cat_biota.mushrooms.edible_mushrooms_header", "Edible Mushrooms");
-        add("rankine.journal.cat_biota.mushrooms.edible_mushrooms", "");
-        add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms_header", "Inedible Mushrooms");
-        add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms", "");
+        add("rankine.journal.cat_biota.crops.name", "Crops");
+        add("rankine.journal.cat_biota.crops.text1", "");
+        add("rankine.journal.cat_biota.crops.grains_heading", "Grains");
+        add("rankine.journal.cat_biota.crops.grains", "A variety of grains have rooted across the plains and savannas. They are grown and used similar to wheat.");
+        add("rankine.journal.cat_biota.crops.corn_ear", "");
+        add("rankine.journal.cat_biota.crops.soybeans", "");
+        add("rankine.journal.cat_biota.crops.asparagus", "");
+        add("rankine.journal.cat_biota.crops.jute", "");
+        add("rankine.journal.cat_biota.crops.cotton", "");
+        add("rankine.journal.cat_biota.crops.berries_heading", "Berries");
+        add("rankine.journal.cat_biota.crops.berries", "Berries are a raw source of food that grow on bushes throughout the world. They can be used to craft Fruit Jam.");
+        add("rankine.journal.cat_biota.crops.pineapple", "");
+        add("rankine.journal.cat_biota.crops.aloe", "");
+        add("rankine.journal.cat_biota.crops.banana_yucca", "");
+        add("rankine.journal.cat_biota.crops.camphor_basil_leaf", "");
 
         add("rankine.journal.cat_biota.ground_flora.name", "Ground Flora");
         add("rankine.journal.cat_biota.ground_flora.text1",  "");
@@ -1138,7 +1146,15 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.ground_flora.stinging_nettle", "");
         add("rankine.journal.cat_biota.ground_flora.short_grass", "");
 
+        add("rankine.journal.cat_biota.mushrooms.name", "Mushrooms");
+        add("rankine.journal.cat_biota.mushrooms.text1", "New types of fungi populate the undergrowth of wooded ecosystems. Although they have a different growth pattern, some can be used similar to the common red and brown varieties.");
+        add("rankine.journal.cat_biota.mushrooms.edible_mushrooms_header", "Edible Mushrooms");
+        add("rankine.journal.cat_biota.mushrooms.edible_mushrooms", "");
+        add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms_header", "Inedible Mushrooms");
+        add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms", "");
+
         add("rankine.journal.cat_biota.trees.name", "Trees");
+        add("rankine.journal.cat_biota.trees.text1", "Large wooded plants, much like vanilla trees. Each tree can be found naturally in certain biomes of the world.");
         add("rankine.journal.cat_biota.trees.cedar.title", "Cedar");
         add("rankine.journal.cat_biota.trees.cedar", "Native to taiga biomes.");
         add("rankine.journal.cat_biota.trees.balsam_fir.title", "Balsam Fir");
@@ -1166,7 +1182,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.trees.coconut_palm.title", "Coconut Palm");
         add("rankine.journal.cat_biota.trees.coconut_palm", "Native to beaches");
         add("rankine.journal.cat_biota.trees.cork_oak.title", "Cork Oak");
-        add("rankine.journal.cat_biota.trees.cork_oak", "Native to jungle biomes.");
+        add("rankine.journal.cat_biota.trees.cork_oak", "Native to savanna biomes.");
         add("rankine.journal.cat_biota.trees.sharinga.title", "Sharinga");
         add("rankine.journal.cat_biota.trees.sharinga", "Native to jungle biomes.");
         add("rankine.journal.cat_biota.trees.cinnamon.title", "Cinnamon");
@@ -1177,22 +1193,6 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.trees.honey_locust", "Native to plains biomes.");
         add("rankine.journal.cat_biota.trees.weeping_willow.title", "Weeping Willow");
         add("rankine.journal.cat_biota.trees.weeping_willow", "Native to sawmp biomes.");
-
-        add("rankine.journal.cat_biota.crops.name", "Crops");
-        add("rankine.journal.cat_biota.crops.text1", "");
-        add("rankine.journal.cat_biota.crops.grains_heading", "Grains");
-        add("rankine.journal.cat_biota.crops.grains", "A variety of grains have rooted across the plains and savannas. They are grown and used similar to wheat.");
-        add("rankine.journal.cat_biota.crops.corn_ear", "");
-        add("rankine.journal.cat_biota.crops.soybeans", "");
-        add("rankine.journal.cat_biota.crops.asparagus", "");
-        add("rankine.journal.cat_biota.crops.jute", "");
-        add("rankine.journal.cat_biota.crops.cotton", "");
-        add("rankine.journal.cat_biota.crops.berries_heading", "Berries");
-        add("rankine.journal.cat_biota.crops.berries", "Berries are a raw source of food that grow on bushes throughout the world. They can be used to craft Fruit Jam.");
-        add("rankine.journal.cat_biota.crops.pineapple", "");
-        add("rankine.journal.cat_biota.crops.aloe", "");
-        add("rankine.journal.cat_biota.crops.banana_yucca", "");
-        add("rankine.journal.cat_biota.crops.camphor_basil_leaf", "");
 
 
         //Materials
@@ -1239,18 +1239,18 @@ public class RankineLangProvider extends LanguageProvider {
 
         //Mechanics
         add("rankine.journal.cat_mechanics.name", "Mechanics");
-        add("rankine.journal.cat_mechanics.desc", "Gameplay additions / changes.");
+        add("rankine.journal.cat_mechanics.desc", "Gameplay mechanics. Some are changes to existing systems, while others are additional.");
         add("rankine.journal.cat_mechanics.foraging.name", "Foraging");
         add("rankine.journal.cat_mechanics.foraging.text1", "There is a chance to find a variety of seeds and roots when breaking dirt and related blocks. This will only happen when using an open hand or crude tools. The foraging enchantment for hoes adds additional items that can be dropped.");
 
 
+        add("rankine.journal.cat_mechanics.finite_water.name", "Water Table");
+        add("rankine.journal.cat_mechanics.finite_water.text1", "A config enabled by default, which limits infinite water sources to below the Water Table height. ");
+        add("rankine.journal.cat_mechanics.finite_water.text2", "Right click the ground to display the Water Table height at that coordinate.");
+        add("rankine.journal.cat_mechanics.finite_water.text3", "Moving Water");
+        add("rankine.journal.cat_mechanics.finite_water.text4", "A passive method to create water sources above the Water Table ca be constructed. The Ground Tap will generate a source block of water every 10 seconds (configurable) when connected to a waterlogged Flood Gate and connected through Metal Pipes. The Flood Gate can become waterlogged by filling it manually with water or by placing it in an infinite water source. Multiple taps can be on the same pipe line.");
 
-        add("rankine.journal.cat_mechanics.finite_water.name", "Finite Water");
-        add("rankine.journal.cat_mechanics.finite_water.text1", "A config enabled by default, which makes water slightly less renewable. Infinite water sources can only be created below the local water table height. A mechanical way of bringing water to the surface is described in the latter pages.");
-        add("rankine.journal.cat_mechanics.finite_water.text2", "The Dowsing Rod is used to detect the local water height. Right clicking the ground will display a message above the hotbar.");
-        add("rankine.journal.cat_mechanics.finite_water.text3", "The Ground Tap will generate a source block of water when connected to an appropriate pipe network. That network consists of a Flood Gate placed below the water table height and connected through Metal Pipes. Multiple taps can be on the same pipe line.");
-        add("rankine.journal.cat_mechanics.finite_water.text4", "");
-        add("rankine.journal.cat_mechanics.finite_water.text5", "");
+
         add("rankine.journal.cat_mechanics.sluicing.name", "Sluicing");
         add("rankine.journal.cat_mechanics.sluicing.text1", "Sluicing is a general term for the act of sifting through material. Right click a block with the appropriate sluicing tool to receive an item.");
         add("rankine.journal.cat_mechanics.sluicing.text2", "Gold Pans");

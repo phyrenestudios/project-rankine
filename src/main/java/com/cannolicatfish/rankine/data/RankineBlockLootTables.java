@@ -101,6 +101,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
 
         for (Block blk : Arrays.asList(
+                RankineBlocks.FLOOD_GATE.get(),
                 RankineBlocks.SLATE_STEPPING_STONES.get(),
                 RankineBlocks.ORNAMENT.get(),
                 RankineBlocks.SOD_BLOCK.get(),
@@ -125,6 +126,8 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineBlocks.METAL_PIPE.get(),
                 RankineBlocks.GROUND_TAP.get(),
                 RankineBlocks.HEATING_ELEMENT_1.get(),
+                RankineBlocks.HEATING_ELEMENT_2.get(),
+                RankineBlocks.HEATING_ELEMENT_3.get(),
                 RankineBlocks.AIR_DISTILLATION_PACKING.get()
         )) {
             lootTables.put(blk, createBlockLootTable(blk));

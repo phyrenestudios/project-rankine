@@ -30,6 +30,21 @@
       {
         "model": "rankine:block/soapstone_cobble2",
         "y": 270
+      },
+      {
+        "model": "rankine:block/soapstone_cobble3"
+      },
+      {
+        "model": "rankine:block/soapstone_cobble3",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/soapstone_cobble3",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/soapstone_cobble3",
+        "y": 270
       }
     ]
   }
