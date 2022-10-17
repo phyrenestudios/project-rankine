@@ -1,10 +1,16 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -27,6 +33,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.TierSortingRegistry;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.tags.ITagManager;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -83,12 +90,30 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
             stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
                 entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
             });
-            if (state.is(Tags.Blocks.ORES) && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDLESS,stack) > 0) {
-                List<MobEffect> r = ForgeRegistries.MOB_EFFECTS.getEntries().stream().filter(registryKeyEffectEntry -> registryKeyEffectEntry.getValue().isBeneficial() &&
-                        registryKeyEffectEntry.getKey().getRegistryName().getNamespace().equals("minecraft")).map(Map.Entry::getValue).collect(Collectors.toList());
-                MobEffect rand = r.get(worldIn.getRandom().nextInt(r.size()));
-                MobEffectInstance e = new MobEffectInstance(rand,400, EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDLESS,stack));
-                entityLiving.addEffect(e);
+            if (Config.TOOLS.ALLOY_PICKAXE_BONUS.get() && state.is(Tags.Blocks.ORES)) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH,stack) <= 0) {
+                    TagKey<Block> oreTag = state.getTags().filter(blockTagKey -> blockTagKey.location().getNamespace().equals("forge") && blockTagKey.location().getPath().startsWith("ores/")).findFirst().orElse(null);
+                    if (oreTag != null && oreTag.location().getPath().split("ores/").length > 1) {
+                        String oreMetal = oreTag.location().getPath().split("ores/")[1];
+                        ITagManager<Item> tagRegistry = ForgeRegistries.ITEMS.tags();
+                        TagKey<Item> nuggetTag = ItemTags.create(new ResourceLocation("forge:nuggets/"+oreMetal));
+                        if (tagRegistry != null && tagRegistry.getTag(nuggetTag).isBound()) {
+                            if (worldIn.getRandom().nextFloat() > 1/entityLiving.getAttributes().getValue(Attributes.ATTACK_SPEED)) {
+                                tagRegistry.getTag(nuggetTag).stream().findFirst().ifPresent(nuggetItem -> Block.popResource(worldIn, pos, new ItemStack(nuggetItem,Math.max(0,worldIn.random.nextInt((int) Math.round(entityLiving.getAttributes().getValue(Attributes.ATTACK_DAMAGE)))))));
+                            }
+
+                        }
+                    }
+                }
+
+                if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDLESS,stack) > 0) {
+                    List<MobEffect> r = ForgeRegistries.MOB_EFFECTS.getEntries().stream().filter(registryKeyEffectEntry -> registryKeyEffectEntry.getValue().isBeneficial() &&
+                            registryKeyEffectEntry.getKey().getRegistryName().getNamespace().equals("minecraft")).map(Map.Entry::getValue).collect(Collectors.toList());
+                    MobEffect rand = r.get(worldIn.getRandom().nextInt(r.size()));
+                    MobEffectInstance e = new MobEffectInstance(rand,400, EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDLESS,stack));
+                    entityLiving.addEffect(e);
+                }
+
             }
         }
 

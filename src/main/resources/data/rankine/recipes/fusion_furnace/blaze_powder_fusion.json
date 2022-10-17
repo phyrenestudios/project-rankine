@@ -1,0 +1,23 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:ferrocerium_ingot"
+  },
+  "input2": {
+    "item": "rankine:magnesia"
+  },
+  "result1": {
+    "item":"minecraft:blaze_powder",
+    "count": 2
+  },
+  "fluidInput": {
+    "fluid": "minecraft:lava"
+  },
+  "gasInput": {
+    "item": "rankine:nitrogen_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}
