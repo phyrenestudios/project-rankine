@@ -189,7 +189,7 @@ public class BlockBreakHandler {
             //Nugget Drops
             if (ForgeRegistries.BLOCKS.tags().getTag(Tags.Blocks.STONE).contains(targetBlock)) {
                 if (mainHandItem.getItem() instanceof AlloyPickaxeItem) {
-                    BlockPos foundPos = null;
+                    /*BlockPos foundPos = null;
                     for (int x = 1; x < Config.GENERAL.NUGGET_DISTANCE.get(); x++) {
                         if (levelIn.getBlockState(pos.below(x)).getBlock() instanceof RankineOreBlock) {
                             foundPos = pos.below(x);
@@ -215,7 +215,7 @@ public class BlockBreakHandler {
                                 break;
                             }
                         }
-                    }
+                    }*/
 
                     //Geodes
                     if (levelIn.getRandom().nextFloat() <= Config.GENERAL.GEODE_CHANCE.get() && !levelIn.isClientSide && levelIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !levelIn.restoringBlockSnapshots) {

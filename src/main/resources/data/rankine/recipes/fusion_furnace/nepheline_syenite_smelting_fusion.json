@@ -1,0 +1,28 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 1600,
+  "input1": {
+    "item": "rankine:nepheline_syenite"
+  },
+  "input2": {
+    "item": "rankine:sodium_carbonate"
+  },
+  "result1": {
+    "item": "rankine:alumina"
+  },
+  "result2": {
+    "item": "rankine:plagioclase_feldspar"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water"
+  },
+  "fluidOutput": {
+    "fluid": "rankine:red_mud"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_chloride_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  }
+}

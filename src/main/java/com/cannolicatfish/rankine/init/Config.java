@@ -85,10 +85,15 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue ROCK_DRILL;
         public final ForgeConfigSpec.DoubleValue SAMPLE_CHANCE;
 
+        public final ForgeConfigSpec.BooleanValue ALLOY_PICKAXE_BONUS;
+
         public Tools(ForgeConfigSpec.Builder b) {
             b.comment("Settings for tools").push("tools");
 
             b.comment("Rankine Tools").push("rankineTools");
+
+                ALLOY_PICKAXE_BONUS = b.comment("Enable the bonus feature of the Alloy Pickaxe, which causes nuggets to drop from mining certain ores.")
+                    .define("enableAlloyPickaxeBonus", true);
 
                 DISABLE_WOODEN_HAMMER = b.comment("Disable the use of the wooden hammer (still allows crafting for other recipes). This is enabled by default for progression.")
                         .define("disableWoodenHammer", false);

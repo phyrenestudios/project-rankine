@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 1600,
+  "input1": {
+    "item": "rankine:pearl"
+  },
+  "input2": {
+    "item": "minecraft:chorus_fruit"
+  },
+  "result1": {
+    "item":"minecraft:ender_pearl"
+  },
+  "gasInput": {
+    "item": "minecraft:dragon_breath"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}
