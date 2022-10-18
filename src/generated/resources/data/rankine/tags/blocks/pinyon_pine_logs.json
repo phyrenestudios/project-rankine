@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
     "rankine:pinyon_pine_log",
-    "rankine:pinyon_pine_wood",
     "rankine:stripped_pinyon_pine_log",
+    "rankine:pinyon_pine_wood",
     "rankine:stripped_pinyon_pine_wood"
   ]
 }

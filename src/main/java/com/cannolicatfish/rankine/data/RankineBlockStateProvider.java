@@ -78,6 +78,29 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             simpleBlock(Stone.getInfested(),models().withExistingParent(Stone.getInfested().getRegistryName().getPath(), new ResourceLocation("rankine", "block/"+Stone.getBaseName())));
         }
 
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            if (Wood.hasLogs()) {
+                axisBlock(Wood.getLog(), getBlockRSL(Wood.getLog()), getBlockRSL(Wood.getLog().getRegistryName().getPath() + "_top"));
+                axisBlock(Wood.getWood(), getBlockRSL(Wood.getLog()), getBlockRSL(Wood.getLog().getRegistryName().getPath() + "_top"));
+                axisBlock(Wood.getStrippedLog(), getBlockRSL(Wood.getStrippedLog()), getBlockRSL(Wood.getStrippedLog().getRegistryName().getPath()));
+                axisBlock(Wood.getStrippedWood(), getBlockRSL(Wood.getStrippedLog()), getBlockRSL(Wood.getStrippedLog().getRegistryName().getPath()));
+            }
+            fancyPlanksBlock(Wood.getPlanks());
+            slabBlock(Wood.getSlab(), getBlockRSL(Wood.getPlanks().getRegistryName().getPath()+"1"), getBlockRSL(Wood.getPlanks()));
+            stairsBlock(Wood.getStairs(), getBlockRSL(Wood.getPlanks()));
+            fenceBlock(Wood.getFence(), getBlockRSL(Wood.getPlanks()));
+            fenceGateBlock(Wood.getFenceGate(), getBlockRSL(Wood.getPlanks()));
+            doorBlock(Wood.getDoor(), new ResourceLocation("rankine","block/"+Wood.getDoor().getRegistryName().getPath()+"_bottom"), new ResourceLocation("rankine","block/"+Wood.getDoor().getRegistryName().getPath()+"_top"));
+            trapdoorBlock(Wood.getTrapdoor(), getBlockRSL(Wood.getTrapdoor()), true);
+            pressurePlateBlock(Wood.getPressurePlate(), getBlockRSL(Wood.getPlanks()));
+            buttonBlock(Wood.getButton(), getBlockRSL(Wood.getPlanks()));
+            signBlock(Wood.getSign(), getBlockRSL(Wood.getPlanks()));
+            signBlock(Wood.getWallSign(), getBlockRSL(Wood.getPlanks()));
+            fancyBookshelvesBlock(Wood);
+        }
+
+
+
         for (Block blk : Stream.of(
                 RankineLists.DRIPSTONES,
                 RankineLists.ALLOY_BLOCKS,
@@ -131,12 +154,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
         for (Block blk : RankineLists.BRICKS) {
             fancyBricksBlock(blk);
-        }
-        for (Block blk : RankineLists.PLANKS) {
-            fancyPlanksBlock(blk);
-        }
-        for (Block blk : RankineLists.WOODEN_BOOKSHELVES) {
-            fancyBookshelvesBlock(blk);
         }
         for (Block blk : RankineLists.LEAVES) {
             leavesBlock(blk);
@@ -436,51 +453,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                             .end())
                     .addModel();
         }
-        for (Block blk : Stream.of(RankineLists.LOGS, RankineLists.STRIPPED_LOGS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            axisBlock((RotatedPillarBlock) blk, modLoc("block/"+name), modLoc("block/"+name+"_top"));
-        }
-        for (Block blk : Stream.of(RankineLists.WOODS, RankineLists.STRIPPED_WOODS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            axisBlock((RotatedPillarBlock) blk, modLoc("block/"+name.replace("wood","log")), modLoc("block/"+name.replace("wood","log")));
-        }
-        for (Block blk : Stream.of(RankineLists.WOODEN_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            Block BASE = RankineLists.PLANKS.get(RankineLists.WOODEN_SLABS.indexOf(blk));
-            String name = blk.getRegistryName().getPath();
-            slabBlock((RankineSlabBlock) blk, new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()+"1"), new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()));
-        }
-        for (Block blk : Stream.of(RankineLists.WOODEN_FENCES).flatMap(Collection::stream).collect(Collectors.toList())) {
-            Block BASE = RankineLists.PLANKS.get(RankineLists.WOODEN_FENCES.indexOf(blk));
-            String name = blk.getRegistryName().getPath();
-            fenceBlock((RankineWoodenFence) blk, new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()));
-        }
-        for (Block blk : Stream.of(RankineLists.WOODEN_FENCE_GATES).flatMap(Collection::stream).collect(Collectors.toList())) {
-            Block BASE = RankineLists.PLANKS.get(RankineLists.WOODEN_FENCE_GATES.indexOf(blk));
-            String name = blk.getRegistryName().getPath();
-            fenceGateBlock((RankineWoodenFenceGate) blk, new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()));
-        }
-        for (Block blk : Stream.of(RankineLists.WOODEN_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            Block BASE = RankineLists.PLANKS.get(RankineLists.WOODEN_STAIRS.indexOf(blk));
-            String name = blk.getRegistryName().getPath();
-            stairsBlock((RankineStairsBlock) blk, new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()));
-        }
-        for (Block blk : Stream.of(RankineLists.WOODEN_BUTTONS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            Block BASE = RankineLists.PLANKS.get(RankineLists.WOODEN_BUTTONS.indexOf(blk));
-            buttonBlock((RankineWoodenButton) blk, new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()));
-        }
-        for (Block blk : Stream.of(RankineLists.WOODEN_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
-            Block BASE = RankineLists.PLANKS.get(RankineLists.WOODEN_PRESSURE_PLATES.indexOf(blk));
-            String name = blk.getRegistryName().getPath();
-            pressurePlateBlock((RankineWoodenPressurePlate) blk, new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()));
-        }
-        for (Block blk : Stream.of(RankineLists.WOODEN_TRAPDOORS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            trapdoorBlock((RankineWoodenTrapDoor) blk, new ResourceLocation("rankine","block/"+name), true);
-        }
-        for (Block blk : Stream.of(RankineLists.WOODEN_DOORS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            doorBlock((RankineWoodenDoor) blk, new ResourceLocation("rankine","block/"+name+"_bottom"), new ResourceLocation("rankine","block/"+name+"_top"));
-        }
+
 
         //Ores
         for (Block blk : Stream.of(RankineLists.NATIVE_ORES, RankineLists.CRUSHING_ORES, RankineLists.SPECIAL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -759,16 +732,15 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
 
-        for (Block SIGN : RankineLists.WOODEN_SIGNS) {
-            Block PLANK = RankineLists.PLANKS.get((int) Math.floor(RankineLists.WOODEN_SIGNS.indexOf(SIGN)/2D));
-            signBlock(SIGN, getBlockRSL(PLANK.getRegistryName().getPath()));
-        }
         for (Block BALE : RankineLists.BALES) {
             axisBlock((RotatedPillarBlock) BALE, getBlockRSL(BALE.getRegistryName().getPath()+"_side"),getBlockRSL(BALE.getRegistryName().getPath()+"_top"));
         }
 
     }
 
+    public static ResourceLocation getBlockRSL(Block blk) {
+        return getBlockRSL(blk.getRegistryName().getPath());
+    }
     public static ResourceLocation getBlockRSL(String textureName) {
         return new ResourceLocation("rankine","block/"+textureName);
     }
@@ -1545,11 +1517,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .partialState().with(STYLE, 4)
                     .modelForState().modelFile(models().withExistingParent(name+4, mcLoc("block/cube_all")).texture("all", normal)).addModel();
     }
-    public void fancyBookshelvesBlock(Block block) {
-        String name = block.getRegistryName().getPath();
-        String plankName = RankineLists.PLANKS.get(RankineLists.WOODEN_BOOKSHELVES.indexOf(block)).getRegistryName().getPath();
-        IntegerProperty STYLE = ((BuildingModeBlock) block).getProperty();
-        getVariantBuilder(block)
+    public void fancyBookshelvesBlock(RankineWood wood) {
+        String name = wood.getBookshelf().getRegistryName().getPath();
+        String plankName = wood.getPlanks().getRegistryName().getPath();
+        IntegerProperty STYLE = ((BuildingModeBlock) wood.getBookshelf()).getProperty();
+        getVariantBuilder(wood.getBookshelf())
                 .partialState().with(STYLE, 1)
                     .modelForState().modelFile(models().withExistingParent(name+1, mcLoc("block/cube_column")).texture("end", getBlockRSL(plankName)).texture("side", getBlockRSL(name))).addModel()
                 .partialState().with(STYLE, 2)

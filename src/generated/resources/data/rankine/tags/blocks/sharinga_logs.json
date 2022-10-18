@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
     "rankine:sharinga_log",
-    "rankine:sharinga_wood",
     "rankine:stripped_sharinga_log",
+    "rankine:sharinga_wood",
     "rankine:stripped_sharinga_wood"
   ]
 }

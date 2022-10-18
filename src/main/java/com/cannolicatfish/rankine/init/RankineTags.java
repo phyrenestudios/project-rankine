@@ -55,10 +55,8 @@ public final class RankineTags {
         public static final TagKey<Block> MOVEMENT_MODIFIERS_SNOW = modBlock("movement_modifiers/snow");
         public static final TagKey<Block> MOVEMENT_MODIFIERS_WOOD = modBlock("movement_modifiers/wood");
 
-
         public static final TagKey<Block> KNIFE_SHEARABLE = modBlock("knife_shearable");
         public static final TagKey<Block> BALES = modBlock("bales");
-        public static final TagKey<Block> FIREPROOF_LOGS = modBlock("fireproof_logs");
         public static final TagKey<Block> ELECTROMAGNETS = modBlock("electromagnets");
         public static final TagKey<Block> MAGNET_BANNED = modBlock("magnet_banned");
         public static final TagKey<Block> NUGGET_STONES = modBlock("nugget_stones");
@@ -71,28 +69,6 @@ public final class RankineTags {
         public static final TagKey<Block> HEATING_ELEMENTS = modBlock("heating_elements");
         public static final TagKey<Block> MINEABLE_WITH_CROWBAR = modBlock("mineable/crowbar");
         public static final TagKey<Block> CROWBAR_RESISTANT = modBlock("crowbar_resistant");
-
-        public static final TagKey<Block> CEDAR_LOGS = modBlock("cedar_logs");
-        public static final TagKey<Block> PINYON_PINE_LOGS = modBlock("pinyon_pine_logs");
-        public static final TagKey<Block> JUNIPER_LOGS = modBlock("juniper_logs");
-        public static final TagKey<Block> COCONUT_PALM_LOGS = modBlock("coconut_palm_logs");
-        public static final TagKey<Block> BALSAM_FIR_LOGS = modBlock("balsam_fir_logs");
-        public static final TagKey<Block> EASTERN_HEMLOCK_LOGS = modBlock("eastern_hemlock_logs");
-        public static final TagKey<Block> WESTERN_HEMLOCK_LOGS = modBlock("western_hemlock_logs");
-        public static final TagKey<Block> MAPLE_LOGS = modBlock("maple_logs");
-        public static final TagKey<Block> BLACK_BIRCH_LOGS = modBlock("black_birch_logs");
-        public static final TagKey<Block> YELLOW_BIRCH_LOGS = modBlock("yellow_birch_logs");
-        public static final TagKey<Block> RED_BIRCH_LOGS = modBlock("red_birch_logs");
-        public static final TagKey<Block> SHARINGA_LOGS = modBlock("sharinga_logs");
-        public static final TagKey<Block> WEEPING_WILLOW_LOGS = modBlock("weeping_willow_logs");
-        public static final TagKey<Block> HONEY_LOCUST_LOGS = modBlock("honey_locust_logs");
-        public static final TagKey<Block> CORK_OAK_LOGS = modBlock("cork_oak_logs");
-        public static final TagKey<Block> CINNAMON_LOGS = modBlock("cinnamon_logs");
-        public static final TagKey<Block> BLACK_WALNUT_LOGS = modBlock("black_walnut_logs");
-        public static final TagKey<Block> MAGNOLIA_LOGS = modBlock("magnolia_logs");
-        public static final TagKey<Block> PETRIFIED_CHORUS_LOGS = modBlock("petrified_chorus_logs");
-        public static final TagKey<Block> CHARRED_LOGS = modBlock("charred_logs");
-        public static final TagKey<Block> ERYTHRINA_LOGS = modBlock("erythrina_logs");
 
         public static final TagKey<Block> NETHER_TOPS = modBlock("nether_tops");
         public static final TagKey<Block> LIGHTNING_VITRIFIED = modBlock("lightning_vitrified");
@@ -403,31 +379,6 @@ public final class RankineTags {
 
 
     public static final class Items {
-        public static final TagKey<Item> CEDAR_LOGS = modItem("cedar_logs");
-        public static final TagKey<Item> PINYON_PINE_LOGS = modItem("pinyon_pine_logs");
-        public static final TagKey<Item> JUNIPER_LOGS = modItem("juniper_logs");
-        public static final TagKey<Item> COCONUT_PALM_LOGS = modItem("coconut_palm_logs");
-        public static final TagKey<Item> BALSAM_FIR_LOGS = modItem("balsam_fir_logs");
-        public static final TagKey<Item> EASTERN_HEMLOCK_LOGS = modItem("eastern_hemlock_logs");
-        public static final TagKey<Item> WESTERN_HEMLOCK_LOGS = modItem("western_hemlock_logs");
-        public static final TagKey<Item> MAPLE_LOGS = modItem("maple_logs");
-        public static final TagKey<Item> BLACK_BIRCH_LOGS = modItem("black_birch_logs");
-        public static final TagKey<Item> YELLOW_BIRCH_LOGS = modItem("yellow_birch_logs");
-        public static final TagKey<Item> RED_BIRCH_LOGS = modItem("red_birch_logs");
-        public static final TagKey<Item> SHARINGA_LOGS = modItem("sharinga_logs");
-        public static final TagKey<Item> WEEPING_WILLOW_LOGS = modItem("weeping_willow_logs");
-        public static final TagKey<Item> HONEY_LOCUST_LOGS = modItem("honey_locust_logs");
-        public static final TagKey<Item> CORK_OAK_LOGS = modItem("cork_oak_logs");
-        public static final TagKey<Item> CINNAMON_LOGS = modItem("cinnamon_logs");
-        public static final TagKey<Item> BLACK_WALNUT_LOGS = modItem("black_walnut_logs");
-        public static final TagKey<Item> MAGNOLIA_LOGS = modItem("magnolia_logs");
-        public static final TagKey<Item> PETRIFIED_CHORUS_LOGS = modItem("petrified_chorus_logs");
-        public static final TagKey<Item> CHARRED_LOGS = modItem("charred_logs");
-        public static final TagKey<Item> ERYTHRINA_LOGS = modItem("erythrina_logs");
-
-        public static final TagKey<Item> FIREPROOF_LOGS = modItem("fireproof_logs");
-        //public static final TagKey<Item> GREEN_STONES = modItem("green_stones");
-
         public static final TagKey<Item> MAGNETIC_NUGGETS = modItem("magnetic_nuggets");
         public static final TagKey<Item> MAGNETIC_INGOTS = modItem("magnetic_ingots");
         public static final TagKey<Item> MAGNETIC_BLOCKS = modItem("magnetic_blocks");

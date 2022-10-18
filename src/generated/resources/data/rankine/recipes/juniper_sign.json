@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sign",
+  "pattern": [
+    "###",
+    "###",
+    " S "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:juniper_planks"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:juniper_sign",
+    "count": 3
+  }
+}

@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "side": "rankine:block/stripped_honey_locust_log",
-    "end": "rankine:block/stripped_honey_locust_log_top"
+    "end": "rankine:block/stripped_honey_locust_log"
   }
 }

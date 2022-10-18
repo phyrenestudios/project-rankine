@@ -2,12 +2,14 @@ package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.RankineStone;
+import com.cannolicatfish.rankine.blocks.RankineWood;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SignBlock;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import java.util.Arrays;
@@ -35,6 +37,15 @@ public class RankineLangProvider extends LanguageProvider {
             for (Block blk : Stone.getStoneBlocks()) {
                 add(blk, parseLangName(blk.getRegistryName().getPath()));
             }
+        }
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            for (Block blk : Wood.getWoodBlocks()) {
+                if (blk != null && !(blk instanceof SignBlock)) {
+                    add(blk, parseLangName(blk.getRegistryName().getPath()));
+                }
+            }
+            add(Wood.getSignItem(), parseLangName(Wood.getSignItem().getRegistryName().getPath()));
+            add(Wood.getBoat(), parseLangName(Wood.getBoat().getRegistryName().getPath()));
         }
 
         for (Block blk : Stream.of(
@@ -80,20 +91,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.TALL_FLOWERS,
                 RankineLists.SAPLINGS,
                 RankineLists.LEAVES,
-                RankineLists.WOODEN_BOOKSHELVES,
-                RankineLists.PLANKS,
-                RankineLists.LOGS,
-                RankineLists.STRIPPED_LOGS,
-                RankineLists.WOODS,
-                RankineLists.STRIPPED_WOODS,
-                RankineLists.WOODEN_SLABS,
-                RankineLists.WOODEN_STAIRS,
-                RankineLists.WOODEN_DOORS,
-                RankineLists.WOODEN_TRAPDOORS,
-                RankineLists.WOODEN_FENCES,
-                RankineLists.WOODEN_FENCE_GATES,
-                RankineLists.WOODEN_BUTTONS,
-                RankineLists.WOODEN_PRESSURE_PLATES,
                 RankineLists.METAL_TRAPDOORS,
                 RankineLists.METAL_DOORS,
                 RankineLists.METAL_LADDERS,
@@ -236,8 +233,6 @@ public class RankineLangProvider extends LanguageProvider {
         }
 
         for (Item item : Stream.of(
-                RankineLists.WOODEN_SIGN_ITEMS,
-                RankineLists.WOODEN_BOATS,
                 RankineLists.ARROWS,
                 RankineLists.WOODEN_TOOLS,
                 RankineLists.STONE_TOOLS,
@@ -1248,7 +1243,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mechanics.finite_water.text1", "A config enabled by default, which limits infinite water sources to below the Water Table height. ");
         add("rankine.journal.cat_mechanics.finite_water.text2", "Right click the ground to display the Water Table height at that coordinate.");
         add("rankine.journal.cat_mechanics.finite_water.text3", "Moving Water");
-        add("rankine.journal.cat_mechanics.finite_water.text4", "A passive method to create water sources above the Water Table ca be constructed. The Ground Tap will generate a source block of water every 10 seconds (configurable) when connected to a waterlogged Flood Gate and connected through Metal Pipes. The Flood Gate can become waterlogged by filling it manually with water or by placing it in an infinite water source. Multiple taps can be on the same pipe line.");
+        add("rankine.journal.cat_mechanics.finite_water.text4", "A passive method to create water sources above the Water Table ca be constructed. The Ground Tap will generate a source block of water every 30 seconds (configurable) when connected to a waterlogged Flood Gate and connected through Metal Pipes. The Flood Gate can become waterlogged by filling it manually with water or by placing it in an infinite water source. Multiple taps can be on the same pipe line.");
 
 
         add("rankine.journal.cat_mechanics.sluicing.name", "Sluicing");

@@ -6,14 +6,12 @@
     ]
   },
   "criteria": {
-    "has_log": {
+    "has_ingredient": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [
-              "rankine:yellow_birch_log"
-            ]
+            "tag": "rankine:yellow_birch_logs"
           }
         ]
       }
@@ -27,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_log",
+      "has_ingredient",
       "has_the_recipe"
     ]
   ]

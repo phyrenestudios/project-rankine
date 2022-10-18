@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.RankineWood;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -116,27 +117,9 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STONES_SLATE, RankineTags.Items.STONES_SLATE);
         copy(RankineTags.Blocks.STONES_SHONKINITE, RankineTags.Items.STONES_SHONKINITE);
 
-        copy(RankineTags.Blocks.CEDAR_LOGS, RankineTags.Items.CEDAR_LOGS);
-        copy(RankineTags.Blocks.PINYON_PINE_LOGS, RankineTags.Items.PINYON_PINE_LOGS);
-        copy(RankineTags.Blocks.JUNIPER_LOGS, RankineTags.Items.JUNIPER_LOGS);
-        copy(RankineTags.Blocks.COCONUT_PALM_LOGS, RankineTags.Items.COCONUT_PALM_LOGS);
-        copy(RankineTags.Blocks.BALSAM_FIR_LOGS, RankineTags.Items.BALSAM_FIR_LOGS);
-        copy(RankineTags.Blocks.EASTERN_HEMLOCK_LOGS, RankineTags.Items.EASTERN_HEMLOCK_LOGS);
-        copy(RankineTags.Blocks.WESTERN_HEMLOCK_LOGS, RankineTags.Items.WESTERN_HEMLOCK_LOGS);
-        copy(RankineTags.Blocks.MAGNOLIA_LOGS, RankineTags.Items.MAGNOLIA_LOGS);
-        copy(RankineTags.Blocks.MAPLE_LOGS, RankineTags.Items.MAPLE_LOGS);
-        copy(RankineTags.Blocks.BLACK_BIRCH_LOGS, RankineTags.Items.BLACK_BIRCH_LOGS);
-        copy(RankineTags.Blocks.YELLOW_BIRCH_LOGS, RankineTags.Items.YELLOW_BIRCH_LOGS);
-        copy(RankineTags.Blocks.RED_BIRCH_LOGS, RankineTags.Items.RED_BIRCH_LOGS);
-        copy(RankineTags.Blocks.SHARINGA_LOGS, RankineTags.Items.SHARINGA_LOGS);
-        copy(RankineTags.Blocks.WEEPING_WILLOW_LOGS, RankineTags.Items.WEEPING_WILLOW_LOGS);
-        copy(RankineTags.Blocks.HONEY_LOCUST_LOGS, RankineTags.Items.HONEY_LOCUST_LOGS);
-        copy(RankineTags.Blocks.CORK_OAK_LOGS, RankineTags.Items.CORK_OAK_LOGS);
-        copy(RankineTags.Blocks.BLACK_WALNUT_LOGS, RankineTags.Items.BLACK_WALNUT_LOGS);
-        copy(RankineTags.Blocks.CINNAMON_LOGS, RankineTags.Items.CINNAMON_LOGS);
-        copy(RankineTags.Blocks.PETRIFIED_CHORUS_LOGS, RankineTags.Items.PETRIFIED_CHORUS_LOGS);
-        copy(RankineTags.Blocks.CHARRED_LOGS, RankineTags.Items.CHARRED_LOGS);
-        copy(RankineTags.Blocks.ERYTHRINA_LOGS, RankineTags.Items.ERYTHRINA_LOGS);
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            copy(BlockTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")), ItemTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")));
+        }
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
         copy(BlockTags.LOGS, ItemTags.LOGS);
 
@@ -889,7 +872,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(Tags.Blocks.SAND, Tags.Items.SAND);
         copy(BlockTags.ICE, RankineTags.Items.ICE);
         copy(RankineTags.Blocks.POLISHED_STONE, RankineTags.Items.POLISHED_STONE);
-        copy(RankineTags.Blocks.FIREPROOF_LOGS, RankineTags.Items.FIREPROOF_LOGS);
         copy(Tags.Blocks.STONE, Tags.Items.STONE);
         copy(Tags.Blocks.SAND, Tags.Items.SAND);
         copy(Tags.Blocks.GLASS, Tags.Items.GLASS);

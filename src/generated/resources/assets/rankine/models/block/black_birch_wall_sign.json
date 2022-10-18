@@ -1,6 +1,6 @@
 {
   "parent": "rankine:block/template_sign",
   "textures": {
-    "particle": "rankine:block/western_hemlock_planks"
+    "particle": "rankine:block/black_birch_planks"
   }
 }

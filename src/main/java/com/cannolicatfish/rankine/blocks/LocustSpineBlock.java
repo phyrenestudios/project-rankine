@@ -1,8 +1,9 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
@@ -102,7 +103,7 @@ public class LocustSpineBlock extends Block {
 
     @SuppressWarnings("deprecation")
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite())).is(RankineTags.Blocks.HONEY_LOCUST_LOGS);
+        return worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite())).is(BlockTags.create(new ResourceLocation("rankine:honey_locust_logs")));
     }
 
     @Nonnull

@@ -1,6 +1,6 @@
 {
   "parent": "rankine:block/template_sign",
   "textures": {
-    "particle": "rankine:block/petrified_chorus_planks"
+    "particle": "rankine:block/honey_locust_planks"
   }
 }

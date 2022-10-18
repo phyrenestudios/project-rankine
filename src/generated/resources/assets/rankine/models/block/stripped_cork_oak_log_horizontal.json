@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column_horizontal",
   "textures": {
     "side": "rankine:block/stripped_cork_oak_log",
-    "end": "rankine:block/stripped_cork_oak_log_top"
+    "end": "rankine:block/stripped_cork_oak_log"
   }
 }

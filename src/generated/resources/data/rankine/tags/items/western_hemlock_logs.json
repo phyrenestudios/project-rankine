@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
     "rankine:western_hemlock_log",
-    "rankine:western_hemlock_wood",
     "rankine:stripped_western_hemlock_log",
+    "rankine:western_hemlock_wood",
     "rankine:stripped_western_hemlock_wood"
   ]
 }

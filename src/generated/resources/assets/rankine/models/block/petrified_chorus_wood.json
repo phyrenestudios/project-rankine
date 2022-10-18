@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "side": "rankine:block/petrified_chorus_log",
-    "end": "rankine:block/petrified_chorus_log"
+    "end": "rankine:block/petrified_chorus_log_top"
   }
 }

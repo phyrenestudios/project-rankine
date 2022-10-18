@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.RankineStone;
+import com.cannolicatfish.rankine.blocks.RankineWood;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
@@ -26,6 +27,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,10 +65,14 @@ public class ClientProxy implements IProxy {
             }
         }
 
-        for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.BRICKS,RankineLists.PLANKS,RankineLists.WOODEN_BOOKSHELVES).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             ItemProperties.register(BLK.asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) BLK.asItem()).getBuildingMode(stack) : 1.0F);
         }
 
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            ItemProperties.register(Wood.getPlanks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Wood.getPlanks().asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(Wood.getBookshelf().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Wood.getBookshelf().asItem()).getBuildingMode(stack) : 1.0F);
+        }
         for (RankineStone Stone : RankineLists.RANKINE_STONES) {
             ItemProperties.register(Stone.getPolished().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getPolished().asItem()).getBuildingMode(stack) : 1.0F);
             ItemProperties.register(Stone.getBricks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getBricks().asItem()).getBuildingMode(stack) : 1.0F);
@@ -112,9 +119,16 @@ public class ClientProxy implements IProxy {
             }
             addCutout(blockList);
         }
-        addCutout(RankineLists.WOODEN_DOORS);
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            List<Block> blockList = new ArrayList<>();
+            for (Block blk : Wood.getWoodBlocks()) {
+                if (blk instanceof TrapDoorBlock || blk instanceof DoorBlock) {
+                    blockList.add(blk);
+                }
+            }
+            addCutout(blockList);
+        }
         addCutout(RankineLists.METAL_DOORS);
-        addCutout(RankineLists.WOODEN_TRAPDOORS);
         addCutout(RankineLists.METAL_TRAPDOORS);
         addCutout(RankineLists.METAL_LADDERS);
         addCutout(RankineLists.ALLOY_POLES);

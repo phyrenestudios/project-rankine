@@ -1,6 +1,9 @@
 package com.cannolicatfish.rankine.data;
 
+import com.cannolicatfish.rankine.blocks.RankineLogBlock;
 import com.cannolicatfish.rankine.blocks.RankineStone;
+import com.cannolicatfish.rankine.blocks.RankineWood;
+import com.cannolicatfish.rankine.blocks.buildingmodes.RankineBookshelvesBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
@@ -43,6 +46,21 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
             }
         }
 
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            for (Block blk : Wood.getWoodBlocks()) {
+                if (!Wood.hasLogs() && blk instanceof RankineLogBlock) continue;
+                if (blk instanceof SlabBlock) {
+                    lootTables.put(blk, slabBlockLootTable(blk));
+                } else if (blk instanceof RankineBookshelvesBlock) {
+                    lootTables.put(blk, droppingWithSilkTouchOrRandomly(blk, Items.BOOK, ConstantValue.exactly(3)));
+                } else if (blk instanceof DoorBlock) {
+                    lootTables.put(blk, droppingWhen(blk, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
+                } else if (blk != null) {
+                    lootTables.put(blk, createBlockLootTable(blk));
+                }
+            }
+        }
+
         for (Block blk : Stream.of(
                 RankineLists.VANILLA_BRICKS,
                 RankineLists.VANILLA_BRICKS_PRESSURE_PLATES,
@@ -68,17 +86,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.MINERAL_WOOL,
                 RankineLists.FIBER_BLOCK,
                 RankineLists.FIBER_MAT,
-                RankineLists.PLANKS,
-                RankineLists.LOGS,
-                RankineLists.STRIPPED_LOGS,
-                RankineLists.WOODS,
-                RankineLists.STRIPPED_WOODS,
-                RankineLists.WOODEN_STAIRS,
-                RankineLists.WOODEN_TRAPDOORS,
-                RankineLists.WOODEN_FENCES,
-                RankineLists.WOODEN_FENCE_GATES,
-                RankineLists.WOODEN_BUTTONS,
-                RankineLists.WOODEN_PRESSURE_PLATES,
                 RankineLists.METAL_TRAPDOORS,
                 RankineLists.METAL_LADDERS,
                 RankineLists.ALLOY_BLOCKS,
@@ -176,8 +183,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.SANDSTONE_SLABS,
                 RankineLists.SMOOTH_SANDSTONE_SLABS,
                 RankineLists.CUT_SANDSTONE_SLABS,
-                RankineLists.MISC_SLABS,
-                RankineLists.WOODEN_SLABS
+                RankineLists.MISC_SLABS
         ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(blk, slabBlockLootTable(blk));
         }
@@ -244,9 +250,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         for (Block BLK : RankineLists.EIGHT_LAYER_BLOCKS) {
             lootTables.put(BLK, eightLayerBlock(BLK));
         }
-        for (Block BLK : RankineLists.WOODEN_BOOKSHELVES) {
-            lootTables.put(BLK, droppingWithSilkTouchOrRandomly(BLK, Items.BOOK, ConstantValue.exactly(3)));
-        }
         for (Block BLK : RankineLists.LIGHTNING_GLASSES) {
             lootTables.put(BLK, onlyWithSilkTouch(BLK));
         }
@@ -269,8 +272,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
         for (Block BLK : Stream.of(
                 RankineLists.TALL_FLOWERS,
-                RankineLists.METAL_DOORS,
-                RankineLists.WOODEN_DOORS
+                RankineLists.METAL_DOORS
         ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(BLK, droppingWhen(BLK, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
         }
