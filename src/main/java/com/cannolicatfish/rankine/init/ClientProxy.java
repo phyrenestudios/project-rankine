@@ -1,8 +1,10 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.RankineStone;
-import com.cannolicatfish.rankine.blocks.RankineWood;
+import com.cannolicatfish.rankine.blocks.HollowLogBlock;
+import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
@@ -26,9 +28,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -120,14 +120,20 @@ public class ClientProxy implements IProxy {
             addCutout(blockList);
         }
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
-            List<Block> blockList = new ArrayList<>();
+            List<Block> cutoutList = new ArrayList<>();
+            List<Block> cutoutMippedList = new ArrayList<>();
             for (Block blk : Wood.getWoodBlocks()) {
-                if (blk instanceof TrapDoorBlock || blk instanceof DoorBlock) {
-                    blockList.add(blk);
+                if (blk instanceof TrapDoorBlock || blk instanceof DoorBlock || blk instanceof HollowLogBlock | blk instanceof SaplingBlock || blk instanceof LeavesBlock || blk instanceof LeafLitterBlock) {
+                    cutoutList.add(blk);
+                } else if (blk instanceof FlowerPotBlock) {
+                    cutoutMippedList.add(blk);
                 }
             }
-            addCutout(blockList);
+            addCutout(cutoutList);
+            addCutoutMipped(cutoutMippedList);
         }
+        addCutout(RankineLists.LEAF_LITTERS);
+
         addCutout(RankineLists.METAL_DOORS);
         addCutout(RankineLists.METAL_TRAPDOORS);
         addCutout(RankineLists.METAL_LADDERS);
@@ -135,9 +141,6 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.ALLOY_BARS);
         addCutout(RankineLists.HOLLOW_LOGS);
         addCutout(RankineLists.GLAZED_PORCELAIN_BLOCKS);
-        addCutout(RankineLists.LEAVES);
-        addCutout(RankineLists.LEAF_LITTERS);
-        addCutout(RankineLists.SAPLINGS);
         addCutout(RankineLists.VANILLA_BRICKS);
         addCutout(RankineLists.NATIVE_ORES);
         addCutout(RankineLists.CRUSHING_ORES);
@@ -166,7 +169,6 @@ public class ClientProxy implements IProxy {
         ));
 
         addCutoutMipped(RankineLists.GRASS_BLOCKS);
-        addCutoutMipped(RankineLists.FLOWER_POTS);
         addCutoutMipped(RankineLists.CROPS_SINGLE);
         addCutoutMipped(RankineLists.CROPS_DOUBLE);
         addCutoutMipped(RankineLists.CROPS_TRIPLE);

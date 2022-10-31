@@ -1,18 +1,16 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import net.minecraft.world.level.block.GrowingPlantHeadBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.NetherVines;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.GrowingPlantHeadBlock;
+import net.minecraft.world.level.block.NetherVines;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Random;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class WillowBranchletTopBlock extends GrowingPlantHeadBlock {
     protected static final VoxelShape SHAPE = Block.box(1.0D, 8.0D, 1.0D, 15.0D, 16.0D, 15.0D);
@@ -35,6 +33,6 @@ public class WillowBranchletTopBlock extends GrowingPlantHeadBlock {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {
-        return reader.getBlockState(pos.relative(this.growthDirection.getOpposite())).is(RankineBlocks.WEEPING_WILLOW_LEAVES.get()) || reader.getBlockState(pos.relative(this.growthDirection.getOpposite())).is(getBodyBlock());
+        return reader.getBlockState(pos.relative(this.growthDirection.getOpposite())).is(RankineBlocks.WEEPING_WILLOW.getLeaves()) || reader.getBlockState(pos.relative(this.growthDirection.getOpposite())).is(getBodyBlock());
     }
 }

@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.RankineStone;
-import com.cannolicatfish.rankine.blocks.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
@@ -69,6 +69,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 withExistingParent(Wood.getStrippedLog());
                 withExistingParent(Wood.getWood());
                 withExistingParent(Wood.getStrippedWood());
+                withExistingParent(Wood.getHollowLog());
             }
             buildingModeItem(Wood.getPlanks().asItem(), ((BuildingModeBlock) Wood.getPlanks()).getMaxStyles());
             slabParent(Wood.getSlab());
@@ -82,6 +83,11 @@ public class RankineItemModelProvider extends ItemModelProvider {
             basicItem(Wood.getSignItem());
             buildingModeItem(Wood.getBookshelf().asItem(), ((BuildingModeBlock) Wood.getBookshelf()).getMaxStyles());
             basicItem(Wood.getBoat());
+            if (Wood.isTree()) {
+                withExistingParent(Wood.getLeaves().getRegistryName().getPath(), new ResourceLocation("rankine","block/"+Wood.getLeaves().getRegistryName().getPath()+"_age0"));
+                basicItemAltTexture(Wood.getSapling().asItem(), modLoc("block/" + Wood.getSapling().getRegistryName().getPath()));
+                withExistingParent(Wood.getLeafLitter());
+            }
         }
 
         //food items
@@ -431,9 +437,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
         basicItem(RankineItems.CRUCIBLE.get());
 
-        for (Block LEAF : RankineLists.LEAVES) {
-            withExistingParent(LEAF.getRegistryName().getPath(), new ResourceLocation("rankine","block/"+LEAF.getRegistryName().getPath()+"_age0"));
-        }
         /*
         for (Block BLK : RankineLists.STONE_PILLARS) {
             withExistingParent(BLK.getRegistryName().getPath(), RankineBlockStateProvider.getBlockRSL(BLK.getRegistryName().getPath()+"8"));
@@ -523,10 +526,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
             withExistingParent(name, modLoc("block/" + name + "_up"));
-        }
-        for (Block blk : Stream.of(RankineLists.SAPLINGS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            basicItemAltTexture(blk.asItem(), modLoc("block/" + name));
         }
         for (Block blk : Stream.of(RankineLists.METAL_DOORS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(blk.asItem());

@@ -2,8 +2,8 @@ package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.CobbleBlock;
-import com.cannolicatfish.rankine.blocks.RankineStone;
-import com.cannolicatfish.rankine.blocks.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -65,19 +65,16 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
 
 
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
-            for (Block blk : Wood.getWoodBlocks()) {
-                if (blk != null) {
-                    tag(BlockTags.MINEABLE_WITH_AXE).add(blk);
-                }
-            }
-
             if (Wood.hasLogs()) {
                 tag(BlockTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs"))).add(Wood.getLog(), Wood.getStrippedLog(), Wood.getWood(), Wood.getStrippedWood());
                 if (!Wood.getBaseName().equals("charred") && !Wood.getBaseName().equals("petrified_chorus")) {
                     tag(BlockTags.LOGS_THAT_BURN).addTag(BlockTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")));
+                    tag(RankineTags.Blocks.TREE_LOGS).add(Wood.getHollowLog());
+                    tag(BlockTags.MINEABLE_WITH_AXE).add(Wood.getLog(), Wood.getStrippedLog(), Wood.getWood(), Wood.getStrippedWood(), Wood.getHollowLog());
                 }
             }
 
+            tag(BlockTags.MINEABLE_WITH_AXE).add(Wood.getPlanks(), Wood.getSlab(), Wood.getStairs(), Wood.getFence(), Wood.getFenceGate(), Wood.getDoor(), Wood.getTrapdoor(), Wood.getPressurePlate(), Wood.getSign(), Wood.getWallSign(), Wood.getBookshelf());
             tag(BlockTags.PLANKS).add(Wood.getPlanks());
             tag(BlockTags.WOODEN_SLABS).add(Wood.getSlab());
             tag(BlockTags.WOODEN_STAIRS).add(Wood.getStairs());
@@ -90,7 +87,22 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(BlockTags.WALL_SIGNS).add(Wood.getWallSign());
             tag(BlockTags.WOODEN_BUTTONS).add(Wood.getButton());
             tag(RankineTags.Blocks.BOOKSHELVES).add(Wood.getBookshelf());
+            if (Wood.isTree()) {
+                tag(BlockTags.LEAVES).add(Wood.getLeaves());
+                tag(BlockTags.MINEABLE_WITH_HOE).add(Wood.getLeaves());
+                tag(RankineTags.Blocks.LEAF_LITTERS).add(Wood.getLeafLitter());
+                tag(BlockTags.SAPLINGS).add(Wood.getSapling());
+                tag(BlockTags.FLOWER_POTS).add(Wood.getPottedSapling());
+            }
         }
+        for (Block blk : RankineLists.HOLLOW_LOGS) {
+            tag(RankineTags.Blocks.TREE_LOGS).add(blk);
+        }
+        for (Block blk : Stream.of(RankineLists.LEAF_LITTERS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            tag(RankineTags.Blocks.LEAF_LITTERS).add(blk);
+        }
+        tag(RankineTags.Blocks.TREE_LEAVES).addTags(BlockTags.LEAVES).add(Blocks.WARPED_WART_BLOCK,Blocks.NETHER_WART_BLOCK);
+        tag(RankineTags.Blocks.TREE_LOGS).addTags(BlockTags.LOGS);
 
 
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -127,7 +139,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(BlockTags.BEACON_BASE_BLOCKS).add(blk);
         }
 
-        for (Block blk : Stream.of(RankineLists.LEAVES, RankineLists.BALES, RankineLists.FIBER_BLOCK, RankineLists.FIBER_MAT,
+        for (Block blk : Stream.of(RankineLists.BALES, RankineLists.FIBER_BLOCK, RankineLists.FIBER_MAT,
                 Arrays.asList(RankineBlocks.COB.get(),RankineBlocks.REFINED_COB.get())).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(BlockTags.MINEABLE_WITH_HOE).add(blk);
         }
@@ -228,26 +240,14 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         for (Block blk : RankineLists.BALES) {
             tag(RankineTags.Blocks.BALES).add(blk);
         }
-        for (Block blk : RankineLists.FLOWER_POTS) {
-            tag(BlockTags.FLOWER_POTS).add(blk);
-        }
-        for (Block blk : RankineLists.SAPLINGS) {
-            tag(BlockTags.SAPLINGS).add(blk);
-        }
         tag(BlockTags.SMALL_FLOWERS).add(RankineBlocks.CRIMSON_CLOVER.get(),RankineBlocks.YELLOW_CLOVER.get(),RankineBlocks.RED_CLOVER.get(),RankineBlocks.WHITE_CLOVER.get());
         for (Block blk : RankineLists.TALL_FLOWERS) {
             tag(BlockTags.TALL_FLOWERS).add(blk);
-        }
-        for (Block blk : RankineLists.LEAVES) {
-            tag(BlockTags.LEAVES).add(blk);
         }
 
 
         tag(Tags.Blocks.OBSIDIAN).add(Blocks.CRYING_OBSIDIAN, RankineBlocks.SNOWFLAKE_OBSIDIAN.get(), RankineBlocks.BLOOD_OBSIDIAN.get());
 
-        for (Block blk : Stream.of(RankineLists.LEAF_LITTERS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            tag(RankineTags.Blocks.LEAF_LITTERS).add(blk);
-        }
         for (Block blk : Stream.of(RankineLists.GRASS_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(BlockTags.ANIMALS_SPAWNABLE_ON).add(blk);
             tag(RankineTags.Blocks.GRASS_BLOCKS).add(blk);
@@ -590,12 +590,8 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(RankineTags.Blocks.MINEABLE_WITH_CROWBAR).addTags(RankineTags.Blocks.SHEETMETAL,BlockTags.PLANKS,BlockTags.WOODEN_SLABS,BlockTags.WOODEN_STAIRS,BlockTags.WOODEN_DOORS,BlockTags.WOODEN_TRAPDOORS,BlockTags.WOODEN_FENCES,BlockTags.FENCE_GATES,BlockTags.RAILS,RankineTags.Blocks.METAL_BARS).add(RankineBlocks.STUMP.get());
         tag(BlockTags.CLIMBABLE).add(RankineBlocks.ROPE.get(),RankineBlocks.CAST_IRON_SUPPORT.get(),RankineBlocks.INVAR_LADDER.get(),RankineBlocks.CAST_IRON_LADDER.get(),RankineBlocks.DURALUMIN_LADDER.get(),RankineBlocks.BRASS_LADDER.get(),RankineBlocks.CUPRONICKEL_LADDER.get());
         tag(BlockTags.GUARDED_BY_PIGLINS).add(RankineBlocks.GOLD_ORE.get()).add(RankineBlocks.NATIVE_GOLD_ORE.get()).add(RankineBlocks.BLACK_GOLD_PEDESTAL.get()).add(RankineBlocks.PURPLE_GOLD_PEDESTAL.get()).add(RankineBlocks.ROSE_GOLD_PEDESTAL.get()).add(RankineBlocks.WHITE_GOLD_PEDESTAL.get()).add(RankineBlocks.GREEN_GOLD_PEDESTAL.get()).add(RankineBlocks.BLUE_GOLD_PEDESTAL.get()).add(RankineBlocks.BLACK_GOLD_BLOCK.get()).add(RankineBlocks.PURPLE_GOLD_BLOCK.get()).add(RankineBlocks.ROSE_GOLD_BLOCK.get()).add(RankineBlocks.WHITE_GOLD_BLOCK.get()).add(RankineBlocks.GREEN_GOLD_BLOCK.get()).add(RankineBlocks.BLUE_GOLD_BLOCK.get());
-        tag(RankineTags.Blocks.TREE_LOGS).addTags(BlockTags.LOGS);
-        for (Block blk : RankineLists.HOLLOW_LOGS) {
-            tag(RankineTags.Blocks.TREE_LOGS).add(blk);
-        }
         tag(BlockTags.BEE_GROWABLES).add(RankineBlocks.JUTE_PLANT.get(),RankineBlocks.CORN_PLANT.get(),RankineBlocks.RICE_PLANT.get(),RankineBlocks.COTTON_PLANT.get(),RankineBlocks.ASPARAGUS_PLANT.get(),RankineBlocks.CAMPHOR_BASIL_PLANT.get(),RankineBlocks.ALOE_PLANT.get(),RankineBlocks.PINEAPPLE_BUSH.get(),RankineBlocks.CRANBERRY_BUSH.get(),RankineBlocks.POKEBERRY_BUSH.get(),RankineBlocks.BLUEBERRY_BUSH.get(),RankineBlocks.ELDERBERRY_BUSH.get(),RankineBlocks.STRAWBERRY_BUSH.get(),RankineBlocks.SNOWBERRY_BUSH.get(),RankineBlocks.RASPBERRY_BUSH.get(),RankineBlocks.BLACKBERRY_BUSH.get(),RankineBlocks.BANANA_YUCCA_BUSH.get(),RankineBlocks.RYE_PLANT.get(),RankineBlocks.SORGHUM_PLANT.get(),RankineBlocks.BARLEY_PLANT.get(),RankineBlocks.MILLET_PLANT.get(),RankineBlocks.OAT_PLANT.get(),RankineBlocks.SOYBEAN_PLANT.get());
-        tag(RankineTags.Blocks.TREE_LEAVES).addTags(BlockTags.LEAVES).add(Blocks.WARPED_WART_BLOCK,Blocks.NETHER_WART_BLOCK);
+
         tag(RankineTags.Blocks.HERBICIDAL).addTags(RankineTags.Blocks.LEAF_LITTERS,BlockTags.SMALL_FLOWERS,BlockTags.TALL_FLOWERS,BlockTags.CROPS,BlockTags.CORAL_PLANTS,BlockTags.WALL_CORALS,BlockTags.SAPLINGS).add(Blocks.GRASS,Blocks.TALL_GRASS,Blocks.FERN,Blocks.LARGE_FERN,Blocks.SEAGRASS,Blocks.TALL_SEAGRASS,Blocks.VINE,Blocks.TWISTING_VINES,Blocks.TWISTING_VINES_PLANT,Blocks.WEEPING_VINES_PLANT,Blocks.WEEPING_VINES,Blocks.LILY_PAD,Blocks.FIRE_CORAL_FAN,Blocks.BRAIN_CORAL_FAN,Blocks.BUBBLE_CORAL_FAN,Blocks.HORN_CORAL_FAN,Blocks.TUBE_CORAL_FAN,RankineBlocks.SHORT_GRASS.get(),RankineBlocks.STINGING_NETTLE.get(),RankineBlocks.RED_CLOVER.get(),RankineBlocks.CRIMSON_CLOVER.get(),RankineBlocks.WHITE_CLOVER.get(),RankineBlocks.YELLOW_CLOVER.get());
         tag(RankineTags.Blocks.PROMISING_TOTEM_BLOCKS).addTags(RankineTags.Blocks.TUFF,Tags.Blocks.STONE,BlockTags.DIRT,BlockTags.SAND,BlockTags.LOGS,BlockTags.TERRACOTTA,Tags.Blocks.GRAVEL);
 

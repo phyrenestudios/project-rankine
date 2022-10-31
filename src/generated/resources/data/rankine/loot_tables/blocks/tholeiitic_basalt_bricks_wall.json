@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_tholeiitic_basalt_bricks_wall"
+          "name": "rankine:tholeiitic_basalt_bricks_wall"
         }
       ],
       "conditions": [

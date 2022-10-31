@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_hornblende_andesite_bricks"
+          "name": "rankine:hornblende_andesite_bricks"
         }
       ],
       "conditions": [

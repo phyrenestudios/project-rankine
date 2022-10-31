@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineTags;

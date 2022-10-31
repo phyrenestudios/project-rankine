@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_comendite_bricks"
+          "name": "rankine:comendite_bricks"
         }
       ],
       "conditions": [

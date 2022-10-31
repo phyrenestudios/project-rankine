@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine;
 
-import com.cannolicatfish.rankine.blocks.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.enchantment.*;
 import com.cannolicatfish.rankine.fluids.*;
@@ -77,6 +77,7 @@ public class ProjectRankine {
 
         RankineBlocks.BLOCKS.register(Bus);
         RankineItems.ITEMS.register(Bus);
+        RankineBlocks.ITEMS.register(Bus);
         RankineEntityTypes.ENTITY_TYPES.register(Bus);
         RankineBlockEntityTypes.BLOCK_ENTITY_TYPES.register(Bus);
         RankineContainers.CONTAINERS.register(Bus);

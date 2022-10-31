@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_dunite_bricks_stairs"
+          "name": "rankine:dunite_bricks_stairs"
         }
       ],
       "conditions": [

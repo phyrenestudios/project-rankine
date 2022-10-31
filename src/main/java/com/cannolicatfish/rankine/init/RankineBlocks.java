@@ -10,6 +10,8 @@ import com.cannolicatfish.rankine.blocks.alloys.AlloyBlockTile;
 import com.cannolicatfish.rankine.blocks.asphalt.*;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.GlazedPorcelainBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.MetalBarsBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineBricksBlock;
@@ -68,6 +70,7 @@ import com.cannolicatfish.rankine.world.grower.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -86,6 +89,7 @@ import java.util.function.ToIntFunction;
 public class RankineBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ProjectRankine.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ProjectRankine.MODID);
 
 
     //Base Properties
@@ -103,8 +107,6 @@ public class RankineBlocks {
     public static Block.Properties DEF_STONE = Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F);
     public static Block.Properties DEF_ORE = Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(4.5F, 3.0F);
     public static Block.Properties DEF_METAL_BLOCK = Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F);
-    public static Block.Properties DEF_WOOD = Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.0F, 3.0F);
-    public static Block.Properties DEF_LEAVES = Block.Properties.of(Material.LEAVES).randomTicks().strength(0.2F).sound(SoundType.GRASS).noOcclusion();
 
 
     //STONES
@@ -169,30 +171,29 @@ public class RankineBlocks {
     public static final RankineStone HONEYSTONE = RankineStone.newStoneReg("honeystone", "sedimentary");
 
     //WOODS
-    public static final RankineWood CEDAR = RankineWood.newWoodReg("cedar", 2.0f,true);
-    public static final RankineWood BALSAM_FIR = RankineWood.newWoodReg("balsam_fir", 2.0f,true);
-    public static final RankineWood EASTERN_HEMLOCK = RankineWood.newWoodReg("eastern_hemlock", 2.0f,true);
-    public static final RankineWood WESTERN_HEMLOCK = RankineWood.newWoodReg("western_hemlock", 2.0f,true);
-    public static final RankineWood PINYON_PINE = RankineWood.newWoodReg("pinyon_pine", 2.0f,true);
-    public static final RankineWood JUNIPER = RankineWood.newWoodReg("juniper", 2.0f,true);
-    public static final RankineWood BLACK_BIRCH = RankineWood.newWoodReg("black_birch", 2.0f,true);
-    public static final RankineWood YELLOW_BIRCH = RankineWood.newWoodReg("yellow_birch", 2.0f,true);
-    public static final RankineWood RED_BIRCH = RankineWood.newWoodReg("red_birch", 2.0f,true);
-    public static final RankineWood MAPLE = RankineWood.newWoodReg("maple", 2.5f,true);
-    public static final RankineWood MAGNOLIA = RankineWood.newWoodReg("magnolia", 2.0f,true);
-    public static final RankineWood BLACK_WALNUT = RankineWood.newWoodReg("black_walnut", 2.5f,true);
-    public static final RankineWood COCONUT_PALM = RankineWood.newWoodReg("coconut_palm", 1.5f,true);
-    public static final RankineWood CORK_OAK = RankineWood.newWoodReg("cork_oak", 2.0f,true);
-    public static final RankineWood SHARINGA = RankineWood.newWoodReg("sharinga", 2.0f,true);
-    public static final RankineWood CINNAMON = RankineWood.newWoodReg("cinnamon", 2.0f,true);
-    public static final RankineWood HONEY_LOCUST = RankineWood.newWoodReg("honey_locust", 3.0f,true);
-    public static final RankineWood WEEPING_WILLOW = RankineWood.newWoodReg("weeping_willow", 2.0f,true);
-    public static final RankineWood ERYTHRINA = RankineWood.newWoodReg("erythrina", 2.0f,true);
-    public static final RankineWood PETRIFIED_CHORUS = RankineWood.newWoodReg("petrified_chorus", 2.0f,true);
-    public static final RankineWood CHARRED = RankineWood.newWoodReg("charred", 1.0f,true);
-    public static final RankineWood BAMBOO = RankineWood.newWoodReg("bamboo", 2.0f,false);
-    public static final RankineWood BAMBOO_CULMS = RankineWood.newWoodReg("bamboo_culms", 2.0f,false);
-
+    public static final RankineWood CEDAR = RankineWood.newWoodReg("cedar", 2.0f,true, true, 2, new CedarTreeGrower());
+    public static final RankineWood BALSAM_FIR = RankineWood.newWoodReg("balsam_fir", 2.0f,true,true, 3, new BalsamFirTreeGrower());
+    public static final RankineWood EASTERN_HEMLOCK = RankineWood.newWoodReg("eastern_hemlock", 2.0f,true, true, 3, new EasternHemlockTreeGrower());
+    public static final RankineWood WESTERN_HEMLOCK = RankineWood.newWoodReg("western_hemlock", 2.0f,true, true, 3, new WesternHemlockTreeGrower());
+    public static final RankineWood PINYON_PINE = RankineWood.newWoodReg("pinyon_pine", 2.0f,true, true, 2, new PinyonPineTreeGrower());
+    public static final RankineWood JUNIPER = RankineWood.newWoodReg("juniper", 2.0f,true, true, 1, new JuniperTreeGrower());
+    public static final RankineWood BLACK_BIRCH = RankineWood.newWoodReg("black_birch", 2.0f,true, true, 2, new BlackBirchTreeGrower());
+    public static final RankineWood YELLOW_BIRCH = RankineWood.newWoodReg("yellow_birch", 2.0f,true, true, 2, new YellowBirchTreeGrower());
+    public static final RankineWood RED_BIRCH = RankineWood.newWoodReg("red_birch", 2.0f,true, true, 1, new RedBirchTreeGrower());
+    public static final RankineWood MAPLE = RankineWood.newWoodReg("maple", 2.5f,true, true, 1, new MapleTreeGrower());
+    public static final RankineWood MAGNOLIA = RankineWood.newWoodReg("magnolia", 2.0f,true, true, 1, new MagnoliaTreeGrower());
+    public static final RankineWood BLACK_WALNUT = RankineWood.newWoodReg("black_walnut", 2.5f,true, true, 1, new BlackWalnutTreeGrower());
+    public static final RankineWood COCONUT_PALM = RankineWood.newWoodReg("coconut_palm", 1.5f,true, true, 1, new CoconutPalmTreeGrower());
+    public static final RankineWood CORK_OAK = RankineWood.newWoodReg("cork_oak", 2.0f,true, true, 1, new CorkOakTreeGrower());
+    public static final RankineWood SHARINGA = RankineWood.newWoodReg("sharinga", 2.0f,true, true, 1, new SharingaTreeGrower());
+    public static final RankineWood CINNAMON = RankineWood.newWoodReg("cinnamon", 2.0f,true, true, 1, new CinnamonTreeGrower());
+    public static final RankineWood HONEY_LOCUST = RankineWood.newWoodReg("honey_locust", 3.0f,true, true, 1, new HoneyLocustTreeGrower());
+    public static final RankineWood WEEPING_WILLOW = RankineWood.newWoodReg("weeping_willow", 2.0f,true, true, 1, new WeepingWillowTreeGrower());
+    public static final RankineWood ERYTHRINA = RankineWood.newWoodReg("erythrina", 2.0f,true, true, 1, new ErythrinaTreeGrower());
+    public static final RankineWood PETRIFIED_CHORUS = RankineWood.newWoodReg("petrified_chorus", 2.0f,true, false, 1, null);
+    public static final RankineWood CHARRED = RankineWood.newWoodReg("charred", 1.0f,true, false, 1, null);
+    public static final RankineWood BAMBOO = RankineWood.newWoodReg("bamboo", 2.0f,false, false, 1, null);
+    public static final RankineWood BAMBOO_CULMS = RankineWood.newWoodReg("bamboo_culms", 2.0f,false, false, 1, null);
 
 
     public static final RegistryObject<Block> SOUL_SANDSTONE = BLOCKS.register("soul_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).requiresCorrectToolForDrops().strength(0.8F)));
@@ -838,27 +839,13 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HOLLOW_DARK_OAK_LOG = BLOCKS.register("hollow_dark_oak_log", HollowLogBlock::new);
     public static final RegistryObject<Block> HOLLOW_WARPED_STEM = BLOCKS.register("hollow_warped_stem", HollowLogBlock::new);
     public static final RegistryObject<Block> HOLLOW_CRIMSON_STEM = BLOCKS.register("hollow_crimson_stem", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_CEDAR_LOG = BLOCKS.register("hollow_cedar_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_PINYON_PINE_LOG = BLOCKS.register("hollow_pinyon_pine_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_JUNIPER_LOG = BLOCKS.register("hollow_juniper_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_COCONUT_PALM_LOG = BLOCKS.register("hollow_coconut_palm_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_BALSAM_FIR_LOG = BLOCKS.register("hollow_balsam_fir_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_MAGNOLIA_LOG = BLOCKS.register("hollow_magnolia_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_EASTERN_HEMLOCK_LOG = BLOCKS.register("hollow_eastern_hemlock_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_WESTERN_HEMLOCK_LOG = BLOCKS.register("hollow_western_hemlock_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_YELLOW_BIRCH_LOG = BLOCKS.register("hollow_yellow_birch_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_BLACK_BIRCH_LOG = BLOCKS.register("hollow_black_birch_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_RED_BIRCH_LOG = BLOCKS.register("hollow_red_birch_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_MAPLE_LOG = BLOCKS.register("hollow_maple_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_SHARINGA_LOG = BLOCKS.register("hollow_sharinga_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_BLACK_WALNUT_LOG = BLOCKS.register("hollow_black_walnut_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_CORK_OAK_LOG = BLOCKS.register("hollow_cork_oak_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_CINNAMON_LOG = BLOCKS.register("hollow_cinnamon_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_ERYTHRINA_LOG = BLOCKS.register("hollow_erythrina_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_WEEPING_WILLOW_LOG = BLOCKS.register("hollow_weeping_willow_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_HONEY_LOCUST_LOG = BLOCKS.register("hollow_honey_locust_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_PETRIFIED_CHORUS_LOG = BLOCKS.register("hollow_petrified_chorus_log", HollowLogBlock::new);
-    public static final RegistryObject<Block> HOLLOW_CHARRED_LOG = BLOCKS.register("hollow_charred_log", HollowLogBlock::new);
+
+    public static final RegistryObject<Block> OAK_LEAF_LITTER = BLOCKS.register("oak_leaf_litter", LeafLitterBlock::new);
+    public static final RegistryObject<Block> SPRUCE_LEAF_LITTER = BLOCKS.register("spruce_leaf_litter", LeafLitterBlock::new);
+    public static final RegistryObject<Block> BIRCH_LEAF_LITTER = BLOCKS.register("birch_leaf_litter", LeafLitterBlock::new);
+    public static final RegistryObject<Block> JUNGLE_LEAF_LITTER = BLOCKS.register("jungle_leaf_litter", LeafLitterBlock::new);
+    public static final RegistryObject<Block> ACACIA_LEAF_LITTER = BLOCKS.register("acacia_leaf_litter", LeafLitterBlock::new);
+    public static final RegistryObject<Block> DARK_OAK_LEAF_LITTER = BLOCKS.register("dark_oak_leaf_litter", LeafLitterBlock::new);
 
 
 
@@ -908,94 +895,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TINDER_CONK_MUSHROOM_BLOCK = BLOCKS.register("tinder_conk_mushroom_block", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> TURKEY_TAIL_MUSHROOM_BLOCK = BLOCKS.register("turkey_tail_mushroom_block", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> CINNABAR_POLYPORE_MUSHROOM_BLOCK = BLOCKS.register("cinnabar_polypore_mushroom_block", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));
-
-
-    public static final RegistryObject<Block> CEDAR_LEAVES = BLOCKS.register("cedar_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> COCONUT_PALM_LEAVES = BLOCKS.register("coconut_palm_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> PINYON_PINE_LEAVES = BLOCKS.register("pinyon_pine_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> JUNIPER_LEAVES = BLOCKS.register("juniper_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> BALSAM_FIR_LEAVES = BLOCKS.register("balsam_fir_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> MAGNOLIA_LEAVES = BLOCKS.register("magnolia_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> EASTERN_HEMLOCK_LEAVES = BLOCKS.register("eastern_hemlock_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> WESTERN_HEMLOCK_LEAVES = BLOCKS.register("western_hemlock_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> YELLOW_BIRCH_LEAVES = BLOCKS.register("yellow_birch_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> BLACK_BIRCH_LEAVES = BLOCKS.register("black_birch_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> RED_BIRCH_LEAVES = BLOCKS.register("red_birch_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> MAPLE_LEAVES = BLOCKS.register("maple_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> SHARINGA_LEAVES = BLOCKS.register("sharinga_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> BLACK_WALNUT_LEAVES = BLOCKS.register("black_walnut_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> CORK_OAK_LEAVES = BLOCKS.register("cork_oak_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> CINNAMON_LEAVES = BLOCKS.register("cinnamon_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> ERYTHRINA_LEAVES = BLOCKS.register("erythrina_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> WEEPING_WILLOW_LEAVES = BLOCKS.register("weeping_willow_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-    public static final RegistryObject<Block> HONEY_LOCUST_LEAVES = BLOCKS.register("honey_locust_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
-
-    public static final RegistryObject<Block> OAK_LEAF_LITTER = BLOCKS.register("oak_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> SPRUCE_LEAF_LITTER = BLOCKS.register("spruce_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> BIRCH_LEAF_LITTER = BLOCKS.register("birch_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> JUNGLE_LEAF_LITTER = BLOCKS.register("jungle_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> ACACIA_LEAF_LITTER = BLOCKS.register("acacia_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> DARK_OAK_LEAF_LITTER = BLOCKS.register("dark_oak_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> CEDAR_LEAF_LITTER = BLOCKS.register("cedar_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> COCONUT_PALM_LEAF_LITTER = BLOCKS.register("coconut_palm_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> PINYON_PINE_LEAF_LITTER = BLOCKS.register("pinyon_pine_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> JUNIPER_LEAF_LITTER = BLOCKS.register("juniper_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> BALSAM_FIR_LEAF_LITTER = BLOCKS.register("balsam_fir_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> MAGNOLIA_LEAF_LITTER = BLOCKS.register("magnolia_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> EASTERN_HEMLOCK_LEAF_LITTER = BLOCKS.register("eastern_hemlock_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> WESTERN_HEMLOCK_LEAF_LITTER = BLOCKS.register("western_hemlock_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> YELLOW_BIRCH_LEAF_LITTER = BLOCKS.register("yellow_birch_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> BLACK_BIRCH_LEAF_LITTER = BLOCKS.register("black_birch_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> RED_BIRCH_LEAF_LITTER = BLOCKS.register("red_birch_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> MAPLE_LEAF_LITTER = BLOCKS.register("maple_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> SHARINGA_LEAF_LITTER = BLOCKS.register("sharinga_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> BLACK_WALNUT_LEAF_LITTER = BLOCKS.register("black_walnut_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> CORK_OAK_LEAF_LITTER = BLOCKS.register("cork_oak_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> CINNAMON_LEAF_LITTER = BLOCKS.register("cinnamon_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> ERYTHRINA_LEAF_LITTER = BLOCKS.register("erythrina_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> WEEPING_WILLOW_LEAF_LITTER = BLOCKS.register("weeping_willow_leaf_litter", LeafLitterBlock::new);
-    public static final RegistryObject<Block> HONEY_LOCUST_LEAF_LITTER = BLOCKS.register("honey_locust_leaf_litter", LeafLitterBlock::new);
-
-    private static final Block.Properties DEF_SAPLING = Block.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0).sound(SoundType.GRASS);
-    public static final RegistryObject<Block> CEDAR_SAPLING = BLOCKS.register("cedar_sapling", () -> new RankineSaplingBlock(new CedarTreeGrower(), DEF_SAPLING, 2));
-    public static final RegistryObject<Block> COCONUT_PALM_SAPLING = BLOCKS.register("coconut_palm_sapling", () -> new RankineSaplingBlock(new CoconutPalmTreeGrower(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> PINYON_PINE_SAPLING = BLOCKS.register("pinyon_pine_sapling", () -> new RankineSaplingBlock(new PinyonPineTreeGrower(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> JUNIPER_SAPLING = BLOCKS.register("juniper_sapling", () -> new RankineSaplingBlock(new JuniperTreeGrower(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> BALSAM_FIR_SAPLING = BLOCKS.register("balsam_fir_sapling", () -> new RankineSaplingBlock(new BalsamFirTreeGrower(), DEF_SAPLING, 2));
-    public static final RegistryObject<Block> MAGNOLIA_SAPLING = BLOCKS.register("magnolia_sapling", () -> new RankineSaplingBlock(new MagnoliaTreeGrower(), DEF_SAPLING, 1));
-    public static final RegistryObject<Block> EASTERN_HEMLOCK_SAPLING = BLOCKS.register("eastern_hemlock_sapling", () -> new RankineSaplingBlock(new EasternHemlockTreeGrower(), DEF_SAPLING, 2));
-    public static final RegistryObject<Block> WESTERN_HEMLOCK_SAPLING = BLOCKS.register("western_hemlock_sapling", () -> new RankineSaplingBlock(new WesternHemlockTreeGrower(), DEF_SAPLING, 2));
-    public static final RegistryObject<Block> YELLOW_BIRCH_SAPLING = BLOCKS.register("yellow_birch_sapling", () -> new RankineSaplingBlock(new YellowBirchTreeGrower(), DEF_SAPLING, 1));
-    public static final RegistryObject<Block> BLACK_BIRCH_SAPLING = BLOCKS.register("black_birch_sapling", () -> new RankineSaplingBlock(new BlackBirchTreeGrower(), DEF_SAPLING, 1));
-    public static final RegistryObject<Block> RED_BIRCH_SAPLING = BLOCKS.register("red_birch_sapling", () -> new RankineSaplingBlock(new RedBirchTreeGrower(), DEF_SAPLING, 1));
-    public static final RegistryObject<Block> MAPLE_SAPLING = BLOCKS.register("maple_sapling", () -> new RankineSaplingBlock(new MapleTreeGrower(), DEF_SAPLING, 1));
-    public static final RegistryObject<Block> SHARINGA_SAPLING = BLOCKS.register("sharinga_sapling", () -> new RankineSaplingBlock(new SharingaTreeGrower(), DEF_SAPLING, 1));
-    public static final RegistryObject<Block> BLACK_WALNUT_SAPLING = BLOCKS.register("black_walnut_sapling", () -> new RankineSaplingBlock(new BlackWalnutTreeGrower(), DEF_SAPLING, 1));
-    public static final RegistryObject<Block> CORK_OAK_SAPLING = BLOCKS.register("cork_oak_sapling", () -> new RankineSaplingBlock(new CorkOakTreeGrower(), DEF_SAPLING, 1));
-    public static final RegistryObject<Block> CINNAMON_SAPLING = BLOCKS.register("cinnamon_sapling", () -> new RankineSaplingBlock(new CinnamonTreeGrower(), DEF_SAPLING, 1));
-    public static final RegistryObject<Block> ERYTHRINA_SAPLING = BLOCKS.register("erythrina_sapling", () -> new RankineSaplingBlock(new ErythrinaTreeGrower(), DEF_SAPLING, 1));
-    public static final RegistryObject<Block> WEEPING_WILLOW_SAPLING = BLOCKS.register("weeping_willow_sapling", () -> new RankineSaplingBlock(new WeepingWillowTreeGrower(), DEF_SAPLING, 1));
-    public static final RegistryObject<Block> HONEY_LOCUST_SAPLING = BLOCKS.register("honey_locust_sapling", () -> new RankineSaplingBlock(new HoneyLocustTreeGrower(), DEF_SAPLING, 1));
-
-    public static final RegistryObject<Block> POTTED_CEDAR_SAPLING = BLOCKS.register("potted_cedar_sapling", () -> new FlowerPotBlock(null, CEDAR_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_PINYON_PINE_SAPLING = BLOCKS.register("potted_pinyon_pine_sapling", () -> new FlowerPotBlock(null, PINYON_PINE_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_JUNIPER_SAPLING = BLOCKS.register("potted_juniper_sapling", () -> new FlowerPotBlock(null, JUNIPER_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_COCONUT_PALM_SAPLING = BLOCKS.register("potted_coconut_palm_sapling", () -> new FlowerPotBlock(null, COCONUT_PALM_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_BALSAM_FIR_SAPLING = BLOCKS.register("potted_balsam_fir_sapling", () -> new FlowerPotBlock(null, BALSAM_FIR_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_MAGNOLIA_SAPLING = BLOCKS.register("potted_magnolia_sapling", () -> new FlowerPotBlock(null, MAGNOLIA_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_EASTERN_HEMLOCK_SAPLING = BLOCKS.register("potted_eastern_hemlock_sapling", () -> new FlowerPotBlock(null, EASTERN_HEMLOCK_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_WESTERN_HEMLOCK_SAPLING = BLOCKS.register("potted_western_hemlock_sapling", () -> new FlowerPotBlock(null, WESTERN_HEMLOCK_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_YELLOW_BIRCH_SAPLING = BLOCKS.register("potted_yellow_birch_sapling", () -> new FlowerPotBlock(null, YELLOW_BIRCH_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_BLACK_BIRCH_SAPLING = BLOCKS.register("potted_black_birch_sapling", () -> new FlowerPotBlock(null, BLACK_BIRCH_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_RED_BIRCH_SAPLING = BLOCKS.register("potted_red_birch_sapling", () -> new FlowerPotBlock(null, RED_BIRCH_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_MAPLE_SAPLING = BLOCKS.register("potted_maple_sapling", () -> new FlowerPotBlock(null, MAPLE_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_SHARINGA_SAPLING = BLOCKS.register("potted_sharinga_sapling", () -> new FlowerPotBlock(null, SHARINGA_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_BLACK_WALNUT_SAPLING = BLOCKS.register("potted_black_walnut_sapling", () -> new FlowerPotBlock(null, BLACK_WALNUT_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_CORK_OAK_SAPLING = BLOCKS.register("potted_cork_oak_sapling", () -> new FlowerPotBlock(null, CORK_OAK_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_CINNAMON_SAPLING = BLOCKS.register("potted_cinnamon_sapling", () -> new FlowerPotBlock(null, CINNAMON_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_ERYTHRINA_SAPLING = BLOCKS.register("potted_erythrina_sapling", () -> new FlowerPotBlock(null, CINNAMON_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_WEEPING_WILLOW_SAPLING = BLOCKS.register("potted_weeping_willow_sapling", () -> new FlowerPotBlock(null, WEEPING_WILLOW_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
-    public static final RegistryObject<Block> POTTED_HONEY_LOCUST_SAPLING = BLOCKS.register("potted_honey_locust_sapling", () -> new FlowerPotBlock(null, HONEY_LOCUST_SAPLING, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
 
     public static final RegistryObject<Block> WOOD_TIER_CRUSHING_HEAD = BLOCKS.register("wood_tier_crushing_head", CrushingHeadBlock::new);
     public static final RegistryObject<Block> STONE_TIER_CRUSHING_HEAD = BLOCKS.register("stone_tier_crushing_head", CrushingHeadBlock::new);

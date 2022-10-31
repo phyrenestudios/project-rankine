@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.blocks.RankineStone;
-import com.cannolicatfish.rankine.blocks.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.data.builders.AlloyCraftingRecipeBuilder;
 import com.cannolicatfish.rankine.data.builders.AlloyIngredient;
 import com.cannolicatfish.rankine.data.builders.BeehiveOvenRecipeBuilder;
@@ -651,26 +651,14 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         for (Block HOLLOW : RankineLists.HOLLOW_LOGS) {
             String PATH = HOLLOW.getRegistryName().getPath();
-            String nameSpace;
-            if (Arrays.asList("hollow_oak_log","hollow_birch_log","hollow_spruce_log","hollow_acacia_log","hollow_jungle_log","hollow_dark_oak_log","hollow_crimson_stem","hollow_warped_stem").contains(PATH)) {
-                nameSpace = "minecraft";
-            } else {
-                nameSpace = "rankine";
-            }
-            Block LOG = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(nameSpace+":"+PATH.replace("hollow_","")));
+            Block LOG = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("minecraft:"+PATH.replace("hollow_","")));
             if (LOG != null) {
                 ShapedRecipeBuilder.shaped(HOLLOW.asItem(), 16).pattern("###").pattern("# #").pattern("###").define('#', LOG).group("rankine:hollow_logs").unlockedBy("has_ingredient", has(LOG)).save(consumer);
             }
         }
         for (Block BLK : RankineLists.LEAF_LITTERS) {
             String PATH = BLK.getRegistryName().getPath();
-            String nameSpace;
-            if (Arrays.asList("oak_leaf_litter","birch_leaf_litter","spruce_leaf_litter","acacia_leaf_litter","jungle_leaf_litter","dark_oak_leaf_litter","crimson_leaf_litter","warped_leaf_litter").contains(PATH)) {
-                nameSpace = "minecraft";
-            } else {
-                nameSpace = "rankine";
-            }
-            Block LEAF = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(nameSpace+":"+PATH.replace("leaf_litter","leaves")));
+            Block LEAF = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse( "minecraft:"+PATH.replace("leaf_litter","leaves")));
             if (LEAF != null) {
                 ShapedRecipeBuilder.shaped(BLK.asItem(), 4).pattern("##").define('#', LEAF).group("rankine:leaf_litters").unlockedBy("has_ingredient", has(LEAF)).save(consumer);
             }
@@ -715,9 +703,13 @@ public class RankineRecipesProvider extends RecipeProvider {
         //WOODS
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             if (Wood.hasLogs()) {
-                twoXtwo(consumer, Wood.getWood(), Wood.getLog(), 3, "has_log", Wood.getLog());
-                twoXtwo(consumer, Wood.getStrippedWood(), Wood.getStrippedLog(), 3, "has_log", Wood.getLog());
+                ShapedRecipeBuilder.shaped(Wood.getWood(), 3).pattern("##").pattern("##").define('#', Wood.getLog()).unlockedBy("has_ingredient", has(Wood.getLog())).group("rankine:wood").save(consumer);
+                ShapedRecipeBuilder.shaped(Wood.getStrippedWood(), 3).pattern("##").pattern("##").define('#', Wood.getStrippedLog()).unlockedBy("has_ingredient", has(Wood.getStrippedLog())).group("stripped_wood").save(consumer);
                 ShapelessRecipeBuilder.shapeless(Wood.getPlanks(), 4).requires(ItemTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs"))).group("planks").unlockedBy("has_ingredient", has(ItemTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")))).save(consumer);
+                ShapedRecipeBuilder.shaped(Wood.getHollowLog(), 16).pattern("###").pattern("# #").pattern("###").define('#', Wood.getLog()).group("rankine:hollow_logs").unlockedBy("has_ingredient", has(Wood.getLog())).save(consumer);
+            }
+            if (Wood.isTree()) {
+                ShapedRecipeBuilder.shaped(Wood.getLeafLitter(), 4).pattern("##").define('#', Wood.getLeaves()).group("rankine:leaf_litters").unlockedBy("has_ingredient", has(Wood.getLeaves())).save(consumer);
             }
 
             Block PLANK = Wood.getPlanks();

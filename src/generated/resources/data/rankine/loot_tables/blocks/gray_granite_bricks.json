@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_gray_granite_bricks"
+          "name": "rankine:gray_granite_bricks"
         }
       ],
       "conditions": [

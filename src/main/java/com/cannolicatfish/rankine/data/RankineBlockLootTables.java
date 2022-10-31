@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.blocks.RankineLogBlock;
-import com.cannolicatfish.rankine.blocks.RankineStone;
-import com.cannolicatfish.rankine.blocks.RankineWood;
+import com.cannolicatfish.rankine.blocks.*;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineBookshelvesBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
@@ -55,6 +55,18 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                     lootTables.put(blk, droppingWithSilkTouchOrRandomly(blk, Items.BOOK, ConstantValue.exactly(3)));
                 } else if (blk instanceof DoorBlock) {
                     lootTables.put(blk, droppingWhen(blk, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
+                } else if (blk instanceof LeavesBlock) {
+                    if (Wood == RankineBlocks.BALSAM_FIR || Wood == RankineBlocks.COCONUT_PALM) {
+                        lootTables.put(blk, droppingWithChancesAndSticks(blk, Wood.getSapling(), DOUBLE_SAPLING_DROP_RATES));
+                    } else {
+                        lootTables.put(blk, droppingWithChancesAndSticks(blk, Wood.getSapling(), DEFAULT_SAPLING_DROP_RATES));
+                    }
+                } else if (blk instanceof LeafLitterBlock) {
+                    lootTables.put(blk, withShears(blk));
+                } else if (blk instanceof FlowerPotBlock) {
+                    lootTables.put(blk, droppingAndFlowerPot(((FlowerPotBlock)blk).getContent()));
+                } else if (blk instanceof HollowLogBlock) {
+                    lootTables.put(blk, droppingWithSilkTouchOrRandomly(blk, Items.STICK, UniformGenerator.between(2.0F, 6.0F)));
                 } else if (blk != null) {
                     lootTables.put(blk, createBlockLootTable(blk));
                 }
@@ -101,8 +113,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.LANTERNS,
                 RankineLists.CRUSHING_HEADS,
                 RankineLists.WALL_MUSHROOMS,
-                RankineLists.BALES,
-                RankineLists.SAPLINGS
+                RankineLists.BALES
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(blk, createBlockLootTable(blk));
         }
@@ -244,9 +255,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         for (Block ORE : RankineLists.CRUSHING_ORES) {
             lootTables.put(ORE, fortunableOreOreBlockLootTable(ORE, ForgeRegistries.ITEMS.getValue(new ResourceLocation(ORE.getRegistryName().toString().replace("_ore","")))));
         }
-        for (Block BLK : RankineLists.FLOWER_POTS) {
-            lootTables.put(BLK, droppingAndFlowerPot(((FlowerPotBlock)BLK).getContent()));
-        }
         for (Block BLK : RankineLists.EIGHT_LAYER_BLOCKS) {
             lootTables.put(BLK, eightLayerBlock(BLK));
         }
@@ -261,14 +269,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
         for (Block BLK : RankineLists.LEAF_LITTERS) {
             lootTables.put(BLK, withShears(BLK));
-        }
-        for (Block LEAF : RankineLists.LEAVES) {
-            Block SAPLING = RankineLists.SAPLINGS.get(RankineLists.LEAVES.indexOf(LEAF));
-            if (LEAF.equals(RankineBlocks.COCONUT_PALM_LEAVES.get()) || LEAF.equals(RankineBlocks.BALSAM_FIR_LEAVES.get())) {
-                lootTables.put(LEAF, droppingWithChancesAndSticks(LEAF, SAPLING, DOUBLE_SAPLING_DROP_RATES));
-            } else {
-                lootTables.put(LEAF, droppingWithChancesAndSticks(LEAF, SAPLING, DEFAULT_SAPLING_DROP_RATES));
-            }
         }
         for (Block BLK : Stream.of(
                 RankineLists.TALL_FLOWERS,

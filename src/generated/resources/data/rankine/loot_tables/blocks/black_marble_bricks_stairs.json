@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_black_marble_bricks_stairs"
+          "name": "rankine:black_marble_bricks_stairs"
         }
       ],
       "conditions": [

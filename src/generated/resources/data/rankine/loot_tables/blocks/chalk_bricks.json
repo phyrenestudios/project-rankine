@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_chalk_bricks"
+          "name": "rankine:chalk_bricks"
         }
       ],
       "conditions": [

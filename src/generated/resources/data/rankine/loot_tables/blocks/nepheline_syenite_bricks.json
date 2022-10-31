@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_nepheline_syenite_bricks"
+          "name": "rankine:nepheline_syenite_bricks"
         }
       ],
       "conditions": [

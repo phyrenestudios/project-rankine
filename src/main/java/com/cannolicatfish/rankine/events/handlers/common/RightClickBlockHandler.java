@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
-import com.cannolicatfish.rankine.blocks.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.cauldrons.AbstractRankineCauldronBlock;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;

@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.RankineStone;
-import com.cannolicatfish.rankine.blocks.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
@@ -87,10 +87,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MINERAL_WOOL,
                 RankineLists.FIBER_BLOCK,
                 RankineLists.FIBER_MAT,
-                RankineLists.FLOWER_POTS,
                 RankineLists.TALL_FLOWERS,
-                RankineLists.SAPLINGS,
-                RankineLists.LEAVES,
                 RankineLists.METAL_TRAPDOORS,
                 RankineLists.METAL_DOORS,
                 RankineLists.METAL_LADDERS,
@@ -771,10 +768,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.stripping", "Axe Stripping");
         add("itemGroup.rankine_world", "Project Rankine Building");
         add("itemGroup.rankine_metallurgy", "Project Rankine Metallurgy");
-        add("itemGroup.rankine_elements", "Project Rankine Elements");
-        add("itemGroup.rankine_components", "Project Rankine Components");
-        add("itemGroup.rankine_misc", "Project Rankine Miscellaneous");
-        add("itemGroup.rankine_plants", "Project Rankine Plants & Food");
+        add("itemGroup.rankine_elements", "Project Rankine: Elements");
+        add("itemGroup.rankine_components", "Project Rankine: Components");
+        add("itemGroup.rankine_misc", "Project Rankine: Miscellaneous");
+        add("itemGroup.rankine_biota", "Project Rankine: Biota");
 
         add("block.rankine.material_testing_bench", "Material Testing Table");
         add("block.rankine.material_testing_bench.durability.test", "Durability tests show the following,");
@@ -1142,11 +1139,12 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.ground_flora.short_grass", "");
 
         add("rankine.journal.cat_biota.mushrooms.name", "Mushrooms");
-        add("rankine.journal.cat_biota.mushrooms.text1", "New types of fungi populate the undergrowth of wooded ecosystems. Although they have a different growth pattern, some can be used similar to the common red and brown varieties.");
+        add("rankine.journal.cat_biota.mushrooms.text1", "New types of fungi populate the undergrowth of wooded ecosystems.");
         add("rankine.journal.cat_biota.mushrooms.edible_mushrooms_header", "Edible Mushrooms");
         add("rankine.journal.cat_biota.mushrooms.edible_mushrooms", "");
         add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms_header", "Inedible Mushrooms");
         add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms", "");
+        add("rankine.journal.cat_biota.mushrooms.text2", "Tinder Conk Mushrooms can be used to transport fire. After burning a Tinder Conk in a fire, campfire, furnace or lava, it will begin to smoulder. A Smouldering Tinder Conk can be used as furnace fuel or like a flint and steel.");
 
         add("rankine.journal.cat_biota.trees.name", "Trees");
         add("rankine.journal.cat_biota.trees.text1", "Large wooded plants, much like vanilla trees. Each tree can be found naturally in certain biomes of the world.");

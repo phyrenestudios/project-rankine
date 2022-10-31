@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_serpentinite_bricks"
+          "name": "rankine:serpentinite_bricks"
         }
       ],
       "conditions": [

@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "side": "rankine:block/eastern_hemlock_log",
-    "end": "rankine:block/eastern_hemlock_log_top"
+    "end": "rankine:block/eastern_hemlock_log"
   }
 }

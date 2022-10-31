@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "side": "rankine:block/black_birch_log",
-    "end": "rankine:block/black_birch_log_top"
+    "end": "rankine:block/black_birch_log"
   }
 }

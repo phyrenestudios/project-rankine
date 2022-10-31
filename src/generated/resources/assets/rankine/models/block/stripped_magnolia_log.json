@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "side": "rankine:block/stripped_magnolia_log",
-    "end": "rankine:block/stripped_magnolia_log"
+    "end": "rankine:block/stripped_magnolia_log_top"
   }
 }

@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "side": "rankine:block/cedar_log",
-    "end": "rankine:block/cedar_log_top"
+    "end": "rankine:block/cedar_log"
   }
 }

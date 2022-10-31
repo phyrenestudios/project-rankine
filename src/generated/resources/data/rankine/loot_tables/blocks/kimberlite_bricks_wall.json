@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_kimberlite_bricks_wall"
+          "name": "rankine:kimberlite_bricks_wall"
         }
       ],
       "conditions": [

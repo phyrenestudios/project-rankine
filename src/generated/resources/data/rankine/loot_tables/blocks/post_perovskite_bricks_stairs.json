@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_post_perovskite_bricks_stairs"
+          "name": "rankine:post_perovskite_bricks_stairs"
         }
       ],
       "conditions": [

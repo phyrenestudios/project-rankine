@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_gneiss_bricks_stairs"
+          "name": "rankine:gneiss_bricks_stairs"
         }
       ],
       "conditions": [

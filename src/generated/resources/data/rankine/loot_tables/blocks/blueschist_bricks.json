@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_blueschist_bricks"
+          "name": "rankine:blueschist_bricks"
         }
       ],
       "conditions": [

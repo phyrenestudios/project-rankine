@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_troctolite_bricks"
+          "name": "rankine:troctolite_bricks"
         }
       ],
       "conditions": [

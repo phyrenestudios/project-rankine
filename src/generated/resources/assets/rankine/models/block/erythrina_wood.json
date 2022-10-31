@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "side": "rankine:block/erythrina_log",
-    "end": "rankine:block/erythrina_log_top"
+    "end": "rankine:block/erythrina_log"
   }
 }

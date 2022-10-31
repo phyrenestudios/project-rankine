@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_red_dacite_bricks_stairs"
+          "name": "rankine:red_dacite_bricks_stairs"
         }
       ],
       "conditions": [

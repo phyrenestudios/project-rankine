@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_granodiorite_bricks_wall"
+          "name": "rankine:granodiorite_bricks_wall"
         }
       ],
       "conditions": [

@@ -9,11 +9,9 @@ public class RankineSetup {
         @Override
         public ItemStack makeIcon() { return new ItemStack(RankineBlocks.REFRACTORY_BRICKS.get()); }
     };
-    public CreativeModeTab rankinePlants = new CreativeModeTab("rankine_plants") {
+    public CreativeModeTab rankineBiota = new CreativeModeTab("rankine_biota") {
         @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(RankineItems.ELDERBERRIES.get());
-        }
+        public ItemStack makeIcon() { return new ItemStack(RankineItems.ELDERBERRIES.get()); }
     };
     public CreativeModeTab rankineMetals = new CreativeModeTab("rankine_metallurgy") {
         @Override

@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_lherzolite_bricks"
+          "name": "rankine:lherzolite_bricks"
         }
       ],
       "conditions": [

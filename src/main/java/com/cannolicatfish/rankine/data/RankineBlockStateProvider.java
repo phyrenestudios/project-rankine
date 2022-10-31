@@ -3,6 +3,8 @@ package com.cannolicatfish.rankine.data;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.BaseAsphaltBlock;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapBlock;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelBlock;
@@ -81,9 +83,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             if (Wood.hasLogs()) {
                 axisBlock(Wood.getLog(), getBlockRSL(Wood.getLog()), getBlockRSL(Wood.getLog().getRegistryName().getPath() + "_top"));
-                axisBlock(Wood.getWood(), getBlockRSL(Wood.getLog()), getBlockRSL(Wood.getLog().getRegistryName().getPath() + "_top"));
-                axisBlock(Wood.getStrippedLog(), getBlockRSL(Wood.getStrippedLog()), getBlockRSL(Wood.getStrippedLog().getRegistryName().getPath()));
+                axisBlock(Wood.getStrippedLog(), getBlockRSL(Wood.getStrippedLog()), getBlockRSL(Wood.getStrippedLog().getRegistryName().getPath() + "_top"));
+                axisBlock(Wood.getWood(), getBlockRSL(Wood.getLog()), getBlockRSL(Wood.getLog().getRegistryName().getPath()));
                 axisBlock(Wood.getStrippedWood(), getBlockRSL(Wood.getStrippedLog()), getBlockRSL(Wood.getStrippedLog().getRegistryName().getPath()));
+                hollowLog(Wood.getHollowLog(), "rankine");
             }
             fancyPlanksBlock(Wood.getPlanks());
             slabBlock(Wood.getSlab(), getBlockRSL(Wood.getPlanks().getRegistryName().getPath()+"1"), getBlockRSL(Wood.getPlanks()));
@@ -97,6 +100,12 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             signBlock(Wood.getSign(), getBlockRSL(Wood.getPlanks()));
             signBlock(Wood.getWallSign(), getBlockRSL(Wood.getPlanks()));
             fancyBookshelvesBlock(Wood);
+            if (Wood.isTree()) {
+                leavesBlock(Wood.getLeaves());
+                leafLitterBlock(Wood.getLeafLitter(), "rankine");
+                simpleBlock(Wood.getSapling(), models().cross(Wood.getSapling().getRegistryName().getPath(), modLoc("block/" + Wood.getSapling().getRegistryName().getPath())));
+                simpleBlock(Wood.getPottedSapling(), models().withExistingParent(Wood.getPottedSapling().getRegistryName().getPath(), "block/flower_pot_cross").texture("plant", "block/" + Wood.getSapling().getRegistryName().getPath()));
+            }
         }
 
 
@@ -154,9 +163,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
         for (Block blk : RankineLists.BRICKS) {
             fancyBricksBlock(blk);
-        }
-        for (Block blk : RankineLists.LEAVES) {
-            leavesBlock(blk);
         }
         for (Block SANDSTONE : RankineLists.SANDSTONES) {
             String pathName = SANDSTONE.getRegistryName().getPath();
@@ -395,31 +401,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : RankineLists.QUARTER_SLABS) {
             quarterSlab(blk);
         }
-        for (Block blk : RankineLists.SAPLINGS) {
-            String name = blk.getRegistryName().getPath();
-            simpleBlock(blk, models().cross(name, modLoc("block/"+name)));
-        }
-        for (Block blk : RankineLists.FLOWER_POTS) {
-            String name = blk.getRegistryName().getPath();
-            simpleBlock(blk, models().withExistingParent(name, "block/flower_pot_cross").texture("plant", "block/"+name.replace("potted_","")));
-        }
         for (Block blk : RankineLists.HOLLOW_LOGS) {
-            String PATH = blk.getRegistryName().getPath();
-            String nameSpace;
-            if (Arrays.asList("hollow_oak_log","hollow_birch_log","hollow_spruce_log","hollow_acacia_log","hollow_jungle_log","hollow_dark_oak_log","hollow_crimson_stem","hollow_warped_stem").contains(PATH)) {
-                nameSpace = "minecraft";
-            } else {
-                nameSpace = "rankine";
-            }
-            ModelFile MODEL = models().withExistingParent(PATH, modLoc("block/template_hollow_log")).texture("log", getBlockRSL(nameSpace,PATH.replace("hollow_",""))).texture("log_top", getBlockRSL(nameSpace,PATH.replace("hollow_","")+"_top")).texture("stripped_log", getBlockRSL(nameSpace,PATH.replace("hollow_","stripped_")));
-            ModelFile MODEL_MOSSY = models().withExistingParent(PATH+"_mossy", modLoc("block/template_hollow_log_mossy")).texture("log", getBlockRSL(nameSpace,PATH.replace("hollow_",""))).texture("log_top", getBlockRSL(nameSpace,PATH.replace("hollow_","")+"_top")).texture("stripped_log", getBlockRSL(nameSpace,PATH.replace("hollow_","stripped_")));
-            getVariantBuilder(blk)
-                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y).with(HollowLogBlock.MOSSY, false).modelForState().modelFile(MODEL).addModel()
-                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y).with(HollowLogBlock.MOSSY, true).modelForState().modelFile(MODEL).addModel()
-                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z).with(HollowLogBlock.MOSSY, false).modelForState().modelFile(MODEL).rotationX(90).addModel()
-                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z).with(HollowLogBlock.MOSSY, true).modelForState().modelFile(MODEL_MOSSY).addModel()
-                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X).with(HollowLogBlock.MOSSY, false).modelForState().modelFile(MODEL).rotationX(90).rotationY(90).addModel()
-                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X).with(HollowLogBlock.MOSSY, true).modelForState().modelFile(MODEL_MOSSY).rotationY(90).addModel();
+            hollowLog(blk, "minecraft");
+        }
+        for (Block blk : RankineLists.LEAF_LITTERS) {
+            leafLitterBlock(blk, "minecraft");
         }
         /*
         for (Block blk : RankineLists.GAS_TUBES) {
@@ -435,24 +421,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
 
          */
-        for (Block BLK : RankineLists.LEAF_LITTERS) {
-            String PATH = BLK.getRegistryName().getPath();
-            String nameSpace;
-            if (Arrays.asList("oak_leaf_litter","birch_leaf_litter","spruce_leaf_litter","acacia_leaf_litter","jungle_leaf_litter","dark_oak_leaf_litter").contains(PATH)) {
-                nameSpace = "minecraft";
-            } else {
-                nameSpace = "rankine";
-            }
-            getVariantBuilder(BLK).partialState().modelForState()
-                    .modelFile(models().withExistingParent(PATH, mcLoc("block/block"))
-                            .texture("particle", getBlockRSL(nameSpace,PATH.replace("leaf_litter","leaves")))
-                            .texture("layer", getBlockRSL(nameSpace,PATH.replace("leaf_litter","leaves")))
-                            .element().from(0.0f,0.25f,0.0f).to(16.0f,0.25f,16.0f)
-                            .face(Direction.UP).uvs(0, 0, 16,16).tintindex(0).texture("#layer").end()
-                            .face(Direction.DOWN).uvs(16, 16, 0, 0).tintindex(0).texture("#layer").end()
-                            .end())
-                    .addModel();
-        }
 
 
         //Ores
@@ -757,6 +725,32 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     public void signBlock(Block blk, ResourceLocation plank) {
         String name = blk.getRegistryName().getPath();
         getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(name, modLoc("block/template_sign")).texture("particle", plank)).addModel();
+    }
+
+    public void hollowLog(Block blk, String nameSpace) {
+        String PATH = blk.getRegistryName().getPath();
+        ModelFile MODEL = models().withExistingParent(PATH, modLoc("block/template_hollow_log")).texture("log", getBlockRSL(nameSpace,PATH.replace("hollow_",""))).texture("log_top", getBlockRSL(nameSpace,PATH.replace("hollow_","")+"_top")).texture("stripped_log", getBlockRSL(nameSpace,PATH.replace("hollow_","stripped_")));
+        ModelFile MODEL_MOSSY = models().withExistingParent(PATH+"_mossy", modLoc("block/template_hollow_log_mossy")).texture("log", getBlockRSL(nameSpace,PATH.replace("hollow_",""))).texture("log_top", getBlockRSL(nameSpace,PATH.replace("hollow_","")+"_top")).texture("stripped_log", getBlockRSL(nameSpace,PATH.replace("hollow_","stripped_")));
+        getVariantBuilder(blk)
+                .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y).with(HollowLogBlock.MOSSY, false).modelForState().modelFile(MODEL).addModel()
+                .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y).with(HollowLogBlock.MOSSY, true).modelForState().modelFile(MODEL).addModel()
+                .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z).with(HollowLogBlock.MOSSY, false).modelForState().modelFile(MODEL).rotationX(90).addModel()
+                .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z).with(HollowLogBlock.MOSSY, true).modelForState().modelFile(MODEL_MOSSY).addModel()
+                .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X).with(HollowLogBlock.MOSSY, false).modelForState().modelFile(MODEL).rotationX(90).rotationY(90).addModel()
+                .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X).with(HollowLogBlock.MOSSY, true).modelForState().modelFile(MODEL_MOSSY).rotationY(90).addModel();
+
+    }
+    public void leafLitterBlock(Block blk, String nameSpace) {
+        String PATH = blk.getRegistryName().getPath();
+        getVariantBuilder(blk).partialState().modelForState()
+                .modelFile(models().withExistingParent(PATH, mcLoc("block/block"))
+                        .texture("particle", getBlockRSL(nameSpace,PATH.replace("leaf_litter","leaves")))
+                        .texture("layer", getBlockRSL(nameSpace,PATH.replace("leaf_litter","leaves")))
+                        .element().from(0.0f,0.25f,0.0f).to(16.0f,0.25f,16.0f)
+                        .face(Direction.UP).uvs(0, 0, 16,16).tintindex(0).texture("#layer").end()
+                        .face(Direction.DOWN).uvs(16, 16, 0, 0).tintindex(0).texture("#layer").end()
+                        .end())
+                .addModel();
     }
 
     public void cobble(Block BLK) {

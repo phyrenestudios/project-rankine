@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_episyenite_bricks"
+          "name": "rankine:episyenite_bricks"
         }
       ],
       "conditions": [

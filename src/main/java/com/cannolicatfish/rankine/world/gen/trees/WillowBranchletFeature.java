@@ -81,7 +81,7 @@ public class WillowBranchletFeature extends Feature<NoneFeatureConfiguration> {
             lvt_4_1_.setWithOffset(p_236429_3_, p_236429_2_.nextInt(8) - p_236429_2_.nextInt(8), p_236429_2_.nextInt(2) - p_236429_2_.nextInt(7), p_236429_2_.nextInt(8) - p_236429_2_.nextInt(8));
             if (p_236429_1_.isEmptyBlock(lvt_4_1_)) {
                 BlockState lvt_6_1_ = p_236429_1_.getBlockState(lvt_4_1_.above());
-                if (lvt_6_1_.is(RankineBlocks.WEEPING_WILLOW_LEAVES.get())) {
+                if (lvt_6_1_.is(RankineBlocks.WEEPING_WILLOW.getLeaves())) {
                     int lvt_7_1_ = Mth.nextInt(p_236429_2_, 1, 8);
                     if (p_236429_2_.nextInt(6) == 0) {
                         lvt_7_1_ *= 2;
@@ -104,7 +104,7 @@ public class WillowBranchletFeature extends Feature<NoneFeatureConfiguration> {
         for(int lvt_6_1_ = 0; lvt_6_1_ <= p_236427_3_; ++lvt_6_1_) {
             if (p_236427_0_.isEmptyBlock(p_236427_2_)) {
                 if (lvt_6_1_ == p_236427_3_ || !p_236427_0_.isEmptyBlock(p_236427_2_.below())) {
-                    p_236427_0_.setBlock(p_236427_2_, (BlockState) RankineBlocks.WILLOW_BRANCHLET.get().defaultBlockState().setValue(GrowingPlantHeadBlock.AGE, Mth.nextInt(p_236427_1_, p_236427_4_, p_236427_5_)), 2);
+                    p_236427_0_.setBlock(p_236427_2_, RankineBlocks.WILLOW_BRANCHLET.get().defaultBlockState().setValue(GrowingPlantHeadBlock.AGE, Mth.nextInt(p_236427_1_, p_236427_4_, p_236427_5_)), 2);
                     break;
                 }
 

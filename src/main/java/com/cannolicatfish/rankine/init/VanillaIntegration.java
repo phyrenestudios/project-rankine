@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.init;
 
-import com.cannolicatfish.rankine.blocks.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -126,20 +127,21 @@ public class VanillaIntegration {
         oreNuggetMap.put(RankineBlocks.CRYOLITE_ORE.get(),RankineItems.SODIUM_NUGGET.get());
 
 
-
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            if (Wood.isTree()) {
+                addFlowerPot(Wood.getSapling(), Wood.getPottedSapling());
+                registerCompostable(0.3F, Wood.getLeaves());
+                registerCompostable(0.3F, Wood.getSapling());
+                registerCompostable(0.1F, Wood.getLeafLitter());
+            }
+        }
 
 
         for (Block blk : RankineLists.TALL_FLOWERS) {
             registerCompostable(0.65F, blk);
         }
-        for (Block blk : RankineLists.LEAVES) {
-            registerCompostable(0.3F, blk);
-        }
         for (Block blk : RankineLists.LEAF_LITTERS) {
             registerCompostable(0.1F, blk);
-        }
-        for (Block blk : RankineLists.SAPLINGS) {
-            registerCompostable(0.3F, blk);
         }
         for (Item blk : RankineLists.SEEDS) {
             registerCompostable(0.3F, blk);
@@ -268,25 +270,6 @@ public class VanillaIntegration {
         
 
 
-        
-        addFlowerPot(RankineBlocks.CEDAR_SAPLING.get(), RankineBlocks.POTTED_CEDAR_SAPLING.get());
-        addFlowerPot(RankineBlocks.PINYON_PINE_SAPLING.get(), RankineBlocks.POTTED_PINYON_PINE_SAPLING.get());
-        addFlowerPot(RankineBlocks.COCONUT_PALM_SAPLING.get(), RankineBlocks.POTTED_COCONUT_PALM_SAPLING.get());
-        addFlowerPot(RankineBlocks.JUNIPER_SAPLING.get(), RankineBlocks.POTTED_JUNIPER_SAPLING.get());
-        addFlowerPot(RankineBlocks.BALSAM_FIR_SAPLING.get(), RankineBlocks.POTTED_BALSAM_FIR_SAPLING.get());
-        addFlowerPot(RankineBlocks.MAGNOLIA_SAPLING.get(), RankineBlocks.POTTED_MAGNOLIA_SAPLING.get());
-        addFlowerPot(RankineBlocks.EASTERN_HEMLOCK_SAPLING.get(), RankineBlocks.POTTED_EASTERN_HEMLOCK_SAPLING.get());
-        addFlowerPot(RankineBlocks.WESTERN_HEMLOCK_SAPLING.get(), RankineBlocks.POTTED_WESTERN_HEMLOCK_SAPLING.get());
-        addFlowerPot(RankineBlocks.RED_BIRCH_SAPLING.get(), RankineBlocks.POTTED_RED_BIRCH_SAPLING.get());
-        addFlowerPot(RankineBlocks.YELLOW_BIRCH_SAPLING.get(), RankineBlocks.POTTED_YELLOW_BIRCH_SAPLING.get());
-        addFlowerPot(RankineBlocks.BLACK_BIRCH_SAPLING.get(), RankineBlocks.POTTED_BLACK_BIRCH_SAPLING.get());
-        addFlowerPot(RankineBlocks.MAPLE_SAPLING.get(), RankineBlocks.POTTED_MAPLE_SAPLING.get());
-        addFlowerPot(RankineBlocks.SHARINGA_SAPLING.get(), RankineBlocks.POTTED_SHARINGA_SAPLING.get());
-        addFlowerPot(RankineBlocks.BLACK_WALNUT_SAPLING.get(), RankineBlocks.POTTED_BLACK_WALNUT_SAPLING.get());
-        addFlowerPot(RankineBlocks.CORK_OAK_SAPLING.get(), RankineBlocks.POTTED_CORK_OAK_SAPLING.get());
-        addFlowerPot(RankineBlocks.CINNAMON_SAPLING.get(), RankineBlocks.POTTED_CINNAMON_SAPLING.get());
-        addFlowerPot(RankineBlocks.WEEPING_WILLOW_SAPLING.get(), RankineBlocks.POTTED_WEEPING_WILLOW_SAPLING.get());
-        addFlowerPot(RankineBlocks.HONEY_LOCUST_SAPLING.get(), RankineBlocks.POTTED_HONEY_LOCUST_SAPLING.get());
 
     }
 
@@ -411,7 +394,7 @@ public class VanillaIntegration {
         ComposterBlock.COMPOSTABLES.put(itemIn.asItem(), chance);
     }
 
-    public static void addFlowerPot(Block plant, Block plantPot) {
+    public static void addFlowerPot(Block plant, FlowerPotBlock plantPot) {
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(plant.getRegistryName(), () -> plantPot);
     }
 
