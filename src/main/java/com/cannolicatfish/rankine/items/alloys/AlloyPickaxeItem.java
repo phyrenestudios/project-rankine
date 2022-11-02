@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.google.common.collect.ImmutableSet;
@@ -9,14 +10,19 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -26,6 +32,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeTagHandler;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -84,13 +91,32 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
             stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
                 entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
             });
-            if (Tags.Items.ORES.contains(state.getBlock().asItem()) && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDLESS,stack) > 0) {
-                List<Effect> r = ForgeRegistries.POTIONS.getEntries().stream().filter(registryKeyEffectEntry -> registryKeyEffectEntry.getValue().isBeneficial() &&
-                        registryKeyEffectEntry.getKey().getRegistryName().getNamespace().equals("minecraft")).map(Map.Entry::getValue).collect(Collectors.toList());
-                Effect rand = r.get(worldIn.getRandom().nextInt(r.size()));
-                EffectInstance e = new EffectInstance(rand,400, EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDLESS,stack));
-                entityLiving.addPotionEffect(e);
+            if (Tags.Items.ORES.contains(state.getBlock().asItem())) {
+                if (Config.TOOLS.ALLOY_PICKAXE_BONUS.get() && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH,stack) <= 0) {
+                    ResourceLocation oreTag = state.getBlock().getTags().stream().filter(blockTagKey -> blockTagKey.getNamespace().equals("forge") && blockTagKey.getPath().startsWith("ores/")).findFirst().orElse(null);
+                    if (oreTag != null && oreTag.getPath().split("ores/").length > 1) {
+                        String oreMetal = oreTag.getPath().split("ores/")[1];
+                        List<? extends ITag.INamedTag<Item>> tagRegistry = ItemTags.getAllTags();
+                        ITag.INamedTag<Item> nuggetTag = ItemTags.createOptional(new ResourceLocation("forge:nuggets/"+oreMetal));
+                        if (tagRegistry.contains(nuggetTag)) {
+                            if (worldIn.getRandom().nextFloat() > 1/entityLiving.getAttributeValue(Attributes.ATTACK_SPEED)) {
+                                nuggetTag.getAllElements().stream().findFirst().ifPresent(nuggetItem -> Block.spawnAsEntity(worldIn, pos, new ItemStack(nuggetItem,Math.max(0,worldIn.getRandom().nextInt((int) Math.round(entityLiving.getAttributeValue(Attributes.ATTACK_DAMAGE)))))));
+                            }
+
+                        }
+                    }
+                }
+
+                if (Tags.Items.ORES.contains(state.getBlock().asItem()) && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDLESS,stack) > 0) {
+                    List<Effect> r = ForgeRegistries.POTIONS.getEntries().stream().filter(registryKeyEffectEntry -> registryKeyEffectEntry.getValue().isBeneficial() &&
+                            registryKeyEffectEntry.getKey().getRegistryName().getNamespace().equals("minecraft")).map(Map.Entry::getValue).collect(Collectors.toList());
+                    Effect rand = r.get(worldIn.getRandom().nextInt(r.size()));
+                    EffectInstance e = new EffectInstance(rand,400, EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDLESS,stack));
+                    entityLiving.addPotionEffect(e);
+                }
+
             }
+
         }
 
         return true;

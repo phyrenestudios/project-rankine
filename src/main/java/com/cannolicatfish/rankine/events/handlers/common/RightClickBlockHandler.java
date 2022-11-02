@@ -514,7 +514,7 @@ public class RightClickBlockHandler {
                     }
 
                     if (stack.getItem().isDamageable()) {
-                        player.getHeldItemMainhand().damageItem(1, player, (p_220038_0_) -> {
+                        player.getHeldItem(event.getHand()).damageItem(1, player, (p_220038_0_) -> {
                             p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
                         });
                     }

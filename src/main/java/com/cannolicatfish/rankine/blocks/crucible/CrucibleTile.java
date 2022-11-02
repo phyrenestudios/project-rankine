@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.init.RankineTileEntities;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.CampfireBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -177,7 +178,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     private boolean isHeated(BlockPos pos, World worldIn) {
         List<BlockPos> positions = Arrays.asList(pos.down(),pos.east(),pos.north(),pos.west(),pos.south());
         for (BlockPos p : positions) {
-            if (worldIn.getBlockState(p).isIn(RankineTags.Blocks.HEAT_SOURCES)) {
+            if (worldIn.getBlockState(p).isIn(RankineTags.Blocks.HEAT_SOURCES) && (!worldIn.getBlockState(p).hasProperty(CampfireBlock.LIT) || worldIn.getBlockState(p).get(CampfireBlock.LIT))) {
                 heatPower = 1;
                 return true;
             }

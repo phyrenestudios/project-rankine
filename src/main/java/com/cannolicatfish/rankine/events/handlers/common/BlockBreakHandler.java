@@ -188,7 +188,7 @@ public class BlockBreakHandler {
             if (Tags.Blocks.STONE.contains(target)) {
                 if (mainHandItem instanceof AlloyPickaxeItem) {
                     BlockPos foundPos = null;
-                    for (int x = 1; x < Config.GENERAL.NUGGET_DISTANCE.get(); x++) {
+                    /*for (int x = 1; x < Config.GENERAL.NUGGET_DISTANCE.get(); x++) {
                         if (worldIn.getBlockState(pos.down(x)).getBlock() instanceof RankineOreBlock) {
                             foundPos = pos.down(x);
                         } else if (worldIn.getBlockState(pos.up(x)).getBlock() instanceof RankineOreBlock) {
@@ -213,7 +213,7 @@ public class BlockBreakHandler {
                                 break;
                             }
                         }
-                    }
+                    }*/
 
                     //Geodes
                     if (worldIn.getRandom().nextFloat() <= Config.GENERAL.GEODE_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
