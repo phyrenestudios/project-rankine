@@ -182,6 +182,6 @@ public class BirchTreeFeature extends Feature<TreeConfiguration> {
     }
 
     public static boolean isValidGround(LevelAccessor world, BlockPos pos) {
-        return world.getBlockState(pos).canSustainPlant(world, pos, Direction.UP, (IPlantable) RankineBlocks.BALSAM_FIR_SAPLING.get());
+        return world.getBlockState(pos).canSustainPlant(world, pos, Direction.UP, (IPlantable) RankineBlocks.BLACK_BIRCH.getSapling());
     }
 }

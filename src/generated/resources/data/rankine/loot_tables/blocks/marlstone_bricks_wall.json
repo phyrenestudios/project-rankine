@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_marlstone_bricks_wall"
+          "name": "rankine:marlstone_bricks_wall"
         }
       ],
       "conditions": [

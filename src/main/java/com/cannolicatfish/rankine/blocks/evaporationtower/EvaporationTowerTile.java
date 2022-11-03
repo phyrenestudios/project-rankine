@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
-import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.EvaporationRecipe;
@@ -196,7 +195,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
                 posIn.offset(-1, 0, 1),
                 posIn.offset(-1, 0, -1));
         for (BlockPos b : Base) {
-            if (levelIn.getBlockState(b) != RankineBlocks.HEATING_ELEMENT_1.get().defaultBlockState()) {
+            if (!levelIn.getBlockState(b).is(RankineTags.Blocks.HEATING_ELEMENTS)) {
                 return 0;
             }
         }

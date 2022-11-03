@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
@@ -14,19 +15,21 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.Material;
 
 import java.util.Random;
 
 public class RankineLeavesBlock extends LeavesBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_2;
 
-    public RankineLeavesBlock(Properties properties) {
-        super(properties);
+    public RankineLeavesBlock() {
+        super(Block.Properties.of(Material.LEAVES).randomTicks().strength(0.2F).sound(SoundType.GRASS).noOcclusion());
         this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 7).setValue(PERSISTENT, Boolean.FALSE).setValue(AGE, 0));
     }
 
@@ -52,7 +55,12 @@ public class RankineLeavesBlock extends LeavesBlock {
     public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
         BlockState bs = worldIn.getBlockState(pos.below());
         if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get() && (bs.is(Blocks.AIR) || bs.canBeReplaced(Fluids.WATER)) && !bs.is(RankineBlocks.WILLOW_BRANCHLET.get())) {
-            worldIn.setBlockAndUpdate(pos.below(), RankineLists.LEAF_LITTERS.get(RankineLists.LEAVES.indexOf(state.getBlock())).defaultBlockState());
+            for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+                if (state.is(Wood.getLeaves())) {
+                    worldIn.setBlockAndUpdate(pos.below(), Wood.getLeafLitter().defaultBlockState());
+                    break;
+                }
+            }
         }
         if (worldIn.getBlockState(pos.above()).is(Blocks.SNOW)) {
             worldIn.setBlockAndUpdate(pos, state.setValue(AGE, 2));

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine;
 
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.enchantment.*;
 import com.cannolicatfish.rankine.fluids.*;
@@ -76,6 +77,7 @@ public class ProjectRankine {
 
         RankineBlocks.BLOCKS.register(Bus);
         RankineItems.ITEMS.register(Bus);
+        RankineBlocks.ITEMS.register(Bus);
         RankineEntityTypes.ENTITY_TYPES.register(Bus);
         RankineBlockEntityTypes.BLOCK_ENTITY_TYPES.register(Bus);
         RankineContainers.CONTAINERS.register(Bus);
@@ -103,8 +105,8 @@ public class ProjectRankine {
             RankineRecipes.registerPotionRecipes();
             RankineRecipes.registerDispenserBehaviors();
         });
-        for (WoodType wood : RankineLists.WOOD_TYPES) {
-            WoodType.register(wood);
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            WoodType.register(Wood.getWoodType());
         }
 
         LOGGER.info("Rankine: \"CommonSetup\" Event Complete!");
@@ -117,8 +119,8 @@ public class ProjectRankine {
         event.enqueueWork(() -> {
             RankineBlockEntityTypes.registerBlockEntityRenders();
 
-            for (WoodType wood : RankineLists.WOOD_TYPES) {
-                Sheets.addWoodType(wood);
+            for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+                Sheets.addWoodType(Wood.getWoodType());
             }
         });
         LOGGER.info("Rankine: \"ClientSetup\" Event Complete!");

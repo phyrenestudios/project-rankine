@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
     "rankine:black_birch_log",
-    "rankine:black_birch_wood",
     "rankine:stripped_black_birch_log",
+    "rankine:black_birch_wood",
     "rankine:stripped_black_birch_wood"
   ]
 }

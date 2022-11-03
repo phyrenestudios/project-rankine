@@ -24,6 +24,6 @@ public class WillowBranchletBlock extends GrowingPlantBodyBlock {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {
-        return reader.getBlockState(pos.relative(this.growthDirection.getOpposite())).is(RankineBlocks.WEEPING_WILLOW_LEAVES.get()) || reader.getBlockState(pos.relative(this.growthDirection.getOpposite())).is(this) || reader.getBlockState(pos.relative(this.growthDirection.getOpposite())).is(getHeadBlock());
+        return reader.getBlockState(pos.relative(this.growthDirection.getOpposite())).is(RankineBlocks.WEEPING_WILLOW.getLeaves()) || reader.getBlockState(pos.relative(this.growthDirection.getOpposite())).is(this) || reader.getBlockState(pos.relative(this.growthDirection.getOpposite())).is(getHeadBlock());
     }
 }

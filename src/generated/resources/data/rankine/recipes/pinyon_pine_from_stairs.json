@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:pinyon_pine_stairs"
+    },
+    {
+      "item": "rankine:pinyon_pine_stairs"
+    },
+    {
+      "item": "rankine:pinyon_pine_stairs"
+    },
+    {
+      "item": "rankine:pinyon_pine_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:pinyon_pine_planks",
+    "count": 3
+  }
+}

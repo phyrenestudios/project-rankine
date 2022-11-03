@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_dolostone_bricks"
+          "name": "rankine:dolostone_bricks"
         }
       ],
       "conditions": [

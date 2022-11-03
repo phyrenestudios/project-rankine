@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:coconut_palm_stairs"
+    },
+    {
+      "item": "rankine:coconut_palm_stairs"
+    },
+    {
+      "item": "rankine:coconut_palm_stairs"
+    },
+    {
+      "item": "rankine:coconut_palm_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:coconut_palm_planks",
+    "count": 3
+  }
+}

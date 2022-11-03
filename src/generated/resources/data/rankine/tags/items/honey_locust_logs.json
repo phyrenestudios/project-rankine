@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
     "rankine:honey_locust_log",
-    "rankine:honey_locust_wood",
     "rankine:stripped_honey_locust_log",
+    "rankine:honey_locust_wood",
     "rankine:stripped_honey_locust_wood"
   ]
 }

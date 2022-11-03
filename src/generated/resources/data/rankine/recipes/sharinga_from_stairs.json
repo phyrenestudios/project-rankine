@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:sharinga_stairs"
+    },
+    {
+      "item": "rankine:sharinga_stairs"
+    },
+    {
+      "item": "rankine:sharinga_stairs"
+    },
+    {
+      "item": "rankine:sharinga_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:sharinga_planks",
+    "count": 3
+  }
+}

@@ -494,8 +494,6 @@ public class Config {
         public final ForgeConfigSpec.IntValue MAGNET_RANGE;
         public final ForgeConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
         public final ForgeConfigSpec.BooleanValue EVAPORATION_TOWER_MAINTENANCE;
-        public final ForgeConfigSpec.IntValue LASER_QUARRY_RANGE;
-        public final ForgeConfigSpec.IntValue LASER_QUARRY_SPEED;
         public final ForgeConfigSpec.IntValue GAS_BOTTLER_SPEED;
         public final ForgeConfigSpec.IntValue INDUCTION_FURNACE_POWER;
         public final ForgeConfigSpec.IntValue AIR_DISTILLATION_SPEED;
@@ -522,10 +520,6 @@ public class Config {
                         .defineInRange("electromagnetRange",5,1,10);
                 ELECTROMAGNET_MATERIAL_REQ = b.comment("Require the material of the block to be Material.IRON in order for the electromagnet to pull the block. If disabled, it will pick up any block as long as it is not a FluidBlock, Tile Entity, or in the rankine:magnet_banned tag (these blocks are also banned if this value is true).")
                         .define("electromagnetMaterialReq",true);
-                LASER_QUARRY_RANGE = b.comment("Max range of the laser quarry. Larger numbers may cause lag. Set to 0 to disable functionality.")
-                        .defineInRange("laserQuarryRange", 31, 0, 63);
-                LASER_QUARRY_SPEED = b.comment("Max speed of the laser quarry in ticks.")
-                        .defineInRange("laserQuarrySpeed", 20, 1, 300);
                 INDUCTION_FURNACE_POWER = b.comment("Defines the power requirement for one process in the induction furnace.")
                         .defineInRange("inductionFurnacePower", 16, 0, 10000);
                 CRUSHING_SUCCESS_CHANCE = b.comment("Chance for a piston/crushing head to crush a block.")
@@ -620,7 +614,7 @@ public class Config {
         public Worldgen(ForgeConfigSpec.Builder b) {
             b.comment("Here are miscellaneous worldgen options.").push("worldgen");
             BEDROCK_LAYERS = b.comment("The number of flat bedrock layers to generate. Set to 0 to disable.")
-                    .defineInRange("flatBedrockLayers", 0, 0, 10);
+                    .defineInRange("flatBedrockLayers", 0, 0, 5);
 
             SOIL_NOISE_SCALE = b.comment("This determines how mixed the two types of soil are per biome. Larger numbers mean larger patches.")
                     .defineInRange("soilNoiseScale", 60, 1, Integer.MAX_VALUE);

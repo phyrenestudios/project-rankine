@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:erythrina_stairs"
+    },
+    {
+      "item": "rankine:erythrina_stairs"
+    },
+    {
+      "item": "rankine:erythrina_stairs"
+    },
+    {
+      "item": "rankine:erythrina_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:erythrina_planks",
+    "count": 3
+  }
+}

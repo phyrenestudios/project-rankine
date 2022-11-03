@@ -124,8 +124,9 @@ public class CharcoalPitTile extends BlockEntity {
                         if (level.getRandom().nextFloat() < 0.2) {
                             level.setBlock(b, RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get().defaultBlockState(),3);
                         } else {
-                            level.setBlock(b, RankineBlocks.CHARRED_LOG.get().defaultBlockState(),3);
-                        }                    }
+                            level.setBlock(b, RankineBlocks.CHARRED.getLog().defaultBlockState(),3);
+                        }
+                    }
                 }
             }
         } else {

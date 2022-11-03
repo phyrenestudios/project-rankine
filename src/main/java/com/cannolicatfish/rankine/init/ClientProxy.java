@@ -1,7 +1,10 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.RankineStone;
+import com.cannolicatfish.rankine.blocks.HollowLogBlock;
+import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
@@ -25,7 +28,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,10 +65,14 @@ public class ClientProxy implements IProxy {
             }
         }
 
-        for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.BRICKS,RankineLists.PLANKS,RankineLists.WOODEN_BOOKSHELVES).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             ItemProperties.register(BLK.asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) BLK.asItem()).getBuildingMode(stack) : 1.0F);
         }
 
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            ItemProperties.register(Wood.getPlanks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Wood.getPlanks().asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(Wood.getBookshelf().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Wood.getBookshelf().asItem()).getBuildingMode(stack) : 1.0F);
+        }
         for (RankineStone Stone : RankineLists.RANKINE_STONES) {
             ItemProperties.register(Stone.getPolished().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getPolished().asItem()).getBuildingMode(stack) : 1.0F);
             ItemProperties.register(Stone.getBricks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getBricks().asItem()).getBuildingMode(stack) : 1.0F);
@@ -112,18 +119,28 @@ public class ClientProxy implements IProxy {
             }
             addCutout(blockList);
         }
-        addCutout(RankineLists.WOODEN_DOORS);
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            List<Block> cutoutList = new ArrayList<>();
+            List<Block> cutoutMippedList = new ArrayList<>();
+            for (Block blk : Wood.getWoodBlocks()) {
+                if (blk instanceof TrapDoorBlock || blk instanceof DoorBlock || blk instanceof HollowLogBlock | blk instanceof SaplingBlock || blk instanceof LeavesBlock || blk instanceof LeafLitterBlock) {
+                    cutoutList.add(blk);
+                } else if (blk instanceof FlowerPotBlock) {
+                    cutoutMippedList.add(blk);
+                }
+            }
+            addCutout(cutoutList);
+            addCutoutMipped(cutoutMippedList);
+        }
+        addCutout(RankineLists.LEAF_LITTERS);
+
         addCutout(RankineLists.METAL_DOORS);
-        addCutout(RankineLists.WOODEN_TRAPDOORS);
         addCutout(RankineLists.METAL_TRAPDOORS);
         addCutout(RankineLists.METAL_LADDERS);
         addCutout(RankineLists.ALLOY_POLES);
         addCutout(RankineLists.ALLOY_BARS);
         addCutout(RankineLists.HOLLOW_LOGS);
         addCutout(RankineLists.GLAZED_PORCELAIN_BLOCKS);
-        addCutout(RankineLists.LEAVES);
-        addCutout(RankineLists.LEAF_LITTERS);
-        addCutout(RankineLists.SAPLINGS);
         addCutout(RankineLists.VANILLA_BRICKS);
         addCutout(RankineLists.NATIVE_ORES);
         addCutout(RankineLists.CRUSHING_ORES);
@@ -152,7 +169,6 @@ public class ClientProxy implements IProxy {
         ));
 
         addCutoutMipped(RankineLists.GRASS_BLOCKS);
-        addCutoutMipped(RankineLists.FLOWER_POTS);
         addCutoutMipped(RankineLists.CROPS_SINGLE);
         addCutoutMipped(RankineLists.CROPS_DOUBLE);
         addCutoutMipped(RankineLists.CROPS_TRIPLE);

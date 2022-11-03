@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_harzburgite_bricks_wall"
+          "name": "rankine:harzburgite_bricks_wall"
         }
       ],
       "conditions": [

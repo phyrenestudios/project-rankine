@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_purple_porphyry_bricks_stairs"
+          "name": "rankine:purple_porphyry_bricks_stairs"
         }
       ],
       "conditions": [

@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_pegmatite_bricks_wall"
+          "name": "rankine:pegmatite_bricks_wall"
         }
       ],
       "conditions": [

@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_gabbro_bricks_stairs"
+          "name": "rankine:gabbro_bricks_stairs"
         }
       ],
       "conditions": [

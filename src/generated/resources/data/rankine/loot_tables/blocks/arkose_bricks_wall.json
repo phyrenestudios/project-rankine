@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_arkose_bricks_wall"
+          "name": "rankine:arkose_bricks_wall"
         }
       ],
       "conditions": [

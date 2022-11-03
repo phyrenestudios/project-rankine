@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
     "rankine:magnolia_log",
-    "rankine:magnolia_wood",
     "rankine:stripped_magnolia_log",
+    "rankine:magnolia_wood",
     "rankine:stripped_magnolia_wood"
   ]
 }

@@ -61,6 +61,7 @@
     "rankine:loamy_sand_grass_block",
     "rankine:sandy_clay_loam_grass_block",
     "rankine:silty_clay_loam_grass_block",
-    "rankine:permafrost"
+    "rankine:permafrost",
+    "rankine:alluvium"
   ]
 }

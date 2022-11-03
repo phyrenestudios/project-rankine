@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.commands;
 
-import com.cannolicatfish.rankine.blocks.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -9,7 +10,6 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.block.Block;
 
 public class BlockWallCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -39,26 +39,21 @@ public class BlockWallCommand {
             i++;
         }
 
-        for (Block BLK : RankineLists.LOGS) {
-            i = RankineLists.LOGS.indexOf(BLK);
-            serverworld.setBlockAndUpdate(pos.above(6).north(2*i),BLK.defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(6).north(2*i+1),BLK.defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(7).north(2*i),BLK.defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(7).north(2*i+1),BLK.defaultBlockState());
-        }
-        for (Block BLK : RankineLists.STRIPPED_LOGS) {
-            i = RankineLists.STRIPPED_LOGS.indexOf(BLK);
-            serverworld.setBlockAndUpdate(pos.above(8).north(2*i),BLK.defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(8).north(2*i+1),BLK.defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(9).north(2*i),BLK.defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(9).north(2*i+1),BLK.defaultBlockState());
-        }
-        for (Block BLK : RankineLists.PLANKS) {
-            i = RankineLists.PLANKS.indexOf(BLK);
-            serverworld.setBlockAndUpdate(pos.above(10).north(2*i),BLK.defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(10).north(2*i+1),BLK.defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(11).north(2*i),BLK.defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(11).north(2*i+1),BLK.defaultBlockState());
+        i = 0;
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            serverworld.setBlockAndUpdate(pos.above(6).north(2*i),Wood.getLog().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(6).north(2*i+1),Wood.getLog().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(7).north(2*i),Wood.getLog().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(7).north(2*i+1),Wood.getLog().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(8).north(2*i),Wood.getStrippedLog().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(8).north(2*i+1),Wood.getStrippedLog().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(9).north(2*i),Wood.getStrippedLog().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(9).north(2*i+1),Wood.getStrippedLog().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(10).north(2*i),Wood.getPlanks().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(10).north(2*i+1),Wood.getPlanks().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(11).north(2*i),Wood.getPlanks().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(11).north(2*i+1),Wood.getPlanks().defaultBlockState());
+            i++;
         }
 
 

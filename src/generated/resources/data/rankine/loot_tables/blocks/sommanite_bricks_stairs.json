@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_sommanite_bricks_stairs"
+          "name": "rankine:sommanite_bricks_stairs"
         }
       ],
       "conditions": [

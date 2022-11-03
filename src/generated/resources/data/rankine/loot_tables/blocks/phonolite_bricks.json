@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_phonolite_bricks"
+          "name": "rankine:phonolite_bricks"
         }
       ],
       "conditions": [

@@ -22,8 +22,13 @@
       "item2": "rankine:tinder_conk_mushroom",
       "item3": "rankine:cinnabar_polypore_mushroom",
       "item4": "rankine:turkey_tail_mushroom",
-      "heading": "rankine.journal.cat_biota.mushrooms.edible_mushrooms_header",
+      "heading": "rankine.journal.cat_biota.mushrooms.inedible_mushrooms_header",
       "text": "rankine.journal.cat_biota.mushrooms.inedible_mushrooms"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:smouldering_tinder_conk",
+      "text": "rankine.journal.cat_biota.mushrooms.text2"
     }
   ]
 }

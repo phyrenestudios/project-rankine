@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:mossy_shale_bricks_wall"
+          "name": "rankine:shale_bricks_wall"
         }
       ],
       "conditions": [

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:cork_oak_stairs"
+    },
+    {
+      "item": "rankine:cork_oak_stairs"
+    },
+    {
+      "item": "rankine:cork_oak_stairs"
+    },
+    {
+      "item": "rankine:cork_oak_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:cork_oak_planks",
+    "count": 3
+  }
+}
