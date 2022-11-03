@@ -305,6 +305,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.TOFU.get(),
             RankineItems.COOKED_TOFU.get(),
             RankineItems.TOFU_CURRY.get(),
+            RankineItems.SMOULDERING_TINDER_CONK.get(),
             RankineItems.BLUEBERRIES.get(),
             RankineItems.CRANBERRIES.get(),
             RankineItems.POKEBERRIES.get(),
@@ -1108,7 +1109,7 @@ public class RankineLangProvider extends LanguageProvider {
 
         //Biota
         add("rankine.journal.cat_biota.name", "Biota");
-        add("rankine.journal.cat_biota.desc", "The plant and animal like additions of Project Rankine. ");
+        add("rankine.journal.cat_biota.desc", "From decoration to edibles, a new ecosystem emerges across all biomes. Biota encompasses all the living aspects of Project Rankine.");
 
         add("rankine.journal.cat_biota.crops.name", "Crops");
         add("rankine.journal.cat_biota.crops.text1", "");
@@ -1139,9 +1140,9 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.ground_flora.short_grass", "");
 
         add("rankine.journal.cat_biota.mushrooms.name", "Mushrooms");
-        add("rankine.journal.cat_biota.mushrooms.text1", "New types of fungi populate the undergrowth of wooded ecosystems.");
+        add("rankine.journal.cat_biota.mushrooms.text1", "New types of fungi populate the undergrowth of wooded ecosystems. All new varieties grow on woody material. They can be grown into large mushrooms as well.");
         add("rankine.journal.cat_biota.mushrooms.edible_mushrooms_header", "Edible Mushrooms");
-        add("rankine.journal.cat_biota.mushrooms.edible_mushrooms", "");
+        add("rankine.journal.cat_biota.mushrooms.edible_mushrooms", "Can be made into stew.");
         add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms_header", "Inedible Mushrooms");
         add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms", "");
         add("rankine.journal.cat_biota.mushrooms.text2", "Tinder Conk Mushrooms can be used to transport fire. After burning a Tinder Conk in a fire, campfire, furnace or lava, it will begin to smoulder. A Smouldering Tinder Conk can be used as furnace fuel or like a flint and steel.");
@@ -1251,7 +1252,7 @@ public class RankineLangProvider extends LanguageProvider {
 
         //Mineralogy
         add("rankine.journal.cat_mineralogy.name", "Mineralogy");
-        add("rankine.journal.cat_mineralogy.desc", "Shiny things");
+        add("rankine.journal.cat_mineralogy.desc", "Deposits of valuable materials are scattered throughout the surface and layers of the underground. Mineralogy encompasses the ores and other non-earthy components of the ground.");
 
         add("rankine.journal.cat_mineralogy.meteorites.name", "Meteorites");
         add("rankine.journal.cat_mineralogy.meteorites.text1","");
@@ -1266,10 +1267,9 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mineralogy.meteorites.meteoric_ice","A rare form of ice only found in frozen meteorites. Like normal ice blocks, it is slippery and requires silk touch to harvest.");
 
         add("rankine.journal.cat_mineralogy.mineral_stones.name", "Mineral Stones");
-        add("rankine.journal.cat_mineralogy.mineral_stones.text1","Some stones are more concentrated in specific minerals than the surrounding parent stone. The crystal formation is not as complete as a standard ore, and such these deposits are refered to as mineral stones.");
+        add("rankine.journal.cat_mineralogy.mineral_stones.text1","Some stones are more concentrated in specific minerals than the surrounding parent stone. The crystal formation is not as complete as a standard ore, and such these deposits are referred to as mineral stones.");
         add("rankine.journal.cat_mineralogy.mineral_stones.phosphorite","A major source of potassium. Found in ocean, beach, desert and mountain biomes.");
         add("rankine.journal.cat_mineralogy.mineral_stones.sylvinite","A major source of salt. Found in ocean, beach and desert biomes.");
-        add("rankine.journal.cat_mineralogy.mineral_stones.evaporite","A major source of sodium compounds. Found in ocean and beach biomes.");
 
 
         add("rankine.journal.cat_mineralogy.fumaroles.name", "Fumaroles");

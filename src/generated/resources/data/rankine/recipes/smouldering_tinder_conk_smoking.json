@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smoking",
   "ingredient": {
-    "item": "rankine:tofu"
+    "item": "rankine:tinder_conk_mushroom"
   },
-  "result": "rankine:cooked_tofu",
+  "result": "rankine:smouldering_tinder_conk",
   "experience": 0.35,
   "cookingtime": 100
 }

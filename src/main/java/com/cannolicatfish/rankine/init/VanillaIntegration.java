@@ -275,22 +275,20 @@ public class VanillaIntegration {
 
     public static void populateFuelMap() {
         fuelValueMap.put(RankineItems.LIGNITE.get(),1200);
-        fuelValueMap.put(RankineItems.LIGNITE_BLOCK.get(),1200*9);
+        fuelValueMap.put(RankineItems.LIGNITE_BLOCK.get(),12000);
         fuelValueMap.put(RankineItems.SUBBITUMINOUS_COAL.get(),1600);
-        fuelValueMap.put(RankineItems.SUBBITUMINOUS_COAL_BLOCK.get(),1600*9);
+        fuelValueMap.put(RankineItems.SUBBITUMINOUS_COAL_BLOCK.get(),16000);
         fuelValueMap.put(RankineItems.BITUMINOUS_COAL.get(),2400);
-        fuelValueMap.put(RankineItems.BITUMINOUS_COAL_BLOCK.get(),2400*9);
+        fuelValueMap.put(RankineItems.BITUMINOUS_COAL_BLOCK.get(),24000);
         fuelValueMap.put(RankineItems.ANTHRACITE_COAL.get(),3200);
-        fuelValueMap.put(RankineItems.ANTHRACITE_COAL_BLOCK.get(),3200*9);
+        fuelValueMap.put(RankineItems.ANTHRACITE_COAL_BLOCK.get(),32000);
         fuelValueMap.put(RankineItems.COKE.get(),3200);
-        fuelValueMap.put(RankineItems.COKE_BLOCK.get(),3200*9);
+        fuelValueMap.put(RankineItems.COKE_BLOCK.get(),32000);
         fuelValueMap.put(RankineItems.DRIED_BAMBOO.get(),50);
         fuelValueMap.put(RankineItems.BIOMASS.get(),25);
         fuelValueMap.put(RankineItems.COMPRESSED_BIOMASS.get(),200);
         fuelValueMap.put(RankineItems.STICK_BLOCK.get(),200);
-        fuelValueMap.put(RankineItems.COMPRESSED_BIOMASS.get(),200);
-        fuelValueMap.put(RankineItems.COMPRESSED_BIOMASS.get(),200);
-        fuelValueMap.put(RankineItems.COMPRESSED_BIOMASS.get(),200);
+        fuelValueMap.put(RankineItems.SMOULDERING_TINDER_CONK.get(),400);
 
         if (!Config.GENERAL.FUEL_VALUES_LIST.get().isEmpty()) {
             for (String s : Config.GENERAL.FUEL_VALUES_LIST.get()) {
