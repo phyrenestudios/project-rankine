@@ -1158,6 +1158,7 @@ public class Config {
             oreSettings.add(Arrays.asList("rankine:sphalerite_ore", Arrays.asList("desert","mesa","savanna","plains"), "sphere", 30, 60, 3, 0.6D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:pentlandite_ore", Arrays.asList("ocean","beach","mushroom","desert","mesa"), "sphere", 10, 40, 3, 0.6D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:galena_ore", Arrays.asList("all"), "sphere", 5, 30, 4, 0.2D, 1, 0.2D));
+            oreSettings.add(Arrays.asList("rankine:bismuthinite_ore", Arrays.asList("all"), "sphere", 5, 30, 3, 0.2D, 1, 0.1D));
             oreSettings.add(Arrays.asList("rankine:acanthite_ore", Arrays.asList("all"), "sphere", 5, 30, 4, 0.2D, 1, 0.2D));
             oreSettings.add(Arrays.asList("rankine:pyrolusite_ore", Arrays.asList("all"), "sphere", 5, 30, 4, 0.3D, 1, 0.2D));
             oreSettings.add(Arrays.asList("rankine:plumbago_ore", Arrays.asList("all"), "default", 5, 30, 8, 1.0D, 1, 1.0));
@@ -1190,6 +1191,7 @@ public class Config {
             oreSettings.add(Arrays.asList("rankine:anthracite_ore", Arrays.asList("nether"), "sphere", 30, 90, 3, 0.6D, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:magnetite_ore", Arrays.asList("nether"), "sphere", 60, 120, 3, 0.6D, 1, 0.1));
             oreSettings.add(Arrays.asList("rankine:cobaltite_ore", Arrays.asList("nether"), "sphere", 60, 120, 3, 0.6D, 1, 0.1));
+            oreSettings.add(Arrays.asList("rankine:rheniite_ore", Arrays.asList("nether"), "sphere", 60, 120, 3, 0.2D, 1, 0.1));
             oreSettings.add(Arrays.asList("rankine:wolframite_ore", Arrays.asList("nether"), "sphere", 60, 120, 3, 0.6D, 1, 0.1));
             oreSettings.add(Arrays.asList("rankine:ilmenite_ore", Arrays.asList("nether"), "sphere", 60, 120, 3, 0.6D, 1, 0.1));
             oreSettings.add(Arrays.asList("rankine:sperrylite_ore", Arrays.asList("nether"), "sphere", 90, 120, 2, 0.6D, 1, 0.1));

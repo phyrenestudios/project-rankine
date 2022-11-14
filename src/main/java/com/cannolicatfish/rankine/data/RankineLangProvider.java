@@ -1108,19 +1108,23 @@ public class RankineLangProvider extends LanguageProvider {
 
         //Biota
         add("rankine.journal.cat_biota.name", "Biota");
-        add("rankine.journal.cat_biota.desc", "Plants be cool.");
+        add("rankine.journal.cat_biota.desc", "From decoration to edibles, a new ecosystem emerges across all biomes. Biota encompasses all the living aspects of Project Rankine.");
 
-        add("rankine.journal.cat_biota.trees.text1", "Trees be cool.");
-        add("rankine.journal.cat_biota.trees.text2", "Cedar");
-        add("rankine.journal.cat_biota.trees.text3", "Balsam Fir");
-
-
-        add("rankine.journal.cat_biota.mushrooms.name", "Mushrooms");
-        add("rankine.journal.cat_biota.mushrooms.text1", "New types of fungi populate the undergrowth of wooded ecosystems. Although they have a different growth pattern, some can be used similar to the common red and brown varieties.");
-        add("rankine.journal.cat_biota.mushrooms.edible_mushrooms_header", "Edible Mushrooms");
-        add("rankine.journal.cat_biota.mushrooms.edible_mushrooms", "");
-        add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms_header", "Inedible Mushrooms");
-        add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms", "");
+        add("rankine.journal.cat_biota.crops.name", "Crops");
+        add("rankine.journal.cat_biota.crops.text1", "");
+        add("rankine.journal.cat_biota.crops.grains_heading", "Grains");
+        add("rankine.journal.cat_biota.crops.grains", "A variety of grains have rooted across the plains and savannas. They are grown and used similar to wheat.");
+        add("rankine.journal.cat_biota.crops.corn_ear", "");
+        add("rankine.journal.cat_biota.crops.soybeans", "");
+        add("rankine.journal.cat_biota.crops.asparagus", "");
+        add("rankine.journal.cat_biota.crops.jute", "");
+        add("rankine.journal.cat_biota.crops.cotton", "");
+        add("rankine.journal.cat_biota.crops.berries_heading", "Berries");
+        add("rankine.journal.cat_biota.crops.berries", "Berries are a raw source of food that grow on bushes throughout the world. They can be used to craft Fruit Jam.");
+        add("rankine.journal.cat_biota.crops.pineapple", "");
+        add("rankine.journal.cat_biota.crops.aloe", "");
+        add("rankine.journal.cat_biota.crops.banana_yucca", "");
+        add("rankine.journal.cat_biota.crops.camphor_basil_leaf", "");
 
         add("rankine.journal.cat_biota.ground_flora.name", "Ground Flora");
         add("rankine.journal.cat_biota.ground_flora.text1",  "");
@@ -1133,6 +1137,15 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.ground_flora.clovers", "");
         add("rankine.journal.cat_biota.ground_flora.stinging_nettle", "");
         add("rankine.journal.cat_biota.ground_flora.short_grass", "");
+
+        add("rankine.journal.cat_biota.mushrooms.name", "Mushrooms");
+        add("rankine.journal.cat_biota.mushrooms.text1", "New types of fungi populate the undergrowth of wooded ecosystems. All new varieties grow on woody material. They can be grown into large mushrooms as well.");
+        add("rankine.journal.cat_biota.mushrooms.edible_mushrooms_header", "Edible Mushrooms");
+        add("rankine.journal.cat_biota.mushrooms.edible_mushrooms", "Can be made into stew.");
+        add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms_header", "Inedible Mushrooms");
+        add("rankine.journal.cat_biota.mushrooms.inedible_mushrooms", "");
+        add("rankine.journal.cat_biota.mushrooms.text2", "Tinder Conk Mushrooms can be used to transport fire. After burning a Tinder Conk in a fire, campfire, furnace or lava, it will begin to smoulder. A Smouldering Tinder Conk can be used as furnace fuel or like a flint and steel.");
+
 
         add("rankine.journal.cat_biota.trees.name", "Trees");
         add("rankine.journal.cat_biota.trees.cedar.title", "Cedar");
@@ -1174,26 +1187,9 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.trees.weeping_willow.title", "Weeping Willow");
         add("rankine.journal.cat_biota.trees.weeping_willow", "Native to sawmp biomes.");
 
-        add("rankine.journal.cat_biota.crops.name", "Crops");
-        add("rankine.journal.cat_biota.crops.text1", "");
-        add("rankine.journal.cat_biota.crops.grains_heading", "Grains");
-        add("rankine.journal.cat_biota.crops.grains", "A variety of grains have rooted across the plains and savannas. They are grown and used similar to wheat.");
-        add("rankine.journal.cat_biota.crops.corn_ear", "");
-        add("rankine.journal.cat_biota.crops.soybeans", "");
-        add("rankine.journal.cat_biota.crops.asparagus", "");
-        add("rankine.journal.cat_biota.crops.jute", "");
-        add("rankine.journal.cat_biota.crops.cotton", "");
-        add("rankine.journal.cat_biota.crops.berries_heading", "Berries");
-        add("rankine.journal.cat_biota.crops.berries", "Berries are a raw source of food that grow on bushes throughout the world. They can be used to craft Fruit Jam.");
-        add("rankine.journal.cat_biota.crops.pineapple", "");
-        add("rankine.journal.cat_biota.crops.aloe", "");
-        add("rankine.journal.cat_biota.crops.banana_yucca", "");
-        add("rankine.journal.cat_biota.crops.camphor_basil_leaf", "");
-
         //Constructions
         add("rankine.journal.cat_constructions.name", "Constructions");
         add("rankine.journal.cat_constructions.desc", "Artificial devices and blocks with unique properties.");
-
 
         add("rankine.journal.cat_constructions.pedestals.name", "Pedestals");
         add("rankine.journal.cat_constructions.pedestals.text1", "Pedestals are decorative sculptures formed from various alloys. An item can be placed on a pedestal by right clicking. A comparator will output a redstone signal with a strength based on properties of the item.");
@@ -1251,12 +1247,12 @@ public class RankineLangProvider extends LanguageProvider {
 
 
 
-        add("rankine.journal.cat_mechanics.finite_water.name", "Finite Water");
-        add("rankine.journal.cat_mechanics.finite_water.text1", "A config enabled by default, which makes water slightly less renewable. Infinite water sources can only be created below the local water table height. A mechanical way of bringing water to the surface is described in the latter pages.");
-        add("rankine.journal.cat_mechanics.finite_water.text2", "The Dowsing Rod is used to detect the local water height. Right clicking the ground will display a message above the hotbar.");
-        add("rankine.journal.cat_mechanics.finite_water.text3", "The Ground Tap will generate a source block of water when connected to an appropriate pipe network. That network consists of a Flood Gate placed below the water table height and connected through Metal Pipes. Multiple taps can be on the same pipe line.");
-        add("rankine.journal.cat_mechanics.finite_water.text4", "");
-        add("rankine.journal.cat_mechanics.finite_water.text5", "");
+        add("rankine.journal.cat_mechanics.finite_water.name", "Water Table");
+        add("rankine.journal.cat_mechanics.finite_water.text1", "A config enabled by default, which limits infinite water sources to below the Water Table height. ");
+        add("rankine.journal.cat_mechanics.finite_water.text2", "Right click the ground to display the Water Table height at that coordinate.");
+        add("rankine.journal.cat_mechanics.finite_water.text3", "Moving Water");
+        add("rankine.journal.cat_mechanics.finite_water.text4", "A passive method to create water sources above the Water Table ca be constructed. The Ground Tap will generate a source block of water every 30 seconds (configurable) when connected to a waterlogged Flood Gate and connected through Metal Pipes. The Flood Gate can become waterlogged by filling it manually with water or by placing it in an infinite water source. Multiple taps can be on the same pipe line.");
+
         add("rankine.journal.cat_mechanics.sluicing.name", "Sluicing");
         add("rankine.journal.cat_mechanics.sluicing.text1", "Sluicing is a general term for the act of sifting through material. Right click a block with the appropriate sluicing tool to receive an item.");
         add("rankine.journal.cat_mechanics.sluicing.text2", "Gold Pans");
@@ -1264,7 +1260,7 @@ public class RankineLangProvider extends LanguageProvider {
 
         //Mineralogy
         add("rankine.journal.cat_mineralogy.name", "Mineralogy");
-        add("rankine.journal.cat_mineralogy.desc", "Shiny things");
+        add("rankine.journal.cat_mineralogy.desc", "Deposits of valuable materials are scattered throughout the surface and layers of the underground. Mineralogy encompasses the ores and other non-earthy components of the ground.");
 
         add("rankine.journal.cat_mineralogy.meteorites.name", "Meteorites");
         add("rankine.journal.cat_mineralogy.meteorites.text1","");
@@ -1293,21 +1289,62 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.journal.cat_mineralogy.gem_ores.name", "Gem Ores");
         add("rankine.journal.cat_mineralogy.gem_ores.text1", "Gem ores refer to stones that directly drop their respective item when mined. Most can also be crushed for additional resources.");
+        add("rankine.journal.cat_mineralogy.gem_ores.lignite_ore", "Source of fuel. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.gem_ores.subbituminous_ore", "Source of fuel. $(br2)Found underground in all regions of the Overworld.");
+        add("rankine.journal.cat_mineralogy.gem_ores.bituminous_ore", "Source of fuel. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.gem_ores.anthracite_ore", "Source of fuel. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.gem_ores.plumbago_ore", "Source of Graphite. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.gem_ores.lazurite_ore", "Source of Lapis. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.gem_ores.cinnabar_ore", "Source of Redstone and Mercury. $(br2)Found in all types of intrusions");
+        add("rankine.journal.cat_mineralogy.gem_ores.beryl_ore", "Source of Emeralds. $(br2)Found in some intrusions");
+        add("rankine.journal.cat_mineralogy.gem_ores.kimberlitic_diamond_ore", "Source of Diamonds. $(br2)Found solely in kimberlite intrusions.");
+
 
         add("rankine.journal.cat_mineralogy.mineral_ores.name", "Mineral Ores");
         add("rankine.journal.cat_mineralogy.mineral_ores.text1", "Mineral ores are rocks containing more complex compounds that may not be directly usable. They are often of higher harvest level, drop their raw mineral when mined and additional resources when crushed.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.acanthite_ore", "Source of Silver. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.baddeleyite_ore", "Source of Zirconium. $(br2)Found in diabase intrusions");
+        add("rankine.journal.cat_mineralogy.mineral_ores.bauxite_ore", "Source of Aluminum. $(br2)Found in the surface of Overworld biomes except for Beaches andOceans.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.bismuthinite_ore", "Source of Bismuth. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.cassiterite_ore", "Source of Tin. $(br2)Found in some intrusions");
+        add("rankine.journal.cat_mineralogy.mineral_ores.celestine_ore", "Source of Strontium. $(br2)Found in the depths of Jungle, Swamp, Plains, Forest and Taiga biomes.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.chalcocite_ore", "Source of Copper. $(br2)Found scattered across the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.chromite_ore", "Source of Chromium. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.cobaltite_ore", "Source of Cobalt. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.coltan_ore", "Source of Niobium and Tantalum. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.cryolite_ore", "Source of Sodium. $(br2)Found in the depths of Taiga, Mountain and Icy biomes.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.galena_ore", "Source of Lead. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.greenockite_ore", "Source of Cadmium. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.interspinifex_ore", "Source of Copper an Nickel. $(br2)Found in komatiite intrusions");
+        add("rankine.journal.cat_mineralogy.mineral_ores.ilmenite_ore", "Source of Titanium. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.magnesite_ore", "Source of Magnesium. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.magnetite_ore", "Source of Iron. $(br2)Found in some intrusions");
+        add("rankine.journal.cat_mineralogy.mineral_ores.hematite_ore", "Source of Iron. $(br2)Found scattered across the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.malachite_ore", "Source of Copper. $(br2)Found in some intrusions");
+        add("rankine.journal.cat_mineralogy.mineral_ores.molybdenite_ore", "Source of Molybdenum. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.monazite_ore", "Source of rare elements. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.pentlandite_ore", "Source of Nickel. $(br2)Found in the depths of Ocean, Beach, Desert and Mesa biomes.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.petalite_ore", "Source of Lithium. $(br2)Found in pegmatite intrusions");
+        add("rankine.journal.cat_mineralogy.mineral_ores.pyrolusite_ore", "Source of Manganese. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.pyrite_ore", "Fool's gold. Source of iron. $(br2)Found scattered across the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.rheniite_ore", "Source of Rhenium. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.sperrylite_ore", "Source of Osmium and Iridium. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.sphalerite_ore", "Source of Zinc. $(br2)Found in the depths of Plains, Savannah, Desert and Mesa biomes.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.uraninite_ore", "Source of Uranium. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.wolframite_ore", "Source of Tungsten. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.xenotime_ore", "Source of Xenotime. $(br2)Found scattered across the End.");
 
 
         add("rankine.journal.cat_mineralogy.native_ores.name", "Native Ores");
         add("rankine.journal.cat_mineralogy.native_ores.text1", "Native is a term used to describe elements that exist in their pure form in nature. The following blocks can be mined at a low harvest level to obtain pure metal samples.");
-        add("rankine.journal.cat_mineralogy.native_ores.native_tin_ore", "Source of Tin. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.native_lead_ore", "Source of Lead. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.native_bismuth_ore", "Source of Bismuth. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.native_silver_ore", "Source of Silver. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.native_gold_ore", "Source of Gold. $(br2)Found scattered across the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.stibnite_ore", "Source of Antimony. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_tin_ore", "Source of Tin. $(br2)Found near the surface in all regions of the Overworld.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_lead_ore", "Source of Lead. $(br2)Found near the surface in all regions of the Overworld.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_bismuth_ore", "Source of Bismuth. $(br2)Found near the surface in all regions of the Overworld.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_silver_ore", "Source of Silver. $(br2)Found near the surface in all regions of the Overworld.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_gold_ore", "Source of Gold. $(br2)Found scattered across the Overworld.");
+        add("rankine.journal.cat_mineralogy.native_ores.stibnite_ore", "Source of Antimony. $(br2)Found near the surface in all regions of the Overworld.");
         add("rankine.journal.cat_mineralogy.native_ores.porphyry_copper", "Source of Copper. $(br2)Found in porphyry intrusions.");
-        add("rankine.journal.cat_mineralogy.native_ores.native_sulfur_ore", "Source of Sulfur. $(br2)Found scattered across the Nether.");;
+        add("rankine.journal.cat_mineralogy.native_ores.native_sulfur_ore", "Source of Sulfur. $(br2)Found scattered across the Nether.");
         add("rankine.journal.cat_mineralogy.native_ores.native_arsenic_ore", "Source of Arsenic. $(br2)Found scattered across the Nether.");
         add("rankine.journal.cat_mineralogy.native_ores.native_indium_ore", "Source of Indium. $(br2)Found scattered across the End.");
         add("rankine.journal.cat_mineralogy.native_ores.native_gallium_ore", "Source of Gallium. $(br2)Found scattered across the End.");
@@ -1415,6 +1452,10 @@ public class RankineLangProvider extends LanguageProvider {
         //Sediments
         add("rankine.journal.cat_sediments.name", "Sediments");
         add("rankine.journal.cat_sediments.desc", "Dirt is too simple of a term to describe the complex matrix of organic material and pulverized rocks. A better term is soil, but there are more small particles than just that.");
+
+        add("rankine.journal.cat_sediments.lightning_glass.name", "Lightning Glass");
+        add("rankine.journal.cat_sediments.lightning_glass.text1", "Lightning Glass is formed from the intense heat from a lightning strike on sand. Depending on the sand variety, a different color of glass will be formed.");
+        add("rankine.journal.cat_sediments.lightning_glass.text2",  "");
 
         add("rankine.journal.cat_sediments.cobblestones.name", "Cobblestones");
         add("rankine.journal.cat_sediments.cobblestones.text1", "Cobbles are very large particles that can come from any parent stone when $(l:mechanics/crushing)crushed$().");

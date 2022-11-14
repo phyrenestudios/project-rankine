@@ -1,7 +1,8 @@
+
 {
   "name": "rankine.journal.cat_biota.mushrooms.name",
   "icon": "rankine:oyster_mushroom",
-  "category": "biota",
+  "category": "rankine:biota",
   "pages": [
     {
       "type": "text",
@@ -13,17 +14,17 @@
       "item2": "rankine:sulfur_shelf_mushroom",
       "item3": "rankine:honey_mushroom",
       "item4": "rankine:lions_mane_mushroom",
-      "title": "rankine.journal.cat_biota.mushrooms.edible_mushrooms_header",
+      "heading": "rankine.journal.cat_biota.mushrooms.edible_mushrooms_header",
       "text": "rankine.journal.cat_biota.mushrooms.edible_mushrooms"
     },
     {
       "type": "rankine:item4",
       "item1": "rankine:artist_conk_mushroom",
-      "item2": "rankine:tinder_conk_mushroom,rankine",
+      "item2": "rankine:tinder_conk_mushroom",
       "item3": "rankine:cinnabar_polypore_mushroom",
       "item4": "rankine:turkey_tail_mushroom",
-      "title": "rankine.journal.cat_biota.mushrooms.edible_mushrooms_header",
-      "text": "rankine.journal.cat_biota.mushrooms.edible_mushrooms"
+      "heading": "rankine.journal.cat_biota.mushrooms.inedible_mushrooms_header",
+      "text": "rankine.journal.cat_biota.mushrooms.inedible_mushrooms"
     }
   ]
 }

@@ -9,81 +9,189 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:native_tin_ore",
+      "item": "rankine:acanthite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text3"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.acanthite_ore"
     },
     {
       "type": "spotlight",
-      "item": "rankine:native_lead_ore",
+      "item": "rankine:baddeleyite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text4"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.baddeleyite_ore"
     },
     {
       "type": "spotlight",
-      "item": "rankine:native_bismuth_ore",
+      "item": "rankine:bauxite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text5"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.bauxite_ore"
     },
     {
       "type": "spotlight",
-      "item": "rankine:native_silver_ore",
+      "item": "rankine:bismuthinite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text6"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.bismuthinite_ore"
     },
     {
       "type": "spotlight",
-      "item": "rankine:native_gold_ore",
+      "item": "rankine:cassiterite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text7"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.cassiterite_ore"
     },
     {
       "type": "spotlight",
-      "item": "rankine:stibnite_ore",
+      "item": "rankine:celestine_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text8"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.celestine_ore"
     },
     {
       "type": "spotlight",
-      "item": "rankine:porphyry_copper",
+      "item": "rankine:chalcocite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text9"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.chalcocite_ore"
     },
     {
       "type": "spotlight",
-      "item": "rankine:native_sulfur_ore",
+      "item": "rankine:chromite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text10"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.chromite_ore"
     },
     {
       "type": "spotlight",
-      "item": "rankine:native_arsenic_ore",
+      "item": "rankine:cobaltite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text11"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.cobaltite_ore"
     },
     {
       "type": "spotlight",
-      "item": "rankine:native_indium_ore",
+      "item": "rankine:coltan_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text12"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.coltan_ore"
     },
     {
       "type": "spotlight",
-      "item": "rankine:native_gallium_ore",
+      "item": "rankine:cryolite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text13"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.cryolite_ore"
     },
     {
       "type": "spotlight",
-      "item": "rankine:native_tellurium_ore",
+      "item": "rankine:galena_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text14"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.galena_ore"
     },
     {
       "type": "spotlight",
-      "item": "rankine:native_selenium_ore",
+      "item": "rankine:greenockite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.mineral_ores.text15"
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.greenockite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:interspinifex_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.interspinifex_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:ilmenite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.ilmenite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:magnesite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.magnesite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:magnetite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.magnetite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:hematite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.hematite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:malachite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.malachite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:molybdenite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.molybdenite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:monazite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.monazite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pentlandite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.pentlandite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:petalite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.petalite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pyrolusite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.pyrolusite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pyrite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.pyrite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rheniite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.rheniite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sperrylite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.sperrylite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sphalerite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.sphalerite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:uraninite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.uraninite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:wolframite_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.wolframite_ore"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:xenotime_ore",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_ores.xenotime_ore"
     }
   ]
 }
