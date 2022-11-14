@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "rankine:block/template_cube_all_no_cull",
   "textures": {
     "all": "rankine:block/flood_gate"
   }

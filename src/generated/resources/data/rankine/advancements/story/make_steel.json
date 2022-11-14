@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/craft_crucible",
+  "display": {
+    "icon": {
+      "item": "rankine:steel_ingot"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_steel.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_steel.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "steel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:steel_ingot"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "steel"
+    ]
+  ]
+}

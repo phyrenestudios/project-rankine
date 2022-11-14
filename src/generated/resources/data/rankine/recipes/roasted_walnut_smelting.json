@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:black_walnut"
+  },
+  "result": "rankine:roasted_walnut",
+  "experience": 0.35,
+  "cookingtime": 100
+}

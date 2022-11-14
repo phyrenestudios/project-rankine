@@ -57,11 +57,8 @@ public class CobbleBlock extends Block implements IWaterLoggable {
         if (blockstate1.isValidPosition(iworldreader, blockpos)) {
             return blockstate1.with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);
         }
-
-
         return null;
     }
-
 
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {

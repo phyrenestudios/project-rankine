@@ -480,7 +480,7 @@ public class Config {
                     LIGHTNING_CONVERSION = b.comment("Lightning strikes creating fulgurite and glasses")
                             .define("enableLightningConversion",true);
                     FUEL_VALUES_LIST = b.comment("List of blocks and their respective burn time. Works with tags.")
-                            .defineList("fuelValues", Arrays.asList("#forge:rods/wooden|50","#minecraft:saplings|100","#minecraft:wooden_doors|200","#minecraft:wooden_trapdoors|300","#minecraft:wooden_fence_gates|400","#minecraft:wooden_fences|150","#minecraft:wooden_pressure_plates|200","#minecraft:wooden_stairs|75","#minecraft:wooden_slabs|50","#minecraft:wooden_buttons|100","#minecraft:planks|100","#minecraft:oak_logs|520","#minecraft:acacia_logs|500","#minecraft:birch_logs|450","#minecraft:spruce_logs|410","#minecraft:jungle_logs|450","#minecraft:dark_oak_logs|520","#rankine:magnolia_logs|450","#rankine:balsam_fir_logs|390","#rankine:eastern_hemlock_logs|440","#rankine:juniper_logs|480","#rankine:black_birch_logs|470","#rankine:yellow_birch_logs|490","#rankine:pinyon_pine_logs|520","#rankine:maple_logs|500","#rankine:cedar_logs|410","#rankine:black_walnut_logs|470","#rankine:cedar_logs|410","#rankine:coconut_palm_logs|450","#rankine:sharinga_logs|450","#rankine:cork_oak_logs|480","#rankine:erythrina_logs|550","#rankine:cinnamon_logs|500","#rankine:charred_logs|400","#rankine:petrified_chorus_logs|450","minecraft:charcoal|800"), o -> o instanceof String);
+                            .defineList("fuelValues", Arrays.asList("#forge:rods/wooden|50","#minecraft:saplings|100","#minecraft:wooden_doors|200","#minecraft:wooden_trapdoors|300","#minecraft:wooden_fence_gates|400","#minecraft:wooden_fences|150","#minecraft:wooden_pressure_plates|200","#minecraft:wooden_stairs|75","#minecraft:wooden_slabs|50","#minecraft:wooden_buttons|100","#minecraft:planks|100","#minecraft:oak_logs|520","#minecraft:acacia_logs|500","#minecraft:birch_logs|450","#minecraft:spruce_logs|410","#minecraft:jungle_logs|450","#minecraft:dark_oak_logs|520","#rankine:magnolia_logs|450","#rankine:balsam_fir_logs|390","#rankine:eastern_hemlock_logs|440","#rankine:juniper_logs|480","#rankine:black_birch_logs|470","#rankine:yellow_birch_logs|490","#rankine:pinyon_pine_logs|520","#rankine:maple_logs|500","#rankine:cedar_logs|410","#rankine:black_walnut_logs|470","#rankine:cedar_logs|410","#rankine:coconut_palm_logs|450","#rankine:sharinga_logs|450","#rankine:cork_oak_logs|480","#rankine:erythrina_logs|550","#rankine:cinnamon_logs|500","#rankine:charred_logs|400","#rankine:petrified_chorus_logs|450","#forge:sulfur|400","#forge:storage_blocks/sulfur|4000","minecraft:charcoal|800"), o -> o instanceof String);
                     FIRE_EXTINGUISHER_RANGE = b.comment("The range of the fire extinguisher.")
                             .defineInRange("fireExtinguisherRange", 16, 0, 64);
                     TRAMPOLINE_SIZE = b.comment("The maximum size of a trampoline. Jump factor depends on size. Set to 0 to have a fixed jump factor of 1.3 which is just enough to have the player gain height over time.")
@@ -671,7 +671,6 @@ public class Config {
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_SPEED;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
-        public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_RANGE;
         public final ForgeConfigSpec.IntValue ELECTROMAGNET_RANGE;
         public final ForgeConfigSpec.IntValue MAGNET_RANGE;
         public final ForgeConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
@@ -697,8 +696,6 @@ public class Config {
                         .defineInRange("charcoalPitSpeed", 3600, 1, Integer.MAX_VALUE);
                 CHARCOAL_PIT_HEIGHT = b.comment("Maximum height a charcoal pile can be")
                         .defineInRange("charcoalPitHeight", 5, 1, 10);
-                EVAPORATION_TOWER_RANGE = b.comment("Maximum height of the evaporation tower. Height affects yields. Set to 0 to disable functionality.")
-                        .defineInRange("evaporationTowerHeight", 15, 0, 30);
                 MAGNET_RANGE = b.comment("Range for the Simple Magnet. The Alnico and Rare Earth versions scale at x2 and x3 respectively.")
                         .defineInRange("magnetRange",3,1,8);
                 ELECTROMAGNET_RANGE = b.comment("Range for the Simple Electromagnet. The Alnico and Rare Earth versions scale at x2 and x3 respectively.")
@@ -759,7 +756,16 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue DISABLE_VANILLA_FEATURES;
         public final ForgeConfigSpec.BooleanValue RANKINE_FLORA;
         public final ForgeConfigSpec.BooleanValue RANKINE_TREES;
-        public final ForgeConfigSpec.BooleanValue WILD_CROPS;
+        public final ForgeConfigSpec.BooleanValue GEN_RICE;
+        public final ForgeConfigSpec.BooleanValue GEN_OAT;
+        public final ForgeConfigSpec.BooleanValue GEN_MILLET;
+        public final ForgeConfigSpec.BooleanValue GEN_BARLEY;
+        public final ForgeConfigSpec.BooleanValue GEN_RYE;
+        public final ForgeConfigSpec.BooleanValue GEN_COTTON;
+        public final ForgeConfigSpec.BooleanValue GEN_ASPARAGUS;
+        public final ForgeConfigSpec.BooleanValue GEN_CORN;
+        public final ForgeConfigSpec.BooleanValue GEN_JUTE;
+        public final ForgeConfigSpec.BooleanValue GEN_SORGHUM;
         public final ForgeConfigSpec.BooleanValue MUSHROOMS;
         public final ForgeConfigSpec.BooleanValue COBBLES_GEN;
         public final ForgeConfigSpec.BooleanValue FIRE_CLAY_COAL;
@@ -788,7 +794,6 @@ public class Config {
         public final ForgeConfigSpec.IntValue LAYER_THICKNESS;
         public final ForgeConfigSpec.IntValue NOISE_SCALE;
         public final ForgeConfigSpec.IntValue SOIL_NOISE_SCALE;
-        //public final ForgeConfigSpec.IntValue NOISE_OFFSET;
 
         public final ForgeConfigSpec.BooleanValue INTRUSION_GEN;
         public final ForgeConfigSpec.IntValue OVERWORLD_INTRUSION_RADIUS;
@@ -822,8 +827,26 @@ public class Config {
                     .define("generateFlora",true);
             RANKINE_TREES = b.comment("Enable/Disable Project Rankine trees in world.")
                     .define("generateTrees",true);
-            WILD_CROPS = b.comment("Enable/Disable Project Rankine wild crops in world.")
-                    .define("generateWildCrops",true);
+            GEN_RICE = b.comment("Generate Rice in River and Swamp biomes")
+                    .define("generateWildRice",true);
+            GEN_OAT = b.comment("Generate Oat in Plains biomes")
+                    .define("generateWildOat",true);
+            GEN_MILLET = b.comment("Generate Millet in Savanna biomes")
+                    .define("generateWildMillet",true);
+            GEN_BARLEY = b.comment("Generate Barley in Plains biomes")
+                    .define("generateWildBarley",true);
+            GEN_RYE = b.comment("Generate Rye in Savanna biomes")
+                    .define("generateWildRye",true);
+            GEN_COTTON = b.comment("Generate Cotton in Plains biomes")
+                    .define("generateWildCotton",true);
+            GEN_ASPARAGUS = b.comment("Generate Asparagus in Beach biomes")
+                    .define("generateWildAsparagus",true);
+            GEN_CORN = b.comment("Generate Corn in Plains biomes")
+                    .define("generateWildCorn",true);
+            GEN_JUTE = b.comment("Generate Jute in Jungle biomes")
+                    .define("generateWildJute",true);
+            GEN_SORGHUM = b.comment("Generate Sorghum in Plains and Savanna biomes")
+                    .define("generateWildSorghum",true);
             MUSHROOMS = b.comment("Enable/Disable Project Rankine mushrooms in world.")
                     .define("generateMushrooms",true);
             COBBLES_GEN = b.comment("Enable/Disable Project Rankine cobbles in world.")

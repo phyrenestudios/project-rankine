@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:coconut"
+  },
+  "result": "rankine:toasted_coconut",
+  "experience": 0.35,
+  "cookingtime": 100
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/craft_induction_furnace",
+  "display": {
+    "icon": {
+      "item": "rankine:thorium_arrow"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_thorium_arrow.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_thorium_arrow.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "thorium_arrow": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:thorium_arrow"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "thorium_arrow"
+    ]
+  ]
+}

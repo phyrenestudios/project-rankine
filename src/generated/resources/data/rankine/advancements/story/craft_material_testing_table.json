@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/craft_hardness_tester",
+  "display": {
+    "icon": {
+      "item": "rankine:material_testing_table"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_material_testing_table.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_material_testing_table.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "material_testing_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:material_testing_table"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "material_testing_table"
+    ]
+  ]
+}

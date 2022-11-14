@@ -98,6 +98,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
 
         for (Block blk : Arrays.asList(
                 RankineBlocks.ORNAMENT.get(),
+                RankineBlocks.FLOOD_GATE.get(),
                 RankineBlocks.WHITE_CEMENT.get(),
                 RankineBlocks.SOD_BLOCK.get(),
                 RankineBlocks.ALLUVIUM.get(),

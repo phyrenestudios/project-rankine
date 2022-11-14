@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/leaves",
+  "parent": "rankine:block/leaves_age5",
   "textures": {
-    "all": "rankine:block/yellow_birch_leaves"
+    "leaves": "rankine:block/yellow_birch_leaves",
+    "snowy_overlay": "rankine:block/snowy_leaves_overlay"
   }
 }

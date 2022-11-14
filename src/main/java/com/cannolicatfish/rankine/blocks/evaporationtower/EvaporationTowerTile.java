@@ -207,7 +207,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
                     return 0;
                 }
             }
-            for (int i = 1; i <= Config.MACHINES.EVAPORATION_TOWER_RANGE.get(); ++i) {
+            for (int i = 1; i <= 15; ++i) {
                 if (worldIn.getBlockState(pos.add(3, i, -1)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
                         && worldIn.getBlockState(pos.add(3, i, 0)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
                         && worldIn.getBlockState(pos.add(3, i, 1)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))

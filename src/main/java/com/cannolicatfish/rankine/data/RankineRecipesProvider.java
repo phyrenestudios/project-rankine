@@ -1012,6 +1012,15 @@ public class RankineRecipesProvider extends RecipeProvider {
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.TOFU.get()), RankineItems.COOKED_TOFU.get(), 0.35F, 600, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineItems.TOFU.get())).build(consumer, "rankine:cooked_tofu_smoking");
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.TUNA.get()), RankineItems.COOKED_TUNA.get(), 0.35F, 600, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineItems.TUNA.get())).build(consumer, "rankine:cooked_tuna_smoking");
 
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.PANCAKE_BATTER.get()), RankineItems.PANCAKE.get(), 0.35F, 100, IRecipeSerializer.SMELTING).addCriterion("has_ingredient", hasItem(RankineItems.PANCAKE_BATTER.get())).build(consumer, "rankine:pancake_smelting");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.CORN_EAR.get()), RankineItems.POPCORN.get(), 0.35F, 100, IRecipeSerializer.SMELTING).addCriterion("has_ingredient", hasItem(RankineItems.CORN_EAR.get())).build(consumer, "rankine:popcorn_smelting");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.ASPARAGUS.get()), RankineItems.ROASTED_ASPARAGUS.get(), 0.35F, 100, IRecipeSerializer.SMELTING).addCriterion("has_ingredient", hasItem(RankineItems.ROASTED_ASPARAGUS.get())).build(consumer, "rankine:roasted_asparagus_smelting");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.BLACK_WALNUT.get()), RankineItems.ROASTED_WALNUT.get(), 0.35F, 100, IRecipeSerializer.SMELTING).addCriterion("has_ingredient", hasItem(RankineItems.BLACK_WALNUT.get())).build(consumer, "rankine:roasted_walnut_smelting");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.COCONUT.get()), RankineItems.TOASTED_COCONUT.get(), 0.35F, 100, IRecipeSerializer.SMELTING).addCriterion("has_ingredient", hasItem(RankineItems.COCONUT.get())).build(consumer, "rankine:toasted_coconut_smelting");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.BREAD), RankineItems.TOAST.get(), 0.35F, 100, IRecipeSerializer.SMELTING).addCriterion("has_ingredient", hasItem(Items.BREAD)).build(consumer, "rankine:toast_smelting");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.TOFU.get()), RankineItems.COOKED_TOFU.get(), 0.35F, 600, IRecipeSerializer.SMELTING).addCriterion("has_ingredient", hasItem(RankineItems.TOFU.get())).build(consumer, "rankine:cooked_tofu_smelting");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.TUNA.get()), RankineItems.COOKED_TUNA.get(), 0.35F, 600, IRecipeSerializer.SMELTING).addCriterion("has_ingredient", hasItem(RankineItems.TUNA.get())).build(consumer, "rankine:cooked_tuna_smelting");
+
 
         defaultToolRecipes(consumer, (AlloyItem) RankineItems.PEWTER_INGOT.get(), 11711154, "item.rankine.pewter_alloying", false);
         defaultToolRecipes(consumer, (AlloyItem) RankineItems.BRONZE_INGOT.get(), 15510384, "item.rankine.bronze_alloying", false);

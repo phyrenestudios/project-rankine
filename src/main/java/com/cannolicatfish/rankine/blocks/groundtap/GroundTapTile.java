@@ -3,9 +3,9 @@ package com.cannolicatfish.rankine.blocks.groundtap;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTileEntities;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -37,39 +37,36 @@ public class GroundTapTile extends TileEntity implements ITickableTileEntity {
     }
 
     public void tick() {
+        World levelIn = this.getWorld();
+        BlockState stateIn = levelIn.getBlockState(pos);
 
-        if (!this.getBlockState().get(GroundTapBlock.WATERLOGGED)) {
+        if (!stateIn.get(GroundTapBlock.WATERLOGGED)) {
             this.proccessTime++;
-            if (this.proccessTime % Config.MACHINES.GROUND_TAP_SPEED.get() == 0) {
-                World worldIn = this.getWorld();
+            if (this.proccessTime > Config.MACHINES.GROUND_TAP_SPEED.get()) {
                 Set<BlockPos> checkedBlocks = new HashSet<>();
                 Stack<BlockPos> toCheck = new Stack<>();
-                boolean attached = false;
 
-                toCheck.add(pos.down());
-                while (!toCheck.isEmpty() && !attached) {
+                toCheck.add(pos);
+                while (!toCheck.isEmpty()) {
                     BlockPos cp = toCheck.pop();
                     if (!checkedBlocks.contains(cp)) {
                         checkedBlocks.add(cp);
                         for (Direction dir : Direction.values()) {
-                            BlockState target = worldIn.getBlockState(cp.offset(dir).toImmutable());
+                            BlockState target = levelIn.getBlockState(cp.offset(dir).toImmutable());
                             if (target.matchesBlock(RankineBlocks.METAL_PIPE.get())) {
                                 toCheck.add(cp.offset(dir).toImmutable());
-                            } else if (target.matchesBlock(RankineBlocks.FLOOD_GATE.get()) && cp.getY() <= WorldgenUtils.waterTableHeight(worldIn, pos)) {
-                                attached = true;
+                            } else if (target.matchesBlock(RankineBlocks.FLOOD_GATE.get()) && target.get(BlockStateProperties.WATERLOGGED)) {
+                                levelIn.setBlockState(pos, stateIn.with(BlockStateProperties.WATERLOGGED, true));
+                                levelIn.setBlockState(cp.offset(dir).toImmutable(), RankineBlocks.FLOOD_GATE.get().getDefaultState().with(BlockStateProperties.WATERLOGGED, false));
+                                this.proccessTime = 0;
+                                return;
                             }
                         }
                     }
                 }
-
-                if (attached) {
-                    worldIn.setBlockState(pos, this.getBlockState().with(GroundTapBlock.WATERLOGGED, true), 2);
-                    proccessTime = 0;
-                }
-
             }
         } else {
-            proccessTime = 0;
+            this.proccessTime = 0;
         }
     }
 

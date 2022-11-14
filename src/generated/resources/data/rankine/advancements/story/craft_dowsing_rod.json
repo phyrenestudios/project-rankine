@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/craft_rope",
+  "display": {
+    "icon": {
+      "item": "rankine:dowsing_rod"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_dowsing_rod.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_dowsing_rod.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "dowsing_rod": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:dowsing_rod"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "dowsing_rod"
+    ]
+  ]
+}

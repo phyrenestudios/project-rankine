@@ -1,0 +1,480 @@
+{
+  "parent": "rankine:challenges/root",
+  "display": {
+    "icon": {
+      "item": "rankine:amalgam_ingot"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.alloy_collector.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.challenges.alloy_collector.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 800
+  },
+  "criteria": {
+    "pewter_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:pewter_ingot"
+          }
+        ]
+      }
+    },
+    "bronze_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bronze_ingot"
+          }
+        ]
+      }
+    },
+    "brass_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:brass_ingot"
+          }
+        ]
+      }
+    },
+    "cast_iron_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cast_iron_ingot"
+          }
+        ]
+      }
+    },
+    "invar_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:invar_ingot"
+          }
+        ]
+      }
+    },
+    "cupronickel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cupronickel_ingot"
+          }
+        ]
+      }
+    },
+    "duralumin_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:duralumin_ingot"
+          }
+        ]
+      }
+    },
+    "magnesium_alloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:magnesium_alloy_ingot"
+          }
+        ]
+      }
+    },
+    "sterling_silver_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:sterling_silver_ingot"
+          }
+        ]
+      }
+    },
+    "nickel_silver_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:nickel_silver_ingot"
+          }
+        ]
+      }
+    },
+    "alnico_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:alnico_ingot"
+          }
+        ]
+      }
+    },
+    "steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:steel_ingot"
+          }
+        ]
+      }
+    },
+    "stainless_steel_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:stainless_steel_ingot"
+          }
+        ]
+      }
+    },
+    "nitinol_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:nitinol_ingot"
+          }
+        ]
+      }
+    },
+    "rose_metal_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rose_metal_ingot"
+          }
+        ]
+      }
+    },
+    "mischmetal_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:mischmetal_ingot"
+          }
+        ]
+      }
+    },
+    "ferrocerium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:ferrocerium_ingot"
+          }
+        ]
+      }
+    },
+    "galinstan_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:galinstan_ingot"
+          }
+        ]
+      }
+    },
+    "osmiridium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:osmiridium_ingot"
+          }
+        ]
+      }
+    },
+    "sodium_potassium_alloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:sodium_potassium_alloy_ingot"
+          }
+        ]
+      }
+    },
+    "amalgam_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:amalgam_ingot"
+          }
+        ]
+      }
+    },
+    "ender_amalgam_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:ender_amalgam_ingot"
+          }
+        ]
+      }
+    },
+    "rose_gold_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rose_gold_ingot"
+          }
+        ]
+      }
+    },
+    "green_gold_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:green_gold_ingot"
+          }
+        ]
+      }
+    },
+    "purple_gold_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:purple_gold_ingot"
+          }
+        ]
+      }
+    },
+    "white_gold_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:white_gold_ingot"
+          }
+        ]
+      }
+    },
+    "blue_gold_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:blue_gold_ingot"
+          }
+        ]
+      }
+    },
+    "black_gold_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:black_gold_ingot"
+          }
+        ]
+      }
+    },
+    "nickel_superalloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:nickel_superalloy_ingot"
+          }
+        ]
+      }
+    },
+    "cobalt_superalloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cobalt_superalloy_ingot"
+          }
+        ]
+      }
+    },
+    "tungsten_heavy_alloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tungsten_heavy_alloy_ingot"
+          }
+        ]
+      }
+    },
+    "titanium_alloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:titanium_alloy_ingot"
+          }
+        ]
+      }
+    },
+    "niobium_alloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:niobium_alloy_ingot"
+          }
+        ]
+      }
+    },
+    "zirconium_alloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:zirconium_alloy_ingot"
+          }
+        ]
+      }
+    },
+    "alloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:alloy_ingot"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "pewter_ingot"
+    ],
+    [
+      "bronze_ingot"
+    ],
+    [
+      "brass_ingot"
+    ],
+    [
+      "cast_iron_ingot"
+    ],
+    [
+      "invar_ingot"
+    ],
+    [
+      "cupronickel_ingot"
+    ],
+    [
+      "duralumin_ingot"
+    ],
+    [
+      "magnesium_alloy_ingot"
+    ],
+    [
+      "sterling_silver_ingot"
+    ],
+    [
+      "nickel_silver_ingot"
+    ],
+    [
+      "alnico_ingot"
+    ],
+    [
+      "steel_ingot"
+    ],
+    [
+      "stainless_steel_ingot"
+    ],
+    [
+      "nitinol_ingot"
+    ],
+    [
+      "rose_metal_ingot"
+    ],
+    [
+      "mischmetal_ingot"
+    ],
+    [
+      "ferrocerium_ingot"
+    ],
+    [
+      "galinstan_ingot"
+    ],
+    [
+      "osmiridium_ingot"
+    ],
+    [
+      "sodium_potassium_alloy_ingot"
+    ],
+    [
+      "amalgam_ingot"
+    ],
+    [
+      "ender_amalgam_ingot"
+    ],
+    [
+      "rose_gold_ingot"
+    ],
+    [
+      "green_gold_ingot"
+    ],
+    [
+      "purple_gold_ingot"
+    ],
+    [
+      "white_gold_ingot"
+    ],
+    [
+      "blue_gold_ingot"
+    ],
+    [
+      "black_gold_ingot"
+    ],
+    [
+      "nickel_superalloy_ingot"
+    ],
+    [
+      "cobalt_superalloy_ingot"
+    ],
+    [
+      "tungsten_heavy_alloy_ingot"
+    ],
+    [
+      "titanium_alloy_ingot"
+    ],
+    [
+      "niobium_alloy_ingot"
+    ],
+    [
+      "zirconium_alloy_ingot"
+    ],
+    [
+      "alloy_ingot"
+    ]
+  ]
+}

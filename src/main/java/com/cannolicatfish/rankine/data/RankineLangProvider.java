@@ -175,6 +175,7 @@ public class RankineLangProvider extends LanguageProvider {
 
         // Misc Blocks
         for (Block blk : Arrays.asList(
+                RankineBlocks.FLOOD_GATE.get(),
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.TILLED_SOIL.get(),
@@ -874,8 +875,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_rope.description", "Gather rope by obtaining a flint knife and harvesting grass");
         add("rankine.advancements.story.craft_dowsing_rod.title", "Random Guess");
         add("rankine.advancements.story.craft_dowsing_rod.description", "Make a Dowsing Rod to detect the water level of the area");
-        add("rankine.advancements.story.craft_wooden_mallet.title", "Time to Swing");
-        add("rankine.advancements.story.craft_wooden_mallet.description", "Make a Wooden Mallet to start swinging in rhythm at rocks and other materials");
+        add("rankine.advancements.story.craft_wooden_hammer.title", "Time to Swing");
+        add("rankine.advancements.story.craft_wooden_hammer.description", "Make a Wooden Mallet to start swinging in rhythm at rocks and other materials");
         add("rankine.advancements.story.craft_stone_mallet.title", "Stone to crush Stone");
         add("rankine.advancements.story.craft_stone_mallet.description", "Construct a stronger mallet");
         add("rankine.advancements.story.get_cobblestone.title", "Cobble Cobble");
@@ -950,8 +951,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_saddle_tree.description", "Craft a saddle tree to make horse-related equipment");
         add("rankine.advancements.story.craft_fusion_furnace.title", "Complex Systems");
         add("rankine.advancements.story.craft_fusion_furnace.description", "Make a Fusion Furnace to begin utilizing gases and liquids further");
-        add("rankine.advancements.story.get_mercury.title", "Amalgamation");
-        add("rankine.advancements.story.get_mercury.description", "Obtain mercury to make Amalgam alloys");
+        add("rankine.advancements.story.make_mercury.title", "Amalgamation");
+        add("rankine.advancements.story.make_mercury.description", "Obtain mercury to make Amalgam alloys");
         add("rankine.advancements.story.craft_distillation_tower.title", "Atmospheric Composition");
         add("rankine.advancements.story.craft_distillation_tower.description", "Make a Distillation Tower to obtain gases from the air");
         add("rankine.advancements.story.craft_gyratory_crusher.title", "Pressing Issue");
@@ -989,15 +990,13 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.info_movement.title", "A Primer on Movement");
         add("rankine.advancements.story.info_movement.description", "Movement (by default) changes depending on what material you are walking on");
         add("rankine.advancements.story.craft_sandals.title", "Sand Shifter");
-        add("rankine.advancements.story.craft_sandals.description", "Make sandals to move more efficiently on sand");
+        add("rankine.advancements.story.craft_sandals.description", "Wear sandals to move more efficiently on sand");
+        add("rankine.advancements.story.craft_fins.title", "Finstant Travel");
+        add("rankine.advancements.story.craft_fins.description", "Wear fins to move more efficiently in water");
         add("rankine.advancements.story.craft_ice_skates.title", "Ice Glider");
-        add("rankine.advancements.story.craft_ice_skates.description", "Make ice skates to move more efficiently on ice");
+        add("rankine.advancements.story.craft_ice_skates.description", "Wear ice skates to move more efficiently on ice");
         add("rankine.advancements.story.craft_snowshoes.title", "Snow Effort");
-        add("rankine.advancements.story.craft_snowshoes.description", "Make snowshoes to move more efficiently on snow");
-
-
-
-
+        add("rankine.advancements.story.craft_snowshoes.description", "Wear snowshoes to move more efficiently on snow");
         add("rankine.advancements.story.get_bronze_tools.title", "Timing is Everything");
         add("rankine.advancements.story.get_bronze_tools.description", "Make a Pewter, Colored Gold, or Bronze Hammer to begin crushing ores and stones");
         add("rankine.advancements.story.get_crowbar.title", "Lever Action");
@@ -1027,20 +1026,22 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.advancements.challenges.root.title", "Project Rankine Challenges");
         add("rankine.advancements.challenges.root.description", "Complete your understanding of the changed world");
-        add("rankine.advancements.challenges.rock_collector.title", "We Have the Rockiest Rocks");
-        add("rankine.advancements.challenges.rock_collector.description", "Collect all the new types of rocks");
-        add("rankine.advancements.challenges.dirt_collector.title", "We Have the Dirtiest Dirt");
-        add("rankine.advancements.challenges.dirt_collector.description", "Collect all the new types of soil, not dirt");
+        add("rankine.advancements.challenges.stone_collector.title", "We Have the Rockiest Rocks");
+        add("rankine.advancements.challenges.stone_collector.description", "Collect all the new types of rocks");
+        add("rankine.advancements.challenges.soil_collector.title", "We Have the Dirtiest Dirt");
+        add("rankine.advancements.challenges.soil_collector.description", "Collect all the new types of soil, not dirt");
         add("rankine.advancements.challenges.element_collector.title", "Periodic Collector");
         add("rankine.advancements.challenges.element_collector.description", "Collect every element in the Periodic Table");
         add("rankine.advancements.challenges.make_all_power_cells.title", "Energized");
-        add("rankine.advancements.challenges.make_all_power_cells.description", "Make every type of Power Cell");
+        add("rankine.advancements.challenges.make_all_power_cells.description", "Make every type of Battery");
         add("rankine.advancements.challenges.craft_cannonball.title", "Cannonball");
         add("rankine.advancements.challenges.craft_cannonball.description", "Use a cannonball in a dispenser");
         add("rankine.advancements.challenges.totem_collector.title", "On the Other Hand");
         add("rankine.advancements.challenges.totem_collector.description", "Make every type of Totem");
         add("rankine.advancements.challenges.alloy_collector.title", "Worldmoulder");
         add("rankine.advancements.challenges.alloy_collector.description", "Create all of the different types of alloys");
+        add("rankine.advancements.challenges.gas_collector.title", "Worldmoulder");
+        add("rankine.advancements.challenges.gas_collector.description", "Bottle all available gasses");
         add("rankine.advancements.challenges.bronze_harvest.title", "Skipping Stones");
         add("rankine.advancements.challenges.bronze_harvest.description", "Make a Bronze Pickaxe with a Harvest Level of 3 (or Steel equivalent)");
         add("rankine.advancements.challenges.pewter_enchant.title", "Hidden Power");
@@ -1049,8 +1050,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.challenges.colored_gold_netherite.description", "Make a Colored Gold tool using Netherite instead of Gold");
         add("rankine.advancements.challenges.make_pancake_breakfast.title", "Fulfilling");
         add("rankine.advancements.challenges.make_pancake_breakfast.description", "Make a Pancake Breakfast");
-        add("rankine.advancements.challenges.find_meteoric_materials.title", "Stellar Performance");
-        add("rankine.advancements.challenges.find_meteoric_materials.description", "Find all the forms of meteoric iron");
+        add("rankine.advancements.challenges.meteoric_materials.title", "Stellar Performance");
+        add("rankine.advancements.challenges.meteoric_materials.description", "Find all raw forms of meteoric ore");
         add("rankine.advancements.challenges.geode_collector.title", "Gifts from the Earth");
         add("rankine.advancements.challenges.geode_collector.description", "Find all of the different types of geodes");
 

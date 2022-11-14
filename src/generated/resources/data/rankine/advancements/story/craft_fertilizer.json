@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/craft_fusion_furnace",
+  "display": {
+    "icon": {
+      "item": "rankine:fertilizer"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_fertilizer.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_fertilizer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "fertilizer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:fertilizer"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "fertilizer"
+    ]
+  ]
+}

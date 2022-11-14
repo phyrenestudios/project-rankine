@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:tofu"
+  },
+  "result": "rankine:cooked_tofu",
+  "experience": 0.35,
+  "cookingtime": 600
+}

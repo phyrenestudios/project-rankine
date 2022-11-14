@@ -14,6 +14,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.IWorldWriter;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -225,11 +226,10 @@ public class WorldgenUtils {
         }
     }
 
-    public static int waterTableHeight(World worldIn, BlockPos pos) {
-        Biome biome = worldIn.getBiome(pos);
-        int surface = worldIn.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ());
-
-        return biome.getCategory() == Biome.Category.OCEAN || biome.getCategory() == Biome.Category.BEACH || biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.RIVER ? worldIn.getSeaLevel() + 1 : (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
+    public static int waterTableHeight(IWorldReader worldIn, BlockPos pos) {
+        if (!Config.GENERAL.DISABLE_WATER.get()) return 256;
+        int surface = worldIn.getHeight(Heightmap.Type.OCEAN_FLOOR,pos.getX(),pos.getZ());
+        return worldIn.getSeaLevel() + Math.max(0, Math.round((surface-worldIn.getSeaLevel()) * (1 - worldIn.getBiome(pos).getDownfall())));
     }
 
     public static boolean inArea(BlockPos b, double radius, boolean center, BlockPos... targets) {

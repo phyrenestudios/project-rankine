@@ -1,28 +1,21 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
-import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.*;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -106,20 +99,13 @@ public class MetalPipeBlock extends Block {
     }
 
     public BlockState makeConnections(IBlockReader blockReader, BlockPos pos) {
-        Block block = blockReader.getBlockState(pos.down()).getBlock();
-        Block block1 = blockReader.getBlockState(pos.up()).getBlock();
-        BlockState bs1 = blockReader.getBlockState(pos.up());
-        Block block2 = blockReader.getBlockState(pos.north()).getBlock();
-        Block block3 = blockReader.getBlockState(pos.east()).getBlock();
-        Block block4 = blockReader.getBlockState(pos.south()).getBlock();
-        Block block5 = blockReader.getBlockState(pos.west()).getBlock();
-        return this.getDefaultState().with(DOWN, block == this)
-                .with(DOWN, block == this || block == RankineBlocks.FLOOD_GATE.get())
-                .with(NORTH, block2 == this)
-                .with(EAST, block3 == this)
-                .with(SOUTH, block4 == this)
-                .with(WEST, block5 == this)
-                .with(UP, block1 == this || block1 == RankineBlocks.GROUND_TAP.get());
+        return this.getDefaultState()
+                .with(DOWN, isAttachable(blockReader.getBlockState(pos.down())))
+                .with(NORTH, isAttachable(blockReader.getBlockState(pos.north())))
+                .with(EAST, isAttachable(blockReader.getBlockState(pos.east())))
+                .with(SOUTH, isAttachable(blockReader.getBlockState(pos.south())))
+                .with(WEST, isAttachable(blockReader.getBlockState(pos.west())))
+                .with(UP, isAttachable(blockReader.getBlockState(pos.up())));
     }
 
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
@@ -127,25 +113,15 @@ public class MetalPipeBlock extends Block {
             worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
             return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
         } else {
-            boolean flag = false;
-            Block fsb = facingState.getBlock();
-            switch (facing) {
-                case UP:
-                    flag = fsb == this || fsb == RankineBlocks.GROUND_TAP.get();
-                    break;
-                case DOWN:
-                case NORTH:
-                case SOUTH:
-                case EAST:
-                case WEST:
-                    flag = fsb == this;
-                    break;
-            }
-            return stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), flag);
+            return stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), isAttachable(worldIn.getBlockState(facingPos)));
         }
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN);
+    }
+
+    private boolean isAttachable(BlockState stateIn) {
+        return stateIn.matchesBlock(this) || stateIn.matchesBlock(RankineBlocks.GROUND_TAP.get()) || stateIn.matchesBlock(RankineBlocks.FLOOD_GATE.get());
     }
 }

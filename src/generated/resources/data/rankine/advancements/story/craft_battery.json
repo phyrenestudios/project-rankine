@@ -1,0 +1,102 @@
+{
+  "parent": "rankine:story/craft_alloy_furnace",
+  "display": {
+    "icon": {
+      "item": "rankine:silver_zinc_battery",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_battery.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_battery.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "battery1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:silver_zinc_battery"
+          }
+        ]
+      }
+    },
+    "battery2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:zinc_bromine_battery"
+          }
+        ]
+      }
+    },
+    "battery3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:lead_acid_battery"
+          }
+        ]
+      }
+    },
+    "battery4": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:magnesium_battery"
+          }
+        ]
+      }
+    },
+    "battery5": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:sodium_sulfur_battery"
+          }
+        ]
+      }
+    },
+    "battery6": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:vanadium_redox_battery"
+          }
+        ]
+      }
+    },
+    "battery7": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:lithium_ion_battery"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "battery1",
+      "battery2",
+      "battery3",
+      "battery4",
+      "battery5",
+      "battery6",
+      "battery7"
+    ]
+  ]
+}

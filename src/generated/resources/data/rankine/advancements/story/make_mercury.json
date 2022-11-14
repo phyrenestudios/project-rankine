@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/craft_fusion_furnace",
+  "display": {
+    "icon": {
+      "item": "rankine:mercury"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_mercury.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_mercury.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "mercury": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:mercury"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mercury"
+    ]
+  ]
+}

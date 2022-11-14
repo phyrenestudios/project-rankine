@@ -1,7 +1,0 @@
-{
-  "parent": "rankine:block/leaves_age4",
-  "textures": {
-    "leaves": "rankine:block/coconut_palm_leaves",
-    "snowy_overlay": "rankine:block/snowy_leaves_overlay3"
-  }
-}

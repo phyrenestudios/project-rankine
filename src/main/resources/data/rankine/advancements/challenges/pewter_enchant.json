@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/rankine_challenges",
+  "parent": "rankine:challenges/root",
   "display": {
     "icon": {
       "item": "rankine:pewter_sword"

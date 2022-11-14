@@ -1,0 +1,259 @@
+{
+  "parent": "rankine:challenges/root",
+  "display": {
+    "icon": {
+      "item": "rankine:hydrogen_sulfide_gas_bottle"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.gas_collector.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.challenges.gas_collector.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 700
+  },
+  "criteria": {
+    "hydrogen_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:hydrogen_gas_bottle"
+          }
+        ]
+      }
+    },
+    "nitrogen_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:nitrogen_gas_bottle"
+          }
+        ]
+      }
+    },
+    "oxygen_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:oxygen_gas_bottle"
+          }
+        ]
+      }
+    },
+    "helium_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:helium_gas_bottle"
+          }
+        ]
+      }
+    },
+    "fluorine_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:fluorine_gas_bottle"
+          }
+        ]
+      }
+    },
+    "chlorine_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:chlorine_gas_bottle"
+          }
+        ]
+      }
+    },
+    "neon_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:neon_gas_bottle"
+          }
+        ]
+      }
+    },
+    "argon_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:argon_gas_bottle"
+          }
+        ]
+      }
+    },
+    "krypton_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:krypton_gas_bottle"
+          }
+        ]
+      }
+    },
+    "xenon_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:xenon_gas_bottle"
+          }
+        ]
+      }
+    },
+    "radon_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:radon_gas_bottle"
+          }
+        ]
+      }
+    },
+    "oganesson_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:oganesson_gas_bottle"
+          }
+        ]
+      }
+    },
+    "ammonia_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:ammonia_gas_bottle"
+          }
+        ]
+      }
+    },
+    "carbon_dioxide_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:carbon_dioxide_gas_bottle"
+          }
+        ]
+      }
+    },
+    "hydrogen_chloride_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:hydrogen_chloride_gas_bottle"
+          }
+        ]
+      }
+    },
+    "hydrogen_fluoride_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:hydrogen_fluoride_gas_bottle"
+          }
+        ]
+      }
+    },
+    "hydrogen_sulfide_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:hydrogen_sulfide_gas_bottle"
+          }
+        ]
+      }
+    },
+    "sulfur_dioxide_gas_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:sulfur_dioxide_gas_bottle"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hydrogen_gas_bottle"
+    ],
+    [
+      "nitrogen_gas_bottle"
+    ],
+    [
+      "oxygen_gas_bottle"
+    ],
+    [
+      "helium_gas_bottle"
+    ],
+    [
+      "fluorine_gas_bottle"
+    ],
+    [
+      "chlorine_gas_bottle"
+    ],
+    [
+      "neon_gas_bottle"
+    ],
+    [
+      "argon_gas_bottle"
+    ],
+    [
+      "krypton_gas_bottle"
+    ],
+    [
+      "xenon_gas_bottle"
+    ],
+    [
+      "radon_gas_bottle"
+    ],
+    [
+      "oganesson_gas_bottle"
+    ],
+    [
+      "ammonia_gas_bottle"
+    ],
+    [
+      "carbon_dioxide_gas_bottle"
+    ],
+    [
+      "hydrogen_chloride_gas_bottle"
+    ],
+    [
+      "hydrogen_fluoride_gas_bottle"
+    ],
+    [
+      "hydrogen_sulfide_gas_bottle"
+    ],
+    [
+      "sulfur_dioxide_gas_bottle"
+    ]
+  ]
+}

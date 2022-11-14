@@ -1,0 +1,45 @@
+{
+  "parent": "rankine:story/craft_tree_tap",
+  "display": {
+    "icon": {
+      "item": "rankine:diving_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_diving_armor.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_diving_armor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "diving_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:diving_helmet"
+          },
+          {
+            "item": "rankine:diving_chestplate"
+          },
+          {
+            "item": "rankine:diving_leggings"
+          },
+          {
+            "item": "rankine:diving_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "diving_armor"
+    ]
+  ]
+}
