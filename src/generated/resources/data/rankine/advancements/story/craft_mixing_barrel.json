@@ -1,0 +1,37 @@
+{
+  "parent": "rankine:story/craft_flint_pickaxe",
+  "display": {
+    "icon": {
+      "item": "rankine:mixing_barrel"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_mixing_barrel.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_mixing_barrel.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "mixing_barrel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:mixing_barrel"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mixing_barrel"
+    ]
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "parent": "rankine:challenges/root",
+  "display": {
+    "icon": {
+      "item": "rankine:lonsdaleite_diamond"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.meteoric_materials.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.challenges.meteoric_materials.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 300
+  },
+  "criteria": {
+    "kamacite_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:kamacite_ore"
+            ]
+          }
+        ]
+      }
+    },
+    "antitaenite_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:antitaenite_ore"
+            ]
+          }
+        ]
+      }
+    },
+    "taenite_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:taenite_ore"
+            ]
+          }
+        ]
+      }
+    },
+    "tetrataenite_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:tetrataenite_ore"
+            ]
+          }
+        ]
+      }
+    },
+    "lonsdaleite_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:lonsdaleite_ore"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kamacite_ore"
+    ],
+    [
+      "antitaenite_ore"
+    ],
+    [
+      "taenite_ore"
+    ],
+    [
+      "tetrataenite_ore"
+    ],
+    [
+      "lonsdaleite_ore"
+    ]
+  ]
+}

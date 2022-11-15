@@ -877,10 +877,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_rope.description", "Gather rope by obtaining a flint knife and harvesting grass");
         add("rankine.advancements.story.craft_dowsing_rod.title", "Random Guess");
         add("rankine.advancements.story.craft_dowsing_rod.description", "Make a Dowsing Rod to detect the water level of the area");
-        add("rankine.advancements.story.craft_wooden_mallet.title", "Time to Swing");
-        add("rankine.advancements.story.craft_wooden_mallet.description", "Make a Wooden Mallet to start swinging in rhythm at rocks and other materials");
-        add("rankine.advancements.story.craft_stone_mallet.title", "Stone to crush Stone");
-        add("rankine.advancements.story.craft_stone_mallet.description", "Construct a stronger mallet");
+        add("rankine.advancements.story.craft_wooden_hammer.title", "Time to Swing");
+        add("rankine.advancements.story.craft_wooden_hammer.description", "Make a Wooden Mallet to start swinging in rhythm at rocks and other materials");
+        add("rankine.advancements.story.craft_stone_hammer.title", "Stone to crush Stone");
+        add("rankine.advancements.story.craft_stone_hammer.description", "Construct a stronger mallet");
         add("rankine.advancements.story.get_cobblestone.title", "Cobble Cobble");
         add("rankine.advancements.story.get_cobblestone.description", "Obtain cobblestone from crushing using a mallet or hammer");
         add("rankine.advancements.story.craft_mixing_barrel.title", "Mix it Up");
@@ -925,6 +925,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.make_coke.description", "Use a beehive oven to produce coke from bituminous and sub-bituminous coal blocks");
         add("rankine.advancements.story.make_cast_iron.title", "Cast in Iron");
         add("rankine.advancements.story.make_cast_iron.description", "Alloy iron into Cast Iron");
+        add("rankine.advancements.story.make_cupronickel.title", "");
+        add("rankine.advancements.story.make_cupronickel.description", "");
         add("rankine.advancements.story.make_quicklime.title", "Limecraft");
         add("rankine.advancements.story.make_quicklime.description", "Produce quicklime from combusting limestone with the beehive oven");
         add("rankine.advancements.story.craft_crucible.title", "Refractory Factory");
@@ -957,8 +959,6 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.get_mercury.description", "Obtain mercury to make Amalgam alloys");
         add("rankine.advancements.story.craft_distillation_tower.title", "Atmospheric Composition");
         add("rankine.advancements.story.craft_distillation_tower.description", "Make a Distillation Tower to obtain gases from the air");
-        add("rankine.advancements.story.craft_gyratory_crusher.title", "Pressing Issue");
-        add("rankine.advancements.story.craft_gyratory_crusher.description", "Make a Gyratory Crusher to automate crushing further");
         add("rankine.advancements.story.craft_induction_furnace.title", "Heating Up");
         add("rankine.advancements.story.craft_induction_furnace.description", "Make an Induction Furnace for more advanced alloys");
         add("rankine.advancements.story.craft_sediment_fan.title", "Spin Cycle");
@@ -997,10 +997,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_ice_skates.description", "Make ice skates to move more efficiently on ice");
         add("rankine.advancements.story.craft_snowshoes.title", "Snow Effort");
         add("rankine.advancements.story.craft_snowshoes.description", "Make snowshoes to move more efficiently on snow");
-
-
-
-
+        add("rankine.advancements.story.craft_fins.title", "Finstant Travel");
+        add("rankine.advancements.story.craft_fins.description", "Wear fins to move more efficiently in water");
         add("rankine.advancements.story.get_bronze_tools.title", "Timing is Everything");
         add("rankine.advancements.story.get_bronze_tools.description", "Make a Pewter, Colored Gold, or Bronze Hammer to begin crushing ores and stones");
         add("rankine.advancements.story.get_crowbar.title", "Lever Action");
@@ -1280,27 +1278,67 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.journal.cat_mineralogy.gem_ores.name", "Gem Ores");
         add("rankine.journal.cat_mineralogy.gem_ores.text1", "Gem ores refer to stones that directly drop their respective item when mined. Most can also be crushed for additional resources.");
+        add("rankine.journal.cat_mineralogy.gem_ores.lignite_ore", "Source of fuel. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.gem_ores.subbituminous_ore", "Source of fuel. $(br2)Found underground in all regions of the Overworld.");
+        add("rankine.journal.cat_mineralogy.gem_ores.bituminous_ore", "Source of fuel. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.gem_ores.anthracite_ore", "Source of fuel. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.gem_ores.plumbago_ore", "Source of Graphite. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.gem_ores.lazurite_ore", "Source of Lapis. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.gem_ores.cinnabar_ore", "Source of Redstone and Mercury. $(br2)Found in all types of intrusions");
+        add("rankine.journal.cat_mineralogy.gem_ores.beryl_ore", "Source of Emeralds. $(br2)Found in some intrusions");
+        add("rankine.journal.cat_mineralogy.gem_ores.kimberlitic_diamond_ore", "Source of Diamonds. $(br2)Found solely in kimberlite intrusions.");
+
 
         add("rankine.journal.cat_mineralogy.mineral_ores.name", "Mineral Ores");
         add("rankine.journal.cat_mineralogy.mineral_ores.text1", "Mineral ores are rocks containing more complex compounds that may not be directly usable. They are often of higher harvest level, drop their raw mineral when mined and additional resources when crushed.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.acanthite_ore", "Source of Silver. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.baddeleyite_ore", "Source of Zirconium. $(br2)Found in diabase intrusions");
+        add("rankine.journal.cat_mineralogy.mineral_ores.bauxite_ore", "Source of Aluminum. $(br2)Found in the surface of Overworld biomes except for Beaches andOceans.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.bismuthinite_ore", "Source of Bismuth. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.cassiterite_ore", "Source of Tin. $(br2)Found in some intrusions");
+        add("rankine.journal.cat_mineralogy.mineral_ores.celestine_ore", "Source of Strontium. $(br2)Found in the depths of Jungle, Swamp, Plains, Forest and Taiga biomes.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.chalcocite_ore", "Source of Copper. $(br2)Found scattered across the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.chromite_ore", "Source of Chromium. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.cobaltite_ore", "Source of Cobalt. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.coltan_ore", "Source of Niobium and Tantalum. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.cryolite_ore", "Source of Sodium. $(br2)Found in the depths of Taiga, Mountain and Icy biomes.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.galena_ore", "Source of Lead. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.greenockite_ore", "Source of Cadmium. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.interspinifex_ore", "Source of Copper an Nickel. $(br2)Found in komatiite intrusions");
+        add("rankine.journal.cat_mineralogy.mineral_ores.ilmenite_ore", "Source of Titanium. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.magnesite_ore", "Source of Magnesium. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.magnetite_ore", "Source of Iron. $(br2)Found in some intrusions");
+        add("rankine.journal.cat_mineralogy.mineral_ores.hematite_ore", "Source of Iron. $(br2)Found scattered across the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.malachite_ore", "Source of Copper. $(br2)Found in some intrusions");
+        add("rankine.journal.cat_mineralogy.mineral_ores.molybdenite_ore", "Source of Molybdenum. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.monazite_ore", "Source of rare elements. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.pentlandite_ore", "Source of Nickel. $(br2)Found in the depths of Ocean, Beach, Desert and Mesa biomes.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.petalite_ore", "Source of Lithium. $(br2)Found in pegmatite intrusions");
+        add("rankine.journal.cat_mineralogy.mineral_ores.pyrolusite_ore", "Source of Manganese. $(br2)Found in the depths of the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.pyrite_ore", "Fool's gold. Source of iron. $(br2)Found scattered across the Overworld.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.rheniite_ore", "Source of Rhenium. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.sperrylite_ore", "Source of Osmium and Iridium. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.sphalerite_ore", "Source of Zinc. $(br2)Found in the depths of Plains, Savannah, Desert and Mesa biomes.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.uraninite_ore", "Source of Uranium. $(br2)Found scattered across the End.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.wolframite_ore", "Source of Tungsten. $(br2)Found scattered across the Nether.");
+        add("rankine.journal.cat_mineralogy.mineral_ores.xenotime_ore", "Source of Xenotime. $(br2)Found scattered across the End.");
 
 
         add("rankine.journal.cat_mineralogy.native_ores.name", "Native Ores");
         add("rankine.journal.cat_mineralogy.native_ores.text1", "Native is a term used to describe elements that exist in their pure form in nature. The following blocks can be mined at a low harvest level to obtain pure metal samples.");
-        add("rankine.journal.cat_mineralogy.native_ores.native_tin_ore", "Source of Tin. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.native_lead_ore", "Source of Lead. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.native_bismuth_ore", "Source of Bismuth. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.native_silver_ore", "Source of Silver. $(br2)Found near the surface in all regions of the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.native_gold_ore", "Source of Gold. $(br2)Found scattered across the world.");
-        add("rankine.journal.cat_mineralogy.native_ores.stibnite_ore", "Source of Antimony. $(br2)Found near the surface in all regions of the world.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_tin_ore", "Source of Tin. $(br2)Found near the surface in all regions of the Overworld.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_lead_ore", "Source of Lead. $(br2)Found near the surface in all regions of the Overworld.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_bismuth_ore", "Source of Bismuth. $(br2)Found near the surface in all regions of the Overworld.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_silver_ore", "Source of Silver. $(br2)Found near the surface in all regions of the Overworld.");
+        add("rankine.journal.cat_mineralogy.native_ores.native_gold_ore", "Source of Gold. $(br2)Found scattered across the Overworld.");
+        add("rankine.journal.cat_mineralogy.native_ores.stibnite_ore", "Source of Antimony. $(br2)Found near the surface in all regions of the Overworld.");
         add("rankine.journal.cat_mineralogy.native_ores.porphyry_copper", "Source of Copper. $(br2)Found in porphyry intrusions.");
-        add("rankine.journal.cat_mineralogy.native_ores.native_sulfur_ore", "Source of Sulfur. $(br2)Found scattered across the Nether.");;
+        add("rankine.journal.cat_mineralogy.native_ores.native_sulfur_ore", "Source of Sulfur. $(br2)Found scattered across the Nether.");
         add("rankine.journal.cat_mineralogy.native_ores.native_arsenic_ore", "Source of Arsenic. $(br2)Found scattered across the Nether.");
         add("rankine.journal.cat_mineralogy.native_ores.native_indium_ore", "Source of Indium. $(br2)Found scattered across the End.");
         add("rankine.journal.cat_mineralogy.native_ores.native_gallium_ore", "Source of Gallium. $(br2)Found scattered across the End.");
         add("rankine.journal.cat_mineralogy.native_ores.native_tellurium_ore", "Source of Tellurium. $(br2)Found scattered across the End.");
         add("rankine.journal.cat_mineralogy.native_ores.native_selenium_ore", "Source of Selenium. $(br2)Found scattered across the End.");
-
 
 
         //Stones

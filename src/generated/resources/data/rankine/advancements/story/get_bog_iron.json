@@ -1,0 +1,37 @@
+{
+  "parent": "rankine:story/craft_stone_hammer",
+  "display": {
+    "icon": {
+      "item": "rankine:bog_iron"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.get_bog_iron.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.get_bog_iron.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "bog_iron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:bog_iron"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bog_iron"
+    ]
+  ]
+}
