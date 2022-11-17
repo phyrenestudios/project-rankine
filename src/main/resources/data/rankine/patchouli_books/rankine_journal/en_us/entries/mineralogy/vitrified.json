@@ -1,0 +1,47 @@
+{
+  "name": "rankine.journal.cat_mineralogy.vitrified.name",
+  "icon": "rankine:fulgurite",
+  "category": "rankine:mineralogy",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_mineralogy.vitrified.text1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:fulgurite",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.vitrified.fulgurite"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lightning_glass",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.vitrified.lightning_glass"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:red_lightning_glass",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.vitrified.red_lightning_glass"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:soul_lightning_glass",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.vitrified.soul_lightning_glass"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_lightning_glass",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.vitrified.black_lightning_glass"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_lightning_glass",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.vitrified.white_lightning_glass"
+    }
+  ]
+}

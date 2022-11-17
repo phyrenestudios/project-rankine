@@ -1,7 +1,7 @@
 {
   "name": "rankine.journal.cat_mineralogy.gem_ores.name",
-  "icon": "rankine:beryl_ore",
-  "category": "rankine:mineralogy",
+  "icon": "rankine:cinnabar_ore",
+  "category": "mineralogy",
   "pages": [
     {
       "type": "text",
@@ -11,55 +11,55 @@
       "type": "spotlight",
       "item": "rankine:lignite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+      "text": "rankine.journal.cat_mineralogy.gem_ores.lignite_ore"
     },
     {
       "type": "spotlight",
       "item": "rankine:subbituminous_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+      "text": "rankine.journal.cat_mineralogy.gem_ores.subbituminous_ore"
     },
     {
       "type": "spotlight",
       "item": "rankine:bituminous_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+      "text": "rankine.journal.cat_mineralogy.gem_ores.bituminous_ore"
     },
     {
       "type": "spotlight",
       "item": "rankine:anthracite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+      "text": "rankine.journal.cat_mineralogy.gem_ores.anthracite_ore"
     },
     {
       "type": "spotlight",
       "item": "rankine:plumbago_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+      "text": "rankine.journal.cat_mineralogy.gem_ores.plumbago_ore"
     },
     {
       "type": "spotlight",
       "item": "rankine:lazurite_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+      "text": "rankine.journal.cat_mineralogy.gem_ores.lazurite_ore"
     },
     {
       "type": "spotlight",
       "item": "rankine:cinnabar_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+      "text": "rankine.journal.cat_mineralogy.gem_ores.cinnabar_ore"
     },
     {
       "type": "spotlight",
       "item": "rankine:beryl_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+      "text": "rankine.journal.cat_mineralogy.gem_ores.beryl_ore"
     },
     {
       "type": "spotlight",
       "item": "rankine:kimberlitic_diamond_ore",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.gem_ores.text2"
+      "text": "rankine.journal.cat_mineralogy.gem_ores.kimberlitic_diamond_ore"
     }
   ]
 }

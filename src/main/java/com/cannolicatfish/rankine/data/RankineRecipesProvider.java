@@ -57,7 +57,6 @@ public class RankineRecipesProvider extends RecipeProvider {
         blastingMap.put(RankineItems.URANINITE.get(),RankineItems.URANIUM_INGOT.get());
         blastingMap.put(RankineItems.STIBNITE.get(),RankineItems.ANTIMONY.get());
         blastingMap.put(RankineItems.XENOTIME.get(),RankineItems.YTTRIUM_INGOT.get());
-        blastingMap.put(RankineItems.CELESTINE.get(),RankineItems.STRONTIUM_INGOT.get());
         blastingMap.put(RankineItems.CHALCOPYRITE.get(),Items.COPPER_INGOT);
         blastingMap.put(RankineItems.PLATINUM_ARSENIDE.get(),RankineItems.PLATINUM_INGOT.get());
         blastingMap.put(RankineItems.RHENIITE.get(),RankineItems.RHENIUM_INGOT.get());

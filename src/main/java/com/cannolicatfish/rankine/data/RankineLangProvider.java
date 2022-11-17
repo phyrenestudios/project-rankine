@@ -1270,6 +1270,16 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mineralogy.mineral_stones.sylvinite","A major source of salt. Found in ocean, beach and desert biomes.");
 
 
+        add("rankine.journal.cat_mineralogy.vitrified.name", "Vitrified Blocks");
+        add("rankine.journal.cat_mineralogy.vitrified.text1","When lightning strikes the ground, it releases large amounts of energy very quickly. This energy can change certain blocks, such as oxidized coppers back into normal. It also can convert some natural blocks.");
+        add("rankine.journal.cat_mineralogy.vitrified.fulgurite","Made from earthy blocks like stones, grasses and dirts.");
+        add("rankine.journal.cat_mineralogy.vitrified.lightning_glass","Mad from sand, silt and desert sand.");
+        add("rankine.journal.cat_mineralogy.vitrified.red_lightning_glass","Made from red sand.");
+        add("rankine.journal.cat_mineralogy.vitrified.soul_lightning_glass","Made from soul sand.");
+        add("rankine.journal.cat_mineralogy.vitrified.black_lightning_glass","Made from black sand.");
+        add("rankine.journal.cat_mineralogy.vitrified.white_lightning_glass","Made from white sand.");
+
+
         add("rankine.journal.cat_mineralogy.fumaroles.name", "Fumaroles");
         add("rankine.journal.cat_mineralogy.fumaroles.text1","Fumaroles are natural vents for gasses trapped inside the crust. They continuously output gas blocks into nearby air space.");
         add("rankine.journal.cat_mineralogy.fumaroles.text2","Generate low in the Overworld and Nether.");

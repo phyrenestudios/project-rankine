@@ -126,6 +126,9 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
     protected static LootTable.Builder dropping(Block block, LootItemCondition.Builder conditionBuilder, LootPoolEntryContainer.Builder<?> p_218494_2_) {
         return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(block).when(conditionBuilder).otherwise(p_218494_2_)));
     }
+    protected static LootTable.Builder droppingWithSilkTouchPlus(Block block, LootPool.Builder alwaysDropBuilder) {
+        return LootTable.lootTable().withPool(alwaysDropBuilder).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(block).when(SILK_TOUCH)));
+    }
 
     protected static LootTable.Builder droppingWithSilkTouch(Block block, LootPoolEntryContainer.Builder<?> builder) {
         return dropping(block, SILK_TOUCH, builder);

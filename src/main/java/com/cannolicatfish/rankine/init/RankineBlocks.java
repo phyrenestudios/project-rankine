@@ -568,11 +568,11 @@ public class RankineBlocks {
     //gravel path?
     public static final RegistryObject<Block> ENDER_SHIRO = BLOCKS.register("ender_shiro", () -> new EnderShiroBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(0.8F).sound(SoundType.ROOTS).randomTicks()));
     public static final RegistryObject<Block> TILLED_SOIL = BLOCKS.register("tilled_soil", () -> new TilledSoilBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> LIGHTNING_GLASS = BLOCKS.register("lightning_glass", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
-    public static final RegistryObject<Block> RED_LIGHTNING_GLASS = BLOCKS.register("red_lightning_glass", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
-    public static final RegistryObject<Block> SOUL_LIGHTNING_GLASS = BLOCKS.register("soul_lightning_glass", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
-    public static final RegistryObject<Block> BLACK_LIGHTNING_GLASS = BLOCKS.register("black_lightning_glass", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
-    public static final RegistryObject<Block> WHITE_LIGHTNING_GLASS = BLOCKS.register("white_lightning_glass", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> LIGHTNING_GLASS = BLOCKS.register("lightning_glass", () -> new LightningGlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> RED_LIGHTNING_GLASS = BLOCKS.register("red_lightning_glass", () -> new LightningGlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> SOUL_LIGHTNING_GLASS = BLOCKS.register("soul_lightning_glass", () -> new LightningGlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> BLACK_LIGHTNING_GLASS = BLOCKS.register("black_lightning_glass", () -> new LightningGlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> WHITE_LIGHTNING_GLASS = BLOCKS.register("white_lightning_glass", () -> new LightningGlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
 
 
 
