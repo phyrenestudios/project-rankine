@@ -1,45 +1,44 @@
 {
   "type": "rankine:evaporation",
-  "total": 8,
-  "cookTime": 12000,
-  "biomes": ["minecraft:desert"],
-  "biomeTags": ["minecraft:is_badlands"],
+  "processTime": 12000,
+  "biomes": {
+    "biomes": ["minecraft:desert"]
+  },
   "input": {
     "fluid": "minecraft:water"
   },
-  "bucket": {
-    "item": "minecraft:water_bucket"
-  },
-  "output1": {
-    "item": "rankine:desert_sand",
-    "weight": 80
-  },
-  "output2": {
-    "item": "rankine:sodium_chloride",
-    "weight": 10
-  },
-  "output3": {
-    "item": "rankine:saltpeter",
-    "weight": 5
-  },
-  "output4": {
-    "item": "rankine:calcium_nugget",
-    "weight": 2
-  },
-  "output5": {
-    "item": "rankine:iodine_nugget",
-    "weight": 1
-  },
-  "output6": {
-    "item": "rankine:lithium_nugget",
-    "weight": 1
-  },
-  "output7": {
-    "item": "rankine:bromine_nugget",
-    "weight": 1
-  },
-  "output8": {
-    "item": "rankine:strontium_nugget",
-    "weight": 1
-  }
+  "outputs": [
+   {
+      "item": "rankine:desert_sand",
+      "weight": 80
+    },
+    {
+      "item": "rankine:sodium_chloride",
+      "weight": 10
+    },
+    {
+      "item": "rankine:saltpeter",
+      "weight": 5
+    },
+    {
+      "item": "rankine:calcium_nugget",
+      "weight": 2
+    },
+    {
+      "item": "rankine:iodine_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:lithium_nugget",
+      "weight": 1
+    },
+   {
+      "item": "rankine:bromine_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:strontium_nugget",
+      "weight": 1
+    }
+  ]
 }

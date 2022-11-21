@@ -1,11 +1,12 @@
 {
   "type": "rankine:evaporation",
-  "processTime": 12000,
+  "processTime": 200,
+  "consumeFluid": true,
   "biomes": {
-    "biomeTags": ["forge:is_underground"]
+    "biomeTags": ["minecraft:is_nether"]
   },
   "input": {
-    "fluid": "minecraft:water"
+    "fluid": "minecraft:lava"
   },
   "outputs": [
     {

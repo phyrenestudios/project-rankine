@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/root",
+  "parent": "rankine:challenges/soil_collector",
   "display": {
     "icon": {
       "item": "rankine:black_dacite"

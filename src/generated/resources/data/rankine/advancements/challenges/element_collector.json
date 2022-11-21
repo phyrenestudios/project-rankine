@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/root",
+  "parent": "rankine:challenges/gas_collector",
   "display": {
     "icon": {
       "item": "rankine:element"
@@ -1410,6 +1410,42 @@
           }
         ]
       }
+    },
+    "iron_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:iron_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "copper_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:copper_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "gold_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:gold_ingot"
+            ]
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -1760,6 +1796,15 @@
     ],
     [
       "endositum_ingot"
+    ],
+    [
+      "iron_ingot"
+    ],
+    [
+      "copper_ingot"
+    ],
+    [
+      "gold_ingot"
     ]
   ]
 }

@@ -1,9 +1,9 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.advancements.AlloyEnchantabilityPredicate;
 import com.cannolicatfish.rankine.advancements.ExactCompositionPredicate;
 import com.cannolicatfish.rankine.advancements.HarvestLevelPredicate;
 import com.cannolicatfish.rankine.advancements.IncludesCompositionPredicate;
-import com.cannolicatfish.rankine.advancements.AlloyEnchantabilityPredicate;
 import com.cannolicatfish.rankine.entities.CannonballEntity;
 import com.cannolicatfish.rankine.entities.CarcassEntity;
 import com.cannolicatfish.rankine.items.GasBottleItem;
@@ -11,37 +11,34 @@ import com.cannolicatfish.rankine.potion.RankinePotions;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import net.minecraft.Util;
 import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
-import net.minecraft.core.dispenser.DispenseItemBehavior;
-import net.minecraft.core.Position;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Position;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.Util;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
-
-import java.util.*;
-
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+
+import java.util.*;
 
 public class RankineRecipes {
 
@@ -188,9 +185,9 @@ public class RankineRecipes {
 
     public static void registerPredicates() {
         ItemPredicate.register(new ResourceLocation("rankine","harvest_level_check"), HarvestLevelPredicate::new);
-        ItemPredicate.register(new ResourceLocation("rankine","enchant_check"), AlloyEnchantabilityPredicate::new);
-        ItemPredicate.register(new ResourceLocation("rankine","exact_composition"), ExactCompositionPredicate::new);
-        ItemPredicate.register(new ResourceLocation("rankine","includes_composition"), IncludesCompositionPredicate::new);
+        ItemPredicate.register(new ResourceLocation("rankine","enchantability_check"), AlloyEnchantabilityPredicate::new);
+        ItemPredicate.register(new ResourceLocation("rankine","exact_composition_check"), ExactCompositionPredicate::new);
+        ItemPredicate.register(new ResourceLocation("rankine","includes_composition_check"), IncludesCompositionPredicate::new);
     }
 
     public static String generateAlloyString(Container inv, Level level) {

@@ -1,8 +1,9 @@
 {
-  "parent": "rankine:challenges/root",
+  "parent": "rankine:challenges/bronze_harvest",
   "display": {
     "icon": {
-      "item": "rankine:pewter_sword"
+      "item": "rankine:pewter_sword",
+      "nbt": "{Damage:0}"
     },
     "title": {
       "translate": "rankine.advancements.challenges.pewter_enchant.title"
@@ -15,18 +16,20 @@
     "announce_to_chat": true,
     "hidden": false
   },
+  "rewards": {
+    "experience": 200
+  },
   "criteria": {
-    "rankine:pewter_tool": {
+    "pewter_tool": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:pewter_sword"
-          },
-          {
-            "type": "rankine:enchant_check",
+            "type": "rankine:enchantability_check",
             "tag": "forge:pewter_tools",
-            "ench": 14
+            "level": {
+              "min": 14
+            }
           }
         ]
       }
@@ -34,7 +37,7 @@
   },
   "requirements": [
     [
-      "rankine:pewter_tool"
+      "pewter_tool"
     ]
   ]
 }

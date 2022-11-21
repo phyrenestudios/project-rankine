@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "0": {
+    "meteoric_iron": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "0"
+      "meteoric_iron"
     ]
   ]
 }

@@ -1,8 +1,9 @@
 {
-  "parent": "rankine:story/craft_alloy_furnace",
+  "parent": "rankine:story/craft_stone_hammer",
   "display": {
     "icon": {
-      "item": "rankine:alloy_hammer"
+      "item": "rankine:alloy_hammer",
+      "nbt": "{Damage:0}"
     },
     "title": {
       "translate": "rankine.advancements.story.craft_alloy_hammer.title"
@@ -10,20 +11,22 @@
     "description": {
       "translate": "rankine.advancements.story.craft_alloy_hammer.description"
     },
-    "frame": "task",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
   "criteria": {
-    "0": {
+    "hammer": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [
-              "rankine:alloy_hammer"
-            ]
+            "type": "rankine:harvest_level_check",
+            "tag": "forge:hammers",
+            "level": {
+              "min": 2
+            }
           }
         ]
       }
@@ -31,7 +34,7 @@
   },
   "requirements": [
     [
-      "0"
+      "hammer"
     ]
   ]
 }

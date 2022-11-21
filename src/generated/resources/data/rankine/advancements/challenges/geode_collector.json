@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/root",
+  "parent": "rankine:challenges/meteoric_materials",
   "display": {
     "icon": {
       "item": "rankine:tourmaline_geode"

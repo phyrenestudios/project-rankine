@@ -974,7 +974,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_bandage.title", "Quick Healing");
         add("rankine.advancements.story.craft_bandage.description", "Heal some minor damage with a bandage");
         add("rankine.advancements.story.craft_alloy_hammer.title", "Crushed");
-        add("rankine.advancements.story.craft_alloy_hammer.description", "Make a hammer with a harvest level of 2 or greater");
+        add("rankine.advancements.story.craft_alloy_hammer.description", "Make a hammer with a harvest level of 2 or greater (alloys required)");
         add("rankine.advancements.story.craft_trampoline.title", "Boing!");
         add("rankine.advancements.story.craft_trampoline.description", "Make a trampoline to launch high into the air");
         add("rankine.advancements.story.craft_fertilizer.title", "Weedhelper");
@@ -982,7 +982,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_herbicide.title", "Weedkiller");
         add("rankine.advancements.story.craft_herbicide.description", "Produce herbicide from juglone to clear patches of grass and other plants");
         add("rankine.advancements.story.get_meteoric_iron.title", "Iron from Space");
-        add("rankine.advancements.story.get_meteoric_iron.description", "Find a meteorite and crush the ore in it to get meteoric iron");
+        add("rankine.advancements.story.get_meteoric_iron.description", "Find a meteorite and crush the ore in it to get meteoric iron, a native alloy of invar");
         add("rankine.advancements.story.get_ironstone.title", "Iron in the Rough");
         add("rankine.advancements.story.get_ironstone.description", "Find ironstone under the sands of a desert or mesa");
         add("rankine.advancements.story.get_bog_iron.title", "Iron in the Flood");
@@ -1032,12 +1032,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.challenges.rock_collector.description", "Collect all the new types of rocks");
         add("rankine.advancements.challenges.dirt_collector.title", "We Have the Dirtiest Dirt");
         add("rankine.advancements.challenges.dirt_collector.description", "Collect all the new types of soil, not dirt");
+        add("rankine.advancements.challenges.gas_collector.title", "Frobscottle");
+        add("rankine.advancements.challenges.gas_collector.description", "Bottle all types of gasses, consumption optional");
         add("rankine.advancements.challenges.element_collector.title", "Periodic Collector");
-        add("rankine.advancements.challenges.element_collector.description", "Collect every element in the Periodic Table");
-        add("rankine.advancements.challenges.make_all_power_cells.title", "Energized");
-        add("rankine.advancements.challenges.make_all_power_cells.description", "Make every type of Power Cell");
-        add("rankine.advancements.challenges.craft_cannonball.title", "Cannonball");
-        add("rankine.advancements.challenges.craft_cannonball.description", "Use a cannonball in a dispenser");
+        add("rankine.advancements.challenges.element_collector.description", "Collect every element ingot in the extended Periodic Table");
         add("rankine.advancements.challenges.totem_collector.title", "On the Other Hand");
         add("rankine.advancements.challenges.totem_collector.description", "Make every type of Totem");
         add("rankine.advancements.challenges.alloy_collector.title", "Worldmoulder");
@@ -1045,14 +1043,14 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.challenges.bronze_harvest.title", "Skipping Stones");
         add("rankine.advancements.challenges.bronze_harvest.description", "Make a Bronze Pickaxe with a Harvest Level of 3 (or Steel equivalent)");
         add("rankine.advancements.challenges.pewter_enchant.title", "Hidden Power");
-        add("rankine.advancements.challenges.pewter_enchant.description", "Make a Pewter Tool with an Enchantability greater than or equal to 14");
+        add("rankine.advancements.challenges.pewter_enchant.description", "Make a Pewter Tool with an Enchantability greater than 13");
         add("rankine.advancements.challenges.colored_gold_netherite.title", "Gold Standard");
         add("rankine.advancements.challenges.colored_gold_netherite.description", "Make a Colored Gold tool using Netherite instead of Gold");
-        add("rankine.advancements.challenges.make_pancake_breakfast.title", "Fulfilling");
-        add("rankine.advancements.challenges.make_pancake_breakfast.description", "Make a Pancake Breakfast");
-        add("rankine.advancements.challenges.find_meteoric_materials.title", "Stellar Performance");
-        add("rankine.advancements.challenges.find_meteoric_materials.description", "Find all the forms of meteoric iron");
-        add("rankine.advancements.challenges.geode_collector.title", "Gifts from the Earth");
+        add("rankine.advancements.challenges.craft_pancake_breakfast.title", "Fulfilling Feast");
+        add("rankine.advancements.challenges.craft_pancake_breakfast.description", "Make a stack of Pancake Breakfast");
+        add("rankine.advancements.challenges.meteoric_materials.title", "Stellar Performance");
+        add("rankine.advancements.challenges.meteoric_materials.description", "Find all the forms of raw meteoric ores");
+        add("rankine.advancements.challenges.geode_collector.title", "Gifts of the Earth");
         add("rankine.advancements.challenges.geode_collector.description", "Find all of the different types of geodes");
 
 
@@ -1228,6 +1226,13 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_materials.tree_tapping.tap_line", "Tap lines are essentially a pipe network for tree taps to output to a tap barrel. Fluids can not flow upwards. Tap lines will connect to a tree tap from below or to a flood gate on any side. ~30 block max search distance.");
 
 
+        add("rankine.journal.cat_materials.crucible.name", "Crucible");
+        add("rankine.journal.cat_materials.crucible.text1", "The crucible is a device capable of melting the materials required to forge steel and other molten products. Place the crucible above a heat source. The top four slots of the Crucible are your inputs. Each item used as an input must be unique (cannot be used in more than one slot) and some inputs cannot be mixed together.");
+        add("rankine.journal.cat_materials.crucible.text2", "Valid heat sources include: $(li)Fire$() $(li)Lava$() $(li)Magma Block$() $(li)Campfires");
+
+        add("rankine.journal.cat_materials.evaporation_tower.name", "Evaporation Tower");
+        add("rankine.journal.cat_materials.evaporation_tower.text1", "A method to remove heavy materials from water. When constructed, the tower will slowly and passively generate various resources (can only run when outpute is empty, use a hopper!!). The resource lootable depends on the location. By default, water can be evaporated in the following different locations: $(li)Oceans $(li)Deserts $(li)Rivers and Swamps $(li)Caves $(li)Elsewhere");
+        add("rankine.journal.cat_materials.evaporation_tower.text2", "Construction notes: $(li)The inside is filled with the desired fluid. $(li)The walls are made from any #forge:sheetmetals. $(li)More layers of sheet metal and fluid can be added to decrease processing time by 4% each layer (max of 20). $(br2)By default, the sheetmetal in the tower will occasionally break, which will limit the max height to that broken layer. Configurable.");
 
         //Mechanics
         add("rankine.journal.cat_mechanics.name", "Mechanics");

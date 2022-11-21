@@ -4,10 +4,7 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.WeightedCollection;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.*;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
@@ -27,49 +24,61 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class EvaporationRecipe implements Recipe<Container> {
 
-    private final int total;
-    private final int time;
+    private final ResourceLocation id;
+    private final int processTime;
     private final FluidStack fluid;
+    private final boolean consumeFluid;
     private final List<String> biomes;
     private final List<String> biomeTags;
-    private final NonNullList<ItemStack> recipeOutputs;
-    private final ResourceLocation id;
+    private final NonNullList<Ingredient> recipeOutputs;
     private final NonNullList<Float> weights;
-    private final NonNullList<Integer> mins;
-    private final NonNullList<Integer> maxes;
-    private final boolean large;
 
     public static final EvaporationRecipe.Serializer SERIALIZER = new EvaporationRecipe.Serializer();
 
-    public EvaporationRecipe(ResourceLocation idIn, boolean largeIn, int totalIn, int timeIn, FluidStack fluidIn, List<String> biomesIn, List<String> biomesTagsIn, NonNullList<ItemStack> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn) {
-        this.large = largeIn;
-        this.total = totalIn;
-        this.time = timeIn;
+    public EvaporationRecipe(ResourceLocation idIn, int timeIn, FluidStack fluidIn, boolean consumeFluid, List<String> biomesIn, List<String> biomesTagsIn, NonNullList<Ingredient> recipeOutputsIn, NonNullList<Float> weightsIn) {
         this.id = idIn;
+        this.processTime = timeIn;
         this.fluid = fluidIn;
+        this.consumeFluid = consumeFluid;
         this.biomes = biomesIn;
         this.biomeTags = biomesTagsIn;
         this.recipeOutputs = recipeOutputsIn;
         this.weights = weightsIn;
-        this.mins = minsIn;
-        this.maxes = maxesIn;
     }
 
-    public int getTime() {
-        return time;
+    @Override
+    public RecipeType<?> getType() {
+        return RankineRecipeTypes.EVAPORATION;
     }
 
     public String getGroup() {
         return "";
     }
 
-    public boolean isLarge() {
-        return this.large;
+    public int getProcessTime() {
+        return processTime;
+    }
+    public FluidStack getFluid() {
+        return this.fluid.copy();
+    }
+    public boolean getConsumeFluid() {
+        return this.consumeFluid;
+    }
+    public List<String> getBiomes() {
+        return this.biomes;
+    }
+    public List<String> getBiomeTags() {
+        return this.biomeTags;
+    }
+    public NonNullList<Ingredient> getOutputs() {
+        return this.recipeOutputs;
+    }
+    public NonNullList<Float> getWeights() {
+        return weights;
     }
 
     @Override
@@ -77,32 +86,9 @@ public class EvaporationRecipe implements Recipe<Container> {
         return NonNullList.withSize(1,Ingredient.EMPTY);
     }
 
-    public FluidStack getFluid() {
-        return this.fluid.copy();
-    }
-
-    public List<String> getBiomes() {
-        return this.biomes;
-    }
-    public List<String> getBiomeTags() {
-        return this.biomeTags;
-    }
-
-    public NonNullList<ItemStack> getRecipeOutputs() {
-        return recipeOutputs;
-    }
-
     public Float getChance(int index) {
         float in = getWeights().get(index);
         return (in/getWeights().stream().reduce(0f, Float::sum));
-    }
-
-    public NonNullList<Float> getWeights() {
-        return weights;
-    }
-
-    public NonNullList<ItemStack> getOutputs() {
-        return this.recipeOutputs;
     }
 
     @Override
@@ -110,8 +96,8 @@ public class EvaporationRecipe implements Recipe<Container> {
         return false;
     }
 
-    public boolean fluidMatch(Fluid input) {
-        return input.equals(this.fluid.getFluid());
+    public boolean fluidMatch(Fluid fluidIn) {
+        return fluidIn.isSame(this.getFluid().getFluid());
     }
 
     @Override
@@ -124,23 +110,23 @@ public class EvaporationRecipe implements Recipe<Container> {
         return ItemStack.EMPTY;
     }
 
-    public NonNullList<Integer> getMaxes() {
-        return maxes;
-    }
 
     public ItemStack getEvaporationResult(Level levelIn, ResourceLocation biomeName) {
+        WeightedCollection<ItemStack> col = new WeightedCollection<>();
         if (this.getBiomes().contains(biomeName.toString()) || biomeTagCheck(levelIn, biomeName, this.getBiomeTags())) {
-            WeightedCollection<ItemStack> col = new WeightedCollection<>();
-            for (int i = 0; i < this.recipeOutputs.size(); i++) {
-                col.add(this.weights.get(i),new ItemStack(this.recipeOutputs.get(i).getItem(), this.maxes.get(i).equals(this.mins.get(i)) ? this.maxes.get(i) : levelIn.getRandom().nextInt(this.maxes.get(i) - this.mins.get(i)) + this.mins.get(i)));
+            for (int i = 0; i < this.getOutputs().size(); i++) {
+                ItemStack[] curOut = this.getOutputs().get(i).getItems();
+                if (curOut.length > 0) {
+                    col.add(this.getWeights().get(i), new ItemStack(curOut[levelIn.getRandom().nextInt(curOut.length)].getItem()));
+                } else {
+                    col.add(this.getWeights().get(i), ItemStack.EMPTY);
+                }
             }
-            return col.getRandomElement().copy();
         }
-        return ItemStack.EMPTY;
+        return col.getEntries().isEmpty() ? ItemStack.EMPTY : col.getRandomElement().copy();
     }
 
     private static boolean biomeTagCheck(Level levelIn, ResourceLocation biomeName, List<String> recipeBiomes) {
-
         for (String b : recipeBiomes) {
             ResourceLocation RS = ResourceLocation.tryParse(b);
             if (RS != null) {
@@ -189,160 +175,108 @@ public class EvaporationRecipe implements Recipe<Container> {
         }
     }
 
-    @Override
-    public RecipeType<?> getType() {
-        return RankineRecipeTypes.EVAPORATION;
-    }
-
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<EvaporationRecipe> {
-        private static final ResourceLocation NAME = new ResourceLocation("rankine", "evaporation");
-        public EvaporationRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            int t = json.get("total").getAsInt();
-            int w = json.has("cookTime") ? json.get("cookTime").getAsInt() : 6400;
-            boolean l = !json.has("large") || json.get("large").getAsBoolean();
-            FluidStack fluid = FluidHelper.getFluidStack(GsonHelper.getAsJsonObject(json, "input"));
+        @Override
+        public EvaporationRecipe fromJson(ResourceLocation recipeId, JsonObject jsonObject) {
+            int processTime = jsonObject.has("processTime") ? jsonObject.get("processTime").getAsInt() : 20000;
+            FluidStack fluid = FluidHelper.getFluidStack(GsonHelper.getAsJsonObject(jsonObject, "input"));
+            boolean consumeFluid = GsonHelper.getAsBoolean(jsonObject, "consumeFluid", false);
 
-            JsonArray b = json.has("biomes") ? GsonHelper.getAsJsonArray(json, "biomes") : new JsonArray();
+            JsonElement biomesElement = jsonObject.has("biomes") ? jsonObject.get("biomes") : null;
             List<String> biomes = new ArrayList<>();
-            for (int i = 0; i < b.size(); i++) {
-                biomes.add(b.get(i).getAsString());
-            }
-            JsonArray bt = json.has("biomeTags") ? GsonHelper.getAsJsonArray(json, "biomeTags") : new JsonArray();
             List<String> biomeTags = new ArrayList<>();
-            for (int i = 0; i < bt.size(); i++) {
-                biomeTags.add(bt.get(i).getAsString());
-            }
-            NonNullList<ItemStack> stacks = NonNullList.withSize(t, ItemStack.EMPTY);
-            NonNullList<Float> weights = NonNullList.withSize(t, 0f);
-            NonNullList<Integer> mins = NonNullList.withSize(t, 1);
-            NonNullList<Integer> maxes = NonNullList.withSize(t, 1);
-            for (int i = 0; i < t; i++) {
-                String output = "output" + (i+1);
-                if (json.has(output)) {
-                    JsonObject object = GsonHelper.getAsJsonObject(json, output);
-                    stacks.set(i, EvaporationRecipe.deserializeItem(object));
-                    if (object.has("weight")){
-                        weights.set(i,object.get("weight").getAsFloat());
-                    } else {
-                        weights.set(i,0f);
+            if (biomesElement != null && biomesElement.isJsonObject()) {
+                JsonObject biomesObject = biomesElement.getAsJsonObject();
+                if (biomesObject.has("biomes")) {
+                    for (JsonElement b : GsonHelper.getAsJsonArray(biomesObject, "biomes")) {
+                        biomes.add(b.getAsString());
                     }
-
-                    if (object.has("min")){
-                        mins.set(i,object.get("min").getAsInt());
-                    } else {
-                        mins.set(i,1);
+                } else if (biomesObject.has("biomeTags")) {
+                    for (JsonElement b : GsonHelper.getAsJsonArray(biomesObject, "biomeTags")) {
+                        biomeTags.add(b.getAsString());
                     }
-
-                    if (object.has("max")){
-                        maxes.set(i,object.get("max").getAsInt());
-                    } else {
-                        maxes.set(i,1);
-                    }
-
-
                 }
             }
 
-            return new EvaporationRecipe(recipeId,l, t, w, fluid, biomes, biomeTags, stacks, weights, mins,maxes);
+            JsonArray outputsArray = GsonHelper.getAsJsonArray(jsonObject, "outputs");
+            NonNullList<Ingredient> stacks = NonNullList.withSize(outputsArray.size(), Ingredient.EMPTY);
+            NonNullList<Float> weights = NonNullList.withSize(outputsArray.size(), 0f);
+
+            int i = 0;
+            for (JsonElement element : outputsArray) {
+                if (element.isJsonObject()) {
+                    JsonObject object = element.getAsJsonObject();
+                    if (object.has("item") || object.has("tag")) {
+                        stacks.set(i, Ingredient.fromJson(object));
+                    } else {
+                        stacks.set(i, Ingredient.EMPTY);
+                    }
+                    if (object.has("weight")){
+                        weights.set(i,object.get("weight").getAsFloat());
+                    } else {
+                        weights.set(i,0F);
+                    }
+                }
+                i++;
+            }
+
+            return new EvaporationRecipe(recipeId, processTime, fluid, consumeFluid, biomes, biomeTags, stacks, weights);
         }
 
         public EvaporationRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
-
-            boolean l = buffer.readBoolean();
-            int t = buffer.readInt();
-            int w = buffer.readInt();
-            FluidStack input = buffer.readFluidStack();
+            int processTime = buffer.readInt();
+            FluidStack fluid = buffer.readFluidStack();
+            boolean consumeFluid = buffer.readBoolean();
 
             int biomesSize = buffer.readInt();
-            String[] biomeArray = new String[biomesSize];
-            for (int i = 0; i < biomesSize; i++) {
-                biomeArray[i] = buffer.readUtf();
+            List<String> biomes = new ArrayList<>();
+            if (biomesSize > 0) {
+                for (int i = 0; i < biomesSize; i++) {
+                    biomes.add(buffer.readUtf());
+                }
             }
-            List<String> biomes = Arrays.asList(biomeArray);
-            
+
             int biomeTagsSize = buffer.readInt();
-            String[] biomeTagArray = new String[biomeTagsSize];
-            for (int i = 0; i < biomeTagsSize; i++) {
-                biomeTagArray[i] = buffer.readUtf();
-            }
-            List<String> biomeTags = Arrays.asList(biomeTagArray);
-
-            NonNullList<ItemStack> stacks = NonNullList.withSize(t, ItemStack.EMPTY);
-            for(int k = 0; k < stacks.size(); ++k) {
-                stacks.set(k, buffer.readItem());
+            List<String> biomeTags = new ArrayList<>();
+            if (biomeTagsSize > 0) {
+                for (int i = 0; i < biomeTagsSize; i++) {
+                    biomes.add(buffer.readUtf());
+                }
             }
 
+            int t = buffer.readVarInt();
+            NonNullList<Ingredient> stacks = NonNullList.withSize(t, Ingredient.EMPTY);
             NonNullList<Float> weights = NonNullList.withSize(t, 0f);
-            for(int k = 0; k < weights.size(); ++k) {
-                weights.set(k, buffer.readFloat());
-            }
 
-            NonNullList<Integer> mins = NonNullList.withSize(t,1);
-            for(int k = 0; k < mins.size(); ++k) {
-                mins.set(k, buffer.readInt());
+            for (int i = 0; i < stacks.size(); i++) {
+                stacks.set(i,Ingredient.fromNetwork(buffer));
+                weights.set(i,buffer.readFloat());
             }
-
-            NonNullList<Integer> maxes = NonNullList.withSize(t,1);
-            for(int k = 0; k < maxes.size(); ++k) {
-                maxes.set(k, buffer.readInt());
-            }
-
-            return new EvaporationRecipe(recipeId, l, t, w,input, biomes, biomeTags, stacks, weights, mins, maxes);
+            return new EvaporationRecipe(recipeId, processTime, fluid, consumeFluid, biomes, biomeTags, stacks, weights);
         }
 
         public void toNetwork(FriendlyByteBuf buffer, EvaporationRecipe recipe) {
-            buffer.writeBoolean(recipe.isLarge());
-            buffer.writeInt(recipe.total);
-            buffer.writeInt(recipe.time);
-            buffer.writeFluidStack(recipe.fluid);
+            buffer.writeInt(recipe.getProcessTime());
+            buffer.writeFluidStack(recipe.getFluid());
+            buffer.writeBoolean(recipe.getConsumeFluid());
 
             buffer.writeInt(recipe.getBiomes().size());
-            for (int i = 0; i < recipe.getBiomes().size(); i++) {
-                buffer.writeUtf(recipe.getBiomes().get(i));
+            if (recipe.getBiomes().size() > 0) {
+                for (int i = 0; i < recipe.getBiomes().size(); i++) {
+                    buffer.writeUtf(recipe.getBiomes().get(i));
+                }
             }
             buffer.writeInt(recipe.getBiomeTags().size());
-            for (int i = 0; i < recipe.getBiomeTags().size(); i++) {
-                buffer.writeUtf(recipe.getBiomeTags().get(i));
+            if (recipe.getBiomeTags().size() > 0) {
+                for (int i = 0; i < recipe.getBiomeTags().size(); i++) {
+                    buffer.writeUtf(recipe.getBiomeTags().get(i));
+                }
             }
 
-            int count = 0;
-            for(ItemStack stack : recipe.recipeOutputs) {
-                buffer.writeItem(stack);
-                count++;
-            }
-            while (count < recipe.total) {
-                buffer.writeItem(ItemStack.EMPTY);
-                count++;
-            }
-
-            count = 0;
-            for (float chance : recipe.weights) {
-                buffer.writeFloat(chance);
-                count++;
-            }
-            while (count < recipe.total) {
-                buffer.writeFloat(0f);
-                count++;
-            }
-
-            count = 0;
-            for (int add : recipe.mins) {
-                buffer.writeInt(add);
-                count++;
-            }
-            while (count < recipe.total) {
-                buffer.writeInt(1);
-                count++;
-            }
-
-            count = 0;
-            for (int add : recipe.maxes) {
-                buffer.writeInt(add);
-                count++;
-            }
-            while (count < recipe.total) {
-                buffer.writeInt(1);
-                count++;
+            buffer.writeVarInt(recipe.getOutputs().size());
+            for (int i = 0; i < recipe.getOutputs().size(); i++) {
+                recipe.getOutputs().get(i).toNetwork(buffer);
+                buffer.writeFloat(recipe.getWeights().get(i));
             }
         }
     }

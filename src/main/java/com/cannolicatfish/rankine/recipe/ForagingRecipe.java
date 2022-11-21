@@ -189,8 +189,8 @@ public class ForagingRecipe implements Recipe<Container> {
 
     public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ForagingRecipe> {
         @Override
-        public ForagingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            JsonElement biomesArray = json.has("biomes") ? json.get("biomes") : null;
+        public ForagingRecipe fromJson(ResourceLocation recipeId, JsonObject jsonObject) {
+            JsonElement biomesArray = jsonObject.has("biomes") ? jsonObject.get("biomes") : null;
             List<String> biomes = new ArrayList<>();
             List<String> biomeTags = new ArrayList<>();
             boolean allBiomes = true;
@@ -204,10 +204,10 @@ public class ForagingRecipe implements Recipe<Container> {
                 }
             }
 
-            Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
+            Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(jsonObject, "input"));
 
 
-            JsonArray outputsArray = GsonHelper.getAsJsonArray(json, "outputs");
+            JsonArray outputsArray = GsonHelper.getAsJsonArray(jsonObject, "outputs");
             NonNullList<Ingredient> stacks = NonNullList.withSize(outputsArray.size(), Ingredient.EMPTY);
             NonNullList<Float> weights = NonNullList.withSize(outputsArray.size(), 0f);
             NonNullList<Boolean> enchantements = NonNullList.withSize(outputsArray.size(), false);
@@ -218,12 +218,18 @@ public class ForagingRecipe implements Recipe<Container> {
                     JsonObject object = element.getAsJsonObject();
                     if (object.has("item") || object.has("tag")) {
                         stacks.set(i, Ingredient.fromJson(object));
+                    } else {
+                        stacks.set(i, Ingredient.EMPTY);
                     }
                     if (object.has("weight")){
                         weights.set(i,object.get("weight").getAsFloat());
+                    } else {
+                        weights.set(i,1F);
                     }
                     if (object.has("enchantmentRequired")){
                         enchantements.set(i,object.get("enchantmentRequired").getAsBoolean());
+                    } else {
+                        enchantements.set(i, false);
                     }
                 }
                 i++;

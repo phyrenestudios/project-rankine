@@ -979,15 +979,15 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         //Beehive Oven
         for (Map.Entry<Ingredient,Block> entry : BEEHIVE_OVEN_MINERAL_MAP.entrySet()) {
-            BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue(), 2400, 4800).save(consumer,new ResourceLocation("rankine:"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
+            BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue(), 2400, 4800).save(consumer,new ResourceLocation("rankine:beehive_oven/"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
         }
         for (Map.Entry<Ingredient,Block> entry : BEEHIVE_OVEN_OTHER_MAP.entrySet()) {
-            BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue()).save(consumer,new ResourceLocation("rankine:"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
+            BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue()).save(consumer,new ResourceLocation("rankine:beehive_oven/"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
         }
-        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.STONES_LIMESTONE), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:quicklime_from_limestone_beehive_oven_cooking"));
-        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.STONES_DOLOMITE), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:quicklime_from_dolomite_beehive_oven_cooking"));
-        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(ItemTags.SAND), Blocks.GLASS).save(consumer, new ResourceLocation("rankine:glass_from_sand_beehive_oven_cooking"));
-        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.SILT), Blocks.GLASS).save(consumer, new ResourceLocation("rankine:glass_from_silt_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.STONES_LIMESTONE), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:beehive_oven/quicklime_from_limestone_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.STONES_DOLOMITE), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:beehive_oven/quicklime_from_dolomite_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(ItemTags.SAND), Blocks.GLASS).save(consumer, new ResourceLocation("rankine:beehive_oven/glass_from_sand_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.SILT), Blocks.GLASS).save(consumer, new ResourceLocation("rankine:beehive_oven/glass_from_silt_beehive_oven_cooking"));
 
 
         //Campfire

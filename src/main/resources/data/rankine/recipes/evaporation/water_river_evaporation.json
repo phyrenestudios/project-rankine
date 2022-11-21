@@ -1,64 +1,64 @@
 {
   "type": "rankine:evaporation",
-  "total": 13,
-  "cookTime": 12000,
-  "biomeTags": ["minecraft:is_river","forge:is_swamp"],
+  "processTime": 12000,
+  "biomes": {
+    "biomeTags": ["minecraft:is_river","forge:is_swamp"]
+  },
   "input": {
     "fluid": "minecraft:water"
   },
-  "bucket": {
-    "item": "minecraft:water_bucket"
-  },
-  "output1": {
-    "item": "minecraft:sand",
-    "weight": 30
-  },
-  "output2": {
-    "item": "rankine:silt",
-    "weight": 50
-  },
-  "output3": {
-    "item": "minecraft:clay_ball",
-    "weight": 20
-  },
-  "output4": {
-    "item": "rankine:alluvium",
-    "weight": 6
-  },
-  "output5": {
-    "item": "rankine:slag",
-    "weight": 6
-  },
-  "output6": {
-    "item": "rankine:borax",
-    "weight": 4
-  },
-  "output7": {
-    "item": "rankine:thenardite",
-    "weight": 4
-  },
-  "output8": {
-    "item": "rankine:trona",
-    "weight": 4
-  },
-  "output9": {
-    "item": "rankine:cadmium_nugget",
-    "weight": 1
-  },
-  "output10": {
-    "item": "rankine:chromium_nugget",
-    "weight": 1
-  },
-  "output11": {
-    "item": "rankine:mercury_nugget",
-    "weight": 1
-  },
-  "output12": {
-    "item": "minecraft:gold_nugget",
-    "weight": 1
-  },
-  "output13": {
-    "item": "rankine:copper_nugget",
-    "weight": 2
-  }
+  "outputs": [
+    {
+      "item": "minecraft:sand",
+      "weight": 30
+    },
+    {
+      "item": "rankine:silt",
+      "weight": 50
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "weight": 20
+    },
+    {
+      "item": "rankine:alluvium",
+      "weight": 6
+    },
+    {
+      "item": "rankine:slag",
+      "weight": 6
+    },
+    {
+      "item": "rankine:borax",
+      "weight": 4
+    },
+    {
+      "item": "rankine:thenardite",
+      "weight": 4
+    },
+    {
+      "item": "rankine:trona",
+      "weight": 4
+    },
+    {
+      "item": "rankine:cadmium_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:chromium_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:mercury_nugget",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:gold_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:copper_nugget",
+      "weight": 2
+    }
+  ]
 }
