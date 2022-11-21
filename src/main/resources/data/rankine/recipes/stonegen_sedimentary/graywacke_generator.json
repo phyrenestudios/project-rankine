@@ -4,9 +4,6 @@
   "input1": {
     "item": "rankine:light_gravel"
   },
-  "input2": {
-    "item": "minecraft:quartz_block"
-  },
   "result": {
     "block": "rankine:graywacke"
   }

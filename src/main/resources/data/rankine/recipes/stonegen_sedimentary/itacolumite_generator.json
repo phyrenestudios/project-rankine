@@ -4,9 +4,6 @@
   "input1": {
     "item": "rankine:loamy_sand"
   },
-  "input2": {
-    "item": "rankine:muscovite_block"
-  },
   "result": {
     "block": "rankine:itacolumite"
   }

@@ -4,9 +4,6 @@
   "input1": {
     "item": "minecraft:soul_sand"
   },
-  "input2": {
-    "item": "minecraft:bone_block"
-  },
   "result": {
     "block": "rankine:soul_sandstone"
   }

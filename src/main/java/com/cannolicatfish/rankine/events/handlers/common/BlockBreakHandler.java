@@ -22,6 +22,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
@@ -36,7 +37,7 @@ import java.util.*;
 
 public class BlockBreakHandler {
     public static void blockBreakingEvents(BlockEvent.BreakEvent event) {
-        ServerLevel levelIn = (ServerLevel) event.getWorld();
+        Level levelIn = event.getPlayer().getLevel();
         Random rand = levelIn.random;
         Player player = event.getPlayer();
         BlockPos pos = event.getPos();

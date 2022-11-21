@@ -2,10 +2,7 @@
   "type": "rankine:rock_generator",
   "genType": "sedimentary",
   "input1": {
-    "item": "minecraft:calcite"
-  },
-  "input2": {
-    "item": "minecraft:calcite"
+    "item": "rankine:calcite"
   },
   "result": {
     "block": "rankine:limestone"

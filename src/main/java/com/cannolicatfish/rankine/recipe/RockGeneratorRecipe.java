@@ -109,12 +109,10 @@ public class RockGeneratorRecipe implements Recipe<Container> {
     }
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        if (this.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {
-            return NonNullList.of(Ingredient.EMPTY, ingredient1, ingredient2, Ingredient.of(new ItemStack(RankineItems.SEDIMENT_FAN.get())));
-        } else if (this.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS))
+        if (this.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS))
         {
             return NonNullList.of(Ingredient.EMPTY, ingredient1, Ingredient.of(new ItemStack(Items.SOUL_SOIL)),Ingredient.of(new ItemStack(Items.BLUE_ICE)));
-        } else if (this.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC) || this.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC)) {
+        } else if (this.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC) || this.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC) || this.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {
             return NonNullList.of(Ingredient.EMPTY, ingredient1);
         } else {
             return NonNullList.of(Ingredient.EMPTY, ingredient1, ingredient2);
