@@ -1,48 +1,48 @@
 {
   "type": "rankine:evaporation",
-  "total": 9,
-  "cookTime": 12000,
-  "biomeTags": ["minecraft:is_ocean","forge:is_beach"],
+  "processTime": 12000,
+  "biomes": {
+    "biomeTags": ["minecraft:is_ocean","forge:is_beach"]
+  },
   "input": {
     "fluid": "minecraft:water"
   },
-  "bucket": {
-    "item": "minecraft:water_bucket"
-  },
-  "output1": {
-    "item": "minecraft:sand",
-    "weight": 80
-  },
-  "output2": {
-    "item": "rankine:sodium_chloride",
-    "weight": 40
-  },
-  "output3": {
-    "item": "minecraft:kelp",
-    "weight": 20
-  },
-  "output4": {
-    "item": "rankine:calcium_nugget",
-    "weight": 4
-  },
-  "output5": {
-    "item": "rankine:magnesium_nugget",
-    "weight": 2
-  },
-  "output6": {
-    "item": "rankine:potassium_nugget",
-    "weight": 2
-  },
-  "output7": {
-    "item": "rankine:bromine_nugget",
-    "weight": 1
-  },
-  "output8": {
-    "item": "rankine:iodine_nugget",
-    "weight": 1
-  },
-  "output9": {
-    "item": "rankine:boron_nugget",
-    "weight": 1
-  }
+  "outputs": [
+    {
+      "item": "minecraft:sand",
+      "weight": 80
+    },
+    {
+      "item": "minecraft:kelp",
+      "weight": 40
+    },
+    {
+      "item": "rankine:sodium_chloride",
+      "weight": 20
+    },
+    {
+      "item": "rankine:calcium_nugget",
+      "weight": 4
+    },
+    {
+      "item": "rankine:magnesium_nugget",
+      "weight": 2
+    },
+    {
+      "item": "rankine:potassium_nugget",
+      "weight": 2
+    },
+    {
+      "item": "rankine:bromine_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:iodine_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:boron_nugget",
+      "weight": 1
+    }
+  ]
 }

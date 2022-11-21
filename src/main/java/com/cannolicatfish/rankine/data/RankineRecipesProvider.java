@@ -57,7 +57,6 @@ public class RankineRecipesProvider extends RecipeProvider {
         blastingMap.put(RankineItems.URANINITE.get(),RankineItems.URANIUM_INGOT.get());
         blastingMap.put(RankineItems.STIBNITE.get(),RankineItems.ANTIMONY.get());
         blastingMap.put(RankineItems.XENOTIME.get(),RankineItems.YTTRIUM_INGOT.get());
-        blastingMap.put(RankineItems.CELESTINE.get(),RankineItems.STRONTIUM_INGOT.get());
         blastingMap.put(RankineItems.CHALCOPYRITE.get(),Items.COPPER_INGOT);
         blastingMap.put(RankineItems.PLATINUM_ARSENIDE.get(),RankineItems.PLATINUM_INGOT.get());
         blastingMap.put(RankineItems.RHENIITE.get(),RankineItems.RHENIUM_INGOT.get());
@@ -980,15 +979,15 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         //Beehive Oven
         for (Map.Entry<Ingredient,Block> entry : BEEHIVE_OVEN_MINERAL_MAP.entrySet()) {
-            BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue(), 2400, 4800).save(consumer,new ResourceLocation("rankine:"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
+            BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue(), 2400, 4800).save(consumer,new ResourceLocation("rankine:beehive_oven/"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
         }
         for (Map.Entry<Ingredient,Block> entry : BEEHIVE_OVEN_OTHER_MAP.entrySet()) {
-            BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue()).save(consumer,new ResourceLocation("rankine:"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
+            BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue()).save(consumer,new ResourceLocation("rankine:beehive_oven/"+entry.getKey().getItems()[0].getItem().getRegistryName().getPath()+"_beehive_oven_cooking"));
         }
-        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.STONES_LIMESTONE), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:quicklime_from_limestone_beehive_oven_cooking"));
-        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.STONES_DOLOMITE), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:quicklime_from_dolomite_beehive_oven_cooking"));
-        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(ItemTags.SAND), Blocks.GLASS).save(consumer, new ResourceLocation("rankine:glass_from_sand_beehive_oven_cooking"));
-        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.SILT), Blocks.GLASS).save(consumer, new ResourceLocation("rankine:glass_from_silt_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.STONES_LIMESTONE), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:beehive_oven/quicklime_from_limestone_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.STONES_DOLOMITE), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:beehive_oven/quicklime_from_dolomite_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(ItemTags.SAND), Blocks.GLASS).save(consumer, new ResourceLocation("rankine:beehive_oven/glass_from_sand_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.SILT), Blocks.GLASS).save(consumer, new ResourceLocation("rankine:beehive_oven/glass_from_silt_beehive_oven_cooking"));
 
 
         //Campfire
@@ -1017,15 +1016,15 @@ public class RankineRecipesProvider extends RecipeProvider {
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TUNA.get()), RankineItems.COOKED_TUNA.get(), 0.35F, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TUNA.get())).save(consumer, "rankine:cooked_tuna_smoking");
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TINDER_CONK_MUSHROOM.get()), RankineItems.SMOULDERING_TINDER_CONK.get(), 0.35F, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TINDER_CONK_MUSHROOM.get())).save(consumer, "rankine:smouldering_tinder_conk_smoking");
         //furnace
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.PANCAKE_BATTER.get()), RankineItems.PANCAKE.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.PANCAKE_BATTER.get())).save(consumer, "rankine:pancake");
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.CORN_EAR.get()), RankineItems.POPCORN.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.CORN_EAR.get())).save(consumer, "rankine:popcorn");
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.ASPARAGUS.get()), RankineItems.ROASTED_ASPARAGUS.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.ROASTED_ASPARAGUS.get())).save(consumer, "rankine:roasted_asparagus");
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.BLACK_WALNUT.get()), RankineItems.ROASTED_WALNUT.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.BLACK_WALNUT.get())).save(consumer, "rankine:roasted_walnut");
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.COCONUT.get()), RankineItems.TOASTED_COCONUT.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.COCONUT.get())).save(consumer, "rankine:toasted_coconut");
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.BREAD), RankineItems.TOAST.get(), 0.35F, 100, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(Items.BREAD)).save(consumer, "rankine:toast");
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TOFU.get()), RankineItems.COOKED_TOFU.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TOFU.get())).save(consumer, "rankine:cooked_tofu");
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TUNA.get()), RankineItems.COOKED_TUNA.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TUNA.get())).save(consumer, "rankine:cooked_tuna");
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TINDER_CONK_MUSHROOM.get()), RankineItems.SMOULDERING_TINDER_CONK.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TINDER_CONK_MUSHROOM.get())).save(consumer, "rankine:smouldering_tinder_conk");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.PANCAKE_BATTER.get()), RankineItems.PANCAKE.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.PANCAKE_BATTER.get())).save(consumer, "rankine:pancake_smelting");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.CORN_EAR.get()), RankineItems.POPCORN.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.CORN_EAR.get())).save(consumer, "rankine:popcorn_smelting");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.ASPARAGUS.get()), RankineItems.ROASTED_ASPARAGUS.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.ROASTED_ASPARAGUS.get())).save(consumer, "rankine:roasted_asparagus_smelting");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.BLACK_WALNUT.get()), RankineItems.ROASTED_WALNUT.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.BLACK_WALNUT.get())).save(consumer, "rankine:roasted_walnut_smelting");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.COCONUT.get()), RankineItems.TOASTED_COCONUT.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.COCONUT.get())).save(consumer, "rankine:toasted_coconut_smelting");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.BREAD), RankineItems.TOAST.get(), 0.35F, 100, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(Items.BREAD)).save(consumer, "rankine:toast_smelting");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TOFU.get()), RankineItems.COOKED_TOFU.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TOFU.get())).save(consumer, "rankine:cooked_tofu_smelting");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TUNA.get()), RankineItems.COOKED_TUNA.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TUNA.get())).save(consumer, "rankine:cooked_tuna_smelting");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(RankineItems.TINDER_CONK_MUSHROOM.get()), RankineItems.SMOULDERING_TINDER_CONK.get(), 0.35F, 200, RecipeSerializer.SMELTING_RECIPE).unlockedBy("has_ingredient", has(RankineItems.TINDER_CONK_MUSHROOM.get())).save(consumer, "rankine:smouldering_tinder_conk_smelting");
 
 
         defaultToolRecipes(consumer, (AlloyItem) RankineItems.PEWTER_INGOT.get(), 11711154, "item.rankine.pewter_alloying", false);

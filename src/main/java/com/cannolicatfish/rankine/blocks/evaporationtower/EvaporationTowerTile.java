@@ -18,6 +18,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
@@ -35,7 +36,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
     private static final int[] SLOTS_DOWN = new int[]{0};
     private static final int[] SLOTS_HORIZONTAL = new int[]{};
     private int cookTime;
-    private int cookTimeTotal = 6400;
+    private int cookTimeTotal = 12000;
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
     private final ContainerData towerData = new ContainerData(){
         public int get(int index) {
@@ -89,22 +90,30 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
             ItemStack output = tile.items.get(0);
             int wallHeight = tile.structureHeight(levelIn, posIn);
             if (wallHeight > 0 && output.isEmpty()) {
-                EvaporationRecipe recipe = tile.getEvaporationRecipe(levelIn, posIn.above());
+                EvaporationRecipe recipe = tile.getEvaporationRecipe(levelIn, posIn);
                 if (recipe != null) {
                     int processHeight = Math.min(wallHeight, fluidHeight(levelIn, posIn, recipe.getFluid().getFluid()));
                     if (processHeight > 0) {
-                        if (tile.cookTimeTotal != recipe.getTime()) {
-                            tile.cookTimeTotal = recipe.getTime() * (1 - (processHeight / 21));
-                            tile.cookTime = 0;
+                        if (tile.cookTimeTotal != recipe.getProcessTime()) {
+                            tile.cookTimeTotal = recipe.getProcessTime() * (1 - (processHeight / 21));
+                            //tile.cookTime = 0;
                             return;
                         }
                         ++tile.cookTime;
                         if (tile.cookTime >= tile.cookTimeTotal) {
-                            if (tile.cookTimeTotal < recipe.getTime() * (1 - (processHeight / 21))) {
-                                tile.cookTimeTotal = recipe.getTime() * (1 - (processHeight / 21));
+                            if (tile.cookTimeTotal < recipe.getProcessTime() * (1 - (processHeight / 21))) {
+                                tile.cookTimeTotal = recipe.getProcessTime() * (1 - (processHeight / 21));
                             } else {
                                 tile.items.set(0, recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).value().getRegistryName()));
                                 tile.cookTime = 0;
+                                if (recipe.getConsumeFluid()) {
+                                    for (BlockPos b : fluidStructure(posIn)) {
+                                        if (levelIn.getFluidState(b.above(processHeight)).is(recipe.getFluid().getFluid())) {
+                                            levelIn.setBlockAndUpdate(b.above(processHeight), Blocks.AIR.defaultBlockState());
+                                            break;
+                                        }
+                                    }
+                                }
                             }
                         }
 
@@ -121,7 +130,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
     private EvaporationRecipe getEvaporationRecipe(Level levelIn, BlockPos posIn) {
         if (this.level != null) {
             for (EvaporationRecipe recipe : levelIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.EVAPORATION)) {
-                if (!recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).value().getRegistryName()).isEmpty() && recipe.fluidMatch(levelIn.getFluidState(posIn.above()).getType())){
+                if (!recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).value().getRegistryName()).isEmpty() && recipe.fluidMatch(levelIn.getFluidState(posIn.above()).getType())) {
                     return recipe;
                 }
             }
@@ -152,7 +161,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
             handlers[x].invalidate();
     }
 
-    public List<BlockPos> wallStructure(BlockPos posIn) {
+    public static List<BlockPos> wallStructure(BlockPos posIn) {
         return Arrays.asList(
                 posIn.offset(3, 0, -1),
                 posIn.offset(3, 0, 0),
@@ -169,6 +178,31 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
                 posIn.offset(-2, 0, -2),
                 posIn.offset(2, 0, -2),
                 posIn.offset(-2, 0, 2));
+    }
+
+    public static List<BlockPos> fluidStructure(BlockPos posIn) {
+        return Arrays.asList(
+                posIn.offset(2, 0, -1),
+                posIn.offset(2, 0, 0),
+                posIn.offset(2, 0, 1),
+                posIn.offset(-2, 0, -1),
+                posIn.offset(-2, 0, 0),
+                posIn.offset(-2, 0, 1),
+                posIn.offset(-1, 0, 2),
+                posIn.offset(0, 0, 2),
+                posIn.offset(1, 0, 2),
+                posIn.offset(-1, 0, -2),
+                posIn.offset(0, 0, -2),
+                posIn.offset(1, 0, -2),
+                posIn.offset(1, 0, 0),
+                posIn.offset(-1, 0, 0),
+                posIn.offset(-1, 0, -1),
+                posIn.offset(1, 0, 1),
+                posIn.offset(-1, 0, 1),
+                posIn.offset(1, 0, -1),
+                posIn.offset(0, 0, 1),
+                posIn.offset(0, 0, -1),
+                posIn.offset(0, 0, 0));
     }
 
     public int structureHeight(Level levelIn, BlockPos posIn) {
@@ -211,63 +245,18 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
     }
 
     private static int fluidHeight(Level levelIn, BlockPos posIn, Fluid fluidIn) {
-        List<BlockPos> Fluid = Arrays.asList(
-                posIn.offset(2, 0, -1),
-                posIn.offset(2, 0, 0),
-                posIn.offset(2, 0, 1),
-                posIn.offset(-2, 0, -1),
-                posIn.offset(-2, 0, 0),
-                posIn.offset(-2, 0, 1),
-                posIn.offset(-1, 0, 2),
-                posIn.offset(0, 0, 2),
-                posIn.offset(1, 0, 2),
-                posIn.offset(-1, 0, -2),
-                posIn.offset(0, 0, -2),
-                posIn.offset(1, 0, -2),
-                posIn.offset(1, 0, 0),
-                posIn.offset(-1, 0, 0),
-                posIn.offset(-1, 0, -1),
-                posIn.offset(1, 0, 1),
-                posIn.offset(-1, 0, 1),
-                posIn.offset(1, 0, -1),
-                posIn.offset(0, 0, 1),
-                posIn.offset(0, 0, -1),
-                posIn.offset(0, 0, 0));
-        
-        int height;
-        for (height = 1; height <= 20; ++height) {
-            for (BlockPos b : Fluid) {
+        for (int height = 1; height <= 21; ++height) {
+            boolean liquid = false;
+            for (BlockPos b : fluidStructure(posIn)) {
                 if (!levelIn.getFluidState(b.above(height)).is(fluidIn)) {
-                    return height-1;
+                    if (liquid) return height;
+                } else {
+                    liquid = true;
                 }
             }
         }
-        return height;
+        return 20;
     }
-    /*
-    
-                    && worldIn.getBlockState(pos.offset(2, i, -1)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(2, i, 0)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(2, i, 1)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(-2, i, -1)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(-2, i, 0)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(-2, i, 1)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(-1, i, 2)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(0, i, 2)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(1, i, 2)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(-1, i, -2)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(0, i, -2)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(1, i, -2)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(1, i, 0)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(-1, i, 0)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(-1, i, -1)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(1, i, 1)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(-1, i, 1)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(1, i, -1)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(0, i, 1)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(0, i, -1)) == Blocks.BUBBLE_COLUMN.defaultBlockState()
-                    && worldIn.getBlockState(pos.offset(0, i, 0)).getBlock() == fluid)
-     */
     
     @Override
     public Component getDisplayName() {

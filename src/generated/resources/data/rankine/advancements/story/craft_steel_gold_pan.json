@@ -1,0 +1,38 @@
+{
+  "parent": "rankine:story/craft_wooden_gold_pan",
+  "display": {
+    "icon": {
+      "item": "rankine:steel_gold_pan",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_steel_gold_pan.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_steel_gold_pan.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "steel_gold_pan": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:steel_gold_pan"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "steel_gold_pan"
+    ]
+  ]
+}

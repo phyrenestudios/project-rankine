@@ -1,11 +1,11 @@
 {
-  "name": "Evaporation Tower",
+  "name": "rankine.journal.cat_materials.evaporation_tower.name",
   "icon": "rankine:evaporation_tower",
   "category": "rankine:materials",
   "pages": [
 	{
       "type": "text",
-      "text": "A method to remove heavy materials from water. When constructed, the tower will slowly and passively generate various resources (can only run when empty output, use a hopper!!). The resource lootable depends on the water of a location (biome). $(li)Oceans $(li)Deserts $(li)Rivers and Swamps $(li)Caves $(li)Elsewhere"
+      "text": "rankine.journal.cat_materials.evaporation_tower.text1"
     },
     {
       "type": "crafting",
@@ -17,13 +17,12 @@
       "multiblock_id": "multiblock",
       "multiblock": {
         "pattern": [
-          [ "  SSS  "," SBBBS ","SBBBBBS", "SBBWBBS","SBBBBBS"," SBBBS ", "  SSS  " ],
+          [ "  SSS  "," SWWWS ","SWWWWWS", "SWWWWWS","SWWWWWS"," SWWWS ", "  SSS  " ],
           [ "       ","  MMM  "," MMMMM ", " MM0MM "," MMMMM ","  MMM  ", "       " ]
         ],
         "mapping": {
           "M": "#rankine:heating_elements",
           "W": "minecraft:water",
-          "B": "minecraft:bubble_column",
           "0": "rankine:evaporation_tower",
           "S": "#forge:sheetmetal"
         },
@@ -32,7 +31,7 @@
     },
     {
       "type": "text",
-      "text": "Construction notes: $(li)The inside is filled with fluid. $(li)The walls are made from any #forge:sheetmetals. $(li)More layers of sheet metal and fluid can be added to increase processing speed (max of 20). $(br2)By default, the sheetmetal in the tower will occasionaly break."
+      "text": "rankine.journal.cat_materials.evaporation_tower.text2"
     }
   ]
 }

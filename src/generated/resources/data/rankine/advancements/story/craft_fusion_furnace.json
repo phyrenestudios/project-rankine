@@ -1,0 +1,37 @@
+{
+  "parent": "rankine:story/make_steel",
+  "display": {
+    "icon": {
+      "item": "rankine:fusion_furnace"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_fusion_furnace.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_fusion_furnace.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "fusion_furnace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:fusion_furnace"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "fusion_furnace"
+    ]
+  ]
+}

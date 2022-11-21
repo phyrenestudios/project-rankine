@@ -1,0 +1,37 @@
+{
+  "parent": "rankine:story/make_steel",
+  "display": {
+    "icon": {
+      "item": "rankine:saddle_tree"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_saddle_tree.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_saddle_tree.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "saddle_tree": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:saddle_tree"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "saddle_tree"
+    ]
+  ]
+}

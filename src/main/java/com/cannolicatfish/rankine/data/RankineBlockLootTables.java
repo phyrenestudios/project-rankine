@@ -1,22 +1,28 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.blocks.*;
+import com.cannolicatfish.rankine.blocks.HollowLogBlock;
+import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
+import com.cannolicatfish.rankine.blocks.LightningGlassBlock;
+import com.cannolicatfish.rankine.blocks.RankineLogBlock;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineBookshelvesBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -259,7 +265,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
             lootTables.put(BLK, eightLayerBlock(BLK));
         }
         for (Block BLK : RankineLists.LIGHTNING_GLASSES) {
-            lootTables.put(BLK, onlyWithSilkTouch(BLK));
+            lootTables.put(BLK, droppingWithSilkTouchPlus(BLK, LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(Items.GLOWSTONE_DUST)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(BLK).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(LightningGlassBlock.GLOWING, true)))));
         }
         for (Block BLK : RankineLists.HOLLOW_LOGS) {
             lootTables.put(BLK, droppingWithSilkTouchOrRandomly(BLK, Items.STICK, UniformGenerator.between(2.0F, 6.0F)));

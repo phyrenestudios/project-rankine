@@ -116,7 +116,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 RankineLists.SMOOTH_SANDSTONES,
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
-                RankineLists.LIGHTNING_GLASSES,
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.MINERAL_BLOCKS
             ).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -160,6 +159,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             } else {
                 simpleBlock(blk);
             }
+        }
+        for (Block blk : RankineLists.LIGHTNING_GLASSES) {
+            getVariantBuilder(blk)
+                    .partialState().with(LightningGlassBlock.GLOWING, false).modelForState().modelFile(models().cubeAll(blk.getRegistryName().getPath(), getBlockRSL(blk))).addModel()
+                    .partialState().with(LightningGlassBlock.GLOWING, true).modelForState().modelFile(models().cubeAll(blk.getRegistryName().getPath()+"_glowing", getBlockRSL(blk.getRegistryName().getPath()+"_glowing"))).addModel();
         }
         for (Block blk : RankineLists.BRICKS) {
             fancyBricksBlock(blk);

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:pancake_batter"
+  },
+  "result": "rankine:pancake",
+  "experience": 0.35,
+  "cookingtime": 200
+}

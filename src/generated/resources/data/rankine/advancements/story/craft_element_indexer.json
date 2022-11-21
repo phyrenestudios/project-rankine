@@ -1,0 +1,37 @@
+{
+  "parent": "rankine:story/craft_fusion_furnace",
+  "display": {
+    "icon": {
+      "item": "rankine:element_indexer"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_element_indexer.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_element_indexer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "element_indexer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:element_indexer"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "element_indexer"
+    ]
+  ]
+}

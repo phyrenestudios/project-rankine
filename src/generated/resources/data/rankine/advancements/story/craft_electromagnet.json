@@ -1,0 +1,63 @@
+{
+  "parent": "rankine:story/craft_magnet",
+  "display": {
+    "icon": {
+      "item": "rankine:alnico_electromagnet"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_electromagnet.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.craft_electromagnet.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "alnico_electromagnet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:alnico_electromagnet"
+            ]
+          }
+        ]
+      }
+    },
+    "rare_earth_electromagnet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:rare_earth_electromagnet"
+            ]
+          }
+        ]
+      }
+    },
+    "simple_electromagnet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:simple_electromagnet"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "alnico_electromagnet",
+      "rare_earth_electromagnet",
+      "simple_electromagnet"
+    ]
+  ]
+}

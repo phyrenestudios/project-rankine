@@ -1,0 +1,43 @@
+{
+  "parent": "rankine:challenges/root",
+  "display": {
+    "icon": {
+      "item": "rankine:pancake_breakfast"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.craft_pancake_breakfast.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.challenges.craft_pancake_breakfast.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 200
+  },
+  "criteria": {
+    "pancake_breakfast": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:pancake_breakfast"
+            ],
+            "count": {
+              "min": 64
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "pancake_breakfast"
+    ]
+  ]
+}

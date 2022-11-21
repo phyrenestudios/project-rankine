@@ -2,36 +2,28 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineTags;
-import com.google.common.collect.ImmutableSet;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.DiggerItem;
-import net.minecraft.util.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import javax.annotation.Nonnull;
-import java.util.Set;
-
-import net.minecraft.world.item.Item.Properties;
-
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import javax.annotation.Nonnull;
 
 public class GlassCutterItem extends DiggerItem {
 
@@ -56,9 +48,9 @@ public class GlassCutterItem extends DiggerItem {
     @Nonnull
     public InteractionResult useOn(UseOnContext context) {
         Player playerentity = context.getPlayer();
-        LevelAccessor iworld = context.getLevel();
+        Level levelIn = context.getLevel();
         BlockPos blockpos = context.getClickedPos();
-        BlockState blockstate = iworld.getBlockState(blockpos);
+        BlockState blockstate = levelIn.getBlockState(blockpos);
         if (playerentity != null) {
             context.getItemInHand().hurtAndBreak(1, playerentity, (p_219998_1_) -> {
                 p_219998_1_.broadcastBreakEvent(context.getHand());
@@ -66,24 +58,13 @@ public class GlassCutterItem extends DiggerItem {
         }
         if (blockstate.is(Tags.Blocks.GLASS)) {
             Block b = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(blockstate.getBlock().getRegistryName().toString() + "_pane"));
-            if (b != null)
-            {
-                iworld.playSound(playerentity, blockpos, SoundEvents.BEE_STING, SoundSource.BLOCKS, 1.0F, iworld.getRandom().nextFloat() * 0.4F + 1.8F);
-                iworld.setBlock(blockpos,b.defaultBlockState(),3);
-
-
-                float f = 0.5F;
-                double d0 = (double)(context.getLevel().random.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double)(context.getLevel().random.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double)(context.getLevel().random.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(context.getLevel(), (double)blockpos.getX() + d0, (double)blockpos.getY() + d1, (double)blockpos.getZ() + d2, new ItemStack(b,2));
-                itementity.setDefaultPickUpDelay();
-                context.getLevel().addFreshEntity(itementity);
+            if (b != null && b != Blocks.AIR) {
+                levelIn.playSound(playerentity, blockpos, SoundEvents.BEE_STING, SoundSource.BLOCKS, 1.0F, levelIn.getRandom().nextFloat() * 0.4F + 1.8F);
+                levelIn.setBlockAndUpdate(blockpos,b.defaultBlockState());
+                Block.popResource(levelIn, blockpos, new ItemStack(b,2));
                 return InteractionResult.SUCCESS;
             }
-        }
-        else
-        {
+        } else {
             return InteractionResult.FAIL;
         }
         return InteractionResult.FAIL;

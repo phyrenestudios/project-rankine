@@ -1,0 +1,53 @@
+{
+  "type": "rankine:evaporation",
+  "processTime": 200,
+  "consumeFluid": true,
+  "biomes": {
+    "biomeTags": ["minecraft:is_nether"]
+  },
+  "input": {
+    "fluid": "minecraft:lava"
+  },
+  "outputs": [
+    {
+      "item": "minecraft:gravel",
+      "weight": 30
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 30
+    },
+    {
+      "item": "rankine:dolomite",
+      "weight": 30
+    },
+    {
+      "item": "rankine:gypsum",
+      "weight": 10
+    },
+    {
+      "item": "rankine:gwihabaite",
+      "weight": 10
+    },
+    {
+      "item": "rankine:asbestos",
+      "weight": 5
+    },
+    {
+      "item": "rankine:zirconium_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:cobalt_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:titanium_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:chromium_nugget",
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:tinder_conk_mushroom"
+  },
+  "result": "rankine:smouldering_tinder_conk",
+  "experience": 0.35,
+  "cookingtime": 200
+}

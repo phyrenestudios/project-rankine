@@ -1,0 +1,41 @@
+{
+  "parent": "rankine:challenges/bronze_harvest",
+  "display": {
+    "icon": {
+      "item": "rankine:purple_gold_hammer",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.colored_gold_netherite.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.challenges.colored_gold_netherite.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 200
+  },
+  "criteria": {
+    "netherite_gold": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "rankine:includes_composition_check",
+            "tag": "rankine:colored_gold_tools",
+            "composition": "Nr"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "netherite_gold"
+    ]
+  ]
+}

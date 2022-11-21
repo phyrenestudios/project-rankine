@@ -7,22 +7,41 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:lightning_glass"
+          "name": "minecraft:glowstone_dust"
         }
       ],
       "conditions": [
         {
-          "condition": "minecraft:match_tool",
-          "predicate": {
-            "enchantments": [
-              {
-                "enchantment": "minecraft:silk_touch",
-                "levels": {
-                  "min": 1
-                }
-              }
-            ]
+          "condition": "minecraft:block_state_property",
+          "block": "rankine:lightning_glass",
+          "properties": {
+            "glowing": "true"
           }
+        }
+      ]
+    },
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "enchantments": [
+                  {
+                    "enchantment": "minecraft:silk_touch",
+                    "levels": {
+                      "min": 1
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "name": "rankine:lightning_glass"
         }
       ]
     }
