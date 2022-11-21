@@ -4,9 +4,6 @@
   "input1": {
     "item": "minecraft:sand"
   },
-  "input2": {
-    "item": "rankine:plagioclase_feldspar_block"
-  },
   "result": {
     "block": "minecraft:sandstone"
   }

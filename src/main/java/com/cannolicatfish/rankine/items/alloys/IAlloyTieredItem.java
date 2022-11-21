@@ -67,8 +67,6 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
 
                 if (!IAlloyItem.getAlloyModifiers(stack).isEmpty()) {
                     tooltip.add((new TextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(ChatFormatting.AQUA)));
-                } else {
-                    tooltip.add((new TextComponent("No Modifiers Present").withStyle(ChatFormatting.AQUA)));
                 }
 
                 if (!this.needsRefresh(stack)) {

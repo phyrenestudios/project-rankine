@@ -2,10 +2,7 @@
   "type": "rankine:rock_generator",
   "genType": "sedimentary",
   "input1": {
-    "item": "rankine:pearl_block"
-  },
-  "input2": {
-    "item": "rankine:pearl_block"
+    "item": "rankine:pearl"
   },
   "result": {
     "block": "rankine:chalk"

@@ -4,9 +4,6 @@
   "input1": {
     "item": "rankine:black_sand"
   },
-  "input2": {
-    "item": "rankine:pyroxene_block"
-  },
   "result": {
     "block": "rankine:black_sandstone"
   }
