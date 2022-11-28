@@ -1246,6 +1246,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mechanics.finite_water.text2", "Right click the ground to display the Water Table height at that coordinate.");
         add("rankine.journal.cat_mechanics.finite_water.text3", "Moving Water");
         add("rankine.journal.cat_mechanics.finite_water.text4", "A passive method to create water sources above the Water Table ca be constructed. The Ground Tap will generate a source block of water every 30 seconds (configurable) when connected to a waterlogged Flood Gate and connected through Metal Pipes. The Flood Gate can become waterlogged by filling it manually with water or by placing it in an infinite water source. Multiple taps can be on the same pipe line.");
+        add("rankine.journal.cat_mechanics.finite_water.text5", "The Flood Gate can transfer fluids from above it and fill the space below it. It must not be waterlogged to do this. Useful for filling in lakes or the Evaporation Tower.");
 
 
         add("rankine.journal.cat_mechanics.sluicing.name", "Sluicing");

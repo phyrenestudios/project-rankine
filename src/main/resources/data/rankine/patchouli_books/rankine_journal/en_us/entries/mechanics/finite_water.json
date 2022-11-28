@@ -24,7 +24,8 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:flood_gate"
+      "recipe": "rankine:flood_gate",
+      "text": "rankine.journal.cat_mechanics.finite_water.text5"
     }
   ]
 }
