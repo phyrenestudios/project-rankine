@@ -1038,6 +1038,7 @@ public final class RankineTags {
 
 
 
+        public static final TagKey<Item> TORCH = forgeItem("torch");
         public static final TagKey<Item> FLINT = forgeItem("flint");
         public static final TagKey<Item> SOLDER = forgeItem("solder");
         public static final TagKey<Item> FELDSPAR = forgeItem("feldspar");

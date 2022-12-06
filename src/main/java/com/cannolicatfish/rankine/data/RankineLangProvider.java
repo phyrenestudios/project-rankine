@@ -1184,6 +1184,12 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.trees.weeping_willow.title", "Weeping Willow");
         add("rankine.journal.cat_biota.trees.weeping_willow", "Native to sawmp biomes.");
 
+        //Biota
+        add("rankine.journal.cat_constructs.name", "Constructs");
+        add("rankine.journal.cat_constructs.desc", "Not all blocks and items are of natural origins. ");
+
+        add("rankine.journal.cat_constructs.metal_poles.text1", "Metal poles are crafted from any alloy. The variety of alloy colors make them an excellent decoration block. They can also be right-clicked with leaves or torches to add garland, string lights, or both! Holding shift while clicking will teleport the player to the bottom of pole column.");
+        add("rankine.journal.cat_constructs.metal_poles.text2", "All pole recipes follow this pattern.");
 
         //Materials
         add("rankine.journal.cat_materials.name", "Materials");

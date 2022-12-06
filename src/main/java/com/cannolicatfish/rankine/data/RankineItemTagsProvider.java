@@ -896,6 +896,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineTags.Items.SILICON_DIOXIDE_BLOCKS).addTags(RankineTags.Items.STONES_QUARTZITE,RankineTags.Items.CONSTRUCTION_SAND,Tags.Items.STORAGE_BLOCKS_QUARTZ);
         tag(RankineTags.Items.FLUXES).addTags(RankineTags.Items.STONES_LIMESTONE,RankineTags.Items.STONES_DOLOMITE).add(RankineItems.DOLOMITE.get(),RankineItems.CALCITE.get(),RankineItems.QUICKLIME.get());
         tag(RankineTags.Items.GLASS_INPUTS).addTags(RankineTags.Items.SILT,Tags.Items.SAND,Tags.Items.GEMS_QUARTZ);
+        tag(RankineTags.Items.TORCH).add(Items.TORCH, Items.REDSTONE_TORCH, Items.SOUL_TORCH);
 
 
 

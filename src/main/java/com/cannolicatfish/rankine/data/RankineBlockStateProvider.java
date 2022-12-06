@@ -1094,9 +1094,14 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         String path = BLK.getRegistryName().getPath();
 
         getVariantBuilder(BLK)
-                .partialState().with(MetalPoleBlock.STYLE,0).modelForState().modelFile(models().withExistingParent(path, modLoc("block/template_metal_pole")).texture("side", getBlockRSL("template_pole"))).addModel()
-                .partialState().with(MetalPoleBlock.STYLE,1).modelForState().modelFile(models().withExistingParent(path+"_garland", modLoc("block/metal_pole_garland")).texture("side", getBlockRSL("template_pole"))).addModel();
-
+                .partialState().with(MetalPoleBlock.STYLE,0).modelForState().modelFile(models().withExistingParent(path+"0", modLoc("block/template_metal_pole")).texture("side", getBlockRSL("template_pole"))).addModel()
+                .partialState().with(MetalPoleBlock.STYLE,1).modelForState().modelFile(models().withExistingParent(path+"1", modLoc("block/template_metal_pole_overlay")).texture("side", getBlockRSL("template_pole")).texture("overlay", getBlockRSL("metal_pole1"))).addModel()
+                .partialState().with(MetalPoleBlock.STYLE,2).modelForState().modelFile(models().withExistingParent(path+"2", modLoc("block/template_metal_pole_overlay")).texture("side", getBlockRSL("template_pole")).texture("overlay", getBlockRSL("metal_pole2"))).addModel()
+                .partialState().with(MetalPoleBlock.STYLE,3).modelForState().modelFile(models().withExistingParent(path+"3", modLoc("block/template_metal_pole_overlay")).texture("side", getBlockRSL("template_pole")).texture("overlay", getBlockRSL("metal_pole3"))).addModel()
+                .partialState().with(MetalPoleBlock.STYLE,4).modelForState().modelFile(models().withExistingParent(path+"4", modLoc("block/template_metal_pole_overlay")).texture("side", getBlockRSL("template_pole")).texture("overlay", getBlockRSL("metal_pole4"))).addModel()
+                .partialState().with(MetalPoleBlock.STYLE,5).modelForState().modelFile(models().withExistingParent(path+"5", modLoc("block/template_metal_pole_overlay")).texture("side", getBlockRSL("template_pole")).texture("overlay", getBlockRSL("metal_pole5"))).addModel()
+                .partialState().with(MetalPoleBlock.STYLE,6).modelForState().modelFile(models().withExistingParent(path+"6", modLoc("block/template_metal_pole_overlay")).texture("side", getBlockRSL("template_pole")).texture("overlay", getBlockRSL("metal_pole6"))).addModel()
+                .partialState().with(MetalPoleBlock.STYLE,7).modelForState().modelFile(models().withExistingParent(path+"7", modLoc("block/template_metal_pole_overlay")).texture("side", getBlockRSL("template_pole")).texture("overlay", getBlockRSL("metal_pole7"))).addModel();
     }
 
     public void tintedBarsBlock(IronBarsBlock block, ResourceLocation pane, ResourceLocation edge) {

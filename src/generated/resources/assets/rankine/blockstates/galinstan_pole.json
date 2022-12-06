@@ -1,10 +1,28 @@
 {
   "variants": {
     "style=0": {
-      "model": "rankine:block/galinstan_pole"
+      "model": "rankine:block/galinstan_pole0"
     },
     "style=1": {
-      "model": "rankine:block/galinstan_pole_garland"
+      "model": "rankine:block/galinstan_pole1"
+    },
+    "style=2": {
+      "model": "rankine:block/galinstan_pole2"
+    },
+    "style=3": {
+      "model": "rankine:block/galinstan_pole3"
+    },
+    "style=4": {
+      "model": "rankine:block/galinstan_pole4"
+    },
+    "style=5": {
+      "model": "rankine:block/galinstan_pole5"
+    },
+    "style=6": {
+      "model": "rankine:block/galinstan_pole6"
+    },
+    "style=7": {
+      "model": "rankine:block/galinstan_pole7"
     }
   }
 }
