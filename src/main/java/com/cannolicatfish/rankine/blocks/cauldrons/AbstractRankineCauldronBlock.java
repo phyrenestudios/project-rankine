@@ -47,13 +47,10 @@ public abstract class AbstractRankineCauldronBlock extends Block {
     protected boolean isEntityInsideContent(BlockState p_151980_, BlockPos p_151981_, Entity p_151982_) {
         return p_151982_.getY() < (double)p_151981_.getY() + this.getContentHeight(p_151980_) && p_151982_.getBoundingBox().maxY > (double)p_151981_.getY() + 0.25D;
     }
-
     protected double getContentHeight(BlockState p_153500_) {
         return 0.9375D;
     }
-
      */
-
 
     public VoxelShape getShape(BlockState p_151964_, BlockGetter p_151965_, BlockPos p_151966_, CollisionContext p_151967_) {
         return SHAPE;
@@ -138,17 +135,6 @@ public abstract class AbstractRankineCauldronBlock extends Block {
 
     public abstract Item getBottle();
     public abstract Item getOutput();
-
-    public static void emptyBottle(Level levelIn, BlockPos posIn, Player playerIn, InteractionHand handIn, ItemStack stackIn, BlockState stateIn, SoundEvent soundIn, ItemStack returnItem) {
-        if (!levelIn.isClientSide) {
-            playerIn.setItemInHand(handIn, ItemUtils.createFilledResult(stackIn, playerIn, returnItem));
-            playerIn.awardStat(Stats.FILL_CAULDRON);
-            playerIn.awardStat(Stats.ITEM_USED.get(stackIn.getItem()));
-            levelIn.setBlockAndUpdate(posIn, stateIn);
-            levelIn.playSound(null, playerIn, soundIn, SoundSource.BLOCKS, 1.0F, 1.0F);
-        }
-        playerIn.swing(handIn);
-    }
 
     private static InteractionResult fillBottle(Level levelIn, BlockPos posIn, Player playerIn, InteractionHand handIn, ItemStack stackIn, ItemStack bottleOut, SoundEvent soundIn) {
         if (!levelIn.isClientSide) {

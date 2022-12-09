@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
-import com.cannolicatfish.rankine.blocks.cauldrons.AbstractRankineCauldronBlock;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
@@ -43,20 +42,12 @@ public class RightClickBlockHandler {
 
     private static Map<Block, BlockState> flintLightMap = new HashMap<>();
     public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
-    private static Map<Item, Block> cauldron_map = new HashMap<Item, Block>();
 
     static {
         flintLightMap.put(Blocks.CAMPFIRE, Blocks.CAMPFIRE.defaultBlockState().setValue(BlockStateProperties.LIT,true));
         flintLightMap.put(Blocks.SOUL_CAMPFIRE, Blocks.SOUL_CAMPFIRE.defaultBlockState().setValue(BlockStateProperties.LIT,true));
         flintLightMap.put(RankineBlocks.CHARCOAL_PIT.get(), RankineBlocks.CHARCOAL_PIT.get().defaultBlockState().setValue(BlockStateProperties.LIT,true));
         flintLightMap.put(RankineBlocks.BEEHIVE_OVEN_PIT.get(), RankineBlocks.BEEHIVE_OVEN_PIT.get().defaultBlockState().setValue(BlockStateProperties.LIT,true));
-
-        cauldron_map.put(RankineItems.SAP_BUCKET.get(), RankineBlocks.SAP_CAULDRON.get());
-        cauldron_map.put(RankineItems.MAPLE_SAP_BUCKET.get(), RankineBlocks.MAPLE_SAP_CAULDRON.get());
-        cauldron_map.put(RankineItems.MAPLE_SYRUP.get(), RankineBlocks.MAPLE_SYRUP_CAULDRON.get());
-        cauldron_map.put(RankineItems.LATEX_BUCKET.get(), RankineBlocks.LATEX_CAULDRON.get());
-        cauldron_map.put(RankineItems.RESIN_BUCKET.get(), RankineBlocks.RESIN_CAULDRON.get());
-        cauldron_map.put(RankineItems.JUGLONE_BUCKET.get(), RankineBlocks.JUGLONE_CAULDRON.get());
 
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             stripping_map.put(Wood.getLog(), Wood.getStrippedLog());
@@ -80,18 +71,6 @@ public class RightClickBlockHandler {
                 playerIn.getInventory().add(ItemUtils.createFilledResult(itemStack, playerIn, new ItemStack(Items.GLASS_BOTTLE)));
                 return;
             }
-        }
-
-        if (levelIn.getBlockState(posIn).is(Blocks.CAULDRON)) {
-            if (cauldron_map.containsKey(itemStack.getItem())) {
-                event.setUseItem(Event.Result.DENY);
-                if (itemStack.is(RankineItems.MAPLE_SYRUP.get())) {
-                    AbstractRankineCauldronBlock.emptyBottle(event.getWorld(), event.getPos(), playerIn, event.getHand(), itemStack, cauldron_map.get(itemStack.getItem()).defaultBlockState(), SoundEvents.BOTTLE_EMPTY, new ItemStack(Items.GLASS_BOTTLE));
-                } else {
-                    AbstractRankineCauldronBlock.emptyBottle(event.getWorld(), event.getPos(), playerIn, event.getHand(), itemStack, cauldron_map.get(itemStack.getItem()).defaultBlockState(), SoundEvents.BUCKET_EMPTY, new ItemStack(Items.BUCKET));
-                }
-            }
-            return;
         }
 
         if (playerIn.getMainHandItem().is(RankineTags.Items.FLINT) && playerIn.getOffhandItem().is(RankineTags.Items.FLINT) && Config.GENERAL.FLINT_FIRE.get()) {

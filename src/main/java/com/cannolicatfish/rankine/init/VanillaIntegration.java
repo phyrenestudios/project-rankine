@@ -30,8 +30,16 @@ public class VanillaIntegration {
     public static final Map<Block, RankineStone> RankineStonesMap = new HashMap<>();
 
     public static final Map<BlockState,BlockState> vegetationMap = new HashMap<>();
+    public static final Map<Item, Block> cauldron_map = new HashMap<Item, Block>();
 
     public static void init() {
+        cauldron_map.put(RankineItems.SAP_BUCKET.get(), RankineBlocks.SAP_CAULDRON.get());
+        cauldron_map.put(RankineItems.MAPLE_SAP_BUCKET.get(), RankineBlocks.MAPLE_SAP_CAULDRON.get());
+        cauldron_map.put(RankineItems.MAPLE_SYRUP.get(), RankineBlocks.MAPLE_SYRUP_CAULDRON.get());
+        cauldron_map.put(RankineItems.LATEX_BUCKET.get(), RankineBlocks.LATEX_CAULDRON.get());
+        cauldron_map.put(RankineItems.RESIN_BUCKET.get(), RankineBlocks.RESIN_CAULDRON.get());
+        cauldron_map.put(RankineItems.JUGLONE_BUCKET.get(), RankineBlocks.JUGLONE_CAULDRON.get());
+
         RankineStonesMap.put(RankineBlocks.PEGMATITE.getStone(), RankineBlocks.PEGMATITE);
         RankineStonesMap.put(RankineBlocks.GRAY_GRANITE.getStone(), RankineBlocks.GRAY_GRANITE);
         RankineStonesMap.put(RankineBlocks.RHYOLITE.getStone(), RankineBlocks.RHYOLITE);
