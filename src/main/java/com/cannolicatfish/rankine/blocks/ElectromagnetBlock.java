@@ -50,58 +50,64 @@ public class ElectromagnetBlock extends DirectionalBlock {
     public void neighborChanged(BlockState stateIn, Level levelIn, BlockPos posIn, Block p_52703_, BlockPos p_52704_, boolean p_52705_) {
         boolean flagSignal = levelIn.hasNeighborSignal(posIn) || levelIn.hasNeighborSignal(posIn.above());
         boolean flagPowered = stateIn.getValue(POWERED);
-        if (flagSignal != flagPowered) {
-            if (flagPowered) {
-                levelIn.scheduleTick(posIn, this, 4);
-            } else {
-                Direction direction = stateIn.getValue(FACING);
-                BlockPos blockpos1 = posIn.relative(direction);
-                if (levelIn.isEmptyBlock(blockpos1) || !levelIn.getBlockState(blockpos1).getMaterial().blocksMotion()) {
-                    List<BlockPos> blockPosList = BlockPos.betweenClosedStream(blockpos1,blockpos1.offset(direction.getNormal().relative(direction, type * Config.MACHINES.ELECTROMAGNET_RANGE.get() - 1))).map(BlockPos::immutable).collect(Collectors.toList());
-                    if(direction == Direction.NORTH || direction == Direction.WEST || direction == Direction.DOWN) {
-                        Collections.reverse(blockPosList);
-                    }
-                    for (BlockPos b : blockPosList) {
-                        BlockState BS = levelIn.getBlockState(b);
-                        if (levelIn.isEmptyBlock(b) || !BS.getMaterial().blocksMotion() || !levelIn.getFluidState(b).isEmpty()) continue;
-                        if (BS.is(RankineTags.Blocks.MAGNET_BANNED) || levelIn.getBlockEntity(b) != null) break;
-
-                        if (BS.getMaterial() == Material.METAL || !Config.MACHINES.ELECTROMAGNET_MATERIAL_REQ.get()) {
-                            List<LivingEntity> entities = levelIn.getEntitiesOfClass(LivingEntity.class, new AABB(blockpos1, b).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
-                            for (LivingEntity i : entities) {
-                                i.hurt(DamageSource.FLY_INTO_WALL, Mth.sqrt(type * (float) b.distSqr(i.getOnPos())));
-                            }
-
-                            List<LivingEntity> entitiesOnBlock = levelIn.getEntitiesOfClass(LivingEntity.class, new AABB(b, b.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
-                            for (LivingEntity i : entitiesOnBlock) {
-                                i.teleportTo(blockpos1.getX() - (b.getX() - i.getX()), blockpos1.getY() + 1, blockpos1.getZ() - (b.getZ() - i.getZ()));
-                            }
-
-                            levelIn.destroyBlock(blockpos1, false);
-                            levelIn.setBlockAndUpdate(blockpos1, BS);
-                            levelIn.setBlockAndUpdate(b, Blocks.AIR.defaultBlockState());
-                            for (BlockPos toBreak : BlockPos.betweenClosed(blockpos1, b)) {
-                                if (!levelIn.getBlockState(toBreak).getMaterial().blocksMotion()) {
-                                    levelIn.destroyBlock(toBreak, true);
-                                }
-                                /*
-                                if (levelIn.isClientSide()) {
-                                    for (int i = 0; i < 2; ++i) {
-                                        levelIn.addParticle(ParticleTypes.PORTAL, toBreak.getX() + 0.5D, toBreak.getY() + 0.5D, toBreak.getZ() + 0.5D, 0.2D, 0.2D, 0.2D);
-                                    }
-                                } */
-                            }
-                        }
-                        break;
-
-                    }
-
-                }
-                levelIn.setBlock(posIn, stateIn.cycle(POWERED), 2);
-            }
-
+        if (flagSignal == flagPowered) return;
+        if (flagPowered) {
+            levelIn.scheduleTick(posIn, this, 4);
+            return;
         }
+        levelIn.setBlock(posIn, stateIn.cycle(POWERED), 2);
+        Direction direction = stateIn.getValue(FACING);
+        List<BlockPos> blockPosList = BlockPos.betweenClosedStream(posIn.relative(direction,2),posIn.offset(direction.getNormal().relative(direction, type * Config.MACHINES.ELECTROMAGNET_RANGE.get()))).map(BlockPos::immutable).collect(Collectors.toList());
+        if (direction.getAxisDirection() == Direction.AxisDirection.NEGATIVE) {Collections.reverse(blockPosList);}
+        for (BlockPos b : blockPosList) {
+            pullBlock(levelIn, posIn, b.immutable(), direction);
+        }
+
     }
+
+    private void pullBlock(Level levelIn, BlockPos posIn, BlockPos targetPosIn, Direction dirIn) {
+        BlockState pullTargetBS = levelIn.getBlockState(targetPosIn);
+        if (!pullTargetBS.getMaterial().blocksMotion() || !levelIn.getFluidState(targetPosIn).isEmpty() || pullTargetBS.is(RankineTags.Blocks.MAGNET_BANNED) || levelIn.getBlockEntity(targetPosIn) != null) return;
+        if (Config.MACHINES.ELECTROMAGNET_MATERIAL_REQ.get() && pullTargetBS.getMaterial() != Material.METAL) return;
+
+        // Find the closest open space and move the block
+        BlockPos endPos = null;
+        List<BlockPos> blockPosList = BlockPos.betweenClosedStream(targetPosIn.relative(dirIn.getOpposite()), posIn.relative(dirIn)).map(BlockPos::immutable).collect(Collectors.toList());
+        if (dirIn.getAxisDirection() == Direction.AxisDirection.POSITIVE) {Collections.reverse(blockPosList);}
+        for (BlockPos path : blockPosList) {
+            if (isMagnetBreakable(levelIn, path)) {
+                levelIn.destroyBlock(path, true);
+                continue;
+            }
+            endPos = path.relative(dirIn);
+            break;
+        }
+        if (endPos == targetPosIn) return;
+        if (endPos == null) endPos = posIn.relative(dirIn);
+
+        levelIn.setBlockAndUpdate(targetPosIn, Blocks.AIR.defaultBlockState());
+        // *Need to update the block after moving
+        levelIn.setBlockAndUpdate(endPos, pullTargetBS);
+
+        //Damage entities along the path
+        List<LivingEntity> entities = levelIn.getEntitiesOfClass(LivingEntity.class, new AABB(endPos, targetPosIn).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
+        for (LivingEntity i : entities) {
+            i.hurt(DamageSource.FLY_INTO_WALL, Mth.sqrt(type * (float) targetPosIn.distSqr(i.getOnPos())));
+        }
+        //Teleport entities on top of the moving block
+        List<LivingEntity> entitiesOnBlock = levelIn.getEntitiesOfClass(LivingEntity.class, new AABB(targetPosIn, targetPosIn.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
+        for (LivingEntity i : entitiesOnBlock) {
+            i.teleportTo(endPos.getX() - (targetPosIn.getX() - i.getX()), endPos.getY() + 1, endPos.getZ() - (targetPosIn.getZ() - i.getZ()));
+        }
+
+
+    }
+
+    private boolean isMagnetBreakable(Level levelIn, BlockPos posIn) {
+        BlockState stateIn = levelIn.getBlockState(posIn);
+        return stateIn.is(RankineTags.Blocks.COBBLES) || !stateIn.getMaterial().blocksMotion();
+    }
+
 
     public void tick(BlockState p_55661_, ServerLevel p_55662_, BlockPos p_55663_, Random p_55664_) {
         if (p_55661_.getValue(POWERED) && !p_55662_.hasNeighborSignal(p_55663_) && !p_55662_.hasNeighborSignal(p_55663_.above())) {

@@ -1184,12 +1184,19 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.trees.weeping_willow.title", "Weeping Willow");
         add("rankine.journal.cat_biota.trees.weeping_willow", "Native to sawmp biomes.");
 
-        //Biota
+        //Constructs
         add("rankine.journal.cat_constructs.name", "Constructs");
-        add("rankine.journal.cat_constructs.desc", "Not all blocks and items are of natural origins. ");
+        add("rankine.journal.cat_constructs.desc", "Not all blocks and items are of natural origins.");
 
+        add("rankine.journal.cat_constructs.metal_poles.name", "Magnets");
         add("rankine.journal.cat_constructs.metal_poles.text1", "Metal poles are crafted from any alloy. The variety of alloy colors make them an excellent decoration block. They can also be right-clicked with leaves or torches to add garland, string lights, or both! Holding shift while clicking will teleport the player to the bottom of pole column.");
         add("rankine.journal.cat_constructs.metal_poles.text2", "All pole recipes follow this pattern.");
+
+        add("rankine.journal.cat_constructs.electromagnets.name", "Electromagnets");
+        add("rankine.journal.cat_constructs.electromagnets.text1", "Electromagnets are able to move blocks when powered with redstone. Shift right-click to switch the magnet between attraction/repulsion mode. All applicable blocks in the range will either be pulled or pushed away from the magnet. Some config options exist for magnet ranges and allowed materials. By default, it works with any blocks of the metal material.");
+        add("rankine.journal.cat_constructs.electromagnets.alnico_electromagnet", "Default Range: 10 blocks");
+        add("rankine.journal.cat_constructs.electromagnets.simple_electromagnet", "Default Range: 5 blocks");
+        add("rankine.journal.cat_constructs.electromagnets.rare_earth_electromagnet", "Default Range: 15 blocks");
 
         //Materials
         add("rankine.journal.cat_materials.name", "Materials");
@@ -1568,6 +1575,12 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.utility_tools.biometer", "Displays the current biome.");
         add("rankine.journal.cat_tools.utility_tools.magnetometer", "Displays the current magnetic field strength. Field strength is dependent on nearby blocks.");
 
+        add("rankine.journal.cat_constructs.magnets.name", "Magnets");
+        add("rankine.journal.cat_constructs.magnets.text1", "Magnets can pull in surrounding items when right-clicked in hand. Config options exist for magnet ranges.");
+        add("rankine.journal.cat_constructs.magnets.lodestone", "A weakly powered natural magnet. Lodestones will actively pull in items with a 2 block range. Obtained by crushing $(world/ores#magnetite_ore)Magnetite Ore$().");
+        add("rankine.journal.cat_constructs.magnets.simple_magnet", "Default Range: 4 blocks");
+        add("rankine.journal.cat_constructs.magnets.alnico_magnet", "Default Range: 8 blocks");
+        add("rankine.journal.cat_constructs.magnets.rare_earth_magnet", "Default Range: 12 blocks");
 
         add("rankine.journal.cat_tools.standard_tools.name", "Standard Tools");
         add("rankine.journal.cat_tools.standard_tools.text1", "");

@@ -516,7 +516,7 @@ public class Config {
                 CHARCOAL_PIT_HEIGHT = b.comment("Maximum height a charcoal pile can be")
                         .defineInRange("charcoalPitHeight", 5, 1, 10);
                 MAGNET_RANGE = b.comment("Range for the Simple Magnet. The Alnico and Rare Earth versions scale at x2 and x3 respectively.")
-                        .defineInRange("magnetRange",3,1,8);
+                        .defineInRange("magnetRange",4,1,8);
                 ELECTROMAGNET_RANGE = b.comment("Range for the Simple Electromagnet. The Alnico and Rare Earth versions scale at x2 and x3 respectively.")
                         .defineInRange("electromagnetRange",5,1,10);
                 FLOOD_GATE_RANGE = b.comment("Maximum number of blocks the Flood Gate will search for when placing fluid. Set to 0 to disable this ability.")
