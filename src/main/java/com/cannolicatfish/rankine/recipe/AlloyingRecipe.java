@@ -181,7 +181,7 @@ public class AlloyingRecipe implements Recipe<Container> {
             return this.getIngredientsList(worldIn, false);
         }
         Map<Float, List<ResourceLocation>> groupToMinMax = new HashMap<>();
-        for (int i = this.getIngredientsList(worldIn,true).size() - 1; i < this.elements.size(); i++) {
+        for (int i = this.getIngredientsList(worldIn,true).size(); i < this.elements.size(); i++) {
             ResourceLocation rs = this.elements.get(i);
             Float minMax = this.mins.get(i) - this.maxes.get(i);
             if (groupToMinMax.containsKey(minMax)) {
@@ -195,21 +195,34 @@ public class AlloyingRecipe implements Recipe<Container> {
 
         Map<Float, List<ResourceLocation>> sortedMap = sortByListSize(groupToMinMax);
         NonNullList<Ingredient> ret = NonNullList.withSize(20,Ingredient.EMPTY);
-        
-        int i = 0;
-        for (Float s : sortedMap.keySet()) {
-            Ingredient mergeIng = Ingredient.EMPTY;
-            for (ResourceLocation rs : sortedMap.get(s)) {
-                if (worldIn.getRecipeManager().byKey(rs).isPresent() ) {
+
+        List<Float> keyList = sortedMap.keySet().stream().toList();
+        float curKey;
+        float lastKey = 0f;
+        int lastKeyIndex = 0;
+        int ingredientNumber = 0;
+        for (int i = 0; i < sortedMap.size(); i++) {
+            curKey = keyList.get(i);
+            if (curKey != lastKey) {
+                lastKey = curKey;
+                lastKeyIndex = ingredientNumber;
+            }
+            List<ResourceLocation> resourceLocations = sortedMap.get(curKey);
+
+            for (ResourceLocation rs : resourceLocations) {
+                Ingredient mergeIng = ret.get(ingredientNumber);
+                if (worldIn.getRecipeManager().byKey(rs).isPresent()) {
                     ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().byKey(rs).get();
                     mergeIng = Ingredient.merge(Arrays.asList(mergeIng,Ingredient.merge(recipe.getIngredients())));
                 }
+                ret.set(ingredientNumber, mergeIng);
+                ingredientNumber++;
+                if (ingredientNumber > 19) {
+                    ingredientNumber = lastKeyIndex;
+                }
             }
-            ret.set(i, mergeIng);
-            i++;
-            if (i > 19) {
-                break;
-            }
+
+
         }
 
 
