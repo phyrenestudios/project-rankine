@@ -10,25 +10,24 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
-import net.minecraft.world.level.Level;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class AlloyingRecipe implements Recipe<Container> {
 
@@ -109,6 +108,145 @@ public class AlloyingRecipe implements Recipe<Container> {
             }
         }
         return ret;
+    }
+
+    public List<Ingredient> getIngredientGroupList(Level worldIn) {
+        List<Integer> nobles = Arrays.asList(2,10,18,36,54,86,118);
+        List<Integer> groups = new ArrayList<>();
+        for (int i = 0; i < this.elements.size(); i++) {
+            ResourceLocation rs = this.elements.get(i);
+            if (worldIn.getRecipeManager().byKey(rs).isPresent() && this.required.get(i).equals(false)) {
+                ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().byKey(rs).get();
+                int atom = recipe.getAtomicNumber();
+                int sub = 0;
+                if (atom <= 0) {
+                    groups.add(0);
+                    continue;
+                } else if (atom > 118) {
+                    groups.add(19);
+                    continue;
+                }
+                for (int x : nobles) {
+                    if (x != sub && atom - x > 0) {
+                        sub = x;
+                    } else {
+                        break;
+                    }
+                }
+                int diff = atom - sub;
+                groups.add(diff > 18 ? diff - 14 : diff);
+            } else {
+                groups.add(-1);
+            }
+        }
+
+        /*
+        ORDER MAP BY LIST SIZE (LOWEST -> HIGHEST)
+        LOWEST INGREDIENTS PLACED FIRST
+        HIGHEST SIZE INGREDIENTS GROUPED TOGETHER AT END OR SPLIT EVENLY ACROSS LIKE MEMBERS, WHICHEVER BEST
+         */
+        NonNullList<Ingredient> ret = NonNullList.withSize(20,Ingredient.EMPTY);
+        for (int i = 0; i < groups.size(); i++) {
+            if (groups.get(i) != -1) {
+                ResourceLocation rs = this.elements.get(i);
+                if (worldIn.getRecipeManager().byKey(rs).isPresent() ) {
+                    ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().byKey(rs).get();
+                    ret.set(groups.get(i), Ingredient.merge(Arrays.asList(ret.get(groups.get(i)),Ingredient.merge(recipe.getIngredients()))));
+                }
+            }
+
+        }
+        System.out.println(ret);
+        return ret;
+    }
+
+    public static <K, V extends List<?>> Map<K, V> sortByListSize(Map<K, V> map) {
+        List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
+        list.sort((o1, o2) -> o1.getValue().size() > o2.getValue().size() ? 1 : 0);
+
+        Map<K, V> result = new LinkedHashMap<>();
+        for (Map.Entry<K, V> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+
+        return result;
+    }
+
+    public List<Ingredient> getIngredientsGroupedByMinMaxList(Level worldIn) {
+        if (this.getIngredientsList(worldIn,true).size() == 0) {
+            return Collections.emptyList();
+        }
+        int size = this.getIngredientsList(worldIn,false).size();
+        if (size < 20) {
+            return this.getIngredientsList(worldIn, false);
+        }
+        Map<Float, List<ResourceLocation>> groupToMinMax = new HashMap<>();
+        for (int i = this.getIngredientsList(worldIn,true).size(); i < this.elements.size(); i++) {
+            ResourceLocation rs = this.elements.get(i);
+            Float minMax = this.mins.get(i) - this.maxes.get(i);
+            if (groupToMinMax.containsKey(minMax)) {
+                List<ResourceLocation> inList = new ArrayList<>(groupToMinMax.get(minMax));
+                inList.add(rs);
+                groupToMinMax.put(minMax,inList);
+            } else {
+                groupToMinMax.put(minMax, List.of(rs));
+            }
+        }
+
+        Map<Float, List<ResourceLocation>> sortedMap = sortByListSize(groupToMinMax);
+        NonNullList<Ingredient> ret = NonNullList.withSize(20,Ingredient.EMPTY);
+
+        List<Float> keyList = sortedMap.keySet().stream().toList();
+        float curKey;
+        float lastKey = 0f;
+        int lastKeyIndex = 0;
+        int ingredientNumber = 0;
+        for (int i = 0; i < sortedMap.size(); i++) {
+            curKey = keyList.get(i);
+            if (curKey != lastKey) {
+                lastKey = curKey;
+                lastKeyIndex = ingredientNumber;
+            }
+            List<ResourceLocation> resourceLocations = sortedMap.get(curKey);
+
+            for (ResourceLocation rs : resourceLocations) {
+                Ingredient mergeIng = ret.get(ingredientNumber);
+                if (worldIn.getRecipeManager().byKey(rs).isPresent()) {
+                    ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().byKey(rs).get();
+                    mergeIng = Ingredient.merge(Arrays.asList(mergeIng,Ingredient.merge(recipe.getIngredients())));
+                }
+                ret.set(ingredientNumber, mergeIng);
+                ingredientNumber++;
+                if (ingredientNumber > 19) {
+                    ingredientNumber = lastKeyIndex;
+                }
+            }
+
+
+        }
+
+
+        return ret;
+    }
+
+    public Tuple<Float,Float> getMinMaxByElement(Level levelIn, ItemStack element) {
+        ResourceLocation loc = null;
+        for (ResourceLocation rs : this.elements) {
+            if (levelIn.getRecipeManager().byKey(rs).isPresent()) {
+                ElementRecipe recipe = (ElementRecipe) levelIn.getRecipeManager().byKey(rs).get();
+                for (Ingredient i : recipe.getIngredients()) {
+                    if (i.test(element)) {
+                        loc = rs;
+                        break;
+                    }
+                }
+            }
+        }
+        if (loc != null) {
+            int index = this.elements.indexOf(loc);
+            return new Tuple<>(this.mins.get(index),this.maxes.get(index));
+        }
+        return new Tuple<>(0f,0f);
     }
 
     public List<ElementRecipe> getElementList(Level worldIn, boolean required) {
