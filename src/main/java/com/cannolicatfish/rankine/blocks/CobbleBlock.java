@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -29,7 +28,6 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
 
@@ -72,11 +70,9 @@ public class CobbleBlock extends Block implements SimpleWaterloggedBlock {
         return null;
     }
 
-
     @Override
-    public boolean canSurvive(BlockState state, LevelReader levelIn, BlockPos pos) {
-        return levelIn.getBlockState(pos.below()).is(Tags.Blocks.STONE) || levelIn.getBlockState(pos.below()).is(BlockTags.DIRT);
-        //return worldIn.getBlockState(pos.below()).isCollisionShapeFullBlock(worldIn,pos.below());
+    public boolean canSurvive(BlockState state, LevelReader levelIn, BlockPos posIn) {
+        return canSupportCenter(levelIn, posIn.below(), Direction.UP);
     }
 
     public OffsetType getOffsetType() {

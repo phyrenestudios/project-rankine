@@ -686,6 +686,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
             tag(ItemTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName))).add(blk.asItem());
         }
+        copy(RankineTags.Blocks.METAL_BARS, RankineTags.Items.METAL_BARS);
+        copy(RankineTags.Blocks.METAL_POLES, RankineTags.Items.METAL_POLES);
 
         copy(BlockTags.STONE_PRESSURE_PLATES, RankineTags.Items.STONE_PRESSURE_PLATES);
         copy(RankineTags.Blocks.COBBLES, RankineTags.Items.COBBLES);

@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "rankine:block/heating_element_1"
+    "side": "rankine:block/heating_element_side",
+    "bottom": "rankine:block/heating_element_bottom",
+    "top": "rankine:block/heating_element_top"
   }
 }

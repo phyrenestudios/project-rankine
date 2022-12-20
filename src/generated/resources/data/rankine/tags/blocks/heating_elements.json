@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "rankine:heating_element_1",
-    "rankine:heating_element_2",
-    "rankine:heating_element_3"
+    "rankine:heating_element_1"
   ]
 }

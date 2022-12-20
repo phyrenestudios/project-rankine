@@ -34,6 +34,7 @@ public class MagnetItem extends Item {
                     entity.broadcastBreakEvent(handIn);
                 });
             }
+            playerIn.swing(handIn);
         }
 
         return super.use(worldIn, playerIn, handIn);

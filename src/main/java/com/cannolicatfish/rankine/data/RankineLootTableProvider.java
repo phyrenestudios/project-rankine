@@ -233,6 +233,9 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
     protected static LootTable.Builder droppingWithChancesSticksAndApples(Block block, Block sapling, float... chances) {
         return droppingWithChancesAndSticks(block, sapling, chances).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).when(NOT_SILK_TOUCH_OR_SHEARS).add(withSurvivesExplosion(block, LootItem.lootTableItem(Items.APPLE)).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
     }
+    protected static LootTable.Builder droppingWithChancesSticksAndExtra(Block block, Block sapling, Item Item, float... chances) {
+        return droppingWithChancesAndSticks(block, sapling, chances).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).when(NOT_SILK_TOUCH_OR_SHEARS).add(withSurvivesExplosion(block, LootItem.lootTableItem(Item)).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.01F, 0.012F, 0.015F, 0.02F, 0.05F))));
+    }
 
     /**
      * Drops the first item parameter always, and the second item parameter plus more of the first when the loot

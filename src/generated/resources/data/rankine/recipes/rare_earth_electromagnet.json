@@ -1,18 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "WBW",
-    "WMW"
+    "WPW",
+    "WPW",
+    "WBW"
   ],
   "key": {
     "W": {
       "item": "rankine:alloy_wire"
     },
     "B": {
-      "item": "rankine:lithium_ion_battery"
+      "item": "rankine:sodium_sulfur_battery"
     },
-    "M": {
-      "item": "rankine:rare_earth_magnet"
+    "P": {
+      "tag": "forge:metal_poles"
     }
   },
   "result": {

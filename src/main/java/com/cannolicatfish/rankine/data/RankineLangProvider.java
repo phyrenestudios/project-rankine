@@ -127,7 +127,15 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.NATIVE_ORES,
                 RankineLists.CRUSHING_ORES,
                 RankineLists.SPECIAL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
+            if (blk == RankineBlocks.SIMPLE_ELECTROMAGNET.get()) {
+                add(blk, "Electromagnet (Tier 1)");
+            } else if (blk == RankineBlocks.ALNICO_ELECTROMAGNET.get()) {
+                add(blk, "Electromagnet (Tier 2)");
+            } else if (blk == RankineBlocks.RARE_EARTH_ELECTROMAGNET.get()) {
+                add(blk, "Electromagnet (Tier 3)");
+            } else {
                 add(blk, parseLangName(blk.getRegistryName().getPath()));
+            }
         }
 
         for (Block blk : Stream.of(
@@ -155,8 +163,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.HEATING_ELEMENT_1.get(),
-                RankineBlocks.HEATING_ELEMENT_2.get(),
-                RankineBlocks.HEATING_ELEMENT_3.get(),
                 RankineBlocks.TILLED_SOIL.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
                 RankineBlocks.ORNAMENT.get(),
@@ -1188,7 +1194,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_constructs.name", "Constructs");
         add("rankine.journal.cat_constructs.desc", "Not all blocks and items are of natural origins.");
 
-        add("rankine.journal.cat_constructs.metal_poles.name", "Magnets");
+        add("rankine.journal.cat_constructs.heating_element.name", "Heating Elements");
+        add("rankine.journal.cat_constructs.heating_element.text1", "Heating elements may replace natural blocks as a source of heat (such as for the crucible). On a redstone pulse, blocks in a 13 radius cube will be melted.");
+
+        add("rankine.journal.cat_constructs.metal_poles.name", "Metal Poles");
         add("rankine.journal.cat_constructs.metal_poles.text1", "Metal poles are crafted from any alloy. The variety of alloy colors make them an excellent decoration block. They can also be right-clicked with leaves or torches to add garland, string lights, or both! Holding shift while clicking will teleport the player to the bottom of pole column.");
         add("rankine.journal.cat_constructs.metal_poles.text2", "All pole recipes follow this pattern.");
 
@@ -1200,7 +1209,7 @@ public class RankineLangProvider extends LanguageProvider {
 
         //Materials
         add("rankine.journal.cat_materials.name", "Materials");
-        add("rankine.journal.cat_materials.desc", "Useable materials come from all sorts of places. Some are simply harvested raw from the world, while others require some manufacturing and refinement to obtain.");
+        add("rankine.journal.cat_materials.desc", "Usable materials come from all sorts of places. Some are simply harvested raw from the world, while others require some manufacturing and refinement to obtain.");
 
         add("rankine.journal.cat_materials.mixing_barrel.name", "Mixing Barrel");
         add("rankine.journal.cat_materials.mixing_barrel.text1", "The mixing barrel combines together materials and fluid of various composition. Place items in any of the four items slots and their relative compositions will be displayed. Add fluid to the barrel by right clicking with a bucket. When an appropriate recipe is in the barrel, supply redstone pulses to the block to begin spinning. Each recipe has a variable number of spins needed to complete based off the redstone signal strength.");

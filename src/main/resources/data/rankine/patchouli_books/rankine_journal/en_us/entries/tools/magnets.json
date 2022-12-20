@@ -1,31 +1,31 @@
 {
-  "name": "rankine.journal.cat_constructs.equipment.name",
+  "name": "rankine.journal.cat_tools.equipment.name",
   "icon": "rankine:rare_earth_magnet",
-  "category": "rankine:constructs",
+  "category": "rankine:tools",
   "pages": [
     {
       "type": "text",
-      "text": "rankine.journal.cat_constructs.magnets.text1"
+      "text": "rankine.journal.cat_tools.magnets.text1"
     },
     {
       "type": "spotlight",
       "item": "rankine:lodestone",
-      "text": "rankine.journal.cat_constructs.magnets.lodestone"
+      "text": "rankine.journal.cat_tools.magnets.lodestone"
     },
     {
       "type": "spotlight",
       "item": "rankine:simple_magnet",
-      "text": "rankine.journal.cat_constructs.magnets.simple_magnet"
+      "text": "rankine.journal.cat_tools.magnets.simple_magnet"
     },
     {
       "type": "spotlight",
       "item": "rankine:alnico_magnet",
-      "text": "rankine.journal.cat_constructs.magnets.alnico_magnet"
+      "text": "rankine.journal.cat_tools.magnets.alnico_magnet"
     },
     {
       "type": "spotlight",
       "item": "rankine:rare_earth_magnet",
-      "text": "rankine.journal.cat_constructs.magnets.rare_earth_magnet"
+      "text": "rankine.journal.cat_tools.magnets.rare_earth_magnet"
     }
   ]
 }

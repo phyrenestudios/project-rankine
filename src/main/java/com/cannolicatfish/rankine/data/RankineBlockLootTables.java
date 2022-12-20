@@ -62,8 +62,12 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 } else if (blk instanceof DoorBlock) {
                     lootTables.put(blk, droppingWhen(blk, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
                 } else if (blk instanceof LeavesBlock) {
-                    if (Wood == RankineBlocks.BALSAM_FIR || Wood == RankineBlocks.COCONUT_PALM) {
+                    if (Wood == RankineBlocks.BALSAM_FIR) {
                         lootTables.put(blk, droppingWithChancesAndSticks(blk, Wood.getSapling(), DOUBLE_SAPLING_DROP_RATES));
+                    } else if (Wood == RankineBlocks.COCONUT_PALM) {
+                        lootTables.put(blk, droppingWithChancesSticksAndExtra(blk, Wood.getSapling(), RankineItems.COCONUT.get(), DOUBLE_SAPLING_DROP_RATES));
+                    } else if (Wood == RankineBlocks.BLACK_WALNUT) {
+                        lootTables.put(blk, droppingWithChancesSticksAndExtra(blk, Wood.getSapling(),  RankineItems.BLACK_WALNUT.get(), DEFAULT_SAPLING_DROP_RATES));
                     } else {
                         lootTables.put(blk, droppingWithChancesAndSticks(blk, Wood.getSapling(), DEFAULT_SAPLING_DROP_RATES));
                     }
@@ -150,8 +154,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineBlocks.METAL_PIPE.get(),
                 RankineBlocks.GROUND_TAP.get(),
                 RankineBlocks.HEATING_ELEMENT_1.get(),
-                RankineBlocks.HEATING_ELEMENT_2.get(),
-                RankineBlocks.HEATING_ELEMENT_3.get(),
                 RankineBlocks.AIR_DISTILLATION_PACKING.get()
         )) {
             lootTables.put(blk, createBlockLootTable(blk));

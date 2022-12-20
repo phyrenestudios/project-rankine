@@ -92,6 +92,7 @@ public final class RankineTags {
 
         //FORGE
         public static final TagKey<Block> METAL_BARS = forgeBlock("metal_bars");
+        public static final TagKey<Block> METAL_POLES = forgeBlock("metal_poles");
         public static final TagKey<Block> BOOKSHELVES = forgeBlock("bookshelves");
         public static final TagKey<Block> CLAY = forgeBlock("clay");
         public static final TagKey<Block> SILT = forgeBlock("silt");
@@ -1077,6 +1078,8 @@ public final class RankineTags {
         public static final TagKey<Item> CONCRETE_POWDER = forgeItem("concrete_powder");
         public static final TagKey<Item> CONCRETE = forgeItem("concrete");
         public static final TagKey<Item> MINERAL_WOOL = forgeItem("mineral_wool");
+        public static final TagKey<Item> METAL_BARS = forgeItem("metal_bars");
+        public static final TagKey<Item> METAL_POLES = forgeItem("metal_poles");
         public static final TagKey<Item> SHEETMETAL = forgeItem("sheetmetal");
         public static final TagKey<Item> SHEETMETAL_SALBS = forgeItem("sheetmetal_slabs");
         public static final TagKey<Item> FENCE_GATES = forgeItem("fence_gates");
