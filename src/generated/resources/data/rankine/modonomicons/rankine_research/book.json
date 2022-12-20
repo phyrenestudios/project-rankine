@@ -1,0 +1,12 @@
+{
+  "name": "book.rankine.rankine_research.name",
+  "tooltip": "book.rankine.rankine_research.tooltip",
+  "model": "modonomicon:modonomicon_red",
+  "creative_tab": "rankine_misc",
+  "book_overview_texture": "modonomicon:textures/gui/book_overview.png",
+  "book_content_texture": "modonomicon:textures/gui/book_content.png",
+  "crafting_texture": "modonomicon:textures/gui/crafting_textures.png",
+  "default_title_color": 0,
+  "auto_add_read_conditions": false,
+  "generate_book_item": true
+}

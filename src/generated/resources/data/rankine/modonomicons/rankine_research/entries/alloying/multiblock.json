@@ -1,0 +1,29 @@
+{
+  "category": "rankine:alloying",
+  "name": "book.rankine.rankine_research.alloying.multiblock.name",
+  "description": "book.rankine.rankine_research.alloying.multiblock.description",
+  "icon": "minecraft:furnace",
+  "x": -8,
+  "y": -2,
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "hide_while_locked": false,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "anchor": "",
+      "title": "book.rankine.rankine_research.alloying.multiblock.intro.title",
+      "use_markdown_in_title": false,
+      "show_title_separator": true,
+      "text": "book.rankine.rankine_research.alloying.multiblock.intro.text"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "anchor": "",
+      "multiblock_name": "multiblocks.modonomicon.blockentity",
+      "multiblock_id": "modonomicon:blockentity",
+      "text": "book.rankine.rankine_research.alloying.multiblock.multiblock.text",
+      "show_visualize_button": true
+    }
+  ]
+}

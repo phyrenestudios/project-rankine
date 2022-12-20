@@ -31,4 +31,6 @@ public class RankineSandBlock extends SandBlock {
         }
         return plantable.getPlantType(levelIn, pos.relative(facing)).equals(PlantType.DESERT) || plantable.getPlantType(levelIn, pos.relative(facing)).equals(PlantType.BEACH);
     }
+
+
 }

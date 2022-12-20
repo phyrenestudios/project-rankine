@@ -1,0 +1,8 @@
+{
+  "name": "book.rankine.rankine_research.alloying.name",
+  "icon": "rankine:bronze_ingot",
+  "sort_number": -1,
+  "background": "modonomicon:textures/gui/dark_slate_seamless.png",
+  "entry_textures": "modonomicon:textures/gui/entry_textures.png",
+  "show_category_button": true
+}

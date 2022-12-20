@@ -29,7 +29,10 @@ public final class DataGenerators {
         if (event.includeClient()) {
             gen.addProvider(new RankineBlockStateProvider(gen, event.getExistingFileHelper()));
             gen.addProvider(new RankineItemModelProvider(gen, event.getExistingFileHelper()));
-            gen.addProvider(new RankineLangProvider(gen, "en_us"));
+
+            RankineLangProvider langProvider = new RankineLangProvider(gen, "en_us");
+            gen.addProvider(new RankineModonomiconBookProvider(gen, ProjectRankine.MODID, langProvider));
+            gen.addProvider(langProvider);
         }
     }
 }
