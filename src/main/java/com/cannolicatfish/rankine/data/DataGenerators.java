@@ -31,7 +31,6 @@ public final class DataGenerators {
             gen.addProvider(new RankineItemModelProvider(gen, event.getExistingFileHelper()));
 
             RankineLangProvider langProvider = new RankineLangProvider(gen, "en_us");
-            gen.addProvider(new RankineModonomiconBookProvider(gen, ProjectRankine.MODID, langProvider));
             gen.addProvider(langProvider);
         }
     }

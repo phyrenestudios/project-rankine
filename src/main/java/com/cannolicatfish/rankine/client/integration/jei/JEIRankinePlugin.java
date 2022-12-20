@@ -9,6 +9,7 @@ import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelScreen;
 import com.cannolicatfish.rankine.client.integration.jei.categories.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineFluids;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
@@ -18,9 +19,12 @@ import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.ForagingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.*;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +32,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
 import java.util.Comparator;
@@ -92,6 +97,15 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getMetamorphicGeneratorRecipes()), MetamorphicGeneratorRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()), VolcanicGeneratorRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getAirDistillationRecipes()), AirDistillationRecipeCategory.UID);
+
+        registry.addIngredientInfo(new ItemStack(RankineItems.DRY_RUBBER.get()), VanillaTypes.ITEM_STACK,new TranslatableComponent("rankine.jei.info_dry_rubber"));
+        registry.addIngredientInfo(new ItemStack(RankineItems.AMBER.get()), VanillaTypes.ITEM_STACK,new TranslatableComponent("rankine.jei.info_amber"));
+
+        registry.addIngredientInfo(new FluidStack(RankineFluids.SAP,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_sap"));
+        registry.addIngredientInfo(new FluidStack(RankineFluids.MAPLE_SAP,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_maple_sap"));
+        registry.addIngredientInfo(new FluidStack(RankineFluids.LATEX,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_latex"));
+        registry.addIngredientInfo(new FluidStack(RankineFluids.RESIN,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_resin"));
+        registry.addIngredientInfo(new FluidStack(RankineFluids.JUGLONE,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_juglone"));
     }
 
     @Override

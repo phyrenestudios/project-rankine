@@ -6,8 +6,6 @@ import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
-import com.klikli_dev.modonomicon.api.ModonomiconAPI;
-import com.klikli_dev.modonomicon.api.datagen.BookLangHelper;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -743,6 +741,13 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.vacuum", "Vacuum Shot");
         add("enchantment.rankine.vacuum.desc", "Charging the Blunderbuss now also sucks enemies toward you. On firing, do minor damage and knockback to enemies in front of you.");
         add("jei.description.crushing_basic", "Can be obtained by crushing ores using a machine or a Bronze Hammer.");
+        add("rankine.jei.info_sap", "Can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, the fluid is turned into Sugar.");
+        add("rankine.jei.info_maple_sap", "Can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, the fluid is turned into Maple Syrup, which can be bottled out.");
+        add("rankine.jei.info_resin", "Can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, the fluid is turned into Amber.");
+        add("rankine.jei.info_juglone", "Can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, the fluid is turned into Brown Dye.");
+        add("rankine.jei.info_latex", "Can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, the fluid is turned into Dry Rubber.");
+        add("rankine.jei.info_amber", "Resin can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, Resin is turned into Amber.");
+        add("rankine.jei.info_dry_rubber", "Latex can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, Latex is turned into Dry Rubber.");
         add("rankine.jei.tooltip_chance", "Chance: ");
         add("rankine.jei.tooltip_failure_chance", "Failure Chance: ");
         add("rankine.jei.tooltip_guaranteed", "Guaranteed");
@@ -758,6 +763,11 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.tooltip_max_level", "Max Level: ");
         add("rankine.jei.tooltip_biomes_info", "Biomes: ");
         add("rankine.jei.tooltip_biomes_tags_info", "Biome Tags: ");
+        add("rankine.jei.tooltip_mixing_time","Base Mixing Time: %s redstone power per ingredient total");
+        add("rankine.jei.tooltip_total_mixing_time","Total Mixing Time: %s redstone power");
+        add("rankine.jei.tooltip_total_button_lever","(%s button presses or lever flicks)");
+        add("rankine.jei.tooltip_total_ingredients","%s total ingredients");
+        add("rankine.jei.tooltip_total_output","%s total output");
         add("rankine.jei.tooltip_none", "None");
         add("rankine.jei.tooltip_any", "Any");
         add("rankine.jei.tooltip_tier", "Tier: ");
@@ -1623,59 +1633,6 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.standard_tools.text20", "Surf Rods");
         add("rankine.journal.cat_tools.standard_tools.text21", "");
 
-
-        addModonomiconBook();
-    }
-
-    private void addModonomiconBook(){
-        //We again set up a lang helper to keep track of the translation keys for us.
-        //Forge language provider does not give us access to this.modid, so we get it from our main mod class
-        var helper = ModonomiconAPI.get().getLangHelper(ProjectRankine.MODID);
-        helper.book("rankine_research"); //we tell the helper the book we're in.
-        this.add(helper.bookName(), "Rankine Research Notes"); //and now we add the actual textual book name
-        this.add(helper.bookTooltip(), "A book to assist in learning the world of Project Rankine."); //and the tooltip text
-
-        this.addModonomiconBookAlloyingCategory(helper);
-    }
-
-    private void addModonomiconBookAlloyingCategory(BookLangHelper helper) {
-        helper.category("alloying"); //tell the helper the category we are in
-        this.add(helper.categoryName(), "Elements and Alloying"); //annd provide the category name text
-
-        this.addModonomiconBookBasicAlloyingEntry(helper);
-        this.addModonomiconBookMultiblockEntry(helper);
-    }
-
-    private void addModonomiconBookBasicAlloyingEntry(BookLangHelper helper) {
-        helper.entry("basic_alloying"); //tell the helper the entry we are in
-        this.add(helper.entryName(), "Multiblock Entry"); //provide the entry name
-        this.add(helper.entryDescription(), "An entry showcasing a multiblock."); //and description
-
-        helper.page("basic_alloying"); //now we configure the intro page
-        this.add(helper.pageTitle(), "Basic Alloying"); //page title
-        this.add(helper.pageText(), "Multiblock pages allow to preview multiblocks both in the book and in the world."); //page text
-
-        helper.page("alloy_furnace"); //and finally the multiblock page
-        //now provide the multiblock name
-        //the lang helper does not handle multiblocks, so we manually add the same key we provided in the ModonomiconBookProvider
-        this.add(helper.pageTitle(), "Alloy Furnace"); //page title
-        this.add(helper.pageText(), "Multiblock pages allow to preview multiblocks both in the book and in the world."); //page text
-    }
-
-    private void addModonomiconBookMultiblockEntry(BookLangHelper helper) {
-        helper.entry("multiblock"); //tell the helper the entry we are in
-        this.add(helper.entryName(), "Multiblock Entry"); //provide the entry name
-        this.add(helper.entryDescription(), "An entry showcasing a multiblock."); //and description
-
-        helper.page("intro"); //now we configure the intro page
-        this.add(helper.pageTitle(), "Multiblock Page"); //page title
-        this.add(helper.pageText(), "Multiblock pages allow to preview multiblocks both in the book and in the world."); //page text
-
-        helper.page("multiblock"); //and finally the multiblock page
-        //now provide the multiblock name
-        //the lang helper does not handle multiblocks, so we manually add the same key we provided in the ModonomiconBookProvider
-        this.add("multiblocks.modonomicon.blockentity", "Blockentity Multiblock.");
-        this.add(helper.pageText(), "A sample multiblock."); //and the multiblock page text
     }
 
     private String parseLangName(String registryName) {

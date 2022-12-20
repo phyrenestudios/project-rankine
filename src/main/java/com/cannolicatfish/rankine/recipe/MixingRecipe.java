@@ -107,12 +107,21 @@ public class MixingRecipe implements Recipe<Container> {
         return Math.round(mixTime * (sum*getMatScale()));
     }
 
+    public int getOutputMixTime(int count) {
+        return Math.round(mixTime * (count*getMatScale()));
+    }
+
     public FluidStack getOutputFluidReq(Container inv) {
         int sum = 0;
         for (int i = 0; i < inv.getContainerSize(); i++) {
             sum += inv.getItem(i).getCount();
         }
 
+        int count = Math.round(fluid.getAmount()*(sum));
+        return new FluidStack(fluid.getFluid(),count);
+    }
+
+    public FluidStack getOutputFluidReq(int sum) {
         int count = Math.round(fluid.getAmount()*(sum));
         return new FluidStack(fluid.getFluid(),count);
     }
