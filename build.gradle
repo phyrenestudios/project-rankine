@@ -29,6 +29,10 @@ repositories {
         url = "https://dvs1.progwml6.com/files/maven/"
     }
     maven {
+        name = "KliKli Dev Repsy Maven"
+        url = "https://repo.repsy.io/mvn/klikli-dev/mods"
+    }
+    maven {
         // location of a maven mirror for JEI files, as a fallback
         name = "ModMaven"
         url = "https://modmaven.dev"
@@ -156,6 +160,9 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
 
+    compileOnly fg.deobf("com.klikli_dev:modonomicon:${modonomicon_mc_version}-${modonomicon_version}:api")
+    runtimeOnly fg.deobf("com.klikli_dev:modonomicon:${modonomicon_mc_version}-${modonomicon_version}")
+
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -217,4 +224,8 @@ artifacts {
 
 mixin {
     add sourceSets.main, "rankine.refmap.json"
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
