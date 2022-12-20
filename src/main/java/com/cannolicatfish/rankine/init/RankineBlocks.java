@@ -1341,9 +1341,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CHARCOAL_PIT = BLOCKS.register("charcoal_pit", () -> new CharcoalPitBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F)));
     public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("tree_tap", () -> new TreeTapBlock(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F).noOcclusion()));
     public static final RegistryObject<Block> TAP_LINE = BLOCKS.register("tap_line", () -> new TapLineBlock(0.125f, BlockBehaviour.Properties.of(Material.WOOL).sound(SoundType.WOOL).strength(0.5F).noOcclusion()));
-    public static final RegistryObject<Block> HEATING_ELEMENT_1 = BLOCKS.register("heating_element_1", () -> new HeatingElementBlock(5,Block.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(4)));
-    public static final RegistryObject<Block> HEATING_ELEMENT_2 = BLOCKS.register("heating_element_2", () -> new HeatingElementBlock(9,Block.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(6)));
-    public static final RegistryObject<Block> HEATING_ELEMENT_3 = BLOCKS.register("heating_element_3", () -> new HeatingElementBlock(11,Block.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(8)));
+    public static final RegistryObject<Block> HEATING_ELEMENT_1 = BLOCKS.register("heating_element_1", () -> new HeatingElementBlock(13,Block.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(4)));
 
 
     public static final RegistryObject<Block> RED_LED = BLOCKS.register("red_led", () -> new LEDBlock((BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(1.0F, 6.0F).sound(SoundType.METAL))));

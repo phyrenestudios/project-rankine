@@ -94,24 +94,16 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
                 if (recipe != null) {
                     int processHeight = Math.min(wallHeight, fluidHeight(levelIn, posIn, recipe.getFluid().getFluid()));
                     if (processHeight > 0) {
-                        if (tile.cookTimeTotal != recipe.getProcessTime()) {
-                            tile.cookTimeTotal = recipe.getProcessTime() * (1 - (processHeight / 21));
-                            //tile.cookTime = 0;
-                            return;
-                        }
+                        tile.cookTimeTotal = Math.round(recipe.getProcessTime() * (1 - (processHeight / 21F)));
                         ++tile.cookTime;
                         if (tile.cookTime >= tile.cookTimeTotal) {
-                            if (tile.cookTimeTotal < recipe.getProcessTime() * (1 - (processHeight / 21))) {
-                                tile.cookTimeTotal = recipe.getProcessTime() * (1 - (processHeight / 21));
-                            } else {
-                                tile.items.set(0, recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).value().getRegistryName()));
-                                tile.cookTime = 0;
-                                if (recipe.getConsumeFluid()) {
-                                    for (BlockPos b : fluidStructure(posIn)) {
-                                        if (levelIn.getFluidState(b.above(processHeight)).is(recipe.getFluid().getFluid())) {
-                                            levelIn.setBlockAndUpdate(b.above(processHeight), Blocks.AIR.defaultBlockState());
-                                            break;
-                                        }
+                            tile.items.set(0, recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).value().getRegistryName()));
+                            tile.cookTime = 0;
+                            if (recipe.getConsumeFluid()) {
+                                for (BlockPos b : fluidStructure(posIn)) {
+                                    if (levelIn.getFluidState(b.above(processHeight)).is(recipe.getFluid().getFluid())) {
+                                        levelIn.setBlockAndUpdate(b.above(processHeight), Blocks.AIR.defaultBlockState());
+                                        break;
                                     }
                                 }
                             }

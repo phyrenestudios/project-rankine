@@ -4,6 +4,7 @@
     "minecraft:magma_block",
     "minecraft:lava",
     "#minecraft:campfires",
-    "#minecraft:fire"
+    "#minecraft:fire",
+    "#rankine:heating_elements"
   ]
 }

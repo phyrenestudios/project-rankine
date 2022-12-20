@@ -1,35 +1,31 @@
 {
-  "name": "Magnets",
-  "icon": "rankine:alnico_magnet",
+  "name": "rankine.journal.cat_tools.equipment.name",
+  "icon": "rankine:rare_earth_magnet",
   "category": "rankine:tools",
   "pages": [
     {
       "type": "text",
-      "text": "Magnets are able to pull items and blocks around when clicked. Some config options exist for magnet ranges and allowed materials. Rare earth magnets have a longer range (10) than alnico (5)."
+      "text": "rankine.journal.cat_tools.magnets.text1"
     },
     {
       "type": "spotlight",
       "item": "rankine:lodestone",
-      "text": "A weakly powered natural magnet. Obtained by crushing $(world/ores#magnetite_ore)Magnetite Ore$()."
+      "text": "rankine.journal.cat_tools.magnets.lodestone"
     },
     {
-      "type": "crafting",
-      "recipe": "rankine:alnico_magnet"
+      "type": "spotlight",
+      "item": "rankine:simple_magnet",
+      "text": "rankine.journal.cat_tools.magnets.simple_magnet"
     },
     {
-      "type": "crafting",
-      "recipe": "rankine:samarium_magnet",
-      "recipe2": "rankine:neodymium_magnet"
+      "type": "spotlight",
+      "item": "rankine:alnico_magnet",
+      "text": "rankine.journal.cat_tools.magnets.alnico_magnet"
     },
     {
-      "type": "crafting",
-      "recipe": "rankine:alnico_electromagnet",
-      "text": "Provide with a redstone signal to attract the closest block towards the magnet face. Range is equal to that of the item version."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:samarium_electromagnet",
-      "recipe2": "rankine:neodymium_electromagnet"
+      "type": "spotlight",
+      "item": "rankine:rare_earth_magnet",
+      "text": "rankine.journal.cat_tools.magnets.rare_earth_magnet"
     }
   ]
 }

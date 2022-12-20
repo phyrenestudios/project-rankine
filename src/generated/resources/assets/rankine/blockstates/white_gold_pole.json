@@ -1,10 +1,28 @@
 {
   "variants": {
     "style=0": {
-      "model": "rankine:block/white_gold_pole"
+      "model": "rankine:block/white_gold_pole0"
     },
     "style=1": {
-      "model": "rankine:block/white_gold_pole_garland"
+      "model": "rankine:block/white_gold_pole1"
+    },
+    "style=2": {
+      "model": "rankine:block/white_gold_pole2"
+    },
+    "style=3": {
+      "model": "rankine:block/white_gold_pole3"
+    },
+    "style=4": {
+      "model": "rankine:block/white_gold_pole4"
+    },
+    "style=5": {
+      "model": "rankine:block/white_gold_pole5"
+    },
+    "style=6": {
+      "model": "rankine:block/white_gold_pole6"
+    },
+    "style=7": {
+      "model": "rankine:block/white_gold_pole7"
     }
   }
 }

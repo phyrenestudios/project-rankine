@@ -112,7 +112,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.CHISELED_SANDSTONES,
                 RankineLists.ALLOY_PEDESTALS,
                 RankineLists.ALLOY_SHEETMETALS,
-                RankineLists.ALLOY_POLES,
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.HOLLOW_LOGS,
                 RankineLists.LEAF_LITTERS,
@@ -404,8 +403,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.BONE_CHAR_BLOCK.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
                 RankineBlocks.HEATING_ELEMENT_1.get(),
-                RankineBlocks.HEATING_ELEMENT_2.get(),
-                RankineBlocks.HEATING_ELEMENT_3.get(),
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.PCF.get(),
@@ -465,6 +462,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
         for (Block blk : RankineLists.WALL_MUSHROOMS) {
             basicItemAltTexture(blk.asItem(), modLoc("item/" + blk.getRegistryName().getPath()));
+        }
+        for (Block blk : RankineLists.ALLOY_POLES) {
+            withExistingParent(blk.getRegistryName().getPath(), new ResourceLocation("rankine","block/" + blk.getRegistryName().getPath() + "0"));
         }
         for (Block blk : RankineLists.ALLOY_BARS) {
             basicItemAltTexture(blk.asItem(), modLoc("block/alloy_bars1"));

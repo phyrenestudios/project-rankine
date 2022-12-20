@@ -1,18 +1,16 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.init.Config;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class MagnetItem extends Item {
 
@@ -31,12 +29,12 @@ public class MagnetItem extends Item {
                 i.setPickUpDelay(0);
                 i.playerTouch(playerIn);
             }
-            if (!playerIn.isCreative())
-            {
+            if (!playerIn.isCreative()) {
                 playerIn.getItemInHand(handIn).hurtAndBreak(1, playerIn, (entity) -> {
                     entity.broadcastBreakEvent(handIn);
                 });
             }
+            playerIn.swing(handIn);
         }
 
         return super.use(worldIn, playerIn, handIn);
@@ -44,9 +42,8 @@ public class MagnetItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (entityIn instanceof Player && type == 4){
-            Player player = (Player) entityIn;
-            List<ItemEntity> items = worldIn.getEntitiesOfClass(ItemEntity.class, entityIn.getBoundingBox().inflate(2, 2, 2));
+        if (entityIn instanceof Player player &&  type == 4) {
+            List<ItemEntity> items = worldIn.getEntitiesOfClass(ItemEntity.class, entityIn.getBoundingBox().inflate(3, 3, 3));
             for (ItemEntity i : items) {
                 i.playerTouch(player);
             }

@@ -490,6 +490,7 @@ public class Config {
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_SPEED;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
+        public final ForgeConfigSpec.IntValue FLOOD_GATE_RANGE;
         public final ForgeConfigSpec.IntValue ELECTROMAGNET_RANGE;
         public final ForgeConfigSpec.IntValue MAGNET_RANGE;
         public final ForgeConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
@@ -515,9 +516,11 @@ public class Config {
                 CHARCOAL_PIT_HEIGHT = b.comment("Maximum height a charcoal pile can be")
                         .defineInRange("charcoalPitHeight", 5, 1, 10);
                 MAGNET_RANGE = b.comment("Range for the Simple Magnet. The Alnico and Rare Earth versions scale at x2 and x3 respectively.")
-                        .defineInRange("magnetRange",3,1,8);
+                        .defineInRange("magnetRange",4,1,8);
                 ELECTROMAGNET_RANGE = b.comment("Range for the Simple Electromagnet. The Alnico and Rare Earth versions scale at x2 and x3 respectively.")
                         .defineInRange("electromagnetRange",5,1,10);
+                FLOOD_GATE_RANGE = b.comment("Maximum number of blocks the Flood Gate will search for when placing fluid. Set to 0 to disable this ability.")
+                        .defineInRange("floodGateRange",128,0,Integer.MAX_VALUE);
                 ELECTROMAGNET_MATERIAL_REQ = b.comment("Require the material of the block to be Material.IRON in order for the electromagnet to pull the block. If disabled, it will pick up any block as long as it is not a FluidBlock, Tile Entity, or in the rankine:magnet_banned tag (these blocks are also banned if this value is true).")
                         .define("electromagnetMaterialReq",true);
                 INDUCTION_FURNACE_POWER = b.comment("Defines the power requirement for one process in the induction furnace.")

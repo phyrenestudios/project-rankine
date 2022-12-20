@@ -122,9 +122,9 @@ public class RankineWood {
          RankineBlocks.ITEMS.register(baseName+"_bookshelf", () -> new BuildingModeBlockItem(newWood.bookshelf.get(), DEF_BUILDING));
         newWood.boat =  RankineBlocks.ITEMS.register(baseName+"_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.getTypeFromString(baseName), new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineBiota)));
         if (newWood.isTree) {
-             RankineBlocks.ITEMS.register(baseName + "_leaves", () -> new BuildingModeBlockItem(newWood.leaves.get(), DEF_BUILDING));
-             RankineBlocks.ITEMS.register(baseName + "_leaf_litter", () -> new BuildingModeBlockItem(newWood.leafLitter.get(), DEF_BUILDING));
-             RankineBlocks.ITEMS.register(baseName + "_sapling", () -> new BuildingModeBlockItem(newWood.sapling.get(), DEF_BUILDING));
+             RankineBlocks.ITEMS.register(baseName + "_leaves", () -> new BlockItem(newWood.leaves.get(), DEF_BUILDING));
+             RankineBlocks.ITEMS.register(baseName + "_leaf_litter", () -> new BlockItem(newWood.leafLitter.get(), DEF_BUILDING));
+             RankineBlocks.ITEMS.register(baseName + "_sapling", () -> new BlockItem(newWood.sapling.get(), DEF_BUILDING));
         }
 
         return newWood;

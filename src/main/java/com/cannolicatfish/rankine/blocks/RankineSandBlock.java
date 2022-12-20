@@ -6,6 +6,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SandBlock;
+import net.minecraft.world.level.block.SugarCaneBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.common.IPlantable;
@@ -19,7 +20,7 @@ public class RankineSandBlock extends SandBlock {
 
     @Override
     public boolean canSustainPlant(BlockState state, BlockGetter levelIn, BlockPos pos, Direction facing, IPlantable plantable) {
-        if (levelIn.getBlockState(pos.above()).is(Blocks.SUGAR_CANE)) {
+        if (plantable instanceof SugarCaneBlock) {
             for(Direction direction : Direction.Plane.HORIZONTAL) {
                 BlockState blockstate1 = levelIn.getBlockState(pos.relative(direction));
                 FluidState fluidstate = levelIn.getFluidState(pos.relative(direction));

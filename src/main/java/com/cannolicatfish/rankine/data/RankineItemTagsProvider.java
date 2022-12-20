@@ -686,6 +686,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
             tag(ItemTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName))).add(blk.asItem());
         }
+        copy(RankineTags.Blocks.METAL_BARS, RankineTags.Items.METAL_BARS);
+        copy(RankineTags.Blocks.METAL_POLES, RankineTags.Items.METAL_POLES);
 
         copy(BlockTags.STONE_PRESSURE_PLATES, RankineTags.Items.STONE_PRESSURE_PLATES);
         copy(RankineTags.Blocks.COBBLES, RankineTags.Items.COBBLES);
@@ -896,6 +898,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineTags.Items.SILICON_DIOXIDE_BLOCKS).addTags(RankineTags.Items.STONES_QUARTZITE,RankineTags.Items.CONSTRUCTION_SAND,Tags.Items.STORAGE_BLOCKS_QUARTZ);
         tag(RankineTags.Items.FLUXES).addTags(RankineTags.Items.STONES_LIMESTONE,RankineTags.Items.STONES_DOLOMITE).add(RankineItems.DOLOMITE.get(),RankineItems.CALCITE.get(),RankineItems.QUICKLIME.get());
         tag(RankineTags.Items.GLASS_INPUTS).addTags(RankineTags.Items.SILT,Tags.Items.SAND,Tags.Items.GEMS_QUARTZ);
+        tag(RankineTags.Items.TORCH).add(Items.TORCH, Items.REDSTONE_TORCH, Items.SOUL_TORCH);
 
 
 

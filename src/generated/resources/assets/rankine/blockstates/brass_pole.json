@@ -1,10 +1,28 @@
 {
   "variants": {
     "style=0": {
-      "model": "rankine:block/brass_pole"
+      "model": "rankine:block/brass_pole0"
     },
     "style=1": {
-      "model": "rankine:block/brass_pole_garland"
+      "model": "rankine:block/brass_pole1"
+    },
+    "style=2": {
+      "model": "rankine:block/brass_pole2"
+    },
+    "style=3": {
+      "model": "rankine:block/brass_pole3"
+    },
+    "style=4": {
+      "model": "rankine:block/brass_pole4"
+    },
+    "style=5": {
+      "model": "rankine:block/brass_pole5"
+    },
+    "style=6": {
+      "model": "rankine:block/brass_pole6"
+    },
+    "style=7": {
+      "model": "rankine:block/brass_pole7"
     }
   }
 }
