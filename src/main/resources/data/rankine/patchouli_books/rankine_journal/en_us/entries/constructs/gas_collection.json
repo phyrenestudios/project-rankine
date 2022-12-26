@@ -1,0 +1,100 @@
+{
+  "name": "rankine.journal.cat_constructs.gas_collection.name",
+  "icon": "rankine:shulker_gas_vacuum",
+  "category": "rankine:constructs",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_constructs.gas_collection.text1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:shulker_gas_vacuum",
+      "text": "rankine.journal.cat_constructs.gas_collection.text2"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:gas_vent",
+      "text": "rankine.journal.cat_constructs.gas_collection.text3"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:gas_bottler",
+      "text": "rankine.journal.cat_constructs.gas_collection.text4"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:distillation_tower",
+      "text": "rankine.journal.cat_constructs.gas_collection.text5"
+    },
+    {
+      "type": "multiblock",
+      "multiblock_id": "multiblock",
+      "multiblock": {
+        "pattern": [
+          [ "     ",
+            " SSS ",
+            " SSS ",
+            " SSS ",
+            "     " ],
+          [ "     ",
+            " SSS ",
+            " S S ",
+            " SVS ",
+            "     " ],
+          [ "     ",
+            " SSS ",
+            " SPS ",
+            " SSS ",
+            "     " ],
+          [ "     ",
+            " SSS ",
+            " SPS ",
+            " SSS ",
+            "     " ],
+          [ "     ",
+            " SSS ",
+            " S S ",
+            " SVS ",
+            "     " ],
+          [ "     ",
+            " SSS ",
+            " SPS ",
+            " SSS ",
+            "     " ],
+          [ " SSS ",
+            "SIIIS",
+            "SIPIS",
+            "SIIIS",
+            " SSS " ],
+          [ " SSS ",
+            "SIIIS",
+            "SIPIS",
+            "SIIIS",
+            " SSS " ],
+          [ " SSS ",
+            "SIIIS",
+            "SI0IS",
+            "SIIIS",
+            " SSS " ]
+        ],
+        "mapping": {
+          "S": "#forge:sheetmetal",
+          "I": "#minecraft:ice",
+          "P": "rankine:air_distillation_packing",
+          "V": "rankine:gas_vent",
+          "0": "rankine:distillation_tower"
+        },
+        "symmetrical": true
+      }
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_constructs.gas_collection.text6"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:air_distillation_packing"
+    }
+  ]
+}

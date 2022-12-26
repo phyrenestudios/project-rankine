@@ -198,7 +198,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(Items.IRON_HORSE_ARMOR, 1).pattern("I I").pattern("III").pattern("ITI").define('I', Tags.Items.INGOTS_IRON).define('T', RankineItems.SADDLE_TREE.get()).unlockedBy("has_ingredient", has(RankineItems.SADDLE_TREE.get())).save(consumer, "rankine:iron_horse_armor_from_saddle_tree");
 
         ShapelessRecipeBuilder.shapeless(Items.GUNPOWDER,2).requires(Items.CHARCOAL).requires(RankineTags.Items.SULFUR).requires(Items.BONE_MEAL).unlockedBy("has_ingredient", has(RankineItems.SULFUR.get())).save(consumer, "rankine:gunpowder_from_bonemeal");
-        ShapelessRecipeBuilder.shapeless(Items.GUNPOWDER,2).requires(Items.CHARCOAL).requires(RankineTags.Items.SULFUR).requires(RankineTags.Items.SALTPETER).requires(RankineTags.Items.SALTPETER).unlockedBy("has_ingredient", has(RankineItems.SULFUR.get())).save(consumer, "rankine:gunpowder_from_saltpeter");
+        ShapelessRecipeBuilder.shapeless(Items.GUNPOWDER,2).requires(Items.CHARCOAL).requires(RankineTags.Items.SULFUR).requires(RankineTags.Items.SALTPETER).unlockedBy("has_ingredient", has(RankineItems.SULFUR.get())).save(consumer, "rankine:gunpowder_from_saltpeter");
 
         ShapelessRecipeBuilder.shapeless(Items.COAL,2).requires(RankineItems.ANTHRACITE_COAL.get()).unlockedBy("has_ingredient", has(RankineItems.ANTHRACITE_COAL.get())).group("coal").save(consumer, "rankine:coal_from_anthracite");
         ShapelessRecipeBuilder.shapeless(Items.COAL,3).requires(RankineItems.BITUMINOUS_COAL.get()).requires(RankineItems.BITUMINOUS_COAL.get()).unlockedBy("has_ingredient", has(RankineItems.BITUMINOUS_COAL.get())).group("coal").save(consumer, "rankine:coal_from_bituminous");
@@ -548,6 +548,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RankineBlocks.AIR_DISTILLATION_PACKING.get(), 1).pattern("##").pattern("##").define('#', RankineItems.STAINLESS_STEEL_SHEETMETAL.get()).unlockedBy("has_ingredient", has(RankineItems.STAINLESS_STEEL_SHEETMETAL.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RankineBlocks.DISTILLATION_TOWER.get(), 1).pattern("IBI").pattern("I#I").pattern("IMI").define('I', RankineTags.Items.INGOTS_STAINLESS_STEEL).define('B', RankineTags.Items.ICE).define('M', Items.MAGMA_BLOCK).define('#', RankineItems.MUSCOVITE_BLOCK.get()).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_STAINLESS_STEEL)).save(consumer);
         ShapedRecipeBuilder.shaped(RankineBlocks.HEATING_ELEMENT_1.get(), 1).pattern("III").pattern("WMW").pattern("WMW").define('W', RankineItems.ALLOY_WIRE.get()).define('I', RankineTags.Items.INGOTS_CAST_IRON).define('M', Items.MAGMA_BLOCK).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_CAST_IRON)).save(consumer);
+        ShapedRecipeBuilder.shaped(RankineBlocks.BOTANIST_STATION.get(), 1).pattern("FS").pattern("PP").pattern("PP").define('S', ItemTags.SAPLINGS).define('F',  ItemTags.FLOWERS).define('P', ItemTags.PLANKS).unlockedBy("has_ingredient", has(ItemTags.PLANKS)).save(consumer);
 
         //Smithing Recipes
         UpgradeRecipeBuilder.smithing(Ingredient.of(Items.LEATHER_BOOTS),Ingredient.of(RankineTags.Items.INGOTS_STEEL),RankineItems.BRIGADINE_BOOTS.get()).unlocks("has_ingredient", has(RankineTags.Items.INGOTS_STEEL)).save(consumer,"rankine:brigadine_boots_from_smithing");

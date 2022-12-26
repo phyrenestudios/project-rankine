@@ -1,22 +1,22 @@
 {
-  "name": "rankine.journal.cat_materials.tree_tapping.name",
+  "name": "rankine.journal.cat_constructs.tree_tapping.name",
   "icon": "rankine:tree_tap",
-  "category": "rankine:materials",
+  "category": "rankine:constructs",
   "pages": [
     {
       "type": "text",
-      "text": "rankine.journal.cat_materials.tree_tapping.text1"
+      "text": "rankine.journal.cat_constructs.tree_tapping.text1"
     },
     {
       "type": "spotlight",
       "item": "rankine:tree_tap",
       "link_recipe": true,
-      "text": "rankine.journal.cat_materials.tree_tapping.tree_tap"
+      "text": "rankine.journal.cat_constructs.tree_tapping.tree_tap"
     },
     {
       "type": "crafting",
       "recipe": "rankine:tap_line",
-      "text": "rankine.journal.cat_materials.tree_tapping.tap_line"
+      "text": "rankine.journal.cat_constructs.tree_tapping.tap_line"
     },
     {
       "type": "spotlight",

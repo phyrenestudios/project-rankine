@@ -1,15 +1,15 @@
 {
-  "name": "rankine.journal.cat_materials.mixing_barrel.name",
+  "name": "rankine.journal.cat_constructs.mixing_barrel.name",
   "icon": "rankine:mixing_barrel",
-  "category": "rankine:materials",
+  "category": "rankine:constructs",
   "pages": [
     {
       "type": "text",
-      "text": "rankine.journal.cat_materials.mixing_barrel.text1"
+      "text": "rankine.journal.cat_constructs.mixing_barrel.text1"
     },
     {
       "type": "text",
-      "text": "rankine.journal.cat_materials.mixing_barrel.text2"
+      "text": "rankine.journal.cat_constructs.mixing_barrel.text2"
     },
     {
       "type": "crafting",
@@ -18,7 +18,7 @@
     {
       "type": "spotlight",
       "item": "rankine:cement_mix",
-      "text": "rankine.journal.cat_materials.mixing_barrel.cement_mix"
+      "text": "rankine.journal.cat_constructs.mixing_barrel.cement_mix"
     },
     {
       "type": "rankine:item6",
@@ -28,8 +28,8 @@
       "item4": "rankine:red_asphalt",
       "item5": "rankine:blue_asphalt",
       "item6": "rankine:green_asphalt",
-      "heading": "rankine.journal.cat_materials.mixing_barrel.asphalt_heading",
-      "text": "rankine.journal.cat_materials.mixing_barrel.asphalt"
+      "heading": "rankine.journal.cat_constructs.mixing_barrel.asphalt_heading",
+      "text": "rankine.journal.cat_constructs.mixing_barrel.asphalt"
     }
   ]
 }

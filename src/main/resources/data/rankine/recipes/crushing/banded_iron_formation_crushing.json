@@ -6,6 +6,11 @@
   "guaranteed": [
     {
       "item": "minecraft:flint"
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "count": 3,
+      "tier": "minecraft:iron"
     }
   ],
   "outputs": [
@@ -25,7 +30,7 @@
     },
     {
       "item": "rankine:hematite",
-      "weight": 20,
+      "weight": 40,
       "tier": "minecraft:iron",
       "remove": false
     },

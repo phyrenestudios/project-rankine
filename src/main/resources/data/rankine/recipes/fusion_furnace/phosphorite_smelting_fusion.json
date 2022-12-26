@@ -7,9 +7,6 @@
   "input2": {
     "tag": "minecraft:sand"
   },
-  "fluidInput": {
-    "fluid": "minecraft:lava"
-  },
   "result1": {
     "item": "rankine:phosphorus",
     "count": 1
@@ -23,5 +20,9 @@
   },
   "gasOutput": {
     "item": "rankine:carbon_dioxide_gas_bottle"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:lava",
+    "amount": 50
   }
 }

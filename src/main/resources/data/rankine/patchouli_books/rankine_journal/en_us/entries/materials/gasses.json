@@ -1,6 +1,6 @@
 {
   "name": "rankine.journal.cat_materials.gasses.name",
-  "icon": "rankine:shulker_gas_vacuum",
+  "icon": "rankine:helium_gas_bottle",
   "category": "rankine:materials",
   "pages": [
     {
@@ -8,84 +8,118 @@
       "text": "rankine.journal.cat_materials.gasses.text1"
     },
     {
-      "type": "crafting",
-      "recipe": "rankine:shulker_gas_vacuum",
-      "text": "rankine.journal.cat_materials.gasses.text2"
+      "type": "rankine:item2",
+      "item1": "rankine:hydrogen_gas_block",
+      "item2": "rankine:hydrogen_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.hydrogen"
     },
     {
-      "type": "crafting",
-      "recipe": "rankine:gas_vent",
-      "text": "rankine.journal.cat_materials.gasses.text3"
+      "type": "rankine:item2",
+      "item1": "rankine:helium_gas_block",
+      "item2": "rankine:helium_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.helium"
     },
     {
-      "type": "crafting",
-      "recipe": "rankine:gas_bottler",
-      "text": "rankine.journal.cat_materials.gasses.text4"
+      "type": "rankine:item2",
+      "item1": "rankine:nitrogen_gas_block",
+      "item2": "rankine:nitrogen_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.nitrogen"
     },
     {
-      "type": "crafting",
-      "recipe": "rankine:distillation_tower",
-      "text": "rankine.journal.cat_materials.gasses.text5"
+      "type": "rankine:item2",
+      "item1": "rankine:oxygen_gas_block",
+      "item2": "rankine:oxygen_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.oxygen"
     },
     {
-      "type": "multiblock",
-      "multiblock_id": "multiblock",
-      "multiblock": {
-        "pattern": [
-          [ "     ",
-            " SSS ",
-            " SSS ",
-            " SSS ",
-            "     " ],
-          [ "     ",
-            " SSS ",
-            " S S ",
-            " SSS ",
-            "     " ],
-          [ "     ",
-            " SSS ",
-            " SPS ",
-            " SSS ",
-            "     " ],
-          [ "     ",
-            " SSS ",
-            " SPS ",
-            " SSS ",
-            "     " ],
-          [ "     ",
-            " SSS ",
-            " S S ",
-            " SSS ",
-            "     " ],
-          [ "     ",
-            " SSS ",
-            " SPS ",
-            " SSS ",
-            "     " ],
-          [ " SSS ",
-            "SIIIS",
-            "SIPIS",
-            "SIIIS",
-            " SSS " ],
-          [ " SSS ",
-            "SIIIS",
-            "SIPIS",
-            "SIIIS",
-            " SSS " ],
-          [ " SSS ",
-            "SIIIS",
-            "SI0IS",
-            "SIIIS",
-            " SSS " ]
-        ],
-        "mapping": {
-          "S": "#forge:sheetmetal",
-          "I": "#minecraft:ice",
-          "P": "rankine:air_distillation_packing",
-          "0": "rankine:distillation_tower"
-        },
-        "symmetrical": true
-      }
+      "type": "rankine:item2",
+      "item1": "rankine:fluorine_gas_block",
+      "item2": "rankine:fluorine_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.fluorine"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:neon_gas_block",
+      "item2": "rankine:neon_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.neon"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:chlorine_gas_block",
+      "item2": "rankine:chlorine_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.chlorine"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:argon_gas_block",
+      "item2": "rankine:argon_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.argon"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:krypton_gas_block",
+      "item2": "rankine:krypton_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.krypton"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:xenon_gas_block",
+      "item2": "rankine:xenon_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.xenon"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:radon_gas_block",
+      "item2": "rankine:radon_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.radon"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:oganesson_gas_block",
+      "item2": "rankine:oganesson_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.oganesson"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:ammonia_gas_block",
+      "item2": "rankine:ammonia_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.ammonia"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:carbon_dioxide_gas_block",
+      "item2": "rankine:carbon_dioxide_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.carbon_dioxide"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:hydrogen_chloride_gas_block",
+      "item2": "rankine:hydrogen_chloride_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.hydrogen_chloride"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:hydrogen_fluoride_gas_block",
+      "item2": "rankine:hydrogen_fluoride_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.hydrogen_fluoride"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:hydrogen_sulfide_gas_block",
+      "item2": "rankine:hydrogen_sulfide_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.hydrogen_sulfide"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:sulfur_dioxide_gas_block",
+      "item2": "rankine:sulfur_dioxide_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.sulfur_dioxide"
+    },
+    {
+      "type": "rankine:item2",
+      "item1": "rankine:tungesten_hexafluoride_gas_block",
+      "item2": "rankine:tungesten_hexafluoride_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.tungesten_hexafluoride"
     }
   ]
 }

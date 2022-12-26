@@ -1,15 +1,15 @@
 {
-  "name": "rankine.journal.cat_materials.beehive_oven.name",
+  "name": "rankine.journal.cat_constructs.beehive_oven.name",
   "icon": "rankine:beehive_oven_pit",
-  "category": "rankine:materials",
+  "category": "rankine:constructs",
   "pages": [
     {
       "type": "text",
-      "text": "rankine.journal.cat_materials.beehive_oven.text1"
+      "text": "rankine.journal.cat_constructs.beehive_oven.text1"
     },
     {
       "type": "multiblock",
-      "text": "rankine.journal.cat_materials.beehive_oven.text4",
+      "text": "rankine.journal.cat_constructs.beehive_oven.text4",
       "multiblock_id": "multiblock",
       "multiblock": {
         "pattern": [
@@ -48,17 +48,17 @@
     },
     {
       "type": "text",
-      "text": "rankine.journal.cat_materials.beehive_oven.text2"
+      "text": "rankine.journal.cat_constructs.beehive_oven.text2"
     },
     {
       "type": "crafting",
       "recipe": "rankine:high_refractory_bricks",
-      "text": "rankine.journal.cat_materials.beehive_oven.text5"
+      "text": "rankine.journal.cat_constructs.beehive_oven.text5"
     },
     {
       "type": "crafting",
       "recipe": "rankine:ultra_high_refractory_bricks",
-      "text": "rankine.journal.cat_materials.beehive_oven.text6"
+      "text": "rankine.journal.cat_constructs.beehive_oven.text6"
     }
   ]
 }

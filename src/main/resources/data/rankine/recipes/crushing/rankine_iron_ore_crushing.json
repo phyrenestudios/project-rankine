@@ -10,7 +10,7 @@
   ],
   "outputs": [
     {
-      "weight": 64,
+      "weight": 50,
       "remove": false
     },
     {
@@ -35,7 +35,7 @@
     },
     {
       "item": "rankine:pyrite",
-      "weight": 2,
+      "weight": 10,
       "tier": "minecraft:diamond"
     },
     {

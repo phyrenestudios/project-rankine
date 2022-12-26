@@ -5,12 +5,13 @@
   },
   "guaranteed": [
     {
-      "item": "rankine:apatite"
+      "item": "rankine:apatite",
+      "count": 2
     }
   ],
   "outputs": [
     {
-      "weight": 80,
+      "weight": 40,
       "remove": false
     },
     {
