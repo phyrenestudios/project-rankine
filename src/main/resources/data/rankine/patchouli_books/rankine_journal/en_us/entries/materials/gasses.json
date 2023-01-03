@@ -117,9 +117,9 @@
     },
     {
       "type": "rankine:item2",
-      "item1": "rankine:tungesten_hexafluoride_gas_block",
-      "item2": "rankine:tungesten_hexafluoride_gas_bottle",
-      "text": "rankine.journal.cat_materials.gasses.tungesten_hexafluoride"
+      "item1": "rankine:tungsten_hexafluoride_gas_block",
+      "item2": "rankine:tungsten_hexafluoride_gas_bottle",
+      "text": "rankine.journal.cat_materials.gasses.tungsten_hexafluoride"
     }
   ]
 }

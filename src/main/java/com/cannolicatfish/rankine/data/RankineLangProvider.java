@@ -90,7 +90,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.TALL_FLOWERS,
                 RankineLists.METAL_TRAPDOORS,
                 RankineLists.METAL_DOORS,
-                RankineLists.METAL_LADDERS,
+                RankineLists.ALLOY_LADDERS,
                 RankineLists.ALLOY_PEDESTALS,
                 RankineLists.ALLOY_POLES,
                 RankineLists.ALLOY_SHEETMETALS,
@@ -1205,6 +1205,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_constructs.metal_poles.text1", "Metal poles are crafted from any alloy. The variety of alloy colors make them an excellent decoration block. They can also be right-clicked with leaves or torches to add garland, string lights, or both! Holding shift while clicking will teleport the player to the bottom of pole column.");
         add("rankine.journal.cat_constructs.metal_poles.text2", "All pole recipes follow this pattern.");
 
+        add("rankine.journal.cat_constructs.metal_ladders.name", "Metal Ladders");
+        add("rankine.journal.cat_constructs.metal_ladders.text1", "Metal Ladders can be crafted from any alloy. Due to their sturdy nature, metal ladders can be placed up to 8 blocks above the last one attached to a wall. Right click with a ladder on a ladder to autoplace ladders vertically. These blocks have $(l:mechanics/building_modes)Building Modes$().");
+        add("rankine.journal.cat_constructs.metal_ladders.text2", "All metal ladder recipes follow this pattern.");
+
         add("rankine.journal.cat_constructs.electromagnets.name", "Electromagnets");
         add("rankine.journal.cat_constructs.electromagnets.text1", "Electromagnets are able to move blocks when powered with redstone. Shift right-click to switch the magnet between attraction/repulsion mode. All applicable blocks in the range will either be pulled or pushed away from the magnet. Some config options exist for magnet ranges and allowed materials. By default, it works with any blocks of the metal material.");
         add("rankine.journal.cat_constructs.electromagnets.alnico_electromagnet", "Default Range: 10 blocks");
@@ -1278,8 +1282,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_materials.gasses.hydrogen_fluoride", "$(liObtained from a $(l:mineralogy/fumaroles)fumarole$().");
         add("rankine.journal.cat_materials.gasses.hydrogen_sulfide", "$(liObtained from a $(l:mineralogy/fumaroles)fumarole$().");
         add("rankine.journal.cat_materials.gasses.sulfur_dioxide", "$(liObtained from a $(l:mineralogy/fumaroles)fumarole$().");
-        add("rankine.journal.cat_materials.gasses.tungesten_hexafluoride", "$(liObtained through and used for fusion furnace processing.");
-
+        add("rankine.journal.cat_materials.gasses.tungsten_hexafluoride", "$(liObtained through and used for fusion furnace processing.");
 
         add("rankine.journal.cat_materials.elements.name", "Elements");
         add("rankine.journal.cat_materials.elements.text1", "To be discovred.");
@@ -1289,6 +1292,11 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mechanics.desc", "Gameplay mechanics. Some are changes to existing systems, while others are additional.");
         add("rankine.journal.cat_mechanics.foraging.name", "Foraging");
         add("rankine.journal.cat_mechanics.foraging.text1", "There is a chance to find a variety of seeds and roots when breaking dirt and related blocks. This will only happen when using an open hand or crude tools. The foraging enchantment for hoes adds additional items that can be dropped.");
+
+
+        add("rankine.journal.cat_mechanics.building_modes.name", "Building Modes");
+        add("rankine.journal.cat_mechanics.building_modes.text1", "Some blocks have multiple model/texture variants but are not necessarily separate blocks. These variations are called Building Modes. Shift right click with a stack of blocks in your hand to change the variant. A message will appear above the hotbar to indicate the current mode.");
+        add("rankine.journal.cat_mechanics.building_modes.text2", "Blocks that have modes include: $(li)Planks $(li)Stone Bricks $(li)Polished Stones $(li)Bricks $(li)Glazed Porcelains $(li)Metal Ladders");
 
 
         add("rankine.journal.cat_mechanics.finite_water.name", "Water Table");

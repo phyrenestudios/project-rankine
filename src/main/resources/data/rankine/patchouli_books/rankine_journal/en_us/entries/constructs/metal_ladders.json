@@ -1,6 +1,6 @@
 {
   "name": "rankine.journal.cat_constructs.metal_ladders.name",
-  "icon": "rankine:cast_iron_ladder",
+  "icon": "rankine:steel_ladder",
   "category": "rankine:constructs",
   "pages": [
     {
@@ -9,7 +9,8 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:cast_iron_ladder"
+      "recipe": "rankine:steel_ladder",
+      "text": "rankine.journal.cat_constructs.metal_ladders.text2"
     }
   ]
 }

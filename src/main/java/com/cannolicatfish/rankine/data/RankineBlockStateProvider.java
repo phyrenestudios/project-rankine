@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.blocks.asphalt.BaseAsphaltBlock;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
+import com.cannolicatfish.rankine.blocks.buildingmodes.MetalLadderBlock;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapBlock;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelBlock;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
@@ -501,7 +502,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : RankineLists.LEDS) {
             onOffBlock(blk);
         }
-        for (Block blk : RankineLists.METAL_LADDERS) {
+        for (Block blk : RankineLists.ALLOY_LADDERS) {
             ladderBlock(blk);
         }
         for (Block blk : RankineLists.FIBER_BLOCK) {
@@ -972,18 +973,14 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
     public void ladderBlock(Block blk) {
         String NAME = blk.getRegistryName().getPath();
-        ModelFile LADDER = models().withExistingParent(NAME, mcLoc("block/block"))
-                .texture("texture", new ResourceLocation("rankine", "block/" + NAME))
-                .texture("particle", new ResourceLocation("rankine", "block/" + NAME))
-                .element().from(0,0,15.2f).to(16,16,15.2f)
-                .face(Direction.NORTH).uvs(0,0, 16, 16).texture("#texture").end()
-                .face(Direction.SOUTH).uvs(16, 0, 0, 16).texture("#texture").end()
-                .end();
-        getVariantBuilder(blk)
-                .partialState().with(MetalLadderBlock.FACING, Direction.NORTH).modelForState().modelFile(LADDER).rotationY(0).addModel()
-                .partialState().with(MetalLadderBlock.FACING, Direction.EAST).modelForState().modelFile(LADDER).rotationY(90).addModel()
-                .partialState().with(MetalLadderBlock.FACING, Direction.SOUTH).modelForState().modelFile(LADDER).rotationY(180).addModel()
-                .partialState().with(MetalLadderBlock.FACING, Direction.WEST).modelForState().modelFile(LADDER).rotationY(270).addModel();
+        getVariantBuilder(blk).forAllStatesExcept(blockState -> {
+            Direction dir = blockState.getValue(LadderBlock.FACING);
+            int style = blockState.getValue(((MetalLadderBlock) blk).getProperty());
+            return ConfiguredModel.builder()
+                    .modelFile(models().withExistingParent(NAME+style, getBlockRSL("template_metal_ladder"+style)))
+                    .rotationY((((int) dir.toYRot()) + 180) % 360)
+                    .build();
+        },MetalLadderBlock.WATERLOGGED);
     }
     public void pillarFour(Block blk) {
         String name = blk.getRegistryName().getPath();

@@ -65,7 +65,7 @@ public class ClientProxy implements IProxy {
             }
         }
 
-        for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLK : Stream.of(RankineLists.ALLOY_LADDERS,RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             ItemProperties.register(BLK.asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) BLK.asItem()).getBuildingMode(stack) : 1.0F);
         }
 
@@ -136,7 +136,7 @@ public class ClientProxy implements IProxy {
 
         addCutout(RankineLists.METAL_DOORS);
         addCutout(RankineLists.METAL_TRAPDOORS);
-        addCutout(RankineLists.METAL_LADDERS);
+        addCutout(RankineLists.ALLOY_LADDERS);
         addCutout(RankineLists.ALLOY_POLES);
         addCutout(RankineLists.ALLOY_BARS);
         addCutout(RankineLists.HOLLOW_LOGS);

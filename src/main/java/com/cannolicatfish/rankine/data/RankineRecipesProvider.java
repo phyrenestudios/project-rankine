@@ -949,6 +949,10 @@ public class RankineRecipesProvider extends RecipeProvider {
             Item ALLOY = RankineLists.ALLOY_INGOTS.get(RankineLists.ALLOY_BARS.indexOf(BLK));
             bars(consumer, BLK.asItem(), "rankine:bars", ALLOY, "has_ingredient", ALLOY);
         }
+        for (Block BLK : RankineLists.ALLOY_LADDERS) {
+            Item ALLOY = RankineLists.ALLOY_INGOTS.get(RankineLists.ALLOY_LADDERS.indexOf(BLK));
+            metalLadder(consumer, BLK.asItem(), "rankine:ladders", ALLOY, "has_ingredient", ALLOY);
+        }
 
         door(consumer, RankineItems.BRASS_DOOR.get(), RankineItems.BRASS_INGOT.get(), "metal_door", "has_ingredient", RankineItems.BRASS_INGOT.get());
         door(consumer, RankineItems.BRONZE_DOOR.get(), RankineItems.BRONZE_INGOT.get(), "metal_door", "has_ingredient", RankineItems.BRONZE_INGOT.get());
@@ -967,17 +971,9 @@ public class RankineRecipesProvider extends RecipeProvider {
 
             ShapedRecipeBuilder.shaped(BLK, 8).pattern("#I#").pattern("#I#").pattern("#I#").define('I', ingotTag).define('#', nugTag).group("sheetmetal").unlockedBy("has_ingredient", has(ingotTag)).save(consumer);
         }
-
         
         hLine(consumer,RankineItems.TAP_LINE.get(),3,RankineItems.VULCANIZED_RUBBER.get(),"has_ingredient",RankineItems.VULCANIZED_RUBBER.get());
         hLine(consumer,RankineItems.METAL_PIPE.get(),8,RankineItems.CUPRONICKEL_INGOT.get(),"has_ingredient",RankineItems.CUPRONICKEL_INGOT.get());
-        
-        
-        ladder(consumer,RankineItems.BRASS_LADDER.get(),8,RankineTags.Items.INGOTS_BRASS);
-        ladder(consumer,RankineItems.CAST_IRON_LADDER.get(),8,RankineTags.Items.INGOTS_CAST_IRON);
-        ladder(consumer,RankineItems.CUPRONICKEL_LADDER.get(),8,RankineTags.Items.INGOTS_CUPRONICKEL);
-        ladder(consumer,RankineItems.DURALUMIN_LADDER.get(),8,RankineTags.Items.INGOTS_DURALUMIN);
-        ladder(consumer,RankineItems.INVAR_LADDER.get(),8,RankineTags.Items.INGOTS_INVAR);
 
         //Beehive Oven
         for (Map.Entry<Ingredient,Block> entry : BEEHIVE_OVEN_MINERAL_MAP.entrySet()) {
@@ -1200,6 +1196,16 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .pattern(" # ")
                 .define('#', input)
                 .define('P', RankineTags.Items.STONE_PRESSURE_PLATES)
+                .group(group)
+                .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
+                .save(consumer);
+    }
+    private void metalLadder(Consumer<FinishedRecipe> consumer, Item output, String group, Item input, String triggerName, ItemLike trigger) {
+        ShapedRecipeBuilder.shaped(output,8)
+                .pattern("# #")
+                .pattern("###")
+                .pattern("# #")
+                .define('#', input)
                 .group(group)
                 .unlockedBy(triggerName, InventoryChangeTrigger.TriggerInstance.hasItems(trigger))
                 .save(consumer);
@@ -1756,7 +1762,7 @@ public class RankineRecipesProvider extends RecipeProvider {
                 .save(consumer);
     }
 
-    private void ladder(Consumer<FinishedRecipe> consumer, Item output, int count, TagKey<Item> input) {
+    private void metalLadder(Consumer<FinishedRecipe> consumer, Item output, int count, TagKey<Item> input) {
         ShapedRecipeBuilder.shaped(output, count)
                 .pattern("# #")
                 .pattern("###")
