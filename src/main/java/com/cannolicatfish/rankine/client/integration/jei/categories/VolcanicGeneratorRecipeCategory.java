@@ -2,48 +2,43 @@ package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
-import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.forge.ForgeTypes;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.client.resources.language.I18n;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.resources.ResourceLocation;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.fluids.FluidStack;
 
 public class VolcanicGeneratorRecipeCategory implements IRecipeCategory<RockGeneratorRecipe> {
 
     public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "volcanic");
-    private final IDrawable background;
     private final String localizedName;
-    private final IDrawable overlay;
-    private final IDrawable icon;
+    private final IDrawable background;
+    private final IGuiHelper guiHelper;
 
     public VolcanicGeneratorRecipeCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createBlankDrawable(145, 95);
+        this.guiHelper = guiHelper;
         localizedName = I18n.get("rankine.jei.volcanic");
-        overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/volcanic_jei.png"),
-                0, 15, 140, 90);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(Blocks.OBSIDIAN));
+        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/volcanic_jei.png"), 0, 0, 102, 64)
+                .addPadding(1, 0, 1, 0)
+                .build();
     }
-
+    @SuppressWarnings("removal")
     @Override
     public ResourceLocation getUid() {
         return UID;
     }
-
+    @SuppressWarnings("removal")
     @Override
     public Class<? extends RockGeneratorRecipe> getRecipeClass() {
         return RockGeneratorRecipe.class;
@@ -61,45 +56,16 @@ public class VolcanicGeneratorRecipeCategory implements IRecipeCategory<RockGene
 
     @Override
     public IDrawable getIcon() {
-        return icon;
+        return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(Items.OBSIDIAN));
+
     }
 
     @Override
-    public void draw(RockGeneratorRecipe recipe, PoseStack ms, double mouseX, double mouseY) {
-        //RenderSystem.enableAlphaTest();
-        RenderSystem.enableBlend();
-        overlay.draw(ms, 0, 4);
-        RenderSystem.disableBlend();
-        //RenderSystem.disableAlphaTest();
-    }
-
-    @Override
-    public void setIngredients(RockGeneratorRecipe recipe, IIngredients iIngredients) {
-        ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
-        for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getItems()));
-        }
-        iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getResultItem()));
-    }
-
-    @Override
-    public void setRecipe(IRecipeLayout recipeLayout, RockGeneratorRecipe recipe, IIngredients ingredients) {
-        int index = 0, posY = 0;
-        for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
-            if (index == 0) {
-                recipeLayout.getItemStacks().init(index, true, 38, 40);
-            } else {
-                recipeLayout.getItemStacks().init(index, true, 38, 58);
-            }
-            recipeLayout.getItemStacks().set(index, o);
-            index++;
-        }
-
-        for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
-            List<ItemStack> stacks = ingredients.getOutputs(VanillaTypes.ITEM).get(i);
-            recipeLayout.getItemStacks().init(index + i, false, 95, 40);
-            recipeLayout.getItemStacks().set(index + i, stacks);
-        }
+    public void setRecipe(IRecipeLayoutBuilder builder, RockGeneratorRecipe recipe, IFocusGroup focuses) {
+        builder.addSlot(RecipeIngredientRole.INPUT,25,46).addIngredients(recipe.getFirstIngredient());
+        builder.addSlot(RecipeIngredientRole.INPUT,2,2).addIngredient(ForgeTypes.FLUID_STACK, new FluidStack(Fluids.WATER,1000));
+        builder.addSlot(RecipeIngredientRole.INPUT,25,28).addIngredient(ForgeTypes.FLUID_STACK, new FluidStack(Fluids.LAVA,1000));
+        builder.addSlot(RecipeIngredientRole.OUTPUT,80,27).addItemStack(recipe.getResultItem());
+        IRecipeCategory.super.setRecipe(builder, recipe, focuses);
     }
 }

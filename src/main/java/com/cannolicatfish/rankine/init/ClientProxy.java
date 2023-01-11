@@ -3,9 +3,9 @@ package com.cannolicatfish.rankine.init;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.HollowLogBlock;
 import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
+import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
-import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
@@ -16,7 +16,6 @@ import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelScreen;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableScreen;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableScreen;
 import com.cannolicatfish.rankine.items.BuildingModeBlockItem;
-import com.cannolicatfish.rankine.items.alloys.AlloySurfRodItem;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
 import net.minecraft.client.Minecraft;
@@ -83,19 +82,6 @@ public class ClientProxy implements IProxy {
                 new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living, id) ->
                         stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F);
 
-        ItemProperties.register(RankineItems.ALLOY_SURF_ROD.get(), new ResourceLocation("cast"), (p_239422_0_, p_239422_1_, p_239422_2_, id) -> {
-            if (p_239422_2_ == null) {
-                return 0.0F;
-            } else {
-                boolean flag = p_239422_2_.getMainHandItem() == p_239422_0_;
-                boolean flag1 = p_239422_2_.getOffhandItem() == p_239422_0_;
-                if (p_239422_2_.getMainHandItem().getItem() instanceof AlloySurfRodItem) {
-                    flag1 = false;
-                }
-
-                return (flag || flag1) && p_239422_2_ instanceof Player && ((Player)p_239422_2_).fishing != null ? 1.0F : 0.0F;
-            }
-        });
     }
     @Override
     public void init() {

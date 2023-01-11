@@ -1,56 +1,43 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.StrippingRecipe;
-import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.Util;
-import net.minecraftforge.fluids.FluidStack;
-
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe> {
 
     public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "stripping");
-    private final IDrawable background;
     private final String localizedName;
-    private final IDrawable overlay;
-    private final IDrawable icon;
+    private final IDrawable background;
+    private final IGuiHelper guiHelper;
 
     public StrippingRecipeCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createBlankDrawable(145, 95);
+        this.guiHelper = guiHelper;
         localizedName = I18n.get("rankine.jei.stripping");
-        overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/stripping_jei.png"),
-                0, 15, 140, 90);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(Items.IRON_AXE));
+        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/stripping_jei.png"), 0, 0, 78, 28)
+                .addPadding(1, 0, 1, 0)
+                .build();
     }
-
+    @SuppressWarnings("removal")
     @Override
     public ResourceLocation getUid() {
         return UID;
     }
-
+    @SuppressWarnings("removal")
     @Override
     public Class<? extends StrippingRecipe> getRecipeClass() {
         return StrippingRecipe.class;
@@ -68,50 +55,15 @@ public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe>
 
     @Override
     public IDrawable getIcon() {
-        return icon;
+        return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(RankineItems.INNER_BARK.get()));
     }
 
     @Override
-    public void draw(StrippingRecipe recipe, PoseStack ms, double mouseX, double mouseY) {
-        Font font = Minecraft.getInstance().font;
-        //RenderSystem.enableAlphaTest();
-        RenderSystem.enableBlend();
-        overlay.draw(ms, 0, 4);
-        RenderSystem.disableBlend();
-        //RenderSystem.disableAlphaTest();
-        DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
-            p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
-        });
-        if (recipe.getChance() < 1) {
-            font.draw(ms, df.format(recipe.getChance()*100f)+"%", 107, 55, 0x7E7E7E);
-        }
-    }
-
-    @Override
-    public void setIngredients(StrippingRecipe recipe, IIngredients iIngredients) {
-        ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
-        for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getItems()));
-        }
-        iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutput(VanillaTypes.ITEM, recipe.getResult());
-    }
-
-    @Override
-    public void setRecipe(IRecipeLayout recipeLayout, StrippingRecipe recipe, IIngredients ingredients) {
-        int index = 0, posX = 31;
-        for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
-            recipeLayout.getItemStacks().init(index, true, posX, 34);
-            recipeLayout.getItemStacks().set(index, o);
-            index++;
-            posX += 18;
-        }
-
-        for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
-            List<ItemStack> stacks = ingredients.getOutputs(VanillaTypes.ITEM).get(i);
-            recipeLayout.getItemStacks().init(index + i, false, 106, 34);
-            recipeLayout.getItemStacks().set(index + i, stacks);
-        }
+    public void setRecipe(IRecipeLayoutBuilder builder, StrippingRecipe recipe, IFocusGroup focuses) {
+        builder.addSlot(RecipeIngredientRole.INPUT,2,10).addIngredients(recipe.getIngredient());
+        builder.addSlot(RecipeIngredientRole.CATALYST,23,0).addIngredients(Ingredient.of(RankineTags.Items.AXES));
+        builder.addSlot(RecipeIngredientRole.OUTPUT,60,10).addItemStack(recipe.getResult());
+        IRecipeCategory.super.setRecipe(builder, recipe, focuses);
     }
 }
 

@@ -1534,7 +1534,6 @@ public class RankineItems {
     public static final RegistryObject<Item> ALLOY_KNIFE = ITEMS.register("alloy_knife", () -> new AlloyKnifeItem(RankineToolMaterials.ALLOY, 1, -1.5F, "80Hg-20Au",null,new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ALLOY_CROWBAR = ITEMS.register("alloy_crowbar", () -> new AlloyCrowbarItem(RankineToolMaterials.ALLOY, 1.5F, -2.2F, "80Hg-20Au",null,new Item.Properties().tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ALLOY_BLUNDERBUSS = ITEMS.register("alloy_blunderbuss", () -> new AlloyBlunderbussItem(RankineToolMaterials.ALLOY, "80Hg-20Au",null, (new Item.Properties()).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> ALLOY_SURF_ROD = ITEMS.register("alloy_surf_rod", () -> new AlloySurfRodItem(RankineToolMaterials.ALLOY, "80Hg-20Au",null, (new Item.Properties()).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ALLOY_ARROW = ITEMS.register("alloy_arrow", () -> new AlloyArrowItem("80Hg-20Au",null, new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ROPE_COIL_ARROW = ITEMS.register("rope_coil_arrow", () -> new RopeCoilArrowItem(new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
 
@@ -1583,10 +1582,8 @@ public class RankineItems {
     public static final RegistryObject<Item> MATERIAL_TESTING_TABLE = ITEMS.register("material_testing_table", () -> new BlockItem(RankineBlocks.MATERIAL_TESTING_TABLE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TEMPLATE_TABLE = ITEMS.register("template_table", () -> new BlockItem(RankineBlocks.TEMPLATE_TABLE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ALLOY_FURNACE = ITEMS.register("alloy_furnace", () -> new BlockItem(RankineBlocks.ALLOY_FURNACE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> PISTON_CRUSHER = ITEMS.register("piston_crusher", () -> new BlockItem(RankineBlocks.PISTON_CRUSHER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PCF = ITEMS.register("pcf", () -> new BlockItem(RankineBlocks.PCF.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> INDUCTION_FURNACE = ITEMS.register("induction_furnace", () -> new BlockItem(RankineBlocks.INDUCTION_FURNACE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> GYRATORY_CRUSHER = ITEMS.register("gyratory_crusher", () -> new BlockItem(RankineBlocks.GYRATORY_CRUSHER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> EVAPORATION_TOWER = ITEMS.register("evaporation_tower", () -> new BlockItem(RankineBlocks.EVAPORATION_TOWER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> DIAMOND_ANVIL_CELL = ITEMS.register("diamond_anvil_cell", () -> new BlockItem(RankineBlocks.DIAMOND_ANVIL_CELL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PARTICLE_ACCELERATOR = ITEMS.register("particle_accelerator", () -> new BlockItem(RankineBlocks.PARTICLE_ACCELERATOR.get(),new Item.Properties().stacksTo(64)));

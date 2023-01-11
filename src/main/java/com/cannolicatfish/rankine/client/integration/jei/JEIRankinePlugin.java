@@ -8,15 +8,9 @@ import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelScreen;
 import com.cannolicatfish.rankine.client.integration.jei.categories.*;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineFluids;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineLists;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
-import com.cannolicatfish.rankine.recipe.CrushingRecipe;
-import com.cannolicatfish.rankine.recipe.ElementRecipe;
-import com.cannolicatfish.rankine.recipe.ForagingRecipe;
+import com.cannolicatfish.rankine.recipe.*;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -28,7 +22,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -41,9 +35,26 @@ import java.util.List;
 @JeiPlugin
 public class JEIRankinePlugin implements IModPlugin {
 
-    private static final RecipeType<CrushingRecipe> CRUSHING = RecipeType.create("rankine","crushing", CrushingRecipe.class);
-    private static final RecipeType<ForagingRecipe> FORAGING = RecipeType.create("rankine","foraging", ForagingRecipe.class);
-    private static final RecipeType<BeehiveOvenRecipe> BEEHIVE_OVEN = RecipeType.create("rankine","beehive_oven", BeehiveOvenRecipe.class);
+    public static final RecipeType<AirDistillationRecipe> AIR_DISTILLATION = RecipeType.create("rankine","air_distillation", AirDistillationRecipe.class);
+    public static final RecipeType<AlloyingRecipe> ALLOYING = RecipeType.create("rankine","alloying", AlloyingRecipe.class);
+    public static final RecipeType<BeehiveOvenRecipe> BEEHIVE_OVEN = RecipeType.create("rankine","beehive_oven", BeehiveOvenRecipe.class);
+    public static final RecipeType<CrucibleRecipe> CRUCIBLE = RecipeType.create("rankine","crucible", CrucibleRecipe.class);
+    public static final RecipeType<CrushingRecipe> CRUSHING = RecipeType.create("rankine","crushing", CrushingRecipe.class);
+    public static final RecipeType<ElementRecipe> ELEMENT = RecipeType.create("rankine","element", ElementRecipe.class);
+    public static final RecipeType<EvaporationRecipe> EVAPORATION = RecipeType.create("rankine","evaporation", EvaporationRecipe.class);
+    public static final RecipeType<RockGeneratorRecipe> EXTRUSIVE_IGNEOUS = RecipeType.create("rankine","extrusive_igneous", RockGeneratorRecipe.class);
+    public static final RecipeType<ForagingRecipe> FORAGING = RecipeType.create("rankine","foraging", ForagingRecipe.class);
+    public static final RecipeType<FusionFurnaceRecipe> FUSION_FURNACE = RecipeType.create("rankine","fusion_furnace", FusionFurnaceRecipe.class);
+    public static final RecipeType<AlloyingRecipe> INDUCTION_ALLOYING = RecipeType.create("rankine","induction_alloying", AlloyingRecipe.class);
+    public static final RecipeType<RockGeneratorRecipe> INTRUSIVE_IGNEOUS = RecipeType.create("rankine","intrusive_igneous", RockGeneratorRecipe.class);
+    public static final RecipeType<RockGeneratorRecipe> METAMORPHIC = RecipeType.create("rankine","metamorphic", RockGeneratorRecipe.class);
+    public static final RecipeType<MixingRecipe> MIXING = RecipeType.create("rankine","mixing", MixingRecipe.class);
+    public static final RecipeType<RockGeneratorRecipe> SEDIMENTARY = RecipeType.create("rankine","sedimentary", RockGeneratorRecipe.class);
+    public static final RecipeType<SluicingRecipe> SLUICING = RecipeType.create("rankine","sluicing", SluicingRecipe.class);
+    public static final RecipeType<StrippingRecipe> STRIPPING = RecipeType.create("rankine","stripping", StrippingRecipe.class);
+    public static final RecipeType<TreetappingRecipe> TREETAPPING = RecipeType.create("rankine","treetapping", TreetappingRecipe.class);
+    public static final RecipeType<RockGeneratorRecipe> VOLCANIC = RecipeType.create("rankine","volcanic", RockGeneratorRecipe.class);
+
     @Nonnull
     @Override
     public ResourceLocation getPluginUid() {
@@ -52,12 +63,12 @@ public class JEIRankinePlugin implements IModPlugin {
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-        registration.addRecipeClickArea(AlloyFurnaceScreen.class, 98, 32, 24, 16, AlloyingRecipeCategory.UID);
-        registration.addRecipeClickArea(InductionFurnaceScreen.class, 98, 32, 24, 16, AlloyingRecipeCategory.UID);
-        registration.addRecipeClickArea(EvaporationTowerScreen.class, 76, 50, 24, 16, EvaporationRecipeCategory.UID);
-        registration.addRecipeClickArea(CrucibleScreen.class, 109, 46, 7, 26, CrucibleRecipeCategory.UID);
-        registration.addRecipeClickArea(MixingBarrelScreen.class, 109, 46, 7, 26, MixingRecipeCategory.UID);
-        registration.addRecipeClickArea(FusionFurnaceScreen.class, 78, 34, 24, 16, FusionFurnaceRecipeCategory.UID);
+        registration.addRecipeClickArea(AlloyFurnaceScreen.class, 98, 32, 24, 16, ALLOYING);
+        registration.addRecipeClickArea(InductionFurnaceScreen.class, 98, 32, 24, 16, INDUCTION_ALLOYING);
+        registration.addRecipeClickArea(EvaporationTowerScreen.class, 76, 50, 24, 16, EVAPORATION);
+        registration.addRecipeClickArea(CrucibleScreen.class, 109, 46, 7, 26, CRUCIBLE);
+        registration.addRecipeClickArea(MixingBarrelScreen.class, 109, 46, 7, 26, MIXING);
+        registration.addRecipeClickArea(FusionFurnaceScreen.class, 78, 34, 24, 16, FUSION_FURNACE);
 
     }
 
@@ -78,25 +89,32 @@ public class JEIRankinePlugin implements IModPlugin {
     @Override
     public void registerRecipes(@Nonnull IRecipeRegistration registry) {
         RankineJEIRecipes rankineJEIRecipes = new RankineJEIRecipes();
-        registry.addRecipes(CRUSHING, getSortedRecipes(rankineJEIRecipes.getCrushingRecipes()));
-        registry.addRecipes(FORAGING, getSortedRecipes(rankineJEIRecipes.getForagingRecipes()));
+        registry.addRecipes(AIR_DISTILLATION, getSortedRecipes(rankineJEIRecipes.getAirDistillationRecipes()));
+        registry.addRecipes(ALLOYING, getSortedRecipes(rankineJEIRecipes.getAlloyingRecipes()));
         registry.addRecipes(BEEHIVE_OVEN, getSortedRecipes(rankineJEIRecipes.getBeehiveRecipes()));
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getMixingRecipes()), MixingRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getSluicingRecipes()), SluicingRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getEvaporationRecipes()), EvaporationRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getAlloyFurnaceRecipes()), AlloyingRecipeCategory.UID);
+        registry.addRecipes(CRUCIBLE, getSortedRecipes(rankineJEIRecipes.getCrucibleRecipes()));
+        registry.addRecipes(CRUSHING, getSortedRecipes(rankineJEIRecipes.getCrushingRecipes()));
+        registry.addRecipes(ELEMENT, getSortedElementRecipes());
+        registry.addRecipes(EVAPORATION, getSortedRecipes(rankineJEIRecipes.getEvaporationRecipes()));
+        registry.addRecipes(EXTRUSIVE_IGNEOUS, getSortedRecipes(rankineJEIRecipes.getExtrusiveGeneratorRecipes()));
+        registry.addRecipes(FORAGING, getSortedRecipes(rankineJEIRecipes.getForagingRecipes()));
+        registry.addRecipes(FUSION_FURNACE, getSortedRecipes(rankineJEIRecipes.getFusionFurnaceRecipes()));
+        registry.addRecipes(INDUCTION_ALLOYING, getSortedRecipes(rankineJEIRecipes.getInductionFurnaceRecipes()));
+        registry.addRecipes(INTRUSIVE_IGNEOUS, getSortedRecipes(rankineJEIRecipes.getIntrusiveGeneratorRecipes()));
+        registry.addRecipes(METAMORPHIC, getSortedRecipes(rankineJEIRecipes.getMetamorphicGeneratorRecipes()));
+        registry.addRecipes(MIXING, getSortedRecipes(rankineJEIRecipes.getMixingRecipes()));
+        registry.addRecipes(SEDIMENTARY, getSortedRecipes(rankineJEIRecipes.getSedimentaryGeneratorRecipes()));
+        registry.addRecipes(SLUICING, getSortedRecipes(rankineJEIRecipes.getSluicingRecipes()));
+        registry.addRecipes(STRIPPING, getSortedRecipes(rankineJEIRecipes.getStrippingRecipes()));
+        registry.addRecipes(TREETAPPING, getSortedRecipes(rankineJEIRecipes.getTreetappingRecipes()));
+        registry.addRecipes(VOLCANIC, getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()));
+        /*registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getAlloyFurnaceRecipes()), AlloyingRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getInductionFurnaceRecipes()), InductionAlloyingRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getFusionFurnaceRecipes()), FusionFurnaceRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getTreetappingRecipes()), TreetappingRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getStrippingRecipes()), StrippingRecipeCategory.UID);
-        registry.addRecipes(getSortedElementRecipes(), ElementRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getCrucibleRecipes()), CrucibleRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getIntrusiveGeneratorRecipes()), IntrusiveGeneratorRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getExtrusiveGeneratorRecipes()), ExtrusiveGeneratorRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getSedimentaryGeneratorRecipes()), SedimentaryGeneratorRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getMetamorphicGeneratorRecipes()), MetamorphicGeneratorRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()), VolcanicGeneratorRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getAirDistillationRecipes()), AirDistillationRecipeCategory.UID);
+        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()), VolcanicGeneratorRecipeCategory.UID);*/
 
         registry.addIngredientInfo(new ItemStack(RankineItems.DRY_RUBBER.get()), VanillaTypes.ITEM_STACK,new TranslatableComponent("rankine.jei.info_dry_rubber"));
         registry.addIngredientInfo(new ItemStack(RankineItems.AMBER.get()), VanillaTypes.ITEM_STACK,new TranslatableComponent("rankine.jei.info_amber"));
@@ -110,32 +128,31 @@ public class JEIRankinePlugin implements IModPlugin {
 
     @Override
     public void registerItemSubtypes(ISubtypeRegistration registration) {
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_DUST.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_GEAR.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_BLOCK.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_INGOT.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_NUGGET.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_PLATE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_ROD.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_WIRE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_DUST.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_GEAR.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_BLOCK.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_INGOT.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_NUGGET.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_PLATE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_ROD.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_WIRE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
 
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_PICKAXE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_AXE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SHOVEL.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SWORD.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_HOE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SPEAR.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_HAMMER.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_KNIFE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_CROWBAR.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_BLUNDERBUSS.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_SURF_ROD.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_PICKAXE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_AXE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_SHOVEL.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_SWORD.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_HOE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_SPEAR.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_HAMMER.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_KNIFE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_CROWBAR.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_BLUNDERBUSS.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
 
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_HELMET.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_CHESTPLATE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_LEGGINGS.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_BOOTS.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
-        registration.registerSubtypeInterpreter(RankineItems.ALLOY_ARROW.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_HELMET.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_CHESTPLATE.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_LEGGINGS.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_BOOTS.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
+        registration.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK,RankineItems.ALLOY_ARROW.get(), (ingredient, context) -> IAlloyItem.getSubtype(ingredient));
     }
 
     @Override
@@ -167,11 +184,17 @@ public class JEIRankinePlugin implements IModPlugin {
         for (Item item: RankineLists.HAMMERS) {
             registry.addRecipeCatalyst(new ItemStack(item), CRUSHING);
         }
+        for (ItemStack stack : Ingredient.of(RankineTags.Items.AXES).getItems()) {
+            registry.addRecipeCatalyst(stack, STRIPPING);
+        }
         for (Block blk: RankineLists.CRUSHING_HEADS) {
             registry.addRecipeCatalyst(new ItemStack(blk), CRUSHING);
         }
         for (Item item : RankineLists.FORAGING_TOOLS) {
             registry.addRecipeCatalyst(new ItemStack(item), FORAGING);
+        }
+        for (ItemStack stack : Ingredient.of(RankineTags.Items.GOLD_PANS).getItems()) {
+            registry.addRecipeCatalyst(stack, SLUICING);
         }
         registry.addRecipeCatalyst(new ItemStack(RankineItems.FLINT_SHOVEL.get()), FORAGING);
 
@@ -180,23 +203,22 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(RankineItems.HIGH_REFRACTORY_BRICKS.get()),BEEHIVE_OVEN);
         registry.addRecipeCatalyst(new ItemStack(RankineItems.ULTRA_HIGH_REFRACTORY_BRICKS.get()),BEEHIVE_OVEN);
 
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.MIXING_BARREL.get()), MixingRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()), AlloyingRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.INDUCTION_FURNACE.get()), InductionAlloyingRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.FUSION_FURNACE.get()), FusionFurnaceRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.MIXING_BARREL.get()), MIXING);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()), ALLOYING);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.INDUCTION_FURNACE.get()), INDUCTION_ALLOYING);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.FUSION_FURNACE.get()), FUSION_FURNACE);
 
-        registry.addRecipeCatalyst(new ItemStack(RankineItems.STEEL_GOLD_PAN.get()), SluicingRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineItems.ELEMENT_INDEXER.get()), ElementRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()), EvaporationRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.CRUCIBLE_BLOCK.get()), CrucibleRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(Blocks.COBBLESTONE), IntrusiveGeneratorRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(Blocks.BLACKSTONE), ExtrusiveGeneratorRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BRECCIA.get()), SedimentaryGeneratorRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.SKARN.get()), MetamorphicGeneratorRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(Blocks.OBSIDIAN), VolcanicGeneratorRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.DISTILLATION_TOWER.get()), AirDistillationRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.TREE_TAP.get()), TreetappingRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(Items.IRON_AXE), StrippingRecipeCategory.UID);
+
+        registry.addRecipeCatalyst(new ItemStack(RankineItems.ELEMENT_INDEXER.get()), ELEMENT);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()), EVAPORATION);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.CRUCIBLE_BLOCK.get()), CRUCIBLE);
+        registry.addRecipeCatalyst(new ItemStack(Blocks.COBBLESTONE), INTRUSIVE_IGNEOUS);
+        registry.addRecipeCatalyst(new ItemStack(Blocks.BLACKSTONE), EXTRUSIVE_IGNEOUS);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BRECCIA.get()), SEDIMENTARY);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.SKARN.get()), METAMORPHIC);
+        registry.addRecipeCatalyst(new ItemStack(Blocks.OBSIDIAN), VOLCANIC);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.DISTILLATION_TOWER.get()), AIR_DISTILLATION);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.TREE_TAP.get()), TREETAPPING);
     }
 
 }

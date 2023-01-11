@@ -1310,7 +1310,6 @@ public class RankineRecipesProvider extends RecipeProvider {
         alloySpear(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(rs.replace("ingot","spear"))), alloyIngot, rod, ingot, 16777215, null, null,steelRod ? ingot.getDefaultRecipe().toString() : null);
         alloySword(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(rs.replace("ingot","sword"))), alloyIngot, rod, ingot, 16777215, null, null,steelRod ? ingot.getDefaultRecipe().toString() : null);
         alloyKnife(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(rs.replace("ingot","knife"))), alloyIngot, rod, ingot, 16777215, null, null,steelRod ? ingot.getDefaultRecipe().toString() : null);
-        alloySurfRod(consumer, RankineItems.ALLOY_SURF_ROD.get(), alloyIngot, ingot, alloyColor, alloyLang, recipeNamePart,null);
     }
 
     private void mimicToolRecipes(Consumer<FinishedRecipe> consumer, AlloyItem ingot, Item mimic, int alloyColor, String alloyLang, boolean steelRod, String recipeName) {
@@ -1331,7 +1330,6 @@ public class RankineRecipesProvider extends RecipeProvider {
         alloySpear(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(rs.replace("ingot","spear"))), alloyIngot, rod, ingot, 16777215, null, recipeName,steelRod ? ingot.getDefaultRecipe().toString() : null);
         alloySword(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(rs.replace("ingot","sword"))), alloyIngot, rod, ingot, 16777215, null, recipeName,steelRod ? ingot.getDefaultRecipe().toString() : null);
         alloyKnife(consumer, ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(rs.replace("ingot","knife"))), alloyIngot, rod, ingot, 16777215, null, recipeName,steelRod ? ingot.getDefaultRecipe().toString() : null);
-        alloySurfRod(consumer, RankineItems.ALLOY_SURF_ROD.get(), alloyIngot, ingot, alloyColor, alloyLang, recipeName,null);
     }
 
     private void alloyRod(Consumer<FinishedRecipe> consumer, Item output, AlloyIngredient input, ItemLike trigger, int color, @Nullable String langName, String recipeName, String inheritRecipe) {

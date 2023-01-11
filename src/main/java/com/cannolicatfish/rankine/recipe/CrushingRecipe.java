@@ -91,6 +91,10 @@ public class CrushingRecipe implements Recipe<Container> {
         return (in/getWeights().stream().reduce(0f, Float::sum));
     }
 
+    public Float getChance(Tier tierIn, int index) {
+        float in = getWeightsByTier(tierIn).get(index);
+        return (in/getWeightsByTier(tierIn).stream().reduce(0f, Float::sum));
+    }
 
     public ItemStack[] getIngredientAsStackList() {
         return this.recipeItems.get(0).getItems().clone();
@@ -159,6 +163,18 @@ public class CrushingRecipe implements Recipe<Container> {
             }
         }
         return outputs;
+    }
+
+    public List<Float> getWeightsByTier(Tier harvestLevel) {
+        List<Float> retWeights = new ArrayList<>();
+        for (int i = 0; i < this.getRecipeOutputs().size(); i++) {
+            if (!TierSortingRegistry.getTiersLowerThan(this.tiers.get(i)).contains(harvestLevel)) {
+                retWeights.add(this.weights.get(i));
+            } else {
+                retWeights.add(0f);
+            }
+        }
+        return retWeights;
     }
 
     @Override

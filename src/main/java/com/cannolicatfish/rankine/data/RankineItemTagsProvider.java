@@ -653,7 +653,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineTags.Items.GOLD_PANS).add(RankineItems.WOODEN_GOLD_PAN.get(), RankineItems.PEWTER_GOLD_PAN.get(), RankineItems.STEEL_GOLD_PAN.get());
         tag(RankineTags.Items.SLUICING_TOOLS).addTags(RankineTags.Items.GOLD_PANS,RankineTags.Items.HAMMERS);
         tag(RankineTags.Items.BOWS).add(Items.BOW);
-        tag(RankineTags.Items.FISHING_RODS).add(Items.FISHING_ROD,RankineItems.ALLOY_SURF_ROD.get());
         tag(RankineTags.Items.SHIELDS).add(Items.SHIELD);
 
         tag(RankineTags.Items.MTT_DURABILITY_TOOLS).add(Items.PISTON);

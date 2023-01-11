@@ -751,9 +751,9 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.tooltip_chance", "Chance: ");
         add("rankine.jei.tooltip_failure_chance", "Failure Chance: ");
         add("rankine.jei.tooltip_guaranteed", "Guaranteed");
-        add("rankine.jei.tooltip_limited", "Can obtain once");
+        add("rankine.jei.tooltip_limited", "Can only drop once per block");
         add("rankine.jei.tooltip_max_rolls", "Max outputs: ");
-        add("rankine.jei.tooltip_nonlimited", "Can obtain multiple times");
+        add("rankine.jei.tooltip_nonlimited", "Can drop multiple times per block");
         add("rankine.jei.tooltip_nothing", "Skip Output");
         add("rankine.jei.tooltip_additional", "Additional");
         add("rankine.jei.tooltip_required", "Required");

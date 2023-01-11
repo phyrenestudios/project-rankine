@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.Item;
@@ -13,6 +14,10 @@ public class RankineRemappings {
     public static Map<ResourceLocation, Item> itemRemappings = new HashMap<>();
 
     public static Map<ResourceLocation, Item> getItemRemappings() {
+
+        itemRemappings.put(new ResourceLocation("rankine:piston_crusher"), Items.PISTON);
+        itemRemappings.put(new ResourceLocation("rankine:gyratory_crusher"), Items.PISTON);
+
         itemRemappings.put(new ResourceLocation("rankine:power_cell_1"),RankineItems.MAGNESIUM_BATTERY.get());
         itemRemappings.put(new ResourceLocation("rankine:power_cell_2"),RankineItems.LEAD_ACID_BATTERY.get());
         itemRemappings.put(new ResourceLocation("rankine:power_cell_3"),RankineItems.VANADIUM_REDOX_BATTERY.get());
@@ -95,6 +100,9 @@ public class RankineRemappings {
     public static Map<ResourceLocation, Block> getBlockRemappings() {
 
         blockRemappings.put(new ResourceLocation("rankine:aluminum_ladder"),RankineBlocks.DURALUMIN_LADDER.get());
+
+        blockRemappings.put(new ResourceLocation("rankine:piston_crusher"), Blocks.PISTON);
+        blockRemappings.put(new ResourceLocation("rankine:gyratory_crusher"), Blocks.PISTON);
 
         blockRemappings.put(new ResourceLocation("rankine:aquamarine_ore"), RankineBlocks.BERYL_ORE.get());
         blockRemappings.put(new ResourceLocation("rankine:columbite_ore"), RankineBlocks.COLTAN_ORE.get());

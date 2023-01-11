@@ -6,11 +6,10 @@ import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.helpers.IJeiHelpers;
-import mezz.jei.api.ingredients.IIngredientType;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
@@ -32,6 +31,7 @@ import net.minecraftforge.common.TierSortingRegistry;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -48,7 +48,7 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
     private final IDrawable netheriteDrawable;
     public CrushingRecipeCategory(IGuiHelper helper) {
         this.guiHelper = helper;
-        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/crushing_jei.png"), 0, 0, 170, 140)
+        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/crushing_jei.png"), 0, 0, 160, 140)
                 .addPadding(1, 0, 0, 15)
                 .build();
         slotDrawable = guiHelper.getSlotDrawable();
@@ -99,11 +99,18 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, CrushingRecipe recipe, IFocusGroup focuses) {
         NonNullList<Tuple<ItemStack, Tier>> guaranteedOutputs = recipe.getGuaranteedOutputs();
+        List<Tier> currentTiers = Arrays.asList(Tiers.WOOD, Tiers.STONE, Tiers.IRON, Tiers.DIAMOND, Tiers.NETHERITE);
+        for (Tier t : recipe.getTiers()) {
+            if (!currentTiers.contains(t)) {
+                currentTiers.add(t);
+            }
+        }
+
         List<ItemStack> outputs = recipe.getRecipeOutputs();
         DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
-        builder.addSlot(RecipeIngredientRole.INPUT,78,20).addIngredients(recipe.getIngredients().get(0)).addTooltipCallback((recipeSlotView, tooltip) ->
+        builder.addSlot(RecipeIngredientRole.INPUT,78,21).addIngredients(recipe.getIngredients().get(0)).addTooltipCallback((recipeSlotView, tooltip) ->
                 tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_max_rolls")+recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA)));
 
 
@@ -141,11 +148,16 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
             int currentI = i;
             boolean limited = recipe.getRecipeConstants().get(currentI);
             Tuple<ChatFormatting,IDrawable> format = colorForTier(recipe.getTiers().get(currentI));
-            builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addItemStack(currentOutput)
-                    .setBackground(format.getB(), -1, -1)
-                    .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_tier")+recipe.getTiers().get(currentI)).withStyle(format.getA())))
-                    .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_chance")+df.format(recipe.getChance(currentI)*100)+"%")))
-                    .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(limited ? I18n.get("rankine.jei.tooltip_limited") : I18n.get("rankine.jei.tooltip_nonlimited")).withStyle(limited ? ChatFormatting.RED : ChatFormatting.GREEN)));
+            IRecipeSlotBuilder slot = builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addItemStack(currentOutput);
+
+            slot.setBackground(format.getB(), -1, -1);
+                    //.addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_tier")+recipe.getTiers().get(currentI)).withStyle(format.getA())))
+            for (Tier t : currentTiers) {
+                float chance = recipe.getChance(t,currentI)*100;
+                slot.addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get(t.toString() + ": ")+df.format(chance)+"%").withStyle(chance <= 0 ? ChatFormatting.DARK_RED : colorForTier(t).getA())));
+            }
+            slot.addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(limited ? I18n.get("rankine.jei.tooltip_limited") : I18n.get("rankine.jei.tooltip_nonlimited")).withStyle(limited ? ChatFormatting.RED : ChatFormatting.GREEN)));
+
             count++;
 
 
@@ -165,7 +177,7 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
                 case "DIAMOND":
                     return new Tuple<>(ChatFormatting.AQUA,diamondDrawable);
                 case "NETHERITE":
-                    return new Tuple<>(ChatFormatting.DARK_GRAY,netheriteDrawable);
+                    return new Tuple<>(ChatFormatting.DARK_PURPLE,netheriteDrawable);
                 default:
                     return new Tuple<>(ChatFormatting.LIGHT_PURPLE,guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID,"textures/gui/slot_"+tier.toString().toLowerCase(Locale.ROOT)+".png"),0,0,18,18).setTextureSize(18,18).build());
             }

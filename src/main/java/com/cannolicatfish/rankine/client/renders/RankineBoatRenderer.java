@@ -58,7 +58,6 @@ public class RankineBoatRenderer extends EntityRenderer<RankineBoatEntity> {
 
     };
     private final Map<Boat.Type, Pair<ResourceLocation, BoatModel>> boatResources;
-    public Pair<ResourceLocation, BoatModel> getModelWithLocation(Boat boat) { return this.boatResources.get(boat.getBoatType()); }
 
     public static final RankineBoatRenderer.RenderFactory instance = new RankineBoatRenderer.RenderFactory();
 
@@ -69,7 +68,7 @@ public class RankineBoatRenderer extends EntityRenderer<RankineBoatEntity> {
         this.boatResources = Stream.of(Boat.Type.values()).collect(ImmutableMap.toImmutableMap((p_173938_) -> {
             return p_173938_;
         }, (p_173941_) -> {
-            return Pair.of(new ResourceLocation("textures/entity/boat/" + p_173941_.getName() + ".png"), new BoatModel(renderManagerIn.bakeLayer(ModelLayers.createBoatModelName(p_173941_))));
+            return Pair.of(new ResourceLocation("rankine:textures/entity/boat/" + p_173941_.getName() + ".png"), new BoatModel(renderManagerIn.bakeLayer(ModelLayers.createBoatModelName(p_173941_))));
         }));
     }
 
@@ -98,7 +97,7 @@ public class RankineBoatRenderer extends EntityRenderer<RankineBoatEntity> {
         p_113932_.scale(-1.0F, -1.0F, 1.0F);
         p_113932_.mulPose(Vector3f.YP.rotationDegrees(90.0F));
         boatmodel.setupAnim(p_113929_, p_113931_, 0.0F, -0.1F, 0.0F, 0.0F);
-        VertexConsumer vertexconsumer = p_113933_.getBuffer(boatmodel.renderType(resourcelocation));
+        VertexConsumer vertexconsumer = p_113933_.getBuffer(boatmodel.renderType(this.getTextureLocation(p_113929_)));
         boatmodel.renderToBuffer(p_113932_, vertexconsumer, p_113934_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         if (!p_113929_.isUnderWater()) {
             VertexConsumer vertexconsumer1 = p_113933_.getBuffer(RenderType.waterMask());
@@ -109,10 +108,13 @@ public class RankineBoatRenderer extends EntityRenderer<RankineBoatEntity> {
         super.render(p_113929_, p_113930_, p_113931_, p_113932_, p_113933_, p_113934_);
     }
 
+
     @Override
     public ResourceLocation getTextureLocation(RankineBoatEntity entity) {
         return BOAT_TEXTURES[entity.getRankineBoatType().ordinal()];
     }
+
+    public Pair<ResourceLocation, BoatModel> getModelWithLocation(Boat boat) { return this.boatResources.get(boat.getBoatType()); }
 
     public static class RenderFactory implements EntityRendererProvider<RankineBoatEntity> {
         @Override

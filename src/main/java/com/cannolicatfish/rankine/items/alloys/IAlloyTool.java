@@ -72,7 +72,7 @@ public interface IAlloyTool extends IAlloyTieredItem {
                 if (!this.needsRefresh(stack)) {
 
                     tooltip.add((new TextComponent("Durability: " + (getAlloyDurability(stack) - stack.getDamageValue()) + "/" + getAlloyDurability(stack))).withStyle(ChatFormatting.DARK_GREEN));
-                    tooltip.add((new TextComponent("Tier: " + (getAlloyHarvestLevel(stack)))).withStyle(ChatFormatting.GRAY));
+                    tooltip.add((new TextComponent("Tier: " + (getAlloyHarvestLevel(stack) + " (" + getAlloyTier(stack).toString() + ")"))).withStyle(ChatFormatting.GRAY));
                     tooltip.add((new TextComponent("Mining Speed: " + df.format(getAlloyMiningSpeed(stack)))).withStyle(ChatFormatting.GRAY));
                     tooltip.add((new TextComponent("Enchantability: " + getAlloyEnchantability(stack))).withStyle(ChatFormatting.GRAY));
                     if (Config.ALLOYS.ALLOY_CORROSION.get()) {
