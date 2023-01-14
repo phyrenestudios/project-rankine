@@ -1,0 +1,15 @@
+{
+  "name": "rankine.journal.cat_mechanics.building_modes.name",
+  "icon": "rankine:magnolia_planks",
+  "category": "rankine:mechanics",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_mechanics.building_modes.text1"
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_mechanics.building_modes.text2"
+    }
+  ]
+}

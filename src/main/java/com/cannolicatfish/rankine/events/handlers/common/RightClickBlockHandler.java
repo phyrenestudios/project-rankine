@@ -11,9 +11,11 @@ import com.cannolicatfish.rankine.recipe.SluicingRecipe;
 import com.cannolicatfish.rankine.recipe.StrippingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -32,16 +34,19 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.tags.IReverseTag;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class RightClickBlockHandler {
 
     private static Map<Block, BlockState> flintLightMap = new HashMap<>();
     public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
+    public static Map<TagKey<Item>, LanternBlock> lanternMap = new HashMap<TagKey<Item>, LanternBlock>();
 
     static {
         flintLightMap.put(Blocks.CAMPFIRE, Blocks.CAMPFIRE.defaultBlockState().setValue(BlockStateProperties.LIT,true));
@@ -54,6 +59,12 @@ public class RightClickBlockHandler {
             stripping_map.put(Wood.getWood(), Wood.getStrippedWood());
         }
 
+        for (Block block : RankineLists.LANTERNS) {
+            if (!ForgeRegistries.ITEMS.tags().isKnownTagName(ForgeRegistries.ITEMS.tags().createTagKey(new ResourceLocation("forge:nuggets/"+block.getRegistryName().getPath().replace("_lantern",""))))) break;
+            lanternMap.put(ForgeRegistries.ITEMS.tags().createTagKey(new ResourceLocation("forge:nuggets/"+block.getRegistryName().getPath().replace("_lantern",""))), (LanternBlock) block);
+        }
+        lanternMap.put(Tags.Items.NUGGETS_IRON, (LanternBlock) Blocks.LANTERN);
+        lanternMap.put(RankineTags.Items.NUGGETS_SULFUR, (LanternBlock) Blocks.SOUL_LANTERN);
     }
 
 
@@ -62,6 +73,7 @@ public class RightClickBlockHandler {
         Player playerIn = event.getPlayer();
         Level levelIn = event.getWorld();
         BlockPos posIn = event.getPos();
+        BlockState stateIn = levelIn.getBlockState(posIn);
         ItemStack itemStack = playerIn.getItemInHand(event.getHand());
 
 
@@ -102,10 +114,18 @@ public class RightClickBlockHandler {
             return;
         }
 
-        if (itemStack.is(Tags.Items.DYES)) {
-            if (!Config.GENERAL.COLOR_WORLD.get()) return;
-
-
+        //Metal Lanterns
+        if (stateIn.getBlock() instanceof LanternBlock && itemStack.is(Tags.Items.NUGGETS)) {
+            for (TagKey<Item> tag : ForgeRegistries.ITEMS.tags().getReverseTag(itemStack.getItem()).map(IReverseTag::getTagKeys).orElseGet(Stream::of).toList()) {
+                if (lanternMap.containsKey(tag)) {
+                    levelIn.setBlockAndUpdate(posIn, lanternMap.get(tag).defaultBlockState().setValue(LanternBlock.HANGING, stateIn.getValue(LanternBlock.HANGING)));
+                    if (!playerIn.isCreative()) itemStack.shrink(1);
+                    playerIn.swing(event.getHand());
+                    levelIn.playSound(null, posIn, SoundEvents.LANTERN_PLACE, SoundSource.BLOCKS, 1.0f, 1.0f);
+                    return;
+                }
+            }
+            return;
         }
 
 

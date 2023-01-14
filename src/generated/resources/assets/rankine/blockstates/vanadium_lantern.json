@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/vanadium_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/vanadium_lantern_hanging"
+    }
+  }
+}

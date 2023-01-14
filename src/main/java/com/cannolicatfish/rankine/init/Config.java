@@ -239,7 +239,6 @@ public class Config {
 
         public final ForgeConfigSpec.IntValue PATH_CREATION_TIME;
         public final ForgeConfigSpec.BooleanValue PATH_CREATION;
-        public final ForgeConfigSpec.BooleanValue COLOR_WORLD;
         public final ForgeConfigSpec.BooleanValue PUMICE_SOAP;
         public final ForgeConfigSpec.BooleanValue FLINT_FIRE;
         public final ForgeConfigSpec.BooleanValue STUMP_CREATION;
@@ -284,8 +283,6 @@ public class Config {
                             .defineInRange("pathCreationTime", 8, 1, Integer.MAX_VALUE);
                     PATH_CREATION = b.comment("If enabled, walking on grass blocks, mycelium and podzol has a chance to create a path block underfoot.")
                             .define("pathCreation",true);
-                    COLOR_WORLD = b.comment("If enabled, dyes can be used on blocks in-world to dye them (includes concrete, concrete powder, terracotta, glazed terracotta, stained glass, stained glass panes, leds, wool)")
-                            .define("colorWorld",true);
                     PUMICE_SOAP = b.comment("If enabled, pumice soap can repair mossy/cracked stone bricks and polish stones.")
                             .define("pumiceSoapEnabled",true);
                     STRIPPABLES_STICKS = b.comment("If enabled, sticks will drop from logs when stripped (30% chance).")

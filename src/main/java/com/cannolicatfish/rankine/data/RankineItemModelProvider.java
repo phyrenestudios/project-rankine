@@ -486,6 +486,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
             if (TOOL instanceof AlloyCrowbarItem || TOOL.equals(RankineItems.ALLOY_SURF_ROD.get())) {
                 basicItemHandheldRod(TOOL);
             } else if (TOOL instanceof SpearItem) {
+                //need custom model
                 basicItemHandheld(TOOL);
             } else {
                 basicItemHandheld(TOOL);
@@ -495,10 +496,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
             basicItem(ARROW);
         }
 
-        for (Block blk : RankineLists.METAL_LADDERS) {
-            basicItemAltTexture(blk.asItem(), modLoc("block/"+blk.getRegistryName().getPath()));
+        for (Block blk : RankineLists.ALLOY_LADDERS) {
+            buildingModeGeneratedItem(blk.asItem(), ((BuildingModeBlock) blk).getMaxStyles());
         }
-
 
         //ALLOYS
         for (Item ALLOY : RankineLists.ALLOY_NUGGETS) {
@@ -536,7 +536,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         }
 
         for (Block blk : RankineLists.LANTERNS) {
-            basicItem(blk.asItem());
+            getBuilder(blk.getRegistryName().getPath()).parent(getExistingFile(modLoc("item/base_lantern")));
         }
 
         basicItem(RankineItems.PENNING_TRAP.get());
@@ -582,9 +582,18 @@ public class RankineItemModelProvider extends ItemModelProvider {
     private void buildingModeItem(Item item, int maxModes) {
         String Path = item.getRegistryName().getPath();
         ItemModelBuilder thing = withExistingParent(Path, RankineBlockStateProvider.getBlockRSL(Path+"1"));
-
         for (int i = 2; i <= maxModes; i++) {
             thing.override().predicate(new ResourceLocation("rankine:building_mode"), (float) i).model(getExistingFile(RankineBlockStateProvider.getBlockRSL(Path+i))).end();
+        }
+    }
+    private void buildingModeGeneratedItem(Item item, int maxModes) {
+        String Path = item.getRegistryName().getPath();
+        getBuilder(Path+"2").parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "block/metal_ladder2");
+        getBuilder(Path+"3").parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "block/metal_ladder3");
+        getBuilder(Path+"4").parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "block/metal_ladder4");
+        ItemModelBuilder thing = getBuilder(Path).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "block/metal_ladder1");
+        for (int i = 2; i <= maxModes; i++) {
+            thing.override().predicate(new ResourceLocation("rankine:building_mode"), (float) i).model(getExistingFile(modLoc("item/"+Path+i))).end();
         }
     }
 

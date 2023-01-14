@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/tellurium_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/tellurium_lantern_hanging"
+    }
+  }
+}

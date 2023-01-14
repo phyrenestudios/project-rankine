@@ -6,46 +6,74 @@
   "secondary": {
     "item": "rankine:slag"
   },
-  "cookTime": 1200,
+  "cookTime": 800,
   "color": 15081480,
-  "required": [true,false,false,false],
-  "total": 10,
+  "required": [true,true,true,true],
+  "total": 14,
   "input1": {
     "item": "rankine:cinnabar",
     "countMod": 4,
     "group": 0
   },
   "input2": {
-    "tag": "forge:gems/quartz"
+    "tag": "forge:gems/quartz",
+    "group": 1
   },
   "input3": {
-    "tag": "forge:silicon"
+    "tag": "forge:nuggets/silicon",
+    "group": 1
   },
   "input4": {
-    "tag": "forge:nuggets/arsenic"
-  },
-  "input5": {
-    "tag": "forge:ingots/cobalt",
+    "tag": "forge:nuggets/germanium",
+    "group": 1,
     "countMod": 1
   },
+  "input5": {
+    "tag": "forge:nuggets/copper",
+    "group": 2
+  },
   "input6": {
-    "tag": "forge:ingots/sodium",
+    "tag": "forge:nuggets/aluminum",
+    "group": 2,
     "countMod": 1
   },
   "input7": {
-    "tag": "forge:ingots/aluminum",
+    "tag": "forge:nuggets/gallium",
+    "group": 2,
     "countMod": 1
   },
   "input8": {
-    "tag": "forge:selenium",
+    "tag": "forge:nuggets/indium",
+    "group": 2,
     "countMod": 1
   },
   "input9": {
-    "tag": "forge:tellurium",
+    "tag": "forge:nuggets/thallium",
+    "group": 2,
     "countMod": 1
   },
   "input10": {
-    "tag": "forge:germanium",
-    "countMod": 2
+    "tag": "forge:nuggets/antimony",
+    "group": 3
+  },
+  "input11": {
+    "tag": "forge:nuggets/arsenic",
+    "group": 3
+  },
+  "input12": {
+    "tag": "forge:nuggets/selenium",
+    "group": 3,
+    "countMod": 1
+  },
+  "input13": {
+    "tag": "forge:nuggets/tellurium",
+    "group": 3,
+    "countMod": 1
+  },
+  "input14": {
+    "tag": "forge:nuggets/uranium",
+    "group": 3,
+    "countMod": 1,
+    "cookMod": -600
   }
 }

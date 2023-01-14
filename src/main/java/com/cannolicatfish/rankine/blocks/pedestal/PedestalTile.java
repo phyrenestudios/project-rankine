@@ -37,6 +37,12 @@ public class PedestalTile extends ItemDisplayEntity implements Container {
     }
 
     @Override
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
+        ContainerHelper.saveAllItems(compound, this.items);
+    }
+
+    @Override
     public AABB getRenderBoundingBox() {
         return new AABB(this.getBlockPos(), this.getBlockPos().above(2));
     }
@@ -59,11 +65,6 @@ public class PedestalTile extends ItemDisplayEntity implements Container {
         return 0;
     }
 
-    @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
-        ContainerHelper.saveAllItems(compound, this.items);
-    }
 
     @Override
     public int getContainerSize() {
@@ -77,12 +78,19 @@ public class PedestalTile extends ItemDisplayEntity implements Container {
 
     @Override
     public ItemStack getItem(int slot) {
-        return this.items.get(slot);
+        return this.items.get(0).isEmpty() ? ItemStack.EMPTY : this.items.get(0);
     }
 
     @Override
     public ItemStack removeItem(int index, int count) {
         return ContainerHelper.removeItem(this.items, index, count);
+    }
+
+    @Override
+    public void clearContent() {
+        this.items.set(0, ItemStack.EMPTY);
+        this.entity = null;
+        this.setChanged();
     }
 
     @Override
@@ -108,11 +116,6 @@ public class PedestalTile extends ItemDisplayEntity implements Container {
     @Override
     public boolean stillValid(Player player) {
         return true;
-    }
-
-    @Override
-    public void clearContent() {
-        this.items.clear();
     }
 
     @Nonnull

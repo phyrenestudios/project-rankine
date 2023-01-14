@@ -40,10 +40,9 @@ public class FeatureGeneration {
 
         if (biome.getName() != null) {
             //Disable features
-            disableGenerators(biome.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES), biome.getName(), Arrays.asList(Blocks.ANDESITE.defaultBlockState(),Blocks.DIORITE.defaultBlockState(),Blocks.GRANITE.defaultBlockState(),
+            if (Config.WORLDGEN.DISABLE_VANILLA_FEATURES.get()) disableGenerators(biome.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES), biome.getName(), Arrays.asList(Blocks.ANDESITE.defaultBlockState(),Blocks.DIORITE.defaultBlockState(),Blocks.GRANITE.defaultBlockState(),
                     Blocks.COPPER_ORE.defaultBlockState(),Blocks.IRON_ORE.defaultBlockState(),Blocks.COAL_ORE.defaultBlockState(),Blocks.GOLD_ORE.defaultBlockState(),Blocks.REDSTONE_ORE.defaultBlockState(),Blocks.LAPIS_ORE.defaultBlockState(),Blocks.DIAMOND_ORE.defaultBlockState(),Blocks.EMERALD_ORE.defaultBlockState(),
                     Blocks.DEEPSLATE_COPPER_ORE.defaultBlockState(),Blocks.DEEPSLATE_IRON_ORE.defaultBlockState(),Blocks.DEEPSLATE_COAL_ORE.defaultBlockState(),Blocks.DEEPSLATE_GOLD_ORE.defaultBlockState(),Blocks.DEEPSLATE_REDSTONE_ORE.defaultBlockState(),Blocks.DEEPSLATE_LAPIS_ORE.defaultBlockState(),Blocks.DEEPSLATE_DIAMOND_ORE.defaultBlockState(),Blocks.DEEPSLATE_EMERALD_ORE.defaultBlockState()));
-
 
             if (Config.WORLDGEN.BEDROCK_LAYERS.get() != 0) {
                 biome.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_FLAT_BEDROCK.getHolder().get());

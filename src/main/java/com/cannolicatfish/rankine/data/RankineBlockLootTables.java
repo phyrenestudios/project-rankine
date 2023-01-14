@@ -109,7 +109,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.FIBER_BLOCK,
                 RankineLists.FIBER_MAT,
                 RankineLists.METAL_TRAPDOORS,
-                RankineLists.METAL_LADDERS,
+                RankineLists.ALLOY_LADDERS,
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.ALLOY_PEDESTALS,
                 RankineLists.MINERAL_BLOCKS,

@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "rankine:block/metal_ladder1"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "rankine:building_mode": 2.0
+      },
+      "model": "rankine:item/osmiridium_ladder2"
+    },
+    {
+      "predicate": {
+        "rankine:building_mode": 3.0
+      },
+      "model": "rankine:item/osmiridium_ladder3"
+    },
+    {
+      "predicate": {
+        "rankine:building_mode": 4.0
+      },
+      "model": "rankine:item/osmiridium_ladder4"
+    }
+  ]
+}

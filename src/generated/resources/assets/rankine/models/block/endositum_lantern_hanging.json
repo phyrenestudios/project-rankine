@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_hanging_rankine_lantern",
+  "textures": {
+    "overlay": "rankine:block/endositum_lantern"
+  }
+}

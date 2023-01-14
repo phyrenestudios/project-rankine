@@ -12,10 +12,7 @@ import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
-import com.cannolicatfish.rankine.blocks.buildingmodes.GlazedPorcelainBlock;
-import com.cannolicatfish.rankine.blocks.buildingmodes.MetalBarsBlock;
-import com.cannolicatfish.rankine.blocks.buildingmodes.RankineBricksBlock;
-import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
+import com.cannolicatfish.rankine.blocks.buildingmodes.*;
 import com.cannolicatfish.rankine.blocks.cauldrons.*;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitBlock;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
@@ -323,7 +320,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ULTRA_HIGH_REFRACTORY_BRICKS_STAIRS = BLOCKS.register("ultra_high_refractory_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE));
 
 
-    //public static final RegistryObject<Block> FIBER_BED = REGISTRY.register("fiber_bed", () -> new FiberBedBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
+    //public static final RegistryObject<Block> FIBER_BED = BLOCKS.register("fiber_bed", () -> new FiberBedBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
 
     public static final RegistryObject<Block> FIBER_BLOCK = BLOCKS.register("fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
     public static final RegistryObject<Block> FIBER_BLOCK_SLAB = BLOCKS.register("fiber_block_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
@@ -402,90 +399,72 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SULFUR_DIOXIDE_GAS_BLOCK = BLOCKS.register("sulfur_dioxide_gas_block", () -> new GasBlock(RankineItems.SULFUR_DIOXIDE_GAS_BOTTLE,GasUtilsEnum.SULFUR_DIOXIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
     public static final RegistryObject<Block> TUNGSTEN_HEXAFLUORIDE_GAS_BLOCK = BLOCKS.register("tungsten_hexafluoride_gas_block", () -> new GasBlock(RankineItems.TUNGSTEN_HEXAFLUORIDE_GAS_BOTTLE,GasUtilsEnum.TUNGSTEN_HEXAFLUORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
 
-    //public static final RegistryObject<Block> HELIUM_GAS_TUBE = REGISTRY.register("helium_gas_tube", () -> new GasTubeBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
-
-    public static Block.Properties LANTERN_PROP = BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(3.5F).sound(SoundType.LANTERN).lightLevel((state) -> 15).noOcclusion();
-    public static final RegistryObject<Block> LITHIUM_LANTERN = BLOCKS.register("lithium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    /*
-    public static final RegistryObject<Block> BERYLLIUM_LANTERN = REGISTRY.register("beryllium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> BORON_LANTERN = REGISTRY.register("boron_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> CARBON_LANTERN = REGISTRY.register("carbon_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> SODIUM_LANTERN = REGISTRY.register("sodium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> MAGNESIUM_LANTERN = REGISTRY.register("magnesium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> ALUMINUM_LANTERN = REGISTRY.register("aluminum_lantern", () -> new LanternBlock(LANTERN_PROP));
-
-    public static final RegistryObject<Block> SILICON_LANTERN = REGISTRY.register("silicon_lantern", () -> new LanternBlock(LANTERN_PROP));
-     */
-    public static final RegistryObject<Block> PHOSPHORUS_LANTERN = BLOCKS.register("phosphorus_lantern", () -> new LanternBlock(LANTERN_PROP));
-    /*
-    public static final RegistryObject<Block> SULFUR_LANTERN = REGISTRY.register("sulfur_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> POTASSIUM_LANTERN = REGISTRY.register("potassium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> CALCIUM_LANTERN = REGISTRY.register("calcium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> SCANDIUM_LANTERN = REGISTRY.register("scandium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> TITANIUM_LANTERN = REGISTRY.register("titanium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> VANADIUM_LANTERN = REGISTRY.register("vanadium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> CHROMIUM_LANTERN = REGISTRY.register("chromium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> MANGANESE_LANTERN = REGISTRY.register("manganese_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> COBALT_LANTERN = REGISTRY.register("cobalt_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> NICKEL_LANTERN = REGISTRY.register("nickel_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> COPPER_LANTERN = REGISTRY.register("copper_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> ZINC_LANTERN = REGISTRY.register("zinc_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> GALLIUM_LANTERN = REGISTRY.register("gallium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> GERMANIUM_LANTERN = REGISTRY.register("germanium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> ARSENIC_LANTERN = REGISTRY.register("arsenic_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> SELENIUM_LANTERN = REGISTRY.register("selenium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> BROMINE_LANTERN = REGISTRY.register("bromine_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> KRYPTON_LANTERN = REGISTRY.register("krypton_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> RUBIDIUM_LANTERN = REGISTRY.register("rubidium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> STRONTIUM_LANTERN = REGISTRY.register("strontium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> YTTRIUM_LANTERN = REGISTRY.register("yttrium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> ZIRCONIUM_LANTERN = REGISTRY.register("zirconium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> NIOBIUM_LANTERN = REGISTRY.register("niobium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> MOLYBDENUM_LANTERN = REGISTRY.register("molybdenum_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> TECHNETIUM_LANTERN = REGISTRY.register("technetium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> RUTHENIUM_LANTERN = REGISTRY.register("ruthenium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> RHODIUM_LANTERN = REGISTRY.register("rhodium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> PALLADIUM_LANTERN = REGISTRY.register("palladium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> SILVER_LANTERN = REGISTRY.register("silver_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> CADMIUM_LANTERN = REGISTRY.register("cadmium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> INDIUM_LANTERN = REGISTRY.register("indium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> TIN_LANTERN = REGISTRY.register("tin_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> ANTIMONY_LANTERN = REGISTRY.register("antimony_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> TELLURIUM_LANTERN = REGISTRY.register("tellurium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> IODINE_LANTERN = REGISTRY.register("iodine_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> XENON_LANTERN = REGISTRY.register("xenon_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> CESIUM_LANTERN = REGISTRY.register("cesium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> BARIUM_LANTERN = REGISTRY.register("barium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> LANTHANUM_LANTERN = REGISTRY.register("lanthanum_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> CERIUM_LANTERN = REGISTRY.register("cerium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> PRASEODYMIUM_LANTERN = REGISTRY.register("praseodymium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> NEODYMIUM_LANTERN = REGISTRY.register("neodymium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> PROMETHIUM_LANTERN = REGISTRY.register("promethium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> SAMARIUM_LANTERN = REGISTRY.register("samarium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> EUROPIUM_LANTERN = REGISTRY.register("europium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> GADOLINIUM_LANTERN = REGISTRY.register("gadolinium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> TERBIUM_LANTERN = REGISTRY.register("terbium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> DYSPROSIUM_LANTERN = REGISTRY.register("dysprosium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> HOLMIUM_LANTERN = REGISTRY.register("holmium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> ERBIUM_LANTERN = REGISTRY.register("erbium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> THULIUM_LANTERN = REGISTRY.register("thulium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> YTTERBIUM_LANTERN = REGISTRY.register("ytterbium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> LUTETIUM_LANTERN = REGISTRY.register("lutetium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> HAFNIUM_LANTERN = REGISTRY.register("hafnium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> TANTALUM_LANTERN = REGISTRY.register("tantalum_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> TUNGSTEN_LANTERN = REGISTRY.register("tungsten_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> RHENIUM_LANTERN = REGISTRY.register("rhenium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> OSMIUM_LANTERN = REGISTRY.register("osmium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> IRIDIUM_LANTERN = REGISTRY.register("iridium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> PLATINUM_LANTERN = REGISTRY.register("platinum_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> MERCURY_LANTERN = REGISTRY.register("mercury_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> THALLIUM_LANTERN = REGISTRY.register("thallium_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> LEAD_LANTERN = REGISTRY.register("lead_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> BISMUTH_LANTERN = REGISTRY.register("bismuth_lantern", () -> new LanternBlock(LANTERN_PROP));
-    public static final RegistryObject<Block> ENDOSITUM_LANTERN = REGISTRY.register("endositum_lantern", () -> new LanternBlock(LANTERN_PROP));
+    //public static final RegistryObject<Block> HELIUM_GAS_TUBE = BLOCKS.register("helium_gas_tube", () -> new GasTubeBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Block> LITHIUM_LANTERN = BLOCKS.register("lithium_lantern", () -> new RankineLanternBlock(16711790));
+    public static final RegistryObject<Block> BORON_LANTERN = BLOCKS.register("boron_lantern", () -> new RankineLanternBlock(7577198));
+    public static final RegistryObject<Block> SODIUM_LANTERN = BLOCKS.register("sodium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> MAGNESIUM_LANTERN = BLOCKS.register("magnesium_lantern", () -> new RankineSparkyLanternBlock(15042972));
+    public static final RegistryObject<Block> ALUMINUM_LANTERN = BLOCKS.register("aluminum_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> PHOSPHORUS_LANTERN = BLOCKS.register("phosphorus_lantern", () -> new RankineLanternBlock(14148300));
+    public static final RegistryObject<Block> POTASSIUM_LANTERN = BLOCKS.register("potassium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> CALCIUM_LANTERN = BLOCKS.register("calcium_lantern", () -> new RankineLanternBlock(16752511));
+    public static final RegistryObject<Block> SCANDIUM_LANTERN = BLOCKS.register("scandium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> VANADIUM_LANTERN = BLOCKS.register("vanadium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> CHROMIUM_LANTERN = BLOCKS.register("chromium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> MANGANESE_LANTERN = BLOCKS.register("manganese_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> COBALT_LANTERN = BLOCKS.register("cobalt_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> NICKEL_LANTERN = BLOCKS.register("nickel_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> COPPER_LANTERN = BLOCKS.register("copper_lantern", () -> new RankineLanternBlock(8435610));
+    public static final RegistryObject<Block> ZINC_LANTERN = BLOCKS.register("zinc_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> GALLIUM_LANTERN = BLOCKS.register("gallium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> GERMANIUM_LANTERN = BLOCKS.register("germanium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> ARSENIC_LANTERN = BLOCKS.register("arsenic_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> SELENIUM_LANTERN = BLOCKS.register("selenium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> RUBIDIUM_LANTERN = BLOCKS.register("rubidium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> STRONTIUM_LANTERN = BLOCKS.register("strontium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> YTTRIUM_LANTERN = BLOCKS.register("yttrium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> ZIRCONIUM_LANTERN = BLOCKS.register("zirconium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> NIOBIUM_LANTERN = BLOCKS.register("niobium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> MOLYBDENUM_LANTERN = BLOCKS.register("molybdenum_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> TECHNETIUM_LANTERN = BLOCKS.register("technetium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> RUTHENIUM_LANTERN = BLOCKS.register("ruthenium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> RHODIUM_LANTERN = BLOCKS.register("rhodium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> CADMIUM_LANTERN = BLOCKS.register("cadmium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> INDIUM_LANTERN = BLOCKS.register("indium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> TIN_LANTERN = BLOCKS.register("tin_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> ANTIMONY_LANTERN = BLOCKS.register("antimony_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> TELLURIUM_LANTERN = BLOCKS.register("tellurium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> CESIUM_LANTERN = BLOCKS.register("cesium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> BARIUM_LANTERN = BLOCKS.register("barium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> LANTHANUM_LANTERN = BLOCKS.register("lanthanum_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> CERIUM_LANTERN = BLOCKS.register("cerium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> PRASEODYMIUM_LANTERN = BLOCKS.register("praseodymium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> NEODYMIUM_LANTERN = BLOCKS.register("neodymium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> PROMETHIUM_LANTERN = BLOCKS.register("promethium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> SAMARIUM_LANTERN = BLOCKS.register("samarium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> EUROPIUM_LANTERN = BLOCKS.register("europium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> GADOLINIUM_LANTERN = BLOCKS.register("gadolinium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> TERBIUM_LANTERN = BLOCKS.register("terbium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> DYSPROSIUM_LANTERN = BLOCKS.register("dysprosium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> HOLMIUM_LANTERN = BLOCKS.register("holmium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> ERBIUM_LANTERN = BLOCKS.register("erbium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> THULIUM_LANTERN = BLOCKS.register("thulium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> YTTERBIUM_LANTERN = BLOCKS.register("ytterbium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> LUTETIUM_LANTERN = BLOCKS.register("lutetium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> HAFNIUM_LANTERN = BLOCKS.register("hafnium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> TANTALUM_LANTERN = BLOCKS.register("tantalum_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> TUNGSTEN_LANTERN = BLOCKS.register("tungsten_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> RHENIUM_LANTERN = BLOCKS.register("rhenium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> OSMIUM_LANTERN = BLOCKS.register("osmium_lantern", () -> new RankineLanternBlock(15042972));
+    //public static final RegistryObject<Block> IRIDIUM_LANTERN = BLOCKS.register("iridium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> THALLIUM_LANTERN = BLOCKS.register("thallium_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> LEAD_LANTERN = BLOCKS.register("lead_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> BISMUTH_LANTERN = BLOCKS.register("bismuth_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> NETHERITE_LANTERN = BLOCKS.register("netherite_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> ENDOSITUM_LANTERN = BLOCKS.register("endositum_lantern", () -> new RankineLanternBlock(15042972));
 
 
-     */
+
     public static final RegistryObject<Block> SOD_BLOCK = BLOCKS.register("sod_block", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRASS)));
 
     public static final RegistryObject<Block> SILT = BLOCKS.register("silt", () -> new RankineSandBlock(11770483, Block.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.SAND).strength(0.5F)));
@@ -711,7 +690,7 @@ public class RankineBlocks {
 
 
 
-    //public static final RegistryObject<Block> QUARRY_BARRIER = REGISTRY.register("quarry_barrier", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(5.0F, 20.0F)));
+    //public static final RegistryObject<Block> QUARRY_BARRIER = BLOCKS.register("quarry_barrier", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(5.0F, 20.0F)));
     public static final RegistryObject<Block> BONE_CHAR_BLOCK = BLOCKS.register("bone_char_block", () -> new RotatedPillarBlock(Block.Properties.of(Material.STONE).sound(SoundType.BONE_BLOCK).strength(2.0F)));
     public static final RegistryObject<Block> FIRE_CLAY = BLOCKS.register("fire_clay", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(1.0F, 3.0F)));
     public static final RegistryObject<Block> PORCELAIN_CLAY = BLOCKS.register("porcelain_clay", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(1.0F, 3.0F)));
@@ -988,7 +967,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PEWTER_SHEETMETAL = BLOCKS.register("pewter_sheetmetal", () -> new SheetmetalBlock(11711154));
     public static final RegistryObject<Block> BRONZE_SHEETMETAL = BLOCKS.register("bronze_sheetmetal", () -> new SheetmetalBlock(15510384));
     public static final RegistryObject<Block> BRASS_SHEETMETAL = BLOCKS.register("brass_sheetmetal", () -> new SheetmetalBlock(16762368));
-    public static final RegistryObject<Block> CAST_IRON_SHEETMETAL = BLOCKS.register("cast_iron_sheetmetal", () -> new SheetmetalBlock(2236962));
+    public static final RegistryObject<Block> CAST_IRON_SHEETMETAL = BLOCKS.register("cast_iron_sheetmetal", () -> new SheetmetalBlock(4408131));
     public static final RegistryObject<Block> INVAR_SHEETMETAL = BLOCKS.register("invar_sheetmetal", () -> new SheetmetalBlock(13028546));
     public static final RegistryObject<Block> CUPRONICKEL_SHEETMETAL = BLOCKS.register("cupronickel_sheetmetal", () -> new SheetmetalBlock(11946807));
     public static final RegistryObject<Block> DURALUMIN_SHEETMETAL = BLOCKS.register("duralumin_sheetmetal", () -> new SheetmetalBlock(8887223));
@@ -1023,7 +1002,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PEWTER_POLE = BLOCKS.register("pewter_pole", () -> new MetalPoleBlock(11711154));
     public static final RegistryObject<Block> BRONZE_POLE = BLOCKS.register("bronze_pole", () -> new MetalPoleBlock(15510384));
     public static final RegistryObject<Block> BRASS_POLE = BLOCKS.register("brass_pole", () -> new MetalPoleBlock(16762368));
-    public static final RegistryObject<Block> CAST_IRON_POLE = BLOCKS.register("cast_iron_pole", () -> new MetalPoleBlock(2236962));
+    public static final RegistryObject<Block> CAST_IRON_POLE = BLOCKS.register("cast_iron_pole", () -> new MetalPoleBlock(4408131));
     public static final RegistryObject<Block> INVAR_POLE = BLOCKS.register("invar_pole", () -> new MetalPoleBlock(13028546));
     public static final RegistryObject<Block> CUPRONICKEL_POLE = BLOCKS.register("cupronickel_pole", () -> new MetalPoleBlock(11946807));
     public static final RegistryObject<Block> DURALUMIN_POLE = BLOCKS.register("duralumin_pole", () -> new MetalPoleBlock(8887223));
@@ -1058,7 +1037,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PEWTER_BARS = BLOCKS.register("pewter_bars", () -> new MetalBarsBlock(11711154));
     public static final RegistryObject<Block> BRONZE_BARS = BLOCKS.register("bronze_bars", () -> new MetalBarsBlock(15510384));
     public static final RegistryObject<Block> BRASS_BARS = BLOCKS.register("brass_bars", () -> new MetalBarsBlock(16762368));
-    public static final RegistryObject<Block> CAST_IRON_BARS = BLOCKS.register("cast_iron_bars", () -> new MetalBarsBlock(2236962));
+    public static final RegistryObject<Block> CAST_IRON_BARS = BLOCKS.register("cast_iron_bars", () -> new MetalBarsBlock(4408131));
     public static final RegistryObject<Block> INVAR_BARS = BLOCKS.register("invar_bars", () -> new MetalBarsBlock(13028546));
     public static final RegistryObject<Block> CUPRONICKEL_BARS = BLOCKS.register("cupronickel_bars", () -> new MetalBarsBlock(11946807));
     public static final RegistryObject<Block> DURALUMIN_BARS = BLOCKS.register("duralumin_bars", () -> new MetalBarsBlock(8887223));
@@ -1083,6 +1062,41 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SODIUM_POTASSIUM_ALLOY_BARS = BLOCKS.register("sodium_potassium_alloy_bars", () -> new MetalBarsBlock(9403777));
     public static final RegistryObject<Block> AMALGAM_BARS = BLOCKS.register("amalgam_bars", () -> new MetalBarsBlock(13881539));
     public static final RegistryObject<Block> ENDER_AMALGAM_BARS = BLOCKS.register("ender_amalgam_bars", () -> new MetalBarsBlock(492385));
+
+    public static final RegistryObject<Block> ROSE_GOLD_LADDER = BLOCKS.register("rose_gold_ladder", () -> new MetalLadderBlock(16756647));
+    public static final RegistryObject<Block> WHITE_GOLD_LADDER = BLOCKS.register("white_gold_ladder", () -> new MetalLadderBlock(16777207));
+    public static final RegistryObject<Block> GREEN_GOLD_LADDER = BLOCKS.register("green_gold_ladder", () -> new MetalLadderBlock(15728547));
+    public static final RegistryObject<Block> BLUE_GOLD_LADDER = BLOCKS.register("blue_gold_ladder", () -> new MetalLadderBlock(8695295));
+    public static final RegistryObject<Block> PURPLE_GOLD_LADDER = BLOCKS.register("purple_gold_ladder", () -> new MetalLadderBlock(11836415));
+    public static final RegistryObject<Block> BLACK_GOLD_LADDER = BLOCKS.register("black_gold_ladder", () -> new MetalLadderBlock(3684408));
+    public static final RegistryObject<Block> PEWTER_LADDER = BLOCKS.register("pewter_ladder", () -> new MetalLadderBlock(11711154));
+    public static final RegistryObject<Block> BRONZE_LADDER = BLOCKS.register("bronze_ladder", () -> new MetalLadderBlock(15510384));
+    public static final RegistryObject<Block> BRASS_LADDER = BLOCKS.register("brass_ladder", () -> new MetalLadderBlock(16762368));
+    public static final RegistryObject<Block> CAST_IRON_LADDER = BLOCKS.register("cast_iron_ladder", () -> new MetalLadderBlock(4408131));
+    public static final RegistryObject<Block> INVAR_LADDER = BLOCKS.register("invar_ladder", () -> new MetalLadderBlock(13028546));
+    public static final RegistryObject<Block> CUPRONICKEL_LADDER = BLOCKS.register("cupronickel_ladder", () -> new MetalLadderBlock(11946807));
+    public static final RegistryObject<Block> DURALUMIN_LADDER = BLOCKS.register("duralumin_ladder", () -> new MetalLadderBlock(8887223));
+    public static final RegistryObject<Block> MAGNESIUM_ALLOY_LADDER = BLOCKS.register("magnesium_alloy_ladder", () -> new MetalLadderBlock(6841956));
+    public static final RegistryObject<Block> STERLING_SILVER_LADDER = BLOCKS.register("sterling_silver_ladder", () -> new MetalLadderBlock(15723237));
+    public static final RegistryObject<Block> NICKEL_SILVER_LADDER = BLOCKS.register("nickel_silver_ladder", () -> new MetalLadderBlock(9608841));
+    public static final RegistryObject<Block> TITANIUM_ALLOY_LADDER = BLOCKS.register("titanium_alloy_ladder", () -> new MetalLadderBlock(13750746));
+    public static final RegistryObject<Block> NITINOL_LADDER = BLOCKS.register("nitinol_ladder", () -> new MetalLadderBlock(12882104));
+    public static final RegistryObject<Block> ALNICO_LADDER = BLOCKS.register("alnico_ladder", () -> new MetalLadderBlock(16730178));
+    public static final RegistryObject<Block> STEEL_LADDER = BLOCKS.register("steel_ladder", () -> new MetalLadderBlock(7634311));
+    public static final RegistryObject<Block> STAINLESS_STEEL_LADDER = BLOCKS.register("stainless_steel_ladder", () -> new MetalLadderBlock(13292499));
+    public static final RegistryObject<Block> NICKEL_SUPERALLOY_LADDER = BLOCKS.register("nickel_superalloy_ladder", () -> new MetalLadderBlock(8559522));
+    public static final RegistryObject<Block> TUNGSTEN_HEAVY_ALLOY_LADDER = BLOCKS.register("tungsten_heavy_alloy_ladder", () -> new MetalLadderBlock(11113071));
+    public static final RegistryObject<Block> COBALT_SUPERALLOY_LADDER = BLOCKS.register("cobalt_superalloy_ladder", () -> new MetalLadderBlock(6534878));
+    public static final RegistryObject<Block> NIOBIUM_ALLOY_LADDER = BLOCKS.register("niobium_alloy_ladder", () -> new MetalLadderBlock(4533618));
+    public static final RegistryObject<Block> ZIRCONIUM_ALLOY_LADDER = BLOCKS.register("zirconium_alloy_ladder", () -> new MetalLadderBlock(14271685));
+    public static final RegistryObject<Block> ROSE_METAL_LADDER = BLOCKS.register("rose_metal_ladder", () -> new MetalLadderBlock(6235970));
+    public static final RegistryObject<Block> MISCHMETAL_LADDER = BLOCKS.register("mischmetal_ladder", () -> new MetalLadderBlock(7304289));
+    public static final RegistryObject<Block> FERROCERIUM_LADDER = BLOCKS.register("ferrocerium_ladder", () -> new MetalLadderBlock(7433071));
+    public static final RegistryObject<Block> GALINSTAN_LADDER = BLOCKS.register("galinstan_ladder", () -> new MetalLadderBlock(12564673));
+    public static final RegistryObject<Block> OSMIRIDIUM_LADDER = BLOCKS.register("osmiridium_ladder", () -> new MetalLadderBlock(13212593));
+    public static final RegistryObject<Block> SODIUM_POTASSIUM_ALLOY_LADDER = BLOCKS.register("sodium_potassium_alloy_ladder", () -> new MetalLadderBlock(9403777));
+    public static final RegistryObject<Block> AMALGAM_LADDER = BLOCKS.register("amalgam_ladder", () -> new MetalLadderBlock(13881539));
+    public static final RegistryObject<Block> ENDER_AMALGAM_LADDER = BLOCKS.register("ender_amalgam_ladder", () -> new MetalLadderBlock(492385));
 
 
 
@@ -1378,7 +1392,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ASPARAGUS_PLANT = BLOCKS.register("asparagus_plant", () -> new AsparagusPlantBlock(Block.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.HARD_CROP)));
     public static final RegistryObject<Block> CORN_PLANT = BLOCKS.register("corn_plant", () -> new CornPlantBlock(Block.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.HARD_CROP)));
     public static final RegistryObject<Block> CORN_STALK = BLOCKS.register("corn_stalk", () -> new CornStalkBlock(Block.Properties.of(Material.PLANT).noCollission().sound(SoundType.HARD_CROP)));
-    //public static final RegistryObject<Block> ASPARAGUS_ROOT = REGISTRY.register("asparagus_root",  () -> new AsparagusRootBlock(Block.Properties.create(Material.EARTH).tickRandomly().sound(SoundType.GROUND).hardnessAndResistance(0.5F)));
+    //public static final RegistryObject<Block> ASPARAGUS_ROOT = BLOCKS.register("asparagus_root",  () -> new AsparagusRootBlock(Block.Properties.create(Material.EARTH).tickRandomly().sound(SoundType.GROUND).hardnessAndResistance(0.5F)));
     public static final RegistryObject<Block> RICE_PLANT = BLOCKS.register("rice_plant", () -> new RicePlantBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
     public static final RegistryObject<Block> COTTON_PLANT = BLOCKS.register("cotton_plant", () -> new CottonPlantBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
     public static final RegistryObject<Block> JUTE_PLANT = BLOCKS.register("jute_plant", () -> new JutePlantBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
@@ -1397,12 +1411,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SORGHUM_BALE = BLOCKS.register("sorghum_bale", () -> new HayBlock(Block.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(0.5F).sound(SoundType.GRASS)));
     public static final RegistryObject<Block> MILLET_BALE = BLOCKS.register("millet_bale", () -> new HayBlock(Block.Properties.of(Material.GRASS, MaterialColor.COLOR_YELLOW).strength(0.5F).sound(SoundType.GRASS)));
 
-    public static final RegistryObject<Block> DURALUMIN_LADDER = BLOCKS.register("duralumin_ladder", () -> new MetalLadderBlock(true, false, Block.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0F).noOcclusion()));
-    public static final RegistryObject<Block> CAST_IRON_LADDER = BLOCKS.register("cast_iron_ladder", () -> new MetalLadderBlock(false, true, Block.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0F).noOcclusion()));
-    public static final RegistryObject<Block> INVAR_LADDER = BLOCKS.register("invar_ladder", () -> new MetalLadderBlock(false, true, Block.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0F).noOcclusion()));
-    public static final RegistryObject<Block> BRASS_LADDER = BLOCKS.register("brass_ladder", () -> new MetalLadderBlock(false, false, Block.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0F).noOcclusion()));
-    public static final RegistryObject<Block> CUPRONICKEL_LADDER = BLOCKS.register("cupronickel_ladder", () -> new MetalLadderBlock(false, true, Block.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0F).noOcclusion()));
-
     public static final RegistryObject<Block> ORNAMENT = BLOCKS.register("ornament", () -> new OrnamentBlock(Block.Properties.of(Material.METAL).sound(SoundType.GLASS).strength(1.0F).noOcclusion()));
 
 
@@ -1414,7 +1422,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BOTANIST_STATION = BLOCKS.register("botanist_station", () -> new Block(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.0F)));
 
     public static final RegistryObject<Block> SEDIMENT_FAN = BLOCKS.register("sediment_fan", () -> new SedimentFanBlock(Block.Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
-    //public static final RegistryObject<Block> FLUID_DRAIN = REGISTRY.register("fluid_drain", () -> new FluidDrainBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(5.0F,6.0F)));
+    //public static final RegistryObject<Block> FLUID_DRAIN = BLOCKS.register("fluid_drain", () -> new FluidDrainBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(5.0F,6.0F)));
 
     public static final RegistryObject<Block> SIMPLE_ELECTROMAGNET = BLOCKS.register("simple_electromagnet", () -> new ElectromagnetBlock(1));
     public static final RegistryObject<Block> ALNICO_ELECTROMAGNET = BLOCKS.register("alnico_electromagnet", () -> new ElectromagnetBlock(2));
@@ -1559,12 +1567,12 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SODIUM_VAPOR_LAMP = BLOCKS.register("sodium_vapor_lamp", () -> new SodiumVaporLampBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(3.5F).sound(SoundType.LANTERN).lightLevel((state) -> 15).noOcclusion()));
 
 /*
-    public static final RegistryObject<Block> CALCITE_COLUMN = REGISTRY.register("calcite_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(CALCITE_BLOCK.get())));
-    public static final RegistryObject<Block> DOLOMITE_COLUMN = REGISTRY.register("dolomite_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(DOLOMITE_BLOCK.get())));
-    public static final RegistryObject<Block> SALT_COLUMN = REGISTRY.register("salt_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(SODIUM_CHLORIDE_BLOCK.get())));
-    public static final RegistryObject<Block> PINK_SALT_COLUMN = REGISTRY.register("pink_salt_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(PINK_SALT_BLOCK.get())));
-    public static final RegistryObject<Block> OPAL_COLUMN = REGISTRY.register("opal_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(OPAL_BLOCK.get())));
-    public static final RegistryObject<Block> QUARTZ_COLUMN = REGISTRY.register("quartz_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(Blocks.QUARTZ_BLOCK)));
+    public static final RegistryObject<Block> CALCITE_COLUMN = BLOCKS.register("calcite_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(CALCITE_BLOCK.get())));
+    public static final RegistryObject<Block> DOLOMITE_COLUMN = BLOCKS.register("dolomite_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(DOLOMITE_BLOCK.get())));
+    public static final RegistryObject<Block> SALT_COLUMN = BLOCKS.register("salt_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(SODIUM_CHLORIDE_BLOCK.get())));
+    public static final RegistryObject<Block> PINK_SALT_COLUMN = BLOCKS.register("pink_salt_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(PINK_SALT_BLOCK.get())));
+    public static final RegistryObject<Block> OPAL_COLUMN = BLOCKS.register("opal_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(OPAL_BLOCK.get())));
+    public static final RegistryObject<Block> QUARTZ_COLUMN = BLOCKS.register("quartz_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(Blocks.QUARTZ_BLOCK)));
 
 
  */

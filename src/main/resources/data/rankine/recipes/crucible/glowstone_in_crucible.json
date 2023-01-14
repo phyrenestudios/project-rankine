@@ -6,43 +6,104 @@
   "secondary": {
     "item": "rankine:slag"
   },
-  "cookTime": 1200,
+  "cookTime": 800,
   "color": 13403732,
-  "required": [true,true,false,false],
-  "total": 9,
+  "required": [true,true,true,true],
+  "total": 20,
   "input1": {
     "item": "rankine:phosphorus",
-    "countMod": 1,
-    "group": 0
+    "group": 0,
+    "countMod": 3
   },
   "input2": {
-    "item": "minecraft:blaze_powder",
-    "countMod": 3,
-    "cookMod": -400,
-    "group": 0
+    "tag": "forge:gems/quartz",
+    "group": 1
   },
   "input3": {
-    "tag": "forge:silicon"
+    "tag": "forge:nuggets/silicon",
+    "group": 1
   },
   "input4": {
-    "tag": "forge:nuggets/arsenic"
+    "tag": "forge:nuggets/germanium",
+    "group": 1,
+    "countMod": 1
   },
   "input5": {
-    "tag": "forge:gems/quartz"
+    "item": "minecraft:blaze_powder",
+    "group": 2,
+    "cookMod": -400
   },
   "input6": {
-    "tag": "forge:sulfur"
+    "item": "rankine:helium_gas_bottle",
+    "group": 2,
+    "countMod": 1
   },
   "input7": {
-    "tag": "forge:ingots/sodium",
+    "item": "rankine:neon_gas_bottle",
+    "group": 2,
     "countMod": 1
   },
   "input8": {
-    "tag": "forge:ingots/neon",
-    "countMod": 2
+    "item": "rankine:argon_gas_bottle",
+    "group": 2,
+    "countMod": 1
   },
   "input9": {
-    "tag": "forge:ingots/argon",
+    "item": "rankine:krypton_gas_bottle",
+    "group": 2,
+    "countMod": 2
+  },
+  "input10": {
+    "item": "rankine:radon_gas_bottle",
+    "group": 2,
+    "countMod": 2
+  },
+  "input11": {
+    "item": "rankine:xenon_gas_bottle",
+    "group": 2,
+    "countMod": 2
+  },
+  "input12": {
+    "item": "rankine:oganesson_gas_bottle",
+    "group": 2,
+    "countMod": 4
+  },
+  "input13": {
+    "tag": "forge:sulfur",
+    "group": 3
+  },
+  "input14": {
+    "tag": "forge:nuggets/arsenic",
+    "group": 3
+  },
+  "input15": {
+    "tag": "forge:nuggets/lithium",
+    "group": 3,
+    "countMod": 1
+  },
+  "input16": {
+    "tag": "forge:nuggets/sodium",
+    "group": 3,
+    "countMod": 1
+  },
+  "input17": {
+    "tag": "forge:nuggets/sodium",
+    "group": 3,
+    "countMod": 1
+  },
+  "input18": {
+    "tag": "forge:nuggets/rubidium",
+    "group": 3,
+    "countMod": 2
+  },
+  "input19": {
+    "tag": "forge:nuggets/cesium",
+    "group": 3,
+    "countMod": 2
+  },
+  "input20": {
+    "tag": "forge:nuggets/francium",
+    "group": 3,
     "countMod": 2
   }
 }

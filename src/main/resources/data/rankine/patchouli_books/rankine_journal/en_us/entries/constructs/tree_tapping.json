@@ -1,0 +1,64 @@
+{
+  "name": "rankine.journal.cat_constructs.tree_tapping.name",
+  "icon": "rankine:tree_tap",
+  "category": "rankine:constructs",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_constructs.tree_tapping.text1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tree_tap",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_constructs.tree_tapping.tree_tap"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:tap_line",
+      "text": "rankine.journal.cat_constructs.tree_tapping.tap_line"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:water_bucket",
+      "link_recipe": true,
+      "text": "Water can be extracted from the varieties of birch."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:lava_bucket",
+      "link_recipe": true,
+      "text": "Lava can be extracted from the nether trees."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:latex_bucket",
+      "link_recipe": true,
+      "text": "Latex can be extracted from sharinga trees. Used to make dry rubber in the $(l:materials/evaporation_tower)Evaporation Tower$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:maple_sap_bucket",
+      "link_recipe": true,
+      "text": "Maple sap can be extracted from maple trees. Used to make maple syrup in the $(l:materials/evaporation_tower)Evaporation Tower$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:juglone_bucket",
+      "link_recipe": true,
+      "text": "Juglone can be extracted from black walnut trees. Used to craft herbicide."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sap_bucket",
+      "link_recipe": true,
+      "text": "Sap can be extracted from any other deciduous tree. Used to make sugar in the $(l:materials/evaporation_tower)Evaporation Tower$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:resin_bucket",
+      "link_recipe": true,
+      "text": "Resin can be extracted from any other coniferous tree. Used to make amber in the $(l:materials/evaporation_tower)Evaporation Tower$()."
+    }
+  ]
+}

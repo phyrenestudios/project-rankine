@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/barium_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/barium_lantern_hanging"
+    }
+  }
+}

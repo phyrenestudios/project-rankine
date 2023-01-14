@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/template_lantern",
+  "parent": "rankine:block/template_rankine_lantern",
   "textures": {
-    "lantern": "rankine:block/phosphorus_lantern"
+    "overlay": "rankine:block/phosphorus_lantern"
   }
 }

@@ -92,7 +92,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.TALL_FLOWERS,
                 RankineLists.METAL_TRAPDOORS,
                 RankineLists.METAL_DOORS,
-                RankineLists.METAL_LADDERS,
+                RankineLists.ALLOY_LADDERS,
                 RankineLists.ALLOY_PEDESTALS,
                 RankineLists.ALLOY_POLES,
                 RankineLists.ALLOY_SHEETMETALS,
@@ -947,7 +947,11 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_crucible.title", "Refractory Factory");
         add("rankine.advancements.story.craft_crucible.description", "Construct a crucible to form steel");
         add("rankine.advancements.story.make_steel.title", "Steel Yourself");
-        add("rankine.advancements.story.make_steel.description", "Make Steel Alloy by using the Crucible or the Induction Furnace");
+        add("rankine.advancements.story.make_steel.description", "Make Steel Alloy by using the Crucible");
+        add("rankine.advancements.story.make_glowstone.title", "Unnatural Glow");
+        add("rankine.advancements.story.make_glowstone.description", "Make additional Glowstone from components in the crucible");
+        add("rankine.advancements.story.make_redstone.title", "Redstoned");
+        add("rankine.advancements.story.make_redstone.description", "Make additional Redstone from cinnabar and components in the crucible");
         add("rankine.advancements.story.craft_brigandine_armor.title", "Plate Up");
         add("rankine.advancements.story.craft_brigandine_armor.description", "Make a full set of Brigandine Armor");
         add("rankine.advancements.story.craft_diving_armor.title", "Deeper Waters");
@@ -1005,7 +1009,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_element_indexer.title", "Elementary");
         add("rankine.advancements.story.craft_element_indexer.description", "Use a device to examine element properties");
         add("rankine.advancements.story.info_movement.title", "A Primer on Movement");
-        add("rankine.advancements.story.info_movement.description", "Movement (by default) changes depending on what material you are walking on");
+        add("rankine.advancements.story.info_movement.description", "Movement Speed (by default) changes depending on what material you are walking on");
         add("rankine.advancements.story.craft_sandals.title", "Sand Shifter");
         add("rankine.advancements.story.craft_sandals.description", "Make sandals to move more efficiently on sand");
         add("rankine.advancements.story.craft_ice_skates.title", "Ice Glider");
@@ -1043,10 +1047,10 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.advancements.challenges.root.title", "Project Rankine Challenges");
         add("rankine.advancements.challenges.root.description", "Complete your understanding of the changed world");
-        add("rankine.advancements.challenges.rock_collector.title", "We Have the Rockiest Rocks");
-        add("rankine.advancements.challenges.rock_collector.description", "Collect all the new types of rocks");
-        add("rankine.advancements.challenges.dirt_collector.title", "We Have the Dirtiest Dirt");
-        add("rankine.advancements.challenges.dirt_collector.description", "Collect all the new types of soil, not dirt");
+        add("rankine.advancements.challenges.stone_collector.title", "We Have the Rockiest Rocks");
+        add("rankine.advancements.challenges.stone_collector.description", "Collect all the new types of rocks");
+        add("rankine.advancements.challenges.soil_collector.title", "We Have the Dirtiest Dirt");
+        add("rankine.advancements.challenges.soil_collector.description", "Collect all the new types of soil, not dirt");
         add("rankine.advancements.challenges.gas_collector.title", "Frobscottle");
         add("rankine.advancements.challenges.gas_collector.description", "Bottle all types of gasses, consumption optional");
         add("rankine.advancements.challenges.element_collector.title", "Periodic Collector");
@@ -1069,7 +1073,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.challenges.geode_collector.description", "Find all of the different types of geodes");
 
 
-        //SUBTITLES
+        //SUBTITLE
         add("rankine.subtitle.totem_of_enduring_use", "totem use");
         add("rankine.subtitle.penning_trap_absorb", "Penning Trap absorb");
         add("rankine.subtitle.shulker_gas_vacuum_absorb", "Shulker Gas Vacuum absorb");
@@ -1078,7 +1082,7 @@ public class RankineLangProvider extends LanguageProvider {
 
 
         //JOURNAL==============================================================================
-        add("rankine.journal.landing_text", "Project Rankine is about material acquisition and usage. Explore the variety of items and blocks and the new methods to obtain them.");
+        add("rankine.journal.landing_text", "Project Rankine is about material acquisition and usage. Explore the variety of items and blocks and the new methods to obtain them. Follow the advancements for general progression.");
 
         //Orientation
         add("rankine.journal.cat_orientation.name", "Orientation");
@@ -1210,66 +1214,107 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_constructs.metal_poles.text1", "Metal poles are crafted from any alloy. The variety of alloy colors make them an excellent decoration block. They can also be right-clicked with leaves or torches to add garland, string lights, or both! Holding shift while clicking will teleport the player to the bottom of pole column.");
         add("rankine.journal.cat_constructs.metal_poles.text2", "All pole recipes follow this pattern.");
 
+        add("rankine.journal.cat_constructs.light_sources.name", "Light Sources");
+        add("rankine.journal.cat_constructs.light_sources.text1", "");
+        add("rankine.journal.cat_constructs.light_sources.text2", "Lanterns");
+        add("rankine.journal.cat_constructs.light_sources.text3", "");
+
+        add("rankine.journal.cat_constructs.metal_ladders.name", "Metal Ladders");
+        add("rankine.journal.cat_constructs.metal_ladders.text1", "Metal Ladders can be crafted from any alloy. Due to their sturdy nature, metal ladders can be placed up to 8 blocks above the last one attached to a wall. Right click with a ladder on a ladder to autoplace ladders vertically. These blocks have $(l:mechanics/building_modes)Building Modes$().");
+        add("rankine.journal.cat_constructs.metal_ladders.text2", "All metal ladder recipes follow this pattern.");
+
+        add("rankine.journal.cat_constructs.pedestals.name", "Pedestals");
+        add("rankine.journal.cat_constructs.pedestals.text1", "Pedestals, while having a unique shape, are primarilyy designed to display items. Right click a pedestal with an item to place it atop. A comparator will detect a signal strength based off the rarity of the item; 3,7,11 and 15 for common, uncommon, rare and epic respectively.");
+        add("rankine.journal.cat_constructs.pedestals.text2", "All pedestal recipes follow this pattern.");
+
         add("rankine.journal.cat_constructs.electromagnets.name", "Electromagnets");
         add("rankine.journal.cat_constructs.electromagnets.text1", "Electromagnets are able to move blocks when powered with redstone. Shift right-click to switch the magnet between attraction/repulsion mode. All applicable blocks in the range will either be pulled or pushed away from the magnet. Some config options exist for magnet ranges and allowed materials. By default, it works with any blocks of the metal material.");
         add("rankine.journal.cat_constructs.electromagnets.alnico_electromagnet", "Default Range: 10 blocks");
         add("rankine.journal.cat_constructs.electromagnets.simple_electromagnet", "Default Range: 5 blocks");
         add("rankine.journal.cat_constructs.electromagnets.rare_earth_electromagnet", "Default Range: 15 blocks");
 
+        add("rankine.journal.cat_constructs.mixing_barrel.name", "Mixing Barrel");
+        add("rankine.journal.cat_constructs.mixing_barrel.text1", "The mixing barrel combines together materials and fluid of various composition. Place items in any of the four items slots and their relative compositions will be displayed. Add fluid to the barrel by right clicking with a bucket. When an appropriate recipe is in the barrel, supply redstone pulses to the block to begin spinning. Each recipe has a variable number of spins needed to complete based off the redstone signal strength.");
+        add("rankine.journal.cat_constructs.mixing_barrel.text2", "A recipe is defined by composition of ingredients needed to make the output. The actual quantity of input material can vary and this will determine the quantity of the output and the number of spins required. The material scale of the recipe (shown by the #:# in JEI) means some recipes are not 1 to 1, make sure your mixing batch doesn't go over 64.");
+        add("rankine.journal.cat_constructs.mixing_barrel.asphalt_heading", "Asphalt");
+        add("rankine.journal.cat_constructs.mixing_barrel.asphalt", "Asphalts are decorative blocks for more urban environments. Right click on asphalt blocks with any dye to change the rotation and pattern of the block.");
+        add("rankine.journal.cat_constructs.mixing_barrel.cement_mix", "Cement mix is an early game component used to create a variety of reinforced blocks suck as bricks, cements, and concretes. The simplest recipe is equal parts sand, clay balls, and limestone with water.");
+
+        add("rankine.journal.cat_constructs.gas_collection.name", "Gas Collection");
+        add("rankine.journal.cat_constructs.gas_collection.text1", "Gas blocks, much like air blocks, are difficult to interact with. They also cannot be simply destroyed by placing a block into their space.  When your head is inside a gas block, you become affected by various effects and may potentially suffocate. They rarely occur naturally except for from $(l:mineralogy/fumaroles)fumaroles$().");
+        add("rankine.journal.cat_constructs.gas_collection.text2", "The shulker gas vacuum can store gasses internally by right clicking inside a gas block. Gasses can be placed in a new location in a likewise manner. If glass bottles are present in the offhand, the vacuum will fill the bottles.");
+        add("rankine.journal.cat_constructs.gas_collection.text3", "The gas vent is an orientable block that moves gas blocks from one side to the opposite.");
+        add("rankine.journal.cat_constructs.gas_collection.text4", "The gas bottler intakes gas block from the front side and bottles them using glass bottles from its inventory.");
+        add("rankine.journal.cat_constructs.gas_collection.text5", "The air distillation tower intakes ambient air and separates out the gaseous components. The multiblock is shown on the next page. Pay careful attention to the internal column of the tower as there are air gaps. Gas vents can be substituted in place of sheetmetal to move gas from the inside spaces to out.");
+        add("rankine.journal.cat_constructs.gas_collection.text6", "The multiblock on the previous page demonstrates 2 levels of construction. A single layer consists of packing - air space - packing with sheetmetal around the entire outside. The top layer use sheetmetal instead of packing. A full size tower is 10 layers, or 33 blocks tall including the base. $(br2)Each layer of the tower will produce a different gas output. By default, the outputs are also affected by the dimmension.");
+
+        add("rankine.journal.cat_constructs.fusion_furnace.name", "Fusion Furnace");
+        add("rankine.journal.cat_constructs.fusion_furnace.text1", "The Fusion Furnace utilizes solids, liquids, and gases to make new outputs. Many recipes which involve gases will require Bottled Gases and Empty Bottles. You can acquire Bottled Gases using either the $(l:materials/gasses)Gas Bottler$() or the $(l:materials/gasses)Shulker Gas Vacuum$(). In order for a recipe to go through, you must have the required ingredients, fluid in the input fluid tank, and bottled gas in the slot adjacent to the tank.");
+        add("rankine.journal.cat_constructs.fusion_furnace.text2", " This machine does not use coal, and must use electrical energy from items such as Batteries or RTGs.");
+        add("rankine.journal.cat_constructs.fusion_furnace.batteries_header", "Batteries");
+        add("rankine.journal.cat_constructs.fusion_furnace.batteries", "Batteries are energy storage devices that fuel late game machines. Currently they are single use.");
+        add("rankine.journal.cat_constructs.fusion_furnace.rtg_header", "RTGs");
+        add("rankine.journal.cat_constructs.fusion_furnace.rtg", "RTGs are radioactively powered batteries with a much higher capacity.");
+
+        add("rankine.journal.cat_constructs.beehive_oven.name", "Beehive Oven");
+        add("rankine.journal.cat_constructs.beehive_oven.text1", "The beehive oven is an in-world furnace that slowly smelts blocks placed inside it. While holding bricks in the offhand, right click with Building Tool on the Oven Pit to place blocks. Or you can place the blocks manually by matching the structure on the next page.");
+        add("rankine.journal.cat_constructs.beehive_oven.text2", "It will smelt blocks in a 3x2x3 area above it, minus the center column (16 blocks total). Once the structure is built, place your blocks in any of those smelting spaces and light the pit block with the conventional fire starting methods. The oven pit will un-light if an invalid structure is detected, or once the process is complete. Carbon Dioxide gas will be generated in any empty spaces inside the oven.");
+        add("rankine.journal.cat_constructs.beehive_oven.text4", "The full structure for the oven. The Oven Pit requires 6 empty blocks above it for the smoke to escape and to function properly.");
+        add("rankine.journal.cat_constructs.beehive_oven.text5", "Replacing the bricks for High Refractory Bricks will decrease the cooking speed to 50% the default time. Can be upgraded using the Building Tool");
+        add("rankine.journal.cat_constructs.beehive_oven.text6", "Replacing the bricks for Ultra High Refractory Bricks will decrease the cooking speed to 25% the default time. Can be upgraded using the Building Tool");
+
+        add("rankine.journal.cat_constructs.tree_tapping.name", "Tree Tapping");
+        add("rankine.journal.cat_constructs.tree_tapping.text1", "The Tree Tap is a device that extracts various fluids from logs. A tap with a bucket will eventually fill with liquid and can be retrieved by right clicking. Additional equipment can be used to automate the tapping process.");
+        add("rankine.journal.cat_constructs.tree_tapping.tree_tap", "Tree taps will not work if there is another one in any adjacent block. Also, the tree needs to be alive, meaning the tree must contained naturally spawned leaves.");
+        add("rankine.journal.cat_constructs.tree_tapping.tap_line", "Tap lines are essentially a pipe network for tree taps to output to a tap barrel. Fluids can not flow upwards. Tap lines will connect to a tree tap from below or to a flood gate on any side. ~30 block max search distance.");
+
+        add("rankine.journal.cat_constructs.crucible.name", "Crucible");
+        add("rankine.journal.cat_constructs.crucible.text1", "The crucible is a device capable of melting the materials required to forge steel and other molten products. Place the crucible above a heat source. The top four slots of the Crucible are your inputs. Each item used as an input must be unique (cannot be used in more than one slot) and some inputs cannot be mixed together.");
+        add("rankine.journal.cat_constructs.crucible.text2", "Valid heat sources include: $(li)Fire$() $(li)Lava$() $(li)Magma Block$() $(li)Campfires");
+
+        add("rankine.journal.cat_constructs.evaporation_tower.name", "Evaporation Tower");
+        add("rankine.journal.cat_constructs.evaporation_tower.text1", "A method to remove heavy materials from water. When constructed, the tower will slowly and passively generate various resources (can only run when outpute is empty, use a hopper!!). The resource lootable depends on the location. By default, water can be evaporated in the following different locations: $(li)Oceans $(li)Deserts $(li)Rivers and Swamps $(li)Caves $(li)Elsewhere");
+        add("rankine.journal.cat_constructs.evaporation_tower.text2", "Construction notes: $(li)The inside is filled with the desired fluid. $(li)The walls are made from any #forge:sheetmetals. $(li)More layers of sheet metal and fluid can be added to decrease processing time by 4% each layer (max of 20). $(br2)By default, the sheetmetal in the tower will occasionally break, which will limit the max height to that broken layer. Configurable.");
+
         //Materials
-        add("rankine.journal.cat_materials.name", "Materials");
-        add("rankine.journal.cat_materials.desc", "Usable materials come from all sorts of places. Some are simply harvested raw from the world, while others require some manufacturing and refinement to obtain.");
-
-        add("rankine.journal.cat_materials.mixing_barrel.name", "Mixing Barrel");
-        add("rankine.journal.cat_materials.mixing_barrel.text1", "The mixing barrel combines together materials and fluid of various composition. Place items in any of the four items slots and their relative compositions will be displayed. Add fluid to the barrel by right clicking with a bucket. When an appropriate recipe is in the barrel, supply redstone pulses to the block to begin spinning. Each recipe has a variable number of spins needed to complete based off the redstone signal strength.");
-        add("rankine.journal.cat_materials.mixing_barrel.text2", "A recipe is defined by composition of ingredients needed to make the output. The actual quantity of input material can vary and this will determine the quantity of the output and the number of spins required. The material scale of the recipe (shown by the #:# in JEI) means some recipes are not 1 to 1, make sure your mixing batch doesn't go over 64.");
-        add("rankine.journal.cat_materials.mixing_barrel.asphalt_heading", "Asphalt");
-        add("rankine.journal.cat_materials.mixing_barrel.asphalt", "Asphalts are decorative blocks for more urban environments. Right click on asphalt blocks with any dye to change the rotation and pattern of the block.");
-        add("rankine.journal.cat_materials.mixing_barrel.cement_mix", "Cement mix is an early game component used to create a variety of reinforced blocks suck as bricks, cements, and concretes. The simplest recipe is equal parts sand, clay balls, and limestone with water.");
-
+        add("rankine.journal.cat_materials.name", "Base Materials");
+        add("rankine.journal.cat_materials.desc", "The fundamental components of the world. Some are found naturally occurring. Others are gathered, processed, and extracted from various sources.");
 
         add("rankine.journal.cat_materials.gasses.name", "Gas Blocks");
-        add("rankine.journal.cat_materials.gasses.text1", "Gas blocks are similar to air in how you can't really interact wth them. When your head is inside a gas block, you become affected by various effects and may potentially suffocate. They rarely occur naturally except for from $(l:mineralogy/fumaroles)fumaroles$().");
-        add("rankine.journal.cat_materials.gasses.text2", "The shulker gas vacuum can store gasses internally by right clicking inside a gas block. Gasses can be placed in a new location in a likewise manner. If glass bottles are present in the offhand, the vacuum will fill the bottles.");
-        add("rankine.journal.cat_materials.gasses.text3", "The gas vent is an orientable block that moves gas blocks from one side to the opposite.");
-        add("rankine.journal.cat_materials.gasses.text4", "The gas bottler intakes gas block from the front side and bottles them using glass bottles from its inventory.");
-        add("rankine.journal.cat_materials.gasses.text5", "The air distillation tower intakes ambient air and separates out the gaseous components. The multiblock is shown on the next page. Pay careful attention to the internal column of the tower as there are air gaps. Gas vents can be substituted in place of sheetmetal to move gas from inside to out.");
+        add("rankine.journal.cat_materials.gasses.text1", "Gas Blocks");
+        add("rankine.journal.cat_materials.gasses.hydrogen", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.helium", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.nitrogen", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.oxygen", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.fluorine", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.neon", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.chlorine", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.argon", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.krypton", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.xenon", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.radon", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.oganesson", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.ammonia", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.carbon_dioxide", "Obtainable through fusion furnace processes and the Distillation Tower.");
+        add("rankine.journal.cat_materials.gasses.hydrogen_chloride", "$(liObtained from a $(l:mineralogy/fumaroles)fumarole$().");
+        add("rankine.journal.cat_materials.gasses.hydrogen_fluoride", "$(liObtained from a $(l:mineralogy/fumaroles)fumarole$().");
+        add("rankine.journal.cat_materials.gasses.hydrogen_sulfide", "$(liObtained from a $(l:mineralogy/fumaroles)fumarole$().");
+        add("rankine.journal.cat_materials.gasses.sulfur_dioxide", "$(liObtained from a $(l:mineralogy/fumaroles)fumarole$().");
+        add("rankine.journal.cat_materials.gasses.tungsten_hexafluoride", "$(liObtained through and used for fusion furnace processing.");
 
-        add("rankine.journal.cat_materials.fusion_furnace.name", "Fusion Furnace");
-        add("rankine.journal.cat_materials.fusion_furnace.text1", "The Fusion Furnace utilizes solids, liquids, and gases to make new outputs. Many recipes which involve gases will require Bottled Gases and Empty Bottles. You can acquire Bottled Gases using either the $(l:materials/gasses)Gas Bottler$() or the $(l:materials/gasses)Shulker Gas Vacuum$(). In order for a recipe to go through, you must have the required ingredients, fluid in the input fluid tank, and bottled gas in the slot adjacent to the tank.");
-        add("rankine.journal.cat_materials.fusion_furnace.text2", " This machine does not use coal, and must use electrical energy from items such as Batteries or RTGs.");
-        add("rankine.journal.cat_materials.fusion_furnace.batteries_header", "Batteries");
-        add("rankine.journal.cat_materials.fusion_furnace.batteries", "Batteries are energy storage devices that fuel late game machines. Currently they are single use.");
-        add("rankine.journal.cat_materials.fusion_furnace.rtg_header", "RTGs");
-        add("rankine.journal.cat_materials.fusion_furnace.rtg", "RTGs are radioactively powered batteries with a much higher capacity.");
-
-        add("rankine.journal.cat_materials.beehive_oven.name", "Beehive Oven");
-        add("rankine.journal.cat_materials.beehive_oven.text1", "The beehive oven is an in-world furnace that slowly smelts blocks placed inside it. While holding bricks in the offhand, right click with Building Tool on the Oven Pit to place blocks. Or you can place the blocks manually by matching the structure on the next page.");
-        add("rankine.journal.cat_materials.beehive_oven.text2", "It will smelt blocks in a 3x2x3 area above it, minus the center column (16 blocks total). Once the structure is built, place your blocks in any of those smelting spaces and light the pit block with the conventional fire starting methods. The oven pit will un-light if an invalid structure is detected, or once the process is complete. Carbon Dioxide gas will be generated in any empty spaces inside the oven.");
-        add("rankine.journal.cat_materials.beehive_oven.text4", "The full structure for the oven. The Oven Pit requires 6 empty blocks above it for the smoke to escape and to function properly.");
-        add("rankine.journal.cat_materials.beehive_oven.text5", "Replacing the bricks for High Refractory Bricks will decrease the cooking speed to 50% the default time. Can be upgraded using the Building Tool");
-        add("rankine.journal.cat_materials.beehive_oven.text6", "Replacing the bricks for Ultra High Refractory Bricks will decrease the cooking speed to 25% the default time. Can be upgraded using the Building Tool");
-
-
-        add("rankine.journal.cat_materials.tree_tapping.name", "Tree Tapping");
-        add("rankine.journal.cat_materials.tree_tapping.text1", "The Tree Tap is a device that extracts various fluids from logs. A tap with a bucket will eventually fill with liquid and can be retrieved by right clicking. Additional equipment can be used to automate the tapping process.");
-        add("rankine.journal.cat_materials.tree_tapping.tree_tap", "Tree taps will not work if there is another one in any adjacent block. Also, the tree needs to be alive, meaning the tree must contained naturally spawned leaves.");
-        add("rankine.journal.cat_materials.tree_tapping.tap_line", "Tap lines are essentially a pipe network for tree taps to output to a tap barrel. Fluids can not flow upwards. Tap lines will connect to a tree tap from below or to a flood gate on any side. ~30 block max search distance.");
-
-
-        add("rankine.journal.cat_materials.crucible.name", "Crucible");
-        add("rankine.journal.cat_materials.crucible.text1", "The crucible is a device capable of melting the materials required to forge steel and other molten products. Place the crucible above a heat source. The top four slots of the Crucible are your inputs. Each item used as an input must be unique (cannot be used in more than one slot) and some inputs cannot be mixed together.");
-        add("rankine.journal.cat_materials.crucible.text2", "Valid heat sources include: $(li)Fire$() $(li)Lava$() $(li)Magma Block$() $(li)Campfires");
-
-        add("rankine.journal.cat_materials.evaporation_tower.name", "Evaporation Tower");
-        add("rankine.journal.cat_materials.evaporation_tower.text1", "A method to remove heavy materials from water. When constructed, the tower will slowly and passively generate various resources (can only run when outpute is empty, use a hopper!!). The resource lootable depends on the location. By default, water can be evaporated in the following different locations: $(li)Oceans $(li)Deserts $(li)Rivers and Swamps $(li)Caves $(li)Elsewhere");
-        add("rankine.journal.cat_materials.evaporation_tower.text2", "Construction notes: $(li)The inside is filled with the desired fluid. $(li)The walls are made from any #forge:sheetmetals. $(li)More layers of sheet metal and fluid can be added to decrease processing time by 4% each layer (max of 20). $(br2)By default, the sheetmetal in the tower will occasionally break, which will limit the max height to that broken layer. Configurable.");
+        add("rankine.journal.cat_materials.elements.name", "Elements");
+        add("rankine.journal.cat_materials.elements.text1", "To be discovred.");
 
         //Mechanics
         add("rankine.journal.cat_mechanics.name", "Mechanics");
         add("rankine.journal.cat_mechanics.desc", "Gameplay mechanics. Some are changes to existing systems, while others are additional.");
         add("rankine.journal.cat_mechanics.foraging.name", "Foraging");
         add("rankine.journal.cat_mechanics.foraging.text1", "There is a chance to find a variety of seeds and roots when breaking dirt and related blocks. This will only happen when using an open hand or crude tools. The foraging enchantment for hoes adds additional items that can be dropped.");
+
+
+        add("rankine.journal.cat_mechanics.building_modes.name", "Building Modes");
+        add("rankine.journal.cat_mechanics.building_modes.text1", "Some blocks have multiple model/texture variants but are not necessarily separate blocks. These variations are called Building Modes. Shift right click with a stack of blocks in your hand to change the variant. A message will appear above the hotbar to indicate the current mode.");
+        add("rankine.journal.cat_mechanics.building_modes.text2", "Blocks that have modes include: $(li)Planks $(li)Stone Bricks $(li)Polished Stones $(li)Bricks $(li)Glazed Porcelains $(li)Metal Ladders");
 
 
         add("rankine.journal.cat_mechanics.finite_water.name", "Water Table");

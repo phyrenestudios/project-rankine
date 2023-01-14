@@ -6,7 +6,7 @@
   "secondary": {
     "item": "rankine:slag"
   },
-  "cookTime": 3200,
+  "cookTime": 2400,
   "alloyData": "99Fe-1C",
   "required": [true,true,false,false],
   "total": 16,

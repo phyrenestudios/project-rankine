@@ -1,0 +1,37 @@
+{
+  "name": "rankine.journal.cat_constructs.evaporation_tower.name",
+  "icon": "rankine:evaporation_tower",
+  "category": "rankine:constructs",
+  "pages": [
+	{
+      "type": "text",
+      "text": "rankine.journal.cat_constructs.evaporation_tower.text1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:evaporation_tower",
+      "text": ""
+    },
+    {
+      "type": "multiblock",
+      "multiblock_id": "multiblock",
+      "multiblock": {
+        "pattern": [
+          [ "  SSS  "," SWWWS ","SWWWWWS", "SWWWWWS","SWWWWWS"," SWWWS ", "  SSS  " ],
+          [ "       ","  MMM  "," MMMMM ", " MM0MM "," MMMMM ","  MMM  ", "       " ]
+        ],
+        "mapping": {
+          "M": "#rankine:heating_elements",
+          "W": "minecraft:water",
+          "0": "rankine:evaporation_tower",
+          "S": "#forge:sheetmetal"
+        },
+        "symmetrical": true
+      }
+    },
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_constructs.evaporation_tower.text2"
+    }
+  ]
+}

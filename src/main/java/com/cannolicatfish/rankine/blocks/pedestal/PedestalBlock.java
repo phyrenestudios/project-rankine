@@ -57,36 +57,32 @@ public class PedestalBlock extends BaseEntityBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level levelIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        //if(handIn != handIn.MAIN_HAND)
-          //  return ActionResultType.FAIL;
         PedestalTile tile = (PedestalTile) levelIn.getBlockEntity(pos);
-        if(tile != null) {
-            if (!levelIn.isClientSide) {
-                ItemStack tileStack = tile.getItem(0);
-                ItemStack playerStack = player.getItemInHand(handIn).copy();
-                boolean flag = false;
-                if (!tile.isEmpty()) {
-                    ItemEntity itemEntity = new ItemEntity(levelIn, tile.getBlockPos().getX() + 0.5, tile.getBlockPos().getY() + 1.0, tile.getBlockPos().getZ() + 0.5, tileStack);
-                    itemEntity.setDefaultPickUpDelay();
-                    levelIn.addFreshEntity(itemEntity);
-                    tile.clearContent();
-                    flag = true;
-                }
-                if (!playerStack.isEmpty()) {
-                    playerStack.setCount(1);
-                    tile.setItem(0, playerStack);
-                    player.getItemInHand(handIn).shrink(1);
-                    flag = true;
-                }
-                if (flag) {
-                    levelIn.sendBlockUpdated(pos, state, state, 3);
-                    levelIn.updateNeighbourForOutputSignal(pos, this);
-                    return InteractionResult.SUCCESS;
-                }
-            }
-            return InteractionResult.CONSUME;
+        if (tile == null) return super.use(state, levelIn, pos, player, handIn, hit);
+        //if (levelIn.isClientSide) return InteractionResult.CONSUME;
+        ItemStack tileStack = tile.getItem(0);
+        ItemStack playerStack = player.getItemInHand(handIn).copy();
+        boolean flag = false;
+        if (!tile.isEmpty()) {
+            ItemEntity itemEntity = new ItemEntity(levelIn, tile.getBlockPos().getX() + 0.5, tile.getBlockPos().getY() + 1.0, tile.getBlockPos().getZ() + 0.5, tileStack);
+            itemEntity.setDefaultPickUpDelay();
+            levelIn.addFreshEntity(itemEntity);
+            tile.clearContent();
+            flag = true;
         }
-        return super.use(state, levelIn, pos, player, handIn, hit);
+        if (!playerStack.isEmpty()) {
+            playerStack.setCount(1);
+            tile.setItem(0, playerStack);
+            player.getItemInHand(handIn).shrink(1);
+            flag = true;
+        }
+        if (flag) {
+            levelIn.sendBlockUpdated(pos, state, state, 3);
+            levelIn.updateNeighbourForOutputSignal(pos, this);
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.CONSUME;
+
     }
 
     public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {

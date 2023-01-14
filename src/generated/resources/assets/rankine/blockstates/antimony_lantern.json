@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/antimony_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/antimony_lantern_hanging"
+    }
+  }
+}

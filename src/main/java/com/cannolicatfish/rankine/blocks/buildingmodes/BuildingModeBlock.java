@@ -34,7 +34,6 @@ public class BuildingModeBlock extends Block {
         return RankineBlockStateProperties.getStyleProperty(getMaxStyles() - 1);
     }
 
-
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {

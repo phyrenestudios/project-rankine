@@ -10,7 +10,7 @@
   ],
   "outputs": [
     {
-      "weight": 80,
+      "weight": 40,
       "remove": false
     },
     {
@@ -25,22 +25,22 @@
     },
     {
       "item": "rankine:hematite",
-      "weight": 2,
+      "weight": 5,
       "tier": "minecraft:iron"
     },
     {
       "item": "rankine:goethite",
-      "weight": 2,
+      "weight": 5,
       "tier": "minecraft:iron"
     },
     {
       "item": "rankine:ilmenite",
-      "weight": 2,
+      "weight": 5,
       "tier": "minecraft:diamond"
     },
     {
       "item": "rankine:rutile",
-      "weight": 2,
+      "weight": 5,
       "tier": "minecraft:diamond"
     }
   ]

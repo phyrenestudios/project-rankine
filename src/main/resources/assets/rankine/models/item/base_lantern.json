@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rankine:item/lantern_overlay",
+    "layer1": "rankine:item/base_lantern"
+  }
+}

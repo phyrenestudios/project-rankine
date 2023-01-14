@@ -1,29 +1,27 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
 
-import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.Container;
-import net.minecraft.world.WorldlyContainer;
-import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.core.Direction;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.Mth;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -47,10 +45,8 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
     private int color = 16777215;
     private int heatPower = 0;
     private final ContainerData furnaceData = new ContainerData(){
-        public int get(int index)
-        {
-            switch(index)
-            {
+        public int get(int index) {
+            switch(index) {
                 case 0:
                     return CrucibleTile.this.cookTime;
                 case 1:
@@ -62,10 +58,8 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
             }
         }
 
-        public void set(int index, int value)
-        {
-            switch(index)
-            {
+        public void set(int index, int value) {
+            switch(index) {
                 case 0:
                     CrucibleTile.this.cookTime = value;
                     break;
@@ -101,64 +95,58 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
         ContainerHelper.saveAllItems(compound, this.items);
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState bs, CrucibleTile tile) {
-        boolean flag = tile.isHeated(tile.worldPosition,level);
-        boolean flag1 = tile.isCooking();
-        boolean flag2 = false;
+    public static void tick(Level level, BlockPos posIn, BlockState bs, CrucibleTile tile) {
+        if (level.isClientSide) return;
+        if (!tile.isHeated(posIn,level)) return;
 
-        if (!level.isClientSide) {
-            if (!flag1) {
-                level.setBlock(tile.worldPosition, bs.setValue(CrucibleBlock.FLUID, false), 3);
-            } else if (tile.getTileData().getInt("color") != tile.color) {
-                tile.getTileData().putInt("color",tile.color);
-                level.setBlock(tile.worldPosition, bs.setValue(CrucibleBlock.FLUID, tile.isCooking()), 3);
-            }
-            ItemStack[] inputs = new ItemStack[]{tile.items.get(0), tile.items.get(1), tile.items.get(2), tile.items.get(3)};
-            if ((tile.isCooking() && flag) || !tile.items.get(0).isEmpty() && !tile.items.get(1).isEmpty() && !tile.items.get(2).isEmpty() && !tile.items.get(3).isEmpty()) {
-                CrucibleRecipe irecipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE, tile, level).orElse(null);
-                if (tile.canSmelt(irecipe, tile)) {
-                    if (tile.cookTime == 0) {
-                        tile.cookTimeTotal = tile.getCookTime();
-                        tile.color = irecipe.getColor();
-
-                    }
-                    ++tile.cookTime;
-                    if (tile.cookTime >= tile.cookTimeTotal) {
-                        ItemStack smelting = irecipe.generateResult(tile);
-                        if (tile.items.get(4).getCount() > 0) {
-                            tile.items.get(4).grow(smelting.getCount());
-                        } else {
-                            tile.items.set(4, smelting);
-                        }
-
-                        ItemStack extra = irecipe.getSecondaryOutput();
-                        if (tile.items.get(5).getCount() > 0) {
-                            tile.items.get(5).grow(extra.getCount());
-                        } else {
-                            tile.items.set(5, extra);
-                        }
-
-                        tile.cookTime = 0;
-                        inputs[0].shrink(1);
-                        inputs[1].shrink(1);
-                        inputs[2].shrink(1);
-                        inputs[3].shrink(1);
-                        return;
-                    }
-                } else {
-                    tile.cookTime = 0;
-                }
-            } else if ((flag) && tile.cookTime > 0) {
-                tile.cookTime = Mth.clamp(tile.cookTime - 2, 0, tile.cookTimeTotal);
-            }
-
-            if (flag1 != tile.isCooking()) {
-                flag2 = true;
-                level.setBlock(tile.worldPosition, bs.setValue(CrucibleBlock.FLUID, tile.isCooking()), 3);
-            }
+        if (!tile.isCooking()) {
+            level.setBlock(posIn, bs.setValue(CrucibleBlock.FLUID, false), 3);
+        } else if (tile.getTileData().getInt("color") != tile.color) {
+            tile.getTileData().putInt("color",tile.color);
+            level.setBlock(posIn, bs.setValue(CrucibleBlock.FLUID, tile.isCooking()), 3);
         }
 
-        if (flag2) {
+        if (tile.items.get(0).isEmpty() || tile.items.get(1).isEmpty() || tile.items.get(2).isEmpty() || tile.items.get(3).isEmpty()) return;
+        CrucibleRecipe irecipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE, tile, level).orElse(null);
+        if (!tile.canSmelt(irecipe, tile)) {
+            tile.cookTime = 0;
+            return;
+        }
+        if (tile.cookTime == 0) {
+            tile.cookTimeTotal = tile.getCookTime();
+            tile.color = irecipe.getColor();
+        }
+        ++tile.cookTime;
+        if (tile.cookTime >= tile.cookTimeTotal) {
+            tile.cookTime = 0;
+
+            ItemStack smelting = irecipe.generateResult(tile);
+            if (tile.items.get(4).getCount() > 0) {
+                tile.items.get(4).grow(smelting.getCount());
+            } else {
+                tile.items.set(4, smelting);
+            }
+
+            ItemStack extra = irecipe.getSecondaryOutput();
+            if (tile.items.get(5).getCount() > 0) {
+                tile.items.get(5).grow(extra.getCount());
+            } else {
+                tile.items.set(5, extra);
+            }
+
+            tile.items.get(0).shrink(1);
+            tile.items.get(1).shrink(1);
+            tile.items.get(2).shrink(1);
+            tile.items.get(3).shrink(1);
+            return;
+        }
+
+  //      if (tile.cookTime > 0) {
+    //        tile.cookTime = Mth.clamp(tile.cookTime - 2, 0, tile.cookTimeTotal);
+      //  }
+
+        if (tile.isCooking() != tile.isCooking()) {
+            level.setBlock(posIn, bs.setValue(CrucibleBlock.FLUID, tile.isCooking()), 3);
             tile.setChanged();
         }
 
@@ -196,43 +184,26 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
         return te.furnaceData.get(0) > 0;
     }
 
-    private boolean canSmelt(@Nullable CrucibleRecipe recipeIn, Container inv)
-    {
-        if (recipeIn == null)
-        {
-            return false;
-        }
-        else
-        {
-            ItemStack result = recipeIn.generateResult(inv);
-            ItemStack sec = recipeIn.getSecondaryOutput();
-            if(result.isEmpty())
-            {
-                return false;
-            }
-            else
-            {
-                ItemStack output = this.items.get(4);
-                ItemStack secondary = this.items.get(5);
-                if(output.isEmpty() && (secondary.isEmpty() || sec.isEmpty())) {
-                    this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
-                    return true;
-                }
+    private boolean canSmelt(@Nullable CrucibleRecipe recipeIn, Container inv) {
+        if (recipeIn == null) return false;
 
-                if(!output.sameItem(result) || !secondary.sameItem(sec))
-                {
-                    return false;
-                }
-                int res = output.getCount() + result.getCount();
-                int res2 = secondary.getCount() + sec.getCount();
-                if (ItemStack.tagMatches(output, result) && ItemStack.isSame(output, result) && ItemStack.tagMatches(secondary, sec) && ItemStack.isSame(secondary, sec)) {
-                    this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
-                    return res <= 64 && res2 <= 64 && res <= output.getMaxStackSize() && res2 <= secondary.getMaxStackSize();
-                } else {
-                    return false;
-                }
-            }
+        ItemStack resultPrimary = recipeIn.generateResult(inv);
+        ItemStack resultSecondary = recipeIn.getSecondaryOutput();
+        if (resultPrimary.isEmpty()) return false;
+        ItemStack primary = this.items.get(4);
+        ItemStack secondary = this.items.get(5);
+        if (primary.isEmpty() && (secondary.isEmpty() || resultSecondary.isEmpty())) {
+            this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
+            return true;
         }
+        int res = primary.getCount() + resultPrimary.getCount();
+        int res2 = secondary.getCount() + resultSecondary.getCount();
+        if ((primary.isEmpty() || (ItemStack.isSame(primary, resultPrimary) && ItemStack.tagMatches(primary, resultPrimary))) && (secondary.isEmpty() || (ItemStack.isSame(secondary, resultSecondary) && ItemStack.tagMatches(secondary, resultSecondary)))) {
+            this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
+            return res <= 64 && res2 <= 64 && res <= primary.getMaxStackSize() && res2 <= secondary.getMaxStackSize();
+        }
+
+        return false;
     }
 
     net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =

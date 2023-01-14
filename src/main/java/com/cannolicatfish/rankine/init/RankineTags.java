@@ -91,6 +91,7 @@ public final class RankineTags {
 
 
         //FORGE
+        public static final TagKey<Block> LANTERNS = forgeBlock("lanterns");
         public static final TagKey<Block> METAL_BARS = forgeBlock("metal_bars");
         public static final TagKey<Block> METAL_POLES = forgeBlock("metal_poles");
         public static final TagKey<Block> BOOKSHELVES = forgeBlock("bookshelves");

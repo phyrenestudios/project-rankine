@@ -1,0 +1,16 @@
+{
+  "name": "rankine.journal.cat_constructs.pedestals.name",
+  "icon": "rankine:osmiridium_pedestal",
+  "category": "rankine:constructs",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_constructs.pedestals.text1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:osmiridium_pedestal",
+      "text": "rankine.journal.cat_constructs.pedestals.text2"
+    }
+  ]
+}
