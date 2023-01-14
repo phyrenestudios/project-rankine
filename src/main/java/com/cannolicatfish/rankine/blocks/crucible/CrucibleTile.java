@@ -187,28 +187,23 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
     private boolean canSmelt(@Nullable CrucibleRecipe recipeIn, Container inv) {
         if (recipeIn == null) return false;
 
-        ItemStack result = recipeIn.generateResult(inv);
-        ItemStack sec = recipeIn.getSecondaryOutput();
-        if (result.isEmpty()) return false;
-        ItemStack output = this.items.get(4);
+        ItemStack resultPrimary = recipeIn.generateResult(inv);
+        ItemStack resultSecondary = recipeIn.getSecondaryOutput();
+        if (resultPrimary.isEmpty()) return false;
+        ItemStack primary = this.items.get(4);
         ItemStack secondary = this.items.get(5);
-        if (output.isEmpty() && (secondary.isEmpty() || sec.isEmpty())) {
+        if (primary.isEmpty() && (secondary.isEmpty() || resultSecondary.isEmpty())) {
             this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
             return true;
         }
-
-        if(!output.sameItem(result) || !secondary.sameItem(sec))
-        {
-            return false;
-        }
-        int res = output.getCount() + result.getCount();
-        int res2 = secondary.getCount() + sec.getCount();
-        if (ItemStack.tagMatches(output, result) && ItemStack.isSame(output, result) && ItemStack.tagMatches(secondary, sec) && ItemStack.isSame(secondary, sec)) {
+        int res = primary.getCount() + resultPrimary.getCount();
+        int res2 = secondary.getCount() + resultSecondary.getCount();
+        if ((primary.isEmpty() || (ItemStack.isSame(primary, resultPrimary) && ItemStack.tagMatches(primary, resultPrimary))) && (secondary.isEmpty() || (ItemStack.isSame(secondary, resultSecondary) && ItemStack.tagMatches(secondary, resultSecondary)))) {
             this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
-            return res <= 64 && res2 <= 64 && res <= output.getMaxStackSize() && res2 <= secondary.getMaxStackSize();
-        } else {
-            return false;
+            return res <= 64 && res2 <= 64 && res <= primary.getMaxStackSize() && res2 <= secondary.getMaxStackSize();
         }
+
+        return false;
     }
 
     net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =

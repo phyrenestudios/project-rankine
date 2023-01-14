@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/magnesium_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/magnesium_lantern_hanging"
+    }
+  }
+}

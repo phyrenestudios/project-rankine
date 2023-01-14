@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/calcium_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/calcium_lantern_hanging"
+    }
+  }
+}

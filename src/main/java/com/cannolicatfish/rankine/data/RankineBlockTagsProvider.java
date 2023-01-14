@@ -320,6 +320,9 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         for (Block blk : RankineLists.ALLOY_BARS) {
             tag(RankineTags.Blocks.METAL_BARS).add(blk);
         }
+        for (Block blk : RankineLists.LANTERNS) {
+            tag(RankineTags.Blocks.LANTERNS).add(blk);
+        }
         tag(RankineTags.Blocks.METAL_BARS).add(Blocks.IRON_BARS);
         for (Block blk : RankineLists.ALLOY_POLES) {
             tag(RankineTags.Blocks.METAL_POLES).add(blk);

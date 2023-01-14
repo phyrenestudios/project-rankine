@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/germanium_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/germanium_lantern_hanging"
+    }
+  }
+}

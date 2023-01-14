@@ -35,6 +35,7 @@ public abstract class ItemDisplayEntity extends BlockEntity {
 
     public void updateBlock(){
         BlockState state = level.getBlockState(worldPosition);
-        level.sendBlockUpdated(worldPosition, state, state, 2);
+        level.sendBlockUpdated(worldPosition, state, state, 3);
+        setChanged();
     }
 }

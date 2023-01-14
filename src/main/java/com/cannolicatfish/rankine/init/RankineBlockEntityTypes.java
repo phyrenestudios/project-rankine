@@ -24,6 +24,7 @@ import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilTile;
 import com.cannolicatfish.rankine.client.renders.PedestalRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -108,7 +109,7 @@ public class RankineBlockEntityTypes {
                     .build(null));
 
     public static final RegistryObject<BlockEntityType<PedestalTile>> PEDESTAL = BLOCK_ENTITY_TYPES.register("pedestal",
-            () -> BlockEntityType.Builder.of(PedestalTile::new, RankineBlocks.BRONZE_PEDESTAL.get())
+            () -> BlockEntityType.Builder.of(PedestalTile::new, RankineLists.ALLOY_PEDESTALS.toArray(new Block[0]))
                     .build(null));
 
     public static final RegistryObject<BlockEntityType<RankineSignBlockEntity>> RANKINE_SIGN = BLOCK_ENTITY_TYPES.register("rankine_sign",

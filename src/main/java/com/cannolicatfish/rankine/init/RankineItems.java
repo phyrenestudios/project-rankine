@@ -464,7 +464,7 @@ public class RankineItems {
     public static final RegistryObject<Item> RED_FIBER_MAT = ITEMS.register("red_fiber_mat", () -> new BlockItem(RankineBlocks.RED_FIBER_MAT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BLACK_FIBER_MAT = ITEMS.register("black_fiber_mat", () -> new BlockItem(RankineBlocks.BLACK_FIBER_MAT.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
 
-    //METAL DECOR BLOCKS
+    //METAL DECOR ITEMS
 
     public static final RegistryObject<Item> ROSE_GOLD_SHEETMETAL = ITEMS.register("rose_gold_sheetmetal", () -> new BlockItem(RankineBlocks.ROSE_GOLD_SHEETMETAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> WHITE_GOLD_SHEETMETAL = ITEMS.register("white_gold_sheetmetal", () -> new BlockItem(RankineBlocks.WHITE_GOLD_SHEETMETAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -685,7 +685,67 @@ public class RankineItems {
 
 
     public static final RegistryObject<Item> LITHIUM_LANTERN = ITEMS.register("lithium_lantern", () -> new BlockItem(RankineBlocks.LITHIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BORON_LANTERN = ITEMS.register("boron_lantern", () -> new BlockItem(RankineBlocks.BORON_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> SODIUM_LANTERN = ITEMS.register("sodium_lantern", () -> new BlockItem(RankineBlocks.SODIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> MAGNESIUM_LANTERN = ITEMS.register("magnesium_lantern", () -> new BlockItem(RankineBlocks.MAGNESIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ALUMINUM_LANTERN = ITEMS.register("aluminum_lantern", () -> new BlockItem(RankineBlocks.ALUMINUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> PHOSPHORUS_LANTERN = ITEMS.register("phosphorus_lantern", () -> new BlockItem(RankineBlocks.PHOSPHORUS_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> POTASSIUM_LANTERN = ITEMS.register("potassium_lantern", () -> new BlockItem(RankineBlocks.POTASSIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CALCIUM_LANTERN = ITEMS.register("calcium_lantern", () -> new BlockItem(RankineBlocks.CALCIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> SCANDIUM_LANTERN = ITEMS.register("scandium_lantern", () -> new BlockItem(RankineBlocks.SCANDIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> VANADIUM_LANTERN = ITEMS.register("vanadium_lantern", () -> new BlockItem(RankineBlocks.VANADIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHROMIUM_LANTERN = ITEMS.register("chromium_lantern", () -> new BlockItem(RankineBlocks.CHROMIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> MANGANESE_LANTERN = ITEMS.register("manganese_lantern", () -> new BlockItem(RankineBlocks.MANGANESE_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> COBALT_LANTERN = ITEMS.register("cobalt_lantern", () -> new BlockItem(RankineBlocks.COBALT_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> NICKEL_LANTERN = ITEMS.register("nickel_lantern", () -> new BlockItem(RankineBlocks.NICKEL_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> COPPER_LANTERN = ITEMS.register("copper_lantern", () -> new BlockItem(RankineBlocks.COPPER_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ZINC_LANTERN = ITEMS.register("zinc_lantern", () -> new BlockItem(RankineBlocks.ZINC_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> GALLIUM_LANTERN = ITEMS.register("gallium_lantern", () -> new BlockItem(RankineBlocks.GALLIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> GERMANIUM_LANTERN = ITEMS.register("germanium_lantern", () -> new BlockItem(RankineBlocks.GERMANIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ARSENIC_LANTERN = ITEMS.register("arsenic_lantern", () -> new BlockItem(RankineBlocks.ARSENIC_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> SELENIUM_LANTERN = ITEMS.register("selenium_lantern", () -> new BlockItem(RankineBlocks.SELENIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> RUBIDIUM_LANTERN = ITEMS.register("rubidium_lantern", () -> new BlockItem(RankineBlocks.RUBIDIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> STRONTIUM_LANTERN = ITEMS.register("strontium_lantern", () -> new BlockItem(RankineBlocks.STRONTIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> YTTRIUM_LANTERN = ITEMS.register("yttrium_lantern", () -> new BlockItem(RankineBlocks.YTTRIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ZIRCONIUM_LANTERN = ITEMS.register("zirconium_lantern", () -> new BlockItem(RankineBlocks.ZIRCONIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> NIOBIUM_LANTERN = ITEMS.register("niobium_lantern", () -> new BlockItem(RankineBlocks.NIOBIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> MOLYBDENUM_LANTERN = ITEMS.register("molybdenum_lantern", () -> new BlockItem(RankineBlocks.MOLYBDENUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> TECHNETIUM_LANTERN = ITEMS.register("technetium_lantern", () -> new BlockItem(RankineBlocks.TECHNETIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> RUTHENIUM_LANTERN = ITEMS.register("ruthenium_lantern", () -> new BlockItem(RankineBlocks.RUTHENIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> RHODIUM_LANTERN = ITEMS.register("rhodium_lantern", () -> new BlockItem(RankineBlocks.RHODIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CADMIUM_LANTERN = ITEMS.register("cadmium_lantern", () -> new BlockItem(RankineBlocks.CADMIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> INDIUM_LANTERN = ITEMS.register("indium_lantern", () -> new BlockItem(RankineBlocks.INDIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> TIN_LANTERN = ITEMS.register("tin_lantern", () -> new BlockItem(RankineBlocks.TIN_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ANTIMONY_LANTERN = ITEMS.register("antimony_lantern", () -> new BlockItem(RankineBlocks.ANTIMONY_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> TELLURIUM_LANTERN = ITEMS.register("tellurium_lantern", () -> new BlockItem(RankineBlocks.TELLURIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CESIUM_LANTERN = ITEMS.register("cesium_lantern", () -> new BlockItem(RankineBlocks.CESIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BARIUM_LANTERN = ITEMS.register("barium_lantern", () -> new BlockItem(RankineBlocks.BARIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> LANTHANUM_LANTERN = ITEMS.register("lanthanum_lantern", () -> new BlockItem(RankineBlocks.LANTHANUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CERIUM_LANTERN = ITEMS.register("cerium_lantern", () -> new BlockItem(RankineBlocks.CERIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> PRASEODYMIUM_LANTERN = ITEMS.register("praseodymium_lantern", () -> new BlockItem(RankineBlocks.PRASEODYMIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> NEODYMIUM_LANTERN = ITEMS.register("neodymium_lantern", () -> new BlockItem(RankineBlocks.NEODYMIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> PROMETHIUM_LANTERN = ITEMS.register("promethium_lantern", () -> new BlockItem(RankineBlocks.PROMETHIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> SAMARIUM_LANTERN = ITEMS.register("samarium_lantern", () -> new BlockItem(RankineBlocks.SAMARIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> EUROPIUM_LANTERN = ITEMS.register("europium_lantern", () -> new BlockItem(RankineBlocks.EUROPIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> GADOLINIUM_LANTERN = ITEMS.register("gadolinium_lantern", () -> new BlockItem(RankineBlocks.GADOLINIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> TERBIUM_LANTERN = ITEMS.register("terbium_lantern", () -> new BlockItem(RankineBlocks.TERBIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> DYSPROSIUM_LANTERN = ITEMS.register("dysprosium_lantern", () -> new BlockItem(RankineBlocks.DYSPROSIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> HOLMIUM_LANTERN = ITEMS.register("holmium_lantern", () -> new BlockItem(RankineBlocks.HOLMIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> ERBIUM_LANTERN = ITEMS.register("erbium_lantern", () -> new BlockItem(RankineBlocks.ERBIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+   // public static final RegistryObject<Item> THULIUM_LANTERN = ITEMS.register("thulium_lantern", () -> new BlockItem(RankineBlocks.THULIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> YTTERBIUM_LANTERN = ITEMS.register("ytterbium_lantern", () -> new BlockItem(RankineBlocks.YTTERBIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> LUTETIUM_LANTERN = ITEMS.register("lutetium_lantern", () -> new BlockItem(RankineBlocks.LUTETIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> HAFNIUM_LANTERN = ITEMS.register("hafnium_lantern", () -> new BlockItem(RankineBlocks.HAFNIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> TANTALUM_LANTERN = ITEMS.register("tantalum_lantern", () -> new BlockItem(RankineBlocks.TANTALUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> TUNGSTEN_LANTERN = ITEMS.register("tungsten_lantern", () -> new BlockItem(RankineBlocks.TUNGSTEN_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> RHENIUM_LANTERN = ITEMS.register("rhenium_lantern", () -> new BlockItem(RankineBlocks.RHENIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> OSMIUM_LANTERN = ITEMS.register("osmium_lantern", () -> new BlockItem(RankineBlocks.OSMIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> IRIDIUM_LANTERN = ITEMS.register("iridium_lantern", () -> new BlockItem(RankineBlocks.IRIDIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> THALLIUM_LANTERN = ITEMS.register("thallium_lantern", () -> new BlockItem(RankineBlocks.THALLIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> LEAD_LANTERN = ITEMS.register("lead_lantern", () -> new BlockItem(RankineBlocks.LEAD_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BISMUTH_LANTERN = ITEMS.register("bismuth_lantern", () -> new BlockItem(RankineBlocks.BISMUTH_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> NETHERITE_LANTERN = ITEMS.register("netherite_lantern", () -> new BlockItem(RankineBlocks.NETHERITE_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ENDOSITUM_LANTERN = ITEMS.register("endositum_lantern", () -> new BlockItem(RankineBlocks.ENDOSITUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
 
 
     //PLANTS & FOOD CREATIVE TAB
@@ -2186,7 +2246,7 @@ public class RankineItems {
 
 /*
     public static void itemInit() {
-        for (String registryName : RankineLists.GAS_BLOCKS) {
+        for (String registryName : RankineLists.GAS_ITEMS) {
             REGISTRY.register(registryName, () -> new BlockItem(RankineBlocks.getBlock(registryName),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineElements)));
         }
     }

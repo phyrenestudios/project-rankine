@@ -1568,9 +1568,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     public void lanternBlock(Block BLK) {
         String NAME = BLK.getRegistryName().getPath();
         getVariantBuilder(BLK)
-                .partialState().with(LanternBlock.HANGING,false).modelForState().modelFile(models().withExistingParent(NAME,getBlockRSL("minecraft","template_lantern")).texture("lantern",blockTexture(BLK))).addModel()
-                .partialState().with(LanternBlock.HANGING,true).modelForState().modelFile(models().withExistingParent(NAME+"_hanging",getBlockRSL("minecraft","template_hanging_lantern")).texture("lantern",blockTexture(BLK))).addModel();
-
+                .partialState().with(LanternBlock.HANGING,false).modelForState().modelFile(models().withExistingParent(NAME, getBlockRSL("template_rankine_lantern")).texture("overlay", getBlockRSL(BLK))).addModel()
+                .partialState().with(LanternBlock.HANGING,true).modelForState().modelFile(models().withExistingParent(NAME+"_hanging", getBlockRSL("template_hanging_rankine_lantern")).texture("overlay", getBlockRSL(BLK))).addModel();
     }
 
     public void cubeTopBottomBLock(Block BLK) {

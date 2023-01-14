@@ -1205,9 +1205,18 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_constructs.metal_poles.text1", "Metal poles are crafted from any alloy. The variety of alloy colors make them an excellent decoration block. They can also be right-clicked with leaves or torches to add garland, string lights, or both! Holding shift while clicking will teleport the player to the bottom of pole column.");
         add("rankine.journal.cat_constructs.metal_poles.text2", "All pole recipes follow this pattern.");
 
+        add("rankine.journal.cat_constructs.light_sources.name", "Light Sources");
+        add("rankine.journal.cat_constructs.light_sources.text1", "");
+        add("rankine.journal.cat_constructs.light_sources.text2", "Lanterns");
+        add("rankine.journal.cat_constructs.light_sources.text3", "");
+
         add("rankine.journal.cat_constructs.metal_ladders.name", "Metal Ladders");
         add("rankine.journal.cat_constructs.metal_ladders.text1", "Metal Ladders can be crafted from any alloy. Due to their sturdy nature, metal ladders can be placed up to 8 blocks above the last one attached to a wall. Right click with a ladder on a ladder to autoplace ladders vertically. These blocks have $(l:mechanics/building_modes)Building Modes$().");
         add("rankine.journal.cat_constructs.metal_ladders.text2", "All metal ladder recipes follow this pattern.");
+
+        add("rankine.journal.cat_constructs.pedestals.name", "Pedestals");
+        add("rankine.journal.cat_constructs.pedestals.text1", "Pedestals, while having a unique shape, are primarilyy designed to display items. Right click a pedestal with an item to place it atop. A comparator will detect a signal strength based off the rarity of the item; 3,7,11 and 15 for common, uncommon, rare and epic respectively.");
+        add("rankine.journal.cat_constructs.pedestals.text2", "All pedestal recipes follow this pattern.");
 
         add("rankine.journal.cat_constructs.electromagnets.name", "Electromagnets");
         add("rankine.journal.cat_constructs.electromagnets.text1", "Electromagnets are able to move blocks when powered with redstone. Shift right-click to switch the magnet between attraction/repulsion mode. All applicable blocks in the range will either be pulled or pushed away from the magnet. Some config options exist for magnet ranges and allowed materials. By default, it works with any blocks of the metal material.");

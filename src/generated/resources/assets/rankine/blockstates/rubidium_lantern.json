@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/rubidium_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/rubidium_lantern_hanging"
+    }
+  }
+}

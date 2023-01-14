@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/thallium_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/thallium_lantern_hanging"
+    }
+  }
+}
