@@ -438,6 +438,11 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
                 .when(ExplosionCondition.survivesExplosion());
         return LootTable.lootTable().withPool(builder);
     }
+    protected LootTable.Builder createBlockLootTable(Block BLK, ItemLike itemLike) {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(BLK)).when(ExplosionCondition.survivesExplosion()))
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(itemLike)).when(ExplosionCondition.survivesExplosion()));
+    }
 
     protected LootTable.Builder slabBlockLootTable(Block SLAB) {
         LootPool.Builder builder = LootPool.lootPool()

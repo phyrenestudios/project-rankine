@@ -64,6 +64,7 @@ import com.cannolicatfish.rankine.fluids.MercuryFlowingFluidBlock;
 import com.cannolicatfish.rankine.fluids.RankineFlowingFluidBlock;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import com.cannolicatfish.rankine.world.grower.*;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.inventory.MenuType;
@@ -403,7 +404,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> LITHIUM_LANTERN = BLOCKS.register("lithium_lantern", () -> new RankineLanternBlock(16711790));
     public static final RegistryObject<Block> BORON_LANTERN = BLOCKS.register("boron_lantern", () -> new RankineLanternBlock(7577198));
     public static final RegistryObject<Block> SODIUM_LANTERN = BLOCKS.register("sodium_lantern", () -> new RankineLanternBlock(15042972));
-    public static final RegistryObject<Block> MAGNESIUM_LANTERN = BLOCKS.register("magnesium_lantern", () -> new RankineSparkyLanternBlock(15042972));
+    public static final RegistryObject<Block> MAGNESIUM_LANTERN = BLOCKS.register("magnesium_lantern", () -> new RankineSparkyLanternBlock(15042972, ParticleTypes.ELECTRIC_SPARK));
     public static final RegistryObject<Block> ALUMINUM_LANTERN = BLOCKS.register("aluminum_lantern", () -> new RankineLanternBlock(15042972));
     public static final RegistryObject<Block> PHOSPHORUS_LANTERN = BLOCKS.register("phosphorus_lantern", () -> new RankineLanternBlock(14148300));
     public static final RegistryObject<Block> POTASSIUM_LANTERN = BLOCKS.register("potassium_lantern", () -> new RankineLanternBlock(15042972));
@@ -460,8 +461,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> THALLIUM_LANTERN = BLOCKS.register("thallium_lantern", () -> new RankineLanternBlock(15042972));
     public static final RegistryObject<Block> LEAD_LANTERN = BLOCKS.register("lead_lantern", () -> new RankineLanternBlock(15042972));
     public static final RegistryObject<Block> BISMUTH_LANTERN = BLOCKS.register("bismuth_lantern", () -> new RankineLanternBlock(15042972));
-    public static final RegistryObject<Block> NETHERITE_LANTERN = BLOCKS.register("netherite_lantern", () -> new RankineLanternBlock(15042972));
-    public static final RegistryObject<Block> ENDOSITUM_LANTERN = BLOCKS.register("endositum_lantern", () -> new RankineLanternBlock(15042972));
+    public static final RegistryObject<Block> NETHERITE_LANTERN = BLOCKS.register("netherite_lantern", () -> new RankineSparkyLanternBlock(15042972, ParticleTypes.ASH));
+    public static final RegistryObject<Block> ENDOSITUM_LANTERN = BLOCKS.register("endositum_lantern", () -> new RankineSparkyLanternBlock(15042972, ParticleTypes.PORTAL));
 
 
 

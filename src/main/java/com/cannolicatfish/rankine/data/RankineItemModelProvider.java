@@ -535,9 +535,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
             withExistingParent(blk.getRegistryName().getPath(), modLoc("block/"+blk.getRegistryName().getPath()+"_bottom"));
         }
 
-        for (Block blk : RankineLists.LANTERNS) {
-            getBuilder(blk.getRegistryName().getPath()).parent(getExistingFile(modLoc("item/base_lantern")));
-        }
+       // for (Block blk : RankineLists.LANTERNS) {
+       //     getBuilder(blk.getRegistryName().getPath()).parent(getExistingFile(modLoc("item/base_lantern")));
+       // }
 
         basicItem(RankineItems.PENNING_TRAP.get());
         basicItem(RankineItems.FILLED_PENNING_TRAP.get());

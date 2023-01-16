@@ -1,9 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.blocks.HollowLogBlock;
-import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
-import com.cannolicatfish.rankine.blocks.LightningGlassBlock;
-import com.cannolicatfish.rankine.blocks.RankineLogBlock;
+import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineBookshelvesBlock;
@@ -120,7 +118,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.ELECTROMAGNETS,
                 RankineLists.ALLOY_BARS,
                 RankineLists.ALLOY_SHEETMETALS,
-                RankineLists.LANTERNS,
                 RankineLists.CRUSHING_HEADS,
                 RankineLists.WALL_MUSHROOMS,
                 RankineLists.BALES
@@ -157,6 +154,9 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineBlocks.AIR_DISTILLATION_PACKING.get()
         )) {
             lootTables.put(blk, createBlockLootTable(blk));
+        }
+        for (Block blk : RankineLists.LANTERNS) {
+            lootTables.put(blk, createBlockLootTable(Blocks.LANTERN, ForgeRegistries.ITEMS.getValue(new ResourceLocation(ProjectRankine.MODID, blk.getRegistryName().getPath().replace("lantern","nugget")))));
         }
         for (Block blk : RankineLists.ASPHALT_BLOCKS) {
             lootTables.put(blk, createBlockLootTable(RankineBlocks.ASPHALT.get()));

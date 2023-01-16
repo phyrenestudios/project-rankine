@@ -1201,7 +1201,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_biota.trees.honey_locust.title", "Honey Locust");
         add("rankine.journal.cat_biota.trees.honey_locust", "Native to plains biomes.");
         add("rankine.journal.cat_biota.trees.weeping_willow.title", "Weeping Willow");
-        add("rankine.journal.cat_biota.trees.weeping_willow", "Native to sawmp biomes.");
+        add("rankine.journal.cat_biota.trees.weeping_willow", "Native to swamp biomes.");
 
         //Constructs
         add("rankine.journal.cat_constructs.name", "Constructs");
@@ -1215,16 +1215,16 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_constructs.metal_poles.text2", "All pole recipes follow this pattern.");
 
         add("rankine.journal.cat_constructs.light_sources.name", "Light Sources");
-        add("rankine.journal.cat_constructs.light_sources.text1", "");
+        add("rankine.journal.cat_constructs.light_sources.text1", "A collection of the major light emitting blocks.");
         add("rankine.journal.cat_constructs.light_sources.text2", "Lanterns");
-        add("rankine.journal.cat_constructs.light_sources.text3", "");
+        add("rankine.journal.cat_constructs.light_sources.text3", "Most metals burn with a distinctive color. Right click a lantern or soul lantern with a metal nugget to change the flame color. Magnesium, Netherite, and Endositum lanterns produce particles.");
 
         add("rankine.journal.cat_constructs.metal_ladders.name", "Metal Ladders");
         add("rankine.journal.cat_constructs.metal_ladders.text1", "Metal Ladders can be crafted from any alloy. Due to their sturdy nature, metal ladders can be placed up to 8 blocks above the last one attached to a wall. Right click with a ladder on a ladder to autoplace ladders vertically. These blocks have $(l:mechanics/building_modes)Building Modes$().");
         add("rankine.journal.cat_constructs.metal_ladders.text2", "All metal ladder recipes follow this pattern.");
 
         add("rankine.journal.cat_constructs.pedestals.name", "Pedestals");
-        add("rankine.journal.cat_constructs.pedestals.text1", "Pedestals, while having a unique shape, are primarilyy designed to display items. Right click a pedestal with an item to place it atop. A comparator will detect a signal strength based off the rarity of the item; 3,7,11 and 15 for common, uncommon, rare and epic respectively.");
+        add("rankine.journal.cat_constructs.pedestals.text1", "Pedestals, while having a unique shape, are primarily designed to display items. Right click a pedestal with an item to place it atop. A comparator will detect a signal strength based off the rarity of the item; 3,7,11 and 15 for common, uncommon, rare and epic respectively.");
         add("rankine.journal.cat_constructs.pedestals.text2", "All pedestal recipes follow this pattern.");
 
         add("rankine.journal.cat_constructs.electromagnets.name", "Electromagnets");
@@ -1303,7 +1303,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_materials.gasses.tungsten_hexafluoride", "$(liObtained through and used for fusion furnace processing.");
 
         add("rankine.journal.cat_materials.elements.name", "Elements");
-        add("rankine.journal.cat_materials.elements.text1", "To be discovred.");
+        add("rankine.journal.cat_materials.elements.text1", "To be discovered.");
 
         //Mechanics
         add("rankine.journal.cat_mechanics.name", "Mechanics");
@@ -1354,7 +1354,7 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("rankine.journal.cat_mineralogy.vitrified.name", "Vitrified Blocks");
         add("rankine.journal.cat_mineralogy.vitrified.text1","When lightning strikes the ground, it releases large amounts of energy very quickly. This energy can change certain blocks, such as oxidized coppers back into normal. It also can convert some natural blocks.");
-        add("rankine.journal.cat_mineralogy.vitrified.fulgurite","Made from earthy blocks like stones, grasses and dirts.");
+        add("rankine.journal.cat_mineralogy.vitrified.fulgurite","Made from earthy blocks like stones, grasses and soils.");
         add("rankine.journal.cat_mineralogy.vitrified.lightning_glass","Mad from sand, silt and desert sand.");
         add("rankine.journal.cat_mineralogy.vitrified.red_lightning_glass","Made from red sand.");
         add("rankine.journal.cat_mineralogy.vitrified.soul_lightning_glass","Made from soul sand.");

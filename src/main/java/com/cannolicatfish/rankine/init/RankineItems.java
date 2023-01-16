@@ -683,7 +683,7 @@ public class RankineItems {
     public static final RegistryObject<Item> LIGHT_GRAY_LED = ITEMS.register("light_gray_led", () -> new BlockItem(RankineBlocks.LIGHT_GRAY_LED.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> WHITE_LED = ITEMS.register("white_led", () -> new BlockItem(RankineBlocks.WHITE_LED.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
 
-
+/*
     public static final RegistryObject<Item> LITHIUM_LANTERN = ITEMS.register("lithium_lantern", () -> new BlockItem(RankineBlocks.LITHIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BORON_LANTERN = ITEMS.register("boron_lantern", () -> new BlockItem(RankineBlocks.BORON_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> SODIUM_LANTERN = ITEMS.register("sodium_lantern", () -> new BlockItem(RankineBlocks.SODIUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
@@ -747,6 +747,8 @@ public class RankineItems {
     public static final RegistryObject<Item> NETHERITE_LANTERN = ITEMS.register("netherite_lantern", () -> new BlockItem(RankineBlocks.NETHERITE_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ENDOSITUM_LANTERN = ITEMS.register("endositum_lantern", () -> new BlockItem(RankineBlocks.ENDOSITUM_LANTERN.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
 
+
+ */
 
     //PLANTS & FOOD CREATIVE TAB
     public static final RegistryObject<Item> HOLLOW_OAK_LOG = ITEMS.register("hollow_oak_log", () -> new BlockItem(RankineBlocks.HOLLOW_OAK_LOG.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineBiota)));

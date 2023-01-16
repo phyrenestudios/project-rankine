@@ -1,6 +1,6 @@
 {
   "name": "rankine.journal.cat_constructs.light_sources.name",
-  "icon": "rankine:lithium_lantern",
+  "icon": "minecraft:lantern",
   "category": "rankine:constructs",
   "pages": [
     {
@@ -8,7 +8,8 @@
       "text": "rankine.journal.cat_constructs.light_sources.text1"
     },
     {
-      "type": "text",
+      "type": "spotlight",
+      "item": "minecraft:lantern",
       "title": "rankine.journal.cat_constructs.light_sources.text2",
       "text": "rankine.journal.cat_constructs.light_sources.text3"
     }
