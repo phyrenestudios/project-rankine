@@ -14,6 +14,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
@@ -94,7 +95,7 @@ public class RankineWood {
             newWood.leaves = RankineBlocks.BLOCKS.register(baseName + "_leaves", RankineLeavesBlock::new);
             newWood.leafLitter = RankineBlocks.BLOCKS.register(baseName + "_leaf_litter", LeafLitterBlock::new);
             newWood.sapling = RankineBlocks.BLOCKS.register(baseName + "_sapling", () -> new RankineSaplingBlock(treeGrower, Block.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0).sound(SoundType.GRASS), saplingType));
-            newWood.pottedSapling = RankineBlocks.BLOCKS.register("potted_"+baseName+"_sapling", () -> new FlowerPotBlock(null, newWood.sapling, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
+            newWood.pottedSapling = RankineBlocks.BLOCKS.register("potted_"+baseName+"_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, newWood.sapling, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
         }
         
         Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineBiota);
