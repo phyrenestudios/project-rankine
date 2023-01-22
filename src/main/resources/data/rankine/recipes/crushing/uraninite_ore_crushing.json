@@ -56,6 +56,12 @@
       "tier": "minecraft:diamond"
     },
     {
+      "item": "rankine:plutonium_nugget",
+      "count": 3,
+      "weight": 0.5,
+      "tier": "minecraft:diamond"
+    },
+    {
       "item": "rankine:technetium_nugget",
       "count": 3,
       "weight": 0.8,

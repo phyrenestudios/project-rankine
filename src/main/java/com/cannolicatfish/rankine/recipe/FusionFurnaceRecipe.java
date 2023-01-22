@@ -3,31 +3,26 @@ package com.cannolicatfish.rankine.recipe;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
-import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -77,8 +72,8 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
     public boolean matchesRecipe(Container inv, FluidTank tankIn, FluidTank tankOut, Level worldIn) {
         boolean fluidInCheck = this.fluidIn.isEmpty() || tankIn.getFluid().containsFluid(this.fluidIn);
         boolean fluidOutCheck = this.fluidIn.isEmpty() || tankOut.isFluidValid(this.fluidOut);
-        return (this.ingredient1.test(inv.getItem(0)) || this.ingredient1.test(inv.getItem(1)))
-                && (this.ingredient2.test(inv.getItem(1)) || this.ingredient2.test(inv.getItem(0)))
+        return ((this.ingredient2.test(inv.getItem(0)) && this.ingredient1.test(inv.getItem(1)))
+                || (this.ingredient1.test(inv.getItem(0)) && this.ingredient2.test(inv.getItem(1))))
                 && (this.gasIn.isEmpty() || inv.getItem(3).sameItem(this.gasIn)) && fluidInCheck && fluidOutCheck;
     }
 
@@ -141,6 +136,14 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
 
     public FluidStack getFluidOut() {
         return fluidOut;
+    }
+
+    public ItemStack getResult1() {
+        return result1;
+    }
+
+    public ItemStack getResult2() {
+        return result2;
     }
 
     @Override

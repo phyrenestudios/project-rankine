@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XSX",
+    "R R",
+    "XSX"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:sheetmetal"
+    },
+    "R": {
+      "item": "minecraft:repeater"
+    },
+    "S": {
+      "tag": "forge:sheetmetal"
+    }
+  },
+  "result": {
+    "item": "rankine:battery_charger"
+  }
+}

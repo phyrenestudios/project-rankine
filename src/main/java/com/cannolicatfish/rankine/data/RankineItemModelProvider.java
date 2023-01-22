@@ -309,6 +309,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.EMERGENCY_FLOTATION_DEVICE.get());
         basicItem(RankineItems.ELEMENT.get());
         basicItem(RankineItems.BUILDING_TOOL.get());
+        basicItem(RankineItems.GAS_DETECTOR.get());
         basicItem(RankineItems.ORE_DETECTOR.get());
         basicItem(RankineItems.PROSPECTING_STICK.get());
         basicItem(RankineItems.PACKAGED_TOOL.get());
@@ -337,6 +338,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.TOTEM_OF_INFUSING.get());
         basicItem(RankineItems.TOTEM_OF_INVIGORATING.get());
         basicItem(RankineItems.TOTEM_OF_LEVITATING.get());
+        basicItem(RankineItems.TOTEM_OF_POWERING.get());
         basicItem(RankineItems.TOTEM_OF_PROMISING.get());
         basicItem(RankineItems.TOTEM_OF_REPULSING.get());
         basicItem(RankineItems.TOTEM_OF_SOFTENING.get());
@@ -416,6 +418,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.AIR_DISTILLATION_PACKING.get(),
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
                 RankineBlocks.REACTION_CHAMBER_CORE.get(),
+                RankineBlocks.BATTERY_CHARGER.get(),
                 RankineBlocks.FUSION_FURNACE.get(),
                 RankineBlocks.BEEHIVE_OVEN_PIT.get(),
                 RankineBlocks.ALLOY_FURNACE.get(),

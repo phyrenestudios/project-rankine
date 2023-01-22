@@ -259,6 +259,18 @@
         ]
       }
     },
+    "neptunium_alloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:neptunium_alloy_ingot"
+            ]
+          }
+        ]
+      }
+    },
     "amalgam_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -500,6 +512,9 @@
     ],
     [
       "sodium_potassium_alloy_ingot"
+    ],
+    [
+      "neptunium_alloy_ingot"
     ],
     [
       "amalgam_ingot"

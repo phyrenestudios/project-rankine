@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -135,6 +136,9 @@ public abstract class AbstractRankineCauldronBlock extends Block {
 
     public abstract Item getBottle();
     public abstract Item getOutput();
+    public abstract Fluid getFluid();
+
+    public abstract Fluid getTransformFluid();
 
     private static InteractionResult fillBottle(Level levelIn, BlockPos posIn, Player playerIn, InteractionHand handIn, ItemStack stackIn, ItemStack bottleOut, SoundEvent soundIn) {
         if (!levelIn.isClientSide) {

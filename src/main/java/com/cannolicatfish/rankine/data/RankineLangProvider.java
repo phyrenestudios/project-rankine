@@ -174,6 +174,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.SODIUM_VAPOR_LAMP.get(),
                 RankineBlocks.ALLOY_FURNACE.get(),
                 RankineBlocks.INDUCTION_FURNACE.get(),
+                RankineBlocks.BATTERY_CHARGER.get(),
                 RankineBlocks.FUSION_FURNACE.get(),
                 RankineBlocks.MIXING_BARREL.get(),
                 RankineBlocks.CRUCIBLE_BLOCK.get(),
@@ -422,6 +423,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.ELEMENT.get(),
             RankineItems.ALLOY_TEMPLATE.get(),
             RankineItems.BUILDING_TOOL.get(),
+            RankineItems.GAS_DETECTOR.get(),
             RankineItems.ORE_DETECTOR.get(),
             RankineItems.PROSPECTING_STICK.get(),
             RankineItems.DOWSING_ROD.get(),
@@ -451,6 +453,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.TOTEM_OF_INFUSING.get(),
             RankineItems.TOTEM_OF_INVIGORATING.get(),
             RankineItems.TOTEM_OF_LEVITATING.get(),
+            RankineItems.TOTEM_OF_POWERING.get(),
             RankineItems.TOTEM_OF_PROMISING.get(),
             RankineItems.TOTEM_OF_REPULSING.get(),
             RankineItems.TOTEM_OF_SOFTENING.get(),
@@ -514,6 +517,7 @@ public class RankineLangProvider extends LanguageProvider {
 
         add("item.rankine.packaged_tool_desc","Contains a completely random tool. Results may vary.");
         add("item.rankine.packaged_armor_desc","Contains a completely random armor item. Results may vary.");
+        add("rankine.battery.charge","Charge: %1$s/%2$s");
         //Alloy Lang
         add("rankine.alloys","Alloys");
         add("item.rankine.custom_alloy_default","Alloy");
@@ -555,6 +559,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.rankine.rose_gold_nr_alloying", "Rose Netherite");
         add("item.rankine.rose_metal_alloying", "Rose Metal");
         add("item.rankine.sodium_potassium_alloy_alloying", "Sodium Potassium Alloy");
+        add("item.rankine.neptunium_alloy_alloying", "Neptunium Alloy");
         add("item.rankine.solder_ag_alloying", "Solder");
         add("item.rankine.solder_pb_alloying", "Solder");
         add("item.rankine.stainless_steel_alloying", "Stainless Steel");
@@ -590,6 +595,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.rankine.prospecting_stick_cobbles.message", "Trace amounts of %1$s were detected");
         add("item.rankine.prospecting_stick.message", "%1$s (HL:%2$s) was detected nearby");
         add("item.rankine.ore_detector.message", "%1$s (HL:%2$s) was detected at x:%3$s y:%4$s z:%5$s");
+        add("item.rankine.gas_detector.message", "%1$s was detected at x:%2$s y:%3$s z:%4$s");
         add("item.rankine.magnetometer.message1", "Field Strength: %s");
         add("item.rankine.dowsing_rod.message", "Water table height is y=%s");
 
@@ -748,6 +754,11 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.info_latex", "Can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, the fluid is turned into Dry Rubber.");
         add("rankine.jei.info_amber", "Resin can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, Resin is turned into Amber.");
         add("rankine.jei.info_dry_rubber", "Latex can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, Latex is turned into Dry Rubber.");
+        add("rankine.jei.info_battery_energy", "Total Charge: %1$s [?]");
+        add("rankine.jei.info_battery_fusion", "%1$s Fusion Furnace processes");
+        add("rankine.jei.info_battery_induction", "%1$s Induction Furnace processes");
+        add("rankine.jei.info_battery_rechargeable", "Rechargeable");
+        add("rankine.jei.info_battery_rtg", "Single-use");
         add("rankine.jei.tooltip_chance", "Chance: ");
         add("rankine.jei.tooltip_failure_chance", "Failure Chance: ");
         add("rankine.jei.tooltip_guaranteed", "Guaranteed");
@@ -773,6 +784,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.tooltip_tier", "Tier: ");
         add("rankine.jei.alloying_bonus_stats", "Bonus Stats");
         add("rankine.jei.alloying_enchantments", "Bonus Enchantments");
+        add("rankine.jei.battery", "Battery");
         add("rankine.jei.crushing", "Crushing");
         add("rankine.jei.crucible", "Crucible");
         add("rankine.jei.alloying", "Alloying");
@@ -868,6 +880,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.rankine.totem_of_imitating.tooltip", "False promises");
         add("item.rankine.totem_of_levitating.tooltip", "For keeping your feet clean");
         add("item.rankine.totem_of_mending.tooltip", "Regenerate your losses");
+        add("item.rankine.totem_of_powering.tooltip", "The sea heart calls and infuses");
         add("item.rankine.totem_of_promising.tooltip", "Fortune is on your side");
         add("item.rankine.totem_of_repulsing.tooltip", "Invisibility while visible");
         add("item.rankine.totem_of_softening.tooltip", "Soft fingers and toes");

@@ -498,6 +498,7 @@ public class RankineItems {
     public static final RegistryObject<Item> GALINSTAN_SHEETMETAL = ITEMS.register("galinstan_sheetmetal", () -> new BlockItem(RankineBlocks.GALINSTAN_SHEETMETAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> OSMIRIDIUM_SHEETMETAL = ITEMS.register("osmiridium_sheetmetal", () -> new BlockItem(RankineBlocks.OSMIRIDIUM_SHEETMETAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> SODIUM_POTASSIUM_ALLOY_SHEETMETAL = ITEMS.register("sodium_potassium_alloy_sheetmetal", () -> new BlockItem(RankineBlocks.SODIUM_POTASSIUM_ALLOY_SHEETMETAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> NEPTUNIUM_ALLOY_SHEETMETAL = ITEMS.register("neptunium_alloy_sheetmetal", () -> new BlockItem(RankineBlocks.NEPTUNIUM_ALLOY_SHEETMETAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> AMALGAM_SHEETMETAL = ITEMS.register("amalgam_sheetmetal", () -> new BlockItem(RankineBlocks.AMALGAM_SHEETMETAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ENDER_AMALGAM_SHEETMETAL = ITEMS.register("ender_amalgam_sheetmetal", () -> new BlockItem(RankineBlocks.ENDER_AMALGAM_SHEETMETAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
 
@@ -562,6 +563,7 @@ public class RankineItems {
     public static final RegistryObject<Item> GALINSTAN_PEDESTAL = ITEMS.register("galinstan_pedestal", () -> new BlockItem(RankineBlocks.GALINSTAN_PEDESTAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> OSMIRIDIUM_PEDESTAL = ITEMS.register("osmiridium_pedestal", () -> new BlockItem(RankineBlocks.OSMIRIDIUM_PEDESTAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> SODIUM_POTASSIUM_ALLOY_PEDESTAL = ITEMS.register("sodium_potassium_alloy_pedestal", () -> new BlockItem(RankineBlocks.SODIUM_POTASSIUM_ALLOY_PEDESTAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> NEPTUNIUM_ALLOY_PEDESTAL = ITEMS.register("neptunium_alloy_pedestal", () -> new BlockItem(RankineBlocks.NEPTUNIUM_ALLOY_PEDESTAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> AMALGAM_PEDESTAL = ITEMS.register("amalgam_pedestal", () -> new BlockItem(RankineBlocks.AMALGAM_PEDESTAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ENDER_AMALGAM_PEDESTAL = ITEMS.register("ender_amalgam_pedestal", () -> new BlockItem(RankineBlocks.ENDER_AMALGAM_PEDESTAL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
 
@@ -597,6 +599,7 @@ public class RankineItems {
     public static final RegistryObject<Item> GALINSTAN_POLE = ITEMS.register("galinstan_pole", () -> new BlockItem(RankineBlocks.GALINSTAN_POLE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> OSMIRIDIUM_POLE = ITEMS.register("osmiridium_pole", () -> new BlockItem(RankineBlocks.OSMIRIDIUM_POLE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> SODIUM_POTASSIUM_ALLOY_POLE = ITEMS.register("sodium_potassium_alloy_pole", () -> new BlockItem(RankineBlocks.SODIUM_POTASSIUM_ALLOY_POLE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> NEPTUNIUM_ALLOY_POLE = ITEMS.register("neptunium_alloy_pole", () -> new BlockItem(RankineBlocks.NEPTUNIUM_ALLOY_POLE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> AMALGAM_POLE = ITEMS.register("amalgam_pole", () -> new BlockItem(RankineBlocks.AMALGAM_POLE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ENDER_AMALGAM_POLE = ITEMS.register("ender_amalgam_pole", () -> new BlockItem(RankineBlocks.ENDER_AMALGAM_POLE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
 
@@ -632,6 +635,7 @@ public class RankineItems {
     public static final RegistryObject<Item> GALINSTAN_BARS = ITEMS.register("galinstan_bars", () -> new BlockItem(RankineBlocks.GALINSTAN_BARS.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> OSMIRIDIUM_BARS = ITEMS.register("osmiridium_bars", () -> new BlockItem(RankineBlocks.OSMIRIDIUM_BARS.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> SODIUM_POTASSIUM_ALLOY_BARS = ITEMS.register("sodium_potassium_alloy_bars", () -> new BlockItem(RankineBlocks.SODIUM_POTASSIUM_ALLOY_BARS.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> NEPTUNIUM_ALLOY_BARS = ITEMS.register("neptunium_alloy_bars", () -> new BlockItem(RankineBlocks.NEPTUNIUM_ALLOY_BARS.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> AMALGAM_BARS = ITEMS.register("amalgam_bars", () -> new BlockItem(RankineBlocks.AMALGAM_BARS.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ENDER_AMALGAM_BARS = ITEMS.register("ender_amalgam_bars", () -> new BlockItem(RankineBlocks.ENDER_AMALGAM_BARS.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
 
@@ -1211,6 +1215,7 @@ public class RankineItems {
     public static final RegistryObject<Item> GALINSTAN_NUGGET = ITEMS.register("galinstan_nugget", () -> new AlloyItem("70Ga-20In-10Sn",new ResourceLocation("rankine:alloying/galinstan_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> OSMIRIDIUM_NUGGET = ITEMS.register("osmiridium_nugget", () -> new AlloyItem("60Os-40Ir",new ResourceLocation("rankine:alloying/osmiridium_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SODIUM_POTASSIUM_ALLOY_NUGGET = ITEMS.register("sodium_potassium_alloy_nugget", () -> new AlloyItem("77K-23Na",new ResourceLocation("rankine:alloying/sodium_potassium_alloy_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> NEPTUNIUM_ALLOY_NUGGET = ITEMS.register("neptunium_alloy_nugget", () -> new AlloyItem("55Pd-30Al-15Np",new ResourceLocation("rankine:alloying/neptunium_alloy_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> AMALGAM_NUGGET = ITEMS.register("amalgam_nugget", () -> new AlloyItem("80Hg-20Au",new ResourceLocation("rankine:alloying/amalgam_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ENDER_AMALGAM_NUGGET = ITEMS.register("ender_amalgam_nugget", () -> new AlloyItem("80Ed-20Au",new ResourceLocation("rankine:alloying/ender_amalgam_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
 
@@ -1248,6 +1253,7 @@ public class RankineItems {
     public static final RegistryObject<Item> GALINSTAN_INGOT = ITEMS.register("galinstan_ingot", () -> new AlloyItem("70Ga-20In-10Sn",new ResourceLocation("rankine:alloying/galinstan_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> OSMIRIDIUM_INGOT = ITEMS.register("osmiridium_ingot", () -> new AlloyItem("60Os-40Ir",new ResourceLocation("rankine:alloying/osmiridium_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SODIUM_POTASSIUM_ALLOY_INGOT = ITEMS.register("sodium_potassium_alloy_ingot", () -> new AlloyItem("77K-23Na",new ResourceLocation("rankine:alloying/sodium_potassium_alloy_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> NEPTUNIUM_ALLOY_INGOT = ITEMS.register("neptunium_alloy_ingot", () -> new AlloyItem("55Pd-30Al-15Np",new ResourceLocation("rankine:alloying/neptunium_alloy_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> AMALGAM_INGOT = ITEMS.register("amalgam_ingot", () -> new AlloyItem("80Hg-20Au",new ResourceLocation("rankine:alloying/amalgam_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ENDER_AMALGAM_INGOT = ITEMS.register("ender_amalgam_ingot", () -> new AlloyItem("80Ed-20Au",new ResourceLocation("rankine:alloying/ender_amalgam_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
 
@@ -1284,6 +1290,7 @@ public class RankineItems {
     public static final RegistryObject<Item> GALINSTAN_BLOCK = ITEMS.register("galinstan_block", () -> new AlloyBlockItem(RankineBlocks.GALINSTAN_BLOCK.get(),"70Ga-20In-10Sn",new ResourceLocation("rankine:alloying/galinstan_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> OSMIRIDIUM_BLOCK = ITEMS.register("osmiridium_block", () -> new AlloyBlockItem(RankineBlocks.OSMIRIDIUM_BLOCK.get(),"60Os-40Ir",new ResourceLocation("rankine:alloying/osmiridium_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SODIUM_POTASSIUM_ALLOY_BLOCK = ITEMS.register("sodium_potassium_alloy_block", () -> new AlloyBlockItem(RankineBlocks.SODIUM_POTASSIUM_ALLOY_BLOCK.get(),"77K-23Na",new ResourceLocation("rankine:alloying/sodium_potassium_alloy_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> NEPTUNIUM_ALLOY_BLOCK = ITEMS.register("neptunium_alloy_block", () -> new AlloyBlockItem(RankineBlocks.NEPTUNIUM_ALLOY_BLOCK.get(),"55Pd-30Al-15Np",new ResourceLocation("rankine:alloying/neptunium_alloy_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> AMALGAM_BLOCK = ITEMS.register("amalgam_block", () -> new AlloyBlockItem(RankineBlocks.AMALGAM_BLOCK.get(),"80Hg-20Au",new ResourceLocation("rankine:alloying/amalgam_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ENDER_AMALGAM_BLOCK = ITEMS.register("ender_amalgam_block", () -> new AlloyBlockItem(RankineBlocks.ENDER_AMALGAM_BLOCK.get(),"80Ed-20Au",new ResourceLocation("rankine:alloying/ender_amalgam_alloying"),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineMetals)));
 
@@ -1568,6 +1575,7 @@ public class RankineItems {
     public static final RegistryObject<Item> TOTEM_OF_INFUSING = ITEMS.register("totem_of_infusing", () -> new InfusingTotemItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> TOTEM_OF_INVIGORATING = ITEMS.register("totem_of_invigorating", () -> new InvigoratingTotemItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TOTEM_OF_LEVITATING = ITEMS.register("totem_of_levitating", () -> new LevitationTotemItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> TOTEM_OF_POWERING = ITEMS.register("totem_of_powering", () -> new PoweringTotemItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TOTEM_OF_PROMISING = ITEMS.register("totem_of_promising", () -> new LuckTotemItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TOTEM_OF_REPULSING = ITEMS.register("totem_of_repulsing", () -> new RepulsionTotemItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TOTEM_OF_SOFTENING = ITEMS.register("totem_of_softening", () -> new SofteningTotemItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).tab(ProjectRankine.setup.rankineTools)));
@@ -1587,6 +1595,7 @@ public class RankineItems {
     public static final RegistryObject<Item> EVAPORATION_TOWER = ITEMS.register("evaporation_tower", () -> new BlockItem(RankineBlocks.EVAPORATION_TOWER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> DIAMOND_ANVIL_CELL = ITEMS.register("diamond_anvil_cell", () -> new BlockItem(RankineBlocks.DIAMOND_ANVIL_CELL.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PARTICLE_ACCELERATOR = ITEMS.register("particle_accelerator", () -> new BlockItem(RankineBlocks.PARTICLE_ACCELERATOR.get(),new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> BATTERY_CHARGER = ITEMS.register("battery_charger", () -> new BlockItem(RankineBlocks.BATTERY_CHARGER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> FUSION_FURNACE = ITEMS.register("fusion_furnace", () -> new BlockItem(RankineBlocks.FUSION_FURNACE.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> BOTANIST_STATION = ITEMS.register("botanist_station", () -> new BlockItem(RankineBlocks.BOTANIST_STATION.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     //public static final RegistryObject<Item> LASER_QUARRY = REGISTRY.register("laser_quarry", () -> new BlockItem(RankineBlocks.LASER_QUARRY.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
@@ -1636,6 +1645,7 @@ public class RankineItems {
     public static final RegistryObject<Item> DOWSING_ROD = ITEMS.register("dowsing_rod", () -> new DowsingRodItem(new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PROSPECTING_STICK = ITEMS.register("prospecting_stick", () -> new ProspectingStickItem(new Item.Properties().stacksTo(1).durability(7).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ORE_DETECTOR = ITEMS.register("ore_detector", () -> new OreDetectorItem(new Item.Properties().stacksTo(1).durability(127).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> GAS_DETECTOR = ITEMS.register("gas_detector", () -> new GasDetectorItem(new Item.Properties().stacksTo(1).durability(127).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ROCK_DRILL = ITEMS.register("rock_drill", () -> new RockDrillItem(new Item.Properties().stacksTo(1).durability(15).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> FIRE_EXTINGUISHER = ITEMS.register("fire_extinguisher", () -> new FireExtinguisherItem(new Item.Properties().stacksTo(1).durability(15).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> GLASS_CUTTER = ITEMS.register("glass_cutter", () -> new GlassCutterItem(new Item.Properties().durability(256).tab(ProjectRankine.setup.rankineTools)));
@@ -1711,11 +1721,11 @@ public class RankineItems {
     public static final RegistryObject<Item> SODIUM_SULFUR_BATTERY = ITEMS.register("sodium_sulfur_battery", () -> new BatteryItem(new Item.Properties().durability(896).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> LITHIUM_ION_BATTERY = ITEMS.register("lithium_ion_battery", () -> new BatteryItem(new Item.Properties().durability(1024).tab(ProjectRankine.setup.rankineTools)));
 
-    public static final RegistryObject<Item> STRONTIUM_RTG = ITEMS.register("strontium_rtg", () -> new BatteryItem(new Item.Properties().durability(3200).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> POLONIUM_RTG = ITEMS.register("polonium_rtg", () -> new BatteryItem(new Item.Properties().durability(3200).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> PLUTONIUM_RTG = ITEMS.register("plutonium_rtg", () -> new BatteryItem(new Item.Properties().durability(6400).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> AMERICIUM_RTG = ITEMS.register("americium_rtg", () -> new BatteryItem(new Item.Properties().durability(9600).tab(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> CURIUM_RTG = ITEMS.register("curium_rtg", () -> new BatteryItem(new Item.Properties().durability(9600).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> STRONTIUM_RTG = ITEMS.register("strontium_rtg", () -> new RTGItem(new Item.Properties().durability(3200).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> POLONIUM_RTG = ITEMS.register("polonium_rtg", () -> new RTGItem(new Item.Properties().durability(3200).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> PLUTONIUM_RTG = ITEMS.register("plutonium_rtg", () -> new RTGItem(new Item.Properties().durability(6400).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> AMERICIUM_RTG = ITEMS.register("americium_rtg", () -> new RTGItem(new Item.Properties().durability(9600).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CURIUM_RTG = ITEMS.register("curium_rtg", () -> new RTGItem(new Item.Properties().durability(9600).tab(ProjectRankine.setup.rankineTools)));
 
     public static final RegistryObject<Item> WOOD_TIER_CRUSHING_HEAD = ITEMS.register("wood_tier_crushing_head", () -> new BlockItem(RankineBlocks.WOOD_TIER_CRUSHING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> STONE_TIER_CRUSHING_HEAD = ITEMS.register("stone_tier_crushing_head", () -> new BlockItem(RankineBlocks.STONE_TIER_CRUSHING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));

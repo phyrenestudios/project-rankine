@@ -45,7 +45,7 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
     private static final int[] SLOTS_UP = new int[]{0,1,2,3};
     private static final int[] SLOTS_DOWN = new int[]{2,4,5,6};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
-    private final int powerCost = 1;
+    private final int powerCost = Config.MACHINES.FUSION_FURNACE_POWER.get();
     public FusionFurnaceTile(BlockPos posIn, BlockState stateIn) {
         super(FUSION_FURNACE_TILE, posIn, stateIn);
     }

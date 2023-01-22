@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.HollowLogBlock;
 import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
+import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerScreen;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
@@ -92,6 +93,7 @@ public class ClientProxy implements IProxy {
         MenuScreens.register(RankineItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
         MenuScreens.register(RankineBlocks.TEMPLATE_TABLE_CONTAINER, TemplateTableScreen::new);
         MenuScreens.register(RankineBlocks.MATERIAL_TESTING_TABLE_CONTAINER, MaterialTestingTableScreen::new);
+        MenuScreens.register(RankineBlocks.BATTERY_CHARGER_CONTAINER, BatteryChargerScreen::new);
         MenuScreens.register(RankineBlocks.CRUCIBLE_CONTAINER, CrucibleScreen::new);
         MenuScreens.register(RankineBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
         MenuScreens.register(RankineBlocks.FUSION_FURNACE_CONTAINER, FusionFurnaceScreen::new);

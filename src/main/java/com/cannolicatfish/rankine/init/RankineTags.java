@@ -261,6 +261,7 @@ public final class RankineTags {
         public static final TagKey<Block> STORAGE_BLOCKS_GALINSTAN = forgeBlock("storage_blocks/galinstan");
         public static final TagKey<Block> STORAGE_BLOCKS_OSMIRIDIUM = forgeBlock("storage_blocks/osmiridium");
         public static final TagKey<Block> STORAGE_BLOCKS_SODIUM_POTASSIUM_ALLOY = forgeBlock("storage_blocks/sodium_potassium_alloy");
+        public static final TagKey<Block> STORAGE_BLOCKS_NEPTUNIUM_ALLOY = forgeBlock("storage_blocks/neptunium_alloy");
         public static final TagKey<Block> STORAGE_BLOCKS_AMALGAM = forgeBlock("storage_blocks/amalgam");
         public static final TagKey<Block> STORAGE_BLOCKS_ENDER_AMALGAM = forgeBlock("storage_blocks/ender_amalgam");
         public static final TagKey<Block> STORAGE_BLOCKS_ROSE_GOLD = forgeBlock("storage_blocks/rose_gold");
@@ -388,7 +389,8 @@ public final class RankineTags {
         public static final TagKey<Item> CRAFTING_METAL_BLOCKS = modItem("crafting_metal_blocks");
         public static final TagKey<Item> ALKALI_HYDROXIDES = modItem("alkali_hydroxides");
         public static final TagKey<Item> ELECTROMAGNETS = modItem("electromagnets");
-
+        public static final TagKey<Item> BATTERIES = modItem("batteries");
+        public static final TagKey<Item> RTG = modItem("rtg");
 
 
         public static final TagKey<Item> GEODES = modItem("geodes");
@@ -580,6 +582,7 @@ public final class RankineTags {
         public static final TagKey<Item> NUGGETS_GALINSTAN = forgeItem("nuggets/galinstan");
         public static final TagKey<Item> NUGGETS_OSMIRIDIUM = forgeItem("nuggets/osmiridium");
         public static final TagKey<Item> NUGGETS_SODIUM_POTASSIUM_ALLOY = forgeItem("nuggets/sodium_potassium_alloy");
+        public static final TagKey<Item> NUGGETS_NEPTUNIUM_ALLOY = forgeItem("nuggets/neptunium_alloy");
         public static final TagKey<Item> NUGGETS_AMALGAM = forgeItem("nuggets/amalgam");
         public static final TagKey<Item> NUGGETS_ENDER_AMALGAM = forgeItem("nuggets/ender_amalgam");
         public static final TagKey<Item> NUGGETS_ROSE_GOLD = forgeItem("nuggets/rose_gold");
@@ -735,6 +738,7 @@ public final class RankineTags {
         public static final TagKey<Item> INGOTS_GALINSTAN = forgeItem("ingots/galinstan");
         public static final TagKey<Item> INGOTS_OSMIRIDIUM = forgeItem("ingots/osmiridium");
         public static final TagKey<Item> INGOTS_SODIUM_POTASSIUM_ALLOY = forgeItem("ingots/sodium_potassium_alloy");
+        public static final TagKey<Item> INGOTS_NEPTUNIUM_ALLOY = forgeItem("ingots/neptunium_alloy");
         public static final TagKey<Item> INGOTS_AMALGAM = forgeItem("ingots/amalgam");
         public static final TagKey<Item> INGOTS_ENDER_AMALGAM = forgeItem("ingots/ender_amalgam");
         public static final TagKey<Item> INGOTS_ROSE_GOLD = forgeItem("ingots/rose_gold");
@@ -904,6 +908,7 @@ public final class RankineTags {
         public static final TagKey<Item> STORAGE_BLOCKS_GALINSTAN = forgeItem("storage_blocks/galinstan");
         public static final TagKey<Item> STORAGE_BLOCKS_OSMIRIDIUM = forgeItem("storage_blocks/osmiridium");
         public static final TagKey<Item> STORAGE_BLOCKS_SODIUM_POTASSIUM_ALLOY = forgeItem("storage_blocks/sodium_potassium_alloy");
+        public static final TagKey<Item> STORAGE_BLOCKS_NEPTUNIUM_ALLOY = forgeItem("storage_blocks/neptunium_alloy");
         public static final TagKey<Item> STORAGE_BLOCKS_AMALGAM = forgeItem("storage_blocks/amalgam");
         public static final TagKey<Item> STORAGE_BLOCKS_ENDER_AMALGAM = forgeItem("storage_blocks/ender_amalgam");
         public static final TagKey<Item> STORAGE_BLOCKS_ROSE_GOLD = forgeItem("storage_blocks/rose_gold");

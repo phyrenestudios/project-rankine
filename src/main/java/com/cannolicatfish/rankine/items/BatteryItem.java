@@ -1,13 +1,15 @@
 package com.cannolicatfish.rankine.items;
 
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-
-import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class BatteryItem extends Item {
     public BatteryItem(Properties properties) {
@@ -21,6 +23,12 @@ public class BatteryItem extends Item {
 
     private int getTier() {
         return 0;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+        tooltip.add(new TranslatableComponent("rankine.battery.charge",stack.getMaxDamage()-stack.getDamageValue(),stack.getMaxDamage()).withStyle(ChatFormatting.AQUA));
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 
     public static int getTier(ItemStack stack) {
@@ -49,14 +57,4 @@ public class BatteryItem extends Item {
         return false;
     }
 
-    @Override
-    public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (stack.getDamageValue() > 0) {
-            if (entityIn instanceof LivingEntity living && living.hasEffect(MobEffects.CONDUIT_POWER)) {
-                stack.setDamageValue(stack.getDamageValue() - 1);
-            }
-        }
-
-        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
-    }
 }

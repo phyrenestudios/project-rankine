@@ -435,6 +435,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineTags.Items.NUGGETS_GALINSTAN).add(RankineItems.GALINSTAN_NUGGET.get());
         tag(RankineTags.Items.NUGGETS_OSMIRIDIUM).add(RankineItems.OSMIRIDIUM_NUGGET.get());
         tag(RankineTags.Items.NUGGETS_SODIUM_POTASSIUM_ALLOY).add(RankineItems.SODIUM_POTASSIUM_ALLOY_NUGGET.get());
+        tag(RankineTags.Items.NUGGETS_NEPTUNIUM_ALLOY).add(RankineItems.NEPTUNIUM_ALLOY_NUGGET.get());
         tag(RankineTags.Items.NUGGETS_AMALGAM).add(RankineItems.AMALGAM_NUGGET.get());
         tag(RankineTags.Items.NUGGETS_ENDER_AMALGAM).add(RankineItems.ENDER_AMALGAM_NUGGET.get());
         tag(RankineTags.Items.NUGGETS_ROSE_GOLD).add(RankineItems.ROSE_GOLD_NUGGET.get());
@@ -587,6 +588,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineTags.Items.INGOTS_GALINSTAN).add(RankineItems.GALINSTAN_INGOT.get());
         tag(RankineTags.Items.INGOTS_OSMIRIDIUM).add(RankineItems.OSMIRIDIUM_INGOT.get());
         tag(RankineTags.Items.INGOTS_SODIUM_POTASSIUM_ALLOY).add(RankineItems.SODIUM_POTASSIUM_ALLOY_INGOT.get());
+        tag(RankineTags.Items.INGOTS_NEPTUNIUM_ALLOY).add(RankineItems.NEPTUNIUM_ALLOY_INGOT.get());
         tag(RankineTags.Items.INGOTS_AMALGAM).add(RankineItems.AMALGAM_INGOT.get());
         tag(RankineTags.Items.INGOTS_ENDER_AMALGAM).add(RankineItems.ENDER_AMALGAM_INGOT.get());
         tag(RankineTags.Items.INGOTS_ROSE_GOLD).add(RankineItems.ROSE_GOLD_INGOT.get());
@@ -818,6 +820,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
         tag(RankineTags.Items.ALKALI_HYDROXIDES).add(RankineItems.LITHIUM_HYDROXIDE.get(),RankineItems.SODIUM_HYDROXIDE.get(),RankineItems.POTASSIUM_HYDROXIDE.get(),RankineItems.RUBIDIUM_HYDROXIDE.get(),RankineItems.CESIUM_HYDROXIDE.get(),RankineItems.FRANCIUM_HYDROXIDE.get());
         tag(RankineTags.Items.ELECTROMAGNETS).add(RankineItems.SIMPLE_ELECTROMAGNET.get(),RankineItems.ALNICO_ELECTROMAGNET.get(),RankineItems.RARE_EARTH_ELECTROMAGNET.get());
+        tag(RankineTags.Items.BATTERIES).add(RankineItems.SILVER_ZINC_BATTERY.get(),RankineItems.MAGNESIUM_BATTERY.get(),RankineItems.LEAD_ACID_BATTERY.get(),RankineItems.VANADIUM_REDOX_BATTERY.get(),RankineItems.ZINC_BROMINE_BATTERY.get(),RankineItems.SODIUM_SULFUR_BATTERY.get(),RankineItems.LITHIUM_ION_BATTERY.get());
+        tag(RankineTags.Items.RTG).add(RankineItems.STRONTIUM_RTG.get(),RankineItems.POLONIUM_RTG.get(),RankineItems.PLUTONIUM_RTG.get(),RankineItems.AMERICIUM_RTG.get(),RankineItems.CURIUM_RTG.get());
 
         copy(RankineTags.Blocks.HARDENED_GLASS, RankineTags.Items.HARDENED_GLASS);
         copy(RankineTags.Blocks.CLAY, RankineTags.Items.CLAY);

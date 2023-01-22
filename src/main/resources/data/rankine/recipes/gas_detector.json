@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "vsv",
+    "scs",
+    "vbv"
+  ],
+  "key":
+  {
+    "b":
+    {
+      "item": "rankine:lead_acid_battery"
+    },
+    "c":
+    {
+      "item": "rankine:indium_tin_oxide"
+    },
+    "v":
+    {
+      "item": "rankine:vulcanized_rubber"
+    },
+    "s":
+    {
+      "item": "rankine:stainless_steel_ingot"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:gas_detector",
+    "count": 1
+  }
+}

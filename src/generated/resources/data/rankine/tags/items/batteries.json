@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:silver_zinc_battery",
+    "rankine:magnesium_battery",
+    "rankine:lead_acid_battery",
+    "rankine:vanadium_redox_battery",
+    "rankine:zinc_bromine_battery",
+    "rankine:sodium_sulfur_battery",
+    "rankine:lithium_ion_battery"
+  ]
+}

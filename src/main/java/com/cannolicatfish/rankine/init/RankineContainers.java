@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
+import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerContainer;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
@@ -28,6 +29,7 @@ public class RankineContainers {
     public static RegistryObject<MenuType<FusionFurnaceContainer>> FUSION_FURNACE_CONTAINER = CONTAINERS.register("fusion_furnace", () -> IForgeMenuType.create((windowId, inv, data) -> new FusionFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
     public static RegistryObject<MenuType<EvaporationTowerContainer>> EVAPORATION_TOWER_CONTAINER = CONTAINERS.register("evaporation_tower", () -> IForgeMenuType.create((windowId, inv, data) -> new EvaporationTowerContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
     public static RegistryObject<MenuType<GasBottlerContainer>> GAS_CONDENSER_CONTAINER = CONTAINERS.register("gas_condenser", () -> IForgeMenuType.create((windowId, inv, data) -> new GasBottlerContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
+    public static RegistryObject<MenuType<BatteryChargerContainer>> BATTERY_CHARGER_CONTAINER = CONTAINERS.register("battery_charger", () -> IForgeMenuType.create((windowId, inv, data) -> new BatteryChargerContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
     public static RegistryObject<MenuType<MaterialTestingTableContainer>> MATERIAL_TESTING_TABLE_CONTAINER = CONTAINERS.register("material_testing_table", () -> IForgeMenuType.create((windowId, inv, data) -> new MaterialTestingTableContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
     public static RegistryObject<MenuType<TemplateTableContainer>> TEMPLATE_TABLE_CONTAINER = CONTAINERS.register("template_table", () -> IForgeMenuType.create((windowId, inv, data) -> new TemplateTableContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer())));
     public static RegistryObject<MenuType<ElementIndexerContainer>> ELEMENT_INDEXER_CONTAINER = CONTAINERS.register("element_indexer", () -> IForgeMenuType.create((windowId, inv, data) -> new ElementIndexerContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer())));

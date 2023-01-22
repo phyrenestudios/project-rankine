@@ -47,7 +47,7 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
                 .build(new CacheLoader<>() {
                     @Override
                     public IDrawableAnimated load(Integer cookTime) {
-                        return guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"), 232, 14, 24, 17)
+                        return guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/treetapping_jei.png"), 232, 14, 24, 17)
                                 .buildAnimated(cookTime, IDrawableAnimated.StartDirection.LEFT, false);
                     }
                 });
