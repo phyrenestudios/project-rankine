@@ -26,6 +26,7 @@ import mezz.jei.api.registration.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.Block;
@@ -223,16 +224,20 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.INDUCTION_FURNACE.get()), INDUCTION_ALLOYING);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.FUSION_FURNACE.get()), FUSION_FURNACE);
 
+        registry.addRecipeCatalyst(new ItemStack(Items.CAULDRON), CAULDRON_DRYING);
 
         registry.addRecipeCatalyst(new ItemStack(RankineItems.ELEMENT_INDEXER.get()), ELEMENT);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()), EVAPORATION);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.HEATING_ELEMENT_1.get()), EVAPORATION);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.CRUCIBLE_BLOCK.get()), CRUCIBLE);
         registry.addRecipeCatalyst(new ItemStack(Blocks.COBBLESTONE), INTRUSIVE_IGNEOUS);
         registry.addRecipeCatalyst(new ItemStack(Blocks.BLACKSTONE), EXTRUSIVE_IGNEOUS);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BRECCIA.get()), SEDIMENTARY);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.SEDIMENT_FAN.get()), SEDIMENTARY);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.SKARN.get()), METAMORPHIC);
         registry.addRecipeCatalyst(new ItemStack(Blocks.OBSIDIAN), VOLCANIC);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.DISTILLATION_TOWER.get()), AIR_DISTILLATION);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.AIR_DISTILLATION_PACKING.get()), AIR_DISTILLATION);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.TREE_TAP.get()), TREETAPPING);
     }
 

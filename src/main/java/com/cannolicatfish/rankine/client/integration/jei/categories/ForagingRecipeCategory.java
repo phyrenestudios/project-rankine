@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.recipe.ForagingRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
@@ -20,6 +21,7 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -106,7 +108,7 @@ public class ForagingRecipeCategory implements IRecipeCategory<ForagingRecipe> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
         builder.addSlot(RecipeIngredientRole.INPUT,78,20).addIngredients(recipe.getIngredients().get(0));
-
+        builder.addSlot(RecipeIngredientRole.CATALYST,37,20).addIngredients(Ingredient.of(RankineLists.FORAGING_TOOLS.stream().map(Item::getDefaultInstance)));
 
         int count = 1;
         int ycount = 1;

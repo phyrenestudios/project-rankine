@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
@@ -23,10 +24,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.TierSortingRegistry;
 
 import java.text.DecimalFormat;
@@ -113,7 +112,7 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
         builder.addSlot(RecipeIngredientRole.INPUT,78,21).addIngredients(recipe.getIngredients().get(0)).addTooltipCallback((recipeSlotView, tooltip) ->
                 tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_max_rolls")+recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA)));
 
-
+        builder.addSlot(RecipeIngredientRole.CATALYST,37,20).addIngredients(Ingredient.of(RankineLists.HAMMERS.stream().map(Item::getDefaultInstance)));
         int count = 1;
         for (Tuple<ItemStack,Tier> output : guaranteedOutputs) {
             int x = (count*18);

@@ -767,13 +767,16 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.tooltip_nonlimited", "Can drop multiple times per block");
         add("rankine.jei.tooltip_nothing", "Skip Output");
         add("rankine.jei.tooltip_additional", "Additional");
+        add("rankine.jei.crucible_tooltip_additional", "Additional (Pick %s Unique Ingredients)");
         add("rankine.jei.tooltip_required", "Required");
         add("rankine.jei.tooltip_enchantment_required", "Requires Foraging enchantment");
         add("rankine.jei.tooltip_starting_enchantability", "Obtained at %s enchantability");
         add("rankine.jei.tooltip_enchantability_interval","Gains a level every %s enchantability");
         add("rankine.jei.tooltip_max_level", "Max Level: ");
+        add("rankine.jei.tooltip_material_info", "Material Count: ");
         add("rankine.jei.tooltip_biomes_info", "Biomes: ");
         add("rankine.jei.tooltip_biomes_tags_info", "Biome Tags: ");
+        add("rankine.jei.tooltip_dimension_info", "Dimension: ");
         add("rankine.jei.tooltip_mixing_time","Base Mixing Time: %s redstone power per ingredient total");
         add("rankine.jei.tooltip_total_mixing_time","Total Mixing Time: %s redstone power");
         add("rankine.jei.tooltip_total_button_lever","(%s button presses or lever flicks)");

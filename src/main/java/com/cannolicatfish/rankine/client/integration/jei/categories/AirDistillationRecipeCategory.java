@@ -4,28 +4,22 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.AirDistillationRecipe;
-import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraftforge.fluids.FluidStack;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AirDistillationRecipeCategory implements IRecipeCategory<AirDistillationRecipe> {
@@ -33,22 +27,20 @@ public class AirDistillationRecipeCategory implements IRecipeCategory<AirDistill
     public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "air_distillation");
     private final IDrawable background;
     private final String localizedName;
-    private final IDrawable overlay;
-    private final IDrawable icon;
-
+    private final IGuiHelper guiHelper;
     public AirDistillationRecipeCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createBlankDrawable(185, 146);
+        this.guiHelper = guiHelper;
+        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/air_distillation_jei.png"), 0, 0, 116, 136)
+                .addPadding(0, 0, 0, 0)
+                .build();
         localizedName = I18n.get("rankine.jei.air_distillation");
-        overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/air_distillation_jei.png"),
-                0, 15, 180, 141);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.DISTILLATION_TOWER.get()));
     }
-
+    @SuppressWarnings("removal")
     @Override
     public ResourceLocation getUid() {
         return UID;
     }
-
+    @SuppressWarnings("removal")
     @Override
     public Class<? extends AirDistillationRecipe> getRecipeClass() {
         return AirDistillationRecipe.class;
@@ -66,85 +58,58 @@ public class AirDistillationRecipeCategory implements IRecipeCategory<AirDistill
 
     @Override
     public IDrawable getIcon() {
-        return icon;
+        return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(RankineBlocks.DISTILLATION_TOWER.get()));
     }
 
     @Override
-    public void draw(AirDistillationRecipe recipe, PoseStack ms, double mouseX, double mouseY) {
-        Font font = Minecraft.getInstance().font;
-        //RenderSystem.enableAlphaTest();
-        RenderSystem.enableBlend();
-        overlay.draw(ms, 0, 4);
-        RenderSystem.disableBlend();
-        //RenderSystem.disableAlphaTest();
-
-        int ymod = 0;
-        if (!recipe.getBiomeString().isEmpty()) {
-            StringBuilder str = new StringBuilder();
-            str.append("Biomes: ");
-            int count = 1;
-            for (int i = 0; i < recipe.getBiomeString().size(); i++) {
-                str.append(recipe.getBiomeString().get(i));
-                count++;
-                if (count == 3 || i == recipe.getBiomeString().size() - 1) {
-                    font.draw(ms, str.toString(), (float)(ymod >= 50 ? 32 : 0), ymod, 0x000000);
-                    count = 0;
-                    ymod += 10;
-                    str = new StringBuilder();
-                } else if (i != recipe.getBiomeString().size() - 1) {
-                    str.append(", ");
+    public List<Component> getTooltipStrings(AirDistillationRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+        if (mouseX >= 95 && mouseX <= 110 && mouseY >= 116 && mouseY <= 131) {
+            List<Component> components = new ArrayList<>();
+            if (recipe.getDims().isEmpty()) {
+                components.add(new TextComponent(I18n.get("rankine.jei.tooltip_dimension_info") + (I18n.get("rankine.jei.tooltip_any"))));
+            } else {
+                if (!recipe.getDims().isEmpty()) {
+                    components.add(new TextComponent(I18n.get("rankine.jei.tooltip_dimension_info") + recipe.getDims().toString()));
                 }
             }
-
-        }
-
-        ymod = 0;
-        if (!recipe.getDims().isEmpty()) {
-            StringBuilder str = new StringBuilder();
-            str.append("Dims: ");
-            int count = 1;
-            for (int i = 0; i < recipe.getDims().size(); i++) {
-                str.append(recipe.getDims().get(i));
-                count++;
-                if (count == 3 || i == recipe.getDims().size() - 1) {
-                    font.draw(ms, str.toString(), (float)(ymod >= 50 ? 32 : 0), ymod, 0x000000);
-                    count = 0;
-                    ymod += 10;
-                    str = new StringBuilder();
-                } else if (i != recipe.getDims().size() - 1) {
-                    str.append(", ");
+            if (recipe.getBiomes().isEmpty()) {
+                components.add(new TextComponent(I18n.get("rankine.jei.tooltip_biomes_info") + (I18n.get("rankine.jei.tooltip_any"))));
+            } else {
+                if (!recipe.getBiomes().isEmpty()) {
+                    components.add(new TextComponent(I18n.get("rankine.jei.tooltip_biomes_info") + recipe.getBiomes().toString()));
                 }
             }
+            return components;
+        }
+        return IRecipeCategory.super.getTooltipStrings(recipe, recipeSlotsView, mouseX, mouseY);
+    }
 
+    @Override
+    public void setRecipe(IRecipeLayoutBuilder builder, AirDistillationRecipe recipe, IFocusGroup focuses) {
+        List<ItemStack> outputs = recipe.getRecipeOutputsJEI();
+        int lcount = 0;
+        int rcount = 0;
+        int count = 0;
+        for (ItemStack stack : outputs) {
+            if (stack.getItem() != RankineItems.ELEMENT.get() && !stack.isEmpty()) {
+                if (count % 2 == 0) {
+                    builder.addSlot(RecipeIngredientRole.OUTPUT,31,113 - 23*(lcount)).addItemStack(stack);
+                } else {
+                    builder.addSlot(RecipeIngredientRole.OUTPUT,64,106 - 23*(rcount)).addItemStack(stack);
+                }
+            }
+            if (count % 2 == 0) {
+                lcount++;
+            } else {
+                rcount++;
+            }
+            count++;
         }
     }
 
     @Override
-    public void setIngredients(AirDistillationRecipe recipe, IIngredients iIngredients) {
-        iIngredients.setOutputs(VanillaTypes.ITEM, recipe.getRecipeOutputsJEI());
-    }
+    public void draw(AirDistillationRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
 
-    @Override
-    public void setRecipe(IRecipeLayout recipeLayout, AirDistillationRecipe recipe, IIngredients ingredients) {
-        int index = 0;
-        for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
-            List<ItemStack> stacks = ingredients.getOutputs(VanillaTypes.ITEM).get(i);
-            int scale = Math.floorDiv(i,2);
-            recipeLayout.getItemStacks().init(index, false, 85 - 44 * (i % 2), 122 - (8 * (i%2)) - (scale * 27));
-            if (!stacks.contains(ItemStack.EMPTY) && stacks.stream().noneMatch((s) -> s.getItem() == RankineItems.ELEMENT.get())) {
-                recipeLayout.getItemStacks().set(index, stacks);
-            }
-            index += 1;
-        }
-
-        int endIndex = index;
-        recipeLayout.getItemStacks().addTooltipCallback((i, b, stack, list) -> {
-            if (i <= endIndex) {
-                list.add(new TextComponent("Chance: " + (recipe.getChances().get(i) * 100) + "%"));
-            }
-
-        });
-
-
+        IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
     }
 }
