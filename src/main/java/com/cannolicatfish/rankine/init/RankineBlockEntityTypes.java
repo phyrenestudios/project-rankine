@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.init;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.blocks.alloys.AlloyBlockTile;
+import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerTile;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
@@ -38,6 +39,11 @@ public class RankineBlockEntityTypes {
 
     public static final RegistryObject<BlockEntityType<AlloyFurnaceTile>> ALLOY_FURNACE = BLOCK_ENTITY_TYPES.register("alloy_furnace",
             () -> BlockEntityType.Builder.of(AlloyFurnaceTile::new, RankineBlocks.ALLOY_FURNACE.get())
+                    .build(null));
+
+
+    public static final RegistryObject<BlockEntityType<BatteryChargerTile>> BATTERY_CHARGER = BLOCK_ENTITY_TYPES.register("battery_charger",
+            () -> BlockEntityType.Builder.of(BatteryChargerTile::new, RankineBlocks.BATTERY_CHARGER.get())
                     .build(null));
 
     public static final RegistryObject<BlockEntityType<CrucibleTile>> CRUCIBLE = BLOCK_ENTITY_TYPES.register("crucible",

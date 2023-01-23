@@ -309,6 +309,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.EMERGENCY_FLOTATION_DEVICE.get());
         basicItem(RankineItems.ELEMENT.get());
         basicItem(RankineItems.BUILDING_TOOL.get());
+        basicItem(RankineItems.GAS_DETECTOR.get());
         basicItem(RankineItems.ORE_DETECTOR.get());
         basicItem(RankineItems.PROSPECTING_STICK.get());
         basicItem(RankineItems.PACKAGED_TOOL.get());
@@ -337,6 +338,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.TOTEM_OF_INFUSING.get());
         basicItem(RankineItems.TOTEM_OF_INVIGORATING.get());
         basicItem(RankineItems.TOTEM_OF_LEVITATING.get());
+        basicItem(RankineItems.TOTEM_OF_POWERING.get());
         basicItem(RankineItems.TOTEM_OF_PROMISING.get());
         basicItem(RankineItems.TOTEM_OF_REPULSING.get());
         basicItem(RankineItems.TOTEM_OF_SOFTENING.get());
@@ -416,6 +418,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.AIR_DISTILLATION_PACKING.get(),
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
                 RankineBlocks.REACTION_CHAMBER_CORE.get(),
+                RankineBlocks.BATTERY_CHARGER.get(),
                 RankineBlocks.FUSION_FURNACE.get(),
                 RankineBlocks.BEEHIVE_OVEN_PIT.get(),
                 RankineBlocks.ALLOY_FURNACE.get(),
@@ -483,7 +486,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         }
 
         for (Item TOOL : Stream.of(RankineLists.WOODEN_TOOLS,RankineLists.STONE_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.ZIRCONIUM_ALLOY_TOOLS, RankineLists.NIOBIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.OSMIRIDIUM_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            if (TOOL instanceof AlloyCrowbarItem || TOOL.equals(RankineItems.ALLOY_SURF_ROD.get())) {
+            if (TOOL instanceof AlloyCrowbarItem ) {
                 basicItemHandheldRod(TOOL);
             } else if (TOOL instanceof SpearItem) {
                 //need custom model

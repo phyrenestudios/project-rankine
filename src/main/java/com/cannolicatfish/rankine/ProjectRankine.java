@@ -170,7 +170,6 @@ public class ProjectRankine {
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_KNIFE::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_CROWBAR::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_BLUNDERBUSS::get);
-            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_SURF_ROD::get);
             event.getItemColors().register(new TemplateItemColor(), RankineItems.ALLOY_TEMPLATE::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_HELMET::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_CHESTPLATE::get);

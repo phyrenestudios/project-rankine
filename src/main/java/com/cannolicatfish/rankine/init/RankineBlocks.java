@@ -8,6 +8,9 @@ import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.blocks.alloys.AlloyBlock;
 import com.cannolicatfish.rankine.blocks.alloys.AlloyBlockTile;
 import com.cannolicatfish.rankine.blocks.asphalt.*;
+import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerBlock;
+import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerContainer;
+import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerTile;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
@@ -917,6 +920,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GALINSTAN_BLOCK = BLOCKS.register("galinstan_block", () -> new AlloyBlock(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> OSMIRIDIUM_BLOCK = BLOCKS.register("osmiridium_block", () -> new AlloyBlock(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> SODIUM_POTASSIUM_ALLOY_BLOCK = BLOCKS.register("sodium_potassium_alloy_block", () -> new AlloyBlock(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> NEPTUNIUM_ALLOY_BLOCK = BLOCKS.register("neptunium_alloy_block", () -> new AlloyBlock(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> AMALGAM_BLOCK = BLOCKS.register("amalgam_block", () -> new AlloyBlock(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> ENDER_AMALGAM_BLOCK = BLOCKS.register("ender_amalgam_block", () -> new AlloyBlock(DEF_METAL_BLOCK));
 
@@ -955,6 +959,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GALINSTAN_PEDESTAL = BLOCKS.register("galinstan_pedestal", PedestalBlock::new);
     public static final RegistryObject<Block> OSMIRIDIUM_PEDESTAL = BLOCKS.register("osmiridium_pedestal", PedestalBlock::new);
     public static final RegistryObject<Block> SODIUM_POTASSIUM_ALLOY_PEDESTAL = BLOCKS.register("sodium_potassium_alloy_pedestal", PedestalBlock::new);
+    public static final RegistryObject<Block> NEPTUNIUM_ALLOY_PEDESTAL = BLOCKS.register("neptunium_alloy_pedestal", PedestalBlock::new);
     public static final RegistryObject<Block> AMALGAM_PEDESTAL = BLOCKS.register("amalgam_pedestal", PedestalBlock::new);
     public static final RegistryObject<Block> ENDER_AMALGAM_PEDESTAL = BLOCKS.register("ender_amalgam_pedestal", PedestalBlock::new);
 
@@ -991,6 +996,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GALINSTAN_SHEETMETAL = BLOCKS.register("galinstan_sheetmetal", () -> new SheetmetalBlock(12564673));
     public static final RegistryObject<Block> OSMIRIDIUM_SHEETMETAL = BLOCKS.register("osmiridium_sheetmetal", () -> new SheetmetalBlock(13212593));
     public static final RegistryObject<Block> SODIUM_POTASSIUM_ALLOY_SHEETMETAL = BLOCKS.register("sodium_potassium_alloy_sheetmetal", () -> new SheetmetalBlock(9403777));
+    public static final RegistryObject<Block> NEPTUNIUM_ALLOY_SHEETMETAL = BLOCKS.register("neptunium_alloy_sheetmetal", () -> new SheetmetalBlock(5805717));
     public static final RegistryObject<Block> AMALGAM_SHEETMETAL = BLOCKS.register("amalgam_sheetmetal", () -> new SheetmetalBlock(13881539));
     public static final RegistryObject<Block> ENDER_AMALGAM_SHEETMETAL = BLOCKS.register("ender_amalgam_sheetmetal", () -> new SheetmetalBlock(492385));
 
@@ -1026,6 +1032,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GALINSTAN_POLE = BLOCKS.register("galinstan_pole", () -> new MetalPoleBlock(12564673));
     public static final RegistryObject<Block> OSMIRIDIUM_POLE = BLOCKS.register("osmiridium_pole", () -> new MetalPoleBlock(13212593));
     public static final RegistryObject<Block> SODIUM_POTASSIUM_ALLOY_POLE = BLOCKS.register("sodium_potassium_alloy_pole", () -> new MetalPoleBlock(9403777));
+    public static final RegistryObject<Block> NEPTUNIUM_ALLOY_POLE = BLOCKS.register("neptunium_alloy_pole", () -> new MetalPoleBlock(5805717));
     public static final RegistryObject<Block> AMALGAM_POLE = BLOCKS.register("amalgam_pole", () -> new MetalPoleBlock(13881539));
     public static final RegistryObject<Block> ENDER_AMALGAM_POLE = BLOCKS.register("ender_amalgam_pole", () -> new MetalPoleBlock(492385));
 
@@ -1061,6 +1068,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GALINSTAN_BARS = BLOCKS.register("galinstan_bars", () -> new MetalBarsBlock(12564673));
     public static final RegistryObject<Block> OSMIRIDIUM_BARS = BLOCKS.register("osmiridium_bars", () -> new MetalBarsBlock(13212593));
     public static final RegistryObject<Block> SODIUM_POTASSIUM_ALLOY_BARS = BLOCKS.register("sodium_potassium_alloy_bars", () -> new MetalBarsBlock(9403777));
+    public static final RegistryObject<Block> NEPTUNIUM_ALLOY_BARS = BLOCKS.register("neptunium_alloy_bars", () -> new MetalBarsBlock(5805717));
     public static final RegistryObject<Block> AMALGAM_BARS = BLOCKS.register("amalgam_bars", () -> new MetalBarsBlock(13881539));
     public static final RegistryObject<Block> ENDER_AMALGAM_BARS = BLOCKS.register("ender_amalgam_bars", () -> new MetalBarsBlock(492385));
 
@@ -1345,6 +1353,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> EVAPORATION_TOWER = BLOCKS.register("evaporation_tower", () -> new EvaporationTowerBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> DIAMOND_ANVIL_CELL = BLOCKS.register("diamond_anvil_cell", () -> new DiamondAnvilCellBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> PARTICLE_ACCELERATOR = BLOCKS.register("particle_accelerator", () -> new ParticleAcceleratorBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
+    public static final RegistryObject<Block> BATTERY_CHARGER = BLOCKS.register("battery_charger", () -> new BatteryChargerBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> FUSION_FURNACE = BLOCKS.register("fusion_furnace", () -> new FusionFurnaceBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> DISTILLATION_TOWER = BLOCKS.register("distillation_tower", () -> new DistillationTowerBlock(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> AIR_DISTILLATION_PACKING = BLOCKS.register("air_distillation_packing", () -> new Block(DEF_METAL_BLOCK));
@@ -1621,6 +1630,12 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:gas_condenser")
     public static BlockEntityType<GasBottlerTile> GAS_CONDENSER_TILE;
+
+    @ObjectHolder("rankine:battery_charger")
+    public static MenuType<BatteryChargerContainer> BATTERY_CHARGER_CONTAINER;
+
+    @ObjectHolder("rankine:battery_charger")
+    public static BlockEntityType<BatteryChargerTile> BATTERY_CHARGER_TILE;
     @ObjectHolder("rankine:gas_vent")
     public static BlockEntityType<GasVentTile> GAS_VENT_TILE;
     @ObjectHolder("rankine:sediment_fan")

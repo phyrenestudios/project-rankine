@@ -5,15 +5,15 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTieredItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.network.chat.Component;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -23,8 +23,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.stream.Collectors;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class PackagedToolItem extends Item {
     public PackagedToolItem(Properties properties) {
@@ -85,14 +83,11 @@ public class PackagedToolItem extends Item {
                 case "BLUNDERBUSS":
                     ret = new ItemStack(RankineItems.ALLOY_BLUNDERBUSS.get());
                     break;
-                case "SURF_ROD":
-                    ret = new ItemStack(RankineItems.ALLOY_SURF_ROD.get());
-                    break;
             }
         } else {
             Random random = worldIn.getRandom();
 
-            switch(random.nextInt(11))
+            switch(random.nextInt(10))
             {
                 case 0:
                     ret = new ItemStack(RankineItems.ALLOY_AXE.get());
@@ -124,9 +119,6 @@ public class PackagedToolItem extends Item {
                     break;
                 case 9:
                     ret = new ItemStack(RankineItems.ALLOY_BLUNDERBUSS.get());
-                    break;
-                case 10:
-                    ret = new ItemStack(RankineItems.ALLOY_SURF_ROD.get());
                     break;
             }
         }

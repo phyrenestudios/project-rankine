@@ -1,55 +1,63 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.TreetappingRecipe;
-import com.google.common.collect.ImmutableList;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.forge.ForgeTypes;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.drawable.IDrawableAnimated;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraftforge.fluids.FluidStack;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRecipe> {
 
     public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "treetapping");
-    private final IDrawable background;
     private final String localizedName;
-    private final IDrawable overlay;
-    private final IDrawable icon;
+    private final IDrawable background;
+    private final IGuiHelper guiHelper;
+
+    private final LoadingCache<Integer, IDrawableAnimated> cachedArrows;
 
     public TreetappingRecipeCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createBlankDrawable(145, 95);
+        this.guiHelper = guiHelper;
         localizedName = I18n.get("rankine.jei.treetapping");
-        overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/treetapping_jei.png"),
-                0, 15, 140, 90);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.TREE_TAP.get()));
+        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/treetapping_jei.png"), 0, 0, 78, 34)
+                .addPadding(1, 0, 1, 0)
+                .build();
+        this.cachedArrows = CacheBuilder.newBuilder()
+                .maximumSize(25)
+                .build(new CacheLoader<>() {
+                    @Override
+                    public IDrawableAnimated load(Integer cookTime) {
+                        return guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/treetapping_jei.png"), 232, 14, 24, 17)
+                                .buildAnimated(cookTime, IDrawableAnimated.StartDirection.LEFT, false);
+                    }
+                });
     }
-
+    @SuppressWarnings("removal")
     @Override
     public ResourceLocation getUid() {
         return UID;
     }
-
+    @SuppressWarnings("removal")
     @Override
     public Class<? extends TreetappingRecipe> getRecipeClass() {
         return TreetappingRecipe.class;
@@ -67,51 +75,43 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
 
     @Override
     public IDrawable getIcon() {
-        return icon;
+        return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(RankineItems.TREE_TAP.get()));
     }
 
+    protected IDrawableAnimated getArrow(TreetappingRecipe recipe) {
+        int cookTime = Math.round(recipe.getTapTime());
+        if (cookTime <= 0) {
+            cookTime = 1600;
+        }
+        return this.cachedArrows.getUnchecked(cookTime);
+    }
     @Override
-    public void draw(TreetappingRecipe recipe, PoseStack ms, double mouseX, double mouseY) {
-        Font font = Minecraft.getInstance().font;
-        //RenderSystem.enableAlphaTest();
-        RenderSystem.enableBlend();
-        overlay.draw(ms, 0, 4);
-        RenderSystem.disableBlend();
-        //RenderSystem.disableAlphaTest();
+    public void draw(TreetappingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
         if (recipe.getTapTime() > 0) {
-            font.draw(ms, Math.round(recipe.getTapTime()/20f)+"s", 107, 55, 0x7E7E7E);
+            Font font = Minecraft.getInstance().font;
+            font.draw(stack, Math.round(recipe.getTapTime()/20f)+"s", 59, 29, 0x7E7E7E);
         }
+        IDrawableAnimated arrow = getArrow(recipe);
+        arrow.draw(stack, 27, 10);
+        IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
     }
 
     @Override
-    public void setIngredients(TreetappingRecipe recipe, IIngredients iIngredients) {
-        ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
-        for (Ingredient i : recipe.getIngredients()) {
-            builder.add(Arrays.asList(i.getItems()));
+    public List<Component> getTooltipStrings(TreetappingRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+        if (mouseX >= 24 && mouseX <= 37 && mouseY >= 20 && mouseY <= 33) {
+            return List.of(new TextComponent("08:00 - 16:00"));
         }
-        iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutput(VanillaTypes.FLUID, recipe.getFilledResult());
+        return IRecipeCategory.super.getTooltipStrings(recipe, recipeSlotsView, mouseX, mouseY);
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, TreetappingRecipe recipe, IIngredients ingredients) {
-        int index = 0, posX = 31;
-        for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
-            recipeLayout.getItemStacks().init(index, true, posX, 34);
-            recipeLayout.getItemStacks().set(index, o);
-            index++;
-            posX += 18;
-        }
+    public void setRecipe(IRecipeLayoutBuilder builder, TreetappingRecipe recipe, IFocusGroup focuses) {
+        builder.addSlot(RecipeIngredientRole.INPUT,2,10).addIngredients(recipe.getIngredient());
+        builder.addSlot(RecipeIngredientRole.CATALYST,23,0).addItemStack(RankineItems.TREE_TAP.get().getDefaultInstance());
+        builder.addSlot(RecipeIngredientRole.OUTPUT,60,10).addIngredient(ForgeTypes.FLUID_STACK,recipe.getFilledResult()).addTooltipCallback(((recipeSlotView, tooltip) -> tooltip
+                .add(new TextComponent(recipe.getResult().getAmount()+"mb"))));
 
-        for (int i = 0; i < ingredients.getOutputs(VanillaTypes.FLUID).size(); i++) {
-            List<FluidStack> stacks = ingredients.getOutputs(VanillaTypes.FLUID).get(i);
-            recipeLayout.getFluidStacks().init(index + i, false, 107, 35);
-            recipeLayout.getFluidStacks().set(index + i, stacks);
-        }
-
-        recipeLayout.getFluidStacks().addTooltipCallback((i, b, stack, list) -> {
-            list.add(new TextComponent(recipe.getResult().getAmount() + "mb"));
-        });
+        IRecipeCategory.super.setRecipe(builder, recipe, focuses);
     }
 }
 

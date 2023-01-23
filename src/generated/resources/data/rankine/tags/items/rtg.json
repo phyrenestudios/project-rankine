@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:strontium_rtg",
+    "rankine:polonium_rtg",
+    "rankine:plutonium_rtg",
+    "rankine:americium_rtg",
+    "rankine:curium_rtg"
+  ]
+}
