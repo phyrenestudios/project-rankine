@@ -22,43 +22,43 @@
       "type": "spotlight",
       "item": "minecraft:water_bucket",
       "link_recipe": true,
-      "text": "Water can be extracted from the varieties of birch."
+      "text": "rankine.journal.cat_constructs.tree_tapping.water"
     },
     {
       "type": "spotlight",
       "item": "minecraft:lava_bucket",
       "link_recipe": true,
-      "text": "Lava can be extracted from the nether trees."
+      "text": "rankine.journal.cat_constructs.tree_tapping.lava"
     },
     {
       "type": "spotlight",
       "item": "rankine:latex_bucket",
       "link_recipe": true,
-      "text": "Latex can be extracted from sharinga trees. Used to make dry rubber in the $(l:materials/evaporation_tower)Evaporation Tower$()."
+      "text": "rankine.journal.cat_constructs.tree_tapping.latex"
     },
     {
       "type": "spotlight",
       "item": "rankine:maple_sap_bucket",
       "link_recipe": true,
-      "text": "Maple sap can be extracted from maple trees. Used to make maple syrup in the $(l:materials/evaporation_tower)Evaporation Tower$()."
+      "text": "rankine.journal.cat_constructs.tree_tapping.maple_sap"
     },
     {
       "type": "spotlight",
       "item": "rankine:juglone_bucket",
       "link_recipe": true,
-      "text": "Juglone can be extracted from black walnut trees. Used to craft herbicide."
+      "text": "rankine.journal.cat_constructs.tree_tapping.juglone"
     },
     {
       "type": "spotlight",
       "item": "rankine:sap_bucket",
       "link_recipe": true,
-      "text": "Sap can be extracted from any other deciduous tree. Used to make sugar in the $(l:materials/evaporation_tower)Evaporation Tower$()."
+      "text": "rankine.journal.cat_constructs.tree_tapping.sap"
     },
     {
       "type": "spotlight",
       "item": "rankine:resin_bucket",
       "link_recipe": true,
-      "text": "Resin can be extracted from any other coniferous tree. Used to make amber in the $(l:materials/evaporation_tower)Evaporation Tower$()."
+      "text": "rankine.journal.cat_constructs.tree_tapping.resin"
     }
   ]
 }

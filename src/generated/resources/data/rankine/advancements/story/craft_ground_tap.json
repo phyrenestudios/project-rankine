@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_cupronickel",
+  "parent": "rankine:story/craft_dowsing_rod",
   "display": {
     "icon": {
       "item": "rankine:ground_tap"

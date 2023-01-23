@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/craft_flint_pickaxe",
+  "parent": "rankine:story/root",
   "display": {
     "icon": {
       "item": "rankine:hardness_tester"

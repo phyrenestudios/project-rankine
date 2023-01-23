@@ -1,6 +1,6 @@
 {
   "name": "rankine.journal.cat_sediments.name",
   "description": "rankine.journal.cat_sediments.desc",
-  "icon": "rankine:loam",
+  "icon": "rankine:alluvium",
   "sortnum": 1
 }

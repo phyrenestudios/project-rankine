@@ -66,7 +66,7 @@ public class CrowbarItem extends DiggerItem {
     }
 
     public boolean canHarvestWithRetrieval(ItemStack stack, BlockState blockIn) {
-        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.RETRIEVAL, stack) >= 1 && !blockIn.is(RankineTags.Blocks.CROWBAR_RESISTANT);
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.RETRIEVAL.get(), stack) >= 1 && !blockIn.is(RankineTags.Blocks.CROWBAR_RESISTANT);
     }
 
     @Override
@@ -123,7 +123,7 @@ public class CrowbarItem extends DiggerItem {
 
 
         }
-        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LIFT,stack) >= 1 && player != null && !player.isOnGround() && face != Direction.UP && face != Direction.DOWN &&
+        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LIFT.get(),stack) >= 1 && player != null && !player.isOnGround() && face != Direction.UP && face != Direction.DOWN &&
                 worldIn.getBlockState(blockpos.above()).isAir() && worldIn.getBlockState(blockpos.above(2)).isAir() ) {
             player.teleportTo(blockpos.getX() + 0.5f,blockpos.getY() + 1,blockpos.getZ() + 0.5f);
             player.getCooldowns().addCooldown(this, 120);

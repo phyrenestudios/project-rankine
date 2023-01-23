@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/meteoric_materials",
+  "parent": "rankine:story/craft_alloy_hammer",
   "display": {
     "icon": {
       "item": "rankine:tourmaline_geode"

@@ -1,15 +1,14 @@
 {
-  "parent": "rankine:story/info_movement",
+  "parent": "rankine:story/craft_ground_tap",
   "display": {
     "icon": {
-      "item": "rankine:sandals",
-      "nbt": "{Damage:0}"
+      "item": "rankine:flood_gate"
     },
     "title": {
-      "translate": "rankine.advancements.story.craft_sandals.title"
+      "translate": "rankine.advancements.story.craft_flood_gate.title"
     },
     "description": {
-      "translate": "rankine.advancements.story.craft_sandals.description"
+      "translate": "rankine.advancements.story.craft_flood_gate.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -17,13 +16,13 @@
     "hidden": false
   },
   "criteria": {
-    "sandals": {
+    "flood_gate": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "rankine:sandals"
+              "rankine:flood_gate"
             ]
           }
         ]
@@ -32,7 +31,7 @@
   },
   "requirements": [
     [
-      "sandals"
+      "flood_gate"
     ]
   ]
 }

@@ -1,39 +1,31 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.entities.CannonballEntity;
 import com.cannolicatfish.rankine.entities.CarcassEntity;
 import com.cannolicatfish.rankine.entities.EnderballEntity;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineTags;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.Vanishable;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import com.cannolicatfish.rankine.entities.CannonballEntity;
-import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
-import net.minecraft.world.entity.projectile.SmallFireball;
-import net.minecraft.stats.Stats;
-import net.minecraft.util.*;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.level.Level;
-
-import java.util.Random;
-import java.util.function.Predicate;
-
-import net.minecraft.world.item.Item.Properties;
-
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ProjectileWeaponItem;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.entity.projectile.SmallFireball;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+
+import java.util.Random;
+import java.util.function.Predicate;
 
 public class BlunderbussItem extends ProjectileWeaponItem implements Vanishable {
     public static final Predicate<ItemStack> CANNONBALLS = (p_220002_0_) -> {
@@ -80,8 +72,8 @@ public class BlunderbussItem extends ProjectileWeaponItem implements Vanishable 
                         playerentity.knockback(1,-vector3d.x,-vector3d.z);
                         Random random = worldIn.getRandom();
                         Vec3 inaccuracy = new Vec3((random.nextInt(20)-10)/100f,(random.nextInt(20) - 10)/100f,(random.nextInt(20) - 10)/100f);
-                        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ACCURACY,stack) > 0) {
-                            inaccuracy = inaccuracy.scale(1 - 0.33*EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ACCURACY,stack));
+                        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ACCURACY.get(),stack) > 0) {
+                            inaccuracy = inaccuracy.scale(1 - 0.33*EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ACCURACY.get(),stack));
                         }
                         double d2 = playerentity.getX() - (playerentity.getX() + vector3d.x) + inaccuracy.x;
                         double d3 = playerentity.getY(0.5D) - (playerentity.getY(0.5D) + vector3d.y) + inaccuracy.y;
@@ -89,7 +81,7 @@ public class BlunderbussItem extends ProjectileWeaponItem implements Vanishable 
 
                         AbstractHurtingProjectile cannonball;
                         if (itemstack.getItem() == RankineItems.CANNONBALL.get()) {
-                            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDPLAY,stack) > 0) {
+                            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDPLAY.get(),stack) > 0) {
                                 cannonball = new EnderballEntity(worldIn, playerentity,-d2*2, -d3*2, -d4*2);
                             } else {
                                 cannonball = new CannonballEntity(worldIn, playerentity,-d2, -d3, -d4);

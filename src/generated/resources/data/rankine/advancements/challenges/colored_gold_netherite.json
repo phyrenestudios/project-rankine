@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/bronze_harvest",
+  "parent": "rankine:story/craft_induction_furnace",
   "display": {
     "icon": {
       "item": "rankine:purple_gold_hammer",

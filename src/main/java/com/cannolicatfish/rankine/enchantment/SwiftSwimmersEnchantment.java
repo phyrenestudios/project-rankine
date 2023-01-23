@@ -7,8 +7,8 @@ import net.minecraft.world.item.ItemStack;
 
 import net.minecraft.world.item.enchantment.Enchantment.Rarity;
 
-public class FlippersEnchantment extends Enchantment {
-    public FlippersEnchantment(Rarity rarityIn, EquipmentSlot... slots) {
+public class SwiftSwimmersEnchantment extends Enchantment {
+    public SwiftSwimmersEnchantment(Rarity rarityIn, EquipmentSlot... slots) {
         super(rarityIn, EnchantmentCategory.ARMOR_FEET, slots);
     }
     /**

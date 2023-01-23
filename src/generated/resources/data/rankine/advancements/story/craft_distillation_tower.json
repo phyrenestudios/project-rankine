@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/craft_induction_furnace",
+  "parent": "rankine:story/craft_shulker_gas_vacuum",
   "display": {
     "icon": {
       "item": "rankine:distillation_tower"

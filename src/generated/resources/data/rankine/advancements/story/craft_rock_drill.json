@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_cast_iron",
+  "parent": "rankine:story/craft_prospecting_stick",
   "display": {
     "icon": {
       "item": "rankine:rock_drill",

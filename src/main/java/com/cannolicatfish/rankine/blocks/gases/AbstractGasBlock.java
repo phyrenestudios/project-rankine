@@ -19,7 +19,10 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.AirBlock;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -29,7 +32,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public abstract class AbstractGasBlock extends AirBlock implements PitchModulating {
@@ -155,7 +157,7 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
             LivingEntity ent = (LivingEntity) entityIn;
             boolean undead = ent.isInvertedHealAndHarm() && Config.GASES.GAS_AFFECT_UNDEAD.get();
             boolean creative = (ent instanceof Player && ((Player) ent).isCreative());
-            boolean gasMask = ent.getItemBySlot(EquipmentSlot.HEAD).getItem() == RankineItems.GAS_MASK.get() || EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.GAS_PROTECTION,ent.getItemBySlot(EquipmentSlot.HEAD)) > 0;
+            boolean gasMask = ent.getItemBySlot(EquipmentSlot.HEAD).getItem() == RankineItems.GAS_MASK.get() || EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.GAS_PROTECTION.get(),ent.getItemBySlot(EquipmentSlot.HEAD)) > 0;
             if (!creative) {
                 if (this.isSuffocating() && !gasMask) {
                     ent.setAirSupply(Math.max(ent.getAirSupply() - 3,0));

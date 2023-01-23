@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/craft_electromagnet",
+  "parent": "rankine:story/make_steel",
   "display": {
     "icon": {
       "item": "rankine:induction_furnace"

@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/craft_magnet",
+  "parent": "rankine:story/craft_battery",
   "display": {
     "icon": {
       "item": "rankine:alnico_electromagnet"

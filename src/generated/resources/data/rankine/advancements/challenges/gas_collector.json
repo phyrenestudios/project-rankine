@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/alloy_collector",
+  "parent": "rankine:story/craft_distillation_tower",
   "display": {
     "icon": {
       "item": "rankine:hydrogen_sulfide_gas_bottle"

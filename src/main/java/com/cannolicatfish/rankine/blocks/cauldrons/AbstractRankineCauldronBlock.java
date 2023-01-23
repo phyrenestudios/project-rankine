@@ -99,11 +99,10 @@ public abstract class AbstractRankineCauldronBlock extends Block {
     @Override
     public InteractionResult use(BlockState p_151969_, Level levelIn, BlockPos pos, Player playerIn, InteractionHand handIn, BlockHitResult p_151974_) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
-
-        if (itemstack.is(Items.BUCKET)) {
-            return fillBottle(levelIn, pos, playerIn, handIn, itemstack, new ItemStack(getBottle()), SoundEvents.BUCKET_FILL);
-        } else if (itemstack.is(Items.GLASS_BOTTLE)) {
+        if (itemstack.is(Items.GLASS_BOTTLE) && p_151969_.is(RankineBlocks.MAPLE_SYRUP_CAULDRON.get())) {
             return fillBottle(levelIn, pos, playerIn, handIn, itemstack, new ItemStack(getBottle()), SoundEvents.BOTTLE_FILL);
+        } else if (itemstack.is(Items.BUCKET) && !p_151969_.is(RankineBlocks.MAPLE_SYRUP_CAULDRON.get())) {
+            return fillBottle(levelIn, pos, playerIn, handIn, itemstack, new ItemStack(getBottle()), SoundEvents.BUCKET_FILL);
         } else {
             return InteractionResult.PASS;
         }
@@ -111,25 +110,24 @@ public abstract class AbstractRankineCauldronBlock extends Block {
 
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, Level levelIn, BlockPos posIn, Random rand) {
-        if (isHeated(levelIn, posIn)) {
-            double d0 = (double) posIn.getX() + 0.5D;
-            double d1 = (double) posIn.getY() + 0.95D;
-            double d2 = (double) posIn.getZ() + 0.5D;
-            if (rand.nextDouble() < 0.1D) {
-                levelIn.playLocalSound(d0, d1, d2, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
-            }
-            double d4 = rand.nextDouble() * 0.6D - 0.3D;
-            double d5 = rand.nextDouble() * 0.6D - 0.3D;
-            double d6 = rand.nextDouble() * 6.0D / 16.0D;
-            if (rand.nextDouble() < 0.05D) {
-                levelIn.addParticle(ParticleTypes.SMOKE, d0 + d4, d1, d2 + d5, 0.0D, 5.0E-4D, 0.0D);
-            }
-            if (rand.nextDouble() < 0.2D) {
-                levelIn.addParticle(ParticleTypes.BUBBLE, d0 + d4, d1, d2 + d5, 0.0D, 5.0E-4D, 0.0D);
-            }
-            if (rand.nextDouble() < 0.2D) {
-                levelIn.addParticle(ParticleTypes.BUBBLE_POP, d0 + d4, d1, d2 + d5, 0.0D, 5.0E-4D, 0.0D);
-            }
+        if (!isHeated(levelIn, posIn)) return;
+        double d0 = (double) posIn.getX() + 0.5D;
+        double d1 = (double) posIn.getY() + 0.95D;
+        double d2 = (double) posIn.getZ() + 0.5D;
+        if (rand.nextDouble() < 0.1D) {
+            levelIn.playLocalSound(d0, d1, d2, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+        }
+        double d4 = rand.nextDouble() * 0.6D - 0.3D;
+        double d5 = rand.nextDouble() * 0.6D - 0.3D;
+        double d6 = rand.nextDouble() * 6.0D / 16.0D;
+        if (rand.nextDouble() < 0.05D) {
+            levelIn.addParticle(ParticleTypes.SMOKE, d0 + d4, d1, d2 + d5, 0.0D, 5.0E-4D, 0.0D);
+        }
+        if (rand.nextDouble() < 0.2D) {
+            levelIn.addParticle(ParticleTypes.BUBBLE, d0 + d4, d1, d2 + d5, 0.0D, 5.0E-4D, 0.0D);
+        }
+        if (rand.nextDouble() < 0.2D) {
+            levelIn.addParticle(ParticleTypes.BUBBLE_POP, d0 + d4, d1, d2 + d5, 0.0D, 5.0E-4D, 0.0D);
         }
     }
 

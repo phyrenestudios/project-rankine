@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_magnesia",
+  "parent": "rankine:story/craft_beehive_oven_pit",
   "display": {
     "icon": {
       "item": "rankine:high_refractory_bricks"

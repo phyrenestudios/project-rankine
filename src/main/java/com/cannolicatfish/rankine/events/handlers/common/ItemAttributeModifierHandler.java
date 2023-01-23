@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine.events.handlers.common;
 import com.cannolicatfish.rankine.init.RankineAttributes;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.AlloyArmorItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
@@ -68,16 +67,16 @@ public class ItemAttributeModifierHandler {
                     AttributeModifier.Operation.ADDITION));
         }
         if ((stack.getItem() instanceof HammerItem)) {
-            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.SWING,stack) > 0 && event.getSlotType() == EquipmentSlot.MAINHAND) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.SWING.get(),stack) > 0 && event.getSlotType() == EquipmentSlot.MAINHAND) {
                 event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc3"), "Rankine Swing modifier",
-                        0.5D * EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.SWING,stack),
+                        0.5D * EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.SWING.get(),stack),
                         AttributeModifier.Operation.ADDITION));
             }
         }
 
-        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ANTIQUATED,stack) > 0 && (event.getSlotType() == EquipmentSlot.MAINHAND || event.getSlotType() == EquipmentSlot.OFFHAND)) {
+        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ANTIQUATED.get(),stack) > 0 && (event.getSlotType() == EquipmentSlot.MAINHAND || event.getSlotType() == EquipmentSlot.OFFHAND)) {
             event.addModifier(Attributes.LUCK, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fd1"), "Rankine Antiquated modifier",
-                    EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ANTIQUATED,stack),
+                    EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ANTIQUATED.get(),stack),
                     AttributeModifier.Operation.ADDITION));
         }
         if ((stack.getItem() instanceof CrowbarItem || stack.getItem().equals(RankineItems.BUILDING_TOOL.get())) && (event.getSlotType() == EquipmentSlot.MAINHAND || event.getSlotType() == EquipmentSlot.OFFHAND)) {

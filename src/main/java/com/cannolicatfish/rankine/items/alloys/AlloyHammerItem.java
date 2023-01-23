@@ -114,7 +114,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
 
                         if (!creativeFlag) {
                             List<ItemStack> results;
-                            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ATOMIZE,stack) > 0) {
+                            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ATOMIZE.get(),stack) > 0) {
                                 Tuple<List<ItemStack>,Integer> atomizeResults = recipe.getAtomizeResults(getAlloyTier(stack), worldIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(getAlloyTier(stack))  + 1 + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE,stack));
                                 results = atomizeResults.getA();
                                 for (int i = 0; i < atomizeResults.getB(); i++) {

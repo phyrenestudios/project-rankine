@@ -78,8 +78,8 @@ public class BreakSpeedHandler {
             event.setNewSpeed(event.getNewSpeed() + 3);
         }
 
-        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.QUAKE,event.getPlayer().getMainHandItem()) > 0) {
-            int enchant = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.QUAKE,event.getPlayer().getMainHandItem());
+        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.QUAKE.get(),event.getPlayer().getMainHandItem()) > 0) {
+            int enchant = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.QUAKE.get(),event.getPlayer().getMainHandItem());
             int height = event.getPos().getY();
 
             float maxPercent = .40f + (enchant - 1) * .10f;

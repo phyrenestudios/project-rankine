@@ -2,6 +2,8 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -55,6 +57,7 @@ public class HeatingElementBlock extends DirectionalBlock {
                     levelIn.setBlockAndUpdate(b, MeltMap.get(blk).defaultBlockState());
                 }
             }
+            levelIn.playSound(null, posIn, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 0.8f, 1.0f);
         }
         super.neighborChanged(p_60509_, levelIn, posIn, p_60512_, p_60513_, p_60514_);
     }

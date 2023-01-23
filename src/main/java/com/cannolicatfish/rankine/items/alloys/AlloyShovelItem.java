@@ -2,40 +2,41 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import com.google.common.collect.*;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.util.*;
+import com.google.common.collect.Sets;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nullable;
-import java.util.*;
-
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.TierSortingRegistry;
+
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.CLAY, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.FARMLAND, Blocks.GRASS_BLOCK, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.RED_SAND, Blocks.SNOW_BLOCK, Blocks.SNOW, Blocks.SOUL_SAND, Blocks.DIRT_PATH, Blocks.WHITE_CONCRETE_POWDER, Blocks.ORANGE_CONCRETE_POWDER, Blocks.MAGENTA_CONCRETE_POWDER, Blocks.LIGHT_BLUE_CONCRETE_POWDER, Blocks.YELLOW_CONCRETE_POWDER, Blocks.LIME_CONCRETE_POWDER, Blocks.PINK_CONCRETE_POWDER, Blocks.GRAY_CONCRETE_POWDER, Blocks.LIGHT_GRAY_CONCRETE_POWDER, Blocks.CYAN_CONCRETE_POWDER, Blocks.PURPLE_CONCRETE_POWDER, Blocks.BLUE_CONCRETE_POWDER, Blocks.BROWN_CONCRETE_POWDER, Blocks.GREEN_CONCRETE_POWDER, Blocks.RED_CONCRETE_POWDER, Blocks.BLACK_CONCRETE_POWDER, Blocks.SOUL_SOIL);
@@ -85,7 +86,7 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
         Direction e = context.getClickedFace();
         Player playerentity = context.getPlayer();
         if (e == Direction.DOWN) {
-            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOLITHIC,context.getItemInHand()) > 0 && blockstate.getMaterial().equals(Material.STONE) && playerentity != null) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOLITHIC.get(),context.getItemInHand()) > 0 && blockstate.getMaterial().equals(Material.STONE) && playerentity != null) {
                 for (int x = 2; x <= 32; x++) {
                     BlockPos newPos = blockpos.above(x);
                     if (world.getBlockState(newPos).isAir() && world.getBlockState(newPos.above(1)).isAir() && world.getBlockState(newPos.below(1)).canOcclude()){
@@ -114,7 +115,7 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
 
                 CampfireBlock.dowse(playerentity,world, blockpos, blockstate);
                 blockstate2 = blockstate.setValue(CampfireBlock.LIT, Boolean.FALSE);
-            } else if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOLITHIC,context.getItemInHand()) > 0 && blockstate.getMaterial().equals(Material.STONE) && playerentity != null) {
+            } else if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOLITHIC.get(),context.getItemInHand()) > 0 && blockstate.getMaterial().equals(Material.STONE) && playerentity != null) {
                 for (int x = 2; x <= 32; x++) {
                     BlockPos newPos = blockpos;
                     switch (e.getOpposite()) {

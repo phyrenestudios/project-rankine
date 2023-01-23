@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/bronze_harvest",
+  "parent": "rankine:story/craft_material_testing_table",
   "display": {
     "icon": {
       "item": "rankine:pewter_sword",

@@ -1,14 +1,15 @@
 {
-  "parent": "rankine:story/get_meteoric_iron",
+  "parent": "rankine:story/craft_battery",
   "display": {
     "icon": {
-      "item": "rankine:lonsdaleite_diamond"
+      "item": "rankine:curium_rtg",
+      "nbt": "{Damage:0}"
     },
     "title": {
-      "translate": "rankine.advancements.challenges.meteoric_materials.title"
+      "translate": "rankine.advancements.challenges.radioactive.title"
     },
     "description": {
-      "translate": "rankine.advancements.challenges.meteoric_materials.description"
+      "translate": "rankine.advancements.challenges.radioactive.description"
     },
     "frame": "challenge",
     "show_toast": true,
@@ -19,61 +20,61 @@
     "experience": 300
   },
   "criteria": {
-    "kamacite_ore": {
+    "curium_rtg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "rankine:kamacite_ore"
+              "rankine:curium_rtg"
             ]
           }
         ]
       }
     },
-    "antitaenite_ore": {
+    "strontium_rtg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "rankine:antitaenite_ore"
+              "rankine:strontium_rtg"
             ]
           }
         ]
       }
     },
-    "taenite_ore": {
+    "polonium_rtg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "rankine:taenite_ore"
+              "rankine:polonium_rtg"
             ]
           }
         ]
       }
     },
-    "tetrataenite_ore": {
+    "plutonium_rtg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "rankine:tetrataenite_ore"
+              "rankine:plutonium_rtg"
             ]
           }
         ]
       }
     },
-    "lonsdaleite_ore": {
+    "americium_rtg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "rankine:lonsdaleite_ore"
+              "rankine:americium_rtg"
             ]
           }
         ]
@@ -82,19 +83,19 @@
   },
   "requirements": [
     [
-      "kamacite_ore"
+      "curium_rtg"
     ],
     [
-      "antitaenite_ore"
+      "strontium_rtg"
     ],
     [
-      "taenite_ore"
+      "polonium_rtg"
     ],
     [
-      "tetrataenite_ore"
+      "plutonium_rtg"
     ],
     [
-      "lonsdaleite_ore"
+      "americium_rtg"
     ]
   ]
 }

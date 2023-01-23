@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
-import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyPickaxeItem;
@@ -8,7 +7,6 @@ import com.cannolicatfish.rankine.items.alloys.AlloyShovelItem;
 import com.cannolicatfish.rankine.recipe.ForagingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BiomeTags;
@@ -102,7 +100,7 @@ public class BlockBreakHandler {
                         if (Config.GENERAL.STUMP_CREATION.get() && (levelIn.getBlockState(b.below()).getMaterial().equals(Material.DIRT) || levelIn.getBlockState(b.below()).getMaterial().equals(Material.SAND))) {
                             levelIn.setBlock(b, RankineBlocks.STUMP.get().defaultBlockState(),3);
                         } else {
-                            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTHERMIC,player.getMainHandItem()) > 0) {
+                            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTHERMIC.get(),player.getMainHandItem()) > 0) {
                                 Block.popResource(levelIn,b,new ItemStack(Items.CHARCOAL, CharcoalPitTile.logLayerCount(levelIn,levelIn.getBlockState(b))));
                                 levelIn.destroyBlock(b,false);
                             } else {
@@ -136,14 +134,14 @@ public class BlockBreakHandler {
 
             //Foraging
             if (mainHandItem.getItem() instanceof AlloyShovelItem || mainHandItem.getItem().equals(RankineItems.FLINT_SHOVEL.get()) && !(EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, mainHandItem) > 0)) {
-                ItemStack itemStack = ForagingRecipe.getForagingResult(levelIn, levelIn.getBiome(pos).value().getRegistryName(), targetBlockState, EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.FORAGING, mainHandItem) > 0);
+                ItemStack itemStack = ForagingRecipe.getForagingResult(levelIn, levelIn.getBiome(pos).value().getRegistryName(), targetBlockState, EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.FORAGING.get(), mainHandItem) > 0);
                 if (!itemStack.isEmpty()) {
                     Block.popResource(levelIn, pos, itemStack);
                     levelIn.destroyBlock(pos, false);
                 }
             }
 
-            if (ForgeRegistries.BLOCKS.tags().getTag(BlockTags.LOGS_THAT_BURN).contains(targetBlock) && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTHERMIC,player.getMainHandItem()) > 0 && !levelIn.isClientSide) {
+            if (ForgeRegistries.BLOCKS.tags().getTag(BlockTags.LOGS_THAT_BURN).contains(targetBlock) && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTHERMIC.get(),player.getMainHandItem()) > 0 && !levelIn.isClientSide) {
                 levelIn.removeBlock(pos,false);
                 Block.popResource(levelIn,pos,new ItemStack(Items.CHARCOAL, CharcoalPitTile.logLayerCount(levelIn,levelIn.getBlockState(pos))));
                 player.getMainHandItem().hurtAndBreak(1, player, (p_220038_0_) -> {

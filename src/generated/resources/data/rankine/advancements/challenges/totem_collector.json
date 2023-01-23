@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/root",
+  "parent": "rankine:challenges/alloy_collector",
   "display": {
     "icon": {
       "item": "rankine:totem_of_hastening"

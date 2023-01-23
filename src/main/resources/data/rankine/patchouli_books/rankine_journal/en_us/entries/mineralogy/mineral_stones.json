@@ -18,6 +18,24 @@
       "item": "rankine:sylvinite",
       "link_recipe": true,
       "text": "rankine.journal.cat_mineralogy.mineral_stones.sylvinite"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:banded_iron_formation",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_stones.banded_iron_formation"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:ironstone",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_stones.ironstone"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bog_iron",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_mineralogy.mineral_stones.bog_iron"
     }
   ]
 }

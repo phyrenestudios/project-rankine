@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/soil_collector",
+  "parent": "rankine:story/craft_flint_pickaxe",
   "display": {
     "icon": {
       "item": "rankine:black_dacite"

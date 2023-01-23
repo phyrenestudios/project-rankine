@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/root",
+  "parent": "rankine:story/craft_material_testing_table",
   "display": {
     "icon": {
       "item": "rankine:bronze_pickaxe",

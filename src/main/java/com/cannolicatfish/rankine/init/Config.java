@@ -593,9 +593,9 @@ public class Config {
         public final ForgeConfigSpec.IntValue NETHERRACK_LAYER_THICKNESS;
         public final ForgeConfigSpec.IntValue SOUL_SANDSTONE_LAYER_THICKNESS;
 
-        public final ForgeConfigSpec.BooleanValue COLUMN_GEN;
-        public final ForgeConfigSpec.DoubleValue COLUMN_CHANCE;
-        public final ForgeConfigSpec.DoubleValue COLUMN_FREQUENCY;
+        //public final ForgeConfigSpec.BooleanValue COLUMN_GEN;
+        //public final ForgeConfigSpec.DoubleValue COLUMN_CHANCE;
+        //public final ForgeConfigSpec.DoubleValue COLUMN_FREQUENCY;
         public final ForgeConfigSpec.IntValue LAYER_GEN;
         public final ForgeConfigSpec.DoubleValue LAYER_BEND;
         public final ForgeConfigSpec.IntValue LAYER_THICKNESS;
@@ -680,6 +680,7 @@ public class Config {
             //        .defineInRange("noiseOffset", 0, 0, Integer.MAX_VALUE);
             b.pop();
 
+            /*
             b.comment("Settings for stone columns").push("columns");
             COLUMN_GEN = b.comment("Enables the generation of stone columns.")
                     .define("generateColumns",true);
@@ -688,6 +689,8 @@ public class Config {
             COLUMN_FREQUENCY = b.comment("The chance for columns to generate as full columns instead of stalactites.")
                     .defineInRange("columnFrequency", 0.1D, 0.0D, 1.0D);
             b.pop();
+
+             */
 
             b.comment("Settings for intrusions").push("intrusions");
             INTRUSION_GEN = b.comment("Enables the generation of intrusions.")

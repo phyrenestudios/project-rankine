@@ -13,19 +13,20 @@
       "item2": "rankine:hydrogen_chloride_fumarole",
       "item3": "rankine:hydrogen_sulfide_fumarole",
       "item4": "rankine:sulfur_dioxide_fumarole",
-      "text": "rankine.journal.cat_mineralogy.fumaroles.text2"
+      "heading": "rankine.journal.cat_mineralogy.fumaroles.text2",
+      "text": "rankine.journal.cat_mineralogy.fumaroles.text3"
     },
     {
       "type": "spotlight",
       "item": "rankine:fumarole_deposit",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.fumaroles.text3"
+      "text": "rankine.journal.cat_mineralogy.fumaroles.text4"
     },
     {
       "type": "spotlight",
       "item": "rankine:gwihabaite",
       "link_recipe": true,
-      "text": "rankine.journal.cat_mineralogy.fumaroles.text4"
+      "text": "rankine.journal.cat_mineralogy.fumaroles.text5"
     }
   ]
 }

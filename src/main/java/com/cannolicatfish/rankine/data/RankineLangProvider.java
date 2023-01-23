@@ -502,16 +502,15 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.VANADIUM_REDOX_BATTERY.get(),
             RankineItems.ZINC_BROMINE_BATTERY.get(),
             RankineItems.SODIUM_SULFUR_BATTERY.get(),
-            RankineItems.LITHIUM_ION_BATTERY.get(),
-            RankineItems.AMERICIUM_RTG.get(),
-            RankineItems.CURIUM_RTG.get(),
-            RankineItems.PLUTONIUM_RTG.get(),
-            RankineItems.POLONIUM_RTG.get(),
-            RankineItems.STRONTIUM_RTG.get())) {
+            RankineItems.LITHIUM_ION_BATTERY.get())) {
             add(item, parseLangName(item.getRegistryName().getPath()));
         }
 
-
+        add(RankineItems.AMERICIUM_RTG.get(), "Americium RTG");
+        add(RankineItems.POLONIUM_RTG.get(), "Polonium RTG");
+        add(RankineItems.CURIUM_RTG.get(), "Curium RTG");
+        add(RankineItems.PLUTONIUM_RTG.get(), "Plutonium RTG");
+        add(RankineItems.STRONTIUM_RTG.get(), "Strontium RTG");
 
 
         add("item.rankine.packaged_tool_desc","Contains a completely random tool. Results may vary.");
@@ -662,8 +661,10 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.snow_drifter.desc", "Increases movement speed on snow.");
         add("enchantment.rankine.speed_skater", "Speed Skater");
         add("enchantment.rankine.speed_skater.desc", "Increases movement speed on ice.");
-        add("enchantment.rankine.flippers", "Swift Swimmer");
-        add("enchantment.rankine.flippers.desc", "Increases swim speed.");
+        add("enchantment.rankine.swift_swimmer", "Swift Swimmer");
+        add("enchantment.rankine.swift_swimmer.desc", "Increases swim speed.");
+        add("enchantment.rankine.aqua_lense", "Aqua Lense");
+        add("enchantment.rankine.aqua_lense.desc", "Improves visibility under water.");
         add("enchantment.rankine.guard", "Guard");
         add("enchantment.rankine.guard.desc", "Generates passive protection hearts over time.");
         add("enchantment.rankine.gas_protection", "Gas Protection");
@@ -702,8 +703,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.endplay.desc", "Regular cannonballs are converted into Enderballs, which has a higher projectile speed and can spawn endermites that attack nearby mobs.");
         add("enchantment.rankine.withering_curse", "Curse of Withering");
         add("enchantment.rankine.withering_curse.desc", "Taking damage (that isn't wither or magic related) causes you to receive the Wither effect for a short duration.");
-        add("enchantment.rankine.ghast_regeneration", "Ghastly Regeneration");
-        add("enchantment.rankine.ghast_regeneration.desc", "Regeneration potions restore durability.");
+        add("enchantment.rankine.ghastly_regeneration", "Ghastly Regeneration");
+        add("enchantment.rankine.ghastly_regeneration.desc", "Regeneration potion effect restore durability.");
         add("enchantment.rankine.prying", "Prying");
         add("enchantment.rankine.prying.desc", "On hit); has a chance to cause the target to drop their held item. Chance is determined by rarity of the item.");
         add("enchantment.rankine.retrieval", "Retrieval");
@@ -887,21 +888,21 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.support.title", "We support Patchouli and JEI!");
         add("rankine.advancements.story.support.description", "Be sure to download these mods if you want more information!");
         add("rankine.advancements.story.get_flint.title", "Flintstones");
-        add("rankine.advancements.story.get_flint.description", "Obtain flint from any source, now including rocks when using lower-tier tools");
+        add("rankine.advancements.story.get_flint.description", "Obtain flint from any source. Including from stones when mined using lower-tier tools");
         add("rankine.advancements.story.craft_rope.title", "Knot Likely");
         add("rankine.advancements.story.craft_rope.description", "Gather rope by obtaining a flint knife and harvesting grass");
         add("rankine.advancements.story.craft_dowsing_rod.title", "Random Guess");
-        add("rankine.advancements.story.craft_dowsing_rod.description", "Make a Dowsing Rod to detect the water level of the area");
+        add("rankine.advancements.story.craft_dowsing_rod.description", "Use a Dowsing Rod to detect the water level of the area. Infinite water sources only work below this height");
         add("rankine.advancements.story.craft_wooden_hammer.title", "Time to Swing");
         add("rankine.advancements.story.craft_wooden_hammer.description", "Make a Wooden Mallet to start swinging in rhythm at rocks and other materials");
-        add("rankine.advancements.story.craft_stone_hammer.title", "Stone to crush Stone");
-        add("rankine.advancements.story.craft_stone_hammer.description", "Construct a stronger mallet");
+        add("rankine.advancements.story.craft_stone_hammer.title", "Stone Smash Stone");
+        add("rankine.advancements.story.craft_stone_hammer.description", "Constructing a stronger mallet drops more resources from crushed blocks");
+        add("rankine.advancements.story.craft_alloy_hammer.title", "Dust to Dust Again");
+        add("rankine.advancements.story.craft_alloy_hammer.description", "Make a hammer with a harvest level of 2 or greater (alloys required) to crack open those tougher materials");
         add("rankine.advancements.story.get_cobblestone.title", "Cobble Cobble");
-        add("rankine.advancements.story.get_cobblestone.description", "Obtain cobblestone from crushing using a mallet or hammer");
+        add("rankine.advancements.story.get_cobblestone.description", "Obtain cobblestone from crushing stones using a hammer");
         add("rankine.advancements.story.craft_mixing_barrel.title", "Mix it Up");
         add("rankine.advancements.story.craft_mixing_barrel.description", "Make a mixing barrel to start mixing materials with redstone signals");
-        add("rankine.advancements.story.craft_fire_extinguisher.title", "Only You Can Prevent Fires");
-        add("rankine.advancements.story.craft_fire_extinguisher.description", "Make a fire extinguisher to stop fires in their tracks");
         add("rankine.advancements.story.craft_rock_drill.title", "Rock Sample");
         add("rankine.advancements.story.craft_rock_drill.description", "Make a rock drill to detect rock layers");
         add("rankine.advancements.story.craft_prospecting_stick.title", "Help Wanted");
@@ -923,9 +924,11 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_refractory_bricks.title", "Another Brick in the Wall");
         add("rankine.advancements.story.craft_refractory_bricks.description", "Make Refractory Brick by finding clay and using mortar");
         add("rankine.advancements.story.craft_high_refractory_bricks.title", "Another Other Brick in the Wall");
-        add("rankine.advancements.story.craft_high_refractory_bricks.description", "Make High Refractory Bricks to upgrade");
+        add("rankine.advancements.story.craft_high_refractory_bricks.description", "Make High Refractory Bricks for crafting purposes or to upgrade the beehive oven");
+        add("rankine.advancements.story.craft_ultra_high_refractory_bricks.title", "Another Another Another");
+        add("rankine.advancements.story.craft_ultra_high_refractory_bricks.description", "Make Ultra High Refractory Bricks for crafting purposes or to upgrade the beehive oven");
         add("rankine.advancements.story.craft_alloy_furnace.title", "Combined Strength");
-        add("rankine.advancements.story.craft_alloy_furnace.description", "Make an Alloy Furnace by using sheetmetal and refractory bricks");
+        add("rankine.advancements.story.craft_alloy_furnace.description", "Make an Alloy Furnace to begin forging new metals");
         add("rankine.advancements.story.craft_material_testing_table.title", "Knowledge of Strength");
         add("rankine.advancements.story.craft_material_testing_table.description", "Make a Material Testing Table to begin examining properties of elements and alloys");
         add("rankine.advancements.story.craft_blast_furnace.title", "Blast from the Past");
@@ -934,16 +937,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_beehive_oven_pit.description", "Build a beehive oven pit");
         add("rankine.advancements.story.craft_template_table.title", "The Plan");
         add("rankine.advancements.story.craft_template_table.description", "Make an Alloy Template Table to automate the creation of alloys");
-        add("rankine.advancements.story.make_magnesia.title", "Take the Heat");
-        add("rankine.advancements.story.make_magnesia.description", "Make magnesia from cooking a magnesite block with the beehive oven");
         add("rankine.advancements.story.make_coke.title", "I cant believe it's not Coal!");
-        add("rankine.advancements.story.make_coke.description", "Use a beehive oven to produce coke from bituminous and sub-bituminous coal blocks");
-        add("rankine.advancements.story.make_cast_iron.title", "Cast in Iron");
-        add("rankine.advancements.story.make_cast_iron.description", "Alloy iron into Cast Iron");
-        add("rankine.advancements.story.make_cupronickel.title", "");
-        add("rankine.advancements.story.make_cupronickel.description", "");
-        add("rankine.advancements.story.make_quicklime.title", "Limecraft");
-        add("rankine.advancements.story.make_quicklime.description", "Produce quicklime from combusting limestone with the beehive oven");
+        add("rankine.advancements.story.make_coke.description", "Produce coke from bituminous and sub-bituminous coal blocks");
         add("rankine.advancements.story.craft_crucible.title", "Refractory Factory");
         add("rankine.advancements.story.craft_crucible.description", "Construct a crucible to form steel");
         add("rankine.advancements.story.make_steel.title", "Steel Yourself");
@@ -953,23 +948,19 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.make_redstone.title", "Redstoned");
         add("rankine.advancements.story.make_redstone.description", "Make additional Redstone from cinnabar and components in the crucible");
         add("rankine.advancements.story.craft_brigandine_armor.title", "Plate Up");
-        add("rankine.advancements.story.craft_brigandine_armor.description", "Make a full set of Brigandine Armor");
+        add("rankine.advancements.story.craft_brigandine_armor.description", "Smith together a full set of Brigandine Armor");
         add("rankine.advancements.story.craft_diving_armor.title", "Deeper Waters");
         add("rankine.advancements.story.craft_diving_armor.description", "Make a full set of Diving Armor");
         add("rankine.advancements.story.craft_conduit_diving_armor.title", "Into the Abyss");
         add("rankine.advancements.story.craft_conduit_diving_armor.description", "Make a full set of Conduit Diving Armor");
-        add("rankine.advancements.story.craft_gas_mask.title", "Breathing In");
+        add("rankine.advancements.story.craft_gas_mask.title", "Breathing in the Chemicals");
         add("rankine.advancements.story.craft_gas_mask.description", "Make a gas mask to protect against hazardous gases");
         add("rankine.advancements.story.craft_shulker_gas_vacuum.title", "Vacuum Sealed");
         add("rankine.advancements.story.craft_shulker_gas_vacuum.description", "Make a shulker gas vacuum to transport gases");
         add("rankine.advancements.story.craft_evaporation_tower.title", "Water Extraction");
         add("rankine.advancements.story.craft_evaporation_tower.description", "Construct an Evaporation Tower to generate resources from water in different biomes");
-        add("rankine.advancements.story.craft_piston_crusher.title", "Automatic Labor");
-        add("rankine.advancements.story.craft_piston_crusher.description", "Make a piston crusher to automate crushing");
-        add("rankine.advancements.story.craft_power_cell.title", "Fully Charged");
-        add("rankine.advancements.story.craft_power_cell.description", "Make any power cell for use in advanced machines");
-        add("rankine.advancements.story.craft_electromagnet.title", "Moving Metals");
-        add("rankine.advancements.story.craft_electromagnet.description", "Make any type of Electromagnet Block");
+        add("rankine.advancements.story.craft_electromagnet.title", "The Magnetic Force");
+        add("rankine.advancements.story.craft_electromagnet.description", "Make any tier of Electromagnet to push and pull blocks with the magnetic force");
         add("rankine.advancements.story.craft_saddle_tree.title", "A Horse");
         add("rankine.advancements.story.craft_saddle_tree.description", "Craft a saddle tree to make horse-related equipment");
         add("rankine.advancements.story.craft_fusion_furnace.title", "Complex Systems");
@@ -977,7 +968,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.get_mercury.title", "Amalgamation");
         add("rankine.advancements.story.get_mercury.description", "Obtain mercury to make Amalgam alloys");
         add("rankine.advancements.story.craft_distillation_tower.title", "Atmospheric Composition");
-        add("rankine.advancements.story.craft_distillation_tower.description", "Make a Distillation Tower to obtain gases from the air");
+        add("rankine.advancements.story.craft_distillation_tower.description", "Construct a Distillation Tower to obtain gases from the air");
         add("rankine.advancements.story.craft_induction_furnace.title", "Heating Up");
         add("rankine.advancements.story.craft_induction_furnace.description", "Make an Induction Furnace for more advanced alloys");
         add("rankine.advancements.story.craft_sediment_fan.title", "Spin Cycle");
@@ -987,63 +978,39 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_tree_tap.title", "Flowing Phloem");
         add("rankine.advancements.story.craft_tree_tap.description", "Make a tree tap to begin extracting liquids from trees");
         add("rankine.advancements.story.craft_ground_tap.title", "Water Reservoir");
-        add("rankine.advancements.story.craft_ground_tap.description", "Make a ground tap to bring water to the surface");
+        add("rankine.advancements.story.craft_ground_tap.description", "Create a ground tap network to suck water out of the ground");
+        add("rankine.advancements.story.craft_flood_gate.title", "Oceans Arise");
+        add("rankine.advancements.story.craft_flood_gate.description", "Flood Gates fill the space beneath them with fluids placed directy above them. Use an infinite source to create lakes quickly");
         add("rankine.advancements.story.craft_battery.title", "Fully Charged");
         add("rankine.advancements.story.craft_battery.description", "Make a battery to provide power to certain machines");
+        add("rankine.advancements.story.stone_collector.title", "We Have the Rockiest Rocks");
         add("rankine.advancements.story.craft_bandage.title", "Quick Healing");
         add("rankine.advancements.story.craft_bandage.description", "Heal some minor damage with a bandage");
-        add("rankine.advancements.story.craft_alloy_hammer.title", "Crushed");
-        add("rankine.advancements.story.craft_alloy_hammer.description", "Make a hammer with a harvest level of 2 or greater (alloys required)");
         add("rankine.advancements.story.craft_trampoline.title", "Boing!");
         add("rankine.advancements.story.craft_trampoline.description", "Make a trampoline to launch high into the air");
-        add("rankine.advancements.story.craft_fertilizer.title", "Weedhelper");
-        add("rankine.advancements.story.craft_fertilizer.description", "Produce fertilizer to restore patches of grass");
-        add("rankine.advancements.story.craft_herbicide.title", "Weedkiller");
-        add("rankine.advancements.story.craft_herbicide.description", "Produce herbicide from juglone to clear patches of grass and other plants");
         add("rankine.advancements.story.get_meteoric_iron.title", "Iron from Space");
         add("rankine.advancements.story.get_meteoric_iron.description", "Find a meteorite and crush the ore in it to get meteoric iron, a native alloy of invar");
         add("rankine.advancements.story.get_ironstone.title", "Iron in the Rough");
         add("rankine.advancements.story.get_ironstone.description", "Find ironstone under the sands of a desert or mesa");
-        add("rankine.advancements.story.get_bog_iron.title", "Iron in the Flood");
+        add("rankine.advancements.story.get_bog_iron.title", "Soggy Iron");
         add("rankine.advancements.story.get_bog_iron.description", "Find Bog Iron submerged in a swamp");
+        add("rankine.advancements.story.get_banded_iron_formation.title", "Iron Sandwhich");
+        add("rankine.advancements.story.get_banded_iron_formation.description", "Find Banded Iron Formations near the world surface");
         add("rankine.advancements.story.craft_element_indexer.title", "Elementary");
         add("rankine.advancements.story.craft_element_indexer.description", "Use a device to examine element properties");
+        add("rankine.advancements.story.craft_penning_trap.title", "Tenuous Trap");
+        add("rankine.advancements.story.craft_penning_trap.description", "Use a Penning Trap to 'safely' collect antimatter");
+        add("rankine.advancements.story.craft_glass_cutter.title", "Transparent");
+        add("rankine.advancements.story.craft_glass_cutter.description", "Use a Glass Cutter to recycle that broken glass");
         add("rankine.advancements.story.info_movement.title", "A Primer on Movement");
-        add("rankine.advancements.story.info_movement.description", "Movement Speed (by default) changes depending on what material you are walking on");
-        add("rankine.advancements.story.craft_sandals.title", "Sand Shifter");
-        add("rankine.advancements.story.craft_sandals.description", "Make sandals to move more efficiently on sand");
-        add("rankine.advancements.story.craft_ice_skates.title", "Ice Glider");
-        add("rankine.advancements.story.craft_ice_skates.description", "Make ice skates to move more efficiently on ice");
-        add("rankine.advancements.story.craft_snowshoes.title", "Snow Effort");
-        add("rankine.advancements.story.craft_snowshoes.description", "Make snowshoes to move more efficiently on snow");
-        add("rankine.advancements.story.craft_fins.title", "Finstant Travel");
-        add("rankine.advancements.story.craft_fins.description", "Wear fins to move more efficiently in water");
-        add("rankine.advancements.story.get_bronze_tools.title", "Timing is Everything");
-        add("rankine.advancements.story.get_bronze_tools.description", "Make a Pewter, Colored Gold, or Bronze Hammer to begin crushing ores and stones");
-        add("rankine.advancements.story.get_crowbar.title", "Lever Action");
-        add("rankine.advancements.story.get_crowbar.description", "Make a Crowbar to manipulate blocks");
-        add("rankine.advancements.story.craft_pulp.title", "Crushed to a Pulp");
-        add("rankine.advancements.story.craft_pulp.description", "Make pulp from crushed logs");
-        add("rankine.advancements.story.craft_quartz.title", "Overworld Quartz");
-        add("rankine.advancements.story.craft_quartz.description", "Find or craft quartz by crushing stones");
-        add("rankine.advancements.story.craft_glass_cutter.title", "Transparent Carving");
-        add("rankine.advancements.story.craft_glass_cutter.description", "Make a glass cutter to minimize losses");
-        add("rankine.advancements.story.craft_roman_concrete.title", "Roaming like the Romans");
-        add("rankine.advancements.story.craft_roman_concrete.description", "Make roman concrete from pozzolanic mortar");
-        add("rankine.advancements.story.craft_nickel_superalloy.title", "Diving Checklist");
-        add("rankine.advancements.story.craft_nickel_superalloy.description", "Make every available type of Nickel Superalloy tool");
-        add("rankine.advancements.story.craft_stainless_steel.title", "Always Prepared");
-        add("rankine.advancements.story.craft_stainless_steel.description", "Make every available type of Stainless Steel tool");
-        add("rankine.advancements.story.craft_tungsten_heavy_alloy.title", "Bound to the Fire");
-        add("rankine.advancements.story.craft_tungsten_heavy_alloy.description", "Make every available type of Tungsten Heavy Alloy tool");
-        add("rankine.advancements.story.craft_cobalt_superalloy.title", "Lasting Impression");
-        add("rankine.advancements.story.craft_cobalt_superalloy.description", "Make every available type of Cobalt Superalloy tool");
-        add("rankine.advancements.story.craft_laser_quarry.title", "Excavation Invigoration");
-        add("rankine.advancements.story.craft_laser_quarry.description", "Construct a Laser Quarry to mine out large chunks of the world");
-        add("rankine.advancements.story.craft_thorium_arrow.title", "Sounds of Thunder");
-        add("rankine.advancements.story.craft_thorium_arrow.description", "Make Thorium Arrows to control the power of lightning with your bow");
+        add("rankine.advancements.story.info_movement.description", "Movement speed changes depending on what material you are walking on. Try crafting basic equipment for your feet to improve movement in various terrains");
+        add("rankine.advancements.story.treads.title", "Don't Tread On Me");
+        add("rankine.advancements.story.treads.description", "Aquire boots with the four enchantments from feet equipment");
+        add("rankine.advancements.challenges.speed_runner.title", "Literal Speed Runner");
+        add("rankine.advancements.challenges.speed_runner.description", "Have a pair of boots with every movement speed enchantment");
 
-
+        //add("rankine.advancements.story.craft_thorium_arrow.title", "Sounds of Thunder");
+        //add("rankine.advancements.story.craft_thorium_arrow.description", "Make Thorium Arrows to control the power of lightning with your bow");
 
         add("rankine.advancements.challenges.root.title", "Project Rankine Challenges");
         add("rankine.advancements.challenges.root.description", "Complete your understanding of the changed world");
@@ -1071,6 +1038,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.challenges.meteoric_materials.description", "Find all the forms of raw meteoric ores");
         add("rankine.advancements.challenges.geode_collector.title", "Gifts of the Earth");
         add("rankine.advancements.challenges.geode_collector.description", "Find all of the different types of geodes");
+        add("rankine.advancements.challenges.radioactive.title", "Radioactive");
+        add("rankine.advancements.challenges.radioactive.description", "Craft all of the RTGs");
 
 
         //SUBTITLE
@@ -1264,9 +1233,16 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_constructs.beehive_oven.text6", "Replacing the bricks for Ultra High Refractory Bricks will decrease the cooking speed to 25% the default time. Can be upgraded using the Building Tool");
 
         add("rankine.journal.cat_constructs.tree_tapping.name", "Tree Tapping");
-        add("rankine.journal.cat_constructs.tree_tapping.text1", "The Tree Tap is a device that extracts various fluids from logs. A tap with a bucket will eventually fill with liquid and can be retrieved by right clicking. Additional equipment can be used to automate the tapping process.");
-        add("rankine.journal.cat_constructs.tree_tapping.tree_tap", "Tree taps will not work if there is another one in any adjacent block. Also, the tree needs to be alive, meaning the tree must contained naturally spawned leaves.");
-        add("rankine.journal.cat_constructs.tree_tapping.tap_line", "Tap lines are essentially a pipe network for tree taps to output to a tap barrel. Fluids can not flow upwards. Tap lines will connect to a tree tap from below or to a flood gate on any side. ~30 block max search distance.");
+        add("rankine.journal.cat_constructs.tree_tapping.text1", "The Tree Tap is a device that extracts various fluids from logs. Tree taps will not work if there is another one in any adjacent block. Also, the tree needs to be alive, meaning the tree must contained naturally spawned leaves. Taps only operate during the middle section of the day.");
+        add("rankine.journal.cat_constructs.tree_tapping.tree_tap", "A tree tap will eventually fill with liquid and can be retrieved by right clicking with a bucket. This fluid can be placed in a cauldron to be boiled into various resources. Place a heat source (magma block, heating element, ect.) under or next to the cauldron to heat it.");
+        add("rankine.journal.cat_constructs.tree_tapping.tap_line", "Tap lines are essentially a pipe network for tree taps to output to a cauldron. Fluids can not flow upwards in the lines. Tap lines will connect to a tree tap from below and to any side of a cauldron.");
+        add("rankine.journal.cat_constructs.tree_tapping.water", "Water can be extracted from the variety of birch trees.");
+        add("rankine.journal.cat_constructs.tree_tapping.lava", "Lava can be extracted from the variety of nether trees.");
+        add("rankine.journal.cat_constructs.tree_tapping.juglone", "Juglone can be extracted from black walnut trees. Boil in a cauldron to produce brown dye. Also used as a crafting ingredient.");
+        add("rankine.journal.cat_constructs.tree_tapping.resin", "Resin can be extracted from a variety of coniferous trees. Boil in a cauldron to produce amber. Also used as a crafting ingredient.");
+        add("rankine.journal.cat_constructs.tree_tapping.latex", "Latex can be extracted from sharinga trees. Boil in a cauldron to produce dry rubber.");
+        add("rankine.journal.cat_constructs.tree_tapping.sap", "Sap can be extracted from a variety of deciduous trees. Boil in a cauldron to produce sugar.");
+        add("rankine.journal.cat_constructs.tree_tapping.maple_sap", "Maple Sap can be extracted from maple trees. Boil in a cauldron to produce maple syrup. Use a glass bottle to pickup the syrup.");
 
         add("rankine.journal.cat_constructs.crucible.name", "Crucible");
         add("rankine.journal.cat_constructs.crucible.text1", "The crucible is a device capable of melting the materials required to forge steel and other molten products. Place the crucible above a heat source. The top four slots of the Crucible are your inputs. Each item used as an input must be unique (cannot be used in more than one slot) and some inputs cannot be mixed together.");
@@ -1335,22 +1311,23 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mineralogy.desc", "Deposits of valuable materials are scattered throughout the surface and layers of the underground. Mineralogy encompasses the ores and other non-earthy components of the ground.");
 
         add("rankine.journal.cat_mineralogy.meteorites.name", "Meteorites");
-        add("rankine.journal.cat_mineralogy.meteorites.text1","");
-        add("rankine.journal.cat_mineralogy.meteorites.text2","Overworld Meteorite");
-        add("rankine.journal.cat_mineralogy.meteorites.text3","Meteorites spawn in the Overworld and End.");
-        add("rankine.journal.cat_mineralogy.meteorites.meteorites_header","Meteorite Blocks");
-        add("rankine.journal.cat_mineralogy.meteorites.meteorites","Core silica based blocks making up most of the meteorite.");
-        add("rankine.journal.cat_mineralogy.meteorites.tektites_header","Tektites");
-        add("rankine.journal.cat_mineralogy.meteorites.tektites","Tektite is a form of glass formed by meteorite impact with the surface.");
-        add("rankine.journal.cat_mineralogy.meteorites.ores_header","Meteorite Ores");
-        add("rankine.journal.cat_mineralogy.meteorites.ores","Meteoric ores have been found as a native source of Invar and accessible source of iron. Crushing the ores will yield meteoric iron chunks which can be used to make crude tools.");
-        add("rankine.journal.cat_mineralogy.meteorites.meteoric_ice","A rare form of ice only found in frozen meteorites. Like normal ice blocks, it is slippery and requires silk touch to harvest.");
+        add("rankine.journal.cat_mineralogy.meteorites.text1", "Meteorites are formations of rock originating from another world/space. They are formed of compounds similar to terestrial stones, but also are concentrated sources of unique minearls.");
+        add("rankine.journal.cat_mineralogy.meteorites.text2", "Overworld Meteorite");
+        add("rankine.journal.cat_mineralogy.meteorites.meteorites_header", "Meteorite Blocks");
+        add("rankine.journal.cat_mineralogy.meteorites.meteorites", "Core silica based blocks making up most of the meteorite.");
+        add("rankine.journal.cat_mineralogy.meteorites.tektites_header", "Tektites");
+        add("rankine.journal.cat_mineralogy.meteorites.tektites", "Tektite is a form of glass formed by meteorite impact with the surface.");
+        add("rankine.journal.cat_mineralogy.meteorites.ores_header", "Meteorite Ores");
+        add("rankine.journal.cat_mineralogy.meteorites.ores", "Meteoric ores have been found as a native source of Invar and accessible source of iron. Crushing the ores will yield meteoric iron chunks which can be used to make crude tools.");
+        add("rankine.journal.cat_mineralogy.meteorites.meteoric_ice", "A rare form of ice only found in frozen meteorites. Like normal ice blocks, it is slippery and requires silk touch to harvest.");
 
         add("rankine.journal.cat_mineralogy.mineral_stones.name", "Mineral Stones");
         add("rankine.journal.cat_mineralogy.mineral_stones.text1","Some stones are more concentrated in specific minerals than the surrounding parent stone. The crystal formation is not as complete as a standard ore, and such these deposits are referred to as mineral stones.");
         add("rankine.journal.cat_mineralogy.mineral_stones.phosphorite","A major source of potassium. Found in ocean, beach, desert and mountain biomes.");
         add("rankine.journal.cat_mineralogy.mineral_stones.sylvinite","A major source of salt. Found in ocean, beach and desert biomes.");
-
+        add("rankine.journal.cat_mineralogy.mineral_stones.banded_iron_formation","A source of iron. Found scarcely thorughout Overworld biomes.");
+        add("rankine.journal.cat_mineralogy.mineral_stones.ironstone","A source of iron. Found in savanna, mesa and desert biomes.");
+        add("rankine.journal.cat_mineralogy.mineral_stones.bog_iron","A source of iron. Found in swamp and jungle biomes.");
 
         add("rankine.journal.cat_mineralogy.vitrified.name", "Vitrified Blocks");
         add("rankine.journal.cat_mineralogy.vitrified.text1","When lightning strikes the ground, it releases large amounts of energy very quickly. This energy can change certain blocks, such as oxidized coppers back into normal. It also can convert some natural blocks.");
@@ -1361,12 +1338,12 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mineralogy.vitrified.black_lightning_glass","Made from black sand.");
         add("rankine.journal.cat_mineralogy.vitrified.white_lightning_glass","Made from white sand.");
 
-
         add("rankine.journal.cat_mineralogy.fumaroles.name", "Fumaroles");
-        add("rankine.journal.cat_mineralogy.fumaroles.text1","Fumaroles are natural vents for gasses trapped inside the crust. They continuously output gas blocks into nearby air space.");
-        add("rankine.journal.cat_mineralogy.fumaroles.text2","Generate low in the Overworld and Nether.");
-        add("rankine.journal.cat_mineralogy.fumaroles.text3","A mineral rich stone derived from the outgassing of deep-world materials. Important source of Vanadium Pentoxide and minerals for Beryllium production.");
-        add("rankine.journal.cat_mineralogy.fumaroles.text4","A crystallized form of ammonia compounds. Used for ammonia production and complex metal reactions. Crystals form on the underside of fumarole deposit blocks that have water above them.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text1", "Fumaroles are natural vents for gasses trapped inside the crust. They continuously output gas blocks into nearby air space.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text2", "Fumarole Types");
+        add("rankine.journal.cat_mineralogy.fumaroles.text3", "Generate low in the Overworld and Nether, primarily in cave openings.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text4", "A mineral rich stone derived from the outgassing of deep-world materials. Important source of Vanadium Pentoxide and minerals for Beryllium production.");
+        add("rankine.journal.cat_mineralogy.fumaroles.text5", "A crystallized form of ammonia compounds. Used for ammonia production and complex metal reactions. Crystals form on the underside of fumarole deposit blocks that have water above them.");
 
         add("rankine.journal.cat_mineralogy.gem_ores.name", "Gem Ores");
         add("rankine.journal.cat_mineralogy.gem_ores.text1", "Gem ores refer to stones that directly drop their respective item when mined. Most can also be crushed for additional resources.");
@@ -1379,7 +1356,6 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mineralogy.gem_ores.cinnabar_ore", "Source of Redstone and Mercury. $(br2)Found in all types of intrusions");
         add("rankine.journal.cat_mineralogy.gem_ores.beryl_ore", "Source of Emeralds. $(br2)Found in some intrusions");
         add("rankine.journal.cat_mineralogy.gem_ores.kimberlitic_diamond_ore", "Source of Diamonds. $(br2)Found solely in kimberlite intrusions.");
-
 
         add("rankine.journal.cat_mineralogy.mineral_ores.name", "Mineral Ores");
         add("rankine.journal.cat_mineralogy.mineral_ores.text1", "Mineral ores are rocks containing more complex compounds that may not be directly usable. They are often of higher harvest level, drop their raw mineral when mined and additional resources when crushed.");
@@ -1415,7 +1391,6 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mineralogy.mineral_ores.wolframite_ore", "Source of Tungsten. $(br2)Found scattered across the Nether.");
         add("rankine.journal.cat_mineralogy.mineral_ores.xenotime_ore", "Source of Xenotime. $(br2)Found scattered across the End.");
 
-
         add("rankine.journal.cat_mineralogy.native_ores.name", "Native Ores");
         add("rankine.journal.cat_mineralogy.native_ores.text1", "Native is a term used to describe elements that exist in their pure form in nature. The following blocks can be mined at a low harvest level to obtain pure metal samples.");
         add("rankine.journal.cat_mineralogy.native_ores.native_tin_ore", "Source of Tin. $(br2)Found near the surface in all regions of the Overworld.");
@@ -1433,105 +1408,115 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mineralogy.native_ores.native_selenium_ore", "Source of Selenium. $(br2)Found scattered across the End.");
 
 
-        //Stones
-        add("rankine.journal.cat_stones.name", "Stones");
-        add("rankine.journal.cat_stones.desc", "");
-
-        add("rankine.journal.cat_stones.otherworldly.name", "Otherworldly Stones");
-        add("rankine.journal.cat_stones.otherworldly.text1", "Some stones form under unique environmental conditions. They resemble igneous stones but this class of stone is simply named Otherworldly, as they naturally occur in atypical locations.");
-        add("rankine.journal.cat_stones.otherworldly.end_stone", "");
-        add("rankine.journal.cat_stones.otherworldly.sommanite", "");
-        add("rankine.journal.cat_stones.otherworldly.wadsleyone", "");
-        add("rankine.journal.cat_stones.otherworldly.bridgmanham", "");
-        add("rankine.journal.cat_stones.otherworldly.ringwoodine", "");
-        add("rankine.journal.cat_stones.otherworldly.post_perovskite", "");
-        add("rankine.journal.cat_stones.otherworldly.whiteschist", "");
-
-        add("rankine.journal.cat_stones.volcanic.name", "Volcanic Stones");
-        add("rankine.journal.cat_stones.volcanic.text1", "Some stones can not form under standard environmental conditions. This class of stone is simply named Otherworldly, as they naturally occur in atypical locations.");
-        add("rankine.journal.cat_stones.volcanic.text3", "Volcanic stones are generated using the vanilla obsidian generator, where water flows onto lava source blocks. An adjacent block determines the generated block.");
-        add("rankine.journal.cat_stones.volcanic.text2", "Volcanic Generator");
-        add("rankine.journal.cat_stones.volcanic.obsidian", "");
-        add("rankine.journal.cat_stones.volcanic.crying_obsidian", "");
-        add("rankine.journal.cat_stones.volcanic.snowflake_obsidian", "");
-        add("rankine.journal.cat_stones.volcanic.blood_obsidian", "");
-        add("rankine.journal.cat_stones.volcanic.pumice", "");
-        add("rankine.journal.cat_stones.volcanic.scoria", "");
-        add("rankine.journal.cat_stones.volcanic.andesitic_tuff", "");
-        add("rankine.journal.cat_stones.volcanic.basaltic_tuff", "");
-        add("rankine.journal.cat_stones.volcanic.rhyolitic_tuff", "");
-        add("rankine.journal.cat_stones.volcanic.kimberlitic_tuff", "");
-        add("rankine.journal.cat_stones.volcanic.komatiitic_tuff", "");
-
-        add("rankine.journal.cat_stones.sedimentary.name", "Sedimentary Stones");
-        add("rankine.journal.cat_stones.sedimentary.text1", "Sedimentary stones are formed from compactions and cementing of sediments. See JEI for generator recipes.");
-        add("rankine.journal.cat_stones.sedimentary.text2", "Sedimentary Generator");
-        add("rankine.journal.cat_stones.sedimentary.text3", "Must have a water source above the sediment fan and the two adjacent blocks under the stream determine the block generated.");
-        add("rankine.journal.cat_stones.sedimentary.sandstone", "");
-        add("rankine.journal.cat_stones.sedimentary.red_sandstone", "");
-        add("rankine.journal.cat_stones.sedimentary.soul_sandstone", "");
-        add("rankine.journal.cat_stones.sedimentary.desert_sandstone", "");
-        add("rankine.journal.cat_stones.sedimentary.white_sandstone", "");
-        add("rankine.journal.cat_stones.sedimentary.black_sandstone", "");
-        add("rankine.journal.cat_stones.sedimentary.limestone", "");
-        add("rankine.journal.cat_stones.sedimentary.dolostone", "");
-        add("rankine.journal.cat_stones.sedimentary.chalk", "");
-        add("rankine.journal.cat_stones.sedimentary.marlstone", "");
-        add("rankine.journal.cat_stones.sedimentary.shale", "");
-        add("rankine.journal.cat_stones.sedimentary.mudstone", "");
-        add("rankine.journal.cat_stones.sedimentary.siltstone", "");
-        add("rankine.journal.cat_stones.sedimentary.itacolumite", "");
-        add("rankine.journal.cat_stones.sedimentary.arkose", "");
-        add("rankine.journal.cat_stones.sedimentary.graywacke", "");
-        add("rankine.journal.cat_stones.sedimentary.honeystone", "");
-
-
-
-        add("rankine.journal.cat_stones.metamorphic.name", "Metamorphic Stones");
-        add("rankine.journal.cat_stones.metamorphic.text1", "Metamorphic stones are formed by the conversion of existing stone under heat and pressure. See JEI for generator recipes.");
-        add("rankine.journal.cat_stones.metamorphic.text2", "Metamorphic Generator");
-        add("rankine.journal.cat_stones.metamorphic.text3", "The vanilla stone generator where lava falls onto water source blocks. The block under the water source determines the generated block.");
-        add("rankine.journal.cat_stones.metamorphic.black_marble", "");
-        add("rankine.journal.cat_stones.metamorphic.gray_marble", "");
-        add("rankine.journal.cat_stones.metamorphic.white_marble", "");
-        add("rankine.journal.cat_stones.metamorphic.rose_marble", "");
-        add("rankine.journal.cat_stones.metamorphic.slate", "");
-        add("rankine.journal.cat_stones.metamorphic.phyllite", "");
-        add("rankine.journal.cat_stones.metamorphic.mica_schist", "");
-        add("rankine.journal.cat_stones.metamorphic.blueschist", "");
-        add("rankine.journal.cat_stones.metamorphic.greenschist", "");
-        add("rankine.journal.cat_stones.metamorphic.gneiss", "");
-        add("rankine.journal.cat_stones.metamorphic.quartzite", "");
-        add("rankine.journal.cat_stones.metamorphic.soapstone", "");
-        add("rankine.journal.cat_stones.metamorphic.serpentinite", "");
-        add("rankine.journal.cat_stones.metamorphic.mariposite", "");
-        add("rankine.journal.cat_stones.metamorphic.eclogite", "");
-
-
-        add("rankine.journal.cat_stones.igneous.name", "Igneous Stones");
-        add("rankine.journal.cat_stones.igneous.text1", "Igneous stones are formed from the cooling of magma/lava. The molten composition and the method in which they cool determine the rock texture and composition.");
-        add("rankine.journal.cat_stones.igneous.text2", "Intrusive Generator");
-        add("rankine.journal.cat_stones.igneous.text3", "Intrusive igneous rocks are formed in the standard cobblestone generator where lava meets flowing water. Two blocks can be placed adjacent to determine the generated block.");
-        add("rankine.journal.cat_stones.igneous.text4", "Extrusive Generator");
-        add("rankine.journal.cat_stones.igneous.text5", "Extrusive igneous rocks are formed in the standard cobblestone generator where lava meets blue ice over soul soil. One block can be placed adjacent to determine the generated block.");
-        add("rankine.journal.cat_stones.igneous.stone", "Stone in this world is generally found solely as an intrusion. Depending on the biome, it will contain a variety of the vanilla ores.");
-        add("rankine.journal.cat_stones.igneous.granite", "An intrusive stone found in plains and forest biomes. Associated ores include Malachite, and Cassiterite.");
-        add("rankine.journal.cat_stones.igneous.gray_granite", "An intrusive stone found in mountain, swamp, taiga, and icy biomes. Associated ores include Malachite, and Cassiterite.");
-        add("rankine.journal.cat_stones.igneous.diorite", "An intrusive stone found in mountain, icy, and taiga biomes. Associated ores include Plumbago, Magnetite, and Ilmenite.");
-        add("rankine.journal.cat_stones.igneous.granodiorite", "An intrusive stone found in savanna, forest and plains biomes. Associated ores include Magnetite, and Wolframite.");
-        add("rankine.journal.cat_stones.igneous.pegmatite", "An intrusive stone found in many parts of the Overworld. Associated ores include Beryl, Petalite, Baddeleyite, Coltan, and Uraninite.");
-        add("rankine.journal.cat_stones.igneous.norite", "An intrusive stone found in savanna and jungle biomes. Associated ores include Magnetite and Chromite.");
-        add("rankine.journal.cat_stones.igneous.diabase", "An intrusive stone found in ocean and beach biomes. Associated ores include Baddeleyite.");
-        add("rankine.journal.cat_stones.igneous.red_porphyry", "An intrusive stone found in desert, mesa, and ocean biomes. Associated ores include Porphyry Copper, Gold, and Molybdenite.");
-        add("rankine.journal.cat_stones.igneous.kimberite", "An intrusive stone found in many parts of the Overworld. Associated ores include Kimberlitic Diamond.");
-        add("rankine.journal.cat_stones.igneous.shonkinite", "An intrusive stone found in mountain and swamp biomes. Associated ores include Beryl, Plumbago, and Magnetite.");
-
-
-
-
         //Sediments
-        add("rankine.journal.cat_sediments.name", "Sediments");
-        add("rankine.journal.cat_sediments.desc", "Dirt is too simple of a term to describe the complex matrix of organic material and pulverized rocks. A better term is soil, but there are more small particles than just that.");
+        add("rankine.journal.cat_sediments.name", "Aggregates");
+        add("rankine.journal.cat_sediments.desc", "Aggregate is a general term for the physical foundations of the world. They come in varieties of particle sizes, compositions, and formations.");
+
+        add("rankine.journal.cat_sediments.otherworldly.name", "Otherworldly Stones");
+        add("rankine.journal.cat_sediments.otherworldly.text1", "Some stones form under unique environmental conditions. They resemble igneous stones but this class of stone is simply named Otherworldly, as they naturally occur in atypical locations.");
+        add("rankine.journal.cat_sediments.otherworldly.end_stone", "An intrusive stone found in The End.");
+        add("rankine.journal.cat_sediments.otherworldly.sommanite", "An intrusive stone found deep in taiga biomes.");
+        add("rankine.journal.cat_sediments.otherworldly.ringwoodine", "An intrusive stone found deep in mountain biomes.");
+        add("rankine.journal.cat_sediments.otherworldly.wadsleyone", "An intrusive stone found deep in mushroom, beach and ocean biomes.");
+        add("rankine.journal.cat_sediments.otherworldly.bridgmanham", "An intrusive stone found deep in savanna, mesa, desert and plains biomes.");
+        add("rankine.journal.cat_sediments.otherworldly.post_perovskite", "An intrusive stone found deep in river and swamp biomes.");
+        add("rankine.journal.cat_sediments.otherworldly.whiteschist", "Found deep in icy biomes");
+
+        add("rankine.journal.cat_sediments.volcanic.name", "Volcanic Stones");
+        add("rankine.journal.cat_sediments.volcanic.text1", "Volcanic stones are formed from quickly cooling lava, often during eruption events. ");
+        add("rankine.journal.cat_sediments.volcanic.text2", "Generation");
+        add("rankine.journal.cat_sediments.volcanic.text3", "Volcanic stones are found in lava rich locations. They can be generated using the vanilla obsidian generator, where water flows onto lava source blocks. A block adjacent to the generation site determines the generated stone. See JEI for generator recipes.");
+        add("rankine.journal.cat_sediments.volcanic.obsidian", "Found deep in the overworld.");
+        add("rankine.journal.cat_sediments.volcanic.crying_obsidian", "Found as usual.");
+        add("rankine.journal.cat_sediments.volcanic.snowflake_obsidian", "Found deep in the overworld.");
+        add("rankine.journal.cat_sediments.volcanic.blood_obsidian", "Found deep in the overworld.");
+        add("rankine.journal.cat_sediments.volcanic.pumice", "Found as intrusions in the Nether.");
+        add("rankine.journal.cat_sediments.volcanic.scoria", "Found as intrusions in the Nether.");
+        add("rankine.journal.cat_sediments.volcanic.andesitic_tuff", "Found in biomes containing hornblende andesite.");
+        add("rankine.journal.cat_sediments.volcanic.basaltic_tuff", "Found in biomes containing tholeiitic basalt.");
+        add("rankine.journal.cat_sediments.volcanic.rhyolitic_tuff", "Found in biomes containing rhyolite.");
+        add("rankine.journal.cat_sediments.volcanic.kimberlitic_tuff", "Found deep in the overworld.");
+        add("rankine.journal.cat_sediments.volcanic.komatiitic_tuff", "Found in biomes containing komatiite.");
+
+        add("rankine.journal.cat_sediments.sedimentary.name", "Sedimentary Stones");
+        add("rankine.journal.cat_sediments.sedimentary.text1", "Sedimentary stones are formed from compactions and cementing of sediments.");
+        add("rankine.journal.cat_sediments.sedimentary.text2", "Generation");
+        add("rankine.journal.cat_sediments.sedimentary.text3", "AAAAAAAAAAA. See JEI for generator recipes.");
+        add("rankine.journal.cat_sediments.sedimentary.sandstone", "Found in river, ocean and beach biomes");
+        add("rankine.journal.cat_sediments.sedimentary.red_sandstone", "Not found in nature.");
+        add("rankine.journal.cat_sediments.sedimentary.soul_sandstone", "Found in soul sand valley biomes");
+        add("rankine.journal.cat_sediments.sedimentary.desert_sandstone", "Found in desert biomes");
+        add("rankine.journal.cat_sediments.sedimentary.white_sandstone", "Found scarcely in sandy areas.");
+        add("rankine.journal.cat_sediments.sedimentary.black_sandstone", "Not found in nature.");
+        add("rankine.journal.cat_sediments.sedimentary.limestone", "Found in forest and plains biomes");
+        add("rankine.journal.cat_sediments.sedimentary.dolostone", "Found in mountain and taiga biomes");
+        add("rankine.journal.cat_sediments.sedimentary.chalk", "Found in icy, river and beach biomes");
+        add("rankine.journal.cat_sediments.sedimentary.marlstone", "Found in mushroom and beach biomes");
+        add("rankine.journal.cat_sediments.sedimentary.shale", "Found in river and beach biomes");
+        add("rankine.journal.cat_sediments.sedimentary.mudstone", "Found in jungle and swamp biomes");
+        add("rankine.journal.cat_sediments.sedimentary.siltstone", "Found in savanna, mesa, desert and plains biomes.");
+        add("rankine.journal.cat_sediments.sedimentary.itacolumite", "Found in desert biomes.");
+        add("rankine.journal.cat_sediments.sedimentary.arkose", "Found in mesa biomes.");
+        add("rankine.journal.cat_sediments.sedimentary.graywacke", "Found in savanna biomes.");
+        add("rankine.journal.cat_sediments.sedimentary.honeystone", "Found in soul sand valley biomes");
+
+        add("rankine.journal.cat_sediments.metamorphic.name", "Metamorphic Stones");
+        add("rankine.journal.cat_sediments.metamorphic.text1", "Metamorphic stones are formed by the conversion of existing stone under heat and pressure.");
+        add("rankine.journal.cat_sediments.metamorphic.text2", "Generation");
+        add("rankine.journal.cat_sediments.metamorphic.text3", "Metamorphic stones are found at all sites. They can be generated using the vanilla stone generator, where lava falls onto water source blocks.  A block adjacent to the generation site determines the generated block. See JEI for generator recipes.");
+        add("rankine.journal.cat_sediments.metamorphic.deepslate", "Found deep in forest and jungle biomes");
+        add("rankine.journal.cat_sediments.metamorphic.black_marble", "Found in forest biomes");
+        add("rankine.journal.cat_sediments.metamorphic.gray_marble", "Found in plains and mountain biomes");
+        add("rankine.journal.cat_sediments.metamorphic.white_marble", "Found in icy and taiga biomes");
+        add("rankine.journal.cat_sediments.metamorphic.rose_marble", "Found in savanna and desert biomes");
+        add("rankine.journal.cat_sediments.metamorphic.slate", "Found in swamp and jungle biomes");
+        add("rankine.journal.cat_sediments.metamorphic.phyllite", "Found in icy, swamp and jungle biomes");
+        add("rankine.journal.cat_sediments.metamorphic.mica_schist", "Found in icy, swamp and jungle biomes");
+        add("rankine.journal.cat_sediments.metamorphic.blueschist", "Found in soul_sand_valley biomes");
+        add("rankine.journal.cat_sediments.metamorphic.greenschist", "Found in mountain biomes");
+        add("rankine.journal.cat_sediments.metamorphic.gneiss", "Found deep in jungle, swamp and mountain biomes");
+        add("rankine.journal.cat_sediments.metamorphic.quartzite", "Found deep in mesa, savanna and desert biomes");
+        add("rankine.journal.cat_sediments.metamorphic.soapstone", "Found deep in forest and taiga biomes");
+        add("rankine.journal.cat_sediments.metamorphic.serpentinite", "Found in mountain biomes");
+        add("rankine.journal.cat_sediments.metamorphic.mariposite", "Found in mountain biomes");
+        add("rankine.journal.cat_sediments.metamorphic.eclogite", "Found in swamp and jungle biomes");
+
+        add("rankine.journal.cat_sediments.igneous.name", "Igneous Stones");
+        add("rankine.journal.cat_sediments.igneous.text1", "Igneous stones are formed from the cooling of magma/lava. The molten composition and the method in which they cool determine the rock texture and composition.");
+        add("rankine.journal.cat_sediments.igneous.text2", "Intrusive Generation");
+        add("rankine.journal.cat_sediments.igneous.text3", "Intrusive igneous stones are generally formed as underground structures such as intrusions or veins. Their magma cools slowly which allows large mineral crystals to form and often have a rough texture. They can also be generated in the standard cobblestone generator where lava meets flowing water. Two mineral blocks can be placed adjacent to the generation site to determine the generated stone. See JEI for generator recipes.");
+        add("rankine.journal.cat_sediments.igneous.text4", "Extrusive Generation");
+        add("rankine.journal.cat_sediments.igneous.text5", "Extrusive igneous stones are generally formed as large layers. Their lava cools rapidly which prevents large crystals from forming and often have a smoother texture. They can also be generated in the standard basalt generator where lava meets blue ice over soul soil. A block can be placed adjacent to the generation site to determine the generated stone.");
+        add("rankine.journal.cat_sediments.igneous.stone", "Stone in this world is generally found solely as an intrusion. Depending on the biome, it will contain a variety of the vanilla ores.");
+        add("rankine.journal.cat_sediments.igneous.granite", "An intrusive stone found in plains and forest biomes. Associated ores include Malachite, and Cassiterite.");
+        add("rankine.journal.cat_sediments.igneous.diorite", "An intrusive stone found in mountain, icy, and taiga biomes. Associated ores include Plumbago, Magnetite, and Ilmenite.");
+        add("rankine.journal.cat_sediments.igneous.andesite", "An extrusive stone found in icy biomes.");
+        add("rankine.journal.cat_sediments.igneous.basalt", "An extrusive stone found in basalt deltas biomes.");
+        add("rankine.journal.cat_sediments.igneous.netherrack", "An extrusive stone found in nether waste biomes.");
+        add("rankine.journal.cat_sediments.igneous.pegmatite", "An intrusive stone found in many parts of the Overworld. Associated ores include Beryl, Petalite, Baddeleyite, Coltan, and Uraninite.");
+        add("rankine.journal.cat_sediments.igneous.gray_granite", "An intrusive stone found in mountain, swamp, taiga, and icy biomes. Associated ores include Malachite, and Cassiterite.");
+        add("rankine.journal.cat_sediments.igneous.rhyolite", "An extrusive stone found in savanna, mesa, desert and plains biomes.");
+        add("rankine.journal.cat_sediments.igneous.comendite", "An extrusive stone found in icy, forest and taiga biomes.");
+        add("rankine.journal.cat_sediments.igneous.granodiorite", "An intrusive stone found in savanna, forest and plains biomes. Associated ores include Magnetite, and Wolframite.");
+        add("rankine.journal.cat_sediments.igneous.red_porphyry", "An intrusive stone found in desert, mesa, and ocean biomes. Associated ores include Porphyry Copper, Gold, and Molybdenite.");
+        add("rankine.journal.cat_sediments.igneous.purple_porphyry", "An extrusive stone found in crimson forest biomes.");
+        add("rankine.journal.cat_sediments.igneous.black_dacite", "An extrusive stone found in forest and taiga biomes.");
+        add("rankine.journal.cat_sediments.igneous.red_dacite", "An extrusive stone found in savanna, mesa, desert and plains biomes.");
+        add("rankine.journal.cat_sediments.igneous.hornblende_andesite", "An extrusive stone found in mountain biomes.");
+        add("rankine.journal.cat_sediments.igneous.shonkinite", "An intrusive stone found in mountain and swamp biomes. Associated ores include Beryl, Plumbago, and Magnetite.");
+        add("rankine.journal.cat_sediments.igneous.anorthosite", "An extrusive stone found in mountain, river, forest, taiga and plains biomes.");
+        add("rankine.journal.cat_sediments.igneous.norite", "An intrusive stone found in savanna and jungle biomes. Associated ores include Magnetite and Chromite.");
+        add("rankine.journal.cat_sediments.igneous.troctolite", "An extrusive stone found in mushroom, river, beach and ocean biomes.");
+        add("rankine.journal.cat_sediments.igneous.gabbro", "An extrusive stone found in mushroom, river, beach and ocean biomes.");
+        add("rankine.journal.cat_sediments.igneous.diabase", "An intrusive stone found in ocean and beach biomes. Associated ores include Baddeleyite.");
+        add("rankine.journal.cat_sediments.igneous.tholeiitic_basalt", "An extrusive stone found in mushroom, river, beach and ocean biomes.");
+        add("rankine.journal.cat_sediments.igneous.pyroxenite", "An intrusive stone found in warped forest biomes.");
+        add("rankine.journal.cat_sediments.igneous.dunite", "An intrusive stone found in basalt deltas biomes.");
+        add("rankine.journal.cat_sediments.igneous.harzburgite", "An intrusive stone found in warped forest biomes.");
+        add("rankine.journal.cat_sediments.igneous.lherzolite", "An intrusive stone found in warped forest biomes.");
+        add("rankine.journal.cat_sediments.igneous.wehrlite", "An intrusive stone found in soul sand valley biomes.");
+        add("rankine.journal.cat_sediments.igneous.komatiite", "An extrusive stone found in crimson forest biomes.");
+        add("rankine.journal.cat_sediments.igneous.kimberite", "An intrusive stone found in many parts of the Overworld. Associated ores include Kimberlitic Diamond.");
 
         add("rankine.journal.cat_sediments.cobblestones.name", "Cobblestones");
         add("rankine.journal.cat_sediments.cobblestones.text1", "Cobbles are very large particles that can come from any parent stone when $(l:mechanics/crushing)crushed$().");
@@ -1624,8 +1609,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.equipment.text2", "Sandals are worn on the feet and provide increased movemet speed on sand. Combine boots of any type with sandals in an anvil to apply the $(l:mechanics/enchantments#dune_walker)Dune Walker$() enchantment.");
         add("rankine.journal.cat_tools.equipment.text3", "Snowshoes are worn on the feet and provide increased movemet speed on snow. Combine boots of any type with snowshoes in an anvil to apply the $(l:mechanics/enchantments#snow_drifter)Snow Drifter$() enchantment.");
         add("rankine.journal.cat_tools.equipment.text4", "Ice Skates are worn on the feet and provide increased movemet speed on ice. Combine boots of any type with ice skates in an anvil to apply the $(l:mechanics/enchantments#speed_skater)Speed Skater$() enchantment.");
-        add("rankine.journal.cat_tools.equipment.text5", "Fins are worn on the feet and provide increased movemet speed in water. Combine boots of any type with fins in an anvil to apply the $(l:mechanics/enchantments#flippers)Flippers$() enchantment.");
-        add("rankine.journal.cat_tools.equipment.text6", "Goggles are worn on the head and provide better vision and movemet speed in water. Combine a helmet of any type with goggles in an anvil to apply the TBD");
+        add("rankine.journal.cat_tools.equipment.text5", "Fins are worn on the feet and provide increased movemet speed in water. Combine boots of any type with fins in an anvil to apply the $(l:mechanics/enchantments#swift_swimmer)Swift Swimmer$() enchantment.");
+        add("rankine.journal.cat_tools.equipment.text6", "Goggles are worn on the head and provide better vision and movemet speed in water. Combine a helmet of any type with goggles in an anvil to apply the $(l:mechanics/enchantments#aqua_lense)Aqua Lense$() enchantment.");
         add("rankine.journal.cat_tools.equipment.text7", "A Gas Mask are worn on the head and protects against suffocation in gas blocks. Combine helmet of any type with a gas mask in an anvil to apply the $(l:mechanics/enchantments#gas_protection)Gas Protection$() enchantment.");
 
         add("rankine.journal.cat_tools.utility_tools.name", "Utility Tools");

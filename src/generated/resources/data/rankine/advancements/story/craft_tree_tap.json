@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_cast_iron",
+  "parent": "rankine:story/root",
   "display": {
     "icon": {
       "item": "rankine:tree_tap"

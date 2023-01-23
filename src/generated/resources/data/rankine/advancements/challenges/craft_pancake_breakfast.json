@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/root",
+  "parent": "rankine:story/craft_tree_tap",
   "display": {
     "icon": {
       "item": "rankine:pancake_breakfast"

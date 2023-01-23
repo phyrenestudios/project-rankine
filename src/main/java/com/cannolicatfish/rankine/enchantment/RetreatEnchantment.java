@@ -23,7 +23,7 @@ public class RetreatEnchantment extends Enchantment {
     }
 
     public boolean checkCompatibility(Enchantment enchantment) {
-        if (enchantment == RankineEnchantments.RETALIATE) {
+        if (enchantment == RankineEnchantments.RETALIATE.get()) {
             return false;
         }
         return super.checkCompatibility(enchantment);

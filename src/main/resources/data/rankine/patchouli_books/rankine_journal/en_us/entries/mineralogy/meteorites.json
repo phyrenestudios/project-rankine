@@ -10,8 +10,7 @@
     {
       "type": "image",
       "images": ["rankine:textures/patchouli/meteorite.png"],
-      "title": "rankine.journal.cat_mineralogy.meteorites.text2",
-      "text": "rankine.journal.cat_mineralogy.meteorites.text3"
+      "title": "rankine.journal.cat_mineralogy.meteorites.text2"
     },
     {
       "type": "rankine:item3",

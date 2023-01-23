@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/gas_collector",
+  "parent": "rankine:story/craft_penning_trap",
   "display": {
     "icon": {
       "item": "rankine:element"
@@ -1446,6 +1446,18 @@
           }
         ]
       }
+    },
+    "netherite_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:netherite_ingot"
+            ]
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -1805,6 +1817,9 @@
     ],
     [
       "gold_ingot"
+    ],
+    [
+      "netherite_ingot"
     ]
   ]
 }

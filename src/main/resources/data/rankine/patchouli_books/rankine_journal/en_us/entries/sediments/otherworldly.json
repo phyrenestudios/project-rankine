@@ -1,53 +1,53 @@
 {
-  "name": "rankine.journal.cat_stones.otherworldly.name",
+  "name": "rankine.journal.cat_sediments.otherworldly.name",
   "icon": "rankine:ringwoodine",
-  "category": "rankine:stones",
+  "category": "rankine:sediments",
   "pages": [
     {
       "type": "text",
-      "text": "rankine.journal.cat_stones.otherworldly.text1"
+      "text": "rankine.journal.cat_sediments.otherworldly.text1"
     },
     {
       "type": "spotlight",
       "item": "minecraft:end_stone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.otherworldly.end_stone"
+      "text": "rankine.journal.cat_sediments.otherworldly.end_stone"
     },
     {
       "type": "spotlight",
       "item": "rankine:whiteschist",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.otherworldly.whiteschist"
+      "text": "rankine.journal.cat_sediments.otherworldly.whiteschist"
     },
     {
       "type": "spotlight",
       "item": "rankine:sommanite",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.otherworldly.sommanite"
+      "text": "rankine.journal.cat_sediments.otherworldly.sommanite"
     },
     {
       "type": "spotlight",
       "item": "rankine:ringwoodine",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.otherworldly.ringwoodine"
+      "text": "rankine.journal.cat_sediments.otherworldly.ringwoodine"
     },
     {
       "type": "spotlight",
       "item": "rankine:wadsleyone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.otherworldly.wadsleyone"
+      "text": "rankine.journal.cat_sediments.otherworldly.wadsleyone"
     },
     {
       "type": "spotlight",
       "item": "rankine:bridgmanham",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.otherworldly.bridgmanham"
+      "text": "rankine.journal.cat_sediments.otherworldly.bridgmanham"
     },
     {
       "type": "spotlight",
       "item": "rankine:post_perovskite",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.otherworldly.post_perovskite"
+      "text": "rankine.journal.cat_sediments.otherworldly.post_perovskite"
     }
   ]
 }

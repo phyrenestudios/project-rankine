@@ -189,7 +189,7 @@ public interface IAlloyShield extends IAlloyItem {
             i *= 2;
         }
 
-        if (memory && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.SHAPE_MEMORY,stack) >= 1) {
+        if (memory && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.SHAPE_MEMORY.get(),stack) >= 1) {
             stack.setDamageValue(Math.max(stack.getDamageValue() - i,0));
             i = 0;
         }

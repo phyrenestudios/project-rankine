@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/root",
+  "parent": "rankine:story/craft_mixing_barrel",
   "display": {
     "icon": {
       "item": "rankine:humus"

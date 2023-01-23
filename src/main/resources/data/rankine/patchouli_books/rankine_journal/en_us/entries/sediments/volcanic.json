@@ -1,83 +1,82 @@
 {
-  "name": "rankine.journal.cat_stones.volcanic.name",
+  "name": "rankine.journal.cat_sediments.volcanic.name",
   "icon": "rankine:scoria",
-  "category": "rankine:stones",
+  "category": "rankine:sediments",
   "pages": [
     {
       "type": "text",
-      "text": "rankine.journal.cat_stones.volcanic.text1"
+      "text": "rankine.journal.cat_sediments.volcanic.text1"
     },
     {
-      "type": "image",
-      "images": ["rankine:textures/patchouli/volcanic_gen.png"],
-      "title": "rankine.journal.cat_stones.volcanic.text2",
-      "text": "rankine.journal.cat_stones.volcanic.text3"
+      "type": "text",
+      "title": "rankine.journal.cat_sediments.volcanic.text2",
+      "text": "rankine.journal.cat_sediments.volcanic.text3"
     },
     {
       "type": "spotlight",
       "item": "minecraft:obsidian",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.volcanic.obsidian"
+      "text": "rankine.journal.cat_sediments.volcanic.obsidian"
     },
     {
       "type": "spotlight",
       "item": "minecraft:crying_obsidian",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.volcanic.crying_obsidian"
+      "text": "rankine.journal.cat_sediments.volcanic.crying_obsidian"
     },
     {
       "type": "spotlight",
       "item": "rankine:snowflake_obsidian",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.volcanic.snowflake_obsidian"
+      "text": "rankine.journal.cat_sediments.volcanic.snowflake_obsidian"
     },
     {
       "type": "spotlight",
       "item": "rankine:blood_obsidian",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.volcanic.blood_obsidian"
+      "text": "rankine.journal.cat_sediments.volcanic.blood_obsidian"
     },
     {
       "type": "spotlight",
       "item": "rankine:pumice",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.volcanic.pumice"
+      "text": "rankine.journal.cat_sediments.volcanic.pumice"
     },
     {
       "type": "spotlight",
       "item": "rankine:scoria",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.volcanic.scoria"
+      "text": "rankine.journal.cat_sediments.volcanic.scoria"
     },
     {
       "type": "spotlight",
       "item": "rankine:andesitic_tuff",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.volcanic.andesitic_tuff"
+      "text": "rankine.journal.cat_sediments.volcanic.andesitic_tuff"
     },
     {
       "type": "spotlight",
       "item": "rankine:basaltic_tuff",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.volcanic.basaltic_tuff"
+      "text": "rankine.journal.cat_sediments.volcanic.basaltic_tuff"
     },
     {
       "type": "spotlight",
       "item": "rankine:rhyolitic_tuff",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.volcanic.rhyolitic_tuff"
+      "text": "rankine.journal.cat_sediments.volcanic.rhyolitic_tuff"
     },
     {
       "type": "spotlight",
       "item": "rankine:kimberlitic_tuff",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.volcanic.kimberlitic_tuff"
+      "text": "rankine.journal.cat_sediments.volcanic.kimberlitic_tuff"
     },
     {
       "type": "spotlight",
       "item": "rankine:komatiitic_tuff",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.volcanic.komatiitic_tuff"
+      "text": "rankine.journal.cat_sediments.volcanic.komatiitic_tuff"
     }
   ]
 }

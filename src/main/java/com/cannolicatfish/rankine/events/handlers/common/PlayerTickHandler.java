@@ -155,7 +155,7 @@ public class PlayerTickHandler {
         if (player.getCommandSenderWorld().getGameTime() % 1200L == 0) {
             int count = 0;
             for (ItemStack s : player.getArmorSlots()) {
-                if (s.isEnchanted() && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.GUARD, s) > 0) {
+                if (s.isEnchanted() && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.GUARD.get(), s) > 0) {
                     count+=2;
                 }
             }
@@ -203,22 +203,16 @@ public class PlayerTickHandler {
         }
         Block ground = world.getBlockState(pos).getBlock();
 
-
-
         Item feetEquipment = player.getItemBySlot(EquipmentSlot.FEET).getItem();
         Item headEquipment = player.getItemBySlot(EquipmentSlot.HEAD).getItem();
-        if (player.isEyeInFluid(FluidTags.WATER) && headEquipment == RankineItems.GOGGLES.get()) {
+        if (player.isEyeInFluid(FluidTags.WATER) && (headEquipment == RankineItems.GOGGLES.get() || RankineEnchantmentHelper.hasAquaLense(player))) {
             player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION,400,0,false,false));
         }
 
-
         AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
         AttributeInstance swimSpeed = player.getAttribute(ForgeMod.SWIM_SPEED.get());
-
-        //movementSpeed.applyNonPersistentModifier(new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb5"), "rankine:block_ms", 0.0D, AttributeModifier.Operation.ADDITION));
-
         ITagManager<Block> blockITagManager = ForgeRegistries.BLOCKS.tags();
-        // Movement Modifiersa
+
         if (Config.GENERAL.MOVEMENT_MODIFIERS.get() && blockITagManager != null) {
             List<AttributeModifier> mods = Arrays.asList(RankineAttributes.BRICKS_MS, RankineAttributes.CONCRETE_MS, RankineAttributes.GRASS_PATH_MS, RankineAttributes.ROMAN_CONCRETE_MS, RankineAttributes.DIRT_MS, RankineAttributes.MUD_MS, RankineAttributes.POLISHED_STONE_MS, RankineAttributes.SAND_MS, RankineAttributes.SNOW_MS, RankineAttributes.WOODEN_MS);
             if (player.isCreative() || player.isFallFlying()) {
@@ -335,19 +329,19 @@ public class PlayerTickHandler {
             movementSpeed.removeModifier(RankineAttributes.SPEED_SKATER);
             player.maxUpStep = 0.5f;
         }
-        if (RankineEnchantmentHelper.hasFlippers(player) || feetEquipment == RankineItems.FINS.get()) {
-            if (player.isSwimming() && !swimSpeed.hasModifier(RankineAttributes.FLIPPERS)) {
-                swimSpeed.addTransientModifier(RankineAttributes.FLIPPERS);
+        if (RankineEnchantmentHelper.hasSwiftSwimmer(player) || feetEquipment == RankineItems.FINS.get()) {
+            if (player.isSwimming() && !swimSpeed.hasModifier(RankineAttributes.SWIFT_SWIMMER)) {
+                swimSpeed.addTransientModifier(RankineAttributes.SWIFT_SWIMMER);
             }
-        } else if (!RankineEnchantmentHelper.hasFlippers(player) && feetEquipment != RankineItems.FINS.get() && swimSpeed.hasModifier(RankineAttributes.FLIPPERS)) {
-            swimSpeed.removeModifier(RankineAttributes.FLIPPERS);
+        } else if (!RankineEnchantmentHelper.hasSwiftSwimmer(player) && feetEquipment != RankineItems.FINS.get() && swimSpeed.hasModifier(RankineAttributes.SWIFT_SWIMMER)) {
+            swimSpeed.removeModifier(RankineAttributes.SWIFT_SWIMMER);
         }
-        if (!player.isSwimming() && swimSpeed.hasModifier(RankineAttributes.FLIPPERS)) {
-            swimSpeed.removeModifier(RankineAttributes.FLIPPERS);
+        if (!player.isSwimming() && swimSpeed.hasModifier(RankineAttributes.SWIFT_SWIMMER)) {
+            swimSpeed.removeModifier(RankineAttributes.SWIFT_SWIMMER);
         }
-        if (headEquipment == RankineItems.GOGGLES.get() && player.isEyeInFluid(FluidTags.WATER) && !swimSpeed.hasModifier(RankineAttributes.WATER_VISION)) {
+        if ((headEquipment == RankineItems.GOGGLES.get() || RankineEnchantmentHelper.hasAquaLense(player)) && player.isEyeInFluid(FluidTags.WATER) && !swimSpeed.hasModifier(RankineAttributes.WATER_VISION)) {
             swimSpeed.addTransientModifier(RankineAttributes.WATER_VISION);
-        } else if ((headEquipment != RankineItems.GOGGLES.get() || !player.isEyeInFluid(FluidTags.WATER)) && swimSpeed.hasModifier(RankineAttributes.WATER_VISION)) {
+        } else if (((headEquipment != RankineItems.GOGGLES.get() && !RankineEnchantmentHelper.hasAquaLense(player)) || !player.isEyeInFluid(FluidTags.WATER)) && swimSpeed.hasModifier(RankineAttributes.WATER_VISION)) {
             swimSpeed.removeModifier(RankineAttributes.WATER_VISION);
         }
     }

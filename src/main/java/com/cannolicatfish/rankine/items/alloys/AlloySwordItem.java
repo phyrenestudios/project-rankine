@@ -2,33 +2,27 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.enderdragon.EndCrystal;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
-import java.util.*;
-
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
-import net.minecraftforge.common.Tags;
+import java.util.List;
 
 public class AlloySwordItem extends SwordItem implements IAlloyTool {
     private final String defaultComposition;
@@ -112,7 +106,7 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
             this.initStats(stack,getElementMap(IAlloyItem.getAlloyComposition(stack),worldIn),getAlloyingRecipe(IAlloyItem.getAlloyRecipe(stack),worldIn),null);
         }
 
-        if (!worldIn.isClientSide && isSelected && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDURE,stack) > 0 && entityIn instanceof LivingEntity) {
+        if (!worldIn.isClientSide && isSelected && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDURE.get(),stack) > 0 && entityIn instanceof LivingEntity) {
             LivingEntity living = (LivingEntity) entityIn;
             List<EndCrystal> list = worldIn.getEntitiesOfClass(EndCrystal.class, new AABB(living.blockPosition()).inflate(5, 5, 5));
             for (EndCrystal enderCrystalEntity : list) {

@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/craft_rope",
+  "parent": "rankine:story/root",
   "display": {
     "icon": {
       "item": "rankine:dowsing_rod"

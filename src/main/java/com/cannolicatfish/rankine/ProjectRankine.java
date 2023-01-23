@@ -2,7 +2,6 @@ package com.cannolicatfish.rankine;
 
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.client.renders.*;
-import com.cannolicatfish.rankine.enchantment.*;
 import com.cannolicatfish.rankine.fluids.*;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
@@ -17,13 +16,11 @@ import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -85,6 +82,7 @@ public class ProjectRankine {
         RankineConfiguredFeatures.CONFIGURED_FEATURES.register(Bus);
         RankinePlacedFeatures.PLACED_FEATURES.register(Bus);
         RankineSoundEvents.SOUNDS.register(Bus);
+        RankineEnchantments.ENCHANTMENTS.register(Bus);
 
         Bus.addListener(this::LoadComplete);
 
@@ -398,68 +396,7 @@ public class ProjectRankine {
             }
         }
 
-
-        @SubscribeEvent
-        public static void registerEnchantments(final RegistryEvent.Register<Enchantment> event) {
-            final EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
-            final EquipmentSlot[] HAND_SLOTS = new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND};
-
-            event.getRegistry().register(new PunctureEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"puncture"));
-            event.getRegistry().register(new SwingEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"swing"));
-            event.getRegistry().register(new DazeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"daze"));
-            event.getRegistry().register(new AtomizeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"atomize"));
-            event.getRegistry().register(new ExcavateEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"excavate"));
-            event.getRegistry().register(new ImpactEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"impact"));
-            event.getRegistry().register(new QuakeEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"quake"));
-            event.getRegistry().register(new ForagingEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"foraging"));
-            event.getRegistry().register(new LightningAspectEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"lightning_aspect"));
-
-            event.getRegistry().register(new DuneWalkerEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET).setRegistryName(ProjectRankine.MODID,"dune_walker"));
-            event.getRegistry().register(new SnowDrifterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET).setRegistryName(ProjectRankine.MODID,"snow_drifter"));
-            event.getRegistry().register(new SpeedSkaterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET).setRegistryName(ProjectRankine.MODID,"speed_skater"));
-            event.getRegistry().register(new FlippersEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET).setRegistryName(ProjectRankine.MODID,"flippers"));
-            event.getRegistry().register(new GasProtectionEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET).setRegistryName(ProjectRankine.MODID,"gas_protection"));
-            event.getRegistry().register(new AntiquatedEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"antiquated"));
-            event.getRegistry().register(new CleanseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"cleanse"));
-
-
-            event.getRegistry().register(new EndobioticEnchantment(Enchantment.Rarity.VERY_RARE, ARMOR_SLOTS).setRegistryName(ProjectRankine.MODID,"endobiotic"));
-            event.getRegistry().register(new EndotoxinEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endotoxin"));
-            event.getRegistry().register(new EndpointEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endpoint"));
-            event.getRegistry().register(new EndosporeEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endospore"));
-            event.getRegistry().register(new EndureEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endure"));
-            event.getRegistry().register(new EndgameEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"endgame"));
-            event.getRegistry().register(new EndolithicEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endolithic"));
-            event.getRegistry().register(new EndlessEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endless"));
-            event.getRegistry().register(new EndeavorEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endeavor"));
-            event.getRegistry().register(new EndothermicEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endothermic"));
-            event.getRegistry().register(new EndplayEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"endplay"));
-
-            event.getRegistry().register(new GhastRegenerationEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"ghast_regeneration"));
-            event.getRegistry().register(new WitheringCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"withering_curse"));
-            event.getRegistry().register(new ShapeMemoryEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"shape_memory"));
-            event.getRegistry().register(new GuardEnchantment(Enchantment.Rarity.UNCOMMON, ARMOR_SLOTS).setRegistryName(ProjectRankine.MODID,"guard"));
-
-
-            event.getRegistry().register(new PreparationEnchantment(Enchantment.Rarity.COMMON, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"preparation"));
-            event.getRegistry().register(new PoisonAspectEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"poison_aspect"));
-            event.getRegistry().register(new BackstabEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"backstab"));
-            event.getRegistry().register(new GraftingEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"grafting"));
-            event.getRegistry().register(new RetaliateEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"retaliate"));
-            event.getRegistry().register(new RetreatEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"retreat"));
-
-
-            event.getRegistry().register(new LeverageEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"leverage"));
-            event.getRegistry().register(new PryingEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"prying"));
-            event.getRegistry().register(new LiftEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"lift"));
-            event.getRegistry().register(new RetrievalEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"retrieval"));
-
-            event.getRegistry().register(new AccuracyEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND).setRegistryName(ProjectRankine.MODID,"accuracy"));
-
-        }
-
     }
-
 
 }
 

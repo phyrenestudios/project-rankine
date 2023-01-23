@@ -1,130 +1,67 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.enchantment.*;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class RankineEnchantments {
 
-    @ObjectHolder("rankine:atomize")
-    public static Enchantment ATOMIZE;
+    public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, ProjectRankine.MODID);
 
-    @ObjectHolder("rankine:lightning_aspect")
-    public static Enchantment LIGHTNING_ASPECT;
+    static final EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
+    static final EquipmentSlot[] HAND_SLOTS = new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND};
 
-    @ObjectHolder("rankine:excavate")
-    public static Enchantment EXCAVATE;
+    public static final RegistryObject<Enchantment> PUNCTURE = ENCHANTMENTS.register("puncture", () -> new PunctureEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> SWING = ENCHANTMENTS.register("swing", () -> new SwingEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> DAZE = ENCHANTMENTS.register("daze", () -> new DazeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> ATOMIZE = ENCHANTMENTS.register("atomize", () -> new AtomizeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> EXCAVATE = ENCHANTMENTS.register("excavate", () -> new ExcavateEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> IMPACT = ENCHANTMENTS.register("impact", () -> new ImpactEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> QUAKE = ENCHANTMENTS.register("quake", () -> new QuakeEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> FORAGING = ENCHANTMENTS.register("foraging", () -> new ForagingEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> LIGHTNING_ASPECT = ENCHANTMENTS.register("lightning_aspect", () -> new LightningAspectEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> ANTIQUATED = ENCHANTMENTS.register("antiquated", () -> new AntiquatedEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> CLEANSE = ENCHANTMENTS.register("cleanse", () -> new CleanseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
 
-    @ObjectHolder("rankine:swing")
-    public static Enchantment SWING;
+    public static final RegistryObject<Enchantment> DUNE_WALKER = ENCHANTMENTS.register("dune_walker", () -> new DuneWalkerEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET));
+    public static final RegistryObject<Enchantment> SNOW_DRIFTER = ENCHANTMENTS.register("snow_drifter", () -> new SnowDrifterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET));
+    public static final RegistryObject<Enchantment> SPEED_SKATER = ENCHANTMENTS.register("speed_skater", () -> new SpeedSkaterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET));
+    public static final RegistryObject<Enchantment> SWIFT_SWIMMER = ENCHANTMENTS.register("swift_swimmer", () -> new SwiftSwimmersEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.FEET));
+    public static final RegistryObject<Enchantment> GAS_PROTECTION = ENCHANTMENTS.register("gas_protection", () -> new GasProtectionEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.HEAD));
+    public static final RegistryObject<Enchantment> AQUA_LENSE = ENCHANTMENTS.register("aqua_lense", () -> new AquaLenseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.HEAD));
 
-    @ObjectHolder("rankine:daze")
-    public static Enchantment DAZE;
+    public static final RegistryObject<Enchantment> ENDOBIOTIC = ENCHANTMENTS.register("endobiotic", () -> new EndobioticEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS));
+    public static final RegistryObject<Enchantment> ENDOTOXIN = ENCHANTMENTS.register("endotoxin", () -> new EndotoxinEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> ENDPOINT = ENCHANTMENTS.register("endpoint", () -> new EndpointEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> ENDOSPORE = ENCHANTMENTS.register("endospore", () -> new EndosporeEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> ENDURE = ENCHANTMENTS.register("endure", () -> new EndureEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> ENDGAME = ENCHANTMENTS.register("endgame", () -> new EndgameEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS));
+    public static final RegistryObject<Enchantment> ENDOLITHIC = ENCHANTMENTS.register("endolithic", () -> new EndolithicEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> ENDLESS = ENCHANTMENTS.register("endless", () -> new EndlessEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> ENDEAVOR = ENCHANTMENTS.register("endeavor", () -> new EndeavorEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> ENDOTHERMIC = ENCHANTMENTS.register("endothermic", () -> new EndothermicEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> ENDPLAY = ENCHANTMENTS.register("endplay", () -> new EndplayEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
 
-    @ObjectHolder("rankine:puncture")
-    public static Enchantment PUNCTURE;
+    public static final RegistryObject<Enchantment> GHASTLY_REGENERATION = ENCHANTMENTS.register("ghastly_regeneration", () -> new GhastRegenerationEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> WITHERING_CURSE = ENCHANTMENTS.register("withering_curse", () -> new WitheringCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> SHAPE_MEMORY = ENCHANTMENTS.register("shape_memory", () -> new ShapeMemoryEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> GUARD = ENCHANTMENTS.register("guard", () -> new GuardEnchantment(Enchantment.Rarity.UNCOMMON, ARMOR_SLOTS));
 
-    @ObjectHolder("rankine:foraging")
-    public static Enchantment FORAGING;
+    public static final RegistryObject<Enchantment> ACCURACY = ENCHANTMENTS.register("accuracy", () -> new AccuracyEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> PREPARATION = ENCHANTMENTS.register("preparation", () -> new PreparationEnchantment(Enchantment.Rarity.COMMON, HAND_SLOTS));
+    public static final RegistryObject<Enchantment> POISON_ASPECT = ENCHANTMENTS.register("poison_aspect", () -> new PoisonAspectEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> BACKSTAB = ENCHANTMENTS.register("backstab", () -> new BackstabEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> GRAFTING = ENCHANTMENTS.register("grafting", () -> new GraftingEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> RETALIATE = ENCHANTMENTS.register("retaliate", () -> new RetaliateEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS));
+    public static final RegistryObject<Enchantment> RETREAT = ENCHANTMENTS.register("retreat", () -> new RetreatEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS));
 
-    @ObjectHolder("rankine:impact")
-    public static Enchantment IMPACT;
+    public static final RegistryObject<Enchantment> LEVERAGE = ENCHANTMENTS.register("leverage", () -> new LeverageEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> PRYING = ENCHANTMENTS.register("prying", () -> new PryingEnchantment(Enchantment.Rarity.RARE, HAND_SLOTS));
+    public static final RegistryObject<Enchantment> LIFT = ENCHANTMENTS.register("lift", () -> new LiftEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> RETRIEVAL = ENCHANTMENTS.register("retrieval", () -> new RetrievalEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
 
-    @ObjectHolder("rankine:quake")
-    public static Enchantment QUAKE;
-
-    @ObjectHolder("rankine:dune_walker")
-    public static Enchantment DUNE_WALKER;
-
-    @ObjectHolder("rankine:snow_drifter")
-    public static Enchantment SNOW_DRIFTER;
-
-    @ObjectHolder("rankine:speed_skater")
-    public static Enchantment SPEED_SKATER;
-    @ObjectHolder("rankine:flippers")
-    public static Enchantment FLIPPERS;
-
-    @ObjectHolder("rankine:gas_protection")
-    public static Enchantment GAS_PROTECTION;
-
-    @ObjectHolder("rankine:antiquated")
-    public static Enchantment ANTIQUATED;
-
-    @ObjectHolder("rankine:cleanse")
-    public static Enchantment CLEANSE;
-
-    @ObjectHolder("rankine:endobiotic")
-    public static Enchantment ENDOBIOTIC;
-
-    @ObjectHolder("rankine:endotoxin")
-    public static Enchantment ENDOTOXIN;
-
-    @ObjectHolder("rankine:endpoint")
-    public static Enchantment ENDPOINT;
-
-    @ObjectHolder("rankine:endospore")
-    public static Enchantment ENDOSPORE;
-
-    @ObjectHolder("rankine:endure")
-    public static Enchantment ENDURE;
-
-    @ObjectHolder("rankine:endgame")
-    public static Enchantment ENDGAME;
-
-    @ObjectHolder("rankine:endolithic")
-    public static Enchantment ENDOLITHIC;
-
-    @ObjectHolder("rankine:endless")
-    public static Enchantment ENDLESS;
-
-    @ObjectHolder("rankine:endeavor")
-    public static Enchantment ENDEAVOR;
-
-    @ObjectHolder("rankine:endothermic")
-    public static Enchantment ENDOTHERMIC;
-
-    @ObjectHolder("rankine:endplay")
-    public static Enchantment ENDPLAY;
-
-    @ObjectHolder("rankine:backstab")
-    public static Enchantment BACKSTAB;
-
-    @ObjectHolder("rankine:grafting")
-    public static Enchantment GRAFTING;
-
-    @ObjectHolder("rankine:poison_aspect")
-    public static Enchantment POISON_ASPECT;
-
-    @ObjectHolder("rankine:preparation")
-    public static Enchantment PREPARATION;
-
-    @ObjectHolder("rankine:retaliate")
-    public static Enchantment RETALIATE;
-
-    @ObjectHolder("rankine:retreat")
-    public static Enchantment RETREAT;
-
-    @ObjectHolder("rankine:withering_curse")
-    public static Enchantment WITHERING_CURSE;
-
-    @ObjectHolder("rankine:shape_memory")
-    public static Enchantment SHAPE_MEMORY;
-
-    @ObjectHolder("rankine:guard")
-    public static Enchantment GUARD;
-
-    @ObjectHolder("rankine:leverage")
-    public static Enchantment LEVERAGE;
-
-    @ObjectHolder("rankine:prying")
-    public static Enchantment PRYING;
-
-    @ObjectHolder("rankine:retrieval")
-    public static Enchantment RETRIEVAL;
-
-    @ObjectHolder("rankine:lift")
-    public static Enchantment LIFT;
-
-
-    @ObjectHolder("rankine:accuracy")
-    public static Enchantment ACCURACY;
 }

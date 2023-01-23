@@ -41,18 +41,18 @@ public class LivingDamageHandler {
             ItemStack stack = player.getOffhandItem().getItem() instanceof KnifeItem ? player.getOffhandItem() : ItemStack.EMPTY;
             if (!stack.isEmpty()) {
                 int i = stack.getItem().getUseDuration(stack) - player.getUseItemRemainingTicks();
-                if (i < (10 + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.PREPARATION,stack))) {
+                if (i < (10 + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.PREPARATION.get(),stack))) {
 
 
                     if (!event.getSource().isBypassArmor()) {
                         player.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP,1.0f, 1.0f);
-                        if (event.getSource().getEntity() instanceof LivingEntity && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.RETALIATE,stack) >= 1) {
+                        if (event.getSource().getEntity() instanceof LivingEntity && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.RETALIATE.get(),stack) >= 1) {
                             LivingEntity ent = (LivingEntity) event.getSource().getEntity();
                             ent.hurt(event.getSource(),event.getAmount());
-                        } else if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.RETREAT,stack) >= 1) {
+                        } else if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.RETREAT.get(),stack) >= 1) {
                             player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY,60));
                         }
-                        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDGAME,stack) > 0) {
+                        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDGAME.get(),stack) > 0) {
                             List<LivingEntity> list = player.level.getEntitiesOfClass(LivingEntity.class, new AABB(player.blockPosition()).inflate(5, 5, 5), (e) -> (e instanceof Mob || e instanceof Player) && !e.equals(player));
                             for (LivingEntity entity : list) {
                                 ItemStack offhand = player.getOffhandItem();
@@ -96,7 +96,7 @@ public class LivingDamageHandler {
             Level worldIn = player.getCommandSenderWorld();
             for (int i = 0; i < player.getInventory().armor.size(); ++i) {
                 ItemStack s = player.getInventory().armor.get(i);
-                if (!event.getSource().isProjectile() || EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOBIOTIC,s) == 0) {
+                if (!event.getSource().isProjectile() || EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOBIOTIC.get(),s) == 0) {
                     if (s.getItem() instanceof AlloyArmorItem) {
                         AlloyArmorItem armor = (AlloyArmorItem) s.getItem();
                         if (worldIn.getRandom().nextFloat() > armor.getHeatResist(s) && (player.isInLava() || player.getRemainingFireTicks() > 0 || worldIn.dimension() == Level.NETHER)) {
@@ -106,12 +106,12 @@ public class LivingDamageHandler {
                             });
                         } else if ((worldIn.getRandom().nextFloat() > armor.getCorrResist(s) && player.isInWaterOrRain())) {
                             int finalI1 = i;
-                            s.hurtAndBreak(1 + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOBIOTIC,s)*3,player,(entity) -> {
+                            s.hurtAndBreak(1 + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOBIOTIC.get(),s)*3,player,(entity) -> {
                                 entity.broadcastBreakEvent(EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, finalI1));
                             });
                         }
                     }
-                } else if (event.getSource().isProjectile() && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOBIOTIC,s) > 0) {
+                } else if (event.getSource().isProjectile() && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOBIOTIC.get(),s) > 0) {
                     if (!worldIn.isClientSide) {
                         double d0 = player.getX();
                         double d1 = player.getY();
@@ -120,7 +120,7 @@ public class LivingDamageHandler {
                             AlloyArmorItem armor = (AlloyArmorItem) s.getItem();
                             if ((worldIn.getRandom().nextFloat() > armor.getCorrResist(s) && player.isInWaterOrRain())) {
                                 int finalI1 = i;
-                                s.hurtAndBreak(1 + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOBIOTIC,s)*3,player,(entity) -> {
+                                s.hurtAndBreak(1 + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOBIOTIC.get(),s)*3,player,(entity) -> {
                                     entity.broadcastBreakEvent(EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, finalI1));
                                 });
                             }
@@ -150,7 +150,7 @@ public class LivingDamageHandler {
                 boolean wither = false;
                 for(int i = 0; i < player.getInventory().getContainerSize(); ++i) {
                     ItemStack itemstack = player.getInventory().getItem(i);
-                    if (!itemstack.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.WITHERING_CURSE, itemstack) > 0) {
+                    if (!itemstack.isEmpty() && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.WITHERING_CURSE.get(), itemstack) > 0) {
                         wither = true;
                         break;
                     }
@@ -173,7 +173,7 @@ public class LivingDamageHandler {
             if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof HammerItem && !player.level.isClientSide) {
                 LivingEntity receiver = event.getEntityLiving();
                 if ((receiver instanceof Blaze || receiver instanceof AbstractGolem || receiver instanceof AbstractSkeleton || receiver instanceof Guardian)) {
-                    int endLevel = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDEAVOR,player.getItemInHand(InteractionHand.MAIN_HAND));
+                    int endLevel = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDEAVOR.get(),player.getItemInHand(InteractionHand.MAIN_HAND));
                     event.setAmount(event.getAmount() + event.getAmount()/2f + 1.5f*endLevel);
                     if (endLevel > 0 && player.level.getRandom().nextFloat() < (0.15f*endLevel) && receiver.level.getServer() != null && player.level instanceof ServerLevel) {
                         LootTable loot = receiver.level.getServer().getLootTables().get(receiver.getLootTable());
@@ -196,16 +196,16 @@ public class LivingDamageHandler {
                 float damage = event.getAmount() + event.getAmount() * 0.5f;
                 event.setAmount(damage);
             }
-            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTOXIN,player.getItemInHand(InteractionHand.MAIN_HAND)) >= 1 && !player.level.isClientSide) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTOXIN.get(),player.getItemInHand(InteractionHand.MAIN_HAND)) >= 1 && !player.level.isClientSide) {
                 LivingEntity receiver = event.getEntityLiving();
                 if ((receiver instanceof EnderMan || receiver instanceof Shulker || receiver instanceof Endermite || receiver.getCommandSenderWorld().dimension().equals(Level.END))) {
-                    event.setAmount(event.getAmount() + 2.5f*EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTOXIN,player.getItemInHand(InteractionHand.MAIN_HAND)));
+                    event.setAmount(event.getAmount() + 2.5f*EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTOXIN.get(),player.getItemInHand(InteractionHand.MAIN_HAND)));
                 }
             }
 
-            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.CLEANSE,player.getItemInHand(InteractionHand.MAIN_HAND)) >= 1 && !player.level.isClientSide) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.CLEANSE.get(),player.getItemInHand(InteractionHand.MAIN_HAND)) >= 1 && !player.level.isClientSide) {
                 LivingEntity receiver = event.getEntityLiving();
-                float damage = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.CLEANSE,player.getItemInHand(InteractionHand.MAIN_HAND)) * receiver.getActiveEffects().size();
+                float damage = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.CLEANSE.get(),player.getItemInHand(InteractionHand.MAIN_HAND)) * receiver.getActiveEffects().size();
                 event.setAmount(event.getAmount() + damage);
                 boolean flag = damage >= 1;
                 if (flag) {
@@ -214,26 +214,26 @@ public class LivingDamageHandler {
                 }
             }
 
-            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.BACKSTAB,player.getItemInHand(InteractionHand.MAIN_HAND)) >= 1 && !player.level.isClientSide) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.BACKSTAB.get(),player.getItemInHand(InteractionHand.MAIN_HAND)) >= 1 && !player.level.isClientSide) {
                 ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
 
                 LivingEntity receiver = event.getEntityLiving();
                 if (receiver.getDirection().equals(player.getDirection())) {
                     receiver.playSound(SoundEvents.TRIDENT_HIT,1.0f, 1.0f);
-                    float damage = event.getAmount() + event.getAmount() * EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.BACKSTAB,stack);
+                    float damage = event.getAmount() + event.getAmount() * EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.BACKSTAB.get(),stack);
                     event.setAmount(damage);
                 }
             }
 
-            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LEVERAGE,player.getItemInHand(InteractionHand.MAIN_HAND)) >= 1 && !player.level.isClientSide) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LEVERAGE.get(),player.getItemInHand(InteractionHand.MAIN_HAND)) >= 1 && !player.level.isClientSide) {
                 ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
 
                 LivingEntity receiver = event.getEntityLiving();
                 float size = receiver.getDimensions(receiver.getPose()).height * receiver.getDimensions(receiver.getPose()).width;
-                int lvl = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LEVERAGE,stack);
+                int lvl = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LEVERAGE.get(),stack);
                 //System.out.println(size);
                 float mod = -2 + lvl;
-                float damage = event.getAmount() + Math.max(0,Math.min(size + mod,1.5f*EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LEVERAGE,stack)));
+                float damage = event.getAmount() + Math.max(0,Math.min(size + mod,1.5f*EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LEVERAGE.get(),stack)));
                 //System.out.println("damageOut: " + damage);
                 event.setAmount(damage);
             }

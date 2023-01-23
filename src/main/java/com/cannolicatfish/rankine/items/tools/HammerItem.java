@@ -167,19 +167,19 @@ public class HammerItem extends DiggerItem {
 
 
     public static int getLightningModifier(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LIGHTNING_ASPECT, stack);
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LIGHTNING_ASPECT.get(), stack);
     }
 
     public static int getDazeModifier(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.DAZE, stack);
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.DAZE.get(), stack);
     }
 
     public static int getExcavateModifier(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.EXCAVATE, stack);
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.EXCAVATE.get(), stack);
     }
 
     public static int getAtomizeModifier(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ATOMIZE, stack);
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ATOMIZE.get(), stack);
     }
 
     @Override

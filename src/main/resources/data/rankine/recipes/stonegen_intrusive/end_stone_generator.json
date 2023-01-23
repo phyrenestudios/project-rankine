@@ -1,0 +1,13 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "intrusive_igneous",
+  "input1": {
+    "item": "rankine:gypsum_block"
+  },
+  "input2": {
+    "item": "rankine:silicon_carbide_block"
+  },
+  "result": {
+    "block": "minecraft:end_stone"
+  }
+}

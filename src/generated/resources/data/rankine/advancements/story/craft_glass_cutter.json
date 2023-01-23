@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_cast_iron",
+  "parent": "rankine:story/craft_alloy_furnace",
   "display": {
     "icon": {
       "item": "rankine:glass_cutter",

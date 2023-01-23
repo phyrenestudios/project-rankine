@@ -1,17 +1,16 @@
 {
-  "name": "rankine.journal.cat_stones.sedimentary.name",
+  "name": "rankine.journal.cat_sediments.sedimentary.name",
   "icon": "rankine:limestone",
-  "category": "rankine:stones",
+  "category": "rankine:sediments",
   "pages": [
     {
       "type": "text",
-      "text": "rankine.journal.cat_stones.sedimentary.text1"
+      "text": "rankine.journal.cat_sediments.sedimentary.text1"
     },
     {
-      "type": "image",
-      "images": ["rankine:textures/patchouli/sedimentary_gen.png"],
-      "title": "rankine.journal.cat_stones.sedimentary.text2",
-      "text": "rankine.journal.cat_stones.sedimentary.text3"
+      "type": "text",
+      "title": "rankine.journal.cat_sediments.sedimentary.text2",
+      "text": "rankine.journal.cat_sediments.sedimentary.text3"
     },
     {
       "type": "spotlight",
@@ -22,103 +21,103 @@
       "type": "spotlight",
       "item": "minecraft:sandstone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.sandstone"
+      "text": "rankine.journal.cat_sediments.sedimentary.sandstone"
     },
     {
       "type": "spotlight",
       "item": "minecraft:red_sandstone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.red_sandstone"
+      "text": "rankine.journal.cat_sediments.sedimentary.red_sandstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:soul_sandstone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.soul_sandstone"
+      "text": "rankine.journal.cat_sediments.sedimentary.soul_sandstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:desert_sandstone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.desert_sandstone"
+      "text": "rankine.journal.cat_sediments.sedimentary.desert_sandstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:white_sandstone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.white_sandstone"
+      "text": "rankine.journal.cat_sediments.sedimentary.white_sandstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:black_sandstone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.black_sandstone"
+      "text": "rankine.journal.cat_sediments.sedimentary.black_sandstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:limestone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.limestone"
+      "text": "rankine.journal.cat_sediments.sedimentary.limestone"
     },
     {
       "type": "spotlight",
       "item": "rankine:dolostone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.dolostone"
+      "text": "rankine.journal.cat_sediments.sedimentary.dolostone"
     },
     {
       "type": "spotlight",
       "item": "rankine:chalk",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.chalk"
+      "text": "rankine.journal.cat_sediments.sedimentary.chalk"
     },
     {
       "type": "spotlight",
       "item": "rankine:marlstone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.marlstone"
+      "text": "rankine.journal.cat_sediments.sedimentary.marlstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:shale",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.shale"
+      "text": "rankine.journal.cat_sediments.sedimentary.shale"
     },
     {
       "type": "spotlight",
       "item": "rankine:mudstone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.mudstone"
+      "text": "rankine.journal.cat_sediments.sedimentary.mudstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:siltstone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.siltstone"
+      "text": "rankine.journal.cat_sediments.sedimentary.siltstone"
     },
     {
       "type": "spotlight",
       "item": "rankine:itacolumite",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.itacolumite"
+      "text": "rankine.journal.cat_sediments.sedimentary.itacolumite"
     },
     {
       "type": "spotlight",
       "item": "rankine:arkose",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.arkose"
+      "text": "rankine.journal.cat_sediments.sedimentary.arkose"
     },
     {
       "type": "spotlight",
       "item": "rankine:graywacke",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.graywacke"
+      "text": "rankine.journal.cat_sediments.sedimentary.graywacke"
     },
     {
       "type": "spotlight",
       "item": "rankine:honeystone",
       "link_recipe": true,
-      "text": "rankine.journal.cat_stones.sedimentary.honeystone"
+      "text": "rankine.journal.cat_sediments.sedimentary.honeystone"
     }
   ]
 }

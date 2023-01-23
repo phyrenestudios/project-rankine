@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:challenges/root",
+  "parent": "rankine:story/craft_induction_furnace",
   "display": {
     "icon": {
       "item": "rankine:amalgam_ingot"

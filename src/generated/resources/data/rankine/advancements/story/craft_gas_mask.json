@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/craft_tree_tap",
+  "parent": "rankine:story/root",
   "display": {
     "icon": {
       "item": "rankine:gas_mask",
