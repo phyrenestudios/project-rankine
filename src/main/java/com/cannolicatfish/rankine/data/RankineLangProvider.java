@@ -806,8 +806,9 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.metamorphic", "Metamorphic Rock Generator");
         add("rankine.jei.volcanic", "Volcanic Rock Generator");
         add("rankine.jei.air_distillation", "Air Distillation");
-        add("rankine.jei.treetapping", "Treetap");
+        add("rankine.jei.treetapping", "Tree Tapping");
         add("rankine.jei.stripping", "Axe Stripping");
+        add("rankine.jei.cauldron_drying", "Cauldron Drying");
         add("itemGroup.rankine_world", "Project Rankine Building");
         add("itemGroup.rankine_metallurgy", "Project Rankine Metallurgy");
         add("itemGroup.rankine_elements", "Project Rankine: Elements");
@@ -925,6 +926,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_stone_hammer.description", "Constructing a stronger mallet drops more resources from crushed blocks");
         add("rankine.advancements.story.craft_alloy_hammer.title", "Dust to Dust Again");
         add("rankine.advancements.story.craft_alloy_hammer.description", "Make a hammer with a harvest level of 2 or greater (alloys required) to crack open those tougher materials");
+        add("rankine.advancements.story.crushing_heads.title", "Pokey Pokey");
+        add("rankine.advancements.story.crushing_heads.description", "Automatically crush blocks by pushing Crushing Heads with pistons");
         add("rankine.advancements.story.get_cobblestone.title", "Cobble Cobble");
         add("rankine.advancements.story.get_cobblestone.description", "Obtain cobblestone from crushing stones using a hammer");
         add("rankine.advancements.story.craft_mixing_barrel.title", "Mix it Up");
@@ -997,8 +1000,6 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_distillation_tower.description", "Construct a Distillation Tower to obtain gases from the air");
         add("rankine.advancements.story.craft_induction_furnace.title", "Heating Up");
         add("rankine.advancements.story.craft_induction_furnace.description", "Make an Induction Furnace for more advanced alloys");
-        add("rankine.advancements.story.craft_sediment_fan.title", "Spin Cycle");
-        add("rankine.advancements.story.craft_sediment_fan.description", "Make a Sediment Fan to generate Sedimentary Stones");
         add("rankine.advancements.story.craft_magnet.title", "Attraction");
         add("rankine.advancements.story.craft_magnet.description", "Make a handheld magnet to bring items closer to you");
         add("rankine.advancements.story.craft_tree_tap.title", "Flowing Phloem");
@@ -1246,10 +1247,14 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_constructs.fusion_furnace.name", "Fusion Furnace");
         add("rankine.journal.cat_constructs.fusion_furnace.text1", "The Fusion Furnace utilizes solids, liquids, and gases to make new outputs. Many recipes which involve gases will require Bottled Gases and Empty Bottles. You can acquire Bottled Gases using either the $(l:materials/gasses)Gas Bottler$() or the $(l:materials/gasses)Shulker Gas Vacuum$(). In order for a recipe to go through, you must have the required ingredients, fluid in the input fluid tank, and bottled gas in the slot adjacent to the tank.");
         add("rankine.journal.cat_constructs.fusion_furnace.text2", " This machine does not use coal, and must use electrical energy from items such as Batteries or RTGs.");
-        add("rankine.journal.cat_constructs.fusion_furnace.batteries_header", "Batteries");
-        add("rankine.journal.cat_constructs.fusion_furnace.batteries", "Batteries are energy storage devices that fuel late game machines. Currently they are single use.");
-        add("rankine.journal.cat_constructs.fusion_furnace.rtg_header", "RTGs");
-        add("rankine.journal.cat_constructs.fusion_furnace.rtg", "RTGs are radioactively powered batteries with a much higher capacity.");
+
+        add("rankine.journal.cat_constructs.batteries.name", "Batteries");
+        add("rankine.journal.cat_constructs.batteries.text1", "Batteries are energy storage devices that fuel electric machines.");
+        add("rankine.journal.cat_constructs.batteries.text2", "Batteries");
+        add("rankine.journal.cat_constructs.batteries.text3", "");
+        add("rankine.journal.cat_constructs.batteries.text4", "The battery charger increases the charge of batteries within its inventory every ~20 seconds. The amount of charge returned depends on the capacity of the battery charger, shown by the red bar in the gui. To increase the charge capacity, place a daylight sensor on top of the charger. Additional charge can be added when lightning strikes a lightning rod adjacent to the charger.");
+        add("rankine.journal.cat_constructs.batteries.text5", "RTGs");
+        add("rankine.journal.cat_constructs.batteries.text6", "RTGs are radioactively powered batteries with a much higher capacity. They cannot be recharged.");
 
         add("rankine.journal.cat_constructs.beehive_oven.name", "Beehive Oven");
         add("rankine.journal.cat_constructs.beehive_oven.text1", "The beehive oven is an in-world furnace that slowly smelts blocks placed inside it. While holding bricks in the offhand, right click with Building Tool on the Oven Pit to place blocks. Or you can place the blocks manually by matching the structure on the next page.");
@@ -1467,7 +1472,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_sediments.sedimentary.name", "Sedimentary Stones");
         add("rankine.journal.cat_sediments.sedimentary.text1", "Sedimentary stones are formed from compactions and cementing of sediments.");
         add("rankine.journal.cat_sediments.sedimentary.text2", "Generation");
-        add("rankine.journal.cat_sediments.sedimentary.text3", "AAAAAAAAAAA. See JEI for generator recipes.");
+        add("rankine.journal.cat_sediments.sedimentary.text3", "Sediment blocks that despawn in water will sink to the bottom and become their stone counterpart. A more automatic method of generation involves the Sediment Fan.. See JEI for generator recipes.");
+        add("rankine.journal.cat_sediments.sedimentary.text4", "The fan encourages particles of adjacent blocks to be pushed into water streams, where they will be compacted and converted into stones. Place a sediment block adjacent to the fan and a water source one block further out in a line. The stone will be generated on the third block out if it is also water.");
         add("rankine.journal.cat_sediments.sedimentary.sandstone", "Found in river, ocean and beach biomes");
         add("rankine.journal.cat_sediments.sedimentary.red_sandstone", "Not found in nature.");
         add("rankine.journal.cat_sediments.sedimentary.soul_sandstone", "Found in soul sand valley biomes");
@@ -1595,7 +1601,6 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.name", "Tools");
         add("rankine.journal.cat_tools.desc", "Various implements use to manipulate the world.");
 
-
         add("rankine.journal.cat_tools.totems.name", "Totems");
         add("rankine.journal.cat_tools.totems.text1", "Totems are relics derived from the natural magics of the world. While in the offhand, they provide various effects.");
         add("rankine.journal.cat_tools.totems.totem_of_blazing", "When on fire, deal 1.5x damage and lay fire at your feet. When health is less than 25% or you fall in lava, this totem disappears and provides Fire Resistance and a small amount of Regeneration.");
@@ -1609,18 +1614,28 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.totems.totem_of_softening", "The delicacy of an open hand allows you to collect blocks that naturally require silk touch.");
         add("rankine.journal.cat_tools.totems.totem_of_timesaving", "Provides additional movement speed across all solid terrain.");
 
-        add("rankine.journal.cat_tools.building_tool.name", "Building Tool");
-        add("rankine.journal.cat_tools.building_tool.text1", "A catch all tool for creating new blockstates from a given block. With the building tool in the offhand, shift-right click to change the mode from 0-7. Then place blocks to see if they have an affected build state.");
-        add("rankine.journal.cat_tools.building_tool.text2", "Currently affects Stone Bricks, Polished Stones, Bricks, Planks, Columns, Asphalt, Concrete/Cement, Ornament and Metal Bars blocks.");
-
-
         add("rankine.journal.cat_tools.common_tools.name", "Other Tools");
         add("rankine.journal.cat_tools.common_tools.text1", "");
         add("rankine.journal.cat_tools.common_tools.glass_cutter", "A tool effective for breaking glass materials. Comes with silk touch by default. Right click glass blocks to convert them into glass panes.");
         add("rankine.journal.cat_tools.common_tools.rock_drill", "Right click the ground to receive a sample report of all the stones located below.");
         add("rankine.journal.cat_tools.common_tools.fire_extinguisher", "Right click to extinguish fires in a radius in front of you.");
 
+        add("rankine.journal.cat_tools.armor.name", "Armor");
+        add("rankine.journal.cat_tools.armor.text1", "Various armor sets exist in the game.");
+        add("rankine.journal.cat_tools.armor.brigandine_title", "Brigandine Armor");
+        add("rankine.journal.cat_tools.armor.brigandine", "Steel plated leather armor. Made by combining leather armor and a steel ingot in the smithing table.");
+        add("rankine.journal.cat_tools.armor.diving_title", "Diving Armor");
+        add("rankine.journal.cat_tools.armor.diving", "Armor made from brass. Allows the wearer to hold their breath for a longer period of time.");
+        add("rankine.journal.cat_tools.armor.conduit_diving_title", "Conduit Diving Armor");
+        add("rankine.journal.cat_tools.armor.conduit_diving", "Upgraded diving armor. Provides the wearer with conduit power when in water.");
+        add("rankine.journal.cat_tools.armor.alloy_title", "Alloy Armor");
+        add("rankine.journal.cat_tools.armor.alloy", "Like tools, alloy armor gets it's stats (armor, toughness, durability) depending on the composition of the alloy. Recipes for alloy armor can be added external using datapacks or mods. By default there are a few different recipes.");
 
+        add("rankine.journal.cat_tools.arrows.name", "Arrows");
+        add("rankine.journal.cat_tools.arrows.text1", "Alloy arrows gets their stats (damage) depending on the composition of the alloy. Recipes for alloy armor can be added external using datapacks or mods.");
+        add("rankine.journal.cat_tools.arrows.steel_arrow", "An upgraded standard arrow. Deals more damage.\"");
+        add("rankine.journal.cat_tools.arrows.thorium_arrow", "Summons lightning on impact.");
+        add("rankine.journal.cat_tools.arrows.magnesium_arrow", "Blinds nearby enemies when on ground. Hit mobs will trigger nearby undead mobs to attack. Creepers explode on impact.");
 
         add("rankine.journal.cat_tools.ore_detection.name", "Ore Detection");
         add("rankine.journal.cat_tools.ore_detection.text1", "");
@@ -1639,8 +1654,12 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.equipment.text6", "Goggles are worn on the head and provide better vision and movemet speed in water. Combine a helmet of any type with goggles in an anvil to apply the $(l:mechanics/enchantments#aqua_lense)Aqua Lense$() enchantment.");
         add("rankine.journal.cat_tools.equipment.text7", "A Gas Mask are worn on the head and protects against suffocation in gas blocks. Combine helmet of any type with a gas mask in an anvil to apply the $(l:mechanics/enchantments#gas_protection)Gas Protection$() enchantment.");
 
+        add("rankine.journal.cat_tools.element_indexer.name", "Element Indexer");
+        add("rankine.journal.cat_tools.element_indexer.text1", "Upon inspection most materials used in the alloying process have some inherent properties to them. For the end goal of making ingots, this doesn't matter much, but for tools there can be profound effects.");
+        add("rankine.journal.cat_tools.element_indexer.text2", "To see the stats of an element, right click the element indexer and place the ingot in the top left slot. The stats will show below for each of the various categories. Additionally, when in the GUI, scrolling will change the percentage of the material you are looking at. See $(l:alloying/alloying)Notes About Alloying$() for details.");
+
         add("rankine.journal.cat_tools.utility_tools.name", "Utility Tools");
-        add("rankine.journal.cat_tools.utility_tools.text1", "");
+        add("rankine.journal.cat_tools.utility_tools.text1", "Various utility tools have been added to display information. Tools will display on the status bar while in your main hand or off hand. Default is head position, sneak for position at feet.");
         add("rankine.journal.cat_tools.utility_tools.altimeter", "Displays the current Y value.");
         add("rankine.journal.cat_tools.utility_tools.photometer", "Displays the current light level.");
         add("rankine.journal.cat_tools.utility_tools.compass", "Displays the current X and Z coordinates.");
@@ -1649,12 +1668,12 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.utility_tools.biometer", "Displays the current biome.");
         add("rankine.journal.cat_tools.utility_tools.magnetometer", "Displays the current magnetic field strength. Field strength is dependent on nearby blocks.");
 
-        add("rankine.journal.cat_constructs.magnets.name", "Magnets");
-        add("rankine.journal.cat_constructs.magnets.text1", "Magnets can pull in surrounding items when right-clicked in hand. Config options exist for magnet ranges.");
-        add("rankine.journal.cat_constructs.magnets.lodestone", "A weakly powered natural magnet. Lodestones will actively pull in items with a 2 block range. Obtained by crushing $(world/ores#magnetite_ore)Magnetite Ore$().");
-        add("rankine.journal.cat_constructs.magnets.simple_magnet", "Default Range: 4 blocks");
-        add("rankine.journal.cat_constructs.magnets.alnico_magnet", "Default Range: 8 blocks");
-        add("rankine.journal.cat_constructs.magnets.rare_earth_magnet", "Default Range: 12 blocks");
+        add("rankine.journal.cat_tools.magnets.name", "Magnets");
+        add("rankine.journal.cat_tools.magnets.text1", "Magnets can pull in surrounding items when right-clicked in hand. Config options exist for magnet ranges.");
+        add("rankine.journal.cat_tools.magnets.lodestone", "A weakly powered natural magnet. Lodestones will actively pull in items with a 2 block range. Obtained by crushing $(world/ores#magnetite_ore)Magnetite Ore$().");
+        add("rankine.journal.cat_tools.magnets.simple_magnet", "Default Range: 4 blocks");
+        add("rankine.journal.cat_tools.magnets.alnico_magnet", "Default Range: 8 blocks");
+        add("rankine.journal.cat_tools.magnets.rare_earth_magnet", "Default Range: 12 blocks");
 
         add("rankine.journal.cat_tools.standard_tools.name", "Standard Tools");
         add("rankine.journal.cat_tools.standard_tools.text1", "");

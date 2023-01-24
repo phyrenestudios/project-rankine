@@ -1,0 +1,89 @@
+{
+  "parent": "rankine:story/craft_alloy_hammer",
+  "display": {
+    "icon": {
+      "item": "rankine:iron_tier_crushing_head"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.crushing_heads.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.crushing_heads.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "wood_tier_crushing_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:wood_tier_crushing_head"
+            ]
+          }
+        ]
+      }
+    },
+    "stone_tier_crushing_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:stone_tier_crushing_head"
+            ]
+          }
+        ]
+      }
+    },
+    "iron_tier_crushing_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:iron_tier_crushing_head"
+            ]
+          }
+        ]
+      }
+    },
+    "diamond_tier_crushing_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:diamond_tier_crushing_head"
+            ]
+          }
+        ]
+      }
+    },
+    "netherite_tier_crushing_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:netherite_tier_crushing_head"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "wood_tier_crushing_head",
+      "stone_tier_crushing_head",
+      "iron_tier_crushing_head",
+      "diamond_tier_crushing_head",
+      "netherite_tier_crushing_head"
+    ]
+  ]
+}

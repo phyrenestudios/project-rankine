@@ -70,11 +70,6 @@
     },
     {
       "type": "text",
-      "title": "Electrical Potential",
-      "text": "Something to do with electricity..."
-    },
-    {
-      "type": "text",
       "title": "Tool Efficiency",
       "text": "Not an individual element stat. Tool efficiency refers to how worn down the tools is due to durability loss. Lower efficiency means the tool will mine slower or do less damage."
     },

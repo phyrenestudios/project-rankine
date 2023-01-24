@@ -1,0 +1,39 @@
+{
+  "name": "rankine.journal.cat_constructs.batteries.name",
+  "icon": "rankine:lithium_ion_battery",
+  "category": "rankine:constructs",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_constructs.batteries.text1"
+    },
+    {
+      "type": "rankine:item7",
+      "heading": "rankine.journal.cat_constructs.batteries.text2",
+      "text": "rankine.journal.cat_constructs.batteries.text3",
+      "item1": "rankine:silver_zinc_battery",
+      "item2": "rankine:magnesium_battery",
+      "item3": "rankine:lead_acid_battery",
+      "item4": "rankine:vanadium_redox_battery",
+      "item5": "rankine:zinc_bromine_battery",
+      "item6": "rankine:sodium_sulfur_battery",
+      "item7": "rankine:lithium_ion_battery"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:battery_charger",
+      "link_recipe": true,
+      "text": "rankine.journal.cat_constructs.batteries.text4"
+    },
+    {
+      "type": "rankine:item5",
+      "heading": "rankine.journal.cat_constructs.batteries.text5",
+      "text": "rankine.journal.cat_constructs.batteries.text6",
+      "item1": "rankine:strontium_rtg",
+      "item2": "rankine:polonium_rtg",
+      "item3": "rankine:plutonium_rtg",
+      "item4": "rankine:americium_rtg",
+      "item5": "rankine:curium_rtg"
+    }
+  ]
+}

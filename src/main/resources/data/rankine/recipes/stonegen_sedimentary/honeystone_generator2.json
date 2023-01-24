@@ -2,7 +2,7 @@
   "type": "rankine:rock_generator",
   "genType": "sedimentary",
   "input1": {
-    "item": "rankine:mellite_block"
+    "item": "rankine:mellite"
   },
   "result": {
     "block": "rankine:honeystone"

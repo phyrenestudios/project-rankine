@@ -1,15 +1,15 @@
 {
-  "name": "Element Indexer",
+  "name": "rankine.journal.cat_tools.element_indexer.name",
   "icon": "rankine:element_indexer",
   "category": "rankine:tools",
   "pages": [
     {
       "type": "text",
-      "text": "Upon inspection most materials used in the alloying process have some inherent properties to them. For the end goal of making ingots, this doesn't matter much, but for tools there can be profound effects."
+      "text": "rankine.journal.cat_tools.element_indexer.text1"
     },
     {
       "type": "text",
-      "text": "To see the stats of an element, right click the element indexer and place the ingot in the top left slot. The stats will show below for each of the various categories. Additionally, when in the GUI, scrolling will change the percentage of the material you are looking at. See $(l:alloying/alloying)Notes About Alloying$() for details. "
+      "text": "rankine.journal.cat_tools.element_indexer.text1"
     },
     {
       "type": "crafting",

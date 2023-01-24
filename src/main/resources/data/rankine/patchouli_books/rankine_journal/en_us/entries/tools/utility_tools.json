@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Various utility tools have been added to display information. Tools will display on the status bar while in your main hand or off hand. Default is head position, sneak for position at feet."
+      "text": "rankine.journal.cat_tools.utility_tools.text1"
     },
     {
       "type": "crafting",

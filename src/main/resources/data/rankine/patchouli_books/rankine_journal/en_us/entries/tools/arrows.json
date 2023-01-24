@@ -1,26 +1,26 @@
 {
-  "name": "Arrows",
+  "name": "rankine.journal.cat_tools.arrows.name",
   "icon": "rankine:alloy_arrow",
   "category": "rankine:tools",
   "pages": [
     {
       "type": "text",
-      "text": "Like tools, alloy arrows gets it's stats (damage) depending on the composition of the alloy. Recipes for alloy armor can be added external using datapacks or mods."
+      "text": "rankine.journal.cat_tools.arrows.text1"
     },
     {
       "type": "crafting",
       "recipe": "rankine:steel_arrow",
-      "text": ""
+      "text": "rankine.journal.cat_tools.arrows.steel_arrow"
     },
     {
       "type": "crafting",
       "recipe": "rankine:thorium_arrow",
-      "text": "Summons lightning on impact."
+      "text": "rankine.journal.cat_tools.arrows.thorium_arrow"
     },
     {
       "type": "crafting",
       "recipe": "rankine:magnesium_arrow",
-      "text": "Blinds nearby enemies when on ground. Hit mobs will trigger nearby undead mobs to attack. Creepers explode on impact."
+      "text": "rankine.journal.cat_tools.arrows.magnesium_arrow"
     }
   ]
 }

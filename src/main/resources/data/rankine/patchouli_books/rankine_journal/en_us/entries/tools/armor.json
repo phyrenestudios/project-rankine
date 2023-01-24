@@ -1,39 +1,39 @@
 {
-  "name": "Armor",
+  "name": "rankine.journal.cat_tools.armor.name",
   "icon": "rankine:brigandine_chestplate",
   "category": "rankine:tools",
   "pages": [
     {
       "type": "text",
-      "text": "Various armor sets exist in the game."
+      "text": "rankine.journal.cat_tools.armor.text1"
     },
     {
       "type": "spotlight",
       "item": "rankine:brigandine_chestplate",
       "link_recipe": true,
-      "title": "Brigandine Armor",
-      "text": "Steel plated leather armor. Made by combining leather armor and a steel ingot in the smithing table."
+      "title": "rankine.journal.cat_tools.armor.brigandine_title",
+      "text": "rankine.journal.cat_tools.armor.brigandine"
     },
     {
       "type": "spotlight",
       "item": "rankine:diving_chestplate",
       "link_recipe": true,
-      "title": "Diving Armor",
-      "text": "Armor made from brass. Allows the wearer to hold their breath for a longer period of time."
+      "title": "rankine.journal.cat_tools.armor.diving_title",
+      "text": "rankine.journal.cat_tools.armor.diving"
     },
     {
       "type": "spotlight",
       "item": "rankine:conduit_diving_chestplate",
       "link_recipe": true,
-      "title": "C-P Diving Armor",
-      "text": "Upgraded diving armor. Provides the wearer with conduit power when in water."
+      "title": "rankine.journal.cat_tools.armor.conduit_diving_title",
+      "text": "rankine.journal.cat_tools.armor.conduit_diving"
     },
     {
       "type": "spotlight",
       "item": "rankine:alloy_chestplate",
       "link_recipe": true,
-      "title": "Alloy Armor",
-      "text": "Like tools, alloy armor gets it's stats (armor, toughness, durability) depending on the composition of the alloy. Recipes for alloy armor can be added external using datapacks or mods. By default there are a few different recipes."
+      "title": "rankine.journal.cat_tools.armor.alloy_title",
+      "text": "rankine.journal.cat_tools.armor.alloy"
     }
   ]
 }

@@ -15,6 +15,7 @@
     {
       "type": "spotlight",
       "item": "rankine:sediment_fan",
+      "text": "rankine.journal.cat_sediments.sedimentary.text4",
       "link_recipe": true
     },
     {

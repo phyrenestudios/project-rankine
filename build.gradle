@@ -16,7 +16,7 @@ apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
-version = '1.18.2-1.3.5'
+version = '1.18.2-1.3.6'
 group = 'com.cannolicatfish' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'rankine'
 
@@ -159,9 +159,6 @@ dependencies {
 
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
-
-    compileOnly fg.deobf("com.klikli_dev:modonomicon:${modonomicon_mc_version}-${modonomicon_version}:api")
-    runtimeOnly fg.deobf("com.klikli_dev:modonomicon:${modonomicon_mc_version}-${modonomicon_version}")
 
 }
 

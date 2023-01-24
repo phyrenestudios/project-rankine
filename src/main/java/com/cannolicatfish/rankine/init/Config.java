@@ -619,7 +619,6 @@ public class Config {
             b.comment("Here are miscellaneous worldgen options.").push("worldgen");
             BEDROCK_LAYERS = b.comment("The number of flat bedrock layers to generate. Set to 0 to disable.")
                     .defineInRange("flatBedrockLayers", 0, 0, 5);
-
             SOIL_NOISE_SCALE = b.comment("This determines how mixed the two types of soil are per biome. Larger numbers mean larger patches.")
                     .defineInRange("soilNoiseScale", 60, 1, Integer.MAX_VALUE);
             ANTIMATTER_GEN = b.comment("Generate antimatter in the End.")
@@ -861,15 +860,6 @@ public class Config {
                     "minecraft:air",
                     "minecraft:air",
                     "minecraft:air"));
-            biomeSettings.add(List.of(Biome.BiomeCategory.MESA.getName(),
-                    List.of("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam","rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam"),
-                    List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.03","rankine:red_porphyry|20|rankine:porphyry_copper|0.05","rankine:red_porphyry|10|rankine:native_gold_ore|0.04","rankine:red_porphyry|3|rankine:molybdenum_ore|0.03","rankine:pegmatite|2|rankine:baddeleyite_ore|0.03","rankine:pegmatite|1|rankine:coltan_ore|0.03","rankine:pegmatite|1|rankine:beryl_ore|0.03","rankine:pegmatite|1|rankine:uraninite_ore|0.03","rankine:pegmatite|5|rankine:petalite_ore|0.04"),
-                    List.of("rankine:bridgmanham","rankine:phonolite","rankine:red_dacite","rankine:rhyolite","rankine:quartzite","rankine:siltstone","rankine:arkose"),
-                    List.of("rankine:short_grass|70","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
-                    "rankine:light_gravel",
-                    "rankine:desert_sand",
-                    "rankine:desert_sandstone",
-                    "rankine:pointed_gypsic_dripstone"));
             biomeSettings.add(List.of(Biome.BiomeCategory.DESERT.getName(),
                     List.of("rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:loamy_sand","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:loamy_sand"),
                     List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.03","rankine:red_porphyry|20|rankine:porphyry_copper|0.05","rankine:red_porphyry|10|rankine:native_gold_ore|0.04","rankine:red_porphyry|3|rankine:molybdenum_ore|0.03","rankine:pegmatite|2|rankine:baddeleyite_ore|0.03","rankine:pegmatite|1|rankine:coltan_ore|0.03","rankine:pegmatite|1|rankine:beryl_ore|0.03","rankine:pegmatite|1|rankine:uraninite_ore|0.03","rankine:pegmatite|5|rankine:petalite_ore|0.04"),
@@ -951,7 +941,6 @@ public class Config {
                     "minecraft:air",
                     "minecraft:air",
                     "rankine:pointed_feric_dripstone"));
-
 
 
             b.comment("Biome Feature Settings").push("biomeGen");

@@ -666,6 +666,7 @@ public class RankineItems {
     public static final RegistryObject<Item> GALINSTAN_LADDER = ITEMS.register("galinstan_ladder", () -> new BuildingModeBlockItem(RankineBlocks.GALINSTAN_LADDER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> OSMIRIDIUM_LADDER = ITEMS.register("osmiridium_ladder", () -> new BuildingModeBlockItem(RankineBlocks.OSMIRIDIUM_LADDER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> SODIUM_POTASSIUM_ALLOY_LADDER = ITEMS.register("sodium_potassium_alloy_ladder", () -> new BuildingModeBlockItem(RankineBlocks.SODIUM_POTASSIUM_ALLOY_LADDER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> NEPTUNIUM_ALLOY_LADDER = ITEMS.register("neptunium_alloy_ladder", () -> new BuildingModeBlockItem(RankineBlocks.NEPTUNIUM_ALLOY_LADDER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> AMALGAM_LADDER = ITEMS.register("amalgam_ladder", () -> new BuildingModeBlockItem(RankineBlocks.AMALGAM_LADDER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ENDER_AMALGAM_LADDER = ITEMS.register("ender_amalgam_ladder", () -> new BuildingModeBlockItem(RankineBlocks.ENDER_AMALGAM_LADDER.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
 

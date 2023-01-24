@@ -12,28 +12,6 @@
       "item": "rankine:fusion_furnace",
       "link_recipe": true,
       "text": "rankine.journal.cat_constructs.fusion_furnace.text2"
-    },
-    {
-      "type": "rankine:item7",
-      "heading": "rankine.journal.cat_constructs.fusion_furnace.batteries_header",
-      "text": "rankine.journal.cat_constructs.fusion_furnace.batteries",
-      "item1": "rankine:silver_zinc_battery",
-      "item2": "rankine:magnesium_battery",
-      "item3": "rankine:lead_acid_battery",
-      "item4": "rankine:vanadium_redox_battery",
-      "item5": "rankine:zinc_bromine_battery",
-      "item6": "rankine:sodium_sulfur_battery",
-      "item7": "rankine:lithium_ion_battery"
-    },
-    {
-      "type": "rankine:item5",
-      "heading": "rankine.journal.cat_constructs.fusion_furnace.rtg_header",
-      "text": "rankine.journal.cat_constructs.fusion_furnace.rtg",
-      "item1": "rankine:strontium_rtg",
-      "item2": "rankine:polonium_rtg",
-      "item3": "rankine:plutonium_rtg",
-      "item4": "rankine:americium_rtg",
-      "item5": "rankine:curium_rtg"
     }
   ]
 }

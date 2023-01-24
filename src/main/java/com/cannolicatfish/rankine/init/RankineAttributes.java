@@ -24,7 +24,8 @@ public class RankineAttributes {
     public static final AttributeModifier ENDURING_TOTEM = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb3"), "rankine:health_pendant_ms", 10.0, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier MUD_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb4"), "rankine:mud_ms", Config.GENERAL.MOVEMENT_MUD.get(), AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier SWIFT_SWIMMER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb5"), "rankine:swift_swimmer", 2.5, AttributeModifier.Operation.ADDITION);
-    public static final AttributeModifier WATER_VISION = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb6"), "rankine:water_vision", 1.0, AttributeModifier.Operation.ADDITION);
+    public static final AttributeModifier AQUA_LENSE = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb6"), "rankine:aqua_lense", 1.0, AttributeModifier.Operation.ADDITION);
+    public static final AttributeModifier STEP = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb8"), "rankine:step_boost", 1.0D, AttributeModifier.Operation.ADDITION);
 
     //public static final AttributeModifier BLOCK_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb5"), "rankine:block_ms", Config.GENERAL.MOVEMENT_MUD.get(), AttributeModifier.Operation.ADDITION);
 
@@ -42,6 +43,7 @@ public class RankineAttributes {
 
     public static final Attribute REACH_DISTANCE = ForgeMod.REACH_DISTANCE.get();
     public static final Attribute ATTACK_RANGE = ForgeMod.ATTACK_RANGE.get();
+    public static final Attribute STEP_HEIGHT = ForgeMod.STEP_HEIGHT_ADDITION.get();
     public static final Attribute GRAVITY = ForgeMod.ENTITY_GRAVITY.get();
 
 }

@@ -1104,6 +1104,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GALINSTAN_LADDER = BLOCKS.register("galinstan_ladder", () -> new MetalLadderBlock(12564673));
     public static final RegistryObject<Block> OSMIRIDIUM_LADDER = BLOCKS.register("osmiridium_ladder", () -> new MetalLadderBlock(13212593));
     public static final RegistryObject<Block> SODIUM_POTASSIUM_ALLOY_LADDER = BLOCKS.register("sodium_potassium_alloy_ladder", () -> new MetalLadderBlock(9403777));
+    public static final RegistryObject<Block> NEPTUNIUM_ALLOY_LADDER = BLOCKS.register("neptunium_alloy_ladder", () -> new MetalLadderBlock(5805717));
     public static final RegistryObject<Block> AMALGAM_LADDER = BLOCKS.register("amalgam_ladder", () -> new MetalLadderBlock(13881539));
     public static final RegistryObject<Block> ENDER_AMALGAM_LADDER = BLOCKS.register("ender_amalgam_ladder", () -> new MetalLadderBlock(492385));
 

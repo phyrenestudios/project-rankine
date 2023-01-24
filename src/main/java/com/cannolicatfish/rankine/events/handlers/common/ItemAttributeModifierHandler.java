@@ -93,5 +93,11 @@ public class ItemAttributeModifierHandler {
                     2,
                     AttributeModifier.Operation.ADDITION));
         }
+        /*
+        if ((EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.DUNE_WALKER.get(), stack) > 0 || stack.is(RankineItems.SANDALS.get())) && event.getSlotType() == EquipmentSlot.FEET) {
+            event.addModifier(RankineAttributes.STEP_HEIGHT, RankineAttributes.STEP);
+        }
+
+         */
     }
 }

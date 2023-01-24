@@ -11,6 +11,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -193,156 +194,108 @@ public class PlayerTickHandler {
     }
 
     public static void movementModifier(TickEvent.PlayerTickEvent event) {
-        Player player = event.player;
-        Level world = event.player.level;
-        BlockPos pos;
-        if (player.getY() % 1 < 0.5) {
-            pos = player.blockPosition().below();
-        } else {
-            pos = player.blockPosition();
-        }
-        Block ground = world.getBlockState(pos).getBlock();
+        Player playerIn = event.player;
+        AttributeInstance movementSpeed = playerIn.getAttribute(Attributes.MOVEMENT_SPEED);
+        AttributeInstance swimSpeed = playerIn.getAttribute(ForgeMod.SWIM_SPEED.get());
+        AttributeInstance stepHeight = playerIn.getAttribute(RankineAttributes.STEP_HEIGHT);
 
-        Item feetEquipment = player.getItemBySlot(EquipmentSlot.FEET).getItem();
-        Item headEquipment = player.getItemBySlot(EquipmentSlot.HEAD).getItem();
-        if (player.isEyeInFluid(FluidTags.WATER) && (headEquipment == RankineItems.GOGGLES.get() || RankineEnchantmentHelper.hasAquaLense(player))) {
-            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION,400,0,false,false));
-        }
-
-        AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
-        AttributeInstance swimSpeed = player.getAttribute(ForgeMod.SWIM_SPEED.get());
-        ITagManager<Block> blockITagManager = ForgeRegistries.BLOCKS.tags();
-
-        if (Config.GENERAL.MOVEMENT_MODIFIERS.get() && blockITagManager != null) {
-            List<AttributeModifier> mods = Arrays.asList(RankineAttributes.BRICKS_MS, RankineAttributes.CONCRETE_MS, RankineAttributes.GRASS_PATH_MS, RankineAttributes.ROMAN_CONCRETE_MS, RankineAttributes.DIRT_MS, RankineAttributes.MUD_MS, RankineAttributes.POLISHED_STONE_MS, RankineAttributes.SAND_MS, RankineAttributes.SNOW_MS, RankineAttributes.WOODEN_MS);
-            if (player.isCreative() || player.isFallFlying()) {
-                for (AttributeModifier m : mods) {
-                    movementSpeed.removeModifier(m);
-                }
-            } else if (blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_PATHS).contains(ground) && !movementSpeed.hasModifier(RankineAttributes.GRASS_PATH_MS)) {
-                if (!player.isCreative() && !player.isFallFlying()) {
-                    movementSpeed.addTransientModifier(RankineAttributes.GRASS_PATH_MS);
-                }
-            } else if (!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_PATHS).contains(ground) && movementSpeed.hasModifier(RankineAttributes.GRASS_PATH_MS)) {
-                movementSpeed.removeModifier(RankineAttributes.GRASS_PATH_MS);
-            } else if (blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND).contains(ground) && !movementSpeed.hasModifier(RankineAttributes.SAND_MS)) {
-                if (!player.isCreative() && !player.isFallFlying()) {
-                    movementSpeed.addTransientModifier(RankineAttributes.SAND_MS);
-                }
-            } else if (!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND).contains(ground) && movementSpeed.hasModifier(RankineAttributes.SAND_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.SAND_MS);
-            } else if (blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_MUD).contains(ground) && !movementSpeed.hasModifier(RankineAttributes.MUD_MS)) {
-                if (!player.isCreative() && !player.isFallFlying()) {
-                    movementSpeed.addTransientModifier(RankineAttributes.MUD_MS);
-                }
-            } else if (!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_MUD).contains(ground) && movementSpeed.hasModifier(RankineAttributes.MUD_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.MUD_MS);
-            } else if ((blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW).contains(world.getBlockState(player.blockPosition()).getBlock()) || blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW).contains(world.getBlockState(player.blockPosition().below()).getBlock())) && !movementSpeed.hasModifier(RankineAttributes.SNOW_MS)) {
-                if (!player.isCreative() && !player.isFallFlying()) {
-                    movementSpeed.addTransientModifier(RankineAttributes.SNOW_MS);
-                }
-            } else if ((!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW).contains(world.getBlockState(player.blockPosition()).getBlock()) || !blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW).contains(world.getBlockState(player.blockPosition().below()).getBlock())) && movementSpeed.hasModifier(RankineAttributes.SNOW_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.SNOW_MS);
-            } else if (blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_DIRT).contains(ground) && !movementSpeed.hasModifier(RankineAttributes.DIRT_MS)) {
-                if (!player.isCreative() && !player.isFallFlying()) {
-                    movementSpeed.addTransientModifier(RankineAttributes.DIRT_MS);
-                }
-            } else if (!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_DIRT).contains(ground) && movementSpeed.hasModifier(RankineAttributes.DIRT_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.DIRT_MS);
-            } else if (blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_WOOD).contains(ground) && !movementSpeed.hasModifier(RankineAttributes.WOODEN_MS)) {
-                if (!player.isCreative() && !player.isFallFlying()) {
-                    movementSpeed.addTransientModifier(RankineAttributes.WOODEN_MS);
-                }
-            } else if (!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_WOOD).contains(ground) && movementSpeed.hasModifier(RankineAttributes.WOODEN_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.WOODEN_MS);
-            } else if (blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED).contains(ground) && !movementSpeed.hasModifier(RankineAttributes.POLISHED_STONE_MS)) {
-                if (!player.isCreative() && !player.isFallFlying()) {
-                    movementSpeed.addTransientModifier(RankineAttributes.POLISHED_STONE_MS);
-                }
-            } else if (!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED).contains(ground) && movementSpeed.hasModifier(RankineAttributes.POLISHED_STONE_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.POLISHED_STONE_MS);
-            } else if (blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_BRICKS).contains(ground) && !movementSpeed.hasModifier(RankineAttributes.BRICKS_MS)) {
-                if (!player.isCreative() && !player.isFallFlying()) {
-                    movementSpeed.addTransientModifier(RankineAttributes.BRICKS_MS);
-                }
-            } else if (!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_BRICKS).contains(ground) && movementSpeed.hasModifier(RankineAttributes.BRICKS_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.BRICKS_MS);
-            } else if (blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN).contains(ground) && !movementSpeed.hasModifier(RankineAttributes.ROMAN_CONCRETE_MS)) {
-                if (!player.isCreative() && !player.isFallFlying()) {
-                    movementSpeed.addTransientModifier(RankineAttributes.ROMAN_CONCRETE_MS);
-                }
-            } else if (!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN).contains(ground) && movementSpeed.hasModifier(RankineAttributes.ROMAN_CONCRETE_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.ROMAN_CONCRETE_MS);
-            } else if (blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE).contains(ground) && !movementSpeed.hasModifier(RankineAttributes.CONCRETE_MS)) {
-                if (!player.isCreative() && !player.isFallFlying()) {
-                    movementSpeed.addTransientModifier(RankineAttributes.CONCRETE_MS);
-                }
-            } else if (!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE).contains(ground) && movementSpeed.hasModifier(RankineAttributes.CONCRETE_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.CONCRETE_MS);
+        if (playerIn.isCreative() || playerIn.isFallFlying()) {
+            List<AttributeModifier> mods = Arrays.asList(RankineAttributes.SNOW_DRIFTER, RankineAttributes.SWIFT_SWIMMER, RankineAttributes.AQUA_LENSE, RankineAttributes.SPEED_SKATER, RankineAttributes.SNOW_DRIFTER, RankineAttributes.DUNE_WALKER, RankineAttributes.CONCRETE_MS, RankineAttributes.GRASS_PATH_MS, RankineAttributes.ROMAN_CONCRETE_MS, RankineAttributes.DIRT_MS, RankineAttributes.MUD_MS, RankineAttributes.POLISHED_STONE_MS, RankineAttributes.SAND_MS, RankineAttributes.SNOW_MS, RankineAttributes.WOODEN_MS);
+            for (AttributeModifier m : mods) {
+                movementSpeed.removeModifier(m);
             }
+            return;
         }
-        if (ground == Blocks.ICE) {
-            if (world.random.nextFloat() < Config.GENERAL.ICE_BREAK.get() && !(RankineEnchantmentHelper.hasSpeedSkater(player))) {
-                for (BlockPos B : BlockPos.betweenClosed(pos.offset(-2, -1, -2), pos.offset(2, -1, 2))) {
-                    if (world.getBlockState(B).getBlock() == Blocks.ICE) {
-                        world.setBlockAndUpdate(B, Blocks.FROSTED_ICE.defaultBlockState().setValue(FrostedIceBlock.AGE, 2));
+
+        Level levelIn = event.player.level;
+        Item feetEquipment = playerIn.getItemBySlot(EquipmentSlot.FEET).getItem();
+        Item headEquipment = playerIn.getItemBySlot(EquipmentSlot.HEAD).getItem();
+        BlockPos groundPos = playerIn.getY() % 1 < 0.5 ? playerIn.blockPosition().below() : playerIn.blockPosition();
+        Block groundBlock = levelIn.getBlockState(groundPos).getBlock();
+
+        if (playerIn.isEyeInFluid(FluidTags.WATER) && (headEquipment == RankineItems.GOGGLES.get() || RankineEnchantmentHelper.hasAquaLense(playerIn))) {
+            playerIn.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION,400,0,false,false));
+        }
+
+        if (ForgeRegistries.BLOCKS.tags().getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE).contains(groundBlock)) {
+            if (levelIn.random.nextFloat() < Config.GENERAL.ICE_BREAK.get() && !RankineEnchantmentHelper.hasSpeedSkater(playerIn) && feetEquipment != RankineItems.ICE_SKATES.get()) {
+                for (BlockPos B : BlockPos.betweenClosed(groundPos.offset(-2, -1, -2), groundPos.offset(2, -1, 2))) {
+                    if (levelIn.getBlockState(B).getBlock() == Blocks.ICE) {
+                        levelIn.setBlockAndUpdate(B, Blocks.FROSTED_ICE.defaultBlockState().setValue(FrostedIceBlock.AGE, 2));
                     }
                 }
             }
         }
-        if (RankineEnchantmentHelper.hasDuneWalker(player) || feetEquipment == RankineItems.SANDALS.get()) {
-            if (blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND).contains(ground) && !movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
-                movementSpeed.addTransientModifier(RankineAttributes.DUNE_WALKER);
-                player.maxUpStep = 1.0f;
-            }
-        } else if (!RankineEnchantmentHelper.hasDuneWalker(player) && feetEquipment != RankineItems.SANDALS.get() && movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
-            movementSpeed.removeModifier(RankineAttributes.DUNE_WALKER);
-            player.maxUpStep = 0.5f;
+
+        handleEquipmentModifier(stepHeight, movementSpeed, RankineAttributes.DUNE_WALKER, groundBlock, RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND, RankineEnchantmentHelper.hasDuneWalker(playerIn) || feetEquipment == RankineItems.SANDALS.get(), true);
+        handleEquipmentModifier(stepHeight, movementSpeed, RankineAttributes.SNOW_DRIFTER, levelIn.getBlockState(playerIn.blockPosition()).getBlock(),levelIn.getBlockState(playerIn.blockPosition().below()).getBlock(), RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW, RankineEnchantmentHelper.hasSnowDrifter(playerIn) || feetEquipment == RankineItems.SNOWSHOES.get(), true);
+        handleEquipmentModifier(stepHeight, movementSpeed, RankineAttributes.SPEED_SKATER, groundBlock, RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE, RankineEnchantmentHelper.hasSpeedSkater(playerIn) || feetEquipment == RankineItems.ICE_SKATES.get(), true);
+        handleEquipmentModifier(stepHeight, swimSpeed, RankineAttributes.SWIFT_SWIMMER,(RankineEnchantmentHelper.hasSwiftSwimmer(playerIn) || feetEquipment == RankineItems.FINS.get()) && playerIn.isSwimming(), false);
+        handleEquipmentModifier(stepHeight, swimSpeed, RankineAttributes.AQUA_LENSE,(RankineEnchantmentHelper.hasAquaLense(playerIn) || headEquipment == RankineItems.GOGGLES.get()) && playerIn.isSwimming(), false);
+
+        if (Config.GENERAL.MOVEMENT_MODIFIERS.get()) {
+            if (handleMovementModifier(movementSpeed,RankineAttributes.GRASS_PATH_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_PATHS)) return;
+            if (handleMovementModifier(movementSpeed,RankineAttributes.SAND_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND)) return;
+            if (handleMovementModifier(movementSpeed,RankineAttributes.MUD_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_MUD)) return;
+            if (handleMovementModifierDouble(movementSpeed,RankineAttributes.SNOW_MS, levelIn.getBlockState(playerIn.blockPosition()).getBlock(),levelIn.getBlockState(playerIn.blockPosition().below()).getBlock(), RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW)) return;
+            if (handleMovementModifier(movementSpeed,RankineAttributes.DIRT_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_DIRT)) return;
+            if (handleMovementModifier(movementSpeed,RankineAttributes.WOODEN_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_WOOD)) return;
+            if (handleMovementModifier(movementSpeed,RankineAttributes.POLISHED_STONE_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED)) return;
+            if (handleMovementModifier(movementSpeed,RankineAttributes.BRICKS_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_BRICKS)) return;
+            if (handleMovementModifier(movementSpeed,RankineAttributes.ROMAN_CONCRETE_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN)) return;
+            if (handleMovementModifier(movementSpeed,RankineAttributes.CONCRETE_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE)) return;
         }
-        if (!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND).contains(ground) && ground != Blocks.AIR && movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
-            movementSpeed.removeModifier(RankineAttributes.DUNE_WALKER);
-            player.maxUpStep = 0.5f;
+    }
+
+    private static void handleEquipmentModifier(AttributeInstance stepHeight, AttributeInstance attribute, AttributeModifier modifier, boolean isEquiped, boolean autoStep) {
+        if (!isEquiped) {
+            if (attribute.hasModifier(modifier)) attribute.removeModifier(modifier);
+            if (stepHeight.hasModifier(RankineAttributes.STEP)) stepHeight.removeModifier(RankineAttributes.STEP);
+            return;
         }
-        if (RankineEnchantmentHelper.hasSnowDrifter(player) || feetEquipment == RankineItems.SNOWSHOES.get()) {
-            if ((blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW).contains(world.getBlockState(player.blockPosition()).getBlock()) || blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW).contains(world.getBlockState(player.blockPosition().below()).getBlock())) && !movementSpeed.hasModifier(RankineAttributes.SNOW_DRIFTER)) {
-                movementSpeed.addTransientModifier(RankineAttributes.SNOW_DRIFTER);
-                player.maxUpStep = 1.0f;
-            }
-        } else if (!RankineEnchantmentHelper.hasSnowDrifter(player) && feetEquipment != RankineItems.SNOWSHOES.get() && movementSpeed.hasModifier(RankineAttributes.SNOW_DRIFTER)) {
-            movementSpeed.removeModifier(RankineAttributes.SNOW_DRIFTER);
-            player.maxUpStep = 0.5f;
+        if (!attribute.hasModifier(modifier)) attribute.addTransientModifier(modifier);
+        if (autoStep && !stepHeight.hasModifier(RankineAttributes.STEP)) stepHeight.addTransientModifier(RankineAttributes.STEP);
+    }
+    private static void handleEquipmentModifier(AttributeInstance stepHeight, AttributeInstance attribute, AttributeModifier modifier, Block groundBlock, TagKey<Block> tagIn, boolean isEquiped, boolean autoStep) {
+        if (groundBlock == Blocks.AIR) return;
+        ITagManager<Block> blockITagManager = ForgeRegistries.BLOCKS.tags();
+        if (!isEquiped || !blockITagManager.getTag(tagIn).contains(groundBlock)) {
+            if (attribute.hasModifier(modifier)) attribute.removeModifier(modifier);
+            if (stepHeight.hasModifier(RankineAttributes.STEP)) stepHeight.removeModifier(RankineAttributes.STEP);
+            return;
         }
-        if ((!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW).contains(world.getBlockState(player.blockPosition()).getBlock()) && !blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW).contains(world.getBlockState(player.blockPosition().below()).getBlock())) && ground != Blocks.AIR && movementSpeed.hasModifier(RankineAttributes.SNOW_DRIFTER)) {
-            movementSpeed.removeModifier(RankineAttributes.SNOW_DRIFTER);
-            player.maxUpStep = 0.5f;
+        if (!attribute.hasModifier(modifier)) attribute.addTransientModifier(modifier);
+        if (autoStep && !stepHeight.hasModifier(RankineAttributes.STEP)) stepHeight.addTransientModifier(RankineAttributes.STEP);
+    }
+    private static void handleEquipmentModifier(AttributeInstance stepHeight, AttributeInstance attribute, AttributeModifier modifier, Block groundBlock, Block groundBlock2, TagKey<Block> tagIn, boolean isEquiped, boolean autoStep) {
+        if (groundBlock == Blocks.AIR && groundBlock2 == Blocks.AIR) return;
+        ITagManager<Block> blockITagManager = ForgeRegistries.BLOCKS.tags();
+        if (!isEquiped || (!blockITagManager.getTag(tagIn).contains(groundBlock) && !blockITagManager.getTag(tagIn).contains(groundBlock2))) {
+            if (attribute.hasModifier(modifier)) attribute.removeModifier(modifier);
+            if (stepHeight.hasModifier(RankineAttributes.STEP)) stepHeight.removeModifier(RankineAttributes.STEP);
+            return;
         }
-        if (RankineEnchantmentHelper.hasSpeedSkater(player) || feetEquipment == RankineItems.ICE_SKATES.get()) {
-            if ((blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE).contains(world.getBlockState(player.blockPosition()).getBlock()) || blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE).contains(world.getBlockState(player.blockPosition().below()).getBlock())) && !movementSpeed.hasModifier(RankineAttributes.SPEED_SKATER)) {
-                movementSpeed.addTransientModifier(RankineAttributes.SPEED_SKATER);
-                player.maxUpStep = 1.0f;
-            }
-        } else if (!RankineEnchantmentHelper.hasSpeedSkater(player) && feetEquipment != RankineItems.ICE_SKATES.get() && movementSpeed.hasModifier(RankineAttributes.SPEED_SKATER)) {
-            movementSpeed.removeModifier(RankineAttributes.SPEED_SKATER);
-            player.maxUpStep = 0.5f;
+        if (!attribute.hasModifier(modifier)) attribute.addTransientModifier(modifier);
+        if (autoStep && !stepHeight.hasModifier(RankineAttributes.STEP)) stepHeight.addTransientModifier(RankineAttributes.STEP);
+    }
+    private static boolean handleMovementModifier(AttributeInstance attribute, AttributeModifier modifier, Block groundBlock, TagKey<Block> tagIn) {
+        if (groundBlock == Blocks.AIR) return true;
+        ITagManager<Block> blockITagManager = ForgeRegistries.BLOCKS.tags();
+        if (!blockITagManager.getTag(tagIn).contains(groundBlock)) {
+            if (attribute.hasModifier(modifier)) attribute.removeModifier(modifier);
+            return false;
         }
-        if ((!blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE).contains(world.getBlockState(player.blockPosition()).getBlock()) && !blockITagManager.getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE).contains(world.getBlockState(player.blockPosition().below()).getBlock())) && ground != Blocks.AIR && movementSpeed.hasModifier(RankineAttributes.SPEED_SKATER)) {
-            movementSpeed.removeModifier(RankineAttributes.SPEED_SKATER);
-            player.maxUpStep = 0.5f;
+        if (!attribute.hasModifier(modifier)) attribute.addTransientModifier(modifier);
+        return true;
+    }
+    private static boolean handleMovementModifierDouble(AttributeInstance attribute, AttributeModifier modifier, Block groundBlock, Block feetblock, TagKey<Block> tagIn) {
+        if (groundBlock == Blocks.AIR && feetblock == Blocks.AIR) return true;
+        ITagManager<Block> blockITagManager = ForgeRegistries.BLOCKS.tags();
+        if (!blockITagManager.getTag(tagIn).contains(groundBlock) && !blockITagManager.getTag(tagIn).contains(feetblock)) {
+            if (attribute.hasModifier(modifier)) attribute.removeModifier(modifier);
+            return false;
         }
-        if (RankineEnchantmentHelper.hasSwiftSwimmer(player) || feetEquipment == RankineItems.FINS.get()) {
-            if (player.isSwimming() && !swimSpeed.hasModifier(RankineAttributes.SWIFT_SWIMMER)) {
-                swimSpeed.addTransientModifier(RankineAttributes.SWIFT_SWIMMER);
-            }
-        } else if (!RankineEnchantmentHelper.hasSwiftSwimmer(player) && feetEquipment != RankineItems.FINS.get() && swimSpeed.hasModifier(RankineAttributes.SWIFT_SWIMMER)) {
-            swimSpeed.removeModifier(RankineAttributes.SWIFT_SWIMMER);
-        }
-        if (!player.isSwimming() && swimSpeed.hasModifier(RankineAttributes.SWIFT_SWIMMER)) {
-            swimSpeed.removeModifier(RankineAttributes.SWIFT_SWIMMER);
-        }
-        if ((headEquipment == RankineItems.GOGGLES.get() || RankineEnchantmentHelper.hasAquaLense(player)) && player.isEyeInFluid(FluidTags.WATER) && !swimSpeed.hasModifier(RankineAttributes.WATER_VISION)) {
-            swimSpeed.addTransientModifier(RankineAttributes.WATER_VISION);
-        } else if (((headEquipment != RankineItems.GOGGLES.get() && !RankineEnchantmentHelper.hasAquaLense(player)) || !player.isEyeInFluid(FluidTags.WATER)) && swimSpeed.hasModifier(RankineAttributes.WATER_VISION)) {
-            swimSpeed.removeModifier(RankineAttributes.WATER_VISION);
-        }
+        if (!attribute.hasModifier(modifier)) attribute.addTransientModifier(modifier);
+        return true;
     }
 }

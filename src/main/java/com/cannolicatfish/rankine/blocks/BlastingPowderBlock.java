@@ -1,9 +1,9 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
@@ -13,20 +13,17 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
 import java.util.Random;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
-import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 
 public class BlastingPowderBlock extends FallingBlock {
     public BlastingPowderBlock(Properties properties) {
@@ -35,28 +32,22 @@ public class BlastingPowderBlock extends FallingBlock {
 
     @Override
     public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable net.minecraft.core.Direction face, @Nullable LivingEntity igniter) {
-        world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.BlockInteraction.BREAK);
         world.removeBlock(pos, false);
+        world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.BlockInteraction.BREAK);
     }
 
 
     @Override
     public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         Random random = new Random();
-        if (random.nextFloat() <= 0.05f)
-        {
-            if (placer instanceof Player)
-            {
-                if (!((Player)placer).getAbilities().instabuild)
-                {
+        if (random.nextFloat() <= 0.05f) {
+            if (placer instanceof Player) {
+                if (!((Player)placer).getAbilities().instabuild) {
                     onCaughtFire(state, worldIn, pos, null, null);
                 }
-            } else
-            {
+            } else {
                 onCaughtFire(state, worldIn, pos, null, null);
             }
-
-
         }
     }
 

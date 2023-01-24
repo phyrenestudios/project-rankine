@@ -73,12 +73,14 @@ public class HasEnchantmentPredicate extends ItemPredicate {
             for (Enchantment enchant : this.enchantments) {
                 if (EnchantmentHelper.getItemEnchantmentLevel(enchant, stack) <= 0) return false;
             }
+            return true;
         } else if (this.items != null && this.items.contains(stack.getItem())) {
             for (Enchantment enchant : this.enchantments) {
                 if (EnchantmentHelper.getItemEnchantmentLevel(enchant, stack) <= 0) return false;
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static ItemPredicate fromJson(@Nullable JsonElement p_45052_) {
