@@ -5,7 +5,6 @@ import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -169,7 +168,7 @@ public class TripleCropsBlock extends CropsBlock {
             if (player.isCreative()) {
                 removeLowerSections(worldIn, pos, state, player);
             } else {
-                spawnDrops(state, worldIn, pos, (TileEntity)null, player, player.getHeldItemMainhand());
+                //spawnDrops(state, worldIn, pos, (TileEntity)null, player, player.getHeldItemMainhand());
             }
         }
         super.onBlockHarvested(worldIn, pos, state, player);

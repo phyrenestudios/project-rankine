@@ -221,6 +221,9 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
     protected static LootTable.Builder droppingWithChancesSticksAndApples(Block block, Block sapling, float... chances) {
         return droppingWithChancesAndSticks(block, sapling, chances).addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).acceptCondition(NOT_SILK_TOUCH_OR_SHEARS).addEntry(withSurvivesExplosion(block, ItemLootEntry.builder(Items.APPLE)).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
     }
+    protected static LootTable.Builder droppingWithChancesSticksAndExtra(Block block, Block sapling, Item item, float... chances) {
+        return droppingWithChancesAndSticks(block, sapling, chances).addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).acceptCondition(NOT_SILK_TOUCH_OR_SHEARS).addEntry(withSurvivesExplosion(block, ItemLootEntry.builder(item)).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
+    }
 
     /**
      * Drops the first item parameter always, and the second item parameter plus more of the first acceptCondition the loot
@@ -284,55 +287,49 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
     protected LootTable.Builder doubleCrop(Block CROP, Item DROP, Item SEED, int Count) {
         return LootTable.builder()
                 .addLootPool(
-                    LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(
-                            AlternativesLootEntry.builder(
-                                ItemLootEntry.builder(DROP)
-                                    .acceptFunction(SetCount.builder(ConstantRange.of(Count)))
-                                    .acceptCondition(BlockStateProperty.builder(CROP).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7).withProp(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER))),
-                                ItemLootEntry.builder(SEED)
-                            )
-                        )
-                        .acceptCondition(BlockStateProperty.builder(CROP).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withProp(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER)))
-                        .acceptCondition(SurvivesExplosion.builder())
+                    LootPool.builder().rolls(ConstantRange.of(1))
+                        .addEntry(AlternativesLootEntry.builder(
+                            ItemLootEntry.builder(DROP)
+                                .acceptFunction(SetCount.builder(ConstantRange.of(Count)))
+                                .acceptCondition(BlockStateProperty.builder(CROP).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7).withProp(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER))),
+                            ItemLootEntry.builder(SEED)
+                                .acceptCondition(BlockStateProperty.builder(CROP).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withProp(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER)))
+                        )).acceptCondition(SurvivesExplosion.builder())
                 )
                 .addLootPool(
                     LootPool.builder()
                         .rolls(ConstantRange.of(1))
                         .addEntry(
                             ItemLootEntry.builder(SEED)
-                                .acceptCondition(BlockStateProperty.builder(CROP).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7).withProp(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER)))
-                                .acceptFunction(ApplyBonus.binomialWithBonusCount(Enchantments.FORTUNE, 0.5714286F, 2))
-                                .acceptCondition(SurvivesExplosion.builder())
+                            .acceptFunction(ApplyBonus.binomialWithBonusCount(Enchantments.FORTUNE, 0.5714286F, 2))
+                            .acceptCondition(BlockStateProperty.builder(CROP).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7).withProp(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER)))
                         )
+                        .acceptCondition(SurvivesExplosion.builder())
                 );
     }
 
     protected LootTable.Builder tripleCrop(Block CROP, Item DROP, Item SEED, int Count) {
         return LootTable.builder()
-                .addLootPool(
-                    LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(
-                            AlternativesLootEntry.builder(
-                                ItemLootEntry.builder(DROP)
-                                    .acceptFunction(SetCount.builder(ConstantRange.of(Count)))
-                                    .acceptCondition(BlockStateProperty.builder(CROP).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7).withProp(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM))),
-                                ItemLootEntry.builder(SEED)
-                            )
-                        )
-                        .acceptCondition(SurvivesExplosion.builder())
-                )
-                .addLootPool(
-                    LootPool.builder()
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(
+                .addLootPool(LootPool.builder()
+                    .rolls(ConstantRange.of(1))
+                    .addEntry(AlternativesLootEntry.builder(
+                            ItemLootEntry.builder(DROP)
+                                .acceptFunction(SetCount.builder(ConstantRange.of(Count)))
+                                .acceptCondition(BlockStateProperty.builder(CROP).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7).withProp(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM))),
                             ItemLootEntry.builder(SEED)
-                                .acceptFunction(ApplyBonus.binomialWithBonusCount(Enchantments.FORTUNE, 0.5714286F, 2))
-                                .acceptCondition(BlockStateProperty.builder(CROP).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7).withProp(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM)))
+                                .acceptCondition(BlockStateProperty.builder(CROP).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withProp(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM)))
                         )
-                        .acceptCondition(SurvivesExplosion.builder())
+                    )
+                    .acceptCondition(SurvivesExplosion.builder())
+                )
+                .addLootPool(LootPool.builder()
+                    .rolls(ConstantRange.of(1))
+                    .addEntry(
+                        ItemLootEntry.builder(SEED)
+                            .acceptFunction(ApplyBonus.binomialWithBonusCount(Enchantments.FORTUNE, 0.5714286F, 2))
+                            .acceptCondition(BlockStateProperty.builder(CROP).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CropsBlock.AGE, 7).withProp(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM)))
+                    )
+                    .acceptCondition(SurvivesExplosion.builder())
                 );
     }
     

@@ -29,19 +29,21 @@
             },
             {
               "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:rye_plant",
+                  "properties": {
+                    "half": "lower"
+                  }
+                }
+              ],
               "name": "rankine:rye_seeds"
             }
           ]
         }
       ],
       "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "rankine:rye_plant",
-          "properties": {
-            "half": "lower"
-          }
-        },
         {
           "condition": "minecraft:survives_explosion"
         }
@@ -60,9 +62,6 @@
                 "age": "7",
                 "half": "lower"
               }
-            },
-            {
-              "condition": "minecraft:survives_explosion"
             }
           ],
           "functions": [
@@ -77,6 +76,11 @@
             }
           ],
           "name": "rankine:rye_seeds"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
         }
       ]
     }

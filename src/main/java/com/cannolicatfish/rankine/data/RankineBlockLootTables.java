@@ -277,7 +277,11 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
         for (Block LEAF : RankineLists.LEAVES) {
             Block SAPLING = RankineLists.SAPLINGS.get(RankineLists.LEAVES.indexOf(LEAF));
-            if (LEAF.matchesBlock(RankineBlocks.COCONUT_PALM_LEAVES.get()) || LEAF.matchesBlock(RankineBlocks.BALSAM_FIR_LEAVES.get())) {
+            if (LEAF.matchesBlock(RankineBlocks.COCONUT_PALM_LEAVES.get())) {
+                lootTables.put(LEAF, droppingWithChancesSticksAndExtra(LEAF, SAPLING, RankineItems.COCONUT.get(), DOUBLE_SAPLING_DROP_RATES));
+            } else if (LEAF.matchesBlock(RankineBlocks.BLACK_WALNUT_LEAVES.get())) {
+                lootTables.put(LEAF, droppingWithChancesSticksAndExtra(LEAF, SAPLING, RankineItems.BLACK_WALNUT.get(), DOUBLE_SAPLING_DROP_RATES));
+            } else if (LEAF.matchesBlock(RankineBlocks.BALSAM_FIR_LEAVES.get())) {
                 lootTables.put(LEAF, droppingWithChancesAndSticks(LEAF, SAPLING, DOUBLE_SAPLING_DROP_RATES));
             } else {
                 lootTables.put(LEAF, droppingWithChancesAndSticks(LEAF, SAPLING, DEFAULT_SAPLING_DROP_RATES));

@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
-import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyPickaxeItem;
@@ -234,8 +233,12 @@ public class BlockBreakHandler {
             //knife stuff
             if (mainHandItem.isIn(RankineTags.Items.KNIVES)) {
                 if (target.isIn(RankineTags.Blocks.KNIFE_SHEARABLE)) {
+                    if (worldIn.getBlockState(pos).matchesBlock(Blocks.TALL_SEAGRASS)) {
+                        spawnAsEntity(worldIn, pos, new ItemStack(Items.SEAGRASS,2));
+                    } else {
+                        spawnAsEntity(worldIn, pos, new ItemStack(target.asItem()));
+                    }
                     worldIn.destroyBlock(pos,false);
-                    spawnAsEntity(worldIn, pos, new ItemStack(target.asItem()));
                     if (!worldIn.isRemote) {
                         player.getHeldItemMainhand().damageItem(1, player, (p_220038_0_) -> {
                             p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);

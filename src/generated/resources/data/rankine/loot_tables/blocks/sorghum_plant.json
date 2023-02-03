@@ -29,6 +29,15 @@
             },
             {
               "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:sorghum_plant",
+                  "properties": {
+                    "section": "bottom"
+                  }
+                }
+              ],
               "name": "rankine:sorghum_seeds"
             }
           ]
