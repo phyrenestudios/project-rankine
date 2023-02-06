@@ -7,7 +7,7 @@
       "model": "rankine:block/mossy_siltstone_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/siltstone_bricks1"
+      "model": "rankine:block/mossy_siltstone_bricks1"
     }
   }
 }

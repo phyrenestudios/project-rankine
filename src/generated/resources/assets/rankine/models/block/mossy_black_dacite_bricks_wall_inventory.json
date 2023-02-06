@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "rankine:block/black_dacite_bricks"
+    "wall": "rankine:block/mossy_black_dacite_bricks"
   }
 }

@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab",
   "textures": {
-    "side": "rankine:block/phyllite_bricks",
-    "bottom": "rankine:block/phyllite_bricks",
-    "top": "rankine:block/phyllite_bricks"
+    "side": "rankine:block/mossy_phyllite_bricks",
+    "bottom": "rankine:block/mossy_phyllite_bricks",
+    "top": "rankine:block/mossy_phyllite_bricks"
   }
 }

@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:leather_boots",
+    "minecraft:chainmail_boots",
+    "minecraft:iron_boots",
+    "minecraft:gold_nugget",
+    "minecraft:diamond_boots",
+    "minecraft:netherite_boots",
+    "rankine:brigandine_boots",
+    "rankine:diving_boots",
+    "rankine:conduit_diving_boots",
+    "rankine:alloy_boots"
+  ]
+}

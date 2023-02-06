@@ -1,7 +1,6 @@
 {
-  "parent": "rankine:block/template_cube_all_rotated_overlay",
+  "parent": "rankine:block/template_rotation",
   "textures": {
-    "all": "rankine:block/soapstone_bricks",
-    "overlay": "rankine:block/stone_bricks_mossy_overlay"
+    "all": "rankine:block/mossy_soapstone_bricks"
   }
 }

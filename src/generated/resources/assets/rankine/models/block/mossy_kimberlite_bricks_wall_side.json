@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_side",
   "textures": {
-    "wall": "rankine:block/kimberlite_bricks"
+    "wall": "rankine:block/mossy_kimberlite_bricks"
   }
 }

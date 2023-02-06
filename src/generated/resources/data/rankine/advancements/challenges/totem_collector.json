@@ -55,18 +55,6 @@
         ]
       }
     },
-    "totem_of_powering": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "rankine:totem_of_powering"
-            ]
-          }
-        ]
-      }
-    },
     "totem_of_cobbling": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -162,6 +150,18 @@
           }
         ]
       }
+    },
+    "totem_of_powering": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:totem_of_powering"
+            ]
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -173,9 +173,6 @@
     ],
     [
       "totem_of_promising"
-    ],
-    [
-      "totem_of_powering"
     ],
     [
       "totem_of_cobbling"
@@ -200,6 +197,9 @@
     ],
     [
       "totem_of_timesaving"
+    ],
+    [
+      "totem_of_powering"
     ]
   ]
 }

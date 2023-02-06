@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/stairs",
   "textures": {
-    "side": "rankine:block/wadsleyone_bricks",
-    "bottom": "rankine:block/wadsleyone_bricks",
-    "top": "rankine:block/wadsleyone_bricks"
+    "side": "rankine:block/mossy_wadsleyone_bricks",
+    "bottom": "rankine:block/mossy_wadsleyone_bricks",
+    "top": "rankine:block/mossy_wadsleyone_bricks"
   }
 }

@@ -31,6 +31,15 @@
             },
             {
               "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:cotton_plant",
+                  "properties": {
+                    "half": "lower"
+                  }
+                }
+              ],
               "name": "rankine:cotton_seeds"
             }
           ]

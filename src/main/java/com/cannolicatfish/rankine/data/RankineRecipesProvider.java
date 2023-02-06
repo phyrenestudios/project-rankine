@@ -495,8 +495,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RankineItems.TOTEM_OF_LEVITATING.get(), 1).pattern("III").pattern("IRI").pattern("III").define('I', RankineTags.Items.INGOTS_OSMIRIDIUM).define('R', RankineTags.Items.STORAGE_BLOCKS_OPAL).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_OSMIRIDIUM)).save(consumer);
         ShapedRecipeBuilder.shaped(RankineItems.TOTEM_OF_INVIGORATING.get(), 1).pattern("III").pattern("IRI").pattern("III").define('I', RankineTags.Items.INGOTS_GREEN_GOLD).define('R', RankineTags.Items.STORAGE_BLOCKS_TOURMALINE).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_GREEN_GOLD)).save(consumer);
         ShapedRecipeBuilder.shaped(RankineItems.TOTEM_OF_BLAZING.get(), 1).pattern("III").pattern("IRI").pattern("III").define('I', RankineTags.Items.INGOTS_FERROCERIUM).define('R', RankineTags.Items.STORAGE_BLOCKS_PERIDOT).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_FERROCERIUM)).save(consumer);
-
-        //ShapedRecipeBuilder.shapedRecipe(RankineItems.TOTEM_OF_INFUSING.get(), 1).patternLine("III").patternLine("IRI").patternLine("III").key('I', RankineTags.Items.INGOTS_MISCHMETAL).key('R', RankineTags.Items.STORAGE_BLOCKS_PERIDOT).addCriterion("has_ingredient", hasItem(RankineTags.Items.INGOTS_MISCHMETAL)).build(consumer);
+        ShapedRecipeBuilder.shaped(RankineItems.TOTEM_OF_INFUSING.get(), 1).pattern("III").pattern("IRI").pattern("III").define('I', RankineTags.Items.INGOTS_MISCHMETAL).define('R', RankineTags.Items.STORAGE_BLOCKS_PERIDOT).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_MISCHMETAL)).save(consumer);
 
 
 

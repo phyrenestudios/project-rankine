@@ -7,7 +7,7 @@
       "model": "rankine:block/mossy_lherzolite_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/lherzolite_bricks1"
+      "model": "rankine:block/mossy_lherzolite_bricks1"
     }
   }
 }

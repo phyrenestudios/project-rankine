@@ -7,7 +7,7 @@
       "model": "rankine:block/mossy_whiteschist_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/whiteschist_bricks1"
+      "model": "rankine:block/mossy_whiteschist_bricks1"
     }
   }
 }

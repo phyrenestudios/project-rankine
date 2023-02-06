@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:leather_helmet",
+    "minecraft:chainmail_helmet",
+    "minecraft:iron_helmet",
+    "minecraft:gold_nugget",
+    "minecraft:diamond_helmet",
+    "minecraft:netherite_helmet",
+    "rankine:brigandine_helmet",
+    "rankine:diving_helmet",
+    "rankine:conduit_diving_helmet",
+    "rankine:alloy_helmet"
+  ]
+}

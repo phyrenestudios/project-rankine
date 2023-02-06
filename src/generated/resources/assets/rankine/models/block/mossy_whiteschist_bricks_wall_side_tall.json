@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_side_tall",
   "textures": {
-    "wall": "rankine:block/whiteschist_bricks"
+    "wall": "rankine:block/mossy_whiteschist_bricks"
   }
 }

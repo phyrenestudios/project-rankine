@@ -630,7 +630,7 @@ public class Config {
             FIRE_CLAY_GEN = b.comment("Generate fire clay under coal veins")
                     .define("fireClayGen",true);
             RETRO_GEN = b.comment("Enable the retrogen of chunks for Rankine generation. This controls soils, grasses, gravels, sands, and matching ores to the stone layer.")
-                    .define("soilGen",true);
+                    .define("retroGen",true);
             REPLACE_VANILLA_ORES = b.comment("If enabled, replaces vanilla ores with the Rankine counterparts (mostly for texture purposes). Results may vary due to the order of feature placements.")
                     .define("replaceVanillaOres",true);
             DISABLE_VANILLA_FEATURES = b.comment("Disable vanilla features in the overworld. Works by replacing the listed blocks in #rankine:vanilla_override with stones")

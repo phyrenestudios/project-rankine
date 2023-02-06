@@ -87,7 +87,7 @@ public class CrucibleRecipeCategory implements IRecipeCategory<CrucibleRecipe> {
         int rcount = 0;
         int nrcount = 0;
         builder.addSlot(RecipeIngredientRole.OUTPUT,5,31).addItemStack(output);
-        builder.addSlot(RecipeIngredientRole.OUTPUT,5,31).addItemStack(recipe.getSecondaryOutput());
+        builder.addSlot(RecipeIngredientRole.OUTPUT,31,31).addItemStack(recipe.getSecondaryOutput());
         for (int i = 0; i < ingredients.size(); i++) {
 
             if (i < 3) {

@@ -7,7 +7,7 @@
       "model": "rankine:block/mossy_black_dacite_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/black_dacite_bricks1"
+      "model": "rankine:block/mossy_black_dacite_bricks1"
     }
   }
 }

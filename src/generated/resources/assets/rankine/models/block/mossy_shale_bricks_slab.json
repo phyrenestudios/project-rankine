@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab",
   "textures": {
-    "side": "rankine:block/shale_bricks",
-    "bottom": "rankine:block/shale_bricks",
-    "top": "rankine:block/shale_bricks"
+    "side": "rankine:block/mossy_shale_bricks",
+    "bottom": "rankine:block/mossy_shale_bricks",
+    "top": "rankine:block/mossy_shale_bricks"
   }
 }

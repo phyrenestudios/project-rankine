@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_post",
   "textures": {
-    "wall": "rankine:block/white_marble_bricks"
+    "wall": "rankine:block/mossy_white_marble_bricks"
   }
 }

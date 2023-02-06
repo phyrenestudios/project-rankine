@@ -7,7 +7,7 @@
       "model": "rankine:block/mossy_wadsleyone_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/wadsleyone_bricks1"
+      "model": "rankine:block/mossy_wadsleyone_bricks1"
     }
   }
 }

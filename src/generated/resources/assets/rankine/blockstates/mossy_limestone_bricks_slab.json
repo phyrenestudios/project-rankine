@@ -7,7 +7,7 @@
       "model": "rankine:block/mossy_limestone_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/limestone_bricks1"
+      "model": "rankine:block/mossy_limestone_bricks1"
     }
   }
 }

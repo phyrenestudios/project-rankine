@@ -965,6 +965,10 @@ public final class RankineTags {
         public static final TagKey<Item> BLACK_GOLD_TOOLS = forgeItem("black_gold_tools");
         public static final TagKey<Item> OSMIRIDIUM_TOOLS = forgeItem("osmiridium_tools");
 
+        public static final TagKey<Item> HELMETS = forgeItem("helmets");
+        public static final TagKey<Item> CHESTPLATES = forgeItem("chestplates");
+        public static final TagKey<Item> LEGGINGS = forgeItem("leggings");
+        public static final TagKey<Item> BOOTS = forgeItem("boots");
         public static final TagKey<Item> AXES = forgeItem("axes");
         public static final TagKey<Item> PICKAXES = forgeItem("pickaxes");
         public static final TagKey<Item> HOES = forgeItem("hoes");

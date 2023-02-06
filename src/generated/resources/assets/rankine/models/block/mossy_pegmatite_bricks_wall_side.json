@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_side",
   "textures": {
-    "wall": "rankine:block/pegmatite_bricks"
+    "wall": "rankine:block/mossy_pegmatite_bricks"
   }
 }

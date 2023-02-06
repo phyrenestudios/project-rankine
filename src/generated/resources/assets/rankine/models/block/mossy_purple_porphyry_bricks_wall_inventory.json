@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "rankine:block/purple_porphyry_bricks"
+    "wall": "rankine:block/mossy_purple_porphyry_bricks"
   }
 }

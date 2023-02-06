@@ -56,6 +56,11 @@
       "type": "crafting",
       "recipe": "rankine:totem_of_timesaving",
       "text": "rankine.journal.cat_tools.totems.totem_of_timesaving"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:totem_of_powering",
+      "text": "rankine.journal.cat_tools.totems.totem_of_powering"
     }
   ]
 }

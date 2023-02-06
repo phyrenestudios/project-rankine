@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/stairs",
   "textures": {
-    "side": "rankine:block/nepheline_syenite_bricks",
-    "bottom": "rankine:block/nepheline_syenite_bricks",
-    "top": "rankine:block/nepheline_syenite_bricks"
+    "side": "rankine:block/mossy_nepheline_syenite_bricks",
+    "bottom": "rankine:block/mossy_nepheline_syenite_bricks",
+    "top": "rankine:block/mossy_nepheline_syenite_bricks"
   }
 }

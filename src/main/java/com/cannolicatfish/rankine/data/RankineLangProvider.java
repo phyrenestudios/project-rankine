@@ -880,7 +880,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.rankine.totem_of_cobbling.tooltip", "Long term stone storage");
         add("item.rankine.totem_of_enduring.tooltip", "Built in body shield");
         add("item.rankine.totem_of_hastening.tooltip", "Efficiency, but in your hands");
-        add("item.rankine.totem_of_infusing.tooltip", "Symbiotic enchanting");
+        add("item.rankine.totem_of_infusing.tooltip", "Potion Rationing");
         add("item.rankine.totem_of_invigorating.tooltip", "Regenerative equipment");
         add("item.rankine.totem_of_imitating.tooltip", "False promises");
         add("item.rankine.totem_of_levitating.tooltip", "For keeping your feet clean");
@@ -1607,12 +1607,13 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_tools.totems.totem_of_cobbling", "Internally stores all types of stones up to 8 stacks. Can be used to place cobblestone.");
         add("rankine.journal.cat_tools.totems.totem_of_enduring", "Increases the wearer's health capacity. Can be used every so often to apply regeneration.");
         add("rankine.journal.cat_tools.totems.totem_of_hastening", "Applies efficiency to your arms, allowing you to mine all blocks quicker.");
-        add("rankine.journal.cat_tools.totems.totem_of_infusing", "");
+        add("rankine.journal.cat_tools.totems.totem_of_infusing", "Stores a potion effect and applies it to entities that you hit.");
         add("rankine.journal.cat_tools.totems.totem_of_levitating", "While not sneaking, the wearer will not be able to fall.");
         add("rankine.journal.cat_tools.totems.totem_of_promising", "Mining brings you fortune for many materials. There is a chance to receive an extra block.");
         add("rankine.journal.cat_tools.totems.totem_of_repulsing", "Hostile mobs can no longer detect the wearer.");
         add("rankine.journal.cat_tools.totems.totem_of_softening", "The delicacy of an open hand allows you to collect blocks that naturally require silk touch.");
         add("rankine.journal.cat_tools.totems.totem_of_timesaving", "Provides additional movement speed across all solid terrain.");
+        add("rankine.journal.cat_tools.totems.totem_of_powering", "Provides bonuses when affected by conduit power. Applies the Dolphin's Grace effect and slowly recharges any batteries in the inventory.");
 
         add("rankine.journal.cat_tools.common_tools.name", "Other Tools");
         add("rankine.journal.cat_tools.common_tools.text1", "");

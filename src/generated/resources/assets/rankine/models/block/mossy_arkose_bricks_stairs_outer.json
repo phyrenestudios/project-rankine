@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/outer_stairs",
   "textures": {
-    "side": "rankine:block/arkose_bricks",
-    "bottom": "rankine:block/arkose_bricks",
-    "top": "rankine:block/arkose_bricks"
+    "side": "rankine:block/mossy_arkose_bricks",
+    "bottom": "rankine:block/mossy_arkose_bricks",
+    "top": "rankine:block/mossy_arkose_bricks"
   }
 }

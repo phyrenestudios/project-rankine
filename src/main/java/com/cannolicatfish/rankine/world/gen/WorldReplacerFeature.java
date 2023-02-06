@@ -14,10 +14,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
@@ -45,62 +45,54 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
 
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
-
         WorldGenLevel reader = p_159749_.level();
-
         ChunkAccess chunk = reader.getChunk(p_159749_.origin());
+
         for (int x = chunk.getPos().getMinBlockX(); x <= chunk.getPos().getMaxBlockX(); ++x) {
             for (int z = chunk.getPos().getMinBlockZ(); z <= chunk.getPos().getMaxBlockZ(); ++z) {
                 int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
                 Biome targetBiome = reader.getBiome(new BlockPos(x, reader.getMaxBuildHeight(), z)).value();
                 int biomeIndex = GEN_BIOMES.indexOf(targetBiome.getRegistryName());
-                if (biomeIndex != -1) {
-                    ResourceLocation biomeName = targetBiome.getRegistryName();
-                    double stoneNoise = NOISE.getValue((double) x / NOISE_SCALE, (double) z / NOISE_SCALE, false);
-                    List<String> blockList = LAYER_LISTS.get(GEN_BIOMES.indexOf(biomeName));
-                    for (int y = -64; y <= endY; ++y) {
-                        BlockState StoneBS = getStone(blockList,y,stoneNoise);
-                        if (StoneBS == null) return false;
-                        BlockPos TARGET_POS = new BlockPos(x,y,z);
-                        BlockState TARGET_BS = reader.getBlockState(TARGET_POS);
+                if (biomeIndex != -1) continue;
 
-                        switch (Biome.getBiomeCategory(Holder.direct(targetBiome))) {
-                            case NETHER:
-                                if (TARGET_BS == Blocks.NETHERRACK.defaultBlockState()) {
-                                    if (!leaveNetherrack(reader,TARGET_POS,targetBiome)) {
-                                        if (placeSandstone(reader,TARGET_POS)) {
-                                            reader.setBlock(TARGET_POS, RankineBlocks.SOUL_SANDSTONE.get().defaultBlockState(), 3);
-                                        } else if (TARGET_BS.is(BlockTags.BASE_STONE_NETHER)) {
-                                            reader.setBlock(TARGET_POS, StoneBS, 3);
-                                        }
-                                    }
+                double stoneNoise = NOISE.getValue((double) x / NOISE_SCALE, (double) z / NOISE_SCALE, false);
+                List<String> blockList = LAYER_LISTS.get(GEN_BIOMES.indexOf(targetBiome.getRegistryName()));
+                for (int y = reader.getMinBuildHeight(); y <= endY; ++y) {
+                    BlockState StoneBS = getStone(blockList,y,stoneNoise);
+                    if (StoneBS == null) return false;
+                    BlockPos TARGET_POS = new BlockPos(x,y,z);
+                    BlockState TARGET_BS = reader.getBlockState(TARGET_POS);
+
+                    switch (Biome.getBiomeCategory(Holder.direct(targetBiome))) {
+                        case NETHER:
+                            if (TARGET_BS != Blocks.NETHERRACK.defaultBlockState()) break;
+                            if (leaveNetherrack(reader,TARGET_POS,targetBiome)) break;
+                            if (placeSandstone(reader,TARGET_POS)) {
+                                reader.setBlock(TARGET_POS, RankineBlocks.SOUL_SANDSTONE.get().defaultBlockState(), 3);
+                            } else if (TARGET_BS.is(BlockTags.BASE_STONE_NETHER)) {
+                                reader.setBlock(TARGET_POS, StoneBS, 3);
+                            }
+                            break;
+                        case THEEND:
+                            if (TARGET_BS.is(RankineTags.Blocks.BASE_STONE_END)) {
+                                reader.setBlock(TARGET_POS, StoneBS, 3);
+                            }
+                            break;
+                        default:
+                            if (canReplaceStone(TARGET_BS)) {
+                                reader.setBlock(TARGET_POS, StoneBS, 3);
+                            } else if (TARGET_BS.hasProperty(BlockStateProperties.SLAB_TYPE)) {
+                                ResourceLocation RS2 = ResourceLocation.tryParse(StoneBS.getBlock().getRegistryName().toString() + "_slab");
+                                Block blockVar = ForgeRegistries.BLOCKS.getValue(RS2);
+                                if (blockVar != Blocks.AIR && blockVar.defaultBlockState().hasProperty(BlockStateProperties.SLAB_TYPE)) {
+                                    reader.setBlock(TARGET_POS, blockVar.defaultBlockState().setValue(BlockStateProperties.SLAB_TYPE, TARGET_BS.getValue(BlockStateProperties.SLAB_TYPE)), 3);
                                 }
-                                break;
-                            case THEEND:
-                                if (TARGET_BS.is(RankineTags.Blocks.BASE_STONE_END)) {
-                                    reader.setBlock(TARGET_POS, StoneBS, 3);
-                                }
-                                break;
-                            default:
-                                if (canReplaceStone(TARGET_BS)) {
-                                    reader.setBlock(TARGET_POS, StoneBS, 3);
-                                } else if (TARGET_BS.hasProperty(BlockStateProperties.SLAB_TYPE)) {
-                                    ResourceLocation RS = ResourceLocation.tryParse(TARGET_BS.getBlock().getRegistryName().toString().replace("_slab",""));
-                                    if (RS != Blocks.AIR.getRegistryName() && canReplaceStone(ForgeRegistries.BLOCKS.getValue(RS).defaultBlockState())) {
-                                        ResourceLocation RS2 = ResourceLocation.tryParse(StoneBS.getBlock().getRegistryName().toString() + "_slab");
-                                        if (RS2 != Blocks.AIR.getRegistryName()) {
-                                            reader.setBlock(TARGET_POS, ForgeRegistries.BLOCKS.getValue(RS2).defaultBlockState().setValue(BlockStateProperties.SLAB_TYPE, SlabType.BOTTOM), 3);
-                                        }
-                                    }
-                                }
-                                break;
-                        }
+                            }
+                            break;
                     }
                 }
             }
-
         }
-
         return true;
     }
 

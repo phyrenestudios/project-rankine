@@ -306,6 +306,7 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
                                 .apply(SetItemCountFunction.setCount(ConstantValue.exactly(Count)))
                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7).hasProperty(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER))),
                             LootItem.lootTableItem(SEED)
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER)))
                         )
                     )
                     .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoubleCropsBlock.SECTION, DoubleBlockHalf.LOWER))))
@@ -331,6 +332,7 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
                                 .apply(SetItemCountFunction.setCount(ConstantValue.exactly(Count)))
                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7).hasProperty(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM))),
                             LootItem.lootTableItem(SEED)
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(CROP).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TripleCropsBlock.SECTION, TripleBlockSection.BOTTOM)))
                         )
                     )
                 )

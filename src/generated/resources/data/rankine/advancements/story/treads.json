@@ -23,9 +23,7 @@
         "items": [
           {
             "type": "rankine:has_enchantment_check",
-            "items": [
-              "minecraft:netherite_boots"
-            ],
+            "tag": "forge:boots",
             "enchantments": [
               "rankine:speed_skater",
               "rankine:dune_walker",

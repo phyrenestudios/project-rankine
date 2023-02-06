@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab_top",
   "textures": {
-    "side": "rankine:block/hornblende_andesite_bricks",
-    "bottom": "rankine:block/hornblende_andesite_bricks",
-    "top": "rankine:block/hornblende_andesite_bricks"
+    "side": "rankine:block/mossy_hornblende_andesite_bricks",
+    "bottom": "rankine:block/mossy_hornblende_andesite_bricks",
+    "top": "rankine:block/mossy_hornblende_andesite_bricks"
   }
 }

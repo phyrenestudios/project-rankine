@@ -7,7 +7,7 @@
       "model": "rankine:block/mossy_hornblende_andesite_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/hornblende_andesite_bricks1"
+      "model": "rankine:block/mossy_hornblende_andesite_bricks1"
     }
   }
 }

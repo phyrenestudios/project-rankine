@@ -7,7 +7,7 @@
       "model": "rankine:block/mossy_purple_porphyry_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/purple_porphyry_bricks1"
+      "model": "rankine:block/mossy_purple_porphyry_bricks1"
     }
   }
 }

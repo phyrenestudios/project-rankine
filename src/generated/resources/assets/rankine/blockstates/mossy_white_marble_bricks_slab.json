@@ -7,7 +7,7 @@
       "model": "rankine:block/mossy_white_marble_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/white_marble_bricks1"
+      "model": "rankine:block/mossy_white_marble_bricks1"
     }
   }
 }

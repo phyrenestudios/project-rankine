@@ -64,15 +64,15 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             slabBlock(Stone.getSlab(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
             slabBlock(Stone.getPolishedSlab(), new ResourceLocation("rankine", "block/polished_"+Stone.getBaseName()+"1"), new ResourceLocation("rankine", "block/polished_"+Stone.getBaseName()));
             slabBlock(Stone.getBricksSlab(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks1"), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
-            slabBlock(Stone.getMossyBricksSlab(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks1"), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            slabBlock(Stone.getMossyBricksSlab(), new ResourceLocation("rankine", "block/mossy_"+Stone.getBaseName()+"_bricks1"), new ResourceLocation("rankine", "block/mossy_"+Stone.getBaseName()+"_bricks"));
             stairsBlock(Stone.getStairs(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
             stairsBlock(Stone.getPolishedStairs(), new ResourceLocation("rankine", "block/polished_"+Stone.getBaseName()));
             stairsBlock(Stone.getBricksStairs(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
-            stairsBlock(Stone.getMossyBricksStairs(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            stairsBlock(Stone.getMossyBricksStairs(), new ResourceLocation("rankine", "block/mossy_"+Stone.getBaseName()+"_bricks"));
             wallBlock(Stone.getWall(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
             wallBlock(Stone.getPolishedWall(), new ResourceLocation("rankine", "block/polished_"+Stone.getBaseName()));
             wallBlock(Stone.getBricksWall(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
-            wallBlock(Stone.getMossyBricksWall(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            wallBlock(Stone.getMossyBricksWall(), new ResourceLocation("rankine", "block/mossy_"+Stone.getBaseName()+"_bricks"));
             pressurePlateBlock(Stone.getPressurePlate(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
             pressurePlateBlock(Stone.getBricksPressurePlate(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
             buttonBlock(Stone.getButton(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
@@ -1476,13 +1476,13 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
     public void fancyMossyStoneBricksBlock(Block block) {
         String name = block.getRegistryName().getPath();
-        ResourceLocation large = modLoc("block/"+name.replace("mossy_",""));
+        ResourceLocation large = modLoc("block/"+name);
         IntegerProperty STYLE = ((BuildingModeBlock) block).getProperty();
         getVariantBuilder(block)
                 .partialState().with(STYLE, 1)
-                    .modelForState().modelFile(models().withExistingParent(name+1, modLoc("block/template_cube_all_overlay")).texture("all", large).texture("overlay", getBlockRSL("stone_bricks_mossy_overlay"))).addModel()
+                    .modelForState().modelFile(models().withExistingParent(name+1, mcLoc("block/cube_all")).texture("all", large)).addModel()
                 .partialState().with(STYLE, 2)
-                    .modelForState().modelFile(models().withExistingParent(name+2, modLoc("block/template_cube_all_rotated_overlay")).texture("all", large).texture("overlay", getBlockRSL("stone_bricks_mossy_overlay"))).addModel();
+                    .modelForState().modelFile(models().withExistingParent(name+2, modLoc("block/template_rotation")).texture("all", large)).addModel();
     }
     public void fancyBricksBlock(Block block) {
         String name = block.getRegistryName().getPath();

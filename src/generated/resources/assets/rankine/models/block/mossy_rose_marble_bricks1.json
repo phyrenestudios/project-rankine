@@ -1,7 +1,6 @@
 {
-  "parent": "rankine:block/template_cube_all_overlay",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "rankine:block/rose_marble_bricks",
-    "overlay": "rankine:block/stone_bricks_mossy_overlay"
+    "all": "rankine:block/mossy_rose_marble_bricks"
   }
 }

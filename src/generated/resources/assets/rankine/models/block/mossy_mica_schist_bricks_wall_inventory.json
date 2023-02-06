@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "rankine:block/mica_schist_bricks"
+    "wall": "rankine:block/mossy_mica_schist_bricks"
   }
 }

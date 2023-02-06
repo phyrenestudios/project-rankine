@@ -7,7 +7,7 @@
       "model": "rankine:block/mossy_eclogite_bricks_slab"
     },
     "type=double": {
-      "model": "rankine:block/eclogite_bricks1"
+      "model": "rankine:block/mossy_eclogite_bricks1"
     }
   }
 }
