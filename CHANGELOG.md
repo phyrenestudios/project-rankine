@@ -1,10 +1,64 @@
 
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
+## Project Rankine Version 1.3.7 Changelog [13Feb2023]
+### FIXES
+- Fixed lootable issues with rankine crops
+- Mossy brick variants have the proper texture
+- Fixed item overlap on the Crucible JEI GUI
+- Fixed shift-clicking items into the 4th slot of the Mixing Barrel
+- Alloy axes take the correct damage when tree felling
+- Totem of Promising effect applies while tree felling
+- Wooden blocks no longer require an axe to break
+- Fixed a graphics issue with using flint to light fires
+- Rope blocks can be autoplaced below y=0
+- Induction Furnace alloying recipes no longer show up in the Alloy Furnace JEI recipe list
+- Using a Rope Arrow in creative mode will place the entire rope
+- Fixed the /rankineDetails command
+- Added furnace fuel value to wooden hammer, wooden gold pan and the stump
+- Fixed texture for Polished Whiteschist
+- Pointed Dripstone variants will now fill cauldrons with water and lava
+- Fixed a crash with shift-clicking with Bamboo Culms
+- Alloy based enchants now applied on craft
+
+### BLOCKS
+- Added sound effects for Rope
+- Changed lang name of Heating Element 1 to Low Grade Heating Element
+- Decrease harvest tier requirement of Pyrite Ore from iron to stone
+- Block of Pyrite emits particles when struck with a projectile
+
+### RECIPES
+- Removed duplicate recipe for the Ore Detector
+- Lowered the enchantibility requirement for Nitinol alloy tools
+- Rope recipe output increased from 1 to 4
+- Smelting a Stump in a furnace or Campfire yields ash
+- Added missing recipe for Willow treetapping
+- Added missing Deepslate generator recipe
+- Added block based generator recipes for Chalk, Limestone, Dolostone and Honeystone to work with Sediment Fan
+- Adjusted Cinnabar crushing recipe to yield more redstone
+- Adjusted Redstone crucible recipe
+- Added recipe for Flint and Steel using pyrite and flint
+- Added recipes for crop bales
+- Updated various fusion furnace recipes to include a byproduct
+
+### TAGS
+- Added #forge:helmets, #forge:chestplates, #forge:leggings, #forge:boots
+- Added tags for green gold items in addition to electrum
+- Added tags for cupronickel items in addition to constantan
+- Added tags for Neptunium Alloy items
+- Updated #minecraft:iron_ores
+- Removed Redundant #rankine:copper_ores
+
+### ADVANCEMENTS
+- Updated advancements with armor tags
+- Added Totem of Powering to the totem collecting advancement
+
+### CONFIG
+- Removed unused "dripstoneGen" option
+- Added default stone generation for Twilight Forest
+- Added a default category for Nether stonegen
 
 ## Project Rankine Version 1.3.6 Changelog [24Jan2023]
-### Overview
-
 ### BLOCKS
 - Added Battery Charger, a block that can hold batteries and charge them using Daylight Sensors and Lightning Rods
 - Reworked Sediment Fan to reflect new sedimentary process
@@ -323,7 +377,15 @@ This update is the initial port to 1.18.2 from 1.16.5. Many minor changes may ha
 
 ## Project Rankine Version 1.3.2 Changelog [28Apr2022]
 
-### Hotfix 5 [#Nov2022]
+### Hotfix 6 [02Feb2022]
+- Using a knife on tall seagrass gives two seagrass
+- Fixed a bug with blasting powder that allowed for duplication
+- Fixed a bug which allowed for plant duplication using flower pots
+- Fixed a bug which allowed for crop seed duplication
+- Fixed Fusion Furnace recipe logic causing incorrect recipes
+- Fixed loottables for Coconut Palm Leaves and Black Walnut Leaves 
+
+### Hotfix 5 [14Nov2022]
 - Removed old Alloy Pickaxe proximity mining functionality
 - Alloy Pickaxes now have a chance (determined by attack speed) to give bonus nuggets (amount determined by attack damage) based on the ore being mined
 - Added Fusion Furnace recipes for Mineral Wool and Ender Pearls
