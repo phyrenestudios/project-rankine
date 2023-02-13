@@ -107,7 +107,7 @@ public class RankineWood {
              RankineBlocks.ITEMS.register("hollow_" + baseName + "_log", () -> new BlockItem(newWood.hollowLog.get(), DEF_BUILDING));
         }
         if (newWood.getBaseName().equals("bamboo_culms")) {
-             RankineBlocks.ITEMS.register(baseName, () -> new BlockItem(newWood.planks.get(), DEF_BUILDING));
+             RankineBlocks.ITEMS.register(baseName, () -> new BuildingModeBlockItem(newWood.planks.get(), DEF_BUILDING));
         } else {
              RankineBlocks.ITEMS.register(baseName+"_planks", () -> new BuildingModeBlockItem(newWood.planks.get(), DEF_BUILDING));
         }

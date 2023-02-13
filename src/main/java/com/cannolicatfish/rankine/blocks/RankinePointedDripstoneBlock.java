@@ -23,11 +23,13 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DripstoneThickness;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -140,19 +142,18 @@ public class RankinePointedDripstoneBlock extends PointedDripstoneBlock {
     }
 
     public void randomTick(BlockState p_154199_, ServerLevel p_154200_, BlockPos p_154201_, Random p_154202_) {
-        //maybeFillCauldron(p_154199_, p_154200_, p_154201_, p_154202_.nextFloat());
+        maybeFillCauldron(p_154199_, p_154200_, p_154201_, p_154202_.nextFloat());
         if (p_154202_.nextFloat() < 0.011377778F && isStalactiteStartPos(p_154199_, p_154200_, p_154201_)) {
             growStalactiteOrStalagmiteIfPossible(p_154199_, p_154200_, p_154201_, p_154202_);
         }
 
     }
 
-/*
     @VisibleForTesting
-    public static void maybeFillCauldron(BlockState p_154102_, ServerLevel p_154103_, BlockPos p_154104_, float p_154105_) {
+    public static void maybeFillCauldron(BlockState p_154102_, ServerLevel levelIn, BlockPos p_154104_, float p_154105_) {
         if (!(p_154105_ > 0.17578125F) || !(p_154105_ > 0.05859375F)) {
-            if (isStalactiteStartPos(p_154102_, p_154103_, p_154104_)) {
-                Fluid fluid = getCauldronFillFluidType(p_154103_, p_154104_);
+            if (isStalactiteStartPos(p_154102_, levelIn, p_154104_)) {
+                Fluid fluid = getCauldronFillFluidType(levelIn, p_154104_);
                 float f;
                 if (fluid == Fluids.WATER) {
                     f = 0.17578125F;
@@ -165,25 +166,44 @@ public class RankinePointedDripstoneBlock extends PointedDripstoneBlock {
                 }
 
                 if (!(p_154105_ >= f)) {
-                    BlockPos blockpos = findTip(p_154102_, p_154103_, p_154104_, 11, false);
-                    if (blockpos != null) {
-                        BlockPos blockpos1 = findFillableCauldronBelowStalactiteTip(p_154103_, blockpos, fluid);
-                        if (blockpos1 != null) {
-                            p_154103_.levelEvent(1504, blockpos, 0);
-                            int i = blockpos.getY() - blockpos1.getY();
-                            int j = 50 + i;
-                            BlockState blockstate = p_154103_.getBlockState(blockpos1);
-                            p_154103_.scheduleTick(blockpos1, blockstate.getBlock(), j);
+                    BlockPos blockpos = findTip(p_154102_, levelIn, p_154104_, 11, false);
+                    if (blockpos == null) return;
+                    BlockPos blockpos1 = findFillableCauldronBelowStalactiteTip(levelIn, blockpos, fluid);
+                    if (blockpos1 == null) return;
+                    levelIn.levelEvent(1504, blockpos, 0);
+                    BlockState cauldronState = levelIn.getBlockState(blockpos1);
+                    if (cauldronState.is(Blocks.CAULDRON)) {
+                        if (fluid == Fluids.WATER) {
+                            levelIn.setBlockAndUpdate(blockpos1, Blocks.WATER_CAULDRON.defaultBlockState());
+                            levelIn.levelEvent(1047, blockpos1, 0);
+                            levelIn.gameEvent((Entity) null, GameEvent.FLUID_PLACE, blockpos1);
+                        } else if (fluid == Fluids.LAVA) {
+                            levelIn.setBlockAndUpdate(blockpos1, Blocks.LAVA_CAULDRON.defaultBlockState());
+                            levelIn.levelEvent(1046, blockpos1, 0);
+                            levelIn.gameEvent((Entity) null, GameEvent.FLUID_PLACE, blockpos1);
+                        }
+                    } else if (cauldronState.is(Blocks.WATER_CAULDRON)) {
+                        if (!(((LayeredCauldronBlock) cauldronState.getBlock()).isFull(cauldronState))) {
+                            levelIn.setBlockAndUpdate(blockpos1, cauldronState.setValue(LayeredCauldronBlock.LEVEL, cauldronState.getValue(LayeredCauldronBlock.LEVEL) + 1));
+                            levelIn.levelEvent(1047, blockpos1, 0);
                         }
                     }
+
                 }
             }
         }
     }
 
- */
-
-
+    @Nullable
+    private static BlockPos findFillableCauldronBelowStalactiteTip(Level p_154077_, BlockPos p_154078_, Fluid p_154079_) {
+        Predicate<BlockState> predicate = (p_154162_) -> {
+            return p_154162_.is(Blocks.CAULDRON) || p_154162_.is(Blocks.WATER_CAULDRON);
+        };
+        BiPredicate<BlockPos, BlockState> bipredicate = (p_202034_, p_202035_) -> {
+            return canDripThrough(p_154077_, p_202034_, p_202035_);
+        };
+        return findBlockVertical(p_154077_, p_154078_, Direction.DOWN.getAxisDirection(), bipredicate, predicate, 11).orElse((BlockPos)null);
+    }
 
     public PushReaction getPistonPushReaction(BlockState p_154237_) {
         return PushReaction.DESTROY;

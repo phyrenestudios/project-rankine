@@ -40,7 +40,7 @@
 			  "weight": 6,
 			  "tier": "minecraft:stone",
 			  "remove": false
-			}
+			},
 			{
 			  "item": "rankine:cinnabar",
 			  "weight": 2,

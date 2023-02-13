@@ -87,13 +87,12 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
         }
     }
 
-
     @Override
     public void onCraftedBy(ItemStack stack, Level worldIn, Player playerIn) {
+        this.initStats(stack,getElementMap(IAlloyItem.getAlloyComposition(stack),worldIn),getAlloyingRecipe(IAlloyItem.getAlloyRecipe(stack),worldIn),null);
         this.applyAlloyEnchantments(stack,worldIn);
         super.onCraftedBy(stack, worldIn, playerIn);
     }
-
 
     @Override
     public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {

@@ -3,30 +3,25 @@ package com.cannolicatfish.rankine.items.alloys;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.items.BlunderbussItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
-
-import net.minecraft.world.item.Item.Properties;
-import net.minecraftforge.common.Tags;
 
 public class AlloyBlunderbussItem extends BlunderbussItem implements IAlloyTieredItem {
     private final String defaultComposition;
@@ -71,10 +66,10 @@ public class AlloyBlunderbussItem extends BlunderbussItem implements IAlloyTiere
 
     @Override
     public void onCraftedBy(ItemStack stack, Level worldIn, Player playerIn) {
+        this.initStats(stack,getElementMap(IAlloyItem.getAlloyComposition(stack),worldIn),getAlloyingRecipe(IAlloyItem.getAlloyRecipe(stack),worldIn),null);
         this.applyAlloyEnchantments(stack,worldIn);
         super.onCraftedBy(stack, worldIn, playerIn);
     }
-
 
     @Override
     public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {

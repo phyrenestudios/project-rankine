@@ -385,6 +385,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RankineItems.PLANT_FIBER.get(),1).requires(RankineItems.SHORT_GRASS.get()).requires(RankineItems.SHORT_GRASS.get()).unlockedBy("has_ingredient", has(Items.STICK)).group("plant_fiber").save(consumer, "rankine:plant_fiber_from_short_grass");
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.STUMP.get()), RankineItems.ASH.get(), 0.2F, 200).unlockedBy("has_ingredient", has(RankineItems.STUMP.get())).save(consumer, "rankine:ash_from_stump_smelting");
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(RankineItems.STUMP.get()), RankineItems.ASH.get(), 0.2F, 600).unlockedBy("has_ingredient", has(RankineItems.STUMP.get())).save(consumer, "rankine:ash_from_stump_campfire");
 
         ShapedRecipeBuilder.shaped(Items.BREAD,  1).pattern("###").define('#', RankineItems.MILLET.get()).group("gf_bread").unlockedBy("has_ingredient", has(RankineItems.MILLET.get())).save(consumer,"rankine:bread_from_millet");
         ShapedRecipeBuilder.shaped(Items.BREAD,  1).pattern("###").define('#', RankineItems.OATS.get()).group("gf_bread").unlockedBy("has_ingredient", has(RankineItems.OATS.get())).save(consumer,"rankine:bread_from_oats");
@@ -392,6 +393,16 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(Items.BREAD,  1).pattern("###").define('#', RankineItems.RICE.get()).group("gf_bread").unlockedBy("has_ingredient", has(RankineItems.RICE.get())).save(consumer,"rankine:bread_from_rice");
         ShapedRecipeBuilder.shaped(Items.BREAD, 1).pattern("###").define('#', RankineItems.RYE.get()).group("bread").unlockedBy("has_ingredient", has(RankineItems.RYE.get())).save(consumer,"rankine:bread_from_rye");
         ShapedRecipeBuilder.shaped(Items.BREAD, 1).pattern("###").define('#', RankineItems.BARLEY.get()).group("bread").unlockedBy("has_ingredient", has(RankineItems.BARLEY.get())).save(consumer,"rankine:bread_from_barley");
+        ShapedRecipeBuilder.shaped(RankineBlocks.RYE_BALE.get(), 1).pattern("###").pattern("###").pattern("###").define('#', RankineItems.RYE.get()).group("bales").unlockedBy("has_ingredient", has(RankineItems.RYE.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RankineItems.RYE.get(),9).requires(RankineBlocks.RYE_BALE.get()).unlockedBy("has_ingredient", has(RankineItems.RYE.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RankineBlocks.BARLEY_BALE.get(), 1).pattern("###").pattern("###").pattern("###").define('#', RankineItems.BARLEY.get()).group("bales").unlockedBy("has_ingredient", has(RankineItems.BARLEY.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RankineItems.BARLEY.get(),9).requires(RankineBlocks.BARLEY_BALE.get()).unlockedBy("has_ingredient", has(RankineItems.BARLEY.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RankineBlocks.SORGHUM_BALE.get(), 1).pattern("###").pattern("###").pattern("###").define('#', RankineItems.SORGHUM.get()).group("bales").unlockedBy("has_ingredient", has(RankineItems.SORGHUM.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RankineItems.SORGHUM.get(),9).requires(RankineBlocks.SORGHUM_BALE.get()).unlockedBy("has_ingredient", has(RankineItems.SORGHUM.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RankineBlocks.OAT_BALE.get(), 1).pattern("###").pattern("###").pattern("###").define('#', RankineItems.OATS.get()).group("bales").unlockedBy("has_ingredient", has(RankineItems.OATS.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RankineItems.OATS.get(),9).requires(RankineBlocks.OAT_BALE.get()).unlockedBy("has_ingredient", has(RankineItems.OATS.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RankineBlocks.MILLET_BALE.get(), 1).pattern("###").pattern("###").pattern("###").define('#', RankineItems.MILLET.get()).group("bales").unlockedBy("has_ingredient", has(RankineItems.MILLET.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RankineItems.MILLET.get(),9).requires(RankineBlocks.MILLET_BALE.get()).unlockedBy("has_ingredient", has(RankineItems.MILLET.get())).save(consumer);
 
         //ore conversion recipes
         ShapelessRecipeBuilder.shapeless(Items.COAL_ORE,1).requires(RankineItems.COAL_ORE.get()).unlockedBy("has_ingredient", has(RankineItems.COAL_ORE.get())).group("ore_conversion").save(consumer, "rankine:coal_ore_conversion");

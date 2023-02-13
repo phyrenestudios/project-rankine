@@ -70,6 +70,11 @@
       "count": 3,
       "weight": 4,
       "tier": "minecraft:iron"
+    },
+    {
+      "item": "rankine:lorandite",
+      "weight": 4,
+      "tier": "minecraft:diamond"
     }
   ]
 }

@@ -33,6 +33,11 @@
       "tier": "minecraft:iron"
     },
     {
+      "item": "rankine:lorandite",
+      "weight": 4,
+      "tier": "minecraft:diamond"
+    },
+    {
       "item": "rankine:galena",
       "weight": 4,
       "tier": "minecraft:diamond"

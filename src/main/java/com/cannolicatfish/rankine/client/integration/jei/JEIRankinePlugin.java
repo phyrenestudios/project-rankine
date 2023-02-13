@@ -102,7 +102,7 @@ public class JEIRankinePlugin implements IModPlugin {
     public void registerRecipes(@Nonnull IRecipeRegistration registry) {
         RankineJEIRecipes rankineJEIRecipes = new RankineJEIRecipes();
         registry.addRecipes(AIR_DISTILLATION, getSortedRecipes(rankineJEIRecipes.getAirDistillationRecipes()));
-        registry.addRecipes(ALLOYING, getSortedRecipes(rankineJEIRecipes.getAlloyingRecipes()));
+        registry.addRecipes(ALLOYING, getSortedRecipes(rankineJEIRecipes.getAlloyFurnaceRecipes()));
         registry.addRecipes(BEEHIVE_OVEN, getSortedRecipes(rankineJEIRecipes.getBeehiveRecipes()));
         registry.addRecipes(CRUCIBLE, getSortedRecipes(rankineJEIRecipes.getCrucibleRecipes()));
         registry.addRecipes(CRUSHING, getSortedRecipes(rankineJEIRecipes.getCrushingRecipes()));

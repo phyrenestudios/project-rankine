@@ -950,6 +950,15 @@ public class Config {
                     "minecraft:air",
                     "minecraft:air",
                     "minecraft:air"));
+            biomeSettings.add(List.of(Biome.BiomeCategory.NETHER.getName(),
+                    List.of(),
+                    List.of("minecraft:air|20|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    List.of("minecraft:netherrack"),
+                    List.of(),
+                    "rankine:dark_gravel",
+                    "minecraft:air",
+                    "minecraft:air",
+                    "minecraft:air"));
             biomeSettings.add(List.of("minecraft:stony_shore",
                     List.of("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay"),
                     List.of("minecraft:air|30|minecraft:air|0.0","rankine:kimberlite|10|rankine:kimberlitic_diamond_ore|0.03","rankine:diabase|30|rankine:baddeleyite_ore|0.04","rankine:red_porphyry|10|rankine:porphyry_copper|0.04"),

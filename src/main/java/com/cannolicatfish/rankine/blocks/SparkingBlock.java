@@ -18,16 +18,16 @@ public class SparkingBlock extends Block {
         BlockPos posIn = p_60455_.getBlockPos();
         double d0 = 3.0D;
         double d1 = 1.0D;
-        for(int i = 0; i < 50; ++i) {
-            double d2 = levelIn.getRandom().nextGaussian() * 0.02D;
-            double d3 = levelIn.getRandom().nextGaussian() * 0.02D;
-            double d4 = levelIn.getRandom().nextGaussian() * 0.02D;
-            double d5 = 0.5D - d0;
-            double d6 = (double)posIn.getX() + d5 + levelIn.getRandom().nextDouble() * d0 * 2.0D;
-            double d7 = (double)posIn.getY() + d5 + levelIn.getRandom().nextDouble() * d0 * 2.0D;
-            double d8 = (double)posIn.getZ() + d5 + levelIn.getRandom().nextDouble() * d0 * 2.0D;
-            if (!levelIn.getBlockState((new BlockPos(d6, d7, d8)).below()).isAir()) {
-                levelIn.addParticle( levelIn.getRandom().nextFloat() < 0.15 ? ParticleTypes.LAVA : ParticleTypes.ELECTRIC_SPARK, d6, d7, d8, d2, d3, d4);
+        if (levelIn.isClientSide()) {
+            for (int i = 0; i < 50; ++i) {
+                double d2 = levelIn.getRandom().nextGaussian() * 0.02D;
+                double d3 = levelIn.getRandom().nextGaussian() * 0.02D;
+                double d4 = levelIn.getRandom().nextGaussian() * 0.02D;
+                double d5 = 0.5D - d0;
+                double d6 = (double) posIn.getX() + d5 + levelIn.getRandom().nextDouble() * d0 * 2.0D;
+                double d7 = (double) posIn.getY() + d5 + levelIn.getRandom().nextDouble() * d0 * 2.0D;
+                double d8 = (double) posIn.getZ() + d5 + levelIn.getRandom().nextDouble() * d0 * 2.0D;
+                levelIn.addParticle(levelIn.getRandom().nextFloat() < 0.05 ? ParticleTypes.LAVA : ParticleTypes.ELECTRIC_SPARK, d6, d7, d8, d2, d3, d4);
             }
         }
         super.onProjectileHit(levelIn, p_60454_, p_60455_, p_60456_);
