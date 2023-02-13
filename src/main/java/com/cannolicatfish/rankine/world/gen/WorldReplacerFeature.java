@@ -53,7 +53,7 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
                 int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
                 Biome targetBiome = reader.getBiome(new BlockPos(x, reader.getMaxBuildHeight(), z)).value();
                 int biomeIndex = GEN_BIOMES.indexOf(targetBiome.getRegistryName());
-                if (biomeIndex != -1) continue;
+                if (biomeIndex == -1) continue;
 
                 double stoneNoise = NOISE.getValue((double) x / NOISE_SCALE, (double) z / NOISE_SCALE, false);
                 List<String> blockList = LAYER_LISTS.get(GEN_BIOMES.indexOf(targetBiome.getRegistryName()));

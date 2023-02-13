@@ -2,9 +2,9 @@
   "type": "rankine:rock_generator",
   "genType": "metamorphic",
   "input1": {
-    "item": "rankine:slate"
+    "item": "rankine:phyllite"
   },
   "result": {
-    "block": "rankine:phyllite"
+    "block": "rankine:mica_schist"
   }
 }

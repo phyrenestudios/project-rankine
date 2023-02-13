@@ -2,9 +2,9 @@
   "type": "rankine:rock_generator",
   "genType": "metamorphic",
   "input1": {
-    "item": "minecraft:deepslate"
+    "item": "rankine:slate"
   },
   "result": {
-    "block": "rankine:phyllite"
+    "block": "minecraft:deepslate"
   }
 }

@@ -57,5 +57,6 @@
   },
   "result": "rankine:nitinol_ingot",
   "enchantments": ["rankine:shape_memory"],
-  "enchantmentTypes": ["ALL"]
+  "enchantmentTypes": ["ALL"],
+  "minEnchantability": 10
 }

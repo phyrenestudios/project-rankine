@@ -62,7 +62,7 @@ public class RankineWood {
 
     public static RankineWood newWoodReg(String baseName, float strength, boolean hasLogs, boolean isTree, int saplingType, AbstractTreeGrower treeGrower) {
 
-        Block.Properties woodProps = Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).requiresCorrectToolForDrops().strength(strength, 1.5f*strength);
+        Block.Properties woodProps = Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(strength, 1.5f*strength);
 
         RankineWood newWood = new RankineWood(baseName);
         newWood.hasLogs = hasLogs;

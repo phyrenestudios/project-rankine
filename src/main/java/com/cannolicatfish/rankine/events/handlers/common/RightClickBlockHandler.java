@@ -93,22 +93,24 @@ public class RightClickBlockHandler {
             boolean flag = false;
             if (rand.nextFloat() > Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
                 playerIn.swing(InteractionHand.MAIN_HAND);
-                playerIn.swing(InteractionHand.OFF_HAND);
                 return;
             }
-            if (flintLightMap.containsKey(blockState.getBlock())) {
-                levelIn.setBlockAndUpdate(pos, flintLightMap.get(blockState.getBlock()));
-                flag = true;
-            } else if (BaseFireBlock.canBePlacedAt(levelIn,blockpos1,event.getFace())) {
-                levelIn.setBlockAndUpdate(pos.relative(event.getFace()), BaseFireBlock.getState(levelIn, blockpos1));
-                flag = true;
+            if (!levelIn.isClientSide()) {
+                if (flintLightMap.containsKey(blockState.getBlock())) {
+                    levelIn.setBlockAndUpdate(pos, flintLightMap.get(blockState.getBlock()));
+                    flag = true;
+                } else if (BaseFireBlock.canBePlacedAt(levelIn, blockpos1, event.getFace())) {
+                    levelIn.setBlockAndUpdate(pos.relative(event.getFace()), BaseFireBlock.getState(levelIn, blockpos1));
+                    flag = true;
+                }
             }
 
             if (flag) {
+                if (!levelIn.isClientSide()) {
+                    playerIn.getItemInHand(InteractionHand.MAIN_HAND).shrink(1);
+                    playerIn.getItemInHand(InteractionHand.OFF_HAND).shrink(1);
+                }
                 playerIn.swing(InteractionHand.MAIN_HAND);
-                playerIn.swing(InteractionHand.OFF_HAND);
-                playerIn.getItemInHand(InteractionHand.MAIN_HAND).shrink(1);
-                playerIn.getItemInHand(InteractionHand.OFF_HAND).shrink(1);
                 levelIn.playSound(playerIn, blockpos1, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
             }
             return;

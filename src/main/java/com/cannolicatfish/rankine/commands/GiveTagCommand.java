@@ -6,10 +6,16 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.item.ItemArgument;
 import net.minecraft.commands.arguments.item.ItemInput;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.Item;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.tags.IReverseTag;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class GiveTagCommand {
@@ -26,8 +32,9 @@ public class GiveTagCommand {
         Item item = itemIn.getItem();
 
         source.sendSuccess(new TranslatableComponent(item.getDescriptionId()), true);
-        source.sendSuccess(new TextComponent(itemIn.createItemStack(1,true).getTags().toString()),true);
-
+        for (TagKey<Item> tag : ForgeRegistries.ITEMS.tags().getReverseTag(item).map(IReverseTag::getTagKeys).orElseGet(Stream::of).collect(Collectors.toList())) {
+            source.sendSuccess(new TextComponent(tag.location().toString()), true);
+        }
         return 1;
     }
 }

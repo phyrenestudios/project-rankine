@@ -111,7 +111,7 @@ public class MixingBarrelContainer extends AbstractContainerMenu {
                 }
                 slot.onQuickCraft(stack, itemstack);
             } else if (index > 4) {
-                if (!this.moveItemStackTo(stack, 0, 3, false)) {
+                if (!this.moveItemStackTo(stack, 0, 4, false)) {
                     return ItemStack.EMPTY;
                 }
                 else if (index < 32) {

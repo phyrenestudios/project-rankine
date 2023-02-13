@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:totem_of_invigorating"
+      "rankine:bread_from_sorghum"
     ]
   },
   "criteria": {
@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/green_gold"
+            "items": [
+              "rankine:sorghum"
+            ]
           }
         ]
       }
@@ -19,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:totem_of_invigorating"
+        "recipe": "rankine:bread_from_sorghum"
       }
     }
   },

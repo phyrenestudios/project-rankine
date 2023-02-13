@@ -166,13 +166,13 @@ public class RankineLists {
             RankineBlocks.NATIVE_SILVER_ORE.get(),RankineBlocks.NATIVE_SULFUR_ORE.get(), RankineBlocks.NETHER_QUARTZ_ORE.get(),RankineBlocks.STIBNITE_ORE.get());
 
     public static List<Block> NEEDS_STONE_TOOL_ORES = Arrays.asList(RankineBlocks.LAPIS_ORE.get(),RankineBlocks.BOG_IRON.get(),RankineBlocks.IRONSTONE.get(),RankineBlocks.INTERSPINIFEX_ORE.get(),RankineBlocks.COPPER_ORE.get(),RankineBlocks.IRON_ORE.get(),RankineBlocks.LAZURITE_ORE.get(),RankineBlocks.NATIVE_ARSENIC_ORE.get(),RankineBlocks.NATIVE_BISMUTH_ORE.get(),RankineBlocks.NATIVE_GALLIUM_ORE.get(),
-            RankineBlocks.NATIVE_LEAD_ORE.get(),RankineBlocks.NATIVE_SELENIUM_ORE.get(),RankineBlocks.NATIVE_TELLURIUM_ORE.get(), RankineBlocks.SPERRYLITE_ORE.get());
+            RankineBlocks.NATIVE_LEAD_ORE.get(),RankineBlocks.NATIVE_SELENIUM_ORE.get(),RankineBlocks.NATIVE_TELLURIUM_ORE.get(), RankineBlocks.SPERRYLITE_ORE.get(), RankineBlocks.PYRITE_ORE.get());
 
     public static List<Block> NEEDS_IRON_TOOL_ORES = Arrays.asList(RankineBlocks.GOLD_ORE.get(),RankineBlocks.REDSTONE_ORE.get(),RankineBlocks.ACANTHITE_ORE.get(),RankineBlocks.ANTITAENITE_ORE.get(),
             RankineBlocks.BADDELEYITE_ORE.get(),RankineBlocks.BAUXITE_ORE.get(),RankineBlocks.BITUMINOUS_ORE.get(),RankineBlocks.BISMUTHINITE_ORE.get(),RankineBlocks.CASSITERITE_ORE.get(),RankineBlocks.CHALCOCITE_ORE.get(),
             RankineBlocks.CINNABAR_ORE.get(),RankineBlocks.CRYOLITE_ORE.get(),RankineBlocks.DIAMOND_ORE.get(), RankineBlocks.EMERALD_ORE.get(),RankineBlocks.GALENA_ORE.get(),RankineBlocks.HEMATITE_ORE.get(),
             RankineBlocks.KAMACITE_ORE.get(),RankineBlocks.NATIVE_INDIUM_ORE.get(),RankineBlocks.MAGNESITE_ORE.get(), RankineBlocks.MALACHITE_ORE.get(), RankineBlocks.MONAZITE_ORE.get(), RankineBlocks.PENTLANDITE_ORE.get(),
-            RankineBlocks.PLUMBAGO_ORE.get(), RankineBlocks.PYRITE_ORE.get(),RankineBlocks.SPHALERITE_ORE.get(), RankineBlocks.SUBBITUMINOUS_ORE.get(),RankineBlocks.TAENITE_ORE.get(), RankineBlocks.TETRATAENITE_ORE.get());
+            RankineBlocks.PLUMBAGO_ORE.get(),RankineBlocks.SPHALERITE_ORE.get(), RankineBlocks.SUBBITUMINOUS_ORE.get(),RankineBlocks.TAENITE_ORE.get(), RankineBlocks.TETRATAENITE_ORE.get());
 
     public static List<Block> NEEDS_DIAMOND_TOOL_ORES = Arrays.asList(RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(),RankineBlocks.ANTHRACITE_ORE.get(),RankineBlocks.CELESTINE_ORE.get(),RankineBlocks.CHROMITE_ORE.get(),RankineBlocks.COBALTITE_ORE.get(),
             RankineBlocks.COLTAN_ORE.get(), RankineBlocks.GREENOCKITE_ORE.get(), RankineBlocks.ILMENITE_ORE.get(),RankineBlocks.MAGNETITE_ORE.get(),RankineBlocks.MOLYBDENITE_ORE.get(),

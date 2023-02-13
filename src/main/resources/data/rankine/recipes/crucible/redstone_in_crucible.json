@@ -12,7 +12,7 @@
   "total": 14,
   "input1": {
     "item": "rankine:cinnabar",
-    "countMod": 4,
+    "countMod": 5,
     "group": 0
   },
   "input2": {
@@ -21,12 +21,14 @@
   },
   "input3": {
     "tag": "forge:nuggets/silicon",
-    "group": 1
+    "group": 1,
+    "countMod": 1,
+    "cookMod": -300
   },
   "input4": {
     "tag": "forge:nuggets/germanium",
     "group": 1,
-    "countMod": 1
+    "countMod": 2
   },
   "input5": {
     "tag": "forge:nuggets/copper",
@@ -35,45 +37,48 @@
   "input6": {
     "tag": "forge:nuggets/aluminum",
     "group": 2,
-    "countMod": 1
+    "countMod": 1,
+    "cookMod": -200
   },
   "input7": {
     "tag": "forge:nuggets/gallium",
     "group": 2,
-    "countMod": 1
+    "countMod": 2
   },
   "input8": {
     "tag": "forge:nuggets/indium",
     "group": 2,
-    "countMod": 1
+    "countMod": 2
   },
   "input9": {
     "tag": "forge:nuggets/thallium",
     "group": 2,
-    "countMod": 1
+    "countMod": 3
   },
   "input10": {
     "tag": "forge:nuggets/antimony",
-    "group": 3
+    "group": 3,
+    "cookMod": -200
   },
   "input11": {
     "tag": "forge:nuggets/arsenic",
-    "group": 3
+    "group": 3,
+    "countMod": 1
   },
   "input12": {
     "tag": "forge:nuggets/selenium",
     "group": 3,
-    "countMod": 1
+    "countMod": 2
   },
   "input13": {
     "tag": "forge:nuggets/tellurium",
     "group": 3,
-    "countMod": 1
+    "countMod": 2
   },
   "input14": {
     "tag": "forge:nuggets/uranium",
     "group": 3,
-    "countMod": 1,
+    "countMod": 3,
     "cookMod": -600
   }
 }

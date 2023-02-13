@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P ",
+    " F"
+  ],
+  "key": {
+    "P": {
+      "item": "rankine:pyrite"
+    },
+    "F": {
+      "tag": "forge:flint"
+    }
+  },
+  "result": {
+    "item": "minecraft:flint_and_steel"
+  }
+}

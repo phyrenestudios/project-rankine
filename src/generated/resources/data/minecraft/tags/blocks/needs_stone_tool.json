@@ -14,6 +14,7 @@
     "rankine:native_lead_ore",
     "rankine:native_selenium_ore",
     "rankine:native_tellurium_ore",
-    "rankine:sperrylite_ore"
+    "rankine:sperrylite_ore",
+    "rankine:pyrite_ore"
   ]
 }

@@ -9,19 +9,12 @@
     },
     {
       "item": "minecraft:redstone",
-      "count": 2,
-      "tier": "minecraft:diamond"
+      "count": 3
     }
   ],
   "outputs": [
     {
       "weight": 40,
-      "remove": false
-    },
-    {
-      "item": "minecraft:redstone",
-      "count": 2,
-      "weight": 20,
       "remove": false
     },
     {
@@ -55,6 +48,13 @@
       "weight": 4,
       "remove": false,
       "tier": "minecraft:iron"
+    },
+    {
+      "item": "minecraft:redstone",
+      "count": 2,
+      "weight": 20,
+      "remove": false,
+      "tier": "minecraft:diamond"
     },
     {
       "item": "rankine:lorandite",

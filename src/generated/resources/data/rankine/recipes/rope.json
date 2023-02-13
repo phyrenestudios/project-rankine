@@ -6,10 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "rankine:plant_fiber"
+      "tag": "forge:fiber/plant"
     }
   },
   "result": {
-    "item": "rankine:rope"
+    "item": "rankine:rope",
+    "count": 4
   }
 }

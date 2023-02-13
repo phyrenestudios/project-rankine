@@ -355,7 +355,7 @@ public class Config {
                     MAX_TREE = b.comment("Maximum blocks to be considered a tree. Set to 0 to disable tree capitation.")
                         .defineInRange("maxTree", 256, 0, 1024);
                     TREE_CHOP_SPEED = b.comment("Speed factor for chopping trees after size is accounted for.")
-                            .defineInRange("treeChopSpeedFactor", 0.9D, 0.0D, 2.0D);
+                            .defineInRange("treeChopSpeedFactor", 1.0D, 0.0D, 5.0D);
                     LEAF_LITTER_GEN = b.comment("Chance for leaves to drop leaf litter on a random tick")
                             .defineInRange("leafLitterChance", 0.005D, 0.0D, 1.0D);
                     LEAF_LITTER_GEN_TREES = b.comment("Chance for leaves to drop leaf litter on break from chopping")
@@ -585,7 +585,6 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue BLACK_SAND_GEN;
         public final ForgeConfigSpec.BooleanValue RETRO_GEN;
         public final ForgeConfigSpec.BooleanValue SOIL_GEN;
-        public final ForgeConfigSpec.BooleanValue DRIPSTONE_GEN;
         public final ForgeConfigSpec.BooleanValue ANTIMATTER_GEN;
         public final ForgeConfigSpec.BooleanValue REPLACE_VANILLA_ORES;
         public final ForgeConfigSpec.BooleanValue END_METEORITE_GEN;
@@ -625,8 +624,6 @@ public class Config {
                     .define("antimatterGen",true);
             SOIL_GEN = b.comment("Generate soil varieties.")
                     .define("soilGen",true);
-            DRIPSTONE_GEN = b.comment("Generate dripstone varieties.")
-                    .define("dripstoneGen",true);
             FIRE_CLAY_GEN = b.comment("Generate fire clay under coal veins")
                     .define("fireClayGen",true);
             RETRO_GEN = b.comment("Enable the retrogen of chunks for Rankine generation. This controls soils, grasses, gravels, sands, and matching ores to the stone layer.")
@@ -705,7 +702,7 @@ public class Config {
             OVERWORLD_INTRUSION_SHIFT = b.comment("Chance for an overworld intrusion to shift as it goes up. Values closer to 0 result in straighter intrusions")
                     .defineInRange("overworldIntrusionShift", 0.08D, 0.0D, 1.0D);
             INTRUSION_CINNABAR_ORE = b.comment("Chance for an overworld intrusion to contain cinnabar ore. Separate from the ore defined in the WorldGen settings.")
-                    .defineInRange("intrusionCinnabar", 0.025D, 0.0D, 1.0D);
+                    .defineInRange("intrusionCinnabar", 0.065D, 0.0D, 1.0D);
 
             NETHER_INTRUSION_RADIUS = b.comment("Maximum radius of an intrusion")
                     .defineInRange("netherIntrusionRadius", 2, 0, 8);
@@ -1009,8 +1006,6 @@ public class Config {
             oreSettings.add(List.of("rankine:sphalerite_ore", List.of("desert","mesa","savanna","plains"), "sphere", "uniform", 10, 60, 3, 0.6D, 1, 0.3, 0.0D));
             oreSettings.add(List.of("rankine:sphalerite_ore", List.of("overworld"), "default", "triangle", 0, 128, 3, 1.0D, 8, 1.0, 0.0D));
 
-
-            //oreSettings.add(List.of("rankine:chromite_ore", List.of("overworld"), "sphere", "uniform", -60, -35, 3, 0.2D, 1, 0.3, 0.0D));
             oreSettings.add(List.of("rankine:cryolite_ore", List.of("extreme_hills","mountain","taiga","icy"), "sphere", "uniform", -60, -30, 3, 0.6D, 1, 0.3, 0.0D));
             oreSettings.add(List.of("rankine:bauxite_ore", List.of("desert","mesa","savanna","jungle","swamp","plains","forest","taiga"), "sphere", "uniform", 10, 40, 3, 0.2D, 1, 0.3, 0.0D));
             oreSettings.add(List.of("rankine:celestine_ore", List.of("jungle","swamp","plains","forest","taiga"), "sphere", "uniform", 10, 40, 3, 0.6D, 1, 0.1, 0.0D));

@@ -70,10 +70,7 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
     @OnlyIn(Dist.CLIENT)
     @Override
     public boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
-        if (adjacentBlockState.getBlock() == this) {
-            return true;
-        }
-        return super.skipRendering(state, adjacentBlockState, side);
+        return adjacentBlockState.getBlock() == this ? true : super.skipRendering(state, adjacentBlockState, side);
     }
 
     public boolean canBeReplaced(BlockPlaceContext p_60630_) {

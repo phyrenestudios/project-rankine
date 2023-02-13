@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:gf_bread_from_oats"
+      "rankine:ash_from_stump_smelting"
     ]
   },
   "criteria": {
@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "rankine:oats"
+              "rankine:stump"
             ]
           }
         ]
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:gf_bread_from_oats"
+        "recipe": "rankine:ash_from_stump_smelting"
       }
     }
   },

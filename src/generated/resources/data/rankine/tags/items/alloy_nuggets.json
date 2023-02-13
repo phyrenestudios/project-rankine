@@ -6,7 +6,7 @@
     "#forge:nuggets/brass",
     "#forge:nuggets/cast_iron",
     "#forge:nuggets/invar",
-    "#forge:nuggets/constantan",
+    "#forge:nuggets/cupronickel",
     "#forge:nuggets/duralumin",
     "#forge:nuggets/magnesium_alloy",
     "#forge:nuggets/sterling_silver",
@@ -24,7 +24,7 @@
     "#forge:nuggets/amalgam",
     "#forge:nuggets/ender_amalgam",
     "#forge:nuggets/rose_gold",
-    "#forge:nuggets/electrum",
+    "#forge:nuggets/green_gold",
     "#forge:nuggets/purple_gold",
     "#forge:nuggets/white_gold",
     "#forge:nuggets/blue_gold",
@@ -32,6 +32,8 @@
     "#forge:nuggets/nickel_superalloy",
     "#forge:nuggets/cobalt_superalloy",
     "#forge:nuggets/tungsten_heavy_alloy",
-    "#forge:nuggets/titanium_alloy"
+    "#forge:nuggets/titanium_alloy",
+    "#forge:nuggets/constantan",
+    "#forge:nuggets/electrum"
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "type": "rankine:treetapping",
+  "tapTime": 400,
+  "input": {
+    "item": "rankine:weeping_willow_log"
+  },
+  "result": {
+    "fluid": "minecraft:water",
+    "amount": 200
+  }
+}

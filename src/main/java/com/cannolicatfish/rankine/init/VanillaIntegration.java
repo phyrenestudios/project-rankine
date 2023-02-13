@@ -297,6 +297,9 @@ public class VanillaIntegration {
         fuelValueMap.put(RankineItems.COMPRESSED_BIOMASS.get(),200);
         fuelValueMap.put(RankineItems.STICK_BLOCK.get(),200);
         fuelValueMap.put(RankineItems.SMOULDERING_TINDER_CONK.get(),400);
+        fuelValueMap.put(RankineItems.WOODEN_HAMMER.get(),200);
+        fuelValueMap.put(RankineItems.WOODEN_GOLD_PAN.get(),200);
+        fuelValueMap.put(RankineItems.STUMP.get(),600);
 
         if (!Config.GENERAL.FUEL_VALUES_LIST.get().isEmpty()) {
             for (String s : Config.GENERAL.FUEL_VALUES_LIST.get()) {

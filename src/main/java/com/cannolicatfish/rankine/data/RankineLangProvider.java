@@ -162,7 +162,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.SLATE_STEPPING_STONES.get(),
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
-                RankineBlocks.HEATING_ELEMENT_1.get(),
                 RankineBlocks.TILLED_SOIL.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
                 RankineBlocks.ORNAMENT.get(),
@@ -512,6 +511,7 @@ public class RankineLangProvider extends LanguageProvider {
         add(RankineItems.CURIUM_RTG.get(), "Curium RTG");
         add(RankineItems.PLUTONIUM_RTG.get(), "Plutonium RTG");
         add(RankineItems.STRONTIUM_RTG.get(), "Strontium RTG");
+        add(RankineBlocks.HEATING_ELEMENT_1.get(), "Low Grade Heating Element");
 
 
         add("item.rankine.packaged_tool_desc","Contains a completely random tool. Results may vary.");

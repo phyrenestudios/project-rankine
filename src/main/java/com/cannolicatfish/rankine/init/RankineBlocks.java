@@ -1116,7 +1116,7 @@ public class RankineBlocks {
     
     //GEM AND MINERALS
     public static final RegistryObject<Block> LEPIDOLITE_BLOCK = BLOCKS.register("lepidolite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 5.0F)));
-    public static final RegistryObject<Block> PYRITE_BLOCK = BLOCKS.register("pyrite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 5.0F)));
+    public static final RegistryObject<Block> PYRITE_BLOCK = BLOCKS.register("pyrite_block", () -> new SparkingBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> HEDENBERGITE_BLOCK = BLOCKS.register("hedenbergite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> CHALCOCITE_BLOCK = BLOCKS.register("chalcocite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> COOPERITE_BLOCK = BLOCKS.register("cooperite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 5.0F)));
@@ -1427,7 +1427,7 @@ public class RankineBlocks {
 
 
 
-    public static final RegistryObject<Block> ROPE = BLOCKS.register("rope", () -> new RopeBlock(Block.Properties.of(Material.CLOTH_DECORATION).noCollission()));
+    public static final RegistryObject<Block> ROPE = BLOCKS.register("rope", () -> new RopeBlock(Block.Properties.of(Material.CLOTH_DECORATION).sound(SoundType.WOOL).noCollission()));
     public static final RegistryObject<Block> GROUND_TAP = BLOCKS.register("ground_tap", () -> new GroundTapBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> METAL_PIPE = BLOCKS.register("metal_pipe", () -> new MetalPipeBlock(0.25f, Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(1.0F)));
     public static final RegistryObject<Block> BOTANIST_STATION = BLOCKS.register("botanist_station", () -> new Block(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.0F)));

@@ -53,7 +53,7 @@ public class RopeCoilArrowEntity extends AbstractArrow {
                 rope += player.getOffhandItem().getItem() == RankineItems.ROPE.get() ? player.getOffhandItem().getCount() : 0;
             }
             int ropeCount = -1;
-            for (int i = 0; i < rope; i++) {
+            for (int i = 0; i < (this.getOwner() instanceof Player ? ((Player) this.getOwner()).isCreative() ? this.getBlockY()-worldIn.getMinBuildHeight() : rope : 1); i++) {
                 if (worldIn.isEmptyBlock(this.blockPosition().below(i))) {
                     worldIn.setBlockAndUpdate(this.blockPosition().below(i), RankineBlocks.ROPE.get().defaultBlockState());
                     ropeCount++;

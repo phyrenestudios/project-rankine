@@ -104,6 +104,13 @@ public class BlockBreakHandler {
                                 Block.popResource(levelIn,b,new ItemStack(Items.CHARCOAL, CharcoalPitTile.logLayerCount(levelIn,levelIn.getBlockState(b))));
                                 levelIn.destroyBlock(b,false);
                             } else {
+                                if (offHandItem == RankineItems.TOTEM_OF_PROMISING.get()) {
+                                    if (event.getState().is(RankineTags.Blocks.PROMISING_TOTEM_BLOCKS)) {
+                                        if (rand.nextFloat() < Config.GENERAL.TOTEM_PROMISING_CHANCE.get()) {
+                                            Block.dropResources(levelIn.getBlockState(b),levelIn,pos);
+                                        }
+                                    }
+                                }
                                 levelIn.destroyBlock(b, true);
                             }
                         }
@@ -119,13 +126,9 @@ public class BlockBreakHandler {
                         }
                     }
                     levelIn.playSound(null,pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS,1.0f,0.8f);
-
-                    if (levelIn.getBlockState(pos).getDestroySpeed(levelIn, pos) != 0.0F) {
-                        player.getMainHandItem().hurtAndBreak(logs.size()-1, player, (p_220038_0_) -> {
-                            p_220038_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-                        });
-                    }
-
+                    player.getMainHandItem().hurtAndBreak(logs.size()-1, player, (p_220038_0_) -> {
+                        p_220038_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+                    });
                     event.setCanceled(true);
                     return;
                 }

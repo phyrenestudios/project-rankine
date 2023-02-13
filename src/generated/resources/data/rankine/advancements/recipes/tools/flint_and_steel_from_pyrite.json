@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:gf_bread_from_millet"
+      "rankine:flint_and_steel_from_pyrite"
     ]
   },
   "criteria": {
@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "rankine:millet"
+              "rankine:pyrite"
             ]
           }
         ]
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:gf_bread_from_millet"
+        "recipe": "rankine:flint_and_steel_from_pyrite"
       }
     }
   },
