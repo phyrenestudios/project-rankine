@@ -226,7 +226,6 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(Tags.Blocks.SAND).add(RankineBlocks.BLACK_SAND.get(),RankineBlocks.WHITE_SAND.get());
         tag(RankineTags.Blocks.CONSTRUCTION_SAND).addTag(Tags.Blocks.SAND).add(RankineBlocks.DESERT_SAND.get(),RankineBlocks.SILT.get());
         tag(Tags.Blocks.COBBLESTONE_NORMAL).add(RankineBlocks.SKARN.get(),RankineBlocks.BRECCIA.get());
-        tag(BlockTags.GOLD_ORES).add(RankineBlocks.NATIVE_GOLD_ORE.get());
         tag(BlockTags.ICE).add(RankineBlocks.METEORIC_ICE.get(),RankineBlocks.DRY_ICE.get());
         tag(BlockTags.POLAR_BEARS_SPAWNABLE_ON_IN_FROZEN_OCEAN).add(RankineBlocks.METEORIC_ICE.get(),RankineBlocks.DRY_ICE.get());
         tag(BlockTags.CAULDRONS).add(RankineBlocks.SAP_CAULDRON.get(),RankineBlocks.MAPLE_SAP_CAULDRON.get(),RankineBlocks.MAPLE_SYRUP_CAULDRON.get(),RankineBlocks.LATEX_CAULDRON.get(),RankineBlocks.RESIN_CAULDRON.get(),RankineBlocks.JUGLONE_CAULDRON.get());

@@ -1,0 +1,54 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "create:ochrum",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+		  "type": "rankine:crushing",
+		  "maxRolls": 4,
+		  "input": {
+			"item": "create:ochrum"
+		  },
+		  "guaranteed": [
+			{
+			  "item": "minecraft:quartz"
+			}
+		  ],
+		  "outputs": [
+			{
+			  "weight": 80,
+			  "remove": false
+			},
+			{
+			  "item": "create:crushed_gold_ore",
+			  "weight": 12,
+			  "tier": "minecraft:stone",
+			  "remove": true
+			},
+			{
+			  "item": "minecraft:gold_nugget",
+			  "weight": 6,
+			  "tier": "minecraft:stone",
+			  "remove": false
+			}
+			{
+			  "item": "rankine:scheelite",
+			  "weight": 2,
+			  "tier": "minecraft:diamond",
+			  "remove": true
+			}
+		  ]
+		}
+	}
+	]
+}

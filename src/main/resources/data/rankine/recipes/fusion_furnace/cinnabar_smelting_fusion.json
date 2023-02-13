@@ -11,6 +11,9 @@
     "item":"rankine:mercury",
     "count": 2
   },
+  "result2": {
+    "item":"rankine:sulfur_nugget"
+  },
   "gasInput": {
     "item": "minecraft:glass_bottle"
   },

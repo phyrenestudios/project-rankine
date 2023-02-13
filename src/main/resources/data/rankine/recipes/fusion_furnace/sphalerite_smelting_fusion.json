@@ -11,6 +11,9 @@
     "item":"rankine:zinc_ingot",
     "count": 2
   },
+  "result2": {
+    "item":"rankine:indium_nugget"
+  },
   "gasInput": {
     "item": "minecraft:glass_bottle"
   },

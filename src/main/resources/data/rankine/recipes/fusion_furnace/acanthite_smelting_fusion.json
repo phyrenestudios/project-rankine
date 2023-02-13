@@ -11,6 +11,9 @@
     "item":"rankine:silver_ingot",
     "count": 2
   },
+  "result2": {
+    "item":"rankine:selenium_nugget"
+  },
   "gasInput": {
     "item": "minecraft:glass_bottle"
   },

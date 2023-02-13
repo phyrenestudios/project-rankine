@@ -1102,7 +1102,6 @@ public final class RankineTags {
 
 
         //forge:ores/*
-        public static final TagKey<Item> ORES_COPPER = forgeItem("ores/copper");
         public static final TagKey<Item> ORES_LEAD = forgeItem("ores/lead");
         public static final TagKey<Item> ORES_SILVER = forgeItem("ores/silver");
         public static final TagKey<Item> ORES_BISMUTH = forgeItem("ores/bismuth");

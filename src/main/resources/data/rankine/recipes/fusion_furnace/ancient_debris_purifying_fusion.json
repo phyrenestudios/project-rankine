@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 3200,
+  "input1": {
+    "item": "minecraft:ancient_debris"
+  },
+  "input2": {
+    "item": "minecraft:gold_block"
+  },
+  "fluidInput": {
+    "fluid": "rankine:aqua_regia"
+  },
+  "result1": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "result2": {
+    "item": "rankine:slag"
+  }
+}

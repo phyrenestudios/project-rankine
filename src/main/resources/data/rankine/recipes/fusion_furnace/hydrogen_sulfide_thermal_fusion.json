@@ -1,0 +1,17 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 1600,
+  "result1": {
+    "item":"rankine:sulfur",
+    "count": 1
+  },
+  "fluidInput": {
+    "fluid": "minecraft:lava"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_sulfide_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:hydrogen_gas_bottle"
+  }
+}

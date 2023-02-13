@@ -1,0 +1,60 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "create:scoria",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+		  "type": "rankine:crushing",
+		  "maxRolls": 4,
+		  "input": {
+			"item": "create:scoria"
+		  },
+		  "guaranteed": [
+			{
+			  "item": "rankine:pozzolana"
+			}
+		  ],
+		  "outputs": [
+			{
+			  "weight": 80,
+			  "remove": false
+			},
+			{
+			  "item": "rankine:basaltic_tuff",
+			  "weight": 60
+			},
+			{
+			  "item": "rankine:komatiitic_tuff",
+			  "weight": 60
+			},
+			{
+			  "item": "rankine:quicklime",
+			  "weight": 12,
+			  "remove": false
+			},
+			{
+			  "item": "rankine:potash",
+			  "weight": 8,
+			  "remove": false
+			},
+			{
+			  "item": "rankine:apatite",
+			  "weight": 4,
+			  "tier": "minecraft:iron",
+			  "remove": false
+			}
+		  ]
+		}
+	}
+	]
+}

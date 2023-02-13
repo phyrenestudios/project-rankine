@@ -1,0 +1,27 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "farmersdelight:straw",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+		  "type": "minecraft:smelting",
+		  "ingredient": {
+			"item": "rankine:plant_fiber"
+		  },
+		  "result": "farmersdelight:straw",
+		  "experience": 0.35,
+		  "cookingtime": 600
+		}
+	}
+	]
+}

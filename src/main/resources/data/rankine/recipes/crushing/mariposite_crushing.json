@@ -37,6 +37,12 @@
       "item": "rankine:calcite",
       "weight": 4,
       "remove": false
+    },
+	{
+      "item": "rankine:chromium_nugget",
+      "weight": 2,
+	  "tier": "minecraft:diamond",
+      "remove": false
     }
   ]
 }

@@ -4,21 +4,13 @@
   "input1": {
     "item": "rankine:pyrite"
   },
-  "input2": {
-    "item": "rankine:pyrite"
-  },
   "result1": {
-    "item":"minecraft:iron_ingot",
-    "count": 2
+    "item":"rankine:goethite"
   },
-  "result2": {
-    "item":"rankine:thallium_nugget",
-    "count": 1
+  "fluidInput": {
+    "fluid": "minecraft:water"
   },
-  "gasInput": {
-    "item": "minecraft:glass_bottle"
-  },
-  "gasOutput": {
-    "item": "rankine:sulfur_dioxide_gas_bottle"
+  "fluidOutput": {
+    "fluid": "rankine:sulfuric_acid"
   }
 }

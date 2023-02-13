@@ -63,6 +63,13 @@
       "weight": 2,
       "tier": "minecraft:iron",
       "remove": false
+    },
+    {
+      "item": "rankine:indium_nugget",
+      "count": 3,
+      "weight": 1,
+      "tier": "minecraft:iron",
+      "remove": false
     }
   ]
 }

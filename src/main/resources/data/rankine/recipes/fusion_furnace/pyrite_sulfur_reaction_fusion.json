@@ -1,0 +1,23 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:pyrite"
+  },
+  "result1": {
+    "item":"rankine:iron_chloride"
+  },
+  "result2": {
+    "item":"rankine:sulfur",
+    "count": 1
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_chloride_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:hydrogen_sulfide_gas_bottle"
+  }
+}

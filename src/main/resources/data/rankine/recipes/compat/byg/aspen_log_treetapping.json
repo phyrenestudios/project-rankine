@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:aspen_log",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+		  "type": "rankine:treetapping",
+		  "tapTime": 80,
+		  "input": {
+			"item": "byg:aspen_log"
+		  },
+		  "result": {
+			"fluid": "rankine:sap",
+			"amount": 10
+		  }
+		}
+	}
+	]
+}

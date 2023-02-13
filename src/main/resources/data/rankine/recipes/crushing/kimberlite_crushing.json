@@ -38,6 +38,12 @@
       "weight": 8,
       "remove": false
     },
+	{
+      "item": "rankine:chromium_nugget",
+	  "count": 3,
+      "weight": 4,
+      "tier": "minecraft:diamond"
+    },
     {
       "item": "rankine:garnet",
       "weight": 0.8,

@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:willow_log",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+		  "type": "rankine:treetapping",
+		  "tapTime": 400,
+		  "input": {
+			"item": "byg:willow_log"
+		  },
+		  "result": {
+			"fluid": "minecraft:water",
+			"amount": 200
+		  }
+		}
+	}
+	]
+}

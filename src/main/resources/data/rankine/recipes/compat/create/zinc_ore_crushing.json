@@ -1,0 +1,93 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "create:zinc_ore",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+		  "type": "rankine:crushing",
+		  "input": {
+			"item": "create:zinc_ore"
+		  },
+		  "guaranteed": [
+			{
+			  "item": "create:crushed_zinc_ore"
+			}
+		  ],
+		  "outputs": [
+			{
+			  "weight": 40,
+			  "remove": false
+			},
+			{
+			  "item": "minecraft:quartz",
+			  "weight": 15,
+			  "remove": false
+			},
+			{
+			  "item": "rankine:calcite",
+			  "weight": 15,
+			  "remove": false
+			},
+			{
+			  "item": "rankine:dolomite",
+			  "weight": 15,
+			  "remove": false
+			},
+			{
+			  "item": "rankine:germanium_nugget",
+			  "count": 3,
+			  "weight": 20
+			},
+			{
+			  "item": "rankine:chalcopyrite",
+			  "weight": 6,
+			  "tier": "minecraft:stone"
+			},
+			{
+			  "item": "rankine:pyrite",
+			  "weight": 4,
+			  "tier": "minecraft:iron"
+			},
+			{
+			  "item": "rankine:rhodochrosite",
+			  "weight": 4,
+			  "tier": "minecraft:iron"
+			},
+			{
+			  "item": "rankine:fluorite",
+			  "weight": 4,
+			  "tier": "minecraft:iron"
+			},
+			{
+			  "item": "rankine:gallium_nugget",
+			  "count": 3,
+			  "weight": 6,
+			  "tier": "minecraft:iron"
+			},
+			{
+			  "item": "rankine:indium_nugget",
+			  "count": 3,
+			  "weight": 4,
+			  "tier": "minecraft:iron"
+			},
+			{
+			  "item": "rankine:cadmium_nugget",
+			  "count": 3,
+			  "weight": 4,
+			  "tier": "minecraft:iron"
+			}
+		  ]
+		}
+	}
+	]
+}

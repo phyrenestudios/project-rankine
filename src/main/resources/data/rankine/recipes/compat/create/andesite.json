@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values":
+          [
+            {
+              "item": "create:andesite_alloy",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:element",
+        "name": "andesite",
+        "symbol": "An",
+        "color": 16777215,
+        "atomic": -1,
+        "potential": 0,
+        "items": ["T#forge:stones/andesite"],
+        "values": [8]
+      }
+    }
+  ]
+}

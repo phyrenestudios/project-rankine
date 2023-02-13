@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:maple_log",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+		  "type": "rankine:treetapping",
+		  "tapTime": 400,
+		  "input": {
+			"item": "byg:maple_log"
+		  },
+		  "result": {
+			"fluid": "rankine:maple_sap",
+			"amount": 200
+		  }
+		}
+	}
+	]
+}

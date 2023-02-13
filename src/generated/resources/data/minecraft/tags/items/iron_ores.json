@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:iron_ore",
+    "rankine:magnetite_ore",
+    "rankine:hematite_ore",
+    "rankine:pyrite_ore",
+    "rankine:kamacite_ore",
+    "rankine:taenite_ore",
+    "rankine:tetrataenite_ore",
+    "rankine:antitaenite_ore",
+    "rankine:bog_iron",
+    "rankine:ironstone"
+  ]
+}

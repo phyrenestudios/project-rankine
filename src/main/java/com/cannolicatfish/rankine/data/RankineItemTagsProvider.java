@@ -36,7 +36,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
     @Override
     protected void addTags() {
 
-        copy(BlockTags.COPPER_ORES, RankineTags.Items.ORES_COPPER);
         copy(RankineTags.Blocks.ORES_LEAD, RankineTags.Items.ORES_LEAD);
         copy(RankineTags.Blocks.ORES_SILVER, RankineTags.Items.ORES_SILVER);
         copy(RankineTags.Blocks.ORES_BISMUTH, RankineTags.Items.ORES_BISMUTH);
@@ -70,13 +69,15 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.ORES_PHOSPHORUS, RankineTags.Items.ORES_PHOSPHORUS);
         copy(RankineTags.Blocks.ORES_GRAPHITE, RankineTags.Items.ORES_GRAPHITE);
         copy(RankineTags.Blocks.ORES_SALT, RankineTags.Items.ORES_SALT);
-        copy(Tags.Blocks.ORES_COAL, Tags.Items.ORES_COAL);
-        copy(Tags.Blocks.ORES_LAPIS, Tags.Items.ORES_LAPIS);
-        copy(Tags.Blocks.ORES_DIAMOND, Tags.Items.ORES_DIAMOND);
-        copy(Tags.Blocks.ORES_GOLD, Tags.Items.ORES_GOLD);
-        copy(Tags.Blocks.ORES_EMERALD, Tags.Items.ORES_EMERALD);
+        copy(BlockTags.COPPER_ORES, ItemTags.COPPER_ORES);
+        copy(BlockTags.IRON_ORES, ItemTags.IRON_ORES);
+        copy(BlockTags.GOLD_ORES, ItemTags.GOLD_ORES);
+        copy(BlockTags.COAL_ORES, ItemTags.COAL_ORES);
+        copy(BlockTags.DIAMOND_ORES, ItemTags.DIAMOND_ORES);
+        copy(BlockTags.REDSTONE_ORES, ItemTags.REDSTONE_ORES);
+        copy(BlockTags.LAPIS_ORES, ItemTags.LAPIS_ORES);
+        copy(BlockTags.EMERALD_ORES, ItemTags.EMERALD_ORES);
         copy(Tags.Blocks.ORES_QUARTZ, Tags.Items.ORES_QUARTZ);
-        copy(Tags.Blocks.ORES_REDSTONE, Tags.Items.ORES_REDSTONE);
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
 
         copy(RankineTags.Blocks.STONES_DACITE, RankineTags.Items.STONES_DACITE);

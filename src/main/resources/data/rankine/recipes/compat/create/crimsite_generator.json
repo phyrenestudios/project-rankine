@@ -1,0 +1,31 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "create:crimsite",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+		  "type": "rankine:rock_generator",
+		  "genType": "intrusive_igneous",
+		  "input1": {
+			"item": "create:rose_quartz_block"
+		  },
+		  "input2": {
+			"tag": "forge:storage_blocks/iron"
+		  },
+		  "result": {
+			"block": "create:crimsite"
+		  }
+		}
+	}
+	]
+}

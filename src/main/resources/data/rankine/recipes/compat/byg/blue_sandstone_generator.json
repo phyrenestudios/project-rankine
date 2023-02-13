@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:blue_sandstone",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+		  "type": "rankine:rock_generator",
+		  "genType": "sedimentary",
+		  "input1": {
+			"item": "byg:blue_sand"
+		  },
+		  "result": {
+			"block": "byg:blue_sandstone"
+		  }
+		}
+	}
+	]
+}

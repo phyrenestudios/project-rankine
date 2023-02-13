@@ -18,7 +18,7 @@ public class SparkingBlock extends Block {
         BlockPos posIn = p_60455_.getBlockPos();
         double d0 = 3.0D;
         double d1 = 1.0D;
-        for(int i = 0; i < 30; ++i) {
+        for(int i = 0; i < 50; ++i) {
             double d2 = levelIn.getRandom().nextGaussian() * 0.02D;
             double d3 = levelIn.getRandom().nextGaussian() * 0.02D;
             double d4 = levelIn.getRandom().nextGaussian() * 0.02D;
@@ -27,7 +27,7 @@ public class SparkingBlock extends Block {
             double d7 = (double)posIn.getY() + d5 + levelIn.getRandom().nextDouble() * d0 * 2.0D;
             double d8 = (double)posIn.getZ() + d5 + levelIn.getRandom().nextDouble() * d0 * 2.0D;
             if (!levelIn.getBlockState((new BlockPos(d6, d7, d8)).below()).isAir()) {
-                levelIn.addParticle( levelIn.getRandom().nextFloat() < 0.5 ? ParticleTypes.CRIT : ParticleTypes.ELECTRIC_SPARK, d6, d7, d8, d2, d3, d4);
+                levelIn.addParticle( levelIn.getRandom().nextFloat() < 0.15 ? ParticleTypes.LAVA : ParticleTypes.ELECTRIC_SPARK, d6, d7, d8, d2, d3, d4);
             }
         }
         super.onProjectileHit(levelIn, p_60454_, p_60455_, p_60456_);

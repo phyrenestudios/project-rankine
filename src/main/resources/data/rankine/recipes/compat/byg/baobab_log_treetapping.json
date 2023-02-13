@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:baobab_log",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+		  "type": "rankine:treetapping",
+		  "tapTime": 200,
+		  "input": {
+			"item": "byg:baobab_log"
+		  },
+		  "result": {
+			"fluid": "minecraft:water",
+			"amount": 200
+		  }
+		}
+	}
+	]
+}

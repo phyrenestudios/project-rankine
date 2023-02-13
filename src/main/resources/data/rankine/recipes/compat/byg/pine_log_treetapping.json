@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:pine_log",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+		  "type": "rankine:treetapping",
+		  "tapTime": 400,
+		  "input": {
+			"item": "byg:pine_log"
+		  },
+		  "result": {
+			"fluid": "rankine:resin",
+			"amount": 200
+		  }
+		}
+	}
+	]
+}
