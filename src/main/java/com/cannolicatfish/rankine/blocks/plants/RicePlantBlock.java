@@ -24,7 +24,7 @@ public class RicePlantBlock extends RankineCropsBlock {
             Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D)};
 
     public RicePlantBlock(BlockBehaviour.Properties properties) {
-        super(properties);
+        super(properties,new float[]{0.25f,0.75f,3,0.75f,0.25f},new float[]{0.25f,1,3},new float[]{0.5f,1.5f,4});
     }
 
     protected ItemLike getBaseSeedId() {

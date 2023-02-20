@@ -59,7 +59,7 @@ public class ForagingRecipeCategory implements IRecipeCategory<ForagingRecipe> {
 
     @Override
     public IDrawable getIcon() {
-        return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(RankineItems.BRONZE_SHOVEL.get()));
+        return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(RankineItems.BRONZE_HOE.get()));
     }
 
     @SuppressWarnings("removal")

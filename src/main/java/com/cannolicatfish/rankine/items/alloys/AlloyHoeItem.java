@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.core.BlockPos;
@@ -13,6 +14,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -46,7 +48,7 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
-        return state.is(BlockTags.MINEABLE_WITH_AXE) && TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);
+        return state.is(BlockTags.MINEABLE_WITH_HOE) && TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);
     }
 
     @Override
@@ -59,7 +61,7 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
 
     @Override
     public float getDestroySpeed(ItemStack p_41004_, BlockState p_41005_) {
-        return p_41005_.is(BlockTags.MINEABLE_WITH_HOE) ? getAlloyMiningSpeed(p_41004_) : 1.0F;
+        return p_41005_.is(BlockTags.MINEABLE_WITH_HOE) || ((EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.FORAGING.get(),p_41004_) >= 1 && p_41005_.is(BlockTags.MINEABLE_WITH_SHOVEL))) ? getAlloyMiningSpeed(p_41004_) : 1.0F;
     }
 
 /*

@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 11,
+  "total": 12,
   "tier": 2,
   "color": 13750746,
   "input1": {
@@ -55,6 +55,11 @@
     "max": 0.1
   },
   "input11": {
+    "element": "rankine:elements/uranium",
+    "min": 0.0,
+    "max": 0.1
+  },
+  "input12": {
     "element": "rankine:elements/oxygen",
     "min": 0.0,
     "max": 0.05

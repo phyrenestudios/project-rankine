@@ -1,0 +1,43 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "farmersdelight:cooking",
+        "recipe_book_tab": "misc",
+        "ingredients": [
+          {
+            "item": "minecraft:pumpkin"
+          },
+          {
+            "tag": "forge:coconut"
+          },
+          {
+            "tag": "forge:tofu"
+          },
+          {
+            "tag": "forge:maple_syrup"
+          }
+        ],
+        "result": {
+          "item": "rankine:tofu_curry"
+        },
+        "container": {
+          "item": "minecraft:bowl"
+        },
+        "cookingtime": 200
+      }
+    }
+  ]
+}

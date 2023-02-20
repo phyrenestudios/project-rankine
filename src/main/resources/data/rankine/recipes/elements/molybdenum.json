@@ -39,7 +39,7 @@
     "modifiers": ["MIN"],
     "limit": [0.08]
   },
-  "harvestlevel": {
+  "mininglevel": {
     "breaks": [100],
     "formulas": ["CONSTANT"],
     "a": [1],

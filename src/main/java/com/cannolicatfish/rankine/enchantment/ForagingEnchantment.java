@@ -6,7 +6,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 
 public class ForagingEnchantment extends Enchantment {
     public ForagingEnchantment(Enchantment.Rarity rarityIn, EquipmentSlot... slots) {
-        super(rarityIn, RankineEnchantmentTypes.ALLOY_SHOVEL, slots);
+        super(rarityIn, RankineEnchantmentTypes.ALLOY_HOE, slots);
     }
 
     /**
