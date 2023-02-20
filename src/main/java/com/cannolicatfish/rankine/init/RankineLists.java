@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.blocks.block_groups.RankineSandstone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import net.minecraft.tags.TagKey;
@@ -15,7 +16,7 @@ import java.util.List;
 public class RankineLists {
     public static List<RankineStone> RANKINE_STONES = Arrays.asList(RankineBlocks.PEGMATITE,RankineBlocks.GRAY_GRANITE,RankineBlocks.RHYOLITE,RankineBlocks.COMENDITE,RankineBlocks.EPISYENITE,RankineBlocks.NEPHELINE_SYENITE,RankineBlocks.PHONOLITE,RankineBlocks.GRANODIORITE,RankineBlocks.RED_PORPHYRY,RankineBlocks.PURPLE_PORPHYRY,RankineBlocks.BLACK_DACITE,RankineBlocks.RED_DACITE,RankineBlocks.HORNBLENDE_ANDESITE,RankineBlocks.SHONKINITE,RankineBlocks.ANORTHOSITE,RankineBlocks.NORITE,RankineBlocks.TROCTOLITE,RankineBlocks.GABBRO,RankineBlocks.DIABASE,RankineBlocks.THOLEIITIC_BASALT,RankineBlocks.DUNITE,RankineBlocks.HARZBURGITE,RankineBlocks.LHERZOLITE,RankineBlocks.WEHRLITE,RankineBlocks.PYROXENITE,RankineBlocks.KOMATIITE,RankineBlocks.KIMBERLITE,RankineBlocks.SOMMANITE,RankineBlocks.RINGWOODINE,RankineBlocks.WADSLEYONE,RankineBlocks.BRIDGMANHAM,RankineBlocks.POST_PEROVSKITE,RankineBlocks.BLACK_MARBLE,RankineBlocks.GRAY_MARBLE,RankineBlocks.WHITE_MARBLE,RankineBlocks.ROSE_MARBLE,RankineBlocks.SLATE,RankineBlocks.PHYLLITE,RankineBlocks.MICA_SCHIST,RankineBlocks.BLUESCHIST,RankineBlocks.GREENSCHIST,RankineBlocks.WHITESCHIST,RankineBlocks.GNEISS,RankineBlocks.QUARTZITE,RankineBlocks.SERPENTINITE,RankineBlocks.MARIPOSITE,RankineBlocks.ECLOGITE,RankineBlocks.LIMESTONE,RankineBlocks.DOLOSTONE,RankineBlocks.CHALK,RankineBlocks.MARLSTONE,RankineBlocks.SOAPSTONE,RankineBlocks.SHALE,RankineBlocks.MUDSTONE,RankineBlocks.SILTSTONE,RankineBlocks.ITACOLUMITE,RankineBlocks.ARKOSE,RankineBlocks.GRAYWACKE,RankineBlocks.HONEYSTONE);
     public static List<RankineWood> RANKINE_WOODS = Arrays.asList(RankineBlocks.CEDAR,RankineBlocks.BALSAM_FIR,RankineBlocks.EASTERN_HEMLOCK,RankineBlocks.WESTERN_HEMLOCK,RankineBlocks.PINYON_PINE,RankineBlocks.JUNIPER,RankineBlocks.BLACK_BIRCH,RankineBlocks.YELLOW_BIRCH,RankineBlocks.RED_BIRCH,RankineBlocks.MAPLE,RankineBlocks.MAGNOLIA,RankineBlocks.BLACK_WALNUT,RankineBlocks.COCONUT_PALM,RankineBlocks.CORK_OAK,RankineBlocks.SHARINGA,RankineBlocks.CINNAMON,RankineBlocks.HONEY_LOCUST,RankineBlocks.WEEPING_WILLOW,RankineBlocks.ERYTHRINA,RankineBlocks.PETRIFIED_CHORUS,RankineBlocks.CHARRED,RankineBlocks.BAMBOO,RankineBlocks.BAMBOO_CULMS);
-
+    public static List<RankineSandstone> RANKINE_SANDSTONES = Arrays.asList(RankineBlocks.WHITE_SANDSTONE, RankineBlocks.BLACK_SANDSTONE, RankineBlocks.DESERT_SANDSTONE, RankineBlocks.SOUL_SANDSTONE);
 
     public static List<Block> VANILLA_STONES = Arrays.asList(Blocks.GRANITE,Blocks.DIORITE,Blocks.ANDESITE,Blocks.BASALT);
     public static List<Block> VANILLA_BRICKS = Arrays.asList(RankineBlocks.GRANITE_BRICKS.get(),RankineBlocks.DIORITE_BRICKS.get(),RankineBlocks.ANDESITE_BRICKS.get(),RankineBlocks.BASALT_BRICKS.get());
@@ -29,18 +30,6 @@ public class RankineLists {
 
 
     public static List<Block> SANDS = Arrays.asList(RankineBlocks.WHITE_SAND.get(),RankineBlocks.BLACK_SAND.get(),RankineBlocks.DESERT_SAND.get(),Blocks.SOUL_SAND);
-    public static List<Block> SANDSTONES = Arrays.asList(RankineBlocks.WHITE_SANDSTONE.get(),RankineBlocks.BLACK_SANDSTONE.get(),RankineBlocks.DESERT_SANDSTONE.get(),RankineBlocks.SOUL_SANDSTONE.get());
-    public static List<Block> CUT_SANDSTONES = Arrays.asList(RankineBlocks.CUT_WHITE_SANDSTONE.get(),RankineBlocks.CUT_BLACK_SANDSTONE.get(),RankineBlocks.CUT_DESERT_SANDSTONE.get(),RankineBlocks.CUT_SOUL_SANDSTONE.get());
-    public static List<Block> CUT_SANDSTONE_SLABS = Arrays.asList(RankineBlocks.CUT_WHITE_SANDSTONE_SLAB.get(),RankineBlocks.CUT_BLACK_SANDSTONE_SLAB.get(),RankineBlocks.CUT_DESERT_SANDSTONE_SLAB.get(),RankineBlocks.CUT_SOUL_SANDSTONE_SLAB.get());
-    public static List<Block> CHISELED_SANDSTONES = Arrays.asList(RankineBlocks.CHISELED_WHITE_SANDSTONE.get(),RankineBlocks.CHISELED_BLACK_SANDSTONE.get(),RankineBlocks.CHISELED_DESERT_SANDSTONE.get(),RankineBlocks.CHISELED_SOUL_SANDSTONE.get());
-    public static List<Block> SANDSTONE_SLABS = Arrays.asList(RankineBlocks.WHITE_SANDSTONE_SLAB.get(),RankineBlocks.BLACK_SANDSTONE_SLAB.get(),RankineBlocks.DESERT_SANDSTONE_SLAB.get(),RankineBlocks.SOUL_SANDSTONE_SLAB.get());
-    public static List<Block> SANDSTONE_STAIRS = Arrays.asList(RankineBlocks.WHITE_SANDSTONE_STAIRS.get(),RankineBlocks.BLACK_SANDSTONE_STAIRS.get(),RankineBlocks.DESERT_SANDSTONE_STAIRS.get(),RankineBlocks.SOUL_SANDSTONE_STAIRS.get());
-    public static List<Block> SANDSTONE_WALLS = Arrays.asList(RankineBlocks.WHITE_SANDSTONE_WALL.get(),RankineBlocks.BLACK_SANDSTONE_WALL.get(),RankineBlocks.DESERT_SANDSTONE_WALL.get(),RankineBlocks.SOUL_SANDSTONE_WALL.get());
-    public static List<Block> SMOOTH_SANDSTONES = Arrays.asList(RankineBlocks.SMOOTH_WHITE_SANDSTONE.get(),RankineBlocks.SMOOTH_BLACK_SANDSTONE.get(),RankineBlocks.SMOOTH_DESERT_SANDSTONE.get(),RankineBlocks.SMOOTH_SOUL_SANDSTONE.get());
-    public static List<Block> SMOOTH_SANDSTONE_SLABS = Arrays.asList(RankineBlocks.SMOOTH_WHITE_SANDSTONE_SLAB.get(),RankineBlocks.SMOOTH_BLACK_SANDSTONE_SLAB.get(),RankineBlocks.SMOOTH_DESERT_SANDSTONE_SLAB.get(),RankineBlocks.SMOOTH_SOUL_SANDSTONE_SLAB.get());
-    public static List<Block> SMOOTH_SANDSTONE_STAIRS = Arrays.asList(RankineBlocks.SMOOTH_WHITE_SANDSTONE_STAIRS.get(),RankineBlocks.SMOOTH_BLACK_SANDSTONE_STAIRS.get(),RankineBlocks.SMOOTH_DESERT_SANDSTONE_STAIRS.get(),RankineBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS.get());
-    public static List<Block> SMOOTH_SANDSTONE_WALLS = Arrays.asList(RankineBlocks.SMOOTH_WHITE_SANDSTONE_WALL.get(),RankineBlocks.SMOOTH_BLACK_SANDSTONE_WALL.get(),RankineBlocks.SMOOTH_DESERT_SANDSTONE_WALL.get(),RankineBlocks.SMOOTH_SOUL_SANDSTONE_WALL.get());
-
 
     public static List<Block> BRICKS = Arrays.asList(RankineBlocks.CLAY_BRICKS.get(),RankineBlocks.PORCELAIN_CLAY_BRICKS.get(),RankineBlocks.FIRE_CLAY_BRICKS.get(),RankineBlocks.REFRACTORY_BRICKS.get(),RankineBlocks.HIGH_REFRACTORY_BRICKS.get(),RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.get());
     public static List<Block> BRICKS_SLAB = Arrays.asList(RankineBlocks.CLAY_BRICKS_SLAB.get(),RankineBlocks.PORCELAIN_CLAY_BRICKS_SLAB.get(),RankineBlocks.FIRE_CLAY_BRICKS_SLAB.get(),RankineBlocks.REFRACTORY_BRICKS_SLAB.get(),RankineBlocks.HIGH_REFRACTORY_BRICKS_SLAB.get(),RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS_SLAB.get());

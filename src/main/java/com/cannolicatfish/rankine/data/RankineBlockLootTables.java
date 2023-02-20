@@ -1,7 +1,11 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.*;
+import com.cannolicatfish.rankine.blocks.HollowLogBlock;
+import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
+import com.cannolicatfish.rankine.blocks.LightningGlassBlock;
+import com.cannolicatfish.rankine.blocks.RankineLogBlock;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineSandstone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineBookshelvesBlock;
@@ -81,19 +85,23 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
             }
         }
 
+        for (RankineSandstone Sandstone : RankineLists.RANKINE_SANDSTONES) {
+            for (Block blk : Sandstone.getSandstoneBlocks()) {
+                if (blk instanceof SlabBlock) {
+                    lootTables.put(blk, slabBlockLootTable(blk));
+                } else {
+                    lootTables.put(blk, createBlockLootTable(blk));
+                }
+            }
+        }
+
         for (Block blk : Stream.of(
                 RankineLists.VANILLA_BRICKS,
                 RankineLists.VANILLA_BRICKS_PRESSURE_PLATES,
                 RankineLists.VANILLA_BRICKS_WALLS,
                 RankineLists.VANILLA_BRICKS_STAIRS,
-                RankineLists.SMOOTH_SANDSTONE_WALLS,
-                RankineLists.CUT_SANDSTONES,
-                RankineLists.CHISELED_SANDSTONES,
                 RankineLists.POINTED_DRIPSTONES,
                 RankineLists.DRIPSTONES,
-                RankineLists.SANDSTONES,
-                RankineLists.SANDSTONE_STAIRS,
-                RankineLists.SANDSTONE_WALLS,
                 RankineLists.BRICKS,
                 RankineLists.BRICKS_STAIRS,
                 RankineLists.BRICKS_WALL,
@@ -199,9 +207,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         for (Block blk : Stream.of(
                 RankineLists.VANILLA_BRICKS_SLABS,
                 RankineLists.BRICKS_SLAB,
-                RankineLists.SANDSTONE_SLABS,
-                RankineLists.SMOOTH_SANDSTONE_SLABS,
-                RankineLists.CUT_SANDSTONE_SLABS,
                 RankineLists.MISC_SLABS
         ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(blk, slabBlockLootTable(blk));

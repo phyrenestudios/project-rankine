@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
+    "rankine:white_sandstone",
+    "rankine:black_sandstone",
+    "rankine:desert_sandstone",
+    "rankine:soul_sandstone",
     "rankine:pegmatite",
     "rankine:gray_granite",
     "rankine:rhyolite",

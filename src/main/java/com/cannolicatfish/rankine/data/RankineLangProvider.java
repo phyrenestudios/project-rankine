@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineSandstone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.init.RankineBlocks;
@@ -47,6 +48,11 @@ public class RankineLangProvider extends LanguageProvider {
             add(Wood.getSignItem(), parseLangName(Wood.getSignItem().getRegistryName().getPath()));
             add(Wood.getBoat(), parseLangName(Wood.getBoat().getRegistryName().getPath()));
         }
+        for (RankineSandstone Sandstone : RankineLists.RANKINE_SANDSTONES) {
+            for (Block blk : Sandstone.getSandstoneBlocks()) {
+                add(blk, parseLangName(blk.getRegistryName().getPath()));
+            }
+        }
 
         for (Block blk : Stream.of(
                 RankineLists.MISC_SLABS,
@@ -67,22 +73,10 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.BRICKS_SLAB,
                 RankineLists.BRICKS_STAIRS,
                 RankineLists.BRICKS_WALL,
-                RankineLists.CUT_SANDSTONES,
-                RankineLists.CUT_SANDSTONE_SLABS,
-                RankineLists.CHISELED_SANDSTONES,
-                RankineLists.SMOOTH_SANDSTONES,
-                RankineLists.SMOOTH_SANDSTONE_SLABS,
-                RankineLists.SMOOTH_SANDSTONE_STAIRS,
-                RankineLists.SMOOTH_SANDSTONE_WALLS,
                 RankineLists.POINTED_DRIPSTONES,
                 RankineLists.DRIPSTONES,
-                RankineLists.SANDSTONES,
-                RankineLists.SANDSTONE_SLABS,
-                RankineLists.SANDSTONE_STAIRS,
-                RankineLists.SANDSTONE_WALLS,
                 RankineLists.SHEETMETALS,
                 RankineLists.GEODES,
-                RankineLists.LEDS,
                 RankineLists.GLAZED_PORCELAIN_BLOCKS,
                 RankineLists.MINERAL_WOOL,
                 RankineLists.FIBER_BLOCK,
@@ -512,6 +506,22 @@ public class RankineLangProvider extends LanguageProvider {
         add(RankineItems.PLUTONIUM_RTG.get(), "Plutonium RTG");
         add(RankineItems.STRONTIUM_RTG.get(), "Strontium RTG");
         add(RankineBlocks.HEATING_ELEMENT_1.get(), "Low Grade Heating Element");
+        add(RankineBlocks.WHITE_LED.get(), "White LED");
+        add(RankineBlocks.GRAY_LED.get(), "Gray LED");
+        add(RankineBlocks.LIGHT_GRAY_LED.get(), "Light Gray LED");
+        add(RankineBlocks.BLACK_LED.get(), "Black LED");
+        add(RankineBlocks.RED_LED.get(), "Red LED");
+        add(RankineBlocks.ORANGE_LED.get(), "Orange LED");
+        add(RankineBlocks.YELLOW_LED.get(), "Yellow LED");
+        add(RankineBlocks.LIME_LED.get(), "Lime LED");
+        add(RankineBlocks.GREEN_LED.get(), "Green LED");
+        add(RankineBlocks.CYAN_LED.get(), "Cyan LED");
+        add(RankineBlocks.BLUE_LED.get(), "Blue LED");
+        add(RankineBlocks.LIGHT_BLUE_LED.get(), "Light Blue LED");
+        add(RankineBlocks.MAGENTA_LED.get(), "Magenta LED");
+        add(RankineBlocks.PURPLE_LED.get(), "Purple LED");
+        add(RankineBlocks.PINK_LED.get(), "Pink LED");
+        add(RankineBlocks.BROWN_LED.get(), "Brown LED");
 
 
         add("item.rankine.packaged_tool_desc","Contains a completely random tool. Results may vary.");

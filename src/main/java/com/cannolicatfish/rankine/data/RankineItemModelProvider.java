@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineSandstone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
@@ -90,26 +91,36 @@ public class RankineItemModelProvider extends ItemModelProvider {
             }
         }
 
+        for (RankineSandstone Sandstone : RankineLists.RANKINE_SANDSTONES) {
+            withExistingParent(Sandstone.getSandstone());
+            slabParent(Sandstone.getSandstoneSlab());
+            stairsParent(Sandstone.getSandstoneStairs());
+            wallParent(Sandstone.getSandstoneWall());
+            withExistingParent(Sandstone.getSmoothSandstone());
+            slabParent(Sandstone.getSmoothSandstoneSlab());
+            stairsParent(Sandstone.getSmoothSandstoneStairs());
+            wallParent(Sandstone.getSmoothSandstoneWall());
+            withExistingParent(Sandstone.getCutSandstone());
+            slabParent(Sandstone.getCutSandstoneSlab());
+            withExistingParent(Sandstone.getChiseledSandstone());
+        }
+
         //food items
         for (Item item : Stream.of(RankineLists.SEEDS,RankineLists.GRAINS,RankineLists.RAW_FISH,RankineLists.COOKED_FISH,RankineLists.GAS_BOTTLES,RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(item);
         }
-        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_SLABS,RankineLists.BRICKS_SLAB,RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_SLABS,RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabParent(BLOCK);
         }
-        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsParent(BLOCK);
         }
-        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_WALLS,RankineLists.BRICKS_WALL,RankineLists.SANDSTONE_WALLS,RankineLists.SMOOTH_SANDSTONE_WALLS,RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.VANILLA_BRICKS_WALLS,RankineLists.BRICKS_WALL,RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             wallParent(BLOCK);
         }
 
         for (Block BLOCK : Stream.of(
                 RankineLists.DRIPSTONES,
-                RankineLists.SANDSTONES,
-                RankineLists.SMOOTH_SANDSTONES,
-                RankineLists.CUT_SANDSTONES,
-                RankineLists.CHISELED_SANDSTONES,
                 RankineLists.ALLOY_PEDESTALS,
                 RankineLists.ALLOY_SHEETMETALS,
                 RankineLists.ALLOY_BLOCKS,

@@ -10,6 +10,7 @@
     }
   },
   "result": {
-    "item": "rankine:cut_desert_sandstone"
+    "item": "rankine:cut_desert_sandstone",
+    "count": 4
   }
 }

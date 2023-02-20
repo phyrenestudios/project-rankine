@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks.beehiveoven;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.SimpleContainer;
@@ -96,9 +97,7 @@ public class BeehiveOvenTile extends BlockEntity {
 
     private static float structureCheck(Level levelIn, BlockPos posIn) {
         for (int i = 1; i <= 6; i++) {
-            if (!levelIn.isEmptyBlock(posIn.above(i))) {
-                return 0.0f;
-            }
+            if (!WorldgenUtils.isGasOrAir(levelIn, posIn.above(i))) return 0.0f;
         }
 
         float speedMod = 0.0f;

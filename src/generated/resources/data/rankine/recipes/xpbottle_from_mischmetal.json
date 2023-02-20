@@ -17,6 +17,7 @@
     }
   },
   "result": {
-    "item": "minecraft:experience_bottle"
+    "item": "minecraft:experience_bottle",
+    "count": 16
   }
 }

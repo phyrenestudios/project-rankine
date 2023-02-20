@@ -1,6 +1,18 @@
 {
   "replace": false,
   "values": [
+    "rankine:white_sandstone_slab",
+    "rankine:smooth_white_sandstone_slab",
+    "rankine:cut_white_sandstone_slab",
+    "rankine:black_sandstone_slab",
+    "rankine:smooth_black_sandstone_slab",
+    "rankine:cut_black_sandstone_slab",
+    "rankine:desert_sandstone_slab",
+    "rankine:smooth_desert_sandstone_slab",
+    "rankine:cut_desert_sandstone_slab",
+    "rankine:soul_sandstone_slab",
+    "rankine:smooth_soul_sandstone_slab",
+    "rankine:cut_soul_sandstone_slab",
     "rankine:pegmatite_slab",
     "rankine:polished_pegmatite_slab",
     "rankine:pegmatite_bricks_slab",

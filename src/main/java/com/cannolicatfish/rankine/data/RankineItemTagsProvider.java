@@ -85,6 +85,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STONES_BASALT, RankineTags.Items.STONES_BASALT);
         copy(RankineTags.Blocks.STONES_GRANITE, RankineTags.Items.STONES_GRANITE);
         copy(RankineTags.Blocks.STONES_SANDSTONE, RankineTags.Items.STONES_SANDSTONE);
+        copy(Tags.Blocks.SANDSTONE, Tags.Items.SANDSTONE);
         copy(RankineTags.Blocks.STONES_PEGMATITE, RankineTags.Items.STONES_PEGMATITE);
         copy(RankineTags.Blocks.STONES_BRECCIA, RankineTags.Items.STONES_BRECCIA);
         copy(RankineTags.Blocks.STONES_PERIDOTITE, RankineTags.Items.STONES_PERIDOTITE);
@@ -121,6 +122,9 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             copy(BlockTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")), ItemTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")));
         }
+        copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
+        copy(RankineTags.Blocks.STRIPPED_LOGS, RankineTags.Items.STRIPPED_LOGS);
+        copy(RankineTags.Blocks.STRIPPED_WOOD, RankineTags.Items.STRIPPED_WOOD);
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
         copy(BlockTags.LOGS, ItemTags.LOGS);
 
@@ -901,9 +905,9 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineTags.Items.MUSHROOMS).add(RankineItems.HONEY_MUSHROOM.get(),RankineItems.SULFUR_SHELF_MUSHROOM.get(),RankineItems.OYSTER_MUSHROOM.get(),RankineItems.LIONS_MANE_MUSHROOM.get(),RankineItems.ARTIST_CONK_MUSHROOM.get(),RankineItems.TINDER_CONK_MUSHROOM_BLOCK.get(),RankineItems.CINNABAR_POLYPORE_MUSHROOM.get(),RankineItems.TURKEY_TAIL_MUSHROOM.get(),Items.BROWN_MUSHROOM,Items.RED_MUSHROOM);
         tag(RankineTags.Items.EDIBLE_MUSHROOMS).add(RankineItems.HONEY_MUSHROOM.get(),RankineItems.SULFUR_SHELF_MUSHROOM.get(),RankineItems.OYSTER_MUSHROOM.get(),RankineItems.LIONS_MANE_MUSHROOM.get(),Items.BROWN_MUSHROOM,Items.RED_MUSHROOM);
 
-        tag(RankineTags.Items.CRAFTING_METAL_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN);
-        tag(RankineTags.Items.CRAFTING_METAL_INGOTS).addTag(Tags.Items.INGOTS_IRON).addTag(RankineTags.Items.INGOTS_ALUMINUM).addTag(RankineTags.Items.INGOTS_COBALT).addTag(RankineTags.Items.INGOTS_MANGANESE).addTag(RankineTags.Items.INGOTS_TITANIUM).addTag(RankineTags.Items.INGOTS_BISMUTH).addTag(RankineTags.Items.INGOTS_LEAD).addTag(RankineTags.Items.INGOTS_NICKEL).addTag(RankineTags.Items.INGOTS_TUNGSTEN);
-        tag(RankineTags.Items.CRAFTING_METAL_BLOCKS).addTag(Tags.Items.STORAGE_BLOCKS_IRON).addTag(RankineTags.Items.STORAGE_BLOCKS_ALUMINUM).addTag(RankineTags.Items.STORAGE_BLOCKS_COBALT).addTag(RankineTags.Items.STORAGE_BLOCKS_MANGANESE).addTag(RankineTags.Items.STORAGE_BLOCKS_TITANIUM).addTag(RankineTags.Items.STORAGE_BLOCKS_BISMUTH).addTag(RankineTags.Items.STORAGE_BLOCKS_LEAD).addTag(RankineTags.Items.STORAGE_BLOCKS_NICKEL).addTag(RankineTags.Items.STORAGE_BLOCKS_TUNGSTEN);
+        tag(RankineTags.Items.CRAFTING_METAL_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN).addTag(RankineTags.Items.NUGGETS_MAGNESIUM);
+        tag(RankineTags.Items.CRAFTING_METAL_INGOTS).addTag(Tags.Items.INGOTS_IRON).addTag(RankineTags.Items.INGOTS_ALUMINUM).addTag(RankineTags.Items.INGOTS_COBALT).addTag(RankineTags.Items.INGOTS_MANGANESE).addTag(RankineTags.Items.INGOTS_TITANIUM).addTag(RankineTags.Items.INGOTS_BISMUTH).addTag(RankineTags.Items.INGOTS_LEAD).addTag(RankineTags.Items.INGOTS_NICKEL).addTag(RankineTags.Items.INGOTS_TUNGSTEN).addTag(RankineTags.Items.INGOTS_MAGNESIUM);
+        tag(RankineTags.Items.CRAFTING_METAL_BLOCKS).addTag(Tags.Items.STORAGE_BLOCKS_IRON).addTag(RankineTags.Items.STORAGE_BLOCKS_ALUMINUM).addTag(RankineTags.Items.STORAGE_BLOCKS_COBALT).addTag(RankineTags.Items.STORAGE_BLOCKS_MANGANESE).addTag(RankineTags.Items.STORAGE_BLOCKS_TITANIUM).addTag(RankineTags.Items.STORAGE_BLOCKS_BISMUTH).addTag(RankineTags.Items.STORAGE_BLOCKS_LEAD).addTag(RankineTags.Items.STORAGE_BLOCKS_NICKEL).addTag(RankineTags.Items.STORAGE_BLOCKS_TUNGSTEN).addTag(RankineTags.Items.STORAGE_BLOCKS_MAGNESIUM);
         tag(RankineTags.Items.MAGNETIC_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN);
         tag(RankineTags.Items.MAGNETIC_INGOTS).addTag(Tags.Items.INGOTS_IRON).addTag(RankineTags.Items.INGOTS_ALUMINUM).addTag(RankineTags.Items.INGOTS_COBALT).addTag(RankineTags.Items.INGOTS_MANGANESE).addTag(RankineTags.Items.INGOTS_TITANIUM).addTag(RankineTags.Items.INGOTS_BISMUTH).addTag(RankineTags.Items.INGOTS_LEAD).addTag(RankineTags.Items.INGOTS_NICKEL).addTag(RankineTags.Items.INGOTS_TUNGSTEN);
         tag(RankineTags.Items.MAGNETIC_BLOCKS).addTag(Tags.Items.STORAGE_BLOCKS_IRON).addTag(RankineTags.Items.STORAGE_BLOCKS_ALUMINUM).addTag(RankineTags.Items.STORAGE_BLOCKS_COBALT).addTag(RankineTags.Items.STORAGE_BLOCKS_MANGANESE).addTag(RankineTags.Items.STORAGE_BLOCKS_TITANIUM).addTag(RankineTags.Items.STORAGE_BLOCKS_BISMUTH).addTag(RankineTags.Items.STORAGE_BLOCKS_LEAD).addTag(RankineTags.Items.STORAGE_BLOCKS_NICKEL).addTag(RankineTags.Items.STORAGE_BLOCKS_TUNGSTEN);

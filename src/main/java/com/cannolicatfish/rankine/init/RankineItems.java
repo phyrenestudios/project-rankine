@@ -22,58 +22,7 @@ import java.util.Arrays;
 public class RankineItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ProjectRankine.MODID);
-
-    //public static final RegistryObject<Item> GRAY_GRANITE_PILLAR = REGISTRY.register("gray_granite_pillar", () -> new BlockItem(RankineBlocks.GRAY_GRANITE_PILLAR.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld)));
-
     public static Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld);
-
-
-
-    public static final RegistryObject<Item> SOUL_SANDSTONE = ITEMS.register("soul_sandstone", () -> new BlockItem(RankineBlocks.SOUL_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SOUL_SANDSTONE_SLAB = ITEMS.register("soul_sandstone_slab", () -> new BlockItem(RankineBlocks.SOUL_SANDSTONE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SOUL_SANDSTONE_STAIRS = ITEMS.register("soul_sandstone_stairs", () -> new BlockItem(RankineBlocks.SOUL_SANDSTONE_STAIRS.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SOUL_SANDSTONE_WALL = ITEMS.register("soul_sandstone_wall", () -> new BlockItem(RankineBlocks.SOUL_SANDSTONE_WALL.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_SOUL_SANDSTONE = ITEMS.register("smooth_soul_sandstone", () -> new BlockItem(RankineBlocks.SMOOTH_SOUL_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_SOUL_SANDSTONE_SLAB = ITEMS.register("smooth_soul_sandstone_slab", () -> new BlockItem(RankineBlocks.SMOOTH_SOUL_SANDSTONE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_SOUL_SANDSTONE_STAIRS = ITEMS.register("smooth_soul_sandstone_stairs", () -> new BlockItem(RankineBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_SOUL_SANDSTONE_WALL = ITEMS.register("smooth_soul_sandstone_wall", () -> new BlockItem(RankineBlocks.SMOOTH_SOUL_SANDSTONE_WALL.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> CUT_SOUL_SANDSTONE = ITEMS.register("cut_soul_sandstone", () -> new BlockItem(RankineBlocks.CUT_SOUL_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> CUT_SOUL_SANDSTONE_SLAB = ITEMS.register("cut_soul_sandstone_slab", () -> new BlockItem(RankineBlocks.CUT_SOUL_SANDSTONE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> CHISELED_SOUL_SANDSTONE = ITEMS.register("chiseled_soul_sandstone", () -> new BlockItem(RankineBlocks.CHISELED_SOUL_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> BLACK_SANDSTONE = ITEMS.register("black_sandstone", () -> new BlockItem(RankineBlocks.BLACK_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> BLACK_SANDSTONE_SLAB = ITEMS.register("black_sandstone_slab", () -> new BlockItem(RankineBlocks.BLACK_SANDSTONE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> BLACK_SANDSTONE_STAIRS = ITEMS.register("black_sandstone_stairs", () -> new BlockItem(RankineBlocks.BLACK_SANDSTONE_STAIRS.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> BLACK_SANDSTONE_WALL = ITEMS.register("black_sandstone_wall", () -> new BlockItem(RankineBlocks.BLACK_SANDSTONE_WALL.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_BLACK_SANDSTONE = ITEMS.register("smooth_black_sandstone", () -> new BlockItem(RankineBlocks.SMOOTH_BLACK_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_BLACK_SANDSTONE_SLAB = ITEMS.register("smooth_black_sandstone_slab", () -> new BlockItem(RankineBlocks.SMOOTH_BLACK_SANDSTONE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_BLACK_SANDSTONE_STAIRS = ITEMS.register("smooth_black_sandstone_stairs", () -> new BlockItem(RankineBlocks.SMOOTH_BLACK_SANDSTONE_STAIRS.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_BLACK_SANDSTONE_WALL = ITEMS.register("smooth_black_sandstone_wall", () -> new BlockItem(RankineBlocks.SMOOTH_BLACK_SANDSTONE_WALL.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> CUT_BLACK_SANDSTONE = ITEMS.register("cut_black_sandstone", () -> new BlockItem(RankineBlocks.CUT_BLACK_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> CUT_BLACK_SANDSTONE_SLAB = ITEMS.register("cut_black_sandstone_slab", () -> new BlockItem(RankineBlocks.CUT_BLACK_SANDSTONE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> CHISELED_BLACK_SANDSTONE = ITEMS.register("chiseled_black_sandstone", () -> new BlockItem(RankineBlocks.CHISELED_BLACK_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> WHITE_SANDSTONE = ITEMS.register("white_sandstone", () -> new BlockItem(RankineBlocks.WHITE_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> WHITE_SANDSTONE_SLAB = ITEMS.register("white_sandstone_slab", () -> new BlockItem(RankineBlocks.WHITE_SANDSTONE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> WHITE_SANDSTONE_STAIRS = ITEMS.register("white_sandstone_stairs", () -> new BlockItem(RankineBlocks.WHITE_SANDSTONE_STAIRS.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> WHITE_SANDSTONE_WALL = ITEMS.register("white_sandstone_wall", () -> new BlockItem(RankineBlocks.WHITE_SANDSTONE_WALL.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_WHITE_SANDSTONE = ITEMS.register("smooth_white_sandstone", () -> new BlockItem(RankineBlocks.SMOOTH_WHITE_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_WHITE_SANDSTONE_SLAB = ITEMS.register("smooth_white_sandstone_slab", () -> new BlockItem(RankineBlocks.SMOOTH_WHITE_SANDSTONE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_WHITE_SANDSTONE_STAIRS = ITEMS.register("smooth_white_sandstone_stairs", () -> new BlockItem(RankineBlocks.SMOOTH_WHITE_SANDSTONE_STAIRS.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_WHITE_SANDSTONE_WALL = ITEMS.register("smooth_white_sandstone_wall", () -> new BlockItem(RankineBlocks.SMOOTH_WHITE_SANDSTONE_WALL.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> CUT_WHITE_SANDSTONE = ITEMS.register("cut_white_sandstone", () -> new BlockItem(RankineBlocks.CUT_WHITE_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> CUT_WHITE_SANDSTONE_SLAB = ITEMS.register("cut_white_sandstone_slab", () -> new BlockItem(RankineBlocks.CUT_WHITE_SANDSTONE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> CHISELED_WHITE_SANDSTONE = ITEMS.register("chiseled_white_sandstone", () -> new BlockItem(RankineBlocks.CHISELED_WHITE_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> DESERT_SANDSTONE = ITEMS.register("desert_sandstone", () -> new BlockItem(RankineBlocks.DESERT_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> DESERT_SANDSTONE_SLAB = ITEMS.register("desert_sandstone_slab", () -> new BlockItem(RankineBlocks.DESERT_SANDSTONE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> DESERT_SANDSTONE_STAIRS = ITEMS.register("desert_sandstone_stairs", () -> new BlockItem(RankineBlocks.DESERT_SANDSTONE_STAIRS.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> DESERT_SANDSTONE_WALL = ITEMS.register("desert_sandstone_wall", () -> new BlockItem(RankineBlocks.DESERT_SANDSTONE_WALL.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_DESERT_SANDSTONE = ITEMS.register("smooth_desert_sandstone", () -> new BlockItem(RankineBlocks.SMOOTH_DESERT_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_DESERT_SANDSTONE_SLAB = ITEMS.register("smooth_desert_sandstone_slab", () -> new BlockItem(RankineBlocks.SMOOTH_DESERT_SANDSTONE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_DESERT_SANDSTONE_STAIRS = ITEMS.register("smooth_desert_sandstone_stairs", () -> new BlockItem(RankineBlocks.SMOOTH_DESERT_SANDSTONE_STAIRS.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> SMOOTH_DESERT_SANDSTONE_WALL = ITEMS.register("smooth_desert_sandstone_wall", () -> new BlockItem(RankineBlocks.SMOOTH_DESERT_SANDSTONE_WALL.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> CUT_DESERT_SANDSTONE = ITEMS.register("cut_desert_sandstone", () -> new BlockItem(RankineBlocks.CUT_DESERT_SANDSTONE.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> CUT_DESERT_SANDSTONE_SLAB = ITEMS.register("cut_desert_sandstone_slab", () -> new BlockItem(RankineBlocks.CUT_DESERT_SANDSTONE_SLAB.get(), DEF_BUILDING));
-    public static final RegistryObject<Item> CHISELED_DESERT_SANDSTONE = ITEMS.register("chiseled_desert_sandstone", () -> new BlockItem(RankineBlocks.CHISELED_DESERT_SANDSTONE.get(), DEF_BUILDING));
-
 
     public static final RegistryObject<Item> GRANITE_BRICKS = ITEMS.register("granite_bricks", () -> new BuildingModeBlockItem(RankineBlocks.GRANITE_BRICKS.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRANITE_BRICKS_SLAB = ITEMS.register("granite_bricks_slab", () -> new BlockItem(RankineBlocks.GRANITE_BRICKS_SLAB.get(), DEF_BUILDING));

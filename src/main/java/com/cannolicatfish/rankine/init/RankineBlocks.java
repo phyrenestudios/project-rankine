@@ -13,6 +13,7 @@ import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerContainer;
 import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerTile;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineSandstone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.*;
@@ -196,51 +197,11 @@ public class RankineBlocks {
     public static final RankineWood BAMBOO = RankineWood.newWoodReg("bamboo", 2.0f,false, false, 1, null);
     public static final RankineWood BAMBOO_CULMS = RankineWood.newWoodReg("bamboo_culms", 2.0f,false, false, 1, null);
 
-
-    public static final RegistryObject<Block> SOUL_SANDSTONE = BLOCKS.register("soul_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).requiresCorrectToolForDrops().strength(0.8F)));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_SLAB = BLOCKS.register("soul_sandstone_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_STAIRS = BLOCKS.register("soul_sandstone_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_WALL = BLOCKS.register("soul_sandstone_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> SMOOTH_SOUL_SANDSTONE = BLOCKS.register("smooth_soul_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
-    public static final RegistryObject<Block> SMOOTH_SOUL_SANDSTONE_SLAB = BLOCKS.register("smooth_soul_sandstone_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(SMOOTH_SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> SMOOTH_SOUL_SANDSTONE_STAIRS = BLOCKS.register("smooth_soul_sandstone_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(SMOOTH_SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> SMOOTH_SOUL_SANDSTONE_WALL = BLOCKS.register("smooth_soul_sandstone_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(SMOOTH_SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> CUT_SOUL_SANDSTONE = BLOCKS.register("cut_soul_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).requiresCorrectToolForDrops().strength(0.8F)));
-    public static final RegistryObject<Block> CUT_SOUL_SANDSTONE_SLAB = BLOCKS.register("cut_soul_sandstone_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(CUT_SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> CHISELED_SOUL_SANDSTONE = BLOCKS.register("chiseled_soul_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).requiresCorrectToolForDrops().strength(0.8F)));
-    public static final RegistryObject<Block> BLACK_SANDSTONE = BLOCKS.register("black_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(0.8F)));
-    public static final RegistryObject<Block> BLACK_SANDSTONE_SLAB = BLOCKS.register("black_sandstone_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(BLACK_SANDSTONE.get())));
-    public static final RegistryObject<Block> BLACK_SANDSTONE_STAIRS = BLOCKS.register("black_sandstone_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(BLACK_SANDSTONE.get())));
-    public static final RegistryObject<Block> BLACK_SANDSTONE_WALL = BLOCKS.register("black_sandstone_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(BLACK_SANDSTONE.get())));
-    public static final RegistryObject<Block> SMOOTH_BLACK_SANDSTONE = BLOCKS.register("smooth_black_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
-    public static final RegistryObject<Block> SMOOTH_BLACK_SANDSTONE_SLAB = BLOCKS.register("smooth_black_sandstone_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(SMOOTH_BLACK_SANDSTONE.get())));
-    public static final RegistryObject<Block> SMOOTH_BLACK_SANDSTONE_STAIRS = BLOCKS.register("smooth_black_sandstone_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(SMOOTH_BLACK_SANDSTONE.get())));
-    public static final RegistryObject<Block> SMOOTH_BLACK_SANDSTONE_WALL = BLOCKS.register("smooth_black_sandstone_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(SMOOTH_BLACK_SANDSTONE.get())));
-    public static final RegistryObject<Block> CUT_BLACK_SANDSTONE = BLOCKS.register("cut_black_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(0.8F)));
-    public static final RegistryObject<Block> CUT_BLACK_SANDSTONE_SLAB = BLOCKS.register("cut_black_sandstone_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(CUT_BLACK_SANDSTONE.get())));
-    public static final RegistryObject<Block> CHISELED_BLACK_SANDSTONE = BLOCKS.register("chiseled_black_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(0.8F)));
-    public static final RegistryObject<Block> WHITE_SANDSTONE = BLOCKS.register("white_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(0.8F)));
-    public static final RegistryObject<Block> WHITE_SANDSTONE_SLAB = BLOCKS.register("white_sandstone_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(WHITE_SANDSTONE.get())));
-    public static final RegistryObject<Block> WHITE_SANDSTONE_STAIRS = BLOCKS.register("white_sandstone_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(WHITE_SANDSTONE.get())));
-    public static final RegistryObject<Block> WHITE_SANDSTONE_WALL = BLOCKS.register("white_sandstone_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(WHITE_SANDSTONE.get())));
-    public static final RegistryObject<Block> SMOOTH_WHITE_SANDSTONE = BLOCKS.register("smooth_white_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
-    public static final RegistryObject<Block> SMOOTH_WHITE_SANDSTONE_SLAB = BLOCKS.register("smooth_white_sandstone_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(SMOOTH_WHITE_SANDSTONE.get())));
-    public static final RegistryObject<Block> SMOOTH_WHITE_SANDSTONE_STAIRS = BLOCKS.register("smooth_white_sandstone_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(SMOOTH_WHITE_SANDSTONE.get())));
-    public static final RegistryObject<Block> SMOOTH_WHITE_SANDSTONE_WALL = BLOCKS.register("smooth_white_sandstone_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(SMOOTH_WHITE_SANDSTONE.get())));
-    public static final RegistryObject<Block> CUT_WHITE_SANDSTONE = BLOCKS.register("cut_white_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(0.8F)));
-    public static final RegistryObject<Block> CUT_WHITE_SANDSTONE_SLAB = BLOCKS.register("cut_white_sandstone_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(CUT_WHITE_SANDSTONE.get())));
-    public static final RegistryObject<Block> CHISELED_WHITE_SANDSTONE = BLOCKS.register("chiseled_white_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_WHITE).requiresCorrectToolForDrops().strength(0.8F)));
-    public static final RegistryObject<Block> DESERT_SANDSTONE = BLOCKS.register("desert_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(0.8F)));
-    public static final RegistryObject<Block> DESERT_SANDSTONE_SLAB = BLOCKS.register("desert_sandstone_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(DESERT_SANDSTONE.get())));
-    public static final RegistryObject<Block> DESERT_SANDSTONE_STAIRS = BLOCKS.register("desert_sandstone_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(DESERT_SANDSTONE.get())));
-    public static final RegistryObject<Block> DESERT_SANDSTONE_WALL = BLOCKS.register("desert_sandstone_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(DESERT_SANDSTONE.get())));
-    public static final RegistryObject<Block> SMOOTH_DESERT_SANDSTONE = BLOCKS.register("smooth_desert_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
-    public static final RegistryObject<Block> SMOOTH_DESERT_SANDSTONE_SLAB = BLOCKS.register("smooth_desert_sandstone_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(SMOOTH_DESERT_SANDSTONE.get())));
-    public static final RegistryObject<Block> SMOOTH_DESERT_SANDSTONE_STAIRS = BLOCKS.register("smooth_desert_sandstone_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(SMOOTH_DESERT_SANDSTONE.get())));
-    public static final RegistryObject<Block> SMOOTH_DESERT_SANDSTONE_WALL = BLOCKS.register("smooth_desert_sandstone_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(SMOOTH_DESERT_SANDSTONE.get())));
-    public static final RegistryObject<Block> CUT_DESERT_SANDSTONE = BLOCKS.register("cut_desert_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(0.8F)));
-    public static final RegistryObject<Block> CUT_DESERT_SANDSTONE_SLAB = BLOCKS.register("cut_desert_sandstone_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(CUT_DESERT_SANDSTONE.get())));
-    public static final RegistryObject<Block> CHISELED_DESERT_SANDSTONE = BLOCKS.register("chiseled_desert_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(0.8F)));
+    //SANDSTONES
+    public static final RankineSandstone DESERT_SANDSTONE = RankineSandstone.newSandstoneReg("desert_sandstone");
+    public static final RankineSandstone WHITE_SANDSTONE = RankineSandstone.newSandstoneReg("white_sandstone");
+    public static final RankineSandstone BLACK_SANDSTONE = RankineSandstone.newSandstoneReg("black_sandstone");
+    public static final RankineSandstone SOUL_SANDSTONE = RankineSandstone.newSandstoneReg("soul_sandstone");
 
 
     //Other Stones
@@ -787,11 +748,11 @@ public class RankineBlocks {
 
 
     public static final RegistryObject<Block> STICK_BLOCK = BLOCKS.register("stick_block", () -> new StickBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.2F)));
-    public static final RegistryObject<Block> CHARCOAL_BLOCK = BLOCKS.register("charcoal_block", () -> new RankineEightLayerBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.25F)));
-    public static final RegistryObject<Block> SAWDUST = BLOCKS.register("sawdust", () -> new RankineEightLayerBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.25F)));
-    public static final RegistryObject<Block> ASH = BLOCKS.register("ash", () -> new RankineEightLayerBlock(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(0.25F)));
-    public static final RegistryObject<Block> BONE_ASH = BLOCKS.register("bone_ash", () -> new RankineEightLayerBlock(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(0.25F)));
-    public static final RegistryObject<Block> POZZOLANA = BLOCKS.register("pozzolana", () -> new RankineEightLayerBlock(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(0.25F)));
+    public static final RegistryObject<Block> CHARCOAL_BLOCK = BLOCKS.register("charcoal_block", () -> new RankineEightLayerBlock(Block.Properties.of(Material.TOP_SNOW).sound(SoundType.WOOD).strength(0.25F)));
+    public static final RegistryObject<Block> SAWDUST = BLOCKS.register("sawdust", () -> new RankineEightLayerBlock(Block.Properties.of(Material.TOP_SNOW).sound(SoundType.WOOD).strength(0.25F)));
+    public static final RegistryObject<Block> ASH = BLOCKS.register("ash", () -> new RankineEightLayerBlock(Block.Properties.of(Material.TOP_SNOW).sound(SoundType.GRAVEL).strength(0.25F)));
+    public static final RegistryObject<Block> BONE_ASH = BLOCKS.register("bone_ash", () -> new RankineEightLayerBlock(Block.Properties.of(Material.TOP_SNOW).sound(SoundType.GRAVEL).strength(0.25F)));
+    public static final RegistryObject<Block> POZZOLANA = BLOCKS.register("pozzolana", () -> new RankineEightLayerBlock(Block.Properties.of(Material.TOP_SNOW).sound(SoundType.GRAVEL).strength(0.25F)));
     public static final RegistryObject<Block> MINERAL_WOOL = BLOCKS.register("mineral_wool", () -> new MineralWoolBlock(Block.Properties.of(Material.WOOL, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOL).strength(1F)));
     public static final RegistryObject<Block> WHITE_MINERAL_WOOL = BLOCKS.register("white_mineral_wool", () -> new MineralWoolBlock(Block.Properties.of(Material.WOOL, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOL).strength(1F)));
     public static final RegistryObject<Block> ORANGE_MINERAL_WOOL = BLOCKS.register("orange_mineral_wool", () -> new MineralWoolBlock(Block.Properties.of(Material.WOOL, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOL).strength(1F)));

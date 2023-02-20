@@ -1,6 +1,14 @@
 {
   "replace": false,
   "values": [
+    "rankine:white_sandstone_stairs",
+    "rankine:smooth_white_sandstone_stairs",
+    "rankine:black_sandstone_stairs",
+    "rankine:smooth_black_sandstone_stairs",
+    "rankine:desert_sandstone_stairs",
+    "rankine:smooth_desert_sandstone_stairs",
+    "rankine:soul_sandstone_stairs",
+    "rankine:smooth_soul_sandstone_stairs",
     "rankine:pegmatite_stairs",
     "rankine:polished_pegmatite_stairs",
     "rankine:pegmatite_bricks_stairs",

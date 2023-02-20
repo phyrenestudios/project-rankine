@@ -190,9 +190,9 @@
     },
     {
       "type": "text",
-      "title": "enchantment.rankine.endbiotic",
-      "anchor": "endbiotic",
-      "text": "enchantment.rankine.endbiotic.desc"
+      "title": "enchantment.rankine.endobiotic",
+      "anchor": "endobiotic",
+      "text": "enchantment.rankine.endobiotic.desc"
     },
     {
       "type": "text",

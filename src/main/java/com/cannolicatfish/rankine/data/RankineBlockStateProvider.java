@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.data;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.BaseAsphaltBlock;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineSandstone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
@@ -109,12 +110,23 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             }
         }
 
-
+        for (RankineSandstone Sandstone : RankineLists.RANKINE_SANDSTONES) {
+            simpleBlock(Sandstone.getSandstone(),models().cubeBottomTop(Sandstone.getBaseName(),blockTexture(Sandstone.getSandstone()),getBlockRSL(Sandstone.getBaseName()+"_bottom"),getBlockRSL("smooth_"+Sandstone.getBaseName())));
+            slabBlock(Sandstone.getSandstoneSlab(), false);
+            stairsBlock(Sandstone.getSandstoneStairs(), false);
+            wallBlock(Sandstone.getSandstoneWall(), false);
+            simpleBlock(Sandstone.getSmoothSandstone());
+            slabBlock(Sandstone.getSmoothSandstoneSlab(), false);
+            stairsBlock(Sandstone.getSmoothSandstoneStairs(), false);
+            wallBlock(Sandstone.getSmoothSandstoneWall(), false);
+            simpleBlock(Sandstone.getCutSandstone(),models().cubeColumn("cut_"+Sandstone.getBaseName(),blockTexture(Sandstone.getCutSandstone()),getBlockRSL("smooth_"+Sandstone.getBaseName())));
+            slabBlock(Sandstone.getCutSandstoneSlab(), false);
+            simpleBlock(Sandstone.getChiseledSandstone(),models().cubeColumn("chiseled_"+Sandstone.getBaseName(),blockTexture(Sandstone.getChiseledSandstone()),getBlockRSL("smooth_"+Sandstone.getBaseName())));
+        }
 
         for (Block blk : Stream.of(
                 RankineLists.DRIPSTONES,
                 RankineLists.ALLOY_BLOCKS,
-                RankineLists.SMOOTH_SANDSTONES,
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
                 RankineLists.STANDARD_BLOCKS,
@@ -169,25 +181,13 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : RankineLists.BRICKS) {
             fancyBricksBlock(blk);
         }
-        for (Block SANDSTONE : RankineLists.SANDSTONES) {
-            String pathName = SANDSTONE.getRegistryName().getPath();
-            simpleBlock(SANDSTONE,models().cubeBottomTop(pathName,blockTexture(SANDSTONE),getBlockRSL(pathName+"_bottom"),getBlockRSL("smooth_"+pathName)));
-        }
-        for (Block SANDSTONE : RankineLists.CUT_SANDSTONES) {
-            String pathName = SANDSTONE.getRegistryName().getPath();
-            simpleBlock(SANDSTONE,models().cubeColumn(pathName,blockTexture(SANDSTONE),getBlockRSL(pathName.replace("cut","smooth"))));
-        }
-        for (Block SANDSTONE : RankineLists.CHISELED_SANDSTONES) {
-            String pathName = SANDSTONE.getRegistryName().getPath();
-            simpleBlock(SANDSTONE,models().cubeColumn(pathName,blockTexture(SANDSTONE),getBlockRSL(pathName.replace("chiseled","smooth"))));
-        }
-        for (Block blk : Stream.of(RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabBlock(blk,false);
         }
-        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_WALLS,RankineLists.SANDSTONE_WALLS,RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             wallBlock(blk,false);
         }
-        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsBlock(blk,false);
         }
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_SLABS,RankineLists.BRICKS_SLAB).flatMap(Collection::stream).collect(Collectors.toList())) {

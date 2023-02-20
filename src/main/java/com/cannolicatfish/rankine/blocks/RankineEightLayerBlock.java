@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -86,15 +87,12 @@ public class RankineEightLayerBlock extends Block {
 
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (facing == Direction.DOWN && !stateIn.canSurvive(worldIn, currentPos) && !worldIn.isClientSide()) {
-            //spawnDrops(stateIn, (World) worldIn, currentPos);
-            return Blocks.AIR.defaultBlockState();
-        }
-        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
         int i = state.getValue(LAYERS);
+        if (this == RankineBlocks.CHARCOAL_BLOCK.get()) return false;
         if (useContext.getItemInHand().getItem() == this.asItem() && i < 8) {
             if (useContext.replacingClickedOnBlock()) {
                 return useContext.getClickedFace() == Direction.UP;

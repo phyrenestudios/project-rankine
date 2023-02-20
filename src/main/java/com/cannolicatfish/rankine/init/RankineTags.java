@@ -91,6 +91,8 @@ public final class RankineTags {
 
 
         //FORGE
+        public static final TagKey<Block> STRIPPED_LOGS = forgeBlock("stripped_logs");
+        public static final TagKey<Block> STRIPPED_WOOD = forgeBlock("stripped_wood");
         public static final TagKey<Block> LANTERNS = forgeBlock("lanterns");
         public static final TagKey<Block> METAL_BARS = forgeBlock("metal_bars");
         public static final TagKey<Block> METAL_POLES = forgeBlock("metal_poles");
@@ -434,6 +436,10 @@ public final class RankineTags {
         public static final TagKey<Item> ALLOY_STORAGE_BLOCKS = modItem("alloy_storage_blocks");
 
         //FORGE
+
+        public static final TagKey<Item> STRIPPED_LOGS = forgeItem("stripped_logs");
+        public static final TagKey<Item> STRIPPED_WOOD = forgeItem("stripped_wood");
+
         public static final TagKey<Item> BREEDABLES_COW = forgeItem("breedables/cow");
         public static final TagKey<Item> BREEDABLES_PIG = forgeItem("breedables/pig");
         public static final TagKey<Item> BREEDABLES_SHEEP = forgeItem("breedables/sheep");

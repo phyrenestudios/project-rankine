@@ -9,6 +9,7 @@
     "#forge:ingots/bismuth",
     "#forge:ingots/lead",
     "#forge:ingots/nickel",
-    "#forge:ingots/tungsten"
+    "#forge:ingots/tungsten",
+    "#forge:ingots/magnesium"
   ]
 }

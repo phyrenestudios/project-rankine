@@ -1,6 +1,14 @@
 {
   "replace": false,
   "values": [
+    "rankine:white_sandstone_wall",
+    "rankine:smooth_white_sandstone_wall",
+    "rankine:black_sandstone_wall",
+    "rankine:smooth_black_sandstone_wall",
+    "rankine:desert_sandstone_wall",
+    "rankine:smooth_desert_sandstone_wall",
+    "rankine:soul_sandstone_wall",
+    "rankine:smooth_soul_sandstone_wall",
     "rankine:pegmatite_wall",
     "rankine:polished_pegmatite_wall",
     "rankine:pegmatite_bricks_wall",

@@ -9,6 +9,7 @@
     "#forge:nuggets/bismuth",
     "#forge:nuggets/lead",
     "#forge:nuggets/nickel",
-    "#forge:nuggets/tungsten"
+    "#forge:nuggets/tungsten",
+    "#forge:nuggets/magnesium"
   ]
 }

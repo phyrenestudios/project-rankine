@@ -68,7 +68,7 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
                             if (TARGET_BS != Blocks.NETHERRACK.defaultBlockState()) break;
                             if (leaveNetherrack(reader,TARGET_POS,targetBiome)) break;
                             if (placeSandstone(reader,TARGET_POS)) {
-                                reader.setBlock(TARGET_POS, RankineBlocks.SOUL_SANDSTONE.get().defaultBlockState(), 3);
+                                reader.setBlock(TARGET_POS, RankineBlocks.SOUL_SANDSTONE.getSandstone().defaultBlockState(), 3);
                             } else if (TARGET_BS.is(BlockTags.BASE_STONE_NETHER)) {
                                 reader.setBlock(TARGET_POS, StoneBS, 3);
                             }
