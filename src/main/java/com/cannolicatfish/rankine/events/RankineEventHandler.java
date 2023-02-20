@@ -12,9 +12,7 @@ import net.minecraftforge.event.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
@@ -106,7 +104,7 @@ public class RankineEventHandler {
         AnvilUpdateHandler.specialEnchants(event);
     }
     @SubscribeEvent
-    public static void livingSetAttackTargetEvent(LivingSetAttackTargetEvent event) {
+    public static void livingSetAttackTargetEvent(LivingChangeTargetEvent event) {
         LivingSetAttackTargetHandler.onLivingSetAttackTarget(event);
     }
     @SubscribeEvent
@@ -118,12 +116,18 @@ public class RankineEventHandler {
     public static void onToolUse(BlockEvent.BlockToolModificationEvent event) {
         BlockToolModificationHandler.onToolUse(event);
     }
+
+    @SubscribeEvent
+    public static void livingHurt(LivingHurtEvent event) {
+        LivingHurtHandler.onParryEvent(event);
+        LivingHurtHandler.onLivingHurt(event);
+    }
     @SubscribeEvent
     public static void livingDamageEntity(LivingDamageEvent event) {
         LivingDamageHandler.onDamageEntity(event);
         LivingDamageHandler.onLivingDamaged(event);
-        LivingDamageHandler.onParryEvent(event);
     }
+
     @SubscribeEvent
     public static void onLeftClick(PlayerInteractEvent.LeftClickBlock event) {
         LeftClickBlockHandler.leftClickTools(event);

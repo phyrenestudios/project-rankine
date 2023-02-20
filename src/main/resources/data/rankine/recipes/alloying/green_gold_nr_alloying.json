@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 8,
+  "total": 9,
   "tier": 2,
   "color": 15728547,
   "input1": {
@@ -41,6 +41,11 @@
     "max": 0.10
   },
   "input8": {
+    "element": "rankine:elements/sodium",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input9": {
     "element": "rankine:elements/germanium",
     "min": 0.0,
     "max": 0.10

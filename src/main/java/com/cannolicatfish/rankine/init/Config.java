@@ -87,14 +87,26 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue SAMPLE_CHANCE;
 
         public final ForgeConfigSpec.BooleanValue ALLOY_PICKAXE_BONUS;
+        public final ForgeConfigSpec.BooleanValue ALLOY_AXE_BONUS;
+        public final ForgeConfigSpec.BooleanValue ALLOY_HOE_BONUS;
+        public final ForgeConfigSpec.BooleanValue ALLOY_SWORD_BONUS;
+        public final ForgeConfigSpec.BooleanValue ALLOY_SHOVEL_BONUS;
 
         public Tools(ForgeConfigSpec.Builder b) {
             b.comment("Settings for tools").push("tools");
 
             b.comment("Rankine Tools").push("rankineTools");
 
-                ALLOY_PICKAXE_BONUS = b.comment("Enable the bonus feature of the Alloy Pickaxe, which causes nuggets to drop from mining certain ores.")
+                ALLOY_PICKAXE_BONUS = b.comment("Enable the bonus feature of the Alloy Pickaxe, which causes nuggets to drop from mining certain ores using Attack Damage and Attack Speed.")
                     .define("enableAlloyPickaxeBonus", true);
+                ALLOY_AXE_BONUS = b.comment("Enable the bonus feature of the Alloy Axe, which allows harvesting an entire tree at a time.")
+                        .define("enableAlloyAxeBonus", true);
+                ALLOY_HOE_BONUS = b.comment("Enable the bonus feature of the Alloy Hoe, which allows replanting of crops by right-clicking and foraging.")
+                        .define("enableAlloyHoeBonus", true);
+                ALLOY_SWORD_BONUS = b.comment("Enable the bonus feature of the Alloy Sword, which causes a bleed effect based on Mining Speed.")
+                        .define("enableAlloySwordBonus", true);
+                ALLOY_SHOVEL_BONUS = b.comment("Enable the bonus feature of the Alloy Shovel, which causes nuggets to drop from mining certain ores.")
+                        .define("enableAlloyShovelBonus", true);
 
                 DISABLE_WOODEN_HAMMER = b.comment("Disable the use of the wooden hammer (still allows crafting for other recipes). This is enabled by default for progression.")
                         .define("disableWoodenHammer", false);

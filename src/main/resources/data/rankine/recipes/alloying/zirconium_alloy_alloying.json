@@ -1,8 +1,7 @@
 {
   "type": "rankine:alloying",
-  "total": 30,
+  "total": 31,
   "color": 11848920,
-  "name": "Zirconium Alloy",
   "input1": {
     "element": "rankine:elements/zirconium",
     "min": 0.50,
@@ -145,11 +144,16 @@
     "max": 0.06
   },
   "input29": {
+    "element": "rankine:elements/uranium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input30": {
     "element": "rankine:elements/hydrogen",
     "min": 0.0,
     "max": 0.05
   },
-  "input30": {
+  "input31": {
     "element": "rankine:elements/helium",
     "min": 0.0,
     "max": 0.05

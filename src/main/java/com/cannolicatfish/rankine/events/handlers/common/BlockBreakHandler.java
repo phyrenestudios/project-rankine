@@ -2,8 +2,8 @@ package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
 import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.items.alloys.AlloyHoeItem;
 import com.cannolicatfish.rankine.items.alloys.AlloyPickaxeItem;
-import com.cannolicatfish.rankine.items.alloys.AlloyShovelItem;
 import com.cannolicatfish.rankine.recipe.ForagingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -136,7 +136,7 @@ public class BlockBreakHandler {
 
 
             //Foraging
-            if (mainHandItem.getItem() instanceof AlloyShovelItem || mainHandItem.getItem().equals(RankineItems.FLINT_SHOVEL.get()) && !(EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, mainHandItem) > 0)) {
+            if (mainHandItem.getItem() instanceof AlloyHoeItem || mainHandItem.getItem().equals(RankineItems.FLINT_HOE.get()) && !(EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, mainHandItem) > 0)) {
                 ItemStack itemStack = ForagingRecipe.getForagingResult(levelIn, levelIn.getBiome(pos).value().getRegistryName(), targetBlockState, EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.FORAGING.get(), mainHandItem) > 0);
                 if (!itemStack.isEmpty()) {
                     Block.popResource(levelIn, pos, itemStack);

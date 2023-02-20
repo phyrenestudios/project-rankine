@@ -1,10 +1,66 @@
 {
-          "type": "rankine:element",
-          "name": "uranium",
-          "symbol": "U",
-          "color": 16777215,
-          "atomic": 92,
-          "potential": 0,
-          "items": ["T#forge:nuggets/uranium","T#forge:ingots/uranium","T#forge:storage_blocks/uranium"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "uranium",
+  "symbol": "U",
+  "color": 16777215,
+  "atomic": 92,
+  "potential": 0,
+  "items": ["T#forge:nuggets/uranium","T#forge:ingots/uranium","T#forge:storage_blocks/uranium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [4],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "damage": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.3],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [2.4]
+  },
+  "attackspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.05],
+    "b": [0],
+    "modifiers": ["MAX"],
+    "limit": [-1]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.125],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "heatresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.05],
+    "b": [0],
+    "modifiers": ["MAX"],
+    "limit": [-1]
+  },
+  "mininglevel": {
+    "breaks": [9,100],
+    "formulas": ["CONSTANT","CONSTANT"],
+    "a": [1,2],
+    "b": [0,0],
+    "modifiers": ["NONE","NONE"],
+    "limit": [0,0]
+  },
+  "toughness": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.008],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.06]
+  }
+}
