@@ -104,7 +104,7 @@ public class RankineEventHandler {
         AnvilUpdateHandler.specialEnchants(event);
     }
     @SubscribeEvent
-    public static void livingSetAttackTargetEvent(LivingChangeTargetEvent event) {
+    public static void livingSetAttackTargetEvent(LivingSetAttackTargetEvent event) {
         LivingSetAttackTargetHandler.onLivingSetAttackTarget(event);
     }
     @SubscribeEvent
