@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:poinnted_magnesitic_dripstone"
+          "name": "rankine:pointed_magnesitic_dripstone"
         }
       ],
       "conditions": [

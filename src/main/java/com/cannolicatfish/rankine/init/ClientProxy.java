@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.blocks.HollowLogBlock;
 import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerScreen;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineDripstone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
@@ -122,6 +123,10 @@ public class ClientProxy implements IProxy {
         }
         addCutout(RankineLists.LEAF_LITTERS);
 
+        for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
+            ItemBlockRenderTypes.setRenderLayer(Dripstone.getPointedDripstone(), RenderType.cutout());
+        }
+
         addCutout(RankineLists.METAL_DOORS);
         addCutout(RankineLists.METAL_TRAPDOORS);
         addCutout(RankineLists.ALLOY_LADDERS);
@@ -133,7 +138,6 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.NATIVE_ORES);
         addCutout(RankineLists.CRUSHING_ORES);
         addCutout(RankineLists.SPECIAL_ORES);
-        addCutout(RankineLists.POINTED_DRIPSTONES);
         addCutout(RankineLists.ASPHALT_BLOCKS);
         addCutout(RankineLists.RED_ASPHALT_BLOCKS);
         addCutout(RankineLists.GRAY_ASPHALT_BLOCKS);

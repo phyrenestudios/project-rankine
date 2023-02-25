@@ -1,9 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineSandstone;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
@@ -53,6 +51,16 @@ public class RankineLangProvider extends LanguageProvider {
                 add(blk, parseLangName(blk.getRegistryName().getPath()));
             }
         }
+        for (RankineCement block : RankineLists.RANKINE_CEMENTS) {
+            for (Block blk : block.getCementBlocks()) {
+                add(blk, parseLangName(blk.getRegistryName().getPath()));
+            }
+        }
+        for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
+            for (Block blk : Dripstone.getBlocks()) {
+                add(blk, parseLangName(blk.getRegistryName().getPath()));
+            }
+        }
 
         for (Block blk : Stream.of(
                 RankineLists.MISC_SLABS,
@@ -60,8 +68,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MISC_WALLS,
                 RankineLists.BALES,
                 RankineLists.MUSHROOM_BLOCKS,
-                RankineLists.CONCRETE_STAIRS,
-                RankineLists.CONCRETE_WALLS,
                 RankineLists.HOLLOW_LOGS,
                 RankineLists.LEAF_LITTERS,
                 RankineLists.VANILLA_BRICKS,
@@ -73,8 +79,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.BRICKS_SLAB,
                 RankineLists.BRICKS_STAIRS,
                 RankineLists.BRICKS_WALL,
-                RankineLists.POINTED_DRIPSTONES,
-                RankineLists.DRIPSTONES,
                 RankineLists.SHEETMETALS,
                 RankineLists.GEODES,
                 RankineLists.GLAZED_PORCELAIN_BLOCKS,
@@ -111,7 +115,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.ELECTROMAGNETS,
                 RankineLists.CRUSHING_HEADS,
                 RankineLists.LANTERNS,
-                RankineLists.QUARTER_SLABS,
                 RankineLists.ASPHALT_BLOCKS,
                 RankineLists.RED_ASPHALT_BLOCKS,
                 RankineLists.GRAY_ASPHALT_BLOCKS,

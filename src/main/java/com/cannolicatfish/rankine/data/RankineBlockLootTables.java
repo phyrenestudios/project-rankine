@@ -5,9 +5,7 @@ import com.cannolicatfish.rankine.blocks.HollowLogBlock;
 import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
 import com.cannolicatfish.rankine.blocks.LightningGlassBlock;
 import com.cannolicatfish.rankine.blocks.RankineLogBlock;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineSandstone;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.*;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineBookshelvesBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
@@ -94,14 +92,22 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 }
             }
         }
+        for (RankineCement Cement : RankineLists.RANKINE_CEMENTS) {
+            for (Block blk : Cement.getCementBlocks()) {
+                lootTables.put(blk, createBlockLootTable(blk));
+            }
+        }
+        for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
+            for (Block blk : Dripstone.getBlocks()) {
+                lootTables.put(blk, createBlockLootTable(blk));
+            }
+        }
 
         for (Block blk : Stream.of(
                 RankineLists.VANILLA_BRICKS,
                 RankineLists.VANILLA_BRICKS_PRESSURE_PLATES,
                 RankineLists.VANILLA_BRICKS_WALLS,
                 RankineLists.VANILLA_BRICKS_STAIRS,
-                RankineLists.POINTED_DRIPSTONES,
-                RankineLists.DRIPSTONES,
                 RankineLists.BRICKS,
                 RankineLists.BRICKS_STAIRS,
                 RankineLists.BRICKS_WALL,
@@ -122,7 +128,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.ROTATION_BLOCKS,
                 RankineLists.ELEMENT_BLOCKS,
-                RankineLists.QUARTER_SLABS,
                 RankineLists.ELECTROMAGNETS,
                 RankineLists.ALLOY_BARS,
                 RankineLists.ALLOY_SHEETMETALS,

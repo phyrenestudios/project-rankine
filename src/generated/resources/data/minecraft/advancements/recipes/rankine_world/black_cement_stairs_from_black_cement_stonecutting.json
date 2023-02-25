@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:black_cement_stairs_from_black_cement_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_black_cement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:black_cement"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:black_cement_stairs_from_black_cement_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_black_cement",
+      "has_the_recipe"
+    ]
+  ]
+}

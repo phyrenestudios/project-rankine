@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:pink_cement_wall_from_pink_cement_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_pink_cement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:pink_cement"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:pink_cement_wall_from_pink_cement_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pink_cement",
+      "has_the_recipe"
+    ]
+  ]
+}

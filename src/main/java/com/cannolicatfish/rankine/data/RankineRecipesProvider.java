@@ -1,8 +1,6 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.blocks.block_groups.RankineSandstone;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.*;
 import com.cannolicatfish.rankine.data.builders.AlloyCraftingRecipeBuilder;
 import com.cannolicatfish.rankine.data.builders.AlloyIngredient;
 import com.cannolicatfish.rankine.data.builders.BeehiveOvenRecipeBuilder;
@@ -247,10 +245,6 @@ public class RankineRecipesProvider extends RecipeProvider {
 
 
         //RANKINE
-        for (Block DRIP : RankineLists.DRIPSTONES) {
-            Block POINT = RankineLists.POINTED_DRIPSTONES.get(RankineLists.DRIPSTONES.indexOf(DRIP));
-            twoXtwo(consumer,DRIP.asItem(),POINT.asItem(),1,"has_ingredient",POINT.asItem());
-        }
         for (Block BLOCK : RankineLists.MISC_BLOCKS) {
             String baseName = BLOCK.getRegistryName().getPath();
             Block SLAB = RankineLists.MISC_SLABS.get(RankineLists.MISC_BLOCKS.indexOf(BLOCK));
@@ -268,44 +262,6 @@ public class RankineRecipesProvider extends RecipeProvider {
                 SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), WALL).unlockedBy("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_wall_from_"+baseName+"_stonecutting");
 
             }
-        }
-
-
-        ShapedRecipeBuilder.shaped(RankineItems.POLISHED_ROMAN_CONCRETE.get(), 4)
-                .pattern("##")
-                .pattern("##")
-                .define('#', RankineItems.ROMAN_CONCRETE.get())
-                .group("polished_stone")
-                .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(RankineItems.ROMAN_CONCRETE.get()))
-                .save(consumer);
-
-        ShapedRecipeBuilder.shaped(RankineItems.ROMAN_CONCRETE_BRICKS.get(), 2)
-                .pattern("#M")
-                .pattern("M#")
-                .define('#', RankineItems.ROMAN_CONCRETE.get())
-                .define('M', RankineItems.MORTAR.get())
-                .group("stone_bricks")
-                .unlockedBy("has_mortar", InventoryChangeTrigger.TriggerInstance.hasItems(RankineItems.MORTAR.get()))
-                .save(consumer);
-
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineItems.ROMAN_CONCRETE.get()), RankineItems.POLISHED_ROMAN_CONCRETE.get()).unlockedBy("has_ingredient", has(RankineItems.ROMAN_CONCRETE.get())).save(consumer, "rankine:polished_roman_concrete_stonecutting");
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineItems.ROMAN_CONCRETE.get()), RankineItems.ROMAN_CONCRETE_BRICKS.get()).unlockedBy("has_ingredient", has(RankineItems.ROMAN_CONCRETE.get())).save(consumer, "rankine:roman_concrete_bricks_stonecutting");
-
-
-        for (Block BLOCK : RankineLists.CONCRETE_BLOCKS) {
-            String baseName = BLOCK.getRegistryName().getPath();
-            Block SLAB = RankineLists.QUARTER_SLABS.get(RankineLists.CONCRETE_BLOCKS.indexOf(BLOCK));
-            Block STAIRS = RankineLists.CONCRETE_STAIRS.get(RankineLists.CONCRETE_BLOCKS.indexOf(BLOCK));
-            Block WALL = RankineLists.CONCRETE_WALLS.get(RankineLists.CONCRETE_BLOCKS.indexOf(BLOCK));
-            slab(consumer,SLAB.asItem(),BLOCK.asItem());
-            stairs(consumer,STAIRS.asItem(),BLOCK.asItem());
-            wall(consumer,WALL.asItem(),BLOCK.asItem());
-            ShapelessRecipeBuilder.shapeless(BLOCK).requires(SLAB).requires(SLAB).group("block_from_vslab").unlockedBy("has_ingredient", has(BLOCK)).save(consumer,"rankine:"+baseName+"_from_slab");
-            ShapelessRecipeBuilder.shapeless(BLOCK,3).requires(STAIRS).requires(STAIRS).requires(STAIRS).requires(STAIRS).group("block_from_stairs").unlockedBy("has_ingredient", has(BLOCK)).save(consumer,"rankine:"+baseName+"_from_stairs");
-
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), SLAB, 2).unlockedBy("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_slab_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), STAIRS).unlockedBy("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_stairs_from_"+baseName+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(BLOCK), WALL).unlockedBy("has_ingredient", has(BLOCK)).save(consumer, "rankine:"+baseName+"_wall_from_"+baseName+"_stonecutting");
         }
 
         ShapedRecipeBuilder.shaped(Items.FLINT_AND_STEEL, 1).pattern("P ").pattern(" F").define('P', RankineItems.PYRITE.get()).define('F', RankineTags.Items.FLINT).unlockedBy("has_ingredient", has(RankineItems.PYRITE.get())).save(consumer, "rankine:flint_and_steel_from_pyrite");
@@ -842,6 +798,61 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RankineBlocks.DESERT_SANDSTONE.getSandstone(), 1).pattern("SS").pattern("SS").define('S', RankineBlocks.DESERT_SAND.get()).unlockedBy("has_ingredient", has(RankineBlocks.DESERT_SAND.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RankineBlocks.SOUL_SANDSTONE.getSandstone(), 1).pattern("SS").pattern("SS").define('S', Blocks.SOUL_SAND).unlockedBy("has_ingredient", has(Blocks.SOUL_SAND)).save(consumer);
 
+        for (RankineCement Cement : RankineLists.RANKINE_CEMENTS) {
+            Block CEMENT = Cement.getCementBlock();
+            Block CEMENT_SLAB = Cement.getCementSlab();
+            Block CEMENT_STAIRS = Cement.getCementStairs();
+            Block CEMENT_WALL = Cement.getCementWall();
+            slab(consumer,CEMENT_SLAB,CEMENT, "cement_slab");
+            stairs(consumer,CEMENT_STAIRS,CEMENT, "cement_stairs");
+            wall(consumer,CEMENT_WALL,CEMENT, "cement_wall");
+            stonecutterResultFromBase(consumer, CEMENT_SLAB, CEMENT, 2);
+            stonecutterResultFromBase(consumer, CEMENT_STAIRS, CEMENT);
+            stonecutterResultFromBase(consumer, CEMENT_WALL, CEMENT);
+            slabReconstruct(consumer, CEMENT_SLAB, CEMENT);
+            stairsReconstruct(consumer, CEMENT_STAIRS, CEMENT);
+        }
+        stonecutterResultFromBase(consumer, RankineBlocks.POLISHED_ROMAN_CONCRETE.getCementBlock(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, RankineBlocks.POLISHED_ROMAN_CONCRETE.getCementSlab(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, RankineBlocks.POLISHED_ROMAN_CONCRETE.getCementStairs(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, RankineBlocks.POLISHED_ROMAN_CONCRETE.getCementWall(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, RankineBlocks.ROMAN_CONCRETE_BRICKS.getCementBlock(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, RankineBlocks.ROMAN_CONCRETE_BRICKS.getCementSlab(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, RankineBlocks.ROMAN_CONCRETE_BRICKS.getCementStairs(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, RankineBlocks.ROMAN_CONCRETE_BRICKS.getCementWall(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
+        //other stonecutter recipes
+
+        ShapedRecipeBuilder.shaped(RankineBlocks.POLISHED_ROMAN_CONCRETE.getCementBlock(), 4)
+                .pattern("##")
+                .pattern("##")
+                .define('#', RankineBlocks.ROMAN_CONCRETE.getCementBlock())
+                .group("polished_stone")
+                .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(RankineBlocks.ROMAN_CONCRETE.getCementBlock()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RankineBlocks.ROMAN_CONCRETE_BRICKS.getCementBlock(), 2)
+                .pattern("#M")
+                .pattern("M#")
+                .define('#', RankineBlocks.ROMAN_CONCRETE.getCementBlock())
+                .define('M', RankineItems.MORTAR.get())
+                .group("stone_bricks")
+                .unlockedBy("has_mortar", InventoryChangeTrigger.TriggerInstance.hasItems(RankineItems.MORTAR.get()))
+                .save(consumer);
+
+
+        for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
+            twoXtwo(consumer, Dripstone.getDripstone(), Dripstone.getPointedDripstone(),1,"has_ingredient", Dripstone.getPointedDripstone().asItem());
+        }
+
+
+
+
+
+
+
+
+
+
         for (Block BRICK : RankineLists.BRICKS) {
             String baseName = BRICK.getRegistryName().getPath();
             Block SLAB = RankineLists.BRICKS_SLAB.get(RankineLists.BRICKS.indexOf(BRICK));
@@ -1074,6 +1085,13 @@ public class RankineRecipesProvider extends RecipeProvider {
         alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.of(RankineItems.CUPRONICKEL_INGOT.get()), "", null, null, 16777215),RankineItems.CUPRONICKEL_INGOT.get(),11946807, "item.rankine.cupronickel_alloying", "rankine:cupronickel",null);
         alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.of(RankineItems.STEEL_INGOT.get()), "", null, null, 16777215),RankineItems.STEEL_INGOT.get(),7634311, "item.rankine.steel_alloying", "rankine:steel",null);
         alloyRod(consumer, RankineItems.ALLOY_ROD.get(), new AlloyIngredient(Ingredient.of(RankineItems.FERROCERIUM_INGOT.get()), "", null, null, 16777215),RankineItems.FERROCERIUM_INGOT.get(),7433071, "item.rankine.ferrocerium_alloying", "rankine:ferrocerium",null);
+    }
+
+    private void slabReconstruct(Consumer<FinishedRecipe> consumer, ItemLike slabBlock, ItemLike mainBLock) {
+        ShapelessRecipeBuilder.shapeless(mainBLock).requires(slabBlock).requires(slabBlock).group("block_from_slab").unlockedBy("has_ingredient", has(mainBLock)).save(consumer,"rankine:"+mainBLock.asItem().getRegistryName().getPath()+"_from_slab");
+    }
+    private void stairsReconstruct(Consumer<FinishedRecipe> consumer, ItemLike stairsBlock, ItemLike mainBLock) {
+        ShapelessRecipeBuilder.shapeless(mainBLock,3).requires(stairsBlock).requires(stairsBlock).requires(stairsBlock).requires(stairsBlock).group("block_from_stairs").unlockedBy("has_ingredient", has(mainBLock)).save(consumer,"rankine:"+mainBLock.asItem().getRegistryName().getPath()+"_from_stairs");
     }
 
     private void slab(Consumer<FinishedRecipe> consumer, ItemLike output, ItemLike input, String group) {

@@ -3,9 +3,7 @@ package com.cannolicatfish.rankine.data;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.BaseAsphaltBlock;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineSandstone;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.*;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.MetalLadderBlock;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapBlock;
@@ -123,9 +121,19 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             slabBlock(Sandstone.getCutSandstoneSlab(), false);
             simpleBlock(Sandstone.getChiseledSandstone(),models().cubeColumn("chiseled_"+Sandstone.getBaseName(),blockTexture(Sandstone.getChiseledSandstone()),getBlockRSL("smooth_"+Sandstone.getBaseName())));
         }
+        for (RankineCement Cement : RankineLists.RANKINE_CEMENTS) {
+            simpleBlock(Cement.getCementBlock());
+            quarterSlab(Cement.getCementSlab());
+            stairsBlock(Cement.getCementStairs(), false);
+            wallBlock(Cement.getCementWall(), false);
+        }
+        for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
+            simpleBlock(Dripstone.getDripstone());
+            createPointedDripstone(Dripstone.getPointedDripstone());
+        }
+
 
         for (Block blk : Stream.of(
-                RankineLists.DRIPSTONES,
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
@@ -184,10 +192,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : Stream.of(RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabBlock(blk,false);
         }
-        for (Block blk : Stream.of(RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.MISC_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             wallBlock(blk,false);
         }
-        for (Block blk : Stream.of(RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.MISC_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsBlock(blk,false);
         }
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_SLABS,RankineLists.BRICKS_SLAB).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -330,11 +338,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
 
          */
-        for (Block BLK : RankineLists.POINTED_DRIPSTONES) {
-            createPointedDripstone(BLK);
-        }
-
-
         for (Block CROP : RankineLists.CROPS_SINGLE) {
             getVariantBuilder(CROP).forAllStates(state -> {
                 int i = state.getValue(CropBlock.AGE);
@@ -402,10 +405,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             trapdoorBlock((RankineMetalTrapdoor) blk, new ResourceLocation("rankine","block/"+name), true);
         }
 
-
-        for (Block blk : RankineLists.QUARTER_SLABS) {
-            quarterSlab(blk);
-        }
         for (Block blk : RankineLists.HOLLOW_LOGS) {
             hollowLog(blk, "minecraft");
         }
