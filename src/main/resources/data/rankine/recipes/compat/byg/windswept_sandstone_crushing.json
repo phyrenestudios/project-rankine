@@ -1,0 +1,60 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:windswept_sandstone",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "byg:windswept_sandstone"
+        },
+        "guaranteed": [
+          {
+            "item": "rankine:breccia"
+          }
+        ],
+        "outputs": [
+          {
+            "weight": 80,
+            "remove": false
+          },
+          {
+            "item": "byg:windswept_sand",
+            "weight": 40,
+            "remove": false
+          },
+          {
+            "item": "rankine:plagioclase_feldspar",
+            "weight": 22,
+            "remove": false
+          },
+          {
+            "item": "minecraft:quartz",
+            "weight": 16,
+            "remove": false
+          },
+          {
+            "item": "rankine:sanidine",
+            "weight": 6,
+            "remove": false
+          },
+          {
+            "item": "rankine:tourmaline",
+            "weight": 4,
+            "tier": "minecraft:diamond"
+          }
+        ]
+      }
+    }
+  ]
+}

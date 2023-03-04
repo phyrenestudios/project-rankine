@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 12800,
+  "input1": {
+    "item": "rankine:graphite_block"
+  },
+  "input2": {
+    "item": "rankine:graphite_block"
+  },
+  "fluidInput": {
+    "fluid": "rankine:hydrobromic_acid"
+  },
+  "gasInput": {
+    "item": "rankine:argon_gas_bottle"
+  },
+  "result1": {
+    "item": "rankine:lonsdaleite_diamond"
+  }
+}

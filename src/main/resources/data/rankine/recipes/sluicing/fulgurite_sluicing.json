@@ -1,0 +1,43 @@
+{
+  "type": "rankine:sluicing",
+  "input": {
+    "item": "rankine:fulgurite"
+  },
+  "tool": {
+    "tag": "rankine:gold_pans"
+  },
+  "outputs": [
+    {
+      "item": "rankine:green_tektite",
+      "weight": 16
+    },
+    {
+      "item": "rankine:gray_tektite",
+      "weight": 16
+    },
+    {
+      "item": "rankine:black_tektite",
+      "weight": 16
+    },
+    {
+      "item": "rankine:brown_tektite",
+      "weight": 16
+    },
+    {
+      "item": "minecraft:sand",
+      "weight": 2
+    },
+    {
+      "item": "minecraft:dirt",
+      "weight": 2
+    },
+    {
+      "item": "minecraft:clay",
+      "weight": 2
+    },
+    {
+      "item": "rankine:dark_gravel",
+      "weight": 2
+    }
+  ]
+}

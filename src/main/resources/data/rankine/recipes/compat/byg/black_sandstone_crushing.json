@@ -1,0 +1,60 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:black_sandstone",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "byg:black_sandstone"
+        },
+        "guaranteed": [
+          {
+            "item": "rankine:breccia"
+          }
+        ],
+        "outputs": [
+          {
+            "weight": 80,
+            "remove": false
+          },
+          {
+            "item": "byg:black_sand",
+            "weight": 40,
+            "remove": false
+          },
+          {
+            "item": "rankine:pyroxene",
+            "weight": 20,
+            "remove": false
+          },
+          {
+            "item": "minecraft:quartz",
+            "weight": 15,
+            "remove": false
+          },
+          {
+            "item": "minecraft:iron_nugget",
+            "weight": 6,
+            "remove": false
+          },
+          {
+            "item": "rankine:tourmaline",
+            "weight": 6,
+            "tier": "minecraft:iron"
+          }
+        ]
+      }
+    }
+  ]
+}

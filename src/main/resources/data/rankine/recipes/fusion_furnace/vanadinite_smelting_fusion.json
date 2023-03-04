@@ -10,6 +10,9 @@
   "result1": {
     "item":"rankine:vanadium_pentoxide"
   },
+  "result2": {
+    "item":"rankine:lead_ingot"
+  },
   "gasInput": {
     "item": "rankine:hydrogen_gas_bottle"
   },

@@ -1,0 +1,62 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:soapstone",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "byg:soapstone"
+        },
+        "guaranteed": [
+          {
+            "item": "rankine:skarn"
+          }
+        ],
+        "outputs": [
+          {
+            "weight": 80,
+            "remove": false
+          },
+          {
+            "item": "rankine:talc",
+            "weight": 30,
+            "remove": false
+          },
+          {
+            "item": "rankine:amphibole",
+            "weight": 15,
+            "remove": false
+          },
+          {
+            "item": "rankine:chlorite",
+            "weight": 8,
+            "remove": false
+          },
+          {
+            "item": "rankine:serpentine",
+            "weight": 6,
+            "tier": "minecraft:iron",
+            "remove": false
+          },
+          {
+            "item": "rankine:magnesia",
+            "weight": 2,
+            "remove": false,
+            "tier": "minecraft:iron"
+          }
+        ]
+      }
+    }
+  ]
+}

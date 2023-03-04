@@ -1,0 +1,34 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "botania",
+              "type": "forge:mod_loaded"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "botania:mana_infusion",
+        "catalyst": {
+          "type": "block",
+          "block": "botania:conjuration_catalyst"
+        },
+        "input": {
+          "item": "rankine:cork_oak_leaves"
+        },
+        "mana": 2000,
+        "output": {
+          "count": 2,
+          "item": "rankine:cork_oak_leaves"
+        }
+      }
+    }
+  ]
+}
+

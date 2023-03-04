@@ -1,0 +1,39 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "farmersdelight",
+              "type": "forge:mod_loaded"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "farmersdelight:cutting",
+        "ingredients": [
+          {
+            "item": "rankine:western_hemlock_log"
+          }
+        ],
+        "tool": {
+          "type": "farmersdelight:tool_action",
+          "action": "axe_strip"
+        },
+        "result": [
+          {
+            "item": "rankine:stripped_western_hemlock_log"
+          },
+          {
+            "item": "rankine:inner_bark"
+          }
+        ],
+        "sound": "minecraft:item.axe.strip"
+      }
+    }
+  ]
+}

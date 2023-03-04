@@ -34,6 +34,11 @@
       "tier": "minecraft:iron"
     },
     {
+      "item": "minecraft:amethyst_shard",
+      "weight": 6,
+      "tier": "minecraft:iron"
+    },
+    {
       "item": "rankine:rhodochrosite",
       "weight": 6,
       "tier": "minecraft:iron"

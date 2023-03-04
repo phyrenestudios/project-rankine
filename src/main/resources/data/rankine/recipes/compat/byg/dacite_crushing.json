@@ -1,0 +1,68 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:dacite",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "byg:dacite"
+        },
+        "guaranteed": [
+          {
+            "item": "byg:dacite_cobblestone"
+          }
+        ],
+        "outputs": [
+          {
+            "weight": 80,
+            "remove": false
+          },
+          {
+            "item": "rankine:amphibole",
+            "weight": 40,
+            "remove": false
+          },
+          {
+            "item": "rankine:labradorite",
+            "weight": 20,
+            "remove": false
+          },
+          {
+            "item": "minecraft:quartz",
+            "weight": 20,
+            "remove": false
+          },
+          {
+            "item": "rankine:biotite",
+            "weight": 10,
+            "tier": "minecraft:stone",
+            "remove": false
+          },
+          {
+            "item": "rankine:talc",
+            "weight": 8,
+            "tier": "minecraft:iron",
+            "remove": false
+          },
+          {
+            "item": "rankine:serpentine",
+            "weight": 6,
+            "tier": "minecraft:diamond",
+            "remove": false
+          }
+        ]
+      }
+    }
+  ]
+}
