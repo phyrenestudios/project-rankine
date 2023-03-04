@@ -2,8 +2,10 @@
   "replace": false,
   "values": [
     "rankine:clay_bricks_wall",
-    "rankine:porcelain_clay_bricks_wall",
+    "rankine:kaolinite_bricks_wall",
+    "rankine:halloysite_bricks_wall",
     "rankine:fire_clay_bricks_wall",
+    "rankine:porcelain_clay_bricks_wall",
     "rankine:refractory_bricks_wall",
     "rankine:high_refractory_bricks_wall",
     "rankine:ultra_high_refractory_bricks_wall",

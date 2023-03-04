@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:magenta_cement_wall_from_magenta_cement_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_magenta_cement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:magenta_cement"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:magenta_cement_wall_from_magenta_cement_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_magenta_cement",
+      "has_the_recipe"
+    ]
+  ]
+}

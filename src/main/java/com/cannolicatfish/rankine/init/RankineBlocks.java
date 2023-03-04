@@ -236,6 +236,16 @@ public class RankineBlocks {
     public static final RankineCement POLISHED_ROMAN_CONCRETE = RankineCement.newCementReg("polished_roman_concrete", DyeColor.BROWN);
     public static final RankineCement ROMAN_CONCRETE_BRICKS = RankineCement.newCementReg("roman_concrete_bricks", DyeColor.BROWN);
 
+    //BRICKS
+    public static final RankineBricks CLAY_BRICKS = RankineBricks.newBricksReg("clay_bricks", MaterialColor.CLAY);
+    public static final RankineBricks KAOLINITE_CLAY_BRICKS = RankineBricks.newBricksReg("kaolinite_bricks", MaterialColor.TERRACOTTA_WHITE);
+    public static final RankineBricks HALLOYSITE_BRICKS = RankineBricks.newBricksReg("halloysite_bricks", MaterialColor.TERRACOTTA_YELLOW);
+    public static final RankineBricks PORCELAIN_CLAY_BRICKS = RankineBricks.newBricksReg("fire_clay_bricks", MaterialColor.TERRACOTTA_WHITE);
+    public static final RankineBricks FIRE_CLAY_BRICKS = RankineBricks.newBricksReg("porcelain_clay_bricks", MaterialColor.COLOR_BROWN);
+    public static final RankineBricks REFRACTORY_BRICKS = RankineBricks.newBricksReg("refractory_bricks", MaterialColor.TERRACOTTA_BROWN);
+    public static final RankineBricks HIGH_REFRACTORY_BRICKS = RankineBricks.newBricksReg("high_refractory_bricks", MaterialColor.TERRACOTTA_GRAY);
+    public static final RankineBricks ULTRA_HIGH_REFRACTORY_BRICKS = RankineBricks.newBricksReg("ultra_high_refractory_bricks", MaterialColor.TERRACOTTA_CYAN);
+
     //DRIPSTONES
     public static final RankineDripstone FERRIC_DRIPSTONE = RankineDripstone.newDripstoneReg("ferric_dripstone", MaterialColor.STONE);
     public static final RankineDripstone MAGNESITIC_DRIPSTONE = RankineDripstone.newDripstoneReg("magnesitic_dripstone", MaterialColor.STONE);
@@ -276,33 +286,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BRIDGMANITE_BLOCK = BLOCKS.register("bridgmanite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> FERROPERICLASE_BLOCK = BLOCKS.register("ferropericlase_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> PEROVSKITE_BLOCK = BLOCKS.register("perovskite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 5.0F)));
-
-
-    public static final RegistryObject<Block> CLAY_BRICKS = BLOCKS.register("clay_bricks", () -> new RankineBricksBlock(DEF_STONE));
-    public static final RegistryObject<Block> FIRE_CLAY_BRICKS = BLOCKS.register("fire_clay_bricks", () -> new RankineBricksBlock(DEF_STONE));
-    public static final RegistryObject<Block> PORCELAIN_CLAY_BRICKS = BLOCKS.register("porcelain_clay_bricks", () -> new RankineBricksBlock(DEF_STONE));
-    public static final RegistryObject<Block> REFRACTORY_BRICKS = BLOCKS.register("refractory_bricks", () -> new RankineBricksBlock(DEF_STONE));
-    public static final RegistryObject<Block> HIGH_REFRACTORY_BRICKS = BLOCKS.register("high_refractory_bricks", () -> new RankineBricksBlock(DEF_STONE));
-    public static final RegistryObject<Block> ULTRA_HIGH_REFRACTORY_BRICKS = BLOCKS.register("ultra_high_refractory_bricks", () -> new RankineBricksBlock(DEF_STONE));
-    public static final RegistryObject<Block> CLAY_BRICKS_WALL = BLOCKS.register("clay_bricks_wall", () -> new RankineWallBlock(DEF_STONE));
-    public static final RegistryObject<Block> FIRE_CLAY_BRICKS_WALL = BLOCKS.register("fire_clay_bricks_wall", () -> new RankineWallBlock(DEF_STONE));
-    public static final RegistryObject<Block> PORCELAIN_CLAY_BRICKS_WALL = BLOCKS.register("porcelain_clay_bricks_wall", () -> new RankineWallBlock(DEF_STONE));
-    public static final RegistryObject<Block> REFRACTORY_BRICKS_WALL = BLOCKS.register("refractory_bricks_wall", () -> new RankineWallBlock(DEF_STONE));
-    public static final RegistryObject<Block> HIGH_REFRACTORY_BRICKS_WALL = BLOCKS.register("high_refractory_bricks_wall", () -> new RankineWallBlock(DEF_STONE));
-    public static final RegistryObject<Block> ULTRA_HIGH_REFRACTORY_BRICKS_WALL = BLOCKS.register("ultra_high_refractory_bricks_wall", () -> new RankineWallBlock(DEF_STONE));
-    public static final RegistryObject<Block> CLAY_BRICKS_SLAB = BLOCKS.register("clay_bricks_slab", () -> new RankineSlabBlock(DEF_STONE));
-    public static final RegistryObject<Block> FIRE_CLAY_BRICKS_SLAB = BLOCKS.register("fire_clay_bricks_slab", () -> new RankineSlabBlock(DEF_STONE));
-    public static final RegistryObject<Block> PORCELAIN_CLAY_BRICKS_SLAB = BLOCKS.register("porcelain_clay_bricks_slab", () -> new RankineSlabBlock(DEF_STONE));
-    public static final RegistryObject<Block> REFRACTORY_BRICKS_SLAB = BLOCKS.register("refractory_bricks_slab", () -> new RankineSlabBlock(DEF_STONE));
-    public static final RegistryObject<Block> HIGH_REFRACTORY_BRICKS_SLAB = BLOCKS.register("high_refractory_bricks_slab", () -> new RankineSlabBlock(DEF_STONE));
-    public static final RegistryObject<Block> ULTRA_HIGH_REFRACTORY_BRICKS_SLAB = BLOCKS.register("ultra_high_refractory_bricks_slab", () -> new RankineSlabBlock(DEF_STONE));
-    public static final RegistryObject<Block> CLAY_BRICKS_STAIRS = BLOCKS.register("clay_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE));
-    public static final RegistryObject<Block> FIRE_CLAY_BRICKS_STAIRS = BLOCKS.register("fire_clay_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE));
-    public static final RegistryObject<Block> PORCELAIN_CLAY_BRICKS_STAIRS = BLOCKS.register("porcelain_clay_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE));
-    public static final RegistryObject<Block> REFRACTORY_BRICKS_STAIRS = BLOCKS.register("refractory_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE));
-    public static final RegistryObject<Block> HIGH_REFRACTORY_BRICKS_STAIRS = BLOCKS.register("high_refractory_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE));
-    public static final RegistryObject<Block> ULTRA_HIGH_REFRACTORY_BRICKS_STAIRS = BLOCKS.register("ultra_high_refractory_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE));
-
 
     //public static final RegistryObject<Block> FIBER_BED = BLOCKS.register("fiber_bed", () -> new FiberBedBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
 
@@ -577,8 +560,10 @@ public class RankineBlocks {
 
     //public static final RegistryObject<Block> QUARRY_BARRIER = BLOCKS.register("quarry_barrier", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(5.0F, 20.0F)));
     public static final RegistryObject<Block> BONE_CHAR_BLOCK = BLOCKS.register("bone_char_block", () -> new RotatedPillarBlock(Block.Properties.of(Material.STONE).sound(SoundType.BONE_BLOCK).strength(2.0F)));
-    public static final RegistryObject<Block> FIRE_CLAY = BLOCKS.register("fire_clay", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(1.0F, 3.0F)));
-    public static final RegistryObject<Block> PORCELAIN_CLAY = BLOCKS.register("porcelain_clay", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(1.0F, 3.0F)));
+    public static final RegistryObject<Block> FIRE_CLAY = BLOCKS.register("fire_clay", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(0.6F)));
+    public static final RegistryObject<Block> PORCELAIN_CLAY = BLOCKS.register("porcelain_clay", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(0.6F)));
+    public static final RegistryObject<Block> KAOLINITE_BLOCK = BLOCKS.register("kaolinite_block", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(0.6F)));
+    public static final RegistryObject<Block> HALLOYSITE_BLOCK = BLOCKS.register("halloysite_block", () -> new Block(Block.Properties.of(Material.CLAY).sound(SoundType.GRAVEL).strength(0.6F)));
     public static final RegistryObject<Block> PORCELAIN = BLOCKS.register("porcelain", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.0F, 3.0F)));
 
     public static final RegistryObject<Block> WHITE_GLAZED_PORCELAIN = BLOCKS.register("white_glazed_porcelain", () -> new GlazedPorcelainBlock(16777215));
@@ -1222,7 +1207,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RESIN_CAULDRON = BLOCKS.register("resin_cauldron", ResinCauldronBlock::new);
     public static final RegistryObject<Block> JUGLONE_CAULDRON = BLOCKS.register("juglone_cauldron", JugloneCauldronBlock::new);
 
-    public static final RegistryObject<Block> BEEHIVE_OVEN_PIT = BLOCKS.register("beehive_oven_pit", () -> new BeehiveOvenPitBlock(REFRACTORY_BRICKS.get(), Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
+    public static final RegistryObject<Block> BEEHIVE_OVEN_PIT = BLOCKS.register("beehive_oven_pit", () -> new BeehiveOvenPitBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> MIXING_BARREL = BLOCKS.register("mixing_barrel", () -> new MixingBarrelBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).noOcclusion()));
     public static final RegistryObject<Block> CRUCIBLE_BLOCK = BLOCKS.register("crucible", () -> new CrucibleBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).lightLevel(litCrucibleEmission(13))));
     public static final RegistryObject<Block> MATERIAL_TESTING_TABLE = BLOCKS.register("material_testing_table", () -> new MaterialTestingTableBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.0F)));

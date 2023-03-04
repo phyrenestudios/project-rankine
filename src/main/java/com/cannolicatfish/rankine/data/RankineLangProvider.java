@@ -56,6 +56,11 @@ public class RankineLangProvider extends LanguageProvider {
                 add(blk, parseLangName(blk.getRegistryName().getPath()));
             }
         }
+        for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
+            for (Block blk : Bricks.getBricksBlocks()) {
+                add(blk, parseLangName(blk.getRegistryName().getPath()));
+            }
+        }
         for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
             for (Block blk : Dripstone.getBlocks()) {
                 add(blk, parseLangName(blk.getRegistryName().getPath()));
@@ -75,10 +80,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.VANILLA_BRICKS_WALLS,
                 RankineLists.VANILLA_BRICKS_STAIRS,
                 RankineLists.VANILLA_BRICKS_PRESSURE_PLATES,
-                RankineLists.BRICKS,
-                RankineLists.BRICKS_SLAB,
-                RankineLists.BRICKS_STAIRS,
-                RankineLists.BRICKS_WALL,
                 RankineLists.SHEETMETALS,
                 RankineLists.GEODES,
                 RankineLists.GLAZED_PORCELAIN_BLOCKS,
@@ -146,6 +147,8 @@ public class RankineLangProvider extends LanguageProvider {
                 add(blk, parseLangName("block_of_"+blk.getRegistryName().getPath().replace("_block","")));
             }
         }
+        add(RankineBlocks.KAOLINITE_BLOCK.get(),"Block of Kaolinite");
+        add(RankineBlocks.HALLOYSITE_BLOCK.get(),"Block of Halloysite");
 
         for (Block blk : RankineLists.ALLOY_BLOCKS) {
             if (blk != RankineBlocks.ALLOY_BLOCK.get()) {
@@ -349,6 +352,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.FIRE_CLAY_BALL.get(),
             RankineItems.PORCELAIN_CLAY_BALL.get(),
             RankineItems.KAOLINITE.get(),
+            RankineItems.HALLOYSITE.get(),
             RankineItems.BONE_CHAR.get(),
             RankineItems.COPPER_NUGGET.get(),
             RankineItems.NETHERITE_NUGGET.get(),
@@ -964,7 +968,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_flint_pickaxe.title", "Sharp Beginnings");
         add("rankine.advancements.story.craft_flint_pickaxe.description", "Construct a Flint Pickaxe (or stone) to begin mining quickly");
         add("rankine.advancements.story.craft_refractory_bricks.title", "Another Brick in the Wall");
-        add("rankine.advancements.story.craft_refractory_bricks.description", "Make Refractory Brick by finding clay and using mortar");
+        add("rankine.advancements.story.craft_refractory_bricks.description", "Make Refractory Brick by finding/crafting fire clay and mortar");
         add("rankine.advancements.story.craft_high_refractory_bricks.title", "Another Other Brick in the Wall");
         add("rankine.advancements.story.craft_high_refractory_bricks.description", "Make High Refractory Bricks for crafting purposes or to upgrade the beehive oven");
         add("rankine.advancements.story.craft_ultra_high_refractory_bricks.title", "Another Another Another");
@@ -1028,6 +1032,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_bandage.description", "Heal some minor damage with a bandage");
         add("rankine.advancements.story.craft_trampoline.title", "Boing!");
         add("rankine.advancements.story.craft_trampoline.description", "Make a trampoline to launch high into the air");
+        add("rankine.advancements.story.get_hematite.title", "Hema-hema-he ma tite");
+        add("rankine.advancements.story.get_hematite.description", "Use tier iron or higher hammers to make use of the most abundant iron ore");
         add("rankine.advancements.story.get_meteoric_iron.title", "Iron from Space");
         add("rankine.advancements.story.get_meteoric_iron.description", "Find a meteorite and crush the ore in it to get meteoric iron, a native alloy of invar");
         add("rankine.advancements.story.get_ironstone.title", "Iron in the Rough");
@@ -1590,10 +1596,12 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_sediments.silts.silt",  "A smaller particle size than sand. It is used in many similar applications. Found along rivers.");
 
         add("rankine.journal.cat_sediments.clays.name", "Clays");
-        add("rankine.journal.cat_sediments.clays.text1", "");
-        add("rankine.journal.cat_sediments.clays.clay", "Found in the usual locations. Namely in River and Swamp beds and in Lush Caves.");
-        add("rankine.journal.cat_sediments.clays.fire_clay", "A special type of clay that can withstand high temperatures. Mainly found under various coal ore veins and on occasion freely in stone.");
-        add("rankine.journal.cat_sediments.clays.porcelain_clay", "A white clay mixture composed mainly of kaolinite. Crafted in the Mixing Barrel.");
+        add("rankine.journal.cat_sediments.clays.text1", "Clay minerals are very small sediments. They are one of the foundations of soil and are used in many construction applications.");
+        add("rankine.journal.cat_sediments.clays.clay", "Found in the usual locations. Mainly in River and Swamp beds and in Lush Caves.");
+        add("rankine.journal.cat_sediments.clays.kaolinite", "A near white clay. Obtained from crushing Kaolin and a few other sources.");
+        add("rankine.journal.cat_sediments.clays.halloysite", "Identical composition to Kaolinite, but with a different structure that makes it appear yellowish. Obtained from crushing Kaolin and a few other sources.");
+        add("rankine.journal.cat_sediments.clays.fire_clay", "A special type of clay with high fusion temperature. Used for refractory applications. Naturally occurs in association with coal veins. Can be crafted in the Mixing Barrel.");
+        add("rankine.journal.cat_sediments.clays.porcelain_clay", "A manufactured white clay mixture. Used to create very white porcelain blocks. Crafted in the Mixing Barrel.");
 
         add("rankine.journal.cat_sediments.soils.name", "Soils");
         add("rankine.journal.cat_sediments.soils.text1", "");

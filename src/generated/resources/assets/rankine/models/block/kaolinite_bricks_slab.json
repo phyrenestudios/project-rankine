@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "rankine:block/kaolinite_bricks",
+    "bottom": "rankine:block/kaolinite_bricks",
+    "top": "rankine:block/kaolinite_bricks"
+  }
+}

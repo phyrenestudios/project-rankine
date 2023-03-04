@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:gray_cement_stairs_from_gray_cement_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_gray_cement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:gray_cement"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:gray_cement_stairs_from_gray_cement_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gray_cement",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:purple_cement_slab_from_purple_cement_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_purple_cement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:purple_cement"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:purple_cement_slab_from_purple_cement_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_purple_cement",
+      "has_the_recipe"
+    ]
+  ]
+}

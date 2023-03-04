@@ -127,6 +127,12 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             stairsBlock(Cement.getCementStairs(), false);
             wallBlock(Cement.getCementWall(), false);
         }
+        for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
+            fancyBricksBlock(Bricks.getBricksBlock());
+            slabBlock(Bricks.getBricksSlab(), true);
+            stairsBlock(Bricks.getBricksStairs(), true);
+            wallBlock(Bricks.getBricksWall(), true);
+        }
         for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
             simpleBlock(Dripstone.getDripstone());
             createPointedDripstone(Dripstone.getPointedDripstone());
@@ -152,6 +158,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 RankineBlocks.KAOLIN.get(),
                 RankineBlocks.FIRE_CLAY.get(),
                 RankineBlocks.PORCELAIN_CLAY.get(),
+                RankineBlocks.KAOLINITE_BLOCK.get(),
+                RankineBlocks.HALLOYSITE_BLOCK.get(),
                 RankineBlocks.TINDER_CONK_MUSHROOM_BLOCK.get(),
                 RankineBlocks.LIONS_MANE_MUSHROOM_BLOCK.get(),
                 RankineBlocks.OYSTER_MUSHROOM_BLOCK.get(),
@@ -186,9 +194,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .partialState().with(LightningGlassBlock.GLOWING, false).modelForState().modelFile(models().cubeAll(blk.getRegistryName().getPath(), getBlockRSL(blk))).addModel()
                     .partialState().with(LightningGlassBlock.GLOWING, true).modelForState().modelFile(models().cubeAll(blk.getRegistryName().getPath()+"_glowing", getBlockRSL(blk.getRegistryName().getPath()+"_glowing"))).addModel();
         }
-        for (Block blk : RankineLists.BRICKS) {
-            fancyBricksBlock(blk);
-        }
         for (Block blk : Stream.of(RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabBlock(blk,false);
         }
@@ -198,13 +203,13 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : Stream.of(RankineLists.MISC_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsBlock(blk,false);
         }
-        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_SLABS,RankineLists.BRICKS_SLAB).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabBlock(blk,true);
         }
-        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_WALLS,RankineLists.BRICKS_WALL).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             wallBlock(blk,true);
         }
-        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_STAIRS,RankineLists.BRICKS_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsBlock(blk,true);
         }
         for (Block blk : Stream.of(RankineLists.MUD_BLOCKS,RankineLists.SOIL_BLOCKS,RankineLists.COARSE_SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {

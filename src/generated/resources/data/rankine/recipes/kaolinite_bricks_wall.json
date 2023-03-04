@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bricks_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:kaolinite_bricks"
+    }
+  },
+  "result": {
+    "item": "rankine:kaolinite_bricks_wall",
+    "count": 6
+  }
+}

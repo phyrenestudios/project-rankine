@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:cut_desert_sandstone_from_desert_sandstone_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_desert_sandstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:desert_sandstone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:cut_desert_sandstone_from_desert_sandstone_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_desert_sandstone",
+      "has_the_recipe"
+    ]
+  ]
+}

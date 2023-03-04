@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:roman_concrete_wall_from_roman_concrete_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_roman_concrete": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:roman_concrete"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:roman_concrete_wall_from_roman_concrete_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_roman_concrete",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -215,9 +215,9 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(RankineItems.FLINT_SHOVEL.get()), FORAGING);
 
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get()), BEEHIVE_OVEN);
-        registry.addRecipeCatalyst(new ItemStack(RankineItems.REFRACTORY_BRICKS.get()),BEEHIVE_OVEN);
-        registry.addRecipeCatalyst(new ItemStack(RankineItems.HIGH_REFRACTORY_BRICKS.get()),BEEHIVE_OVEN);
-        registry.addRecipeCatalyst(new ItemStack(RankineItems.ULTRA_HIGH_REFRACTORY_BRICKS.get()),BEEHIVE_OVEN);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.REFRACTORY_BRICKS.getBricksBlock()),BEEHIVE_OVEN);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock()),BEEHIVE_OVEN);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.getBricksBlock()),BEEHIVE_OVEN);
 
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.MIXING_BARREL.get()), MIXING);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()), ALLOYING);

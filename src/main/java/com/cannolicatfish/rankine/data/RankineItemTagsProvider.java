@@ -829,7 +829,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
         tag(RankineTags.Items.ROPE).add(RankineItems.ROPE.get());
         tag(Tags.Items.STRING).add(RankineItems.ROPE.get());
-        tag(RankineTags.Items.CLAY_BALLS).add(RankineItems.FIRE_CLAY_BALL.get(), Items.CLAY_BALL, RankineItems.PORCELAIN_CLAY_BALL.get());
+        tag(RankineTags.Items.CLAY_BALLS).add(RankineItems.FIRE_CLAY_BALL.get(), Items.CLAY_BALL, RankineItems.PORCELAIN_CLAY_BALL.get(), RankineItems.KAOLINITE.get(), RankineItems.HALLOYSITE.get());
 
         tag(RankineTags.Items.RODS_GRAPHITE).add(RankineItems.GRAPHITE_ELECTRODE.get());
         tag(RankineTags.Items.RODS_CARBON).add(RankineItems.HARD_CARBON_ELECTRODE.get());

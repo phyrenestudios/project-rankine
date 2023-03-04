@@ -7,7 +7,7 @@ public class RankineSetup {
 
     public CreativeModeTab rankineWorld = new CreativeModeTab("rankine_world") {
         @Override
-        public ItemStack makeIcon() { return new ItemStack(RankineBlocks.REFRACTORY_BRICKS.get()); }
+        public ItemStack makeIcon() { return new ItemStack(RankineBlocks.REFRACTORY_BRICKS.getBricksBlock()); }
     };
     public CreativeModeTab rankineBiota = new CreativeModeTab("rankine_biota") {
         @Override

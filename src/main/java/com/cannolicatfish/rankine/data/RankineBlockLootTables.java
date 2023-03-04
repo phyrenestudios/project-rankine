@@ -102,15 +102,21 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 lootTables.put(blk, createBlockLootTable(blk));
             }
         }
+        for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
+            for (Block blk : Bricks.getBricksBlocks()) {
+                if (blk instanceof SlabBlock) {
+                    lootTables.put(blk, slabBlockLootTable(blk));
+                } else {
+                    lootTables.put(blk, createBlockLootTable(blk));
+                }
+            }
+        }
 
         for (Block blk : Stream.of(
                 RankineLists.VANILLA_BRICKS,
                 RankineLists.VANILLA_BRICKS_PRESSURE_PLATES,
                 RankineLists.VANILLA_BRICKS_WALLS,
                 RankineLists.VANILLA_BRICKS_STAIRS,
-                RankineLists.BRICKS,
-                RankineLists.BRICKS_STAIRS,
-                RankineLists.BRICKS_WALL,
                 RankineLists.SHEETMETALS,
                 RankineLists.GEODES,
                 RankineLists.LEDS,
@@ -205,13 +211,14 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.BONE_CHAR_BLOCK.get(), createBlockLootTable(RankineBlocks.BONE_CHAR_BLOCK.get()));
         lootTables.put(RankineBlocks.FIRE_CLAY.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.FIRE_CLAY.get(), RankineItems.FIRE_CLAY_BALL.get(), ConstantValue.exactly(4)));
         lootTables.put(RankineBlocks.PORCELAIN_CLAY.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.PORCELAIN_CLAY.get(), RankineItems.PORCELAIN_CLAY_BALL.get(), ConstantValue.exactly(4)));
+        lootTables.put(RankineBlocks.KAOLINITE_BLOCK.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.KAOLINITE_BLOCK.get(), RankineItems.KAOLINITE.get(), ConstantValue.exactly(4)));
+        lootTables.put(RankineBlocks.HALLOYSITE_BLOCK.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.HALLOYSITE_BLOCK.get(), RankineItems.HALLOYSITE.get(), ConstantValue.exactly(4)));
         lootTables.put(RankineBlocks.DARK_GRAVEL.get(), droppingWithSilkTouch(RankineBlocks.DARK_GRAVEL.get(), withSurvivesExplosion(RankineBlocks.DARK_GRAVEL.get(), LootItem.lootTableItem(Items.FLINT).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.2F, 0.5F, 1.0F, 1.0F)).otherwise(LootItem.lootTableItem(RankineBlocks.DARK_GRAVEL.get())))));
         lootTables.put(RankineBlocks.LIGHT_GRAVEL.get(), droppingWithSilkTouch(RankineBlocks.LIGHT_GRAVEL.get(), withSurvivesExplosion(RankineBlocks.LIGHT_GRAVEL.get(), LootItem.lootTableItem(Items.FLINT).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.05F, 0.1F, 0.2F, 0.5F)).otherwise(LootItem.lootTableItem(RankineBlocks.LIGHT_GRAVEL.get())))));
 
 
         for (Block blk : Stream.of(
                 RankineLists.VANILLA_BRICKS_SLABS,
-                RankineLists.BRICKS_SLAB,
                 RankineLists.MISC_SLABS
         ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(blk, slabBlockLootTable(blk));

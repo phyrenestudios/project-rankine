@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:yellow_cement_wall_from_yellow_cement_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_yellow_cement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:yellow_cement"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:yellow_cement_wall_from_yellow_cement_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_yellow_cement",
+      "has_the_recipe"
+    ]
+  ]
+}

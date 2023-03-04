@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:lime_cement_slab_from_lime_cement_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_lime_cement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:lime_cement"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:lime_cement_slab_from_lime_cement_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lime_cement",
+      "has_the_recipe"
+    ]
+  ]
+}
