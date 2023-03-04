@@ -1,0 +1,39 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "farmersdelight",
+              "type": "forge:mod_loaded"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "farmersdelight:cutting",
+        "ingredients": [
+          {
+            "item": "rankine:cinnamon_wood"
+          }
+        ],
+        "tool": {
+          "type": "farmersdelight:tool_action",
+          "action": "axe_strip"
+        },
+        "result": [
+          {
+            "item": "rankine:stripped_cinnamon_wood"
+          },
+          {
+            "item": "rankine:cinnamon"
+          }
+        ],
+        "sound": "minecraft:item.axe.strip"
+      }
+    }
+  ]
+}

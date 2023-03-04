@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "botania",
+              "type": "forge:mod_loaded"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "botania:mana_infusion",
+        "input": {
+          "item": "rankine:purple_morning_glory"
+        },
+        "mana": 400,
+        "output": {
+          "item": "rankine:black_morning_glory"
+        }
+      }
+    }
+  ]
+}
+

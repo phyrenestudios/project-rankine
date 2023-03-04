@@ -1,0 +1,75 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:pink_sandstone",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "byg:pink_sandstone"
+        },
+        "guaranteed": [
+          {
+            "item": "rankine:breccia"
+          }
+        ],
+        "outputs": [
+          {
+            "weight": 80,
+            "remove": false
+          },
+          {
+            "item": "byg:pink_sand",
+            "weight": 40,
+            "remove": false
+          },
+          {
+            "item": "rankine:sanidine",
+            "weight": 20,
+            "remove": false
+          },
+          {
+            "item": "minecraft:quartz",
+            "weight": 15,
+            "remove": false
+          },
+          {
+            "item": "rankine:biotite",
+            "weight": 3,
+            "remove": false
+          },
+          {
+            "item": "rankine:muscovite",
+            "weight": 3,
+            "remove": false
+          },
+          {
+            "item": "rankine:calcite",
+            "weight": 6,
+            "remove": false
+          },
+          {
+            "item": "rankine:tourmaline",
+            "weight": 4,
+            "tier": "minecraft:iron"
+          },
+          {
+            "item": "rankine:hematite",
+            "weight": 2,
+            "tier": "minecraft:diamond"
+          }
+        ]
+      }
+    }
+  ]
+}
