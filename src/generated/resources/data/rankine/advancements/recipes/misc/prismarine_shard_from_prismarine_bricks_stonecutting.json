@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:prismarine_shard_from_prismarine_bricks_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_prismarine_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:prismarine_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:prismarine_shard_from_prismarine_bricks_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_prismarine_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

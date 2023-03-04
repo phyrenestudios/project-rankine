@@ -19,6 +19,26 @@
     },
     {
       "type": "spotlight",
+      "item": "rankine:kaolinite",
+      "text": "rankine.journal.cat_sediments.clays.kaolinite"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:kaolinite_block",
+      "recipe2": "rankine:kaolinite_bricks"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:halloysite",
+      "text": "rankine.journal.cat_sediments.clays.halloysite"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:halloysite_block",
+      "recipe2": "rankine:halloysite_bricks"
+    },
+    {
+      "type": "spotlight",
       "item": "rankine:fire_clay_ball",
       "text": "rankine.journal.cat_sediments.clays.fire_clay"
     },

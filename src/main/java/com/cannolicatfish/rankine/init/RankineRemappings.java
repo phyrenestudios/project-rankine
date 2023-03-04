@@ -131,11 +131,11 @@ public class RankineRemappings {
         blockRemappings.put(new ResourceLocation("rankine:feldspar_block"), RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get());
         blockRemappings.put(new ResourceLocation("rankine:mica_block"), RankineBlocks.BIOTITE_BLOCK.get());
 
-        blockRemappings.put(new ResourceLocation("rankine:gravel_concrete"), RankineBlocks.CONCRETE.get());
-        blockRemappings.put(new ResourceLocation("rankine:uncolored_concrete"), RankineBlocks.CONCRETE.get());
-        blockRemappings.put(new ResourceLocation("rankine:uncolored_concrete_slab"), RankineBlocks.CONCRETE_SLAB.get());
-        blockRemappings.put(new ResourceLocation("rankine:uncolored_concrete_stairs"), RankineBlocks.CONCRETE_STAIRS.get());
-        blockRemappings.put(new ResourceLocation("rankine:uncolored_concrete_wall"), RankineBlocks.CONCRETE_WALL.get());
+        blockRemappings.put(new ResourceLocation("rankine:gravel_concrete"), RankineBlocks.CONCRETE.getCementBlock());
+        blockRemappings.put(new ResourceLocation("rankine:uncolored_concrete"), RankineBlocks.CONCRETE.getCementBlock());
+        blockRemappings.put(new ResourceLocation("rankine:uncolored_concrete_slab"), RankineBlocks.CONCRETE.getCementSlab());
+        blockRemappings.put(new ResourceLocation("rankine:uncolored_concrete_stairs"), RankineBlocks.CONCRETE.getCementStairs());
+        blockRemappings.put(new ResourceLocation("rankine:uncolored_concrete_wall"), RankineBlocks.CONCRETE.getCementWall());
 
         blockRemappings.put(new ResourceLocation("rankine:high_beehive_oven_pit"), RankineBlocks.BEEHIVE_OVEN_PIT.get());
         blockRemappings.put(new ResourceLocation("rankine:ultra_high_beehive_oven_pit"), RankineBlocks.BEEHIVE_OVEN_PIT.get());

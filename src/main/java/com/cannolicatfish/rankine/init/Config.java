@@ -1233,7 +1233,7 @@ public class Config {
             oreSettings.add(List.of("rankine:bog_iron", List.of("swamp","jungle"), "disk", "uniform", 30, 70, 4, 0.3D, 1, 1.0, 0.0D));
             oreSettings.add(List.of("rankine:ironstone", List.of("desert","savanna","mesa"), "disk", "uniform", 30, 70, 4, 0.3D, 1, 1.0, 0.0D));
             oreSettings.add(List.of("rankine:kaolin", List.of("swamp","jungle","mushroom"), "disk", "uniform", 40, 70, 4, 0.7D, 1, 0.4, 0.0D));
-            oreSettings.add(List.of("rankine:fire_clay", List.of("overworld"), "disk", "uniform", 55, 70, 3, 0.6D, 1, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:kaolin", List.of("overworld"), "disk", "uniform", 40, 60, 3, 0.6D, 1, 0.7, 0.0D));
             oreSettings.add(List.of("rankine:sylvinite", List.of("beach","ocean","desert"), "default", "triangle", 20, 50, 3, 1.0D, 15, 1.0, 0.0D));
             oreSettings.add(List.of("rankine:phosphorite", List.of("beach","ocean","desert"), "disk", "uniform", 30, 50, 4, 0.6D, 1, 0.4, 0.0D));
             oreSettings.add(List.of("rankine:phosphorite", List.of("extreme_hills","mountain"), "disk", "uniform", 70, 100, 4, 0.6D, 1, 0.5, 0.0D));

@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:poinnted_nitric_dripstone"
+          "name": "rankine:pointed_nitric_dripstone"
         }
       ],
       "conditions": [

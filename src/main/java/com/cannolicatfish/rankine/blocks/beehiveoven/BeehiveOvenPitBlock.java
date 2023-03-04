@@ -34,11 +34,9 @@ import java.util.Random;
 
 public class BeehiveOvenPitBlock extends BaseEntityBlock {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
-    private final Block blockType;
 
-    public BeehiveOvenPitBlock(Block blockType, Properties properties) {
+    public BeehiveOvenPitBlock(Properties properties) {
         super(properties);
-        this.blockType = blockType;
         this.registerDefaultState(this.getStateDefinition().any().setValue(LIT, Boolean.FALSE));
     }
 

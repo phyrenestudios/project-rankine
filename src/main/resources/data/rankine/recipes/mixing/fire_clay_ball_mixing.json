@@ -1,35 +1,41 @@
 {
   "type": "rankine:mixing",
   "mixTime": 20,
-  "ingredientTotal": 4,
-  "matScale": 0.5,
+  "ingredientTotal": 5,
+  "matScale": 1,
   "fluidInput": {
     "fluid": "minecraft:water",
     "amount": 50
   },
   "input1": {
-    "item": "rankine:calcium_silicate",
-    "required": true,
-    "min": 0.20,
-    "max": 0.40
-  },
-  "input2": {
-    "item": "rankine:kyanite",
-    "required": true,
-    "min": 0.20,
-    "max": 0.40
-  },
-  "input3": {
     "tag": "forge:gems/quartz",
     "required": true,
-    "min": 0.20,
-    "max": 0.40
+    "min": 0.05,
+    "max": 0.20
+  },
+  "input2": {
+    "item": "rankine:muscovite",
+    "required": true,
+    "min": 0.05,
+    "max": 0.20
+  },
+  "input3": {
+    "item": "minecraft:clay_ball",
+    "required": false,
+    "min": 0.60,
+    "max": 0.90
   },
   "input4": {
-    "item": "rankine:biotite",
-    "required": true,
-    "min": 0.20,
-    "max": 0.40
+    "item": "rankine:kaolinite",
+    "required": false,
+    "min": 0.60,
+    "max": 0.90
+  },
+  "input5": {
+    "item": "rankine:halloysite",
+    "required": false,
+    "min": 0.60,
+    "max": 0.90
   },
   "result": {
     "item": "rankine:fire_clay_ball"

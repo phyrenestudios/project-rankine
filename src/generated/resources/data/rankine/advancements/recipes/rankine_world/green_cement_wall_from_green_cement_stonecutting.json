@@ -6,7 +6,7 @@
     ]
   },
   "criteria": {
-    "has_ingredient": {
+    "has_green_cement": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_ingredient",
+      "has_green_cement",
       "has_the_recipe"
     ]
   ]

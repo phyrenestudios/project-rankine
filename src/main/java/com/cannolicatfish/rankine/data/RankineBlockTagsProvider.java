@@ -2,9 +2,7 @@ package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.CobbleBlock;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineSandstone;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -34,6 +32,52 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
+        for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
+            for (Block blk : Dripstone.getBlocks()) {
+                tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
+            }
+            tag(RankineTags.Blocks.DRIPSTONES).add(Dripstone.getDripstone());
+            tag(RankineTags.Blocks.POINTED_DRIPSTONES).add(Dripstone.getPointedDripstone());
+        }
+        for (RankineCement Cement : RankineLists.RANKINE_CEMENTS) {
+            for (Block blk : Cement.getCementBlocks()) {
+                tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
+            }
+            tag(RankineTags.Blocks.CONCRETE).add(Cement.getCementBlock());
+            tag(BlockTags.SLABS).add(Cement.getCementSlab());
+            tag(BlockTags.STAIRS).add(Cement.getCementStairs());
+            tag(BlockTags.WALLS).add(Cement.getCementWall());
+            if (Cement.getBaseName().contains("roman")) {
+                tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN).add(Cement.getCementBlock(), Cement.getCementSlab(), Cement.getCementStairs());
+            } else {
+                tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE).add(Cement.getCementSlab(), Cement.getCementStairs());
+            }
+        }
+        for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
+            for (Block blk : Bricks.getBricksBlocks()) {
+                tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
+            }
+            tag(RankineTags.Blocks.BRICKS).add(Bricks.getBricksBlock());
+            tag(RankineTags.Blocks.BRICKS_SLAB).add(Bricks.getBricksSlab());
+            tag(RankineTags.Blocks.BRICKS_STAIRS).add(Bricks.getBricksStairs());
+            tag(RankineTags.Blocks.BRICKS_WALL).add(Bricks.getBricksWall());
+        }
+        tag(RankineTags.Blocks.BRICKS).add(Blocks.BRICKS);
+        tag(RankineTags.Blocks.BRICKS).add(Blocks.NETHER_BRICKS);
+        tag(RankineTags.Blocks.BRICKS).add(Blocks.RED_NETHER_BRICKS);
+        tag(RankineTags.Blocks.BRICKS_SLAB).add(Blocks.BRICK_SLAB);
+        tag(RankineTags.Blocks.BRICKS_SLAB).add(Blocks.NETHER_BRICK_SLAB);
+        tag(RankineTags.Blocks.BRICKS_SLAB).add(Blocks.RED_NETHER_BRICK_SLAB);
+        tag(RankineTags.Blocks.BRICKS_STAIRS).add(Blocks.BRICK_STAIRS);
+        tag(RankineTags.Blocks.BRICKS_STAIRS).add(Blocks.NETHER_BRICK_STAIRS);
+        tag(RankineTags.Blocks.BRICKS_STAIRS).add(Blocks.RED_NETHER_BRICK_STAIRS);
+        tag(RankineTags.Blocks.BRICKS_WALL).add(Blocks.BRICK_WALL);
+        tag(RankineTags.Blocks.BRICKS_WALL).add(Blocks.NETHER_BRICK_WALL);
+        tag(RankineTags.Blocks.BRICKS_WALL).add(Blocks.RED_NETHER_BRICK_WALL);
+        tag(BlockTags.STAIRS).addTag(RankineTags.Blocks.BRICKS_STAIRS);
+        tag(BlockTags.WALLS).addTag(RankineTags.Blocks.BRICKS_WALL);
+        tag(BlockTags.SLABS).addTag(RankineTags.Blocks.BRICKS_SLAB);
+
         for (RankineSandstone Sandstone : RankineLists.RANKINE_SANDSTONES) {
             for (Block blk : Sandstone.getSandstoneBlocks()) {
                 tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
@@ -160,15 +204,15 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(BlockTags.MINEABLE_WITH_HOE).add(blk);
         }
         for (Block blk : Stream.of(RankineLists.SANDS, RankineLists.SOIL_BLOCKS, RankineLists.COARSE_SOIL_BLOCKS, RankineLists.GRASS_BLOCKS, RankineLists.PATH_BLOCKS, RankineLists.MYCELIUM_BLOCKS, RankineLists.PODZOL_BLOCKS,
-                Arrays.asList(RankineBlocks.KAOLIN.get(),RankineBlocks.FIRE_CLAY.get(),RankineBlocks.PORCELAIN_CLAY.get(),RankineBlocks.LATERITE.get(),RankineBlocks.WHITE_SAND.get(),RankineBlocks.BLACK_SAND.get(),RankineBlocks.DESERT_SAND.get(),RankineBlocks.ALLUVIUM.get(),RankineBlocks.LIGHT_GRAVEL.get(),RankineBlocks.DARK_GRAVEL.get(),RankineBlocks.TILLED_SOIL.get(),RankineBlocks.MYCELIUM_PATH.get(),RankineBlocks.PERMAFROST.get(),RankineBlocks.SILT.get(),RankineBlocks.SOD_BLOCK.get(),RankineBlocks.PACKED_SNOW.get(),RankineBlocks.PACKED_SNOW_SLAB.get(),RankineBlocks.PACKED_SNOW_WALL.get(),RankineBlocks.PACKED_SNOW_STAIRS.get())).flatMap(Collection::stream).collect(Collectors.toList())) {
+                Arrays.asList(RankineBlocks.FIRE_CLAY.get(),RankineBlocks.PORCELAIN_CLAY.get(),RankineBlocks.HALLOYSITE_BLOCK.get(),RankineBlocks.KAOLINITE_BLOCK.get(),RankineBlocks.LATERITE.get(),RankineBlocks.WHITE_SAND.get(),RankineBlocks.BLACK_SAND.get(),RankineBlocks.DESERT_SAND.get(),RankineBlocks.ALLUVIUM.get(),RankineBlocks.LIGHT_GRAVEL.get(),RankineBlocks.DARK_GRAVEL.get(),RankineBlocks.TILLED_SOIL.get(),RankineBlocks.MYCELIUM_PATH.get(),RankineBlocks.PERMAFROST.get(),RankineBlocks.SILT.get(),RankineBlocks.SOD_BLOCK.get(),RankineBlocks.PACKED_SNOW.get(),RankineBlocks.PACKED_SNOW_SLAB.get(),RankineBlocks.PACKED_SNOW_WALL.get(),RankineBlocks.PACKED_SNOW_STAIRS.get())).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(BlockTags.MINEABLE_WITH_SHOVEL).add(blk);
         }
         for (Block blk : Stream.of(RankineLists.HOLLOW_LOGS, RankineLists.MUSHROOM_BLOCKS,
                 Arrays.asList(RankineBlocks.BOTANIST_STATION.get(), RankineBlocks.MATERIAL_TESTING_TABLE.get(), RankineBlocks.TEMPLATE_TABLE.get(), RankineBlocks.CHARCOAL_PIT.get(), RankineBlocks.TAP_LINE.get(), RankineBlocks.TREE_TAP.get(), RankineBlocks.CORK.get(), RankineBlocks.STUMP.get(), RankineBlocks.STICK_BLOCK.get(), RankineBlocks.CHARCOAL_BLOCK.get())).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(BlockTags.MINEABLE_WITH_AXE).add(blk);
         }
-        for (Block blk : Stream.of(RankineLists.NEEDS_WOODEN_TOOL_ORES,RankineLists.NEEDS_STONE_TOOL_ORES,RankineLists.NEEDS_IRON_TOOL_ORES,RankineLists.NEEDS_DIAMOND_TOOL_ORES,RankineLists.NEEDS_NETHERITE_TOOL_ORES,RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.CRUSHING_HEADS,RankineLists.ELECTROMAGNETS,RankineLists.DRIPSTONES,RankineLists.POINTED_DRIPSTONES,RankineLists.VANILLA_BRICKS,RankineLists.VANILLA_BRICKS_SLABS,RankineLists.VANILLA_BRICKS_STAIRS,RankineLists.VANILLA_BRICKS_WALLS,RankineLists.VANILLA_BRICKS_PRESSURE_PLATES,RankineLists.BRICKS,RankineLists.BRICKS_SLAB,RankineLists.BRICKS_STAIRS,RankineLists.BRICKS_WALL,RankineLists.SHEETMETALS,RankineLists.ALLOY_SHEETMETALS,RankineLists.GEODES,RankineLists.LEDS,RankineLists.METAL_DOORS,RankineLists.METAL_TRAPDOORS,RankineLists.ALLOY_LADDERS,RankineLists.ELEMENT_BLOCKS,RankineLists.ALLOY_BLOCKS,RankineLists.ALLOY_BARS,RankineLists.ALLOY_POLES,RankineLists.ALLOY_PEDESTALS,RankineLists.LANTERNS,RankineLists.LIGHTNING_GLASSES,RankineLists.ASPHALT_BLOCKS,RankineLists.GREEN_ASPHALT_BLOCKS,RankineLists.BLUE_ASPHALT_BLOCKS,RankineLists.DARK_GRAY_ASPHALT_BLOCKS,RankineLists.RED_ASPHALT_BLOCKS,RankineLists.GRAY_ASPHALT_BLOCKS,RankineLists.CONCRETE_STAIRS,RankineLists.CONCRETE_BLOCKS,RankineLists.CONCRETE_WALLS,RankineLists.QUARTER_SLABS,RankineLists.MINERAL_BLOCKS,
-                Arrays.asList(RankineBlocks.HEATING_ELEMENT_1.get(),RankineBlocks.SLATE_STEPPING_STONES.get(),RankineBlocks.SODIUM_VAPOR_LAMP.get(),RankineBlocks.SEDIMENT_FAN.get(),RankineBlocks.METAL_PIPE.get(),RankineBlocks.GROUND_TAP.get(),RankineBlocks.ORNAMENT.get(),RankineBlocks.REACTION_CHAMBER_CELL.get(),RankineBlocks.GAS_BOTTLER.get(),RankineBlocks.GAS_VENT.get(),RankineBlocks.REACTION_CHAMBER_CORE.get(),RankineBlocks.AIR_DISTILLATION_PACKING.get(),RankineBlocks.DISTILLATION_TOWER.get(),RankineBlocks.BATTERY_CHARGER.get(),RankineBlocks.FUSION_FURNACE.get(),RankineBlocks.PARTICLE_ACCELERATOR.get(),RankineBlocks.DIAMOND_ANVIL_CELL.get(),RankineBlocks.EVAPORATION_TOWER.get(),RankineBlocks.GYRATORY_CRUSHER.get(),RankineBlocks.INDUCTION_FURNACE.get(),RankineBlocks.PISTON_CRUSHER.get(),RankineBlocks.ALLOY_FURNACE.get(),RankineBlocks.CRUCIBLE_BLOCK.get(),RankineBlocks.MIXING_BARREL.get(),RankineBlocks.BEEHIVE_OVEN_PIT.get(),RankineBlocks.GWIHABAITE_CRYSTAL.get(),RankineBlocks.FLOOD_GATE.get(),RankineBlocks.GREEN_TEKTITE.get(),RankineBlocks.GRAY_TEKTITE.get(),RankineBlocks.BROWN_TEKTITE.get(),RankineBlocks.BLACK_TEKTITE.get(),RankineBlocks.ENSTATITE_CHONDRITE_BRICKS.get(),RankineBlocks.ENSTATITE_CHONDRITE.get(),RankineBlocks.FROZEN_METEORITE.get(),RankineBlocks.FROZEN_METEORITE_BRICKS.get(),RankineBlocks.METEORITE_BRICKS.get(),RankineBlocks.METEORITE.get(),RankineBlocks.GEODE.get(),RankineBlocks.FULGURITE.get(),RankineBlocks.CHECKERED_MARBLE.get(),RankineBlocks.CHECKERED_MARBLE_WALL.get(),RankineBlocks.CHECKERED_MARBLE_STAIRS.get(),RankineBlocks.CHECKERED_MARBLE_SLAB.get(),RankineBlocks.PORCELAIN.get(),RankineBlocks.BLOOD_OBSIDIAN.get(),RankineBlocks.SNOWFLAKE_OBSIDIAN.get(),RankineBlocks.BONE_CHAR_BLOCK.get(),RankineBlocks.KOMATIITIC_TUFF.get(),RankineBlocks.KIMBERLITIC_TUFF.get(),RankineBlocks.BASALTIC_TUFF.get(),RankineBlocks.RHYOLITIC_TUFF.get(),RankineBlocks.ANDESITIC_TUFF.get(),RankineBlocks.PHOSPHORITE.get(),RankineBlocks.SYLVINITE.get(),RankineBlocks.BANDED_IRON_FORMATION.get(),RankineBlocks.ENDER_SHIRO.get(),RankineBlocks.SKARN.get(),RankineBlocks.SKARN_SLAB.get(),RankineBlocks.SKARN_STAIRS.get(),RankineBlocks.SKARN_WALL.get(),RankineBlocks.BRECCIA.get(),RankineBlocks.BRECCIA_SLAB.get(),RankineBlocks.BRECCIA_STAIRS.get(),RankineBlocks.BRECCIA_WALL.get(),RankineBlocks.ICE_BRICKS.get(),RankineBlocks.ICE_BRICKS_SLAB.get(),RankineBlocks.ICE_BRICKS_STAIRS.get(),RankineBlocks.ICE_BRICKS_WALL.get(),RankineBlocks.SCORIA.get(),RankineBlocks.PUMICE.get(),RankineBlocks.DRY_ICE.get(),RankineBlocks.METEORIC_ICE.get(),RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get(),RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get(),RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get(),RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get(),RankineBlocks.FUMAROLE_DEPOSIT.get())).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.NEEDS_WOODEN_TOOL_ORES,RankineLists.NEEDS_STONE_TOOL_ORES,RankineLists.NEEDS_IRON_TOOL_ORES,RankineLists.NEEDS_DIAMOND_TOOL_ORES,RankineLists.NEEDS_NETHERITE_TOOL_ORES,RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.CRUSHING_HEADS,RankineLists.ELECTROMAGNETS,RankineLists.VANILLA_BRICKS,RankineLists.VANILLA_BRICKS_SLABS,RankineLists.VANILLA_BRICKS_STAIRS,RankineLists.VANILLA_BRICKS_WALLS,RankineLists.VANILLA_BRICKS_PRESSURE_PLATES,RankineLists.SHEETMETALS,RankineLists.ALLOY_SHEETMETALS,RankineLists.GEODES,RankineLists.LEDS,RankineLists.METAL_DOORS,RankineLists.METAL_TRAPDOORS,RankineLists.ALLOY_LADDERS,RankineLists.ELEMENT_BLOCKS,RankineLists.ALLOY_BLOCKS,RankineLists.ALLOY_BARS,RankineLists.ALLOY_POLES,RankineLists.ALLOY_PEDESTALS,RankineLists.LANTERNS,RankineLists.LIGHTNING_GLASSES,RankineLists.ASPHALT_BLOCKS,RankineLists.GREEN_ASPHALT_BLOCKS,RankineLists.BLUE_ASPHALT_BLOCKS,RankineLists.DARK_GRAY_ASPHALT_BLOCKS,RankineLists.RED_ASPHALT_BLOCKS,RankineLists.GRAY_ASPHALT_BLOCKS,RankineLists.MINERAL_BLOCKS,
+                Arrays.asList(RankineBlocks.KAOLIN.get(),RankineBlocks.HEATING_ELEMENT_1.get(),RankineBlocks.SLATE_STEPPING_STONES.get(),RankineBlocks.SODIUM_VAPOR_LAMP.get(),RankineBlocks.SEDIMENT_FAN.get(),RankineBlocks.METAL_PIPE.get(),RankineBlocks.GROUND_TAP.get(),RankineBlocks.ORNAMENT.get(),RankineBlocks.REACTION_CHAMBER_CELL.get(),RankineBlocks.GAS_BOTTLER.get(),RankineBlocks.GAS_VENT.get(),RankineBlocks.REACTION_CHAMBER_CORE.get(),RankineBlocks.AIR_DISTILLATION_PACKING.get(),RankineBlocks.DISTILLATION_TOWER.get(),RankineBlocks.BATTERY_CHARGER.get(),RankineBlocks.FUSION_FURNACE.get(),RankineBlocks.PARTICLE_ACCELERATOR.get(),RankineBlocks.DIAMOND_ANVIL_CELL.get(),RankineBlocks.EVAPORATION_TOWER.get(),RankineBlocks.GYRATORY_CRUSHER.get(),RankineBlocks.INDUCTION_FURNACE.get(),RankineBlocks.PISTON_CRUSHER.get(),RankineBlocks.ALLOY_FURNACE.get(),RankineBlocks.CRUCIBLE_BLOCK.get(),RankineBlocks.MIXING_BARREL.get(),RankineBlocks.BEEHIVE_OVEN_PIT.get(),RankineBlocks.GWIHABAITE_CRYSTAL.get(),RankineBlocks.FLOOD_GATE.get(),RankineBlocks.GREEN_TEKTITE.get(),RankineBlocks.GRAY_TEKTITE.get(),RankineBlocks.BROWN_TEKTITE.get(),RankineBlocks.BLACK_TEKTITE.get(),RankineBlocks.ENSTATITE_CHONDRITE_BRICKS.get(),RankineBlocks.ENSTATITE_CHONDRITE.get(),RankineBlocks.FROZEN_METEORITE.get(),RankineBlocks.FROZEN_METEORITE_BRICKS.get(),RankineBlocks.METEORITE_BRICKS.get(),RankineBlocks.METEORITE.get(),RankineBlocks.GEODE.get(),RankineBlocks.FULGURITE.get(),RankineBlocks.CHECKERED_MARBLE.get(),RankineBlocks.CHECKERED_MARBLE_WALL.get(),RankineBlocks.CHECKERED_MARBLE_STAIRS.get(),RankineBlocks.CHECKERED_MARBLE_SLAB.get(),RankineBlocks.PORCELAIN.get(),RankineBlocks.BLOOD_OBSIDIAN.get(),RankineBlocks.SNOWFLAKE_OBSIDIAN.get(),RankineBlocks.BONE_CHAR_BLOCK.get(),RankineBlocks.KOMATIITIC_TUFF.get(),RankineBlocks.KIMBERLITIC_TUFF.get(),RankineBlocks.BASALTIC_TUFF.get(),RankineBlocks.RHYOLITIC_TUFF.get(),RankineBlocks.ANDESITIC_TUFF.get(),RankineBlocks.PHOSPHORITE.get(),RankineBlocks.SYLVINITE.get(),RankineBlocks.BANDED_IRON_FORMATION.get(),RankineBlocks.ENDER_SHIRO.get(),RankineBlocks.SKARN.get(),RankineBlocks.SKARN_SLAB.get(),RankineBlocks.SKARN_STAIRS.get(),RankineBlocks.SKARN_WALL.get(),RankineBlocks.BRECCIA.get(),RankineBlocks.BRECCIA_SLAB.get(),RankineBlocks.BRECCIA_STAIRS.get(),RankineBlocks.BRECCIA_WALL.get(),RankineBlocks.ICE_BRICKS.get(),RankineBlocks.ICE_BRICKS_SLAB.get(),RankineBlocks.ICE_BRICKS_STAIRS.get(),RankineBlocks.ICE_BRICKS_WALL.get(),RankineBlocks.SCORIA.get(),RankineBlocks.PUMICE.get(),RankineBlocks.DRY_ICE.get(),RankineBlocks.METEORIC_ICE.get(),RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get(),RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get(),RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get(),RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get(),RankineBlocks.FUMAROLE_DEPOSIT.get())).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
         }
 
@@ -233,9 +277,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(RankineTags.Blocks.SEDIMENTARY_STONES).addTags(RankineTags.Blocks.STONES_LIMESTONE,RankineTags.Blocks.STONES_DOLOMITE,RankineTags.Blocks.STONES_MUDSTONE,RankineTags.Blocks.STONES_SHALE,RankineTags.Blocks.STONES_SILTSTONE,RankineTags.Blocks.STONES_SANDSTONE,RankineTags.Blocks.STONES_MARLSTONE,RankineTags.Blocks.STONES_CHALK);
         tag(Tags.Blocks.GRAVEL).add(RankineBlocks.DARK_GRAVEL.get(),RankineBlocks.LIGHT_GRAVEL.get());
         tag(RankineTags.Blocks.TUFF).add(RankineBlocks.ANDESITIC_TUFF.get(),RankineBlocks.BASALTIC_TUFF.get(),RankineBlocks.RHYOLITIC_TUFF.get(),RankineBlocks.KIMBERLITIC_TUFF.get(),RankineBlocks.KOMATIITIC_TUFF.get(),Blocks.TUFF);
-        tag(RankineTags.Blocks.CLAY).add(RankineBlocks.FIRE_CLAY.get(),Blocks.CLAY);
-        tag(RankineTags.Blocks.POINTED_DRIPSTONES).add(RankineBlocks.POINTED_BORACITIC_DRIPSTONE.get(),RankineBlocks.POINTED_NITRIC_DRIPSTONE.get(),RankineBlocks.POINTED_HALITIC_DRIPSTONE.get(),RankineBlocks.POINTED_GYPSIC_DRIPSTONE.get(),RankineBlocks.POINTED_ZIRCONIC_DRIPSTONE.get(),RankineBlocks.POINTED_FERRIC_DRIPSTONE.get(),RankineBlocks.POINTED_MAGNESITIC_DRIPSTONE.get());
-        tag(RankineTags.Blocks.DRIPSTONES).add(RankineBlocks.BORACITIC_DRIPSTONE_BLOCK.get(),RankineBlocks.NITRIC_DRIPSTONE_BLOCK.get(),RankineBlocks.HALITIC_DRIPSTONE_BLOCK.get(),RankineBlocks.GYPSIC_DRIPSTONE_BLOCK.get(),RankineBlocks.ZIRCONIC_DRIPSTONE_BLOCK.get(),RankineBlocks.FERRIC_DRIPSTONE_BLOCK.get(),RankineBlocks.MAGNESITIC_DRIPSTONE_BLOCK.get());
+        tag(RankineTags.Blocks.CLAY).add(RankineBlocks.FIRE_CLAY.get(),RankineBlocks.PORCELAIN_CLAY.get(),RankineBlocks.KAOLINITE_BLOCK.get(),RankineBlocks.HALLOYSITE_BLOCK.get(),Blocks.CLAY);
         tag(RankineTags.Blocks.SILT).add(RankineBlocks.SILT.get());
         tag(RankineTags.Blocks.HARDENED_GLASS).add(RankineBlocks.LEAD_GLASS.get(),RankineBlocks.BOROSILICATE_GLASS.get(),RankineBlocks.CVD_GLASS.get(),RankineBlocks.REACTION_CHAMBER_CELL.get());
         tag(BlockTags.SAND).add(RankineBlocks.BLACK_SAND.get(),RankineBlocks.WHITE_SAND.get());
@@ -296,31 +338,8 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.DIRT).add(RankineBlocks.PERMAFROST.get()).add(RankineBlocks.ALLUVIUM.get());
         tag(RankineTags.Blocks.FARMLAND).add(Blocks.FARMLAND,RankineBlocks.TILLED_SOIL.get());
 
-        for (Block blk : RankineLists.BRICKS) {
-            tag(RankineTags.Blocks.BRICKS).add(blk);
-        }
-        tag(RankineTags.Blocks.BRICKS).add(Blocks.BRICKS);
-        tag(RankineTags.Blocks.BRICKS).add(Blocks.NETHER_BRICKS);
-        tag(RankineTags.Blocks.BRICKS).add(Blocks.RED_NETHER_BRICKS);
-        for (Block blk : RankineLists.BRICKS_SLAB) {
-            tag(RankineTags.Blocks.BRICKS_SLAB).add(blk);
-        }
-        tag(RankineTags.Blocks.BRICKS_SLAB).add(Blocks.BRICK_SLAB);
-        tag(RankineTags.Blocks.BRICKS_SLAB).add(Blocks.NETHER_BRICK_SLAB);
-        tag(RankineTags.Blocks.BRICKS_SLAB).add(Blocks.RED_NETHER_BRICK_SLAB);
-        for (Block blk : RankineLists.BRICKS_STAIRS) {
-            tag(RankineTags.Blocks.BRICKS_STAIRS).add(blk);
-        }
-        tag(RankineTags.Blocks.BRICKS_STAIRS).add(Blocks.BRICK_STAIRS);
-        tag(RankineTags.Blocks.BRICKS_STAIRS).add(Blocks.NETHER_BRICK_STAIRS);
-        tag(RankineTags.Blocks.BRICKS_STAIRS).add(Blocks.RED_NETHER_BRICK_STAIRS);
-        for (Block blk : RankineLists.BRICKS_WALL) {
-            tag(RankineTags.Blocks.BRICKS_WALL).add(blk);
-        }
-        tag(RankineTags.Blocks.BRICKS_WALL).add(Blocks.BRICK_WALL);
-        tag(RankineTags.Blocks.BRICKS_WALL).add(Blocks.NETHER_BRICK_WALL);
-        tag(RankineTags.Blocks.BRICKS_WALL).add(Blocks.RED_NETHER_BRICK_WALL);
-        for (Block blk : Stream.of(RankineLists.CONCRETE,RankineLists.CONCRETE_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
+
+        for (Block blk : Stream.of(RankineLists.CONCRETE).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(RankineTags.Blocks.CONCRETE).add(blk);
         }
         for (Block blk : RankineLists.CONCRETE_POWDER) {
@@ -579,16 +598,14 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(RankineTags.Blocks.ORES_SALT).add(RankineBlocks.SYLVINITE.get());
         tag(Tags.Blocks.ORES).addTags(BlockTags.COPPER_ORES,RankineTags.Blocks.ORES_LEAD,RankineTags.Blocks.ORES_SILVER,RankineTags.Blocks.ORES_BISMUTH,RankineTags.Blocks.ORES_TIN,RankineTags.Blocks.ORES_ALUMINUM,RankineTags.Blocks.ORES_TUNGSTEN,RankineTags.Blocks.ORES_TITANIUM,RankineTags.Blocks.ORES_MAGNESIUM,RankineTags.Blocks.ORES_MANGANESE,RankineTags.Blocks.ORES_STRONTIUM,RankineTags.Blocks.ORES_ZINC,RankineTags.Blocks.ORES_LITHIUM,RankineTags.Blocks.ORES_ARSENIC,RankineTags.Blocks.ORES_GALLIUM,RankineTags.Blocks.ORES_INDIUM,RankineTags.Blocks.ORES_SELENIUM,RankineTags.Blocks.ORES_TELLURIUM,RankineTags.Blocks.ORES_SODIUM,RankineTags.Blocks.ORES_SULFUR,RankineTags.Blocks.ORES_MERCURY,RankineTags.Blocks.ORES_CHROMIUM,RankineTags.Blocks.ORES_COBALT,RankineTags.Blocks.ORES_NICKEL,RankineTags.Blocks.ORES_YTTRIUM,RankineTags.Blocks.ORES_URANIUM,RankineTags.Blocks.ORES_MOLYBDENUM,RankineTags.Blocks.ORES_CADMIUM,RankineTags.Blocks.ORES_ANTIMONY,RankineTags.Blocks.ORES_RHENIUM,RankineTags.Blocks.ORES_PHOSPHORUS,RankineTags.Blocks.ORES_GRAPHITE,RankineTags.Blocks.ORES_SALT,RankineTags.Blocks.ORES_ZIRCONIUM).add(RankineBlocks.COLTAN_ORE.get(),RankineBlocks.SPERRYLITE_ORE.get(),RankineBlocks.MONAZITE_ORE.get());
 
-        tag(BlockTags.STAIRS).addTag(RankineTags.Blocks.BRICKS_STAIRS);
-        tag(BlockTags.WALLS).addTag(RankineTags.Blocks.BRICKS_WALL);
-        tag(BlockTags.SLABS).addTag(RankineTags.Blocks.BRICKS_SLAB);
-        for (Block blk : Stream.of(RankineLists.MISC_SLABS,RankineLists.QUARTER_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+
+        for (Block blk : Stream.of(RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(BlockTags.SLABS).add(blk);
         }
-        for (Block blk : Stream.of(RankineLists.MISC_STAIRS,RankineLists.CONCRETE_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.MISC_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(BlockTags.STAIRS).add(blk);
         }
-        for (Block blk : Stream.of(RankineLists.MISC_WALLS,RankineLists.CONCRETE_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.MISC_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(BlockTags.WALLS).add(blk);
         }
 
@@ -627,7 +644,6 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(RankineTags.Blocks.VANILLA_OVERRIDE).add(Blocks.EMERALD_ORE,Blocks.DIAMOND_ORE,Blocks.IRON_ORE,Blocks.COAL_ORE,Blocks.LAPIS_ORE,Blocks.REDSTONE_ORE,Blocks.NETHER_GOLD_ORE,Blocks.NETHER_QUARTZ_ORE,Blocks.GOLD_ORE,Blocks.ANDESITE,Blocks.DIORITE,Blocks.GRANITE);
         tag(RankineTags.Blocks.RANKINE_ORE_REPLACEABLES).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER).addTag(RankineTags.Blocks.BASE_STONE_END);
 
-        tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN).add(RankineBlocks.ROMAN_CONCRETE.get(),RankineBlocks.POLISHED_ROMAN_CONCRETE.get(),RankineBlocks.ROMAN_CONCRETE_BRICKS.get(),RankineBlocks.ROMAN_CONCRETE_SLAB.get(),RankineBlocks.POLISHED_ROMAN_CONCRETE_SLAB.get(),RankineBlocks.ROMAN_CONCRETE_BRICKS_SLAB.get(),RankineBlocks.ROMAN_CONCRETE_STAIRS.get(),RankineBlocks.POLISHED_ROMAN_CONCRETE_STAIRS.get(),RankineBlocks.ROMAN_CONCRETE_BRICKS_STAIRS.get());
         tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW).add(Blocks.SNOW,Blocks.SNOW_BLOCK);
         tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_WOOD).addTags(BlockTags.WOODEN_STAIRS,BlockTags.WOODEN_SLABS,BlockTags.PLANKS);
         tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED).addTags(RankineTags.Blocks.POLISHED_STONE);
@@ -638,9 +654,6 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_PATHS).addTags(RankineTags.Blocks.PATH_BLOCKS);
         tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND).addTags(RankineTags.Blocks.CONSTRUCTION_SAND);
         tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE).addTags(RankineTags.Blocks.CONCRETE);
-        for (Block blk : Stream.of(RankineLists.CONCRETE_STAIRS,RankineLists.QUARTER_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE).add(blk);
-        }
         tag(RankineTags.Blocks.MOVEMENT_MODIFIERS).addTags(RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN,RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW,RankineTags.Blocks.MOVEMENT_MODIFIERS_WOOD,RankineTags.Blocks.MOVEMENT_MODIFIERS_DIRT,RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE,RankineTags.Blocks.MOVEMENT_MODIFIERS_MUD,RankineTags.Blocks.MOVEMENT_MODIFIERS_PATHS,RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND,RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE,RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED);
 
         tag(BlockTags.AXOLOTLS_SPAWNABLE_ON).add(RankineBlocks.FIRE_CLAY.get(), RankineBlocks.KAOLIN.get());

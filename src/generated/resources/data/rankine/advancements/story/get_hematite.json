@@ -1,0 +1,37 @@
+{
+  "parent": "rankine:story/craft_alloy_hammer",
+  "display": {
+    "icon": {
+      "item": "rankine:hematite"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.get_hematite.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.get_hematite.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hematite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:hematite"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "hematite"
+    ]
+  ]
+}

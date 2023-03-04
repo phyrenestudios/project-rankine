@@ -1,0 +1,48 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:kaolin"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:kaolinite",
+      "count": 2
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "rankine:kaolinite",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:halloysite",
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "rankine:muscovite",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "minecraft:quartz",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:orthoclase_feldspar",
+      "weight": 10,
+      "remove": false
+    },
+    {
+      "item": "rankine:plagioclase_feldspar",
+      "weight": 10,
+      "remove": false
+    }
+  ]
+}
