@@ -243,6 +243,9 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.GRAY_TEKTITE.get(),
                 RankineBlocks.BROWN_TEKTITE.get()
         ));
+
+        ItemBlockRenderTypes.setRenderLayer(RankineBlocks.MUSCOVITE_BLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(RankineBlocks.BIOTITE_BLOCK.get(), RenderType.translucent());
     }
 
 

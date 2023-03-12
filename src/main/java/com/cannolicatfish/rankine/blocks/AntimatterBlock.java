@@ -1,17 +1,19 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.entities.SphericalExplosion;
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.event.ForgeEventFactory;
 
 public class AntimatterBlock extends Block {
     public AntimatterBlock(Properties properties) {
@@ -20,27 +22,26 @@ public class AntimatterBlock extends Block {
 
     @Override
     public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-        explode(worldIn, pos);
+        explode(worldIn, pos, null);
     }
 
     @Override
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if (player.getItemInHand(handIn).getItem() != RankineItems.PENNING_TRAP.get()) {
-            explode(worldIn, pos);
-        }
+        if (player.getItemInHand(handIn).getItem() != RankineItems.PENNING_TRAP.get()) explode(worldIn, pos, player);
         return super.use(state, worldIn, pos, player, handIn, hit);
     }
 
-    public static void explode(Level worldIn, BlockPos pos) {
-        if (!worldIn.isClientSide) {
-            worldIn.explode(null, pos.getX() + 0.5, pos.getY() + 2, pos.getZ() + 0.5, 15.0F, Explosion.BlockInteraction.BREAK);
-            worldIn.removeBlock(pos, false);
+    @Override
+    public void entityInside(BlockState p_60495_, Level levelIn, BlockPos posIn, Entity entityIn) {
+        explode(levelIn, posIn, entityIn);
+    }
 
-
-
-
-
-
+    public static void explode(Level levelIn, BlockPos posIn, Entity entityIn) {
+        SphericalExplosion explosion = new SphericalExplosion(levelIn, entityIn, null, null, posIn.getX(), posIn.getY(), posIn.getZ(), 12f, false, Explosion.BlockInteraction.DESTROY, ParticleTypes.PORTAL);
+        if (!ForgeEventFactory.onExplosionStart(levelIn, explosion)) {
+            if (!levelIn.isClientSide) explosion.explode();
+            explosion.finalizeExplosion(true);
+            levelIn.removeBlock(posIn, false);
         }
     }
 }
