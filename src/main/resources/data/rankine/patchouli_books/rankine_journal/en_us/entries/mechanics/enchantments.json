@@ -160,6 +160,12 @@
     },
     {
       "type": "text",
+      "title": "enchantment.rankine.torque",
+      "anchor": "torque",
+      "text": "enchantment.rankine.torque.desc"
+    },
+    {
+      "type": "text",
       "title": "enchantment.rankine.leverage",
       "anchor": "leverage",
       "text": "enchantment.rankine.leverage.desc"
@@ -172,9 +178,9 @@
     },
     {
       "type": "text",
-      "title": "enchantment.rankine.lift",
-      "anchor": "lift",
-      "text": "enchantment.rankine.lift.desc"
+      "title": "enchantment.rankine.fulcrum",
+      "anchor": "fulcrum",
+      "text": "enchantment.rankine.fulcrum.desc"
     },
     {
       "type": "text",

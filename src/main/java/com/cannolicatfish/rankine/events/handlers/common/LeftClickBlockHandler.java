@@ -10,6 +10,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class LeftClickBlockHandler {
     public static void leftClickTools(PlayerInteractEvent.LeftClickBlock event) {
+        if (event.getPlayer().isCreative()) return;
         if (event.getPlayer().getMainHandItem().getItem() instanceof HammerItem) {
             ItemStack stack = event.getPlayer().getMainHandItem();
             HammerItem hammer = (HammerItem) stack.getItem();

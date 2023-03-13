@@ -60,8 +60,9 @@ public class RankineEnchantments {
     public static final RegistryObject<Enchantment> RETREAT = ENCHANTMENTS.register("retreat", () -> new RetreatEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS));
 
     public static final RegistryObject<Enchantment> LEVERAGE = ENCHANTMENTS.register("leverage", () -> new LeverageEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND));
-    public static final RegistryObject<Enchantment> PRYING = ENCHANTMENTS.register("prying", () -> new PryingEnchantment(Enchantment.Rarity.RARE, HAND_SLOTS));
-    public static final RegistryObject<Enchantment> LIFT = ENCHANTMENTS.register("lift", () -> new LiftEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> TORQUE = ENCHANTMENTS.register("torque", () -> new TorqueEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> PRYING = ENCHANTMENTS.register("prying", () -> new PryingEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> FULCRUM = ENCHANTMENTS.register("fulcrum", () -> new FulcrumEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
     public static final RegistryObject<Enchantment> RETRIEVAL = ENCHANTMENTS.register("retrieval", () -> new RetrievalEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
 
 }

@@ -25,10 +25,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
-import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nullable;
 
@@ -65,16 +63,14 @@ public class TreeTapBlock extends BaseEntityBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if (!world.isClientSide) {
-            LazyOptional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getItemInHand(hand));
-            TreeTapTile treeTapTile = (TreeTapTile) world.getBlockEntity(pos);
-            if (item.isPresent() && treeTapTile != null) {
-                FluidActionResult fillContainerAndStowOutput = FluidUtil.tryFillContainerAndStow(player.getItemInHand(hand), treeTapTile.outputTank, new InvWrapper(player.getInventory()), treeTapTile.outputTank.getFluidAmount(), player, true);
-                if (fillContainerAndStowOutput.isSuccess()) {
-                    player.setItemInHand(hand, fillContainerAndStowOutput.getResult());
-                    world.blockEntityChanged(pos);
-                    return InteractionResult.FAIL;
-                }
+        if (world.isClientSide) return super.use(state, world, pos, player, hand, result);
+
+        LazyOptional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getItemInHand(hand));
+        TreeTapTile treeTapTile = (TreeTapTile) world.getBlockEntity(pos);
+        if (item.isPresent() && treeTapTile != null) {
+            if (FluidUtil.interactWithFluidHandler(player, hand, treeTapTile.outputTank)) {
+                world.blockEntityChanged(pos);
+                return InteractionResult.SUCCESS;
             }
         }
         return super.use(state, world, pos, player, hand, result);

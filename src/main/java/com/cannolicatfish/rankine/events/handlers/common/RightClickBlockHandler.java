@@ -76,7 +76,7 @@ public class RightClickBlockHandler {
         BlockState stateIn = levelIn.getBlockState(posIn);
         ItemStack itemStack = playerIn.getItemInHand(event.getHand());
 
-
+        // Mud creation
         if (itemStack.getItem() instanceof PotionItem && PotionUtils.getPotion(itemStack).equals(Potions.WATER)) {
             if (RankineLists.SOIL_BLOCKS.contains(levelIn.getBlockState(posIn).getBlock())) {
                 levelIn.setBlockAndUpdate(posIn, RankineLists.MUD_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(levelIn.getBlockState(posIn).getBlock())).defaultBlockState());
@@ -84,6 +84,7 @@ public class RightClickBlockHandler {
                 return;
             }
         }
+
 
         if (playerIn.getMainHandItem().is(RankineTags.Items.FLINT) && playerIn.getOffhandItem().is(RankineTags.Items.FLINT) && Config.GENERAL.FLINT_FIRE.get()) {
             BlockPos pos = event.getPos();

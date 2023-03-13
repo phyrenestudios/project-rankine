@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.RankineAttributes;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
@@ -79,8 +80,8 @@ public class ItemAttributeModifierHandler {
                     EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ANTIQUATED.get(),stack),
                     AttributeModifier.Operation.ADDITION));
         }
-        if ((stack.getItem() instanceof CrowbarItem || stack.getItem().equals(RankineItems.BUILDING_TOOL.get())) && (event.getSlotType() == EquipmentSlot.MAINHAND || event.getSlotType() == EquipmentSlot.OFFHAND)) {
-            event.addModifier(RankineAttributes.REACH_DISTANCE, new AttributeModifier(RankineAttributes.REACH_MODIFIER,"Reach modifier", 1, AttributeModifier.Operation.ADDITION));
+        if (stack.getItem() instanceof CrowbarItem && (event.getSlotType() == EquipmentSlot.MAINHAND || event.getSlotType() == EquipmentSlot.OFFHAND)) {
+            event.addModifier(RankineAttributes.REACH_DISTANCE, new AttributeModifier(RankineAttributes.REACH_MODIFIER,"Reach modifier", RankineEnchantmentHelper.getLeverageEnchantment(stack)*0.5D + 1.0D, AttributeModifier.Operation.ADDITION));
         }
         if (stack.getItem() instanceof SpearItem && event.getSlotType() == EquipmentSlot.MAINHAND) {
             event.addModifier(RankineAttributes.ATTACK_RANGE, new AttributeModifier(RankineAttributes.SPEAR_RANGE_MODIFIER,"Weapon modifier", 1, AttributeModifier.Operation.ADDITION));

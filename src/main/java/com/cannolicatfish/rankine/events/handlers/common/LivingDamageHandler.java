@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
@@ -77,9 +78,11 @@ public class LivingDamageHandler {
 
             if (!player.level.isClientSide) {
                 LivingEntity receiver = event.getEntityLiving();
-                if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof HammerItem) {
+                ItemStack mainHandStack = player.getItemInHand(InteractionHand.MAIN_HAND);
+
+                if (mainHandStack.getItem() instanceof HammerItem) {
                     if ((receiver instanceof Blaze || receiver instanceof AbstractGolem || receiver instanceof AbstractSkeleton || receiver instanceof SkeletonHorse || receiver instanceof Guardian)) {
-                        int endLevel = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDEAVOR.get(),player.getItemInHand(InteractionHand.MAIN_HAND));
+                        int endLevel = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDEAVOR.get(),mainHandStack);
                         event.setAmount(event.getAmount() + event.getAmount()/2f + 1.5f*endLevel);
                         if (endLevel > 0 && player.level.getRandom().nextFloat() < (0.15f*endLevel) && receiver.level.getServer() != null && player.level instanceof ServerLevel) {
                             LootTable loot = receiver.level.getServer().getLootTables().get(receiver.getLootTable());
@@ -101,14 +104,14 @@ public class LivingDamageHandler {
                     float damage = event.getAmount() + event.getAmount() * 0.5f;
                     event.setAmount(damage);
                 }
-                if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTOXIN.get(),player.getItemInHand(InteractionHand.MAIN_HAND)) >= 1) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTOXIN.get(),mainHandStack) >= 1) {
                     if ((receiver instanceof EnderMan || receiver instanceof Shulker || receiver instanceof Endermite || receiver.getCommandSenderWorld().dimension().equals(Level.END))) {
-                        event.setAmount(event.getAmount() + 2.5f*EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTOXIN.get(),player.getItemInHand(InteractionHand.MAIN_HAND)));
+                        event.setAmount(event.getAmount() + 2.5f*EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTOXIN.get(),mainHandStack));
                     }
                 }
 
-                if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.CLEANSE.get(),player.getItemInHand(InteractionHand.MAIN_HAND)) >= 1) {
-                    float damage = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.CLEANSE.get(),player.getItemInHand(InteractionHand.MAIN_HAND)) * receiver.getActiveEffects().size();
+                if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.CLEANSE.get(),mainHandStack) >= 1) {
+                    float damage = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.CLEANSE.get(),mainHandStack) * receiver.getActiveEffects().size();
                     event.setAmount(event.getAmount() + damage);
                     boolean flag = damage >= 1;
                     if (flag) {
@@ -117,29 +120,27 @@ public class LivingDamageHandler {
                     }
                 }
 
-                if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.BACKSTAB.get(),player.getItemInHand(InteractionHand.MAIN_HAND)) >= 1) {
-                    ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
+                if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.BACKSTAB.get(), mainHandStack) >= 1) {
                     if (receiver.getDirection().equals(player.getDirection())) {
                         receiver.playSound(SoundEvents.TRIDENT_HIT,1.0f, 1.0f);
-                        float damage = event.getAmount() + event.getAmount() * EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.BACKSTAB.get(),stack);
+                        float damage = event.getAmount() + event.getAmount() * EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.BACKSTAB.get(), mainHandStack);
                         event.setAmount(damage);
                     }
                 }
 
-                if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LEVERAGE.get(),player.getItemInHand(InteractionHand.MAIN_HAND)) >= 1) {
-                    ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
+                if (RankineEnchantmentHelper.getTorqueEnchantment(mainHandStack) > 0) {
+
                     float size = receiver.getDimensions(receiver.getPose()).height * receiver.getDimensions(receiver.getPose()).width;
-                    int lvl = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LEVERAGE.get(),stack);
+                    int lvl = RankineEnchantmentHelper.getTorqueEnchantment(mainHandStack);
                     //System.out.println(size);
-                    float mod = -2 + lvl;
-                    float damage = event.getAmount() + Math.max(0,Math.min(size + mod,1.5f*EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LEVERAGE.get(),stack)));
+                    float mod = -1.5f + lvl;
+                    float damage = event.getAmount() + Math.max(0,Math.min(size + mod, 1.5f *lvl));
                     //System.out.println("damageOut: " + damage);
                     event.setAmount(damage);
                 }
 
-                if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof AlloySwordItem swordItem) {
-                    ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
-                    float effectChance = 1 - 1/swordItem.getAlloyMiningSpeed(stack);
+                if (mainHandStack.getItem() instanceof AlloySwordItem swordItem) {
+                    float effectChance = 1 - 1/swordItem.getAlloyMiningSpeed(mainHandStack);
                 }
             }
 
