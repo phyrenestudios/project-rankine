@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
@@ -66,26 +67,22 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     }
 
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && getLightningModifier(stack) == 1)
-        {
+        if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && RankineEnchantmentHelper.getLightningAspectEnchantment(stack) > 0) {
             LightningBolt ent = new LightningBolt(EntityType.LIGHTNING_BOLT,attacker.level);
             //ent.moveTo(Vector3d.atBottomCenterOf(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
             ent.setPos(target.getX(),target.getY(),target.getZ());
             ((ServerLevel)target.getCommandSenderWorld()).addFreshEntity(ent);
         }
-        if (getDazeModifier(stack) != 0)
-        {
-            if (attacker instanceof Player)
-            {
+        if (RankineEnchantmentHelper.getDazeEnchantment(stack) > 0) {
+            if (attacker instanceof Player) {
                 Player player = (Player) attacker;
-                if (player.getAttackStrengthScale(0) >= (1f))
-                {
-                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*20, 2));
+                if (player.getAttackStrengthScale(0) >= (1f)) {
+                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,RankineEnchantmentHelper.getLightningAspectEnchantment(stack)*20, 2));
                 } else {
-                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*20, 1));
+                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,RankineEnchantmentHelper.getLightningAspectEnchantment(stack)*20, 1));
                 }
             } else {
-                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*20, 1));
+                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,RankineEnchantmentHelper.getLightningAspectEnchantment(stack)*20, 1));
             }
 
         }
@@ -98,8 +95,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     @Override
     public boolean mineBlock(ItemStack stack, Level worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         boolean creativeFlag = false;
-        if (entityLiving instanceof Player)
-        {
+        if (entityLiving instanceof Player) {
             creativeFlag = ((Player) entityLiving).isCreative();
         }
         if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isEmptyBlock(pos) && this.isCorrectToolForDrops(stack,state)) {

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import net.minecraft.core.BlockPos;
@@ -20,7 +21,7 @@ public class LeftClickBlockHandler {
 
             if (event.getPlayer().getAttackStrengthScale(0) >= (1f)) {
                 event.getPlayer().resetAttackStrengthTicker();
-                if (HammerItem.getExcavateModifier(stack) != 0) {
+                if (RankineEnchantmentHelper.getExcavateEnchantment(stack) > 0) {
                     hammer.getExcavationResult(pos, worldIn, player, stack);
                 } else {
                     hammer.mineBlock(stack, worldIn, worldIn.getBlockState(pos), pos, player);

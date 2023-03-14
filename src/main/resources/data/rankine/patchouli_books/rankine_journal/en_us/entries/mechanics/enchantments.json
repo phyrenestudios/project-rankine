@@ -262,9 +262,9 @@
     },
     {
       "type": "text",
-      "title": "enchantment.rankine.curse_of_withering",
-      "anchor": "curse_of_withering",
-      "text": "enchantment.rankine.curse_of_withering.desc"
+      "title": "enchantment.rankine.withering_curse",
+      "anchor": "withering_curse",
+      "text": "enchantment.rankine.withering_curse.desc"
     }
   ]
 }

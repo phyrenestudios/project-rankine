@@ -15,6 +15,18 @@ public class RankineEnchantmentHelper {
     public static int getLeverageEnchantment(ItemStack stackIn) {
         return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LEVERAGE.get(), stackIn);
     }
+    public static int getLightningAspectEnchantment(ItemStack stack) {
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LIGHTNING_ASPECT.get(), stack);
+    }
+    public static int getDazeEnchantment(ItemStack stack) {
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.DAZE.get(), stack);
+    }
+    public static int getExcavateEnchantment(ItemStack stack) {
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.EXCAVATE.get(), stack);
+    }
+    public static int getAtomizeEnchantment(ItemStack stack) {
+        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ATOMIZE.get(), stack);
+    }
     public static boolean hasSpeedSkater(LivingEntity entityIn) {
         return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SPEED_SKATER.get(), entityIn) > 0;
     }

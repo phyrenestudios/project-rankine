@@ -825,6 +825,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineTags.Items.GEMS_TOPAZ).add(RankineItems.TOPAZ.get());
         tag(RankineTags.Items.GEMS_TOURMALINE).add(RankineItems.TOURMALINE.get());
         tag(RankineTags.Items.GEMS_PEARL).add(RankineItems.PEARL.get());
+        tag(Tags.Items.GEMS_DIAMOND).add(RankineItems.LONSDALEITE_DIAMOND.get());
         tag(Tags.Items.GEMS).addTags(RankineTags.Items.GEMS_AMBER,RankineTags.Items.GEMS_AQUAMARINE,RankineTags.Items.GEMS_CINNABAR,RankineTags.Items.GEMS_FLUORITE,RankineTags.Items.GEMS_GARNET,RankineTags.Items.GEMS_OPAL,RankineTags.Items.GEMS_PERIDOT,RankineTags.Items.GEMS_RUBY,RankineTags.Items.GEMS_SAPPHIRE,RankineTags.Items.GEMS_TOPAZ,RankineTags.Items.GEMS_TOURMALINE,RankineTags.Items.GEMS_PEARL);
 
         tag(RankineTags.Items.ROPE).add(RankineItems.ROPE.get());

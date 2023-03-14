@@ -1,9 +1,14 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineLists;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -31,7 +36,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.TierSortingRegistry;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class HammerItem extends DiggerItem {
@@ -88,26 +92,22 @@ public class HammerItem extends DiggerItem {
 
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && getLightningModifier(stack) == 1)
-        {
+        if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && RankineEnchantmentHelper.getLightningAspectEnchantment(stack) > 0) {
             LightningBolt ent = new LightningBolt(EntityType.LIGHTNING_BOLT,attacker.level);
-            //ent.moveTo(Vector3d.atBottomCenterOf(new BlockPos(target.getClickedPos()X(),target.getClickedPos()Y(),target.getClickedPos()Z())));
             ent.setPos(target.getX(),target.getY(),target.getZ());
             target.getCommandSenderWorld().addFreshEntity(ent);
         }
-        if (getDazeModifier(stack) != 0)
-        {
-            if (attacker instanceof Player)
-            {
+        if (RankineEnchantmentHelper.getDazeEnchantment(stack) > 0) {
+            int dazeLevel = RankineEnchantmentHelper.getDazeEnchantment(stack);
+            if (attacker instanceof Player) {
                 Player player = (Player) attacker;
-                if (player.getAttackStrengthScale(0) >= (1f))
-                {
-                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*10, getDazeModifier(stack)*2));
+                if (player.getAttackStrengthScale(0) >= (1f)) {
+                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,dazeLevel*10, dazeLevel*2));
                 } else {
-                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*10, 1));
+                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,dazeLevel*10, 1));
                 }
             } else {
-                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,getDazeModifier(stack)*10, 1));
+                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,dazeLevel*10, 1));
             }
 
         }
@@ -117,69 +117,27 @@ public class HammerItem extends DiggerItem {
         return true;
     }
 
-    public void getExcavationResult(BlockPos pos, Level worldIn, Player player, ItemStack stack) {
-        BlockHitResult raytraceresult = getPlayerPOVHitResult(worldIn, player, ClipContext.Fluid.ANY);
-        List<BlockPos> positions = new ArrayList<>();
-        if (getExcavateModifier(stack) == 1)
-        {
-            switch (raytraceresult.getDirection())
-            {
-                case EAST:
-                case WEST:
-                    positions.addAll(Arrays.asList(pos,pos.north(),pos.south(),pos.above(),pos.below()));
-                    break;
-                case DOWN:
-                case UP:
-                    positions.addAll(Arrays.asList(pos,pos.north(),pos.south(),pos.west(),pos.east()));
-                    break;
-                case NORTH:
-                case SOUTH:
-                    positions.addAll(Arrays.asList(pos,pos.east(),pos.west(),pos.above(),pos.below()));
-                    break;
-                default:
-                    positions.add(pos);
-            }
+    public void getExcavationResult(BlockPos posIn, Level levelIn, Player player, ItemStack stack) {
+        BlockHitResult raytraceresult = getPlayerPOVHitResult(levelIn, player, ClipContext.Fluid.ANY);
+        if (RankineEnchantmentHelper.getExcavateEnchantment(stack) <= 0) return;
+        for (BlockPos p : evacuationArea(posIn, raytraceresult.getDirection(), RankineEnchantmentHelper.getExcavateEnchantment(stack))) {
+            mineBlock(stack, levelIn, levelIn.getBlockState(p), p, player);
+        }
+    }
 
+    private static List<BlockPos> evacuationArea(BlockPos posIn, Direction dirIn, int radius) {
+        List<BlockPos> blockList = new ArrayList<>();
+        if (dirIn.getAxis().isHorizontal()) {
+            for (BlockPos p : BlockPos.betweenClosed(posIn.relative(dirIn.getClockWise(),radius).relative(Direction.UP,radius), posIn.relative(dirIn.getCounterClockWise(),radius).relative(Direction.DOWN,radius))) {
+                if (p.distToCenterSqr(posIn.getX()+0.5D, posIn.getY()+0.5D, posIn.getZ()+0.5D) <= Math.pow(radius-0.5*(radius-1),2)) blockList.add(p.immutable());
+            }
         } else {
-            switch (raytraceresult.getDirection())
-            {
-                case EAST:
-                case WEST:
-                    positions.addAll(Arrays.asList(pos,pos.north(),pos.south(),pos.above(),pos.below(),pos.north().above(),pos.south().above(),pos.north().below(),pos.south().below()));
-                    break;
-                case DOWN:
-                case UP:
-                    positions.addAll(Arrays.asList(pos,pos.north(),pos.south(),pos.west(),pos.east(),pos.north().east(),pos.south().east(),pos.north().west(),pos.south().west()));
-                    break;
-                case NORTH:
-                case SOUTH:
-                    positions.addAll(Arrays.asList(pos,pos.east(),pos.west(),pos.above(),pos.below(),pos.above().east(),pos.below().east(),pos.above().west(),pos.below().west()));
-                    break;
-                default:
-                    positions.add(pos);
+            for (BlockPos p : BlockPos.betweenClosed(posIn.relative(Direction.NORTH,radius).relative(Direction.WEST,radius), posIn.relative(Direction.SOUTH,radius).relative(Direction.EAST,radius))) {
+                if (p.distToCenterSqr(posIn.getX()+0.5D, posIn.getY()+0.5D, posIn.getZ()+0.5D) <= Math.pow(radius-0.5*(radius-1),2)) blockList.add(p.immutable());
             }
         }
-        for (BlockPos p: positions)
-        {
-            mineBlock(stack,worldIn,worldIn.getBlockState(p),p, player);
-        }
-    }
 
-
-    public static int getLightningModifier(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.LIGHTNING_ASPECT.get(), stack);
-    }
-
-    public static int getDazeModifier(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.DAZE.get(), stack);
-    }
-
-    public static int getExcavateModifier(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.EXCAVATE.get(), stack);
-    }
-
-    public static int getAtomizeModifier(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ATOMIZE.get(), stack);
+        return blockList;
     }
 
     @Override

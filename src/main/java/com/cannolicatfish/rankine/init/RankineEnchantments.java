@@ -18,7 +18,7 @@ public class RankineEnchantments {
     public static final RegistryObject<Enchantment> PUNCTURE = ENCHANTMENTS.register("puncture", () -> new PunctureEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND));
     public static final RegistryObject<Enchantment> SWING = ENCHANTMENTS.register("swing", () -> new SwingEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND));
     public static final RegistryObject<Enchantment> DAZE = ENCHANTMENTS.register("daze", () -> new DazeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND));
-    public static final RegistryObject<Enchantment> ATOMIZE = ENCHANTMENTS.register("atomize", () -> new AtomizeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlot.MAINHAND));
+    public static final RegistryObject<Enchantment> ATOMIZE = ENCHANTMENTS.register("atomize", () -> new AtomizeEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND));
     public static final RegistryObject<Enchantment> EXCAVATE = ENCHANTMENTS.register("excavate", () -> new ExcavateEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
     public static final RegistryObject<Enchantment> IMPACT = ENCHANTMENTS.register("impact", () -> new ImpactEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND));
     public static final RegistryObject<Enchantment> QUAKE = ENCHANTMENTS.register("quake", () -> new QuakeEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND));
