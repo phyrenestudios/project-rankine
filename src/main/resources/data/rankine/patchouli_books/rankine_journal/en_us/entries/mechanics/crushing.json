@@ -1,28 +1,28 @@
 {
-  "name": "Crushing",
+  "name": "rankine.journal.cat_mechanics.crushing.name",
   "icon": "rankine:wooden_hammer",
   "category": "rankine:mechanics",
   "pages": [
     {
       "type": "text",
-      "text": "Crushing is a process that involves breaking blocks and items into smaller components. This is typically achieved by using a new tool, the $(l:tools/hammers)hammer$(). Crushing, and by association the hammer, work differently than the typical mining process."
+      "text": "rankine.journal.cat_mechanics.crushing.text1"
     },
     {
       "type": "text",
-      "text": "To crush a block in-world, you must swing your hammer at the right time. When the attack speed indicator (the sword that appears underneath your crosshair) is filled, you may swing your hammer to crush the block. Trying to swing before the attack speed indicator is filled will result in nothing happening. This means that a hammer with a faster attack speed stat will be able to break blocks at a quicker rate."
+      "text": "rankine.journal.cat_mechanics.crushing.text2"
     },
     {
       "type": "text",
-      "text": "The main thing that you need to consider when crushing a block is the crushing/harvest level of your tool. Similar to pickaxes, hammers cannot break blocks greater than its harvest level. However, the hammer's harvest level also influences how many rolls of the drops you will receive. JEI is the best source of information on the potential drops of any block when crushing it."
+      "text": "rankine.journal.cat_mechanics.crushing.text3"
     },
     {
       "type": "text",
-      "text": "Hovering over each item in JEI will also let you know if you can obtain multiple of an item or only obtain it once. Besides showing the drops you can potentially get, there can also be an output that looks like a barrier. When this output is rolled, it acts as a skip that reduces the total number of outputs by 1. The cyan text tells you the max number of outputs (besides guaranteed outputs) that you can obtain from crushing."
+      "text": "rankine.journal.cat_mechanics.crushing.text4"
     },
     {
     "type": "text",
     "anchor": "crushing_heads",
-    "text": "To automate the crushing process, pistons can be used to push a crushing head into a block. Place the crushing head on the face of the piston and then a one block gap before the desired block to be crushed. Works in any direction."
+      "text": "rankine.journal.cat_mechanics.crushing.text5"
     },
     {
       "type": "rankine:item5",
@@ -32,7 +32,7 @@
       "item3": "rankine:iron_tier_crushing_head",
       "item4": "rankine:diamond_tier_crushing_head",
       "item5": "rankine:netherite_tier_crushing_head",
-      "text": "The tier of the Crushing Head affects the drops much like the Hammers."
+      "text": "rankine.journal.cat_mechanics.crushing.text6"
     }
   ]
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_mining_head",
+  "textures": {
+    "base": "rankine:block/stone_tier_mining_head"
+  }
+}

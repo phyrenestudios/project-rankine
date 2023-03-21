@@ -1647,6 +1647,12 @@ public class RankineItems {
     public static final RegistryObject<Item> AMERICIUM_RTG = ITEMS.register("americium_rtg", () -> new RTGItem(new Item.Properties().durability(9600).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> CURIUM_RTG = ITEMS.register("curium_rtg", () -> new RTGItem(new Item.Properties().durability(9600).tab(ProjectRankine.setup.rankineTools)));
 
+    public static final RegistryObject<Item> WOOD_TIER_MINING_HEAD = ITEMS.register("wood_tier_mining_head", () -> new BlockItem(RankineBlocks.WOOD_TIER_MINING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> STONE_TIER_MINING_HEAD = ITEMS.register("stone_tier_mining_head", () -> new BlockItem(RankineBlocks.STONE_TIER_MINING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> IRON_TIER_MINING_HEAD = ITEMS.register("iron_tier_mining_head", () -> new BlockItem(RankineBlocks.IRON_TIER_MINING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> DIAMOND_TIER_MINING_HEAD = ITEMS.register("diamond_tier_mining_head", () -> new BlockItem(RankineBlocks.DIAMOND_TIER_MINING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> NETHERITE_TIER_MINING_HEAD = ITEMS.register("netherite_tier_mining_head", () -> new BlockItem(RankineBlocks.NETHERITE_TIER_MINING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
+
     public static final RegistryObject<Item> WOOD_TIER_CRUSHING_HEAD = ITEMS.register("wood_tier_crushing_head", () -> new BlockItem(RankineBlocks.WOOD_TIER_CRUSHING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> STONE_TIER_CRUSHING_HEAD = ITEMS.register("stone_tier_crushing_head", () -> new BlockItem(RankineBlocks.STONE_TIER_CRUSHING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> IRON_TIER_CRUSHING_HEAD = ITEMS.register("iron_tier_crushing_head", () -> new BlockItem(RankineBlocks.IRON_TIER_CRUSHING_HEAD.get(),new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineTools)));

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "GBG",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "tag": "minecraft:stone_bricks"
+    },
+    "G": {
+      "item": "minecraft:stonecutter"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/tungsten_heavy_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:netherite_tier_mining_head"
+  }
+}

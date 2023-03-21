@@ -115,6 +115,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.PATH_BLOCKS,
                 RankineLists.ELECTROMAGNETS,
                 RankineLists.CRUSHING_HEADS,
+                RankineLists.MINING_HEADS,
                 RankineLists.LANTERNS,
                 RankineLists.ASPHALT_BLOCKS,
                 RankineLists.RED_ASPHALT_BLOCKS,
@@ -1302,6 +1303,11 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_constructs.evaporation_tower.text1", "A method to remove heavy materials from water. When constructed, the tower will slowly and passively generate various resources (can only run when outpute is empty, use a hopper!!). The resource lootable depends on the location. By default, water can be evaporated in the following different locations: $(li)Oceans $(li)Deserts $(li)Rivers and Swamps $(li)Caves $(li)Elsewhere");
         add("rankine.journal.cat_constructs.evaporation_tower.text2", "Construction notes: $(li)The inside is filled with the desired fluid. $(li)The walls are made from any #forge:sheetmetals. $(li)More layers of sheet metal and fluid can be added to decrease processing time by 4% each layer (max of 20). $(br2)By default, the sheetmetal in the tower will occasionally break, which will limit the max height to that broken layer. Configurable.");
 
+        add("rankine.journal.cat_mechanics.mining_heads.name", "Mining Heads");
+        add("rankine.journal.cat_mechanics.mining_heads.text1", "To automate the mining process, pistons can be used to push a mining head into a block. Place the mining head on the face of the piston and then a one block gap before the desired block to be crushed. Works in any direction.");
+        add("rankine.journal.cat_mechanics.mining_heads.text2", "The tier of the mining head determines which tier of block can be broken.");
+
+
         //Materials
         add("rankine.journal.cat_materials.name", "Base Materials");
         add("rankine.journal.cat_materials.desc", "The fundamental components of the world. Some are found naturally occurring. Others are gathered, processed, and extracted from various sources.");
@@ -1337,10 +1343,18 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_mechanics.foraging.name", "Foraging");
         add("rankine.journal.cat_mechanics.foraging.text1", "There is a chance to find a variety of seeds and roots when breaking dirt and related blocks. This will only happen when using an open hand or crude tools. The foraging enchantment for hoes adds additional items that can be dropped.");
 
+        add("rankine.journal.cat_mechanics.crushing.name", "Crushing");
+        add("rankine.journal.cat_mechanics.crushing.text1", "Crushing is a process that involves breaking blocks and items into smaller components. This is typically achieved by using a new tool, the $(l:tools/hammers)hammer$(). Crushing, and by association the hammer, work differently than the typical mining process.");
+        add("rankine.journal.cat_mechanics.crushing.text2", "To crush a block in-world, you must swing your hammer at the right time. When the attack speed indicator (the sword that appears underneath your crosshair) is filled, you may swing your hammer to crush the block. Trying to swing before the attack speed indicator is filled will result in nothing happening. This means that a hammer with a faster attack speed stat will be able to break blocks at a quicker rate.");
+        add("rankine.journal.cat_mechanics.crushing.text3", "The main thing that you need to consider when crushing a block is the crushing/harvest level of your tool. Similar to pickaxes, hammers cannot break blocks greater than its harvest level. However, the hammer's harvest level also influences how many rolls of the drops you will receive. JEI is the best source of information on the potential drops of any block when crushing it.");
+        add("rankine.journal.cat_mechanics.crushing.text4", "Hovering over each item in JEI will also let you know if you can obtain multiple of an item or only obtain it once. Besides showing the drops you can potentially get, there can also be an output that looks like a barrier. When this output is rolled, it acts as a skip that reduces the total number of outputs by 1. The cyan text tells you the max number of outputs (besides guaranteed outputs) that you can obtain from crushing.");
+        add("rankine.journal.cat_mechanics.crushing.text5", "To automate the crushing process, pistons can be used to push a crushing head into a block. Place the crushing head on the face of the piston and then a one block gap before the desired block to be crushed. Works in any direction.");
+        add("rankine.journal.cat_mechanics.crushing.text6", "The tier of the Crushing Head affects the drops much like the Hammers.");
 
         add("rankine.journal.cat_mechanics.building_modes.name", "Building Modes");
         add("rankine.journal.cat_mechanics.building_modes.text1", "Some blocks have multiple model/texture variants but are not necessarily separate blocks. These variations are called Building Modes. Shift right click with a stack of blocks in your hand to change the variant. A message will appear above the hotbar to indicate the current mode.");
         add("rankine.journal.cat_mechanics.building_modes.text2", "Blocks that have modes include: $(li)Planks $(li)Stone Bricks $(li)Polished Stones $(li)Bricks $(li)Glazed Porcelains $(li)Metal Ladders");
+
 
 
         add("rankine.journal.cat_mechanics.finite_water.name", "Water Table");

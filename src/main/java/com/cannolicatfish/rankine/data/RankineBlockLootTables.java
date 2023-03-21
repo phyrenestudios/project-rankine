@@ -138,6 +138,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.ALLOY_BARS,
                 RankineLists.ALLOY_SHEETMETALS,
                 RankineLists.CRUSHING_HEADS,
+                RankineLists.MINING_HEADS,
                 RankineLists.WALL_MUSHROOMS,
                 RankineLists.BALES
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {

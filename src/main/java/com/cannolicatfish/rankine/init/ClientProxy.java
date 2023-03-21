@@ -131,6 +131,7 @@ public class ClientProxy implements IProxy {
             ItemBlockRenderTypes.setRenderLayer(Dripstone.getPointedDripstone(), RenderType.cutout());
         }
 
+        addCutout(RankineLists.MINING_HEADS);
         addCutout(RankineLists.METAL_DOORS);
         addCutout(RankineLists.METAL_TRAPDOORS);
         addCutout(RankineLists.ALLOY_LADDERS);

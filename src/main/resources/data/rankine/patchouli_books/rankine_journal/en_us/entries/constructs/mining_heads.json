@@ -1,0 +1,21 @@
+{
+  "name": "rankine.journal.cat_constructs.mining_heads.name",
+  "icon": "rankine:wood_tier_mining_head",
+  "category": "rankine:constructs",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rankine.journal.cat_constructs.mining_heads.text1"
+    },
+    {
+      "type": "rankine:item5",
+      "header": "Mining Heads",
+      "item1": "rankine:wood_tier_mining_head",
+      "item2": "rankine:stone_tier_mining_head",
+      "item3": "rankine:iron_tier_mining_head",
+      "item4": "rankine:diamond_tier_mining_head",
+      "item5": "rankine:netherite_tier_mining_head",
+      "text": "rankine.journal.cat_mechanics.mining_heads.text2"
+    }
+  ]
+}

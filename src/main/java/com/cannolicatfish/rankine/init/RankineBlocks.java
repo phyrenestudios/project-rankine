@@ -745,6 +745,11 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TURKEY_TAIL_MUSHROOM_BLOCK = BLOCKS.register("turkey_tail_mushroom_block", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> CINNABAR_POLYPORE_MUSHROOM_BLOCK = BLOCKS.register("cinnabar_polypore_mushroom_block", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));
 
+    public static final RegistryObject<Block> WOOD_TIER_MINING_HEAD = BLOCKS.register("wood_tier_mining_head", MiningHeadBlock::new);
+    public static final RegistryObject<Block> STONE_TIER_MINING_HEAD = BLOCKS.register("stone_tier_mining_head", MiningHeadBlock::new);
+    public static final RegistryObject<Block> IRON_TIER_MINING_HEAD = BLOCKS.register("iron_tier_mining_head", MiningHeadBlock::new);
+    public static final RegistryObject<Block> DIAMOND_TIER_MINING_HEAD = BLOCKS.register("diamond_tier_mining_head", MiningHeadBlock::new);
+    public static final RegistryObject<Block> NETHERITE_TIER_MINING_HEAD = BLOCKS.register("netherite_tier_mining_head", MiningHeadBlock::new);
     public static final RegistryObject<Block> WOOD_TIER_CRUSHING_HEAD = BLOCKS.register("wood_tier_crushing_head", CrushingHeadBlock::new);
     public static final RegistryObject<Block> STONE_TIER_CRUSHING_HEAD = BLOCKS.register("stone_tier_crushing_head", CrushingHeadBlock::new);
     public static final RegistryObject<Block> IRON_TIER_CRUSHING_HEAD = BLOCKS.register("iron_tier_crushing_head", CrushingHeadBlock::new);

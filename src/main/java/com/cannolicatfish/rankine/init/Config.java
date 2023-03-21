@@ -510,7 +510,6 @@ public class Config {
         public final ForgeConfigSpec.IntValue FUSION_FURNACE_POWER;
         public final ForgeConfigSpec.IntValue INDUCTION_FURNACE_POWER;
         public final ForgeConfigSpec.IntValue AIR_DISTILLATION_SPEED;
-        public final ForgeConfigSpec.DoubleValue CRUSHING_SUCCESS_CHANCE;
 
 
         public Machines(ForgeConfigSpec.Builder b) {
@@ -539,8 +538,6 @@ public class Config {
                         .defineInRange("inductionFurnacePower", 16, 0, 10000);
                 FUSION_FURNACE_POWER = b.comment("Defines the power requirement for one process in the fusion furnace.")
                         .defineInRange("fusionFurnacePower", 2, 0, 10000);
-                CRUSHING_SUCCESS_CHANCE = b.comment("Chance for a piston/crushing head to crush a block.")
-                        .defineInRange("crushingSuccessChance", 0.2D, 0.0D, 1.0D);
                 EVAPORATION_TOWER_MAINTENANCE = b.comment("If enabled, sheetmetal from the evaporation tower will occasionally break.")
                         .define("evaporationTowerMaintenance",true);
             b.pop();

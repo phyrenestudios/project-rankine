@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " I ",
-    "IGI",
-    "#B#"
+    " G ",
+    "GBG",
+    "SSS"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stonecutter"
+    "S": {
+      "tag": "minecraft:stone_bricks"
     },
     "G": {
       "item": "minecraft:grindstone"
-    },
-    "I": {
-      "tag": "forge:ingots/steel"
     },
     "B": {
       "tag": "forge:storage_blocks/steel"

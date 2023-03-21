@@ -141,6 +141,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.FIBER_BLOCK,
                 RankineLists.FIBER_MAT,
                 RankineLists.CRUSHING_HEADS,
+                RankineLists.MINING_HEADS,
                 RankineLists.SOIL_BLOCKS,
                 RankineLists.MUD_BLOCKS,
                 RankineLists.COARSE_SOIL_BLOCKS,
