@@ -36,7 +36,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
     private static final int[] SLOTS_DOWN = new int[]{0};
     private static final int[] SLOTS_HORIZONTAL = new int[]{};
     private int cookTime;
-    private int cookTimeTotal = 12000;
+    private int cookTimeTotal = 4000;
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
     private final ContainerData towerData = new ContainerData(){
         public int get(int index) {

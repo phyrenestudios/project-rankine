@@ -705,8 +705,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         }
         copy(RankineTags.Blocks.METAL_BARS, RankineTags.Items.METAL_BARS);
         copy(RankineTags.Blocks.METAL_POLES, RankineTags.Items.METAL_POLES);
-
-        copy(BlockTags.STONE_PRESSURE_PLATES, RankineTags.Items.STONE_PRESSURE_PLATES);
         copy(RankineTags.Blocks.COBBLES, RankineTags.Items.COBBLES);
 
         for (Item item : Stream.of(RankineLists.ELEMENT_INGOTS,RankineLists.ALLOY_INGOTS,

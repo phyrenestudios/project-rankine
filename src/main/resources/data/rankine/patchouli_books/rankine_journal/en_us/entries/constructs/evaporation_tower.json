@@ -18,7 +18,7 @@
       "multiblock": {
         "pattern": [
           [ "  SSS  "," SWWWS ","SWWWWWS", "SWWWWWS","SWWWWWS"," SWWWS ", "  SSS  " ],
-          [ "       ","  MMM  "," MMMMM ", " MM0MM "," MMMMM ","  MMM  ", "       " ]
+          [ "  SSS  "," SMMMS ","SMMMMMS", "SMM0MMS","SMMMMMS"," SMMMS ", "  SSS  " ]
         ],
         "mapping": {
           "M": "#rankine:heating_elements",

@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.batterycharger;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -79,12 +80,16 @@ public class BatteryChargerContainer extends AbstractContainerMenu {
             ItemStack stack = slot.getItem();
             itemstack = stack.copy();
             if (index <= 5) {
-                if (!this.moveItemStackTo(stack, 5, 41, true)) {
+                if (!this.moveItemStackTo(stack, 6, 41, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onQuickCraft(stack, itemstack);
             } else {
-                if (index < 32) {
+                if (stack.is(RankineTags.Items.BATTERIES)) {
+                    if (!this.moveItemStackTo(stack, 0, 6, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (index < 32) {
                     if (!this.moveItemStackTo(stack, 32, 41, false)) {
                         return ItemStack.EMPTY;
                     }

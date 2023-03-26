@@ -1303,9 +1303,9 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_constructs.evaporation_tower.text1", "A method to remove heavy materials from water. When constructed, the tower will slowly and passively generate various resources (can only run when outpute is empty, use a hopper!!). The resource lootable depends on the location. By default, water can be evaporated in the following different locations: $(li)Oceans $(li)Deserts $(li)Rivers and Swamps $(li)Caves $(li)Elsewhere");
         add("rankine.journal.cat_constructs.evaporation_tower.text2", "Construction notes: $(li)The inside is filled with the desired fluid. $(li)The walls are made from any #forge:sheetmetals. $(li)More layers of sheet metal and fluid can be added to decrease processing time by 4% each layer (max of 20). $(br2)By default, the sheetmetal in the tower will occasionally break, which will limit the max height to that broken layer. Configurable.");
 
-        add("rankine.journal.cat_mechanics.mining_heads.name", "Mining Heads");
-        add("rankine.journal.cat_mechanics.mining_heads.text1", "To automate the mining process, pistons can be used to push a mining head into a block. Place the mining head on the face of the piston and then a one block gap before the desired block to be crushed. Works in any direction.");
-        add("rankine.journal.cat_mechanics.mining_heads.text2", "The tier of the mining head determines which tier of block can be broken.");
+        add("rankine.journal.cat_constructs.mining_heads.name", "Mining Heads");
+        add("rankine.journal.cat_constructs.mining_heads.text1", "To automate the mining process, pistons can be used to push a mining head into a block. Place the mining head on the face of the piston and then a one block gap before the desired block to be crushed. Works in any direction.");
+        add("rankine.journal.cat_constructs.mining_heads.text2", "The tier of the mining head determines which tier of block can be broken.");
 
 
         //Materials

@@ -106,7 +106,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(BlockTags.WALLS).add(Stone.getWall(), Stone.getPolishedWall(), Stone.getBricksWall(), Stone.getMossyBricksWall());
 
             tag(BlockTags.BUTTONS).add(Stone.getStone());
-            tag(BlockTags.PRESSURE_PLATES).add(Stone.getPressurePlate(), Stone.getBricksPressurePlate());
+            tag(BlockTags.STONE_PRESSURE_PLATES).add(Stone.getPressurePlate(), Stone.getBricksPressurePlate());
             tag(RankineTags.Blocks.COBBLES).add(Stone.getCobble());
 
             tag(RankineTags.Blocks.BASE_STONE_END).add(Stone.getStone());

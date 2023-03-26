@@ -15,7 +15,7 @@
       "item3": "rankine:iron_tier_mining_head",
       "item4": "rankine:diamond_tier_mining_head",
       "item5": "rankine:netherite_tier_mining_head",
-      "text": "rankine.journal.cat_mechanics.mining_heads.text2"
+      "text": "rankine.journal.cat_constructs.mining_heads.text2"
     }
   ]
 }
