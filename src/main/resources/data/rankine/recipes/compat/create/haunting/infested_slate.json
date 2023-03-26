@@ -6,7 +6,7 @@
         {
           "values": [
             {
-              "modid": "botania",
+              "modid": "create",
               "type": "forge:mod_loaded"
             }
           ],
@@ -14,16 +14,18 @@
         }
       ],
       "recipe": {
-        "type": "botania:mana_infusion",
-        "input": {
-          "item": "rankine:black_morning_glory"
-        },
-        "mana": 400,
-        "output": {
-          "item": "rankine:blue_morning_glory"
-        }
+        "type": "create:haunting",
+        "ingredients": [
+          {
+            "item": "rankine:slate"
+          }
+        ],
+        "results": [
+          {
+            "item": "rankine:infested_slate"
+          }
+        ]
       }
     }
   ]
 }
-

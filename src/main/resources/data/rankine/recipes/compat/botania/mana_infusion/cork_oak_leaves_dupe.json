@@ -6,7 +6,7 @@
         {
           "values": [
             {
-              "item": "botania",
+              "modid": "botania",
               "type": "forge:mod_loaded"
             }
           ],
