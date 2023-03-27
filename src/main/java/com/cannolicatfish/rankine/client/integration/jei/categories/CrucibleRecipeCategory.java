@@ -90,7 +90,7 @@ public class CrucibleRecipeCategory implements IRecipeCategory<CrucibleRecipe> {
         builder.addSlot(RecipeIngredientRole.OUTPUT,31,31).addItemStack(recipe.getSecondaryOutput());
         for (int i = 0; i < ingredients.size(); i++) {
 
-            if (i < 3) {
+            if (i < 4) {
                 int x = 110;
                 int y = 12 + rcount * 18;
 
