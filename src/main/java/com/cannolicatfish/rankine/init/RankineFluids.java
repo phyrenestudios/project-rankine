@@ -5,6 +5,10 @@ import net.minecraftforge.registries.ObjectHolder;
 
 public class RankineFluids {
 
+    //public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, ProjectRankine.MODID);
+    //public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(ForgeRegistries.FLUID_TYPES.get(), ProjectRankine.MODID);
+
+
     @ObjectHolder("rankine:liquid_mercury")
     public static FlowingFluid LIQUID_MERCURY;
   

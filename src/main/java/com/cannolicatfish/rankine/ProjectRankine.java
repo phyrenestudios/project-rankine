@@ -5,7 +5,6 @@ import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.fluids.*;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
-import com.cannolicatfish.rankine.loot.SurfRodModifier;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
 import com.google.common.collect.ImmutableList;
@@ -23,7 +22,6 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -80,7 +78,7 @@ public class ProjectRankine {
         RankinePlacedFeatures.PLACED_FEATURES.register(Bus);
         RankineSoundEvents.SOUNDS.register(Bus);
         RankineEnchantments.ENCHANTMENTS.register(Bus);
-        //RankineLootModifiers.LOOT_MODIFIERS.register(Bus);
+        RankineLootModifiers.LOOT_MODIFIERS.register(Bus);
 
         Bus.addListener(this::LoadComplete);
 
@@ -194,10 +192,6 @@ public class ProjectRankine {
             for (Block b : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.ALLOY_POLES,RankineLists.ALLOY_BARS,RankineLists.ALLOY_LADDERS,RankineLists.SHEETMETALS,RankineLists.ALLOY_SHEETMETALS).flatMap(Collection::stream).collect(Collectors.toList())) {
                 event.getBlockColors().register(new NonAlloyBlockColor(), b);
             }
-        }
-        @SubscribeEvent
-        public static void onGlobalLootModifierSerializersRegistry(final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
-            event.getRegistry().register(SurfRodModifier.SERIALIZER.setRegistryName(ProjectRankine.MODID,"surf_rod_modifier"));
         }
 
         @SubscribeEvent
