@@ -6,7 +6,6 @@ import com.cannolicatfish.rankine.fluids.*;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.loot.SurfRodModifier;
-import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
 import com.google.common.collect.ImmutableList;
@@ -14,7 +13,6 @@ import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -66,15 +64,16 @@ public class ProjectRankine {
         Bus.addListener(this::CommonSetup);
         Bus.addListener(this::ClientSetup);
 
-        RankineMobEffects.MOB_EFFECTS.register(Bus);
         RankineBlocks.BLOCKS.register(Bus);
         RankineItems.ITEMS.register(Bus);
         RankineBlocks.ITEMS.register(Bus);
         RankineEntityTypes.ENTITY_TYPES.register(Bus);
+        RankineMobEffects.MOB_EFFECTS.register(Bus);
         RankinePotions.POTIONS.register(Bus);
         RankinePOIs.POI_TYPES.register(Bus);
         RankineVillagerProfessions.VILLAGER_PROFESSIONS.register(Bus);
         RankineBlockEntityTypes.BLOCK_ENTITY_TYPES.register(Bus);
+        RankineRecipeSerializers.RECIPE_SERIALIZERS.register(Bus);
         RankineContainers.CONTAINERS.register(Bus);
         RankineFeatures.FEATURES.register(Bus);
         RankineConfiguredFeatures.CONFIGURED_FEATURES.register(Bus);
@@ -199,28 +198,6 @@ public class ProjectRankine {
         @SubscribeEvent
         public static void onGlobalLootModifierSerializersRegistry(final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
             event.getRegistry().register(SurfRodModifier.SERIALIZER.setRegistryName(ProjectRankine.MODID,"surf_rod_modifier"));
-        }
-
-        @SubscribeEvent
-         public static void onRecipeSerializersRegistry(final RegistryEvent.Register<RecipeSerializer<?>> event) {
-            event.getRegistry().register(AlloyCraftingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloy_crafting"));
-            event.getRegistry().register(CrushingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crushing"));
-            event.getRegistry().register(AlloyingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloying"));
-            event.getRegistry().register(BeehiveOvenRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"beehive_oven"));
-            event.getRegistry().register(SluicingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"sluicing"));
-            event.getRegistry().register(ElementRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"element"));
-            event.getRegistry().register(CrucibleRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crucible"));
-            event.getRegistry().register(EvaporationRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"evaporation"));
-            event.getRegistry().register(FusionFurnaceRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"fusion_furnace"));
-            event.getRegistry().register(RockGeneratorRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"rock_generator"));
-            event.getRegistry().register(TreetappingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"treetapping"));
-            event.getRegistry().register(StrippingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"stripping"));
-            event.getRegistry().register(ForagingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"foraging"));
-            event.getRegistry().register(AirDistillationRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"air_distillation"));
-            event.getRegistry().register(MixingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"mixing"));
-            event.getRegistry().register(AlloyModifierRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloy_modifier"));
-
-            event.getRegistry().register(JamRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crafting_special_jam"));
         }
 
         @SubscribeEvent
