@@ -652,16 +652,17 @@ public class RankineLangProvider extends LanguageProvider {
         add("entity.minecraft.villager.rankine.gem_cutter", "Gem Cutter");
         add("entity.minecraft.villager.rankine.rock_collector", "Rock Collector");
 
-        add("effect.rankine.mercury_poison", "Mercury Poisoning");
-        add("item.minecraft.potion.effect.mercury_poison", "Potion of Mercury Poisoning");
-        add("item.minecraft.splash_potion.effect.mercury_poison", "Splash Potion of Mercury Poisoning");
-        add("item.minecraft.lingering_potion.effect.mercury_poison", "Lingering Potion of Mercury Poisoning");
-        add("item.minecraft.tipped_arrow.effect.mercury_poison", "Arrow of Mercury Poisoning");
-        add("effect.rankine.conductive", "Conductive");
-        add("item.minecraft.potion.effect.conductive_potion", "Potion of Conductivity");
-        add("item.minecraft.splash_potion.effect.conductive_potion", "Splash Potion of Conductivity");
-        add("item.minecraft.lingering_potion.effect.conductive_potion", "Lingering Potion of Conductivity");
-        add("item.minecraft.tipped_arrow.effect.conductive_potion", "Arrow of Conductivity");
+        add("effect.rankine.radiation_poisoning", "Radiation Poisoning");
+        add("effect.rankine.mercury_poisoning", "Mercury Poisoning");
+        add("item.minecraft.potion.effect.mercury_poisoning_potion", "Potion of Mercury Poisoning");
+        add("item.minecraft.splash_potion.effect.mercury_poisoning_potion", "Splash Potion of Mercury Poisoning");
+        add("item.minecraft.lingering_potion.effect.mercury_poisoning_potion", "Lingering Potion of Mercury Poisoning");
+        add("item.minecraft.tipped_arrow.effect.mercury_poisoning_potion", "Arrow of Mercury Poisoning");
+        add("effect.rankine.conductivity", "Conductive");
+        add("item.minecraft.potion.effect.conductivity_potion", "Potion of Conductivity");
+        add("item.minecraft.splash_potion.effect.conductivity_potion", "Splash Potion of Conductivity");
+        add("item.minecraft.lingering_potion.effect.conductivity_potion", "Lingering Potion of Conductivity");
+        add("item.minecraft.tipped_arrow.effect.conductivity_potion", "Arrow of Conductivity");
 
         add("enchantment.rankine.puncture", "Puncture");
         add("enchantment.rankine.puncture.desc", "Deals extra armor-piercing damage on direct attacks.");

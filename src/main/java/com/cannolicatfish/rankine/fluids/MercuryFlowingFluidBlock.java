@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.fluids;
 
-import com.cannolicatfish.rankine.init.RankineEffects;
+import com.cannolicatfish.rankine.init.RankineMobEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -23,8 +23,8 @@ public class MercuryFlowingFluidBlock extends RankineFlowingFluidBlock{
             LivingEntity ent = (LivingEntity) entityIn;
             boolean flag = (entityIn instanceof Player && ((Player) entityIn).isCreative());
             if (!flag) {
-                MobEffectInstance cur = ent.getEffect(RankineEffects.MERCURY_POISONING);
-                ent.addEffect(new MobEffectInstance(RankineEffects.MERCURY_POISONING, Math.min(1600,cur == null ? 5 : cur.getDuration() + 5), 0, false, false, true));
+                MobEffectInstance cur = ent.getEffect(RankineMobEffects.MERCURY_POISONING.get());
+                ent.addEffect(new MobEffectInstance(RankineMobEffects.MERCURY_POISONING.get(), Math.min(1600,cur == null ? 5 : cur.getDuration() + 5), 0, false, false, true));
             }
         }
         super.entityInside(state, worldIn, pos, entityIn);

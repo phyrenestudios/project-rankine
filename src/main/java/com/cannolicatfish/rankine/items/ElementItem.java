@@ -6,7 +6,7 @@ import com.cannolicatfish.rankine.entities.ReactiveItemEntity;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineEffects;
+import com.cannolicatfish.rankine.init.RankineMobEffects;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -82,10 +82,10 @@ public class ElementItem extends Item {
                 if (entityIn instanceof Player) {
                     Player player = (Player) entityIn;
                     if (!player.isCreative()) {
-                        MobEffectInstance rad = player.getEffect(RankineEffects.RADIATION_POISONING);
+                        MobEffectInstance rad = player.getEffect(RankineMobEffects.RADIATION_POISONING.get());
                         int dur = rad == null ? Math.max(0,this.radioactive * stack.getCount()) : Math.max(0,rad.getDuration() + this.radioactive * stack.getCount());
                         if (dur > 0) {
-                            player.addEffect(new MobEffectInstance(RankineEffects.RADIATION_POISONING,dur,0, false, false, false));
+                            player.addEffect(new MobEffectInstance(RankineMobEffects.RADIATION_POISONING.get(),dur,0, false, false, false));
                         }
                     }
                 }

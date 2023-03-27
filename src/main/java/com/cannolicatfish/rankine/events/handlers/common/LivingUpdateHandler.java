@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.events.handlers.common;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineAttributes;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineEffects;
+import com.cannolicatfish.rankine.init.RankineMobEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -14,7 +14,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 public class LivingUpdateHandler {
     public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
         if (event.getEntityLiving() instanceof Monster && event.getEntityLiving().getLastHurtByMob() != null) {
-            if (event.getEntityLiving().getLastHurtByMob().getOffhandItem().getItem() == RankineItems.TOTEM_OF_REPULSING.get() || event.getEntityLiving().getEffect(RankineEffects.MERCURY_POISONING) != null) {
+            if (event.getEntityLiving().getLastHurtByMob().getOffhandItem().getItem() == RankineItems.TOTEM_OF_REPULSING.get() || event.getEntityLiving().getEffect(RankineMobEffects.MERCURY_POISONING.get()) != null) {
                 event.getEntityLiving().setLastHurtByMob(null);
             }
         }
@@ -23,7 +23,7 @@ public class LivingUpdateHandler {
         if (Config.HARD_MODE.RADIOACTIVE.get()) {
             LivingEntity ent = event.getEntityLiving();
             AttributeInstance maxHealth = ent.getAttribute(Attributes.MAX_HEALTH);
-            MobEffectInstance rad = ent.getEffect(RankineEffects.RADIATION_POISONING);
+            MobEffectInstance rad = ent.getEffect(RankineMobEffects.RADIATION_POISONING.get());
             if (rad != null) {
                 int duration = rad.getDuration();
                 if (duration >= 400 && maxHealth != null && !maxHealth.hasModifier(RankineAttributes.MINOR_RADIATION_POISONING)) {

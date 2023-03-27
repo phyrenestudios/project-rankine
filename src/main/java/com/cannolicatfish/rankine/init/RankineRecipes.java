@@ -138,8 +138,8 @@ public class RankineRecipes {
 
 
         public static void registerPotionRecipes() {
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.MERCURY::get), PotionUtils.setPotion(new ItemStack(Items.POTION), RankinePotions.MERCURY_POISON));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.SODIUM_CHLORIDE::get,RankineItems.PINK_SALT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), RankinePotions.CONDUCTIVE_POTION));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.MERCURY::get), PotionUtils.setPotion(new ItemStack(Items.POTION), RankinePotions.MERCURY_POISONING.get()));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.SODIUM_CHLORIDE::get,RankineItems.PINK_SALT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), RankinePotions.CONDUCTIVITY.get()));
         BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.AMBER::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.REGENERATION));
         BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.HELIUM_INGOT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.LEAPING));
         BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.OXYGEN_INGOT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER_BREATHING));

@@ -13,9 +13,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -68,10 +66,14 @@ public class ProjectRankine {
         Bus.addListener(this::CommonSetup);
         Bus.addListener(this::ClientSetup);
 
+        RankineMobEffects.MOB_EFFECTS.register(Bus);
         RankineBlocks.BLOCKS.register(Bus);
         RankineItems.ITEMS.register(Bus);
         RankineBlocks.ITEMS.register(Bus);
         RankineEntityTypes.ENTITY_TYPES.register(Bus);
+        RankinePotions.POTIONS.register(Bus);
+        RankinePOIs.POI_TYPES.register(Bus);
+        RankineVillagerProfessions.VILLAGER_PROFESSIONS.register(Bus);
         RankineBlockEntityTypes.BLOCK_ENTITY_TYPES.register(Bus);
         RankineContainers.CONTAINERS.register(Bus);
         RankineFeatures.FEATURES.register(Bus);
@@ -79,10 +81,6 @@ public class ProjectRankine {
         RankinePlacedFeatures.PLACED_FEATURES.register(Bus);
         RankineSoundEvents.SOUNDS.register(Bus);
         RankineEnchantments.ENCHANTMENTS.register(Bus);
-        RankinePOIs.POI_TYPES.register(Bus);
-        RankineVillagerProfessions.VILLAGER_PROFESSIONS.register(Bus);
-        //RankineEffects.MOB_EFFECTS.register(Bus);
-        //RankinePotions.POTIONS.register(Bus);
         //RankineLootModifiers.LOOT_MODIFIERS.register(Bus);
 
         Bus.addListener(this::LoadComplete);
@@ -238,24 +236,6 @@ public class ProjectRankine {
             event.registerEntityRenderer(RankineEntityTypes.ENDERBALL.get(), EnderballRenderer::new);
             event.registerEntityRenderer(RankineEntityTypes.CARCASS.get(), CarcassRenderer::new);
             event.registerEntityRenderer(RankineEntityTypes.BALLOON.get(), BalloonRenderer::new);
-        }
-
-
-        @SubscribeEvent
-        public static void registerEffects(final RegistryEvent.Register<MobEffect> event) {
-            event.getRegistry().registerAll(
-                    RankineEffects.MERCURY_POISONING,
-                    RankineEffects.CONDUCTIVE,
-                    RankineEffects.RADIATION_POISONING
-            );
-        }
-
-        @SubscribeEvent
-        public static void registerPotions(final RegistryEvent.Register<Potion> event) {
-            event.getRegistry().registerAll(
-                    RankinePotions.MERCURY_POISON,
-                    RankinePotions.CONDUCTIVE_POTION
-            );
         }
 
         @SubscribeEvent
