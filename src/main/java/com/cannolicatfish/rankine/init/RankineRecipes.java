@@ -5,7 +5,6 @@ import com.cannolicatfish.rankine.advancements.*;
 import com.cannolicatfish.rankine.entities.CannonballEntity;
 import com.cannolicatfish.rankine.entities.CarcassEntity;
 import com.cannolicatfish.rankine.items.GasBottleItem;
-import com.cannolicatfish.rankine.potion.RankinePotions;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;

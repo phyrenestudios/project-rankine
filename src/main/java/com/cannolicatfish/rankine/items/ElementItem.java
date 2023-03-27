@@ -6,7 +6,7 @@ import com.cannolicatfish.rankine.entities.ReactiveItemEntity;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.potion.RankineEffects;
+import com.cannolicatfish.rankine.init.RankineEffects;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;

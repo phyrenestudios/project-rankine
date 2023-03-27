@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.fluids;
 
-import com.cannolicatfish.rankine.potion.RankineEffects;
+import com.cannolicatfish.rankine.init.RankineEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;

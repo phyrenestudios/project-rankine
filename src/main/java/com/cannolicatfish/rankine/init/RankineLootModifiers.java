@@ -1,14 +1,15 @@
 package com.cannolicatfish.rankine.init;
 
-import com.google.gson.JsonObject;
-
+import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.loot.SurfRodModifier;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
-import net.minecraftforge.common.loot.LootModifier;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import javax.annotation.Nonnull;
-import java.util.List;
+import net.minecraftforge.registries.RegistryObject;
 
 public class RankineLootModifiers {
+    public static final DeferredRegister<GlobalLootModifierSerializer<?>> LOOT_MODIFIERS = DeferredRegister.create(ForgeRegistries.LOOT_MODIFIER_SERIALIZERS.get(), ProjectRankine.MODID);
+
+    public static final RegistryObject<GlobalLootModifierSerializer<?>> SURF_ROD = LOOT_MODIFIERS.register("surf_rod_modifier", () -> SurfRodModifier.SERIALIZER);
 
 }

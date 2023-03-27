@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.events.handlers.common;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineAttributes;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.potion.RankineEffects;
+import com.cannolicatfish.rankine.init.RankineEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;

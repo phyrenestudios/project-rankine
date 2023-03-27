@@ -24,7 +24,7 @@ public class VillagerTradesHandler {
         List<VillagerTrades.ItemListing> level4 = event.getTrades().get(4);
         List<VillagerTrades.ItemListing> level5 = event.getTrades().get(5);
 
-        if (event.getType() == RankineVillagerProfessions.METALLURGIST) {
+        if (event.getType() == RankineVillagerProfessions.METALLURGIST.get()) {
             level1.add(new BasicItemListing(1, new ItemStack(RankineItems.ALLOY_TEMPLATE.get()),12,1,0.05f));
             level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TIN_INGOT.get(), 8), new ItemStack(Items.EMERALD),12,2,0.05f));
             level1.add((entity,rand) -> new MerchantOffer(new ItemStack(Items.COPPER_INGOT, 4), new ItemStack(Items.EMERALD),12,2,0.05f));
@@ -39,7 +39,7 @@ public class VillagerTradesHandler {
             level5.add(new BasicItemListing(10, new ItemStack(RankineItems.ORE_DETECTOR.get()),12,30,0.05f));
             level5.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.STEEL_PICKAXE.get(),"76Fe-15Cr-4V-4W-1C","rankine:alloying/damascus_steel_alloying","item.rankine.damascus_steel_alloying",15,3,30,0.2f));
             level5.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.STEEL_SWORD.get(),"76Fe-15Cr-4V-4W-1C","rankine:alloying/damascus_steel_alloying","item.rankine.damascus_steel_alloying",15,3,30,0.2f));
-        } else if (event.getType() == RankineVillagerProfessions.MINERALOGIST) {
+        } else if (event.getType() == RankineVillagerProfessions.MINERALOGIST.get()) {
             level1.add(new BasicItemListing(1, new ItemStack(RankineItems.STIBNITE.get()),12,1,0.05f));
             level1.add(new BasicItemListing(1, new ItemStack(RankineItems.PROSPECTING_STICK.get()),12,1,0.05f));
             level1.add(new BasicItemListing(1, new ItemStack(RankineItems.HARDNESS_TESTER.get()),12,1,0.05f));
@@ -59,7 +59,7 @@ public class VillagerTradesHandler {
             level5.add(new BasicItemListing(1, new ItemStack(RankineItems.WOLFRAMITE.get()),12,30,0.05f));
             level5.add(new BasicItemListing(1, new ItemStack(RankineItems.COBALTITE.get()),12,30,0.05f));
             level5.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.STEEL_HAMMER.get(),"76Fe-15Cr-4V-4W-1C","rankine:alloying/damascus_steel_alloying","item.rankine.damascus_steel_alloying",15,3,30,0.2f));
-        } else if (event.getType() == RankineVillagerProfessions.BOTANIST) {
+        } else if (event.getType() == RankineVillagerProfessions.BOTANIST.get()) {
             level1.addAll(RankineVillagerTrades.returnTagTrades(ItemTags.SMALL_FLOWERS,Items.DANDELION,3,1,12,10,0.05f));
             level1.addAll(RankineVillagerTrades.returnTagTrades(ItemTags.TALL_FLOWERS,Items.ROSE_BUSH,2,1,12,10,0.05f));
             level1.addAll(RankineVillagerTrades.returnTagTrades(RankineTags.Items.BERRIES,RankineItems.ELDERBERRIES.get(),2,1,12,10,0.05f));
@@ -89,7 +89,7 @@ public class VillagerTradesHandler {
             level5.add(new BasicItemListing(5, new ItemStack(Items.CHORUS_FLOWER, 1),12,30,0.05f));
             level5.add(new BasicItemListing(10, new ItemStack(Items.WITHER_ROSE),12,30,0.05f));
 
-        } else if (event.getType() == RankineVillagerProfessions.GEM_CUTTER) {
+        } else if (event.getType() == RankineVillagerProfessions.GEM_CUTTER.get()) {
             level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.AQUAMARINE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
             level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.OPAL.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
             level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.GARNET.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
@@ -110,7 +110,7 @@ public class VillagerTradesHandler {
             level5.add(new BasicItemListing(20, new ItemStack(RankineItems.LONSDALEITE_DIAMOND.get(), 1),12,50,0.05f));
             level5.add((entity,rand) -> new MerchantOffer(new ItemStack(Items.NETHER_STAR, 1), new ItemStack(Items.EMERALD, 64),12,50,0.05f));
 
-        } else if (event.getType() == RankineVillagerProfessions.ROCK_COLLECTOR) {
+        } else if (event.getType() == RankineVillagerProfessions.ROCK_COLLECTOR.get()) {
             level1.addAll(RankineVillagerTrades.returnTagTrades(Tags.Items.STONE, RankineBlocks.ANORTHOSITE.getStone().asItem(),16,1,16,10,0.05f));
             List<Block> rocks = ForgeRegistries.BLOCKS.tags().getTag(Tags.Blocks.STONE).stream().toList();
             if (!rocks.isEmpty()) {

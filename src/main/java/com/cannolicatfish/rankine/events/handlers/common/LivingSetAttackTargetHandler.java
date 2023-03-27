@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.potion.RankineEffects;
+import com.cannolicatfish.rankine.init.RankineEffects;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;

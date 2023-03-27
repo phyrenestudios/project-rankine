@@ -6,8 +6,6 @@ import com.cannolicatfish.rankine.fluids.*;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.loot.SurfRodModifier;
-import com.cannolicatfish.rankine.potion.RankineEffects;
-import com.cannolicatfish.rankine.potion.RankinePotions;
 import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
@@ -16,8 +14,6 @@ import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.entity.ai.village.poi.PoiType;
-import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -83,6 +79,11 @@ public class ProjectRankine {
         RankinePlacedFeatures.PLACED_FEATURES.register(Bus);
         RankineSoundEvents.SOUNDS.register(Bus);
         RankineEnchantments.ENCHANTMENTS.register(Bus);
+        RankinePOIs.POI_TYPES.register(Bus);
+        RankineVillagerProfessions.VILLAGER_PROFESSIONS.register(Bus);
+        //RankineEffects.MOB_EFFECTS.register(Bus);
+        //RankinePotions.POTIONS.register(Bus);
+        //RankineLootModifiers.LOOT_MODIFIERS.register(Bus);
 
         Bus.addListener(this::LoadComplete);
 
@@ -136,6 +137,7 @@ public class ProjectRankine {
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
+
 
         @SubscribeEvent
         @OnlyIn(Dist.CLIENT)
@@ -196,24 +198,9 @@ public class ProjectRankine {
                 event.getBlockColors().register(new NonAlloyBlockColor(), b);
             }
         }
-
         @SubscribeEvent
-        public static void onPOIRegistry(final RegistryEvent.Register<PoiType> event) {
-            event.getRegistry().register(RankinePOIs.TEMPLATE_TABLE_POI.setRegistryName(ProjectRankine.MODID,"template_table_poi"));
-            event.getRegistry().register(RankinePOIs.PISTON_CRUSHER_POI.setRegistryName(ProjectRankine.MODID,"piston_crusher_poi"));
-            event.getRegistry().register(RankinePOIs.BOTANIST_STATION_POI.setRegistryName(ProjectRankine.MODID,"potted_plant_poi"));
-            event.getRegistry().register(RankinePOIs.GEM_CUTTER_POI.setRegistryName(ProjectRankine.MODID,"gem_cutter_poi"));
-            event.getRegistry().register(RankinePOIs.ROCK_COLLECTOR_POI.setRegistryName(ProjectRankine.MODID,"rock_collector_poi"));
-        }
-
-
-        @SubscribeEvent
-        public static void onVillagerProfessionRegistry(final RegistryEvent.Register<VillagerProfession> event) {
-            event.getRegistry().register(RankineVillagerProfessions.METALLURGIST.setRegistryName(ProjectRankine.MODID,"metallurgist"));
-            event.getRegistry().register(RankineVillagerProfessions.MINERALOGIST.setRegistryName(ProjectRankine.MODID,"mineralogist"));
-            event.getRegistry().register(RankineVillagerProfessions.BOTANIST.setRegistryName(ProjectRankine.MODID,"botanist"));
-            event.getRegistry().register(RankineVillagerProfessions.GEM_CUTTER.setRegistryName(ProjectRankine.MODID,"gem_cutter"));
-            event.getRegistry().register(RankineVillagerProfessions.ROCK_COLLECTOR.setRegistryName(ProjectRankine.MODID,"rock_collector"));
+        public static void onGlobalLootModifierSerializersRegistry(final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
+            event.getRegistry().register(SurfRodModifier.SERIALIZER.setRegistryName(ProjectRankine.MODID,"surf_rod_modifier"));
         }
 
         @SubscribeEvent
@@ -236,18 +223,6 @@ public class ProjectRankine {
             event.getRegistry().register(AlloyModifierRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloy_modifier"));
 
             event.getRegistry().register(JamRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crafting_special_jam"));
-        }
-
-        @SubscribeEvent
-        public static void onGlobalLootModifierSerializersRegistry(final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
-            event.getRegistry().register(SurfRodModifier.SERIALIZER.setRegistryName(ProjectRankine.MODID,"surf_rod_modifier"));
-        }
-
-
-        @SubscribeEvent
-        public static void clientSetupEvent(FMLClientSetupEvent event)
-        {
-;
         }
 
         @SubscribeEvent

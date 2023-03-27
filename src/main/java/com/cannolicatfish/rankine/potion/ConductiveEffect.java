@@ -10,7 +10,7 @@ import net.minecraft.world.level.Level;
 import java.util.Random;
 
 public class ConductiveEffect extends MobEffect {
-    protected ConductiveEffect(MobEffectCategory typeIn, int liquidColorIn) {
+    public ConductiveEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 
