@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.data.builders;
 
-import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -12,17 +12,14 @@ import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.FinishedRecipe;
-import com.cannolicatfish.rankine.data.builders.AlloyCraftingRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.tags.Tag;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Tuple;
-import net.minecraft.core.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -293,7 +290,7 @@ public class AlloyCraftingRecipeBuilder {
         }
 
         public RecipeSerializer<?> getType() {
-            return AlloyCraftingRecipe.SERIALIZER;
+            return RankineRecipeSerializers.ALLOY_CRAFTING_RECIPE_SERIALIZER.get();
         }
 
         /**

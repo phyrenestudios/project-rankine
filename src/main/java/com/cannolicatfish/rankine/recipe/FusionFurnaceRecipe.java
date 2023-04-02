@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
@@ -28,7 +29,6 @@ import java.util.List;
 
 public class FusionFurnaceRecipe implements Recipe<Container> {
 
-    //public static final FusionFurnaceRecipe.Serializer SERIALIZER = new FusionFurnaceRecipe.Serializer();
     protected int cookTime;
     protected FluidStack fluidIn;
     protected ItemStack gasIn;
@@ -40,7 +40,6 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
     protected ItemStack result2;
 
     protected final ResourceLocation id;
-    public static final FusionFurnaceRecipe.Serializer SERIALIZER = new FusionFurnaceRecipe.Serializer();
 
     public FusionFurnaceRecipe(ResourceLocation id, FluidStack fluidIn, ItemStack gasIn, Ingredient input1, Ingredient input2, FluidStack fluidOut, ItemStack gasOut, ItemStack output1,ItemStack output2,int cookTimeIn) {
         this.id = id;
@@ -153,7 +152,7 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.FUSION_FURNACE_RECIPE_SERIALIZER.get();
     }
 
     @Override

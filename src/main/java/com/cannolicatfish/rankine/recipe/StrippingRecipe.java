@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.google.gson.JsonObject;
@@ -24,7 +25,6 @@ import javax.annotation.Nullable;
 
 public class StrippingRecipe implements Recipe<Container> {
 
-    public static final StrippingRecipe.Serializer SERIALIZER = new StrippingRecipe.Serializer();
     protected Ingredient ingredient;
     protected ItemStack result;
     protected final ResourceLocation id;
@@ -90,7 +90,7 @@ public class StrippingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.AXE_STRIPPING_RECIPE_SERIALIZER.get();
     }
 
     @Override

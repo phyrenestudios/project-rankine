@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
@@ -49,8 +50,6 @@ public class AlloyingRecipe implements Recipe<Container> {
     private final int maxEnchantLevelIn;
     private final boolean localName;
     private final boolean forceNBT;
-
-    public static final AlloyingRecipe.Serializer SERIALIZER = new AlloyingRecipe.Serializer();
 
     public AlloyingRecipe(ResourceLocation idIn, int totalIn, int tierIn, NonNullList<ResourceLocation> elementsIn, NonNullList<Boolean> requiredIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn,
                           ItemStack outputIn, List<Float> bonusValuesIn, List<String> enchantmentsIn, List<String> enchantmentTypesIn, int minEnchantabilityIn, int enchantIntervalIn, int maxEnchantLevelIn,
@@ -585,7 +584,7 @@ public class AlloyingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.ALLOYING_RECIPE_SERIALIZER.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {

@@ -16,7 +16,6 @@ public class AlloySmithingRecipe extends UpgradeRecipe {
     private final Ingredient base;
     private final Ingredient addition;
     private final ItemStack result;
-    public static final AlloySmithingRecipe.Serializer SERIALIZER = new AlloySmithingRecipe.Serializer();
 
     public AlloySmithingRecipe(ResourceLocation recipeId, Ingredient base, Ingredient addition, ItemStack result) {
         super(recipeId, base, addition, result);

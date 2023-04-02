@@ -1,26 +1,24 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.google.gson.*;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class SluicingRecipe implements Recipe<Container> {
@@ -33,8 +31,6 @@ public class SluicingRecipe implements Recipe<Container> {
     private final NonNullList<Float> weights;
     private final NonNullList<Integer> mins;
     private final NonNullList<Integer> maxes;
-
-    public static final SluicingRecipe.Serializer SERIALIZER = new SluicingRecipe.Serializer();
 
     public SluicingRecipe(ResourceLocation idIn,Ingredient ingredientIn, Ingredient itemIn, NonNullList<Ingredient> recipeOutputsIn,
                           NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn, int cooldownTicksIn) {
@@ -133,7 +129,7 @@ public class SluicingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.SLUICING_RECIPE_SERIALIZER.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {

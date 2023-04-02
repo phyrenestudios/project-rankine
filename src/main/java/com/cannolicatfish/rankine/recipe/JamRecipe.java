@@ -2,20 +2,17 @@ package com.cannolicatfish.rankine.recipe;
 
 
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineTags;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.CustomRecipe;
-import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.Tags;
 
 public class JamRecipe extends CustomRecipe {
-    public static final SimpleRecipeSerializer<JamRecipe> SERIALIZER = new SimpleRecipeSerializer<>(JamRecipe::new);
     public JamRecipe(ResourceLocation idIn) {
         super(idIn);
     }
@@ -82,7 +79,7 @@ public class JamRecipe extends CustomRecipe {
     }
 
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.JAM_RECIPE_SERIALIZER.get();
     }
 
 

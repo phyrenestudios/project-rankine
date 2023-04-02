@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.util.WeightedRemovableCollection;
@@ -34,8 +35,6 @@ public class CrushingRecipe implements Recipe<Container> {
     private final NonNullList<Float> weights;
     private final NonNullList<Tier> tiers;
     private final NonNullList<Tuple<ItemStack,Tier>> guaranteedOutputs;
-
-    public static final CrushingRecipe.Serializer SERIALIZER = new CrushingRecipe.Serializer();
 
     public CrushingRecipe(ResourceLocation idIn, NonNullList<Ingredient> recipeItemsIn, NonNullList<Tuple<ItemStack,Tier>> guaranteedOutputs, NonNullList<ItemStack> recipeOutputsIn,
                           NonNullList<Float> weightsIn, NonNullList<Tier> tiersIn, NonNullList<Boolean> recipeConstantsIn, int maxRollsIn) {
@@ -194,7 +193,7 @@ public class CrushingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.CRUSHING_RECIPE_SERIALIZER.get();
     }
 
 

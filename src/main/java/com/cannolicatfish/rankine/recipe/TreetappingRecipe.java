@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
@@ -25,7 +26,6 @@ import javax.annotation.Nullable;
 
 public class TreetappingRecipe implements Recipe<Container> {
 
-    public static final TreetappingRecipe.Serializer SERIALIZER = new TreetappingRecipe.Serializer();
     protected Ingredient ingredient;
     protected FluidStack result;
     protected final ResourceLocation id;
@@ -97,7 +97,7 @@ public class TreetappingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.TREETAPPING_RECIPE_SERIALIZER.get();
     }
 
     @Override

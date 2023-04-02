@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.google.gson.JsonArray;
@@ -33,8 +34,6 @@ public class AirDistillationRecipe implements Recipe<Container> {
     private final NonNullList<ItemStack> recipeOutputs;
     private final ResourceLocation id;
     private final NonNullList<Float> chances;
-
-    public static final AirDistillationRecipe.Serializer SERIALIZER = new AirDistillationRecipe.Serializer();
 
     public AirDistillationRecipe(ResourceLocation idIn, NonNullList<ItemStack> recipeOutputsIn, NonNullList<Float> chancesIn,
                                  List<String> dimsIn, List<String> biomesIn) {
@@ -183,7 +182,7 @@ public class AirDistillationRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.AIR_DISTILLATION_RECIPE_SERIALIZER.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {

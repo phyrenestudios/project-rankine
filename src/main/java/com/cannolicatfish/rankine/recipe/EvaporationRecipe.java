@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
@@ -36,8 +37,6 @@ public class EvaporationRecipe implements Recipe<Container> {
     private final List<String> biomeTags;
     private final NonNullList<Ingredient> recipeOutputs;
     private final NonNullList<Float> weights;
-
-    public static final EvaporationRecipe.Serializer SERIALIZER = new EvaporationRecipe.Serializer();
 
     public EvaporationRecipe(ResourceLocation idIn, int timeIn, FluidStack fluidIn, boolean consumeFluid, List<String> biomesIn, List<String> biomesTagsIn, NonNullList<Ingredient> recipeOutputsIn, NonNullList<Float> weightsIn) {
         this.id = idIn;
@@ -158,7 +157,7 @@ public class EvaporationRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.EVAPORATION_RECIPE_SERIALIZER.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {

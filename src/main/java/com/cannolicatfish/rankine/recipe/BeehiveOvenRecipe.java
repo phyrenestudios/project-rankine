@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
 import com.google.gson.JsonObject;
@@ -20,7 +21,6 @@ import javax.annotation.Nullable;
 
 public class BeehiveOvenRecipe implements Recipe<Container> {
 
-    public static final BeehiveOvenRecipe.Serializer SERIALIZER = new BeehiveOvenRecipe.Serializer();
     protected Ingredient ingredient;
     protected ItemStack result;
     protected final ResourceLocation id;
@@ -88,7 +88,7 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.BEEHIVE_OVEN_RECIPE_SERIALIZER.get();
     }
 
     @Override

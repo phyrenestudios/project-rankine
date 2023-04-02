@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
@@ -29,8 +30,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class MixingRecipe implements Recipe<Container> {
-
-    public static final MixingRecipe.Serializer SERIALIZER = new MixingRecipe.Serializer();
 
     private final ResourceLocation id;
     private final int mixTime;
@@ -163,7 +162,7 @@ public class MixingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.MIXING_RECIPE_SERIALIZER.get();
     }
 
     @Override

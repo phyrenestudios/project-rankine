@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.util.WeightedCollection;
@@ -29,7 +30,6 @@ import java.util.Random;
 
 public class ForagingRecipe implements Recipe<Container> {
 
-    public static final ForagingRecipe.Serializer SERIALIZER = new ForagingRecipe.Serializer();
     private final ResourceLocation id;
     private final List<String> biomes;
     private final List<String> biomeTags;
@@ -165,7 +165,7 @@ public class ForagingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.FORAGING_RECIPE_SERIALIZER.get();
     }
 
     @Override

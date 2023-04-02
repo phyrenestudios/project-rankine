@@ -4,12 +4,8 @@ import com.cannolicatfish.rankine.blocks.block_groups.*;
 import com.cannolicatfish.rankine.data.builders.AlloyCraftingRecipeBuilder;
 import com.cannolicatfish.rankine.data.builders.AlloyIngredient;
 import com.cannolicatfish.rankine.data.builders.BeehiveOvenRecipeBuilder;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineLists;
-import com.cannolicatfish.rankine.init.RankineTags;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.recipe.JamRecipe;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
@@ -540,7 +536,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(Items.BLUE_DYE,4).requires(RankineTags.Items.NUGGETS_YTTRIUM).requires(RankineTags.Items.NUGGETS_YTTRIUM).requires(RankineTags.Items.NUGGETS_INDIUM).requires(RankineTags.Items.NUGGETS_INDIUM).requires(RankineTags.Items.NUGGETS_MANGANESE).requires(RankineTags.Items.NUGGETS_MANGANESE).unlockedBy("has_ingredient", has(RankineTags.Items.NUGGETS_MANGANESE)).save(consumer, "rankine:blue_dye_from_metals");
 
 
-        SpecialRecipeBuilder.special(JamRecipe.SERIALIZER).save(consumer, "fruit_jam");
+        SpecialRecipeBuilder.special(RankineRecipeSerializers.JAM_RECIPE_SERIALIZER.get()).save(consumer, "fruit_jam");
 
         ShapedRecipeBuilder.shaped(RankineBlocks.METEORITE_BRICKS.get()).define('#', RankineBlocks.METEORITE.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_meteorite", has(RankineBlocks.METEORITE.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RankineBlocks.ENSTATITE_CHONDRITE_BRICKS.get()).define('#', RankineBlocks.ENSTATITE_CHONDRITE.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_enstatite_chondrite", has(RankineBlocks.ENSTATITE_CHONDRITE.get())).save(consumer);

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloySpecialItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
@@ -45,7 +46,6 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.minecraftforge.c
     private final String group;
     private final boolean inherit;
     private final String inheritRecipe;
-    public static final AlloyCraftingRecipe.Serializer SERIALIZER = new AlloyCraftingRecipe.Serializer();
     private final int color;
     private final String localName;
 
@@ -68,7 +68,7 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.minecraftforge.c
     }
 
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.ALLOY_CRAFTING_RECIPE_SERIALIZER.get();
     }
 
     /**

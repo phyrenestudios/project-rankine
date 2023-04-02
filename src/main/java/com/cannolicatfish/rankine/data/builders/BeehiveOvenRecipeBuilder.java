@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.data.builders;
 
-import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.google.gson.JsonObject;
 import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -18,7 +18,6 @@ public class BeehiveOvenRecipeBuilder {
     private final Item result;
     private final int minCookTime;
     private final int maxCookTime;
-    private final RecipeSerializer<? extends BeehiveOvenRecipe> serializer = BeehiveOvenRecipe.SERIALIZER;
 
     public BeehiveOvenRecipeBuilder(Ingredient inputIn,ItemLike resultIn, int minCookTimeIn, int maxCookTimeIn) {
         this.input = inputIn;
@@ -41,7 +40,7 @@ public class BeehiveOvenRecipeBuilder {
     }
 
     public void save(Consumer<FinishedRecipe> p_126263_, ResourceLocation p_126264_) {
-        p_126263_.accept(new BeehiveOvenRecipeBuilder.Result(p_126264_, this.input, this.result, this.minCookTime, this.maxCookTime, this.serializer));
+        p_126263_.accept(new BeehiveOvenRecipeBuilder.Result(p_126264_, this.input, this.result, this.minCookTime, this.maxCookTime));
     }
 
     public static class Result implements FinishedRecipe {
@@ -50,15 +49,13 @@ public class BeehiveOvenRecipeBuilder {
         private final Item result;
         private final int minCookTime;
         private final int maxCookTime;
-        private final RecipeSerializer<? extends BeehiveOvenRecipe> serializer;
 
-        public Result(ResourceLocation idIn, Ingredient inputIn, Item resultIn, int minCookTimeIn, int maxCookTimeIn, RecipeSerializer<? extends BeehiveOvenRecipe> serializerIn) {
+        public Result(ResourceLocation idIn, Ingredient inputIn, Item resultIn, int minCookTimeIn, int maxCookTimeIn) {
             this.id = idIn;
             this.ingredient = inputIn;
             this.result = resultIn;
             this.minCookTime = minCookTimeIn;
             this.maxCookTime = maxCookTimeIn;
-            this.serializer = serializerIn;
         }
 
         public void serializeRecipeData(JsonObject p_126297_) {
@@ -69,7 +66,7 @@ public class BeehiveOvenRecipeBuilder {
         }
 
         public RecipeSerializer<?> getType() {
-            return this.serializer;
+            return RankineRecipeSerializers.BEEHIVE_OVEN_RECIPE_SERIALIZER.get();
         }
 
         public ResourceLocation getId() {

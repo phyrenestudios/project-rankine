@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
@@ -28,7 +29,6 @@ import java.util.Locale;
 
 public class AlloyModifierRecipe implements Recipe<Container> {
 
-    public static final AlloyModifierRecipe.Serializer SERIALIZER = new AlloyModifierRecipe.Serializer();
     protected Ingredient ingredient;
     protected final ResourceLocation id;
     private final List<AlloyModifier> modifiers;
@@ -99,7 +99,7 @@ public class AlloyModifierRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.ALLOY_MODIFIER_RECIPE_SERIALIZER.get();
     }
 
     @Override

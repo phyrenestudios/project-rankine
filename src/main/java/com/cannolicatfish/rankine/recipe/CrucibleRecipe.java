@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
@@ -43,8 +44,6 @@ public class CrucibleRecipe implements Recipe<Container> {
     private final ItemStack secondaryOutput;
     private final int color;
     private final ResourceLocation id;
-
-    public static final CrucibleRecipe.Serializer SERIALIZER = new CrucibleRecipe.Serializer();
 
     public CrucibleRecipe(ResourceLocation idIn, int cookTimeIn, int totalIn, int colorIn, NonNullList<Ingredient> recipeItemsIn, NonNullList<Integer> ingredientGroupsIn, NonNullList<Boolean> requiredIn, NonNullList<Integer> countModIn,
                           NonNullList<Integer> cookModIn, NonNullList<List<String>> shiftsIn, ItemStack outputIn, String alloyCompIn, ItemStack secondaryOutputIn) {
@@ -292,7 +291,7 @@ public class CrucibleRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RankineRecipeSerializers.CRUCIBLE_RECIPE_SERIALIZER.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {

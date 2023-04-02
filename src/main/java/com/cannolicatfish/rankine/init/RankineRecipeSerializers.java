@@ -27,6 +27,6 @@ public class RankineRecipeSerializers {
     public static RegistryObject<RecipeSerializer<AirDistillationRecipe>> AIR_DISTILLATION_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("air_distillation", AirDistillationRecipe.Serializer::new);
     public static RegistryObject<RecipeSerializer<MixingRecipe>> MIXING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("mixing", MixingRecipe.Serializer::new);
     public static RegistryObject<RecipeSerializer<AlloyModifierRecipe>> ALLOY_MODIFIER_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("alloy_modifier", AlloyModifierRecipe.Serializer::new);
-    public static RegistryObject<RecipeSerializer<JamRecipe>> JAM_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_special_jam", () -> new SimpleRecipeSerializer<>(JamRecipe::new));
+    public static RegistryObject<SimpleRecipeSerializer<JamRecipe>> JAM_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("crafting_special_jam", () -> new SimpleRecipeSerializer<>(JamRecipe::new));
 
 }
