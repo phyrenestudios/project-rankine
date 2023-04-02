@@ -1,6 +1,85 @@
 
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
+## Project Rankine Version 1.3.8 Changelog
+
+### BLOCKS
+- Added Kaolinite Block and Halloysite Block
+- Added Kaolinite Bricks set and Halloysite Bricks set
+- Changed model for Crushing Heads
+- Added Mining Heads, used like crushing heads but for breaking blocks normally
+
+### ITEMS
+- Added Halloysite
+
+### TAGS
+- Added Kaolinite and Halloysite to #forge:clay_balls
+- Added Kaolinite Block and Halloysite Block and Porcelain Clay to #forge:clay
+- Moved Kaolin from #minecraft:mineable_by_shovel to #minecraft:mineable_by_pickaxe
+- Added Lonsdaleite Diamond to #forge:gems/diamond
+- Added missing entries to item tag #rankine:stone_pressure_plates
+
+### RECIPES
+- Added new mixing barrel recipe for Fire Clay Ball
+- Replaced Fire Clay Ball with Kaolinite in all crushing recipes
+- Added crushing recipe for Kaolin
+- Added sluicing recipe for Fulgurite
+- Added Fusion Furnace recipe for Lonsdaleite Diamond
+- Added Amethyst Shard to Pyrite ore crushing
+- Added Lead Ingot as output to Vanadinite Fusion Furnace recipe
+
+### ADVANCEMENTS
+- Updated lang for refractory bricks advancement
+- Added advancement for finding Hematite
+
+### ENCHANTMENTS
+- Removed Lift enchantment. Functionality added to crowbars by default
+- Changed functionality of Leverage to increase reach distance with the crowbar
+- Added Torque enchantment for crowbars. Deals additional damage to entities based off their size
+- Added Fulcrum enchantment for Crowbars. Launches the player when they right click a block
+- Increased max level of Excavate from 2 to 3
+
+### MISC
+- Removed chance config for Crushing
+- Increased base speed for Evaporation Tower
+- Fixed the Evaporation Tower multiblock structure in the journal
+- Fixed shift-clicking items into the Battery Charger and the Gas Bottler
+- Replaced randomly generating veins of Fire Clay with Kaolin in all biomes
+- Added compatability recipes for Botania, Biomes you Go, Farmer's Delight
+
+
+## Project Rankine Version 1.3.7-hf1 Changelog [20Feb2023]
+### FIXES
+- Fixed destroy speed check for blocks for Alloy Hoe
+- Improved visibility for Native Selenium Ore and Native Tellurium Ore
+- Fixed a crash when falling blocks landed on charcoal blocks
+- Updated lang for LED blocks
+- Fixed a lang issue with the Endobiotic enchantment
+- Beehive ovens will now operate if the center column is air or a gas block
+
+### ITEMS
+- Foraging mechanic and enchantment has been from the Alloy Shovel to the Alloy Hoe
+- Totem of Cobbling now absorbs cobblestones in addition to stones
+
+### RECIPES
+- Added element stats for Uranium, Thorium, and Sodium
+- Fixed element stats for Molybdenum
+- Added Uranium to Zirconium Alloy and Niobium Alloy
+- Added Sodium to Green Gold Alloy and Green Netherite Alloy
+- Added recipe for deconstructing bricks in the stonecutter
+- Added an alternative piston recipe
+- Added compat recipe for Farmer's Delight
+
+### BLOCKS
+- Single-block crops now grow faster according to certain conditions
+
+## TAGS
+- Added #forge:stripped_logs and #forge:stripped_wood
+- Added magnesium to crafting_metals tags
+
+### ENCHANTMENTS
+- Foraging enchantment now has an additional effect which gives equivalent destroy speed as shovels for breaking shovel harvestable blocks
+
 ## Project Rankine Version 1.3.7 Changelog [13Feb2023]
 ### FIXES
 - Fixed lootable issues with rankine crops
