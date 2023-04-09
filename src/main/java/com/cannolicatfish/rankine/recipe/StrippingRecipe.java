@@ -19,7 +19,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
@@ -112,7 +111,7 @@ public class StrippingRecipe implements Recipe<Container> {
         }
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<StrippingRecipe> {
+    public static class Serializer implements RecipeSerializer<StrippingRecipe> {
 
         @Override
         public StrippingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {

@@ -22,7 +22,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -228,7 +227,7 @@ public class MixingRecipe implements Recipe<Container> {
     }
 
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<MixingRecipe> {
+    public static class Serializer implements RecipeSerializer<MixingRecipe> {
 
         @Override
         public MixingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {

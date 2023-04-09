@@ -31,6 +31,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class GasBlock extends AbstractGasBlock {
 
     private final java.util.function.Supplier<? extends Item> gasBottleSupplier;

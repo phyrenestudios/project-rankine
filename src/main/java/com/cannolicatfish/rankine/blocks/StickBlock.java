@@ -21,6 +21,8 @@ import net.minecraft.world.level.Level;
 import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class StickBlock extends RotatedPillarBlock {
     public StickBlock(Properties properties) {
         super(properties);

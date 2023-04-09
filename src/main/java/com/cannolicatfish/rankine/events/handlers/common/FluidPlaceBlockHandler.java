@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +25,7 @@ public class FluidPlaceBlockHandler {
     {
         if (event.getState() == Blocks.COBBLESTONE.defaultBlockState() && Config.GENERAL.IGNEOUS_COBBLE_GEN.get())
         {
-            Level worldIn = (Level) event.getWorld();
+            Level worldIn = (Level) event.getLevel();
             BlockPos pos = event.getPos();
             Map<BlockPos, Block> posMap = new HashMap<>();
             for (Direction d : Direction.values()) {
@@ -53,7 +53,7 @@ public class FluidPlaceBlockHandler {
 
         } else if (event.getState() == Blocks.BASALT.defaultBlockState() && Config.GENERAL.IGNEOUS_COBBLE_GEN.get())
         {
-            Level worldIn = (Level) event.getWorld();
+            Level worldIn = (Level) event.getLevel();
             BlockPos pos = event.getPos();
             Map<BlockPos,Block> posMap = new HashMap<>();
             for (Direction d : Direction.values()) {
@@ -81,7 +81,7 @@ public class FluidPlaceBlockHandler {
                 event.setNewState(Blocks.BLACKSTONE.defaultBlockState());
             }
         } else if (event.getState() == Blocks.STONE.defaultBlockState()) {
-            Level worldIn = (Level) event.getWorld();
+            Level worldIn = (Level) event.getLevel();
             BlockPos pos = event.getPos();
             Map<BlockPos,Block> posMap = new HashMap<>();
             for (Direction d : Direction.values()) {
@@ -109,7 +109,7 @@ public class FluidPlaceBlockHandler {
                 event.setNewState(RankineBlocks.SKARN.get().defaultBlockState());
             }
         } else if (event.getState() == Blocks.OBSIDIAN.defaultBlockState()) {
-            Level worldIn = (Level) event.getWorld();
+            Level worldIn = (Level) event.getLevel();
             BlockPos pos = event.getPos();
             Map<BlockPos,Block> posMap = new HashMap<>();
             for (Direction d : Direction.values()) {

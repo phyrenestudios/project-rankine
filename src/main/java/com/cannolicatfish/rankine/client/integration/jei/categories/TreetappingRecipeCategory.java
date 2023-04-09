@@ -21,10 +21,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
+import java.awt.*;
 import java.util.List;
 
 public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRecipe> {

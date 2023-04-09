@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.GasBottleItem;
@@ -10,7 +11,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
@@ -290,7 +290,7 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
 
     @Override
     public Component getDisplayName() {
-        return new TextComponent(getType().getRegistryName().getPath());
+        return Component.translatable(RankineBlocks.FUSION_FURNACE.get().getDescriptionId());
     }
 
     @Override

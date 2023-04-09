@@ -9,7 +9,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
@@ -26,6 +25,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -101,8 +101,8 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
 
         if (!tile.isCooking()) {
             level.setBlock(posIn, bs.setValue(CrucibleBlock.FLUID, false), 3);
-        } else if (tile.getTileData().getInt("color") != tile.color) {
-            tile.getTileData().putInt("color",tile.color);
+        } else if (tile.getPersistentData().getInt("color") != tile.color) {
+            tile.getPersistentData().putInt("color",tile.color);
             level.setBlock(posIn, bs.setValue(CrucibleBlock.FLUID, tile.isCooking()), 3);
         }
 

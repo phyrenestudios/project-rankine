@@ -20,7 +20,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
@@ -119,7 +118,7 @@ public class TreetappingRecipe implements Recipe<Container> {
         }
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<TreetappingRecipe> {
+    public static class Serializer implements RecipeSerializer<TreetappingRecipe> {
 
         @Override
         public TreetappingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {

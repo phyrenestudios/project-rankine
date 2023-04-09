@@ -10,7 +10,6 @@ import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -37,6 +36,8 @@ import net.minecraftforge.common.TierSortingRegistry;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     private final String defaultComposition;
@@ -145,7 +146,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     }
 
     @Override
-    public int getItemEnchantability(ItemStack stack) {
+    public int getEnchantmentValue(ItemStack stack) {
         return this.getAlloyEnchantability(stack);
     }
 

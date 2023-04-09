@@ -5,7 +5,6 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -24,6 +23,8 @@ import net.minecraftforge.common.TierSortingRegistry;
 
 import java.util.List;
 import java.util.Locale;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class ProspectingStickItem extends Item {
 

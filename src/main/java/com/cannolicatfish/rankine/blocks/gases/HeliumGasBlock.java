@@ -9,6 +9,8 @@ import net.minecraft.world.level.Explosion;
 import java.util.List;
 import java.util.function.Supplier;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class HeliumGasBlock extends GasBlock implements PitchModulating {
 
     public HeliumGasBlock(Supplier<? extends Item> gasBottle, GasUtilsEnum gasUtilsEnum, Properties properties) {

@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.items;
 
 import net.minecraft.tags.FluidTags;
 import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.fluids.FluidAttributes;
+
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;

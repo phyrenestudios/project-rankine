@@ -13,6 +13,8 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class FilledPenningTrapItem extends Item {
 
     public FilledPenningTrapItem(Properties properties) {

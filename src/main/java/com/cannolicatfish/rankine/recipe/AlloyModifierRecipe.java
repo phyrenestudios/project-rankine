@@ -20,7 +20,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -121,7 +120,7 @@ public class AlloyModifierRecipe implements Recipe<Container> {
         }
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<AlloyModifierRecipe> {
+    public static class Serializer implements RecipeSerializer<AlloyModifierRecipe> {
 
         @Override
         public AlloyModifierRecipe fromJson(ResourceLocation recipeId, JsonObject json) {

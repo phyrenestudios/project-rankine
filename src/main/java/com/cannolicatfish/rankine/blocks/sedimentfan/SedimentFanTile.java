@@ -13,6 +13,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -22,7 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Random;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.SEDIMENT_FAN_TILE;
@@ -41,7 +42,8 @@ public class SedimentFanTile extends BlockEntity {
             if (!level.getFluidState(pos.relative(dir,2)).is(FluidTags.WATER) || !level.getFluidState(pos.relative(dir,3)).is(FluidTags.WATER)) continue;
             RockGeneratorRecipe recipe = level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
                 if (r.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {
-                    return DataFixUtils.orElseGet(RankineRecipeTypes.ROCK_GENERATOR.tryMatch(r, level, new SimpleContainer(adjState.getBlock().asItem().getDefaultInstance())).map(Stream::of),Stream::empty);
+                    Optional<RockGeneratorRecipe> optRecipe = r.matches(new SimpleContainer(adjState.getBlock().asItem().getDefaultInstance()),level) ? Optional.of(r) : Optional.empty();
+                    return DataFixUtils.orElseGet(optRecipe.map(Stream::of),Stream::empty);
                 }
                 return null;
             }).findFirst().orElse(null);
@@ -62,7 +64,7 @@ public class SedimentFanTile extends BlockEntity {
 
     @OnlyIn(Dist.CLIENT)
     public static void spawnParticles(Level worldIn, BlockPos pos) {
-        Random random = worldIn.getRandom();
+        RandomSource random = worldIn.getRandom();
         double d0 = (double)pos.getX() + random.nextDouble();
         double d1 = (double)pos.getY() - 0.05D;
         double d2 = (double)pos.getZ() + random.nextDouble();

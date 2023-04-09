@@ -93,7 +93,7 @@ public class FusionFurnaceContainer extends AbstractContainerMenu {
 
     public String getInputTankInfo() {
         FusionFurnaceTile fusionFurnaceTile = (FusionFurnaceTile) tileEntity;
-        return fusionFurnaceTile.inputTank.getFluid().getFluid().getRegistryName() + " : " + fusionFurnaceTile.inputTank.getFluid().getAmount();
+        return fusionFurnaceTile.inputTank.getFluid().getTranslationKey() + " : " + fusionFurnaceTile.inputTank.getFluid().getAmount();
     }
 
     public FluidTank getInputTank() {
@@ -103,7 +103,7 @@ public class FusionFurnaceContainer extends AbstractContainerMenu {
 
     public String getOutputTankInfo() {
         FusionFurnaceTile fusionFurnaceTile = (FusionFurnaceTile) tileEntity;
-        return fusionFurnaceTile.outputTank.getFluid().getFluid().getRegistryName() + " : " + fusionFurnaceTile.outputTank.getFluid().getAmount();
+        return fusionFurnaceTile.outputTank.getFluid().getTranslationKey() + " : " + fusionFurnaceTile.outputTank.getFluid().getAmount();
     }
 
     public FluidTank getOutputTank() {

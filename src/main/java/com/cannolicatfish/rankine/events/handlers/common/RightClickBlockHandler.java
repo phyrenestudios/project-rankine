@@ -70,8 +70,8 @@ public class RightClickBlockHandler {
 
     public static void rightClickBlockEvent(PlayerInteractEvent.RightClickBlock event) {
         if (event.getFace() == null) return;
-        Player playerIn = event.getPlayer();
-        Level levelIn = event.getWorld();
+        Player playerIn = event.getEntity();
+        Level levelIn = event.getLevel();
         BlockPos posIn = event.getPos();
         BlockState stateIn = levelIn.getBlockState(posIn);
         ItemStack itemStack = playerIn.getItemInHand(event.getHand());

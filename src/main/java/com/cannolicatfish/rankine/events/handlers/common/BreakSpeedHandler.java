@@ -26,7 +26,7 @@ public class BreakSpeedHandler {
 
     public static void treeChop(PlayerEvent.BreakSpeed event) {
         BlockPos pos = event.getPos();
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         Level worldIn = player.level;
         BlockState state = event.getState();
 
@@ -63,23 +63,23 @@ public class BreakSpeedHandler {
 
     public static void onBreakSpeed(PlayerEvent.BreakSpeed event) {
         BlockState targetBS = event.getState();
-        Item heldItem = event.getPlayer().getItemInHand(InteractionHand.MAIN_HAND).getItem();
+        Item heldItem = event.getEntity().getItemInHand(InteractionHand.MAIN_HAND).getItem();
 
         if (!(heldItem instanceof AxeItem) && event.getState().is(BlockTags.LOGS) && Config.GENERAL.MANDATORY_AXE.get()) { event.setNewSpeed(0f); }
         if (heldItem instanceof HammerItem) { event.setNewSpeed(0f); }
         if (heldItem instanceof CrowbarItem) { event.setNewSpeed(0f); }
 
-        ForgeConfigSpec.BooleanValue configSpec = VanillaIntegration.DISABLED_ITEMS.get(event.getPlayer().getMainHandItem().getItem());
+        ForgeConfigSpec.BooleanValue configSpec = VanillaIntegration.DISABLED_ITEMS.get(event.getEntity().getMainHandItem().getItem());
         if (configSpec != null && configSpec.get()) {
             event.setNewSpeed(0f);
         }
 
-        if (event.getPlayer().getOffhandItem().getItem() == RankineItems.TOTEM_OF_HASTENING.get()) {
+        if (event.getEntity().getOffhandItem().getItem() == RankineItems.TOTEM_OF_HASTENING.get()) {
             event.setNewSpeed(event.getNewSpeed() + 3);
         }
 
-        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.QUAKE.get(),event.getPlayer().getMainHandItem()) > 0) {
-            int enchant = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.QUAKE.get(),event.getPlayer().getMainHandItem());
+        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.QUAKE.get(),event.getEntity().getMainHandItem()) > 0) {
+            int enchant = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.QUAKE.get(),event.getEntity().getMainHandItem());
             int height = event.getPos().getY();
 
             float maxPercent = .40f + (enchant - 1) * .10f;
@@ -96,7 +96,7 @@ public class BreakSpeedHandler {
             }
         }
 
-        if (event.getPlayer().getLevel().getBlockState(event.getPos().above()).is(RankineBlocks.STUMP.get()) && !(event.getPlayer().getMainHandItem().getItem() instanceof AlloyShovelItem)) {
+        if (event.getEntity().getLevel().getBlockState(event.getPos().above()).is(RankineBlocks.STUMP.get()) && !(event.getEntity().getMainHandItem().getItem() instanceof AlloyShovelItem)) {
             event.setNewSpeed(event.getNewSpeed()/2f);
         }
     }

@@ -20,7 +20,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class RankineContainers {
 
-    public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, ProjectRankine.MODID);
+    public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, ProjectRankine.MODID);
 
     public static RegistryObject<MenuType<AlloyFurnaceContainer>> ALLOY_FURNACE_CONTAINER = CONTAINERS.register("alloy_furnace", () -> IForgeMenuType.create((windowId, inv, data) -> new AlloyFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
     public static RegistryObject<MenuType<CrucibleContainer>> CRUCIBLE_CONTAINER = CONTAINERS.register("crucible", () -> IForgeMenuType.create((windowId, inv, data) -> new CrucibleContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));

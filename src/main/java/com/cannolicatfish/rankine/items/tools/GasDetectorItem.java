@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine.items.tools;
 import com.cannolicatfish.rankine.blocks.gases.GasBlock;
 import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -14,6 +13,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Optional;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class GasDetectorItem extends Item {
     public GasDetectorItem(Properties properties) {

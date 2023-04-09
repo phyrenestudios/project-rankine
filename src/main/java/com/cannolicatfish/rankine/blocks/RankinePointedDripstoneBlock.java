@@ -47,6 +47,8 @@ import java.util.Random;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class RankinePointedDripstoneBlock extends PointedDripstoneBlock {
     public Block dripstoneBlock;
     private static final VoxelShape TIP_MERGE_SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);

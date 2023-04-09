@@ -5,6 +5,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class RankinePlanksBlock extends BuildingModeBlock {
 
     public RankinePlanksBlock(Properties properties) {

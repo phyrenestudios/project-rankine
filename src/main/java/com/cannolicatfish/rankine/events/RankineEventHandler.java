@@ -9,16 +9,18 @@ import com.cannolicatfish.rankine.events.handlers.common.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.event.*;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
-import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
+import net.minecraftforge.event.level.*;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
-import net.minecraftforge.event.world.*;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -30,10 +32,10 @@ public class RankineEventHandler {
     public static void attachCapabilities(AttachCapabilitiesEvent<LevelChunk> event) {
         event.addCapability(new ResourceLocation("rankine:retrogen_chunk"), new ChunkRetrogenProvider());
     }
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void playSoundAtEntityEvent(PlaySoundAtEntityEvent event) {
         PlaySoundAtEntityHandler.onPlaySound(event);
-    }
+    }*/
     @SubscribeEvent
     public static void registerCommands(RegisterCommandsEvent event) {
         CreateAlloyCommand.register(event.getDispatcher());
@@ -47,7 +49,7 @@ public class RankineEventHandler {
         PlayerTickHandler.movementModifier(event);
     }
     @SubscribeEvent
-    public static void worldLoadEvent(WorldEvent.Load event) {
+    public static void worldLoadEvent(LevelEvent.Load event) {
         WorldLoadHandler.updateFuelValues(event);
     }
     @SubscribeEvent
@@ -67,7 +69,7 @@ public class RankineEventHandler {
         CreateFluidSourceHandler.noWater(event);
     }
     @SubscribeEvent
-    public static void entityJoinWorldEvent(EntityJoinWorldEvent event) {
+    public static void entityJoinWorldEvent(EntityJoinLevelEvent event) {
         EntityJoinWorldHandler.onLightningEvent(event);
         EntityJoinWorldHandler.onSheepJoinWorld(event);
     }
@@ -108,7 +110,7 @@ public class RankineEventHandler {
         LivingSetAttackTargetHandler.onLivingSetAttackTarget(event);
     }
     @SubscribeEvent
-    public static void livingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
+    public static void livingUpdateEvent(LivingEvent.LivingTickEvent event) {
         LivingUpdateHandler.onLivingUpdate(event);
         LivingUpdateHandler.onEnvironmentEffect(event);
     }

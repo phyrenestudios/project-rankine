@@ -204,7 +204,7 @@ public class AirDistillationRecipe implements Recipe<Container> {
         return RankineRecipeTypes.AIR_DISTILLATION;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AirDistillationRecipe> {
+    public static class Serializer implements RecipeSerializer<AirDistillationRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "air_distillation");
         public AirDistillationRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 

@@ -21,7 +21,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -187,7 +186,7 @@ public class ForagingRecipe implements Recipe<Container> {
     }
 
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ForagingRecipe> {
+    public static class Serializer implements RecipeSerializer<ForagingRecipe> {
         @Override
         public ForagingRecipe fromJson(ResourceLocation recipeId, JsonObject jsonObject) {
             JsonElement biomesArray = jsonObject.has("biomes") ? jsonObject.get("biomes") : null;

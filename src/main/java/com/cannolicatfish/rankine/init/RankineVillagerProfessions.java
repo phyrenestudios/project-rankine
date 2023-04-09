@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class RankineVillagerProfessions {
-    public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS = DeferredRegister.create(ForgeRegistries.PROFESSIONS, ProjectRankine.MODID);
+    public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS = DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS, ProjectRankine.MODID);
 
     public static final RegistryObject<VillagerProfession> METALLURGIST = VILLAGER_PROFESSIONS.register("metallurgist", () -> new VillagerProfession("metallurgist", RankinePOIs.TEMPLATE_TABLE_POI.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.ANVIL_HIT));
     public static final RegistryObject<VillagerProfession> MINERALOGIST = VILLAGER_PROFESSIONS.register("mineralogist", () -> new VillagerProfession("mineralogist", RankinePOIs.PISTON_CRUSHER_POI.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.STONE_BREAK));

@@ -174,7 +174,7 @@ public class EvaporationRecipe implements Recipe<Container> {
         }
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<EvaporationRecipe> {
+    public static class Serializer implements RecipeSerializer<EvaporationRecipe> {
         @Override
         public EvaporationRecipe fromJson(ResourceLocation recipeId, JsonObject jsonObject) {
             int processTime = jsonObject.has("processTime") ? jsonObject.get("processTime").getAsInt() : 20000;

@@ -27,6 +27,8 @@ import net.minecraft.world.phys.Vec3;
 import java.util.Random;
 import java.util.function.Predicate;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class BlunderbussItem extends ProjectileWeaponItem implements Vanishable {
     public static final Predicate<ItemStack> CANNONBALLS = (p_220002_0_) -> {
         return p_220002_0_.is(RankineTags.Items.CANNONBALLS);

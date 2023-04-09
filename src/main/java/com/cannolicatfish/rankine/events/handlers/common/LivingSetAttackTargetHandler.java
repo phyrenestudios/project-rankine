@@ -17,9 +17,9 @@ public class LivingSetAttackTargetHandler {
     }
  */
     public static void onLivingSetAttackTarget(LivingSetAttackTargetEvent event) {
-        if (event.getEntityLiving() instanceof Monster && event.getTarget() != null) {
-            if (event.getTarget().getOffhandItem().getItem() == RankineItems.TOTEM_OF_REPULSING.get() || event.getEntityLiving().getEffect(RankineMobEffects.MERCURY_POISONING.get()) != null) {
-                ((Mob) event.getEntityLiving()).setTarget(null);
+        if (event.getEntity() instanceof Monster && event.getTarget() != null) {
+            if (event.getTarget().getOffhandItem().getItem() == RankineItems.TOTEM_OF_REPULSING.get() || event.getEntity().getEffect(RankineMobEffects.MERCURY_POISONING.get()) != null) {
+                ((Mob) event.getEntity()).setTarget(null);
             }
         }
     }

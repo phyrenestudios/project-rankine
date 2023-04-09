@@ -15,6 +15,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.event.ForgeEventFactory;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class AntimatterBlock extends Block {
     public AntimatterBlock(Properties properties) {
         super(properties);

@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.events.handlers.common;
 import com.cannolicatfish.rankine.items.totems.SofteningTotemItem;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 
 public class FarmlandTrampleHandler {
     public static void onCropTrample(BlockEvent.FarmlandTrampleEvent event) {

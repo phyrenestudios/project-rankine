@@ -20,6 +20,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Objects;
 import java.util.Random;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class MortarItem extends Item {
     public MortarItem(Properties properties) {
         super(properties);

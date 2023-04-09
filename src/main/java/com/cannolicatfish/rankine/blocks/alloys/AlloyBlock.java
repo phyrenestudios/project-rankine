@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class AlloyBlock extends BaseEntityBlock {
     public AlloyBlock(Properties properties) {
         super(properties);

@@ -17,6 +17,8 @@ import net.minecraft.world.phys.Vec3;
 import java.util.Random;
 import java.util.function.Supplier;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class RankineFlowingFluidBlock extends LiquidBlock {
     private boolean evaporates;
 

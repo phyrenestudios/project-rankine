@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class HydrogenGasBlock extends GasBlock {
     public HydrogenGasBlock(Supplier<? extends Item> gasBottle, GasUtilsEnum gasUtilsEnum, Properties properties) {
         super(gasBottle,gasUtilsEnum, properties);

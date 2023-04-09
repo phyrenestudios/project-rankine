@@ -3,7 +3,8 @@ package com.cannolicatfish.rankine.advancements;
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.*;
 import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
@@ -37,7 +38,7 @@ public class HasEnchantmentPredicate extends ItemPredicate {
             ImmutableSet.Builder<Item> builder = ImmutableSet.builder();
             for(JsonElement jsonelement : jsonarray) {
                 ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.convertToString(jsonelement, "item"));
-                builder.add(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> {
+                builder.add(BuiltInRegistries.ITEM.getOptional(resourcelocation).orElseThrow(() -> {
                     return new JsonSyntaxException("Unknown item id '" + resourcelocation + "'");
                 }));
             }
@@ -46,7 +47,7 @@ public class HasEnchantmentPredicate extends ItemPredicate {
         TagKey<Item> tagkey = null;
         if (jsonobject.has("tag")) {
             ResourceLocation resourcelocation1 = new ResourceLocation(GsonHelper.getAsString(jsonobject, "tag"));
-            tagkey = TagKey.create(Registry.ITEM_REGISTRY, resourcelocation1);
+            tagkey = TagKey.create(Registries.ITEM, resourcelocation1);
         }
         Set<Enchantment> enchants = null;
         JsonArray jsonarray2 = GsonHelper.getAsJsonArray(jsonobject, "enchantments", (JsonArray)null);
@@ -54,7 +55,7 @@ public class HasEnchantmentPredicate extends ItemPredicate {
             ImmutableSet.Builder<Enchantment> builder = ImmutableSet.builder();
             for(JsonElement jsonelement : jsonarray2) {
                 ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.convertToString(jsonelement, "enchantment"));
-                builder.add(Registry.ENCHANTMENT.getOptional(resourcelocation).orElseThrow(() -> {
+                builder.add(BuiltInRegistries.ENCHANTMENT.getOptional(resourcelocation).orElseThrow(() -> {
                     return new JsonSyntaxException("Unknown item id '" + resourcelocation + "'");
                 }));
             }
@@ -95,7 +96,7 @@ public class HasEnchantmentPredicate extends ItemPredicate {
                     ImmutableSet.Builder<Item> builder = ImmutableSet.builder();
                     for(JsonElement jsonelement : jsonarray) {
                         ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.convertToString(jsonelement, "item"));
-                        builder.add(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> {
+                        builder.add(BuiltInRegistries.ITEM.getOptional(resourcelocation).orElseThrow(() -> {
                             return new JsonSyntaxException("Unknown item id '" + resourcelocation + "'");
                         }));
                     }
@@ -105,7 +106,7 @@ public class HasEnchantmentPredicate extends ItemPredicate {
                 TagKey<Item> tagkey = null;
                 if (jsonobject.has("tag")) {
                     ResourceLocation resourcelocation1 = new ResourceLocation(GsonHelper.getAsString(jsonobject, "tag"));
-                    tagkey = TagKey.create(Registry.ITEM_REGISTRY, resourcelocation1);
+                    tagkey = TagKey.create(Registries.ITEM, resourcelocation1);
                 }
 
                 Set<Enchantment> enchants = null;
@@ -114,7 +115,7 @@ public class HasEnchantmentPredicate extends ItemPredicate {
                     ImmutableSet.Builder<Enchantment> builder = ImmutableSet.builder();
                     for(JsonElement jsonelement : jsonarray2) {
                         ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.convertToString(jsonelement, "enchantment"));
-                        builder.add(Registry.ENCHANTMENT.getOptional(resourcelocation).orElseThrow(() -> {
+                        builder.add(BuiltInRegistries.ENCHANTMENT.getOptional(resourcelocation).orElseThrow(() -> {
                             return new JsonSyntaxException("Unknown item id '" + resourcelocation + "'");
                         }));
                     }
@@ -137,7 +138,7 @@ public class HasEnchantmentPredicate extends ItemPredicate {
             if (this.items != null) {
                 JsonArray jsonarray = new JsonArray();
                 for(Item item : this.items) {
-                    jsonarray.add(Registry.ITEM.getKey(item).toString());
+                    jsonarray.add(BuiltInRegistries.ITEM.getKey(item).toString());
                 }
                 jsonobject.add("items", jsonarray);
             }
@@ -147,7 +148,7 @@ public class HasEnchantmentPredicate extends ItemPredicate {
             if (this.enchantments != null) {
                 JsonArray jsonarray = new JsonArray();
                 for(Enchantment item : this.enchantments) {
-                    jsonarray.add(Registry.ENCHANTMENT.getKey(item).toString());
+                    jsonarray.add(BuiltInRegistries.ENCHANTMENT.getKey(item).toString());
                 }
                 jsonobject.add("enchantments", jsonarray);
             }

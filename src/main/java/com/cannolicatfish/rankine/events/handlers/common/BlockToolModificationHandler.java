@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.init.VanillaIntegration;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 
 public class BlockToolModificationHandler {
     public static void onToolUse( BlockEvent.BlockToolModificationEvent event) {

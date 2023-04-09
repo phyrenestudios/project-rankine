@@ -12,10 +12,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -369,7 +371,7 @@ public class AlloyingRecipe implements Recipe<Container> {
     public String generateRandomResult(Level worldIn) {
         List<Integer> percents = new ArrayList<>();
         List<String> symbols = new ArrayList<>();
-        Random rand = worldIn.getRandom();
+        RandomSource rand = worldIn.getRandom();
         List<ElementRecipe> req = getElementList(worldIn, true);
         List<ElementRecipe> nonreq = getElementList(worldIn, false);
         if (req.isEmpty() && nonreq.isEmpty()) {
@@ -542,12 +544,12 @@ public class AlloyingRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(Container inv, RegistryAccess registryAccess) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess registryAccess) {
         ItemStack out = this.recipeOutput.copy();
         if (this.getColor() != 16777215) {
             out.getOrCreateTag().putInt("color",this.getColor());
@@ -589,7 +591,7 @@ public class AlloyingRecipe implements Recipe<Container> {
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Item item = BuiltInRegistries.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
@@ -606,7 +608,7 @@ public class AlloyingRecipe implements Recipe<Container> {
         return RankineRecipeTypes.ALLOYING;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AlloyingRecipe> {
+    public static class Serializer implements RecipeSerializer<AlloyingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "alloying");
         public AlloyingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int reqcount = 0;
@@ -631,7 +633,7 @@ public class AlloyingRecipe implements Recipe<Container> {
 
             String s1 = GsonHelper.getAsString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);
-            ItemStack stack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
+            ItemStack stack = new ItemStack(BuiltInRegistries.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
 
             NonNullList<ResourceLocation> elements = NonNullList.withSize(t, new ResourceLocation(""));
             NonNullList<Float> mins = NonNullList.withSize(t, 0f);

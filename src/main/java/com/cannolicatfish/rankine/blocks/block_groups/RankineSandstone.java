@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.blocks.block_groups;
 
-import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.RankineSlabBlock;
 import com.cannolicatfish.rankine.blocks.RankineStairsBlock;
 import com.cannolicatfish.rankine.blocks.RankineWallBlock;
@@ -50,7 +49,7 @@ public class RankineSandstone {
         newSandstone.cutSandstoneSlab =  RankineBlocks.BLOCKS.register("cut_"+baseName+"_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(newSandstone.sandstone.get())));
         newSandstone.chiseledSandstone =  RankineBlocks.BLOCKS.register("chiseled_"+baseName, () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(newSandstone.sandstone.get())));
 
-        Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld);
+        Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);
         RankineBlocks.ITEMS.register(baseName, () -> new BlockItem(newSandstone.sandstone.get(), DEF_BUILDING));
         RankineBlocks.ITEMS.register(baseName+"_slab", () -> new BlockItem(newSandstone.sandstoneSlab.get(), DEF_BUILDING));
         RankineBlocks.ITEMS.register(baseName+"_stairs", () -> new BlockItem(newSandstone.sandstoneStairs.get(), DEF_BUILDING));

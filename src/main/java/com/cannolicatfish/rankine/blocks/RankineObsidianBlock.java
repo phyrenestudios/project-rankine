@@ -5,6 +5,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class RankineObsidianBlock extends NonpushableBlock{
     public RankineObsidianBlock(Properties builder) {
         super(builder);

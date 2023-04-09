@@ -27,6 +27,8 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class LocustSpineBlock extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     protected static final VoxelShape[] UP_SHAPES = new VoxelShape[] {Block.box(5.0D, 0.0D, 5.0D, 11.0D, 3.0D, 11.0D)};

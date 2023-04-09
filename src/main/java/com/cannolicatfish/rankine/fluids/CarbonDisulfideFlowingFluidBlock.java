@@ -14,6 +14,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class CarbonDisulfideFlowingFluidBlock extends RankineFlowingFluidBlock {
     public CarbonDisulfideFlowingFluidBlock(Supplier<? extends FlowingFluid> supplier, boolean evaporates, Properties properties) {
         super(supplier, evaporates,  properties);

@@ -7,6 +7,8 @@ import net.minecraft.world.item.Item;
 import java.util.List;
 import java.util.function.Supplier;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class OganessonGasBlock extends GasBlock implements PitchModulating {
 
     public OganessonGasBlock(Supplier<? extends Item> gasBottle, GasUtilsEnum gasUtilsEnum, Properties properties) {

@@ -12,6 +12,8 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class MagnetItem extends Item {
 
     int type;

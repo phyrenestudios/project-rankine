@@ -37,6 +37,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class RankinePlantBlock extends BushBlock implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     private static final VoxelShape AGE0 = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);

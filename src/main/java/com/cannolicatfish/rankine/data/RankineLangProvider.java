@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 public class RankineLangProvider extends LanguageProvider {
     private final String locale;
     public RankineLangProvider(DataGenerator gen, String locale) {
-        super(gen, ProjectRankine.MODID, locale);
+        super(gen.getPackOutput(), ProjectRankine.MODID, locale);
         this.locale = locale;
     }
 
@@ -34,36 +34,36 @@ public class RankineLangProvider extends LanguageProvider {
 
         for (RankineStone Stone : RankineLists.RANKINE_STONES) {
             for (Block blk : Stone.getStoneBlocks()) {
-                add(blk, parseLangName(blk.getRegistryName().getPath()));
+                add(blk, parseLangName(blk.getDescriptionId()));
             }
         }
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             for (Block blk : Wood.getWoodBlocks()) {
                 if (blk != null && !(blk instanceof SignBlock)) {
-                    add(blk, parseLangName(blk.getRegistryName().getPath()));
+                    add(blk, parseLangName(blk.getDescriptionId()));
                 }
             }
-            add(Wood.getSignItem(), parseLangName(Wood.getSignItem().getRegistryName().getPath()));
-            add(Wood.getBoat(), parseLangName(Wood.getBoat().getRegistryName().getPath()));
+            add(Wood.getSignItem(), parseLangName(Wood.getSignItem().getDescriptionId()));
+            add(Wood.getBoat(), parseLangName(Wood.getBoat().getDescriptionId()));
         }
         for (RankineSandstone Sandstone : RankineLists.RANKINE_SANDSTONES) {
             for (Block blk : Sandstone.getSandstoneBlocks()) {
-                add(blk, parseLangName(blk.getRegistryName().getPath()));
+                add(blk, parseLangName(blk.getDescriptionId()));
             }
         }
         for (RankineCement block : RankineLists.RANKINE_CEMENTS) {
             for (Block blk : block.getCementBlocks()) {
-                add(blk, parseLangName(blk.getRegistryName().getPath()));
+                add(blk, parseLangName(blk.getDescriptionId()));
             }
         }
         for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
             for (Block blk : Bricks.getBricksBlocks()) {
-                add(blk, parseLangName(blk.getRegistryName().getPath()));
+                add(blk, parseLangName(blk.getDescriptionId()));
             }
         }
         for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
             for (Block blk : Dripstone.getBlocks()) {
-                add(blk, parseLangName(blk.getRegistryName().getPath()));
+                add(blk, parseLangName(blk.getDescriptionId()));
             }
         }
 
@@ -133,7 +133,7 @@ public class RankineLangProvider extends LanguageProvider {
             } else if (blk == RankineBlocks.RARE_EARTH_ELECTROMAGNET.get()) {
                 add(blk, "Electromagnet (Tier 3)");
             } else {
-                add(blk, parseLangName(blk.getRegistryName().getPath()));
+                add(blk, parseLangName(blk.getDescriptionId()));
             }
         }
 
@@ -145,7 +145,7 @@ public class RankineLangProvider extends LanguageProvider {
             } else if (blk.equals(RankineBlocks.CALCIUM_CHLORIDE_BLOCK.get())) {
                 add(blk, "Block of Salt (CaCl2)");
             } else {
-                add(blk, parseLangName("block_of_"+blk.getRegistryName().getPath().replace("_block","")));
+                add(blk, parseLangName("block_of_"+blk.getDescriptionId().replace("_block","")));
             }
         }
         add(RankineBlocks.KAOLINITE_BLOCK.get(),"Block of Kaolinite");
@@ -153,7 +153,7 @@ public class RankineLangProvider extends LanguageProvider {
 
         for (Block blk : RankineLists.ALLOY_BLOCKS) {
             if (blk != RankineBlocks.ALLOY_BLOCK.get()) {
-                add(blk,parseLangNameCustomBlock(blk.getRegistryName().getPath()));
+                add(blk,parseLangNameCustomBlock(blk.getDescriptionId()));
             }
         }
 
@@ -233,7 +233,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(),
                 RankineBlocks.PORPHYRY_COPPER.get()
                 )) {
-            add(blk, parseLangName(blk.getRegistryName().getPath()));
+            add(blk, parseLangName(blk.getDescriptionId()));
         }
 
         for (Item item : Stream.of(
@@ -255,7 +255,7 @@ public class RankineLangProvider extends LanguageProvider {
             } else if (item == RankineItems.CALCIUM_CHLORIDE.get()) {
                 add(item, "Salt (CaCl2)");
             } else {
-                add(item, parseLangName(item.getRegistryName().getPath()));
+                add(item, parseLangName(item.getDescriptionId()));
             }
         }
 
@@ -283,13 +283,13 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.ZIRCONIUM_ALLOY_TOOLS,
                 RankineLists.TITANIUM_ALLOY_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             if (item != RankineItems.ALLOY_NUGGET.get() && item != RankineItems.ALLOY_INGOT.get()) {
-                add(item, parseLangNameCustom(item.getRegistryName().getPath()));
+                add(item, parseLangNameCustom(item.getDescriptionId()));
             }
         }
         for (Item item : Arrays.asList(RankineItems.ALLOY_NUGGET.get(),RankineItems.ALLOY_INGOT.get())) {
-            add(item, parseLangNameCustom(item.getRegistryName().getPath()));
+            add(item, parseLangNameCustom(item.getDescriptionId()));
         }
-        add(RankineItems.ALLOY_BLOCK.get(), parseLangNameCustomBlock(RankineItems.ALLOY_BLOCK.get().getRegistryName().getPath()));
+        add(RankineItems.ALLOY_BLOCK.get(), parseLangNameCustomBlock(RankineItems.ALLOY_BLOCK.get().getDescriptionId()));
 
         for (Item item : Arrays.asList(
             RankineItems.SOLDER.get(),
@@ -505,7 +505,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.ZINC_BROMINE_BATTERY.get(),
             RankineItems.SODIUM_SULFUR_BATTERY.get(),
             RankineItems.LITHIUM_ION_BATTERY.get())) {
-            add(item, parseLangName(item.getRegistryName().getPath()));
+            add(item, parseLangName(item.getDescriptionId()));
         }
 
         add(RankineItems.AMERICIUM_RTG.get(), "Americium RTG");

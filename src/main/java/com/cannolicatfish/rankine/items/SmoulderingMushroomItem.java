@@ -19,6 +19,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class SmoulderingMushroomItem extends Item {
     public SmoulderingMushroomItem(Properties builder) {
         super(builder);

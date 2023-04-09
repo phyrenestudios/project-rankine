@@ -41,8 +41,8 @@ public class RankineAttributes {
     public static final UUID KNIFE_RANGE_MODIFIER = UUID.fromString("3c4a1c57-ed5a-482e-946e-fb0b00fe9bb0");
     public static final UUID REACH_MODIFIER = UUID.fromString("3c4a1c57-ed5a-482e-946e-fb0b00fe9bc0");
 
-    public static final Attribute REACH_DISTANCE = ForgeMod.REACH_DISTANCE.get();
-    public static final Attribute ATTACK_RANGE = ForgeMod.ATTACK_RANGE.get();
+    public static final Attribute REACH_DISTANCE = ForgeMod.BLOCK_REACH.get();
+    public static final Attribute ATTACK_RANGE = ForgeMod.ENTITY_REACH.get();
     public static final Attribute STEP_HEIGHT = ForgeMod.STEP_HEIGHT_ADDITION.get();
     public static final Attribute GRAVITY = ForgeMod.ENTITY_GRAVITY.get();
 

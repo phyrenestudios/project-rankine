@@ -35,7 +35,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class RankineBlockEntityTypes {
 
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, ProjectRankine.MODID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, ProjectRankine.MODID);
 
     public static final RegistryObject<BlockEntityType<AlloyFurnaceTile>> ALLOY_FURNACE = BLOCK_ENTITY_TYPES.register("alloy_furnace",
             () -> BlockEntityType.Builder.of(AlloyFurnaceTile::new, RankineBlocks.ALLOY_FURNACE.get())

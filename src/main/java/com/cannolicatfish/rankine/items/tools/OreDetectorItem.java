@@ -2,7 +2,6 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -20,6 +19,8 @@ import net.minecraftforge.common.TierSortingRegistry;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class OreDetectorItem extends Item {
 

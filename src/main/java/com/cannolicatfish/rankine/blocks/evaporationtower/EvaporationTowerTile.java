@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.EvaporationRecipe;
@@ -8,7 +9,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.WorldlyContainer;
@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 
 import javax.annotation.Nullable;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -252,7 +253,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
     
     @Override
     public Component getDisplayName() {
-        return new TextComponent(getType().getRegistryName().getPath());
+        return Component.translatable(RankineBlocks.EVAPORATION_TOWER.get().getDescriptionId());
     }
 
     @Override

@@ -9,12 +9,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemPickupHandler {
     public static void onItemPickup(PlayerEvent.ItemPickupEvent event) {
-        if ((ForgeRegistries.ITEMS.tags().getTag(Tags.Items.STONE).contains(event.getStack().getItem()) || ForgeRegistries.ITEMS.tags().getTag(Tags.Items.COBBLESTONE).contains(event.getStack().getItem())) && (event.getPlayer().getMainHandItem().getItem() == RankineItems.TOTEM_OF_COBBLING.get() || event.getPlayer().getOffhandItem().getItem() == RankineItems.TOTEM_OF_COBBLING.get())) {
-            Player player = event.getPlayer();
+        if ((ForgeRegistries.ITEMS.tags().getTag(Tags.Items.STONE).contains(event.getStack().getItem()) || ForgeRegistries.ITEMS.tags().getTag(Tags.Items.COBBLESTONE).contains(event.getStack().getItem())) && (event.getEntity().getMainHandItem().getItem() == RankineItems.TOTEM_OF_COBBLING.get() || event.getEntity().getOffhandItem().getItem() == RankineItems.TOTEM_OF_COBBLING.get())) {
+            Player player = event.getEntity();
             ItemStack totem = player.getMainHandItem().getItem() == RankineItems.TOTEM_OF_COBBLING.get() ? player.getMainHandItem() : player.getOffhandItem();
             if (totem.getDamageValue() != 0) {
                 int x = totem.getDamageValue() - event.getStack().copy().getCount();
-                player.getInventory().getItem(event.getPlayer().getInventory().findSlotMatchingItem(event.getStack())).shrink(totem.getDamageValue());
+                player.getInventory().getItem(event.getEntity().getInventory().findSlotMatchingItem(event.getStack())).shrink(totem.getDamageValue());
                 totem.setDamageValue(Math.max(x,0));
 
             }

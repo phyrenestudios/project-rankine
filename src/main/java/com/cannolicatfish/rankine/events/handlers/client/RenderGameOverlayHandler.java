@@ -17,11 +17,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 
 public class RenderGameOverlayHandler {
-    public static void renderOverlay(RenderGameOverlayEvent event) {
-        if (event.getType() == RenderGameOverlayEvent.ElementType.LAYER && Minecraft.getInstance().player != null) {
+    public static void renderOverlay(RenderGuiOverlayEvent event) {
+        if (event.getType() == RenderGuiOverlayEvent.ElementType.LAYER && Minecraft.getInstance().player != null) {
             Player player = Minecraft.getInstance().player;
             ItemStack stack = player.getOffhandItem().getItem() instanceof KnifeItem ? player.getOffhandItem() : ItemStack.EMPTY;
             if (!stack.isEmpty()) {
@@ -48,7 +48,7 @@ public class RenderGameOverlayHandler {
                 }
             }
         }
-        if (event.getType() == RenderGameOverlayEvent.ElementType.LAYER && Minecraft.getInstance().player != null) {
+        if (event.getType() == RenderGuiOverlayEvent.ElementType.LAYER && Minecraft.getInstance().player != null) {
             Player player = Minecraft.getInstance().player;
             Level worldIn = player.getCommandSenderWorld();
 

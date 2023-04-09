@@ -7,7 +7,6 @@ import com.cannolicatfish.rankine.items.alloys.IAlloyTieredItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -23,6 +22,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.stream.Collectors;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class PackagedToolItem extends Item {
     public PackagedToolItem(Properties properties) {

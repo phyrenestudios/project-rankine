@@ -3,10 +3,10 @@ package com.cannolicatfish.rankine.events;
 import com.cannolicatfish.rankine.events.handlers.client.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.FOVModifierEvent;
+import net.minecraftforge.client.event.ComputeFovModifierEvent;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
-import net.minecraftforge.client.event.RenderBlockOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderBlockScreenEffectEvent;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,19 +22,19 @@ public class RankineClientEventHandler {
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
-    public static void fovUpdate(FOVModifierEvent event) {
+    public static void fovUpdate(ComputeFovModifierEvent event) {
         FOVModifierHandler.fovUpdate(event);
     }
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
-    public static void renderGameOverlayEvent(RenderGameOverlayEvent event) {
+    public static void renderGameOverlayEvent(RenderGuiOverlayEvent event) {
         RenderGameOverlayHandler.renderOverlay(event);
     }
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
-    public void renderBlockOverlayEvent(RenderBlockOverlayEvent event) {
+    public void renderBlockOverlayEvent(RenderBlockScreenEffectEvent event) {
         RenderBlockOverlayHandler.renderOverlayBlockEvent(event);
     }
 

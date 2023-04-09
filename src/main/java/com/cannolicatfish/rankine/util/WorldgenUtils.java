@@ -2,14 +2,15 @@ package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
-import net.minecraft.core.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
@@ -21,10 +22,12 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class WorldgenUtils {
 
@@ -82,14 +85,6 @@ public class WorldgenUtils {
                 Block sandstone = ResourceLocation.tryParse((String) L.get(7)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(7)));
                 Block dripstone = ResourceLocation.tryParse((String) L.get(8)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(8)));
                 populateLists(ResourceLocation.tryParse(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone, dripstone);
-            } else {
-                for (ResourceLocation RS : getBiomeNamesFromCategory(Collections.singletonList(Biome.BiomeCategory.byName(biomeToAdd)), true)) {
-                    Block gravel = ResourceLocation.tryParse((String) L.get(5)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(5)));
-                    Block sand = ResourceLocation.tryParse((String) L.get(6)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(6)));
-                    Block sandstone = ResourceLocation.tryParse((String) L.get(7)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(7)));
-                    Block dripstone = ResourceLocation.tryParse((String) L.get(8)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(8)));
-                    populateLists(RS,(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone, dripstone);
-                }
             }
 
         }
@@ -171,23 +166,7 @@ public class WorldgenUtils {
     }
 
 
-    public static List<ResourceLocation> getBiomeNamesFromCategory(List<Biome.BiomeCategory> biomeCats, boolean include) {
-        List<ResourceLocation> b = new ArrayList<>();
 
-        for (Biome biome : ForgeRegistries.BIOMES) {
-            if (!biomeCats.isEmpty()) {
-                if (biomeCats.contains(Biome.getBiomeCategory(Holder.direct(biome)))) {
-                    if (include) b.add(biome.getRegistryName());
-                } else {
-                    if (!include) b.add(biome.getRegistryName());
-                }
-            } else if (!include) {
-                b.add(biome.getRegistryName());
-            }
-        }
-
-        return b;
-    }
 
     public static boolean isWet(ChunkAccess chunk, BlockPos pos) {
         for(BlockPos POS : BlockPos.betweenClosed(pos.offset(-2,0,-2),pos.offset(2,1,2))) {
@@ -242,13 +221,13 @@ public class WorldgenUtils {
     public static int waterTableHeight(Level levelIn, BlockPos posIn) {
         if (!Config.GENERAL.DISABLE_WATER.get()) return levelIn.getMaxBuildHeight();
         int surface = levelIn.getHeight(Heightmap.Types.WORLD_SURFACE_WG,posIn.getX(),posIn.getZ());
-        return levelIn.getSeaLevel() + Math.max(0, Math.round((surface-levelIn.getSeaLevel()) * (1 - levelIn.getBiome(posIn).value().getDownfall())));
+        return levelIn.getSeaLevel() + Math.max(0, Math.round((surface-levelIn.getSeaLevel()) * (1)));
     }
 
     public static boolean inArea(BlockPos b, double radius, boolean center, BlockPos... targets) {
         for (BlockPos target : targets) {
             if (center) {
-                if (b.offset(0.5,0.5,0.5).distSqr(target) < Math.pow(radius, 2) + 0.5) {
+                if (b.getCenter().distanceToSqr(target.getCenter()) < Math.pow(radius, 2) + 0.5) {
                     return true;
                 }
             } else {
@@ -285,18 +264,18 @@ public class WorldgenUtils {
     }
 
 
-
+// TODO: fix inRadiusCenter to account for center [checkPos.getX()+0.5D]
     public static boolean inRadiusCenter(BlockPos center, BlockPos checkPos, double radius) {
-        return center.distSqr(new Vec3i(checkPos.getX()+0.5D,checkPos.getY()+0.5D,checkPos.getZ()+0.5D)) < radius*radius;
+        return center.distSqr(new Vec3i(checkPos.getX(),checkPos.getY(),checkPos.getZ())) < radius*radius;
     }
 
-    public static void checkLog(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, Direction.Axis axis) {
+    public static void checkLog(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, Direction.Axis axis) {
         if (isAirOrLeaves(reader, pos)) {
             placeLogAt(reader, pos, rand, config, axis);
         }
     }
 
-    public static void placeLogAt(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, Direction.Axis axis) {
+    public static void placeLogAt(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, Direction.Axis axis) {
         setLogState(reader, pos, config.trunkProvider.getState(rand, pos).setValue(BlockStateProperties.AXIS, axis));
     }
 
@@ -304,7 +283,7 @@ public class WorldgenUtils {
         reader.setBlock(pos, state, 18);
     }
 
-    public static void placeLeafAt(WorldGenLevel world, BlockPos pos, Random rand, TreeConfiguration config) {
+    public static void placeLeafAt(WorldGenLevel world, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         if (isAirOrLeaves(world, pos)) {
             setLogState(world, pos, config.foliageProvider.getState(rand, pos).setValue(LeavesBlock.DISTANCE, 1));
         }
@@ -330,16 +309,4 @@ public class WorldgenUtils {
         return RankineLists.GAS_BLOCKS.contains(reader.getBlockState(pos).getBlock()) || reader.getBlockState(pos).isAir();
     }
 
-
-    public static boolean isOverworld(BiomeLoadingEvent biome) {
-        return biome.getCategory() != Biome.BiomeCategory.NETHER && biome.getCategory() != Biome.BiomeCategory.THEEND;
-    }
-
-    public static boolean biomeTagCheck(Level level, Biome biome, TagKey<Biome> tag)
-    {
-        var reg = level.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY);
-        return reg.getResourceKey(biome)
-                .flatMap(reg::getHolder)
-                .map(holder -> holder.is(tag)).orElse(false);
-    }
 }

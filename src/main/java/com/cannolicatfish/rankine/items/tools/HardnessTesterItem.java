@@ -1,21 +1,17 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.Tiers;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.Level;
-
-import net.minecraft.world.item.Item.Properties;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.TierSortingRegistry;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Locale;
 

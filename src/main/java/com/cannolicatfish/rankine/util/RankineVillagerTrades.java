@@ -2,22 +2,20 @@ package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.tags.Tag;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.BasicItemListing;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class RankineVillagerTrades {
 
@@ -46,13 +44,17 @@ public class RankineVillagerTrades {
             this.priceMultiplier = priceMultiplier;
         }
 
-        public MerchantOffer getOffer(Entity trader, Random rand) {
+
+        @Nullable
+        @Override
+        public MerchantOffer getOffer(Entity trader, RandomSource rand) {
             int i = 5 + rand.nextInt(15);
             ItemStack itemstack = EnchantmentHelper.enchantItem(rand, new ItemStack(this.sellingStack.getItem()), i, false);
             IAlloyItem.createDirectAlloyNBT(itemstack,alloyData,alloyRecipe,alloyNameOverride);
             int j = Math.min(this.emeraldCount + i, 64);
             ItemStack itemstack1 = new ItemStack(Items.EMERALD, j);
             return new MerchantOffer(itemstack1, itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
+
         }
     }
 
@@ -68,7 +70,7 @@ public class RankineVillagerTrades {
         }
 
         public RandomItemFromTagForEmeraldsTrade(TagKey<Item> tag, Item fallback, int amount, int emeraldCount, int maxUses, int xpValue, float priceMultiplier) {
-            this.sellingStack = new ItemStack(ForgeRegistries.ITEMS.tags().getTag(tag).getRandomElement(new Random()).orElse(fallback),amount);
+            this.sellingStack = new ItemStack(ForgeRegistries.ITEMS.tags().getTag(tag).getRandomElement(RandomSource.create()).orElse(fallback),amount);
 
             this.emeraldCount = emeraldCount;
             this.maxUses = maxUses;
@@ -76,8 +78,12 @@ public class RankineVillagerTrades {
             this.priceMultiplier = priceMultiplier;
         }
 
-        public MerchantOffer getOffer(Entity trader, Random rand) {
+
+        @Nullable
+        @Override
+        public MerchantOffer getOffer(Entity p_219693_, RandomSource p_219694_) {
             return new MerchantOffer(new ItemStack(Items.EMERALD), sellingStack, this.maxUses, this.xpValue, this.priceMultiplier);
+
         }
     }
 

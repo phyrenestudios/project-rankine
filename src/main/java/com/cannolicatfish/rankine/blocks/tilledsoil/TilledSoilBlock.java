@@ -31,6 +31,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class TilledSoilBlock extends Block {
     public static final IntegerProperty MOISTURE = BlockStateProperties.MOISTURE;
     public static final EnumProperty<TilledSoilTypes> SOIL_TYPE = EnumProperty.create("soil_type", TilledSoilTypes.class);

@@ -16,6 +16,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 
+import net.minecraft.world.entity.Entity.RemovalReason;
+
 public class RopeCoilArrowEntity extends AbstractArrow {
 
     public RopeCoilArrowEntity(EntityType<? extends RopeCoilArrowEntity> type, Level worldIn) {

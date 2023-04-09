@@ -5,7 +5,6 @@ import com.cannolicatfish.rankine.items.BlunderbussItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,6 +21,8 @@ import net.minecraftforge.common.Tags;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class AlloyBlunderbussItem extends BlunderbussItem implements IAlloyTieredItem {
     private final String defaultComposition;
@@ -51,7 +52,7 @@ public class AlloyBlunderbussItem extends BlunderbussItem implements IAlloyTiere
     }
 
     @Override
-    public int getItemEnchantability(ItemStack stack) {
+    public int getEnchantmentValue(ItemStack stack) {
         return this.getAlloyEnchantability(stack);
     }
 

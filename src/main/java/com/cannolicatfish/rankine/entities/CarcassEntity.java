@@ -35,6 +35,8 @@ import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 
+import net.minecraft.world.entity.Entity.RemovalReason;
+
 @OnlyIn(
         value = Dist.CLIENT,
         _interface = ItemSupplier.class

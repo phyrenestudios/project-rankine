@@ -448,7 +448,7 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.minecraftforge.c
         }
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AlloyCraftingRecipe> {
+    public static class Serializer implements RecipeSerializer<AlloyCraftingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "alloy_crafting");
         public AlloyCraftingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             String s = GsonHelper.getAsString(json, "group", "");

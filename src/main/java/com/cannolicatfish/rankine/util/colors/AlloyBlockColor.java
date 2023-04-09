@@ -15,7 +15,7 @@ public class AlloyBlockColor implements BlockColor {
         if (p_getColor_2_ != null && p_getColor_3_ != null) {
             BlockEntity te = p_getColor_2_.getBlockEntity(p_getColor_3_);
             if (te instanceof AlloyBlockTile) {
-                return te.getTileData().getInt("color") != 0 ? te.getTileData().getInt("color") : 16777215;
+                return te.getPersistentData().getInt("color") != 0 ? te.getPersistentData().getInt("color") : 16777215;
             }
         }
         return 16777215;

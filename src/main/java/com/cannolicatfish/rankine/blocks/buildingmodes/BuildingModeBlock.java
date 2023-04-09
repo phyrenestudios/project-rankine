@@ -15,6 +15,8 @@ import net.minecraft.world.phys.HitResult;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class BuildingModeBlock extends Block {
 
     public BuildingModeBlock(Properties properties) {

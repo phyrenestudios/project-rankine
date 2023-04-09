@@ -30,6 +30,8 @@ import net.minecraftforge.common.TierSortingRegistry;
 
 import java.util.Set;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class CrowbarItem extends DiggerItem {
     private static final Set<Block> effectiveBlocks = ImmutableSet.of(Blocks.ACACIA_PLANKS);
 

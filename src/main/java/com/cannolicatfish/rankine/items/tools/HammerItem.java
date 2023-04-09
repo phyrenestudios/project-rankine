@@ -38,6 +38,8 @@ import net.minecraftforge.common.TierSortingRegistry;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class HammerItem extends DiggerItem {
 
     public HammerItem(float attackDamageIn, float attackSpeedIn, Tier tier, Properties builder) {

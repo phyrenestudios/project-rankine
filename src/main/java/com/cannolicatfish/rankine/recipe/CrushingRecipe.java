@@ -221,7 +221,7 @@ public class CrushingRecipe implements Recipe<Container> {
         }
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<CrushingRecipe> {
+    public static class Serializer implements RecipeSerializer<CrushingRecipe> {
         public CrushingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 
             NonNullList<Ingredient> input = NonNullList.of(Ingredient.EMPTY, Ingredient.fromJson(json.get("input")));

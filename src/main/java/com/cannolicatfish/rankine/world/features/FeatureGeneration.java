@@ -1,40 +1,10 @@
 package com.cannolicatfish.rankine.world.features;
 
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineFeatures;
-import com.cannolicatfish.rankine.init.RankinePlacedFeatures;
-import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
-import com.cannolicatfish.rankine.world.gen.ores.RankineOreFeatureConfig;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.ReplaceBlockConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-import net.minecraft.world.level.levelgen.placement.*;
-import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.*;
 
 @Mod.EventBusSubscriber
 public class FeatureGeneration {
-
+/*
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void addFeaturesToBiomes(final BiomeLoadingEvent biome) {
 
@@ -257,6 +227,6 @@ public class FeatureGeneration {
             return Optional.of(((ReplaceBlockConfiguration) config).targetStates.get(0).state);
         }
         return Optional.empty();
-    }
+    }*/
 }
 

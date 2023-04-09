@@ -16,7 +16,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.TierSortingRegistry;
-import net.minecraftforge.event.world.PistonEvent;
+import net.minecraftforge.event.level.PistonEvent;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +43,7 @@ public class PistonHandler {
         if (!event.getPistonMoveType().equals(PistonEvent.PistonMoveType.EXTEND)) return;
         Direction dir = event.getDirection();
         BlockPos facePos = event.getFaceOffsetPos();
-        LevelAccessor levelIn = event.getWorld();
+        LevelAccessor levelIn = event.getLevel();
         BlockState headState = levelIn.getBlockState(facePos);
         if (levelIn.isClientSide() || !levelIn.getLevelData().getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) || levelIn.getServer() == null) return;
         if (levelIn.getBlockState(facePos.relative(dir,2)).isAir()) return;

@@ -12,16 +12,16 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
 public class LivingUpdateHandler {
-    public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
-        if (event.getEntityLiving() instanceof Monster && event.getEntityLiving().getLastHurtByMob() != null) {
-            if (event.getEntityLiving().getLastHurtByMob().getOffhandItem().getItem() == RankineItems.TOTEM_OF_REPULSING.get() || event.getEntityLiving().getEffect(RankineMobEffects.MERCURY_POISONING.get()) != null) {
-                event.getEntityLiving().setLastHurtByMob(null);
+    public static void onLivingUpdate(LivingEvent.LivingTickEvent event) {
+        if (event.getEntity() instanceof Monster && event.getEntity().getLastHurtByMob() != null) {
+            if (event.getEntity().getLastHurtByMob().getOffhandItem().getItem() == RankineItems.TOTEM_OF_REPULSING.get() || event.getEntity().getEffect(RankineMobEffects.MERCURY_POISONING.get()) != null) {
+                event.getEntity().setLastHurtByMob(null);
             }
         }
     }
-    public static void onEnvironmentEffect(LivingEvent.LivingUpdateEvent event) {
+    public static void onEnvironmentEffect(LivingEvent.LivingTickEvent event) {
         if (Config.HARD_MODE.RADIOACTIVE.get()) {
-            LivingEntity ent = event.getEntityLiving();
+            LivingEntity ent = event.getEntity();
             AttributeInstance maxHealth = ent.getAttribute(Attributes.MAX_HEALTH);
             MobEffectInstance rad = ent.getEffect(RankineMobEffects.RADIATION_POISONING.get());
             if (rad != null) {

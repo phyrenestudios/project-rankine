@@ -5,7 +5,6 @@ import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -24,6 +23,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class InfusingTotemItem extends Item {
     public InfusingTotemItem(Properties properties) {

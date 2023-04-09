@@ -20,6 +20,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 import java.util.Map;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class MetalPipeBlock extends Block {
 
     private static final Direction[] FACING_VALUES = Direction.values();

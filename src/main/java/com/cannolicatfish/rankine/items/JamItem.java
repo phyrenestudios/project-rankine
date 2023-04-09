@@ -8,6 +8,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class JamItem extends Item {
     public JamItem(Properties properties) {
         super(properties);

@@ -24,8 +24,8 @@ import java.util.List;
 
 public class LivingHurtHandler {
     public static void onParryEvent(LivingHurtEvent event) {
-        if (event.getEntityLiving() instanceof Player) {
-            Player player = (Player) event.getEntityLiving();
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
             ItemStack stack = player.getOffhandItem().getItem() instanceof KnifeItem ? player.getOffhandItem() : ItemStack.EMPTY;
             if (!stack.isEmpty()) {
                 int i = stack.getItem().getUseDuration(stack) - player.getUseItemRemainingTicks();
@@ -80,8 +80,8 @@ public class LivingHurtHandler {
         }
     }
     public static void onLivingHurt(LivingHurtEvent event) {
-        if (event.getEntityLiving() instanceof Player) {
-            Player player = (Player) event.getEntityLiving();
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
             Level worldIn = player.getCommandSenderWorld();
             for (int i = 0; i < player.getInventory().armor.size(); ++i) {
                 ItemStack s = player.getInventory().armor.get(i);

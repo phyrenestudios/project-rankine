@@ -2,9 +2,10 @@ package com.cannolicatfish.rankine.events.handlers.client;
 
 import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+
+import java.awt.*;
 
 public class ItemTooltipHandler {
     public static void onTooltipCheck(ItemTooltipEvent event) {

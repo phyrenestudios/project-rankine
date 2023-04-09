@@ -2,31 +2,24 @@ package com.cannolicatfish.rankine;
 
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.client.renders.*;
-import com.cannolicatfish.rankine.fluids.*;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
-import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -35,10 +28,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.MissingMappingsEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -78,7 +73,6 @@ public class ProjectRankine {
         RankinePlacedFeatures.PLACED_FEATURES.register(Bus);
         RankineSoundEvents.SOUNDS.register(Bus);
         RankineEnchantments.ENCHANTMENTS.register(Bus);
-        RankineLootModifiers.LOOT_MODIFIERS.register(Bus);
 
         Bus.addListener(this::LoadComplete);
 
@@ -136,7 +130,7 @@ public class ProjectRankine {
 
         @SubscribeEvent
         @OnlyIn(Dist.CLIENT)
-        public static void onItemColorRegistry(final ColorHandlerEvent.Item event) {
+        public static void onItemColorRegistry(final RegisterColorHandlersEvent.Item event) {
             for (Block b : RankineLists.GRASS_BLOCKS) {
                 event.getItemColors().register(new GrassItemBaseColor(), b.asItem());
             }
@@ -178,7 +172,7 @@ public class ProjectRankine {
 
         @SubscribeEvent
         @OnlyIn(Dist.CLIENT)
-        public static void onBlockColorRegistry(final ColorHandlerEvent.Block event) {
+        public static void onBlockColorRegistry(final RegisterColorHandlersEvent.Block event) {
             event.getBlockColors().register(new CrucibleColor(), RankineBlocks.CRUCIBLE_BLOCK.get());
             for (Block b : RankineLists.GRASS_BLOCKS) {
                 event.getBlockColors().register(new GrassBlockBaseColor(), b);
@@ -208,7 +202,7 @@ public class ProjectRankine {
             event.registerEntityRenderer(RankineEntityTypes.CARCASS.get(), CarcassRenderer::new);
             event.registerEntityRenderer(RankineEntityTypes.BALLOON.get(), BalloonRenderer::new);
         }
-
+/*
         @SubscribeEvent
         public static void registerFluids(final RegistryEvent.Register<Fluid> event) {
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.LIQUID_MERCURY, () -> RankineFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(LiquidMercuryFluid.FLUID_STILL, LiquidMercuryFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(LiquidMercuryFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
@@ -290,33 +284,33 @@ public class ProjectRankine {
                     .bucket(RankineItems.WHITE_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.WHITE_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"white_liquor"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.WHITE_LIQUOR, () -> RankineFluids.FLOWING_WHITE_LIQUOR, FluidAttributes.builder(WhiteLiquorFluid.FLUID_STILL,WhiteLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(WhiteLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
                     .bucket(RankineItems.WHITE_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.WHITE_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"flowing_white_liquor"));
-        }
+        }*/
 
         @SubscribeEvent
-        public static void registerItemRemappings(final RegistryEvent.MissingMappings<Item> event) {
+        public static void registerItemRemappings(final MissingMappingsEvent event) {
             Map<ResourceLocation, Item> itemRemappings = RankineRemappings.getItemRemappings();
-            ImmutableList<RegistryEvent.MissingMappings.Mapping<Item>> mappings = event.getAllMappings();
-            for (RegistryEvent.MissingMappings.Mapping<Item> map : mappings) {
-                if (itemRemappings.containsKey(map.key)) {
-                    map.remap(itemRemappings.get(map.key));
+            List<MissingMappingsEvent.Mapping<Item>> mappings = event.getMappings(Registries.ITEM,ProjectRankine.MODID);
+            for (MissingMappingsEvent.Mapping<Item> map : mappings) {
+                if (itemRemappings.containsKey(map.getKey())) {
+                    map.remap(itemRemappings.get(map.getKey()));
                 }
             }
 
             Map<ResourceLocation, Block> blockRemappings = RankineRemappings.getBlockRemappings();
-            for (RegistryEvent.MissingMappings.Mapping<Item> map : mappings) {
-                if (blockRemappings.containsKey(map.key)) {
-                    map.remap(blockRemappings.get(map.key).asItem());
+            for (MissingMappingsEvent.Mapping<Item> map : mappings) {
+                if (blockRemappings.containsKey(map.getKey())) {
+                    map.remap(blockRemappings.get(map.getKey()).asItem());
                 }
             }
         }
 
         @SubscribeEvent
-        public static void registerBlockRemappings(final RegistryEvent.MissingMappings<Block> event) {
+        public static void registerBlockRemappings(final MissingMappingsEvent event) {
             Map<ResourceLocation, Block> blockRemappings = RankineRemappings.getBlockRemappings();
-            ImmutableList<RegistryEvent.MissingMappings.Mapping<Block>> mappings = event.getAllMappings();
-            for (RegistryEvent.MissingMappings.Mapping<Block> map : mappings) {
-                if (blockRemappings.containsKey(map.key)) {
-                    map.remap(blockRemappings.get(map.key));
+            List<MissingMappingsEvent.Mapping<Block>> mappings = event.getMappings(Registries.BLOCK,ProjectRankine.MODID);
+            for (MissingMappingsEvent.Mapping<Block> map : mappings) {
+                if (blockRemappings.containsKey(map.getKey())) {
+                    map.remap(blockRemappings.get(map.getKey()));
                 }
             }
         }

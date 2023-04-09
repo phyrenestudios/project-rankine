@@ -25,6 +25,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class BlastingPowderBlock extends FallingBlock {
     public BlastingPowderBlock(Properties properties) {
         super(properties);

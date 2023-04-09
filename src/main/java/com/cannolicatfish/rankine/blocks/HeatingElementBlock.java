@@ -15,6 +15,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class HeatingElementBlock extends DirectionalBlock {
     static HashMap<Block, Block> MeltMap = new HashMap<>();
     static {

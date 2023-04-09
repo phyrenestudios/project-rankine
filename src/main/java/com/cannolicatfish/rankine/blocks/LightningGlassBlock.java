@@ -14,6 +14,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.Tags;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class LightningGlassBlock extends GlassBlock {
     public static final BooleanProperty GLOWING = BooleanProperty.create("glowing");
 

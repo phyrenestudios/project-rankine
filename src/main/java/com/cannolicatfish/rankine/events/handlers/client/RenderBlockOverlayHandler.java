@@ -2,14 +2,14 @@ package com.cannolicatfish.rankine.events.handlers.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import com.mojang.math.Matrix4f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.event.RenderBlockOverlayEvent;
+import net.minecraftforge.client.event.RenderBlockScreenEffectEvent;
+import org.joml.Matrix4f;
 
 public class RenderBlockOverlayHandler {
-    public static void renderOverlayBlockEvent(RenderBlockOverlayEvent event) {
-        if (event.getOverlayType() == RenderBlockOverlayEvent.OverlayType.WATER && event.getBlockState().getBlock().getRegistryName().getNamespace().equals("rankine")) {
+    public static void renderOverlayBlockEvent(RenderBlockScreenEffectEvent event) {
+        if (event.getOverlayType() == RenderBlockScreenEffectEvent.OverlayType.WATER && event.getBlockState().getBlock().getRegistryName().getNamespace().equals("rankine")) {
             Minecraft minecraftIn = Minecraft.getInstance();
             RenderSystem.enableTexture();
             minecraftIn.getTextureManager().bindForSetup(new ResourceLocation("rankine:textures/block/"+event.getBlockState().getBlock().getRegistryName().getPath()+"_overlay.png"));

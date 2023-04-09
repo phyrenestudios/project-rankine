@@ -4,7 +4,8 @@ import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.*;
 import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
@@ -37,7 +38,7 @@ public class ExactCompositionPredicate extends ItemPredicate {
 
             for(JsonElement jsonelement : jsonarray) {
                 ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.convertToString(jsonelement, "item"));
-                builder.add(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> {
+                builder.add(BuiltInRegistries.ITEM.getOptional(resourcelocation).orElseThrow(() -> {
                     return new JsonSyntaxException("Unknown item id '" + resourcelocation + "'");
                 }));
             }
@@ -47,7 +48,7 @@ public class ExactCompositionPredicate extends ItemPredicate {
         TagKey<Item> tagkey = null;
         if (jsonobject.has("tag")) {
             ResourceLocation resourcelocation1 = new ResourceLocation(GsonHelper.getAsString(jsonobject, "tag"));
-            tagkey = TagKey.create(Registry.ITEM_REGISTRY, resourcelocation1);
+            tagkey = TagKey.create(Registries.ITEM, resourcelocation1);
         }
 
         this.tag = tagkey;
@@ -87,7 +88,7 @@ public class ExactCompositionPredicate extends ItemPredicate {
 
                     for(JsonElement jsonelement : jsonarray) {
                         ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.convertToString(jsonelement, "item"));
-                        builder.add(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> {
+                        builder.add(BuiltInRegistries.ITEM.getOptional(resourcelocation).orElseThrow(() -> {
                             return new JsonSyntaxException("Unknown item id '" + resourcelocation + "'");
                         }));
                     }
@@ -98,7 +99,7 @@ public class ExactCompositionPredicate extends ItemPredicate {
                 TagKey<Item> tagkey = null;
                 if (jsonobject.has("tag")) {
                     ResourceLocation resourcelocation1 = new ResourceLocation(GsonHelper.getAsString(jsonobject, "tag"));
-                    tagkey = TagKey.create(Registry.ITEM_REGISTRY, resourcelocation1);
+                    tagkey = TagKey.create(Registries.ITEM, resourcelocation1);
                 }
 
                 return new ExactCompositionPredicate(tagkey, set, composition);
@@ -118,7 +119,7 @@ public class ExactCompositionPredicate extends ItemPredicate {
             if (this.items != null) {
                 JsonArray jsonarray = new JsonArray();
                 for(Item item : this.items) {
-                    jsonarray.add(Registry.ITEM.getKey(item).toString());
+                    jsonarray.add(BuiltInRegistries.ITEM.getKey(item).toString());
                 }
                 jsonobject.add("items", jsonarray);
             }

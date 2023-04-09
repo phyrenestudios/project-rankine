@@ -18,7 +18,7 @@ public class CrucibleColor implements BlockColor {
             if (p_getColor_3_ != null && worldIn != null) {
                 BlockEntity t = worldIn.getBlockEntity(p_getColor_3_);
                 if (t != null) {
-                    CompoundTag data = t.getTileData();
+                    CompoundTag data = t.getPersistentData();
                     return data.getInt("color");
                 }
 

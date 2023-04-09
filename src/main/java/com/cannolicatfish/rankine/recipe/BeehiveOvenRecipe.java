@@ -15,7 +15,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
@@ -110,7 +109,7 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
         }
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<BeehiveOvenRecipe> {
+    public static class Serializer implements RecipeSerializer<BeehiveOvenRecipe> {
 
         @Override
         public BeehiveOvenRecipe fromJson(ResourceLocation recipeId, JsonObject json) {

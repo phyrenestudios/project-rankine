@@ -11,7 +11,7 @@ import net.minecraftforge.eventbus.api.Event;
 
 public class EntityInteractHandler {
     public static void breedables(PlayerInteractEvent.EntityInteract event) {
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         Entity ent = event.getTarget();
         ItemStack itemStack = event.getItemStack();
 

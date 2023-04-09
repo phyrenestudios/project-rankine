@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.util.ElementEquation;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -21,7 +22,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -81,6 +81,11 @@ public class ElementRecipe implements Recipe<Container> {
     }
 
     @Override
+    public ItemStack assemble(Container p_44001_, RegistryAccess p_267165_) {
+        return ItemStack.EMPTY;
+    }
+
+    @Override
     public boolean isSpecial() {
         return true;
     }
@@ -90,17 +95,12 @@ public class ElementRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
-        return ItemStack.EMPTY;
-    }
-
-    @Override
     public boolean canCraftInDimensions(int width, int height) {
         return false;
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess p_267052_) {
         return new ItemStack(RankineItems.ELEMENT.get());
     }
 
@@ -298,7 +298,7 @@ public class ElementRecipe implements Recipe<Container> {
         return 0;
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ElementRecipe> {
+    public static class Serializer implements RecipeSerializer<ElementRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "element");
 
         @Override

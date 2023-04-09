@@ -33,8 +33,8 @@ import java.util.List;
 
 public class LivingDamageHandler {
     public static void onLivingDamaged(LivingDamageEvent event) {
-        if (event.getEntityLiving() instanceof Player) {
-            Player player = (Player) event.getEntityLiving();
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
             Level worldIn = player.getCommandSenderWorld();
             for (int i = 0; i < player.getInventory().armor.size(); ++i) {
                 ItemStack s = player.getInventory().armor.get(i);
@@ -77,7 +77,7 @@ public class LivingDamageHandler {
             }
 
             if (!player.level.isClientSide) {
-                LivingEntity receiver = event.getEntityLiving();
+                LivingEntity receiver = event.getEntity();
                 ItemStack mainHandStack = player.getItemInHand(InteractionHand.MAIN_HAND);
 
                 if (mainHandStack.getItem() instanceof HammerItem) {
@@ -147,10 +147,10 @@ public class LivingDamageHandler {
 
 
 
-            for (ItemStack armor : event.getEntityLiving().getArmorSlots()) {
+            for (ItemStack armor : event.getEntity().getArmorSlots()) {
                 if (armor.getItem() instanceof AlloyArmorItem) {
                     EquipmentSlot slot = armor.getEquipmentSlot() != null ? armor.getEquipmentSlot() : EquipmentSlot.HEAD;
-                    int i = ((AlloyArmorItem) armor.getItem()).calcDurabilityLoss(armor,event.getEntity().getCommandSenderWorld(),event.getEntityLiving(),true);
+                    int i = ((AlloyArmorItem) armor.getItem()).calcDurabilityLoss(armor,event.getEntity().getCommandSenderWorld(),event.getEntity(),true);
                     armor.hurtAndBreak(i,player, (p_220287_1_) -> {
                         p_220287_1_.broadcastBreakEvent(slot);
                     });

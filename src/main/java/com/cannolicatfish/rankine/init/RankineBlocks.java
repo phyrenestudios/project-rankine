@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.MudBlock;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
@@ -14,7 +15,10 @@ import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerTile;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
 import com.cannolicatfish.rankine.blocks.block_groups.*;
-import com.cannolicatfish.rankine.blocks.buildingmodes.*;
+import com.cannolicatfish.rankine.blocks.buildingmodes.GlazedPorcelainBlock;
+import com.cannolicatfish.rankine.blocks.buildingmodes.MetalBarsBlock;
+import com.cannolicatfish.rankine.blocks.buildingmodes.MetalLadderBlock;
+import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
 import com.cannolicatfish.rankine.blocks.cauldrons.*;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitBlock;
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
@@ -346,25 +350,25 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HYDROGEN_CHLORIDE_FUMAROLE = BLOCKS.register("hydrogen_chloride_fumarole", () -> new FumaroleBlock(GasUtilsEnum.HYDROGEN_CHLORIDE,BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
     public static final RegistryObject<Block> HYDROGEN_SULFIDE_FUMAROLE = BLOCKS.register("hydrogen_sulfide_fumarole", () -> new FumaroleBlock(GasUtilsEnum.HYDROGEN_SULFIDE,BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
     public static final RegistryObject<Block> SULFUR_DIOXIDE_FUMAROLE = BLOCKS.register("sulfur_dioxide_fumarole", () -> new FumaroleBlock(GasUtilsEnum.SULFUR_DIOXIDE,BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F)));
-    public static final RegistryObject<Block> HYDROGEN_GAS_BLOCK = BLOCKS.register("hydrogen_gas_block", () -> new HydrogenGasBlock(RankineItems.HYDROGEN_GAS_BOTTLE,GasUtilsEnum.HYDROGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> HELIUM_GAS_BLOCK = BLOCKS.register("helium_gas_block", () -> new HeliumGasBlock(RankineItems.HELIUM_GAS_BOTTLE,GasUtilsEnum.HELIUM, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> NITROGEN_GAS_BLOCK = BLOCKS.register("nitrogen_gas_block", () -> new NitrogenGasBlock(RankineItems.NITROGEN_GAS_BOTTLE,GasUtilsEnum.NITROGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> OXYGEN_GAS_BLOCK = BLOCKS.register("oxygen_gas_block", () -> new OxygenGasBlock(RankineItems.OXYGEN_GAS_BOTTLE,GasUtilsEnum.OXYGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> FLUORINE_GAS_BLOCK = BLOCKS.register("fluorine_gas_block", () -> new GasBlock(RankineItems.FLUORINE_GAS_BOTTLE,GasUtilsEnum.FLUORINE, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> NEON_GAS_BLOCK = BLOCKS.register("neon_gas_block", () -> new NeonGasBlock(RankineItems.NEON_GAS_BOTTLE,GasUtilsEnum.NEON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> CHLORINE_GAS_BLOCK = BLOCKS.register("chlorine_gas_block", () -> new GasBlock(RankineItems.CHLORINE_GAS_BOTTLE,GasUtilsEnum.CHLORINE, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> ARGON_GAS_BLOCK = BLOCKS.register("argon_gas_block", () -> new GasBlock(RankineItems.ARGON_GAS_BOTTLE,GasUtilsEnum.ARGON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> KRYPTON_GAS_BLOCK = BLOCKS.register("krypton_gas_block", () -> new GasBlock(RankineItems.KRYPTON_GAS_BOTTLE,GasUtilsEnum.KRYPTON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> XENON_GAS_BLOCK = BLOCKS.register("xenon_gas_block", () -> new XenonGasBlock(RankineItems.XENON_GAS_BOTTLE,GasUtilsEnum.XENON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> RADON_GAS_BLOCK = BLOCKS.register("radon_gas_block", () -> new GasBlock(RankineItems.RADON_GAS_BOTTLE,GasUtilsEnum.RADON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> OGANESSON_GAS_BLOCK = BLOCKS.register("oganesson_gas_block", () -> new OganessonGasBlock(RankineItems.OGANESSON_GAS_BOTTLE,GasUtilsEnum.OGANESSON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> AMMONIA_GAS_BLOCK = BLOCKS.register("ammonia_gas_block", () -> new GasBlock(RankineItems.AMMONIA_GAS_BOTTLE,GasUtilsEnum.AMMONIA,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> CARBON_DIOXIDE_GAS_BLOCK = BLOCKS.register("carbon_dioxide_gas_block", () -> new GasBlock(RankineItems.CARBON_DIOXIDE_GAS_BOTTLE,GasUtilsEnum.CARBON_DIOXIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> HYDROGEN_CHLORIDE_GAS_BLOCK = BLOCKS.register("hydrogen_chloride_gas_block", () -> new GasBlock(RankineItems.HYDROGEN_CHLORIDE_GAS_BOTTLE,GasUtilsEnum.HYDROGEN_CHLORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> HYDROGEN_FLUORIDE_GAS_BLOCK = BLOCKS.register("hydrogen_fluoride_gas_block", () -> new GasBlock(RankineItems.HYDROGEN_FLUORIDE_GAS_BOTTLE,GasUtilsEnum.HYDROGEN_FLUORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> HYDROGEN_SULFIDE_GAS_BLOCK = BLOCKS.register("hydrogen_sulfide_gas_block", () -> new GasBlock(RankineItems.HYDROGEN_SULFIDE_GAS_BOTTLE,GasUtilsEnum.HYDROGEN_SULFIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> SULFUR_DIOXIDE_GAS_BLOCK = BLOCKS.register("sulfur_dioxide_gas_block", () -> new GasBlock(RankineItems.SULFUR_DIOXIDE_GAS_BOTTLE,GasUtilsEnum.SULFUR_DIOXIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
-    public static final RegistryObject<Block> TUNGSTEN_HEXAFLUORIDE_GAS_BLOCK = BLOCKS.register("tungsten_hexafluoride_gas_block", () -> new GasBlock(RankineItems.TUNGSTEN_HEXAFLUORIDE_GAS_BOTTLE,GasUtilsEnum.TUNGSTEN_HEXAFLUORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noDrops().air()));
+    public static final RegistryObject<Block> HYDROGEN_GAS_BLOCK = BLOCKS.register("hydrogen_gas_block", () -> new HydrogenGasBlock(RankineItems.HYDROGEN_GAS_BOTTLE,GasUtilsEnum.HYDROGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> HELIUM_GAS_BLOCK = BLOCKS.register("helium_gas_block", () -> new HeliumGasBlock(RankineItems.HELIUM_GAS_BOTTLE,GasUtilsEnum.HELIUM, BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> NITROGEN_GAS_BLOCK = BLOCKS.register("nitrogen_gas_block", () -> new NitrogenGasBlock(RankineItems.NITROGEN_GAS_BOTTLE,GasUtilsEnum.NITROGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> OXYGEN_GAS_BLOCK = BLOCKS.register("oxygen_gas_block", () -> new OxygenGasBlock(RankineItems.OXYGEN_GAS_BOTTLE,GasUtilsEnum.OXYGEN, BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> FLUORINE_GAS_BLOCK = BLOCKS.register("fluorine_gas_block", () -> new GasBlock(RankineItems.FLUORINE_GAS_BOTTLE,GasUtilsEnum.FLUORINE, BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> NEON_GAS_BLOCK = BLOCKS.register("neon_gas_block", () -> new NeonGasBlock(RankineItems.NEON_GAS_BOTTLE,GasUtilsEnum.NEON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> CHLORINE_GAS_BLOCK = BLOCKS.register("chlorine_gas_block", () -> new GasBlock(RankineItems.CHLORINE_GAS_BOTTLE,GasUtilsEnum.CHLORINE, BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> ARGON_GAS_BLOCK = BLOCKS.register("argon_gas_block", () -> new GasBlock(RankineItems.ARGON_GAS_BOTTLE,GasUtilsEnum.ARGON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> KRYPTON_GAS_BLOCK = BLOCKS.register("krypton_gas_block", () -> new GasBlock(RankineItems.KRYPTON_GAS_BOTTLE,GasUtilsEnum.KRYPTON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> XENON_GAS_BLOCK = BLOCKS.register("xenon_gas_block", () -> new XenonGasBlock(RankineItems.XENON_GAS_BOTTLE,GasUtilsEnum.XENON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> RADON_GAS_BLOCK = BLOCKS.register("radon_gas_block", () -> new GasBlock(RankineItems.RADON_GAS_BOTTLE,GasUtilsEnum.RADON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> OGANESSON_GAS_BLOCK = BLOCKS.register("oganesson_gas_block", () -> new OganessonGasBlock(RankineItems.OGANESSON_GAS_BOTTLE,GasUtilsEnum.OGANESSON, BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> AMMONIA_GAS_BLOCK = BLOCKS.register("ammonia_gas_block", () -> new GasBlock(RankineItems.AMMONIA_GAS_BOTTLE,GasUtilsEnum.AMMONIA,BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> CARBON_DIOXIDE_GAS_BLOCK = BLOCKS.register("carbon_dioxide_gas_block", () -> new GasBlock(RankineItems.CARBON_DIOXIDE_GAS_BOTTLE,GasUtilsEnum.CARBON_DIOXIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> HYDROGEN_CHLORIDE_GAS_BLOCK = BLOCKS.register("hydrogen_chloride_gas_block", () -> new GasBlock(RankineItems.HYDROGEN_CHLORIDE_GAS_BOTTLE,GasUtilsEnum.HYDROGEN_CHLORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> HYDROGEN_FLUORIDE_GAS_BLOCK = BLOCKS.register("hydrogen_fluoride_gas_block", () -> new GasBlock(RankineItems.HYDROGEN_FLUORIDE_GAS_BOTTLE,GasUtilsEnum.HYDROGEN_FLUORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> HYDROGEN_SULFIDE_GAS_BLOCK = BLOCKS.register("hydrogen_sulfide_gas_block", () -> new GasBlock(RankineItems.HYDROGEN_SULFIDE_GAS_BOTTLE,GasUtilsEnum.HYDROGEN_SULFIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> SULFUR_DIOXIDE_GAS_BLOCK = BLOCKS.register("sulfur_dioxide_gas_block", () -> new GasBlock(RankineItems.SULFUR_DIOXIDE_GAS_BOTTLE,GasUtilsEnum.SULFUR_DIOXIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
+    public static final RegistryObject<Block> TUNGSTEN_HEXAFLUORIDE_GAS_BLOCK = BLOCKS.register("tungsten_hexafluoride_gas_block", () -> new GasBlock(RankineItems.TUNGSTEN_HEXAFLUORIDE_GAS_BOTTLE,GasUtilsEnum.TUNGSTEN_HEXAFLUORIDE,BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().air()));
 
     //public static final RegistryObject<Block> HELIUM_GAS_TUBE = BLOCKS.register("helium_gas_tube", () -> new GasTubeBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
     public static final RegistryObject<Block> LITHIUM_LANTERN = BLOCKS.register("lithium_lantern", () -> new RankineLanternBlock(16711790));
@@ -542,8 +546,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> FUMAROLE_DEPOSIT = BLOCKS.register("fumarole_deposit", () -> new Block(DEF_STONE));
     public static final RegistryObject<Block> IRONSTONE = BLOCKS.register("ironstone", () -> new Block(DEF_STONE));
     public static final RegistryObject<Block> BOG_IRON = BLOCKS.register("bog_iron", () -> new Block(DEF_STONE));
-    public static final RegistryObject<Block> PORPHYRY_COPPER = BLOCKS.register("porphyry_copper", () -> new OreBlock(DEF_STONE, UniformInt.of(0,1)));
-    public static final RegistryObject<Block> KIMBERLITIC_DIAMOND_ORE = BLOCKS.register("kimberlitic_diamond_ore", () -> new OreBlock(DEF_STONE, UniformInt.of(3,7)));
+    public static final RegistryObject<Block> PORPHYRY_COPPER = BLOCKS.register("porphyry_copper", () -> new DropExperienceBlock(DEF_STONE, UniformInt.of(0,1)));
+    public static final RegistryObject<Block> KIMBERLITIC_DIAMOND_ORE = BLOCKS.register("kimberlitic_diamond_ore", () -> new DropExperienceBlock(DEF_STONE, UniformInt.of(3,7)));
     public static final RegistryObject<Block> QUICKLIME_BLOCK = BLOCKS.register("quicklime_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 2.0F)));
     public static final RegistryObject<Block> MAGNESITE_BLOCK = BLOCKS.register("magnesite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 2.0F)));
     public static final RegistryObject<Block> MAGNESIA_BLOCK = BLOCKS.register("magnesia_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 2.0F)));
@@ -1178,7 +1182,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GRAY_TEKTITE = BLOCKS.register("gray_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLACK_TEKTITE = BLOCKS.register("black_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BROWN_TEKTITE = BLOCKS.register("brown_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> ANTIMATTER = BLOCKS.register("antimatter", () -> new AntimatterBlock(Block.Properties.of(Material.BARRIER).strength(-1.0F, 3600000.8F).noOcclusion().noCollission().noDrops()));
+    public static final RegistryObject<Block> ANTIMATTER = BLOCKS.register("antimatter", () -> new AntimatterBlock(Block.Properties.of(Material.BARRIER).strength(-1.0F, 3600000.8F).noOcclusion().noCollission().noLootTable()));
     public static final RegistryObject<Block> UNAMED_EXPLOSIVE = BLOCKS.register("unamed_explosive", () -> new UnamedExplosiveBlock(Block.Properties.of(Material.BARRIER).strength(20.0F, 50.0F)));
 
 
@@ -1310,22 +1314,22 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ALNICO_ELECTROMAGNET = BLOCKS.register("alnico_electromagnet", () -> new ElectromagnetBlock(2));
     public static final RegistryObject<Block> RARE_EARTH_ELECTROMAGNET = BLOCKS.register("rare_earth_electromagnet", () -> new ElectromagnetBlock(3));
 
-    public static final RegistryObject<Block> LIQUID_MERCURY = BLOCKS.register("liquid_mercury", () -> new MercuryFlowingFluidBlock(() -> RankineFluids.LIQUID_MERCURY, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> SAP = BLOCKS.register("sap", () -> new RankineFlowingFluidBlock(() -> RankineFluids.SAP, true, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> MAPLE_SAP = BLOCKS.register("maple_sap", () -> new RankineFlowingFluidBlock(() -> RankineFluids.MAPLE_SAP, true, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> LATEX = BLOCKS.register("latex", () -> new RankineFlowingFluidBlock(() -> RankineFluids.LATEX, true, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> RESIN = BLOCKS.register("resin", () -> new RankineFlowingFluidBlock(() -> RankineFluids.RESIN, true, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> JUGLONE = BLOCKS.register("juglone", () -> new RankineFlowingFluidBlock(() -> RankineFluids.JUGLONE, true, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> AQUA_REGIA = BLOCKS.register("aqua_regia", () -> new RankineFlowingFluidBlock(()-> RankineFluids.AQUA_REGIA, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> CARBON_DISULFIDE = BLOCKS.register("carbon_disulfide", () -> new CarbonDisulfideFlowingFluidBlock(()-> RankineFluids.CARBON_DISULFIDE, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> HEXAFLUOROSILICIC_ACID = BLOCKS.register("hexafluorosilicic_acid", () -> new RankineFlowingFluidBlock(()-> RankineFluids.HEXAFLUOROSILICIC_ACID, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> HYDROBROMIC_ACID = BLOCKS.register("hydrobromic_acid", () -> new RankineFlowingFluidBlock(()-> RankineFluids.HYDROBROMIC_ACID, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> GRAY_MUD = BLOCKS.register("gray_mud", () -> new RankineFlowingFluidBlock(()-> RankineFluids.GRAY_MUD, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> RED_MUD = BLOCKS.register("red_mud", () -> new RankineFlowingFluidBlock(()-> RankineFluids.RED_MUD, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> SULFURIC_ACID = BLOCKS.register("sulfuric_acid", () -> new RankineFlowingFluidBlock(()-> RankineFluids.SULFURIC_ACID, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> BLACK_LIQUOR = BLOCKS.register("black_liquor", () -> new RankineFlowingFluidBlock(()-> RankineFluids.BLACK_LIQUOR, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> GREEN_LIQUOR = BLOCKS.register("green_liquor", () -> new RankineFlowingFluidBlock(()-> RankineFluids.GREEN_LIQUOR, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
-    public static final RegistryObject<Block> WHITE_LIQUOR = BLOCKS.register("white_liquor", () -> new RankineFlowingFluidBlock(()-> RankineFluids.WHITE_LIQUOR, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops()));
+    public static final RegistryObject<Block> LIQUID_MERCURY = BLOCKS.register("liquid_mercury", () -> new MercuryFlowingFluidBlock(() -> RankineFluids.LIQUID_MERCURY, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> SAP = BLOCKS.register("sap", () -> new RankineFlowingFluidBlock(() -> RankineFluids.SAP, true, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> MAPLE_SAP = BLOCKS.register("maple_sap", () -> new RankineFlowingFluidBlock(() -> RankineFluids.MAPLE_SAP, true, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> LATEX = BLOCKS.register("latex", () -> new RankineFlowingFluidBlock(() -> RankineFluids.LATEX, true, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> RESIN = BLOCKS.register("resin", () -> new RankineFlowingFluidBlock(() -> RankineFluids.RESIN, true, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> JUGLONE = BLOCKS.register("juglone", () -> new RankineFlowingFluidBlock(() -> RankineFluids.JUGLONE, true, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> AQUA_REGIA = BLOCKS.register("aqua_regia", () -> new RankineFlowingFluidBlock(()-> RankineFluids.AQUA_REGIA, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> CARBON_DISULFIDE = BLOCKS.register("carbon_disulfide", () -> new CarbonDisulfideFlowingFluidBlock(()-> RankineFluids.CARBON_DISULFIDE, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> HEXAFLUOROSILICIC_ACID = BLOCKS.register("hexafluorosilicic_acid", () -> new RankineFlowingFluidBlock(()-> RankineFluids.HEXAFLUOROSILICIC_ACID, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> HYDROBROMIC_ACID = BLOCKS.register("hydrobromic_acid", () -> new RankineFlowingFluidBlock(()-> RankineFluids.HYDROBROMIC_ACID, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> GRAY_MUD = BLOCKS.register("gray_mud", () -> new RankineFlowingFluidBlock(()-> RankineFluids.GRAY_MUD, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> RED_MUD = BLOCKS.register("red_mud", () -> new RankineFlowingFluidBlock(()-> RankineFluids.RED_MUD, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> SULFURIC_ACID = BLOCKS.register("sulfuric_acid", () -> new RankineFlowingFluidBlock(()-> RankineFluids.SULFURIC_ACID, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> BLACK_LIQUOR = BLOCKS.register("black_liquor", () -> new RankineFlowingFluidBlock(()-> RankineFluids.BLACK_LIQUOR, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> GREEN_LIQUOR = BLOCKS.register("green_liquor", () -> new RankineFlowingFluidBlock(()-> RankineFluids.GREEN_LIQUOR, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+    public static final RegistryObject<Block> WHITE_LIQUOR = BLOCKS.register("white_liquor", () -> new RankineFlowingFluidBlock(()-> RankineFluids.WHITE_LIQUOR, false, Block.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
 
     //ELEMENT BLOCKS
     public static final RegistryObject<Block> HYDROGEN_BLOCK = BLOCKS.register("hydrogen_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
@@ -1461,25 +1465,25 @@ public class RankineBlocks {
 
     //OTHER STUFFS
 
-    @ObjectHolder("rankine:alloy_furnace")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:alloy_furnace")
     public static MenuType<AlloyFurnaceContainer> ALLOY_FURNACE_CONTAINER;
 
-    @ObjectHolder("rankine:alloy_furnace")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:alloy_furnace")
     public static BlockEntityType<AlloyFurnaceTile> ALLOY_FURNACE_TILE;
 
-    @ObjectHolder("rankine:induction_furnace")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:induction_furnace")
     public static MenuType<InductionFurnaceContainer> INDUCTION_FURNACE_CONTAINER;
 
-    @ObjectHolder("rankine:induction_furnace")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:induction_furnace")
     public static BlockEntityType<InductionFurnaceTile> INDUCTION_FURNACE_TILE;
 
-    @ObjectHolder("rankine:fusion_furnace")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:fusion_furnace")
     public static MenuType<FusionFurnaceContainer> FUSION_FURNACE_CONTAINER;
 
-    @ObjectHolder("rankine:fusion_furnace")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:fusion_furnace")
     public static BlockEntityType<FusionFurnaceTile> FUSION_FURNACE_TILE;
 
-    @ObjectHolder("rankine:alloy_block")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:alloy_block")
     public static BlockEntityType<AlloyBlockTile> ALLOY_BLOCK_TILE;
     /*
         @ObjectHolder("rankine:laser_quarry")
@@ -1491,68 +1495,68 @@ public class RankineBlocks {
 
      */
 
-    @ObjectHolder("rankine:evaporation_tower")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:evaporation_tower")
     public static MenuType<EvaporationTowerContainer> EVAPORATION_TOWER_CONTAINER;
 
-    @ObjectHolder("rankine:evaporation_tower")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:evaporation_tower")
     public static BlockEntityType<EvaporationTowerTile> EVAPORATION_TOWER_TILE;
 
-    @ObjectHolder("rankine:gas_condenser")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:gas_condenser")
     public static MenuType<GasBottlerContainer> GAS_CONDENSER_CONTAINER;
 
-    @ObjectHolder("rankine:gas_condenser")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:gas_condenser")
     public static BlockEntityType<GasBottlerTile> GAS_CONDENSER_TILE;
 
-    @ObjectHolder("rankine:battery_charger")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:battery_charger")
     public static MenuType<BatteryChargerContainer> BATTERY_CHARGER_CONTAINER;
 
-    @ObjectHolder("rankine:battery_charger")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:battery_charger")
     public static BlockEntityType<BatteryChargerTile> BATTERY_CHARGER_TILE;
-    @ObjectHolder("rankine:gas_vent")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:gas_vent")
     public static BlockEntityType<GasVentTile> GAS_VENT_TILE;
-    @ObjectHolder("rankine:sediment_fan")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:sediment_fan")
     public static BlockEntityType<SedimentFanTile> SEDIMENT_FAN_TILE;
-    @ObjectHolder("rankine:tree_tap")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:tree_tap")
     public static BlockEntityType<TreeTapTile> TREE_TAP_TILE;
 
-    @ObjectHolder("rankine:crucible")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:crucible")
     public static MenuType<CrucibleContainer> CRUCIBLE_CONTAINER;
 
-    @ObjectHolder("rankine:crucible")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:crucible")
     public static BlockEntityType<CrucibleTile> CRUCIBLE_TILE;
 
-    @ObjectHolder("rankine:mixing_barrel")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:mixing_barrel")
     public static MenuType<MixingBarrelContainer> MIXING_BARREL_CONTAINER;
 
-    @ObjectHolder("rankine:mixing_barrel")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:mixing_barrel")
     public static BlockEntityType<MixingBarrelTile> MIXING_BARREL_TILE;
 
-    @ObjectHolder("rankine:template_table")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:template_table")
     public static MenuType<TemplateTableContainer> TEMPLATE_TABLE_CONTAINER;
 
-    @ObjectHolder("rankine:material_testing_table")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:material_testing_table")
     public static BlockEntityType<MaterialTestingTableTile> MATERIAL_TESTING_TABLE_TILE;
 
-    @ObjectHolder("rankine:material_testing_table")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:material_testing_table")
     public static MenuType<MaterialTestingTableContainer> MATERIAL_TESTING_TABLE_CONTAINER;
 
-    @ObjectHolder("rankine:ground_tap")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:ground_tap")
     public static BlockEntityType<GroundTapTile> GROUND_TAP_TILE;
 
-    @ObjectHolder("rankine:beehive_oven")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:beehive_oven")
     public static BlockEntityType<BeehiveOvenTile> BEEHIVE_OVEN_TILE;
 
-    @ObjectHolder("rankine:distillation_tower")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:distillation_tower")
     public static BlockEntityType<DistillationTowerTile> DISTILLATION_TOWER_TILE;
 
-    @ObjectHolder("rankine:tilled_soil")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:tilled_soil")
     public static BlockEntityType<TilledSoilTile> TILLED_SOIL_TILE;
 
-    @ObjectHolder("rankine:pedestal")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:pedestal")
     public static BlockEntityType<PedestalTile> PEDESTAL_TILE;
-    @ObjectHolder("rankine:particle_accelerator")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:particle_accelerator")
     public static BlockEntityType<ParticleAcceleratorTile> PARTICLE_ACCELERATOR_TILE;
-    @ObjectHolder("rankine:charcoal_pit")
+    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:charcoal_pit")
     public static BlockEntityType<CharcoalPitTile> CHARCOAL_PIT_TILE;
 
 

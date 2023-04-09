@@ -151,7 +151,7 @@ public class SluicingRecipe implements Recipe<Container> {
         return RankineRecipeTypes.SLUICING;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<SluicingRecipe> {
+    public static class Serializer implements RecipeSerializer<SluicingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "sluicing");
         public SluicingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));

@@ -9,6 +9,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class RankineWallSignBlock extends WallSignBlock {
     public RankineWallSignBlock(WoodType type) {
         super(Properties.of(Material.WOOD, Blocks.OAK_LOG.defaultMaterialColor()).noCollission().strength(1.0F).sound(SoundType.WOOD), type);

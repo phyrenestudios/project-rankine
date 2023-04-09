@@ -182,7 +182,7 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
         return fluidIn;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<FusionFurnaceRecipe> {
+    public static class Serializer implements RecipeSerializer<FusionFurnaceRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "fusion_furnace");
         public FusionFurnaceRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int w = json.has("cookTime") ? json.get("cookTime").getAsInt() : 400;

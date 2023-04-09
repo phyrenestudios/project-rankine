@@ -313,7 +313,7 @@ public class CrucibleRecipe implements Recipe<Container> {
         return RankineRecipeTypes.CRUCIBLE;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<CrucibleRecipe> {
+    public static class Serializer implements RecipeSerializer<CrucibleRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "crucible");
         public CrucibleRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int c = json.get("cookTime").getAsInt();

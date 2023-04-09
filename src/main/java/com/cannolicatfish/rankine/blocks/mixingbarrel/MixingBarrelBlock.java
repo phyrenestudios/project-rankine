@@ -37,6 +37,8 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class MixingBarrelBlock extends BaseEntityBlock {
     //public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static IntegerProperty ANGLE = IntegerProperty.create("angle",0,3);
@@ -91,7 +93,7 @@ public class MixingBarrelBlock extends BaseEntityBlock {
             BlockEntity tileEntity = worldIn.getBlockEntity(pos);
             if (tileEntity instanceof MenuProvider) {
                     if (player.isCrouching()) {
-                        CompoundTag nbt = tileEntity.getTileData();
+                        CompoundTag nbt = tileEntity.getPersistentData();
                         /*int mixTime = nbt.getInt("MixTime");
                         int mixTimeTotal = nbt.getInt("MixTimeTotal");
                         System.out.println(mixTime + "/" + mixTimeTotal);
@@ -104,7 +106,7 @@ public class MixingBarrelBlock extends BaseEntityBlock {
                             worldIn.setBlock(pos, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,angle+1),3);
                         }
                     } else {
-                        NetworkHooks.openGui((ServerPlayer) player, (MenuProvider) tileEntity, tileEntity.getBlockPos());
+                        NetworkHooks.openScreen((ServerPlayer) player, (MenuProvider) tileEntity, tileEntity.getBlockPos());
                     }
                 } else {
                     throw new IllegalStateException("Our named container provider is missing!");

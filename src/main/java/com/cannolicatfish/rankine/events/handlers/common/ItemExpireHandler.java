@@ -17,13 +17,13 @@ import net.minecraftforge.event.entity.item.ItemExpireEvent;
 public class ItemExpireHandler {
 
     public static void onItemPickup(ItemExpireEvent event) {
-        if (event.getEntityItem().isInWater()) {
-            RockGeneratorRecipe recipe = event.getEntityItem().getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ROCK_GENERATOR,new SimpleContainer(event.getEntityItem().getItem()),event.getEntityItem().getLevel()).orElse(null);
+        if (event.getEntity().isInWater()) {
+            RockGeneratorRecipe recipe = event.getEntity().getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ROCK_GENERATOR,new SimpleContainer(event.getEntity().getItem()),event.getEntity().getLevel()).orElse(null);
             if (recipe != null) {
                 ItemStack output = recipe.getResultItem();
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem blockItem) {
-                    Level levelIn = event.getEntityItem().getLevel();
-                    BlockPos.findClosestMatch(event.getEntityItem().getOnPos(), 1, 4, pos -> (levelIn.getBlockState(pos.below()).isFaceSturdy(levelIn, pos.below(), Direction.UP) && !levelIn.isWaterAt(pos.below()))
+                    Level levelIn = event.getEntity().getLevel();
+                    BlockPos.findClosestMatch(event.getEntity().getOnPos(), 1, 4, pos -> (levelIn.getBlockState(pos.below()).isFaceSturdy(levelIn, pos.below(), Direction.UP) && !levelIn.isWaterAt(pos.below()))
                             && (levelIn.isWaterAt(pos))).ifPresent(placementPos -> levelIn.setBlock(placementPos, blockItem.getBlock().defaultBlockState(), 3));
                 }
 

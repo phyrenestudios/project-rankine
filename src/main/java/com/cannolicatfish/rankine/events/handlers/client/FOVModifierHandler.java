@@ -6,10 +6,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.client.event.FOVModifierEvent;
+import net.minecraftforge.client.event.ComputeFovModifierEvent;
 
 public class FOVModifierHandler {
-    public static void fovUpdate(FOVModifierEvent event) {
+    public static void fovUpdate(ComputeFovModifierEvent event) {
         Player player = event.getEntity();
         AttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
         if (Config.GENERAL.MOVEMENT_MODIFIERS.get() && Config.GENERAL.MOVEMENT_MODIFIERS_FOV.get() && movementSpeed != null) {

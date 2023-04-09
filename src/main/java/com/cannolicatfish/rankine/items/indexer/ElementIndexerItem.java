@@ -11,13 +11,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class ElementIndexerItem extends Item {
     private static final ElementIndexerContainerProvider INSTANCE = new ElementIndexerContainerProvider();
@@ -33,7 +35,7 @@ public class ElementIndexerItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         if (!worldIn.isClientSide)
         {
-            NetworkHooks.openGui((ServerPlayer) playerIn,INSTANCE);
+            NetworkHooks.openScreen((ServerPlayer) playerIn,INSTANCE);
         }
 
         return super.use(worldIn, playerIn, handIn);

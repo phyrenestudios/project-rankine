@@ -25,6 +25,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class GlassCutterItem extends DiggerItem {
 
     public GlassCutterItem(Properties properties) {

@@ -9,6 +9,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
 
+import net.minecraft.world.entity.Entity.RemovalReason;
+
 public class DryMortarItemEntity extends ItemEntity {
 
     public DryMortarItemEntity(EntityType<? extends ItemEntity> p_i50217_1_, Level p_i50217_2_) {

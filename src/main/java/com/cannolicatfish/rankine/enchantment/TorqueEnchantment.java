@@ -4,6 +4,8 @@ import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 
+import net.minecraft.world.item.enchantment.Enchantment.Rarity;
+
 public class TorqueEnchantment extends Enchantment {
     public TorqueEnchantment(Rarity p_i46721_1_, EquipmentSlot... p_i46721_2_) {
         super(p_i46721_1_, RankineEnchantmentTypes.CROWBAR, p_i46721_2_);
