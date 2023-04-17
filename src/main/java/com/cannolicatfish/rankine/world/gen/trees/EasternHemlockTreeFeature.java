@@ -13,7 +13,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 
-import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EasternHemlockTreeFeature extends Feature<TreeConfiguration> {
 
@@ -25,7 +25,7 @@ public class EasternHemlockTreeFeature extends Feature<TreeConfiguration> {
     public boolean place(FeaturePlaceContext<TreeConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = reader.getRandomSource();
         TreeConfiguration config = p_159749_.config();
         int trunkHeight = config.trunkPlacer.getTreeHeight(rand);
         boolean flag = true;
@@ -83,7 +83,7 @@ public class EasternHemlockTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void hemlockBranch(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, int crownHeight) {
+    private void hemlockBranch(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, int crownHeight) {
         WorldgenUtils.placeLeafAt(reader,pos.above(2),rand,config);
         for (int i = 0; i < crownHeight; ++i) {
             if (i > 1) {
@@ -145,7 +145,7 @@ public class EasternHemlockTreeFeature extends Feature<TreeConfiguration> {
 
     }
 
-    private void hemlockLeaves(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config) {
+    private void hemlockLeaves(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         for (Direction dir : Direction.values()) {
             if (dir.equals(Direction.DOWN)) continue;
             WorldgenUtils.placeLeafAt(reader,pos.relative(dir),rand,config);

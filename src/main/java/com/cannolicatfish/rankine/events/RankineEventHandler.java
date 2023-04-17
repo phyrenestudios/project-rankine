@@ -11,10 +11,7 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.event.*;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
@@ -106,7 +103,7 @@ public class RankineEventHandler {
         AnvilUpdateHandler.specialEnchants(event);
     }
     @SubscribeEvent
-    public static void livingSetAttackTargetEvent(LivingSetAttackTargetEvent event) {
+    public static void livingSetAttackTargetEvent(LivingChangeTargetEvent event) {
         LivingSetAttackTargetHandler.onLivingSetAttackTarget(event);
     }
     @SubscribeEvent

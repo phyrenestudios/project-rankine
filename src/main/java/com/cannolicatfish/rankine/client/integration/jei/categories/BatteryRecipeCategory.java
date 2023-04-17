@@ -106,8 +106,8 @@ public class BatteryRecipeCategory implements IRecipeCategory<IBatteryRecipe> {
     public List<Component> getTooltipStrings(IBatteryRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
         if (mouseX > 22 && mouseY >= 17 && mouseY <= 25) {
             List<Component> components = new ArrayList<>();
-            components.add(new TranslatableComponent("rankine.jei.info_battery_fusion",Math.floorDiv(recipe.getBatteryCharge(), Config.MACHINES.FUSION_FURNACE_POWER.get())));
-            components.add(new TranslatableComponent("rankine.jei.info_battery_induction",Math.floorDiv(recipe.getBatteryCharge(), Config.MACHINES.INDUCTION_FURNACE_POWER.get())));
+            components.add(Component.translatable("rankine.jei.info_battery_fusion",Math.floorDiv(recipe.getBatteryCharge(), Config.MACHINES.FUSION_FURNACE_POWER.get())));
+            components.add(Component.translatable("rankine.jei.info_battery_induction",Math.floorDiv(recipe.getBatteryCharge(), Config.MACHINES.INDUCTION_FURNACE_POWER.get())));
             return components;
         }
         return IRecipeCategory.super.getTooltipStrings(recipe, recipeSlotsView, mouseX, mouseY);
@@ -120,11 +120,11 @@ public class BatteryRecipeCategory implements IRecipeCategory<IBatteryRecipe> {
 
     private static List<Component> createChargeCountText(boolean rtg, int charge) {
         List<Component> components = new ArrayList<>();
-        components.add(new TranslatableComponent("rankine.jei.info_battery_energy",charge).withStyle(ChatFormatting.BLACK));
+        components.add(Component.translatable("rankine.jei.info_battery_energy",charge).withStyle(ChatFormatting.BLACK));
         if (rtg) {
-            components.add(new TranslatableComponent("rankine.jei.info_battery_rtg").withStyle(ChatFormatting.DARK_RED));
+            components.add(Component.translatable("rankine.jei.info_battery_rtg").withStyle(ChatFormatting.DARK_RED));
         } else {
-            components.add(new TranslatableComponent("rankine.jei.info_battery_rechargeable").withStyle(ChatFormatting.DARK_GREEN));
+            components.add(Component.translatable("rankine.jei.info_battery_rechargeable").withStyle(ChatFormatting.DARK_GREEN));
         }
         return components;
     }

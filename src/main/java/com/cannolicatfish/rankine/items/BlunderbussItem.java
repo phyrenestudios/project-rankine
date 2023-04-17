@@ -9,6 +9,7 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -24,10 +25,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.Random;
 import java.util.function.Predicate;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class BlunderbussItem extends ProjectileWeaponItem implements Vanishable {
     public static final Predicate<ItemStack> CANNONBALLS = (p_220002_0_) -> {
@@ -72,7 +70,7 @@ public class BlunderbussItem extends ProjectileWeaponItem implements Vanishable 
                     if (!worldIn.isClientSide) {
                         Vec3 vector3d = playerentity.getViewVector(1.0F);
                         playerentity.knockback(1,-vector3d.x,-vector3d.z);
-                        Random random = worldIn.getRandom();
+                        RandomSource random = worldIn.getRandom();
                         Vec3 inaccuracy = new Vec3((random.nextInt(20)-10)/100f,(random.nextInt(20) - 10)/100f,(random.nextInt(20) - 10)/100f);
                         if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ACCURACY.get(),stack) > 0) {
                             inaccuracy = inaccuracy.scale(1 - 0.33*EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ACCURACY.get(),stack));

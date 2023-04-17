@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
@@ -36,7 +37,7 @@ public final class RankineTags {
     }
 
     private static TagKey<Biome> createBiomeTag(String p_207631_) {
-        return TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(ProjectRankine.MODID, p_207631_));
+        return TagKey.create(Registries.BIOME, new ResourceLocation(ProjectRankine.MODID, p_207631_));
     }
 
 

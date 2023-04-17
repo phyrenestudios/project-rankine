@@ -5,20 +5,20 @@ import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 public interface IAlloyShield extends IAlloyItem {
     @Override
@@ -174,7 +174,7 @@ public interface IAlloyShield extends IAlloyItem {
     default int calcDurabilityLoss(ItemStack stack, Level worldIn, LivingEntity entityLiving, boolean isEfficient)
     {
         boolean memory = false;
-        Random rand = worldIn.getRandom();
+        RandomSource rand = worldIn.getRandom();
         int i = 1;
         if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getRemainingFireTicks() > 0 || worldIn.dimension() == Level.NETHER)) {
             i += Config.ALLOYS.ALLOY_HEAT_AMT.get();

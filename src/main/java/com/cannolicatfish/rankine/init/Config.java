@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.compatibility.TwilightForest;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod;
 
@@ -959,7 +958,7 @@ public class Config {
                     "minecraft:air",
                     "minecraft:air",
                     "minecraft:air"));
-            biomeSettings.add(List.of(Biome.BiomeCategory.NETHER.getName(),
+            /*biomeSettings.add(List.of(BiomeTags.IS_NETHER.getName(),
                     List.of(),
                     List.of("minecraft:air|20|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
                     List.of("minecraft:netherrack"),
@@ -1138,7 +1137,7 @@ public class Config {
                     "rankine:dark_gravel",
                     "minecraft:air",
                     "minecraft:air",
-                    "rankine:pointed_feric_dripstone"));
+                    "rankine:pointed_feric_dripstone"));*/
 
 
             b.comment("Biome Feature Settings").push("biomeGen");

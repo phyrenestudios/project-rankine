@@ -4,7 +4,7 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.world.gen.MeteoriteFeatureConfig;
 import net.minecraft.core.HolderSet;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Block;
@@ -27,7 +27,7 @@ import java.util.OptionalInt;
 
 public class RankineConfiguredFeatures {
 
-    public static final DeferredRegister<ConfiguredFeature<?,?>> CONFIGURED_FEATURES = DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, ProjectRankine.MODID);
+    public static final DeferredRegister<ConfiguredFeature<?,?>> CONFIGURED_FEATURES = DeferredRegister.create(Registries.CONFIGURED_FEATURE, ProjectRankine.MODID);
 
     public static final RegistryObject<ConfiguredFeature<?,?>> CONFIGURED_WORLD_REPLACER = CONFIGURED_FEATURES.register("world_replacer", () -> new ConfiguredFeature<>(RankineFeatures.WORLD_REPLACER.get(), new NoneFeatureConfiguration()));
     public static final RegistryObject<ConfiguredFeature<?,?>> CONFIGURED_POST_WORLD_REPLACER = CONFIGURED_FEATURES.register("post_world_replacer", () -> new ConfiguredFeature<>(RankineFeatures.POST_WORLD_REPLACER.get(), new NoneFeatureConfiguration()));

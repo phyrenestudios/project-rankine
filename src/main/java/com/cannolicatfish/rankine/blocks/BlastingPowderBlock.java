@@ -25,8 +25,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 public class BlastingPowderBlock extends FallingBlock {
     public BlastingPowderBlock(Properties properties) {
         super(properties);
@@ -35,7 +33,7 @@ public class BlastingPowderBlock extends FallingBlock {
     @Override
     public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable net.minecraft.core.Direction face, @Nullable LivingEntity igniter) {
         world.removeBlock(pos, false);
-        world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.BlockInteraction.BREAK);
+        world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Level.ExplosionInteraction.TNT);
     }
 
 

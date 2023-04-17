@@ -2,10 +2,8 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
-import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -69,9 +67,9 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
     @Override
     public Component getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(IAlloyItem.getNameOverride(stack)));
+            return Component.translatable(this.getDescriptionId(stack),Component.translatable(IAlloyItem.getNameOverride(stack)));
         }
-        return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
+        return Component.translatable(this.getDescriptionId(stack),Component.translatable(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
 
@@ -108,7 +106,7 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
 
                 if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDLESS.get(),stack) > 0) {
                     List<MobEffect> r = ForgeRegistries.MOB_EFFECTS.getEntries().stream().filter(registryKeyEffectEntry -> registryKeyEffectEntry.getValue().isBeneficial() &&
-                            registryKeyEffectEntry.getKey().getRegistryName().getNamespace().equals("minecraft")).map(Map.Entry::getValue).collect(Collectors.toList());
+                            registryKeyEffectEntry.getKey().location().getNamespace().equals("minecraft")).map(Map.Entry::getValue).collect(Collectors.toList());
                     MobEffect rand = r.get(worldIn.getRandom().nextInt(r.size()));
                     MobEffectInstance e = new MobEffectInstance(rand,400, EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDLESS.get(),stack));
                     entityLiving.addEffect(e);
@@ -177,16 +175,6 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
             this.initStats(stack,getElementMap(IAlloyItem.getAlloyComposition(stack),worldIn),getAlloyingRecipe(IAlloyItem.getAlloyRecipe(stack),worldIn),null);
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
-    }
-
-    @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
-            items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
-            items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
-        } else if (this.allowdedIn(group)) {
-            super.fillItemCategory(group,items);
-        }
     }
 
     @Override

@@ -27,7 +27,7 @@ import java.util.List;
 
 public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableContainer> {
     private final ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/template_table.png");
-    private static final Component TRADES_LABEL = new TranslatableComponent("rankine.alloys");
+    private static final Component TRADES_LABEL = Component.translatable("rankine.alloys");
     private int selectedAlloyRecipe;
     private final AlloyButton[] tradeOfferButtons = new AlloyButton[7];
     private int scrollOff;

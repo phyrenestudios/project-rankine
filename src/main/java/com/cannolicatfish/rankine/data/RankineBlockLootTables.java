@@ -1,39 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.HollowLogBlock;
-import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
-import com.cannolicatfish.rankine.blocks.LightningGlassBlock;
-import com.cannolicatfish.rankine.blocks.RankineLogBlock;
-import com.cannolicatfish.rankine.blocks.block_groups.*;
-import com.cannolicatfish.rankine.blocks.buildingmodes.RankineBookshelvesBlock;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineLists;
-import net.minecraft.advancements.critereon.StatePropertiesPredicate;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
-import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class RankineBlockLootTables extends RankineLootTableProvider {
-
+public class RankineBlockLootTables {
+/*
     public RankineBlockLootTables(DataGenerator dataGeneratorIn) {
         super(dataGeneratorIn);
     }
@@ -340,6 +308,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
 
     }
 
-
+*/
 
 }

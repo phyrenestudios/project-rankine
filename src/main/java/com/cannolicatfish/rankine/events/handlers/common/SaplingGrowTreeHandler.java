@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.Event;
 
 public class SaplingGrowTreeHandler {
     public static void onSaplingGrow(SaplingGrowTreeEvent event) {
-        if (event.getRand().nextFloat() < 1- Config.GENERAL.SAPLING_GROW.get()) {
+        if (event.getRandomSource().nextFloat() < 1- Config.GENERAL.SAPLING_GROW.get()) {
             event.setResult(Event.Result.DENY);
         }
         BlockPos pos = event.getPos();

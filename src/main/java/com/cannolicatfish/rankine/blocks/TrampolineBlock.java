@@ -2,23 +2,20 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class TrampolineBlock extends Block {
     public TrampolineBlock(Properties properties) {
@@ -34,7 +31,7 @@ public class TrampolineBlock extends Block {
         if (entityIn.isSuppressingBounce()) {
             super.fallOn(worldIn, state, pos, entityIn, fallDistance);
         } else {
-            entityIn.causeFallDamage(fallDistance, 0.0f, DamageSource.FALL);
+            entityIn.causeFallDamage(fallDistance, 0.0f, worldIn.damageSources().fall());
         }
 
     }

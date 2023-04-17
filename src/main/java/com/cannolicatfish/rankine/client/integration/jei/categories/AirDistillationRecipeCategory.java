@@ -48,7 +48,7 @@ public class AirDistillationRecipeCategory implements IRecipeCategory<AirDistill
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override

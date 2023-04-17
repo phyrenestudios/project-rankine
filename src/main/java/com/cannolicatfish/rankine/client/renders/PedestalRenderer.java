@@ -2,19 +2,20 @@ package com.cannolicatfish.rankine.client.renders;
 
 import com.cannolicatfish.rankine.blocks.pedestal.PedestalTile;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.joml.Vector3f;
+import org.joml.Quaternionf;
 
 @OnlyIn(Dist.CLIENT)
 public class PedestalRenderer implements BlockEntityRenderer<PedestalTile> {
@@ -34,7 +35,7 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalTile> {
             }
 
             float angle = (blockEntityIn.getLevel().getGameTime()) % 360;
-            Quaternion rotation = Vector3f.YP.rotationDegrees(angle);
+            Quaternionf rotation = Axis.YP.rotationDegrees(angle);
 
             matrixStack.translate(0.5D, 1.25D, 0.5D);
             matrixStack.mulPose(rotation);
@@ -43,7 +44,7 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalTile> {
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
             ItemStack stack = blockEntityIn.entity.getItem();
             BakedModel bakedmodel = itemRenderer.getModel(stack, blockEntityIn.getLevel(), (LivingEntity) null, blockEntityIn.entity.getId());
-            itemRenderer.render(stack, ItemTransforms.TransformType.FIXED, true, matrixStack, buffer, combinedLight, combinedOverlay, bakedmodel);
+            itemRenderer.render(stack, ItemDisplayContext.GROUND, true, matrixStack, buffer, combinedLight, combinedOverlay, bakedmodel);
 
         //}
         matrixStack.popPose();

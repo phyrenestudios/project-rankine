@@ -1,40 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.blocks.block_groups.*;
-import com.cannolicatfish.rankine.data.builders.AlloyCraftingRecipeBuilder;
-import com.cannolicatfish.rankine.data.builders.AlloyIngredient;
-import com.cannolicatfish.rankine.data.builders.BeehiveOvenRecipeBuilder;
-import com.cannolicatfish.rankine.init.*;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.core.Registry;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class RankineRecipesProvider extends RecipeProvider {
-
+public class RankineRecipesProvider  {
+/*
     private static final Map<Item,Item> blastingMap = new HashMap<>();
     static {
         blastingMap.put(RankineItems.CASSITERITE.get(),RankineItems.TIN_INGOT.get());
@@ -1830,5 +1797,5 @@ public class RankineRecipesProvider extends RecipeProvider {
     protected static void stonecutterResultFromBase(Consumer<FinishedRecipe> p_176547_, ItemLike p_176548_, ItemLike p_176549_, int p_176550_) {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(p_176549_), p_176548_, p_176550_).unlockedBy(getHasName(p_176549_), has(p_176549_)).save(p_176547_, "rankine:"+getConversionRecipeName(p_176548_, p_176549_) + "_stonecutting");
     }
-
+*/
 }

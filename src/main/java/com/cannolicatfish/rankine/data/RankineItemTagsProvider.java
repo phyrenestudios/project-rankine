@@ -1,30 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineLists;
-import com.cannolicatfish.rankine.init.RankineTags;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.BlockTagsProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class RankineItemTagsProvider extends ItemTagsProvider {
-
+public class RankineItemTagsProvider {
+/*
     public RankineItemTagsProvider(DataGenerator dataGenerator, BlockTagsProvider blockTagProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(dataGenerator, blockTagProvider, ProjectRankine.MODID, existingFileHelper);
     }
@@ -937,5 +914,5 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
 
     }
-
+*/
 }

@@ -10,7 +10,6 @@ import com.cannolicatfish.rankine.items.tools.HammerItem;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -53,7 +52,7 @@ public class LivingDamageHandler {
                 }
 
             }
-            if (!(event.getSource() == DamageSource.WITHER && event.getSource() == DamageSource.MAGIC)) {
+            if (!(event.getSource() == worldIn.damageSources().wither() && event.getSource() == worldIn.damageSources().magic())) {
                 boolean wither = false;
                 for(int i = 0; i < player.getInventory().getContainerSize(); ++i) {
                     ItemStack itemstack = player.getInventory().getItem(i);
@@ -89,7 +88,7 @@ public class LivingDamageHandler {
                             LootContext n = new LootContext.Builder((ServerLevel) player.level)
                                     .withParameter(LootContextParams.THIS_ENTITY, receiver)
                                     .withParameter(LootContextParams.ORIGIN, receiver.position())
-                                    .withParameter(LootContextParams.DAMAGE_SOURCE, DamageSource.playerAttack(player))
+                                    .withParameter(LootContextParams.DAMAGE_SOURCE, receiver.damageSources().playerAttack(player))
                                     .withParameter(LootContextParams.LAST_DAMAGE_PLAYER,player).create(LootContextParamSets.ENTITY);
                             List<ItemStack> s = loot.getRandomItems(n);
                             if (s.size() > 1) {

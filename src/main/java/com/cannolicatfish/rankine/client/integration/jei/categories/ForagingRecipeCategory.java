@@ -49,7 +49,7 @@ public class ForagingRecipeCategory implements IRecipeCategory<ForagingRecipe> {
 
     @Override
     public Component getTitle() {
-        return new TextComponent(I18n.get("rankine.jei.foraging"));
+        return Component.literal(I18n.get("rankine.jei.foraging"));
     }
 
     @Override
@@ -84,15 +84,15 @@ public class ForagingRecipeCategory implements IRecipeCategory<ForagingRecipe> {
     public List<Component> getTooltipStrings(ForagingRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
         if (mouseX > 103 && mouseX < 120 && mouseY > 24 && mouseY < 41) {
             if (recipe.isAllBiomes()) {
-                return List.of(new TextComponent(I18n.get("rankine.jei.tooltip_biomes_info") + (I18n.get("rankine.jei.tooltip_any"))),
-                        new TextComponent(I18n.get("rankine.jei.tooltip_biomes_tags_info") + (I18n.get("rankine.jei.tooltip_any"))));
+                return List.of(Component.literal(I18n.get("rankine.jei.tooltip_biomes_info") + (I18n.get("rankine.jei.tooltip_any"))),
+                        Component.literal(I18n.get("rankine.jei.tooltip_biomes_tags_info") + (I18n.get("rankine.jei.tooltip_any"))));
             } else {
                 List<Component> components = new ArrayList<>();
                 if (!recipe.getBiomes().isEmpty()) {
-                    components.add(new TextComponent(I18n.get("rankine.jei.tooltip_biomes_info") + recipe.getBiomes().toString()));
+                    components.add(Component.literal(I18n.get("rankine.jei.tooltip_biomes_info") + recipe.getBiomes().toString()));
                 }
                 if (!recipe.getBiomeTags().isEmpty()) {
-                    components.add(new TextComponent(I18n.get("rankine.jei.tooltip_biomes_tags_info") + recipe.getBiomeTags().toString()));
+                    components.add(Component.literal(I18n.get("rankine.jei.tooltip_biomes_tags_info") + recipe.getBiomeTags().toString()));
                 }
                 return components;
             }
@@ -123,18 +123,18 @@ public class ForagingRecipeCategory implements IRecipeCategory<ForagingRecipe> {
             int currentI = i;
             Ingredient currentOutput = outputs.get(i);
             if (currentOutput.isEmpty()) {
-                currentOutput = Ingredient.of(new ItemStack(Items.BARRIER).setHoverName(new TextComponent(I18n.get("rankine.jei.tooltip_nothing"))));
+                currentOutput = Ingredient.of(new ItemStack(Items.BARRIER).setHoverName(Component.literal(I18n.get("rankine.jei.tooltip_nothing"))));
             }
             boolean enchanted = recipe.getEnchantments().get(currentI);
             if (enchanted) {
                 builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addIngredients(currentOutput)
                         .setBackground(enchantedDrawable, -1, -1)
-                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_chance")+df.format(recipe.getChance(currentI)*100)+"%")))
-                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_enchantment_required")).withStyle(ChatFormatting.LIGHT_PURPLE)));
+                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_chance")+df.format(recipe.getChance(currentI)*100)+"%")))
+                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_enchantment_required")).withStyle(ChatFormatting.LIGHT_PURPLE)));
             } else {
                 builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addIngredients(currentOutput)
                         .setBackground(slotDrawable, -1, -1)
-                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_chance")+df.format(recipe.getChance(currentI)*100)+"%")));
+                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_chance")+df.format(recipe.getChance(currentI)*100)+"%")));
             }
             ;
             count++;

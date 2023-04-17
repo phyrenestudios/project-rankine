@@ -22,9 +22,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -98,16 +98,19 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
                         tile.cookTimeTotal = Math.round(recipe.getProcessTime() * (1 - (processHeight / 21F)));
                         ++tile.cookTime;
                         if (tile.cookTime >= tile.cookTimeTotal) {
-                            tile.items.set(0, recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).value().getRegistryName()));
-                            tile.cookTime = 0;
-                            if (recipe.getConsumeFluid()) {
-                                for (BlockPos b : fluidStructure(posIn)) {
-                                    if (levelIn.getFluidState(b.above(processHeight)).is(recipe.getFluid().getFluid())) {
-                                        levelIn.setBlockAndUpdate(b.above(processHeight), Blocks.AIR.defaultBlockState());
-                                        break;
+                            if (levelIn.getBiome(posIn).unwrapKey().isPresent()) {
+                                tile.items.set(0, recipe.getEvaporationResult(levelIn,levelIn.getBiome(posIn).unwrapKey().get().location()));
+                                tile.cookTime = 0;
+                                if (recipe.getConsumeFluid()) {
+                                    for (BlockPos b : fluidStructure(posIn)) {
+                                        if (levelIn.getFluidState(b.above(processHeight)).is(recipe.getFluid().getFluid())) {
+                                            levelIn.setBlockAndUpdate(b.above(processHeight), Blocks.AIR.defaultBlockState());
+                                            break;
+                                        }
                                     }
                                 }
                             }
+
                         }
 
                     }
@@ -123,9 +126,12 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
     private EvaporationRecipe getEvaporationRecipe(Level levelIn, BlockPos posIn) {
         if (this.level != null) {
             for (EvaporationRecipe recipe : levelIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.EVAPORATION)) {
-                if (!recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).value().getRegistryName()).isEmpty() && recipe.fluidMatch(levelIn.getFluidState(posIn.above()).getType())) {
-                    return recipe;
+                if (levelIn.getBiome(posIn).unwrapKey().isPresent()) {
+                    if (!recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).unwrapKey().get().location()).isEmpty() && recipe.fluidMatch(levelIn.getFluidState(posIn.above()).getType())) {
+                        return recipe;
+                    }
                 }
+
             }
         }
         return null;
@@ -136,7 +142,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
 
     @Override
     public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER) {
             if (facing == Direction.UP)
                 return handlers[0].cast();
             else if (facing == Direction.DOWN)

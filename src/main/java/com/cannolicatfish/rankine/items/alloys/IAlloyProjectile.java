@@ -14,7 +14,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.List;
@@ -37,17 +36,17 @@ public interface IAlloyProjectile extends IAlloySpecialItem {
         });
         if (this.isAlloyInit(stack)) {
             if (!Screen.hasShiftDown()) {
-                tooltip.add((new TextComponent("Hold shift for details...")).withStyle(ChatFormatting.GRAY));
+                tooltip.add((Component.literal("Hold shift for details...")).withStyle(ChatFormatting.GRAY));
             }
             if (Screen.hasShiftDown()) {
                 if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
-                    tooltip.add((new TextComponent("Any Composition").withStyle(ChatFormatting.GOLD)));
+                    tooltip.add((Component.literal("Any Composition").withStyle(ChatFormatting.GOLD)));
                 } else {
-                    tooltip.add((new TextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(ChatFormatting.GOLD)));
+                    tooltip.add((Component.literal("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(ChatFormatting.GOLD)));
                 }
 
                 if (!this.needsRefresh(stack)) {
-                    tooltip.add((new TextComponent("Damage: " + (df.format(getAlloyArrowDamage(stack))))).withStyle(ChatFormatting.GRAY));
+                    tooltip.add((Component.literal("Damage: " + (df.format(getAlloyArrowDamage(stack))))).withStyle(ChatFormatting.GRAY));
                 }
             }
         }

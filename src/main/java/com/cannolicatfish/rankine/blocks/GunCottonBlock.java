@@ -1,5 +1,9 @@
 package com.cannolicatfish.rankine.blocks;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -8,23 +12,15 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-
-import javax.annotation.Nullable;
-import java.util.Random;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+
+import javax.annotation.Nullable;
 
 public class GunCottonBlock extends Block {
     public GunCottonBlock(Properties properties) {
@@ -33,7 +29,7 @@ public class GunCottonBlock extends Block {
 
     @Override
     public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
-        world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1.5F, Explosion.BlockInteraction.BREAK);
+        world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1.5F, Level.ExplosionInteraction.TNT);
         world.removeBlock(pos, false);
     }
 

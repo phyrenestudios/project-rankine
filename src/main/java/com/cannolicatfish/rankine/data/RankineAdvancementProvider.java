@@ -1,33 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.advancements.AlloyEnchantabilityPredicate;
-import com.cannolicatfish.rankine.advancements.HarvestLevelPredicate;
-import com.cannolicatfish.rankine.advancements.HasEnchantmentPredicate;
-import com.cannolicatfish.rankine.advancements.IncludesCompositionPredicate;
-import com.cannolicatfish.rankine.init.*;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.FrameType;
-import net.minecraft.advancements.RequirementsStrategy;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.advancements.critereon.MinMaxBounds;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.advancements.AdvancementProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.common.data.ExistingFileHelper;
-
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-
-public class RankineAdvancementProvider extends AdvancementProvider {
-
+public class RankineAdvancementProvider {
+/*
     public RankineAdvancementProvider(DataGenerator generatorIn) {
         super(generatorIn);
     }
@@ -150,5 +124,5 @@ public class RankineAdvancementProvider extends AdvancementProvider {
         }
         return temp.requirements(RequirementsStrategy.AND).rewards(AdvancementRewards.Builder.experience(XP)).save(consumer,"rankine:challenges/"+text);
     }
-
+*/
 }

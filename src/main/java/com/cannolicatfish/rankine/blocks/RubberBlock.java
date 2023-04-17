@@ -1,19 +1,13 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-
-import java.util.Arrays;
-import java.util.List;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 public class RubberBlock extends Block {
     public RubberBlock(Properties properties) {
@@ -24,7 +18,7 @@ public class RubberBlock extends Block {
         if (entityIn.isSuppressingBounce()) {
             super.fallOn(worldIn, bs, pos, entityIn, fallDistance);
         } else {
-            entityIn.causeFallDamage(fallDistance, 0.2F, DamageSource.FALL);
+            entityIn.causeFallDamage(fallDistance, 0.2F, worldIn.damageSources().fall());
         }
 
     }

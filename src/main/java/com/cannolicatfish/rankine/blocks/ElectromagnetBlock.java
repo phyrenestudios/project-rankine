@@ -9,7 +9,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
@@ -148,7 +147,7 @@ public class ElectromagnetBlock extends DirectionalBlock {
         //Damage entities along the path
         List<LivingEntity> entities = levelIn.getEntitiesOfClass(LivingEntity.class, new AABB(endPos, targetPosIn).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
         for (LivingEntity i : entities) {
-            i.hurt(DamageSource.FLY_INTO_WALL, Mth.sqrt(type * (float) targetPosIn.distSqr(i.getOnPos())));
+            i.hurt(levelIn.damageSources().flyIntoWall(), Mth.sqrt(type * (float) targetPosIn.distSqr(i.getOnPos())));
         }
         //Teleport entities on top of the moving block
         List<LivingEntity> entitiesOnBlock = levelIn.getEntitiesOfClass(LivingEntity.class, new AABB(targetPosIn, targetPosIn.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);

@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.entities;
 import com.cannolicatfish.rankine.init.RankineDamageSources;
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.ItemSupplier;
@@ -26,8 +27,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
-
-import net.minecraft.world.entity.Entity.RemovalReason;
 
 @OnlyIn(
         value = Dist.CLIENT,
@@ -55,7 +54,7 @@ public class CannonballEntity extends AbstractHurtingProjectile implements ItemS
         super(e, world);
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -110,7 +109,7 @@ public class CannonballEntity extends AbstractHurtingProjectile implements ItemS
         if (!this.level.isClientSide) {
             Entity entity = result.getEntity();
             Entity entity1 = this.getOwner();
-            boolean flag = entity.hurt(RankineDamageSources.CANNONBALL, 10.0F);
+            boolean flag = entity.hurt(entity.level.damageSources().generic(), 10.0F);
             if (flag && entity1 instanceof LivingEntity) {
                 this.doEnchantDamageEffects((LivingEntity)entity1, entity);
             }
@@ -124,7 +123,7 @@ public class CannonballEntity extends AbstractHurtingProjectile implements ItemS
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
         if (!this.level.isClientSide) {
-            Explosion.BlockInteraction explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner()) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE;
+            Explosion.BlockInteraction explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner()) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP;
             this.level.explode(this, this.getX(), this.getY(), this.getZ(), 1.0F, false, explosion$mode);
 
         }

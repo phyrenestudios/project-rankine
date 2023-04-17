@@ -54,8 +54,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public abstract class RankineLootTableProvider extends LootTableProvider {
-
+public abstract class RankineLootTableProvider  {
+/*
     protected static final LootItemCondition.Builder SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))));
     protected static final LootItemCondition.Builder NO_SILK_TOUCH = SILK_TOUCH.invert();
     protected static final LootItemCondition.Builder SHEARS = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS));
@@ -194,7 +194,7 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
     /**
      * Creates a builder that drops the given IItemProvider in amounts between 0 and 2, most often 0. Only used in
      * vanilla for huge mushroom blocks.
-     */
+
     protected static LootTable.Builder droppingItemRarely(Block block, ItemLike item) {
         return droppingWithSilkTouch(block, withExplosionDecay(block, LootItem.lootTableItem(item).apply(SetItemCountFunction.setCount(UniformGenerator.between(-6.0F, 2.0F))).apply(LimitCount.limitCount(IntRange.lowerBound(0)))));
     }
@@ -206,7 +206,7 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
     /**
      * Creates a builder that drops the given IItemProvider in amounts between 0 and 3, based on the AGE property. Only
      * used in vanilla for pumpkin and melon stems.
-     */
+
     protected static LootTable.Builder droppingByAge(Block stemFruit, Item item) {
         return LootTable.lootTable().withPool(withExplosionDecay(stemFruit, LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(item).apply(SetItemCountFunction.setCount(BinomialDistributionGenerator.binomial(3, 0.06666667F)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stemFruit).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StemBlock.AGE, 0)))).apply(SetItemCountFunction.setCount(BinomialDistributionGenerator.binomial(3, 0.13333334F)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stemFruit).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StemBlock.AGE, 1)))).apply(SetItemCountFunction.setCount(BinomialDistributionGenerator.binomial(3, 0.2F)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stemFruit).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StemBlock.AGE, 2)))).apply(SetItemCountFunction.setCount(BinomialDistributionGenerator.binomial(3, 0.26666668F)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stemFruit).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StemBlock.AGE, 3)))).apply(SetItemCountFunction.setCount(BinomialDistributionGenerator.binomial(3, 0.33333334F)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stemFruit).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StemBlock.AGE, 4)))).apply(SetItemCountFunction.setCount(BinomialDistributionGenerator.binomial(3, 0.4F)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stemFruit).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StemBlock.AGE, 5)))).apply(SetItemCountFunction.setCount(BinomialDistributionGenerator.binomial(3, 0.46666667F)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stemFruit).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StemBlock.AGE, 6)))).apply(SetItemCountFunction.setCount(BinomialDistributionGenerator.binomial(3, 0.53333336F)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stemFruit).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StemBlock.AGE, 7)))))));
     }
@@ -222,14 +222,14 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
     /**
      * Used for all leaves, drops self with silk touch, otherwise drops the second Block param with the passed chances
      * for fortune levels, adding in sticks.
-     */
+
     protected static LootTable.Builder droppingWithChancesAndSticks(Block block, Block sapling, float... chances) {
         return droppingWithSilkTouchOrShears(block, withSurvivesExplosion(block, LootItem.lootTableItem(sapling)).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, chances))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).when(NOT_SILK_TOUCH_OR_SHEARS).add(withExplosionDecay(block, LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
     }
 
     /**
      * Used for oak and dark oak, same as droppingWithChancesAndSticks but adding in apples.
-     */
+
     protected static LootTable.Builder droppingWithChancesSticksAndApples(Block block, Block sapling, float... chances) {
         return droppingWithChancesAndSticks(block, sapling, chances).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).when(NOT_SILK_TOUCH_OR_SHEARS).add(withSurvivesExplosion(block, LootItem.lootTableItem(Items.APPLE)).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
     }
@@ -240,7 +240,7 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
     /**
      * Drops the first item parameter always, and the second item parameter plus more of the first when the loot
      * condition is met, applying fortune to only the second argument.
-     */
+
     protected static LootTable.Builder droppingAndBonusWhen(Block block, Item itemConditional, Item withBonus, LootItemCondition.Builder conditionBuilder) {
         return withExplosionDecay(block, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(itemConditional).when(conditionBuilder).otherwise(LootItem.lootTableItem(withBonus)))).withPool(LootPool.lootPool().when(conditionBuilder).add(LootItem.lootTableItem(withBonus).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3)))));
     }
@@ -510,6 +510,6 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
                 .when(ExplosionCondition.survivesExplosion());
         return LootTable.lootTable().withPool(builder);
     }
-
+*/
 
 }

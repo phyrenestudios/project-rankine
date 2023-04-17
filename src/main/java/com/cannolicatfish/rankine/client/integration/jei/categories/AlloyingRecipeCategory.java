@@ -61,7 +61,7 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
 
     @Override
     public Component getTitle() {
-        return new TextComponent(I18n.get("rankine.jei.alloying"));
+        return Component.literal(I18n.get("rankine.jei.alloying"));
     }
 
     @Override
@@ -91,13 +91,13 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     public List<Component> getTooltipStrings(AlloyingRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
         if (mouseX >= 76 && mouseX <= 97 && mouseY >= 27 && mouseY <= 48) {
             if (recipe.getEnchantments().size() == 0) {
-                return List.of(new TranslatableComponent("rankine.jei.alloying_enchantments").withStyle(ChatFormatting.GOLD),new TextComponent(I18n.get("rankine.jei.tooltip_none")));
+                return List.of(new TranslatableComponent("rankine.jei.alloying_enchantments").withStyle(ChatFormatting.GOLD),Component.literal(I18n.get("rankine.jei.tooltip_none")));
             }
             List<Component> components = new ArrayList<>();
             components.add(new TranslatableComponent("rankine.jei.alloying_enchantments").withStyle(ChatFormatting.GOLD));
             components.add(new TranslatableComponent("rankine.jei.tooltip_starting_enchantability",String.valueOf(recipe.getMinEnchantability())).withStyle(ChatFormatting.AQUA));
             components.add(new TranslatableComponent("rankine.jei.tooltip_enchantability_interval",String.valueOf(recipe.getEnchantInterval())).withStyle(ChatFormatting.AQUA));
-            components.add(new TextComponent(I18n.get("rankine.jei.tooltip_max_level") + I18n.get("enchantment.level."+recipe.getMaxEnchantLevelIn())).withStyle(ChatFormatting.AQUA));
+            components.add(Component.literal(I18n.get("rankine.jei.tooltip_max_level") + I18n.get("enchantment.level."+recipe.getMaxEnchantLevelIn())).withStyle(ChatFormatting.AQUA));
             List<String> enchList = recipe.getEnchantments();
             enchList.sort(Comparator.comparingInt(String::length).reversed());
             HashSet<String> enchants = new HashSet<>(enchList);
@@ -105,16 +105,16 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
                 if (ForgeRegistries.ENCHANTMENTS.containsKey(new ResourceLocation(s))) {
                     Holder<Enchantment> en = ForgeRegistries.ENCHANTMENTS.getHolder(new ResourceLocation(s)).orElse(null);
                     if (en != null && en.isBound()) {
-                        components.add(new TextComponent(I18n.get(en.value().getDescriptionId())));
+                        components.add(Component.literal(I18n.get(en.value().getDescriptionId())));
                     }
                 } else if (s.equals("rankine:random")) {
-                    components.add(new TextComponent(I18n.get("rankine.jei.tooltip_any")));
+                    components.add(Component.literal(I18n.get("rankine.jei.tooltip_any")));
                 }
             }
             return components;
         } else if (mouseX >= 40 && mouseX <= 61 && mouseY >= 27 && mouseY <= 48) {
             if (recipe.getBonusValues().stream().allMatch(aFloat -> aFloat == 0f)) {
-                return List.of(new TranslatableComponent("rankine.jei.alloying_bonus_stats").withStyle(ChatFormatting.GOLD),new TextComponent(I18n.get("rankine.jei.tooltip_none")));
+                return List.of(new TranslatableComponent("rankine.jei.alloying_bonus_stats").withStyle(ChatFormatting.GOLD),Component.literal(I18n.get("rankine.jei.tooltip_none")));
             }
             List<Component> components = new ArrayList<>();
             components.add(new TranslatableComponent("rankine.jei.alloying_bonus_stats").withStyle(ChatFormatting.GOLD));
@@ -136,7 +136,7 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
                     } else {
                         statStr = String.valueOf(bonusStat);
                     }
-                    components.add(new TextComponent(new TranslatableComponent("block.rankine.material_testing_bench."+stat.toString().toLowerCase(Locale.ROOT)).getString() + ": +" + statStr));
+                    components.add(Component.literal(new TranslatableComponent("block.rankine.material_testing_bench."+stat.toString().toLowerCase(Locale.ROOT)).getString() + ": +" + statStr));
                 }
 
             }
@@ -189,8 +189,8 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
             builder.addSlot(RecipeIngredientRole.INPUT, x, y).addIngredients(i)
                     .setBackground(slotDrawable, -1, -1)
                     .addTooltipCallback(((recipeSlotView, tooltip) -> tooltip
-                            .add(new TextComponent(Math.round(minMax.getA() * 100) + "%")
-                                    .append(new TextComponent("-" + Math.round(minMax.getB() * 100) + "%"))
+                            .add(Component.literal(Math.round(minMax.getA() * 100) + "%")
+                                    .append(Component.literal("-" + Math.round(minMax.getB() * 100) + "%"))
                                     .withStyle(ChatFormatting.GOLD))));
             rcount++;
         }
@@ -204,8 +204,8 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
                 Tuple<Float,Float> minMax = recipe.getMinMaxByElement(level,i.getItems()[0]);
                 builder.addSlot(RecipeIngredientRole.INPUT,x,y).addIngredients(i)
                         .addTooltipCallback(((recipeSlotView, tooltip) -> tooltip
-                                .add(new TextComponent( Math.round(minMax.getA() * 100) + "%")
-                                        .append(new TextComponent("-" + Math.round(minMax.getB() * 100) + "%"))
+                                .add(Component.literal( Math.round(minMax.getA() * 100) + "%")
+                                        .append(Component.literal("-" + Math.round(minMax.getB() * 100) + "%"))
                                         .withStyle(ChatFormatting.GOLD))));
                 nrcount++;
             }

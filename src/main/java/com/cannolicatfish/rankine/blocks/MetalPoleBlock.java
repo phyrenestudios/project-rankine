@@ -8,7 +8,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -139,7 +138,7 @@ public class MetalPoleBlock extends Block implements SimpleWaterloggedBlock {
                 newpos = newpos.west();
             }
             player.teleportTo(newpos.getX() + .5f, newpos.getY(), newpos.getZ() + .5f);
-            if (n > 5) player.hurt(DamageSource.FALL, 1.0F);
+            if (n > 5) player.hurt(levelIn.damageSources().fall(), 1.0F);
             player.playNotifySound(SoundEvents.ANVIL_FALL, SoundSource.BLOCKS, 1.0f, 0.8f + 0.3f*levelIn.getRandom().nextFloat());
             return InteractionResult.PASS;
         }

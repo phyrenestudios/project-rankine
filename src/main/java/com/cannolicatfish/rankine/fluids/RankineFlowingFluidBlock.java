@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -14,10 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.Random;
 import java.util.function.Supplier;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class RankineFlowingFluidBlock extends LiquidBlock {
     private boolean evaporates;
@@ -28,7 +26,7 @@ public class RankineFlowingFluidBlock extends LiquidBlock {
     }
 
     @Override
-    public void tick(BlockState p_60462_, ServerLevel levelIn, BlockPos posIn, Random rand) {
+    public void tick(BlockState p_60462_, ServerLevel levelIn, BlockPos posIn, RandomSource rand) {
         if (levelIn.dimensionType().ultraWarm() && evaporates) {
             if (!levelIn.isClientSide) {
                 levelIn.removeBlock(posIn, true);

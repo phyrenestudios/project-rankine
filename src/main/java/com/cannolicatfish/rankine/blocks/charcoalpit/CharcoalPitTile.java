@@ -97,7 +97,7 @@ public class CharcoalPitTile extends BlockEntity {
             }
 
             for (int i = 0; i<=k; ++i) {
-                for (BlockPos b : BlockPos.betweenClosed(worldPosition.offset(-tile.RADIUS,i,-tile.RADIUS),worldPosition.offset(tile.RADIUS,i,tile.RADIUS))) {
+                for (BlockPos b : BlockPos.betweenClosed(worldPosition.offset((int)-tile.RADIUS,i,(int)-tile.RADIUS),worldPosition.offset((int)tile.RADIUS,i,(int)tile.RADIUS))) {
                     if (validLogs.contains(b.immutable())) {
                         int layerCount = logLayerCount(level,level.getBlockState(b));
                         if (layerCount == 0) continue;

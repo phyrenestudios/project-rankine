@@ -1,16 +1,15 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.FenceGateBlock;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class RankineWoodenFenceGate extends FenceGateBlock {
-    public RankineWoodenFenceGate(Properties properties) {
-        super(properties);
+    public RankineWoodenFenceGate(Properties properties, WoodType woodType) {
+        super(properties,woodType);
     }
 
     @Override

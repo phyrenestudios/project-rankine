@@ -20,6 +20,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Map;
 import java.util.Set;
@@ -436,9 +437,10 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.minecraftforge.c
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
-            return new JsonSyntaxException("Unknown item '" + s + "'");
-        });
+        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(s));
+        if (item == null) {
+            throw new JsonSyntaxException("Unknown item '" + s + "'");
+        }
 
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");

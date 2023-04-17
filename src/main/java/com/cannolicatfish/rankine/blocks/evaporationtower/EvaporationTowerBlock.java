@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -18,10 +19,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Random;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class EvaporationTowerBlock extends BaseEntityBlock {
     public EvaporationTowerBlock(Properties properties) {
@@ -67,7 +64,7 @@ public class EvaporationTowerBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void randomTick(BlockState stateIn, ServerLevel levelIn, BlockPos posIn, Random rand) {
+    public void randomTick(BlockState stateIn, ServerLevel levelIn, BlockPos posIn, RandomSource rand) {
         if (rand.nextFloat() < 0.01) {
             EvaporationTowerTile tileIn = (EvaporationTowerTile) levelIn.getBlockEntity(posIn);
             if (tileIn.structureHeight(levelIn, posIn) > 2) {

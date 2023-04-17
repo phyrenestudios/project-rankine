@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.client.renders;
 
 import com.cannolicatfish.rankine.entities.CannonballEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -41,7 +42,7 @@ public class CannonballRenderer extends EntityRenderer<CannonballEntity> {
             matrixStackIn.pushPose();
             matrixStackIn.scale(this.scale, this.scale, this.scale);
             matrixStackIn.mulPose(this.entityRenderDispatcher.cameraOrientation());
-            matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(180.0F));
+            matrixStackIn.mulPose(Axis.YP.rotationDegrees(180.0F));
             this.itemRenderer.renderStatic(entityIn.getItem(), ItemTransforms.TransformType.GROUND, packedLightIn, OverlayTexture.NO_OVERLAY, matrixStackIn, bufferIn, entityIn.getId());
             matrixStackIn.popPose();
             super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);

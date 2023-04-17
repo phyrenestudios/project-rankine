@@ -97,9 +97,9 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
                 p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
             });
             List<Component> components = new ArrayList<>();
-            components.add(new TranslatableComponent("rankine.jei.tooltip_mixing_time",recipe.getOutputMixTime(1)));
-            components.add(new TranslatableComponent("rankine.jei.tooltip_total_mixing_time",recipe.getOutputMixTime(totalCount)));
-            components.add(new TranslatableComponent("rankine.jei.tooltip_total_button_lever",df.format(recipe.getOutputMixTime(totalCount)/15)));
+            components.add(Component.translatable("rankine.jei.tooltip_mixing_time",recipe.getOutputMixTime(1)));
+            components.add(Component.translatable("rankine.jei.tooltip_total_mixing_time",recipe.getOutputMixTime(totalCount)));
+            components.add(Component.translatable("rankine.jei.tooltip_total_button_lever",df.format(recipe.getOutputMixTime(totalCount)/15)));
 
             return components;
         }
@@ -115,10 +115,10 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
         });
         Font font = Minecraft.getInstance().font;
 
-        font.draw(stack,new TranslatableComponent("rankine.jei.tooltip_required"),120, 0, 0x000000);
-        font.draw(stack,new TranslatableComponent("rankine.jei.tooltip_additional"),1, 96, 0x000000);
-        font.draw(stack,new TranslatableComponent("rankine.jei.tooltip_total_ingredients",totalCount),1, 75, totalCount < (int) reqs.stream().filter(aBoolean -> aBoolean).count() ? 0xFF5555 : 0x000000);
-        font.draw(stack,new TranslatableComponent("rankine.jei.tooltip_total_output",Math.round(totalCount*recipe.getMatScale())),1, 84, Math.round(totalCount*recipe.getMatScale()) > 64 || Math.round(totalCount*recipe.getMatScale()) < 1 ? 0xFF5555 : 0x000000);
+        font.draw(stack,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000);
+        font.draw(stack,Component.translatable("rankine.jei.tooltip_additional"),1, 96, 0x000000);
+        font.draw(stack,Component.translatable("rankine.jei.tooltip_total_ingredients",totalCount),1, 75, totalCount < (int) reqs.stream().filter(aBoolean -> aBoolean).count() ? 0xFF5555 : 0x000000);
+        font.draw(stack,Component.translatable("rankine.jei.tooltip_total_output",Math.round(totalCount*recipe.getMatScale())),1, 84, Math.round(totalCount*recipe.getMatScale()) > 64 || Math.round(totalCount*recipe.getMatScale()) < 1 ? 0xFF5555 : 0x000000);
         int count = 0;
         for (int i = 0; i < reqs.size(); i++) {
             if (reqs.get(i)) {

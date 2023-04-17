@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -27,7 +28,7 @@ public class CobblePatchFeature extends Feature<RandomPatchConfiguration> {
     public boolean place(FeaturePlaceContext<RandomPatchConfiguration> p_160210_) {
 
         RandomPatchConfiguration randompatchconfiguration = p_160210_.config();
-        Random random = p_160210_.random();
+        RandomSource random = p_160210_.random();
         BlockPos blockpos = p_160210_.origin();
         WorldGenLevel worldgenlevel = p_160210_.level();
 

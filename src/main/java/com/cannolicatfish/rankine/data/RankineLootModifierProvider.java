@@ -1,10 +1,6 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.ProjectRankine;
-import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.data.GlobalLootModifierProvider;
-
-public class RankineLootModifierProvider extends GlobalLootModifierProvider {
+public class RankineLootModifierProvider {/*
     public RankineLootModifierProvider(DataGenerator dataGeneratorIn) {
         super(dataGeneratorIn, ProjectRankine.MODID);
     }
@@ -16,5 +12,5 @@ public class RankineLootModifierProvider extends GlobalLootModifierProvider {
     @Override
     protected void start() {
 
-    }
+    }*/
 }

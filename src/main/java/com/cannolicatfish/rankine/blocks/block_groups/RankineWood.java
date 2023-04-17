@@ -83,11 +83,11 @@ public class RankineWood {
         newWood.slab = RankineBlocks.BLOCKS.register(baseName+"_slab", () -> new RankineWoodenSlabBlock(woodProps));
         newWood.stairs = RankineBlocks.BLOCKS.register(baseName+"_stairs", () -> new RankineWoodenStairsBlock(woodProps));
         newWood.fence = RankineBlocks.BLOCKS.register(baseName+"_fence", () -> new RankineWoodenFence(woodProps));
-        newWood.fenceGate = RankineBlocks.BLOCKS.register(baseName+"_fence_gate", () -> new RankineWoodenFenceGate(woodProps));
-        newWood.door = RankineBlocks.BLOCKS.register(baseName+"_door", RankineWoodenDoor::new);
-        newWood.trapdoor = RankineBlocks.BLOCKS.register(baseName+"_trapdoor", RankineWoodenTrapDoor::new);
-        newWood.pressurePlate = RankineBlocks.BLOCKS.register(baseName+"_pressure_plate", RankineWoodenPressurePlate::new);
-        newWood.button = RankineBlocks.BLOCKS.register(baseName+"_button", RankineWoodenButton::new);
+        newWood.fenceGate = RankineBlocks.BLOCKS.register(baseName+"_fence_gate", () -> new RankineWoodenFenceGate(woodProps,WoodType.ACACIA));
+        newWood.door = RankineBlocks.BLOCKS.register(baseName+"_door", () -> new RankineWoodenDoor(BlockSetType.ACACIA));
+        newWood.trapdoor = RankineBlocks.BLOCKS.register(baseName+"_trapdoor", () -> new RankineWoodenTrapDoor(BlockSetType.ACACIA));
+        newWood.pressurePlate = RankineBlocks.BLOCKS.register(baseName+"_pressure_plate", () -> new RankineWoodenPressurePlate(BlockSetType.ACACIA));
+        newWood.button = RankineBlocks.BLOCKS.register(baseName+"_button", () -> new RankineWoodenButton(BlockSetType.ACACIA));
         newWood.sign = RankineBlocks.BLOCKS.register(baseName+"_sign", () -> new RankineSignBlock(newWood.woodType));
         newWood.wallSign = RankineBlocks.BLOCKS.register(baseName+"_wall_sign", () -> new RankineWallSignBlock(newWood.woodType));
         newWood.bookshelf = RankineBlocks.BLOCKS.register(baseName+"_bookshelf", RankineBookshelvesBlock::new);

@@ -25,7 +25,8 @@ import java.util.Stack;
 public class BreakSpeedHandler {
 
     public static void treeChop(PlayerEvent.BreakSpeed event) {
-        BlockPos pos = event.getPos();
+        if (event.getPosition().isEmpty()) return;
+        BlockPos pos = event.getPosition().get();
         Player player = event.getEntity();
         Level worldIn = player.level;
         BlockState state = event.getState();
@@ -80,7 +81,8 @@ public class BreakSpeedHandler {
 
         if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.QUAKE.get(),event.getEntity().getMainHandItem()) > 0) {
             int enchant = EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.QUAKE.get(),event.getEntity().getMainHandItem());
-            int height = event.getPos().getY();
+            if (event.getPosition().isEmpty()) return;
+            int height = event.getPosition().get().getY();
 
             float maxPercent = .40f + (enchant - 1) * .10f;
             int minHeight = 10;
@@ -95,8 +97,8 @@ public class BreakSpeedHandler {
                 event.setNewSpeed(event.getNewSpeed() + event.getNewSpeed() * s[height - 10]);
             }
         }
-
-        if (event.getEntity().getLevel().getBlockState(event.getPos().above()).is(RankineBlocks.STUMP.get()) && !(event.getEntity().getMainHandItem().getItem() instanceof AlloyShovelItem)) {
+        if (event.getPosition().isEmpty()) return;
+        if (event.getEntity().getLevel().getBlockState(event.getPosition().get().above()).is(RankineBlocks.STUMP.get()) && !(event.getEntity().getMainHandItem().getItem() instanceof AlloyShovelItem)) {
             event.setNewSpeed(event.getNewSpeed()/2f);
         }
     }

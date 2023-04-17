@@ -34,7 +34,7 @@ public class ItemAttributeModifierHandler {
                     AttributeModifier.Operation.ADDITION));
         }
 
-        if (stack.getItem() instanceof AlloyArmorItem && ((AlloyArmorItem) stack.getItem()).isAlloyInit(stack) && stack.getItem() instanceof ArmorItem && event.getSlotType() == ((ArmorItem)stack.getItem()).getSlot()) {
+        if (stack.getItem() instanceof AlloyArmorItem && ((AlloyArmorItem) stack.getItem()).isAlloyInit(stack) && stack.getItem() instanceof ArmorItem && event.getSlotType() == ((ArmorItem)stack.getItem()).getType().getSlot()) {
             AlloyArmorItem alloyArmor = (AlloyArmorItem) stack.getItem();
             String character = "a";
             switch (event.getSlotType().getFilterFlag()) {

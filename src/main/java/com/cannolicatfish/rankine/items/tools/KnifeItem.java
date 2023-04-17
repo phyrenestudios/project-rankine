@@ -6,7 +6,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -101,7 +100,7 @@ public class KnifeItem extends SwordItem {
         if (entity.level.isClientSide) return net.minecraft.world.InteractionResult.PASS;
         if (entity instanceof net.minecraftforge.common.IForgeShearable) {
             net.minecraftforge.common.IForgeShearable target = (net.minecraftforge.common.IForgeShearable)entity;
-            BlockPos pos = new BlockPos(entity.getX(), entity.getY(), entity.getZ());
+            BlockPos pos = new BlockPos(entity.getBlockX(), entity.getBlockY(), entity.getBlockZ());
             if (target.isShearable(stack, entity.level, pos)) {
                 java.util.List<ItemStack> drops = target.onSheared(playerIn, stack, entity.level, pos,
                         net.minecraft.world.item.enchantment.EnchantmentHelper.getItemEnchantmentLevel(net.minecraft.world.item.enchantment.Enchantments.BLOCK_FORTUNE, stack));
@@ -110,7 +109,7 @@ public class KnifeItem extends SwordItem {
                     net.minecraft.world.entity.item.ItemEntity ent = entity.spawnAtLocation(d, 1.0F);
                     ent.setDeltaMovement(ent.getDeltaMovement().add((double)((rand.nextFloat() - rand.nextFloat()) * 0.1F), (double)(rand.nextFloat() * 0.05F), (double)((rand.nextFloat() - rand.nextFloat()) * 0.1F)));
                 });
-                entity.hurt(DamageSource.GENERIC,2);
+                entity.hurt(playerIn.level.damageSources().generic(),2);
                 stack.hurtAndBreak(1, entity, e -> e.broadcastBreakEvent(hand));
             }
             return net.minecraft.world.InteractionResult.SUCCESS;
@@ -122,7 +121,7 @@ public class KnifeItem extends SwordItem {
     public boolean mineBlock(ItemStack stack, Level worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         if(worldIn.getBlockState(pos).getBlock() instanceof LeavesBlock && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.GRAFTING.get(),stack) >= 1 && !worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)
                 && !worldIn.restoringBlockSnapshots) {
-            ResourceLocation orig = worldIn.getBlockState(pos).getBlock().getRegistryName();
+            ResourceLocation orig = ForgeRegistries.BLOCKS.getKey(worldIn.getBlockState(pos).getBlock());
             if (orig != null) {
                 ResourceLocation rs = new ResourceLocation(orig.getNamespace(), orig.getPath().split("_leaves")[0] + "_sapling");
                 Block sapling = ForgeRegistries.BLOCKS.getValue(rs);

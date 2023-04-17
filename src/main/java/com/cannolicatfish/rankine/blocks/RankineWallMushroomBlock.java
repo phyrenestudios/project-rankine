@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -52,7 +53,7 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (random.nextInt(50) == 0) {
             BlockState log = worldIn.getBlockState(pos.relative(state.getValue(HORIZONTAL_FACING).getOpposite()));
             if (log.getBlock() instanceof RotatedPillarBlock && ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:hollow_"+log.getBlock().getRegistryName().getPath())) != Blocks.AIR) {
@@ -103,21 +104,21 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
     }
 
 
-    public void growMushroom(ServerLevel worldIn, BlockPos pos, BlockState p_54862_, Random p_54863_) {
+    public void growMushroom(ServerLevel worldIn, BlockPos pos, BlockState p_54862_, RandomSource p_54863_) {
         if (!this.featureSupplier.get().value().place(worldIn, worldIn.getChunkSource().getGenerator(), p_54863_, pos)) {
             worldIn.setBlock(pos,p_54862_,3);
         }
     }
 
-    public boolean isValidBonemealTarget(BlockGetter p_54870_, BlockPos pos, BlockState p_54872_, boolean p_54873_) {
+    public boolean isValidBonemealTarget(LevelReader p_54870_, BlockPos pos, BlockState p_54872_, boolean p_54873_) {
         return true;
     }
 
-    public boolean isBonemealSuccess(Level p_54875_, Random p_54876_, BlockPos pos, BlockState p_54878_) {
+    public boolean isBonemealSuccess(Level p_54875_, RandomSource p_54876_, BlockPos pos, BlockState p_54878_) {
         return (double)p_54876_.nextFloat() < 0.4D;
     }
 
-    public void performBonemeal(ServerLevel p_54865_, Random p_54866_, BlockPos pos, BlockState p_54868_) {
+    public void performBonemeal(ServerLevel p_54865_, RandomSource p_54866_, BlockPos pos, BlockState p_54868_) {
         this.growMushroom(p_54865_, pos, p_54868_, p_54866_);
     }
 

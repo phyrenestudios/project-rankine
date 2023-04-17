@@ -1,8 +1,9 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -11,18 +12,15 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class UnamedExplosiveBlock extends Block {
     public UnamedExplosiveBlock(Properties properties) {
@@ -31,11 +29,11 @@ public class UnamedExplosiveBlock extends Block {
 
     @Override
     public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable net.minecraft.core.Direction face, @Nullable LivingEntity igniter) {
-        world.explode(igniter, pos.getX(), pos.getY() + 1, pos.getZ(), 6F, Explosion.BlockInteraction.BREAK);
-        world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()+6, 6F, Explosion.BlockInteraction.BREAK);
-        world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()+6, 6F, Explosion.BlockInteraction.BREAK);
-        world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()-6, 6F, Explosion.BlockInteraction.BREAK);
-        world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()-6, 6F, Explosion.BlockInteraction.BREAK);
+        world.explode(igniter, pos.getX(), pos.getY() + 1, pos.getZ(), 6F, Level.ExplosionInteraction.TNT);
+        world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()+6, 6F, Level.ExplosionInteraction.TNT);
+        world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()+6, 6F, Level.ExplosionInteraction.TNT);
+        world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()-6, 6F, Level.ExplosionInteraction.TNT);
+        world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()-6, 6F, Level.ExplosionInteraction.TNT);
         world.removeBlock(pos, false);
 
     }

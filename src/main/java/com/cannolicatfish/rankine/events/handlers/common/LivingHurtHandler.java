@@ -123,16 +123,16 @@ public class LivingHurtHandler {
 
                 if (s.getItem() instanceof AlloyArmorItem armor) {
                     if (EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, curSlot).equals(EquipmentSlot.FEET)) {
-                        if (event.getSource().equals(DamageSource.HOT_FLOOR) && armor.getHeatResist(s) >= 1) {
+                        if (event.getSource().equals(player.level.damageSources().hotFloor()) && armor.getHeatResist(s) >= 1) {
                             event.setCanceled(true);
-                        } else if (event.getSource().equals(DamageSource.STALAGMITE) && armor.getToughness(s) >= 0.4f) {
+                        } else if (event.getSource().equals(player.level.damageSources().stalagmite()) && armor.getToughness(s) >= 0.4f) {
                             event.setCanceled(true);
                         }
-                    } else if (EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, curSlot).equals(EquipmentSlot.LEGS) && event.getSource().equals(DamageSource.SWEET_BERRY_BUSH) && armor.getToughness(s) >= 0.2f) {
+                    } else if (EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, curSlot).equals(EquipmentSlot.LEGS) && event.getSource().equals(player.level.damageSources().sweetBerryBush()) && armor.getToughness(s) >= 0.2f) {
                         event.setCanceled(true);
-                    } else if (EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, curSlot).equals(EquipmentSlot.CHEST) && event.getSource().equals(DamageSource.CACTUS) && armor.getToughness(s) >= 0.2f) {
+                    } else if (EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, curSlot).equals(EquipmentSlot.CHEST) && event.getSource().equals(player.level.damageSources().cactus()) && armor.getToughness(s) >= 0.2f) {
                         event.setCanceled(true);
-                    } else if (EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, curSlot).equals(EquipmentSlot.HEAD) && (event.getSource().equals(DamageSource.FALLING_STALACTITE) || event.getSource().equals(DamageSource.FALLING_BLOCK)) && armor.getToughness(s) >= 0.4f) {
+                    } else if (EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, curSlot).equals(EquipmentSlot.HEAD) && (event.getSource().equals(player.level.damageSources().fallingStalactite(event.getSource().getEntity())) || event.getSource().equals(player.level.damageSources().fallingBlock(event.getSource().getEntity()))) && armor.getToughness(s) >= 0.4f) {
                         event.setCanceled(true);
                     }
 

@@ -10,8 +10,6 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class BatteryItem extends Item {
     public BatteryItem(Properties properties) {
         super(properties);
@@ -28,7 +26,7 @@ public class BatteryItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(new TranslatableComponent("rankine.battery.charge",stack.getMaxDamage()-stack.getDamageValue(),stack.getMaxDamage()).withStyle(ChatFormatting.AQUA));
+        tooltip.add(Component.translatable("rankine.battery.charge",stack.getMaxDamage()-stack.getDamageValue(),stack.getMaxDamage()).withStyle(ChatFormatting.AQUA));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 

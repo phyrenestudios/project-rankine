@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -84,7 +85,7 @@ public abstract class AbstractRankineCauldronBlock extends Block {
     }
 
     @Override
-    public void randomTick(BlockState p_60551_, ServerLevel levelIn, BlockPos posIn, Random rand) {
+    public void randomTick(BlockState p_60551_, ServerLevel levelIn, BlockPos posIn, RandomSource rand) {
         if (isHeated(levelIn, posIn) && this.getOutput() != null) {
             if (this.getOutput() == RankineItems.MAPLE_SYRUP.get()) {
                 levelIn.setBlockAndUpdate(posIn, RankineBlocks.MAPLE_SYRUP_CAULDRON.get().defaultBlockState());

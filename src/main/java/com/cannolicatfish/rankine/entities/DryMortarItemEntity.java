@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.entities;
 
 import com.cannolicatfish.rankine.init.RankineItems;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -8,8 +9,6 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
-
-import net.minecraft.world.entity.Entity.RemovalReason;
 
 public class DryMortarItemEntity extends ItemEntity {
 
@@ -57,7 +56,7 @@ public class DryMortarItemEntity extends ItemEntity {
         super.tick();
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

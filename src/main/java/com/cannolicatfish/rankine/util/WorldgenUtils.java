@@ -27,7 +27,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class WorldgenUtils {
 
@@ -177,7 +176,7 @@ public class WorldgenUtils {
         return false;
     }
 
-    public static Direction randomHorizontalDirection(Random rand) {
+    public static Direction randomHorizontalDirection(RandomSource rand) {
         List<Direction> dirs = Arrays.asList(Direction.NORTH,Direction.EAST,Direction.WEST,Direction.SOUTH);
         return dirs.get(rand.nextInt(dirs.size()));
     }

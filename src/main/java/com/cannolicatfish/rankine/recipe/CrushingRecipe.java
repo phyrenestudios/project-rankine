@@ -10,6 +10,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.*;
@@ -113,7 +114,7 @@ public class CrushingRecipe implements Recipe<Container> {
         return ItemStack.EMPTY;
     }
 
-    public List<ItemStack> getResults(Tier harvestLevel,Random random, int rolls) {
+    public List<ItemStack> getResults(Tier harvestLevel, RandomSource random, int rolls) {
         int totalRolls = Math.min(rolls,maxRolls);
         List<ItemStack> outputs = new ArrayList<>();
         for (Tuple<ItemStack, Tier> tuple : getGuaranteedOutputsAsItemStack()) {
@@ -133,7 +134,7 @@ public class CrushingRecipe implements Recipe<Container> {
         return outputs;
     }
 
-    public Tuple<List<ItemStack>,Integer> getAtomizeResults(Tier harvestLevel,Random random, int rolls) {
+    public Tuple<List<ItemStack>,Integer> getAtomizeResults(Tier harvestLevel,RandomSource random, int rolls) {
         int totalRolls = Math.min(rolls,maxRolls);
         List<ItemStack> guaranteed = new ArrayList<>();
         for (Tuple<ItemStack, Tier> tuple : getGuaranteedOutputsAsItemStack()) {
@@ -154,7 +155,7 @@ public class CrushingRecipe implements Recipe<Container> {
         return new Tuple<>(guaranteed,outputs.size());
     }
 
-    public WeightedRemovableCollection<ItemStack> getPossibleResults(Tier harvestLevel, Random random) {
+    public WeightedRemovableCollection<ItemStack> getPossibleResults(Tier harvestLevel, RandomSource random) {
         WeightedRemovableCollection<ItemStack> outputs = new WeightedRemovableCollection<>(random);
         for (int i = 0; i < this.getRecipeOutputs().size(); i++) {
             if (!TierSortingRegistry.getTiersLowerThan(this.tiers.get(i)).contains(harvestLevel)) {

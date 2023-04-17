@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
@@ -24,7 +25,7 @@ public class FallenLogFeature extends Feature<SimpleBlockConfiguration> {
     public boolean place(FeaturePlaceContext<SimpleBlockConfiguration> context) {
         BlockPos blockPos = context.origin();
         WorldGenLevel levelIn = context.level();
-        Random random = context.random();
+        RandomSource random = context.random();
         BlockState hollowLog = context.config().toPlace().getState(random, blockPos);
 
         int length = random.nextInt(3, 6);

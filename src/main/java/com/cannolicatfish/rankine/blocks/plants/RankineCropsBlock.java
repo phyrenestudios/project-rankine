@@ -5,14 +5,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.Random;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class RankineCropsBlock extends CropBlock {
 
@@ -38,7 +35,7 @@ public class RankineCropsBlock extends CropBlock {
     }
 
     @Override
-    public void randomTick(BlockState p_52292_, ServerLevel p_52293_, BlockPos p_52294_, Random p_52295_) {
+    public void randomTick(BlockState p_52292_, ServerLevel p_52293_, BlockPos p_52294_, RandomSource p_52295_) {
         if (!p_52293_.isAreaLoaded(p_52294_, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         if (p_52293_.getRawBrightness(p_52294_, 0) >= 9) {
             int i = this.getAge(p_52292_);
@@ -89,7 +86,7 @@ public class RankineCropsBlock extends CropBlock {
 
     // Temperature for crops is scored by an int[3] array; [Dry, Moderate, Wet]
     public float calcMoistureScore(LevelReader worldIn, BlockPos pos) {
-        float humidity = worldIn.getBiome(pos).value().getDownfall();
+        float humidity = worldIn.getBiome(pos).value().modifiableBiomeInfo().get().climateSettings().downfall();
         if (humidity < 0.25f) {
             return this.moistureScore[0];
         } else if (humidity < 0.75f) {

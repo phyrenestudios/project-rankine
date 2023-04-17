@@ -15,7 +15,7 @@ public final class DataGenerators {
         DataGenerator gen = event.getGenerator();
         if (event.includeServer()) {
             RankineBlockTagsProvider blockTagsGeneration = new RankineBlockTagsProvider(gen, event.getExistingFileHelper());
-            gen.addProvider(blockTagsGeneration);
+            /*gen.addProvider(blockTagsGeneration);
             gen.addProvider(new RankineItemTagsProvider(gen, blockTagsGeneration, event.getExistingFileHelper()));
             gen.addProvider(new RankineBiomeTagsProvider(gen, ProjectRankine.MODID, event.getExistingFileHelper()));
             gen.addProvider(new RankineEntityTypeTagsProvider(gen, event.getExistingFileHelper()));
@@ -23,15 +23,15 @@ public final class DataGenerators {
             gen.addProvider(new RankineAdvancementProvider(gen));
             gen.addProvider(new RankineRecipesProvider(gen));
 
-            gen.addProvider(new RankineLootModifierProvider(gen));
+            gen.addProvider(new RankineLootModifierProvider(gen));*/
 
         }
         if (event.includeClient()) {
-            gen.addProvider(new RankineBlockStateProvider(gen, event.getExistingFileHelper()));
+            /*gen.addProvider(new RankineBlockStateProvider(gen, event.getExistingFileHelper()));
             gen.addProvider(new RankineItemModelProvider(gen, event.getExistingFileHelper()));
 
             RankineLangProvider langProvider = new RankineLangProvider(gen, "en_us");
-            gen.addProvider(langProvider);
+            gen.addProvider(langProvider);*/
         }
     }
 }

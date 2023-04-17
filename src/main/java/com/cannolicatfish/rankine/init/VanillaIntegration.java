@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -323,7 +324,7 @@ public class VanillaIntegration {
 
                     if (RS.contains("#")) {
                         ResourceLocation newRS = ResourceLocation.tryParse(RS.replace("#",""));
-                        TagKey<Item> tag = TagKey.create(Registry.ITEM_REGISTRY,newRS);
+                        TagKey<Item> tag = TagKey.create(Registries.ITEM,newRS);
                         for (Item item : ForgeRegistries.ITEMS.tags().getTag(tag).stream().toList()) {
                             if (item != null && !fuelValueMap.containsKey(item)) {
                                 fuelValueMap.put(item, burnTime);

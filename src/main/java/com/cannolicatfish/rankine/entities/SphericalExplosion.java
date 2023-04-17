@@ -32,6 +32,7 @@ import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class SphericalExplosion extends Explosion {
 
@@ -61,7 +62,7 @@ public class SphericalExplosion extends Explosion {
                 for (int l = -i; l < i; ++l) {
                     int d = j * j + k * k + l * l;
                     if (d > r) continue;
-                    BlockPos blockpos = new BlockPos(j, k, l).offset(getPosition().x, getPosition().y, getPosition().z);
+                    BlockPos blockpos = new BlockPos(j, k, l).offset((int) getPosition().x, (int) getPosition().y, (int) getPosition().z);
                     if (this.level.isEmptyBlock(blockpos)) continue;
 
                     float f = this.radius * (1f - d / (r));
@@ -89,7 +90,7 @@ public class SphericalExplosion extends Explosion {
         int i1 = Mth.floor(getPosition().y + (double)f2 + 1.0D);
         int j2 = Mth.floor(getPosition().z - (double)f2 - 1.0D);
         int j1 = Mth.floor(getPosition().z + (double)f2 + 1.0D);
-        List<Entity> list = this.level.getEntities(getSourceMob(), new AABB((double)k1, (double)i2, (double)j2, (double)l1, (double)i1, (double)j1));
+        List<Entity> list = this.level.getEntities(getExploder(), new AABB((double)k1, (double)i2, (double)j2, (double)l1, (double)i1, (double)j1));
         net.minecraftforge.event.ForgeEventFactory.onExplosionDetonate(this.level, this, list, f2);
         Vec3 vec3 = new Vec3(getPosition().x, getPosition().y, getPosition().z);
 
@@ -133,10 +134,10 @@ public class SphericalExplosion extends Explosion {
             this.level.playLocalSound(getPosition().x, getPosition().y, getPosition().z, SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 4.0F, (1.0F + (this.level.random.nextFloat() - this.level.random.nextFloat()) * 0.2F) * 0.7F, false);
         }
 
-        if (this.blockInteraction == Explosion.BlockInteraction.NONE) return;
+        if (this.blockInteraction == BlockInteraction.KEEP) return;
 
         ObjectArrayList<Pair<ItemStack, BlockPos>> objectarraylist = new ObjectArrayList<>();
-        Collections.shuffle(getToBlow(), this.level.random);
+        Collections.shuffle(getToBlow(), new Random());
 
         for(BlockPos blockpos : getToBlow()) {
             BlockState blockstate = this.level.getBlockState(blockpos);
@@ -145,7 +146,7 @@ public class SphericalExplosion extends Explosion {
                 this.level.getProfiler().push("explosion_blocks");
                 if (blockstate.canDropFromExplosion(this.level, blockpos, this) && this.level instanceof ServerLevel) {
                     BlockEntity blockentity = blockstate.hasBlockEntity() ? this.level.getBlockEntity(blockpos) : null;
-                    LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerLevel)this.level)).withRandom(this.level.random).withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(blockpos)).withParameter(LootContextParams.TOOL, ItemStack.EMPTY).withOptionalParameter(LootContextParams.BLOCK_ENTITY, blockentity).withOptionalParameter(LootContextParams.THIS_ENTITY, getSourceMob());
+                    LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerLevel)this.level)).withRandom(this.level.random).withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(blockpos)).withParameter(LootContextParams.TOOL, ItemStack.EMPTY).withOptionalParameter(LootContextParams.BLOCK_ENTITY, blockentity).withOptionalParameter(LootContextParams.THIS_ENTITY, getExploder());
                     if (this.blockInteraction == Explosion.BlockInteraction.DESTROY) {
                         lootcontext$builder.withParameter(LootContextParams.EXPLOSION_RADIUS, this.radius);
                     }

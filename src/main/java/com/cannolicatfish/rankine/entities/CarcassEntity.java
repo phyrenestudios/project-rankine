@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.entities;
 
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.entity.projectile.Fireball;
 import net.minecraft.world.item.ItemStack;
@@ -35,8 +36,6 @@ import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 
-import net.minecraft.world.entity.Entity.RemovalReason;
-
 @OnlyIn(
         value = Dist.CLIENT,
         _interface = ItemSupplier.class
@@ -63,7 +62,7 @@ public class CarcassEntity extends Fireball implements ItemSupplier {
         super(e, world);
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

@@ -3,13 +3,12 @@ package com.cannolicatfish.rankine.world.gen;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
-import java.util.Random;
 
 public class AntimatterFeature extends Feature<NoneFeatureConfiguration> {
     public AntimatterFeature(Codec<NoneFeatureConfiguration> p_i49915_1_) {
@@ -20,7 +19,7 @@ public class AntimatterFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = reader.getRandom();
         ChunkAccess chunk = reader.getChunk(pos);
 
         if (rand.nextFloat()<0.1) {        //for (int i = 0; i <4; ++i) {

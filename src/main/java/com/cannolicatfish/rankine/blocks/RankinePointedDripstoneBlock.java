@@ -10,7 +10,6 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.item.FallingBlockEntity;
@@ -46,8 +45,6 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class RankinePointedDripstoneBlock extends PointedDripstoneBlock {
     public Block dripstoneBlock;
@@ -114,7 +111,7 @@ public class RankinePointedDripstoneBlock extends PointedDripstoneBlock {
 
     public void fallOn(Level p_154047_, BlockState p_154048_, BlockPos p_154049_, Entity p_154050_, float p_154051_) {
         if (p_154048_.getValue(TIP_DIRECTION) == Direction.UP && p_154048_.getValue(THICKNESS) == DripstoneThickness.TIP) {
-            p_154050_.causeFallDamage(p_154051_ + 2.0F, 2.0F, DamageSource.STALAGMITE);
+            p_154050_.causeFallDamage(p_154051_ + 2.0F, 2.0F, p_154047_.damageSources().fallingStalactite(p_154050_));
         } else {
             super.fallOn(p_154047_, p_154048_, p_154049_, p_154050_, p_154051_);
         }
@@ -276,9 +273,6 @@ public class RankinePointedDripstoneBlock extends PointedDripstoneBlock {
 
     }
 
-    public DamageSource getFallDamageSource() {
-        return DamageSource.FALLING_STALACTITE;
-    }
 
     public Predicate<Entity> getHurtsEntitySelector() {
         return EntitySelector.NO_CREATIVE_OR_SPECTATOR.and(EntitySelector.LIVING_ENTITY_STILL_ALIVE);

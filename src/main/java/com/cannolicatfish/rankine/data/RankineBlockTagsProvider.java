@@ -1,27 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.CobbleBlock;
-import com.cannolicatfish.rankine.blocks.block_groups.*;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineLists;
-import com.cannolicatfish.rankine.init.RankineTags;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.BlockTagsProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class RankineBlockTagsProvider extends BlockTagsProvider {
-
+public class RankineBlockTagsProvider {
+/*
     public RankineBlockTagsProvider(DataGenerator generatorIn, ExistingFileHelper existingFileHelper) {
         super(generatorIn, ProjectRankine.MODID, existingFileHelper);
     }
@@ -670,5 +650,5 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(BlockTags.create(new ResourceLocation("twilight_forest", "portal/edge"))).add(blk);
         }
     }
-
+*/
 }

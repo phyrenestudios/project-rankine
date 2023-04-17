@@ -1,24 +1,17 @@
 package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.inventory.InventoryMenu;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
-import java.awt.*;
 import java.util.Arrays;
 
 public class FusionFurnaceScreen extends AbstractContainerScreen<FusionFurnaceContainer> {
@@ -34,11 +27,11 @@ public class FusionFurnaceScreen extends AbstractContainerScreen<FusionFurnaceCo
         this.renderTooltip(matrixStack, mouseX, mouseY);
         if (mouseX >= this.leftPos+4 && mouseX <= this.leftPos+19 && mouseY >= this.topPos+12 && mouseY <= this.topPos+75 && !this.menu.getInputTank().isEmpty()) {
             FluidStack fluidStack = this.menu.getInputTank().getFluid();
-            this.renderTooltip(matrixStack, Arrays.asList(new TranslatableComponent(fluidStack.getTranslationKey()),new TextComponent(fluidStack.getAmount()+"mb")), java.util.Optional.empty(), mouseX, mouseY, (this.font));
+            this.renderTooltip(matrixStack, Arrays.asList(Component.translatable(fluidStack.getTranslationKey()),Component.literal(fluidStack.getAmount()+"mb")), java.util.Optional.empty(), mouseX, mouseY, (this.font));
         }
         else if (mouseX >= this.leftPos+156 && mouseX <= this.leftPos+171 && mouseY >= this.topPos+12 && mouseY <= this.topPos+75 && !this.menu.getOutputTank().isEmpty()) {
             FluidStack fluidStack = this.menu.getOutputTank().getFluid();
-            this.renderTooltip(matrixStack, Arrays.asList(new TranslatableComponent(fluidStack.getTranslationKey()),new TextComponent(fluidStack.getAmount()+"mb")),java.util.Optional.empty(), mouseX, mouseY, (this.font));
+            this.renderTooltip(matrixStack, Arrays.asList(Component.translatable(fluidStack.getTranslationKey()),Component.literal(fluidStack.getAmount()+"mb")),java.util.Optional.empty(), mouseX, mouseY, (this.font));
         }
     }
 
@@ -58,7 +51,7 @@ public class FusionFurnaceScreen extends AbstractContainerScreen<FusionFurnaceCo
 
     protected void drawFluidTank(PoseStack ms,FluidTank tankIn,int x,int y) {
         FluidStack input = tankIn.getFluid();
-        TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(input.getFluid().getAttributes().getStillTexture());
+        //TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(input.getFluid().getAttributes().getStillTexture());
 
         float amount = input.getAmount();
         float capacity = tankIn.getCapacity();
@@ -67,12 +60,12 @@ public class FusionFurnaceScreen extends AbstractContainerScreen<FusionFurnaceCo
         int fluidAmount = (int) (scale * fluidTankHeight);
 
 
-        Color color = new Color(input.getFluid().getAttributes().getColor());
-        RenderSystem.setShaderTexture(0, new ResourceLocation(sprite.getName().getNamespace(),"textures/"+sprite.getName().getPath()+".png"));
-        RenderSystem.setShaderColor(color.getRed(), color.getBlue(),
+        /*Color color = new Color(input.getFluid().getAttributes().getColor());
+        /RenderSystem.setShaderTexture(0, new ResourceLocation(sprite.getName().getNamespace(),"textures/"+sprite.getName().getPath()+".png"));
+        //RenderSystem.setShaderColor(color.getRed(), color.getBlue(),
                 color.getGreen(), color.getAlpha());
 
-        blit(ms,x, y + (fluidTankHeight - fluidAmount),0,16, fluidAmount,sprite);
+        blit(ms,x, y + (fluidTankHeight - fluidAmount),0,16, fluidAmount,sprite);*/
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 
     }

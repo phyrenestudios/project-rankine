@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.util;
 
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.Tuple;
 
 import java.util.*;
@@ -7,18 +8,14 @@ import java.util.stream.Collectors;
 
 public class WeightedRemovableCollection<I> {
     private final NavigableMap<Float, Tuple<I,Boolean>> map = new TreeMap<>();
-    private final Random random;
+    private final RandomSource random;
     private float total = 0;
 
-    public WeightedRemovableCollection() {
-        this(new Random());
-    }
-
-    public WeightedRemovableCollection(Random random) {
+    public WeightedRemovableCollection(RandomSource random) {
         this.random = random;
     }
 
-    public WeightedRemovableCollection(Random random, List<Float> weights, List<I> items, List<Integer> totals, List<Boolean> removes) {
+    public WeightedRemovableCollection(RandomSource random, List<Float> weights, List<I> items, List<Integer> totals, List<Boolean> removes) {
         this(random);
         for (int i = 0; i < items.size(); i++) {
             for (int j = 0; j < totals.get(i); j++) {

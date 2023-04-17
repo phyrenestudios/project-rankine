@@ -1,27 +1,10 @@
 package com.cannolicatfish.rankine.events.handlers.client;
 
-import com.cannolicatfish.rankine.blocks.gases.AbstractGasBlock;
-import com.cannolicatfish.rankine.init.RankineEnchantments;
-import com.cannolicatfish.rankine.items.tools.KnifeItem;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.VertexFormat;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 
 public class RenderGameOverlayHandler {
     public static void renderOverlay(RenderGuiOverlayEvent event) {
-        if (event.getType() == RenderGuiOverlayEvent.ElementType.LAYER && Minecraft.getInstance().player != null) {
+        /*if (event.getType() == RenderGuiOverlayEvent.ElementType.LAYER && Minecraft.getInstance().player != null) {
             Player player = Minecraft.getInstance().player;
             ItemStack stack = player.getOffhandItem().getItem() instanceof KnifeItem ? player.getOffhandItem() : ItemStack.EMPTY;
             if (!stack.isEmpty()) {
@@ -75,6 +58,6 @@ public class RenderGameOverlayHandler {
                 RenderSystem.enableDepthTest();
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             }
-        }
+        }*/
     }
 }

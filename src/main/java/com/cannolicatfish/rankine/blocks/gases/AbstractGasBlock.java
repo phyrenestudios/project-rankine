@@ -1,13 +1,13 @@
 package com.cannolicatfish.rankine.blocks.gases;
 
 import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineDamageSources;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -17,7 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.BaseFireBlock;
@@ -32,9 +31,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
-import java.util.Random;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public abstract class AbstractGasBlock extends AirBlock implements PitchModulating {
 
@@ -43,10 +39,10 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
     private final List<MobEffectInstance> effectInstances;
     private final boolean suffocating;
     private final int color;
-    private final Tuple<Explosion.BlockInteraction,Float> flammability;
+    private final Tuple<Level.ExplosionInteraction,Float> flammability;
 
 
-    public AbstractGasBlock(float densityIn, float dissipationChanceIn, List<MobEffectInstance> effectInstancesIn, boolean suffocatingIn, Tuple<Explosion.BlockInteraction,Float> flammabilityIn, int colorIn, Properties properties) {
+    public AbstractGasBlock(float densityIn, float dissipationChanceIn, List<MobEffectInstance> effectInstancesIn, boolean suffocatingIn, Tuple<Level.ExplosionInteraction,Float> flammabilityIn, int colorIn, Properties properties) {
         super(properties);
         this.density = densityIn;
         this.dissipationChance = dissipationChanceIn;
@@ -60,7 +56,7 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
         this(gasUtilsEnum.getDensity(),gasUtilsEnum.getDissipationRate(),gasUtilsEnum.getEffects(),gasUtilsEnum.isSuffocating(),gasUtilsEnum.getFlammability(),gasUtilsEnum.getColor(),properties);
     }
 
-    public Tuple<Explosion.BlockInteraction, Float> getGasFlammability() {
+    public Tuple<Level.ExplosionInteraction, Float> getGasFlammability() {
         return flammability;
     }
 
@@ -123,7 +119,7 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (Config.GASES.GAS_DISSIPATION.get()) {
             if (random.nextFloat() < this.getDissipationChance()) {
                 worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(),3);
@@ -161,7 +157,7 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
                 if (this.isSuffocating() && !gasMask) {
                     ent.setAirSupply(Math.max(ent.getAirSupply() - 3,0));
                     if (ent.getAirSupply() == 0) {
-                        ent.hurt(RankineDamageSources.SUFFOCATION, 2.0F);
+                        ent.hurt(worldIn.damageSources().drown(), 2.0F);
                     }
                 }
                 for (MobEffectInstance effect : this.getEffectInstances())

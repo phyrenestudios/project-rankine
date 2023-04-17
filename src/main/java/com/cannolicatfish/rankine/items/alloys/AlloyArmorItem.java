@@ -5,17 +5,14 @@ import com.cannolicatfish.rankine.recipe.AlloyModifierRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyColorHelper;
-import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -26,7 +23,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.List;
@@ -37,7 +33,7 @@ import java.util.Optional;
 public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem, DyeableLeatherItem {
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
-    public AlloyArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn, Properties builderIn) {
+    public AlloyArmorItem(ArmorMaterial materialIn, ArmorItem.Type slot, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn, Properties builderIn) {
         super(materialIn, slot, builderIn);
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
@@ -46,9 +42,9 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
     @Override
     public Component getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(IAlloyItem.getNameOverride(stack)));
+            return Component.translatable(this.getDescriptionId(stack),Component.translatable(IAlloyItem.getNameOverride(stack)));
         }
-        return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
+        return Component.translatable(this.getDescriptionId(stack),Component.translatable(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
     @Override
     public void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier) {
@@ -99,30 +95,30 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
         });
         if (this.isAlloyInit(stack)) {
             if (!Screen.hasShiftDown()) {
-                tooltip.add((new TextComponent("Hold shift for details...")).withStyle(ChatFormatting.GRAY));
+                tooltip.add((Component.literal("Hold shift for details...")).withStyle(ChatFormatting.GRAY));
             }
             if (Screen.hasShiftDown()) {
                 if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
-                    tooltip.add((new TextComponent("Any Composition").withStyle(ChatFormatting.GOLD)));
+                    tooltip.add((Component.literal("Any Composition").withStyle(ChatFormatting.GOLD)));
                 } else {
-                    tooltip.add((new TextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(ChatFormatting.GOLD)));
+                    tooltip.add((Component.literal("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(ChatFormatting.GOLD)));
                 }
 
                 if (!IAlloyItem.getAlloyModifiers(stack).isEmpty()) {
-                    tooltip.add((new TextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(ChatFormatting.AQUA)));
+                    tooltip.add((Component.literal("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(ChatFormatting.AQUA)));
                 } else {
-                    tooltip.add((new TextComponent("No Modifiers Present").withStyle(ChatFormatting.AQUA)));
+                    tooltip.add((Component.literal("No Modifiers Present").withStyle(ChatFormatting.AQUA)));
                 }
 
                 if (!this.needsRefresh(stack)) {
 
-                    tooltip.add((new TextComponent("Durability: " + (getAlloyDurability(stack) - stack.getDamageValue()) + "/" + getAlloyDurability(stack))).withStyle(ChatFormatting.DARK_GREEN));
-                    tooltip.add((new TextComponent("Enchantability: " + getAlloyEnchantability(stack))).withStyle(ChatFormatting.GRAY));
+                    tooltip.add((Component.literal("Durability: " + (getAlloyDurability(stack) - stack.getDamageValue()) + "/" + getAlloyDurability(stack))).withStyle(ChatFormatting.DARK_GREEN));
+                    tooltip.add((Component.literal("Enchantability: " + getAlloyEnchantability(stack))).withStyle(ChatFormatting.GRAY));
                     if (Config.ALLOYS.ALLOY_CORROSION.get()) {
-                        tooltip.add((new TextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).withStyle(ChatFormatting.GRAY));
+                        tooltip.add((Component.literal("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).withStyle(ChatFormatting.GRAY));
                     }
                     if (Config.ALLOYS.ALLOY_HEAT.get()) {
-                        tooltip.add((new TextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).withStyle(ChatFormatting.GRAY));
+                        tooltip.add((Component.literal("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).withStyle(ChatFormatting.GRAY));
                     }
                 }
             }
@@ -142,9 +138,9 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
         int durability = IAlloyTieredItem.super.createValueForDurability(elementMap, alloy, modifier);
         final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
         if (durability <= 100) {
-            return Math.round(MAX_DAMAGE_ARRAY[this.getSlot().getIndex()] * durability/10f);
+            return Math.round(MAX_DAMAGE_ARRAY[this.getType().getSlot().getIndex()] * durability/10f);
         } else {
-            return Math.round(MAX_DAMAGE_ARRAY[this.getSlot().getIndex()] * (10 + (durability-100)/50f));
+            return Math.round(MAX_DAMAGE_ARRAY[this.getType().getSlot().getIndex()] * (10 + (durability-100)/50f));
         }
     }
 
@@ -166,12 +162,12 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
 
     private int createValueForDamageResistance(Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloy, @Nullable AlloyModifier modifier)
     {
-        EquipmentSlot slotType = this.getSlot();
+        ArmorItem.Type slotType = this.getType();
         int hl = createValueForHarvestLevel(elementMap,alloy,modifier);
-        int base = slotType == EquipmentSlot.CHEST ? 3 : slotType == EquipmentSlot.LEGS ? 2 : 1;
-        if (slotType == EquipmentSlot.CHEST || slotType == EquipmentSlot.LEGS) {
+        int base = slotType == Type.CHESTPLATE ? 3 : slotType == Type.LEGGINGS ? 2 : 1;
+        if (slotType == Type.CHESTPLATE || slotType == Type.LEGGINGS) {
             return Math.min(base + hl,10);
-        } else if (slotType == EquipmentSlot.FEET) {
+        } else if (slotType == Type.BOOTS) {
             if (hl >= 5) {
                 return base + 2;
             } else if (hl >= 3) {
@@ -210,16 +206,6 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
             return 1;
         }
 
-    }
-
-    @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
-            items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
-            items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
-        } else if (this.allowdedIn(group)) {
-            super.fillItemCategory(group,items);
-        }
     }
 
     @Override

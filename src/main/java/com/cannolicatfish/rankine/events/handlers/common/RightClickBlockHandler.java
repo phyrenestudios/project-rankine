@@ -16,6 +16,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -39,7 +40,6 @@ import net.minecraftforge.registries.tags.IReverseTag;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Stream;
 
 public class RightClickBlockHandler {
@@ -60,8 +60,8 @@ public class RightClickBlockHandler {
         }
 
         for (Block block : RankineLists.LANTERNS) {
-            if (!ForgeRegistries.ITEMS.tags().isKnownTagName(ForgeRegistries.ITEMS.tags().createTagKey(new ResourceLocation("forge:nuggets/"+block.getRegistryName().getPath().replace("_lantern",""))))) break;
-            lanternMap.put(ForgeRegistries.ITEMS.tags().createTagKey(new ResourceLocation("forge:nuggets/"+block.getRegistryName().getPath().replace("_lantern",""))), (LanternBlock) block);
+            if (!ForgeRegistries.ITEMS.tags().isKnownTagName(ForgeRegistries.ITEMS.tags().createTagKey(new ResourceLocation("forge:nuggets/"+ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_lantern",""))))) break;
+            lanternMap.put(ForgeRegistries.ITEMS.tags().createTagKey(new ResourceLocation("forge:nuggets/"+ForgeRegistries.BLOCKS.getKey(block).getPath().replace("_lantern",""))), (LanternBlock) block);
         }
         lanternMap.put(Tags.Items.NUGGETS_IRON, (LanternBlock) Blocks.LANTERN);
         lanternMap.put(RankineTags.Items.NUGGETS_SULFUR, (LanternBlock) Blocks.SOUL_LANTERN);
@@ -89,7 +89,7 @@ public class RightClickBlockHandler {
         if (playerIn.getMainHandItem().is(RankineTags.Items.FLINT) && playerIn.getOffhandItem().is(RankineTags.Items.FLINT) && Config.GENERAL.FLINT_FIRE.get()) {
             BlockPos pos = event.getPos();
             BlockPos blockpos1 = event.getPos().relative(event.getFace());
-            Random rand = levelIn.random;
+            RandomSource rand = levelIn.random;
             BlockState blockState = levelIn.getBlockState(pos);
             boolean flag = false;
             if (rand.nextFloat() > Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
@@ -134,9 +134,9 @@ public class RightClickBlockHandler {
 
         ItemStack stack = event.getItemStack();
         Item item = stack.getItem();
-        Level worldIn = event.getWorld();
+        Level worldIn = event.getLevel();
         BlockPos pos = event.getPos();
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         BlockState targetBS = worldIn.getBlockState(pos);
         Block b = targetBS.getBlock();
 
@@ -145,11 +145,11 @@ public class RightClickBlockHandler {
             StrippingRecipe irecipe = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.STRIPPING, new SimpleContainer(new ItemStack(b)), worldIn).orElse(null);
             if (irecipe != null) {
                 if (worldIn.getRandom().nextFloat() < irecipe.getChance()) {
-                    Block.popResource(event.getWorld(), event.getPos(), irecipe.getResult());
+                    Block.popResource(event.getLevel(), event.getPos(), irecipe.getResult());
                 }
             }
-            if (ForgeRegistries.BLOCKS.tags().getTag(BlockTags.LOGS).contains(b) && !b.getRegistryName().toString().contains("stripped") && Config.GENERAL.STRIPPABLES_STICKS.get() && worldIn.getRandom().nextFloat() < 0.3) {
-                Block.popResource(event.getWorld(), event.getPos(), new ItemStack(Items.STICK, 1));
+            if (ForgeRegistries.BLOCKS.tags().getTag(BlockTags.LOGS).contains(b) && !ForgeRegistries.BLOCKS.getKey(b).toString().contains("stripped") && Config.GENERAL.STRIPPABLES_STICKS.get() && worldIn.getRandom().nextFloat() < 0.3) {
+                Block.popResource(event.getLevel(), event.getPos(), new ItemStack(Items.STICK, 1));
             }
 
             if(stripping_map.get(b) != null) {
@@ -242,12 +242,12 @@ public class RightClickBlockHandler {
 
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         ItemStack stack = event.getItemStack();
-        Level world = event.getWorld();
+        Level world = event.getLevel();
         Direction direction = event.getFace();
         InteractionHand hand = event.getHand();
         BlockPos pos = event.getPos();
         BlockState state = world.getBlockState(pos);
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
 
         if (ForgeRegistries.ITEMS.tags().getTag(RankineTags.Items.KNIVES).contains(stack.getItem()) && direction != null && hand == InteractionHand.MAIN_HAND) {
             Block target = state.getBlock();

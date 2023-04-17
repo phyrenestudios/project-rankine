@@ -1,12 +1,10 @@
 package com.cannolicatfish.rankine.enchantment;
 
 import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
-import com.cannolicatfish.rankine.items.tools.SpearItem;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 public class PunctureEnchantment extends Enchantment {
     public PunctureEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlot... p_i46721_2_) {
@@ -30,7 +28,7 @@ public class PunctureEnchantment extends Enchantment {
         if (target instanceof LivingEntity)
         {
             LivingEntity ent = (LivingEntity) target;
-            ent.hurt(DamageSource.MAGIC, level*0.5f);
+            ent.hurt(user.level.damageSources().magic(), level*0.5f);
         }
     }
 }

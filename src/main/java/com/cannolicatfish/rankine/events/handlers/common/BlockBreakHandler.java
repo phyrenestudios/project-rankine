@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -36,7 +37,7 @@ import java.util.*;
 public class BlockBreakHandler {
     public static void blockBreakingEvents(BlockEvent.BreakEvent event) {
         Level levelIn = event.getPlayer().getLevel();
-        Random rand = levelIn.random;
+        RandomSource rand = levelIn.random;
         Player player = event.getPlayer();
         BlockPos pos = event.getPos();
         BlockState targetBlockState = levelIn.getBlockState(pos);
@@ -121,8 +122,8 @@ public class BlockBreakHandler {
                         BlockState LEAF = levelIn.getBlockState(b);
                         LeavesBlock.dropResources(LEAF,levelIn,pos);
                         levelIn.removeBlock(b,false);
-                        if (levelIn.getRandom().nextFloat() < Config.GENERAL.LEAF_LITTER_GEN_TREES.get() && ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(LEAF.getBlock().getRegistryName().toString().replace("leaves", "leaf_litter"))) != null) {
-                            levelIn.setBlockAndUpdate(b, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:"+LEAF.getBlock().getRegistryName().getPath().replace("leaves", "leaf_litter"))).defaultBlockState());
+                        if (levelIn.getRandom().nextFloat() < Config.GENERAL.LEAF_LITTER_GEN_TREES.get() && ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(ForgeRegistries.BLOCKS.getKey(LEAF.getBlock()).toString().replace("leaves", "leaf_litter"))) != null) {
+                            levelIn.setBlockAndUpdate(b, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:"+ForgeRegistries.BLOCKS.getKey(LEAF.getBlock()).getPath().replace("leaves", "leaf_litter"))).defaultBlockState());
                         }
                     }
                     levelIn.playSound(null,pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS,1.0f,0.8f);
@@ -137,7 +138,7 @@ public class BlockBreakHandler {
 
             //Foraging
             if (mainHandItem.getItem() instanceof AlloyHoeItem || mainHandItem.getItem().equals(RankineItems.FLINT_HOE.get()) && !(EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, mainHandItem) > 0)) {
-                ItemStack itemStack = ForagingRecipe.getForagingResult(levelIn, levelIn.getBiome(pos).value().getRegistryName(), targetBlockState, EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.FORAGING.get(), mainHandItem) > 0);
+                ItemStack itemStack = ForagingRecipe.getForagingResult(levelIn, ForgeRegistries.BIOMES.getKey(levelIn.getBiome(pos).value()), targetBlockState, EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.FORAGING.get(), mainHandItem) > 0);
                 if (!itemStack.isEmpty()) {
                     Block.popResource(levelIn, pos, itemStack);
                     levelIn.destroyBlock(pos, false);
@@ -163,7 +164,7 @@ public class BlockBreakHandler {
                 Block gas = Arrays.asList(RankineBlocks.ARGON_GAS_BLOCK.get(),RankineBlocks.NEON_GAS_BLOCK.get(),RankineBlocks.KRYPTON_GAS_BLOCK.get()).get(rand.nextInt(3));
                 if (levelIn.getBiome(pos).is(BiomeTags.IS_NETHER) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()) {
                     levelIn.setBlockAndUpdate(pos, gas.defaultBlockState());
-                } else if (levelIn.getBiome(pos).is(Tags.Biomes.IS_END) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()*5) {
+                } else if (levelIn.getBiome(pos).is(BiomeTags.IS_END) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()*5) {
                     levelIn.setBlockAndUpdate(pos, gas.defaultBlockState());
                 } else if (rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()/5f) {
                     levelIn.setBlockAndUpdate(pos, gas.defaultBlockState());

@@ -30,8 +30,6 @@ import net.minecraftforge.common.TierSortingRegistry;
 
 import java.util.Set;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class CrowbarItem extends DiggerItem {
     private static final Set<Block> effectiveBlocks = ImmutableSet.of(Blocks.ACACIA_PLANKS);
 
@@ -108,7 +106,7 @@ public class CrowbarItem extends DiggerItem {
             if (liftLevel > 0) {
                 player.setDeltaMovement(oldVector.x*Math.sqrt(liftLevel), liftLevel*0.4D, oldVector.z*Math.sqrt(liftLevel));
             } else {
-                player.moveTo(blockpos.offset(0.5D, 1.0D, 0.5D), player.getYRot(), player.getXRot());
+                player.moveTo(BlockPos.containing(blockpos.above().getCenter()), player.getYRot(), player.getXRot());
             }
             player.getCooldowns().addCooldown(this, 100);
             stack.hurtAndBreak(1, player, (p_220038_0_) -> {

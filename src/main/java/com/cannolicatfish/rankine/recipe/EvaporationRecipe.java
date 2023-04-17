@@ -7,7 +7,9 @@ import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.google.gson.*;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -100,12 +102,12 @@ public class EvaporationRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(Container inv, RegistryAccess registryAccess) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess registryAccess) {
         return ItemStack.EMPTY;
     }
 
@@ -129,8 +131,8 @@ public class EvaporationRecipe implements Recipe<Container> {
         for (String b : recipeBiomes) {
             ResourceLocation RS = ResourceLocation.tryParse(b);
             if (RS != null) {
-                TagKey<Biome> biomeTagKey = TagKey.create(Registry.BIOME_REGISTRY, RS);
-                var reg = levelIn.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY);
+                TagKey<Biome> biomeTagKey = TagKey.create(Registries.BIOME, RS);
+                var reg = levelIn.registryAccess().registryOrThrow(Registries.BIOME);
                 Biome biome = reg.getOptional(biomeName).orElseThrow();
                 if (reg.getHolderOrThrow(reg.getResourceKey(biome).orElseThrow()).is(biomeTagKey)) {
                     return true;
@@ -162,7 +164,7 @@ public class EvaporationRecipe implements Recipe<Container> {
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Item item = BuiltInRegistries.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 

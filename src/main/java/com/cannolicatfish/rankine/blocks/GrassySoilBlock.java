@@ -10,6 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -39,7 +40,7 @@ public class GrassySoilBlock extends GrassBlock {
     }
 
     @Override
-    public boolean isBonemealSuccess(Level worldIn, Random rand, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level worldIn, RandomSource rand, BlockPos pos, BlockState state) {
         return !state.getValue(DEAD);
     }
 
@@ -49,7 +50,7 @@ public class GrassySoilBlock extends GrassBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel levelIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel levelIn, BlockPos pos, RandomSource random) {
         if (!isSnowyConditions(state, levelIn, pos)) {
             if (!levelIn.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
             if (RankineLists.GRASS_BLOCKS.contains(state.getBlock())) {
@@ -101,7 +102,7 @@ public class GrassySoilBlock extends GrassBlock {
 
     }
 
-    public void growGrassBlock(BlockState state, ServerLevel levelIn, BlockPos pos, Random random) {
+    public void growGrassBlock(BlockState state, ServerLevel levelIn, BlockPos pos, RandomSource random) {
         BlockState aboveState = levelIn.getBlockState(pos.above());
         if (aboveState.is(RankineBlocks.SHORT_GRASS.get())) {
             if (random.nextFloat() < 0.5f) {

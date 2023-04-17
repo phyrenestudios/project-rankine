@@ -8,7 +8,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
@@ -24,10 +23,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.GAS_CONDENSER_TILE;
 
@@ -97,8 +95,8 @@ public class GasBottlerTile extends BlockEntity implements WorldlyContainer, Men
         if (!worldIn.isClientSide) {
             ItemStack input = tile.items.get(0);
             ItemStack output = tile.items.get(1);
-            if (input.getItem().equals(Items.GLASS_BOTTLE) && worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock() instanceof GasBlock && ResourceLocation.tryParse(worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock().getRegistryName().toString().replace("block","bottle")) != null) {
-                Item OUT = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock().getRegistryName().toString().replace("block","bottle")));
+            if (input.getItem().equals(Items.GLASS_BOTTLE) && worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock() instanceof GasBlock) {
+                Item OUT = ((GasBlock) bs.getBlock()).getGasBottle();
                 if ((output.getItem() == OUT && output.getCount() < 64) || output.isEmpty()) {
                     ++tile.cookTime;
                     if (tile.cookTime >= tile.cookTimeTotal) {
@@ -126,7 +124,7 @@ public class GasBottlerTile extends BlockEntity implements WorldlyContainer, Men
 
     @Override
     public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER) {
             if (facing == Direction.UP)
                 return handlers[0].cast();
             else if (facing == Direction.DOWN)

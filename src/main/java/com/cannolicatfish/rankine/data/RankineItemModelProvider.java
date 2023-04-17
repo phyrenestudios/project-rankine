@@ -1,29 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.block_groups.*;
-import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineLists;
-import com.cannolicatfish.rankine.items.alloys.AlloyCrowbarItem;
-import com.cannolicatfish.rankine.items.tools.SpearItem;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-
-import javax.annotation.Nonnull;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class RankineItemModelProvider extends ItemModelProvider {
-
+public class RankineItemModelProvider {
+/*
     public RankineItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, ProjectRankine.MODID, existingFileHelper);
     }
@@ -470,7 +448,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
             withExistingParent(BLK.getRegistryName().getPath(), RankineBlockStateProvider.getBlockRSL(BLK.getRegistryName().getPath()+"8"));
         }
 
-         */
+
         for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.VANILLA_BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             buildingModeItem(BLK.asItem(), ((BuildingModeBlock) BLK).getMaxStyles());
         }
@@ -632,5 +610,5 @@ public class RankineItemModelProvider extends ItemModelProvider {
         getBuilder(Path+"_filled").parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + Path+"_filled");
         getBuilder(Path).parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + Path).override().predicate(new ResourceLocation("rankine:filled"), 1).model(getExistingFile(modLoc("item/"+Path+"_filled")));
     }
-    
+    */
 }

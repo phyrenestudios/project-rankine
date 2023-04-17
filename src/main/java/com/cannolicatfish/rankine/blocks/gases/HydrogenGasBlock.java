@@ -3,21 +3,17 @@ package com.cannolicatfish.rankine.blocks.gases;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.Tuple;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Supplier;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class HydrogenGasBlock extends GasBlock {
     public HydrogenGasBlock(Supplier<? extends Item> gasBottle, GasUtilsEnum gasUtilsEnum, Properties properties) {
@@ -25,7 +21,7 @@ public class HydrogenGasBlock extends GasBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         BlockPos fire = BlockPos.findClosestMatch(pos.offset(random.nextInt(4) - 2,0,random.nextInt(4) - 2),2,2,B -> worldIn.getBlockState(B).getBlock() instanceof BaseFireBlock).orElse(null);
         boolean done = false;
         if (fire != null) {
@@ -44,7 +40,7 @@ public class HydrogenGasBlock extends GasBlock {
         }
 
         if (done) {
-            worldIn.explode((Entity)null, pos.getX(), pos.getY(), pos.getZ(), (float)3, true, Explosion.BlockInteraction.NONE);
+            worldIn.explode((Entity)null, pos.getX(), pos.getY(), pos.getZ(), (float)3, true, Level.ExplosionInteraction.NONE);
             worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(),3);
         } else {
             super.randomTick(state, worldIn, pos, random);

@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.TreetappingRecipe;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -79,8 +81,8 @@ public class TreeTapTile extends BlockEntity {
                     }
 
                 }
-                if (cauldron != null) {
-                    level.setBlockAndUpdate(cauldron, getCauldron(level, cauldron, tile.outputTank.getFluid().getFluid().getRegistryName().getPath()));
+                if (cauldron != null && ForgeRegistries.FLUIDS.getHolder(tile.outputTank.getFluid().getFluid()).flatMap(Holder::unwrapKey).isPresent()) {
+                    level.setBlockAndUpdate(cauldron, getCauldron(level, cauldron, ForgeRegistries.FLUIDS.getHolder(tile.outputTank.getFluid().getFluid()).flatMap(Holder::unwrapKey).get().location().getPath()));
                     tile.outputTank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
                 }
             }

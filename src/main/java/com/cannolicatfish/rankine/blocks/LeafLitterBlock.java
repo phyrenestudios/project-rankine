@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -22,8 +23,6 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.Random;
 
 public class LeafLitterBlock extends FallingBlock {
 
@@ -49,7 +48,7 @@ public class LeafLitterBlock extends FallingBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel levelIn, BlockPos pos, Random p_60554_) {
+    public void randomTick(BlockState state, ServerLevel levelIn, BlockPos pos, RandomSource p_60554_) {
         int j = state.getValue(AGE);
         if (j == 15) {
             if (levelIn.getRawBrightness(pos.above(),0) <= 9) {
@@ -71,7 +70,7 @@ public class LeafLitterBlock extends FallingBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel levelIn, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerLevel levelIn, BlockPos pos, RandomSource rand) {
         if (levelIn.isEmptyBlock(pos.below()) || canFallThrough(levelIn.getBlockState(pos.below())) && pos.getY() >= 0) {
             FallingBlockEntity.fall(levelIn, pos, state).dropItem = false;
         } else if (!canSurvive(state,levelIn,pos)) {
