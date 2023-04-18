@@ -130,7 +130,7 @@ public class CrucibleContainer extends AbstractContainerMenu {
     }
 
     protected boolean hasRecipe(ItemStack stack) {
-        for (CrucibleRecipe recipe : this.world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUCIBLE)) {
+        for (CrucibleRecipe recipe : this.world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUCIBLE.get())) {
             for (Ingredient i : recipe.getIngredients()) {
                 if (i.test(stack)) {
                     return true;

@@ -2,39 +2,33 @@ package com.cannolicatfish.rankine.entities;
 
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.world.level.block.BaseFireBlock;
-import net.minecraft.world.entity.projectile.Fireball;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.Util;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.projectile.Fireball;
+import net.minecraft.world.entity.projectile.ItemSupplier;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.List;
-
-import net.minecraft.world.entity.AreaEffectCloud;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
+
+import java.util.List;
 
 @OnlyIn(
         value = Dist.CLIENT,
@@ -120,7 +114,7 @@ public class CarcassEntity extends Fireball implements ItemSupplier {
                 Entity entity1 = this.getOwner();
                 int i = entity.getRemainingFireTicks();
                 entity.setSecondsOnFire(5);
-                boolean flag = entity.hurt(DamageSource.fireball(this, entity1), 5.0F);
+                boolean flag = entity.hurt(this.level.damageSources().fireball(this, entity1), 5.0F);
                 if (!flag) {
                     entity.setRemainingFireTicks(i);
                 } else if (entity1 instanceof LivingEntity) {
@@ -133,8 +127,9 @@ public class CarcassEntity extends Fireball implements ItemSupplier {
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
         if (!this.level.isClientSide) {
-            Explosion.BlockInteraction explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner()) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE;
+            Level.ExplosionInteraction explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner()) ? Level.ExplosionInteraction.BLOCK : Level.ExplosionInteraction.NONE;
             this.level.explode(this, this.getX(), this.getY(), this.getZ(), 0.5F, false, explosion$mode);
+
             Entity entity = this.getOwner();
             if (entity == null || !(entity instanceof Mob) || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this)) {
                 BlockPos blockpos = result.getBlockPos().relative(result.getDirection());

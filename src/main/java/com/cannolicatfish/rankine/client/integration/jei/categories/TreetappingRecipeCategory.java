@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.TreetappingRecipe;
 import com.google.common.cache.CacheBuilder;
@@ -16,6 +17,7 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -24,7 +26,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
-import java.awt.*;
 import java.util.List;
 
 public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRecipe> {
@@ -52,20 +53,15 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
                     }
                 });
     }
-    @SuppressWarnings("removal")
+
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends TreetappingRecipe> getRecipeClass() {
-        return TreetappingRecipe.class;
+    public RecipeType<TreetappingRecipe> getRecipeType() {
+        return RankineJEIRecipeTypes.TREETAPPING_RECIPE_TYPE;
     }
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override
@@ -99,7 +95,7 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
     @Override
     public List<Component> getTooltipStrings(TreetappingRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
         if (mouseX >= 24 && mouseX <= 37 && mouseY >= 20 && mouseY <= 33) {
-            return List.of(new TextComponent("08:00 - 16:00"));
+            return List.of(Component.literal("08:00 - 16:00"));
         }
         return IRecipeCategory.super.getTooltipStrings(recipe, recipeSlotsView, mouseX, mouseY);
     }
@@ -109,9 +105,7 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
         builder.addSlot(RecipeIngredientRole.INPUT,2,10).addIngredients(recipe.getIngredient());
         builder.addSlot(RecipeIngredientRole.CATALYST,23,0).addItemStack(RankineItems.TREE_TAP.get().getDefaultInstance());
         builder.addSlot(RecipeIngredientRole.OUTPUT,60,10).addIngredient(ForgeTypes.FLUID_STACK,recipe.getFilledResult()).addTooltipCallback(((recipeSlotView, tooltip) -> tooltip
-                .add(new TextComponent(recipe.getResult().getAmount()+"mb"))));
-
-        IRecipeCategory.super.setRecipe(builder, recipe, focuses);
+                .add(Component.literal(recipe.getResult().getAmount()+"mb"))));
     }
 }
 

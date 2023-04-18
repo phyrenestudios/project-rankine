@@ -25,8 +25,6 @@ import net.minecraftforge.common.TierSortingRegistry;
 import java.util.List;
 import java.util.Locale;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class ProspectingStickItem extends Item {
 
     private final int range = Config.TOOLS.PROSPECTING_STICK_RANGE.get();
@@ -67,7 +65,7 @@ public class ProspectingStickItem extends Item {
                 if (reader.getBlockState(pos.relative(searchDir, x)).is(Tags.Blocks.ORES)) {
                     BlockState ORE = reader.getBlockState(pos.relative(searchDir, x));
                     if (player != null) {
-                        worldIn.playSound(player, pos, SoundEvents.NOTE_BLOCK_BELL, SoundSource.PLAYERS, 1.0F, worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+                        worldIn.playSound(player, pos, SoundEvents.NOTE_BLOCK_BELL.get(), SoundSource.PLAYERS, 1.0F, worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
                         if (!worldIn.isClientSide()) {
                             List<Tier> tiers = TierSortingRegistry.getSortedTiers();
                             Tier currentTier = Tiers.WOOD;

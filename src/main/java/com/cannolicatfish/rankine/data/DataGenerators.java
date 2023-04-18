@@ -14,7 +14,7 @@ public final class DataGenerators {
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
         if (event.includeServer()) {
-            RankineBlockTagsProvider blockTagsGeneration = new RankineBlockTagsProvider(gen, event.getExistingFileHelper());
+            //RankineBlockTagsProvider blockTagsGeneration = new RankineBlockTagsProvider(gen, event.getExistingFileHelper());
             /*gen.addProvider(blockTagsGeneration);
             gen.addProvider(new RankineItemTagsProvider(gen, blockTagsGeneration, event.getExistingFileHelper()));
             gen.addProvider(new RankineBiomeTagsProvider(gen, ProjectRankine.MODID, event.getExistingFileHelper()));

@@ -13,6 +13,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -23,11 +24,12 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Arrays;
 import java.util.List;
-import java.util.*;
+import java.util.Locale;
+import java.util.Map;
 
 public interface IAlloyTieredItem extends IAlloySpecialItem {
     
@@ -373,7 +375,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
 
     default int calcDurabilityLoss(ItemStack stack, Level worldIn, LivingEntity entityLiving, boolean isEfficient)
     {
-        Random rand = worldIn.getRandom();
+        RandomSource rand = worldIn.getRandom();
         int i = 1;
         i += calcToughnessProc(stack,rand);
         i += calcCorrosionResistanceProc(stack,entityLiving,rand);
@@ -392,7 +394,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return i;
     }
 
-    default int calcCorrosionResistanceProc(ItemStack stack, LivingEntity entity, Random random) {
+    default int calcCorrosionResistanceProc(ItemStack stack, LivingEntity entity, RandomSource random) {
         float corrResist = getCorrResist(stack);
         if ((random.nextFloat() > corrResist && entity.isInWaterOrRain())) {
             return Config.ALLOYS.ALLOY_CORROSION_AMT.get();
@@ -400,7 +402,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return 0;
     }
 
-    default int calcHeatResistanceProc(ItemStack stack, LivingEntity entity, Random random) {
+    default int calcHeatResistanceProc(ItemStack stack, LivingEntity entity, RandomSource random) {
         float heatResist = getHeatResist(stack);
         if ((random.nextFloat() > heatResist &&  (entity.isInLava() || entity.getRemainingFireTicks() > 0 || entity.getCommandSenderWorld().dimension() == Level.NETHER))) {
             return Config.ALLOYS.ALLOY_HEAT_AMT.get();
@@ -408,7 +410,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return 0;
     }
 
-    default int calcToughnessProc(ItemStack stack, Random random) {
+    default int calcToughnessProc(ItemStack stack, RandomSource random) {
         float toughness = getToughness(stack);
         if (toughness > 0 && random.nextFloat() < toughness) {
             return -1;

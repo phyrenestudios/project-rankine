@@ -6,7 +6,8 @@ import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.util.WeightedRemovableCollection;
 import com.google.gson.*;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -23,7 +24,6 @@ import net.minecraftforge.common.TierSortingRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class CrushingRecipe implements Recipe<Container> {
@@ -105,12 +105,12 @@ public class CrushingRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(Container inv, RegistryAccess registryAccess) {
         return ItemStack.EMPTY;
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess registryAccess) {
         return ItemStack.EMPTY;
     }
 
@@ -200,7 +200,7 @@ public class CrushingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.CRUSHING;
+        return RankineRecipeTypes.CRUSHING.get();
     }
 
 
@@ -210,7 +210,7 @@ public class CrushingRecipe implements Recipe<Container> {
             return ItemStack.EMPTY;
         }
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Item item = BuiltInRegistries.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 

@@ -1,13 +1,11 @@
 package com.cannolicatfish.rankine.world.gen;
 
 import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
@@ -52,17 +50,26 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
             for (int z = chunk.getPos().getMinBlockZ(); z <= chunk.getPos().getMaxBlockZ(); ++z) {
                 int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
                 Biome targetBiome = reader.getBiome(new BlockPos(x, reader.getMaxBuildHeight(), z)).value();
-                int biomeIndex = GEN_BIOMES.indexOf(targetBiome.getRegistryName());
+                int biomeIndex = GEN_BIOMES.indexOf(ForgeRegistries.BIOMES.getKey((targetBiome)));
                 if (biomeIndex == -1) continue;
 
                 double stoneNoise = NOISE.getValue((double) x / NOISE_SCALE, (double) z / NOISE_SCALE, false);
-                List<String> blockList = LAYER_LISTS.get(GEN_BIOMES.indexOf(targetBiome.getRegistryName()));
+                List<String> blockList = LAYER_LISTS.get(GEN_BIOMES.indexOf(ForgeRegistries.BIOMES.getKey((targetBiome))));
                 for (int y = reader.getMinBuildHeight(); y <= endY; ++y) {
                     BlockState StoneBS = getStone(blockList,y,stoneNoise);
                     if (StoneBS == null) return false;
                     BlockPos TARGET_POS = new BlockPos(x,y,z);
                     BlockState TARGET_BS = reader.getBlockState(TARGET_POS);
-
+                    if (canReplaceStone(TARGET_BS)) {
+                        reader.setBlock(TARGET_POS, StoneBS, 3);
+                    } else if (TARGET_BS.hasProperty(BlockStateProperties.SLAB_TYPE)) {
+                        ResourceLocation RS2 = ResourceLocation.tryParse(ForgeRegistries.BLOCKS.getKey(StoneBS.getBlock()).toString() + "_slab");
+                        Block blockVar = ForgeRegistries.BLOCKS.getValue(RS2);
+                        if (blockVar != Blocks.AIR && blockVar.defaultBlockState().hasProperty(BlockStateProperties.SLAB_TYPE)) {
+                            reader.setBlock(TARGET_POS, blockVar.defaultBlockState().setValue(BlockStateProperties.SLAB_TYPE, TARGET_BS.getValue(BlockStateProperties.SLAB_TYPE)), 3);
+                        }
+                    }
+                    /*
                     switch (Biome.getBiomeCategory(Holder.direct(targetBiome))) {
                         case NETHER:
                             if (TARGET_BS != Blocks.NETHERRACK.defaultBlockState()) break;
@@ -79,17 +86,9 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
                             }
                             break;
                         default:
-                            if (canReplaceStone(TARGET_BS)) {
-                                reader.setBlock(TARGET_POS, StoneBS, 3);
-                            } else if (TARGET_BS.hasProperty(BlockStateProperties.SLAB_TYPE)) {
-                                ResourceLocation RS2 = ResourceLocation.tryParse(StoneBS.getBlock().getRegistryName().toString() + "_slab");
-                                Block blockVar = ForgeRegistries.BLOCKS.getValue(RS2);
-                                if (blockVar != Blocks.AIR && blockVar.defaultBlockState().hasProperty(BlockStateProperties.SLAB_TYPE)) {
-                                    reader.setBlock(TARGET_POS, blockVar.defaultBlockState().setValue(BlockStateProperties.SLAB_TYPE, TARGET_BS.getValue(BlockStateProperties.SLAB_TYPE)), 3);
-                                }
-                            }
+
                             break;
-                    }
+                    }*/
                 }
             }
         }
@@ -104,7 +103,7 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
                 return target.is(BlockTags.BASE_STONE_OVERWORLD);
             case 3:
             default:
-                return target.is(BlockTags.BASE_STONE_OVERWORLD) && !target.getBlock().getRegistryName().getNamespace().equals("rankine");
+                return target.is(BlockTags.BASE_STONE_OVERWORLD) && !ForgeRegistries.BLOCKS.getKey(target.getBlock()).getNamespace().equals("rankine");
 
         }
     }
@@ -136,7 +135,7 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     private static boolean leaveNetherrack(WorldGenLevel reader, BlockPos pos, Biome biome) {
-        if (biome.getRegistryName().toString().equals(Biomes.BASALT_DELTAS.location().toString()) || biome.getRegistryName().toString().equals(Biomes.SOUL_SAND_VALLEY.location().toString())) return false;
+        if (ForgeRegistries.BIOMES.getKey(biome).toString().equals(Biomes.BASALT_DELTAS.location().toString()) || ForgeRegistries.BIOMES.getKey(biome).toString().equals(Biomes.SOUL_SAND_VALLEY.location().toString())) return false;
         for (int i = 1; i <=Config.WORLDGEN.NETHERRACK_LAYER_THICKNESS.get(); i++) {
             if (reader.getBlockState(pos.above(i)).is(RankineTags.Blocks.NETHER_TOPS)) return true;
         }

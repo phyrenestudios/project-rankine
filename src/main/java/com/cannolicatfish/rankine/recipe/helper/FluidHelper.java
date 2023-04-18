@@ -133,7 +133,7 @@ public class FluidHelper {
             }
         }
 
-        ent.calculateEntityAnimation(ent, ent instanceof FlyingAnimal);
+        ent.calculateEntityAnimation(ent instanceof FlyingAnimal);
     }
 
     public static double horizontalMag(Vec3 vec) {
@@ -141,7 +141,7 @@ public class FluidHelper {
     }
 
     protected static BlockPos getPositionUnderneath(Entity ent) {
-        return new BlockPos(ent.position().x, ent.getBoundingBox().minY - 0.5000001D, ent.position().z);
+        return new BlockPos((int) ent.position().x, (int) (ent.getBoundingBox().minY - 0.5000001D), (int) ent.position().z);
     }
 
     protected static void setFlag(Entity ent, int flag, boolean set) {

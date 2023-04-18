@@ -143,7 +143,7 @@ public class MixingBarrelContainer extends AbstractContainerMenu {
     }
 
     protected boolean hasRecipe(ItemStack stack) {
-        for (MixingRecipe recipe : this.world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.MIXING)) {
+        for (MixingRecipe recipe : this.world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.MIXING.get())) {
             for (Ingredient i : recipe.getIngredients()) {
                 if (i.test(stack)) {
                     return true;

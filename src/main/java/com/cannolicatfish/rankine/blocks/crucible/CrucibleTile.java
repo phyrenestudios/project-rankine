@@ -108,7 +108,7 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
         }
 
         if (tile.items.get(0).isEmpty() || tile.items.get(1).isEmpty() || tile.items.get(2).isEmpty() || tile.items.get(3).isEmpty()) return;
-        CrucibleRecipe irecipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE, tile, level).orElse(null);
+        CrucibleRecipe irecipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE.get(), tile, level).orElse(null);
         if (!tile.canSmelt(irecipe, tile)) {
             tile.cookTime = 0;
             return;
@@ -154,7 +154,7 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
     }
 
     public int getCookTime() {
-        CrucibleRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE, this, this.level).orElse(null);
+        CrucibleRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE.get(), this, this.level).orElse(null);
         if (irecipe != null) {
             return irecipe.getRecipeCookTime(this);
         } else {

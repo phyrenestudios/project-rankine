@@ -311,7 +311,7 @@ public class CrucibleRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.CRUCIBLE;
+        return RankineRecipeTypes.CRUCIBLE.get();
     }
 
     public static class Serializer implements RecipeSerializer<CrucibleRecipe> {

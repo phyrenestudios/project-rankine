@@ -142,7 +142,7 @@ public class RightClickBlockHandler {
 
         if(item instanceof AxeItem) {
             //Extra items from stripping recipe
-            StrippingRecipe irecipe = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.STRIPPING, new SimpleContainer(new ItemStack(b)), worldIn).orElse(null);
+            StrippingRecipe irecipe = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.AXE_STRIPPING.get(), new SimpleContainer(new ItemStack(b)), worldIn).orElse(null);
             if (irecipe != null) {
                 if (worldIn.getRandom().nextFloat() < irecipe.getChance()) {
                     Block.popResource(event.getLevel(), event.getPos(), irecipe.getResult());
@@ -298,7 +298,7 @@ public class RightClickBlockHandler {
 
             }
         } else if (ForgeRegistries.ITEMS.tags().getTag(RankineTags.Items.SLUICING_TOOLS).contains(stack.getItem()) && direction != null && !player.getCooldowns().isOnCooldown(stack.getItem())) {
-            SluicingRecipe recipe = world.getRecipeManager().getRecipeFor(RankineRecipeTypes.SLUICING, new SimpleContainer(new ItemStack(world.getBlockState(pos).getBlock()), stack), world).orElse(null);
+            SluicingRecipe recipe = world.getRecipeManager().getRecipeFor(RankineRecipeTypes.SLUICING.get(), new SimpleContainer(new ItemStack(world.getBlockState(pos).getBlock()), stack), world).orElse(null);
             if (recipe != null) {
                 float r = world.getRandom().nextFloat();
                 world.playSound(player, pos, SoundEvents.SAND_FALL, SoundSource.BLOCKS, 1.0F, r * 0.4F + 0.8F);

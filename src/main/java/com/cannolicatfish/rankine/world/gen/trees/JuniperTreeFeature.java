@@ -16,7 +16,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class JuniperTreeFeature extends Feature<TreeConfiguration> {
 
@@ -85,7 +84,7 @@ public class JuniperTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void juniperLeaves(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config) {
+    private void juniperLeaves(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         List<BlockPos> leaves = new ArrayList<>();
         for (BlockPos b : BlockPos.betweenClosed(pos.offset(-1,-1,-1),pos.offset(1,1,1))) {
             if (WorldgenUtils.inRadiusCenter(pos,b,1.5D)) leaves.add(b.immutable());
@@ -96,7 +95,7 @@ public class JuniperTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void juniperBranch(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, int branchHeight, int dir) {
+    private void juniperBranch(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, int branchHeight, int dir) {
         int topHeight = rand.nextInt(branchHeight)+1;
         BlockPos b = pos;
         for (int i = 0; i<topHeight; ++i) {

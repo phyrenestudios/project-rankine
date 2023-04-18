@@ -185,7 +185,7 @@ public interface IAlloyItem {
                 for (String e: comp)
                 {
                     String str = e.replaceAll("[^A-Za-z]+", "");
-                    worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ELEMENT).stream().filter(elementRecipe -> elementRecipe.getSymbol().equals(str)).findFirst().ifPresent(list::add);
+                    worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ELEMENT.get()).stream().filter(elementRecipe -> elementRecipe.getSymbol().equals(str)).findFirst().ifPresent(list::add);
                 }
                 return list;
             }

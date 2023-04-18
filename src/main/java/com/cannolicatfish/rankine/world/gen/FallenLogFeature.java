@@ -14,8 +14,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 
-import java.util.Random;
-
 public class FallenLogFeature extends Feature<SimpleBlockConfiguration> {
     public FallenLogFeature(Codec<SimpleBlockConfiguration> p_i49915_1_) {
         super(p_i49915_1_);
@@ -41,7 +39,7 @@ public class FallenLogFeature extends Feature<SimpleBlockConfiguration> {
             Holder<Biome> biome = levelIn.getBiome(blockPos);
             for (int i = 0; i < length; i++) {
                 BlockPos cur = blockPos.relative(axis, i);
-                boolean isMossy = biome.value().getDownfall() > 0.5 && random.nextFloat() < 0.6f && levelIn.isEmptyBlock(cur.above());
+                boolean isMossy = biome.value().modifiableBiomeInfo().getModifiedBiomeInfo().climateSettings().downfall() > 0.5 && random.nextFloat() < 0.6f && levelIn.isEmptyBlock(cur.above());
                 levelIn.setBlock(cur, hollowLog.setValue(HollowLogBlock.MOSSY, isMossy), 3);
                 if (isMossy) {
                     levelIn.setBlock(cur.above(), Blocks.MOSS_CARPET.defaultBlockState(), 3);

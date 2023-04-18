@@ -53,83 +53,83 @@ public class RankineJEIRecipes {
     }
 
     public List<CrushingRecipe> getCrushingRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.CRUSHING);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.CRUSHING.get());
     }
 
     public List<ForagingRecipe> getForagingRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.FORAGING);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.FORAGING.get());
     }
 
     public List<AlloyingRecipe> getAlloyingRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ALLOYING);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ALLOYING.get());
     }
 
     public List<AlloyingRecipe> getAlloyFurnaceRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ALLOYING).stream().filter(recipe -> (recipe.getTier() & 1) != 0 && recipe.getTier() != -1).collect(Collectors.toList());
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()).stream().filter(recipe -> (recipe.getTier() & 1) != 0 && recipe.getTier() != -1).collect(Collectors.toList());
     }
 
     public List<FusionFurnaceRecipe> getFusionFurnaceRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.FUSION_FURNACE);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.FUSION_FURNACE.get());
     }
 
     public List<AlloyingRecipe> getInductionFurnaceRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ALLOYING).stream().filter(recipe -> (recipe.getTier() & 2) != 0 && recipe.getTier() != -1).collect(Collectors.toList());
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()).stream().filter(recipe -> (recipe.getTier() & 2) != 0 && recipe.getTier() != -1).collect(Collectors.toList());
     }
 
     public List<RockGeneratorRecipe> getIntrusiveGeneratorRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.INTRUSIVE_IGNEOUS))).collect(Collectors.toList());
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR.get()).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.INTRUSIVE_IGNEOUS))).collect(Collectors.toList());
     }
 
     public List<RockGeneratorRecipe> getExtrusiveGeneratorRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS))).collect(Collectors.toList());
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR.get()).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS))).collect(Collectors.toList());
     }
 
     public List<RockGeneratorRecipe> getSedimentaryGeneratorRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY))).collect(Collectors.toList());
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR.get()).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY))).collect(Collectors.toList());
     }
 
     public List<RockGeneratorRecipe> getMetamorphicGeneratorRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC))).collect(Collectors.toList());
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR.get()).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC))).collect(Collectors.toList());
     }
 
     public List<RockGeneratorRecipe> getVolcanicGeneratorRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC))).collect(Collectors.toList());
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR.get()).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC))).collect(Collectors.toList());
     }
 
     public List<TreetappingRecipe> getTreetappingRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.TREETAPPING);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.TREETAPPING.get());
     }
 
     public List<StrippingRecipe> getStrippingRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.STRIPPING);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.AXE_STRIPPING.get());
     }
 
     public List<AirDistillationRecipe> getAirDistillationRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.AIR_DISTILLATION);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.AIR_DISTILLATION.get());
     }
 
     public List<BeehiveOvenRecipe> getBeehiveRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.BEEHIVE);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.BEEHIVE.get());
     }
 
     public List<SluicingRecipe> getSluicingRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.SLUICING);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.SLUICING.get());
     }
 
     public List<MixingRecipe> getMixingRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.MIXING);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.MIXING.get());
     }
 
     public List<ElementRecipe> getElementRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ELEMENT);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.ELEMENT.get());
     }
 
     public List<CrucibleRecipe> getCrucibleRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.CRUCIBLE);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.CRUCIBLE.get());
     }
 
     public List<EvaporationRecipe> getEvaporationRecipes() {
-        return recipeManager.getAllRecipesFor(RankineRecipeTypes.EVAPORATION);
+        return recipeManager.getAllRecipesFor(RankineRecipeTypes.EVAPORATION.get());
     }
 
     public static <T> void checkNotNull(@Nullable T object, String name) {

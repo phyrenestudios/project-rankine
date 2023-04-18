@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.items.tools;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -10,7 +11,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +34,12 @@ public class RockDrillItem extends Item {
         if (!context.getLevel().isClientSide && context.getPlayer() != null) {
             Player player = context.getPlayer();
             if (!stones.isEmpty()) {
-                player.sendMessage(new TextComponent("== STONES LIST ==").withStyle(ChatFormatting.GOLD),player.getUUID());
+                player.sendSystemMessage(Component.literal("== STONES LIST ==").withStyle(ChatFormatting.GOLD));
                 for (Block s : stones) {
-                    player.sendMessage(new TranslatableComponent(s.getDescriptionId()),player.getUUID());
+                    player.sendSystemMessage(Component.translatable(s.getDescriptionId()));
                 }
             } else {
-                player.sendMessage(new TextComponent("No stones detected"),player.getUUID());
+                player.sendSystemMessage(Component.literal("No stones detected"));
             }
             context.getItemInHand().hurtAndBreak(1,player,(p_220040_1_) -> {
                 p_220040_1_.broadcastBreakEvent(context.getHand());

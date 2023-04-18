@@ -19,7 +19,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.List;
 
 public class IceMeltItem extends Item {
@@ -54,7 +53,7 @@ public class IceMeltItem extends Item {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-            tooltip.add(new TextComponent("Melts snow and ice").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.literal("Melts snow and ice").withStyle(ChatFormatting.GRAY));
     }
 
 

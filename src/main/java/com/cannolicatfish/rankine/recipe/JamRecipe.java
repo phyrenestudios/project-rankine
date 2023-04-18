@@ -4,17 +4,19 @@ package com.cannolicatfish.rankine.recipe;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineTags;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 
 public class JamRecipe extends CustomRecipe {
-    public JamRecipe(ResourceLocation idIn) {
-        super(idIn);
+    public JamRecipe(ResourceLocation idIn, CraftingBookCategory category) {
+        super(idIn, category);
     }
 
     public boolean matches(CraftingContainer inv, Level worldIn) {
@@ -49,7 +51,7 @@ public class JamRecipe extends CustomRecipe {
         return flag && flag2 && flag3;
     }
 
-    public ItemStack assemble(CraftingContainer inv) {
+    public ItemStack assemble(CraftingContainer inv, RegistryAccess registryAccess) {
         ItemStack itemstack = ItemStack.EMPTY;
 
         for(int i = 0; i < inv.getContainerSize(); ++i) {

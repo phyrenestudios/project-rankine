@@ -8,6 +8,7 @@ import com.cannolicatfish.rankine.util.RockGeneratorUtils;
 import com.mojang.datafixers.DataFixUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -18,6 +19,7 @@ import net.minecraftforge.event.level.BlockEvent;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class FluidPlaceBlockHandler {
@@ -32,14 +34,15 @@ public class FluidPlaceBlockHandler {
                 posMap.put(pos.relative(d),worldIn.getBlockState(pos.relative(d)).getBlock());
             }
             ItemStack[] items = posMap.values().stream().map(ItemStack::new).toArray(ItemStack[]::new);
-            RockGeneratorRecipe recipe = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
+            RockGeneratorRecipe recipe = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR.get()).stream().flatMap((r) -> {
                 if (r.getGenType().equals(RockGeneratorUtils.RockGenType.INTRUSIVE_IGNEOUS)) {
-                    return DataFixUtils.orElseGet(RankineRecipeTypes.ROCK_GENERATOR.tryMatch(r, worldIn, new SimpleContainer(items)).map(Stream::of),Stream::empty);
+                    Optional<RockGeneratorRecipe> optRecipe = r.matches(new SimpleContainer(items),worldIn) ? Optional.of(r) : Optional.empty();
+                    return DataFixUtils.orElseGet(optRecipe.map(Stream::of),Stream::empty);
                 }
                 return null;
             }).findFirst().orElse(null);
             if (recipe != null) {
-                ItemStack output = recipe.getResultItem();
+                ItemStack output = recipe.getResultItem(RegistryAccess.EMPTY);
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     event.setNewState(((BlockItem) output.getItem()).getBlock().defaultBlockState());
                     if (worldIn.getRandom().nextFloat() < Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get()) {
@@ -60,14 +63,15 @@ public class FluidPlaceBlockHandler {
                 posMap.put(pos.relative(d),worldIn.getBlockState(pos.relative(d)).getBlock());
             }
             ItemStack[] items = posMap.values().stream().map(ItemStack::new).toArray(ItemStack[]::new);
-            RockGeneratorRecipe recipe = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
+            RockGeneratorRecipe recipe = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR.get()).stream().flatMap((r) -> {
                 if (r.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS)) {
-                    return DataFixUtils.orElseGet(RankineRecipeTypes.ROCK_GENERATOR.tryMatch(r, worldIn, new SimpleContainer(items)).map(Stream::of),Stream::empty);
+                    Optional<RockGeneratorRecipe> optRecipe = r.matches(new SimpleContainer(items),worldIn) ? Optional.of(r) : Optional.empty();
+                    return DataFixUtils.orElseGet(optRecipe.map(Stream::of),Stream::empty);
                 }
                 return null;
             }).findFirst().orElse(null);
             if (recipe != null) {
-                ItemStack output = recipe.getResultItem();
+                ItemStack output = recipe.getResultItem(RegistryAccess.EMPTY);
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     event.setNewState(((BlockItem) output.getItem()).getBlock().defaultBlockState());
                     if (worldIn.getRandom().nextFloat() < Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get()) {
@@ -88,14 +92,15 @@ public class FluidPlaceBlockHandler {
                 posMap.put(pos.relative(d),worldIn.getBlockState(pos.relative(d)).getBlock());
             }
             ItemStack[] items = posMap.values().stream().map(ItemStack::new).toArray(ItemStack[]::new);
-            RockGeneratorRecipe recipe = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
+            RockGeneratorRecipe recipe = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR.get()).stream().flatMap((r) -> {
                 if (r.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC)) {
-                    return DataFixUtils.orElseGet(RankineRecipeTypes.ROCK_GENERATOR.tryMatch(r, worldIn, new SimpleContainer(items)).map(Stream::of),Stream::empty);
+                    Optional<RockGeneratorRecipe> optRecipe = r.matches(new SimpleContainer(items),worldIn) ? Optional.of(r) : Optional.empty();
+                    return DataFixUtils.orElseGet(optRecipe.map(Stream::of),Stream::empty);
                 }
                 return null;
             }).findFirst().orElse(null);
             if (recipe != null) {
-                ItemStack output = recipe.getResultItem();
+                ItemStack output = recipe.getResultItem(RegistryAccess.EMPTY);
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     event.setNewState(((BlockItem) output.getItem()).getBlock().defaultBlockState());
                     if (worldIn.getRandom().nextFloat() < Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get()) {
@@ -116,14 +121,15 @@ public class FluidPlaceBlockHandler {
                 posMap.put(pos.relative(d),worldIn.getBlockState(pos.relative(d)).getBlock());
             }
             ItemStack[] items = posMap.values().stream().map(ItemStack::new).toArray(ItemStack[]::new);
-            RockGeneratorRecipe recipe = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
+            RockGeneratorRecipe recipe = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR.get()).stream().flatMap((r) -> {
                 if (r.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC)) {
-                    return DataFixUtils.orElseGet(RankineRecipeTypes.ROCK_GENERATOR.tryMatch(r, worldIn, new SimpleContainer(items)).map(Stream::of),Stream::empty);
+                    Optional<RockGeneratorRecipe> optRecipe = r.matches(new SimpleContainer(items),worldIn) ? Optional.of(r) : Optional.empty();
+                    return DataFixUtils.orElseGet(optRecipe.map(Stream::of),Stream::empty);
                 }
                 return null;
             }).findFirst().orElse(null);
             if (recipe != null) {
-                ItemStack output = recipe.getResultItem();
+                ItemStack output = recipe.getResultItem(RegistryAccess.EMPTY);
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     event.setNewState(((BlockItem) output.getItem()).getBlock().defaultBlockState());
                     if (worldIn.getRandom().nextFloat() < Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get()) {

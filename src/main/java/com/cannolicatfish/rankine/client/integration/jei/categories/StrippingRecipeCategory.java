@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.StrippingRecipe;
@@ -10,14 +11,14 @@ import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-
-import java.awt.*;
+import org.jetbrains.annotations.Nullable;
 
 public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe> {
 
@@ -33,20 +34,20 @@ public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe>
                 .addPadding(1, 0, 1, 0)
                 .build();
     }
-    @SuppressWarnings("removal")
+
     @Override
-    public ResourceLocation getUid() {
-        return UID;
+    public RecipeType<StrippingRecipe> getRecipeType() {
+        return RankineJEIRecipeTypes.AXE_STRIPPING_RECIPE_TYPE;
     }
-    @SuppressWarnings("removal")
+
     @Override
-    public Class<? extends StrippingRecipe> getRecipeClass() {
-        return StrippingRecipe.class;
+    public @Nullable ResourceLocation getRegistryName(StrippingRecipe recipe) {
+        return UID;
     }
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override
@@ -64,7 +65,6 @@ public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe>
         builder.addSlot(RecipeIngredientRole.INPUT,2,10).addIngredients(recipe.getIngredient());
         builder.addSlot(RecipeIngredientRole.CATALYST,23,0).addIngredients(Ingredient.of(RankineTags.Items.AXES));
         builder.addSlot(RecipeIngredientRole.OUTPUT,60,10).addItemStack(recipe.getResult());
-        IRecipeCategory.super.setRecipe(builder, recipe, focuses);
     }
 }
 

@@ -70,11 +70,11 @@ public class AlloyFurnaceContainer extends AbstractContainerMenu {
     }
 
     protected boolean hasElementRecipe(ItemStack stack) {
-        return this.playerEntity.getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, new SimpleContainer(stack), this.playerEntity.getLevel()).isPresent();
+        return this.playerEntity.getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT.get(), new SimpleContainer(stack), this.playerEntity.getLevel()).isPresent();
     }
 
     protected AlloyingRecipe hasAlloyRecipe(Container inv) {
-        return this.playerEntity.getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, inv, this.playerEntity.getLevel()).orElse(null);
+        return this.playerEntity.getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), inv, this.playerEntity.getLevel()).orElse(null);
     }
 
     public AbstractMap.SimpleEntry<String[],Integer> getOutputString() {

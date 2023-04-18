@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
 import com.google.common.cache.CacheBuilder;
@@ -16,17 +17,19 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
 import java.util.List;
 
 public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRecipe> {
@@ -85,7 +88,7 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
         if (minCookTime > 0 && maxCookTime > 0) {
             int minCookTimeSeconds = Math.round((minCookTime / 20f) * multiplier);
             int maxCookTimeSeconds = Math.round((maxCookTime / 20f) * multiplier);
-            TextComponent timeString = new TextComponent(new TranslatableComponent("gui.jei.category.smelting.time.seconds", minCookTimeSeconds).getString() + " - " + new TranslatableComponent("gui.jei.category.smelting.time.seconds", maxCookTimeSeconds).getString());
+            Component timeString = Component.literal(Component.translatable("gui.jei.category.smelting.time.seconds", minCookTimeSeconds).getString() + " - " + Component.translatable("gui.jei.category.smelting.time.seconds", maxCookTimeSeconds).getString());
             Minecraft minecraft = Minecraft.getInstance();
             Font fontRenderer = minecraft.font;
             int stringWidth = fontRenderer.width(timeString);
@@ -93,21 +96,19 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
         }
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public @NotNull ResourceLocation getUid() {
+    public @Nullable ResourceLocation getRegistryName(BeehiveOvenRecipe recipe) {
         return UID;
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public @NotNull Class<? extends BeehiveOvenRecipe> getRecipeClass() {
-        return BeehiveOvenRecipe.class;
+    public RecipeType<BeehiveOvenRecipe> getRecipeType() {
+        return RankineJEIRecipeTypes.BEEHIVE_OVEN_RECIPE_TYPE;
     }
 
     @Override
     public @NotNull Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override
@@ -170,7 +171,7 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
             posX += 18;
         }
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT,92,20).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT,92,20).addItemStack(recipe.getResultItem(RegistryAccess.EMPTY));
     }
 }
 

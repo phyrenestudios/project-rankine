@@ -53,7 +53,7 @@ public class EvaporationRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.EVAPORATION;
+        return RankineRecipeTypes.EVAPORATION.get();
     }
 
     public String getGroup() {

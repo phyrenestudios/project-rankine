@@ -15,7 +15,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.List;
 
 public class RopeCoilArrowItem extends ArrowItem {
@@ -32,9 +31,9 @@ public class RopeCoilArrowItem extends ArrowItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
-            tooltip.add(new TextComponent("Firing this arrow with rope in the offhand deploys additional rope.").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.literal("Firing this arrow with rope in the offhand deploys additional rope.").withStyle(ChatFormatting.GRAY));
         } else {
-            tooltip.add(new TextComponent("Hold shift for more information...").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.literal("Hold shift for more information...").withStyle(ChatFormatting.GRAY));
         }
 
     }

@@ -58,7 +58,7 @@ public class PistonHandler {
             if (power >= 15) {
                 levelIn.destroyBlock(facePos.relative(dir,2), false);
                 power = 0;
-                for (CrushingRecipe recipe : levelIn.getServer().getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING)) {
+                for (CrushingRecipe recipe : levelIn.getServer().getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING.get())) {
                     for (ItemStack s : recipe.getIngredientAsStackList().clone()) {
                         if (s.getItem() == state.getBlock().asItem()) {
                             List<ItemStack> results = recipe.getResults(currentTier, levelIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(currentTier)  + 1);

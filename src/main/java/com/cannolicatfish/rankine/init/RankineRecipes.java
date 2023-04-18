@@ -17,6 +17,7 @@ import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -93,7 +94,7 @@ public class RankineRecipes {
             double d1 = iposition.y() + (double) ((float) direction.getStepY() * 0.3F);
             double d2 = iposition.z() + (double) ((float) direction.getStepZ() * 0.3F);
             Level world = source.getLevel();
-            Random random = world.random;
+            RandomSource random = world.random;
             double d3 = random.nextGaussian() * 0.05D + (double) direction.getStepX();
             double d4 = random.nextGaussian() * 0.05D + (double) direction.getStepY();
             double d5 = random.nextGaussian() * 0.05D + (double) direction.getStepZ();
@@ -117,7 +118,7 @@ public class RankineRecipes {
             double d1 = iposition.y() + (double) ((float) direction.getStepY() * 0.3F);
             double d2 = iposition.z() + (double) ((float) direction.getStepZ() * 0.3F);
             Level world = source.getLevel();
-            Random random = world.random;
+            RandomSource random = world.random;
             double d3 = random.nextGaussian() * 0.05D + (double) direction.getStepX();
             double d4 = random.nextGaussian() * 0.05D + (double) direction.getStepY();
             double d5 = random.nextGaussian() * 0.05D + (double) direction.getStepZ();
@@ -201,7 +202,7 @@ public class RankineRecipes {
                         currentElements.put(entry.getA(), currentElements.get(entry.getA()) + entry.getB() * stack.getCount());
                     }
                 } else {
-                    ElementRecipe recipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, new SimpleContainer(stack), level).orElse(null);
+                    ElementRecipe recipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT.get(), new SimpleContainer(stack), level).orElse(null);
                     if (recipe != null) {
                         if (!currentElements.containsKey(recipe)) {
                             currentElements.put(recipe, recipe.getMaterialCount(stack.getItem()) * stack.getCount());

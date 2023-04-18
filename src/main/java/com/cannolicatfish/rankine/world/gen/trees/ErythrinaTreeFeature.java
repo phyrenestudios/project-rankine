@@ -6,6 +6,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -19,7 +20,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ErythrinaTreeFeature extends Feature<TreeConfiguration> {
 
@@ -31,7 +31,7 @@ public class ErythrinaTreeFeature extends Feature<TreeConfiguration> {
     public boolean place(FeaturePlaceContext<TreeConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = reader.getRandom();
         TreeConfiguration config = p_159749_.config();
         int trunkHeight = config.trunkPlacer.getTreeHeight(rand);
         boolean flag = true;
@@ -90,7 +90,7 @@ public class ErythrinaTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void magnoliaLeaves(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config) {
+    private void magnoliaLeaves(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         List<BlockPos> leaves = new ArrayList<>();
         for (BlockPos b : BlockPos.betweenClosed(pos.offset(-1,0,-1),pos.offset(1,0,1))) {
             leaves.add(b.immutable());
@@ -124,7 +124,7 @@ public class ErythrinaTreeFeature extends Feature<TreeConfiguration> {
         return true;
     }
 
-    private void erythrinaBranch(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, int branchHeight, int dir, int tier) {
+    private void erythrinaBranch(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, int branchHeight, int dir, int tier) {
         int topHeight = rand.nextInt(branchHeight)+1;
         int split = rand.nextInt(2)+1;
         BlockPos b = pos;
@@ -147,11 +147,11 @@ public class ErythrinaTreeFeature extends Feature<TreeConfiguration> {
     }
 
 
-    private void placeLogAt(LevelWriter reader, BlockPos pos, Random rand, TreeConfiguration config, Direction.Axis axis) {
+    private void placeLogAt(LevelWriter reader, BlockPos pos, RandomSource rand, TreeConfiguration config, Direction.Axis axis) {
         this.setLogState(reader, pos, config.trunkProvider.getState(rand, pos).setValue(BlockStateProperties.AXIS, axis));
     }
 
-    private void placeLeafAt(LevelSimulatedRW world, BlockPos pos, Random rand, TreeConfiguration config) {
+    private void placeLeafAt(LevelSimulatedRW world, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         if (isAirOrLeaves(world, pos)) {
             this.setLogState(world, pos, config.foliageProvider.getState(rand, pos).setValue(LeavesBlock.DISTANCE, 1));
         }

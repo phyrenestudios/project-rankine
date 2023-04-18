@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.BlockItem;
@@ -64,9 +65,9 @@ public class BeehiveOvenTile extends BlockEntity {
             for (BlockPos p: BlockPos.betweenClosed(posIn.offset(-1,1,-1),posIn.offset(1,2,1))) {
                 Block target = levelIn.getBlockState(p).getBlock();
                 if (target == Blocks.AIR) levelIn.setBlockAndUpdate(p, RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get().defaultBlockState());
-                BeehiveOvenRecipe recipe = levelIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.BEEHIVE, new SimpleContainer(new ItemStack(target)), levelIn).orElse(null);
+                BeehiveOvenRecipe recipe = levelIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.BEEHIVE.get(), new SimpleContainer(new ItemStack(target)), levelIn).orElse(null);
                 if (recipe != null) {
-                    ItemStack output = recipe.getResultItem();
+                    ItemStack output = recipe.getResultItem(RegistryAccess.EMPTY);
                     if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                         levelIn.setBlockAndUpdate(p, ((BlockItem) output.getItem()).getBlock().defaultBlockState());
                     }
@@ -84,9 +85,9 @@ public class BeehiveOvenTile extends BlockEntity {
         for (BlockPos p: BlockPos.betweenClosed(posIn.offset(-1,1,-1),posIn.offset(1,2,1))) {
             Block target = levelIn.getBlockState(p).getBlock();
             if (target instanceof AirBlock) continue;
-            BeehiveOvenRecipe recipe = levelIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.BEEHIVE, new SimpleContainer(new ItemStack(target)), levelIn).orElse(null);
+            BeehiveOvenRecipe recipe = levelIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.BEEHIVE.get(), new SimpleContainer(new ItemStack(target)), levelIn).orElse(null);
             if (recipe != null) {
-                ItemStack output = recipe.getResultItem();
+                ItemStack output = recipe.getResultItem(RegistryAccess.EMPTY);
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     time += levelIn.getRandom().nextInt(recipe.getMinCookTime(), recipe.getMaxCookTime());
                 }

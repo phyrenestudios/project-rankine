@@ -99,7 +99,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
             creativeFlag = ((Player) entityLiving).isCreative();
         }
         if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isEmptyBlock(pos) && this.isCorrectToolForDrops(stack,state)) {
-            for (CrushingRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING)) {
+            for (CrushingRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING.get())) {
                 for (ItemStack s : recipe.getIngredientAsStackList()) {
                     if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem()) {
                         if (state.getDestroySpeed(worldIn, pos) != 0.0F) {

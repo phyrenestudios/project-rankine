@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -30,8 +31,6 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 
 import javax.annotation.Nullable;
-
-import net.minecraft.world.entity.Entity.RemovalReason;
 
 public class SpearEntity extends AbstractArrow {
     private static final EntityDataAccessor<Byte> LOYALTY_LEVEL = SynchedEntityData.defineId(SpearEntity.class, EntityDataSerializers.BYTE);
@@ -70,7 +69,7 @@ public class SpearEntity extends AbstractArrow {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -102,7 +101,7 @@ public class SpearEntity extends AbstractArrow {
             level.playLocalSound(x,y,z,SoundEvents.ENDERMAN_TELEPORT,SoundSource.PLAYERS,1f,1f,false);
             entity.teleportTo(x,y,z);
             if (!((Player) entity).isCreative()) {
-                entity.hurt(DamageSource.FALL, Math.max(5.0F - 2.5F*(this.entityData.get(TELEPORT_LEVEL) - 1),0));
+                entity.hurt(level.damageSources().fall(), Math.max(5.0F - 2.5F*(this.entityData.get(TELEPORT_LEVEL) - 1),0));
             }
         }
 
@@ -182,7 +181,7 @@ public class SpearEntity extends AbstractArrow {
         }
 
         Entity entity1 = this.getOwner();
-        DamageSource damagesource = DamageSource.trident(this, (Entity)(entity1 == null ? this : entity1));
+        DamageSource damagesource = level.damageSources().trident(this, (Entity)(entity1 == null ? this : entity1));
         this.dealtDamage = true;
         SoundEvent soundevent = SoundEvents.TRIDENT_HIT;
         if (entity.hurt(damagesource, f) && entity instanceof LivingEntity) {

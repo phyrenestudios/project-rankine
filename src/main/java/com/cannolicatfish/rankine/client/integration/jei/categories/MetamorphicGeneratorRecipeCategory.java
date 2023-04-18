@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -10,15 +11,16 @@ import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.FluidStack;
-
-import java.awt.*;
+import org.jetbrains.annotations.Nullable;
 
 public class MetamorphicGeneratorRecipeCategory implements IRecipeCategory<RockGeneratorRecipe> {
 
@@ -34,22 +36,20 @@ public class MetamorphicGeneratorRecipeCategory implements IRecipeCategory<RockG
                 .addPadding(1, 0, 1, 0)
                 .build();
     }
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
+    public RecipeType<RockGeneratorRecipe> getRecipeType() {
+        return RankineJEIRecipeTypes.ROCK_GENERATOR_RECIPE_TYPE;
     }
-    @SuppressWarnings("removal")
+
     @Override
-    public Class<? extends RockGeneratorRecipe> getRecipeClass() {
-        return RockGeneratorRecipe.class;
+    public @Nullable ResourceLocation getRegistryName(RockGeneratorRecipe recipe) {
+        return UID;
     }
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
-
     @Override
     public IDrawable getBackground() {
         return background;
@@ -66,7 +66,6 @@ public class MetamorphicGeneratorRecipeCategory implements IRecipeCategory<RockG
         builder.addSlot(RecipeIngredientRole.INPUT,25,46).addIngredients(recipe.getFirstIngredient());
         builder.addSlot(RecipeIngredientRole.INPUT,2,2).addIngredient(ForgeTypes.FLUID_STACK, new FluidStack(Fluids.LAVA,1000));
         builder.addSlot(RecipeIngredientRole.INPUT,25,28).addIngredient(ForgeTypes.FLUID_STACK, new FluidStack(Fluids.WATER,1000));
-        builder.addSlot(RecipeIngredientRole.OUTPUT,80,27).addItemStack(recipe.getResultItem());
-        IRecipeCategory.super.setRecipe(builder, recipe, focuses);
+        builder.addSlot(RecipeIngredientRole.OUTPUT,80,27).addItemStack(recipe.getResultItem(RegistryAccess.EMPTY));
     }
 }

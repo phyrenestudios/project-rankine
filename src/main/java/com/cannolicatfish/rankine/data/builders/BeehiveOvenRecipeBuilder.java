@@ -2,13 +2,13 @@ package com.cannolicatfish.rankine.data.builders;
 
 import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.google.gson.JsonObject;
-import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
@@ -60,7 +60,7 @@ public class BeehiveOvenRecipeBuilder {
 
         public void serializeRecipeData(JsonObject p_126297_) {
             p_126297_.add("input", this.ingredient.toJson());
-            p_126297_.addProperty("result", Registry.ITEM.getKey(this.result).toString());
+            p_126297_.addProperty("result", ForgeRegistries.ITEMS.getKey(this.result).toString());
             p_126297_.addProperty("minCookTime", this.minCookTime);
             p_126297_.addProperty("maxCookTime", this.maxCookTime);
         }

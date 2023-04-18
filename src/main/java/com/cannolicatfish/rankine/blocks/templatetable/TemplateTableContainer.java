@@ -188,7 +188,7 @@ public class TemplateTableContainer extends AbstractContainerMenu {
         if (this.inputInventory.getItem(6).getItem() == Items.PAPER &&
                 (this.inputInventory.getItem(7).getItem() instanceof DyeItem))
         {
-            AlloyingRecipe recipeIn = this.world.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, this.inputInventory, this.world).orElse(null);
+            AlloyingRecipe recipeIn = this.world.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), this.inputInventory, this.world).orElse(null);
             //calcPercentages();
             if (recipeIn != null) {
                 ItemStack recipeOutput = recipeIn.generateResult(this.world,this.inputInventory, 3);
@@ -229,7 +229,7 @@ public class TemplateTableContainer extends AbstractContainerMenu {
 
     public List<AlloyingRecipe> getAlloyRecipes() {
         Level worldIn = this.world;
-        return world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING).stream()
+        return world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()).stream()
                 .filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty())
                 .sorted((o1, o2) -> Boolean.compare(o1.cannotMake(player.getInventory(), worldIn), o2.cannotMake(player.getInventory(), worldIn)))
                 .collect(Collectors.toList());

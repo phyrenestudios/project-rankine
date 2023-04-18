@@ -43,7 +43,7 @@ public class TreeTapTile extends BlockEntity {
             }
             tile.proccessTime += 1;
             Block log = level.getBlockState(logPos).getBlock();
-            TreetappingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.TREETAPPING, new SimpleContainer(new ItemStack(log)), level).orElse(null);
+            TreetappingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.TREETAPPING.get(), new SimpleContainer(new ItemStack(log)), level).orElse(null);
             if (irecipe != null && tile.proccessTime > irecipe.getTapTime()) {
                 tile.outputTank.fill(irecipe.getResult(), IFluidHandler.FluidAction.EXECUTE);
                 tile.proccessTime = 0;

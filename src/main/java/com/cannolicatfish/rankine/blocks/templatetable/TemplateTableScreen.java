@@ -10,6 +10,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -21,13 +22,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.PacketDistributor;
 
-import java.awt.*;
 import java.util.Collections;
 import java.util.List;
 
 public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableContainer> {
     private final ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/template_table.png");
     private static final Component TRADES_LABEL = Component.translatable("rankine.alloys");
+    private int blitOffset = 0;
     private int selectedAlloyRecipe;
     private final AlloyButton[] tradeOfferButtons = new AlloyButton[7];
     private int scrollOff;
@@ -110,6 +111,9 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
         }
     }
 
+    private int getBlitOffset(){
+        return blitOffset;
+    }
 
 
     public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
@@ -133,29 +137,29 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
                 } else {
                     Level worldIn = this.menu.getWorld();
                     ItemStack itemstack = new ItemStack(RankineItems.ELEMENT.get());
-                    this.itemRenderer.blitOffset = 100.0F;
+                    this.blitOffset = 100;
                     int j1 = k + 2;
                     int len = 0;
                     for (Ingredient ing : alloy.getIngredientsList(worldIn,true)) {
                         int index = (Math.round(worldIn.getGameTime() / 30f) % ing.getItems().length);
-                        this.itemRenderer.renderAndDecorateFakeItem(ing.getItems()[index], l + len, j1);
-                        this.itemRenderer.renderGuiItemDecorations(this.font, ing.getItems()[index], l + len, j1);
+                        this.itemRenderer.renderAndDecorateFakeItem(matrixStack,ing.getItems()[index], l + len, j1);
+                        this.itemRenderer.renderGuiItemDecorations(matrixStack,this.font, ing.getItems()[index], l + len, j1);
                         len += 8;
                     }
                     ItemStack itemstack1 = new ItemStack(RankineItems.ELEMENT.get());
                     ItemStack itemstack2 = new ItemStack(RankineItems.BUILDING_TOOL.get());
-                    ItemStack itemstack3 = alloy.getResultItem();
+                    ItemStack itemstack3 = alloy.getResultItem(RegistryAccess.EMPTY);
 
                     //this.renderItemOverlay(matrixStack, itemstack1, itemstack, l, j1);
                     if (!itemstack2.isEmpty()) {
-                        this.itemRenderer.renderAndDecorateFakeItem(itemstack2, i + 5 + 35, j1);
-                        this.itemRenderer.renderGuiItemDecorations(this.font, itemstack2, i + 5 + 35, j1);
+                        this.itemRenderer.renderAndDecorateFakeItem(matrixStack,itemstack2, i + 5 + 35, j1);
+                        this.itemRenderer.renderGuiItemDecorations(matrixStack,this.font, itemstack2, i + 5 + 35, j1);
                     }
 
                     this.checkIfValid(matrixStack, alloy, i, j1);
-                    this.itemRenderer.renderAndDecorateFakeItem(itemstack3, i + 5 + 68, j1);
-                    this.itemRenderer.renderGuiItemDecorations(this.font, itemstack3, i + 5 + 68, j1);
-                    this.itemRenderer.blitOffset = 0.0F;
+                    this.itemRenderer.renderAndDecorateFakeItem(matrixStack,itemstack3, i + 5 + 68, j1);
+                    this.itemRenderer.renderGuiItemDecorations(matrixStack,this.font, itemstack3, i + 5 + 68, j1);
+                    this.blitOffset = 0;
                     k += 20;
                     ++i1;
                 }
@@ -190,17 +194,17 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
     }
 
     private void renderItemOverlay(PoseStack p_238841_1_, ItemStack p_238841_2_, ItemStack p_238841_3_, int p_238841_4_, int p_238841_5_) {
-        this.itemRenderer.renderAndDecorateFakeItem(p_238841_2_, p_238841_4_, p_238841_5_);
+        this.itemRenderer.renderAndDecorateFakeItem(p_238841_1_,p_238841_2_, p_238841_4_, p_238841_5_);
         if (p_238841_3_.getCount() == p_238841_2_.getCount()) {
-            this.itemRenderer.renderGuiItemDecorations(this.font, p_238841_2_, p_238841_4_, p_238841_5_);
+            this.itemRenderer.renderGuiItemDecorations(p_238841_1_,this.font, p_238841_2_, p_238841_4_, p_238841_5_);
         } else {
-            this.itemRenderer.renderGuiItemDecorations(this.font, p_238841_3_, p_238841_4_, p_238841_5_, p_238841_3_.getCount() == 1 ? "1" : null);
-            this.itemRenderer.renderGuiItemDecorations(this.font, p_238841_2_, p_238841_4_ + 14, p_238841_5_, p_238841_2_.getCount() == 1 ? "1" : null);
+            this.itemRenderer.renderGuiItemDecorations(p_238841_1_,this.font, p_238841_3_, p_238841_4_, p_238841_5_);
+            this.itemRenderer.renderGuiItemDecorations(p_238841_1_,this.font, p_238841_2_, p_238841_4_, p_238841_5_);
                         RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderTexture(0, GUI);
-            this.setBlitOffset(this.getBlitOffset() + 300);
-            blit(p_238841_1_, p_238841_4_ + 7, p_238841_5_ + 12, this.getBlitOffset(), 0.0F, 176.0F, 9, 2, 256, 512);
-            this.setBlitOffset(this.getBlitOffset() - 300);
+            blitOffset += 300;
+            blit(p_238841_1_, p_238841_4_ + 7, p_238841_5_ + 12, blitOffset, 0.0F, 176.0F, 9, 2, 256, 512);
+            blitOffset -= 300;
         }
 
     }
@@ -264,7 +268,7 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
         final int index;
 
         public AlloyButton(int p_i50601_2_, int p_i50601_3_, int p_i50601_4_, Button.OnPress p_i50601_5_) {
-            super(p_i50601_2_, p_i50601_3_, 89, 20, TextComponent.EMPTY, p_i50601_5_);
+            super(p_i50601_2_, p_i50601_3_, 89, 20, Component.translatable("narrator.button.alloy_button"), p_i50601_5_,DEFAULT_NARRATION);
             this.index = p_i50601_4_;
             this.visible = false;
         }
@@ -283,13 +287,13 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
                     if (!itemstack2.isEmpty()) {
                         TemplateTableScreen.this.renderTooltip(matrixStack, itemstack2, mouseX, mouseY);
                     }
-                } else*/ if (mouseX > this.x + 65) {
-                    ItemStack itemstack1 = TemplateTableScreen.this.alloyRecipes.get(this.index + TemplateTableScreen.this.scrollOff).getResultItem();
+                } else*/ if (mouseX > this.getX() + 65) {
+                    ItemStack itemstack1 = TemplateTableScreen.this.alloyRecipes.get(this.index + TemplateTableScreen.this.scrollOff).getResultItem(RegistryAccess.EMPTY);
                     TemplateTableScreen.this.renderTooltip(matrixStack, itemstack1, mouseX, mouseY);
                 } else {
                     Level worldIn = TemplateTableScreen.this.menu.getWorld();
                     AlloyingRecipe alloy = TemplateTableScreen.this.alloyRecipes.get(this.index + TemplateTableScreen.this.scrollOff);
-                    int mouseXsub = mouseX - this.x - 10;
+                    int mouseXsub = mouseX - this.getX() - 10;
                     List<Ingredient> e = alloy.getIngredientsList(worldIn,true);
                     int currentIndex = Math.floorDiv(mouseXsub,8);
                     if (e.size() - 1 >= currentIndex && currentIndex >= 0) {

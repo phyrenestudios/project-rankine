@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.recipe.ForagingRecipe;
@@ -12,6 +13,7 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -24,8 +26,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -62,16 +64,14 @@ public class ForagingRecipeCategory implements IRecipeCategory<ForagingRecipe> {
         return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(RankineItems.BRONZE_HOE.get()));
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
+    public RecipeType<ForagingRecipe> getRecipeType() {
+        return RankineJEIRecipeTypes.FORAGING_RECIPE_TYPE;
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public Class<? extends ForagingRecipe> getRecipeClass() {
-        return ForagingRecipe.class;
+    public @Nullable ResourceLocation getRegistryName(ForagingRecipe recipe) {
+        return UID;
     }
 
     @Override

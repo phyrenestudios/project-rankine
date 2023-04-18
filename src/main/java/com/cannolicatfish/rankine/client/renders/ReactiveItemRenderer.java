@@ -2,9 +2,9 @@ package com.cannolicatfish.rankine.client.renders;
 
 import com.cannolicatfish.rankine.entities.ReactiveItemEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -14,10 +14,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.joml.Vector3f;
 
 import java.util.Random;
 
@@ -60,10 +60,10 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
         int j = this.getModelCount(itemstack);
         float f = 0.25F;
         float f1 = Mth.sin(((float)entityIn.getAge() + partialTicks) / 10.0F + entityIn.bobOffs) * 0.1F + 0.1F;
-        float f2 = shouldBob() ? ibakedmodel.getTransforms().getTransform(ItemTransforms.TransformType.GROUND).scale.y() : 0;
+        float f2 = shouldBob() ? ibakedmodel.getTransforms().getTransform(ItemDisplayContext.GROUND).scale.y() : 0;
         matrixStackIn.translate(0.0D, (double)(f1 + 0.25F * f2), 0.0D);
         float f3 = entityIn.getSpin(partialTicks);
-        matrixStackIn.mulPose(Vector3f.YP.rotation(f3));
+        matrixStackIn.mulPose(Axis.YP.rotation(f3));
         if (!flag) {
             float f7 = -0.0F * (float)(j - 1) * 0.5F;
             float f8 = -0.0F * (float)(j - 1) * 0.5F;
@@ -86,7 +86,7 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
                 }
             }
 
-            this.itemRenderer.render(itemstack, ItemTransforms.TransformType.GROUND, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ibakedmodel);
+            this.itemRenderer.render(itemstack, ItemDisplayContext.GROUND, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ibakedmodel);
             matrixStackIn.popPose();
             if (!flag) {
                 matrixStackIn.translate(0.0, 0.0, 0.09375F);

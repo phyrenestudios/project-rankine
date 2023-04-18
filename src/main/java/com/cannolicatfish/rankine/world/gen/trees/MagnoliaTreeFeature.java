@@ -17,7 +17,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class MagnoliaTreeFeature extends Feature<TreeConfiguration> {
 
@@ -86,7 +85,7 @@ public class MagnoliaTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void magnoliaLeaves(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config) {
+    private void magnoliaLeaves(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         List<BlockPos> leaves = new ArrayList<>();
 
         for (BlockPos b : BlockPos.betweenClosed(pos.offset(-1,-1,-1),pos.offset(1,0,1))) {
@@ -123,7 +122,7 @@ public class MagnoliaTreeFeature extends Feature<TreeConfiguration> {
         return true;
     }
 
-    private void magnoliaBranch(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, int branchHeight, int dir) {
+    private void magnoliaBranch(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, int branchHeight, int dir) {
         int topHeight = rand.nextInt(branchHeight)+1;
         BlockPos b = pos;
         for (int i = 0; i<topHeight; ++i) {

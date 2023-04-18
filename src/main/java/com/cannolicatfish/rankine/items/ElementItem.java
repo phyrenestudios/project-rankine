@@ -16,13 +16,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.List;
 
 public class ElementItem extends Item {
@@ -41,13 +40,13 @@ public class ElementItem extends Item {
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (Config.HARD_MODE.WATER_REACTIVE.get() && waterReactive > 0.0f) {
             if (waterReactive < 2.0f) {
-                tooltip.add(new TextComponent("Warning! Reactive with water!").withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.literal("Warning! Reactive with water!").withStyle(ChatFormatting.GRAY));
             } else if (waterReactive >= 2.0f) {
-                tooltip.add(new TextComponent("Warning! Highly reactive with water!").withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.literal("Warning! Highly reactive with water!").withStyle(ChatFormatting.GRAY));
             }
         }
         if (Config.HARD_MODE.RADIOACTIVE.get() && radioactive > 0) {
-            tooltip.add(new TextComponent("Warning: Radioactive! Prolonged exposure is harmful.").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.literal("Warning: Radioactive! Prolonged exposure is harmful.").withStyle(ChatFormatting.GRAY));
         }
     }
 
@@ -61,9 +60,9 @@ public class ElementItem extends Item {
                             stack.shrink(1);
                             BlockPos pos = entityIn.blockPosition();
                             if (canBreakBlocks) {
-                                entityIn.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.BlockInteraction.BREAK);
+                                entityIn.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Level.ExplosionInteraction.BLOCK);
                             } else {
-                                entityIn.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.BlockInteraction.NONE);
+                                entityIn.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Level.ExplosionInteraction.NONE);
                             }
                             for (int i = 0; i < Math.round(this.waterReactive); i++) {
                                 BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> worldIn.isEmptyBlock(B) && !(worldIn.getBlockState(B).getBlock() instanceof GasBlock)
@@ -111,7 +110,7 @@ public class ElementItem extends Item {
     }
 
     public ReactiveItemEntity getResult(Entity location, ItemStack itemstack) {
-        switch (this.getRegistryName().toString()) {
+        switch (ForgeRegistries.ITEMS.getKey(this).toString()) {
             case "rankine:lithium_ingot":
                 return new ReactiveItemEntity(location.level,location.getX(),location.getY(),location.getZ(), this.waterReactive,
                         this.canBreakBlocks, itemstack, RankineItems.LITHIUM_HYDROXIDE.get(),RankineBlocks.HYDROGEN_GAS_BLOCK.get());

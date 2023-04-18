@@ -8,26 +8,28 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
 public class AirDistillationRecipe implements Recipe<Container> {
 
@@ -111,7 +113,7 @@ public class AirDistillationRecipe implements Recipe<Container> {
                 biomeList.addAll(ForgeRegistries.BIOMES.tags().getTag(tag).stream().toList());
             } else if (s.contains("B#")) {
                 for (Biome b : ForgeRegistries.BIOMES) {
-                    if (b.getRegistryName() != null && b.getRegistryName().equals(new ResourceLocation(s.split("B#")[1]))) {
+                    if (ForgeRegistries.BIOMES.getKey(b) != null && ForgeRegistries.BIOMES.getKey(b).equals(new ResourceLocation(s.split("B#")[1]))) {
                         biomeList.add(b);
                     }
                 }
@@ -125,11 +127,11 @@ public class AirDistillationRecipe implements Recipe<Container> {
         for (String s : this.getBiomes()) {
             if (s.contains("T#")) {
                 TagKey<Biome> tag = TagKey.create(ForgeRegistries.BIOMES.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
-                list.addAll(ForgeRegistries.BIOMES.tags().getTag(tag).stream().map(biome -> biome.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " ")).toList());
+                list.addAll(ForgeRegistries.BIOMES.tags().getTag(tag).stream().map(biome -> ForgeRegistries.BIOMES.getKey(biome).getPath().toUpperCase(Locale.ROOT).replace("_", " ")).toList());
             } else if (s.contains("B#")) {
                 for (Biome b : ForgeRegistries.BIOMES) {
-                    if (b.getRegistryName() != null && b.getRegistryName().equals(new ResourceLocation(s.split("B#")[1])) && !list.contains(b.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " "))) {
-                        list.add(b.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " "));
+                    if (ForgeRegistries.BIOMES.getKey(b) != null && ForgeRegistries.BIOMES.getKey(b).equals(new ResourceLocation(s.split("B#")[1])) && !list.contains(ForgeRegistries.BIOMES.getKey(b).getPath().toUpperCase(Locale.ROOT).replace("_", " "))) {
+                        list.add(ForgeRegistries.BIOMES.getKey(b).getPath().toUpperCase(Locale.ROOT).replace("_", " "));
                     }
                 }
             }
@@ -142,7 +144,7 @@ public class AirDistillationRecipe implements Recipe<Container> {
             return true;
         } else {
             for (Biome b : getBiomeList()) {
-                if (b.getRegistryName() != null && b.getRegistryName().equals(biome) && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
+                if (ForgeRegistries.BIOMES.getKey(b) != null && ForgeRegistries.BIOMES.getKey(b).equals(biome) && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
                     return true;
                 }
             }
@@ -155,7 +157,7 @@ public class AirDistillationRecipe implements Recipe<Container> {
             return recipeOutputs.get(level-1);
         } else {
             for (Biome b : getBiomeList()) {
-                if (b.getRegistryName() != null && b.getRegistryName().equals(biome) && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
+                if (ForgeRegistries.BIOMES.getKey(b) != null && ForgeRegistries.BIOMES.getKey(b).equals(biome) && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
                     return recipeOutputs.get(level-1);
                 }
             }
@@ -203,7 +205,7 @@ public class AirDistillationRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.AIR_DISTILLATION;
+        return RankineRecipeTypes.AIR_DISTILLATION.get();
     }
 
     public static class Serializer implements RecipeSerializer<AirDistillationRecipe> {

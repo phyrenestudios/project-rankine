@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.entities;
 
 import com.cannolicatfish.rankine.blocks.gases.GasBlock;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.EntityType;
@@ -10,12 +11,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
-import org.jetbrains.annotations.NotNull;
-
-import net.minecraft.world.entity.Entity.RemovalReason;
 
 public class ReactiveItemEntity extends ItemEntity {
 
@@ -69,9 +66,9 @@ public class ReactiveItemEntity extends ItemEntity {
             BlockPos pos = this.blockPosition();
             if (canBreakBlocks)
             {
-                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.BlockInteraction.BREAK);
+                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Level.ExplosionInteraction.BLOCK);
             } else {
-                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.BlockInteraction.NONE);
+                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Level.ExplosionInteraction.NONE);
             }
             if (!level.isClientSide && !level.restoringBlockSnapshots && !newItem.equals(Items.AIR)) {
                 double d0 = (double) (level.random.nextFloat() * 0.5F) + 0.25D;
@@ -96,7 +93,7 @@ public class ReactiveItemEntity extends ItemEntity {
         super.tick();
     }
 
-    public @NotNull Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

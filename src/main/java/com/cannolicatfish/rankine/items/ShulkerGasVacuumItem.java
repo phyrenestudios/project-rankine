@@ -20,8 +20,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.awt.*;
-
 public class ShulkerGasVacuumItem extends Item {
     public ShulkerGasVacuumItem(Properties properties) {
         super(properties);
@@ -33,7 +31,7 @@ public class ShulkerGasVacuumItem extends Item {
             String s = stack.getTag().getString("gas");
             Block b = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(s));
             if (!s.isEmpty() && b instanceof GasBlock) {
-                return new TextComponent(new TranslatableComponent(this.getDescriptionId(stack)).getString() + " (" + new TranslatableComponent(b.getDescriptionId()).getString() + ") ");
+                return Component.literal(Component.translatable(this.getDescriptionId(stack)).getString() + " (" + Component.translatable(b.getDescriptionId()).getString() + ") ");
             }
         }
         return super.getName(stack);
@@ -68,13 +66,13 @@ public class ShulkerGasVacuumItem extends Item {
         Block bl = worldIn.getBlockState(pos).getBlock();
         ItemStack stack = playerIn.getItemInHand(handIn);
         InteractionHand other = handIn == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
-        if (bl instanceof GasBlock && bl.getRegistryName() != null && (stack.getTag() == null || stack.getTag().getString("gas").isEmpty())) {
+        if (bl instanceof GasBlock && ForgeRegistries.BLOCKS.getKey(bl) != null && (stack.getTag() == null || stack.getTag().getString("gas").isEmpty())) {
             if (!worldIn.isClientSide) {
                 if (playerIn.getItemInHand(other).getItem() == Items.GLASS_BOTTLE) {
                     playerIn.getItemInHand(other).shrink(1);
                     playerIn.getInventory().add(new ItemStack(((GasBlock) bl).getGasBottle()));
                 } else {
-                    stack.getOrCreateTag().putString("gas",bl.getRegistryName().toString());
+                    stack.getOrCreateTag().putString("gas",ForgeRegistries.BLOCKS.getKey(bl).toString());
                     stack.getTag().putInt("color",((GasBlock) bl).getColor());
                 }
                 worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(),3);

@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.items.tools;
 import com.cannolicatfish.rankine.blocks.gases.GasBlock;
 import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -13,8 +14,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Optional;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class GasDetectorItem extends Item {
     public GasDetectorItem(Properties properties) {
@@ -28,12 +27,12 @@ public class GasDetectorItem extends Item {
 
         Optional<BlockPos> b = BlockPos.findClosestMatch(pos, Config.TOOLS.ORE_DETECTOR_RANGE.get(), Config.TOOLS.ORE_DETECTOR_RANGE.get(), (p) -> worldIn.getBlockState(p).getBlock() instanceof GasBlock);
         if (player != null && b.isPresent()) {
-            worldIn.playSound(player,pos, SoundEvents.NOTE_BLOCK_BELL, SoundSource.PLAYERS,1.0F, worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+            worldIn.playSound(player,pos, SoundEvents.NOTE_BLOCK_BELL.get(), SoundSource.PLAYERS,1.0F, worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
 
             if (!worldIn.isClientSide()) {
                 BlockState GAS = worldIn.getBlockState(b.get());
 
-                player.displayClientMessage(new TranslatableComponent("item.rankine.gas_detector.message", new TranslatableComponent(GAS.getBlock().getDescriptionId()).getString(), b.get().getX(), b.get().getY(), b.get().getZ()), false);
+                player.displayClientMessage(Component.translatable("item.rankine.gas_detector.message", Component.translatable(GAS.getBlock().getDescriptionId()).getString(), b.get().getX(), b.get().getY(), b.get().getZ()), false);
                 context.getItemInHand().hurtAndBreak(1, player, (p) -> {
                     p.broadcastBreakEvent(context.getHand());
                 });

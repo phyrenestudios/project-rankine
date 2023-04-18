@@ -125,7 +125,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
 
     private EvaporationRecipe getEvaporationRecipe(Level levelIn, BlockPos posIn) {
         if (this.level != null) {
-            for (EvaporationRecipe recipe : levelIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.EVAPORATION)) {
+            for (EvaporationRecipe recipe : levelIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.EVAPORATION.get())) {
                 if (levelIn.getBiome(posIn).unwrapKey().isPresent()) {
                     if (!recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).unwrapKey().get().location()).isEmpty() && recipe.fluidMatch(levelIn.getFluidState(posIn.above()).getType())) {
                         return recipe;

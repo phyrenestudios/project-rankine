@@ -35,8 +35,8 @@ public class RankineEventHandler {
     }*/
     @SubscribeEvent
     public static void registerCommands(RegisterCommandsEvent event) {
-        CreateAlloyCommand.register(event.getDispatcher());
-        GiveTagCommand.register(event.getDispatcher());
+        CreateAlloyCommand.register(event.getDispatcher(), event.getBuildContext());
+        GiveTagCommand.register(event.getDispatcher(),event.getBuildContext());
         BlockWallCommand.register(event.getDispatcher());
         PeriodicTableCommand.register(event.getDispatcher());
     }

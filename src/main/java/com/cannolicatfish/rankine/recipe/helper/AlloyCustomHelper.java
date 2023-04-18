@@ -1,17 +1,17 @@
 package com.cannolicatfish.rankine.recipe.helper;
 
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import com.cannolicatfish.rankine.items.alloys.IAlloySpecialItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Tuple;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
@@ -65,8 +65,8 @@ public class AlloyCustomHelper {
         if (list == null) {
             ImmutableList.Builder<ItemStack> builder = ImmutableList.builder();
             for (AlloyCraftingRecipe recipe :  CRAFTING_RECIPE_LIST) {
-                if (item.equals(recipe.getResultItem().getItem())) {
-                    ItemStack stack = recipe.getResultItem().copy();
+                if (item.equals(recipe.getResultItem(RegistryAccess.EMPTY).getItem())) {
+                    ItemStack stack = recipe.getResultItem(RegistryAccess.EMPTY).copy();
                     String composition = null;
                     String inherit = null;
                     if (item instanceof IAlloyItem && ((IAlloyItem) item).getDefaultRecipe() == null) {
@@ -159,8 +159,8 @@ public class AlloyCustomHelper {
         if (list == null) {
             ImmutableList.Builder<ItemStack> builder = ImmutableList.builder();
             for (AlloyingRecipe recipe : ALLOY_RECIPE_LIST) {
-                if (item.equals(recipe.getResultItem().getItem())) {
-                    ItemStack stack = recipe.getResultItem().copy();
+                if (item.equals(recipe.getResultItem(RegistryAccess.EMPTY).getItem())) {
+                    ItemStack stack = recipe.getResultItem(RegistryAccess.EMPTY).copy();
                     stack.setCount(1);
                     builder.add(stack);
                 }

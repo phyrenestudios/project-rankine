@@ -38,8 +38,6 @@ import net.minecraftforge.common.TierSortingRegistry;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class HammerItem extends DiggerItem {
 
     public HammerItem(float attackDamageIn, float attackSpeedIn, Tier tier, Properties builder) {
@@ -59,7 +57,7 @@ public class HammerItem extends DiggerItem {
             creativeFlag = ((Player) entityLiving).isCreative();
         }
         if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isEmptyBlock(pos) && this.isCorrectToolForDrops(stack,state)) {
-            for (CrushingRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING)) {
+            for (CrushingRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING.get())) {
                 for (ItemStack s : recipe.getIngredientAsStackList().clone()) {
                     if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem()) {
                         if (state.getDestroySpeed(worldIn, pos) != 0.0F) {

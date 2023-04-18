@@ -6,7 +6,7 @@ import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -50,7 +50,7 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(Container inv, RegistryAccess registryAccess) {
         return ItemStack.EMPTY;
     }
 
@@ -77,7 +77,7 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess registryAccess) {
         return result;
     }
 
@@ -93,7 +93,7 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.BEEHIVE;
+        return RankineRecipeTypes.BEEHIVE.get();
     }
 
     public static ItemStack deserializeBlock(JsonObject object) {
@@ -125,7 +125,7 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
             } else {
                 String s1 = GsonHelper.getAsString(json, "result");
                 ResourceLocation resourcelocation = new ResourceLocation(s1);
-                result = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> {
+                result = new ItemStack(BuiltInRegistries.ITEM.getOptional(resourcelocation).orElseThrow(() -> {
                     return new IllegalStateException("Item: " + s1 + " does not exist");
                 }));
             }
@@ -149,7 +149,7 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
             buffer.writeInt(recipe.getMinCookTime());
             buffer.writeInt(recipe.getMaxCookTime());
             recipe.getIngredient().toNetwork(buffer);
-            buffer.writeItem(recipe.getResultItem());
+            buffer.writeItem(recipe.getResultItem(RegistryAccess.EMPTY));
         }
     }
 

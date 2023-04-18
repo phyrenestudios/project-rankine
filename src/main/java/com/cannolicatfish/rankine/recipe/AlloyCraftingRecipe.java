@@ -8,17 +8,18 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.gson.*;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CraftingRecipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -107,7 +108,7 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.minecraftforge.c
      * Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one
      * possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
      */
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess registryAccess) {
         ItemStack out = this.recipeOutput.copy();
         if (this.getColor() != 16777215) {
             out.getOrCreateTag().putInt("color",this.getColor());
@@ -199,8 +200,8 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.minecraftforge.c
     /**
      * Returns an Item that is the result of this recipe
      */
-    public ItemStack assemble(CraftingContainer inv) {
-        ItemStack res = this.getResultItem().copy();
+    public ItemStack assemble(CraftingContainer inv, RegistryAccess registryAccess) {
+        ItemStack res = this.getResultItem(RegistryAccess.EMPTY).copy();
         if (this.inherit)
         {
             String workingRecipe = "";
@@ -448,6 +449,11 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.minecraftforge.c
             int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
+    }
+
+    @Override
+    public CraftingBookCategory category() {
+        return CraftingBookCategory.MISC;
     }
 
     public static class Serializer implements RecipeSerializer<AlloyCraftingRecipe> {

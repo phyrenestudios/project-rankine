@@ -17,7 +17,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class HoneyLocustTreeFeature extends Feature<TreeConfiguration> {
 
@@ -95,7 +94,7 @@ public class HoneyLocustTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void willowLeaves(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config) {
+    private void willowLeaves(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         List<BlockPos> leaves = new ArrayList<>();
         for (BlockPos b : BlockPos.betweenClosed(pos.offset(-2,-1,-2),pos.offset(2,3,2))) {
             if (WorldgenUtils.inRadiusCenter(pos,b,2.5)) {
@@ -108,7 +107,7 @@ public class HoneyLocustTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void willowBranch(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, int branchHeight, int dir, int tier) {
+    private void willowBranch(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, int branchHeight, int dir, int tier) {
         int topHeight = rand.nextInt(branchHeight)+1;
         int split = rand.nextInt(2)+1;
         BlockPos b = pos;

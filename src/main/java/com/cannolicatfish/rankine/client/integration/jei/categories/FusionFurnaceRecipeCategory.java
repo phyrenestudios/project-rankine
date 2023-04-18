@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.FusionFurnaceRecipe;
@@ -15,6 +16,7 @@ import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
@@ -22,8 +24,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidUtil;
+import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
 import java.util.List;
 
 public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnaceRecipe> {
@@ -63,20 +65,20 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnac
                     }
                 });
     }
-    @SuppressWarnings("removal")
+
     @Override
-    public ResourceLocation getUid() {
-        return UID;
+    public RecipeType<FusionFurnaceRecipe> getRecipeType() {
+        return RankineJEIRecipeTypes.FUSION_FURNACE_RECIPE_TYPE;
     }
-    @SuppressWarnings("removal")
+
     @Override
-    public Class<? extends FusionFurnaceRecipe> getRecipeClass() {
-        return FusionFurnaceRecipe.class;
+    public @Nullable ResourceLocation getRegistryName(FusionFurnaceRecipe recipe) {
+        return UID;
     }
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override

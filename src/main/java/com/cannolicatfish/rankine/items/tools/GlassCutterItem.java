@@ -1,15 +1,12 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
@@ -24,8 +21,6 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class GlassCutterItem extends DiggerItem {
 
@@ -59,7 +54,7 @@ public class GlassCutterItem extends DiggerItem {
             });
         }
         if (blockstate.is(Tags.Blocks.GLASS)) {
-            Block b = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(blockstate.getBlock().getRegistryName().toString() + "_pane"));
+            Block b = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(ForgeRegistries.BLOCKS.getKey(blockstate.getBlock()).toString() + "_pane"));
             if (b != null && b != Blocks.AIR) {
                 levelIn.playSound(playerentity, blockpos, SoundEvents.BEE_STING, SoundSource.BLOCKS, 1.0F, levelIn.getRandom().nextFloat() * 0.4F + 1.8F);
                 levelIn.setBlockAndUpdate(blockpos,b.defaultBlockState());
@@ -70,14 +65,6 @@ public class GlassCutterItem extends DiggerItem {
             return InteractionResult.FAIL;
         }
         return InteractionResult.FAIL;
-    }
-
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        if (group == CreativeModeTab.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) {
-            ItemStack stack = new ItemStack(this.asItem(),1);
-            stack.enchant(Enchantments.SILK_TOUCH,1);
-            items.add(stack);
-        }
     }
 
     @Override

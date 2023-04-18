@@ -158,7 +158,7 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.FUSION_FURNACE;
+        return RankineRecipeTypes.FUSION_FURNACE.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {

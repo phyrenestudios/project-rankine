@@ -130,7 +130,7 @@ public class InductionFurnaceTile extends BlockEntity implements WorldlyContaine
             ItemStack[] inputs = new ItemStack[]{tile.items.get(0), tile.items.get(1), tile.items.get(2), tile.items.get(3), tile.items.get(4), tile.items.get(5)};
             ItemStack battery = tile.items.get(6);
             if ((tile.isBurning() || !battery.isEmpty() && BatteryItem.hasPowerRequired(battery,tile.powerCost) && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
-                AlloyingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, tile, tile.level).orElse(null);
+                AlloyingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), tile, tile.level).orElse(null);
                 if (!tile.isBurning() && tile.canSmelt(irecipe, tile)) {
                     tile.burnTime = BatteryItem.hasPowerRequired(battery,tile.powerCost) ? 50 : 0;
                     tile.currentBurnTime = tile.burnTime;

@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.BulkSectionAccess;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import java.util.BitSet;
-import java.util.Random;
 import java.util.function.Function;
 
 public class DefaultOreVeinFeature extends Feature<RankineOreFeatureConfig> {
@@ -23,7 +23,7 @@ public class DefaultOreVeinFeature extends Feature<RankineOreFeatureConfig> {
     }
 
     public boolean place(FeaturePlaceContext<RankineOreFeatureConfig> p_160177_) {
-        Random random = p_160177_.random();
+        RandomSource random = p_160177_.random();
         BlockPos blockpos = p_160177_.origin();
         WorldGenLevel worldgenlevel = p_160177_.level();
         RankineOreFeatureConfig oreconfiguration = p_160177_.config();
@@ -54,7 +54,7 @@ public class DefaultOreVeinFeature extends Feature<RankineOreFeatureConfig> {
         return false;
     }
 
-    protected boolean doPlace(WorldGenLevel levelIn, Random random, RankineOreFeatureConfig config, double p_66536_, double p_66537_, double p_66538_, double p_66539_, double p_66540_, double p_66541_, int p_66542_, int p_66543_, int p_66544_, int p_66545_, int p_66546_) {
+    protected boolean doPlace(WorldGenLevel levelIn, RandomSource random, RankineOreFeatureConfig config, double p_66536_, double p_66537_, double p_66538_, double p_66539_, double p_66540_, double p_66541_, int p_66542_, int p_66543_, int p_66544_, int p_66545_, int p_66546_) {
         int i = 0;
         BitSet bitset = new BitSet(p_66545_ * p_66546_ * p_66545_);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
@@ -171,7 +171,7 @@ public class DefaultOreVeinFeature extends Feature<RankineOreFeatureConfig> {
         return i > 0;
     }
 
-    public static boolean canPlaceOre(BlockState p_160170_, Function<BlockPos, BlockState> p_160171_, Random p_160172_, RankineOreFeatureConfig p_160173_, RankineOreFeatureConfig.TargetBlockState p_160174_, BlockPos.MutableBlockPos p_160175_) {
+    public static boolean canPlaceOre(BlockState p_160170_, Function<BlockPos, BlockState> p_160171_, RandomSource p_160172_, RankineOreFeatureConfig p_160173_, RankineOreFeatureConfig.TargetBlockState p_160174_, BlockPos.MutableBlockPos p_160175_) {
         if (!p_160174_.target.test(p_160170_, p_160172_)) {
             return false;
         } else if (shouldSkipAirCheck(p_160172_, p_160173_.discardChanceOnAirExposure)) {
@@ -181,7 +181,7 @@ public class DefaultOreVeinFeature extends Feature<RankineOreFeatureConfig> {
         }
     }
 
-    protected static boolean shouldSkipAirCheck(Random p_160179_, float p_160180_) {
+    protected static boolean shouldSkipAirCheck(RandomSource p_160179_, float p_160180_) {
         if (p_160180_ <= 0.0F) {
             return true;
         } else if (p_160180_ >= 1.0F) {

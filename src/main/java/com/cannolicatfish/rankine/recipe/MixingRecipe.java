@@ -167,7 +167,7 @@ public class MixingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.MIXING;
+        return RankineRecipeTypes.MIXING.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {

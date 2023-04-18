@@ -309,7 +309,7 @@ public class AlloyingRecipe implements Recipe<Container> {
             ItemStack stack = inv.getItem(i);
             if (!stack.isEmpty()) {
                 boolean flag = false;
-                ElementRecipe element = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, new SimpleContainer(stack), worldIn).orElse(null);
+                ElementRecipe element = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT.get(), new SimpleContainer(stack), worldIn).orElse(null);
                 if (element != null && getElements().contains(element.getId())) {
                     if (!currentElements.contains(element)) {
                         currentElements.add(element);
@@ -605,7 +605,7 @@ public class AlloyingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.ALLOYING;
+        return RankineRecipeTypes.ALLOYING.get();
     }
 
     public static class Serializer implements RecipeSerializer<AlloyingRecipe> {

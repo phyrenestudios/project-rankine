@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
@@ -13,6 +14,7 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -26,8 +28,8 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.TierSortingRegistry;
+import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
@@ -61,7 +63,7 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
 
     @Override
     public Component getTitle() {
-        return new TextComponent(I18n.get("rankine.jei.crushing"));
+        return Component.literal(I18n.get("rankine.jei.crushing"));
     }
 
     @Override
@@ -74,23 +76,21 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
         return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(RankineItems.STONE_HAMMER.get()));
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
+    public @Nullable ResourceLocation getRegistryName(CrushingRecipe recipe) {
         return UID;
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public Class<? extends CrushingRecipe> getRecipeClass() {
-        return CrushingRecipe.class;
+    public RecipeType<CrushingRecipe> getRecipeType() {
+        return RankineJEIRecipeTypes.CRUSHING_RECIPE_TYPE;
     }
 
     @Override
     public void draw(CrushingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
         Font font = Minecraft.getInstance().font;
         int index = recipe.getRecipeOutputs().indexOf(ItemStack.EMPTY);
-        font.draw(stack,new TextComponent("<=" + recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA),100,32,0xFF0000);
+        font.draw(stack,Component.literal("<=" + recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA),100,32,0xFF0000);
 
         IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
     }
@@ -110,7 +110,7 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
         builder.addSlot(RecipeIngredientRole.INPUT,78,21).addIngredients(recipe.getIngredients().get(0)).addTooltipCallback((recipeSlotView, tooltip) ->
-                tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_max_rolls")+recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA)));
+                tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_max_rolls")+recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA)));
 
         builder.addSlot(RecipeIngredientRole.CATALYST,37,20).addIngredients(Ingredient.of(RankineLists.HAMMERS.stream().map(Item::getDefaultInstance)));
         int count = 1;
@@ -120,13 +120,13 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
             if (output.getB().equals(Tiers.WOOD)) {
                 builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addItemStack(output.getA())
                         .setBackground(guaranteedDrawable, -1, -1)
-                        .addTooltipCallback(((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_guaranteed")).withStyle(ChatFormatting.GOLD))));
+                        .addTooltipCallback(((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_guaranteed")).withStyle(ChatFormatting.GOLD))));
             } else {
                 Tuple<ChatFormatting,IDrawable> format = colorForTier(output.getB());
                 builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addItemStack(output.getA())
                         .setBackground(guaranteedDrawable, -1, -1)
-                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_tier")+output.getB()).withStyle(format.getA())))
-                        .addTooltipCallback(((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_guaranteed")).withStyle(ChatFormatting.GOLD))));
+                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_tier")+output.getB()).withStyle(format.getA())))
+                        .addTooltipCallback(((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_guaranteed")).withStyle(ChatFormatting.GOLD))));
             }
             count++;
         }
@@ -142,7 +142,7 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
             int y = 56 + (ycount*18);
             ItemStack currentOutput = outputs.get(i);
             if (currentOutput.isEmpty()) {
-                currentOutput = new ItemStack(Items.BARRIER).setHoverName(new TextComponent(I18n.get("rankine.jei.tooltip_nothing")));
+                currentOutput = new ItemStack(Items.BARRIER).setHoverName(Component.literal(I18n.get("rankine.jei.tooltip_nothing")));
             }
             int currentI = i;
             boolean limited = recipe.getRecipeConstants().get(currentI);
@@ -150,12 +150,12 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
             IRecipeSlotBuilder slot = builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addItemStack(currentOutput);
 
             slot.setBackground(format.getB(), -1, -1);
-                    //.addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_tier")+recipe.getTiers().get(currentI)).withStyle(format.getA())))
+                    //.addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal()(I18n.get("rankine.jei.tooltip_tier")+recipe.getTiers().get(currentI)).withStyle(format.getA())))
             for (Tier t : currentTiers) {
                 float chance = recipe.getChance(t,currentI)*100;
-                slot.addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get(t.toString() + ": ")+df.format(chance)+"%").withStyle(chance <= 0 ? ChatFormatting.DARK_RED : colorForTier(t).getA())));
+                slot.addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get(t.toString() + ": ")+df.format(chance)+"%").withStyle(chance <= 0 ? ChatFormatting.DARK_RED : colorForTier(t).getA())));
             }
-            slot.addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(limited ? I18n.get("rankine.jei.tooltip_limited") : I18n.get("rankine.jei.tooltip_nonlimited")).withStyle(limited ? ChatFormatting.RED : ChatFormatting.GREEN)));
+            slot.addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(limited ? I18n.get("rankine.jei.tooltip_limited") : I18n.get("rankine.jei.tooltip_nonlimited")).withStyle(limited ? ChatFormatting.RED : ChatFormatting.GREEN)));
 
             count++;
 

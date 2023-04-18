@@ -25,7 +25,7 @@ public class EasternHemlockTreeFeature extends Feature<TreeConfiguration> {
     public boolean place(FeaturePlaceContext<TreeConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        RandomSource rand = reader.getRandomSource();
+        RandomSource rand = reader.getRandom();
         TreeConfiguration config = p_159749_.config();
         int trunkHeight = config.trunkPlacer.getTreeHeight(rand);
         boolean flag = true;

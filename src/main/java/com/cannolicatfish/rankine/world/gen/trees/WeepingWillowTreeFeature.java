@@ -6,6 +6,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.WorldGenLevel;
@@ -17,7 +18,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class WeepingWillowTreeFeature extends Feature<TreeConfiguration> {
 
@@ -29,7 +29,7 @@ public class WeepingWillowTreeFeature extends Feature<TreeConfiguration> {
     public boolean place(FeaturePlaceContext<TreeConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = reader.getRandom();
         TreeConfiguration config = p_159749_.config();
         int trunkHeight = config.trunkPlacer.getTreeHeight(rand);
         boolean flag = true;
@@ -96,7 +96,7 @@ public class WeepingWillowTreeFeature extends Feature<TreeConfiguration> {
         return true;
     }
 
-    private void willowLeaves(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config) {
+    private void willowLeaves(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         List<BlockPos> leaves = new ArrayList<>();
         for (BlockPos b : BlockPos.betweenClosed(pos.offset(-3,-1,-3),pos.offset(3,2,3))) {
             if (WorldgenUtils.inRadiusCenter(pos,b,2.5)) {
@@ -116,7 +116,7 @@ public class WeepingWillowTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private static void placeBranchlet(BlockPos pos, LevelAccessor world, Random rand) {
+    private static void placeBranchlet(BlockPos pos, LevelAccessor world, RandomSource rand) {
         BlockPos.MutableBlockPos blockpos$mutable = pos.mutable().move(Direction.DOWN);
         if (world.isEmptyBlock(blockpos$mutable)) {
             int i = Mth.nextInt(rand, 2, 5);
@@ -127,7 +127,7 @@ public class WeepingWillowTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void willowBranch(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, int branchHeight, int dir, int tier) {
+    private void willowBranch(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, int branchHeight, int dir, int tier) {
         int topHeight = rand.nextInt(branchHeight)+1;
         int split = rand.nextInt(2)+1;
         BlockPos b = pos;

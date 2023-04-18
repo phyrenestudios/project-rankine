@@ -7,8 +7,9 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
@@ -18,8 +19,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraftforge.common.Tags;
-
-import java.util.Random;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
     public IntrusionFeature(Codec<NoneFeatureConfiguration> configFactoryIn) {
@@ -32,9 +32,9 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
         
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin().offset(8,0,8);
-        Random rand = reader.getRandom();
+        RandomSource rand = reader.getRandom();
         Biome targetBiome = reader.getBiome(pos).value();
-        ResourceLocation biomeName = targetBiome.getRegistryName();
+        ResourceLocation biomeName = ForgeRegistries.BIOMES.getKey(targetBiome);
         if (WorldgenUtils.GEN_BIOMES.contains(biomeName)) {
             BlockState INTRUSION;
             try {
@@ -45,7 +45,7 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
             }
 
             if (!INTRUSION.is(Blocks.AIR)) {
-                if (Biome.getBiomeCategory(Holder.direct(targetBiome)) == Biome.BiomeCategory.NETHER) {
+                if (ForgeRegistries.BIOMES.tags().getTag(BiomeTags.IS_NETHER).contains(targetBiome)) {
                     int radius = Config.WORLDGEN.NETHER_INTRUSION_RADIUS.get() + rand.nextInt(3);
                     int startY = 126;
                     int endY = 1;
@@ -95,7 +95,7 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
                 } else {
                     //int radius = Config.MISC_WORLDGEN.OVERWORLD_INTRUSION_RADIUS.get();
                     int startY = -63;
-                    int endY = (int) (reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, pos.getX(), pos.getZ()) * (rand.nextFloat(0.3f) + 0.6f));
+                    int endY = (int) (reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, pos.getX(), pos.getZ()) * (rand.nextFloat() + 0.6f));
                     pos = new BlockPos(pos.getX(),startY,pos.getZ());
 
                     for (int y = startY; y <= endY; ++y) {
@@ -105,7 +105,7 @@ public class IntrusionFeature extends Feature<NoneFeatureConfiguration> {
                         } else {
                             pos = pos.offset(0,1,0);
                         }
-                        for (BlockPos b : BlockPos.betweenClosed(pos.offset(-(radius+1), 0, -(radius+1)), pos.offset(radius+1, 0, radius+1))) {
+                        for (BlockPos b : BlockPos.betweenClosed(pos.offset((int) -(radius+1), 0, (int) -(radius+1)), pos.offset((int) (radius+1), 0, (int) (radius+1)))) {
                             if (Math.pow(pos.getX()-b.getX(),2)+Math.pow(pos.getZ()-b.getZ(),2) <= radius*radius+0.3) {
                                 if (reader.getBlockState(b).is(RankineTags.Blocks.INTRUSION_PASSABLE)) {
                                     if (rand.nextFloat() < WorldgenUtils.INTRUSION_ORE_CHANCES.get(WorldgenUtils.GEN_BIOMES.indexOf(biomeName)).get(WorldgenUtils.INTRUSION_BLOCKS.get(WorldgenUtils.GEN_BIOMES.indexOf(biomeName)).indexOf(INTRUSION.getBlock()))) {

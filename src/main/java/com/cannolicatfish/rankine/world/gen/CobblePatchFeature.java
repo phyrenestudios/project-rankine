@@ -17,7 +17,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class CobblePatchFeature extends Feature<RandomPatchConfiguration> {
     public CobblePatchFeature(Codec<RandomPatchConfiguration> p_i49915_1_) {
@@ -33,8 +32,8 @@ public class CobblePatchFeature extends Feature<RandomPatchConfiguration> {
         WorldGenLevel worldgenlevel = p_160210_.level();
 
         List<String> rockList = new ArrayList<String>();
-        if (WorldgenUtils.GEN_BIOMES.contains(worldgenlevel.getBiome(blockpos).value().getRegistryName())) {
-            rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(worldgenlevel.getBiome(blockpos).value().getRegistryName()));
+        if (WorldgenUtils.GEN_BIOMES.contains(ForgeRegistries.BIOMES.getKey(worldgenlevel.getBiome(blockpos).value()))) {
+            rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(ForgeRegistries.BIOMES.getKey(worldgenlevel.getBiome(blockpos).value())));
         }
 
         if (rockList.size() < 1) return false;

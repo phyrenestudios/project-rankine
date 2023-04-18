@@ -7,7 +7,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -32,7 +31,7 @@ public class LivingHurtHandler {
                 if (i < (10 + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.PREPARATION.get(),stack))) {
 
 
-                    if (!event.getSource().isBypassArmor()) {
+                    if (!event.getSource().isIndirect()) {
                         player.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP,1.0f, 1.0f);
                         if (event.getSource().getEntity() instanceof LivingEntity && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.RETALIATE.get(),stack) >= 1) {
                             LivingEntity ent = (LivingEntity) event.getSource().getEntity();
@@ -87,7 +86,7 @@ public class LivingHurtHandler {
                 ItemStack s = player.getInventory().armor.get(i);
                 int curSlot = i;
 
-                if (event.getSource().isProjectile() && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOBIOTIC.get(),s) > 0) {
+                if (event.getSource().isIndirect() && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOBIOTIC.get(),s) > 0) {
                     if (!worldIn.isClientSide) {
                         double d0 = player.getX();
                         double d1 = player.getY();

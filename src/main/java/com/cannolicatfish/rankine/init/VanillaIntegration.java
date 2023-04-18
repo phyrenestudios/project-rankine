@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine.init;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -405,7 +404,7 @@ public class VanillaIntegration {
     }
 
     public static void addFlowerPot(Block plant, FlowerPotBlock plantPot) {
-        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(plant.getRegistryName(), () -> plantPot);
+        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ForgeRegistries.BLOCKS.getKey(plant), () -> plantPot);
     }
 
 

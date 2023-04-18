@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.*;
 
@@ -44,11 +45,11 @@ public class DistillationTowerTile extends BlockEntity {
         if (!level.isClientSide && LAYERS > 0) {
             ++tile.proccessTime;
             if (tile.proccessTime >= Config.MACHINES.AIR_DISTILLATION_SPEED.get()) {
-                AirDistillationRecipe recipe =  tile.getRecipe(level,level.getBiome(tile.worldPosition).value().getRegistryName(), level.dimension().location());
+                AirDistillationRecipe recipe =  tile.getRecipe(level, ForgeRegistries.BIOMES.getKey(level.getBiome(tile.worldPosition).value()), level.dimension().location());
                 if (recipe != null) {
                     for (int i = 4; i < LAYERS * 3 + 2; i+=3) {
                         if (level.getBlockState(tile.worldPosition.above(i)).is(Blocks.AIR)) {
-                            ItemStack result = recipe.getDistillationWithChances(level, Math.floorDiv(i,3), level.getBiome(tile.worldPosition).value().getRegistryName(), level.dimension().location());
+                            ItemStack result = recipe.getDistillationWithChances(level, Math.floorDiv(i,3), ForgeRegistries.BIOMES.getKey(level.getBiome(tile.worldPosition).value()), level.dimension().location());
                             if (result.getItem() instanceof BlockItem) {
                                 level.setBlockAndUpdate(tile.worldPosition.above(i), ((BlockItem) result.getItem()).getBlock().defaultBlockState());
                             }
@@ -61,7 +62,7 @@ public class DistillationTowerTile extends BlockEntity {
     }
 
     private AirDistillationRecipe getRecipe(Level worldIn, ResourceLocation biome, ResourceLocation dim) {
-        for (AirDistillationRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.AIR_DISTILLATION)) {
+        for (AirDistillationRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.AIR_DISTILLATION.get())) {
             if (recipe.matchesDistillationRecipe(biome, dim)){
                 return recipe;
             }

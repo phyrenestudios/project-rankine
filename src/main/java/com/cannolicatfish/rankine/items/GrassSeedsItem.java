@@ -19,7 +19,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.List;
 
 public class GrassSeedsItem extends Item {
@@ -54,7 +53,7 @@ public class GrassSeedsItem extends Item {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(new TextComponent("Use on soil blocks to grow grass").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("Use on soil blocks to grow grass").withStyle(ChatFormatting.GRAY));
     }
 
 

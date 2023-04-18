@@ -21,7 +21,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.List;
 
 public class FlowerSeedsItem extends Item {
@@ -51,7 +50,7 @@ public class FlowerSeedsItem extends Item {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(new TextComponent("Plants a random flower").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("Plants a random flower").withStyle(ChatFormatting.GRAY));
     }
 
 

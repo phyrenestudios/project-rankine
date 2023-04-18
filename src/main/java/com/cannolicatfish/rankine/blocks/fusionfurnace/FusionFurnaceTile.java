@@ -213,7 +213,7 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
 
     private FusionFurnaceRecipe getFusionFurnaceRecipe() {
         if (this.level != null) {
-            for (FusionFurnaceRecipe recipe : this.level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.FUSION_FURNACE)) {
+            for (FusionFurnaceRecipe recipe : this.level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.FUSION_FURNACE.get())) {
                 if (recipe.matchesRecipe(this,this.inputTank,this.outputTank,this.level)){
                     return recipe;
                 }

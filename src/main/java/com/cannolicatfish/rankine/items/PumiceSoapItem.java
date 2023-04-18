@@ -1,23 +1,20 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.init.Config;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import net.minecraft.world.item.Item.Properties;
 
 import java.util.Random;
 
@@ -32,7 +29,7 @@ public class PumiceSoapItem extends Item {
 
         Level worldIn = context.getLevel();
         Block block = worldIn.getBlockState(context.getClickedPos()).getBlock();
-        ResourceLocation rs = block.getRegistryName();
+        ResourceLocation rs = ForgeRegistries.BLOCKS.getKey(block);
         if (rs != null) {
             if(rs.getPath().contains("mossy_")) {
                 ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(),rs.getPath().split("mossy_")[1]);
@@ -92,7 +89,7 @@ public class PumiceSoapItem extends Item {
                 }
 
                 worldIn.addParticle(ParticleTypes.HAPPY_VILLAGER, (double)posIn.getX() + 0.5D, (double)posIn.getY() + 0.5D, (double)posIn.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
-                Random random = worldIn.getRandom();
+                Random random = (Random) worldIn.getRandom();
                 for(int i = 0; i < data; ++i) {
                     double d2 = random.nextGaussian() * 0.02D;
                     double d3 = random.nextGaussian() * 0.02D;
@@ -101,7 +98,7 @@ public class PumiceSoapItem extends Item {
                     double d6 = (double)posIn.getX() + d5 + random.nextDouble() * d0 * 2.0D;
                     double d7 = (double)posIn.getY() + random.nextDouble() * d1;
                     double d8 = (double)posIn.getZ() + d5 + random.nextDouble() * d0 * 2.0D;
-                    if (!worldIn.getBlockState((new BlockPos(d6, d7, d8)).below()).isAir()) {
+                    if (!worldIn.getBlockState((new BlockPos((int) d6, (int) d7, (int) d8)).below()).isAir()) {
                         worldIn.addParticle(ParticleTypes.HAPPY_VILLAGER, d6, d7, d8, d2, d3, d4);
                     }
                 }

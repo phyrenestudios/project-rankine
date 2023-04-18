@@ -133,7 +133,7 @@ public class ElementRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.ELEMENT;
+        return RankineRecipeTypes.ELEMENT.get();
     }
 
     public String getName() {

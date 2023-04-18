@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
@@ -15,7 +16,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class BalsamFirTreeFeature extends Feature<TreeConfiguration> {
 
@@ -27,7 +27,7 @@ public class BalsamFirTreeFeature extends Feature<TreeConfiguration> {
     public boolean place(FeaturePlaceContext<TreeConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = reader.getRandom();
         TreeConfiguration config = p_159749_.config();
         int trunkHeight = config.trunkPlacer.getTreeHeight(rand);
 
@@ -96,7 +96,7 @@ public class BalsamFirTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void balsamBranch(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, boolean dead, boolean top) {
+    private void balsamBranch(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, boolean dead, boolean top) {
         List<BlockPos> leaves = new ArrayList<>();
         for (Direction dir : Direction.values()) {
             if (dir.getAxis().equals(Direction.Axis.Y)) continue;

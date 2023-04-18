@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.items.BlunderbussItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -17,7 +18,6 @@ import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Random;
 
 public class AlloyBlunderbussItem extends BlunderbussItem implements IAlloyTieredItem {
     private final String defaultComposition;
@@ -104,7 +104,7 @@ public class AlloyBlunderbussItem extends BlunderbussItem implements IAlloyTiere
     }
 
     @Override
-    public int calcHeatResistanceProc(ItemStack stack, LivingEntity entity, Random random) {
+    public int calcHeatResistanceProc(ItemStack stack, LivingEntity entity, RandomSource random) {
         float heatResist = getHeatResist(stack);
         int hr = IAlloyTieredItem.super.calcHeatResistanceProc(stack, entity, random);
         if ((random.nextFloat() > heatResist)) {

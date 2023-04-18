@@ -140,7 +140,7 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
                 tile.needsRefresh = 1;
 
 
-                MixingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING, tile, tile.level).orElse(null);
+                MixingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING.get(), tile, tile.level).orElse(null);
                 if (tile.canMix(irecipe, tile)) {
                     if (tile.mixTime == 0) {
                         tile.mixTimeTotal = tile.getMixTime();
@@ -186,7 +186,7 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
     }
 
     public int getMixTime() {
-        MixingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING, this, this.level).orElse(null);
+        MixingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING.get(), this, this.level).orElse(null);
         if (irecipe != null) {
             return irecipe.getOutputMixTime(this);
         } else {

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items.tools;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -11,7 +12,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.TierSortingRegistry;
 
-import java.awt.*;
 import java.util.List;
 import java.util.Locale;
 
@@ -43,7 +43,7 @@ public class HardnessTesterItem extends Item {
             } else {
                 cons = "None";
             }
-            player.sendMessage(new TextComponent("Harvest Level: " + cons),player.getUUID());
+            player.sendSystemMessage(Component.literal("Harvest Level: " + cons));
         }
 
 

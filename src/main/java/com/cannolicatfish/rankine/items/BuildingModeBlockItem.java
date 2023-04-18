@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -32,7 +33,7 @@ public class BuildingModeBlockItem extends BlockItem {
             int mode = getBuildingMode(heldItem);
             int maxModes = ((BuildingModeBlock) ((BlockItem) playerIn.getMainHandItem().getItem()).getBlock()).getMaxStyles();
             heldItem.getOrCreateTag().putShort("building_mode", (short) (mode + 1) % maxModes == 0 ? (short) maxModes : (short) ((mode + 1) % maxModes));
-            playerIn.displayClientMessage(new TranslatableComponent("item.rankine.building_tool.message", (mode + 1) % maxModes == 0 ? maxModes : ((mode + 1) % maxModes)).withStyle(ChatFormatting.WHITE), true);
+            playerIn.displayClientMessage(Component.translatable("item.rankine.building_tool.message", (mode + 1) % maxModes == 0 ? maxModes : ((mode + 1) % maxModes)).withStyle(ChatFormatting.WHITE), true);
         }
         return super.use(levelIn, playerIn, handIn);
     }

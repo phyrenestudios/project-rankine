@@ -8,7 +8,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -86,7 +87,7 @@ public class RockGeneratorRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(Container inv, RegistryAccess registryAccess) {
         return ItemStack.EMPTY;
     }
 
@@ -125,7 +126,7 @@ public class RockGeneratorRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess registryAccess) {
         return result;
     }
 
@@ -141,13 +142,13 @@ public class RockGeneratorRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.ROCK_GENERATOR;
+        return RankineRecipeTypes.ROCK_GENERATOR.get();
     }
 
     public static ItemStack deserializeBlock(JsonObject object) {
         String s = GsonHelper.getAsString(object, "block");
 
-        Block block = Registry.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Block block = BuiltInRegistries.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonParseException("Unknown block '" + s + "'");
         });
 
@@ -191,7 +192,7 @@ public class RockGeneratorRecipe implements Recipe<Container> {
             buffer.writeUtf(recipe.getGenType().toString());
             recipe.getFirstIngredient().toNetwork(buffer);
             recipe.getSecondIngredient().toNetwork(buffer);
-            buffer.writeItem(recipe.getResultItem());
+            buffer.writeItem(recipe.getResultItem(RegistryAccess.EMPTY));
         }
     }
 

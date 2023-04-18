@@ -1,16 +1,16 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
-import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.Component;
+import mezz.jei.api.recipe.RecipeType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-
-import java.awt.*;
+import org.jetbrains.annotations.Nullable;
 
 public class InductionAlloyingRecipeCategory extends AlloyingRecipeCategory {
 
@@ -21,15 +21,14 @@ public class InductionAlloyingRecipeCategory extends AlloyingRecipeCategory {
         this.guiHelper = guiHelper;
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
+    public RecipeType<AlloyingRecipe> getRecipeType() {
+        return RankineJEIRecipeTypes.ALLOYING_RECIPE_TYPE;
     }
 
     @Override
-    public Component getTitle() {
-        return new TextComponent(I18n.get("rankine.jei.induction_alloying"));
+    public @Nullable ResourceLocation getRegistryName(AlloyingRecipe recipe) {
+        return UID;
     }
 
     @Override

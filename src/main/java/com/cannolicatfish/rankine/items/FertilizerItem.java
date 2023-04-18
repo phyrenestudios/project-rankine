@@ -18,7 +18,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.List;
 
 public class FertilizerItem extends Item {
@@ -51,7 +50,7 @@ public class FertilizerItem extends Item {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-            tooltip.add(new TextComponent("Restores vegetation").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.literal("Restores vegetation").withStyle(ChatFormatting.GRAY));
     }
 
 

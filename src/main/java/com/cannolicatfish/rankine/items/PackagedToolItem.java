@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.items.alloys.IAlloyTieredItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -20,10 +21,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 import java.util.stream.Collectors;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class PackagedToolItem extends Item {
     public PackagedToolItem(Properties properties) {
@@ -33,7 +31,7 @@ public class PackagedToolItem extends Item {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add((new TranslatableComponent("item.rankine.packaged_tool_desc")).withStyle(ChatFormatting.RED));
+        tooltip.add((Component.translatable("item.rankine.packaged_tool_desc")).withStyle(ChatFormatting.RED));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 
@@ -86,7 +84,7 @@ public class PackagedToolItem extends Item {
                     break;
             }
         } else {
-            Random random = worldIn.getRandom();
+            RandomSource random = worldIn.getRandom();
 
             switch(random.nextInt(10))
             {
@@ -124,7 +122,7 @@ public class PackagedToolItem extends Item {
             }
         }
 
-        List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING);
+        List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get());
         List<AlloyingRecipe> newRecipes = recipes.stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty()).collect(Collectors.toList());
         AlloyingRecipe alloy = newRecipes.get(worldIn.getRandom().nextInt(recipes.size()));
         //System.out.println(alloy.getId());

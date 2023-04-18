@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.EvaporationRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -12,6 +13,7 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
@@ -23,8 +25,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -51,15 +53,14 @@ public class EvaporationRecipeCategory implements IRecipeCategory<EvaporationRec
         return Component.literal(I18n.get("rankine.jei.evaporation"));
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
+    public RecipeType<EvaporationRecipe> getRecipeType() {
+        return RankineJEIRecipeTypes.EVAPORATION_RECIPE_TYPE;
     }
 
     @Override
-    public Class<? extends EvaporationRecipe> getRecipeClass() {
-        return EvaporationRecipe.class;
+    public @Nullable ResourceLocation getRegistryName(EvaporationRecipe recipe) {
+        return UID;
     }
 
     @Override

@@ -1,7 +1,8 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.client.integration.jei.recipes.IRankineCauldronRecipe;
+import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineCauldronDryingRecipe;
+import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -13,16 +14,16 @@ import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
-
-public class CauldronDryingRecipeCategory implements IRecipeCategory<IRankineCauldronRecipe> {
+public class CauldronDryingRecipeCategory implements IRecipeCategory<RankineCauldronDryingRecipe> {
 
     public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "cauldron_drying");
     private final IDrawable background;
@@ -61,20 +62,20 @@ public class CauldronDryingRecipeCategory implements IRecipeCategory<IRankineCau
                     }
                 });
     }
-    @SuppressWarnings("removal")
+
     @Override
-    public ResourceLocation getUid() {
+    public @Nullable ResourceLocation getRegistryName(RankineCauldronDryingRecipe recipe) {
         return UID;
     }
-    @SuppressWarnings("removal")
+
     @Override
-    public Class<? extends IRankineCauldronRecipe> getRecipeClass() {
-        return IRankineCauldronRecipe.class;
+    public RecipeType<RankineCauldronDryingRecipe> getRecipeType() {
+        return RankineJEIRecipeTypes.CAULDRON_DRYING_RECIPE_TYPE;
     }
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override
@@ -91,7 +92,7 @@ public class CauldronDryingRecipeCategory implements IRecipeCategory<IRankineCau
 
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, IRankineCauldronRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, RankineCauldronDryingRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT,40,5).addIngredient(ForgeTypes.FLUID_STACK, recipe.getInputFluid());
         builder.addSlot(RecipeIngredientRole.INPUT,44,48).addItemStack(recipe.getFluidHolderItem());
         builder.addSlot(RecipeIngredientRole.CATALYST,62,32).addItemStack(new ItemStack(Items.CAULDRON));

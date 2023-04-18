@@ -29,7 +29,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
-import java.util.Random;
 
 public class GrassySoilBlock extends GrassBlock {
     public static final BooleanProperty DEAD = BooleanProperty.create("dead");
@@ -87,8 +86,8 @@ public class GrassySoilBlock extends GrassBlock {
                 ++i;
             }
             if (ceillingBlock instanceof LeavesBlock && !(ceillingBlock instanceof RankineLeavesBlock) && (levelIn.getBlockState(pos.above(i - 1)).canBeReplaced(Fluids.WATER) || levelIn.getBlockState(pos.above(i - 1)).is(Blocks.AIR))) {
-                if (ResourceLocation.tryParse("rankine:"+ceillingBlock.getRegistryName().getPath().replace("leaves", "leaf_litter")) != null) {
-                    levelIn.setBlock(pos.above(i - 1), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:"+ceillingBlock.getRegistryName().getPath().replace("leaves", "leaf_litter"))).defaultBlockState(), 3);
+                if (ResourceLocation.tryParse("rankine:"+ForgeRegistries.BLOCKS.getKey(ceillingBlock).getPath().replace("leaves", "leaf_litter")) != null) {
+                    levelIn.setBlock(pos.above(i - 1), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:"+ForgeRegistries.BLOCKS.getKey(ceillingBlock).getPath().replace("leaves", "leaf_litter"))).defaultBlockState(), 3);
                 }
             }
         }
@@ -115,8 +114,8 @@ public class GrassySoilBlock extends GrassBlock {
             }
         } else if (aboveState.is(Blocks.AIR)) {
             Biome BIOME = levelIn.getBiome(pos).value();
-            if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
-                BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
+            if (WorldgenUtils.GEN_BIOMES.contains(ForgeRegistries.BIOMES.getKey(BIOME))) {
+                BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(ForgeRegistries.BIOMES.getKey(BIOME))).getRandomElement();
                 levelIn.setBlock(pos.above(), BLOCK, 3);
             }
         }

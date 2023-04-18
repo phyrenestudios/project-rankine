@@ -7,9 +7,6 @@ import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
 import net.minecraft.client.renderer.Sheets;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -28,13 +25,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.MissingMappingsEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -285,7 +279,7 @@ public class ProjectRankine {
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.WHITE_LIQUOR, () -> RankineFluids.FLOWING_WHITE_LIQUOR, FluidAttributes.builder(WhiteLiquorFluid.FLUID_STILL,WhiteLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(WhiteLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
                     .bucket(RankineItems.WHITE_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.WHITE_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"flowing_white_liquor"));
         }*/
-
+/*
         @SubscribeEvent
         public static void registerItemRemappings(final MissingMappingsEvent event) {
             Map<ResourceLocation, Item> itemRemappings = RankineRemappings.getItemRemappings();
@@ -313,7 +307,7 @@ public class ProjectRankine {
                     map.remap(blockRemappings.get(map.getKey()));
                 }
             }
-        }
+        }*/
 
     }
 

@@ -5,16 +5,16 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class EndMeteoriteFeature extends Feature<NoneFeatureConfiguration> {
     public EndMeteoriteFeature(Codec<NoneFeatureConfiguration> p_i49915_1_) {
@@ -25,7 +25,7 @@ public class EndMeteoriteFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = reader.getRandom();
 
         if (rand.nextFloat() < Config.WORLDGEN.END_METEORITE_CHANCE.get()) {
             ChunkAccess chunk = reader.getChunk(pos);
@@ -50,7 +50,7 @@ public class EndMeteoriteFeature extends Feature<NoneFeatureConfiguration> {
 
 
 
-            for (BlockPos blockpos1 : BlockPos.betweenClosed(POS.offset(-radius,-radius,-radius),POS.offset(radius,radius,radius))) {
+            for (BlockPos blockpos1 : BlockPos.betweenClosed(POS.offset((int) -radius, (int) -radius, (int) -radius),POS.offset((int) radius, (int) radius, (int) radius))) {
                 if (frozen) {
                     if (d1 * Math.pow(blockpos1.getX() - POS.getX(), 2) + d2 * Math.pow(blockpos1.getY() - POS.getY(), 2) + d3 * Math.pow(blockpos1.getZ() - POS.getZ(), 2) <= size) {
                         if (d1 * Math.pow(blockpos1.getX() - POS.getX(), 2) + d2 * Math.pow(blockpos1.getY() - POS.getY(), 2) + d3 * Math.pow(blockpos1.getZ() - POS.getZ(), 2) > size - 0.1*size) {

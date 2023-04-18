@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
@@ -15,7 +16,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class CoconutPalmTreeFeature extends Feature<TreeConfiguration> {
 
@@ -27,7 +27,7 @@ public class CoconutPalmTreeFeature extends Feature<TreeConfiguration> {
     public boolean place(FeaturePlaceContext<TreeConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = reader.getRandom();
         TreeConfiguration config = p_159749_.config();
         int trunkHeight = config.trunkPlacer.getTreeHeight(rand);
         boolean flag = true;
@@ -93,7 +93,7 @@ public class CoconutPalmTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void palmLeaves(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config) {
+    private void palmLeaves(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         List<BlockPos> leaves = new ArrayList<>();
         for (BlockPos b : BlockPos.betweenClosed(pos.offset(-2,0,-2),pos.offset(2,0,2))) {
             if (WorldgenUtils.inRadiusCenter(pos.above(b.getY()-pos.getY()),b,2.5D)) leaves.add(b.immutable());
@@ -118,7 +118,7 @@ public class CoconutPalmTreeFeature extends Feature<TreeConfiguration> {
 
     }
 
-    private static List<BlockPos> palmFraun(WorldGenLevel reader, BlockPos pos, Random rand, Direction dir) {
+    private static List<BlockPos> palmFraun(WorldGenLevel reader, BlockPos pos, RandomSource rand, Direction dir) {
         List<BlockPos> leaves = new ArrayList<>();
         int leaf = rand.nextInt(2);
         if (leaf == 0) {

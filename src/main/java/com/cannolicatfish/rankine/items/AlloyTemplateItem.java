@@ -172,7 +172,7 @@ public class AlloyTemplateItem extends Item {
             }
 
             SimpleContainer temp = new SimpleContainer(invStackInSlot);
-            ElementRecipe elem = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, temp, worldIn).orElse(null);
+            ElementRecipe elem = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT.get(), temp, worldIn).orElse(null);
             if (elem != null) {
                 ingredients.add(elem.getIngredientFromCount(elem.getMaterialCount(invStackInSlot.getItem())));
                 amounts.add(invStackInSlot.getCount());
@@ -398,7 +398,7 @@ public class AlloyTemplateItem extends Item {
                     break;
             }
             sim = new SimpleContainer(inputs);
-            recipeIn = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, sim, worldIn).orElse(null);
+            recipeIn = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), sim, worldIn).orElse(null);
             if (recipeIn != null) {
                 AlloyTemplateItem.addTemplate(worldIn,stack, recipeIn, new SimpleContainer(inputs), (DyeItem) Items.WHITE_DYE);
             }

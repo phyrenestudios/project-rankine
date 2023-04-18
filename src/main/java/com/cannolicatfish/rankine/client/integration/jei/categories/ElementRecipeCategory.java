@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -11,6 +12,7 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
@@ -19,8 +21,8 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -40,20 +42,20 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
                 .addPadding(0, 0, 0, 0)
                 .build();
     }
-    @SuppressWarnings("removal")
+
     @Override
-    public ResourceLocation getUid() {
-        return UID;
+    public RecipeType<ElementRecipe> getRecipeType() {
+        return RankineJEIRecipeTypes.ELEMENT_RECIPE_TYPE;
     }
-    @SuppressWarnings("removal")
+
     @Override
-    public Class<? extends ElementRecipe> getRecipeClass() {
-        return ElementRecipe.class;
+    public @Nullable ResourceLocation getRegistryName(ElementRecipe recipe) {
+        return UID;
     }
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override
@@ -91,9 +93,8 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
             int floor = Math.floorDiv(i,7);
             int val = recipe.getValues().get(i);
             builder.addSlot(RecipeIngredientRole.OUTPUT,(i - (6*floor)) * 18 + 4, 76 + (16*floor)).addIngredients(recipe.getIngredients().get(i))
-                    .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_material_info") + df.format(val))));
+                    .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_material_info") + df.format(val))));
         }
-        IRecipeCategory.super.setRecipe(builder, recipe, focuses);
     }
 
 }

@@ -1,13 +1,13 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -51,14 +51,13 @@ public enum RankineArmorMaterials implements ArmorMaterial {
         this.repairMaterial = new LazyLoadedValue<>(repairMaterialSupplier);
     }
 
-    public int getDurabilityForSlot(EquipmentSlot slotIn) {
-        return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
+    public int getDurabilityForType(ArmorItem.Type slotIn) {
+        return MAX_DAMAGE_ARRAY[slotIn.getSlot().getIndex()] * this.maxDamageFactor;
     }
 
-    public int getDefenseForSlot(EquipmentSlot slotIn) {
-        return this.damageReductionAmountArray[slotIn.getIndex()];
+    public int getDefenseForType(ArmorItem.Type slotIn) {
+        return this.damageReductionAmountArray[slotIn.getSlot().getIndex()];
     }
-
     public int getEnchantmentValue() {
         return this.enchantability;
     }

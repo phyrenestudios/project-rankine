@@ -9,6 +9,7 @@ import com.cannolicatfish.rankine.util.RockGeneratorUtils;
 import com.mojang.datafixers.DataFixUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -40,7 +41,7 @@ public class SedimentFanTile extends BlockEntity {
             if (dir.getAxis().isVertical()) continue;
             BlockState adjState = level.getBlockState(pos.relative(dir));
             if (!level.getFluidState(pos.relative(dir,2)).is(FluidTags.WATER) || !level.getFluidState(pos.relative(dir,3)).is(FluidTags.WATER)) continue;
-            RockGeneratorRecipe recipe = level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
+            RockGeneratorRecipe recipe = level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR.get()).stream().flatMap((r) -> {
                 if (r.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {
                     Optional<RockGeneratorRecipe> optRecipe = r.matches(new SimpleContainer(adjState.getBlock().asItem().getDefaultInstance()),level) ? Optional.of(r) : Optional.empty();
                     return DataFixUtils.orElseGet(optRecipe.map(Stream::of),Stream::empty);
@@ -48,7 +49,7 @@ public class SedimentFanTile extends BlockEntity {
                 return null;
             }).findFirst().orElse(null);
             if (recipe != null) {
-                ItemStack output = recipe.getResultItem();
+                ItemStack output = recipe.getResultItem(RegistryAccess.EMPTY);
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     level.setBlock(pos.relative(dir,3), ((BlockItem) output.getItem()).getBlock().defaultBlockState(), 19);
                     level.playSound(null,pos.relative(dir,3), RankineSoundEvents.SEDIMENT_FAN_GEN.get(), SoundSource.BLOCKS,1.0f,1.0f);

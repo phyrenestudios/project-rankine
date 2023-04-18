@@ -1,21 +1,13 @@
 package com.cannolicatfish.rankine.items;
 
-import net.minecraft.tags.FluidTags;
-import net.minecraftforge.common.ForgeMod;
-
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-
-import net.minecraft.world.item.Item.Properties;
-import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
-
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
 
 public class CanteenItem extends Item implements IFluidHandlerItem {
     public CanteenItem(Properties properties) {
@@ -78,7 +70,7 @@ public class CanteenItem extends Item implements IFluidHandlerItem {
             setFluid();
         }
 
-        return FluidAttributes.BUCKET_VOLUME;
+        return 1000;
     }
 
     @NotNull

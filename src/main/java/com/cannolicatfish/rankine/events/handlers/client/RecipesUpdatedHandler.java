@@ -20,10 +20,10 @@ public class RecipesUpdatedHandler {
     public static void onRecipesUpdated(RecipesUpdatedEvent event) {
         ClientLevel world = Minecraft.getInstance().level;
         if (world != null) {
-            List<AlloyingRecipe> alloyingRecipes = new ArrayList<>(world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING));
+            List<AlloyingRecipe> alloyingRecipes = new ArrayList<>(world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()));
             AlloyCustomHelper.setAlloyingRecipes(alloyingRecipes);
 
-            List<ElementRecipe> elementRecipes = new ArrayList<>(world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ELEMENT));
+            List<ElementRecipe> elementRecipes = new ArrayList<>(world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ELEMENT.get()));
             AlloyCustomHelper.setElementRecipes(elementRecipes);
 
             List<AlloyCraftingRecipe> alloyCraftingRecipes = world.getRecipeManager().getAllRecipesFor(RecipeType.CRAFTING).stream()

@@ -3,29 +3,24 @@ package com.cannolicatfish.rankine.world.gen.trees;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.core.Direction;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelWriter;
-import net.minecraft.world.level.LevelSimulatedReader;
-import net.minecraft.world.level.LevelSimulatedRW;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
-import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraftforge.common.IPlantable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class BirchTreeFeature extends Feature<TreeConfiguration> {
 
@@ -99,7 +94,7 @@ public class BirchTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void birchLeaves(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config) {
+    private void birchLeaves(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         List<BlockPos> leaves = new ArrayList<>();
 
         for (BlockPos b : BlockPos.betweenClosed(pos.offset(-1,-1,-1),pos.offset(1,1,1))) {
@@ -124,7 +119,7 @@ public class BirchTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void birchBranch(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, int branchHeight, int dir) {
+    private void birchBranch(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, int branchHeight, int dir) {
 
         if (isAirOrLeaves(reader, WorldgenUtils.eightBlockDirection(pos,dir,1))) {
             placeLogAt(reader,WorldgenUtils.eightBlockDirection(pos,dir,1),rand,config, Direction.Axis.Y);
@@ -143,11 +138,11 @@ public class BirchTreeFeature extends Feature<TreeConfiguration> {
     }
 
 
-    private void placeLogAt(LevelWriter reader, BlockPos pos, Random rand, TreeConfiguration config, Direction.Axis axis) {
+    private void placeLogAt(LevelWriter reader, BlockPos pos, RandomSource rand, TreeConfiguration config, Direction.Axis axis) {
         this.setLogState(reader, pos, config.trunkProvider.getState(rand, pos).setValue(BlockStateProperties.AXIS, axis));
     }
 
-    private void placeLeafAt(LevelSimulatedRW world, BlockPos pos, Random rand, TreeConfiguration config) {
+    private void placeLeafAt(LevelSimulatedRW world, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         if (isAirOrLeaves(world, pos)) {
             this.setLogState(world, pos, config.foliageProvider.getState(rand, pos).setValue(LeavesBlock.DISTANCE, 1));
         }
