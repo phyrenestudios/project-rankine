@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:enstatite_chondrite"
-  },
-  "result": "rankine:enstatite_chondrite_bricks",
-  "count": 1
-}

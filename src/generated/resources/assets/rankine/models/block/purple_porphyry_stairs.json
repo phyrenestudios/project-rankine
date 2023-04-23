@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "side": "rankine:block/purple_porphyry",
-    "bottom": "rankine:block/purple_porphyry",
-    "top": "rankine:block/purple_porphyry"
-  }
-}

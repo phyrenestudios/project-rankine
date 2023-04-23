@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "rankine:block/chalk_bricks",
-    "bottom": "rankine:block/chalk_bricks",
-    "top": "rankine:block/chalk_bricks"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/cast_iron_support",
-    "bottom": "rankine:block/cast_iron_support",
-    "top": "rankine:block/cast_iron_support"
-  }
-}

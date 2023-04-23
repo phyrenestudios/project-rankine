@@ -2,86 +2,19 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:block_state_property",
-                  "block": "rankine:blueberry_bush",
-                  "properties": {
-                    "age": "3",
-                    "half": "lower"
-                  }
-                }
-              ],
-              "functions": [
-                {
-                  "function": "minecraft:set_count",
-                  "count": {
-                    "type": "minecraft:uniform",
-                    "min": 2.0,
-                    "max": 3.0
-                  },
-                  "add": false
-                },
-                {
-                  "function": "minecraft:apply_bonus",
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:uniform_bonus_count",
-                  "parameters": {
-                    "bonusMultiplier": 1
-                  }
-                }
-              ],
-              "name": "rankine:blueberries"
-            },
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:block_state_property",
-                  "block": "rankine:blueberry_bush",
-                  "properties": {
-                    "age": "2",
-                    "half": "lower"
-                  }
-                }
-              ],
-              "functions": [
-                {
-                  "function": "minecraft:set_count",
-                  "count": {
-                    "type": "minecraft:uniform",
-                    "min": 1.0,
-                    "max": 2.0
-                  },
-                  "add": false
-                },
-                {
-                  "function": "minecraft:apply_bonus",
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:uniform_bonus_count",
-                  "parameters": {
-                    "bonusMultiplier": 1
-                  }
-                }
-              ],
-              "name": "rankine:blueberries"
-            }
-          ]
-        }
-      ],
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"
         }
-      ]
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "rankine:blueberries"
+        }
+      ],
+      "rolls": 1.0
     }
   ]
 }

@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_hollow_log",
-  "textures": {
-    "log": "minecraft:block/jungle_log",
-    "log_top": "minecraft:block/jungle_log_top",
-    "stripped_log": "minecraft:block/stripped_jungle_log"
-  }
-}

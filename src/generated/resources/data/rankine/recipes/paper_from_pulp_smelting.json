@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "rankine:pulp"
-  },
-  "result": "minecraft:paper",
-  "experience": 0.1,
-  "cookingtime": 100
-}

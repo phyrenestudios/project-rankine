@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:block/template_rotation",
-  "textures": {
-    "all": "rankine:block/mossy_rose_marble_bricks"
-  }
-}

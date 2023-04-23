@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "rankine:block/skarn",
-    "bottom": "rankine:block/skarn",
-    "top": "rankine:block/skarn"
-  }
-}

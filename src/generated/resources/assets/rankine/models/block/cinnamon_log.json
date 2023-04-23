@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "side": "rankine:block/cinnamon_log",
-    "end": "rankine:block/cinnamon_log_top"
-  }
-}

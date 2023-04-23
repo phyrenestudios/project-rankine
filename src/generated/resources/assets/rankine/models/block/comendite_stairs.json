@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "side": "rankine:block/comendite",
-    "bottom": "rankine:block/comendite",
-    "top": "rankine:block/comendite"
-  }
-}

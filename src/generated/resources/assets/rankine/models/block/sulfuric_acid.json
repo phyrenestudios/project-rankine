@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "rankine:block/sulfuric_acid_still"
-  }
-}

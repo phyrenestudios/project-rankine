@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/cut_soul_sandstone",
-    "bottom": "rankine:block/cut_soul_sandstone",
-    "top": "rankine:block/cut_soul_sandstone"
-  }
-}

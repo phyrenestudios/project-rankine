@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "rankine:block/tinder_conk_mushroom_block"
-  }
-}

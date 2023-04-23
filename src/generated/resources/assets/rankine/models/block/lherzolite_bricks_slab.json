@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/lherzolite_bricks",
-    "bottom": "rankine:block/lherzolite_bricks",
-    "top": "rankine:block/lherzolite_bricks"
-  }
-}

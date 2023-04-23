@@ -14,27 +14,6 @@ public class Config {
     static Predicate<Object> ELEMENT_VALIDATOR = o -> o instanceof String;
     public static Predicate<Object> DoubleValidator = o -> o instanceof Double;
 
-    public static class BlockProperties {
-
-        public final ForgeConfigSpec.DoubleValue POLISHED_HARDNESS_MULT;
-        public final ForgeConfigSpec.DoubleValue POLISHED_RESISTANCE_MULT;
-        public final ForgeConfigSpec.DoubleValue BRICKS_HARDNESS_MULT;
-        public final ForgeConfigSpec.DoubleValue BRICKS_RESISTANCE_MULT;
-
-        public BlockProperties(ForgeConfigSpec.Builder b) {
-            b.comment("Block Properties").push("blockProperties");
-            BRICKS_HARDNESS_MULT = b.comment("A multiplier to determine how much higher the bricks variant hardness is than the stone.")
-                    .defineInRange("bricksHardnessMultiplier", 1.5D, 0.0D, 20.0D);
-            BRICKS_RESISTANCE_MULT = b.comment("A multiplier to determine how much higher the bricks variant resistance is than the stone.")
-                    .defineInRange("bricksResistanceMultiplier", 2.0D, 0.0D, 20.0D);
-            POLISHED_HARDNESS_MULT = b.comment("A multiplier to determine how much higher the polished variant hardness is than the stone.")
-                    .defineInRange("polishedHardnessMultiplier", 1.1D, 0.0D, 20.0D);
-            POLISHED_RESISTANCE_MULT = b.comment("A multiplier to determine how much higher the polished variant resistance is than the stone.")
-                    .defineInRange("polishedResistanceMultiplier", 1.5D, 0.0D, 20.0D);
-            b.pop();
-        }
-    }
-
     public static class Tools {
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_HAMMER;
         public final ForgeConfigSpec.BooleanValue DISABLE_STONE_HAMMER;
@@ -1302,7 +1281,6 @@ public class Config {
     public static final Gases GASES;
     public static final Worldgen WORLDGEN;
     public static final BiomeGen BIOME_GEN;
-    public static final BlockProperties BLOCK_PROPERTIES;
 
     static {
         ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -1311,7 +1289,6 @@ public class Config {
         MACHINES = new Machines(BUILDER);
         ALLOYS = new Alloys(BUILDER);
         GASES = new Gases(BUILDER);
-        BLOCK_PROPERTIES = new BlockProperties(BUILDER);
         WORLDGEN = new Worldgen(BUILDER);
         BIOME_GEN = new BiomeGen(BUILDER);
         HARD_MODE = new HardMode(BUILDER);

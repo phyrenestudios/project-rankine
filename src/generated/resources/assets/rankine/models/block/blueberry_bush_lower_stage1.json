@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "rankine:block/blueberry_bush_lower_stage1"
-  }
-}

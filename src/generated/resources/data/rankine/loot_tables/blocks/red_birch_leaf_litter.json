@@ -2,14 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "rankine:red_birch_leaf_litter"
-        }
-      ],
       "conditions": [
         {
           "condition": "minecraft:match_tool",
@@ -18,11 +11,15 @@
               "minecraft:shears"
             ]
           }
-        },
-        {
-          "condition": "minecraft:survives_explosion"
         }
-      ]
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "rankine:red_birch_leaf_litter"
+        }
+      ],
+      "rolls": 1.0
     }
   ]
 }

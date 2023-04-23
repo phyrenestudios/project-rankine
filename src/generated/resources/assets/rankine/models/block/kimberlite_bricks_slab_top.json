@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "rankine:block/kimberlite_bricks",
-    "bottom": "rankine:block/kimberlite_bricks",
-    "top": "rankine:block/kimberlite_bricks"
-  }
-}

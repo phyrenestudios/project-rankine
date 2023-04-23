@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "side": "rankine:block/polished_dolostone",
-    "bottom": "rankine:block/polished_dolostone",
-    "top": "rankine:block/polished_dolostone"
-  }
-}

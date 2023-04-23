@@ -27,7 +27,6 @@ import java.util.Locale;
 
 public class ProspectingStickItem extends Item {
 
-    private final int range = Config.TOOLS.PROSPECTING_STICK_RANGE.get();
     public ProspectingStickItem(Properties properties) {
         super(properties);
     }
@@ -61,7 +60,7 @@ public class ProspectingStickItem extends Item {
         }
 
         if (worldIn.getRandom().nextFloat() < Config.TOOLS.SAMPLE_CHANCE.get()) {
-            for (int x = 0; x <= range; x++) {
+            for (int x = 0; x <= Config.TOOLS.PROSPECTING_STICK_RANGE.get(); x++) {
                 if (reader.getBlockState(pos.relative(searchDir, x)).is(Tags.Blocks.ORES)) {
                     BlockState ORE = reader.getBlockState(pos.relative(searchDir, x));
                     if (player != null) {

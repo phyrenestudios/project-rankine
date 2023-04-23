@@ -103,28 +103,6 @@ public class RankineBlocks {
     public static Block.Properties DEF_ORE = Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(4.5F, 3.0F);
     public static Block.Properties DEF_METAL_BLOCK = Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F);
 
-    //Other Stones
-    public static final RegistryObject<Block> GRANITE_BRICKS = BLOCKS.register("granite_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
-    public static final RegistryObject<Block> GRANITE_BRICKS_SLAB = BLOCKS.register("granite_bricks_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(GRANITE_BRICKS.get())));
-    public static final RegistryObject<Block> GRANITE_BRICKS_STAIRS = BLOCKS.register("granite_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(GRANITE_BRICKS.get())));
-    public static final RegistryObject<Block> GRANITE_BRICKS_WALL = BLOCKS.register("granite_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(GRANITE_BRICKS.get())));
-    public static final RegistryObject<Block> GRANITE_BRICKS_PRESSURE_PLATE = BLOCKS.register("granite_bricks_pressure_plate", RankineStonePressurePlate::new);
-    public static final RegistryObject<Block> DIORITE_BRICKS = BLOCKS.register("diorite_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
-    public static final RegistryObject<Block> DIORITE_BRICKS_SLAB = BLOCKS.register("diorite_bricks_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(DIORITE_BRICKS.get())));
-    public static final RegistryObject<Block> DIORITE_BRICKS_STAIRS = BLOCKS.register("diorite_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(DIORITE_BRICKS.get())));
-    public static final RegistryObject<Block> DIORITE_BRICKS_WALL = BLOCKS.register("diorite_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(DIORITE_BRICKS.get())));
-    public static final RegistryObject<Block> DIORITE_BRICKS_PRESSURE_PLATE = BLOCKS.register("diorite_bricks_pressure_plate", RankineStonePressurePlate::new);
-    public static final RegistryObject<Block> ANDESITE_BRICKS = BLOCKS.register("andesite_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
-    public static final RegistryObject<Block> ANDESITE_BRICKS_SLAB = BLOCKS.register("andesite_bricks_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(ANDESITE_BRICKS.get())));
-    public static final RegistryObject<Block> ANDESITE_BRICKS_STAIRS = BLOCKS.register("andesite_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(ANDESITE_BRICKS.get())));
-    public static final RegistryObject<Block> ANDESITE_BRICKS_WALL = BLOCKS.register("andesite_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(ANDESITE_BRICKS.get())));
-    public static final RegistryObject<Block> ANDESITE_BRICKS_PRESSURE_PLATE = BLOCKS.register("andesite_bricks_pressure_plate", RankineStonePressurePlate::new);
-    public static final RegistryObject<Block> BASALT_BRICKS = BLOCKS.register("basalt_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
-    public static final RegistryObject<Block> BASALT_BRICKS_SLAB = BLOCKS.register("basalt_bricks_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(BASALT_BRICKS.get())));
-    public static final RegistryObject<Block> BASALT_BRICKS_STAIRS = BLOCKS.register("basalt_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(BASALT_BRICKS.get())));
-    public static final RegistryObject<Block> BASALT_BRICKS_WALL = BLOCKS.register("basalt_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(BASALT_BRICKS.get())));
-    public static final RegistryObject<Block> BASALT_BRICKS_PRESSURE_PLATE = BLOCKS.register("basalt_bricks_pressure_plate", RankineStonePressurePlate::new);
-
 
     //STONES
     public static final RankineStone PEGMATITE = RankineStone.newStoneReg("pegmatite", "igneous");
@@ -279,6 +257,28 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PUMICE = BLOCKS.register("pumice", () -> new Block(Block.Properties.copy(Blocks.COBBLESTONE)));
     public static final RegistryObject<Block> SCORIA = BLOCKS.register("scoria", () -> new Block(Block.Properties.copy(Blocks.COBBLESTONE)));
 
+
+    //Other Stones
+    public static final RegistryObject<Block> GRANITE_BRICKS = BLOCKS.register("granite_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
+    public static final RegistryObject<Block> GRANITE_BRICKS_SLAB = BLOCKS.register("granite_bricks_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(GRANITE_BRICKS.get())));
+    public static final RegistryObject<Block> GRANITE_BRICKS_STAIRS = BLOCKS.register("granite_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(GRANITE_BRICKS.get())));
+    public static final RegistryObject<Block> GRANITE_BRICKS_WALL = BLOCKS.register("granite_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(GRANITE_BRICKS.get())));
+    public static final RegistryObject<Block> GRANITE_BRICKS_PRESSURE_PLATE = BLOCKS.register("granite_bricks_pressure_plate", RankineStonePressurePlate::new);
+    public static final RegistryObject<Block> DIORITE_BRICKS = BLOCKS.register("diorite_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
+    public static final RegistryObject<Block> DIORITE_BRICKS_SLAB = BLOCKS.register("diorite_bricks_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(DIORITE_BRICKS.get())));
+    public static final RegistryObject<Block> DIORITE_BRICKS_STAIRS = BLOCKS.register("diorite_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(DIORITE_BRICKS.get())));
+    public static final RegistryObject<Block> DIORITE_BRICKS_WALL = BLOCKS.register("diorite_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(DIORITE_BRICKS.get())));
+    public static final RegistryObject<Block> DIORITE_BRICKS_PRESSURE_PLATE = BLOCKS.register("diorite_bricks_pressure_plate", RankineStonePressurePlate::new);
+    public static final RegistryObject<Block> ANDESITE_BRICKS = BLOCKS.register("andesite_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
+    public static final RegistryObject<Block> ANDESITE_BRICKS_SLAB = BLOCKS.register("andesite_bricks_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(ANDESITE_BRICKS.get())));
+    public static final RegistryObject<Block> ANDESITE_BRICKS_STAIRS = BLOCKS.register("andesite_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(ANDESITE_BRICKS.get())));
+    public static final RegistryObject<Block> ANDESITE_BRICKS_WALL = BLOCKS.register("andesite_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(ANDESITE_BRICKS.get())));
+    public static final RegistryObject<Block> ANDESITE_BRICKS_PRESSURE_PLATE = BLOCKS.register("andesite_bricks_pressure_plate", RankineStonePressurePlate::new);
+    public static final RegistryObject<Block> BASALT_BRICKS = BLOCKS.register("basalt_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
+    public static final RegistryObject<Block> BASALT_BRICKS_SLAB = BLOCKS.register("basalt_bricks_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(BASALT_BRICKS.get())));
+    public static final RegistryObject<Block> BASALT_BRICKS_STAIRS = BLOCKS.register("basalt_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(BASALT_BRICKS.get())));
+    public static final RegistryObject<Block> BASALT_BRICKS_WALL = BLOCKS.register("basalt_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(BASALT_BRICKS.get())));
+    public static final RegistryObject<Block> BASALT_BRICKS_PRESSURE_PLATE = BLOCKS.register("basalt_bricks_pressure_plate", RankineStonePressurePlate::new);
 
     //weird mineral blocks
     public static final RegistryObject<Block> MELLITE_BLOCK = BLOCKS.register("mellite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 5.0F)));
@@ -732,6 +732,15 @@ public class RankineBlocks {
     public static final RegistryObject<Block> WILLOW_BRANCHLET = BLOCKS.register("willow_branchlet", () -> new WillowBranchletTopBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.GRASS).noCollission().instabreak().sound(SoundType.VINE)));
     public static final RegistryObject<Block> WILLOW_BRANCHLET_PLANT = BLOCKS.register("willow_branchlet_plant", () -> new WillowBranchletBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.GRASS).noCollission().instabreak().sound(SoundType.VINE)));
     public static final RegistryObject<Block> LOCUST_SPINE = BLOCKS.register("locust_spine", () -> new LocustSpineBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).noCollission().instabreak().sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> OYSTER_MUSHROOM = BLOCKS.register("oyster_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), null));
+    public static final RegistryObject<Block> LIONS_MANE_MUSHROOM = BLOCKS.register("lions_mane_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), null));
+    public static final RegistryObject<Block> SULFUR_SHELF_MUSHROOM = BLOCKS.register("sulfur_shelf_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), null));
+    public static final RegistryObject<Block> HONEY_MUSHROOM = BLOCKS.register("honey_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), null));
+    public static final RegistryObject<Block> ARTIST_CONK_MUSHROOM = BLOCKS.register("artist_conk_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), null));
+    public static final RegistryObject<Block> TINDER_CONK_MUSHROOM = BLOCKS.register("tinder_conk_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), null));
+    public static final RegistryObject<Block> TURKEY_TAIL_MUSHROOM = BLOCKS.register("turkey_tail_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), null));
+    public static final RegistryObject<Block> CINNABAR_POLYPORE_MUSHROOM = BLOCKS.register("cinnabar_polypore_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), null));
+    /*
     public static final RegistryObject<Block> OYSTER_MUSHROOM = BLOCKS.register("oyster_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_OYSTER_MUSHROOM.getHolder().get()));
     public static final RegistryObject<Block> LIONS_MANE_MUSHROOM = BLOCKS.register("lions_mane_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_LIONS_MANE_MUSHROOM.getHolder().get()));
     public static final RegistryObject<Block> SULFUR_SHELF_MUSHROOM = BLOCKS.register("sulfur_shelf_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_SULFUR_SHELF_MUSHROOM.getHolder().get()));
@@ -740,6 +749,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TINDER_CONK_MUSHROOM = BLOCKS.register("tinder_conk_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_TINDER_CONK_MUSHROOM.getHolder().get()));
     public static final RegistryObject<Block> TURKEY_TAIL_MUSHROOM = BLOCKS.register("turkey_tail_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_TURKEY_TAIL_MUSHROOM.getHolder().get()));
     public static final RegistryObject<Block> CINNABAR_POLYPORE_MUSHROOM = BLOCKS.register("cinnabar_polypore_mushroom", () -> new RankineWallMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_RED).noCollission().randomTicks().instabreak().sound(SoundType.GRASS), () -> RankineConfiguredFeatures.CONFIGURED_CINNABAR_POLYPORE_MUSHROOM.getHolder().get()));
+
+      */
     public static final RegistryObject<Block> OYSTER_MUSHROOM_BLOCK = BLOCKS.register("oyster_mushroom_block", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> LIONS_MANE_MUSHROOM_BLOCK = BLOCKS.register("lions_mane_mushroom_block", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> SULFUR_SHELF_MUSHROOM_BLOCK = BLOCKS.register("sulfur_shelf_mushroom_block", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));
@@ -1222,10 +1233,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MATERIAL_TESTING_TABLE = BLOCKS.register("material_testing_table", () -> new MaterialTestingTableBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.0F)));
     public static final RegistryObject<Block> TEMPLATE_TABLE = BLOCKS.register("template_table", () -> new TemplateTableBlock(Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(2.0F)));
     public static final RegistryObject<Block> ALLOY_FURNACE = BLOCKS.register("alloy_furnace", () -> new AlloyFurnaceBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).lightLevel(litBlockEmission(13))));
-    public static final RegistryObject<Block> PISTON_CRUSHER = BLOCKS.register("piston_crusher", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
-    public static final RegistryObject<Block> PCF = BLOCKS.register("pcf", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> INDUCTION_FURNACE = BLOCKS.register("induction_furnace", () -> new InductionFurnaceBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F).lightLevel(litBlockEmission(13))));
-    public static final RegistryObject<Block> GYRATORY_CRUSHER = BLOCKS.register("gyratory_crusher", () -> new Block(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> EVAPORATION_TOWER = BLOCKS.register("evaporation_tower", () -> new EvaporationTowerBlock(Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> DIAMOND_ANVIL_CELL = BLOCKS.register("diamond_anvil_cell", () -> new DiamondAnvilCellBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));
     public static final RegistryObject<Block> PARTICLE_ACCELERATOR = BLOCKS.register("particle_accelerator", () -> new ParticleAcceleratorBlock(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(2.0F)));

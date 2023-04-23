@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "rankine:block/mariposite_bricks",
-    "bottom": "rankine:block/mariposite_bricks",
-    "top": "rankine:block/mariposite_bricks"
-  }
-}

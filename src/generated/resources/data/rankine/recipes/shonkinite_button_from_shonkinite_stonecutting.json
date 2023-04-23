@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:shonkinite"
-  },
-  "result": "rankine:shonkinite_button",
-  "count": 1
-}

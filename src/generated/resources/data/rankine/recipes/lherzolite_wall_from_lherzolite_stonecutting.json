@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:lherzolite"
-  },
-  "result": "rankine:lherzolite_wall",
-  "count": 1
-}

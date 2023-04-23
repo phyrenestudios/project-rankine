@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:white_marble"
-  },
-  "result": "rankine:white_marble_wall",
-  "count": 1
-}

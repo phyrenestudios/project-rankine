@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/high_refractory_bricks",
-    "bottom": "rankine:block/high_refractory_bricks",
-    "top": "rankine:block/high_refractory_bricks"
-  }
-}

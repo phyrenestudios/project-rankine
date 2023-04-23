@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/polished_soapstone",
-    "bottom": "rankine:block/polished_soapstone",
-    "top": "rankine:block/polished_soapstone"
-  }
-}

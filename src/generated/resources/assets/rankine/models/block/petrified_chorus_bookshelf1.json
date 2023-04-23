@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "rankine:block/petrified_chorus_planks",
-    "side": "rankine:block/petrified_chorus_bookshelf"
-  }
-}

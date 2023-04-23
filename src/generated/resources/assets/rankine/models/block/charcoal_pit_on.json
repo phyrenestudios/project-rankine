@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "rankine:block/charcoal_pit_side",
-    "bottom": "rankine:block/charcoal_pit_top_on",
-    "top": "rankine:block/charcoal_pit_top_on"
-  }
-}

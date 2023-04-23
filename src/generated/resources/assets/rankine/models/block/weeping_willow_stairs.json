@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "side": "rankine:block/weeping_willow_planks",
-    "bottom": "rankine:block/weeping_willow_planks",
-    "top": "rankine:block/weeping_willow_planks"
-  }
-}

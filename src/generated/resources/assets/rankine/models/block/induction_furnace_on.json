@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "side": "rankine:block/induction_furnace_side",
-    "front": "rankine:block/induction_furnace_front",
-    "top": "rankine:block/induction_furnace_top_on"
-  }
-}

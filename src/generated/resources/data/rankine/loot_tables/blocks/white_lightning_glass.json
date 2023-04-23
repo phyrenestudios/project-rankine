@@ -2,48 +2,19 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:glowstone_dust"
-        }
-      ],
       "conditions": [
         {
-          "condition": "minecraft:block_state_property",
-          "block": "rankine:white_lightning_glass",
-          "properties": {
-            "glowing": "true"
-          }
+          "condition": "minecraft:survives_explosion"
         }
-      ]
-    },
-    {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      ],
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "enchantments": [
-                  {
-                    "enchantment": "minecraft:silk_touch",
-                    "levels": {
-                      "min": 1
-                    }
-                  }
-                ]
-              }
-            }
-          ],
           "name": "rankine:white_lightning_glass"
         }
-      ]
+      ],
+      "rolls": 1.0
     }
   ]
 }

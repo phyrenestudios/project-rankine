@@ -26,6 +26,14 @@ import net.minecraftforge.fml.common.Mod;
 public class RankineEventHandler {
 
     @SubscribeEvent
+    public static void registerTabs(CreativeModeTabEvent.Register event) {
+        CreativeTabsHandler.registerTabs(event);
+    }
+    @SubscribeEvent
+    public static void creativeTabs(CreativeModeTabEvent.BuildContents event) {
+        CreativeTabsHandler.addItemsToTabs(event);
+    }
+    @SubscribeEvent
     public static void attachCapabilities(AttachCapabilitiesEvent<LevelChunk> event) {
         event.addCapability(new ResourceLocation("rankine:retrogen_chunk"), new ChunkRetrogenProvider());
     }

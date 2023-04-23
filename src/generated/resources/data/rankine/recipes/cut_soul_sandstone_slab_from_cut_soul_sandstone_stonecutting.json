@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:cut_soul_sandstone"
-  },
-  "result": "rankine:cut_soul_sandstone_slab",
-  "count": 2
-}

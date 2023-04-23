@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "rankine:block/balsam_fir_planks",
-    "side": "rankine:block/balsam_fir_bookshelf"
-  }
-}

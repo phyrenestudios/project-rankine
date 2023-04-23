@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "rankine:corn_ear"
-  },
-  "result": "rankine:popcorn",
-  "experience": 0.35,
-  "cookingtime": 200
-}

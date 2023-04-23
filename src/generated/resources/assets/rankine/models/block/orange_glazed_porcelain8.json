@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:block/template_glazed_porcelain",
-  "textures": {
-    "overlay": "rankine:block/glazed_porcelain8"
-  }
-}

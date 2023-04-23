@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/gneiss_bricks",
-    "bottom": "rankine:block/gneiss_bricks",
-    "top": "rankine:block/gneiss_bricks"
-  }
-}

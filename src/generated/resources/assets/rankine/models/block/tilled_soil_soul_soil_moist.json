@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_farmland",
-  "textures": {
-    "dirt": "minecraft:block/soul_soil",
-    "top": "rankine:block/soul_soil_farmland_moist"
-  }
-}

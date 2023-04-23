@@ -1,9 +1,0 @@
-{
-  "type": "rankine:beehive_oven",
-  "input": {
-    "item": "rankine:rhodochrosite_block"
-  },
-  "result": "rankine:manganese_block",
-  "minCookTime": 2400,
-  "maxCookTime": 4800
-}

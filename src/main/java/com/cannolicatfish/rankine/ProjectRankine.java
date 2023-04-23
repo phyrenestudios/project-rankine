@@ -51,22 +51,22 @@ public class ProjectRankine {
         Bus.addListener(this::CommonSetup);
         Bus.addListener(this::ClientSetup);
 
+        RankineSoundEvents.SOUNDS.register(Bus);
         RankineBlocks.BLOCKS.register(Bus);
+        RankineMobEffects.MOB_EFFECTS.register(Bus);
         RankineItems.ITEMS.register(Bus);
         RankineBlocks.ITEMS.register(Bus);
         RankineEntityTypes.ENTITY_TYPES.register(Bus);
-        RankineMobEffects.MOB_EFFECTS.register(Bus);
         RankinePotions.POTIONS.register(Bus);
-        RankinePOIs.POI_TYPES.register(Bus);
-        RankineVillagerProfessions.VILLAGER_PROFESSIONS.register(Bus);
-        RankineBlockEntityTypes.BLOCK_ENTITY_TYPES.register(Bus);
-        RankineRecipeSerializers.RECIPE_SERIALIZERS.register(Bus);
-        RankineContainers.CONTAINERS.register(Bus);
-        RankineFeatures.FEATURES.register(Bus);
-        RankineConfiguredFeatures.CONFIGURED_FEATURES.register(Bus);
-        RankinePlacedFeatures.PLACED_FEATURES.register(Bus);
-        RankineSoundEvents.SOUNDS.register(Bus);
         RankineEnchantments.ENCHANTMENTS.register(Bus);
+        RankineBlockEntityTypes.BLOCK_ENTITY_TYPES.register(Bus);
+        RankineContainers.MENUS.register(Bus);
+        RankineRecipeSerializers.RECIPE_SERIALIZERS.register(Bus);
+        RankineVillagerProfessions.VILLAGER_PROFESSIONS.register(Bus);
+        RankinePOIs.POI_TYPES.register(Bus);
+        //RankineFeatures.FEATURES.register(Bus);
+        //RankineConfiguredFeatures.CONFIGURED_FEATURES.register(Bus);
+        //RankinePlacedFeatures.PLACED_FEATURES.register(Bus);
 
         Bus.addListener(this::LoadComplete);
 
@@ -77,7 +77,7 @@ public class ProjectRankine {
     private void CommonSetup(final FMLCommonSetupEvent event) {
         LOGGER.debug("Rankine: \"CommonSetup\" Starting...");
 
-        WorldgenUtils.initConfigs();
+        //WorldgenUtils.initConfigs();
         RankinePacketHandler.register();
         proxy.init();
 

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/polished_eclogite",
-    "bottom": "rankine:block/polished_eclogite",
-    "top": "rankine:block/polished_eclogite"
-  }
-}

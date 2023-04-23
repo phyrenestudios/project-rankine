@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:stibnite_ore"
-  },
-  "result": "rankine:antimony",
-  "experience": 0.5,
-  "cookingtime": 100
-}

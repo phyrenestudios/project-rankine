@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "rankine:block/quartzite",
-    "bottom": "rankine:block/quartzite",
-    "top": "rankine:block/quartzite"
-  }
-}

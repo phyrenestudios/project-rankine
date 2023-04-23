@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "minecraft:fire_charge",
-    "rankine:cannonball",
-    "rankine:carcass",
-    "rankine:enderball"
-  ]
-}

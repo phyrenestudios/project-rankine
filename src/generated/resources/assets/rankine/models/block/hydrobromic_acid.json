@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "rankine:block/hydrobromic_acid_still"
-  }
-}

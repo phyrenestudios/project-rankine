@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:sodium_sulfur_battery"
-  },
-  "result": "rankine:sulfur_nugget",
-  "experience": 0.5,
-  "cookingtime": 100
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "rankine:block/sandy_clay_mycelium",
-    "bottom": "rankine:block/sandy_clay",
-    "top": "minecraft:block/mycelium_top"
-  }
-}

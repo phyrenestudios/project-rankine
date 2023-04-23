@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/harzburgite",
-    "bottom": "rankine:block/harzburgite",
-    "top": "rankine:block/harzburgite"
-  }
-}

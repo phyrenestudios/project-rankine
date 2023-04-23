@@ -1509,7 +1509,6 @@ public class RankineItems {
     public static final RegistryObject<Item> MATERIAL_TESTING_TABLE = ITEMS.register("material_testing_table", () -> new BlockItem(RankineBlocks.MATERIAL_TESTING_TABLE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> TEMPLATE_TABLE = ITEMS.register("template_table", () -> new BlockItem(RankineBlocks.TEMPLATE_TABLE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> ALLOY_FURNACE = ITEMS.register("alloy_furnace", () -> new BlockItem(RankineBlocks.ALLOY_FURNACE.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> PCF = ITEMS.register("pcf", () -> new BlockItem(RankineBlocks.PCF.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> INDUCTION_FURNACE = ITEMS.register("induction_furnace", () -> new BlockItem(RankineBlocks.INDUCTION_FURNACE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> EVAPORATION_TOWER = ITEMS.register("evaporation_tower", () -> new BlockItem(RankineBlocks.EVAPORATION_TOWER.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> DIAMOND_ANVIL_CELL = ITEMS.register("diamond_anvil_cell", () -> new BlockItem(RankineBlocks.DIAMOND_ANVIL_CELL.get(),new Item.Properties().stacksTo(64)));

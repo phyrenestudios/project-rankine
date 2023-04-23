@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom",
-  "textures": {
-    "bottom": "rankine:block/steel_door_bottom",
-    "top": "rankine:block/steel_door_top"
-  }
-}

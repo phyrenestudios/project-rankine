@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:halloysite_bricks"
-  },
-  "result": "rankine:halloysite_bricks_slab",
-  "count": 2
-}

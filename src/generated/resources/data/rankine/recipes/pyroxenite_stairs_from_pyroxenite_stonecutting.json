@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:pyroxenite"
-  },
-  "result": "rankine:pyroxenite_stairs",
-  "count": 1
-}

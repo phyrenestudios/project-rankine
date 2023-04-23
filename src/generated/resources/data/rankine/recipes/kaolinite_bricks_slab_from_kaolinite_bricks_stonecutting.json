@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:kaolinite_bricks"
-  },
-  "result": "rankine:kaolinite_bricks_slab",
-  "count": 2
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "rankine:block/humus_podzol",
-    "bottom": "rankine:block/humus",
-    "top": "minecraft:block/podzol_top"
-  }
-}

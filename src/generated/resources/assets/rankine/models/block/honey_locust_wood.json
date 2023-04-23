@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "side": "rankine:block/honey_locust_log",
-    "end": "rankine:block/honey_locust_log"
-  }
-}

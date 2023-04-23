@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_rh",
-  "textures": {
-    "bottom": "rankine:block/pinyon_pine_door_bottom",
-    "top": "rankine:block/pinyon_pine_door_top"
-  }
-}

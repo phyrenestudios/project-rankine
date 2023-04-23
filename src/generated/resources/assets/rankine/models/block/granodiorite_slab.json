@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/granodiorite",
-    "bottom": "rankine:block/granodiorite",
-    "top": "rankine:block/granodiorite"
-  }
-}

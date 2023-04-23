@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:dunite_bricks"
-  },
-  "result": "rankine:dunite_bricks_pressure_plate",
-  "count": 1
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "rankine:block/polished_wehrlite",
-    "bottom": "rankine:block/polished_wehrlite",
-    "top": "rankine:block/polished_wehrlite"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "side": "rankine:block/template_table_side",
-    "front": "rankine:block/template_table_front",
-    "top": "rankine:block/template_table_top"
-  }
-}

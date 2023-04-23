@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:block/template_cobble1",
-  "textures": {
-    "all": "rankine:block/gray_marble"
-  }
-}

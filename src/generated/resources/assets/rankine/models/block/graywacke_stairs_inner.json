@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "rankine:block/graywacke",
-    "bottom": "rankine:block/graywacke",
-    "top": "rankine:block/graywacke"
-  }
-}

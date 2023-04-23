@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "rankine:block/comendite_bricks",
-    "bottom": "rankine:block/comendite_bricks",
-    "top": "rankine:block/comendite_bricks"
-  }
-}

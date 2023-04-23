@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:phonolite"
-  },
-  "result": "rankine:phonolite_wall",
-  "count": 1
-}

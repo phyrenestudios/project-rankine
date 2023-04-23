@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "rankine:block/polished_shonkinite",
-    "bottom": "rankine:block/polished_shonkinite",
-    "top": "rankine:block/polished_shonkinite"
-  }
-}

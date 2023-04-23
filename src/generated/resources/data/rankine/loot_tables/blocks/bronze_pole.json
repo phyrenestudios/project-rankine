@@ -2,37 +2,19 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:block_state_property",
-                  "block": "rankine:bronze_pole",
-                  "properties": {
-                    "style": "1"
-                  }
-                }
-              ],
-              "name": "rankine:garland"
-            },
-            {
-              "type": "minecraft:item",
-              "name": "rankine:bronze_pole"
-            }
-          ]
-        }
-      ],
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"
         }
-      ]
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "rankine:bronze_pole"
+        }
+      ],
+      "rolls": 1.0
     }
   ]
 }

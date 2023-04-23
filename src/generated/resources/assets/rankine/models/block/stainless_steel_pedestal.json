@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:block/template_pedestal",
-  "textures": {
-    "all": "rankine:block/stainless_steel_block"
-  }
-}

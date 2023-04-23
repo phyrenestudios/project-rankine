@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_sodium_vapor_lamp_wall",
-  "textures": {
-    "base": "rankine:block/cast_iron_block",
-    "lamp": "rankine:block/sodium_vapor_lamp",
-    "pole": "rankine:block/cast_iron_pole"
-  }
-}

@@ -27,11 +27,11 @@ public class RankineLeavesBlock extends LeavesBlock {
 
     public RankineLeavesBlock() {
         super(Block.Properties.of(Material.LEAVES).randomTicks().strength(0.2F).sound(SoundType.GRASS).noOcclusion());
-        this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 7).setValue(PERSISTENT, Boolean.FALSE).setValue(AGE, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 7).setValue(PERSISTENT, Boolean.FALSE).setValue(AGE, 0).setValue(WATERLOGGED, false));
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(DISTANCE, PERSISTENT, AGE);
+        builder.add(DISTANCE, PERSISTENT, AGE, WATERLOGGED);
     }
 
     @Override
@@ -59,6 +59,7 @@ public class RankineLeavesBlock extends LeavesBlock {
         if (i != 1 || stateIn.getValue(DISTANCE) != i) {
             worldIn.scheduleTick(currentPos, this, 1);
         }
+        if (stateIn.getValue(WATERLOGGED)) return stateIn.setValue(AGE, 0);
         return stateIn.setValue(AGE,isSnowy(worldIn, currentPos) ? 2 : 0);
     }
 

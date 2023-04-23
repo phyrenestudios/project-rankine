@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "rankine:block/mica_schist",
-    "bottom": "rankine:block/mica_schist",
-    "top": "rankine:block/mica_schist"
-  }
-}

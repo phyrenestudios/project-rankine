@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:kimberlite"
-  },
-  "result": "rankine:kimberlite_pressure_plate",
-  "count": 1
-}

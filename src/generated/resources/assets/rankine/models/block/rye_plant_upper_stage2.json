@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/crop",
-  "textures": {
-    "crop": "rankine:block/rye_plant_upper_stage2"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:block/template_rankine_lantern",
-  "textures": {
-    "overlay": "rankine:block/potassium_lantern"
-  }
-}

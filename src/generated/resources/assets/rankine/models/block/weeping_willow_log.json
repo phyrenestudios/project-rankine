@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "side": "rankine:block/weeping_willow_log",
-    "end": "rankine:block/weeping_willow_log_top"
-  }
-}

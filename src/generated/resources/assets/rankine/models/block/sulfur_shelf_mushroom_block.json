@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "rankine:block/sulfur_shelf_mushroom_block",
-    "bottom": "rankine:block/sulfur_shelf_mushroom_block_end",
-    "top": "rankine:block/sulfur_shelf_mushroom_block_end"
-  }
-}

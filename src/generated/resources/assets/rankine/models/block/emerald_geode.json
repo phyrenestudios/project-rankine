@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:block/template_cut_geode",
-  "textures": {
-    "face": "rankine:block/emerald_geode"
-  }
-}

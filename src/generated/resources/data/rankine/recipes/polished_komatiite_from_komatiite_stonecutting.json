@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:komatiite"
-  },
-  "result": "rankine:polished_komatiite",
-  "count": 1
-}

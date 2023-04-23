@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "rankine:block/western_hemlock_planks",
-    "bottom": "rankine:block/western_hemlock_planks",
-    "top": "rankine:block/western_hemlock_planks"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:strontium_rtg"
-  },
-  "result": "rankine:yttrium_nugget",
-  "experience": 0.5,
-  "cookingtime": 100
-}

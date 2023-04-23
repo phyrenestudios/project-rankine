@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:block/template_square",
-  "textures": {
-    "all": "rankine:block/willow_branchlet"
-  }
-}

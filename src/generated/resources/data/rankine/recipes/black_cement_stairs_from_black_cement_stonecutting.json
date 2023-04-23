@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:black_cement"
-  },
-  "result": "rankine:black_cement_stairs",
-  "count": 1
-}

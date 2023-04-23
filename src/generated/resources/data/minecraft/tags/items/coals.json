@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "rankine:lignite",
-    "rankine:subbituminous_coal",
-    "rankine:bituminous_coal",
-    "rankine:anthracite_coal"
-  ]
-}

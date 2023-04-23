@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_hollow_log_mossy",
-  "textures": {
-    "log": "rankine:block/petrified_chorus_log",
-    "log_top": "rankine:block/petrified_chorus_log_top",
-    "stripped_log": "rankine:block/stripped_petrified_chorus_log"
-  }
-}

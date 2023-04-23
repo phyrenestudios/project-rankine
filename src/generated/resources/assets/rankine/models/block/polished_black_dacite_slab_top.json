@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "rankine:block/polished_black_dacite",
-    "bottom": "rankine:block/polished_black_dacite",
-    "top": "rankine:block/polished_black_dacite"
-  }
-}

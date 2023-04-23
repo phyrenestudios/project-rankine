@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:whiteschist"
-  },
-  "result": "rankine:whiteschist_button",
-  "count": 1
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_hollow_log",
-  "textures": {
-    "log": "rankine:block/pinyon_pine_log",
-    "log_top": "rankine:block/pinyon_pine_log_top",
-    "stripped_log": "rankine:block/stripped_pinyon_pine_log"
-  }
-}

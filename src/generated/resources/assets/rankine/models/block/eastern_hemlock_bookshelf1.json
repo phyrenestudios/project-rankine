@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "rankine:block/eastern_hemlock_planks",
-    "side": "rankine:block/eastern_hemlock_bookshelf"
-  }
-}

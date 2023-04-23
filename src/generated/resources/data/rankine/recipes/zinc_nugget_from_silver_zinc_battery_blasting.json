@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:silver_zinc_battery"
-  },
-  "result": "rankine:zinc_nugget",
-  "experience": 0.5,
-  "cookingtime": 100
-}

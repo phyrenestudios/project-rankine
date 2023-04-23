@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "side": "rankine:block/stripped_sharinga_log",
-    "end": "rankine:block/stripped_sharinga_log_top"
-  }
-}

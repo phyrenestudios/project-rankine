@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "rankine:block/hornblende_andesite",
-    "bottom": "rankine:block/hornblende_andesite",
-    "top": "rankine:block/hornblende_andesite"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_granodiorite"
-  },
-  "result": "rankine:polished_granodiorite_stairs",
-  "count": 1
-}

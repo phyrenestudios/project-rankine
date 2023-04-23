@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_anorthosite"
-  },
-  "result": "rankine:polished_anorthosite_stairs",
-  "count": 1
-}

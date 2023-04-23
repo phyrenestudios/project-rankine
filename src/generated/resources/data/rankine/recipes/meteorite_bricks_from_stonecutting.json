@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:meteorite"
-  },
-  "result": "rankine:meteorite_bricks",
-  "count": 1
-}

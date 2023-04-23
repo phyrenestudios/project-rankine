@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "rankine:simple_electromagnet",
-    "rankine:alnico_electromagnet",
-    "rankine:rare_earth_electromagnet"
-  ]
-}

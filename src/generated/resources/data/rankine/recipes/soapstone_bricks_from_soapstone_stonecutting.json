@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:soapstone"
-  },
-  "result": "rankine:soapstone_bricks",
-  "count": 1
-}

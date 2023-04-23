@@ -1,26 +1,14 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.data.worldgen.placement.VegetationPlacements;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
-import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class RankinePlacedFeatures {
 
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registries.PLACED_FEATURE, ProjectRankine.MODID);
-
+/*
     public static final RegistryObject<PlacedFeature> PLACED_FUMAROLE = PLACED_FEATURES.register("fumarole", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_FUMAROLE.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(Config.WORLDGEN.FUMAROLE_GEN.get()), BiomeFilter.biome())));
     public static final RegistryObject<PlacedFeature> PLACED_INTRUSION = PLACED_FEATURES.register("intrusion", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_INTRUSION.getHolder().get(), Arrays.asList(BiomeFilter.biome())));
     public static final RegistryObject<PlacedFeature> PLACED_METEORITE = PLACED_FEATURES.register("meteorite", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_METEORITE.getHolder().get(), Arrays.asList(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, RarityFilter.onAverageOnceEvery(Config.WORLDGEN.METEORITE_CHANCE.get()), BiomeFilter.biome())));
@@ -121,6 +109,7 @@ public class RankinePlacedFeatures {
         EVAPORITE = registerPlacedFeature("evaporite",RankineConfiguredFeatures.ORE_EVAPORITE,(PlacementModifier) Collections.emptyList());
         ALLUVIUM = registerPlacedFeature("alluvium",RankineConfiguredFeatures.ORE_ALLUVIUM,(PlacementModifier) Collections.emptyList());
 
- */}
+ }
+*/
 
 }

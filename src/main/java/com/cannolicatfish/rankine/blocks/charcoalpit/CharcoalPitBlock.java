@@ -35,7 +35,6 @@ import java.util.Random;
 
 public class CharcoalPitBlock extends BaseEntityBlock {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
-    int MAX_HEIGHT = Config.MACHINES.CHARCOAL_PIT_HEIGHT.get();
 
     public CharcoalPitBlock(Properties properties) {
         super(properties);
@@ -71,7 +70,7 @@ public class CharcoalPitBlock extends BaseEntityBlock {
             flag = true;
         }
         if (flag) {
-            for (int i = -MAX_HEIGHT; i <= MAX_HEIGHT; ++i) {
+            for (int i = -Config.MACHINES.CHARCOAL_PIT_HEIGHT.get(); i <= Config.MACHINES.CHARCOAL_PIT_HEIGHT.get(); ++i) {
                 if (worldIn.getBlockState(pos.above(i)).is(RankineBlocks.CHARCOAL_PIT.get())) {
                     worldIn.setBlock(pos.above(i), RankineBlocks.CHARCOAL_PIT.get().defaultBlockState().setValue(BlockStateProperties.LIT, Boolean.TRUE), 3);
                 }

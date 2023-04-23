@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/bamboo_culms",
-    "bottom": "rankine:block/bamboo_culms",
-    "top": "rankine:block/bamboo_culms"
-  }
-}

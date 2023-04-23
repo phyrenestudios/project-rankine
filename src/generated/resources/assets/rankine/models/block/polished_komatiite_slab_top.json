@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "rankine:block/polished_komatiite",
-    "bottom": "rankine:block/polished_komatiite",
-    "top": "rankine:block/polished_komatiite"
-  }
-}

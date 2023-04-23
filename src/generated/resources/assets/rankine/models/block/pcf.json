@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "side": "rankine:block/pcf_side",
-    "front": "rankine:block/pcf_front",
-    "top": "rankine:block/pcf_top"
-  }
-}

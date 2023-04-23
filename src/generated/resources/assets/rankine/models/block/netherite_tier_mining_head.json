@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:block/template_mining_head",
-  "textures": {
-    "base": "rankine:block/netherite_tier_mining_head"
-  }
-}

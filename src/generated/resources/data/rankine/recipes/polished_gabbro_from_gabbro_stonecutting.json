@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:gabbro"
-  },
-  "result": "rankine:polished_gabbro",
-  "count": 1
-}

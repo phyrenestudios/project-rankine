@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:block/template_solid_gas",
-  "textures": {
-    "all": "rankine:block/radon_block"
-  }
-}

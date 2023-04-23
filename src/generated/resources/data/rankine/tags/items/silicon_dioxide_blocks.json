@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:stones/quartzite",
-    "#rankine:construction_sand",
-    "#forge:storage_blocks/quartz"
-  ]
-}

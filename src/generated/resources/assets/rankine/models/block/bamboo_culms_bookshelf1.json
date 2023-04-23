@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "rankine:block/bamboo_culms",
-    "side": "rankine:block/bamboo_culms_bookshelf"
-  }
-}

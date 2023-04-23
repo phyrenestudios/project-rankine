@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/fiber_block",
-    "bottom": "rankine:block/fiber_block",
-    "top": "rankine:block/fiber_block"
-  }
-}

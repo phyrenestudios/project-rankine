@@ -69,7 +69,5 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<BlockPileConfiguration>> CINNABAR_POLYPORE = FEATURES.register("cinnabar_polypore_feature", () -> new CinnbarPolyporeMushroomFeature(BlockPileConfiguration.CODEC));
 
 
-
-
 }
 

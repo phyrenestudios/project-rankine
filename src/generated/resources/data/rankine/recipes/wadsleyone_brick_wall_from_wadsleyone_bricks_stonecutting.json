@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:wadsleyone_bricks"
-  },
-  "result": "rankine:wadsleyone_bricks_wall",
-  "count": 1
-}

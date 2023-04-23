@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "side": "rankine:block/botanist_station_side",
-    "front": "rankine:block/botanist_station_front",
-    "top": "rankine:block/botanist_station_top"
-  }
-}

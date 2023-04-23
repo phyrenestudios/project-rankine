@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "rankine:block/smooth_white_sandstone",
-    "bottom": "rankine:block/smooth_white_sandstone",
-    "top": "rankine:block/smooth_white_sandstone"
-  }
-}

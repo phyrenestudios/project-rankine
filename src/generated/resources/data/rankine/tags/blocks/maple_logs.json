@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "rankine:maple_log",
-    "rankine:stripped_maple_log",
-    "rankine:maple_wood",
-    "rankine:stripped_maple_wood"
-  ]
-}

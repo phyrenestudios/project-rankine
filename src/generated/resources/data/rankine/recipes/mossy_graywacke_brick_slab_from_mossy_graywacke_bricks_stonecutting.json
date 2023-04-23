@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:mossy_graywacke_bricks"
-  },
-  "result": "rankine:mossy_graywacke_bricks_slab",
-  "count": 2
-}

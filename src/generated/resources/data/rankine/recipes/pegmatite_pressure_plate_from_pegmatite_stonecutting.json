@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:pegmatite"
-  },
-  "result": "rankine:pegmatite_pressure_plate",
-  "count": 1
-}

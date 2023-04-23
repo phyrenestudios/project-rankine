@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:block/template_cobble3",
-  "textures": {
-    "all": "rankine:block/granodiorite"
-  }
-}

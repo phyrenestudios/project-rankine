@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "side": "rankine:block/battery_charger_side",
-    "front": "rankine:block/battery_charger_front",
-    "top": "rankine:block/battery_charger_top"
-  }
-}
