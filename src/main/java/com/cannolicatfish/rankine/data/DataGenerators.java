@@ -24,15 +24,12 @@ public final class DataGenerators {
             gen.addProvider(new RankineEntityTypeTagsProvider(gen, event.getExistingFileHelper()));
             gen.addProvider(new RankineAdvancementProvider(gen));
             gen.addProvider(new RankineRecipesProvider(gen));
-
-            gen.addProvider(new RankineLootModifierProvider(gen));*/
-
             /*
-            gen.addProvider(new RankineItemModelProvider(gen, event.getExistingFileHelper()));
 
 
              */
-        gen.addProvider(event.includeServer(), new RankineBlockStateProvider(packOutput, event.getExistingFileHelper()));
+        gen.addProvider(true, new RankineBlockStateProvider(packOutput, event.getExistingFileHelper()));
+        gen.addProvider(true, new RankineItemModelProvider(packOutput, event.getExistingFileHelper()));
         gen.addProvider(event.includeServer(), new RankineLootTableSubProvider(packOutput));
         gen.addProvider(event.includeClient(), new RankineEnUsLangProvider(packOutput, "en_us"));
     }

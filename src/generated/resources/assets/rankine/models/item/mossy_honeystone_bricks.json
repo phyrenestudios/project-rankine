@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/mossy_honeystone_bricks1",
+  "overrides": [
+    {
+      "model": "rankine:block/mossy_honeystone_bricks2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    }
+  ]
+}

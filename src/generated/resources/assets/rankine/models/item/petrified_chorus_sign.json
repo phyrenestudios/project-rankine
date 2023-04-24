@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "rankine:item/petrified_chorus_sign"
+  }
+}

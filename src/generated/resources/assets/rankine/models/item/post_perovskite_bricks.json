@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/post_perovskite_bricks1",
+  "overrides": [
+    {
+      "model": "rankine:block/post_perovskite_bricks2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    }
+  ]
+}

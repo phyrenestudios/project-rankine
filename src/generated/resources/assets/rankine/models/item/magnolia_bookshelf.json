@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/magnolia_bookshelf1",
+  "overrides": [
+    {
+      "model": "rankine:block/magnolia_bookshelf2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    }
+  ]
+}

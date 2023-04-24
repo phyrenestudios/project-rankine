@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/petrified_chorus_bookshelf1",
+  "overrides": [
+    {
+      "model": "rankine:block/petrified_chorus_bookshelf2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "parent": "rankine:block/yellow_glazed_porcelain1",
+  "overrides": [
+    {
+      "model": "rankine:block/yellow_glazed_porcelain2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    },
+    {
+      "model": "rankine:block/yellow_glazed_porcelain3",
+      "predicate": {
+        "rankine:building_mode": 3.0
+      }
+    },
+    {
+      "model": "rankine:block/yellow_glazed_porcelain4",
+      "predicate": {
+        "rankine:building_mode": 4.0
+      }
+    },
+    {
+      "model": "rankine:block/yellow_glazed_porcelain5",
+      "predicate": {
+        "rankine:building_mode": 5.0
+      }
+    },
+    {
+      "model": "rankine:block/yellow_glazed_porcelain6",
+      "predicate": {
+        "rankine:building_mode": 6.0
+      }
+    },
+    {
+      "model": "rankine:block/yellow_glazed_porcelain7",
+      "predicate": {
+        "rankine:building_mode": 7.0
+      }
+    },
+    {
+      "model": "rankine:block/yellow_glazed_porcelain8",
+      "predicate": {
+        "rankine:building_mode": 8.0
+      }
+    },
+    {
+      "model": "rankine:block/yellow_glazed_porcelain9",
+      "predicate": {
+        "rankine:building_mode": 9.0
+      }
+    },
+    {
+      "model": "rankine:block/yellow_glazed_porcelain10",
+      "predicate": {
+        "rankine:building_mode": 10.0
+      }
+    },
+    {
+      "model": "rankine:block/yellow_glazed_porcelain11",
+      "predicate": {
+        "rankine:building_mode": 11.0
+      }
+    }
+  ]
+}

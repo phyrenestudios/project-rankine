@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/mossy_lherzolite_bricks1",
+  "overrides": [
+    {
+      "model": "rankine:block/mossy_lherzolite_bricks2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    }
+  ]
+}

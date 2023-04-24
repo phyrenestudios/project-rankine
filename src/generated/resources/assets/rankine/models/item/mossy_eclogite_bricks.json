@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/mossy_eclogite_bricks1",
+  "overrides": [
+    {
+      "model": "rankine:block/mossy_eclogite_bricks2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    }
+  ]
+}

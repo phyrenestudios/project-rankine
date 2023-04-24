@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/anorthosite_bricks1",
+  "overrides": [
+    {
+      "model": "rankine:block/anorthosite_bricks2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    }
+  ]
+}

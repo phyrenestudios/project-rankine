@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/western_hemlock_bookshelf1",
+  "overrides": [
+    {
+      "model": "rankine:block/western_hemlock_bookshelf2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    }
+  ]
+}

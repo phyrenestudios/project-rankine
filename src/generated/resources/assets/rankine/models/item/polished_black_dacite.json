@@ -1,0 +1,23 @@
+{
+  "parent": "rankine:block/polished_black_dacite1",
+  "overrides": [
+    {
+      "model": "rankine:block/polished_black_dacite2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    },
+    {
+      "model": "rankine:block/polished_black_dacite3",
+      "predicate": {
+        "rankine:building_mode": 3.0
+      }
+    },
+    {
+      "model": "rankine:block/polished_black_dacite4",
+      "predicate": {
+        "rankine:building_mode": 4.0
+      }
+    }
+  ]
+}

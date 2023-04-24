@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/whiteschist_bricks1",
+  "overrides": [
+    {
+      "model": "rankine:block/whiteschist_bricks2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    }
+  ]
+}

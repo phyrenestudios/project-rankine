@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "rankine:item/cast_iron_ladder2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    },
+    {
+      "model": "rankine:item/cast_iron_ladder3",
+      "predicate": {
+        "rankine:building_mode": 3.0
+      }
+    },
+    {
+      "model": "rankine:item/cast_iron_ladder4",
+      "predicate": {
+        "rankine:building_mode": 4.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "rankine:block/metal_ladder1"
+  }
+}

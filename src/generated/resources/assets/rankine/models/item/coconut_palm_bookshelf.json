@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/coconut_palm_bookshelf1",
+  "overrides": [
+    {
+      "model": "rankine:block/coconut_palm_bookshelf2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    }
+  ]
+}
