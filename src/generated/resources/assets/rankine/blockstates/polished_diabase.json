@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "style=1": {
+      "model": "rankine:block/polished_diabase1"
+    },
+    "style=2": {
+      "model": "rankine:block/polished_diabase2"
+    },
+    "style=3": {
+      "model": "rankine:block/polished_diabase3"
+    },
+    "style=4": {
+      "model": "rankine:block/polished_diabase4"
+    }
+  }
+}

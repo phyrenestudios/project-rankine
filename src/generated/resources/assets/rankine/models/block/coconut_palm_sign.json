@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_sign",
+  "textures": {
+    "particle": "rankine:block/coconut_palm_planks"
+  }
+}

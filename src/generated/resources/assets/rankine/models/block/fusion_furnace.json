@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "rankine:block/fusion_furnace_front",
+    "side": "rankine:block/fusion_furnace_side",
+    "top": "rankine:block/fusion_furnace_top"
+  }
+}

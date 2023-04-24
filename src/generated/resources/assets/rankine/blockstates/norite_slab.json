@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/norite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/norite"
+    },
+    "type=top": {
+      "model": "rankine:block/norite_slab_top"
+    }
+  }
+}

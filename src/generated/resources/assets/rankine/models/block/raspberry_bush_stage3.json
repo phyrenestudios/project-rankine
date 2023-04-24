@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "rankine:block/raspberry_bush_stage3"
+  }
+}

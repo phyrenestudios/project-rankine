@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "style=1": {
+      "model": "rankine:block/magnolia_bookshelf1"
+    },
+    "style=2": {
+      "model": "rankine:block/magnolia_bookshelf2"
+    }
+  }
+}

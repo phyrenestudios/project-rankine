@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "rankine:block/stick_block_top",
+    "side": "rankine:block/stick_block_side",
+    "top": "rankine:block/stick_block_top"
+  }
+}

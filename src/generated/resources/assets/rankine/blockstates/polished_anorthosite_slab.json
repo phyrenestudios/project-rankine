@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_anorthosite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_anorthosite1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_anorthosite_slab_top"
+    }
+  }
+}

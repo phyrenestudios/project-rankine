@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "rankine:block/stripped_balsam_fir_log",
+    "side": "rankine:block/stripped_balsam_fir_log"
+  }
+}

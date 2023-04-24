@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_post_perovskite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_post_perovskite1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_post_perovskite_slab_top"
+    }
+  }
+}

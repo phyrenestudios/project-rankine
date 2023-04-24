@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "rankine:block/red_cement",
+    "side": "rankine:block/red_cement",
+    "top": "rankine:block/red_cement"
+  }
+}

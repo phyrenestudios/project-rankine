@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rankine:block/sorghum_bale_top",
+    "side": "rankine:block/sorghum_bale_side"
+  }
+}

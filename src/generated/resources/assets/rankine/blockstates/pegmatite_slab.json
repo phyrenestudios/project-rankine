@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/pegmatite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/pegmatite"
+    },
+    "type=top": {
+      "model": "rankine:block/pegmatite_slab_top"
+    }
+  }
+}

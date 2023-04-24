@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/bismuth_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/bismuth_lantern_hanging"
+    }
+  }
+}

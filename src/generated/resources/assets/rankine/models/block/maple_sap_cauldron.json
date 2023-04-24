@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_cauldron_full",
+  "textures": {
+    "content": "rankine:block/maple_sap_still"
+  }
+}

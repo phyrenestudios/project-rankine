@@ -1,0 +1,43 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/stump0"
+      },
+      {
+        "model": "rankine:block/stump0",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/stump0",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/stump1"
+      },
+      {
+        "model": "rankine:block/stump1",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/stump1",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/stump2"
+      },
+      {
+        "model": "rankine:block/stump2",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/stump2",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/stump2",
+        "y": 270
+      }
+    ]
+  }
+}

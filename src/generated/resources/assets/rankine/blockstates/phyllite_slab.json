@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/phyllite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/phyllite"
+    },
+    "type=top": {
+      "model": "rankine:block/phyllite_slab_top"
+    }
+  }
+}

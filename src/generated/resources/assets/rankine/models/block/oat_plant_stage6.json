@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "rankine:block/oat_plant_stage6"
+  }
+}

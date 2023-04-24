@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/mossy_lherzolite_bricks_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/mossy_lherzolite_bricks1"
+    },
+    "type=top": {
+      "model": "rankine:block/mossy_lherzolite_bricks_slab_top"
+    }
+  }
+}

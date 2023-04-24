@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_red_porphyry_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_red_porphyry1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_red_porphyry_slab_top"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "style=1": {
+      "model": "rankine:block/juniper_planks1"
+    },
+    "style=2": {
+      "model": "rankine:block/juniper_planks2"
+    },
+    "style=3": {
+      "model": "rankine:block/juniper_planks3"
+    },
+    "style=4": {
+      "model": "rankine:block/juniper_planks4"
+    }
+  }
+}

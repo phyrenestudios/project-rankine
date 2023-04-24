@@ -1,0 +1,51 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/gray_granite_cobble1"
+      },
+      {
+        "model": "rankine:block/gray_granite_cobble1",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/gray_granite_cobble1",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/gray_granite_cobble1",
+        "y": 270
+      },
+      {
+        "model": "rankine:block/gray_granite_cobble2"
+      },
+      {
+        "model": "rankine:block/gray_granite_cobble2",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/gray_granite_cobble2",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/gray_granite_cobble2",
+        "y": 270
+      },
+      {
+        "model": "rankine:block/gray_granite_cobble3"
+      },
+      {
+        "model": "rankine:block/gray_granite_cobble3",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/gray_granite_cobble3",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/gray_granite_cobble3",
+        "y": 270
+      }
+    ]
+  }
+}

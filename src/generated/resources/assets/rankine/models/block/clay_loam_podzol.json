@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "rankine:block/clay_loam",
+    "side": "rankine:block/clay_loam_podzol",
+    "top": "minecraft:block/podzol_top"
+  }
+}

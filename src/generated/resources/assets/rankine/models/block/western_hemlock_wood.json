@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rankine:block/western_hemlock_log",
+    "side": "rankine:block/western_hemlock_log"
+  }
+}

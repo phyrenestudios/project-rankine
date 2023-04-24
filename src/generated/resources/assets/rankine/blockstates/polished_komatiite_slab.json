@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_komatiite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_komatiite1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_komatiite_slab_top"
+    }
+  }
+}

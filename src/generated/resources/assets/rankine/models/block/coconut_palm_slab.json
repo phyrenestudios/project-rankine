@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "rankine:block/coconut_palm_planks",
+    "side": "rankine:block/coconut_palm_planks",
+    "top": "rankine:block/coconut_palm_planks"
+  }
+}

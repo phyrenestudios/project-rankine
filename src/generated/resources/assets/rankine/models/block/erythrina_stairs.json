@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "rankine:block/erythrina_planks",
+    "side": "rankine:block/erythrina_planks",
+    "top": "rankine:block/erythrina_planks"
+  }
+}

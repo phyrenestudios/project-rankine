@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "rankine:block/artist_conk_mushroom_block_end",
+    "side": "rankine:block/artist_conk_mushroom_block",
+    "top": "rankine:block/artist_conk_mushroom_block_end"
+  }
+}

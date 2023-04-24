@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "rankine:block/chalk_bricks",
+    "side": "rankine:block/chalk_bricks",
+    "top": "rankine:block/chalk_bricks"
+  }
+}

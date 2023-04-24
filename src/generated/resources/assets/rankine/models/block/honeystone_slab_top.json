@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "rankine:block/honeystone",
+    "side": "rankine:block/honeystone",
+    "top": "rankine:block/honeystone"
+  }
+}

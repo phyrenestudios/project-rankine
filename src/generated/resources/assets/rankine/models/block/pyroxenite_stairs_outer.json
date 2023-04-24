@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "rankine:block/pyroxenite",
+    "side": "rankine:block/pyroxenite",
+    "top": "rankine:block/pyroxenite"
+  }
+}

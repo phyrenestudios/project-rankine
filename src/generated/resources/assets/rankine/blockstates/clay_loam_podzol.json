@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=false": {
+      "model": "rankine:block/clay_loam_podzol"
+    },
+    "snowy=true": {
+      "model": "rankine:block/clay_loam_grass_block_snow"
+    }
+  }
+}

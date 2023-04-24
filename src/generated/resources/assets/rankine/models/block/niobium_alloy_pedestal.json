@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_pedestal",
+  "textures": {
+    "all": "rankine:block/niobium_alloy_block"
+  }
+}

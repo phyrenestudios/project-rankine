@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_honeystone_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_honeystone1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_honeystone_slab_top"
+    }
+  }
+}

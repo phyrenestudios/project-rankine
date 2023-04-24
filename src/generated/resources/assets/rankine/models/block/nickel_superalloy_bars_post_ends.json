@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_tinted_bars_post_ends",
+  "textures": {
+    "edge": "rankine:block/alloy_bars_edge"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "rankine:block/mossy_gabbro_bricks",
+    "side": "rankine:block/mossy_gabbro_bricks",
+    "top": "rankine:block/mossy_gabbro_bricks"
+  }
+}

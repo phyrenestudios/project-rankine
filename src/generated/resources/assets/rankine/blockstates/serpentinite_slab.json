@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/serpentinite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/serpentinite"
+    },
+    "type=top": {
+      "model": "rankine:block/serpentinite_slab_top"
+    }
+  }
+}

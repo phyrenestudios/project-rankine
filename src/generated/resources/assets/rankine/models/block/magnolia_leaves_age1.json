@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "rankine:block/magnolia_leaves"
+  }
+}

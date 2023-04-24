@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/erythrina_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/erythrina_planks1"
+    },
+    "type=top": {
+      "model": "rankine:block/erythrina_slab_top"
+    }
+  }
+}

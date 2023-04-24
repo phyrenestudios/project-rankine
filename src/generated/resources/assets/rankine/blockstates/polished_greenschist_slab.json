@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_greenschist_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_greenschist1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_greenschist_slab_top"
+    }
+  }
+}

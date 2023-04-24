@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/honey_locust_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/honey_locust_planks1"
+    },
+    "type=top": {
+      "model": "rankine:block/honey_locust_slab_top"
+    }
+  }
+}

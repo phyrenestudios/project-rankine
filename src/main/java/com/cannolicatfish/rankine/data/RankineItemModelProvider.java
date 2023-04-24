@@ -1,9 +1,30 @@
 package com.cannolicatfish.rankine.data;
 
-public class RankineItemModelProvider {
-/*
-    public RankineItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, ProjectRankine.MODID, existingFileHelper);
+import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.block_groups.*;
+import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineLists;
+import com.cannolicatfish.rankine.items.alloys.AlloyCrowbarItem;
+import com.cannolicatfish.rankine.items.tools.SpearItem;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
+import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.common.data.ExistingFileHelper;
+
+import javax.annotation.Nonnull;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class RankineItemModelProvider extends ItemModelProvider {
+
+    public RankineItemModelProvider(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
+        super(packOutput, ProjectRankine.MODID, existingFileHelper);
     }
 
     @Nonnull
@@ -14,9 +35,9 @@ public class RankineItemModelProvider {
 
     @Override
     protected void registerModels() {
-
+/*
         for (RankineStone Stone : RankineLists.RANKINE_STONES) {
-            withExistingParent(Stone.getStone());
+            //withExistingParent(Stone.getStone());
             buildingModeItem(Stone.getPolished().asItem(), ((BuildingModeBlock) Stone.getPolished()).getMaxStyles());
             buildingModeItem(Stone.getBricks().asItem(), ((BuildingModeBlock) Stone.getBricks()).getMaxStyles());
             buildingModeItem(Stone.getMossyBricks().asItem(), ((BuildingModeBlock) Stone.getMossyBricks()).getMaxStyles());
@@ -484,7 +505,7 @@ public class RankineItemModelProvider {
         }
 
         for (Item TOOL : Stream.of(RankineLists.WOODEN_TOOLS,RankineLists.STONE_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.ZIRCONIUM_ALLOY_TOOLS, RankineLists.NIOBIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.OSMIRIDIUM_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            if (TOOL instanceof AlloyCrowbarItem ) {
+            if (TOOL instanceof AlloyCrowbarItem) {
                 basicItemHandheldRod(TOOL);
             } else if (TOOL instanceof SpearItem) {
                 //need custom model
@@ -610,5 +631,9 @@ public class RankineItemModelProvider {
         getBuilder(Path+"_filled").parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + Path+"_filled");
         getBuilder(Path).parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + Path).override().predicate(new ResourceLocation("rankine:filled"), 1).model(getExistingFile(modLoc("item/"+Path+"_filled")));
     }
-    */
+
+        */
+    }
+
+
 }

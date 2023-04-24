@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rankine:block/magnolia_planks",
+    "side": "rankine:block/magnolia_bookshelf"
+  }
+}

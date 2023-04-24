@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/purple_porphyry_bricks_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/purple_porphyry_bricks1"
+    },
+    "type=top": {
+      "model": "rankine:block/purple_porphyry_bricks_slab_top"
+    }
+  }
+}

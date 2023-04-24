@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/silty_clay"
+      },
+      {
+        "model": "rankine:block/silty_clay",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/silty_clay",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/silty_clay",
+        "y": 270
+      }
+    ]
+  }
+}

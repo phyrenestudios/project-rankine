@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_itacolumite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_itacolumite1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_itacolumite_slab_top"
+    }
+  }
+}

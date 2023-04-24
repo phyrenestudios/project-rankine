@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rankine:block/yellow_birch_planks",
+    "side": "rankine:block/yellow_birch_bookshelf"
+  }
+}

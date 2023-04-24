@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "rankine:block/evaporation_tower_bottom",
+    "side": "rankine:block/evaporation_tower_side",
+    "top": "rankine:block/evaporation_tower_top"
+  }
+}

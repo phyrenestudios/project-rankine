@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_cobble2",
+  "textures": {
+    "all": "rankine:block/komatiite"
+  }
+}

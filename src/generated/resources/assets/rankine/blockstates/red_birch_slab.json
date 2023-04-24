@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/red_birch_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/red_birch_planks1"
+    },
+    "type=top": {
+      "model": "rankine:block/red_birch_slab_top"
+    }
+  }
+}

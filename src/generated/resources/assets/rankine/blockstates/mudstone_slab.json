@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/mudstone_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/mudstone"
+    },
+    "type=top": {
+      "model": "rankine:block/mudstone_slab_top"
+    }
+  }
+}

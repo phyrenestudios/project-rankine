@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/yellow_birch_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/yellow_birch_planks1"
+    },
+    "type=top": {
+      "model": "rankine:block/yellow_birch_slab_top"
+    }
+  }
+}

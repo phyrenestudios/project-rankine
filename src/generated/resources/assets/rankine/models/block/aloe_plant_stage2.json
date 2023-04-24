@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "rankine:block/aloe_plant_stage2"
+  }
+}

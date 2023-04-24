@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/breccia_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/breccia"
+    },
+    "type=top": {
+      "model": "rankine:block/breccia_slab_top"
+    }
+  }
+}

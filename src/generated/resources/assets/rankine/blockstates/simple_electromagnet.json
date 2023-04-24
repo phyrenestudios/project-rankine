@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "rankine:block/simple_electromagnet",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "rankine:block/simple_electromagnet",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "rankine:block/simple_electromagnet",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "rankine:block/simple_electromagnet",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "rankine:block/simple_electromagnet"
+    },
+    "facing=west": {
+      "model": "rankine:block/simple_electromagnet",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

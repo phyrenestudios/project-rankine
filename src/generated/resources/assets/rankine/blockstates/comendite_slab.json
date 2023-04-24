@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/comendite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/comendite"
+    },
+    "type=top": {
+      "model": "rankine:block/comendite_slab_top"
+    }
+  }
+}

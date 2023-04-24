@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "rankine:block/honey_locust_planks",
+    "side": "rankine:block/honey_locust_planks",
+    "top": "rankine:block/honey_locust_planks"
+  }
+}

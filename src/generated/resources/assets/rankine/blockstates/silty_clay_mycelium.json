@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=false": {
+      "model": "rankine:block/silty_clay_mycelium"
+    },
+    "snowy=true": {
+      "model": "rankine:block/silty_clay_grass_block_snow"
+    }
+  }
+}

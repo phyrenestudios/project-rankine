@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/charred_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/charred_planks1"
+    },
+    "type=top": {
+      "model": "rankine:block/charred_slab_top"
+    }
+  }
+}

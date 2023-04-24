@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/black_sand"
+      },
+      {
+        "model": "rankine:block/black_sand",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/black_sand",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/black_sand",
+        "y": 270
+      }
+    ]
+  }
+}

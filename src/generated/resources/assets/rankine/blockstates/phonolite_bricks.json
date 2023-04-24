@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "style=1": {
+      "model": "rankine:block/phonolite_bricks1"
+    },
+    "style=2": {
+      "model": "rankine:block/phonolite_bricks2"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rankine:block/rye_bale_top",
+    "side": "rankine:block/rye_bale_side"
+  }
+}

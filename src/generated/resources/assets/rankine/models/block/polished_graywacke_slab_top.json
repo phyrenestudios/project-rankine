@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "rankine:block/polished_graywacke",
+    "side": "rankine:block/polished_graywacke",
+    "top": "rankine:block/polished_graywacke"
+  }
+}

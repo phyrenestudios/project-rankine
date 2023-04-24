@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "rankine:block/phonolite",
+    "side": "rankine:block/phonolite",
+    "top": "rankine:block/phonolite"
+  }
+}

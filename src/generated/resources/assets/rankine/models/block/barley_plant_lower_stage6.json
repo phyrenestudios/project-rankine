@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "rankine:block/barley_plant_lower_stage6"
+  }
+}

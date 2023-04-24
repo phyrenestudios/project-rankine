@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/cast_iron_support_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/cast_iron_support"
+    },
+    "type=top": {
+      "model": "rankine:block/cast_iron_support_slab_top"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rankine:block/neon_gas_block"
+    }
+  }
+}

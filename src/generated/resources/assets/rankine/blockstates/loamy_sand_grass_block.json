@@ -1,0 +1,44 @@
+{
+  "variants": {
+    "dead=false,snowy=false": [
+      {
+        "model": "rankine:block/loamy_sand_grass_block"
+      },
+      {
+        "model": "rankine:block/loamy_sand_grass_block",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/loamy_sand_grass_block",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/loamy_sand_grass_block",
+        "y": 270
+      }
+    ],
+    "dead=false,snowy=true": {
+      "model": "rankine:block/loamy_sand_grass_block_snow"
+    },
+    "dead=true,snowy=false": [
+      {
+        "model": "rankine:block/loamy_sand_grass_block"
+      },
+      {
+        "model": "rankine:block/loamy_sand_grass_block",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/loamy_sand_grass_block",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/loamy_sand_grass_block",
+        "y": 270
+      }
+    ],
+    "dead=true,snowy=true": {
+      "model": "rankine:block/loamy_sand_grass_block_snow"
+    }
+  }
+}

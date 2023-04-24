@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_eclogite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_eclogite1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_eclogite_slab_top"
+    }
+  }
+}

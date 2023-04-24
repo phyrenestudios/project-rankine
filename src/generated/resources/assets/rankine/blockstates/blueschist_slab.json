@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/blueschist_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/blueschist"
+    },
+    "type=top": {
+      "model": "rankine:block/blueschist_slab_top"
+    }
+  }
+}

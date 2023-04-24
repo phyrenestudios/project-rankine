@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/diabase_bricks_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/diabase_bricks1"
+    },
+    "type=top": {
+      "model": "rankine:block/diabase_bricks_slab_top"
+    }
+  }
+}

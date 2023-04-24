@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_soapstone_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_soapstone1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_soapstone_slab_top"
+    }
+  }
+}

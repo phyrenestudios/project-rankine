@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_norite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_norite1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_norite_slab_top"
+    }
+  }
+}

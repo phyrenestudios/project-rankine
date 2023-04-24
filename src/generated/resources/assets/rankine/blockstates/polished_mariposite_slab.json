@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_mariposite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_mariposite1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_mariposite_slab_top"
+    }
+  }
+}

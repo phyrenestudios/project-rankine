@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/ringwoodine_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/ringwoodine"
+    },
+    "type=top": {
+      "model": "rankine:block/ringwoodine_slab_top"
+    }
+  }
+}

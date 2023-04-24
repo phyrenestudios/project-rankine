@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_shonkinite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_shonkinite1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_shonkinite_slab_top"
+    }
+  }
+}

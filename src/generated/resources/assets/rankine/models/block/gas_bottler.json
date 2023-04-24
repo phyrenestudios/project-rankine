@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/orientable_vertical",
+  "textures": {
+    "front": "rankine:block/gas_bottler_end",
+    "side": "rankine:block/gas_bottler_side"
+  }
+}

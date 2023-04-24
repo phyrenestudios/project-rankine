@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "rankine:block/pointed_gypsic_dripstone_up_frustum"
+  }
+}

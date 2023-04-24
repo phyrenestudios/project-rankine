@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rankine:block/smooth_desert_sandstone",
+    "side": "rankine:block/chiseled_desert_sandstone"
+  }
+}

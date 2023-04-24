@@ -1,0 +1,76 @@
+{
+  "variants": {
+    "age=0,section=bottom": {
+      "model": "rankine:block/jute_plant_bottom_age0"
+    },
+    "age=0,section=middle": {
+      "model": "rankine:block/air"
+    },
+    "age=0,section=top": {
+      "model": "rankine:block/air"
+    },
+    "age=1,section=bottom": {
+      "model": "rankine:block/jute_plant_bottom_age1"
+    },
+    "age=1,section=middle": {
+      "model": "rankine:block/air"
+    },
+    "age=1,section=top": {
+      "model": "rankine:block/air"
+    },
+    "age=2,section=bottom": {
+      "model": "rankine:block/jute_plant_bottom_age2"
+    },
+    "age=2,section=middle": {
+      "model": "rankine:block/jute_plant_middle_age2"
+    },
+    "age=2,section=top": {
+      "model": "rankine:block/air"
+    },
+    "age=3,section=bottom": {
+      "model": "rankine:block/jute_plant_bottom_age3"
+    },
+    "age=3,section=middle": {
+      "model": "rankine:block/jute_plant_middle_age3"
+    },
+    "age=3,section=top": {
+      "model": "rankine:block/jute_plant_top_age3"
+    },
+    "age=4,section=bottom": {
+      "model": "rankine:block/jute_plant_bottom_age4"
+    },
+    "age=4,section=middle": {
+      "model": "rankine:block/jute_plant_middle_age4"
+    },
+    "age=4,section=top": {
+      "model": "rankine:block/jute_plant_top_age4"
+    },
+    "age=5,section=bottom": {
+      "model": "rankine:block/jute_plant_bottom_age5"
+    },
+    "age=5,section=middle": {
+      "model": "rankine:block/jute_plant_middle_age5"
+    },
+    "age=5,section=top": {
+      "model": "rankine:block/jute_plant_top_age5"
+    },
+    "age=6,section=bottom": {
+      "model": "rankine:block/jute_plant_bottom_age6"
+    },
+    "age=6,section=middle": {
+      "model": "rankine:block/jute_plant_middle_age6"
+    },
+    "age=6,section=top": {
+      "model": "rankine:block/jute_plant_top_age6"
+    },
+    "age=7,section=bottom": {
+      "model": "rankine:block/jute_plant_bottom_age7"
+    },
+    "age=7,section=middle": {
+      "model": "rankine:block/jute_plant_middle_age7"
+    },
+    "age=7,section=top": {
+      "model": "rankine:block/jute_plant_top_age7"
+    }
+  }
+}

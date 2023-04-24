@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/phonolite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/phonolite"
+    },
+    "type=top": {
+      "model": "rankine:block/phonolite_slab_top"
+    }
+  }
+}

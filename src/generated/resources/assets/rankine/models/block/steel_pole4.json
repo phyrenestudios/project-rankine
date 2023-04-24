@@ -1,0 +1,7 @@
+{
+  "parent": "rankine:block/template_metal_pole_overlay",
+  "textures": {
+    "overlay": "rankine:block/metal_pole4",
+    "side": "rankine:block/template_pole"
+  }
+}

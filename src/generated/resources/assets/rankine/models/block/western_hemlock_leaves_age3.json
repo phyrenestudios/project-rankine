@@ -1,0 +1,7 @@
+{
+  "parent": "rankine:block/leaves_age5",
+  "textures": {
+    "leaves": "rankine:block/western_hemlock_leaves",
+    "snowy_overlay": "rankine:block/snowy_leaves_overlay"
+  }
+}

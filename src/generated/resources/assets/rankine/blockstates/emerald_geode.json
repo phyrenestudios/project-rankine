@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "rankine:block/emerald_geode",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "rankine:block/emerald_geode"
+    },
+    "facing=south": {
+      "model": "rankine:block/emerald_geode",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rankine:block/emerald_geode",
+      "y": 270
+    }
+  }
+}

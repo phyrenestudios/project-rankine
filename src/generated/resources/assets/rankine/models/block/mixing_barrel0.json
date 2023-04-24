@@ -1,0 +1,138 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#base"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#base",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            2.0
+          ]
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#base",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            2.0
+          ]
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#base",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            2.0
+          ]
+        },
+        "up": {
+          "texture": "#base"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#base",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            2.0
+          ]
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        2,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side",
+          "uv": [
+            2.0,
+            1.0,
+            14.0,
+            15.0
+          ]
+        },
+        "north": {
+          "texture": "#side",
+          "uv": [
+            2.0,
+            1.0,
+            14.0,
+            15.0
+          ]
+        },
+        "south": {
+          "texture": "#side",
+          "uv": [
+            2.0,
+            1.0,
+            14.0,
+            15.0
+          ]
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "west": {
+          "texture": "#side",
+          "uv": [
+            2.0,
+            1.0,
+            14.0,
+            15.0
+          ]
+        }
+      },
+      "from": [
+        2,
+        2,
+        2
+      ],
+      "rotation": {
+        "angle": 0.0,
+        "axis": "y",
+        "origin": [
+          8,
+          0,
+          8
+        ]
+      },
+      "to": [
+        14,
+        16,
+        14
+      ]
+    }
+  ],
+  "textures": {
+    "base": "rankine:block/concrete",
+    "particle": "rankine:block/mixing_barrel_side",
+    "side": "rankine:block/mixing_barrel_side",
+    "top": "rankine:block/mixing_barrel_top"
+  }
+}

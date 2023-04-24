@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "rankine:block/rose_marble",
+    "side": "rankine:block/rose_marble",
+    "top": "rankine:block/rose_marble"
+  }
+}

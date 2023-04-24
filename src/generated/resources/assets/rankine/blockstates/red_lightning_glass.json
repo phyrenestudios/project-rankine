@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "glowing=false": {
+      "model": "rankine:block/red_lightning_glass"
+    },
+    "glowing=true": {
+      "model": "rankine:block/red_lightning_glass_glowing"
+    }
+  }
+}

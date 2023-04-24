@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "rankine:block/gas_vent",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "rankine:block/gas_vent",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "rankine:block/gas_vent",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "rankine:block/gas_vent",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "rankine:block/gas_vent"
+    },
+    "facing=west": {
+      "model": "rankine:block/gas_vent",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

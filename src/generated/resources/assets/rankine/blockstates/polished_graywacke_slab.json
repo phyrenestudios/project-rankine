@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_graywacke_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_graywacke1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_graywacke_slab_top"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "rankine:block/petrified_chorus_planks",
+    "side": "rankine:block/petrified_chorus_planks",
+    "top": "rankine:block/petrified_chorus_planks"
+  }
+}

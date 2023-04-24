@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/marlstone_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/marlstone"
+    },
+    "type=top": {
+      "model": "rankine:block/marlstone_slab_top"
+    }
+  }
+}

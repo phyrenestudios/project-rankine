@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/pyroxenite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/pyroxenite"
+    },
+    "type=top": {
+      "model": "rankine:block/pyroxenite_slab_top"
+    }
+  }
+}

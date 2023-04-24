@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "rankine:block/cinnamon_leaves"
+  }
+}

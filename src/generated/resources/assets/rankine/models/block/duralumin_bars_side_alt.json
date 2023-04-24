@@ -1,0 +1,7 @@
+{
+  "parent": "rankine:block/template_tinted_bars_side_alt",
+  "textures": {
+    "bars": "rankine:block/alloy_bars1",
+    "edge": "rankine:block/alloy_bars_edge"
+  }
+}

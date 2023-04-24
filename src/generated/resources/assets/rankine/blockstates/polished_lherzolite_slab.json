@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_lherzolite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_lherzolite1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_lherzolite_slab_top"
+    }
+  }
+}

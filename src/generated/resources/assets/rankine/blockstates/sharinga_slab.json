@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/sharinga_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/sharinga_planks1"
+    },
+    "type=top": {
+      "model": "rankine:block/sharinga_slab_top"
+    }
+  }
+}

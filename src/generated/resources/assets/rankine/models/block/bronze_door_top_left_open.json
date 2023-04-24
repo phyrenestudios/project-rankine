@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left_open",
+  "textures": {
+    "bottom": "rankine:block/bronze_door_bottom",
+    "top": "rankine:block/bronze_door_top"
+  }
+}

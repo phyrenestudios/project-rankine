@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/nepheline_syenite_bricks_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/nepheline_syenite_bricks1"
+    },
+    "type=top": {
+      "model": "rankine:block/nepheline_syenite_bricks_slab_top"
+    }
+  }
+}

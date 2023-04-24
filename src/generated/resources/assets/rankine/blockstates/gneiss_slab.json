@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/gneiss_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/gneiss"
+    },
+    "type=top": {
+      "model": "rankine:block/gneiss_slab_top"
+    }
+  }
+}

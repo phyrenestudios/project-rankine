@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/dunite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/dunite"
+    },
+    "type=top": {
+      "model": "rankine:block/dunite_slab_top"
+    }
+  }
+}

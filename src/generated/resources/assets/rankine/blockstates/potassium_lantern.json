@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/potassium_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/potassium_lantern_hanging"
+    }
+  }
+}

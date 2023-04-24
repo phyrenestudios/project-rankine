@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/weeping_willow_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/weeping_willow_planks1"
+    },
+    "type=top": {
+      "model": "rankine:block/weeping_willow_slab_top"
+    }
+  }
+}

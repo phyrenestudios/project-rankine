@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "rankine:block/polished_honeystone",
+    "side": "rankine:block/polished_honeystone",
+    "top": "rankine:block/polished_honeystone"
+  }
+}

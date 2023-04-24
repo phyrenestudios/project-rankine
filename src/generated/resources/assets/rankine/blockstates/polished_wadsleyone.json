@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "style=1": {
+      "model": "rankine:block/polished_wadsleyone1"
+    },
+    "style=2": {
+      "model": "rankine:block/polished_wadsleyone2"
+    },
+    "style=3": {
+      "model": "rankine:block/polished_wadsleyone3"
+    },
+    "style=4": {
+      "model": "rankine:block/polished_wadsleyone4"
+    }
+  }
+}

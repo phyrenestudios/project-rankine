@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_solid_gas",
+  "textures": {
+    "all": "rankine:block/nitrogen_block"
+  }
+}

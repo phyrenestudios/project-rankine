@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "textures": {
+    "bottom": "rankine:block/brass_door_bottom",
+    "top": "rankine:block/brass_door_top"
+  }
+}

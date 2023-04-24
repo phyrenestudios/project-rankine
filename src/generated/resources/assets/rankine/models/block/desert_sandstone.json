@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "rankine:block/desert_sandstone_bottom",
+    "side": "rankine:block/desert_sandstone",
+    "top": "rankine:block/smooth_desert_sandstone"
+  }
+}

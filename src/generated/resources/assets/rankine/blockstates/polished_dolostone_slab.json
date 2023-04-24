@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_dolostone_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_dolostone1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_dolostone_slab_top"
+    }
+  }
+}

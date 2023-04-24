@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rankine:block/gypsic_dripstone_block"
+  }
+}

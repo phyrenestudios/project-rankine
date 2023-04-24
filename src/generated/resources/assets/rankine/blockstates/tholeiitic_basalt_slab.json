@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/tholeiitic_basalt_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/tholeiitic_basalt"
+    },
+    "type=top": {
+      "model": "rankine:block/tholeiitic_basalt_slab_top"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rankine:block/honey_locust_planks",
+    "side": "rankine:block/honey_locust_bookshelf"
+  }
+}

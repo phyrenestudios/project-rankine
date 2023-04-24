@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rankine:block/hydrogen_sulfide_gas_block"
+    }
+  }
+}

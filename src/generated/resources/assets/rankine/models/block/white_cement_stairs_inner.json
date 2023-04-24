@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "rankine:block/white_cement",
+    "side": "rankine:block/white_cement",
+    "top": "rankine:block/white_cement"
+  }
+}

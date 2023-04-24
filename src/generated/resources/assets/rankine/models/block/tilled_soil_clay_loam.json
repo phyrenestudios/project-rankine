@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_farmland",
+  "textures": {
+    "dirt": "rankine:block/clay_loam",
+    "top": "rankine:block/clay_loam_farmland"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_right_open",
+  "textures": {
+    "bottom": "rankine:block/petrified_chorus_door_bottom",
+    "top": "rankine:block/petrified_chorus_door_top"
+  }
+}

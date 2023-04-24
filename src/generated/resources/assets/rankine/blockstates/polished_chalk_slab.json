@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_chalk_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_chalk1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_chalk_slab_top"
+    }
+  }
+}

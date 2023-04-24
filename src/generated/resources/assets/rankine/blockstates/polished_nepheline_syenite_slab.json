@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_nepheline_syenite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_nepheline_syenite1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_nepheline_syenite_slab_top"
+    }
+  }
+}

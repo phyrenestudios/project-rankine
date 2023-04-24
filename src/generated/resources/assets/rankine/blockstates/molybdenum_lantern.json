@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/molybdenum_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/molybdenum_lantern_hanging"
+    }
+  }
+}

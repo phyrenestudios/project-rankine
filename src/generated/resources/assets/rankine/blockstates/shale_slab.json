@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/shale_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/shale"
+    },
+    "type=top": {
+      "model": "rankine:block/shale_slab_top"
+    }
+  }
+}

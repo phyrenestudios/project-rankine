@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "rankine:block/honey_mushroom_block_end",
+    "side": "rankine:block/honey_mushroom_block",
+    "top": "rankine:block/honey_mushroom_block_end"
+  }
+}

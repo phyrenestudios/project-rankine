@@ -1,0 +1,70 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/slate_stepping_stones0"
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones0",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones0",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones0",
+        "y": 270
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones1",
+        "weight": 2
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones1",
+        "weight": 2,
+        "y": 90
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones1",
+        "weight": 2,
+        "y": 180
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones1",
+        "weight": 2,
+        "y": 270
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones2"
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones2",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones2",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones2",
+        "y": 270
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones3"
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones3",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones3",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/slate_stepping_stones3",
+        "y": 270
+      }
+    ]
+  }
+}

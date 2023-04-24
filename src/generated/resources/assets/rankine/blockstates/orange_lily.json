@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "rankine:block/orange_lily_bottom"
+    },
+    "half=upper": {
+      "model": "rankine:block/orange_lily_top"
+    }
+  }
+}

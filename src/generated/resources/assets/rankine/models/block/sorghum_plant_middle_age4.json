@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "rankine:block/sorghum_plant_middle_age4"
+  }
+}

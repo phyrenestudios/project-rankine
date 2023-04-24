@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/scoria"
+      },
+      {
+        "model": "rankine:block/scoria",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/scoria",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/scoria",
+        "y": 270
+      }
+    ]
+  }
+}

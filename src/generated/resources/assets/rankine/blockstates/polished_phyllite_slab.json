@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_phyllite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_phyllite1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_phyllite_slab_top"
+    }
+  }
+}

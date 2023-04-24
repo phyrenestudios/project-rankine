@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_wadsleyone_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_wadsleyone1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_wadsleyone_slab_top"
+    }
+  }
+}

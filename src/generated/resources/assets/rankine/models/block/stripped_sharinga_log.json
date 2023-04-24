@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rankine:block/stripped_sharinga_log_top",
+    "side": "rankine:block/stripped_sharinga_log"
+  }
+}

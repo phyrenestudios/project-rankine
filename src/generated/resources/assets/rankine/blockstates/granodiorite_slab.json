@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/granodiorite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/granodiorite"
+    },
+    "type=top": {
+      "model": "rankine:block/granodiorite_slab_top"
+    }
+  }
+}

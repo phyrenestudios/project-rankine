@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rankine:block/nitric_dripstone_block"
+    }
+  }
+}

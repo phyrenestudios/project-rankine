@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/short_grass0",
+        "weight": 2
+      },
+      {
+        "model": "rankine:block/short_grass1"
+      },
+      {
+        "model": "rankine:block/short_grass2"
+      }
+    ]
+  }
+}

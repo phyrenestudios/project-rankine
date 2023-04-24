@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "rankine:block/smooth_desert_sandstone",
+    "side": "rankine:block/smooth_desert_sandstone",
+    "top": "rankine:block/smooth_desert_sandstone"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/troctolite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/troctolite"
+    },
+    "type=top": {
+      "model": "rankine:block/troctolite_slab_top"
+    }
+  }
+}

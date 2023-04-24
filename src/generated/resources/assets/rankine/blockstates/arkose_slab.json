@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/arkose_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/arkose"
+    },
+    "type=top": {
+      "model": "rankine:block/arkose_slab_top"
+    }
+  }
+}

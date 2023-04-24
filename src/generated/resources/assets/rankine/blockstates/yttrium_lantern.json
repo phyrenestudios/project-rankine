@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "rankine:block/yttrium_lantern"
+    },
+    "hanging=true": {
+      "model": "rankine:block/yttrium_lantern_hanging"
+    }
+  }
+}

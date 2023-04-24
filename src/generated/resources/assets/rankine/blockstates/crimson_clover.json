@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/crimson_clover"
+      },
+      {
+        "model": "rankine:block/crimson_clover",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/crimson_clover",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/crimson_clover",
+        "y": 270
+      }
+    ]
+  }
+}
