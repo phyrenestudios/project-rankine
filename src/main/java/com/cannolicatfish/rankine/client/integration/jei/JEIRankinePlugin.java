@@ -5,7 +5,6 @@ import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceScreen;
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelScreen;
 import com.cannolicatfish.rankine.client.integration.jei.categories.*;
 import com.cannolicatfish.rankine.client.integration.jei.recipes.IBatteryRecipe;
@@ -48,18 +47,18 @@ public class JEIRankinePlugin implements IModPlugin {
     public static final RecipeType<CrushingRecipe> CRUSHING = RecipeType.create("rankine","crushing", CrushingRecipe.class);
     public static final RecipeType<ElementRecipe> ELEMENT = RecipeType.create("rankine","element", ElementRecipe.class);
     public static final RecipeType<EvaporationRecipe> EVAPORATION = RecipeType.create("rankine","evaporation", EvaporationRecipe.class);
-    public static final RecipeType<RockGeneratorRecipe> EXTRUSIVE_IGNEOUS = RecipeType.create("rankine","extrusive_igneous", RockGeneratorRecipe.class);
+    //public static final RecipeType<RockGeneratorRecipe> EXTRUSIVE_IGNEOUS = RecipeType.create("rankine","extrusive_igneous", RockGeneratorRecipe.class);
     public static final RecipeType<ForagingRecipe> FORAGING = RecipeType.create("rankine","foraging", ForagingRecipe.class);
     public static final RecipeType<FusionFurnaceRecipe> FUSION_FURNACE = RecipeType.create("rankine","fusion_furnace", FusionFurnaceRecipe.class);
-    public static final RecipeType<AlloyingRecipe> INDUCTION_ALLOYING = RecipeType.create("rankine","induction_alloying", AlloyingRecipe.class);
+    //public static final RecipeType<AlloyingRecipe> INDUCTION_ALLOYING = RecipeType.create("rankine","induction_alloying", AlloyingRecipe.class);
     public static final RecipeType<RockGeneratorRecipe> INTRUSIVE_IGNEOUS = RecipeType.create("rankine","intrusive_igneous", RockGeneratorRecipe.class);
-    public static final RecipeType<RockGeneratorRecipe> METAMORPHIC = RecipeType.create("rankine","metamorphic", RockGeneratorRecipe.class);
+    //public static final RecipeType<RockGeneratorRecipe> METAMORPHIC = RecipeType.create("rankine","metamorphic", RockGeneratorRecipe.class);
     public static final RecipeType<MixingRecipe> MIXING = RecipeType.create("rankine","mixing", MixingRecipe.class);
-    public static final RecipeType<RockGeneratorRecipe> SEDIMENTARY = RecipeType.create("rankine","sedimentary", RockGeneratorRecipe.class);
+    //public static final RecipeType<RockGeneratorRecipe> SEDIMENTARY = RecipeType.create("rankine","sedimentary", RockGeneratorRecipe.class);
     public static final RecipeType<SluicingRecipe> SLUICING = RecipeType.create("rankine","sluicing", SluicingRecipe.class);
     public static final RecipeType<StrippingRecipe> STRIPPING = RecipeType.create("rankine","stripping", StrippingRecipe.class);
     public static final RecipeType<TreetappingRecipe> TREETAPPING = RecipeType.create("rankine","treetapping", TreetappingRecipe.class);
-    public static final RecipeType<RockGeneratorRecipe> VOLCANIC = RecipeType.create("rankine","volcanic", RockGeneratorRecipe.class);
+    //public static final RecipeType<RockGeneratorRecipe> VOLCANIC = RecipeType.create("rankine","volcanic", RockGeneratorRecipe.class);
 
     @Nonnull
     @Override
@@ -70,7 +69,7 @@ public class JEIRankinePlugin implements IModPlugin {
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(AlloyFurnaceScreen.class, 98, 32, 24, 16, ALLOYING);
-        registration.addRecipeClickArea(InductionFurnaceScreen.class, 98, 32, 24, 16, INDUCTION_ALLOYING);
+        //registration.addRecipeClickArea(InductionFurnaceScreen.class, 98, 32, 24, 16, INDUCTION_ALLOYING);
         registration.addRecipeClickArea(EvaporationTowerScreen.class, 76, 50, 24, 16, EVAPORATION);
         registration.addRecipeClickArea(CrucibleScreen.class, 109, 46, 7, 26, CRUCIBLE);
         registration.addRecipeClickArea(MixingBarrelScreen.class, 109, 46, 7, 26, MIXING);
@@ -108,36 +107,20 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(CRUSHING, getSortedRecipes(rankineJEIRecipes.getCrushingRecipes()));
         registry.addRecipes(ELEMENT, getSortedElementRecipes());
         registry.addRecipes(EVAPORATION, getSortedRecipes(rankineJEIRecipes.getEvaporationRecipes()));
-        registry.addRecipes(EXTRUSIVE_IGNEOUS, getSortedRecipes(rankineJEIRecipes.getExtrusiveGeneratorRecipes()));
+        //registry.addRecipes(EXTRUSIVE_IGNEOUS, getSortedRecipes(rankineJEIRecipes.getExtrusiveGeneratorRecipes()));
         registry.addRecipes(FORAGING, getSortedRecipes(rankineJEIRecipes.getForagingRecipes()));
         registry.addRecipes(FUSION_FURNACE, getSortedRecipes(rankineJEIRecipes.getFusionFurnaceRecipes()));
-        registry.addRecipes(INDUCTION_ALLOYING, getSortedRecipes(rankineJEIRecipes.getInductionFurnaceRecipes()));
+        //registry.addRecipes(INDUCTION_ALLOYING, getSortedRecipes(rankineJEIRecipes.getInductionFurnaceRecipes()));
         registry.addRecipes(INTRUSIVE_IGNEOUS, getSortedRecipes(rankineJEIRecipes.getIntrusiveGeneratorRecipes()));
-        registry.addRecipes(METAMORPHIC, getSortedRecipes(rankineJEIRecipes.getMetamorphicGeneratorRecipes()));
+        //registry.addRecipes(METAMORPHIC, getSortedRecipes(rankineJEIRecipes.getMetamorphicGeneratorRecipes()));
         registry.addRecipes(MIXING, getSortedRecipes(rankineJEIRecipes.getMixingRecipes()));
-        registry.addRecipes(SEDIMENTARY, getSortedRecipes(rankineJEIRecipes.getSedimentaryGeneratorRecipes()));
+        //registry.addRecipes(SEDIMENTARY, getSortedRecipes(rankineJEIRecipes.getSedimentaryGeneratorRecipes()));
         registry.addRecipes(SLUICING, getSortedRecipes(rankineJEIRecipes.getSluicingRecipes()));
         registry.addRecipes(STRIPPING, getSortedRecipes(rankineJEIRecipes.getStrippingRecipes()));
         registry.addRecipes(TREETAPPING, getSortedRecipes(rankineJEIRecipes.getTreetappingRecipes()));
-        registry.addRecipes(VOLCANIC, getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()));
+        //registry.addRecipes(VOLCANIC, getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()));
         registry.addRecipes(BATTERY,getSortedBatteryRecipes(rankineJEIRecipes.getBatteryRecipes()));
         registry.addRecipes(CAULDRON_DRYING,rankineJEIRecipes.getCauldronRecipes());
-        /*registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getAlloyFurnaceRecipes()), AlloyingRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getInductionFurnaceRecipes()), InductionAlloyingRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getIntrusiveGeneratorRecipes()), IntrusiveGeneratorRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getExtrusiveGeneratorRecipes()), ExtrusiveGeneratorRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getSedimentaryGeneratorRecipes()), SedimentaryGeneratorRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getMetamorphicGeneratorRecipes()), MetamorphicGeneratorRecipeCategory.UID);
-        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()), VolcanicGeneratorRecipeCategory.UID);*/
-
-        /*registry.addIngredientInfo(new ItemStack(RankineItems.DRY_RUBBER.get()), VanillaTypes.ITEM_STACK,new TranslatableComponent("rankine.jei.info_dry_rubber"));
-        registry.addIngredientInfo(new ItemStack(RankineItems.AMBER.get()), VanillaTypes.ITEM_STACK,new TranslatableComponent("rankine.jei.info_amber"));
-
-        registry.addIngredientInfo(new FluidStack(RankineFluids.SAP,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_sap"));
-        registry.addIngredientInfo(new FluidStack(RankineFluids.MAPLE_SAP,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_maple_sap"));
-        registry.addIngredientInfo(new FluidStack(RankineFluids.LATEX,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_latex"));
-        registry.addIngredientInfo(new FluidStack(RankineFluids.RESIN,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_resin"));
-        registry.addIngredientInfo(new FluidStack(RankineFluids.JUGLONE,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_juglone"));*/
     }
 
     @Override
@@ -177,17 +160,17 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCategories(new AlloyingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new CrushingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new ForagingRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new InductionAlloyingRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new InductionAlloyingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new FusionFurnaceRecipeCategory(guiHelper));
         registry.addRecipeCategories(new SluicingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new ElementRecipeCategory(guiHelper));
         registry.addRecipeCategories(new EvaporationRecipeCategory(guiHelper));
         registry.addRecipeCategories(new CrucibleRecipeCategory(guiHelper));
         registry.addRecipeCategories(new IntrusiveGeneratorRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new ExtrusiveGeneratorRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new SedimentaryGeneratorRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new MetamorphicGeneratorRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new VolcanicGeneratorRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new ExtrusiveGeneratorRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new SedimentaryGeneratorRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new MetamorphicGeneratorRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new VolcanicGeneratorRecipeCategory(guiHelper));
         registry.addRecipeCategories(new AirDistillationRecipeCategory(guiHelper));
         registry.addRecipeCategories(new TreetappingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new StrippingRecipeCategory(guiHelper));
@@ -221,7 +204,7 @@ public class JEIRankinePlugin implements IModPlugin {
 
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.MIXING_BARREL.get()), MIXING);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()), ALLOYING);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.INDUCTION_FURNACE.get()), INDUCTION_ALLOYING);
+        //registry.addRecipeCatalyst(new ItemStack(RankineBlocks.INDUCTION_FURNACE.get()), INDUCTION_ALLOYING);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.FUSION_FURNACE.get()), FUSION_FURNACE);
 
         registry.addRecipeCatalyst(new ItemStack(Items.CAULDRON), CAULDRON_DRYING);
@@ -231,11 +214,11 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.HEATING_ELEMENT_1.get()), EVAPORATION);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.CRUCIBLE_BLOCK.get()), CRUCIBLE);
         registry.addRecipeCatalyst(new ItemStack(Blocks.COBBLESTONE), INTRUSIVE_IGNEOUS);
-        registry.addRecipeCatalyst(new ItemStack(Blocks.BLACKSTONE), EXTRUSIVE_IGNEOUS);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BRECCIA.get()), SEDIMENTARY);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.SEDIMENT_FAN.get()), SEDIMENTARY);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.SKARN.get()), METAMORPHIC);
-        registry.addRecipeCatalyst(new ItemStack(Blocks.OBSIDIAN), VOLCANIC);
+        //registry.addRecipeCatalyst(new ItemStack(Blocks.BLACKSTONE), EXTRUSIVE_IGNEOUS);
+        //registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BRECCIA.get()), SEDIMENTARY);
+        //registry.addRecipeCatalyst(new ItemStack(RankineBlocks.SEDIMENT_FAN.get()), SEDIMENTARY);
+        //registry.addRecipeCatalyst(new ItemStack(RankineBlocks.SKARN.get()), METAMORPHIC);
+        //registry.addRecipeCatalyst(new ItemStack(Blocks.OBSIDIAN), VOLCANIC);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.DISTILLATION_TOWER.get()), AIR_DISTILLATION);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.AIR_DISTILLATION_PACKING.get()), AIR_DISTILLATION);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.TREE_TAP.get()), TREETAPPING);

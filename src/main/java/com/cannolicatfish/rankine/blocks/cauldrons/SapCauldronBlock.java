@@ -20,7 +20,7 @@ public class SapCauldronBlock extends AbstractRankineCauldronBlock {
 
     @Override
     public Fluid getFluid() {
-        return RankineFluids.SAP;
+        return RankineFluids.SAP.get();
     }
 
     @Override

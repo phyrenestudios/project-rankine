@@ -19,7 +19,7 @@ public class MapleSapCauldronBlock extends AbstractRankineCauldronBlock {
 
     @Override
     public Fluid getFluid() {
-        return RankineFluids.MAPLE_SAP;
+        return RankineFluids.MAPLE_SAP.get();
     }
 
     @Override

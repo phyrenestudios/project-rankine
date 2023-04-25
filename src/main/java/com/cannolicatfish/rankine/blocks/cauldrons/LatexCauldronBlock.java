@@ -19,7 +19,7 @@ public class LatexCauldronBlock extends AbstractRankineCauldronBlock {
 
     @Override
     public Fluid getFluid() {
-        return RankineFluids.LATEX;
+        return RankineFluids.LATEX.get();
     }
 
     @Override

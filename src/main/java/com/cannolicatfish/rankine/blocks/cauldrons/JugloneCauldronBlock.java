@@ -19,7 +19,7 @@ public class JugloneCauldronBlock extends AbstractRankineCauldronBlock {
     }
     @Override
     public Fluid getFluid() {
-        return RankineFluids.JUGLONE;
+        return RankineFluids.JUGLONE.get();
     }
 
     @Override
