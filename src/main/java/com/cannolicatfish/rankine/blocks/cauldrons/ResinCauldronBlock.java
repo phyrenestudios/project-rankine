@@ -19,7 +19,7 @@ public class ResinCauldronBlock extends AbstractRankineCauldronBlock {
 
     @Override
     public Fluid getFluid() {
-        return RankineFluids.RESIN;
+        return RankineFluids.RESIN.get();
     }
 
     @Override

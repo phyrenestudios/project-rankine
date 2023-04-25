@@ -52,6 +52,8 @@ public class ProjectRankine {
         Bus.addListener(this::ClientSetup);
 
         RankineSoundEvents.SOUNDS.register(Bus);
+        RankineFluidTypes.FLUID_TYPES.register(Bus);
+        RankineFluids.FLUIDS.register(Bus);
         RankineBlocks.BLOCKS.register(Bus);
         RankineMobEffects.MOB_EFFECTS.register(Bus);
         RankineItems.ITEMS.register(Bus);
@@ -61,9 +63,11 @@ public class ProjectRankine {
         RankineEnchantments.ENCHANTMENTS.register(Bus);
         RankineBlockEntityTypes.BLOCK_ENTITY_TYPES.register(Bus);
         RankineMenus.MENUS.register(Bus);
+        RankineRecipeTypes.RECIPE_TYPES.register(Bus);
         RankineRecipeSerializers.RECIPE_SERIALIZERS.register(Bus);
         RankineVillagerProfessions.VILLAGER_PROFESSIONS.register(Bus);
         RankinePOIs.POI_TYPES.register(Bus);
+
         //RankineFeatures.FEATURES.register(Bus);
         //RankineConfiguredFeatures.CONFIGURED_FEATURES.register(Bus);
         //RankinePlacedFeatures.PLACED_FEATURES.register(Bus);

@@ -5,11 +5,9 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import vazkii.patchouli.api.PatchouliAPI;
 
 public class PlayerLoggedInHandler {
     private static final String NBT_KEY = "rankine.firstjoin";
@@ -36,7 +34,7 @@ public class PlayerLoggedInHandler {
 
             if (!persistent.contains(NBT_KEY)) {
                 persistent.putBoolean(NBT_KEY, true);
-                event.getEntity().getInventory().add(PatchouliAPI.get().getBookStack(new ResourceLocation("rankine:rankine_journal")));
+                //event.getEntity().getInventory().add(PatchouliAPI.get().getBookStack(new ResourceLocation("rankine:rankine_journal")));
             }
         }
     }
