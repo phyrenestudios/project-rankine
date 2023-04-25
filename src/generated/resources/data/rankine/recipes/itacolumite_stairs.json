@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_stairs",
+  "key": {
+    "#": {
+      "item": "rankine:itacolumite"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:itacolumite_stairs"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "minecraft:raw_iron_block"
+  },
+  "maxCookTime": 4800,
+  "minCookTime": 2400,
+  "result": "minecraft:iron_block"
+}

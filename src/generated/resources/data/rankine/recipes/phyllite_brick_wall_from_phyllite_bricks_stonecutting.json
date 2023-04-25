@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:phyllite_bricks"
+  },
+  "result": "rankine:phyllite_bricks_wall"
+}

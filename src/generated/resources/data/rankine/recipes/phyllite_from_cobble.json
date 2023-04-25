@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:phyllite_cobble"
+    },
+    {
+      "item": "rankine:phyllite_cobble"
+    },
+    {
+      "item": "rankine:phyllite_cobble"
+    },
+    {
+      "item": "rankine:phyllite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:phyllite"
+  }
+}

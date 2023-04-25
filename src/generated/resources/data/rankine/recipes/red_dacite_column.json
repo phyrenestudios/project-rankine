@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_column",
+  "key": {
+    "#": {
+      "item": "rankine:red_dacite"
+    }
+  },
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:red_dacite_column"
+  },
+  "show_notification": true
+}

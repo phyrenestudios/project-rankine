@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "tag": "minecraft:logs_that_burn"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SLS",
+    " S "
+  ],
+  "result": {
+    "item": "rankine:charcoal_pit"
+  },
+  "show_notification": true
+}

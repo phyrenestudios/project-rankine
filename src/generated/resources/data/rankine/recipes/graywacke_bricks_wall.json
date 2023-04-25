@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_wall",
+  "key": {
+    "#": {
+      "item": "rankine:graywacke_bricks"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:graywacke_bricks_wall"
+  },
+  "show_notification": true
+}

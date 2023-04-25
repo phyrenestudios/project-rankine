@@ -1,0 +1,25 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_hoes",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/tungsten_heavy_alloy_alloying",
+  "key": {
+    "#": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "s": {
+      "alloyRecipe": "rankine:alloying/steel_alloying",
+      "color": 3291714,
+      "item": "rankine:alloy_rod",
+      "langName": "item.rankine.steel_alloying"
+    }
+  },
+  "pattern": [
+    "##",
+    " s",
+    " s"
+  ],
+  "result": {
+    "item": "rankine:tungsten_heavy_alloy_hoe"
+  }
+}

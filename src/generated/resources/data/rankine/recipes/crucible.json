@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:cauldron"
+    },
+    "R": {
+      "item": "rankine:high_refractory_bricks"
+    }
+  },
+  "pattern": [
+    "R R",
+    "R R",
+    "RCR"
+  ],
+  "result": {
+    "item": "rankine:crucible"
+  },
+  "show_notification": true
+}

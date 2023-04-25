@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_wall",
+  "key": {
+    "#": {
+      "item": "rankine:polished_hornblende_andesite"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:polished_hornblende_andesite_wall"
+  },
+  "show_notification": true
+}

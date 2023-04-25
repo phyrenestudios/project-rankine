@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sheetmetal",
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/galinstan"
+    },
+    "I": {
+      "tag": "forge:ingots/galinstan"
+    }
+  },
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:galinstan_sheetmetal"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_column",
+  "key": {
+    "#": {
+      "item": "rankine:slate"
+    }
+  },
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:slate_column"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "ore_conversion",
+  "ingredients": [
+    {
+      "item": "rankine:iron_ore"
+    }
+  ],
+  "result": {
+    "item": "minecraft:iron_ore"
+  }
+}

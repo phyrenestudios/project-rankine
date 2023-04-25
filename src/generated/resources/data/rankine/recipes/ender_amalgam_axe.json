@@ -1,0 +1,25 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_axes",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/ender_amalgam_alloying",
+  "key": {
+    "#": {
+      "item": "rankine:ender_amalgam_ingot"
+    },
+    "s": {
+      "alloyRecipe": "rankine:alloying/steel_alloying",
+      "color": 3291714,
+      "item": "rankine:alloy_rod",
+      "langName": "item.rankine.steel_alloying"
+    }
+  },
+  "pattern": [
+    "##",
+    "#s",
+    " s"
+  ],
+  "result": {
+    "item": "rankine:ender_amalgam_axe"
+  }
+}

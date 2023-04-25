@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:dry_rubber"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "item": "rankine:tellurium"
+    },
+    {
+      "tag": "forge:nuggets/carbon"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:vulcanized_rubber"
+  }
+}

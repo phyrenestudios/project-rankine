@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:siltstone_cobble"
+    },
+    {
+      "item": "rankine:siltstone_cobble"
+    },
+    {
+      "item": "rankine:siltstone_cobble"
+    },
+    {
+      "item": "rankine:siltstone_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:siltstone"
+  }
+}

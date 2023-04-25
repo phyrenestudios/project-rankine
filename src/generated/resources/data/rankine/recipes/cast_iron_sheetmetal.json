@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sheetmetal",
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/cast_iron"
+    },
+    "I": {
+      "tag": "forge:ingots/cast_iron"
+    }
+  },
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:cast_iron_sheetmetal"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "rankine:petrified_chorus_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:petrified_chorus_planks"
+  }
+}

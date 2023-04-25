@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_column",
+  "key": {
+    "#": {
+      "item": "rankine:shonkinite"
+    }
+  },
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:shonkinite_column"
+  },
+  "show_notification": true
+}

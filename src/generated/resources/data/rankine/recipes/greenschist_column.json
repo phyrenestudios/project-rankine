@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_column",
+  "key": {
+    "#": {
+      "item": "rankine:greenschist"
+    }
+  },
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:greenschist_column"
+  },
+  "show_notification": true
+}

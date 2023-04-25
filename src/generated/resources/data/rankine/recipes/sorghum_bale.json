@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "bales",
+  "key": {
+    "#": {
+      "item": "rankine:sorghum"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "rankine:sorghum_bale"
+  },
+  "show_notification": true
+}

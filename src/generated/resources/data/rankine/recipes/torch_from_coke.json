@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "torch",
+  "key": {
+    "C": {
+      "tag": "forge:coal_coke"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "C",
+    "S"
+  ],
+  "result": {
+    "count": 8,
+    "item": "minecraft:torch"
+  },
+  "show_notification": true
+}

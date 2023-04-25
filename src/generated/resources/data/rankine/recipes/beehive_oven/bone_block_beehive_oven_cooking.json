@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "minecraft:bone_block"
+  },
+  "maxCookTime": 600,
+  "minCookTime": 300,
+  "result": "rankine:bone_char_block"
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_bricks",
+  "key": {
+    "#": {
+      "item": "minecraft:granite"
+    },
+    "M": {
+      "item": "rankine:mortar"
+    }
+  },
+  "pattern": [
+    "#M",
+    "M#"
+  ],
+  "result": {
+    "count": 2,
+    "item": "rankine:granite_bricks"
+  },
+  "show_notification": true
+}

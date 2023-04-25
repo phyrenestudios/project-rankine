@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:glass_bottle"
+    },
+    "S": {
+      "item": "rankine:borosilicate_glass"
+    },
+    "X": {
+      "tag": "forge:sheetmetal"
+    }
+  },
+  "pattern": [
+    "XSX",
+    "SBS",
+    "XSX"
+  ],
+  "result": {
+    "item": "rankine:gas_vent"
+  },
+  "show_notification": true
+}

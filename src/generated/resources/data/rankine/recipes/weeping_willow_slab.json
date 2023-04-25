@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_slab",
+  "key": {
+    "#": {
+      "item": "rankine:weeping_willow_planks"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:weeping_willow_slab"
+  },
+  "show_notification": true
+}

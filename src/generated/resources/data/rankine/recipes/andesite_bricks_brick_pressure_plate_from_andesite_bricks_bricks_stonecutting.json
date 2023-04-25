@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:andesite_bricks"
+  },
+  "result": "rankine:andesite_bricks_pressure_plate"
+}

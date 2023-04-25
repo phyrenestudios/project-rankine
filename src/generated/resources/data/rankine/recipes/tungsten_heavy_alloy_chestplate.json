@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 11113071,
+  "group": "rankine:alloy_chestplate",
+  "inherit": true,
+  "key": {
+    "#": {
+      "color": 11113071,
+      "item": "rankine:tungsten_heavy_alloy_ingot",
+      "langName": "item.rankine.tungsten_heavy_alloy_alloying"
+    }
+  },
+  "langName": "item.rankine.tungsten_heavy_alloy_alloying",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "rankine:alloy_chestplate"
+  }
+}

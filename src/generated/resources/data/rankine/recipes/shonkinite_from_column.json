@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_stone_column",
+  "ingredients": [
+    {
+      "item": "rankine:shonkinite_column"
+    },
+    {
+      "item": "rankine:shonkinite_column"
+    },
+    {
+      "item": "rankine:shonkinite_column"
+    },
+    {
+      "item": "rankine:shonkinite_column"
+    }
+  ],
+  "result": {
+    "item": "rankine:shonkinite"
+  }
+}

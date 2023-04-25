@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:ladders",
+  "key": {
+    "#": {
+      "item": "rankine:black_gold_ingot"
+    }
+  },
+  "pattern": [
+    "# #",
+    "###",
+    "# #"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:black_gold_ladder"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "polished_stone",
+  "key": {
+    "#": {
+      "item": "rankine:wehrlite"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:polished_wehrlite"
+  },
+  "show_notification": true
+}

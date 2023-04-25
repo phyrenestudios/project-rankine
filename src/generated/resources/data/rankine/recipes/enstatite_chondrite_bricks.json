@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "rankine:enstatite_chondrite"
+    },
+    "M": {
+      "item": "rankine:mortar"
+    }
+  },
+  "pattern": [
+    "#M",
+    "M#"
+  ],
+  "result": {
+    "item": "rankine:enstatite_chondrite_bricks"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 40,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "minecraft:bamboo"
+  },
+  "result": "rankine:dried_bamboo"
+}

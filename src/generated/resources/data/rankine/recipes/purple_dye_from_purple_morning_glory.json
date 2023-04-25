@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:purple_morning_glory"
+    },
+    {
+      "item": "rankine:purple_morning_glory"
+    }
+  ],
+  "result": {
+    "item": "minecraft:purple_dye"
+  }
+}

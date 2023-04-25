@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_pressure_plate",
+  "key": {
+    "#": {
+      "item": "rankine:post_perovskite"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "item": "rankine:post_perovskite_pressure_plate"
+  },
+  "show_notification": true
+}

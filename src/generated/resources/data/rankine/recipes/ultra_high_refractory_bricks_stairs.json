@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "bricks_stairs",
+  "key": {
+    "#": {
+      "item": "rankine:ultra_high_refractory_bricks"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:ultra_high_refractory_bricks_stairs"
+  },
+  "show_notification": true
+}

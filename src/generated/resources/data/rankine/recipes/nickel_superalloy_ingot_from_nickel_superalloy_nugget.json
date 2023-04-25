@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:nickel_superalloy_nugget"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "rankine:nickel_superalloy_ingot"
+  }
+}

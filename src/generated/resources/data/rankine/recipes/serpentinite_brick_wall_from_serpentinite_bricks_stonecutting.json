@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:serpentinite_bricks"
+  },
+  "result": "rankine:serpentinite_bricks_wall"
+}

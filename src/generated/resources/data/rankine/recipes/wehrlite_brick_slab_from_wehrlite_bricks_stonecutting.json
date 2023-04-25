@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "rankine:wehrlite_bricks"
+  },
+  "result": "rankine:wehrlite_bricks_slab"
+}

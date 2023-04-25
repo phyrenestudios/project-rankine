@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "forge:storage_blocks/brass"
+    },
+    "G": {
+      "item": "minecraft:stonecutter"
+    },
+    "S": {
+      "tag": "minecraft:stone_bricks"
+    }
+  },
+  "pattern": [
+    " G ",
+    "GBG",
+    "SSS"
+  ],
+  "result": {
+    "item": "rankine:stone_tier_mining_head"
+  },
+  "show_notification": true
+}

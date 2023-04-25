@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 8695295,
+  "group": "rankine:alloy_helmets",
+  "inherit": true,
+  "key": {
+    "#": {
+      "color": 8695295,
+      "item": "rankine:blue_gold_ingot",
+      "langName": "item.rankine.blue_gold_alloying"
+    }
+  },
+  "langName": "item.rankine.blue_gold_alloying",
+  "pattern": [
+    "###",
+    "# #",
+    "   "
+  ],
+  "result": {
+    "item": "rankine:alloy_helmet"
+  }
+}

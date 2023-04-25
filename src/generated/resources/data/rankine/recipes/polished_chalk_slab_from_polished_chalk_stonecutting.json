@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "rankine:polished_chalk"
+  },
+  "result": "rankine:polished_chalk_slab"
+}

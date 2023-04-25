@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/pewter"
+    }
+  },
+  "pattern": [
+    "###",
+    " # "
+  ],
+  "result": {
+    "item": "rankine:pewter_gold_pan"
+  },
+  "show_notification": true
+}

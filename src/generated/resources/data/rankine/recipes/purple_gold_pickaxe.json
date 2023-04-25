@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_pickaxes",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "s": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "###",
+    " s ",
+    " s "
+  ],
+  "result": {
+    "item": "rankine:purple_gold_pickaxe"
+  }
+}

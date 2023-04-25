@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "plant_fiber",
+  "ingredients": [
+    {
+      "item": "minecraft:twisting_vines"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "rankine:plant_fiber"
+  }
+}

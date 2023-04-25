@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:sharinga_slab"
+    },
+    {
+      "item": "rankine:sharinga_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:sharinga_planks"
+  }
+}

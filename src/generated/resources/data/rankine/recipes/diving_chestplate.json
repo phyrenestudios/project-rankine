@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:ingots/brass"
+    },
+    "R": {
+      "tag": "forge:rubber"
+    }
+  },
+  "pattern": [
+    "IRI",
+    "III",
+    "III"
+  ],
+  "result": {
+    "item": "rankine:diving_chestplate"
+  },
+  "show_notification": true
+}

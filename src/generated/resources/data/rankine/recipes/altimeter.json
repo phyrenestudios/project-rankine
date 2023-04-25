@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:ingots/brass"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    }
+  },
+  "pattern": [
+    " I ",
+    "IRI",
+    " I "
+  ],
+  "result": {
+    "item": "rankine:altimeter"
+  },
+  "show_notification": true
+}

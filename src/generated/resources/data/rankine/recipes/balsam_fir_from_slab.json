@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:balsam_fir_slab"
+    },
+    {
+      "item": "rankine:balsam_fir_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:balsam_fir_planks"
+  }
+}

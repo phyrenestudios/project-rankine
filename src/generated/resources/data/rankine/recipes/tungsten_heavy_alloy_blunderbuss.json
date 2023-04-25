@@ -1,0 +1,24 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_blunderbuss",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "f": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "s": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "pattern": [
+    "##f",
+    "ss#",
+    "  s"
+  ],
+  "result": {
+    "item": "rankine:tungsten_heavy_alloy_blunderbuss"
+  }
+}

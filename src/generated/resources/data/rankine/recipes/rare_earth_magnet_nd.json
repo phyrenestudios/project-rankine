@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/neodymium"
+    },
+    "B": {
+      "tag": "forge:boron"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "pattern": [
+    "I I",
+    "#B#"
+  ],
+  "result": {
+    "item": "rankine:rare_earth_magnet"
+  },
+  "show_notification": true
+}

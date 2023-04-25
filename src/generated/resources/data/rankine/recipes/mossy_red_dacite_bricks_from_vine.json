@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "mossy_bricks_vines",
+  "ingredients": [
+    {
+      "item": "rankine:red_dacite"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "rankine:mossy_red_dacite_bricks"
+  }
+}

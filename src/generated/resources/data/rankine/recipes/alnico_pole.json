@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:poles",
+  "key": {
+    "#": {
+      "item": "rankine:alnico_ingot"
+    }
+  },
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:alnico_pole"
+  },
+  "show_notification": true
+}

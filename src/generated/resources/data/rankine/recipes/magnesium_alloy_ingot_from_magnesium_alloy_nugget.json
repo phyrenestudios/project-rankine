@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:magnesium_alloy_nugget"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "rankine:magnesium_alloy_ingot"
+  }
+}

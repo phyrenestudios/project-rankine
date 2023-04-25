@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_fence_gate",
+  "key": {
+    "#": {
+      "item": "rankine:coconut_palm_planks"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "S#S",
+    "S#S"
+  ],
+  "result": {
+    "item": "rankine:coconut_palm_fence_gate"
+  },
+  "show_notification": true
+}

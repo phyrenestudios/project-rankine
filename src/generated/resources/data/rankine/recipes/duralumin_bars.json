@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:bars",
+  "key": {
+    "#": {
+      "item": "rankine:duralumin_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 16,
+    "item": "rankine:duralumin_bars"
+  },
+  "show_notification": true
+}

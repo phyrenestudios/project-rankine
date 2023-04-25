@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "rankine:yellow_birch_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:yellow_birch_planks"
+  }
+}

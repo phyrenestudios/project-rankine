@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "rankine:western_hemlock_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:western_hemlock_planks"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:bars",
+  "key": {
+    "#": {
+      "item": "rankine:mischmetal_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 16,
+    "item": "rankine:mischmetal_bars"
+  },
+  "show_notification": true
+}

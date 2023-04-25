@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:ingots/brass"
+    },
+    "R": {
+      "tag": "forge:rubber"
+    }
+  },
+  "pattern": [
+    "R R",
+    "I I",
+    "I I"
+  ],
+  "result": {
+    "item": "rankine:diving_boots"
+  },
+  "show_notification": true
+}

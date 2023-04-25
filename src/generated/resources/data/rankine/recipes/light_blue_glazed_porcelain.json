@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:glazed_porcelain",
+  "key": {
+    "#": {
+      "item": "rankine:porcelain"
+    },
+    "A": {
+      "tag": "forge:dyes/light_blue"
+    }
+  },
+  "pattern": [
+    "###",
+    "#A#",
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:light_blue_glazed_porcelain"
+  },
+  "show_notification": true
+}

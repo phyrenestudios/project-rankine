@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:clay_bricks"
+  },
+  "result": "rankine:clay_bricks_wall"
+}

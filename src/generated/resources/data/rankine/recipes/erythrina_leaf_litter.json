@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:leaf_litters",
+  "key": {
+    "#": {
+      "item": "rankine:erythrina_leaves"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:erythrina_leaf_litter"
+  },
+  "show_notification": true
+}

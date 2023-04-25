@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_stairs",
+  "key": {
+    "#": {
+      "item": "rankine:polished_shonkinite"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:polished_shonkinite_stairs"
+  },
+  "show_notification": true
+}

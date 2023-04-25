@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:fermium_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:fermium_nugget"
+  }
+}

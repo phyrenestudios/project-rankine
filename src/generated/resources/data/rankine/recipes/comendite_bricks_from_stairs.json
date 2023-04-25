@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:comendite_bricks_stairs"
+    },
+    {
+      "item": "rankine:comendite_bricks_stairs"
+    },
+    {
+      "item": "rankine:comendite_bricks_stairs"
+    },
+    {
+      "item": "rankine:comendite_bricks_stairs"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "rankine:comendite_bricks"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "tag": "forge:leather"
+    },
+    "S": {
+      "item": "rankine:saddle_tree"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "LSL"
+  ],
+  "result": {
+    "item": "minecraft:saddle"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:coarse_soil",
+  "key": {
+    "#": {
+      "item": "rankine:humus"
+    },
+    "G": {
+      "tag": "forge:gravel"
+    }
+  },
+  "pattern": [
+    "#G",
+    "G#"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:coarse_humus"
+  },
+  "show_notification": true
+}

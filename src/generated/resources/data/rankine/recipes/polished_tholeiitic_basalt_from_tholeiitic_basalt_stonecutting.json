@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:tholeiitic_basalt"
+  },
+  "result": "rankine:polished_tholeiitic_basalt"
+}

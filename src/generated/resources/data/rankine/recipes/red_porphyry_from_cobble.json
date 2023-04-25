@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:red_porphyry_cobble"
+    },
+    {
+      "item": "rankine:red_porphyry_cobble"
+    },
+    {
+      "item": "rankine:red_porphyry_cobble"
+    },
+    {
+      "item": "rankine:red_porphyry_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:red_porphyry"
+  }
+}

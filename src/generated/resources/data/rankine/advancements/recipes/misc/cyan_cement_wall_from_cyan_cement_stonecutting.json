@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cyan_cement": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:cyan_cement"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "rankine:cyan_cement_wall_from_cyan_cement_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_cyan_cement",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rankine:cyan_cement_wall_from_cyan_cement_stonecutting"
+    ]
+  }
+}

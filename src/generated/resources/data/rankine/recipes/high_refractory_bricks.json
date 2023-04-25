@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "rankine:high_refractory_brick"
+    },
+    "M": {
+      "item": "rankine:mortar"
+    }
+  },
+  "pattern": [
+    "#M",
+    "M#"
+  ],
+  "result": {
+    "item": "rankine:high_refractory_bricks"
+  },
+  "show_notification": true
+}

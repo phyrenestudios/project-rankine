@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:red_lily"
+    },
+    {
+      "item": "rankine:red_lily"
+    }
+  ],
+  "result": {
+    "item": "minecraft:red_dye"
+  }
+}

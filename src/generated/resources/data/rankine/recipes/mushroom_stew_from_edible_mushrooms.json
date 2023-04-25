@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:edible_mushrooms"
+    },
+    {
+      "tag": "forge:edible_mushrooms"
+    },
+    {
+      "tag": "forge:edible_mushrooms"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "minecraft:mushroom_stew"
+  }
+}

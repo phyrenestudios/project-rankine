@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:white_sandstone"
+  },
+  "result": "rankine:chiseled_white_sandstone"
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "rankine:refractory_bricks"
+    },
+    "C": {
+      "tag": "forge:campfires"
+    },
+    "S": {
+      "tag": "forge:sheetmetal"
+    }
+  },
+  "pattern": [
+    "BSB",
+    "BSB",
+    "BCB"
+  ],
+  "result": {
+    "item": "rankine:alloy_furnace"
+  },
+  "show_notification": true
+}

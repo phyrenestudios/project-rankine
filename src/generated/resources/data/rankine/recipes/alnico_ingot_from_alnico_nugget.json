@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:alnico_nugget"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "rankine:alnico_ingot"
+  }
+}

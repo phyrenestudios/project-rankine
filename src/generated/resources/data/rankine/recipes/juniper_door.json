@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_door",
+  "key": {
+    "#": {
+      "item": "rankine:juniper_planks"
+    }
+  },
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "item": "rankine:juniper_door"
+  },
+  "show_notification": true
+}

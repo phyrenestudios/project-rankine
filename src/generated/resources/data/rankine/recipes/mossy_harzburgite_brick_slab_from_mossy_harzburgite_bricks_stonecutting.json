@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "rankine:mossy_harzburgite_bricks"
+  },
+  "result": "rankine:mossy_harzburgite_bricks_slab"
+}

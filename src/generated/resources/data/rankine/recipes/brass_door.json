@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "metal_door",
+  "key": {
+    "#": {
+      "item": "rankine:brass_ingot"
+    }
+  },
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "item": "rankine:brass_door"
+  },
+  "show_notification": true
+}

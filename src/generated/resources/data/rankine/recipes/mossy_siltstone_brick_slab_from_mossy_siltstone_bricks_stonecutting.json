@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "rankine:mossy_siltstone_bricks"
+  },
+  "result": "rankine:mossy_siltstone_bricks_slab"
+}

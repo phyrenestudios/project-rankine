@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stripped_wood",
+  "key": {
+    "#": {
+      "item": "rankine:stripped_black_birch_log"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "item": "rankine:stripped_black_birch_wood"
+  },
+  "show_notification": true
+}

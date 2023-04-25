@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 12882104,
+  "group": "rankine:alloy_helmets",
+  "inherit": true,
+  "key": {
+    "#": {
+      "color": 12882104,
+      "item": "rankine:nitinol_ingot",
+      "langName": "item.rankine.nitinol_alloying"
+    }
+  },
+  "langName": "item.rankine.nitinol_alloying",
+  "pattern": [
+    "###",
+    "# #",
+    "   "
+  ],
+  "result": {
+    "item": "rankine:alloy_helmet"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_wall",
+  "key": {
+    "#": {
+      "item": "rankine:granodiorite"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:granodiorite_wall"
+  },
+  "show_notification": true
+}

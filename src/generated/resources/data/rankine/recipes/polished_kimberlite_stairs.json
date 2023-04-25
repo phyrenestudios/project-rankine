@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_stairs",
+  "key": {
+    "#": {
+      "item": "rankine:polished_kimberlite"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:polished_kimberlite_stairs"
+  },
+  "show_notification": true
+}

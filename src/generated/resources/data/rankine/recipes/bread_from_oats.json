@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "gf_bread",
+  "key": {
+    "#": {
+      "item": "rankine:oats"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "item": "minecraft:bread"
+  },
+  "show_notification": true
+}

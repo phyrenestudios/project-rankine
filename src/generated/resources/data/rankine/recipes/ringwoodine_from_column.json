@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_stone_column",
+  "ingredients": [
+    {
+      "item": "rankine:ringwoodine_column"
+    },
+    {
+      "item": "rankine:ringwoodine_column"
+    },
+    {
+      "item": "rankine:ringwoodine_column"
+    },
+    {
+      "item": "rankine:ringwoodine_column"
+    }
+  ],
+  "result": {
+    "item": "rankine:ringwoodine"
+  }
+}

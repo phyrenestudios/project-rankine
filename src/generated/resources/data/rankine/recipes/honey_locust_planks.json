@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "rankine:honey_locust_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:honey_locust_planks"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:blueschist_bricks"
+  },
+  "result": "rankine:blueschist_bricks_stairs"
+}
