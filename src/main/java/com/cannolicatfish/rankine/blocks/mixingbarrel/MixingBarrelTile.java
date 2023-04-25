@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.MixingRecipe;
@@ -33,8 +34,6 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.MIXING_BARREL_TILE;
-
 public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
     FluidTank inputTank = new FluidTank(8000);
@@ -42,7 +41,7 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
     private static final int[] SLOTS_DOWN = new int[]{4};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
     public MixingBarrelTile(BlockPos posIn, BlockState stateIn) {
-        super(MIXING_BARREL_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.MIXING_BARREL.get(), posIn, stateIn);
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
     private int mixTime;

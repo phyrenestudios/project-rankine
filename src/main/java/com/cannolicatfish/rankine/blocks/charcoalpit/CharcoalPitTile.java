@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.charcoalpit;
 
 import com.cannolicatfish.rankine.blocks.RankineEightLayerBlock;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
@@ -19,8 +20,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.CHARCOAL_PIT_TILE;
-
 public class CharcoalPitTile extends BlockEntity {
     int MAX_HEIGHT = Config.MACHINES.CHARCOAL_PIT_HEIGHT.get();
     double RADIUS = Config.MACHINES.CHARCOAL_PIT_RADIUS.get()+0.5;
@@ -28,7 +27,7 @@ public class CharcoalPitTile extends BlockEntity {
     int proccessTime = 0;
 
     public CharcoalPitTile(BlockPos posIn, BlockState stateIn) {
-        super(CHARCOAL_PIT_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.CHARCOAL_PIT.get(), posIn, stateIn);
     }
 
     @Override

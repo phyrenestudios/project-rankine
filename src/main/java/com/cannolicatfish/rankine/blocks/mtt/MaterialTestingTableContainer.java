@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.mtt;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineMenus;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
@@ -23,8 +24,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.MATERIAL_TESTING_TABLE_CONTAINER;
-
 public class MaterialTestingTableContainer extends AbstractContainerMenu {
     private static final PeriodicTableUtils utils = new PeriodicTableUtils();
     private IItemHandler playerInventory;
@@ -36,7 +35,7 @@ public class MaterialTestingTableContainer extends AbstractContainerMenu {
     }
 
     public MaterialTestingTableContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container inv) {
-        super(MATERIAL_TESTING_TABLE_CONTAINER,windowId);
+        super(RankineMenus.MATERIAL_TESTING_TABLE_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(inv, 7);
         this.inputInventory = inv;

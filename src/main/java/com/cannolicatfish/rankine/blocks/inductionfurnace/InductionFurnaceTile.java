@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
@@ -36,8 +37,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.INDUCTION_FURNACE_TILE;
-
 public class InductionFurnaceTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
     private static final int[] SLOTS_UP = new int[]{6, 7};
@@ -47,7 +46,7 @@ public class InductionFurnaceTile extends BlockEntity implements WorldlyContaine
     private static final int[] SLOTS_DOWN = new int[]{6,8};
 
     public InductionFurnaceTile(BlockPos posIn, BlockState stateIn) {
-        super(INDUCTION_FURNACE_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.INDUCTION_FURNACE.get(), posIn, stateIn);
     }
 
     protected NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);

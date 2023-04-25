@@ -1,9 +1,6 @@
 package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.init.RankineRecipes;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
@@ -28,8 +25,6 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import java.util.AbstractMap;
 import java.util.Map;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.INDUCTION_FURNACE_CONTAINER;
-
 public class InductionFurnaceContainer extends AbstractContainerMenu {
     private final Container furnaceInventory;
     private BlockEntity tileEntity;
@@ -39,12 +34,10 @@ public class InductionFurnaceContainer extends AbstractContainerMenu {
 
     public InductionFurnaceContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
         this(windowId,world,pos,playerInventory,player,new SimpleContainer(9),new SimpleContainerData(5));
-
-
-
     }
+
     public InductionFurnaceContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn,  ContainerData furnaceData) {
-        super(INDUCTION_FURNACE_CONTAINER, windowId);
+        super(RankineMenus.INDUCTION_FURNACE_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 9);
         checkContainerDataCount(furnaceData, 5);

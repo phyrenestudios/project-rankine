@@ -1457,116 +1457,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> OGANESSON_BLOCK = BLOCKS.register("oganesson_block", () -> new Block(DEF_METAL_BLOCK.noOcclusion()));
     public static final RegistryObject<Block> ENDOSITUM_BLOCK = BLOCKS.register("endositum_block", () -> new Block(DEF_METAL_BLOCK));
 
-
     public static final RegistryObject<Block> SODIUM_VAPOR_LAMP = BLOCKS.register("sodium_vapor_lamp", () -> new SodiumVaporLampBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(3.5F).sound(SoundType.LANTERN).lightLevel((state) -> 15).noOcclusion()));
-
-/*
-    public static final RegistryObject<Block> CALCITE_COLUMN = BLOCKS.register("calcite_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(CALCITE_BLOCK.get())));
-    public static final RegistryObject<Block> DOLOMITE_COLUMN = BLOCKS.register("dolomite_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(DOLOMITE_BLOCK.get())));
-    public static final RegistryObject<Block> SALT_COLUMN = BLOCKS.register("salt_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(SODIUM_CHLORIDE_BLOCK.get())));
-    public static final RegistryObject<Block> PINK_SALT_COLUMN = BLOCKS.register("pink_salt_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(PINK_SALT_BLOCK.get())));
-    public static final RegistryObject<Block> OPAL_COLUMN = BLOCKS.register("opal_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(OPAL_BLOCK.get())));
-    public static final RegistryObject<Block> QUARTZ_COLUMN = BLOCKS.register("quartz_column", () -> new MineralColumnBlock(AbstractBlock.Properties.from(Blocks.QUARTZ_BLOCK)));
-
-
- */
-
-    //OTHER STUFFS
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:alloy_furnace")
-    public static MenuType<AlloyFurnaceContainer> ALLOY_FURNACE_CONTAINER;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:alloy_furnace")
-    public static BlockEntityType<AlloyFurnaceTile> ALLOY_FURNACE_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:induction_furnace")
-    public static MenuType<InductionFurnaceContainer> INDUCTION_FURNACE_CONTAINER;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:induction_furnace")
-    public static BlockEntityType<InductionFurnaceTile> INDUCTION_FURNACE_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:fusion_furnace")
-    public static MenuType<FusionFurnaceContainer> FUSION_FURNACE_CONTAINER;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:fusion_furnace")
-    public static BlockEntityType<FusionFurnaceTile> FUSION_FURNACE_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:alloy_block")
-    public static BlockEntityType<AlloyBlockTile> ALLOY_BLOCK_TILE;
-    /*
-        @ObjectHolder("rankine:laser_quarry")
-        public static ContainerType<LaserQuarryContainer> LASER_QUARRY_CONTAINER;
-
-        @ObjectHolder("rankine:laser_quarry")
-        public static TileEntityType<LaserQuarryTile> LASER_QUARRY_TILE;
-
-
-     */
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:evaporation_tower")
-    public static MenuType<EvaporationTowerContainer> EVAPORATION_TOWER_CONTAINER;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:evaporation_tower")
-    public static BlockEntityType<EvaporationTowerTile> EVAPORATION_TOWER_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:gas_condenser")
-    public static MenuType<GasBottlerContainer> GAS_CONDENSER_CONTAINER;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:gas_condenser")
-    public static BlockEntityType<GasBottlerTile> GAS_CONDENSER_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:battery_charger")
-    public static MenuType<BatteryChargerContainer> BATTERY_CHARGER_CONTAINER;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:battery_charger")
-    public static BlockEntityType<BatteryChargerTile> BATTERY_CHARGER_TILE;
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:gas_vent")
-    public static BlockEntityType<GasVentTile> GAS_VENT_TILE;
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:sediment_fan")
-    public static BlockEntityType<SedimentFanTile> SEDIMENT_FAN_TILE;
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:tree_tap")
-    public static BlockEntityType<TreeTapTile> TREE_TAP_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:crucible")
-    public static MenuType<CrucibleContainer> CRUCIBLE_CONTAINER;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:crucible")
-    public static BlockEntityType<CrucibleTile> CRUCIBLE_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:mixing_barrel")
-    public static MenuType<MixingBarrelContainer> MIXING_BARREL_CONTAINER;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:mixing_barrel")
-    public static BlockEntityType<MixingBarrelTile> MIXING_BARREL_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:template_table")
-    public static MenuType<TemplateTableContainer> TEMPLATE_TABLE_CONTAINER;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:material_testing_table")
-    public static BlockEntityType<MaterialTestingTableTile> MATERIAL_TESTING_TABLE_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:material_testing_table")
-    public static MenuType<MaterialTestingTableContainer> MATERIAL_TESTING_TABLE_CONTAINER;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:ground_tap")
-    public static BlockEntityType<GroundTapTile> GROUND_TAP_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:beehive_oven")
-    public static BlockEntityType<BeehiveOvenTile> BEEHIVE_OVEN_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:distillation_tower")
-    public static BlockEntityType<DistillationTowerTile> DISTILLATION_TOWER_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:tilled_soil")
-    public static BlockEntityType<TilledSoilTile> TILLED_SOIL_TILE;
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:pedestal")
-    public static BlockEntityType<PedestalTile> PEDESTAL_TILE;
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:particle_accelerator")
-    public static BlockEntityType<ParticleAcceleratorTile> PARTICLE_ACCELERATOR_TILE;
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:charcoal_pit")
-    public static BlockEntityType<CharcoalPitTile> CHARCOAL_PIT_TILE;
-
 
     public static Block getBlock(String name) {
         Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine", name));
@@ -1576,7 +1467,6 @@ public class RankineBlocks {
             return Blocks.AIR;
         }
     }
-
 
     private static ToIntFunction<BlockState> litBlockEmission(int p_50760_) {
         return (p_50763_) -> {

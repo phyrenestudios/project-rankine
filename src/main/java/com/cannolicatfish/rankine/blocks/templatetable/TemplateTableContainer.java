@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.templatetable;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineMenus;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
@@ -24,10 +25,7 @@ import net.minecraft.world.inventory.Slot;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.TEMPLATE_TABLE_CONTAINER;
 public class TemplateTableContainer extends AbstractContainerMenu {
-
-
 
     private IItemHandler playerInventory;
     private Level world;
@@ -47,7 +45,7 @@ public class TemplateTableContainer extends AbstractContainerMenu {
     }
 
     public TemplateTableContainer(int windowId, Inventory playerInventory, Player player, ContainerLevelAccess wpos) {
-        super(TEMPLATE_TABLE_CONTAINER,windowId);
+        super(RankineMenus.TEMPLATE_TABLE_CONTAINER.get(), windowId);
         this.worldPosCallable = wpos;
         this.player = player;
         this.world = player.level;

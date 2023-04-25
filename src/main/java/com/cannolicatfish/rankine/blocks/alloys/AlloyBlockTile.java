@@ -1,17 +1,15 @@
 package com.cannolicatfish.rankine.blocks.alloys;
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.ForgeHooks;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.ALLOY_BLOCK_TILE;
 
 public class AlloyBlockTile extends BlockEntity {
     private CompoundTag alloyData = new CompoundTag();
     public AlloyBlockTile(BlockPos posIn, BlockState stateIn) {
-        super(ALLOY_BLOCK_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.ALLOY_BLOCK.get(), posIn, stateIn);
     }
 
 

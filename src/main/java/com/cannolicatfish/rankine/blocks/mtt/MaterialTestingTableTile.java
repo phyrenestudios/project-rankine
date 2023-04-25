@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.mtt;
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
@@ -22,14 +23,12 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
 import javax.annotation.Nullable;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.MATERIAL_TESTING_TABLE_TILE;
-
 public class MaterialTestingTableTile extends BlockEntity implements WorldlyContainer, MenuProvider {
     protected NonNullList<ItemStack> items = NonNullList.withSize(14, ItemStack.EMPTY);
     private static final int[] SLOTS_UP = new int[]{0,1};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3,4,5,6,7,8,9,10,11,12,13};
     public MaterialTestingTableTile(BlockPos posIn, BlockState stateIn) {
-        super(MATERIAL_TESTING_TABLE_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.MATERIAL_TESTING_TABLE.get(), posIn, stateIn);
     }
 
     @Override

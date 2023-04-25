@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -30,15 +31,13 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.CRUCIBLE_TILE;
-
 public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
     private static final int[] SLOTS_UP = new int[]{0,1};
     private static final int[] SLOTS_DOWN = new int[]{4, 5};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
     public CrucibleTile(BlockPos posIn, BlockState stateIn) {
-        super(CRUCIBLE_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.CRUCIBLE.get(), posIn, stateIn);
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(6, ItemStack.EMPTY);
     private int cookTime;

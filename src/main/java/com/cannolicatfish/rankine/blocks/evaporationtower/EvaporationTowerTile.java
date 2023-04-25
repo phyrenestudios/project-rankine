@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -27,9 +28,6 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.EVAPORATION_TOWER_TILE;
-
 
 public class EvaporationTowerTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
@@ -66,7 +64,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
     };
 
     public EvaporationTowerTile(BlockPos posIn, BlockState stateIn) {
-        super(EVAPORATION_TOWER_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.EVAPORATION_TOWER.get(), posIn, stateIn);
     }
 
     @Override

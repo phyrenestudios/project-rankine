@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.gasbottler;
 
 import com.cannolicatfish.rankine.blocks.gases.GasBlock;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -26,9 +27,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
 import javax.annotation.Nullable;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.GAS_CONDENSER_TILE;
-
 
 public class GasBottlerTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
@@ -69,7 +67,7 @@ public class GasBottlerTile extends BlockEntity implements WorldlyContainer, Men
     };
 
     public GasBottlerTile(BlockPos posIn, BlockState stateIn) {
-        super(GAS_CONDENSER_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.GAS_BOTTLER.get(), posIn, stateIn);
     }
 
     @Override

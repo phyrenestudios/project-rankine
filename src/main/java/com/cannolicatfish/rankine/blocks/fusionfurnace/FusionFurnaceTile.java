@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.BatteryItem;
@@ -37,8 +38,6 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.FUSION_FURNACE_TILE;
-
 public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, MenuProvider {
     FluidTank inputTank = new FluidTank(64000);
     FluidTank outputTank = new FluidTank(64000);
@@ -48,7 +47,7 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
     private final int powerCost = Config.MACHINES.FUSION_FURNACE_POWER.get();
     public FusionFurnaceTile(BlockPos posIn, BlockState stateIn) {
-        super(FUSION_FURNACE_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.FUSION_FURNACE.get(), posIn, stateIn);
     }
     private int burnTime;
     private int currentBurnTime;

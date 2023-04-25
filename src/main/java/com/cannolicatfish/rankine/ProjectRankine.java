@@ -60,7 +60,7 @@ public class ProjectRankine {
         RankinePotions.POTIONS.register(Bus);
         RankineEnchantments.ENCHANTMENTS.register(Bus);
         RankineBlockEntityTypes.BLOCK_ENTITY_TYPES.register(Bus);
-        RankineContainers.MENUS.register(Bus);
+        RankineMenus.MENUS.register(Bus);
         RankineRecipeSerializers.RECIPE_SERIALIZERS.register(Bus);
         RankineVillagerProfessions.VILLAGER_PROFESSIONS.register(Bus);
         RankinePOIs.POI_TYPES.register(Bus);
@@ -188,7 +188,7 @@ public class ProjectRankine {
         {
             event.registerEntityRenderer(RankineEntityTypes.ALLOY_SPEAR.get(), SpearEntityRenderer.instance);
             event.registerEntityRenderer(RankineEntityTypes.REACTIVE_ITEM.get(), ReactiveItemRenderer::new);
-            event.registerEntityRenderer(RankineEntityTypes.RANKINE_BOAT.get(),RankineBoatRenderer.instance);
+            event.registerEntityRenderer(RankineEntityTypes.RANKINE_BOAT.get(), (p_174094_) -> new RankineBoatRenderer(p_174094_, false));
             event.registerEntityRenderer(RankineEntityTypes.ROPE_COIL_ARROW.get(), RopeCoilArrowRenderer.instance);
             event.registerEntityRenderer(RankineEntityTypes.ALLOY_ARROW.get(),AlloyArrowRenderer.instance);
             event.registerEntityRenderer(RankineEntityTypes.CANNONBALL.get(), CannonballRenderer::new);

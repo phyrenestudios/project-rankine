@@ -1,9 +1,6 @@
 package com.cannolicatfish.rankine.blocks.sedimentfan;
 
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.init.RankineSoundEvents;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.util.RockGeneratorUtils;
 import com.mojang.datafixers.DataFixUtils;
@@ -27,12 +24,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.SEDIMENT_FAN_TILE;
-
 public class SedimentFanTile extends BlockEntity {
 
     public SedimentFanTile(BlockPos posIn, BlockState stateIn) {
-        super(SEDIMENT_FAN_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.SEDIMENT_FAN.get(), posIn, stateIn);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState bs, SedimentFanTile tile) {

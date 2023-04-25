@@ -18,7 +18,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class RankineContainers {
+public class RankineMenus {
 
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, ProjectRankine.MODID);
 
@@ -28,7 +28,7 @@ public class RankineContainers {
     public static RegistryObject<MenuType<InductionFurnaceContainer>> INDUCTION_FURNACE_CONTAINER = MENUS.register("induction_furnace", () -> IForgeMenuType.create((windowId, inv, data) -> new InductionFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
     public static RegistryObject<MenuType<FusionFurnaceContainer>> FUSION_FURNACE_CONTAINER = MENUS.register("fusion_furnace", () -> IForgeMenuType.create((windowId, inv, data) -> new FusionFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
     public static RegistryObject<MenuType<EvaporationTowerContainer>> EVAPORATION_TOWER_CONTAINER = MENUS.register("evaporation_tower", () -> IForgeMenuType.create((windowId, inv, data) -> new EvaporationTowerContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
-    public static RegistryObject<MenuType<GasBottlerContainer>> GAS_CONDENSER_CONTAINER = MENUS.register("gas_condenser", () -> IForgeMenuType.create((windowId, inv, data) -> new GasBottlerContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
+    public static RegistryObject<MenuType<GasBottlerContainer>> GAS_BOTTLER_MENU = MENUS.register("gas_condenser", () -> IForgeMenuType.create((windowId, inv, data) -> new GasBottlerContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
     public static RegistryObject<MenuType<BatteryChargerContainer>> BATTERY_CHARGER_CONTAINER = MENUS.register("battery_charger", () -> IForgeMenuType.create((windowId, inv, data) -> new BatteryChargerContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
     public static RegistryObject<MenuType<MaterialTestingTableContainer>> MATERIAL_TESTING_TABLE_CONTAINER = MENUS.register("material_testing_table", () -> IForgeMenuType.create((windowId, inv, data) -> new MaterialTestingTableContainer(windowId, ProjectRankine.proxy.getClientWorld(), data.readBlockPos(), inv, ProjectRankine.proxy.getClientPlayer())));
     public static RegistryObject<MenuType<TemplateTableContainer>> TEMPLATE_TABLE_CONTAINER = MENUS.register("template_table", () -> IForgeMenuType.create((windowId, inv, data) -> new TemplateTableContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer())));

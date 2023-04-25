@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.pedestal;
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,7 +28,7 @@ public class PedestalTile extends ItemDisplayEntity implements Container {
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
 
     public PedestalTile(BlockPos posIn, BlockState stateIn) {
-        super(RankineBlocks.PEDESTAL_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.PEDESTAL.get(), posIn, stateIn);
     }
 
     @Override

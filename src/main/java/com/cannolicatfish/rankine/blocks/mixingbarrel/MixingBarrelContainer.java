@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineMenus;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.packets.FluidStackPacket;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
@@ -27,8 +28,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.MIXING_BARREL_CONTAINER;
-
 public class MixingBarrelContainer extends AbstractContainerMenu {
     private final Container furnaceInventory;
     private BlockEntity tileEntity;
@@ -44,7 +43,7 @@ public class MixingBarrelContainer extends AbstractContainerMenu {
 
     }
     public MixingBarrelContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData furnaceData) {
-        super(MIXING_BARREL_CONTAINER, windowId);
+        super(RankineMenus.MIXING_BARREL_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 5);
         checkContainerDataCount(furnaceData, 4);

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.tap;
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -22,14 +23,12 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.TREE_TAP_TILE;
-
 public class TreeTapTile extends BlockEntity {
     FluidTank outputTank = new FluidTank(1000);
     private int proccessTime;
 
     public TreeTapTile(BlockPos posIn, BlockState stateIn) {
-        super(TREE_TAP_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.TREE_TAP.get(), posIn, stateIn);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState bs, TreeTapTile tile) {

@@ -1,9 +1,6 @@
 package com.cannolicatfish.rankine.blocks.distillationtower;
 
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.init.RankineTags;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.recipe.AirDistillationRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -24,7 +21,7 @@ import static com.cannolicatfish.rankine.init.RankineBlocks.*;
 public class DistillationTowerTile extends BlockEntity {
     private int proccessTime;
     public DistillationTowerTile(BlockPos posIn, BlockState stateIn) {
-        super(DISTILLATION_TOWER_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.DISTILLATION_TOWER.get(), posIn, stateIn);
     }
 
     @Override

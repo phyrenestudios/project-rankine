@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.batterycharger;
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.RTGItem;
@@ -24,9 +25,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
 import javax.annotation.Nullable;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.BATTERY_CHARGER_TILE;
-
 
 public class BatteryChargerTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
@@ -70,7 +68,7 @@ public class BatteryChargerTile extends BlockEntity implements WorldlyContainer,
     };
 
     public BatteryChargerTile(BlockPos posIn, BlockState stateIn) {
-        super(BATTERY_CHARGER_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.BATTERY_CHARGER.get(), posIn, stateIn);
     }
 
     @Override

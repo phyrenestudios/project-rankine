@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineMenus;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
 import net.minecraft.world.entity.player.Player;
@@ -23,8 +24,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.CRUCIBLE_CONTAINER;
-
 public class CrucibleContainer extends AbstractContainerMenu {
     private final Container furnaceInventory;
     private BlockEntity tileEntity;
@@ -40,7 +39,7 @@ public class CrucibleContainer extends AbstractContainerMenu {
 
     }
     public CrucibleContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData furnaceData) {
-        super(CRUCIBLE_CONTAINER, windowId);
+        super(RankineMenus.CRUCIBLE_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 6);
         checkContainerDataCount(furnaceData, 3);

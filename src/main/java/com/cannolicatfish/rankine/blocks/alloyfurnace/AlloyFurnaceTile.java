@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
@@ -38,8 +39,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.ALLOY_FURNACE_TILE;
-
 public class AlloyFurnaceTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
     private static final int[] SLOTS_UP = new int[]{6,7};
@@ -48,7 +47,7 @@ public class AlloyFurnaceTile extends BlockEntity implements WorldlyContainer, M
     private static final int[] SLOTS_BACK = new int[]{4,5};
     private static final int[] SLOTS_DOWN = new int[]{8};
     public AlloyFurnaceTile(BlockPos posIn, BlockState stateIn) {
-        super(ALLOY_FURNACE_TILE,posIn,stateIn);
+        super(RankineBlockEntityTypes.ALLOY_FURNACE.get(),posIn,stateIn);
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
     private boolean recipeMode = false;

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.beehiveoven;
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
@@ -21,13 +22,11 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.BEEHIVE_OVEN_TILE;
-
 public class BeehiveOvenTile extends BlockEntity {
     int cookingProgress;
     int cookingTotalTime;
     public BeehiveOvenTile(BlockPos posIn, BlockState stateIn) {
-        super(BEEHIVE_OVEN_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.BEEHIVE_OVEN_PIT.get(), posIn, stateIn);
     }
 
     @Override

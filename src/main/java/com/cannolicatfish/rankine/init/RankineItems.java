@@ -2081,10 +2081,6 @@ public class RankineItems {
 
     public static final RegistryObject<Item> MAPLE_SYRUP = ITEMS.register("maple_syrup", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).food(RankineFoods.MAPLE_SYRUP)));
 
-
-    @ObjectHolder(registryName = ProjectRankine.MODID, value = "rankine:element_indexer")
-    public static MenuType<ElementIndexerContainer> ELEMENT_INDEXER_CONTAINER;
-
 /*
     public static void itemInit() {
         for (String registryName : RankineLists.GAS_ITEMS) {

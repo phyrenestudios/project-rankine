@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.groundtap;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -14,13 +15,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.GROUND_TAP_TILE;
-
 public class GroundTapTile extends BlockEntity {
     private int proccessTime;
 
     public GroundTapTile(BlockPos posIn, BlockState stateIn) {
-        super(GROUND_TAP_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.GROUND_TAP.get(), posIn, stateIn);
     }
 
     @Override

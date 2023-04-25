@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items.indexer;
 
+import com.cannolicatfish.rankine.init.RankineMenus;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.client.Minecraft;
@@ -15,8 +16,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineItems.ELEMENT_INDEXER_CONTAINER;
-
 public class ElementIndexerContainer extends AbstractContainerMenu {
     private Player playerEntity;
     private IItemHandler playerInventory;
@@ -25,7 +24,7 @@ public class ElementIndexerContainer extends AbstractContainerMenu {
     private Item currentItem;
 
     public ElementIndexerContainer(int windowId, Inventory playerInventory, Player player) {
-        super(ELEMENT_INDEXER_CONTAINER, windowId);
+        super(RankineMenus.ELEMENT_INDEXER_CONTAINER.get(), windowId);
         this.playerEntity = player;
         this.playerInventory = new InvWrapper(playerInventory);
         this.handler = new ElementIndexerItem.ElementIndexerIItemHandler();

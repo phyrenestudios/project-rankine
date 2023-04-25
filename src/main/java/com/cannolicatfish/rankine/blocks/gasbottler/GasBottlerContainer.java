@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.gasbottler;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineMenus;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -17,8 +18,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.GAS_CONDENSER_CONTAINER;
-
 public class GasBottlerContainer extends AbstractContainerMenu {
     private BlockEntity tileEntity;
     private Player playerEntity;
@@ -30,7 +29,7 @@ public class GasBottlerContainer extends AbstractContainerMenu {
 
     }
     public GasBottlerContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData towerData) {
-        super(GAS_CONDENSER_CONTAINER, windowId);
+        super(RankineMenus.GAS_BOTTLER_MENU.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 2);
         checkContainerDataCount(towerData, 2);

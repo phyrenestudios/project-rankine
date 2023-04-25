@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.batterycharger;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineMenus;
 import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
@@ -17,8 +18,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.BATTERY_CHARGER_CONTAINER;
-
 public class BatteryChargerContainer extends AbstractContainerMenu {
     private BlockEntity tileEntity;
     private Player playerEntity;
@@ -30,7 +29,7 @@ public class BatteryChargerContainer extends AbstractContainerMenu {
 
     }
     public BatteryChargerContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData towerData) {
-        super(BATTERY_CHARGER_CONTAINER, windowId);
+        super(RankineMenus.BATTERY_CHARGER_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 6);
         checkContainerDataCount(towerData, 2);

@@ -91,17 +91,19 @@ public class ClientProxy implements IProxy {
     }
     @Override
     public void init() {
-        MenuScreens.register(RankineBlocks.MIXING_BARREL_CONTAINER, MixingBarrelScreen::new);
-        MenuScreens.register(RankineBlocks.ALLOY_FURNACE_CONTAINER, AlloyFurnaceScreen::new);
-        MenuScreens.register(RankineBlocks.EVAPORATION_TOWER_CONTAINER, EvaporationTowerScreen::new);
-        MenuScreens.register(RankineBlocks.GAS_CONDENSER_CONTAINER, GasBottlerScreen::new);
-        MenuScreens.register(RankineItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
-        MenuScreens.register(RankineBlocks.TEMPLATE_TABLE_CONTAINER, TemplateTableScreen::new);
-        MenuScreens.register(RankineBlocks.MATERIAL_TESTING_TABLE_CONTAINER, MaterialTestingTableScreen::new);
-        MenuScreens.register(RankineBlocks.BATTERY_CHARGER_CONTAINER, BatteryChargerScreen::new);
-        MenuScreens.register(RankineBlocks.CRUCIBLE_CONTAINER, CrucibleScreen::new);
-        MenuScreens.register(RankineBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
-        MenuScreens.register(RankineBlocks.FUSION_FURNACE_CONTAINER, FusionFurnaceScreen::new);
+
+        MenuScreens.register(RankineMenus.MIXING_BARREL_CONTAINER.get(), MixingBarrelScreen::new);
+        MenuScreens.register(RankineMenus.ALLOY_FURNACE_CONTAINER.get(), AlloyFurnaceScreen::new);
+        MenuScreens.register(RankineMenus.EVAPORATION_TOWER_CONTAINER.get(), EvaporationTowerScreen::new);
+        MenuScreens.register(RankineMenus.GAS_BOTTLER_MENU.get(), GasBottlerScreen::new);
+        MenuScreens.register(RankineMenus.ELEMENT_INDEXER_CONTAINER.get(), ElementIndexerScreen::new);
+        MenuScreens.register(RankineMenus.TEMPLATE_TABLE_CONTAINER.get(), TemplateTableScreen::new);
+        MenuScreens.register(RankineMenus.MATERIAL_TESTING_TABLE_CONTAINER.get(), MaterialTestingTableScreen::new);
+        MenuScreens.register(RankineMenus.BATTERY_CHARGER_CONTAINER.get(), BatteryChargerScreen::new);
+        MenuScreens.register(RankineMenus.CRUCIBLE_CONTAINER.get(), CrucibleScreen::new);
+        MenuScreens.register(RankineMenus.INDUCTION_FURNACE_CONTAINER.get(), InductionFurnaceScreen::new);
+        MenuScreens.register(RankineMenus.FUSION_FURNACE_CONTAINER.get(), FusionFurnaceScreen::new);
+
 
         for (RankineStone Stone : RankineLists.RANKINE_STONES) {
             List<Block> blockList = new ArrayList<>();

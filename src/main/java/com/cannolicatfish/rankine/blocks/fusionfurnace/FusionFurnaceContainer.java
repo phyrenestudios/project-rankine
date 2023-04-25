@@ -27,8 +27,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.FUSION_FURNACE_CONTAINER;
-
 public class FusionFurnaceContainer extends AbstractContainerMenu {
     private final Container furnaceInventory;
     private BlockEntity tileEntity;
@@ -38,12 +36,10 @@ public class FusionFurnaceContainer extends AbstractContainerMenu {
 
     public FusionFurnaceContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
         this(windowId,world,pos,playerInventory,player,new SimpleContainer(7),new SimpleContainerData(4));
-
-
-
     }
+
     public FusionFurnaceContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData furnaceData) {
-        super(FUSION_FURNACE_CONTAINER, windowId);
+        super(RankineMenus.FUSION_FURNACE_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 7);
         checkContainerDataCount(furnaceData, 4);
