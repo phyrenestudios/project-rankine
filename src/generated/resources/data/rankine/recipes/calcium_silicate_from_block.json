@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:calcium_silicate_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:calcium_silicate"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "rankine:western_hemlock_planks"
+    }
+  ],
+  "result": {
+    "item": "rankine:western_hemlock_button"
+  }
+}

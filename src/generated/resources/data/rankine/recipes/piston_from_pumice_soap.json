@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:sticky_piston"
+    },
+    {
+      "item": "rankine:pumice_soap"
+    }
+  ],
+  "result": {
+    "item": "minecraft:piston"
+  }
+}

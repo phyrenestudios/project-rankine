@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.advancements.*;
+import com.cannolicatfish.rankine.data.advancements.predicates.*;
 import com.cannolicatfish.rankine.entities.CannonballEntity;
 import com.cannolicatfish.rankine.entities.CarcassEntity;
 import com.cannolicatfish.rankine.items.GasBottleItem;

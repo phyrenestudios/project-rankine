@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_pressure_plate",
+  "key": {
+    "#": {
+      "item": "rankine:honey_locust_planks"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "item": "rankine:honey_locust_pressure_plate"
+  },
+  "show_notification": true
+}

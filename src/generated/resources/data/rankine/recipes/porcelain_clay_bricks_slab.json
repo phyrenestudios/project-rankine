@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "bricks_slab",
+  "key": {
+    "#": {
+      "item": "rankine:porcelain_clay_bricks"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:porcelain_clay_bricks_slab"
+  },
+  "show_notification": true
+}

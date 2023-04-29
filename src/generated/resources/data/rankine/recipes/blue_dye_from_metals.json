@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:nuggets/yttrium"
+    },
+    {
+      "tag": "forge:nuggets/yttrium"
+    },
+    {
+      "tag": "forge:nuggets/indium"
+    },
+    {
+      "tag": "forge:nuggets/indium"
+    },
+    {
+      "tag": "forge:nuggets/manganese"
+    },
+    {
+      "tag": "forge:nuggets/manganese"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "minecraft:blue_dye"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:ingots/mischmetal"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/peridot"
+    }
+  },
+  "pattern": [
+    "III",
+    "IRI",
+    "III"
+  ],
+  "result": {
+    "item": "rankine:totem_of_infusing"
+  },
+  "show_notification": true
+}

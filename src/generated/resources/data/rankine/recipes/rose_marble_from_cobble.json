@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:rose_marble_cobble"
+    },
+    {
+      "item": "rankine:rose_marble_cobble"
+    },
+    {
+      "item": "rankine:rose_marble_cobble"
+    },
+    {
+      "item": "rankine:rose_marble_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:rose_marble"
+  }
+}

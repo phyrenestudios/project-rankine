@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "metal_trapdoor",
+  "key": {
+    "#": {
+      "item": "rankine:brass_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "item": "rankine:brass_trapdoor"
+  },
+  "show_notification": true
+}

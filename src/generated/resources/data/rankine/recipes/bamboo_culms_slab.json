@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_slab",
+  "key": {
+    "#": {
+      "item": "rankine:bamboo_culms"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:bamboo_culms_slab"
+  },
+  "show_notification": true
+}

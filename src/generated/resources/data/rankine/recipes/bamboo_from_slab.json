@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:bamboo_slab"
+    },
+    {
+      "item": "rankine:bamboo_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:bamboo_planks"
+  }
+}

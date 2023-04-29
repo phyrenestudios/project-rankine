@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "forge:stones/slate"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:slate_stepping_stones"
+  },
+  "show_notification": true
+}

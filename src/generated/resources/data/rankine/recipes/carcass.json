@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:cannonball"
+    },
+    {
+      "tag": "forge:sulfur"
+    },
+    {
+      "tag": "forge:saltpeter"
+    },
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "tag": "forge:nuggets/antimony"
+    }
+  ],
+  "result": {
+    "item": "rankine:carcass"
+  }
+}

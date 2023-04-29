@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:bars",
+  "key": {
+    "#": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 16,
+    "item": "rankine:tungsten_heavy_alloy_bars"
+  },
+  "show_notification": true
+}

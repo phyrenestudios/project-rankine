@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "plant_fiber",
+  "ingredients": [
+    {
+      "item": "minecraft:weeping_vines"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "rankine:plant_fiber"
+  }
+}

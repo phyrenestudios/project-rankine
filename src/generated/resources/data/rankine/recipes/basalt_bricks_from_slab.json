@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:basalt_bricks_slab"
+    },
+    {
+      "item": "rankine:basalt_bricks_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:basalt_bricks"
+  }
+}

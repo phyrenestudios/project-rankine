@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "minecraft:planks"
+    },
+    "T": {
+      "tag": "minecraft:stone_bricks"
+    }
+  },
+  "pattern": [
+    "TT",
+    "BB",
+    "BB"
+  ],
+  "result": {
+    "item": "rankine:material_testing_table"
+  },
+  "show_notification": true
+}

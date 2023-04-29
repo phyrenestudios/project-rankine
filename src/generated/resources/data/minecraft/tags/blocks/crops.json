@@ -1,0 +1,27 @@
+{
+  "values": [
+    "rankine:jute_plant",
+    "rankine:corn_plant",
+    "rankine:rice_plant",
+    "rankine:cotton_plant",
+    "rankine:asparagus_plant",
+    "rankine:camphor_basil_plant",
+    "rankine:aloe_plant",
+    "rankine:pineapple_bush",
+    "rankine:cranberry_bush",
+    "rankine:pokeberry_bush",
+    "rankine:blueberry_bush",
+    "rankine:elderberry_bush",
+    "rankine:strawberry_bush",
+    "rankine:snowberry_bush",
+    "rankine:raspberry_bush",
+    "rankine:blackberry_bush",
+    "rankine:banana_yucca_bush",
+    "rankine:rye_plant",
+    "rankine:sorghum_plant",
+    "rankine:barley_plant",
+    "rankine:millet_plant",
+    "rankine:oat_plant",
+    "rankine:soybean_plant"
+  ]
+}

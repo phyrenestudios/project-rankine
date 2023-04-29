@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_stairs",
+  "key": {
+    "#": {
+      "item": "rankine:petrified_chorus_planks"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:petrified_chorus_stairs"
+  },
+  "show_notification": true
+}

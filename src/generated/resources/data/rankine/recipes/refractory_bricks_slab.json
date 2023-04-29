@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "bricks_slab",
+  "key": {
+    "#": {
+      "item": "rankine:refractory_bricks"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:refractory_bricks_slab"
+  },
+  "show_notification": true
+}

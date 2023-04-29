@@ -1,0 +1,11 @@
+{
+  "values": [
+    "#forge:tuff",
+    "#forge:stone",
+    "#minecraft:dirt",
+    "#minecraft:sand",
+    "#minecraft:logs",
+    "#minecraft:terracotta",
+    "#forge:gravel"
+  ]
+}

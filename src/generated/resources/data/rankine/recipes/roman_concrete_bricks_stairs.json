@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "cement_stairs",
+  "key": {
+    "#": {
+      "item": "rankine:roman_concrete_bricks"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:roman_concrete_bricks_stairs"
+  },
+  "show_notification": true
+}

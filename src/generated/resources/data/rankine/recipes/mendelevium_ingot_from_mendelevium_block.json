@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:mendelevium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:mendelevium_ingot"
+  }
+}

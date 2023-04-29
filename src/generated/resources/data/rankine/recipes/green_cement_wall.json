@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "cement_wall",
+  "key": {
+    "#": {
+      "item": "rankine:green_cement"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:green_cement_wall"
+  },
+  "show_notification": true
+}

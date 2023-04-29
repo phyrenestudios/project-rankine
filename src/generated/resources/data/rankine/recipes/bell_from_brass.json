@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "rankine:brass_ingot"
+    },
+    "R": {
+      "tag": "forge:rods/wooden"
+    },
+    "S": {
+      "tag": "forge:stone"
+    }
+  },
+  "pattern": [
+    "SRS",
+    "SBS",
+    "S S"
+  ],
+  "result": {
+    "item": "minecraft:bell"
+  },
+  "show_notification": true
+}

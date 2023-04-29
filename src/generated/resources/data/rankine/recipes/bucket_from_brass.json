@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "rankine:brass_ingot"
+    }
+  },
+  "pattern": [
+    "I I",
+    " I "
+  ],
+  "result": {
+    "item": "minecraft:bucket"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:curium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:curium_ingot"
+  }
+}

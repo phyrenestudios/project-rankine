@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:ender_amalgam_nugget"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "rankine:ender_amalgam_ingot"
+  }
+}

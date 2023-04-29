@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sheetmetal",
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/aluminum"
+    },
+    "I": {
+      "tag": "forge:ingots/aluminum"
+    }
+  },
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:aluminum_sheetmetal"
+  },
+  "show_notification": true
+}

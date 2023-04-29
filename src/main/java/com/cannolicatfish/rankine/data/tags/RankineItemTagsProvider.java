@@ -1,17 +1,34 @@
 package com.cannolicatfish.rankine.data.tags;
 
-public class RankineItemTagsProvider {
-/*
-    public RankineItemTagsProvider(DataGenerator dataGenerator, BlockTagsProvider blockTagProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, blockTagProvider, ProjectRankine.MODID, existingFileHelper);
+import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.init.RankineTags;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.concurrent.CompletableFuture;
+
+public class RankineItemTagsProvider extends ItemTagsProvider {
+    public RankineItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, CompletableFuture<TagLookup<Block>> blocks, ExistingFileHelper fileHelper) {
+        super(output, registries, blocks, ProjectRankine.MODID, fileHelper);
     }
 
     public String getName() {
         return "Project Rankine - Item Tags";
     }
 
+
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
+
 
         copy(RankineTags.Blocks.ORES_LEAD, RankineTags.Items.ORES_LEAD);
         copy(RankineTags.Blocks.ORES_SILVER, RankineTags.Items.ORES_SILVER);
@@ -96,6 +113,7 @@ public class RankineItemTagsProvider {
         copy(RankineTags.Blocks.STONES_SLATE, RankineTags.Items.STONES_SLATE);
         copy(RankineTags.Blocks.STONES_SHONKINITE, RankineTags.Items.STONES_SHONKINITE);
 
+        /*
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             copy(BlockTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")), ItemTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")));
         }
@@ -669,14 +687,14 @@ public class RankineItemTagsProvider {
         copy(RankineTags.Blocks.BRICKS_STAIRS, RankineTags.Items.BRICKS_STAIRS);
         copy(RankineTags.Blocks.BRICKS_WALL, RankineTags.Items.BRICKS_WALLS);
         copy(RankineTags.Blocks.SHEETMETAL, RankineTags.Items.SHEETMETAL);
-        copy(RankineTags.Blocks.SHEETMETAL_SALBS, RankineTags.Items.SHEETMETAL_SALBS);
+        //copy(RankineTags.Blocks.SHEETMETAL_SALBS, RankineTags.Items.SHEETMETAL_SALBS);
         for (Block blk : RankineLists.SHEETMETALS) {
-            String name = blk.getRegistryName().getPath();
+            String name = name(blk);
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
             tag(ItemTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName))).add(blk.asItem());
         }
         for (Block blk : RankineLists.ALLOY_SHEETMETALS) {
-            String name = blk.getRegistryName().getPath();
+            String name = name(blk);
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
             tag(ItemTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName))).add(blk.asItem());
         }
@@ -845,8 +863,7 @@ public class RankineItemTagsProvider {
 
 
         copy(BlockTags.STONE_BRICKS, ItemTags.STONE_BRICKS);
-        copy(BlockTags.WOOL, ItemTags.WOOL);
-        copy(BlockTags.CARPETS, ItemTags.CARPETS);
+        copy(BlockTags.WOOL_CARPETS, ItemTags.WOOL_CARPETS);
         copy(BlockTags.DOORS, ItemTags.DOORS);
         copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
         copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
@@ -910,9 +927,60 @@ public class RankineItemTagsProvider {
 
 
 
+         */
+
+
+        /*
+        this.copy(BlockTags.WOOL, ItemTags.WOOL);
+        this.copy(BlockTags.PLANKS, ItemTags.PLANKS);
+        this.copy(BlockTags.STONE_BRICKS, ItemTags.STONE_BRICKS);
+        this.copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
+        this.copy(BlockTags.BUTTONS, ItemTags.BUTTONS);
+        this.copy(BlockTags.WOOL_CARPETS, ItemTags.WOOL_CARPETS);
+        this.copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
+        this.copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
+        this.copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
+        this.copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
+        this.copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
+        this.copy(BlockTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
+        this.copy(BlockTags.DOORS, ItemTags.DOORS);
+        this.copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
+
+
+        this.copy(BlockTags.SLABS, ItemTags.SLABS);
+        this.copy(BlockTags.WALLS, ItemTags.WALLS);
+        this.copy(BlockTags.STAIRS, ItemTags.STAIRS);
+        this.copy(BlockTags.LEAVES, ItemTags.LEAVES);
+        //this.copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
+        //this.copy(BlockTags.LOGS, ItemTags.LOGS);
+        this.copy(BlockTags.SAND, ItemTags.SAND);
+        //this.copy(BlockTags.SMELTS_TO_GLASS, ItemTags.SMELTS_TO_GLASS);
+
+        this.copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
+        this.copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
+        this.copy(BlockTags.SMALL_FLOWERS, ItemTags.SMALL_FLOWERS);
+        this.copy(BlockTags.FENCES, ItemTags.FENCES);
+        this.copy(BlockTags.TALL_FLOWERS, ItemTags.TALL_FLOWERS);
+        this.copy(BlockTags.FLOWERS, ItemTags.FLOWERS);
+        this.copy(BlockTags.DAMPENS_VIBRATIONS, ItemTags.DAMPENS_VIBRATIONS);
+        this.copy(BlockTags.DIRT, ItemTags.DIRT);
+        //this.copy(BlockTags.COMPLETES_FIND_TREE_TUTORIAL, ItemTags.COMPLETES_FIND_TREE_TUTORIAL);
+*/
 
 
 
     }
-*/
+
+    private static ResourceLocation key(Item item) {
+        return ForgeRegistries.ITEMS.getKey(item);
+    }
+    private static String name(Item item) {
+        return key(item).getPath();
+    }
+    private static ResourceLocation key(Block block) {
+        return ForgeRegistries.BLOCKS.getKey(block);
+    }
+    private static String name(Block blk) {
+        return key(blk).getPath();
+    }
 }

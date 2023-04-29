@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:ingots/purple_gold"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/pearl"
+    }
+  },
+  "pattern": [
+    "III",
+    "IRI",
+    "III"
+  ],
+  "result": {
+    "item": "rankine:totem_of_softening"
+  },
+  "show_notification": true
+}

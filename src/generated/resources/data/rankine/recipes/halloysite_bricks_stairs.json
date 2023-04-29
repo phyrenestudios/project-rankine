@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "bricks_stairs",
+  "key": {
+    "#": {
+      "item": "rankine:halloysite_bricks"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:halloysite_bricks_stairs"
+  },
+  "show_notification": true
+}

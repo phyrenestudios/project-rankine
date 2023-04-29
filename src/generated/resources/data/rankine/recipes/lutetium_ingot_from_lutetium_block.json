@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:lutetium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:lutetium_ingot"
+  }
+}

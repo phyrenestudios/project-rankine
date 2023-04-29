@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 2236962,
+  "group": "rankine:alloy_rods",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:cast_iron_ingot"
+    }
+  },
+  "langName": "item.rankine.cast_iron_alloying",
+  "pattern": [
+    "  #",
+    " # ",
+    "#  "
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:alloy_rod"
+  }
+}

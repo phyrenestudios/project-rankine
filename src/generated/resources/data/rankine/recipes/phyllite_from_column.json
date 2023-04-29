@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_stone_column",
+  "ingredients": [
+    {
+      "item": "rankine:phyllite_column"
+    },
+    {
+      "item": "rankine:phyllite_column"
+    },
+    {
+      "item": "rankine:phyllite_column"
+    },
+    {
+      "item": "rankine:phyllite_column"
+    }
+  ],
+  "result": {
+    "item": "rankine:phyllite"
+  }
+}

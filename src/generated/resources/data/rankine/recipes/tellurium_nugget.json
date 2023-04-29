@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:tellurium"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:tellurium_nugget"
+  }
+}

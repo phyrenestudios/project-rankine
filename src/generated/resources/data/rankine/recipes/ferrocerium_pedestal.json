@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:pedestals",
+  "key": {
+    "#": {
+      "item": "rankine:ferrocerium_ingot"
+    },
+    "P": {
+      "tag": "forge:stone_pressure_plates"
+    }
+  },
+  "pattern": [
+    " P ",
+    " # ",
+    " # "
+  ],
+  "result": {
+    "item": "rankine:ferrocerium_pedestal"
+  },
+  "show_notification": true
+}

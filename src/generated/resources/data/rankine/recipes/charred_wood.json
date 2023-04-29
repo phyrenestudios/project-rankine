@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:wood",
+  "key": {
+    "#": {
+      "item": "rankine:charred_log"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "item": "rankine:charred_wood"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,18 @@
+{
+  "values": [
+    "rankine:gold_ore",
+    "rankine:native_gold_ore",
+    "rankine:black_gold_pedestal",
+    "rankine:purple_gold_pedestal",
+    "rankine:rose_gold_pedestal",
+    "rankine:white_gold_pedestal",
+    "rankine:green_gold_pedestal",
+    "rankine:blue_gold_pedestal",
+    "rankine:black_gold_block",
+    "rankine:purple_gold_block",
+    "rankine:rose_gold_block",
+    "rankine:white_gold_block",
+    "rankine:green_gold_block",
+    "rankine:blue_gold_block"
+  ]
+}

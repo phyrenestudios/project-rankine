@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "rankine:charred_planks"
+    }
+  ],
+  "result": {
+    "item": "rankine:charred_button"
+  }
+}

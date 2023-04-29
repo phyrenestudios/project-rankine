@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sandstone_wall",
+  "key": {
+    "#": {
+      "item": "rankine:black_sandstone"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:black_sandstone_wall"
+  },
+  "show_notification": true
+}

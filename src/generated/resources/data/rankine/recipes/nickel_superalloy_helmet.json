@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 12769246,
+  "group": "rankine:alloy_helmets",
+  "inherit": true,
+  "key": {
+    "#": {
+      "color": 12769246,
+      "item": "rankine:nickel_superalloy_ingot",
+      "langName": "item.rankine.nickel_superalloy_alloying"
+    }
+  },
+  "langName": "item.rankine.nickel_superalloy_alloying",
+  "pattern": [
+    "###",
+    "# #",
+    "   "
+  ],
+  "result": {
+    "item": "rankine:alloy_helmet"
+  }
+}

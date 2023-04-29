@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "rankine:bridgmanham_bricks"
+  },
+  "result": "rankine:bridgmanham_bricks_slab"
+}

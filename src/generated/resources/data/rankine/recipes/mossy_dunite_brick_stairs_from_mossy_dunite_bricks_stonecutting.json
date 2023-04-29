@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:mossy_dunite_bricks"
+  },
+  "result": "rankine:mossy_dunite_bricks_stairs"
+}

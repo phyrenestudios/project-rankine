@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:snow_block"
+    },
+    "B": {
+      "item": "minecraft:snowball"
+    }
+  },
+  "pattern": [
+    "B#",
+    "#B"
+  ],
+  "result": {
+    "count": 2,
+    "item": "rankine:packed_snow"
+  },
+  "show_notification": true
+}

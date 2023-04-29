@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "forge:chests"
+    },
+    "I": {
+      "tag": "rankine:crafting_metal_ingots"
+    }
+  },
+  "pattern": [
+    "I I",
+    "ICI",
+    " I "
+  ],
+  "result": {
+    "item": "minecraft:hopper"
+  },
+  "show_notification": true
+}

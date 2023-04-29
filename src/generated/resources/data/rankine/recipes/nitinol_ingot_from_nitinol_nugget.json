@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:nitinol_nugget"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "rankine:nitinol_ingot"
+  }
+}

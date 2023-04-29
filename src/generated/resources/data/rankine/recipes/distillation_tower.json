@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "rankine:muscovite_block"
+    },
+    "B": {
+      "tag": "forge:ice"
+    },
+    "I": {
+      "tag": "forge:ingots/stainless_steel"
+    },
+    "M": {
+      "item": "minecraft:magma_block"
+    }
+  },
+  "pattern": [
+    "IBI",
+    "I#I",
+    "IMI"
+  ],
+  "result": {
+    "item": "rankine:distillation_tower"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "cobble_from_stone",
+  "ingredients": [
+    {
+      "item": "rankine:dunite"
+    },
+    {
+      "tag": "forge:cobblestone"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:dunite_cobble"
+  }
+}

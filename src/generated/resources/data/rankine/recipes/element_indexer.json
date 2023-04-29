@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "rankine:cadmium_telluride_cell"
+    },
+    "I": {
+      "tag": "rankine:crafting_metal_ingots"
+    }
+  },
+  "pattern": [
+    "III",
+    "ICI",
+    "III"
+  ],
+  "result": {
+    "item": "rankine:element_indexer"
+  },
+  "show_notification": true
+}

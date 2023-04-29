@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "rankine:silver_zinc_battery"
+    },
+    "P": {
+      "tag": "forge:metal_poles"
+    },
+    "W": {
+      "item": "rankine:alloy_wire"
+    }
+  },
+  "pattern": [
+    "WPW",
+    "WPW",
+    "WBW"
+  ],
+  "result": {
+    "item": "rankine:simple_electromagnet"
+  },
+  "show_notification": true
+}

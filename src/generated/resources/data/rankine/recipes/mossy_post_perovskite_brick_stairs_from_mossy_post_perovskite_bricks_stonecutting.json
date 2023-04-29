@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:mossy_post_perovskite_bricks"
+  },
+  "result": "rankine:mossy_post_perovskite_bricks_stairs"
+}

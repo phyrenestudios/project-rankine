@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "mossy_bricks_vines",
+  "ingredients": [
+    {
+      "item": "rankine:whiteschist"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "rankine:mossy_whiteschist_bricks"
+  }
+}

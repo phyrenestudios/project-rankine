@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_bricks",
+  "key": {
+    "#": {
+      "item": "rankine:anorthosite"
+    },
+    "M": {
+      "item": "rankine:mortar"
+    }
+  },
+  "pattern": [
+    "#M",
+    "M#"
+  ],
+  "result": {
+    "count": 2,
+    "item": "rankine:anorthosite_bricks"
+  },
+  "show_notification": true
+}

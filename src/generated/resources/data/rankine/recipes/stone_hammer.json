@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "minecraft:stone_tool_materials"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "PSP",
+    " S "
+  ],
+  "result": {
+    "item": "rankine:stone_hammer"
+  },
+  "show_notification": true
+}

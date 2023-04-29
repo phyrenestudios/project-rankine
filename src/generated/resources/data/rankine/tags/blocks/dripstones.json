@@ -1,0 +1,11 @@
+{
+  "values": [
+    "rankine:ferric_dripstone_block",
+    "rankine:magnesitic_dripstone_block",
+    "rankine:zirconic_dripstone_block",
+    "rankine:gypsic_dripstone_block",
+    "rankine:halitic_dripstone_block",
+    "rankine:nitric_dripstone_block",
+    "rankine:boracitic_dripstone_block"
+  ]
+}

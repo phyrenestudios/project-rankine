@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:beaver_pelt"
+    },
+    {
+      "item": "rankine:beaver_pelt"
+    },
+    {
+      "item": "rankine:beaver_pelt"
+    },
+    {
+      "item": "rankine:beaver_pelt"
+    }
+  ],
+  "result": {
+    "item": "minecraft:leather"
+  }
+}

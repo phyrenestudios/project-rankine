@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:gabbro_bricks"
+  },
+  "result": "rankine:gabbro_bricks_pressure_plate"
+}

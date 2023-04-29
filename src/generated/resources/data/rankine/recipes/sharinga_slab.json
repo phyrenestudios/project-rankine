@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_slab",
+  "key": {
+    "#": {
+      "item": "rankine:sharinga_planks"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:sharinga_slab"
+  },
+  "show_notification": true
+}

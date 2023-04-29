@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:weeping_willow_slab"
+    },
+    {
+      "item": "rankine:weeping_willow_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:weeping_willow_planks"
+  }
+}

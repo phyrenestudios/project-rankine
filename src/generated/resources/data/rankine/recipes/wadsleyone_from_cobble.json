@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:wadsleyone_cobble"
+    },
+    {
+      "item": "rankine:wadsleyone_cobble"
+    },
+    {
+      "item": "rankine:wadsleyone_cobble"
+    },
+    {
+      "item": "rankine:wadsleyone_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:wadsleyone"
+  }
+}

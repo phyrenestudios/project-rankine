@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_crowbars",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:rose_gold_ingot"
+    }
+  },
+  "pattern": [
+    " ##",
+    " # ",
+    "## "
+  ],
+  "result": {
+    "item": "rankine:rose_gold_crowbar"
+  }
+}

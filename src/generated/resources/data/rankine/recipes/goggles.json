@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "forge:glass_panes"
+    },
+    "R": {
+      "tag": "forge:rubber"
+    },
+    "S": {
+      "tag": "forge:string"
+    }
+  },
+  "pattern": [
+    "GRG",
+    "RSR"
+  ],
+  "result": {
+    "item": "rankine:goggles"
+  },
+  "show_notification": true
+}

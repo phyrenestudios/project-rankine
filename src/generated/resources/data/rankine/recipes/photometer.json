@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:ingots/nickel_silver"
+    },
+    "R": {
+      "item": "minecraft:daylight_detector"
+    }
+  },
+  "pattern": [
+    " I ",
+    "IRI",
+    " I "
+  ],
+  "result": {
+    "item": "rankine:photometer"
+  },
+  "show_notification": true
+}

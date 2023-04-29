@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:rods/graphite"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "I I",
+    "ISI",
+    "IRI"
+  ],
+  "result": {
+    "count": 8,
+    "item": "minecraft:powered_rail"
+  },
+  "show_notification": true
+}

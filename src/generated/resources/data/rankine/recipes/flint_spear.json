@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:flint"
+    },
+    "R": {
+      "item": "rankine:rope"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    " FF",
+    " RF",
+    "S  "
+  ],
+  "result": {
+    "item": "rankine:flint_spear"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "minecraft:conduit"
+  },
+  "base": {
+    "item": "rankine:diving_chestplate"
+  },
+  "result": {
+    "item": "rankine:conduit_diving_chestplate"
+  }
+}

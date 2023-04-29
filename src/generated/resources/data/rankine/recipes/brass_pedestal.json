@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:pedestals",
+  "key": {
+    "#": {
+      "item": "rankine:brass_ingot"
+    },
+    "P": {
+      "tag": "forge:stone_pressure_plates"
+    }
+  },
+  "pattern": [
+    " P ",
+    " # ",
+    " # "
+  ],
+  "result": {
+    "item": "rankine:brass_pedestal"
+  },
+  "show_notification": true
+}

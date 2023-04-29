@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:saltpeter"
+    },
+    {
+      "tag": "forge:crops/cotton"
+    },
+    {
+      "tag": "forge:crops/cotton"
+    },
+    {
+      "tag": "forge:crops/cotton"
+    },
+    {
+      "tag": "forge:crops/cotton"
+    },
+    {
+      "tag": "forge:crops/cotton"
+    },
+    {
+      "tag": "forge:crops/cotton"
+    },
+    {
+      "tag": "forge:crops/cotton"
+    },
+    {
+      "tag": "forge:crops/cotton"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:gun_cotton"
+  }
+}

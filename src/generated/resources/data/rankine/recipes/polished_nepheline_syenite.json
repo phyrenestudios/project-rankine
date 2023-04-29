@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "polished_stone",
+  "key": {
+    "#": {
+      "item": "rankine:nepheline_syenite"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:polished_nepheline_syenite"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_pressure_plate",
+  "key": {
+    "#": {
+      "item": "rankine:pegmatite_bricks"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "item": "rankine:pegmatite_bricks_pressure_plate"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,27 @@
+{
+  "values": [
+    "rankine:cedar_slab",
+    "rankine:balsam_fir_slab",
+    "rankine:eastern_hemlock_slab",
+    "rankine:western_hemlock_slab",
+    "rankine:pinyon_pine_slab",
+    "rankine:juniper_slab",
+    "rankine:black_birch_slab",
+    "rankine:yellow_birch_slab",
+    "rankine:red_birch_slab",
+    "rankine:maple_slab",
+    "rankine:magnolia_slab",
+    "rankine:black_walnut_slab",
+    "rankine:coconut_palm_slab",
+    "rankine:cork_oak_slab",
+    "rankine:sharinga_slab",
+    "rankine:cinnamon_slab",
+    "rankine:honey_locust_slab",
+    "rankine:weeping_willow_slab",
+    "rankine:erythrina_slab",
+    "rankine:petrified_chorus_slab",
+    "rankine:charred_slab",
+    "rankine:bamboo_slab",
+    "rankine:bamboo_culms_slab"
+  ]
+}

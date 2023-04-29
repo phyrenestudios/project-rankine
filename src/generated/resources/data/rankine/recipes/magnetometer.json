@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:dusts/redstone"
+    },
+    "R": {
+      "tag": "forge:ingots/potassium"
+    }
+  },
+  "pattern": [
+    " I ",
+    "IRI",
+    " I "
+  ],
+  "result": {
+    "item": "rankine:magnetometer"
+  },
+  "show_notification": true
+}

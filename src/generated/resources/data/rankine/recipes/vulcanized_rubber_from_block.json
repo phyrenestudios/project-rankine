@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:vulcanized_rubber_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:vulcanized_rubber"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_pressure_plate",
+  "key": {
+    "#": {
+      "item": "rankine:blueschist"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "item": "rankine:blueschist_pressure_plate"
+  },
+  "show_notification": true
+}

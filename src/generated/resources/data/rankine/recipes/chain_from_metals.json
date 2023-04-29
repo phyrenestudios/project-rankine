@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "rankine:crafting_metal_ingots"
+    },
+    "N": {
+      "tag": "rankine:crafting_metal_nuggets"
+    }
+  },
+  "pattern": [
+    "N",
+    "I",
+    "N"
+  ],
+  "result": {
+    "item": "minecraft:chain"
+  },
+  "show_notification": true
+}

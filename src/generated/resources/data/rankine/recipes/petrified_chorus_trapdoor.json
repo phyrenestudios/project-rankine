@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_trapdoor",
+  "key": {
+    "#": {
+      "item": "rankine:petrified_chorus_planks"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "item": "rankine:petrified_chorus_trapdoor"
+  },
+  "show_notification": true
+}

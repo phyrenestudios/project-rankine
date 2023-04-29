@@ -1,0 +1,27 @@
+{
+  "values": [
+    "rankine:cedar_button",
+    "rankine:balsam_fir_button",
+    "rankine:eastern_hemlock_button",
+    "rankine:western_hemlock_button",
+    "rankine:pinyon_pine_button",
+    "rankine:juniper_button",
+    "rankine:black_birch_button",
+    "rankine:yellow_birch_button",
+    "rankine:red_birch_button",
+    "rankine:maple_button",
+    "rankine:magnolia_button",
+    "rankine:black_walnut_button",
+    "rankine:coconut_palm_button",
+    "rankine:cork_oak_button",
+    "rankine:sharinga_button",
+    "rankine:cinnamon_button",
+    "rankine:honey_locust_button",
+    "rankine:weeping_willow_button",
+    "rankine:erythrina_button",
+    "rankine:petrified_chorus_button",
+    "rankine:charred_button",
+    "rankine:bamboo_button",
+    "rankine:bamboo_culms_button"
+  ]
+}

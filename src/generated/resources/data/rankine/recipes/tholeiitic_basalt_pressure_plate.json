@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_pressure_plate",
+  "key": {
+    "#": {
+      "item": "rankine:tholeiitic_basalt"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "item": "rankine:tholeiitic_basalt_pressure_plate"
+  },
+  "show_notification": true
+}

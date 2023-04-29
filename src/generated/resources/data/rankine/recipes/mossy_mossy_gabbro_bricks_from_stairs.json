@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:mossy_gabbro_bricks_stairs"
+    },
+    {
+      "item": "rankine:mossy_gabbro_bricks_stairs"
+    },
+    {
+      "item": "rankine:mossy_gabbro_bricks_stairs"
+    },
+    {
+      "item": "rankine:mossy_gabbro_bricks_stairs"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "rankine:mossy_gabbro_bricks"
+  }
+}

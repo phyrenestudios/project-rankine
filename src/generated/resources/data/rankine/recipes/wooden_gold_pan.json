@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "###",
+    " # "
+  ],
+  "result": {
+    "item": "rankine:wooden_gold_pan"
+  },
+  "show_notification": true
+}

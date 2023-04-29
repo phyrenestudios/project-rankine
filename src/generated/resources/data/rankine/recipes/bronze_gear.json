@@ -1,0 +1,23 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 15510384,
+  "group": "rankine:alloy_gears",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:bronze_ingot"
+    },
+    "R": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "langName": "item.rankine.bronze_alloying",
+  "pattern": [
+    " # ",
+    "#R#",
+    " # "
+  ],
+  "result": {
+    "item": "rankine:alloy_gear"
+  }
+}

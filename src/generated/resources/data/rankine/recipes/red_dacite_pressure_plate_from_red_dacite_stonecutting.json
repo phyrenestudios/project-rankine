@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:red_dacite"
+  },
+  "result": "rankine:red_dacite_pressure_plate"
+}

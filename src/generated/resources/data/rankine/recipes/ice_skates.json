@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "tag": "forge:leather"
+    },
+    "N": {
+      "tag": "rankine:crafting_metal_nuggets"
+    },
+    "R": {
+      "item": "rankine:rope"
+    }
+  },
+  "pattern": [
+    "L  ",
+    "RRL",
+    "NNN"
+  ],
+  "result": {
+    "item": "rankine:ice_skates"
+  },
+  "show_notification": true
+}

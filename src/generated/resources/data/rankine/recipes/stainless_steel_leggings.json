@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 13292499,
+  "group": "rankine:alloy_leggings",
+  "inherit": true,
+  "key": {
+    "#": {
+      "color": 13292499,
+      "item": "rankine:stainless_steel_ingot",
+      "langName": "item.rankine.stainless_steel_alloying"
+    }
+  },
+  "langName": "item.rankine.stainless_steel_alloying",
+  "pattern": [
+    "###",
+    "# #",
+    "# #"
+  ],
+  "result": {
+    "item": "rankine:alloy_leggings"
+  }
+}

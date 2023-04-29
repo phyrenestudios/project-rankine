@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:mariposite_cobble"
+    },
+    {
+      "item": "rankine:mariposite_cobble"
+    },
+    {
+      "item": "rankine:mariposite_cobble"
+    },
+    {
+      "item": "rankine:mariposite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:mariposite"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "polished_stone",
+  "key": {
+    "#": {
+      "item": "rankine:post_perovskite"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:polished_post_perovskite"
+  },
+  "show_notification": true
+}

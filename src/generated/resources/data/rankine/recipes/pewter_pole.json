@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:poles",
+  "key": {
+    "#": {
+      "item": "rankine:pewter_ingot"
+    }
+  },
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:pewter_pole"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "tag": "minecraft:flowers"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "tag": "minecraft:saplings"
+    }
+  },
+  "pattern": [
+    "FS",
+    "PP",
+    "PP"
+  ],
+  "result": {
+    "item": "rankine:botanist_station"
+  },
+  "show_notification": true
+}

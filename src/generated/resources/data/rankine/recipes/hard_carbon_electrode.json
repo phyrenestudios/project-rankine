@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:carbon"
+    }
+  },
+  "pattern": [
+    "  I",
+    " I ",
+    "I  "
+  ],
+  "result": {
+    "item": "rankine:hard_carbon_electrode"
+  },
+  "show_notification": true
+}

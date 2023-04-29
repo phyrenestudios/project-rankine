@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 6534878,
+  "group": "rankine:alloy_boots",
+  "inherit": true,
+  "key": {
+    "#": {
+      "color": 6534878,
+      "item": "rankine:cobalt_superalloy_ingot",
+      "langName": "item.rankine.cobalt_superalloy_alloying"
+    }
+  },
+  "langName": "item.rankine.cobalt_superalloy_alloying",
+  "pattern": [
+    "   ",
+    "# #",
+    "# #"
+  ],
+  "result": {
+    "item": "rankine:alloy_boots"
+  }
+}

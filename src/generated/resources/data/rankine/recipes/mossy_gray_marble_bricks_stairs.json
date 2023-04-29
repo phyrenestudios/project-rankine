@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_stairs",
+  "key": {
+    "#": {
+      "item": "rankine:mossy_gray_marble_bricks"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:mossy_gray_marble_bricks_stairs"
+  },
+  "show_notification": true
+}

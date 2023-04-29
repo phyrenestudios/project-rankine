@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:lherzolite_bricks"
+  },
+  "result": "rankine:lherzolite_bricks_pressure_plate"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_swords",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:amalgam_ingot"
+    },
+    "s": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "#",
+    "#",
+    "s"
+  ],
+  "result": {
+    "item": "rankine:amalgam_sword"
+  }
+}
