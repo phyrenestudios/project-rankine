@@ -113,7 +113,7 @@ public final class RankineTags {
         public static final TagKey<Block> CONCRETE = forgeBlock("concrete");
         public static final TagKey<Block> MINERAL_WOOL = forgeBlock("mineral_wool");
         public static final TagKey<Block> SHEETMETAL = forgeBlock("sheetmetal");
-        public static final TagKey<Block> SHEETMETAL_SALBS = forgeBlock("sheetmetal_slabs");
+        //public static final TagKey<Block> SHEETMETAL_SALBS = forgeBlock("sheetmetal_slabs");
 
         public static final TagKey<Block> BRICKS = forgeBlock("bricks");
         public static final TagKey<Block> BRICKS_SLAB = forgeBlock("bricks_slabs");

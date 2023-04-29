@@ -1,0 +1,14 @@
+{
+  "values": [
+    "#rankine:movement_modifiers/roman",
+    "#rankine:movement_modifiers/snow",
+    "#rankine:movement_modifiers/wood",
+    "#rankine:movement_modifiers/dirt",
+    "#rankine:movement_modifiers/ice",
+    "#rankine:movement_modifiers/mud",
+    "#rankine:movement_modifiers/paths",
+    "#rankine:movement_modifiers/sand",
+    "#rankine:movement_modifiers/concrete",
+    "#rankine:movement_modifiers/polished"
+  ]
+}
