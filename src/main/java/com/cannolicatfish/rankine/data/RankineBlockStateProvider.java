@@ -135,6 +135,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             createPointedDripstone(Dripstone.getPointedDripstone());
         }
 
+        for (FiberBlocks fiber : FiberBlocks.values()) {
+            fiberBlock(fiber.getBlock());
+            fiberMatBlock(fiber.getMat(), getBlockRSL(fiber.getBlock()));
+        }
 
         for (Block blk : Stream.of(
                 RankineLists.ALLOY_BLOCKS,
@@ -434,13 +438,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : RankineLists.ALLOY_LADDERS) {
             ladderBlock(blk);
         }
-        for (Block blk : RankineLists.FIBER_BLOCK) {
-            fiberBlock((FiberBlock) blk);
-        }
-        for (Block blk : RankineLists.FIBER_MAT) {
-            Block fiberBlock = RankineLists.FIBER_BLOCK.get(RankineLists.FIBER_MAT.indexOf(blk));
-            fiberMatBlock((FiberMatBlock) blk, getBlockRSL(fiberBlock));
-        }
+
+
         for (Block blk : RankineLists.FLUID_BLOCKS) {
             fluidBlock(blk);
         }

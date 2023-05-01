@@ -68,6 +68,11 @@ public class RankineEnUsLangProvider extends LanguageProvider {
             }
         }
 
+        for (FiberBlocks fiber : FiberBlocks.values()) {
+            add(fiber.getBlock(), parseLangName(name(fiber.getBlock())));
+            add(fiber.getMat(), parseLangName(name(fiber.getMat())));
+        }
+
         for (Block blk : Stream.of(
                 RankineLists.MISC_SLABS,
                 RankineLists.MISC_STAIRS,
@@ -85,8 +90,6 @@ public class RankineEnUsLangProvider extends LanguageProvider {
                 RankineLists.GEODES,
                 RankineLists.GLAZED_PORCELAIN_BLOCKS,
                 RankineLists.MINERAL_WOOL,
-                RankineLists.FIBER_BLOCK,
-                RankineLists.FIBER_MAT,
                 RankineLists.TALL_FLOWERS,
                 RankineLists.METAL_TRAPDOORS,
                 RankineLists.METAL_DOORS,

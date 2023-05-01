@@ -274,7 +274,6 @@
     "rankine:packed_snow_wall",
     "rankine:ice_bricks_wall",
     "rankine:cast_iron_support_wall",
-    "rankine:fiber_block_wall",
     "rankine:checkered_marble_wall"
   ]
 }

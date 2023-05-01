@@ -130,6 +130,15 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
                 }
             }
         }
+        for (FiberBlocks fiber : FiberBlocks.values()) {
+            dropSelf(fiber.getBlock());
+            dropSelf(fiber.getMat());
+            if (fiber.hasExtraBlocks()) {
+                addSlab(fiber.getSlab());
+                dropSelf(fiber.getStairs());
+                dropSelf(fiber.getWall());
+            }
+        }
 
         for (Block blk : Stream.of(
                 RankineLists.VANILLA_BRICKS,
@@ -145,8 +154,6 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
                 RankineLists.COARSE_SOIL_BLOCKS,
                 RankineLists.MUD_BLOCKS,
                 RankineLists.MINERAL_WOOL,
-                RankineLists.FIBER_BLOCK,
-                RankineLists.FIBER_MAT,
                 RankineLists.METAL_TRAPDOORS,
                 RankineLists.ALLOY_LADDERS,
                 RankineLists.ALLOY_BLOCKS,

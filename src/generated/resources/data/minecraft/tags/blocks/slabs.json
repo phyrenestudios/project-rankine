@@ -278,7 +278,6 @@
     "rankine:packed_snow_slab",
     "rankine:ice_bricks_slab",
     "rankine:cast_iron_support_slab",
-    "rankine:fiber_block_slab",
     "rankine:checkered_marble_slab"
   ]
 }
