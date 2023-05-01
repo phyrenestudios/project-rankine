@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine;
 
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.client.renders.*;
+import com.cannolicatfish.rankine.element.Element;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
@@ -25,6 +26,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DataPackRegistryEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -71,7 +73,9 @@ public class ProjectRankine {
         //RankineFeatures.FEATURES.register(Bus);
         //RankineConfiguredFeatures.CONFIGURED_FEATURES.register(Bus);
         //RankinePlacedFeatures.PLACED_FEATURES.register(Bus);
-
+        Bus.addListener((DataPackRegistryEvent.NewRegistry event) -> {
+            event.dataPackRegistry(RankineElements.ELEMENT_REGISTRY_KEY, Element.CODEC, Element.CODEC);
+        });
         Bus.addListener(this::LoadComplete);
 
         WorldgenUtils.initOreTextures();

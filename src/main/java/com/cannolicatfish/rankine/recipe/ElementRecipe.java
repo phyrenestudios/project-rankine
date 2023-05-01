@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.recipe;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.util.ElementEquation;
+import com.cannolicatfish.rankine.element.ElementEquation;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.core.NonNullList;
@@ -354,7 +354,7 @@ public class ElementRecipe implements Recipe<Container> {
                         modifiersIn[i] = ElementEquation.FormulaModifier.valueOf(modifiers.get(i).getAsString().toUpperCase(Locale.ROOT));
                         limitIn[i] = limit.get(i).getAsFloat();
                     }
-                    equations.add(index,new ElementEquation(breaksIn,formulasIn,aIn,bIn,modifiersIn,limitIn));
+                    equations.add(index,new ElementEquation());
                 } else {
                     equations.add(index,new ElementEquation());
                 }
@@ -413,7 +413,7 @@ public class ElementRecipe implements Recipe<Container> {
                         modifiersIn[i] = ElementEquation.FormulaModifier.valueOf(buffer.readUtf().toUpperCase(Locale.ROOT));
                         limitIn[i] = buffer.readFloat();
                     }
-                    equations.add(j,new ElementEquation(breaksIn,formulasIn,aIn,bIn,modifiersIn,limitIn));
+                    equations.add(j,new ElementEquation());
                 } else {
                     equations.add(j,new ElementEquation());
                 }
@@ -450,15 +450,6 @@ public class ElementRecipe implements Recipe<Container> {
                 ElementEquation formula = element.getStats().get(j);
                 buffer.writeBoolean(!formula.isEmpty());
                 if (!formula.isEmpty()) {
-                    buffer.writeInt(formula.getBreaks().length);
-                    for (int i = 0; i < formula.getBreaks().length; i++) {
-                        buffer.writeInt(formula.getBreaks()[i]);
-                        buffer.writeUtf(formula.getFormulaTypes()[i].toString().toUpperCase(Locale.ROOT));
-                        buffer.writeFloat(formula.getA()[i]);
-                        buffer.writeFloat(formula.getB()[i]);
-                        buffer.writeUtf(formula.getFormulaModifiers()[i].toString().toUpperCase(Locale.ROOT));
-                        buffer.writeFloat(formula.getLimit()[i]);
-                    }
                 }
             }
             int size = element.getEnchantments().size();
