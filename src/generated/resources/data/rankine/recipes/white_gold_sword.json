@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_swords",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:white_gold_ingot"
+    },
+    "s": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "#",
+    "#",
+    "s"
+  ],
+  "result": {
+    "item": "rankine:white_gold_sword"
+  }
+}

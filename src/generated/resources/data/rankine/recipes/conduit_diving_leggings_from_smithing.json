@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "minecraft:prismarine_crystals"
+  },
+  "base": {
+    "item": "rankine:diving_leggings"
+  },
+  "result": {
+    "item": "rankine:conduit_diving_leggings"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "forge:gunpowder"
+    },
+    "R": {
+      "tag": "forge:rope"
+    }
+  },
+  "pattern": [
+    "#R",
+    "R#"
+  ],
+  "result": {
+    "item": "rankine:blasting_powder"
+  },
+  "show_notification": true
+}

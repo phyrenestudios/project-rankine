@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:carbon"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:carbon_nugget"
+  }
+}

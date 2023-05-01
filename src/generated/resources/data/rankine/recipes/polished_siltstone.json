@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "polished_stone",
+  "key": {
+    "#": {
+      "item": "rankine:siltstone"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:polished_siltstone"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "fiber_mat",
+  "key": {
+    "#": {
+      "item": "rankine:pink_fiber_block"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "item": "rankine:pink_fiber_mat"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "mortar",
+  "ingredients": [
+    {
+      "item": "rankine:cement_mix"
+    },
+    {
+      "tag": "minecraft:sand"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:mortar"
+  }
+}

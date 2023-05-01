@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:antimony"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:antimony_nugget"
+  }
+}

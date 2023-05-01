@@ -1,0 +1,11 @@
+{
+  "values": [
+    "#minecraft:dirt",
+    "#forge:gravel",
+    "#forge:sand",
+    "rankine:silt",
+    "rankine:desert_sand",
+    "rankine:kaolin",
+    "rankine:fire_clay"
+  ]
+}

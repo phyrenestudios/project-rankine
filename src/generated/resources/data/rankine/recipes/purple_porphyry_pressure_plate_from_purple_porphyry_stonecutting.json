@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:purple_porphyry"
+  },
+  "result": "rankine:purple_porphyry_pressure_plate"
+}

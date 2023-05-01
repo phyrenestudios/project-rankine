@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:hornblende_andesite_cobble"
+    },
+    {
+      "item": "rankine:hornblende_andesite_cobble"
+    },
+    {
+      "item": "rankine:hornblende_andesite_cobble"
+    },
+    {
+      "item": "rankine:hornblende_andesite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:hornblende_andesite"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:laurite_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:laurite"
+  }
+}

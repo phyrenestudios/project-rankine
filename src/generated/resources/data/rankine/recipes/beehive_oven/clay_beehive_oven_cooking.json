@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "minecraft:clay"
+  },
+  "maxCookTime": 600,
+  "minCookTime": 300,
+  "result": "minecraft:terracotta"
+}

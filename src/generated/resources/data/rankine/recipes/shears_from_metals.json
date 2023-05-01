@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "rankine:crafting_metal_ingots"
+    }
+  },
+  "pattern": [
+    "I ",
+    " I"
+  ],
+  "result": {
+    "item": "minecraft:shears"
+  },
+  "show_notification": true
+}

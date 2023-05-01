@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "rankine:cedar_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:cedar_planks"
+  }
+}

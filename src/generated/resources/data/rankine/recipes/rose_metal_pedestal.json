@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:pedestals",
+  "key": {
+    "#": {
+      "item": "rankine:rose_metal_ingot"
+    },
+    "P": {
+      "tag": "forge:stone_pressure_plates"
+    }
+  },
+  "pattern": [
+    " P ",
+    " # ",
+    " # "
+  ],
+  "result": {
+    "item": "rankine:rose_metal_pedestal"
+  },
+  "show_notification": true
+}

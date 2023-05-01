@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_trapdoor",
+  "key": {
+    "#": {
+      "item": "rankine:western_hemlock_planks"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "item": "rankine:western_hemlock_trapdoor"
+  },
+  "show_notification": true
+}

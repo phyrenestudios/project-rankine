@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "bales",
+  "key": {
+    "#": {
+      "item": "rankine:millet"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "rankine:millet_bale"
+  },
+  "show_notification": true
+}

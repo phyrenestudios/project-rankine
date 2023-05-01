@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SignBlock;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -34,36 +35,36 @@ public class RankineEnUsLangProvider extends LanguageProvider {
 
         for (RankineStone Stone : RankineLists.RANKINE_STONES) {
             for (Block blk : Stone.getStoneBlocks()) {
-                add(blk, parseLangName(blk.getDescriptionId()));
+                add(blk, parseLangName(name(blk)));
             }
         }
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             for (Block blk : Wood.getWoodBlocks()) {
                 if (blk != null && !(blk instanceof SignBlock)) {
-                    add(blk, parseLangName(blk.getDescriptionId()));
+                    add(blk, parseLangName(name(blk)));
                 }
             }
-            add(Wood.getSignItem(), parseLangName(Wood.getSignItem().getDescriptionId()));
-            add(Wood.getBoat(), parseLangName(Wood.getBoat().getDescriptionId()));
+            add(Wood.getSignItem(), parseLangName(name(Wood.getSignItem())));
+            add(Wood.getBoat(), parseLangName(name(Wood.getBoat())));
         }
         for (RankineSandstone Sandstone : RankineLists.RANKINE_SANDSTONES) {
             for (Block blk : Sandstone.getSandstoneBlocks()) {
-                add(blk, parseLangName(blk.getDescriptionId()));
+                add(blk, parseLangName(name(blk)));
             }
         }
         for (RankineCement block : RankineLists.RANKINE_CEMENTS) {
             for (Block blk : block.getCementBlocks()) {
-                add(blk, parseLangName(blk.getDescriptionId()));
+                add(blk, parseLangName(name(blk)));
             }
         }
         for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
             for (Block blk : Bricks.getBricksBlocks()) {
-                add(blk, parseLangName(blk.getDescriptionId()));
+                add(blk, parseLangName(name(blk)));
             }
         }
         for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
             for (Block blk : Dripstone.getBlocks()) {
-                add(blk, parseLangName(blk.getDescriptionId()));
+                add(blk, parseLangName(name(blk)));
             }
         }
 
@@ -133,7 +134,7 @@ public class RankineEnUsLangProvider extends LanguageProvider {
             } else if (blk == RankineBlocks.RARE_EARTH_ELECTROMAGNET.get()) {
                 add(blk, "Electromagnet (Tier 3)");
             } else {
-                add(blk, parseLangName(blk.getDescriptionId()));
+                add(blk, parseLangName(name(blk)));
             }
         }
 
@@ -145,7 +146,7 @@ public class RankineEnUsLangProvider extends LanguageProvider {
             } else if (blk.equals(RankineBlocks.CALCIUM_CHLORIDE_BLOCK.get())) {
                 add(blk, "Block of Salt (CaCl2)");
             } else {
-                add(blk, parseLangName("block_of_"+blk.getDescriptionId().replace("_block","")));
+                add(blk, parseLangName("block_of_"+name(blk).replace("_block","")));
             }
         }
         add(RankineBlocks.KAOLINITE_BLOCK.get(),"Block of Kaolinite");
@@ -153,7 +154,7 @@ public class RankineEnUsLangProvider extends LanguageProvider {
 
         for (Block blk : RankineLists.ALLOY_BLOCKS) {
             if (blk != RankineBlocks.ALLOY_BLOCK.get()) {
-                add(blk,parseLangNameCustomBlock(blk.getDescriptionId()));
+                add(blk,parseLangNameCustomBlock(name(blk)));
             }
         }
 
@@ -228,7 +229,7 @@ public class RankineEnUsLangProvider extends LanguageProvider {
                 RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(),
                 RankineBlocks.PORPHYRY_COPPER.get()
                 )) {
-            add(blk, parseLangName(blk.getDescriptionId()));
+            add(blk, parseLangName(name(blk)));
         }
 
         for (Item item : Stream.of(
@@ -250,7 +251,7 @@ public class RankineEnUsLangProvider extends LanguageProvider {
             } else if (item == RankineItems.CALCIUM_CHLORIDE.get()) {
                 add(item, "Salt (CaCl2)");
             } else {
-                add(item, parseLangName(item.getDescriptionId()));
+                add(item, parseLangName(name(item)));
             }
         }
 
@@ -278,13 +279,13 @@ public class RankineEnUsLangProvider extends LanguageProvider {
                 RankineLists.ZIRCONIUM_ALLOY_TOOLS,
                 RankineLists.TITANIUM_ALLOY_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             if (item != RankineItems.ALLOY_NUGGET.get() && item != RankineItems.ALLOY_INGOT.get()) {
-                add(item, parseLangNameCustom(item.getDescriptionId()));
+                add(item, parseLangNameCustom(name(item)));
             }
         }
         for (Item item : Arrays.asList(RankineItems.ALLOY_NUGGET.get(),RankineItems.ALLOY_INGOT.get())) {
-            add(item, parseLangNameCustom(item.getDescriptionId()));
+            add(item, parseLangNameCustom(name(item)));
         }
-        add(RankineItems.ALLOY_BLOCK.get(), parseLangNameCustomBlock(RankineItems.ALLOY_BLOCK.get().getDescriptionId()));
+        add(RankineItems.ALLOY_BLOCK.get(), parseLangNameCustomBlock(name(RankineItems.ALLOY_BLOCK.get())));
 
         for (Item item : Arrays.asList(
             RankineItems.SOLDER.get(),
@@ -500,7 +501,7 @@ public class RankineEnUsLangProvider extends LanguageProvider {
             RankineItems.ZINC_BROMINE_BATTERY.get(),
             RankineItems.SODIUM_SULFUR_BATTERY.get(),
             RankineItems.LITHIUM_ION_BATTERY.get())) {
-            add(item, parseLangName(item.getDescriptionId()));
+            add(item, parseLangName(name(item)));
         }
 
         add(RankineItems.AMERICIUM_RTG.get(), "Americium RTG");
@@ -940,7 +941,7 @@ public class RankineEnUsLangProvider extends LanguageProvider {
         add("rankine.advancements.story.craft_stone_hammer.description", "Constructing a stronger mallet drops more resources from crushed blocks");
         add("rankine.advancements.story.craft_alloy_hammer.title", "Dust to Dust Again");
         add("rankine.advancements.story.craft_alloy_hammer.description", "Make a hammer with a harvest level of 2 or greater (alloys required) to crack open those tougher materials");
-        add("rankine.advancements.story.crushing_heads.title", "Pokey Pokey");
+        add("rankine.advancements.story.crushing_heads.title", "Poname Poname");
         add("rankine.advancements.story.crushing_heads.description", "Automatically crush blocks by pushing Crushing Heads with pistons");
         add("rankine.advancements.story.get_cobblestone.title", "Cobble Cobble");
         add("rankine.advancements.story.get_cobblestone.description", "Obtain cobblestone from crushing stones using a hammer");
@@ -1110,7 +1111,7 @@ public class RankineEnUsLangProvider extends LanguageProvider {
         add("rankine.journal.cat_orientation.foundation1.text4", "Use a $(l:tools/standard_tools)flint knife$() to gather plant fiber and wool and use a wooden gold pan to $(l:mechanics/sluicing)sluice$() earthy blocks for useful resources. $(br2)One of the new tool types added is $(l:tools/standard_tools)hammers$(). If you are trying to get cobblestone, that's how. Hammers don't simply convert a block into a less shapely version, they refine blocks by extracting additional materials through $(l:mechanics/crushing)crushing$(). It is an important tool and concept for later requirements, so be sure to always have a hammer ready.");
         add("rankine.journal.cat_orientation.foundation1.text5", "Worldgen");
         add("rankine.journal.cat_orientation.foundation1.text6", "A few changes that you are sure to notice are the additions to the natural world. A collection of $(l:sediments/soils)soils$() and other sediments replace much of the original surface. Below the surface new $(l:stones)stones$() emerge from the depths of the mantle, creating vast layers across the biomes. A secondary form of stones is intrusions, large pillars of rock extending from bedrock to the surface.");
-        add("rankine.journal.cat_orientation.foundation1.text7", "Stones are generally found in one of these categories and contain mineral themselves, but are also home to the more common ore veins. Ores are explored further in the next foundation. Other aspects to note about the world include new biota. Various specimens of $(l:biota/trees)trees$(), $(l:biota/crops)crops$(), $(l:biota/ground_flora)ground plants$(), $(l:biota/mushrooms)mushrooms$() and perhaps some animals can be discovered across the world. Although they aren't tools, they are still key to your survival.");
+        add("rankine.journal.cat_orientation.foundation1.text7", "Stones are generally found in one of these categories and contain mineral themselves, but are also home to the more common ore veins. Ores are explored further in the next foundation. Other aspects to note about the world include new biota. Various specimens of $(l:biota/trees)trees$(), $(l:biota/crops)crops$(), $(l:biota/ground_flora)ground plants$(), $(l:biota/mushrooms)mushrooms$() and perhaps some animals can be discovered across the world. Although they aren't tools, they are still name to your survival.");
         add("rankine.journal.cat_orientation.foundation1.text8", "Even familiar blocks in this new environment have changed. Walking on certain earthen and constructed blocks affect movement speed. Using $(l:tools/equipment)equipment$() can combat these and other environmental forces. Another note about the environment is that breaking dirt blocks with an open hand or with crude tools will $(l:mechanics/foraging)forage$() for random items.");
 
 
@@ -1773,6 +1774,12 @@ public class RankineEnUsLangProvider extends LanguageProvider {
 
     private String parseLangNameCustomBlock(String registryName) {
         return "Block of %1$s";
+    }
+    private static String name(Block block) {
+        return ForgeRegistries.BLOCKS.getKey(block).getPath();
+    }
+    private static String name(Item item) {
+        return ForgeRegistries.ITEMS.getKey(item).getPath();
     }
 
 

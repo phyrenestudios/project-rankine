@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "tag": "forge:eggs"
+    },
+    "G": {
+      "tag": "forge:grain"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "pattern": [
+    "MMM",
+    "SES",
+    "GGG"
+  ],
+  "result": {
+    "item": "minecraft:cake"
+  },
+  "show_notification": true
+}

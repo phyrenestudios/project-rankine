@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "rankine:camphor_basil_leaf"
+    },
+    "P": {
+      "item": "rankine:pulp"
+    },
+    "S": {
+      "tag": "forge:saltpeter"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "CSC",
+    "PPP"
+  ],
+  "result": {
+    "item": "rankine:synthetic_leather"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "rankine:native_gold_ore"
+  },
+  "result": "minecraft:gold_ingot"
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:hollow_logs",
+  "key": {
+    "#": {
+      "item": "rankine:petrified_chorus_log"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "result": {
+    "count": 16,
+    "item": "rankine:hollow_petrified_chorus_log"
+  },
+  "show_notification": true
+}

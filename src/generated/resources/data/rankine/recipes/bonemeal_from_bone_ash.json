@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "rankine:bone_ash"
+    },
+    {
+      "item": "rankine:bone_ash"
+    },
+    {
+      "tag": "forge:sulfur"
+    }
+  ],
+  "result": {
+    "count": 12,
+    "item": "minecraft:bone_meal"
+  }
+}

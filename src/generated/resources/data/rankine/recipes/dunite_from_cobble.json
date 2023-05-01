@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:dunite_cobble"
+    },
+    {
+      "item": "rankine:dunite_cobble"
+    },
+    {
+      "item": "rankine:dunite_cobble"
+    },
+    {
+      "item": "rankine:dunite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:dunite"
+  }
+}

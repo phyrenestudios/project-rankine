@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:basalt_bricks"
+  },
+  "result": "rankine:basalt_bricks_pressure_plate"
+}

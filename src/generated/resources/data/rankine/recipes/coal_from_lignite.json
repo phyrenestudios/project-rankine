@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "coal",
+  "ingredients": [
+    {
+      "item": "rankine:lignite"
+    },
+    {
+      "item": "rankine:lignite"
+    },
+    {
+      "item": "rankine:lignite"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "minecraft:coal"
+  }
+}

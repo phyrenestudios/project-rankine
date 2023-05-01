@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "carbon_nugget",
+  "ingredients": [
+    {
+      "tag": "forge:graphite"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "rankine:carbon_nugget"
+  }
+}

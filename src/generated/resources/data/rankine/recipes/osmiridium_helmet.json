@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 13212593,
+  "group": "rankine:alloy_helmets",
+  "inherit": true,
+  "key": {
+    "#": {
+      "color": 13212593,
+      "item": "rankine:osmiridium_ingot",
+      "langName": "item.rankine.osmiridium_alloying"
+    }
+  },
+  "langName": "item.rankine.osmiridium_alloying",
+  "pattern": [
+    "###",
+    "# #",
+    "   "
+  ],
+  "result": {
+    "item": "rankine:alloy_helmet"
+  }
+}

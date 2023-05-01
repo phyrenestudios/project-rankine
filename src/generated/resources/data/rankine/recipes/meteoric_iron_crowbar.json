@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_crowbars",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:meteoric_iron"
+    }
+  },
+  "pattern": [
+    " ##",
+    " # ",
+    "## "
+  ],
+  "result": {
+    "item": "rankine:invar_crowbar"
+  }
+}

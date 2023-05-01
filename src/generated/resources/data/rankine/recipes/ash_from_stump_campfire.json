@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 600,
+  "experience": 0.2,
+  "ingredient": {
+    "item": "rankine:stump"
+  },
+  "result": "rankine:ash"
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:coarse_soil",
+  "key": {
+    "#": {
+      "item": "rankine:sandy_clay_loam"
+    },
+    "G": {
+      "tag": "forge:gravel"
+    }
+  },
+  "pattern": [
+    "#G",
+    "G#"
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:coarse_sandy_clay_loam"
+  },
+  "show_notification": true
+}

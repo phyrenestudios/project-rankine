@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_door",
+  "key": {
+    "#": {
+      "item": "rankine:honey_locust_planks"
+    }
+  },
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "item": "rankine:honey_locust_door"
+  },
+  "show_notification": true
+}

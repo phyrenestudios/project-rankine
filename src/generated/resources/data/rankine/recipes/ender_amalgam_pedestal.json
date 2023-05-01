@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:pedestals",
+  "key": {
+    "#": {
+      "item": "rankine:ender_amalgam_ingot"
+    },
+    "P": {
+      "tag": "forge:stone_pressure_plates"
+    }
+  },
+  "pattern": [
+    " P ",
+    " # ",
+    " # "
+  ],
+  "result": {
+    "item": "rankine:ender_amalgam_pedestal"
+  },
+  "show_notification": true
+}

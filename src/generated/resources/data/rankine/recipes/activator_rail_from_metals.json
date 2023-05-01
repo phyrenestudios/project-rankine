@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "rankine:crafting_metal_ingots"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "T": {
+      "item": "minecraft:redstone_torch"
+    }
+  },
+  "pattern": [
+    "ISI",
+    "ITI",
+    "ISI"
+  ],
+  "result": {
+    "count": 6,
+    "item": "minecraft:activator_rail"
+  },
+  "show_notification": true
+}

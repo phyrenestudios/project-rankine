@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "rankine:cork"
+    },
+    "I": {
+      "tag": "forge:hardened_glass"
+    },
+    "M": {
+      "tag": "forge:ingots/mischmetal"
+    }
+  },
+  "pattern": [
+    " C ",
+    "IMI",
+    " I "
+  ],
+  "result": {
+    "count": 16,
+    "item": "minecraft:experience_bottle"
+  },
+  "show_notification": true
+}

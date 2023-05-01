@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:gray_granite_cobble"
+    },
+    {
+      "item": "rankine:gray_granite_cobble"
+    },
+    {
+      "item": "rankine:gray_granite_cobble"
+    },
+    {
+      "item": "rankine:gray_granite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:gray_granite"
+  }
+}

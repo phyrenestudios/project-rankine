@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_button",
+  "ingredients": [
+    {
+      "item": "rankine:post_perovskite"
+    }
+  ],
+  "result": {
+    "item": "rankine:post_perovskite_button"
+  }
+}

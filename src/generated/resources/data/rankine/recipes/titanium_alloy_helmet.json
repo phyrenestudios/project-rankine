@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 13750746,
+  "group": "rankine:alloy_helmets",
+  "inherit": true,
+  "key": {
+    "#": {
+      "color": 13750746,
+      "item": "rankine:titanium_alloy_ingot",
+      "langName": "item.rankine.titanium_alloy_alloying"
+    }
+  },
+  "langName": "item.rankine.titanium_alloy_alloying",
+  "pattern": [
+    "###",
+    "# #",
+    "   "
+  ],
+  "result": {
+    "item": "rankine:alloy_helmet"
+  }
+}

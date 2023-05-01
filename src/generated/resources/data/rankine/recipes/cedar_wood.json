@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:wood",
+  "key": {
+    "#": {
+      "item": "rankine:cedar_log"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "item": "rankine:cedar_wood"
+  },
+  "show_notification": true
+}

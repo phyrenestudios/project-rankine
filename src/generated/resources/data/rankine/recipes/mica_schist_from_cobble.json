@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:mica_schist_cobble"
+    },
+    {
+      "item": "rankine:mica_schist_cobble"
+    },
+    {
+      "item": "rankine:mica_schist_cobble"
+    },
+    {
+      "item": "rankine:mica_schist_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:mica_schist"
+  }
+}

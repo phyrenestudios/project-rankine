@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:strontium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:strontium_ingot"
+  }
+}

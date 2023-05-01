@@ -1,0 +1,31 @@
+{
+  "values": [
+    "rankine:gold_ore",
+    "rankine:redstone_ore",
+    "rankine:acanthite_ore",
+    "rankine:antitaenite_ore",
+    "rankine:baddeleyite_ore",
+    "rankine:bauxite_ore",
+    "rankine:bituminous_ore",
+    "rankine:bismuthinite_ore",
+    "rankine:cassiterite_ore",
+    "rankine:chalcocite_ore",
+    "rankine:cinnabar_ore",
+    "rankine:cryolite_ore",
+    "rankine:diamond_ore",
+    "rankine:emerald_ore",
+    "rankine:galena_ore",
+    "rankine:hematite_ore",
+    "rankine:kamacite_ore",
+    "rankine:native_indium_ore",
+    "rankine:magnesite_ore",
+    "rankine:malachite_ore",
+    "rankine:monazite_ore",
+    "rankine:pentlandite_ore",
+    "rankine:plumbago_ore",
+    "rankine:sphalerite_ore",
+    "rankine:subbituminous_ore",
+    "rankine:taenite_ore",
+    "rankine:tetrataenite_ore"
+  ]
+}

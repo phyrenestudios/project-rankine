@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:cinnabar_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:cinnabar"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "PSP",
+    " S "
+  ],
+  "result": {
+    "item": "rankine:wooden_hammer"
+  },
+  "show_notification": true
+}

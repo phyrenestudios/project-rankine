@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:polished_nepheline_syenite_stairs"
+    },
+    {
+      "item": "rankine:polished_nepheline_syenite_stairs"
+    },
+    {
+      "item": "rankine:polished_nepheline_syenite_stairs"
+    },
+    {
+      "item": "rankine:polished_nepheline_syenite_stairs"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "rankine:polished_nepheline_syenite"
+  }
+}

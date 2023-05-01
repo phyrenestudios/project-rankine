@@ -1,0 +1,12 @@
+{
+  "values": [
+    "rankine:borosilicate_glass",
+    "rankine:cvd_glass",
+    "rankine:lead_glass",
+    "rankine:lightning_glass",
+    "rankine:soul_lightning_glass",
+    "rankine:white_lightning_glass",
+    "rankine:black_lightning_glass",
+    "rankine:red_lightning_glass"
+  ]
+}

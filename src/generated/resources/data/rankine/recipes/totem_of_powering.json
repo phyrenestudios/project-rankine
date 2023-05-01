@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:ingots/neptunium_alloy"
+    },
+    "R": {
+      "item": "minecraft:conduit"
+    }
+  },
+  "pattern": [
+    "III",
+    "IRI",
+    "III"
+  ],
+  "result": {
+    "item": "rankine:totem_of_powering"
+  },
+  "show_notification": true
+}

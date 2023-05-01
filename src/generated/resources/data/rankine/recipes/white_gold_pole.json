@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:poles",
+  "key": {
+    "#": {
+      "item": "rankine:white_gold_ingot"
+    }
+  },
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:white_gold_pole"
+  },
+  "show_notification": true
+}

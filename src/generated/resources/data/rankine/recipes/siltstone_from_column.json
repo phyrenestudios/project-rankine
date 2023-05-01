@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_stone_column",
+  "ingredients": [
+    {
+      "item": "rankine:siltstone_column"
+    },
+    {
+      "item": "rankine:siltstone_column"
+    },
+    {
+      "item": "rankine:siltstone_column"
+    },
+    {
+      "item": "rankine:siltstone_column"
+    }
+  ],
+  "result": {
+    "item": "rankine:siltstone"
+  }
+}

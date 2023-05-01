@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "rankine:lead_acid_battery"
+    },
+    "P": {
+      "tag": "forge:metal_poles"
+    },
+    "W": {
+      "item": "rankine:alloy_wire"
+    }
+  },
+  "pattern": [
+    "WPW",
+    "WPW",
+    "WBW"
+  ],
+  "result": {
+    "item": "rankine:alnico_electromagnet"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:ladders",
+  "key": {
+    "#": {
+      "item": "rankine:duralumin_ingot"
+    }
+  },
+  "pattern": [
+    "# #",
+    "###",
+    "# #"
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:duralumin_ladder"
+  },
+  "show_notification": true
+}

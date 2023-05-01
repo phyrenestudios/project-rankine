@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:mossy_dolostone_bricks"
+  },
+  "result": "rankine:mossy_dolostone_bricks_stairs"
+}

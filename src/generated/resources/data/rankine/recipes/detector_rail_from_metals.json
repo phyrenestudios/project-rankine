@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "rankine:crafting_metal_ingots"
+    },
+    "P": {
+      "tag": "forge:stone_pressure_plates"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    }
+  },
+  "pattern": [
+    "I I",
+    "IRI",
+    "IPI"
+  ],
+  "result": {
+    "count": 6,
+    "item": "minecraft:detector_rail"
+  },
+  "show_notification": true
+}

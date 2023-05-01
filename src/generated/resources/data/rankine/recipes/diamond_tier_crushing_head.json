@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "forge:storage_blocks/titanium_alloy"
+    },
+    "G": {
+      "item": "minecraft:grindstone"
+    },
+    "S": {
+      "tag": "minecraft:stone_bricks"
+    }
+  },
+  "pattern": [
+    " G ",
+    "GBG",
+    "SSS"
+  ],
+  "result": {
+    "item": "rankine:diamond_tier_crushing_head"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:magma_block",
+    "minecraft:lava",
+    "#minecraft:campfires",
+    "#minecraft:fire",
+    "#rankine:heating_elements"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "torch",
+  "key": {
+    "C": {
+      "item": "rankine:lignite"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "C",
+    "S"
+  ],
+  "result": {
+    "count": 3,
+    "item": "minecraft:torch"
+  },
+  "show_notification": true
+}

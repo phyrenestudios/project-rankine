@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "rankine:ultra_high_refractory_brick_from_ultra_high_refractory_bricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_ultra_high_refractory_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rankine:ultra_high_refractory_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_ultra_high_refractory_bricks",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rankine:ultra_high_refractory_brick_from_ultra_high_refractory_bricks_stonecutting"
+    ]
+  }
+}

@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.element.Element;
+import com.cannolicatfish.rankine.events.handlers.common.CreativeTabsHandler;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
@@ -16,6 +17,7 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -34,7 +36,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Mod("rankine")
+@Mod(ProjectRankine.MODID)
 public class ProjectRankine {
     public static final String MODID = "rankine";
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
@@ -131,6 +133,17 @@ public class ProjectRankine {
 
 
         @SubscribeEvent
+        public static void registerTabs(CreativeModeTabEvent.Register event) {
+            CreativeTabsHandler.registerTabs(event);
+        }
+
+        @SubscribeEvent
+        public static void creativeTabs(CreativeModeTabEvent.BuildContents event) {
+            CreativeTabsHandler.addItemsToTabs(event);
+        }
+
+
+        @SubscribeEvent
         @OnlyIn(Dist.CLIENT)
         public static void onItemColorRegistry(final RegisterColorHandlersEvent.Item event) {
             for (Block b : RankineLists.GRASS_BLOCKS) {
@@ -204,89 +217,6 @@ public class ProjectRankine {
             event.registerEntityRenderer(RankineEntityTypes.CARCASS.get(), CarcassRenderer::new);
             event.registerEntityRenderer(RankineEntityTypes.BALLOON.get(), BalloonRenderer::new);
         }
-/*
-        @SubscribeEvent
-        public static void registerFluids(final RegistryEvent.Register<Fluid> event) {
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.LIQUID_MERCURY, () -> RankineFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(LiquidMercuryFluid.FLUID_STILL, LiquidMercuryFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(LiquidMercuryFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.LIQUID_MERCURY_BUCKET).block(() -> (LiquidBlock) RankineBlocks.LIQUID_MERCURY.get())).setRegistryName(ProjectRankine.MODID,"liquid_mercury"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.LIQUID_MERCURY, () -> RankineFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(LiquidMercuryFluid.FLUID_STILL, LiquidMercuryFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(LiquidMercuryFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.LIQUID_MERCURY_BUCKET).block(() -> (LiquidBlock) RankineBlocks.LIQUID_MERCURY.get())).setRegistryName(ProjectRankine.MODID,"liquid_mercury_flowing"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.SAP, () -> RankineFluids.FLOWING_SAP, FluidAttributes.builder(SapFluid.FLUID_STILL,SapFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(SapFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.SAP_BUCKET).block(() -> (LiquidBlock) RankineBlocks.SAP.get())).setRegistryName(ProjectRankine.MODID,"sap"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.SAP, () -> RankineFluids.FLOWING_SAP, FluidAttributes.builder(SapFluid.FLUID_STILL,SapFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(SapFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.SAP_BUCKET).block(() -> (LiquidBlock) RankineBlocks.SAP.get())).setRegistryName(ProjectRankine.MODID,"flowing_sap"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.MAPLE_SAP, () -> RankineFluids.FLOWING_MAPLE_SAP, FluidAttributes.builder(MapleSapFluid.FLUID_STILL,MapleSapFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(MapleSapFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.MAPLE_SAP_BUCKET).block(() -> (LiquidBlock) RankineBlocks.MAPLE_SAP.get())).setRegistryName(ProjectRankine.MODID,"maple_sap"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.MAPLE_SAP, () -> RankineFluids.FLOWING_MAPLE_SAP, FluidAttributes.builder(MapleSapFluid.FLUID_STILL,MapleSapFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(MapleSapFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.MAPLE_SAP_BUCKET).block(() -> (LiquidBlock) RankineBlocks.MAPLE_SAP.get())).setRegistryName(ProjectRankine.MODID,"flowing_maple_sap"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.LATEX, () -> RankineFluids.FLOWING_LATEX, FluidAttributes.builder(LatexFluid.FLUID_STILL,LatexFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(LatexFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.LATEX_BUCKET).block(() -> (LiquidBlock) RankineBlocks.LATEX.get())).setRegistryName(ProjectRankine.MODID,"latex"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.LATEX, () -> RankineFluids.FLOWING_LATEX, FluidAttributes.builder(LatexFluid.FLUID_STILL,LatexFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(LatexFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.LATEX_BUCKET).block(() -> (LiquidBlock) RankineBlocks.LATEX.get())).setRegistryName(ProjectRankine.MODID,"flowing_latex"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.JUGLONE, () -> RankineFluids.FLOWING_JUGLONE, FluidAttributes.builder(JugloneFluid.FLUID_STILL,JugloneFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(JugloneFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.JUGLONE_BUCKET).block(() -> (LiquidBlock) RankineBlocks.JUGLONE.get())).setRegistryName(ProjectRankine.MODID,"juglone"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.JUGLONE, () -> RankineFluids.FLOWING_JUGLONE, FluidAttributes.builder(JugloneFluid.FLUID_STILL,JugloneFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(JugloneFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.JUGLONE_BUCKET).block(() -> (LiquidBlock) RankineBlocks.JUGLONE.get())).setRegistryName(ProjectRankine.MODID,"flowing_juglone"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.RESIN, () -> RankineFluids.FLOWING_RESIN, FluidAttributes.builder(ResinFluid.FLUID_STILL,ResinFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(ResinFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.RESIN_BUCKET).block(() -> (LiquidBlock) RankineBlocks.RESIN.get())).setRegistryName(ProjectRankine.MODID,"resin"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.RESIN, () -> RankineFluids.FLOWING_RESIN, FluidAttributes.builder(ResinFluid.FLUID_STILL,ResinFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(ResinFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.RESIN_BUCKET).block(() -> (LiquidBlock) RankineBlocks.RESIN.get())).setRegistryName(ProjectRankine.MODID,"flowing_resin"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.AQUA_REGIA, () -> RankineFluids.FLOWING_AQUA_REGIA, FluidAttributes.builder(AquaRegiaFluid.FLUID_STILL,AquaRegiaFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(AquaRegiaFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.AQUA_REGIA_BUCKET).block(() -> (LiquidBlock) RankineBlocks.AQUA_REGIA.get())).setRegistryName(ProjectRankine.MODID,"aqua_regia"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.AQUA_REGIA, () -> RankineFluids.FLOWING_AQUA_REGIA, FluidAttributes.builder(AquaRegiaFluid.FLUID_STILL,AquaRegiaFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(AquaRegiaFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.AQUA_REGIA_BUCKET).block(() -> (LiquidBlock) RankineBlocks.AQUA_REGIA.get())).setRegistryName(ProjectRankine.MODID,"flowing_aqua_regia"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.CARBON_DISULFIDE, () -> RankineFluids.FLOWING_CARBON_DISULFIDE, FluidAttributes.builder(CarbonDisulfideFluid.FLUID_STILL,CarbonDisulfideFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(CarbonDisulfideFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY).viscosity(6000))
-                    .bucket(RankineItems.CARBON_DISULFIDE_BUCKET).block(() -> (LiquidBlock) RankineBlocks.CARBON_DISULFIDE.get())).setRegistryName(ProjectRankine.MODID,"carbon_disulfide"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.CARBON_DISULFIDE, () -> RankineFluids.FLOWING_CARBON_DISULFIDE, FluidAttributes.builder(CarbonDisulfideFluid.FLUID_STILL,CarbonDisulfideFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(CarbonDisulfideFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY).viscosity(6000))
-                    .bucket(RankineItems.CARBON_DISULFIDE_BUCKET).block(() -> (LiquidBlock) RankineBlocks.CARBON_DISULFIDE.get())).setRegistryName(ProjectRankine.MODID,"flowing_carbon_disulfide"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.HEXAFLUOROSILICIC_ACID, () -> RankineFluids.FLOWING_HEXAFLUOROSILICIC_ACID, FluidAttributes.builder(HexafluorosilicicAcidFluid.FLUID_STILL,HexafluorosilicicAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(HexafluorosilicicAcidFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.HEXAFLUOROSILICIC_ACID_BUCKET).block(() -> (LiquidBlock) RankineBlocks.HEXAFLUOROSILICIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"hexafluorosilicic_acid"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.HEXAFLUOROSILICIC_ACID, () -> RankineFluids.FLOWING_HEXAFLUOROSILICIC_ACID, FluidAttributes.builder(HexafluorosilicicAcidFluid.FLUID_STILL,HexafluorosilicicAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(HexafluorosilicicAcidFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.HEXAFLUOROSILICIC_ACID_BUCKET).block(() -> (LiquidBlock) RankineBlocks.HEXAFLUOROSILICIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"flowing_hexafluorosilicic_acid"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.HYDROBROMIC_ACID, () -> RankineFluids.FLOWING_HYDROBROMIC_ACID, FluidAttributes.builder(HydrobromicAcidFluid.FLUID_STILL,HydrobromicAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(HydrobromicAcidFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.HYDROBROMIC_ACID_BUCKET).block(() -> (LiquidBlock) RankineBlocks.HYDROBROMIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"hydrobromic_acid"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.HYDROBROMIC_ACID, () -> RankineFluids.FLOWING_HYDROBROMIC_ACID, FluidAttributes.builder(HydrobromicAcidFluid.FLUID_STILL,HydrobromicAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(HydrobromicAcidFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.HYDROBROMIC_ACID_BUCKET).block(() -> (LiquidBlock) RankineBlocks.HYDROBROMIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"flowing_hydrobromic_acid"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.GRAY_MUD, () -> RankineFluids.FLOWING_GRAY_MUD, FluidAttributes.builder(GrayMudFluid.FLUID_STILL,GrayMudFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(GrayMudFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.GRAY_MUD_BUCKET).block(() -> (LiquidBlock) RankineBlocks.GRAY_MUD.get())).setRegistryName(ProjectRankine.MODID,"gray_mud"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.GRAY_MUD, () -> RankineFluids.FLOWING_GRAY_MUD, FluidAttributes.builder(GrayMudFluid.FLUID_STILL,GrayMudFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(GrayMudFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.GRAY_MUD_BUCKET).block(() -> (LiquidBlock) RankineBlocks.GRAY_MUD.get())).setRegistryName(ProjectRankine.MODID,"flowing_gray_mud"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.RED_MUD, () -> RankineFluids.FLOWING_RED_MUD, FluidAttributes.builder(RedMudFluid.FLUID_STILL,RedMudFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(RedMudFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.RED_MUD_BUCKET).block(() -> (LiquidBlock) RankineBlocks.RED_MUD.get())).setRegistryName(ProjectRankine.MODID,"red_mud"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.RED_MUD, () -> RankineFluids.FLOWING_RED_MUD, FluidAttributes.builder(RedMudFluid.FLUID_STILL,RedMudFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(RedMudFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.RED_MUD_BUCKET).block(() -> (LiquidBlock) RankineBlocks.RED_MUD.get())).setRegistryName(ProjectRankine.MODID,"flowing_red_mud"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.SULFURIC_ACID, () -> RankineFluids.FLOWING_SULFURIC_ACID, FluidAttributes.builder(SulfuricAcidFluid.FLUID_STILL,SulfuricAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(SulfuricAcidFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.SULFURIC_ACID_BUCKET).block(() -> (LiquidBlock) RankineBlocks.SULFURIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"sulfuric_acid"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.SULFURIC_ACID, () -> RankineFluids.FLOWING_SULFURIC_ACID, FluidAttributes.builder(SulfuricAcidFluid.FLUID_STILL,SulfuricAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(SulfuricAcidFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.SULFURIC_ACID_BUCKET).block(() -> (LiquidBlock) RankineBlocks.SULFURIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"flowing_sulfuric_acid"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.BLACK_LIQUOR, () -> RankineFluids.FLOWING_BLACK_LIQUOR, FluidAttributes.builder(BlackLiquorFluid.FLUID_STILL,BlackLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(BlackLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.BLACK_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.BLACK_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"black_liquor"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.BLACK_LIQUOR, () -> RankineFluids.FLOWING_BLACK_LIQUOR, FluidAttributes.builder(BlackLiquorFluid.FLUID_STILL,BlackLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(BlackLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.BLACK_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.BLACK_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"flowing_black_liquor"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.GREEN_LIQUOR, () -> RankineFluids.FLOWING_GREEN_LIQUOR, FluidAttributes.builder(GreenLiquorFluid.FLUID_STILL,GreenLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(GreenLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.GREEN_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.GREEN_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"green_liquor"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.GREEN_LIQUOR, () -> RankineFluids.FLOWING_GREEN_LIQUOR, FluidAttributes.builder(GreenLiquorFluid.FLUID_STILL,GreenLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(GreenLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.GREEN_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.GREEN_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"flowing_green_liquor"));
-
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.WHITE_LIQUOR, () -> RankineFluids.FLOWING_WHITE_LIQUOR, FluidAttributes.builder(WhiteLiquorFluid.FLUID_STILL,WhiteLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(WhiteLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.WHITE_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.WHITE_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"white_liquor"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.WHITE_LIQUOR, () -> RankineFluids.FLOWING_WHITE_LIQUOR, FluidAttributes.builder(WhiteLiquorFluid.FLUID_STILL,WhiteLiquorFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(WhiteLiquorFluid.OVERLAY).sound(SoundEvents.BUCKET_FILL,SoundEvents.BUCKET_EMPTY))
-                    .bucket(RankineItems.WHITE_LIQUOR_BUCKET).block(() -> (LiquidBlock) RankineBlocks.WHITE_LIQUOR.get())).setRegistryName(ProjectRankine.MODID,"flowing_white_liquor"));
-        }*/
 /*
         @SubscribeEvent
         public static void registerItemRemappings(final MissingMappingsEvent event) {

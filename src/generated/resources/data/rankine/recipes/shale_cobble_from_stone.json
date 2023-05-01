@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "cobble_from_stone",
+  "ingredients": [
+    {
+      "item": "rankine:shale"
+    },
+    {
+      "tag": "forge:cobblestone"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "rankine:shale_cobble"
+  }
+}

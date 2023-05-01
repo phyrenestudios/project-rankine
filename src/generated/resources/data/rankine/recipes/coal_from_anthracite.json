@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "coal",
+  "ingredients": [
+    {
+      "item": "rankine:anthracite_coal"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "minecraft:coal"
+  }
+}

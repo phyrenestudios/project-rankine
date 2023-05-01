@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "bread",
+  "key": {
+    "#": {
+      "item": "rankine:rye"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "item": "minecraft:bread"
+  },
+  "show_notification": true
+}

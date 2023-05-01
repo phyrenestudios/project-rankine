@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "cement_slab",
+  "key": {
+    "#": {
+      "item": "rankine:cyan_cement"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:cyan_cement_slab"
+  },
+  "show_notification": true
+}

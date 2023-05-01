@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_hoes",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:osmiridium"
+    },
+    "s": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "##",
+    " s",
+    " s"
+  ],
+  "result": {
+    "item": "rankine:osmiridium_hoe"
+  }
+}

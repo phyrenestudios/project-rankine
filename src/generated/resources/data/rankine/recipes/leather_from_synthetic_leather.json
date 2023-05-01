@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:synthetic_leather"
+    },
+    {
+      "item": "rankine:synthetic_leather"
+    },
+    {
+      "item": "rankine:synthetic_leather"
+    },
+    {
+      "item": "rankine:synthetic_leather"
+    }
+  ],
+  "result": {
+    "item": "minecraft:leather"
+  }
+}

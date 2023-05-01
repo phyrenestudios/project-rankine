@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "rankine:polished_norite"
+  },
+  "result": "rankine:polished_norite_slab"
+}

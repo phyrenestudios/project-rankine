@@ -1,0 +1,20 @@
+{
+  "type": "rankine:alloy_crafting",
+  "group": "rankine:alloy_knives",
+  "inherit": true,
+  "key": {
+    "#": {
+      "item": "rankine:green_gold_ingot"
+    },
+    "s": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    " #",
+    "s "
+  ],
+  "result": {
+    "item": "rankine:green_gold_knife"
+  }
+}

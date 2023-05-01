@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "mossy_bricks_vines",
+  "ingredients": [
+    {
+      "item": "rankine:post_perovskite"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "rankine:mossy_post_perovskite_bricks"
+  }
+}

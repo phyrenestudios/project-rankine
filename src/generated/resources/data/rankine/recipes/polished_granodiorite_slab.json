@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_slab",
+  "key": {
+    "#": {
+      "item": "rankine:polished_granodiorite"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:polished_granodiorite_slab"
+  },
+  "show_notification": true
+}

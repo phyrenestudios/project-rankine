@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "plant_fiber",
+  "ingredients": [
+    {
+      "item": "rankine:jute"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:plant_fiber"
+  }
+}

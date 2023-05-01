@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:hollow_logs",
+  "key": {
+    "#": {
+      "item": "rankine:coconut_palm_log"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "result": {
+    "count": 16,
+    "item": "rankine:hollow_coconut_palm_log"
+  },
+  "show_notification": true
+}

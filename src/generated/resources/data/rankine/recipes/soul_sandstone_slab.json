@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sandstone_slab",
+  "key": {
+    "#": {
+      "item": "rankine:soul_sandstone"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:soul_sandstone_slab"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "bales",
+  "key": {
+    "#": {
+      "item": "rankine:barley"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "rankine:barley_bale"
+  },
+  "show_notification": true
+}
