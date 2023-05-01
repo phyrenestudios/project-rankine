@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.block_groups.FiberBlocks;
 import com.cannolicatfish.rankine.items.*;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerItem;
@@ -19,6 +20,10 @@ public class RankineItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ProjectRankine.MODID);
     public static Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);
+
+    static {
+        FiberBlocks.registerItems();
+    }
 
     public static final RegistryObject<Item> GRANITE_BRICKS = ITEMS.register("granite_bricks", () -> new BuildingModeBlockItem(RankineBlocks.GRANITE_BRICKS.get(), DEF_BUILDING));
     public static final RegistryObject<Item> GRANITE_BRICKS_SLAB = ITEMS.register("granite_bricks_slab", () -> new BlockItem(RankineBlocks.GRANITE_BRICKS_SLAB.get(), DEF_BUILDING));
@@ -247,47 +252,7 @@ public class RankineItems {
     public static final RegistryObject<Item> RED_MINERAL_WOOL = ITEMS.register("red_mineral_wool", () -> new BlockItem(RankineBlocks.RED_MINERAL_WOOL.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> BLACK_MINERAL_WOOL = ITEMS.register("black_mineral_wool", () -> new BlockItem(RankineBlocks.BLACK_MINERAL_WOOL.get(),new Item.Properties().stacksTo(64)));
 
-    public static final RegistryObject<Item> FIBER_BLOCK = ITEMS.register("fiber_block", () -> new BlockItem(RankineBlocks.FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> FIBER_BLOCK_SLAB = ITEMS.register("fiber_block_slab", () -> new BlockItem(RankineBlocks.FIBER_BLOCK_SLAB.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> FIBER_BLOCK_STAIRS = ITEMS.register("fiber_block_stairs", () -> new BlockItem(RankineBlocks.FIBER_BLOCK_STAIRS.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> FIBER_BLOCK_WALL = ITEMS.register("fiber_block_wall", () -> new BlockItem(RankineBlocks.FIBER_BLOCK_WALL.get(),new Item.Properties().stacksTo(64)));
-
-    public static final RegistryObject<Item> WHITE_FIBER_BLOCK = ITEMS.register("white_fiber_block", () -> new BlockItem(RankineBlocks.WHITE_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> ORANGE_FIBER_BLOCK = ITEMS.register("orange_fiber_block", () -> new BlockItem(RankineBlocks.ORANGE_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> MAGENTA_FIBER_BLOCK = ITEMS.register("magenta_fiber_block", () -> new BlockItem(RankineBlocks.MAGENTA_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> LIGHT_BLUE_FIBER_BLOCK = ITEMS.register("light_blue_fiber_block", () -> new BlockItem(RankineBlocks.LIGHT_BLUE_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> YELLOW_FIBER_BLOCK = ITEMS.register("yellow_fiber_block", () -> new BlockItem(RankineBlocks.YELLOW_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> LIME_FIBER_BLOCK = ITEMS.register("lime_fiber_block", () -> new BlockItem(RankineBlocks.LIME_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> PINK_FIBER_BLOCK = ITEMS.register("pink_fiber_block", () -> new BlockItem(RankineBlocks.PINK_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> GRAY_FIBER_BLOCK = ITEMS.register("gray_fiber_block", () -> new BlockItem(RankineBlocks.GRAY_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> LIGHT_GRAY_FIBER_BLOCK = ITEMS.register("light_gray_fiber_block", () -> new BlockItem(RankineBlocks.LIGHT_GRAY_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> CYAN_FIBER_BLOCK = ITEMS.register("cyan_fiber_block", () -> new BlockItem(RankineBlocks.CYAN_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> PURPLE_FIBER_BLOCK = ITEMS.register("purple_fiber_block", () -> new BlockItem(RankineBlocks.PURPLE_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> BLUE_FIBER_BLOCK = ITEMS.register("blue_fiber_block", () -> new BlockItem(RankineBlocks.BLUE_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> GREEN_FIBER_BLOCK = ITEMS.register("green_fiber_block", () -> new BlockItem(RankineBlocks.GREEN_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> BROWN_FIBER_BLOCK = ITEMS.register("brown_fiber_block", () -> new BlockItem(RankineBlocks.BROWN_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> RED_FIBER_BLOCK = ITEMS.register("red_fiber_block", () -> new BlockItem(RankineBlocks.RED_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> BLACK_FIBER_BLOCK = ITEMS.register("black_fiber_block", () -> new BlockItem(RankineBlocks.BLACK_FIBER_BLOCK.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> FIBER_MAT = ITEMS.register("fiber_mat", () -> new BlockItem(RankineBlocks.FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> WHITE_FIBER_MAT = ITEMS.register("white_fiber_mat", () -> new BlockItem(RankineBlocks.WHITE_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> ORANGE_FIBER_MAT = ITEMS.register("orange_fiber_mat", () -> new BlockItem(RankineBlocks.ORANGE_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> MAGENTA_FIBER_MAT = ITEMS.register("magenta_fiber_mat", () -> new BlockItem(RankineBlocks.MAGENTA_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> LIGHT_BLUE_FIBER_MAT = ITEMS.register("light_blue_fiber_mat", () -> new BlockItem(RankineBlocks.LIGHT_BLUE_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> YELLOW_FIBER_MAT = ITEMS.register("yellow_fiber_mat", () -> new BlockItem(RankineBlocks.YELLOW_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> LIME_FIBER_MAT = ITEMS.register("lime_fiber_mat", () -> new BlockItem(RankineBlocks.LIME_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> PINK_FIBER_MAT = ITEMS.register("pink_fiber_mat", () -> new BlockItem(RankineBlocks.PINK_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> GRAY_FIBER_MAT = ITEMS.register("gray_fiber_mat", () -> new BlockItem(RankineBlocks.GRAY_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> LIGHT_GRAY_FIBER_MAT = ITEMS.register("light_gray_fiber_mat", () -> new BlockItem(RankineBlocks.LIGHT_GRAY_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> CYAN_FIBER_MAT = ITEMS.register("cyan_fiber_mat", () -> new BlockItem(RankineBlocks.CYAN_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> PURPLE_FIBER_MAT = ITEMS.register("purple_fiber_mat", () -> new BlockItem(RankineBlocks.PURPLE_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> BLUE_FIBER_MAT = ITEMS.register("blue_fiber_mat", () -> new BlockItem(RankineBlocks.BLUE_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> GREEN_FIBER_MAT = ITEMS.register("green_fiber_mat", () -> new BlockItem(RankineBlocks.GREEN_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> BROWN_FIBER_MAT = ITEMS.register("brown_fiber_mat", () -> new BlockItem(RankineBlocks.BROWN_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> RED_FIBER_MAT = ITEMS.register("red_fiber_mat", () -> new BlockItem(RankineBlocks.RED_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> BLACK_FIBER_MAT = ITEMS.register("black_fiber_mat", () -> new BlockItem(RankineBlocks.BLACK_FIBER_MAT.get(),new Item.Properties().stacksTo(64)));
-
     //METAL DECOR ITEMS
-
     public static final RegistryObject<Item> ROSE_GOLD_SHEETMETAL = ITEMS.register("rose_gold_sheetmetal", () -> new BlockItem(RankineBlocks.ROSE_GOLD_SHEETMETAL.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> WHITE_GOLD_SHEETMETAL = ITEMS.register("white_gold_sheetmetal", () -> new BlockItem(RankineBlocks.WHITE_GOLD_SHEETMETAL.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> GREEN_GOLD_SHEETMETAL = ITEMS.register("green_gold_sheetmetal", () -> new BlockItem(RankineBlocks.GREEN_GOLD_SHEETMETAL.get(),new Item.Properties().stacksTo(64)));

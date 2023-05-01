@@ -7,8 +7,6 @@ import com.cannolicatfish.rankine.data.builders.BeehiveOvenRecipeBuilder;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.core.Registry;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -18,9 +16,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SmithingRecipe;
-import net.minecraft.world.item.crafting.SmithingTrimRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -482,21 +477,17 @@ public class RankineRecipesProvider extends RecipeProvider {
 
 
 
+        for (FiberBlocks fiber : FiberBlocks.values()) {
+            if (fiber.getDyeColor() != null) {
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, fiber.getBlock()).requires(FiberBlocks.FIBER.getBlock()).requires(fiber.getDyeColor().getTag()).unlockedBy("has_ingredient", has(RankineItems.PLANT_FIBER.get())).save(consumer, "rankine:"+getItemName(fiber.getBlock())+"_from_dye");
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, fiber.getMat()).requires(FiberBlocks.FIBER.getMat()).requires(fiber.getDyeColor().getTag()).unlockedBy("has_ingredient", has(RankineItems.PLANT_FIBER.get())).save(consumer, "rankine:"+getItemName(fiber.getMat())+"_from_dye");
+            } else {
+                threeXthree(consumer, fiber.getBlock(), RankineTags.Items.FIBER_PLANT, 1, "has_plant_fiber", RankineItems.PLANT_FIBER.get());
+            }
+            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, fiber.getMat(), 3).pattern("##").define('#', fiber.getBlock()).group("fiber_mat").unlockedBy("has_block", InventoryChangeTrigger.TriggerInstance.hasItems(RankineItems.PLANT_FIBER.get())).save(consumer);
+        }
 
-        for (Block MAT : RankineLists.FIBER_MAT) {
-            Block BLOCK = RankineLists.FIBER_BLOCK.get(RankineLists.FIBER_MAT.indexOf(MAT));
-            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MAT, 3).pattern("##").define('#', BLOCK).group("fiber_mat").unlockedBy("has_block", InventoryChangeTrigger.TriggerInstance.hasItems(RankineItems.FIBER_BLOCK.get())).save(consumer);
-        }
-        for (Block MAT : RankineLists.FIBER_MAT) {
-            if (RankineLists.FIBER_MAT.indexOf(MAT)==0) continue;
-            TagKey<Item> DYE = RankineLists.DYES.get(RankineLists.FIBER_MAT.indexOf(MAT)-1);
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MAT).requires(RankineItems.FIBER_MAT.get()).requires(DYE).unlockedBy("has_ingredient", has(RankineItems.FIBER_MAT.get())).save(consumer, "rankine:"+getItemName(MAT)+"_from_dye");
-        }
-        for (Block BLOCK : RankineLists.FIBER_BLOCK) {
-            if (RankineLists.FIBER_BLOCK.indexOf(BLOCK)==0) continue;
-            TagKey<Item> DYE = RankineLists.DYES.get(RankineLists.FIBER_BLOCK.indexOf(BLOCK)-1);
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BLOCK).requires(RankineItems.FIBER_BLOCK.get()).requires(DYE).unlockedBy("has_ingredient", has(RankineItems.FIBER_BLOCK.get())).save(consumer, "rankine:"+getItemName(BLOCK)+"_from_dye");
-        }
+
         for (Block BLOCK : RankineLists.LEDS) {
             TagKey<Item> DYE = RankineLists.DYES.get(RankineLists.LEDS.indexOf(BLOCK));
             led(consumer, BLOCK.asItem(), DYE);
@@ -504,7 +495,6 @@ public class RankineRecipesProvider extends RecipeProvider {
 
 
         twoXtwo(consumer, RankineItems.ROPE.get(), RankineTags.Items.FIBER_PLANT, 4, "has_plant_fiber", RankineItems.PLANT_FIBER.get());
-        threeXthree(consumer, RankineItems.FIBER_BLOCK.get(), RankineTags.Items.FIBER_PLANT, 1, "has_plant_fiber", RankineItems.PLANT_FIBER.get());
 
         twoXtwo(consumer, Items.PURPLE_DYE, RankineItems.ELDERBERRIES.get(), 1, "has_ingredient", RankineItems.ELDERBERRIES.get(), "purple_dye_from_elderberries");
         twoXtwo(consumer, Items.BLUE_DYE, RankineItems.BLUEBERRIES.get(), 1, "has_ingredient", RankineItems.BLUEBERRIES.get(), "blue_dye_from_blueberries");

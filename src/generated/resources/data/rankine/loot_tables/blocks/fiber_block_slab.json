@@ -25,7 +25,7 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "rankine:fiber_block_slab"
+          "name": "minecraft:air"
         }
       ],
       "rolls": 1.0
