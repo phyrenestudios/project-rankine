@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.events;
 
+import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.events.handlers.client.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -11,8 +12,9 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = ProjectRankine.MODID)
 public class RankineClientEventHandler {
+
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)

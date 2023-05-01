@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.events;
 
+import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.capabilities.ChunkRetrogenProvider;
 import com.cannolicatfish.rankine.commands.BlockWallCommand;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
@@ -22,17 +23,9 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = ProjectRankine.MODID)
 public class RankineEventHandler {
 
-    @SubscribeEvent
-    public static void registerTabs(CreativeModeTabEvent.Register event) {
-        CreativeTabsHandler.registerTabs(event);
-    }
-    @SubscribeEvent
-    public static void creativeTabs(CreativeModeTabEvent.BuildContents event) {
-        CreativeTabsHandler.addItemsToTabs(event);
-    }
     @SubscribeEvent
     public static void attachCapabilities(AttachCapabilitiesEvent<LevelChunk> event) {
         event.addCapability(new ResourceLocation("rankine:retrogen_chunk"), new ChunkRetrogenProvider());
