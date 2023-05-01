@@ -4,7 +4,7 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
-import com.cannolicatfish.rankine.util.ElementEquation;
+import com.cannolicatfish.rankine.element.ElementEquation;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.Util;
@@ -183,9 +183,9 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
         ElementEquation eq = recipe.getStatEquation(stat.ordinal());
         ElementEquation.FormulaType[] eqTypes = eq.getFormulaTypes();
 
-        int[] breaks = eq.getBreaks();
-        int[] bounds = Arrays.copyOf(new int[]{0},breaks.length+1);
-        System.arraycopy(breaks,0,bounds,1,breaks.length);
+        List<Integer> breaks = eq.getBreaks();
+        int[] bounds = Arrays.copyOf(new int[]{0},breaks.size()+1);
+        System.arraycopy(breaks,0,bounds,1,breaks.size());
         List<Float> dur = new ArrayList<>();
         for (int x : bounds) {
             dur.add(recipe.getStat(stat.ordinal(),x));

@@ -1,15 +1,37 @@
-package com.cannolicatfish.rankine.util;
+package com.cannolicatfish.rankine.element;
 
+
+import com.mojang.serialization.Codec;
+
+import java.util.List;
 
 public class ElementEquation {
 
-    int[] breaks;
+    public static final Codec<List<Integer>> INTEGER_LIST_CODEC = Codec.INT.listOf();
+    public static final Codec<List<Float>> FLOAT_LIST_CODEC = Codec.FLOAT.listOf();
+   /* public static final Codec<ElementEquation> CODEC = RecordCodecBuilder.create(instance ->
+            instance.group(
+                    INTEGER_LIST_CODEC.fieldOf("breaks").forGetter(l -> l.breaks),
+                    Codec.INT.optionalFieldOf("color").forGetter(l -> Optional.of(Optional.of(l.num).orElse(16777215))),
+                    RESOURCE_LOCATION_LIST_CODEC.fieldOf("items").forGetter(l -> l.items),
+                    INTEGER_LIST_CODEC.fieldOf("materialValues").forGetter(l -> l.values),
+                    Codec.INT.optionalFieldOf("minfloors").forGetter(l -> l.minFloors == -1 ? Optional.<Integer>empty() : Optional.of(l.minFloors)),
+                    Codec.INT.optionalFieldOf("maxcellars").forGetter(l -> l.maxCellars == -1 ? Optional.<Integer>empty() : Optional.of(l.maxCellars)),
+                    Codec.INT.optionalFieldOf("maxfloors").forGetter(l -> l.maxFloors == -1 ? Optional.<Integer>empty() : Optional.of(l.maxFloors)),
+                    Codec.BOOL.optionalFieldOf("allowDoors").forGetter(l -> Optional.ofNullable(l.getAllowDoors())),
+                    Codec.BOOL.optionalFieldOf("allowFillers").forGetter(l -> Optional.ofNullable(l.getAllowFillers())),
+                    Codec.FLOAT.optionalFieldOf("preferslonely").forGetter(l -> l.prefersLonely == 0 ? Optional.<Float>empty() : Optional.of(l.prefersLonely)),
+                    Codec.STRING.optionalFieldOf("enchantments").forGetter(l -> Optional.ofNullable(l.parts2)),
+                    Codec.list(PartRef.CODEC).optionalFieldOf("enchantmentTypes").forGetter(l -> Optional.ofNullable(l.parts2)),
+                    Codec.list(PartRef.CODEC).optionalFieldOf("enchantmentFactors").forGetter(l -> Optional.ofNullable(l.parts2))
+            ).apply(instance, ElementEquation::new));*/
+    List<Integer> breaks;
     FormulaType[] formulaTypes;
     FormulaModifier[] formulaModifiers;
     float[] a;
     float[] b;
     float[] limit;
-    public ElementEquation(int[] breaksIn, FormulaType[] formulaTypesIn, float[] aIn, float[] bIn, FormulaModifier[] formulaModifiersIn, float[] limitIn) {
+    public ElementEquation(List<Integer> breaksIn, FormulaType[] formulaTypesIn, float[] aIn, float[] bIn, FormulaModifier[] formulaModifiersIn, float[] limitIn) {
         this.breaks = breaksIn;
         this.formulaTypes = formulaTypesIn;
         this.a = aIn;
@@ -19,7 +41,7 @@ public class ElementEquation {
     }
 
     public ElementEquation() {
-        this(new int[]{},new FormulaType[]{},new float[]{},new float[]{},new FormulaModifier[]{},new float[]{});
+        this(null,null,null,null,null,null);
     }
 
     public float calculateFloat(int x) {
@@ -114,10 +136,10 @@ public class ElementEquation {
     }
 
     public boolean isEmpty() {
-        return breaks.length == 0;
+        return breaks.size() == 0;
     }
 
-    public int[] getBreaks() {
+    public List<Integer> getBreaks() {
         return breaks;
     }
 
