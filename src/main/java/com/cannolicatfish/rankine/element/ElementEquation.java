@@ -2,36 +2,51 @@ package com.cannolicatfish.rankine.element;
 
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ElementEquation {
 
-    public static final Codec<List<Integer>> INTEGER_LIST_CODEC = Codec.INT.listOf();
-    public static final Codec<List<Float>> FLOAT_LIST_CODEC = Codec.FLOAT.listOf();
-   /* public static final Codec<ElementEquation> CODEC = RecordCodecBuilder.create(instance ->
+    private static final Codec<List<Integer>> INTEGER_LIST_CODEC = Codec.INT.listOf();
+    private static final Codec<List<Float>> FLOAT_LIST_CODEC = Codec.FLOAT.listOf();
+    private static final Codec<List<String>> STRING_LIST_CODEC = Codec.STRING.listOf();
+    private static final Codec<FormulaModifier> FORMULA_MODIFIER_CODEC = Codec.STRING.comapFlatMap((s) -> {
+        try {
+            return DataResult.success(FormulaModifier.valueOf(s));
+        } catch (IllegalArgumentException illegalargumentexception) {
+            return DataResult.error(() -> "Invalid Formula Modifier " + s + ": " + illegalargumentexception.getMessage());
+        }
+    }, FormulaModifier::toString);
+    private static final Codec<FormulaType> FORMULA_TYPE_CODEC = Codec.STRING.comapFlatMap((s) -> {
+        try {
+            return DataResult.success(FormulaType.valueOf(s));
+        } catch (IllegalArgumentException illegalargumentexception) {
+            return DataResult.error(() -> "Invalid Formula Type " + s + ": " + illegalargumentexception.getMessage());
+        }
+    }, FormulaType::toString);
+
+    private static final Codec<List<FormulaModifier>> FORMULA_MODIFIER_LIST_CODEC = FORMULA_MODIFIER_CODEC.listOf();
+    private static final Codec<List<FormulaType>> FORMULA_TYPE_LIST_CODEC = FORMULA_TYPE_CODEC.listOf();
+
+    public static final Codec<ElementEquation> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(
                     INTEGER_LIST_CODEC.fieldOf("breaks").forGetter(l -> l.breaks),
-                    Codec.INT.optionalFieldOf("color").forGetter(l -> Optional.of(Optional.of(l.num).orElse(16777215))),
-                    RESOURCE_LOCATION_LIST_CODEC.fieldOf("items").forGetter(l -> l.items),
-                    INTEGER_LIST_CODEC.fieldOf("materialValues").forGetter(l -> l.values),
-                    Codec.INT.optionalFieldOf("minfloors").forGetter(l -> l.minFloors == -1 ? Optional.<Integer>empty() : Optional.of(l.minFloors)),
-                    Codec.INT.optionalFieldOf("maxcellars").forGetter(l -> l.maxCellars == -1 ? Optional.<Integer>empty() : Optional.of(l.maxCellars)),
-                    Codec.INT.optionalFieldOf("maxfloors").forGetter(l -> l.maxFloors == -1 ? Optional.<Integer>empty() : Optional.of(l.maxFloors)),
-                    Codec.BOOL.optionalFieldOf("allowDoors").forGetter(l -> Optional.ofNullable(l.getAllowDoors())),
-                    Codec.BOOL.optionalFieldOf("allowFillers").forGetter(l -> Optional.ofNullable(l.getAllowFillers())),
-                    Codec.FLOAT.optionalFieldOf("preferslonely").forGetter(l -> l.prefersLonely == 0 ? Optional.<Float>empty() : Optional.of(l.prefersLonely)),
-                    Codec.STRING.optionalFieldOf("enchantments").forGetter(l -> Optional.ofNullable(l.parts2)),
-                    Codec.list(PartRef.CODEC).optionalFieldOf("enchantmentTypes").forGetter(l -> Optional.ofNullable(l.parts2)),
-                    Codec.list(PartRef.CODEC).optionalFieldOf("enchantmentFactors").forGetter(l -> Optional.ofNullable(l.parts2))
-            ).apply(instance, ElementEquation::new));*/
+                    FORMULA_TYPE_LIST_CODEC.fieldOf("formulas").forGetter(l -> l.formulaTypes),
+                    FLOAT_LIST_CODEC.fieldOf("a").forGetter(l -> l.a),
+                    FLOAT_LIST_CODEC.fieldOf("b").forGetter(l -> l.b),
+                    FORMULA_MODIFIER_LIST_CODEC.fieldOf("modifiers").forGetter(l -> l.formulaModifiers),
+                    FLOAT_LIST_CODEC.fieldOf("limit").forGetter(l -> l.limit)
+            ).apply(instance, ElementEquation::new));
     List<Integer> breaks;
-    FormulaType[] formulaTypes;
-    FormulaModifier[] formulaModifiers;
-    float[] a;
-    float[] b;
-    float[] limit;
-    public ElementEquation(List<Integer> breaksIn, FormulaType[] formulaTypesIn, float[] aIn, float[] bIn, FormulaModifier[] formulaModifiersIn, float[] limitIn) {
+    List<FormulaType> formulaTypes;
+    List<FormulaModifier> formulaModifiers;
+    List<Float> a;
+    List<Float> b;
+    List<Float> limit;
+    public ElementEquation(List<Integer> breaksIn, List<FormulaType> formulaTypesIn, List<Float> aIn, List<Float> bIn, List<FormulaModifier> formulaModifiersIn, List<Float> limitIn) {
         this.breaks = breaksIn;
         this.formulaTypes = formulaTypesIn;
         this.a = aIn;
@@ -41,7 +56,7 @@ public class ElementEquation {
     }
 
     public ElementEquation() {
-        this(null,null,null,null,null,null);
+        this(Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),Collections.emptyList());
     }
 
     public float calculateFloat(int x) {
@@ -68,7 +83,7 @@ public class ElementEquation {
     }
 
     public float applyFormulaModifier(float output, int index) {
-        switch (formulaModifiers[index]) {
+        switch (formulaModifiers.get(index)) {
             case ABSOLUTE_VALUE:
                 return Math.abs(output);
             case CEILING:
@@ -76,9 +91,9 @@ public class ElementEquation {
             case FLOOR:
                 return (float) Math.floor(output);
             case MAX:
-                return Math.max(output,limit[index]);
+                return Math.max(output, limit.get(index));
             case MIN:
-                return Math.min(output,limit[index]);
+                return Math.min(output, limit.get(index));
             default:
             case NONE:
                 return output;
@@ -87,49 +102,49 @@ public class ElementEquation {
 
     public float constructFormula(int x, int index) {
         float percent = x;
-        if (formulaModifiers[index].equals(FormulaModifier.MULTIPLIER)) {
-            percent = x * limit[index];
-        } else if (formulaModifiers[index].equals(FormulaModifier.ADDITION)) {
-            percent = x + limit[index];
+        if (formulaModifiers.get(index).equals(FormulaModifier.MULTIPLIER)) {
+            percent = x * limit.get(index);
+        } else if (formulaModifiers.get(index).equals(FormulaModifier.ADDITION)) {
+            percent = x + limit.get(index);
         }
         int modulo = 2;
-        switch (formulaTypes[index]) {
+        switch (formulaTypes.get(index)) {
             case LINEAR:
             default:
-                return a[index] * percent + b[index];
+                return a.get(index) * percent + b.get(index);
             case POWER:
-                return (float) (Math.pow(percent,a[index]) + b[index]);
+                return (float) (Math.pow(percent, a.get(index)) + b.get(index));
             case EXPONENTIAL:
-                return (float) (Math.pow(a[index],percent) + b[index]);
+                return (float) (Math.pow(a.get(index),percent) + b.get(index));
             case LOGARITHMIC:
-                return (float) (a[index]*Math.log(percent) + b[index]);
+                return (float) (a.get(index) *Math.log(percent) + b.get(index));
             case LOG10:
-                return (float) (a[index]*Math.log10(percent) + b[index]);
+                return (float) (a.get(index) *Math.log10(percent) + b.get(index));
             case QUADRATIC:
-                return (float) (a[index]*Math.pow(percent,2) + b[index]*percent);
+                return (float) (a.get(index) *Math.pow(percent,2) + b.get(index) *percent);
             case SIN:
-                return (float) (a[index]*Math.sin(b[index]*percent));
+                return (float) (a.get(index) *Math.sin(b.get(index) *percent));
             case COS:
-                return (float) (a[index]*Math.cos(b[index]*percent));
+                return (float) (a.get(index) *Math.cos(b.get(index) *percent));
             case ALTERNATING:
-                if (formulaModifiers[index].equals(FormulaModifier.ALTERNATING_MODULO)) {
-                    modulo = (int) limit[index];
+                if (formulaModifiers.get(index).equals(FormulaModifier.ALTERNATING_MODULO)) {
+                    modulo = Math.round(limit.get(index));
                 }
                 if (x % modulo == 0) {
-                    return a[index] * percent;
+                    return a.get(index) * percent;
                 } else {
-                    return b[index] * percent;
+                    return b.get(index) * percent;
                 }
             case CONSTANT:
-                return (a[index]);
+                return (a.get(index));
             case CONSTANT_ALTERNATING:
-                if (formulaModifiers[index].equals(FormulaModifier.ALTERNATING_MODULO)) {
-                    modulo = (int) limit[index];
+                if (formulaModifiers.get(index).equals(FormulaModifier.ALTERNATING_MODULO)) {
+                    modulo = Math.round(limit.get(index));
                 }
                 if (x % modulo == 0) {
-                    return a[index];
+                    return a.get(index);
                 } else {
-                    return b[index];
+                    return b.get(index);
                 }
         }
 
@@ -143,23 +158,23 @@ public class ElementEquation {
         return breaks;
     }
 
-    public FormulaType[] getFormulaTypes() {
+    public List<FormulaType> getFormulaTypes() {
         return formulaTypes;
     }
 
-    public float[] getA() {
+    public List<Float> getA() {
         return a;
     }
 
-    public float[] getB() {
+    public List<Float> getB() {
         return b;
     }
 
-    public FormulaModifier[] getFormulaModifiers() {
+    public List<FormulaModifier> getFormulaModifiers() {
         return formulaModifiers;
     }
 
-    public float[] getLimit() {
+    public List<Float> getLimit() {
         return limit;
     }
 

@@ -181,7 +181,7 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
 
     private List<Component> checkStatRange(ElementRecipe recipe, StatType stat) {
         ElementEquation eq = recipe.getStatEquation(stat.ordinal());
-        ElementEquation.FormulaType[] eqTypes = eq.getFormulaTypes();
+        ElementEquation.FormulaType[] eqTypes = eq.getFormulaTypes().toArray(new ElementEquation.FormulaType[0]);
 
         List<Integer> breaks = eq.getBreaks();
         int[] bounds = Arrays.copyOf(new int[]{0},breaks.size()+1);
