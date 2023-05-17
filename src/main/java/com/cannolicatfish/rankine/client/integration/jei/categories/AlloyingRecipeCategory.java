@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.client.integration.jei.categories;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -35,7 +35,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
 
-public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
+public class AlloyingRecipeCategory implements IRecipeCategory<OldAlloyingRecipe> {
 
     public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "alloying");
     private final IDrawable background;
@@ -50,12 +50,12 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     }
 
     @Override
-    public @Nullable ResourceLocation getRegistryName(AlloyingRecipe recipe) {
+    public @Nullable ResourceLocation getRegistryName(OldAlloyingRecipe recipe) {
         return UID;
     }
 
     @Override
-    public RecipeType<AlloyingRecipe> getRecipeType() {
+    public RecipeType<OldAlloyingRecipe> getRecipeType() {
         return RankineJEIRecipeTypes.ALLOYING_RECIPE_TYPE;
     }
 
@@ -88,7 +88,7 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     }
 
     @Override
-    public List<Component> getTooltipStrings(AlloyingRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+    public List<Component> getTooltipStrings(OldAlloyingRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
         if (mouseX >= 76 && mouseX <= 97 && mouseY >= 27 && mouseY <= 48) {
             if (recipe.getEnchantments().size() == 0) {
                 return List.of(Component.translatable("rankine.jei.alloying_enchantments").withStyle(ChatFormatting.GOLD),Component.literal(I18n.get("rankine.jei.tooltip_none")));
@@ -146,7 +146,7 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     }
 
     @Override
-    public void draw(AlloyingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+    public void draw(OldAlloyingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
         Level level = Minecraft.getInstance().level;
         List<Ingredient> ingredients = recipe.getIngredientsList(level,true);
         DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
@@ -168,7 +168,7 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, AlloyingRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, OldAlloyingRecipe recipe, IFocusGroup focuses) {
         Level level = Minecraft.getInstance().level;
         List<Ingredient> ingredients = recipe.getIngredientsList(level,true);
         List<Ingredient> groupedOptionals = recipe.getIngredientsGroupedByMinMaxList(level);

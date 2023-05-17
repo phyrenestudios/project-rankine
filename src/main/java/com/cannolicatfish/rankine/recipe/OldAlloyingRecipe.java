@@ -32,7 +32,7 @@ import net.minecraft.world.level.Level;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class AlloyingRecipe implements Recipe<Container> {
+public class OldAlloyingRecipe implements Recipe<Container> {
 
     private final int total;
 
@@ -53,9 +53,9 @@ public class AlloyingRecipe implements Recipe<Container> {
     private final boolean localName;
     private final boolean forceNBT;
 
-    public AlloyingRecipe(ResourceLocation idIn, int totalIn, int tierIn, NonNullList<ResourceLocation> elementsIn, NonNullList<Boolean> requiredIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn,
-                          ItemStack outputIn, List<Float> bonusValuesIn, List<String> enchantmentsIn, List<String> enchantmentTypesIn, int minEnchantabilityIn, int enchantIntervalIn, int maxEnchantLevelIn,
-                          boolean nameIn, boolean forceNBTIn, int colorIn) {
+    public OldAlloyingRecipe(ResourceLocation idIn, int totalIn, int tierIn, NonNullList<ResourceLocation> elementsIn, NonNullList<Boolean> requiredIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn,
+                             ItemStack outputIn, List<Float> bonusValuesIn, List<String> enchantmentsIn, List<String> enchantmentTypesIn, int minEnchantabilityIn, int enchantIntervalIn, int maxEnchantLevelIn,
+                             boolean nameIn, boolean forceNBTIn, int colorIn) {
         this.id = idIn;
         this.total = totalIn;
         this.required = requiredIn;
@@ -608,9 +608,9 @@ public class AlloyingRecipe implements Recipe<Container> {
         return RankineRecipeTypes.ALLOYING.get();
     }
 
-    public static class Serializer implements RecipeSerializer<AlloyingRecipe> {
+    public static class Serializer implements RecipeSerializer<OldAlloyingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "alloying");
-        public AlloyingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+        public OldAlloyingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int reqcount = 0;
             int t = json.get("total").getAsInt();
             int y;
@@ -696,10 +696,10 @@ public class AlloyingRecipe implements Recipe<Container> {
             int startEnchant = json.has("minEnchantability") ? json.get("minEnchantability").getAsInt() : 20;
             int interval = json.has("enchantInterval") ? json.get("enchantInterval").getAsInt() : 5;
             int maxLvl = json.has("maxEnchantLevel") ? json.get("maxEnchantLevel").getAsInt() : 3;
-            return new AlloyingRecipe(recipeId, t, y, elements, reqs, mins, maxes, stack, bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
+            return new OldAlloyingRecipe(recipeId, t, y, elements, reqs, mins, maxes, stack, bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
         }
 
-        public AlloyingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        public OldAlloyingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             int t = buffer.readInt();
             int y = buffer.readInt();
             List<Float> bonusStats = new ArrayList<>();
@@ -747,10 +747,10 @@ public class AlloyingRecipe implements Recipe<Container> {
             int startEnchant = buffer.readInt();
             int interval = buffer.readInt();
             int maxLvl = buffer.readInt();
-            return new AlloyingRecipe(recipeId,t,y, elements, reqs, mins, maxes, stack,bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
+            return new OldAlloyingRecipe(recipeId,t,y, elements, reqs, mins, maxes, stack,bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
         }
 
-        public void toNetwork(FriendlyByteBuf buffer, AlloyingRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, OldAlloyingRecipe recipe) {
             buffer.writeInt(recipe.total);
             buffer.writeInt(recipe.tier);
 

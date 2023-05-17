@@ -5,7 +5,7 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineMenus;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
@@ -186,7 +186,7 @@ public class TemplateTableContainer extends AbstractContainerMenu {
         if (this.inputInventory.getItem(6).getItem() == Items.PAPER &&
                 (this.inputInventory.getItem(7).getItem() instanceof DyeItem))
         {
-            AlloyingRecipe recipeIn = this.world.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), this.inputInventory, this.world).orElse(null);
+            OldAlloyingRecipe recipeIn = this.world.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), this.inputInventory, this.world).orElse(null);
             //calcPercentages();
             if (recipeIn != null) {
                 ItemStack recipeOutput = recipeIn.generateResult(this.world,this.inputInventory, 3);
@@ -225,7 +225,7 @@ public class TemplateTableContainer extends AbstractContainerMenu {
         });
     }
 
-    public List<AlloyingRecipe> getAlloyRecipes() {
+    public List<OldAlloyingRecipe> getAlloyRecipes() {
         Level worldIn = this.world;
         return world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()).stream()
                 .filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty())

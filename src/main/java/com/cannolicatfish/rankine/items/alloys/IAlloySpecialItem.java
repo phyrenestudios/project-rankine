@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.recipe.AlloyModifierRecipe;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import net.minecraft.world.item.ItemStack;
@@ -15,7 +15,7 @@ public interface IAlloySpecialItem extends IAlloyItem {
 
     List<AlloyModifier.ModifierType> STATS = Collections.emptyList();
 
-    void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier);
+    void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable OldAlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier);
 
     default AlloyModifier getModifierForStat(AlloyModifierRecipe modifierRecipe, AlloyModifier.ModifierType type) {
         if (modifierRecipe == null) {

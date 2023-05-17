@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.commands;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.recipe.AlloyModifierRecipe;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -34,8 +34,8 @@ import java.util.Optional;
 public class CreateAlloyCommand {
 
     public static final SuggestionProvider<CommandSourceStack> ALLOY_RECIPE_SUGGESTER = (p_198477_0_, p_198477_1_) -> {
-        Collection<AlloyingRecipe> collection = p_198477_0_.getSource().getServer().getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get());
-        return SharedSuggestionProvider.suggestResource(collection.stream().map(AlloyingRecipe::getId), p_198477_1_);
+        Collection<OldAlloyingRecipe> collection = p_198477_0_.getSource().getServer().getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get());
+        return SharedSuggestionProvider.suggestResource(collection.stream().map(OldAlloyingRecipe::getId), p_198477_1_);
     };
 
     public static final SuggestionProvider<CommandSourceStack> MODIFIER_RECIPE_SUGGESTER = (p_198477_0_, p_198477_1_) -> {
@@ -72,12 +72,12 @@ public class CreateAlloyCommand {
                 i -= j;
                 ItemStack itemstack = itemIn.createItemStack(j, false);
                 if (itemstack.getItem() instanceof IAlloyItem) {
-                    AlloyingRecipe alloy = null;
+                    OldAlloyingRecipe alloy = null;
                     if (!recipe.equals(new ResourceLocation("")) || color != 16777215) {
                         if (!recipe.equals(new ResourceLocation(""))) {
                             Optional<? extends Recipe<?>> r = serverplayerentity.getCommandSenderWorld().getRecipeManager().byKey(recipe);
-                            if (r.isPresent() && r.get() instanceof AlloyingRecipe) {
-                                alloy = (AlloyingRecipe) r.get();
+                            if (r.isPresent() && r.get() instanceof OldAlloyingRecipe) {
+                                alloy = (OldAlloyingRecipe) r.get();
                                 ((IAlloyItem) itemstack.getItem()).createAlloyNBT(itemstack,serverplayerentity.level,data,recipe,alloy.getLocalName());
                                 if (color != 16777215) {
                                     IAlloyItem.addColorNBT(itemstack,Math.min(Math.max(color,0),16777215));

@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import net.minecraft.ChatFormatting;
@@ -230,11 +230,11 @@ public interface IAlloyItem {
         return elementMap;
     }
 
-    default AlloyingRecipe getAlloyingRecipe(ResourceLocation rs, Level worldIn) {
+    default OldAlloyingRecipe getAlloyingRecipe(ResourceLocation rs, Level worldIn) {
         if (rs != null) {
             Optional<? extends Recipe<?>> opt = worldIn.getRecipeManager().byKey(rs);
-            if (opt.isPresent() && opt.get() instanceof AlloyingRecipe) {
-                return (AlloyingRecipe) opt.get();
+            if (opt.isPresent() && opt.get() instanceof OldAlloyingRecipe) {
+                return (OldAlloyingRecipe) opt.get();
             }
         }
         return null;

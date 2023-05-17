@@ -14,7 +14,7 @@ public class RankineRecipeSerializers {
 
     public static RegistryObject<RecipeSerializer<AlloyCraftingRecipe>> ALLOY_CRAFTING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("alloy_crafting", AlloyCraftingRecipe.Serializer::new);
     public static RegistryObject<RecipeSerializer<CrushingRecipe>> CRUSHING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("crushing", CrushingRecipe.Serializer::new);
-    public static RegistryObject<RecipeSerializer<AlloyingRecipe>> ALLOYING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("alloying", AlloyingRecipe.Serializer::new);
+    public static RegistryObject<RecipeSerializer<OldAlloyingRecipe>> ALLOYING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("alloying", OldAlloyingRecipe.Serializer::new);
     public static RegistryObject<RecipeSerializer<BeehiveOvenRecipe>> BEEHIVE_OVEN_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("beehive_oven", BeehiveOvenRecipe.Serializer::new);
     public static RegistryObject<RecipeSerializer<SluicingRecipe>> SLUICING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("sluicing", SluicingRecipe.Serializer::new);
     public static RegistryObject<RecipeSerializer<ElementRecipe>> ELEMENT_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("element", ElementRecipe.Serializer::new);

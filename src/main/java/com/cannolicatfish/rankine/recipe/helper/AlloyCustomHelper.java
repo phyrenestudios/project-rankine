@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.recipe.helper;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.RegistryAccess;
@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class AlloyCustomHelper {
     private static List<AlloyCraftingRecipe> CRAFTING_RECIPE_LIST = Collections.emptyList();
-    private static List<AlloyingRecipe> ALLOY_RECIPE_LIST = Collections.emptyList();
+    private static List<OldAlloyingRecipe> ALLOY_RECIPE_LIST = Collections.emptyList();
     private static List<ElementRecipe> ELEMENT_RECIPE_LIST = Collections.emptyList();
     private static List<Item> ALLOY_ITEM_LIST = Collections.emptyList();
 
@@ -36,7 +36,7 @@ public class AlloyCustomHelper {
         CRAFTING_ITEM_LISTS.clear();
     }
 
-    public static void setAlloyingRecipes(List<AlloyingRecipe> recipes) {
+    public static void setAlloyingRecipes(List<OldAlloyingRecipe> recipes) {
         ALLOY_RECIPE_LIST = recipes;
         ALLOY_ITEM_LISTS.clear();
     }
@@ -51,7 +51,7 @@ public class AlloyCustomHelper {
         return ELEMENT_RECIPE_LIST;
     }
 
-    public static List<AlloyingRecipe> getAlloyRecipeList() {
+    public static List<OldAlloyingRecipe> getAlloyRecipeList() {
         return ALLOY_RECIPE_LIST;
     }
 
@@ -158,7 +158,7 @@ public class AlloyCustomHelper {
         List<ItemStack> list = ALLOY_ITEM_LISTS.get(item);
         if (list == null) {
             ImmutableList.Builder<ItemStack> builder = ImmutableList.builder();
-            for (AlloyingRecipe recipe : ALLOY_RECIPE_LIST) {
+            for (OldAlloyingRecipe recipe : ALLOY_RECIPE_LIST) {
                 if (item.equals(recipe.getResultItem(RegistryAccess.EMPTY).getItem())) {
                     ItemStack stack = recipe.getResultItem(RegistryAccess.EMPTY).copy();
                     stack.setCount(1);

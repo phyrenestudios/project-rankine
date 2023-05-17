@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.SimpleContainer;
@@ -51,12 +51,12 @@ public final class PeriodicTableUtils {
         return tier.getLevel();
     }
 
-    public AlloyingRecipe getAlloyRecipe(ItemStack stack, Level world) {
+    public OldAlloyingRecipe getAlloyRecipe(ItemStack stack, Level world) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
             Recipe<?> recipe = world.getRecipeManager().byKey(rs).orElse(null);
-            if (recipe instanceof AlloyingRecipe) {
-                return (AlloyingRecipe) recipe;
+            if (recipe instanceof OldAlloyingRecipe) {
+                return (OldAlloyingRecipe) recipe;
             }
         }
         return null;

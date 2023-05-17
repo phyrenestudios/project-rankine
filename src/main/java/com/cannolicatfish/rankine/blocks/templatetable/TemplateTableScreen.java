@@ -4,7 +4,7 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.init.packets.SelectAlloyPacket;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.components.Button;
@@ -35,7 +35,7 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
     private boolean isSelected;
     private static final int TEXTURE_WIDTH = 512;
     private static final int TEXTURE_HEIGHT = 256;
-    private List<AlloyingRecipe> alloyRecipes = Collections.emptyList();
+    private List<OldAlloyingRecipe> alloyRecipes = Collections.emptyList();
 
     public TemplateTableScreen(TemplateTableContainer container, Inventory inv, Component name) {
         super(container, inv, name);
@@ -102,7 +102,7 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
                 return;
             }
 
-            AlloyingRecipe alloy = alloyRecipes.get(k);
+            OldAlloyingRecipe alloy = alloyRecipes.get(k);
             /*if (alloy.cannotMake(this.playerInventory,this.container.getWorld())) {
                 this.minecraft.getTextureManager().bindTexture(GUI);
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -131,7 +131,7 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
             //this.renderScroller(matrixStack, i, j, alloyRecipes);
             int i1 = 0;
 
-            for(AlloyingRecipe alloy : alloyRecipes) {
+            for(OldAlloyingRecipe alloy : alloyRecipes) {
                 if (this.checkSeven(alloyRecipes.size()) && (i1 < this.scrollOff || i1 >= 7 + this.scrollOff)) {
                     ++i1;
                 } else {
@@ -166,7 +166,7 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
             }
 
             int k1 = this.selectedAlloyRecipe;
-            AlloyingRecipe alloy1 = alloyRecipes.get(k1);
+            OldAlloyingRecipe alloy1 = alloyRecipes.get(k1);
             /*if (this.container.showProgressBar()) {
                 this.renderProgressBar(matrixStack, i, j, alloy1);
             }*/
@@ -214,7 +214,7 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
     }
 
 
-    private void checkIfValid(PoseStack p_238842_1_, AlloyingRecipe p_238842_2_, int p_238842_3_, int p_238842_4_) {
+    private void checkIfValid(PoseStack p_238842_1_, OldAlloyingRecipe p_238842_2_, int p_238842_3_, int p_238842_4_) {
         RenderSystem.enableBlend();
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, GUI);
@@ -292,7 +292,7 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
                     TemplateTableScreen.this.renderTooltip(matrixStack, itemstack1, mouseX, mouseY);
                 } else {
                     Level worldIn = TemplateTableScreen.this.menu.getWorld();
-                    AlloyingRecipe alloy = TemplateTableScreen.this.alloyRecipes.get(this.index + TemplateTableScreen.this.scrollOff);
+                    OldAlloyingRecipe alloy = TemplateTableScreen.this.alloyRecipes.get(this.index + TemplateTableScreen.this.scrollOff);
                     int mouseXsub = mouseX - this.getX() - 10;
                     List<Ingredient> e = alloy.getIngredientsList(worldIn,true);
                     int currentIndex = Math.floorDiv(mouseXsub,8);

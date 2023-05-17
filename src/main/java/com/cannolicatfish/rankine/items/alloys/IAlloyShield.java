@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
 import net.minecraft.nbt.CompoundTag;
@@ -53,7 +53,7 @@ public interface IAlloyShield extends IAlloyItem {
         if (alloyRecipe != null) {
             Optional<? extends Recipe<?>> opt = worldIn.getRecipeManager().byKey(alloyRecipe);
             if (opt.isPresent()) {
-                AlloyingRecipe recipe = (AlloyingRecipe) opt.get();
+                OldAlloyingRecipe recipe = (OldAlloyingRecipe) opt.get();
                 dur += recipe.getBonusDurability();
                 ench += recipe.getBonusEnchantability();
                 cr += recipe.getBonusCorrosionResistance();
@@ -90,7 +90,7 @@ public interface IAlloyShield extends IAlloyItem {
         int maxLvl = 5;
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null && worldIn.getRecipeManager().byKey(rs).isPresent()) {
-            AlloyingRecipe recipe = (AlloyingRecipe) worldIn.getRecipeManager().byKey(rs).get();
+            OldAlloyingRecipe recipe = (OldAlloyingRecipe) worldIn.getRecipeManager().byKey(rs).get();
             start = recipe.getMinEnchantability();
             interval = recipe.getEnchantInterval();
             maxLvl = recipe.getMaxEnchantLevelIn();

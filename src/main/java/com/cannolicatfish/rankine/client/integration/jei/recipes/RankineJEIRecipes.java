@@ -60,11 +60,11 @@ public class RankineJEIRecipes {
         return recipeManager.getAllRecipesFor(RankineRecipeTypes.FORAGING.get());
     }
 
-    public List<AlloyingRecipe> getAlloyingRecipes() {
+    public List<OldAlloyingRecipe> getAlloyingRecipes() {
         return recipeManager.getAllRecipesFor(RankineRecipeTypes.ALLOYING.get());
     }
 
-    public List<AlloyingRecipe> getAlloyFurnaceRecipes() {
+    public List<OldAlloyingRecipe> getAlloyFurnaceRecipes() {
         return recipeManager.getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()).stream().filter(recipe -> (recipe.getTier() & 1) != 0 && recipe.getTier() != -1).collect(Collectors.toList());
     }
 
@@ -72,7 +72,7 @@ public class RankineJEIRecipes {
         return recipeManager.getAllRecipesFor(RankineRecipeTypes.FUSION_FURNACE.get());
     }
 
-    public List<AlloyingRecipe> getInductionFurnaceRecipes() {
+    public List<OldAlloyingRecipe> getInductionFurnaceRecipes() {
         return recipeManager.getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()).stream().filter(recipe -> (recipe.getTier() & 2) != 0 && recipe.getTier() != -1).collect(Collectors.toList());
     }
 

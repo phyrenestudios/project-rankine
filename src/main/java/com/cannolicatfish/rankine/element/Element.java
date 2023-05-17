@@ -3,8 +3,13 @@ package com.cannolicatfish.rankine.element;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -77,6 +82,22 @@ public final class Element {
 
     public List<String> getItems() {
         return items;
+    }
+
+    public List<Ingredient> getIngredients() {
+        List<Ingredient> ingredients = new ArrayList<>();
+        for (String s : items) {
+            if (s.contains("T#")) {
+                TagKey<Item> tag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
+                ingredients.add(Ingredient.of(tag));
+            } else if (s.contains("I#")) {
+                Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(s.split("I#")[1]));
+                if (item != null) {
+                    ingredients.add(Ingredient.of(() -> item));
+                }
+            }
+        }
+        return ingredients;
     }
 
     public List<Integer> getMaterialValues() {

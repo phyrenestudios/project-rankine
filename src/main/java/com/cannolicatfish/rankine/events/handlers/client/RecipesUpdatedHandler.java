@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.events.handlers.client;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.client.Minecraft;
@@ -20,7 +20,7 @@ public class RecipesUpdatedHandler {
     public static void onRecipesUpdated(RecipesUpdatedEvent event) {
         ClientLevel world = Minecraft.getInstance().level;
         if (world != null) {
-            List<AlloyingRecipe> alloyingRecipes = new ArrayList<>(world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()));
+            List<OldAlloyingRecipe> alloyingRecipes = new ArrayList<>(world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()));
             AlloyCustomHelper.setAlloyingRecipes(alloyingRecipes);
 
             List<ElementRecipe> elementRecipes = new ArrayList<>(world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ELEMENT.get()));

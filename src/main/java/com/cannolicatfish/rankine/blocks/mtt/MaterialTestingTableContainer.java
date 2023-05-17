@@ -2,10 +2,9 @@ package com.cannolicatfish.rankine.blocks.mtt;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineMenus;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
@@ -203,7 +202,7 @@ public class MaterialTestingTableContainer extends AbstractContainerMenu {
         }
     }
 
-    public AlloyingRecipe getAlloyRecipeForSlotItem(Level worldIn) {
+    public OldAlloyingRecipe getAlloyRecipeForSlotItem(Level worldIn) {
         ItemStack stack = this.inputInventory.getItem(0);
         return utils.getAlloyRecipe(stack,worldIn);
     }
