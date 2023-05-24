@@ -88,7 +88,7 @@ public class BeehiveOvenTile extends BlockEntity {
             if (recipe != null) {
                 ItemStack output = recipe.getResultItem();
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
-                    time += levelIn.getRandom().nextInt(recipe.getMinCookTime(), recipe.getMaxCookTime());
+                    time = Math.max(time,levelIn.getRandom().nextInt(recipe.getMinCookTime(), recipe.getMaxCookTime()));
                 }
             }
         }

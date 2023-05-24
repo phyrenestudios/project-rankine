@@ -240,7 +240,8 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue NUGGET_CHANCE;
         public final ForgeConfigSpec.IntValue NUGGET_DISTANCE;
 
-
+        public final ForgeConfigSpec.IntValue MUSHROOM_HOLLOW_LOG_RATE;
+        public final ForgeConfigSpec.BooleanValue MUSHROOM_SPREAD;
 
 
         public final ForgeConfigSpec.IntValue MAX_TREE;
@@ -306,6 +307,10 @@ public class Config {
                             .defineInRange("iceMeltRange", 3, 0, 16);
                     DISABLE_WATER = b.comment("No more infinite water")
                             .define("disableWater",true);
+                    MUSHROOM_HOLLOW_LOG_RATE = b.comment("The rate at which wall mushrooms will turn logs into hollow logs. Set to 0 to disable.")
+                            .defineInRange("mushroomHollowLogRate", 50, 0, 256);
+                    MUSHROOM_SPREAD = b.comment("Allow wall mushrooms to spread to nearby logs")
+                            .define("mushroomSpread",true);
                     LIGHTNING_CONVERSION = b.comment("Lightning strikes creating fulgurite and glasses")
                             .define("enableLightningConversion",true);
                     FUEL_VALUES_LIST = b.comment("List of blocks and their respective burn time. Works with tags.")

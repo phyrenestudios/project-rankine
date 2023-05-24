@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -53,34 +54,37 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
 
     @Override
     public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
-        if (random.nextInt(50) == 0) {
+        if (random.nextInt(Config.GENERAL.MUSHROOM_HOLLOW_LOG_RATE.get()) == 0) {
             BlockState log = worldIn.getBlockState(pos.relative(state.getValue(HORIZONTAL_FACING).getOpposite()));
             if (log.getBlock() instanceof RotatedPillarBlock && ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:hollow_"+log.getBlock().getRegistryName().getPath())) != Blocks.AIR) {
                 worldIn.setBlockAndUpdate(pos.relative(state.getValue(HORIZONTAL_FACING).getOpposite()), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:hollow_"+log.getBlock().getRegistryName().getPath())).defaultBlockState().setValue(HollowLogBlock.AXIS,log.getValue(RotatedPillarBlock.AXIS)));
             }
         }
-        if (random.nextInt(15) == 0) {
-            int i = 6;
+        if (Config.GENERAL.MUSHROOM_SPREAD.get()) {
+            if (random.nextInt(15) == 0) {
+                int i = 6;
 
-            for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-3, -3, -3), pos.offset(3, 3, 3))) {
-                if (worldIn.getBlockState(blockpos).is(this)) {
-                    --i;
-                    if (i <= 0) {
-                        return;
+                for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-3, -3, -3), pos.offset(3, 3, 3))) {
+                    if (worldIn.getBlockState(blockpos).is(this)) {
+                        --i;
+                        if (i <= 0) {
+                            return;
+                        }
                     }
                 }
-            }
 
-            BlockPos blockpos1 = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - random.nextInt(2), random.nextInt(3) - 1);
-            if (worldIn.getBlockState(blockpos1).getMaterial().equals(Material.WOOD)) {
-                Direction dir = WorldgenUtils.randomHorizontalDirection(random);
-                if (state.setValue(HORIZONTAL_FACING,dir).canSurvive(worldIn, blockpos1.relative(dir))) {
-                    worldIn.setBlock(blockpos1.relative(dir), state.setValue(HORIZONTAL_FACING,dir), 2);
+                BlockPos blockpos1 = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - random.nextInt(2), random.nextInt(3) - 1);
+                if (worldIn.getBlockState(blockpos1).getMaterial().equals(Material.WOOD)) {
+                    Direction dir = WorldgenUtils.randomHorizontalDirection(random);
+                    if (state.setValue(HORIZONTAL_FACING,dir).canSurvive(worldIn, blockpos1.relative(dir))) {
+                        worldIn.setBlock(blockpos1.relative(dir), state.setValue(HORIZONTAL_FACING,dir), 2);
+                    }
                 }
+
+
             }
-
-
         }
+
     }
 
     @Override

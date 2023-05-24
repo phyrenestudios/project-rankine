@@ -767,6 +767,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("enchantment.rankine.vacuum", "Vacuum Shot");
         add("enchantment.rankine.vacuum.desc", "Charging the Blunderbuss now also sucks enemies toward you. On firing, do minor damage and knockback to enemies in front of you.");
         add("jei.description.crushing_basic", "Can be obtained by crushing ores using a machine or a Bronze Hammer.");
+        add("rankine.jei.info_fruit_jam", "Jam is made with 2 sugar, 6 berries of any type, and 1 glass bottle at a crafting table.");
         add("rankine.jei.info_sap", "Can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, the fluid is turned into Sugar.");
         add("rankine.jei.info_maple_sap", "Can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, the fluid is turned into Maple Syrup, which can be bottled out.");
         add("rankine.jei.info_resin", "Can be placed in a cauldron. If a heat source is placed adjacent to the cauldron, the fluid is turned into Amber.");
@@ -1225,7 +1226,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.journal.cat_constructs.desc", "Not all blocks and items are of natural origins.");
 
         add("rankine.journal.cat_constructs.heating_element.name", "Heating Elements");
-        add("rankine.journal.cat_constructs.heating_element.text1", "Heating elements may replace natural blocks as a source of heat (such as for the crucible). On a redstone pulse, blocks in a 13 radius cube will be melted.");
+        add("rankine.journal.cat_constructs.heating_element.text1", "Heating elements may replace natural blocks as a passive source of heat (such as for the crucible). On a redstone pulse, blocks in a 13 radius cube will be melted (such as snow, ice, and other meltable blocks).");
 
         add("rankine.journal.cat_constructs.metal_poles.name", "Metal Poles");
         add("rankine.journal.cat_constructs.metal_poles.text1", "Metal poles are crafted from any alloy. The variety of alloy colors make them an excellent decoration block. They can also be right-clicked with leaves or torches to add garland, string lights, or both! Holding shift while clicking will teleport the player to the bottom of pole column.");

@@ -23,6 +23,7 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.*;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -122,6 +123,8 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(VOLCANIC, getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()));
         registry.addRecipes(BATTERY,getSortedBatteryRecipes(rankineJEIRecipes.getBatteryRecipes()));
         registry.addRecipes(CAULDRON_DRYING,rankineJEIRecipes.getCauldronRecipes());
+
+        registry.addIngredientInfo(new ItemStack(RankineItems.FRUIT_JAM.get()),VanillaTypes.ITEM_STACK,new TranslatableComponent("rankine.jei.info_fruit_jam"));
         /*registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getAlloyFurnaceRecipes()), AlloyingRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getInductionFurnaceRecipes()), InductionAlloyingRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getIntrusiveGeneratorRecipes()), IntrusiveGeneratorRecipeCategory.UID);

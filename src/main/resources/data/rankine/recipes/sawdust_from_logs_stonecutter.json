@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 4,
+  "ingredient": {
+    "tag": "minecraft:logs"
+  },
+  "result": "rankine:sawdust"
+}
