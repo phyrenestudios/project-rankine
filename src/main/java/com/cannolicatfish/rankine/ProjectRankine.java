@@ -72,7 +72,9 @@ public class ProjectRankine {
         RankineVillagerProfessions.VILLAGER_PROFESSIONS.register(Bus);
         RankinePOIs.POI_TYPES.register(Bus);
 
-        //RankineFeatures.FEATURES.register(Bus);
+        RankineBiomeModifiers.BIOME_MODIFIERS.register(Bus);
+        RankineBiomeModifierSerializers.BIOME_MODIFIER_SERIALIZERS.register(Bus);
+        RankineFeatures.FEATURES.register(Bus);
         //RankineConfiguredFeatures.CONFIGURED_FEATURES.register(Bus);
         //RankinePlacedFeatures.PLACED_FEATURES.register(Bus);
         Bus.addListener((DataPackRegistryEvent.NewRegistry event) -> {

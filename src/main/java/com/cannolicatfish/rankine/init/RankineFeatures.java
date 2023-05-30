@@ -1,16 +1,10 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.world.gen.*;
-import com.cannolicatfish.rankine.world.gen.mushrooms.*;
-import com.cannolicatfish.rankine.world.gen.ores.DefaultOreVeinFeature;
-import com.cannolicatfish.rankine.world.gen.ores.DiskOreVeinFeature;
-import com.cannolicatfish.rankine.world.gen.ores.RankineOreFeatureConfig;
-import com.cannolicatfish.rankine.world.gen.ores.SphericalOreVeinFeature;
-import com.cannolicatfish.rankine.world.gen.trees.*;
+import com.cannolicatfish.rankine.worldgen.features.trees.*;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.*;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -18,6 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class RankineFeatures {
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, ProjectRankine.MODID);
 
+    /*
     public static final RegistryObject<Feature<SimpleBlockConfiguration>> RANKINE_SIMPLE_BLOCK = FEATURES.register("rankine_simple_block", () -> new RankineSimpleBlockFeature(SimpleBlockConfiguration.CODEC));
 
     public static final RegistryObject<Feature<RankineOreFeatureConfig>> DEFAULT_ORE_VEIN = FEATURES.register("default_ore_vein", () -> new DefaultOreVeinFeature(RankineOreFeatureConfig.CODEC));
@@ -39,6 +34,8 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<RandomPatchConfiguration>> PATCH_COBBLES = FEATURES.register("patch_cobbles", () -> new CobblePatchFeature(RandomPatchConfiguration.CODEC));
 
 
+     */
+
 
     public static final RegistryObject<Feature<TreeConfiguration>> CEDAR_TREE = FEATURES.register("cedar_tree", () -> new CedarTreeFeature(TreeConfiguration.CODEC));
     public static final RegistryObject<Feature<TreeConfiguration>> EASTERN_HEMLOCK_TREE = FEATURES.register("eastern_hemlock_tree", () -> new EasternHemlockTreeFeature(TreeConfiguration.CODEC));
@@ -59,6 +56,7 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<TreeConfiguration>> CORK_OAK_TREE = FEATURES.register("cork_oak_tree_feature", () -> new TreeFeature(TreeConfiguration.CODEC));
     public static final RegistryObject<Feature<TreeConfiguration>> CINNAMON_TREE = FEATURES.register("cinnamon_tree_feature", () -> new TreeFeature(TreeConfiguration.CODEC));
 
+    /*
     public static final RegistryObject<Feature<BlockPileConfiguration>> TINDER_CONK = FEATURES.register("tinder_conk_feature", () -> new TinderConkMushroomFeature(BlockPileConfiguration.CODEC));
     public static final RegistryObject<Feature<BlockPileConfiguration>> LIONS_MANE = FEATURES.register("lions_mane_feature", () -> new LionsManeMushroomFeature(BlockPileConfiguration.CODEC));
     public static final RegistryObject<Feature<BlockPileConfiguration>> TURKEY_TAIL = FEATURES.register("turkey_tail_feature", () -> new TurkeyTailMushroomFeature(BlockPileConfiguration.CODEC));
@@ -68,6 +66,8 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<BlockPileConfiguration>> OYSTER = FEATURES.register("oyster_feature", () -> new OysterMushroomFeature(BlockPileConfiguration.CODEC));
     public static final RegistryObject<Feature<BlockPileConfiguration>> CINNABAR_POLYPORE = FEATURES.register("cinnabar_polypore_feature", () -> new CinnbarPolyporeMushroomFeature(BlockPileConfiguration.CODEC));
 
+
+     */
 
 }
 
