@@ -7,7 +7,9 @@ import com.cannolicatfish.rankine.data.tags.RankineBiomeTagsProvider;
 import com.cannolicatfish.rankine.data.tags.RankineBlockTagsProvider;
 import com.cannolicatfish.rankine.data.tags.RankineItemTagsProvider;
 import com.cannolicatfish.rankine.worldgen.features.RankineTreeFeatures;
+import com.cannolicatfish.rankine.worldgen.features.RankineUndergroundFeatures;
 import com.cannolicatfish.rankine.worldgen.placements.RankineTreePlacements;
+import com.cannolicatfish.rankine.worldgen.placements.RankineUndergroundPlacements;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -57,20 +59,34 @@ public final class DataGenerators {
         gen.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(packOutput, CompletableFuture.supplyAsync(DataGenerators::getProvider), Set.of(ProjectRankine.MODID)));
 
     }
+
+
     private static HolderLookup.Provider getProvider() {
         final RegistrySetBuilder registryBuilder = new RegistrySetBuilder();
         registryBuilder.add(Registries.CONFIGURED_FEATURE, context -> {
             RankineTreeFeatures.bootstrap(context);
+            RankineUndergroundFeatures.bootstrap(context);
         });
         registryBuilder.add(Registries.PLACED_FEATURE, context -> {
             RankineTreePlacements.bootstrap(context);
+            RankineUndergroundPlacements.bootstrap(context);
         });
         registryBuilder.add(ForgeRegistries.Keys.BIOME_MODIFIERS, context -> {
             HolderGetter<Biome> biomeGetter = context.lookup(Registries.BIOME);
 
-            context.register(ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(ProjectRankine.MODID, "test_tree")), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+            context.register(ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(ProjectRankine.MODID, "overworld_stone_replacer")), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                     biomeGetter.getOrThrow(BiomeTags.IS_OVERWORLD),
-                    HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(RankineTreePlacements.HONEY_LOCUST_TREE_CHECKED)),
+                    HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(RankineUndergroundPlacements.OVERWORLD_STONE_REPLACER)),
+                    GenerationStep.Decoration.UNDERGROUND_DECORATION
+            ));
+            context.register(ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(ProjectRankine.MODID, "honey_locust_tree")), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                    biomeGetter.getOrThrow(BiomeTags.IS_OVERWORLD),
+                    HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(RankineTreePlacements.PLACED_HONEY_LOCUST_TREE)),
+                    GenerationStep.Decoration.VEGETAL_DECORATION
+            ));
+            context.register(ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(ProjectRankine.MODID, "cedar_tree")), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                    biomeGetter.getOrThrow(BiomeTags.IS_TAIGA),
+                    HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(RankineTreePlacements.PLACED_CEDAR_TREE)),
                     GenerationStep.Decoration.VEGETAL_DECORATION
             ));
         });

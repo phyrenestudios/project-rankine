@@ -1,9 +1,11 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.worldgen.features.misc.WorldReplacerFeature;
 import com.cannolicatfish.rankine.worldgen.features.trees.*;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -25,7 +27,6 @@ public class RankineFeatures {
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> WALL_MUSHROOMS = FEATURES.register("wall_mushrooms_feature", () -> new WallMushroomsFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<SimpleBlockConfiguration>> FALLEN_LOG = FEATURES.register("fallen_log", () -> new FallenLogFeature(SimpleBlockConfiguration.CODEC));
 
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> WORLD_REPLACER = FEATURES.register("world_replacer_feature", () -> new WorldReplacerFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> POST_WORLD_REPLACER = FEATURES.register("post_world_replacer_feature", () -> new PostWorldReplacerFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> FLAT_BEDROCK_FEATURE = FEATURES.register("flat_bedrock", () -> new FlatBedrockFeature(NoneFeatureConfiguration.CODEC));
 
@@ -35,6 +36,7 @@ public class RankineFeatures {
 
 
      */
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> OVERWORLD_STONE_REPLACER = FEATURES.register("overworld_stone_replacer", () -> new WorldReplacerFeature(NoneFeatureConfiguration.CODEC));
 
 
     public static final RegistryObject<Feature<TreeConfiguration>> CEDAR_TREE = FEATURES.register("cedar_tree", () -> new CedarTreeFeature(TreeConfiguration.CODEC));

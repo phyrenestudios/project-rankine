@@ -4,21 +4,13 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
-
-import java.util.OptionalInt;
 
 public class RankineConfiguredFeatures {
 
@@ -59,7 +51,6 @@ public class RankineConfiguredFeatures {
     public static final RegistryObject<ConfiguredFeature<?,?>> CONFIGURED_PATCH_COBBLES = CONFIGURED_FEATURES.register("patch_cobbles", () -> new ConfiguredFeature<>(RankineFeatures.PATCH_COBBLES.get(), new RandomPatchConfiguration(48, 7, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(RankineBlocks.SHORT_GRASS.get()))))));
 
 
-     */
     public static final RegistryObject<ConfiguredFeature<?,?>> CONFIGURED_CEDAR_TREE = CONFIGURED_FEATURES.register("cedar_tree", () -> new ConfiguredFeature<>(RankineFeatures.CEDAR_TREE.get(), createRankineTree(RankineBlocks.CEDAR.getLog(), RankineBlocks.CEDAR.getLeaves(),8,5,0).build()));
     public static final RegistryObject<ConfiguredFeature<?,?>> CONFIGURED_EASTERN_HEMLOCK_TREE = CONFIGURED_FEATURES.register("eastern_hemlock_tree", () -> new ConfiguredFeature<>(RankineFeatures.EASTERN_HEMLOCK_TREE.get(), createRankineTree(RankineBlocks.EASTERN_HEMLOCK.getLog(), RankineBlocks.EASTERN_HEMLOCK.getLeaves(),15,10,0).build()));
     public static final RegistryObject<ConfiguredFeature<?,?>> CONFIGURED_WESTERN_HEMLOCK_TREE = CONFIGURED_FEATURES.register("western_hemlock_tree", () -> new ConfiguredFeature<>(RankineFeatures.WESTERN_HEMLOCK_TREE.get(), createRankineTree(RankineBlocks.WESTERN_HEMLOCK.getLog(), RankineBlocks.WESTERN_HEMLOCK.getLeaves(),25,10,0).build()));
@@ -83,6 +74,7 @@ public class RankineConfiguredFeatures {
     public static final RegistryObject<ConfiguredFeature<?,?>> CONFIGURED_CORK_OAK_TREE = CONFIGURED_FEATURES.register("cork_oak_tree", () -> new ConfiguredFeature<>(RankineFeatures.CORK_OAK_TREE.get(), (new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(RankineBlocks.CORK_OAK.getLog()), new FancyTrunkPlacer(8, 4, 0), BlockStateProvider.simple(RankineBlocks.CORK_OAK.getLeaves()), new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))).ignoreVines().build())));
     public static final RegistryObject<ConfiguredFeature<?,?>> CONFIGURED_CINNAMON_TREE = CONFIGURED_FEATURES.register("cinnamon_tree", () -> new ConfiguredFeature<>(RankineFeatures.CINNAMON_TREE.get(), (new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(RankineBlocks.CINNAMON.getLog()), new ForkingTrunkPlacer(6, 2, 1), BlockStateProvider.simple(RankineBlocks.CINNAMON.getLeaves()), new AcaciaFoliagePlacer(ConstantInt.of(1), ConstantInt.of(0)), new TwoLayersFeatureSize(1, 0, 2))).ignoreVines().build()));
 
+     */
     /*
     public static final RegistryObject<ConfiguredFeature<?,?>> CONFIGURED_CEDAR_FALLEN_LOG = CONFIGURED_FEATURES.register("cedar_fallen_log", () -> new ConfiguredFeature<>(RankineFeatures.FALLEN_LOG.get(), new SimpleBlockConfiguration(BlockStateProvider.simple(RankineBlocks.CEDAR.getHollowLog()))));
     public static final RegistryObject<ConfiguredFeature<?,?>> CONFIGURED_EASTERN_HEMLOCK_FALLEN_LOG = CONFIGURED_FEATURES.register("eastern_hemlock_fallen_log", () -> new ConfiguredFeature<>(RankineFeatures.FALLEN_LOG.get(), new SimpleBlockConfiguration(BlockStateProvider.simple(RankineBlocks.EASTERN_HEMLOCK.getHollowLog()))));

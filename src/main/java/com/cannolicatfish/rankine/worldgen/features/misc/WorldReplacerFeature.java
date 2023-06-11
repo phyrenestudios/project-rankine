@@ -1,34 +1,12 @@
 package com.cannolicatfish.rankine.worldgen.features.misc;
 
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
-import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
-import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Mth;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.LegacyRandomSource;
-import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.List;
 
 public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
+    /*
     public static final int NOISE_SCALE = Config.WORLDGEN.NOISE_SCALE.get();
     public static final int LAYER_THICKNESS = Config.WORLDGEN.LAYER_THICKNESS.get();
     public static final double LAYER_BEND = Config.WORLDGEN.LAYER_BEND.get();
@@ -37,12 +15,15 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
     public static final PerlinSimplexNoise NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(4321L)), ImmutableList.of(0));
     public static final PerlinSimplexNoise INTRUSION_NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(9183)), ImmutableList.of(0));
 
+
+     */
     public WorldReplacerFeature(Codec<NoneFeatureConfiguration> configFactoryIn) {
         super(configFactoryIn);
     }
 
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
+        /*
         WorldGenLevel reader = p_159749_.level();
         ChunkAccess chunk = reader.getChunk(p_159749_.origin());
 
@@ -88,13 +69,13 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
                         default:
 
                             break;
-                    }*/
                 }
             }
         }
+                }*/
         return true;
     }
-
+/*
     private static boolean canReplaceStone(BlockState target) {
         switch (Config.WORLDGEN.LAYER_GEN.get()) {
             case 1:
@@ -129,7 +110,6 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
         return false;
 
 
-        */
         return INTRUSION_NOISE.getValue(x/10f,z/10f,false) > 0.85;
 
     }
@@ -147,6 +127,7 @@ public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
         }
         return false;
     }
+        */
 }
 
 
