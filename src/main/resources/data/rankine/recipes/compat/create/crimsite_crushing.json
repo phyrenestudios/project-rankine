@@ -8,47 +8,51 @@
             {
               "item": "create:crimsite",
               "type": "forge:item_exists"
+            },
+            {
+              "item": "create:crushed_raw_iron",
+              "type": "forge:item_exists"
             }
           ],
           "type": "forge:and"
         }
       ],
       "recipe": {
-		  "type": "rankine:crushing",
-		  "maxRolls": 4,
-		  "input": {
-			"item": "create:crimsite"
-		  },
-		  "guaranteed": [
-			{
-			  "item": "minecraft:quartz"
-			}
-		  ],
-		  "outputs": [
-			{
-			  "weight": 80,
-			  "remove": false
-			},
-			{
-			  "item": "create:crushed_iron_ore",
-			  "weight": 12,
-			  "tier": "minecraft:stone",
-			  "remove": true
-			},
-			{
-			  "item": "minecraft:iron_nugget",
-			  "weight": 6,
-			  "tier": "minecraft:stone",
-			  "remove": false
-			},
-			{
-			  "item": "rankine:cinnabar",
-			  "weight": 2,
-			  "tier": "minecraft:iron",
-			  "remove": true
-			}
-		  ]
-		}
-	}
-	]
+        "type": "rankine:crushing",
+        "maxRolls": 4,
+        "input": {
+          "item": "create:crimsite"
+        },
+        "guaranteed": [
+          {
+            "item": "minecraft:quartz"
+          }
+        ],
+        "outputs": [
+          {
+            "weight": 80,
+            "remove": false
+          },
+          {
+            "item": "create:crushed_raw_iron",
+            "weight": 12,
+            "tier": "minecraft:stone",
+            "remove": true
+          },
+          {
+            "item": "minecraft:iron_nugget",
+            "weight": 6,
+            "tier": "minecraft:stone",
+            "remove": false
+          },
+          {
+            "item": "rankine:cinnabar",
+            "weight": 2,
+            "tier": "minecraft:iron",
+            "remove": true
+          }
+        ]
+      }
+    }
+  ]
 }

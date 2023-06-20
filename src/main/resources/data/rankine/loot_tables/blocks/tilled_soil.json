@@ -1,0 +1,172 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "rankine:tilled_soil",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "soil_type": "dirt"
+              }
+            }
+          ],
+          "name": "minecraft:dirt"
+        },	
+		{
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "rankine:tilled_soil",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "soil_type": "soul_soil"
+              }
+            }
+          ],
+          "name": "minecraft:soul_soil"
+        },
+		{
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "rankine:tilled_soil",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "soil_type": "loam"
+              }
+            }
+          ],
+          "name": "rankine:loam"
+        },
+		{
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "rankine:tilled_soil",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "soil_type": "humus"
+              }
+            }
+          ],
+          "name": "rankine:humus"
+        },
+		{
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "rankine:tilled_soil",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "soil_type": "clay_loam"
+              }
+            }
+          ],
+          "name": "rankine:clay_loam"
+        },
+		{
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "rankine:tilled_soil",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "soil_type": "sandy_loam"
+              }
+            }
+          ],
+          "name": "rankine:sandy_loam"
+        },
+		{
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "rankine:tilled_soil",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "soil_type": "silty_loam"
+              }
+            }
+          ],
+          "name": "rankine:silty_loam"
+        },
+		{
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "rankine:tilled_soil",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "soil_type": "silty_clay"
+              }
+            }
+          ],
+          "name": "rankine:silty_clay"
+        },
+		{
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "rankine:tilled_soil",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "soil_type": "sandy_clay"
+              }
+            }
+          ],
+          "name": "rankine:sandy_clay"
+        },
+		{
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "rankine:tilled_soil",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "soil_type": "loamy_sand"
+              }
+            }
+          ],
+          "name": "rankine:loamy_sand"
+        },
+		{
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "rankine:tilled_soil",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "soil_type": "silty_clay_loam"
+              }
+            }
+          ],
+          "name": "rankine:silty_clay_loam"
+        },
+		{
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "rankine:tilled_soil",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "soil_type": "sandy_clay_loam"
+              }
+            }
+          ],
+          "name": "rankine:sandy_clay_loam"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

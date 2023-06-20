@@ -8,47 +8,51 @@
             {
               "item": "create:veridium",
               "type": "forge:item_exists"
+            },
+            {
+              "item": "create:crushed_raw_copper",
+              "type": "forge:item_exists"
             }
           ],
           "type": "forge:and"
         }
       ],
       "recipe": {
-		  "type": "rankine:crushing",
-		  "maxRolls": 4,
-		  "input": {
-			"item": "create:veridium"
-		  },
-		  "guaranteed": [
-			{
-			  "item": "minecraft:quartz"
-			}
-		  ],
-		  "outputs": [
-			{
-			  "weight": 80,
-			  "remove": false
-			},
-			{
-			  "item": "create:crushed_copper_ore",
-			  "weight": 12,
-			  "tier": "minecraft:stone",
-			  "remove": true
-			},
-			{
-			  "item": "create:copper_nugget",
-			  "weight": 6,
-			  "tier": "minecraft:stone",
-			  "remove": false
-			},
-			{
-			  "item": "rankine:chromite",
-			  "weight": 2,
-			  "tier": "minecraft:diamond",
-			  "remove": true
-			}
-		  ]
-		}
-	}
-	]
+        "type": "rankine:crushing",
+        "maxRolls": 4,
+        "input": {
+          "item": "create:veridium"
+        },
+        "guaranteed": [
+          {
+            "item": "minecraft:quartz"
+          }
+        ],
+        "outputs": [
+          {
+            "weight": 80,
+            "remove": false
+          },
+          {
+            "item": "create:crushed_raw_copper",
+            "weight": 12,
+            "tier": "minecraft:stone",
+            "remove": true
+          },
+          {
+            "item": "create:copper_nugget",
+            "weight": 6,
+            "tier": "minecraft:stone",
+            "remove": false
+          },
+          {
+            "item": "rankine:chromite",
+            "weight": 2,
+            "tier": "minecraft:diamond",
+            "remove": true
+          }
+        ]
+      }
+    }
+  ]
 }
