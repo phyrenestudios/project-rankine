@@ -431,6 +431,7 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
 
 
 
+
     }
     private void addOre(Block blk, ItemLike itemLike) {
         add(blk, createSilkTouchDispatchTable(blk, this.applyExplosionDecay(blk, LootItem.lootTableItem(itemLike).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE)))));

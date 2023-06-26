@@ -70,6 +70,7 @@ public class RankineBlocks {
 
     //STONES
     public static final RankineStone PEGMATITE = RankineStone.newStoneReg("pegmatite", "igneous");
+    public static final RankineStone QUARTZOLITE = RankineStone.newStoneReg("quartzolite", "igneous");
     public static final RankineStone GRAY_GRANITE = RankineStone.newStoneReg("gray_granite", "igneous");
     public static final RankineStone RHYOLITE = RankineStone.newStoneReg("rhyolite", "igneous");
     public static final RankineStone COMENDITE = RankineStone.newStoneReg("comendite", "igneous");

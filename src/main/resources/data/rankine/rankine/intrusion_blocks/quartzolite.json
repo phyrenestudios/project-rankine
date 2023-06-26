@@ -1,0 +1,9 @@
+{
+  "block": "rankine:quartzolite",
+  "quartzMin": 0.8,
+  "quartzMax": 1.0,
+  "alkalinityMin": -1.0,
+  "alkalinityMax": 1.0,
+  "maficMin": -1.0,
+  "maficMax": 1.0
+}

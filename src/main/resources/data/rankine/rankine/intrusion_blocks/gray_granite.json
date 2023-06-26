@@ -1,0 +1,11 @@
+{
+  "block": "rankine:gray_granite",
+  "quartzMin": 0.2,
+  "quartzMax": 0.8,
+  "alkalinityMin": -1.0,
+  "alkalinityMax": 0.3,
+  "maficMin": -1.0,
+  "maficMax": 1.0,
+  "oreBlock": "rankine:malachite_block",
+  "oreChance": 0.02
+}

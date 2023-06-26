@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_pressure_plate",
+  "key": {
+    "#": {
+      "item": "rankine:quartzolite"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "item": "rankine:quartzolite_pressure_plate"
+  },
+  "show_notification": true
+}

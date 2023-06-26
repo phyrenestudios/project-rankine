@@ -16,6 +16,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.registries.VanillaRegistries;
+import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
@@ -29,6 +30,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
@@ -89,6 +91,36 @@ public final class DataGenerators {
                     HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(RankineTreePlacements.PLACED_CEDAR_TREE)),
                     GenerationStep.Decoration.VEGETAL_DECORATION
             ));
+
+            context.register(ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(ProjectRankine.MODID, "remove_vanilla_stones")), new ForgeBiomeModifiers.RemoveFeaturesBiomeModifier(
+                    biomeGetter.getOrThrow(BiomeTags.IS_OVERWORLD),
+                    HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_ANDESITE_LOWER),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_ANDESITE_UPPER),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_DIORITE_LOWER),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_DIORITE_UPPER),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_GRANITE_LOWER),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_GRANITE_UPPER),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_COAL_UPPER),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_COAL_LOWER),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_IRON_UPPER),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_IRON_MIDDLE),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_IRON_SMALL),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_GOLD_EXTRA),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_GOLD),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_GOLD_LOWER),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_REDSTONE),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_REDSTONE_LOWER),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_DIAMOND),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_DIAMOND_LARGE),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_DIAMOND_BURIED),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_LAPIS),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_LAPIS_BURIED),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_EMERALD),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_COPPER),
+                            context.lookup(Registries.PLACED_FEATURE).getOrThrow(OrePlacements.ORE_COPPER_LARGE)),
+                    Collections.singleton(GenerationStep.Decoration.UNDERGROUND_ORES)
+            ));
+
         });
         registryBuilder.add(Registries.BIOME, context -> {});
         RegistryAccess.Frozen regAccess = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);

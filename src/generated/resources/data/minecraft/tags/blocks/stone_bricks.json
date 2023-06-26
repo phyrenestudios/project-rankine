@@ -2,6 +2,8 @@
   "values": [
     "rankine:pegmatite_bricks",
     "rankine:mossy_pegmatite_bricks",
+    "rankine:quartzolite_bricks",
+    "rankine:mossy_quartzolite_bricks",
     "rankine:gray_granite_bricks",
     "rankine:mossy_gray_granite_bricks",
     "rankine:rhyolite_bricks",

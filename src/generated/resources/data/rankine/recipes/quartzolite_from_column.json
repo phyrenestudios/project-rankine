@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_stone_column",
+  "ingredients": [
+    {
+      "item": "rankine:quartzolite_column"
+    },
+    {
+      "item": "rankine:quartzolite_column"
+    },
+    {
+      "item": "rankine:quartzolite_column"
+    },
+    {
+      "item": "rankine:quartzolite_column"
+    }
+  ],
+  "result": {
+    "item": "rankine:quartzolite"
+  }
+}

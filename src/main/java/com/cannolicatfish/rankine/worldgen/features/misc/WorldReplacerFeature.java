@@ -1,80 +1,145 @@
 package com.cannolicatfish.rankine.worldgen.features.misc;
 
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineWorldgen;
+import com.cannolicatfish.rankine.stone_features.Intrusion;
+import com.cannolicatfish.rankine.stone_features.IntrusionShell;
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
+import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
+
+import java.util.List;
 
 public class WorldReplacerFeature extends Feature<NoneFeatureConfiguration> {
+
+    public static double quartzNoiseValue;
+    public static double alkalinityNoiseValue;
+    public static double maficNoiseValue;
+    public static double intrusionSelectorValue;
+    private static double intrusionScale = 50D;
+    private static double quartzNoiseScale = 1000D;
+    private static double alkalinityNoiseScale = 1000D;
+    private static double maficNoiseScale = 1000D;
+    private static double intrusionSelectorNoiseScale = 1500D;
+
     /*
     public static final int NOISE_SCALE = Config.WORLDGEN.NOISE_SCALE.get();
     public static final int LAYER_THICKNESS = Config.WORLDGEN.LAYER_THICKNESS.get();
     public static final double LAYER_BEND = Config.WORLDGEN.LAYER_BEND.get();
     public static List<ResourceLocation> GEN_BIOMES = WorldgenUtils.GEN_BIOMES;
     public static List<List<String>> LAYER_LISTS = WorldgenUtils.LAYER_LISTS;
-    public static final PerlinSimplexNoise NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(4321L)), ImmutableList.of(0));
     public static final PerlinSimplexNoise INTRUSION_NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(9183)), ImmutableList.of(0));
 
+    public static final PerlinSimplexNoise NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(4321L)), ImmutableList.of(0));
 
      */
+
     public WorldReplacerFeature(Codec<NoneFeatureConfiguration> configFactoryIn) {
         super(configFactoryIn);
     }
 
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
-        /*
         WorldGenLevel reader = p_159749_.level();
         ChunkAccess chunk = reader.getChunk(p_159749_.origin());
+        PerlinSimplexNoise intrusionNoise = new PerlinSimplexNoise(reader.getRandom(), ImmutableList.of(0));
+        PerlinSimplexNoise quartzNoise = new PerlinSimplexNoise(reader.getRandom(), ImmutableList.of(0));
+        PerlinSimplexNoise alkalinityNoise = new PerlinSimplexNoise(reader.getRandom(), ImmutableList.of(0));
+        PerlinSimplexNoise maficNoise = new PerlinSimplexNoise(reader.getRandom(), ImmutableList.of(0));
+        PerlinSimplexNoise intrusionSelectorNoise = new PerlinSimplexNoise(reader.getRandom(), ImmutableList.of(0));
 
         for (int x = chunk.getPos().getMinBlockX(); x <= chunk.getPos().getMaxBlockX(); ++x) {
             for (int z = chunk.getPos().getMinBlockZ(); z <= chunk.getPos().getMaxBlockZ(); ++z) {
                 int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
-                Biome targetBiome = reader.getBiome(new BlockPos(x, reader.getMaxBuildHeight(), z)).value();
-                int biomeIndex = GEN_BIOMES.indexOf(ForgeRegistries.BIOMES.getKey((targetBiome)));
-                if (biomeIndex == -1) continue;
-
-                double stoneNoise = NOISE.getValue((double) x / NOISE_SCALE, (double) z / NOISE_SCALE, false);
-                List<String> blockList = LAYER_LISTS.get(GEN_BIOMES.indexOf(ForgeRegistries.BIOMES.getKey((targetBiome))));
+                quartzNoiseValue = quartzNoise.getValue(x/quartzNoiseScale, z/quartzNoiseScale, false);
+                alkalinityNoiseValue = alkalinityNoise.getValue(x/alkalinityNoiseScale, z/alkalinityNoiseScale, false);
+                maficNoiseValue = maficNoise.getValue(x/maficNoiseScale, z/maficNoiseScale, false);
+                intrusionSelectorValue = intrusionSelectorNoise.getValue(x/intrusionSelectorNoiseScale, z/intrusionSelectorNoiseScale, false);
                 for (int y = reader.getMinBuildHeight(); y <= endY; ++y) {
-                    BlockState StoneBS = getStone(blockList,y,stoneNoise);
-                    if (StoneBS == null) return false;
                     BlockPos TARGET_POS = new BlockPos(x,y,z);
                     BlockState TARGET_BS = reader.getBlockState(TARGET_POS);
-                    if (canReplaceStone(TARGET_BS)) {
-                        reader.setBlock(TARGET_POS, StoneBS, 3);
-                    } else if (TARGET_BS.hasProperty(BlockStateProperties.SLAB_TYPE)) {
-                        ResourceLocation RS2 = ResourceLocation.tryParse(ForgeRegistries.BLOCKS.getKey(StoneBS.getBlock()).toString() + "_slab");
-                        Block blockVar = ForgeRegistries.BLOCKS.getValue(RS2);
-                        if (blockVar != Blocks.AIR && blockVar.defaultBlockState().hasProperty(BlockStateProperties.SLAB_TYPE)) {
-                            reader.setBlock(TARGET_POS, blockVar.defaultBlockState().setValue(BlockStateProperties.SLAB_TYPE, TARGET_BS.getValue(BlockStateProperties.SLAB_TYPE)), 3);
+
+                    if (TARGET_BS.is(BlockTags.BASE_STONE_OVERWORLD)) {
+                        Block layerBlock = getLayerBlock(x,y,z);
+                        if (isIntrusion(x,y,z, intrusionNoise)) {
+                            reader.setBlock(TARGET_POS, getIntrusionBlock(reader).defaultBlockState(), 3);
+                        } else if (isIntrusionShell(x,y,z, intrusionNoise)) {
+                            reader.setBlock(TARGET_POS, getIntrusionShellBlock(reader, layerBlock).defaultBlockState(), 3);
+                        } else {
+                            reader.setBlock(TARGET_POS, layerBlock.defaultBlockState(), 3);
                         }
                     }
-                    /*
-                    switch (Biome.getBiomeCategory(Holder.direct(targetBiome))) {
-                        case NETHER:
-                            if (TARGET_BS != Blocks.NETHERRACK.defaultBlockState()) break;
-                            if (leaveNetherrack(reader,TARGET_POS,targetBiome)) break;
-                            if (placeSandstone(reader,TARGET_POS)) {
-                                reader.setBlock(TARGET_POS, RankineBlocks.SOUL_SANDSTONE.getSandstone().defaultBlockState(), 3);
-                            } else if (TARGET_BS.is(BlockTags.BASE_STONE_NETHER)) {
-                                reader.setBlock(TARGET_POS, StoneBS, 3);
-                            }
-                            break;
-                        case THEEND:
-                            if (TARGET_BS.is(RankineTags.Blocks.BASE_STONE_END)) {
-                                reader.setBlock(TARGET_POS, StoneBS, 3);
-                            }
-                            break;
-                        default:
-
-                            break;
                 }
+
             }
         }
-                }*/
+
         return true;
     }
+
+    private static boolean isIntrusion(int x, int y, int z, PerlinSimplexNoise intrusionNoise) {
+        double noise = intrusionNoise.getValue(x/intrusionScale, z/intrusionScale, false);
+        //if (noise > 0.8) {
+            return y < noise*300-230;
+        //}
+        //return false;
+    }
+
+
+    private static boolean isIntrusionShell(int x, int y, int z, PerlinSimplexNoise intrusionNoise) {
+        double noise = intrusionNoise.getValue(x/intrusionScale, z/intrusionScale, false);
+        //if (noise > 0.8) {
+            return y < noise*300-220;
+        //}
+        //return false;
+    }
+
+    private static Block getIntrusionShellBlock(WorldGenLevel reader, Block parentStone) {
+        List<IntrusionShell> validBlocks = reader.registryAccess().registryOrThrow(RankineWorldgen.INTRUSION_SHELL_REGISTRY_KEY).stream()
+                .filter(i -> i.getParentBlock() == parentStone)
+                .toList();
+
+        if (validBlocks.isEmpty()) {
+            return getIntrusionBlock(reader);
+        }
+
+        return validBlocks.get(0).getShellBlock();
+
+    }
+
+    private static Block getIntrusionBlock(WorldGenLevel reader) {
+        List<Intrusion> validBlocks = reader.registryAccess().registryOrThrow(RankineWorldgen.INTRUSION_REGISTRY_KEY).stream()
+                .filter(i -> i.getQuartzMin() < quartzNoiseValue && i.getQuartzMax() >= quartzNoiseValue)
+                .filter(i -> i.getAlkalinityMin() < alkalinityNoiseValue && i.getAlkalinityMax() >= alkalinityNoiseValue)
+                .filter(i -> i.getMaficMin() < maficNoiseValue && i.getMaficMax() >= maficNoiseValue)
+                .toList();
+
+        if (validBlocks.isEmpty()) {
+            return RankineBlocks.KIMBERLITE.getStone();
+        }
+
+        Intrusion finalIntrusion = validBlocks.get((int) Math.floor(((intrusionSelectorValue+0.99)/2 * validBlocks.size())));
+        return finalIntrusion.getOreBlock() != Blocks.AIR && reader.getRandom().nextFloat() < finalIntrusion.getOreChance() ? finalIntrusion.getOreBlock() : finalIntrusion.getBlock();
+
+
+    }
+
+    public static Block getLayerBlock(int x, int y, int z) {
+
+        return RankineBlocks.ANORTHOSITE.getStone();
+    }
+
 /*
     private static boolean canReplaceStone(BlockState target) {
         switch (Config.WORLDGEN.LAYER_GEN.get()) {
