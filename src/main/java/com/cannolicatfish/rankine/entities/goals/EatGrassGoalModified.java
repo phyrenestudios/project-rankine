@@ -76,7 +76,12 @@ public class EatGrassGoalModified extends Goal {
                 if (IS_GRASS_BLOCK.test(this.level.getBlockState(blockpos1))) {
                     if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
                         this.level.levelEvent(2001, blockpos1, Block.getId(this.level.getBlockState(blockpos1).getBlock().defaultBlockState()));
-                        this.level.setBlock(blockpos1, RankineLists.SOIL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(this.level.getBlockState(blockpos1).getBlock())).defaultBlockState(), 2);
+                        if (RankineLists.GRASS_BLOCKS.contains(this.level.getBlockState(blockpos1).getBlock())) {
+                            this.level.setBlock(blockpos1, RankineLists.SOIL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(this.level.getBlockState(blockpos1).getBlock())).defaultBlockState(), 2);
+                        } else {
+                            this.level.setBlock(blockpos1, Blocks.DIRT.defaultBlockState(), 2);
+                        }
+
                     }
 
                     this.mob.ate();

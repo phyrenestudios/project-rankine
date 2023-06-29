@@ -2,22 +2,19 @@
   "type": "rankine:fusion_furnace",
   "cookTime": 400,
   "input1": {
-    "item": "rankine:galena"
+    "item": "rankine:hematite"
   },
   "input2": {
-    "item": "rankine:galena"
+    "item": "rankine:coke"
   },
   "result1": {
-    "item":"rankine:lead_ingot",
+    "item": "minecraft:iron_ingot",
     "count": 2
-  },
-  "result2": {
-    "item":"rankine:germanium_nugget"
   },
   "gasInput": {
     "item": "minecraft:glass_bottle"
   },
   "gasOutput": {
-    "item": "rankine:sulfur_dioxide_gas_bottle"
+    "item": "rankine:carbon_dioxide_gas_bottle"
   }
 }

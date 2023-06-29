@@ -5,15 +5,15 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTieredItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.network.chat.Component;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -24,8 +24,6 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class PackagedArmorItem extends Item {
     public PackagedArmorItem(Properties properties) {
         super(properties);
@@ -34,7 +32,7 @@ public class PackagedArmorItem extends Item {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add((new TranslatableComponent("item.rankine.packaged_tool_armor_desc")).withStyle(ChatFormatting.RED));
+        tooltip.add((new TranslatableComponent("item.rankine.packaged_armor_desc")).withStyle(ChatFormatting.RED));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 
