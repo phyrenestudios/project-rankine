@@ -79,7 +79,7 @@ public final class DataGenerators {
             context.register(ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(ProjectRankine.MODID, "overworld_stone_replacer")), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                     biomeGetter.getOrThrow(BiomeTags.IS_OVERWORLD),
                     HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(RankineUndergroundPlacements.OVERWORLD_STONE_REPLACER)),
-                    GenerationStep.Decoration.UNDERGROUND_DECORATION
+                    GenerationStep.Decoration.TOP_LAYER_MODIFICATION
             ));
             context.register(ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(ProjectRankine.MODID, "honey_locust_tree")), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                     biomeGetter.getOrThrow(BiomeTags.IS_OVERWORLD),
