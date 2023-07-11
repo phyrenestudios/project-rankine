@@ -29,8 +29,6 @@ public class OverworldReplacer {
     public static double alkalinityNoiseValue;
     public static double maficNoiseValue;
     public static double intrusionSelectorValue;
-    //public static double layerSelectorValue;
-    //public static double layerSelectorValue2;
     private static double quartzNoiseScale = 500D;
     private static double alkalinityNoiseScale = 500D;
     private static double maficNoiseScale = 500D;
@@ -38,8 +36,6 @@ public class OverworldReplacer {
 
     private static double intrusionScale = 50D;
 
-    private static final int layerCount = 5;
-    private static final int layerThickness = 32;
 
     private static final RandomSource rand = RandomSource.create();
     private static final PerlinSimplexNoise intrusionNoise = new PerlinSimplexNoise(rand, ImmutableList.of(0));
@@ -50,29 +46,32 @@ public class OverworldReplacer {
     private static final PerlinSimplexNoise layerSelectorNoise = new PerlinSimplexNoise(rand, ImmutableList.of(0));
 
     private static final List<Triplet<Block, Double, Double>> stoneLayerBlocksVoronio = new ArrayList<>();
-    private static final List<Block> stoneLayerBlocks = new ArrayList<>();
+    private static final List<Block> continentalLayerBlocks = new ArrayList<>();
+    private static final List<Block> oceanicLayerBlocks = new ArrayList<>();
 
     public static void init(LevelAccessor levelIn) {
         RandomSource levelRand = RandomSource.create(42);
         for (StoneLayer l : levelIn.registryAccess().registryOrThrow(RankineWorldgen.STONE_LAYER_REGISTRY_KEY).stream().toList()) {
             if (l.geLayerBlock() != Blocks.AIR) {
                 //stoneLayerBlocksVoronio.add(new Triplet<>(l.geLayerBlock(), levelRand.nextDouble()*2-1, levelRand.nextDouble()*2-1));
-                stoneLayerBlocks.add(l.geLayerBlock());
+                continentalLayerBlocks.add(l.geLayerBlock());
+                oceanicLayerBlocks.add(l.geLayerBlock());
             }
         }
     }
 
 
 
-    private static final double worleyScale = 40D;
+    private static final double worleyScale = 400D;
+    private static final int layerThickness = 30;
     private static Block getWorleyBlock(BlockPos posIn) {
-        Vector2d inputRegionPos = new Vector2d( posIn.getX() - (posIn.getX()<0 ? worleyScale - Math.abs(posIn.getX() % worleyScale) : Math.abs(posIn.getX() % worleyScale)), posIn.getZ() - (posIn.getZ()<0 ? worleyScale - Math.abs(posIn.getZ() % worleyScale) : Math.abs(posIn.getZ() % worleyScale)));
-        //Vector2d inputPos = new Vector2d(posIn.getX(),posIn.getZ());
+        //Vector2d inputRegionPos = new Vector2d( posIn.getX() - (posIn.getX()<0 ? worleyScale - Math.abs(posIn.getX() % worleyScale) : Math.abs(posIn.getX() % worleyScale)), posIn.getZ() - (posIn.getZ()<0 ? worleyScale - Math.abs(posIn.getZ() % worleyScale) : Math.abs(posIn.getZ() % worleyScale)));
+        Vector2d inputRegionPos = getRegionCord(posIn);
         Vector2d closestRegion = null;
         double shortestRegionDistance = 3.0D*worleyScale;
         for (int i=-1; i<=1; i+=1) {
             for (int j=-1; j<=1; j+=1) {
-                Vector2d regionJitterPoint = getRegionJitterPoint(new Vector2d(i*worleyScale+inputRegionPos.x(), j*worleyScale+inputRegionPos.y()));
+                Vector2d regionJitterPoint = getRegionJitterPoint(new Vector2d(i*worleyScale+inputRegionPos.x(), j*worleyScale+inputRegionPos.y()), getLayer(posIn));
                 double regionalDistance = getDistance(regionJitterPoint, posIn);
                 if (regionalDistance < shortestRegionDistance) {
                     shortestRegionDistance = regionalDistance;
@@ -80,17 +79,43 @@ public class OverworldReplacer {
                 }
             }
         }
-
-        return stoneLayerBlocks.get((int) Math.floor((layerSelectorNoise.getValue(closestRegion.x(), closestRegion.y(), false)+1)/2*stoneLayerBlocks.size()));
-
+        return continentalLayerBlocks.get((int) Math.floor((layerSelectorNoise.getValue(closestRegion.x(), closestRegion.y(), false)+1)/2*continentalLayerBlocks.size()));
+        //check fo oceano
     }
+
+    private static int getLayer(BlockPos posIn) {
+        double noise = layerSelectorNoise.getValue(posIn.getX()/150D, posIn.getZ()/150D, false);
+        if (noise < 0.5) {
+            noise = lerp(-1.0D, 0.0D, 0.5D, 1.00, noise);
+        } else if (noise < 0.8) {
+            noise = lerp(0.5D, 1.00, 0.8D, 1.6D, noise);
+        } else {
+            noise = lerp(0.8D, 1.6D, 1.00, 3.0D, noise);
+        }
+        return (int) Math.floor((posIn.getY()+64-noise*30)/(layerThickness+8*layerSelectorNoise.getValue((posIn.getX()-30)/200D, (posIn.getZ()-30)/200D, false)));
+    }
+
+    private static double lerp(double xa, double ya, double xb, double yb, double x) {
+        if (x == xa) return ya;
+        if (x == xb) return yb;
+        return (yb - ya) / (xb - xa) * (x - xa) + ya;
+    }
+
+    private static Vector2d getRegionCord(BlockPos posIn) {
+        double xMod = posIn.getX() % worleyScale;
+        double zMod = posIn.getZ() % worleyScale;
+        double xShift = xMod==0 ? 0 : xMod<0 ? worleyScale - Math.abs(xMod): Math.abs(xMod);
+        double zShift = zMod==0 ? 0 : zMod<0 ? worleyScale - Math.abs(zMod): Math.abs(zMod);
+        return new Vector2d( posIn.getX() - xShift, posIn.getZ() - zShift);
+    }
+
 
     private static double getDistance(Vector2d vec1, BlockPos posIn) {
-        return vec1.distance(posIn.getX(), posIn.getZ());
+        return vec1.distance(posIn.getX()+worleyScale/10*(layerSelectorNoise.getValue(posIn.getX()/50D,posIn.getZ()/50D,false)+1)/2, posIn.getZ()+worleyScale/10*(layerSelectorNoise.getValue(posIn.getX()/50D+16,posIn.getZ()/50D+16,false)+1)/2);
     }
 
-    private static Vector2d getRegionJitterPoint(Vector2d inputRegionPos) {
-        return inputRegionPos.add(worleyScale*(layerSelectorNoise.getValue(inputRegionPos.x(), inputRegionPos.y(), false)+1)/2, worleyScale*(layerSelectorNoise.getValue(inputRegionPos.x()+16, inputRegionPos.y()+16, false)+1)/2);
+    private static Vector2d getRegionJitterPoint(Vector2d inputRegionPos, int layer) {
+        return inputRegionPos.add(worleyScale*(layerSelectorNoise.getValue(inputRegionPos.x()+16*layer, inputRegionPos.y()+16*layer, false)+1)/2, worleyScale*(layerSelectorNoise.getValue(inputRegionPos.x()+16*(layer+1), inputRegionPos.y()+16*(layer+1), false)+1)/2);
     }
 
 
