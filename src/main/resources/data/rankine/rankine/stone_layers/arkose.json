@@ -1,3 +1,8 @@
 {
-  "layerBlock": "rankine:arkose"
+  "layerBlock": "rankine:arkose",
+  "upperContinental": true,
+  "midContinental": true,
+  "deepContinental": false,
+  "upperOceanic": true,
+  "deppOceanic": false
 }

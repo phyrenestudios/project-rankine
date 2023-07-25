@@ -1,0 +1,8 @@
+{
+  "layerBlock": "rankine:komatiite",
+  "upperContinental": false,
+  "midContinental": false,
+  "deepContinental": false,
+  "upperOceanic": false,
+  "deepOceanic": true
+}

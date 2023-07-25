@@ -1,3 +1,8 @@
 {
-  "layerBlock": "rankine:anorthosite"
+  "layerBlock": "rankine:anorthosite",
+  "upperContinental": true,
+  "midContinental": true,
+  "deepContinental": true,
+  "upperOceanic": false,
+  "deppOceanic": false
 }

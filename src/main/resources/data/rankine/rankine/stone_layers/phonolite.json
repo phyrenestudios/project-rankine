@@ -1,6 +1,6 @@
 {
-  "layerBlock": "rankine:comendite",
-  "upperContinental": true,
+  "layerBlock": "rankine:anorthosite",
+  "upperContinental": false,
   "midContinental": true,
   "deepContinental": true,
   "upperOceanic": false,

@@ -1,3 +1,8 @@
 {
-  "layerBlock": "rankine:itacolumite"
+  "layerBlock": "rankine:itacolumite",
+  "upperContinental": true,
+  "midContinental": true,
+  "deepContinental": false,
+  "upperOceanic": true,
+  "deppOceanic": false
 }

@@ -1,0 +1,8 @@
+{
+  "layerBlock": "rankine:gabbro",
+  "upperContinental": false,
+  "midContinental": false,
+  "deepContinental": false,
+  "upperOceanic": false,
+  "deepOceanic": true
+}

@@ -1,3 +1,8 @@
 {
-  "layerBlock": "rankine:mudstone"
+  "layerBlock": "rankine:mudstone",
+  "upperContinental": true,
+  "midContinental": true,
+  "deepContinental": false,
+  "upperOceanic": true,
+  "deppOceanic": false
 }
