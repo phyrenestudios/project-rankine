@@ -8,7 +8,7 @@ import com.cannolicatfish.rankine.blocks.alloys.AlloyBlock;
 import com.cannolicatfish.rankine.blocks.asphalt.*;
 import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerBlock;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
-import com.cannolicatfish.rankine.blocks.block_groups.*;
+import com.cannolicatfish.rankine.blocks.block_enums.*;
 import com.cannolicatfish.rankine.blocks.buildingmodes.GlazedPorcelainBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.MetalBarsBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.MetalLadderBlock;
@@ -40,7 +40,6 @@ import com.cannolicatfish.rankine.worldgen.trees.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -70,6 +69,8 @@ public class RankineBlocks {
 
     static {
         StoneBlocks.registerBlocks();
+        CementBlocks.registerBlocks();
+        BricksBlocks.registerBlocks();
     }
     //WOODS
     public static final RankineWood CEDAR = RankineWood.newWoodReg("cedar", 2.0f,true, true, 2, new CedarTreeGrower());
@@ -101,38 +102,6 @@ public class RankineBlocks {
     public static final RankineSandstone WHITE_SANDSTONE = RankineSandstone.newSandstoneReg("white_sandstone");
     public static final RankineSandstone BLACK_SANDSTONE = RankineSandstone.newSandstoneReg("black_sandstone");
     public static final RankineSandstone SOUL_SANDSTONE = RankineSandstone.newSandstoneReg("soul_sandstone");
-
-    //CEMENTS
-    public static final RankineCement WHITE_CEMENT = RankineCement.newCementReg("white_cement", DyeColor.WHITE);
-    public static final RankineCement LIGHT_GRAY_CEMENT = RankineCement.newCementReg("light_gray_cement", DyeColor.LIGHT_GRAY);
-    public static final RankineCement GRAY_CEMENT = RankineCement.newCementReg("gray_cement", DyeColor.GRAY);
-    public static final RankineCement BLACK_CEMENT = RankineCement.newCementReg("black_cement", DyeColor.BLACK);
-    public static final RankineCement BROWN_CEMENT = RankineCement.newCementReg("brown_cement", DyeColor.BROWN);
-    public static final RankineCement RED_CEMENT = RankineCement.newCementReg("red_cement", DyeColor.RED);
-    public static final RankineCement ORANGE_CEMENT = RankineCement.newCementReg("orange_cement", DyeColor.ORANGE);
-    public static final RankineCement YELLOW_CEMENT = RankineCement.newCementReg("yellow_cement", DyeColor.YELLOW);
-    public static final RankineCement LIME_CEMENT = RankineCement.newCementReg("lime_cement", DyeColor.LIME);
-    public static final RankineCement GREEN_CEMENT = RankineCement.newCementReg("green_cement", DyeColor.GREEN);
-    public static final RankineCement CYAN_CEMENT = RankineCement.newCementReg("cyan_cement", DyeColor.CYAN);
-    public static final RankineCement LIGHT_BLUE_CEMENT = RankineCement.newCementReg("light_blue_cement", DyeColor.LIGHT_BLUE);
-    public static final RankineCement BLUE_CEMENT = RankineCement.newCementReg("blue_cement", DyeColor.BLUE);
-    public static final RankineCement MAGENTA_CEMENT = RankineCement.newCementReg("magenta_cement", DyeColor.MAGENTA);
-    public static final RankineCement PURPLE_CEMENT = RankineCement.newCementReg("purple_cement", DyeColor.PURPLE);
-    public static final RankineCement PINK_CEMENT = RankineCement.newCementReg("pink_cement", DyeColor.PINK);
-    public static final RankineCement CONCRETE = RankineCement.newCementReg("concrete", DyeColor.BROWN);
-    public static final RankineCement ROMAN_CONCRETE = RankineCement.newCementReg("roman_concrete", DyeColor.BROWN);
-    public static final RankineCement POLISHED_ROMAN_CONCRETE = RankineCement.newCementReg("polished_roman_concrete", DyeColor.BROWN);
-    public static final RankineCement ROMAN_CONCRETE_BRICKS = RankineCement.newCementReg("roman_concrete_bricks", DyeColor.BROWN);
-
-    //BRICKS
-    public static final RankineBricks CLAY_BRICKS = RankineBricks.newBricksReg("clay_bricks", MaterialColor.CLAY);
-    public static final RankineBricks KAOLINITE_CLAY_BRICKS = RankineBricks.newBricksReg("kaolinite_bricks", MaterialColor.TERRACOTTA_WHITE);
-    public static final RankineBricks HALLOYSITE_BRICKS = RankineBricks.newBricksReg("halloysite_bricks", MaterialColor.TERRACOTTA_YELLOW);
-    public static final RankineBricks PORCELAIN_CLAY_BRICKS = RankineBricks.newBricksReg("fire_clay_bricks", MaterialColor.TERRACOTTA_WHITE);
-    public static final RankineBricks FIRE_CLAY_BRICKS = RankineBricks.newBricksReg("porcelain_clay_bricks", MaterialColor.COLOR_BROWN);
-    public static final RankineBricks REFRACTORY_BRICKS = RankineBricks.newBricksReg("refractory_bricks", MaterialColor.TERRACOTTA_BROWN);
-    public static final RankineBricks HIGH_REFRACTORY_BRICKS = RankineBricks.newBricksReg("high_refractory_bricks", MaterialColor.TERRACOTTA_GRAY);
-    public static final RankineBricks ULTRA_HIGH_REFRACTORY_BRICKS = RankineBricks.newBricksReg("ultra_high_refractory_bricks", MaterialColor.TERRACOTTA_CYAN);
 
     //DRIPSTONES
     public static final RankineDripstone FERRIC_DRIPSTONE = RankineDripstone.newDripstoneReg("ferric_dripstone", MaterialColor.STONE);

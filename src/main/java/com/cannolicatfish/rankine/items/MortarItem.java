@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.blocks.block_enums.CementBlocks;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -42,7 +43,7 @@ public class MortarItem extends Item {
                 } else if (block == RankineBlocks.CAST_IRON_SUPPORT.get() && !worldIn.isClientSide()) {
                     int i = 0;
                     while (worldIn.getBlockState(pos.above(i)) == RankineBlocks.CAST_IRON_SUPPORT.get().defaultBlockState()) {
-                        worldIn.setBlockAndUpdate(pos.above(i), RankineBlocks.CONCRETE.getCementBlock().defaultBlockState());
+                        worldIn.setBlockAndUpdate(pos.above(i), CementBlocks.CONCRETE.getCementBlock().defaultBlockState());
                         ++i;
                         if (context.getItemInHand().getCount() >= 1) {
                             context.getItemInHand().shrink(1);
@@ -52,7 +53,7 @@ public class MortarItem extends Item {
                     }
                     i = 1;
                     while (worldIn.getBlockState(pos.below(i)) == RankineBlocks.CAST_IRON_SUPPORT.get().defaultBlockState()) {
-                        worldIn.setBlockAndUpdate(pos.below(i), RankineBlocks.CONCRETE.getCementBlock().defaultBlockState());
+                        worldIn.setBlockAndUpdate(pos.below(i), CementBlocks.CONCRETE.getCementBlock().defaultBlockState());
                         ++i;
                         if (context.getItemInHand().getCount() >= 1) {
                             context.getItemInHand().shrink(1);
@@ -62,11 +63,11 @@ public class MortarItem extends Item {
                     }
                     return InteractionResult.SUCCESS;
                 } else if (block == RankineBlocks.CAST_IRON_SUPPORT_SLAB.get() && !worldIn.isClientSide()) {
-                    worldIn.setBlockAndUpdate(pos, RankineBlocks.CONCRETE.getCementSlab().defaultBlockState().setValue(BlockStateProperties.SLAB_TYPE, state.getValue(BlockStateProperties.SLAB_TYPE)).setValue(BlockStateProperties.WATERLOGGED, state.getValue(BlockStateProperties.WATERLOGGED)));
+                    worldIn.setBlockAndUpdate(pos, CementBlocks.CONCRETE.getCementSlab().defaultBlockState().setValue(BlockStateProperties.SLAB_TYPE, state.getValue(BlockStateProperties.SLAB_TYPE)).setValue(BlockStateProperties.WATERLOGGED, state.getValue(BlockStateProperties.WATERLOGGED)));
                     context.getItemInHand().shrink(1);
                     return InteractionResult.SUCCESS;
                 } else if (block == RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get() && !worldIn.isClientSide()) {
-                    worldIn.setBlockAndUpdate(pos, RankineBlocks.CONCRETE.getCementStairs().defaultBlockState().setValue(StairBlock.SHAPE, state.getValue(StairBlock.SHAPE)).setValue(StairBlock.FACING, state.getValue(StairBlock.FACING)).setValue(StairBlock.HALF, state.getValue(StairBlock.HALF)).setValue(BlockStateProperties.WATERLOGGED, state.getValue(BlockStateProperties.WATERLOGGED)));
+                    worldIn.setBlockAndUpdate(pos, CementBlocks.CONCRETE.getCementStairs().defaultBlockState().setValue(StairBlock.SHAPE, state.getValue(StairBlock.SHAPE)).setValue(StairBlock.FACING, state.getValue(StairBlock.FACING)).setValue(StairBlock.HALF, state.getValue(StairBlock.HALF)).setValue(BlockStateProperties.WATERLOGGED, state.getValue(BlockStateProperties.WATERLOGGED)));
                     context.getItemInHand().shrink(1);
                     return InteractionResult.SUCCESS;
                 }

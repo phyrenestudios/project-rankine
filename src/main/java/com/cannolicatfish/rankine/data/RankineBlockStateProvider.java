@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.data;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.BaseAsphaltBlock;
-import com.cannolicatfish.rankine.blocks.block_groups.*;
+import com.cannolicatfish.rankine.blocks.block_enums.*;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.MetalLadderBlock;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapBlock;
@@ -118,17 +118,17 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             slabBlock(Sandstone.getCutSandstoneSlab(), false);
             simpleBlock(Sandstone.getChiseledSandstone(),models().cubeColumn("chiseled_"+Sandstone.getBaseName(),blockTexture(Sandstone.getChiseledSandstone()),getBlockRSL("smooth_"+Sandstone.getBaseName())));
         }
-        for (RankineCement Cement : RankineLists.RANKINE_CEMENTS) {
-            simpleBlock(Cement.getCementBlock());
-            quarterSlab(Cement.getCementSlab());
-            stairsBlock(Cement.getCementStairs(), false);
-            wallBlock(Cement.getCementWall(), false);
+        for (CementBlocks baseCementBlock : CementBlocks.values()) {
+            simpleBlock(baseCementBlock.getCementBlock());
+            quarterSlab(baseCementBlock.getCementSlab());
+            stairsBlock(baseCementBlock.getCementStairs(), false);
+            wallBlock(baseCementBlock.getCementWall(), false);
         }
-        for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
-            fancyBricksBlock(Bricks.getBricksBlock());
-            slabBlock(Bricks.getBricksSlab(), true);
-            stairsBlock(Bricks.getBricksStairs(), true);
-            wallBlock(Bricks.getBricksWall(), true);
+        for (BricksBlocks baseBricksBlock : BricksBlocks.values()) {
+            fancyBricksBlock(baseBricksBlock.getBricksBlock());
+            slabBlock(baseBricksBlock.getBricksSlab(), true);
+            stairsBlock(baseBricksBlock.getBricksStairs(), true);
+            wallBlock(baseBricksBlock.getBricksWall(), true);
         }
         for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
             simpleBlock(Dripstone.getDripstone());

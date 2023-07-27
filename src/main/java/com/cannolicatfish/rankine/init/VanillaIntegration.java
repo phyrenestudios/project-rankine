@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
-import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_enums.RankineWood;
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;

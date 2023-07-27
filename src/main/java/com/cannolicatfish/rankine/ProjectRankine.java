@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine;
 
-import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_enums.RankineWood;
 import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.element.Element;
 import com.cannolicatfish.rankine.events.handlers.common.CreativeTabsHandler;

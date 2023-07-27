@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.block_enums.BricksBlocks;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.network.chat.Component;
@@ -16,7 +17,7 @@ public class CreativeTabsHandler {
     public static void registerTabs(CreativeModeTabEvent.Register event) {
         ProjectRankine.LOGGER.info("Registering Project Rankine Creative Tab");
         BLOCKS = event.registerCreativeModeTab(new ResourceLocation(ProjectRankine.MODID, "blocks_tab"), builder -> builder
-                .icon(() -> new ItemStack(RankineBlocks.REFRACTORY_BRICKS.getBricksBlock()))
+                .icon(() -> new ItemStack(BricksBlocks.REFRACTORY_BRICKS.getBricksBlock()))
                 .title(Component.translatable("itemGroup.rankine.blocks"))
         );
     }

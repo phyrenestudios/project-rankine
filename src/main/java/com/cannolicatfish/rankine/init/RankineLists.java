@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
-import com.cannolicatfish.rankine.blocks.block_groups.*;
+import com.cannolicatfish.rankine.blocks.block_enums.*;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -14,9 +14,7 @@ import java.util.List;
 public class RankineLists {
     public static List<RankineWood> RANKINE_WOODS = Arrays.asList(RankineBlocks.CEDAR,RankineBlocks.BALSAM_FIR,RankineBlocks.EASTERN_HEMLOCK,RankineBlocks.WESTERN_HEMLOCK,RankineBlocks.PINYON_PINE,RankineBlocks.JUNIPER,RankineBlocks.BLACK_BIRCH,RankineBlocks.YELLOW_BIRCH,RankineBlocks.RED_BIRCH,RankineBlocks.MAPLE,RankineBlocks.MAGNOLIA,RankineBlocks.BLACK_WALNUT,RankineBlocks.COCONUT_PALM,RankineBlocks.CORK_OAK,RankineBlocks.SHARINGA,RankineBlocks.CINNAMON,RankineBlocks.HONEY_LOCUST,RankineBlocks.WEEPING_WILLOW,RankineBlocks.ERYTHRINA,RankineBlocks.PETRIFIED_CHORUS,RankineBlocks.CHARRED,RankineBlocks.BAMBOO,RankineBlocks.BAMBOO_CULMS);
     public static List<RankineSandstone> RANKINE_SANDSTONES = Arrays.asList(RankineBlocks.WHITE_SANDSTONE, RankineBlocks.BLACK_SANDSTONE, RankineBlocks.DESERT_SANDSTONE, RankineBlocks.SOUL_SANDSTONE);
-    public static List<RankineCement> RANKINE_CEMENTS =  Arrays.asList(RankineBlocks.WHITE_CEMENT, RankineBlocks.LIGHT_GRAY_CEMENT, RankineBlocks.GRAY_CEMENT, RankineBlocks.BLACK_CEMENT, RankineBlocks.BROWN_CEMENT, RankineBlocks.RED_CEMENT, RankineBlocks.ORANGE_CEMENT, RankineBlocks.YELLOW_CEMENT, RankineBlocks.LIME_CEMENT, RankineBlocks.GREEN_CEMENT, RankineBlocks.CYAN_CEMENT, RankineBlocks.LIGHT_BLUE_CEMENT, RankineBlocks.BLUE_CEMENT, RankineBlocks.MAGENTA_CEMENT, RankineBlocks.PURPLE_CEMENT, RankineBlocks.PINK_CEMENT, RankineBlocks.CONCRETE, RankineBlocks.ROMAN_CONCRETE, RankineBlocks.POLISHED_ROMAN_CONCRETE, RankineBlocks.ROMAN_CONCRETE_BRICKS);
     public static List<RankineDripstone> RANKINE_DRIPSTONES = Arrays.asList(RankineBlocks.FERRIC_DRIPSTONE, RankineBlocks.MAGNESITIC_DRIPSTONE, RankineBlocks.ZIRCONIC_DRIPSTONE, RankineBlocks.GYPSIC_DRIPSTONE, RankineBlocks.HALITIC_DRIPSTONE, RankineBlocks.NITRIC_DRIPSTONE, RankineBlocks.BORACITIC_DRIPSTONE);
-    public static List<RankineBricks> RANKINE_BRICKS = Arrays.asList(RankineBlocks.CLAY_BRICKS, RankineBlocks.KAOLINITE_CLAY_BRICKS, RankineBlocks.HALLOYSITE_BRICKS, RankineBlocks.PORCELAIN_CLAY_BRICKS, RankineBlocks.FIRE_CLAY_BRICKS, RankineBlocks.REFRACTORY_BRICKS, RankineBlocks.HIGH_REFRACTORY_BRICKS, RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS);
 
     public static List<Block> VANILLA_STONES = Arrays.asList(Blocks.GRANITE,Blocks.DIORITE,Blocks.ANDESITE,Blocks.BASALT);
     public static List<Block> VANILLA_BRICKS = Arrays.asList(RankineBlocks.GRANITE_BRICKS.get(),RankineBlocks.DIORITE_BRICKS.get(),RankineBlocks.ANDESITE_BRICKS.get(),RankineBlocks.BASALT_BRICKS.get());

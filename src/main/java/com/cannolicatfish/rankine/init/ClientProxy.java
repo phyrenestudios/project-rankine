@@ -5,10 +5,10 @@ import com.cannolicatfish.rankine.blocks.HollowLogBlock;
 import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerScreen;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineBricks;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineDripstone;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
-import com.cannolicatfish.rankine.blocks.block_groups.StoneBlocks;
+import com.cannolicatfish.rankine.blocks.block_enums.BricksBlocks;
+import com.cannolicatfish.rankine.blocks.block_enums.RankineDripstone;
+import com.cannolicatfish.rankine.blocks.block_enums.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_enums.StoneBlocks;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceScreen;
@@ -70,8 +70,8 @@ public class ClientProxy implements IProxy {
             ItemProperties.register(BLK.asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) BLK.asItem()).getBuildingMode(stack) : 1.0F);
         }
 
-        for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
-            ItemProperties.register(Bricks.getBricksBlock().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Bricks.getBricksBlock().asItem()).getBuildingMode(stack) : 1.0F);
+        for (BricksBlocks baseBricksBlock : BricksBlocks.values()) {
+            ItemProperties.register(baseBricksBlock.getBricksBlock().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) baseBricksBlock.getBricksBlock().asItem()).getBuildingMode(stack) : 1.0F);
         }
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             ItemProperties.register(Wood.getPlanks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Wood.getPlanks().asItem()).getBuildingMode(stack) : 1.0F);

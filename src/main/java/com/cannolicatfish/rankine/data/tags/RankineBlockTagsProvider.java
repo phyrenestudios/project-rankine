@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.data.tags;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.CobbleBlock;
-import com.cannolicatfish.rankine.blocks.block_groups.*;
+import com.cannolicatfish.rankine.blocks.block_enums.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -41,28 +41,28 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(RankineTags.Blocks.DRIPSTONES).add(Dripstone.getDripstone());
             tag(RankineTags.Blocks.POINTED_DRIPSTONES).add(Dripstone.getPointedDripstone());
         }
-        for (RankineCement Cement : RankineLists.RANKINE_CEMENTS) {
-            for (Block blk : Cement.getCementBlocks()) {
+        for (CementBlocks baseCementBlock : CementBlocks.values()) {
+            for (Block blk : baseCementBlock.getCementBlocks()) {
                 tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
             }
-            tag(RankineTags.Blocks.CONCRETE).add(Cement.getCementBlock());
-            tag(BlockTags.SLABS).add(Cement.getCementSlab());
-            tag(BlockTags.STAIRS).add(Cement.getCementStairs());
-            tag(BlockTags.WALLS).add(Cement.getCementWall());
-            if (Cement.getBaseName().contains("roman")) {
-                tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN).add(Cement.getCementBlock(), Cement.getCementSlab(), Cement.getCementStairs());
+            tag(RankineTags.Blocks.CONCRETE).add(baseCementBlock.getCementBlock());
+            tag(BlockTags.SLABS).add(baseCementBlock.getCementSlab());
+            tag(BlockTags.STAIRS).add(baseCementBlock.getCementStairs());
+            tag(BlockTags.WALLS).add(baseCementBlock.getCementWall());
+            if (baseCementBlock.getName().contains("roman")) {
+                tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN).add(baseCementBlock.getCementBlock(), baseCementBlock.getCementSlab(), baseCementBlock.getCementStairs());
             } else {
-                tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE).add(Cement.getCementSlab(), Cement.getCementStairs());
+                tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE).add(baseCementBlock.getCementSlab(), baseCementBlock.getCementStairs());
             }
         }
-        for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
-            for (Block blk : Bricks.getBricksBlocks()) {
+        for (BricksBlocks baseBricksBlock : BricksBlocks.values()) {
+            for (Block blk : baseBricksBlock.getBricksBlocks()) {
                 tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
             }
-            tag(RankineTags.Blocks.BRICKS).add(Bricks.getBricksBlock());
-            tag(RankineTags.Blocks.BRICKS_SLAB).add(Bricks.getBricksSlab());
-            tag(RankineTags.Blocks.BRICKS_STAIRS).add(Bricks.getBricksStairs());
-            tag(RankineTags.Blocks.BRICKS_WALL).add(Bricks.getBricksWall());
+            tag(RankineTags.Blocks.BRICKS).add(baseBricksBlock.getBricksBlock());
+            tag(RankineTags.Blocks.BRICKS_SLAB).add(baseBricksBlock.getBricksSlab());
+            tag(RankineTags.Blocks.BRICKS_STAIRS).add(baseBricksBlock.getBricksStairs());
+            tag(RankineTags.Blocks.BRICKS_WALL).add(baseBricksBlock.getBricksWall());
         }
         tag(RankineTags.Blocks.BRICKS).add(Blocks.BRICKS);
         tag(RankineTags.Blocks.BRICKS).add(Blocks.NETHER_BRICKS);

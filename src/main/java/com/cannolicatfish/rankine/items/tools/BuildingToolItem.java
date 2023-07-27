@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
+import com.cannolicatfish.rankine.blocks.block_enums.BricksBlocks;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.init.RankineBlocks;
@@ -48,7 +49,7 @@ public class BuildingToolItem extends Item {
             Player playerIn = context.getPlayer();
             if (playerIn != null) {
                 ItemStack offhandItem = playerIn.getOffhandItem();
-                if (offhandItem.is(RankineBlocks.REFRACTORY_BRICKS.getBricksBlock().asItem()) || offhandItem.is(RankineBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock().asItem()) || offhandItem.is(RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.getBricksBlock().asItem())) {
+                if (offhandItem.is(BricksBlocks.REFRACTORY_BRICKS.getBricksBlock().asItem()) || offhandItem.is(BricksBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock().asItem()) || offhandItem.is(BricksBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.getBricksBlock().asItem())) {
                     for (BlockPos b : BeehiveOvenTile.ovenStructure(posIn)) {
                         if (!levelIn.getBlockState(b).is(((BlockItem) offhandItem.getItem()).getBlock())) {
                             levelIn.destroyBlock(b, true);

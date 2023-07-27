@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.block_groups.*;
+import com.cannolicatfish.rankine.blocks.block_enums.*;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
@@ -101,17 +101,17 @@ public class RankineItemModelProvider extends ItemModelProvider {
             slabParent(Sandstone.getCutSandstoneSlab());
             withExistingParent(Sandstone.getChiseledSandstone());
         }
-        for (RankineCement Cement : RankineLists.RANKINE_CEMENTS) {
-            withExistingParent(Cement.getCementBlock());
-            withExistingParent(name(Cement.getCementSlab()), getBlockRSL(name(Cement.getCementSlab(),"_size2")));
-            stairsParent(Cement.getCementStairs());
-            wallParent(Cement.getCementWall());
+        for (CementBlocks baseCementBlock : CementBlocks.values()) {
+            withExistingParent(baseCementBlock.getCementBlock());
+            withExistingParent(name(baseCementBlock.getCementSlab()), getBlockRSL(name(baseCementBlock.getCementSlab(),"_size2")));
+            stairsParent(baseCementBlock.getCementStairs());
+            wallParent(baseCementBlock.getCementWall());
         }
-        for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
-            buildingModeItem(Bricks.getBricksBlock().asItem(), ((BuildingModeBlock) Bricks.getBricksBlock()).getMaxStyles());
-            slabParent(Bricks.getBricksSlab());
-            stairsParent(Bricks.getBricksStairs());
-            wallParent(Bricks.getBricksWall());
+        for (BricksBlocks baseBricksBlock : BricksBlocks.values()) {
+            buildingModeItem(baseBricksBlock.getBricksBlock().asItem(), ((BuildingModeBlock) baseBricksBlock.getBricksBlock()).getMaxStyles());
+            slabParent(baseBricksBlock.getBricksSlab());
+            stairsParent(baseBricksBlock.getBricksStairs());
+            wallParent(baseBricksBlock.getBricksWall());
         }
         for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
             withExistingParent(Dripstone.getDripstone());

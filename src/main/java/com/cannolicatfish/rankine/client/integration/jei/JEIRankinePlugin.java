@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.client.integration.jei;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
+import com.cannolicatfish.rankine.blocks.block_enums.BricksBlocks;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceScreen;
@@ -198,9 +199,9 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(RankineItems.FLINT_SHOVEL.get()), FORAGING);
 
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get()), BEEHIVE_OVEN);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.REFRACTORY_BRICKS.getBricksBlock()),BEEHIVE_OVEN);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock()),BEEHIVE_OVEN);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.getBricksBlock()),BEEHIVE_OVEN);
+        registry.addRecipeCatalyst(new ItemStack(BricksBlocks.REFRACTORY_BRICKS.getBricksBlock()),BEEHIVE_OVEN);
+        registry.addRecipeCatalyst(new ItemStack(BricksBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock()),BEEHIVE_OVEN);
+        registry.addRecipeCatalyst(new ItemStack(BricksBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.getBricksBlock()),BEEHIVE_OVEN);
 
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.MIXING_BARREL.get()), MIXING);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()), ALLOYING);

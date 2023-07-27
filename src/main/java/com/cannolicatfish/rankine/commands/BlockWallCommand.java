@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.commands;
 
-import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
-import com.cannolicatfish.rankine.blocks.block_groups.StoneBlocks;
+import com.cannolicatfish.rankine.blocks.block_enums.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_enums.StoneBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;

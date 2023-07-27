@@ -1,7 +1,11 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
-import com.cannolicatfish.rankine.blocks.block_groups.StoneBlocks;
-import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.blocks.block_enums.CementBlocks;
+import com.cannolicatfish.rankine.blocks.block_enums.StoneBlocks;
+import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineTags;
+import com.cannolicatfish.rankine.init.RankineVillagerProfessions;
 import com.cannolicatfish.rankine.util.RankineVillagerTrades;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.npc.VillagerProfession;
@@ -130,7 +134,7 @@ public class VillagerTradesHandler {
             level4.add(new BasicItemListing(1, new ItemStack(RankineItems.IRONSTONE.get(), 2),12,10,0.05f));
             level4.add(new BasicItemListing(1, new ItemStack(RankineItems.METEORITE.get(), 2),12,10,0.05f));
             level4.add(new BasicItemListing(1, new ItemStack(RankineItems.ENSTATITE_CHONDRITE.get(), 2),12,10,0.05f));
-            level5.add(new BasicItemListing(1, new ItemStack(RankineBlocks.ROMAN_CONCRETE.getCementBlock(), 1),24,10,0.05f));
+            level5.add(new BasicItemListing(1, new ItemStack(CementBlocks.ROMAN_CONCRETE.getCementBlock(), 1),24,10,0.05f));
         }
 
         if (Config.GENERAL.VILLAGER_TRADES.get()) {

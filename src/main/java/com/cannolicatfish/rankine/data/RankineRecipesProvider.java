@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.data;
 
-import com.cannolicatfish.rankine.blocks.block_groups.*;
+import com.cannolicatfish.rankine.blocks.block_enums.*;
 import com.cannolicatfish.rankine.data.builders.AlloyCraftingRecipeBuilder;
 import com.cannolicatfish.rankine.data.builders.AlloyIngredient;
 import com.cannolicatfish.rankine.data.builders.BeehiveOvenRecipeBuilder;
@@ -428,15 +428,15 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineItems.HARD_CARBON_ELECTRODE.get(), 1).pattern("  I").pattern(" I ").pattern("I  ").define('I', RankineTags.Items.CARBON).unlockedBy("has_ingredient", has(RankineTags.Items.CARBON)).save(consumer);
 
         //Machines
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.BEEHIVE_OVEN_PIT.get(), 1).pattern(" S ").pattern("SLS").pattern(" S ").define('S', RankineBlocks.REFRACTORY_BRICKS.getBricksBlock()).define('L', Tags.Items.STORAGE_BLOCKS_COAL).unlockedBy("has_ingredient", has(RankineBlocks.REFRACTORY_BRICKS.getBricksBlock())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.ALLOY_FURNACE.get(), 1).pattern("BSB").pattern("BSB").pattern("BCB").define('B', RankineBlocks.REFRACTORY_BRICKS.getBricksBlock()).define('S', RankineTags.Items.SHEETMETAL).define('C', RankineTags.Items.CAMPFIRES).unlockedBy("has_ingredient", has(RankineBlocks.REFRACTORY_BRICKS.getBricksBlock())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.BEEHIVE_OVEN_PIT.get(), 1).pattern(" S ").pattern("SLS").pattern(" S ").define('S', BricksBlocks.REFRACTORY_BRICKS.getBricksBlock()).define('L', Tags.Items.STORAGE_BLOCKS_COAL).unlockedBy("has_ingredient", has(BricksBlocks.REFRACTORY_BRICKS.getBricksBlock())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.ALLOY_FURNACE.get(), 1).pattern("BSB").pattern("BSB").pattern("BCB").define('B', BricksBlocks.REFRACTORY_BRICKS.getBricksBlock()).define('S', RankineTags.Items.SHEETMETAL).define('C', RankineTags.Items.CAMPFIRES).unlockedBy("has_ingredient", has(BricksBlocks.REFRACTORY_BRICKS.getBricksBlock())).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.MIXING_BARREL.get(), 1).pattern("R").pattern("B").pattern("S").define('B', Blocks.BARREL).define('S', ItemTags.WOODEN_SLABS).define('R', Tags.Items.RODS_WOODEN).unlockedBy("has_ingredient", has(Items.BARREL)).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.CHARCOAL_PIT.get(), 1).pattern(" S ").pattern("SLS").pattern(" S ").define('S', Tags.Items.RODS_WOODEN).define('L', ItemTags.LOGS_THAT_BURN).unlockedBy("has_ingredient", has(ItemTags.LOGS_THAT_BURN)).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.GAS_BOTTLER.get(), 1).pattern("XSX").pattern("S S").pattern("XSX").define('X', RankineTags.Items.SHEETMETAL).define('S', RankineTags.Items.INGOTS_BRASS).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_BRASS)).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.BATTERY_CHARGER.get(), 1).pattern("XSX").pattern("R R").pattern("XSX").define('X', RankineTags.Items.SHEETMETAL).define('R', Items.REPEATER).define('S', RankineTags.Items.SHEETMETAL).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_MAGNESIUM_ALLOY)).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.GAS_VENT.get(), 1).pattern("XSX").pattern("SBS").pattern("XSX").define('X', RankineTags.Items.SHEETMETAL).define('S', RankineItems.BOROSILICATE_GLASS.get()).define('B', Items.GLASS_BOTTLE).unlockedBy("has_ingredient", has(RankineTags.Items.INGOTS_BRASS)).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.FLOOD_GATE.get(), 1).pattern(" S ").pattern("SSS").pattern(" S ").define('S', RankineTags.Items.CRAFTING_METAL_INGOTS).unlockedBy("has_ingredient", has(RankineTags.Items.CRAFTING_METAL_INGOTS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.CRUCIBLE_BLOCK.get(), 1).pattern("R R").pattern("R R").pattern("RCR").define('R', RankineBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock()).define('C', Items.CAULDRON).unlockedBy("has_ingredient", has(RankineBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.CRUCIBLE_BLOCK.get(), 1).pattern("R R").pattern("R R").pattern("RCR").define('R', BricksBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock()).define('C', Items.CAULDRON).unlockedBy("has_ingredient", has(BricksBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock())).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.MATERIAL_TESTING_TABLE.get(), 1).pattern("TT").pattern("BB").pattern("BB").define('B', ItemTags.PLANKS).define('T', ItemTags.STONE_BRICKS).unlockedBy("has_ingredient", has(ItemTags.PLANKS)).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.TEMPLATE_TABLE.get(), 1).pattern("TT").pattern("BB").pattern("BB").define('B', ItemTags.PLANKS).define('T', Items.PAPER).unlockedBy("has_ingredient", has(ItemTags.PLANKS)).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineItems.RARE_EARTH_ELECTROMAGNET.get(), 1).pattern("WPW").pattern("WPW").pattern("WBW").define('W', RankineItems.ALLOY_WIRE.get()).define('B', RankineItems.SODIUM_SULFUR_BATTERY.get()).define('P', RankineTags.Items.METAL_POLES).unlockedBy("has_ingredient", has(RankineItems.SODIUM_SULFUR_BATTERY.get())).save(consumer);
@@ -593,9 +593,9 @@ public class RankineRecipesProvider extends RecipeProvider {
         stonecutterResultFromBase(consumer, Items.NETHER_BRICK, Items.RED_NETHER_BRICKS, 2);
         stonecutterResultFromBase(consumer, Items.PRISMARINE_SHARD, Items.PRISMARINE_BRICKS, 2);
         stonecutterResultFromBase(consumer, Items.PRISMARINE_SHARD, Items.DARK_PRISMARINE, 2);
-        stonecutterResultFromBase(consumer, RankineItems.REFRACTORY_BRICK.get(), RankineBlocks.REFRACTORY_BRICKS.getBricksBlock(), 2);
-        stonecutterResultFromBase(consumer, RankineItems.HIGH_REFRACTORY_BRICK.get(), RankineBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock(), 2);
-        stonecutterResultFromBase(consumer, RankineItems.ULTRA_HIGH_REFRACTORY_BRICK.get(), RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.getBricksBlock(), 2);
+        stonecutterResultFromBase(consumer, RankineItems.REFRACTORY_BRICK.get(), BricksBlocks.REFRACTORY_BRICKS.getBricksBlock(), 2);
+        stonecutterResultFromBase(consumer, RankineItems.HIGH_REFRACTORY_BRICK.get(), BricksBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock(), 2);
+        stonecutterResultFromBase(consumer, RankineItems.ULTRA_HIGH_REFRACTORY_BRICK.get(), BricksBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.getBricksBlock(), 2);
 
 
         //WOODS
@@ -784,11 +784,11 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.DESERT_SANDSTONE.getSandstone(), 1).pattern("SS").pattern("SS").define('S', RankineBlocks.DESERT_SAND.get()).unlockedBy("has_ingredient", has(RankineBlocks.DESERT_SAND.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.SOUL_SANDSTONE.getSandstone(), 1).pattern("SS").pattern("SS").define('S', Blocks.SOUL_SAND).unlockedBy("has_ingredient", has(Blocks.SOUL_SAND)).save(consumer);
 
-        for (RankineCement Cement : RankineLists.RANKINE_CEMENTS) {
-            Block CEMENT = Cement.getCementBlock();
-            Block CEMENT_SLAB = Cement.getCementSlab();
-            Block CEMENT_STAIRS = Cement.getCementStairs();
-            Block CEMENT_WALL = Cement.getCementWall();
+        for (CementBlocks baseCementBlock : CementBlocks.values()) {
+            Block CEMENT = baseCementBlock.getCementBlock();
+            Block CEMENT_SLAB = baseCementBlock.getCementSlab();
+            Block CEMENT_STAIRS = baseCementBlock.getCementStairs();
+            Block CEMENT_WALL = baseCementBlock.getCementWall();
             slab(consumer,CEMENT_SLAB,CEMENT, "cement_slab");
             stairs(consumer,CEMENT_STAIRS,CEMENT, "cement_stairs");
             wall(consumer,CEMENT_WALL,CEMENT, "cement_wall");
@@ -798,28 +798,28 @@ public class RankineRecipesProvider extends RecipeProvider {
             slabReconstruct(consumer, CEMENT_SLAB, CEMENT);
             stairsReconstruct(consumer, CEMENT_STAIRS, CEMENT);
         }
-        stonecutterResultFromBase(consumer, RankineBlocks.POLISHED_ROMAN_CONCRETE.getCementBlock(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
-        stonecutterResultFromBase(consumer, RankineBlocks.POLISHED_ROMAN_CONCRETE.getCementSlab(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
-        stonecutterResultFromBase(consumer, RankineBlocks.POLISHED_ROMAN_CONCRETE.getCementStairs(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
-        stonecutterResultFromBase(consumer, RankineBlocks.POLISHED_ROMAN_CONCRETE.getCementWall(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
-        stonecutterResultFromBase(consumer, RankineBlocks.ROMAN_CONCRETE_BRICKS.getCementBlock(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
-        stonecutterResultFromBase(consumer, RankineBlocks.ROMAN_CONCRETE_BRICKS.getCementSlab(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
-        stonecutterResultFromBase(consumer, RankineBlocks.ROMAN_CONCRETE_BRICKS.getCementStairs(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
-        stonecutterResultFromBase(consumer, RankineBlocks.ROMAN_CONCRETE_BRICKS.getCementWall(), RankineBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, CementBlocks.POLISHED_ROMAN_CONCRETE.getCementBlock(), CementBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, CementBlocks.POLISHED_ROMAN_CONCRETE.getCementSlab(), CementBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, CementBlocks.POLISHED_ROMAN_CONCRETE.getCementStairs(), CementBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, CementBlocks.POLISHED_ROMAN_CONCRETE.getCementWall(), CementBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, CementBlocks.ROMAN_CONCRETE_BRICKS.getCementBlock(), CementBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, CementBlocks.ROMAN_CONCRETE_BRICKS.getCementSlab(), CementBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, CementBlocks.ROMAN_CONCRETE_BRICKS.getCementStairs(), CementBlocks.ROMAN_CONCRETE.getCementBlock());
+        stonecutterResultFromBase(consumer, CementBlocks.ROMAN_CONCRETE_BRICKS.getCementWall(), CementBlocks.ROMAN_CONCRETE.getCementBlock());
         //other stonecutter recipes
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.POLISHED_ROMAN_CONCRETE.getCementBlock(), 4)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CementBlocks.POLISHED_ROMAN_CONCRETE.getCementBlock(), 4)
                 .pattern("##")
                 .pattern("##")
-                .define('#', RankineBlocks.ROMAN_CONCRETE.getCementBlock())
+                .define('#', CementBlocks.ROMAN_CONCRETE.getCementBlock())
                 .group("polished_stone")
-                .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(RankineBlocks.ROMAN_CONCRETE.getCementBlock()))
+                .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(CementBlocks.ROMAN_CONCRETE.getCementBlock()))
                 .save(consumer);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.ROMAN_CONCRETE_BRICKS.getCementBlock(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CementBlocks.ROMAN_CONCRETE_BRICKS.getCementBlock(), 2)
                 .pattern("#M")
                 .pattern("M#")
-                .define('#', RankineBlocks.ROMAN_CONCRETE.getCementBlock())
+                .define('#', CementBlocks.ROMAN_CONCRETE.getCementBlock())
                 .define('M', RankineItems.MORTAR.get())
                 .group("stone_bricks")
                 .unlockedBy("has_mortar", InventoryChangeTrigger.TriggerInstance.hasItems(RankineItems.MORTAR.get()))
@@ -839,25 +839,25 @@ public class RankineRecipesProvider extends RecipeProvider {
 
 
 
-        for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
-            Block BRICKS = Bricks.getBricksBlock();
-            slab(consumer, Bricks.getBricksSlab(), BRICKS, "bricks_slab");
-            stairs(consumer, Bricks.getBricksStairs(), BRICKS, "bricks_stairs");
-            wall(consumer, Bricks.getBricksWall(), BRICKS, "bricks_wall");
-            stonecutterResultFromBase(consumer, Bricks.getBricksSlab(), BRICKS, 2);
-            stonecutterResultFromBase(consumer, Bricks.getBricksStairs(), BRICKS);
-            stonecutterResultFromBase(consumer, Bricks.getBricksWall(), BRICKS);
-            slabReconstruct(consumer, Bricks.getBricksSlab(), BRICKS);
-            stairsReconstruct(consumer, Bricks.getBricksStairs(), BRICKS);
+        for (BricksBlocks baseBricksBlock : BricksBlocks.values()) {
+            Block BRICKS = baseBricksBlock.getBricksBlock();
+            slab(consumer, baseBricksBlock.getBricksSlab(), BRICKS, "bricks_slab");
+            stairs(consumer, baseBricksBlock.getBricksStairs(), BRICKS, "bricks_stairs");
+            wall(consumer, baseBricksBlock.getBricksWall(), BRICKS, "bricks_wall");
+            stonecutterResultFromBase(consumer, baseBricksBlock.getBricksSlab(), BRICKS, 2);
+            stonecutterResultFromBase(consumer, baseBricksBlock.getBricksStairs(), BRICKS);
+            stonecutterResultFromBase(consumer, baseBricksBlock.getBricksWall(), BRICKS);
+            slabReconstruct(consumer, baseBricksBlock.getBricksSlab(), BRICKS);
+            stairsReconstruct(consumer, baseBricksBlock.getBricksStairs(), BRICKS);
         }
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.CLAY_BRICKS.getBricksBlock()).define('#', Items.CLAY_BALL).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_clay", has(Items.CLAY_BALL)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.KAOLINITE_CLAY_BRICKS.getBricksBlock()).define('#', RankineItems.KAOLINITE.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_clay", has(RankineItems.KAOLINITE.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.HALLOYSITE_BRICKS.getBricksBlock()).define('#', RankineItems.HALLOYSITE.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_clay", has(RankineItems.HALLOYSITE.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.FIRE_CLAY_BRICKS.getBricksBlock()).define('#', RankineItems.FIRE_CLAY_BALL.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_clay", has(RankineItems.FIRE_CLAY_BALL.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.PORCELAIN_CLAY_BRICKS.getBricksBlock()).define('#', RankineItems.PORCELAIN_CLAY_BALL.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_clay", has(RankineItems.PORCELAIN_CLAY_BALL.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.REFRACTORY_BRICKS.getBricksBlock()).define('#', RankineItems.REFRACTORY_BRICK.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_refractory_brick", has(RankineItems.REFRACTORY_BRICK.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock()).define('#', RankineItems.HIGH_REFRACTORY_BRICK.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_high_refractory_brick", has(RankineItems.HIGH_REFRACTORY_BRICK.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.getBricksBlock()).define('#', RankineItems.ULTRA_HIGH_REFRACTORY_BRICK.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_refractory_brick", has(RankineItems.ULTRA_HIGH_REFRACTORY_BRICK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BricksBlocks.CLAY_BRICKS.getBricksBlock()).define('#', Items.CLAY_BALL).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_clay", has(Items.CLAY_BALL)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BricksBlocks.KAOLINITE_BRICKS.getBricksBlock()).define('#', RankineItems.KAOLINITE.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_clay", has(RankineItems.KAOLINITE.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BricksBlocks.HALLOYSITE_BRICKS.getBricksBlock()).define('#', RankineItems.HALLOYSITE.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_clay", has(RankineItems.HALLOYSITE.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BricksBlocks.FIRE_CLAY_BRICKS.getBricksBlock()).define('#', RankineItems.FIRE_CLAY_BALL.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_clay", has(RankineItems.FIRE_CLAY_BALL.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BricksBlocks.PORCELAIN_CLAY_BRICKS.getBricksBlock()).define('#', RankineItems.PORCELAIN_CLAY_BALL.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_clay", has(RankineItems.PORCELAIN_CLAY_BALL.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BricksBlocks.REFRACTORY_BRICKS.getBricksBlock()).define('#', RankineItems.REFRACTORY_BRICK.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_refractory_brick", has(RankineItems.REFRACTORY_BRICK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BricksBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock()).define('#', RankineItems.HIGH_REFRACTORY_BRICK.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_high_refractory_brick", has(RankineItems.HIGH_REFRACTORY_BRICK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BricksBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.getBricksBlock()).define('#', RankineItems.ULTRA_HIGH_REFRACTORY_BRICK.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_refractory_brick", has(RankineItems.ULTRA_HIGH_REFRACTORY_BRICK.get())).save(consumer);
 
 
         for (Block STONE_BRICK : RankineLists.VANILLA_BRICKS) {

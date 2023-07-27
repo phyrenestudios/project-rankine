@@ -1,4 +1,4 @@
-package com.cannolicatfish.rankine.blocks.block_groups;
+package com.cannolicatfish.rankine.blocks.block_enums;
 
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineBookshelvesBlock;

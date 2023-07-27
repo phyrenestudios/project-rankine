@@ -1,4 +1,4 @@
-package com.cannolicatfish.rankine.blocks.block_groups;
+package com.cannolicatfish.rankine.blocks.block_enums;
 
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
@@ -84,17 +84,13 @@ public enum FiberBlocks {
     public static void registerBlocks() {
         for (FiberBlocks fiber : values()) {
             fiber.fiberBlock = RankineBlocks.BLOCKS.register(fiber.getName()+"_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-            //fiber.blockList.add(fiber.fiberBlock.get());
             if (fiber.extraBlocks) {
                 fiber.slab = RankineBlocks.BLOCKS.register(fiber.getName()+"_block_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
                 fiber.stairs = RankineBlocks.BLOCKS.register(fiber.getName()+"_block_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
                 fiber.wall = RankineBlocks.BLOCKS.register(fiber.getName()+"_block_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-                //fiber.blockList.add(fiber.slab.get());
-                //fiber.blockList.add(fiber.stairs.get());
-                //fiber.blockList.add(fiber.wall.get());
             }
             fiber.mat = RankineBlocks.BLOCKS.register(fiber.getName()+"_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-            //fiber.blockList.add(fiber.mat.get());
+
         }
 
     }

@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.data.loot;
 import com.cannolicatfish.rankine.blocks.HollowLogBlock;
 import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
 import com.cannolicatfish.rankine.blocks.RankineLogBlock;
-import com.cannolicatfish.rankine.blocks.block_groups.*;
+import com.cannolicatfish.rankine.blocks.block_enums.*;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineBookshelvesBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
@@ -111,8 +111,8 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
                 }
             }
         }
-        for (RankineCement Cement : RankineLists.RANKINE_CEMENTS) {
-            for (Block blk : Cement.getCementBlocks()) {
+        for (CementBlocks baseCementBlock : CementBlocks.values()) {
+            for (Block blk : baseCementBlock.getCementBlocks()) {
                 dropSelf(blk);
             }
         }
@@ -121,8 +121,8 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
                 dropSelf(blk);
             }
         }
-        for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
-            for (Block blk : Bricks.getBricksBlocks()) {
+        for (BricksBlocks baseBricksBlock : BricksBlocks.values()) {
+            for (Block blk : baseBricksBlock.getBricksBlocks()) {
                 if (blk instanceof SlabBlock) {
                     addSlab(blk);
                 } else {

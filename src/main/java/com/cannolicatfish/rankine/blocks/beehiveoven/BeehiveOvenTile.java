@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.beehiveoven;
 
+import com.cannolicatfish.rankine.blocks.block_enums.BricksBlocks;
 import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
@@ -102,11 +103,11 @@ public class BeehiveOvenTile extends BlockEntity {
 
         float speedMod = 0.0f;
         for (BlockPos b : ovenStructure(posIn)) {
-            if (levelIn.getBlockState(b).is(RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.getBricksBlock())) {
+            if (levelIn.getBlockState(b).is(BricksBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.getBricksBlock())) {
                 speedMod = Math.max(speedMod, 0.25f);
-            } else if (levelIn.getBlockState(b).is(RankineBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock())) {
+            } else if (levelIn.getBlockState(b).is(BricksBlocks.HIGH_REFRACTORY_BRICKS.getBricksBlock())) {
                 speedMod = Math.max(speedMod, 0.5f);
-            } else if (levelIn.getBlockState(b).is(RankineBlocks.REFRACTORY_BRICKS.getBricksBlock())) {
+            } else if (levelIn.getBlockState(b).is(BricksBlocks.REFRACTORY_BRICKS.getBricksBlock())) {
                 speedMod = 1.0f;
             } else {
                 return 0.0f;

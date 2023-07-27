@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
-import com.cannolicatfish.rankine.blocks.block_groups.StoneBlocks;
+import com.cannolicatfish.rankine.blocks.block_enums.StoneBlocks;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.world.item.ItemStack;

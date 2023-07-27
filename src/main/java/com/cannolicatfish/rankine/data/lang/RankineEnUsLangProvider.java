@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.data.lang;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.block_groups.*;
+import com.cannolicatfish.rankine.blocks.block_enums.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
@@ -53,13 +53,13 @@ public class RankineEnUsLangProvider extends LanguageProvider {
                 add(blk, parseLangName(name(blk)));
             }
         }
-        for (RankineCement block : RankineLists.RANKINE_CEMENTS) {
-            for (Block blk : block.getCementBlocks()) {
+        for (CementBlocks baseCementBlock : CementBlocks.values()) {
+            for (Block blk : baseCementBlock.getCementBlocks()) {
                 add(blk, parseLangName(name(blk)));
             }
         }
-        for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
-            for (Block blk : Bricks.getBricksBlocks()) {
+        for (BricksBlocks baseBricksBlock : BricksBlocks.values()) {
+            for (Block blk : baseBricksBlock.getBricksBlocks()) {
                 add(blk, parseLangName(name(blk)));
             }
         }

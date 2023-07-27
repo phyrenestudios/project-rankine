@@ -1,4 +1,4 @@
-package com.cannolicatfish.rankine.blocks.block_groups;
+package com.cannolicatfish.rankine.blocks.block_enums;
 
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankinePolishedStoneBlock;
@@ -63,6 +63,7 @@ public enum StoneBlocks {
     WADSLEYONE(StoneType.MANTLE,false,false),
     BRIDGMANHAM(StoneType.MANTLE,false,false),
     POST_PEROVSKITE(StoneType.MANTLE,false,false),
+
     BLACK_MARBLE(StoneType.METAMORPHIC,false,false),
     GRAY_MARBLE(StoneType.METAMORPHIC,false,false),
     WHITE_MARBLE(StoneType.METAMORPHIC,false,false),
@@ -78,6 +79,7 @@ public enum StoneBlocks {
     SERPENTINITE(StoneType.METAMORPHIC,false,false),
     MARIPOSITE(StoneType.METAMORPHIC,false,false),
     ECLOGITE(StoneType.METAMORPHIC,false,false),
+
     LIMESTONE(StoneType.SEDIMENTARY,false,false),
     DOLOSTONE(StoneType.SEDIMENTARY,false,false),
     CHALK(StoneType.SEDIMENTARY,false,false),
