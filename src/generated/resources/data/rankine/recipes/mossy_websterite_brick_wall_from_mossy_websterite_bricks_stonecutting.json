@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:mossy_websterite_bricks"
+  },
+  "result": "rankine:mossy_websterite_bricks_wall"
+}

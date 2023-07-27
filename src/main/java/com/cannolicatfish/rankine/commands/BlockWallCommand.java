@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.commands;
 
-import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_groups.StoneBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -23,19 +23,19 @@ public class BlockWallCommand {
     private static int blockWall(CommandSourceStack source, BlockPos pos) throws CommandSyntaxException {
         ServerLevel serverworld = source.getLevel();
         int i = 0;
-        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
-            serverworld.setBlockAndUpdate(pos.north(2*i), Stone.getStone().defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.north(2*i+1), Stone.getStone().defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(1).north(2*i), Stone.getStone().defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(1).north(2*i+1), Stone.getStone().defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(2).north(2*i), Stone.getPolished().defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(2).north(2*i+1), Stone.getPolished().defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(3).north(2*i), Stone.getPolished().defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(3).north(2*i+1), Stone.getPolished().defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(4).north(2*i), Stone.getBricks().defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(4).north(2*i+1), Stone.getBricks().defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(5).north(2*i), Stone.getBricks().defaultBlockState());
-            serverworld.setBlockAndUpdate(pos.above(5).north(2*i+1), Stone.getBricks().defaultBlockState());
+        for (StoneBlocks baseStone : StoneBlocks.values()) {
+            serverworld.setBlockAndUpdate(pos.north(2*i), baseStone.getStone().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.north(2*i+1), baseStone.getStone().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(1).north(2*i), baseStone.getStone().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(1).north(2*i+1), baseStone.getStone().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(2).north(2*i), baseStone.getPolished().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(2).north(2*i+1), baseStone.getPolished().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(3).north(2*i), baseStone.getPolished().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(3).north(2*i+1), baseStone.getPolished().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(4).north(2*i), baseStone.getBricks().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(4).north(2*i+1), baseStone.getBricks().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(5).north(2*i), baseStone.getBricks().defaultBlockState());
+            serverworld.setBlockAndUpdate(pos.above(5).north(2*i+1), baseStone.getBricks().defaultBlockState());
             i++;
         }
 

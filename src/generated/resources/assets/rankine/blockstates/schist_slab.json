@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/schist_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/schist"
+    },
+    "type=top": {
+      "model": "rankine:block/schist_slab_top"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:syenite"
+  },
+  "result": "rankine:polished_syenite"
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "rankine:block/polished_foidolite",
+    "side": "rankine:block/polished_foidolite",
+    "top": "rankine:block/polished_foidolite"
+  }
+}

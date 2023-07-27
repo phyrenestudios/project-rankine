@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "rankine:mossy_black_dacite_bricks"
-  },
-  "result": "rankine:mossy_black_dacite_bricks_wall"
-}

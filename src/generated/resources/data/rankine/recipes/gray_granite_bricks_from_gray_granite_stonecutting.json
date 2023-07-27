@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "rankine:gray_granite"
-  },
-  "result": "rankine:gray_granite_bricks"
-}

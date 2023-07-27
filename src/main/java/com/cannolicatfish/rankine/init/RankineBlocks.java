@@ -68,68 +68,9 @@ public class RankineBlocks {
     public static Block.Properties DEF_METAL_BLOCK = Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F);
 
 
-    //STONES
-    public static final RankineStone PEGMATITE = RankineStone.newStoneReg("pegmatite", "igneous");
-    public static final RankineStone QUARTZOLITE = RankineStone.newStoneReg("quartzolite", "igneous");
-    public static final RankineStone GRAY_GRANITE = RankineStone.newStoneReg("gray_granite", "igneous");
-    public static final RankineStone RHYOLITE = RankineStone.newStoneReg("rhyolite", "igneous");
-    public static final RankineStone COMENDITE = RankineStone.newStoneReg("comendite", "igneous");
-    public static final RankineStone EPISYENITE = RankineStone.newStoneReg("episyenite", "igneous");
-    public static final RankineStone NEPHELINE_SYENITE = RankineStone.newStoneReg("nepheline_syenite", "igneous");
-    public static final RankineStone PHONOLITE = RankineStone.newStoneReg("phonolite", "igneous");
-    public static final RankineStone GRANODIORITE = RankineStone.newStoneReg("granodiorite", "igneous");
-    public static final RankineStone RED_PORPHYRY = RankineStone.newStoneReg("red_porphyry", "igneous");
-    public static final RankineStone PURPLE_PORPHYRY = RankineStone.newStoneReg("purple_porphyry", "igneous");
-    public static final RankineStone BLACK_DACITE = RankineStone.newStoneReg("black_dacite", "igneous");
-    public static final RankineStone RED_DACITE = RankineStone.newStoneReg("red_dacite", "igneous");
-    public static final RankineStone HORNBLENDE_ANDESITE = RankineStone.newStoneReg("hornblende_andesite", "igneous");
-    public static final RankineStone SHONKINITE = RankineStone.newStoneReg("shonkinite", "igneous");
-    public static final RankineStone ANORTHOSITE = RankineStone.newStoneReg("anorthosite", "igneous");
-    public static final RankineStone NORITE = RankineStone.newStoneReg("norite", "igneous");
-    public static final RankineStone TROCTOLITE = RankineStone.newStoneReg("troctolite", "igneous");
-    public static final RankineStone GABBRO = RankineStone.newStoneReg("gabbro", "igneous");
-    public static final RankineStone DIABASE = RankineStone.newStoneReg("diabase", "igneous");
-    public static final RankineStone THOLEIITIC_BASALT = RankineStone.newStoneReg("tholeiitic_basalt", "igneous");
-    public static final RankineStone DUNITE = RankineStone.newStoneReg("dunite", "igneous");
-    public static final RankineStone HARZBURGITE = RankineStone.newStoneReg("harzburgite", "igneous");
-    public static final RankineStone LHERZOLITE = RankineStone.newStoneReg("lherzolite", "igneous");
-    public static final RankineStone WEHRLITE = RankineStone.newStoneReg("wehrlite", "igneous");
-    public static final RankineStone PYROXENITE = RankineStone.newStoneReg("pyroxenite", "igneous");
-    public static final RankineStone KOMATIITE = RankineStone.newStoneReg("komatiite", "igneous");
-    public static final RankineStone KIMBERLITE = RankineStone.newStoneReg("kimberlite", "igneous");
-    public static final RankineStone SOMMANITE = RankineStone.newStoneReg("sommanite", "igneous");
-    public static final RankineStone RINGWOODINE = RankineStone.newStoneReg("ringwoodine", "igneous");
-    public static final RankineStone WADSLEYONE = RankineStone.newStoneReg("wadsleyone", "igneous");
-    public static final RankineStone BRIDGMANHAM = RankineStone.newStoneReg("bridgmanham", "igneous");
-    public static final RankineStone POST_PEROVSKITE = RankineStone.newStoneReg("post_perovskite", "igneous");
-    public static final RankineStone BLACK_MARBLE = RankineStone.newStoneReg("black_marble", "metamorphic");
-    public static final RankineStone GRAY_MARBLE = RankineStone.newStoneReg("gray_marble", "metamorphic");
-    public static final RankineStone WHITE_MARBLE = RankineStone.newStoneReg("white_marble", "metamorphic");
-    public static final RankineStone ROSE_MARBLE = RankineStone.newStoneReg("rose_marble", "metamorphic");
-    public static final RankineStone SLATE = RankineStone.newStoneReg("slate", "metamorphic");
-    public static final RankineStone PHYLLITE = RankineStone.newStoneReg("phyllite", "metamorphic");
-    public static final RankineStone MICA_SCHIST = RankineStone.newStoneReg("mica_schist", "metamorphic");
-    public static final RankineStone BLUESCHIST = RankineStone.newStoneReg("blueschist", "metamorphic");
-    public static final RankineStone GREENSCHIST = RankineStone.newStoneReg("greenschist", "metamorphic");
-    public static final RankineStone WHITESCHIST = RankineStone.newStoneReg("whiteschist", "metamorphic");
-    public static final RankineStone GNEISS = RankineStone.newStoneReg("gneiss", "metamorphic");
-    public static final RankineStone QUARTZITE = RankineStone.newStoneReg("quartzite", "metamorphic");
-    public static final RankineStone SERPENTINITE = RankineStone.newStoneReg("serpentinite", "metamorphic");
-    public static final RankineStone MARIPOSITE = RankineStone.newStoneReg("mariposite", "metamorphic");
-    public static final RankineStone ECLOGITE = RankineStone.newStoneReg("eclogite", "igneous");
-    public static final RankineStone LIMESTONE = RankineStone.newStoneReg("limestone", "sedimentary");
-    public static final RankineStone DOLOSTONE = RankineStone.newStoneReg("dolostone", "sedimentary");
-    public static final RankineStone CHALK = RankineStone.newStoneReg("chalk", "sedimentary");
-    public static final RankineStone MARLSTONE = RankineStone.newStoneReg("marlstone", "sedimentary");
-    public static final RankineStone SOAPSTONE = RankineStone.newStoneReg("soapstone", "sedimentary");
-    public static final RankineStone SHALE = RankineStone.newStoneReg("shale", "sedimentary");
-    public static final RankineStone MUDSTONE = RankineStone.newStoneReg("mudstone", "sedimentary");
-    public static final RankineStone SILTSTONE = RankineStone.newStoneReg("siltstone", "sedimentary");
-    public static final RankineStone ITACOLUMITE = RankineStone.newStoneReg("itacolumite", "sedimentary");
-    public static final RankineStone ARKOSE = RankineStone.newStoneReg("arkose", "sedimentary");
-    public static final RankineStone GRAYWACKE = RankineStone.newStoneReg("graywacke", "sedimentary");
-    public static final RankineStone HONEYSTONE = RankineStone.newStoneReg("honeystone", "sedimentary");
-
+    static {
+        StoneBlocks.registerBlocks();
+    }
     //WOODS
     public static final RankineWood CEDAR = RankineWood.newWoodReg("cedar", 2.0f,true, true, 2, new CedarTreeGrower());
     public static final RankineWood BALSAM_FIR = RankineWood.newWoodReg("balsam_fir", 2.0f,true,true, 3, new BalsamFirTreeGrower());

@@ -95,30 +95,30 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(Tags.Blocks.STONE).add(Sandstone.getSandstone());
         }
 
-        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
-            for (Block blk : Stone.getStoneBlocks()) {
+        for (StoneBlocks baseStone : StoneBlocks.values()) {
+            for (Block blk : baseStone.getStoneBlocks()) {
                 if (blk instanceof CobbleBlock) continue;
                 tag(BlockTags.MINEABLE_WITH_PICKAXE).add(blk);
             }
-            tag(RankineTags.Blocks.POLISHED_STONE).add(Stone.getPolished());
-            tag(BlockTags.STONE_BRICKS).add(Stone.getBricks(), Stone.getMossyBricks());
+            tag(RankineTags.Blocks.POLISHED_STONE).add(baseStone.getPolished());
+            tag(BlockTags.STONE_BRICKS).add(baseStone.getBricks(), baseStone.getMossyBricks());
 
-            tag(BlockTags.SLABS).add(Stone.getSlab(), Stone.getPolishedSlab(), Stone.getBricksSlab(), Stone.getMossyBricksSlab());
-            tag(BlockTags.STAIRS).add(Stone.getStairs(), Stone.getPolishedStairs(), Stone.getBricksStairs(), Stone.getMossyBricksStairs());
-            tag(BlockTags.WALLS).add(Stone.getWall(), Stone.getPolishedWall(), Stone.getBricksWall(), Stone.getMossyBricksWall());
+            tag(BlockTags.SLABS).add(baseStone.getSlab(), baseStone.getPolishedSlab(), baseStone.getBricksSlab(), baseStone.getMossyBricksSlab());
+            tag(BlockTags.STAIRS).add(baseStone.getStairs(), baseStone.getPolishedStairs(), baseStone.getBricksStairs(), baseStone.getMossyBricksStairs());
+            tag(BlockTags.WALLS).add(baseStone.getWall(), baseStone.getPolishedWall(), baseStone.getBricksWall(), baseStone.getMossyBricksWall());
 
-            tag(BlockTags.BUTTONS).add(Stone.getStone());
-            tag(BlockTags.STONE_PRESSURE_PLATES).add(Stone.getPressurePlate(), Stone.getBricksPressurePlate());
-            tag(RankineTags.Blocks.COBBLES).add(Stone.getCobble());
+            tag(BlockTags.BUTTONS).add(baseStone.getStone());
+            tag(BlockTags.STONE_PRESSURE_PLATES).add(baseStone.getPressurePlate(), baseStone.getBricksPressurePlate());
+            tag(RankineTags.Blocks.COBBLES).add(baseStone.getCobble());
 
-            tag(RankineTags.Blocks.BASE_STONE_END).add(Stone.getStone());
-            tag(BlockTags.BASE_STONE_OVERWORLD).add(Stone.getStone());
-            tag(BlockTags.BASE_STONE_NETHER).add(Stone.getStone());
-            tag(RankineTags.Blocks.WG_STONE).add(Stone.getStone());
-            tag(Tags.Blocks.STONE).add(Stone.getStone(),Stone.getInfested());
+            tag(RankineTags.Blocks.BASE_STONE_END).add(baseStone.getStone());
+            tag(BlockTags.BASE_STONE_OVERWORLD).add(baseStone.getStone());
+            tag(BlockTags.BASE_STONE_NETHER).add(baseStone.getStone());
+            tag(RankineTags.Blocks.WG_STONE).add(baseStone.getStone());
+            tag(Tags.Blocks.STONE).add(baseStone.getStone(),baseStone.getInfested());
 
-            tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED).add(Stone.getPolishedSlab() ,Stone.getPolishedStairs());
-            tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_BRICKS).add(Stone.getBricksSlab(), Stone.getBricksStairs());
+            tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED).add(baseStone.getPolishedSlab() ,baseStone.getPolishedStairs());
+            tag(RankineTags.Blocks.MOVEMENT_MODIFIERS_BRICKS).add(baseStone.getBricksSlab(), baseStone.getBricksStairs());
         }
         tag(RankineTags.Blocks.BASE_STONE_END).add(Blocks.END_STONE);
         tag(Tags.Blocks.STONE).addTag(RankineTags.Blocks.POLISHED_STONE);
@@ -239,43 +239,43 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(Tags.Blocks.NEEDS_NETHERITE_TOOL).add(blk);
         }
 
-        tag(RankineTags.Blocks.STONES_DACITE).add(RankineBlocks.BLACK_DACITE.getStone(),RankineBlocks.RED_DACITE.getStone());
-        tag(RankineTags.Blocks.STONES_ANDESITE).add(RankineBlocks.HORNBLENDE_ANDESITE.getStone(),Blocks.ANDESITE);
-        tag(RankineTags.Blocks.STONES_BASALT).add(RankineBlocks.THOLEIITIC_BASALT.getStone(),Blocks.BASALT);
-        tag(RankineTags.Blocks.STONES_GRANITE).add(RankineBlocks.GRAY_GRANITE.getStone(),Blocks.GRANITE);
-        tag(RankineTags.Blocks.STONES_SANDSTONE).add(RankineBlocks.ARKOSE.getStone(), RankineBlocks.ITACOLUMITE.getStone(), RankineBlocks.GRAYWACKE.getStone(), RankineBlocks.SOUL_SANDSTONE.getSandstone(), RankineBlocks.BLACK_SANDSTONE.getSandstone(), RankineBlocks.WHITE_SANDSTONE.getSandstone(), RankineBlocks.DESERT_SANDSTONE.getSandstone(),Blocks.SANDSTONE,Blocks.RED_SANDSTONE);
-        tag(RankineTags.Blocks.STONES_PEGMATITE).add(RankineBlocks.PEGMATITE.getStone());
+        tag(RankineTags.Blocks.STONES_DACITE).add(StoneBlocks.DACITE.getStone());
+        tag(RankineTags.Blocks.STONES_ANDESITE).add(Blocks.ANDESITE);
+        tag(RankineTags.Blocks.STONES_BASALT).add(StoneBlocks.THOLEIITIC_BASALT.getStone(),Blocks.BASALT);
+        tag(RankineTags.Blocks.STONES_GRANITE).add(Blocks.GRANITE);
+        tag(RankineTags.Blocks.STONES_SANDSTONE).add(StoneBlocks.ARKOSE.getStone(), StoneBlocks.ITACOLUMITE.getStone(), StoneBlocks.GRAYWACKE.getStone(), RankineBlocks.SOUL_SANDSTONE.getSandstone(), RankineBlocks.BLACK_SANDSTONE.getSandstone(), RankineBlocks.WHITE_SANDSTONE.getSandstone(), RankineBlocks.DESERT_SANDSTONE.getSandstone(),Blocks.SANDSTONE,Blocks.RED_SANDSTONE);
+        tag(RankineTags.Blocks.STONES_PEGMATITE).add(StoneBlocks.PEGMATITE.getStone());
         tag(RankineTags.Blocks.STONES_BRECCIA).add(RankineBlocks.BRECCIA.get());
-        tag(RankineTags.Blocks.STONES_PERIDOTITE).add(RankineBlocks.DUNITE.getStone(),RankineBlocks.LHERZOLITE.getStone(),RankineBlocks.WEHRLITE.getStone(),RankineBlocks.HARZBURGITE.getStone());
-        tag(RankineTags.Blocks.STONES_PHYLITE).add(RankineBlocks.PHYLLITE.getStone());
-        tag(RankineTags.Blocks.STONES_PORPHYRY).add(RankineBlocks.RED_PORPHYRY.getStone()).add(RankineBlocks.PURPLE_PORPHYRY.getStone());
+        tag(RankineTags.Blocks.STONES_PERIDOTITE).add(StoneBlocks.DUNITE.getStone(),StoneBlocks.LHERZOLITE.getStone(),StoneBlocks.WEHRLITE.getStone(),StoneBlocks.HARZBURGITE.getStone());
+        tag(RankineTags.Blocks.STONES_PHYLITE).add(StoneBlocks.PHYLLITE.getStone());
+        tag(RankineTags.Blocks.STONES_PORPHYRY).add(StoneBlocks.PORPHYRY.getStone());
         tag(RankineTags.Blocks.STONES_PUMICE).add(RankineBlocks.PUMICE.get());
         tag(RankineTags.Blocks.STONES_SCORIA).add(RankineBlocks.SCORIA.get());
-        tag(RankineTags.Blocks.STONES_SCHIST).add(RankineBlocks.MICA_SCHIST.getStone(),RankineBlocks.GREENSCHIST.getStone(),RankineBlocks.BLUESCHIST.getStone(),RankineBlocks.WHITESCHIST.getStone());
-        tag(RankineTags.Blocks.STONES_DOLOMITE).add(RankineBlocks.DOLOSTONE.getStone());
-        tag(RankineTags.Blocks.STONES_MARBLE).add(RankineBlocks.WHITE_MARBLE.getStone()).add(RankineBlocks.GRAY_MARBLE.getStone()).add(RankineBlocks.BLACK_MARBLE.getStone()).add(RankineBlocks.ROSE_MARBLE.getStone());
-        tag(RankineTags.Blocks.STONES_GABBRO).add(RankineBlocks.GABBRO.getStone()).add(RankineBlocks.ANORTHOSITE.getStone()).add(RankineBlocks.NORITE.getStone()).add(RankineBlocks.PYROXENITE.getStone()).add(RankineBlocks.TROCTOLITE.getStone());
-        tag(RankineTags.Blocks.STONES_MARLSTONE).add(RankineBlocks.MARLSTONE.getStone());
-        tag(RankineTags.Blocks.STONES_MUDSTONE).add(RankineBlocks.MUDSTONE.getStone());
-        tag(RankineTags.Blocks.STONES_RHYOLITE).add(RankineBlocks.RHYOLITE.getStone(),RankineBlocks.COMENDITE.getStone());
-        tag(RankineTags.Blocks.STONES_SYENITE).add(RankineBlocks.NEPHELINE_SYENITE.getStone(),RankineBlocks.EPISYENITE.getStone());
-        tag(RankineTags.Blocks.STONES_PHONOLITE).add(RankineBlocks.PHONOLITE.getStone());
-        tag(RankineTags.Blocks.STONES_GRANODIORITE).add(RankineBlocks.GRANODIORITE.getStone());
-        tag(RankineTags.Blocks.STONES_KIMBERLITE).add(RankineBlocks.KIMBERLITE.getStone());
-        tag(RankineTags.Blocks.STONES_KOMATIITE).add(RankineBlocks.KOMATIITE.getStone());
-        tag(RankineTags.Blocks.STONES_GNEISS).add(RankineBlocks.GNEISS.getStone());
-        tag(RankineTags.Blocks.STONES_LIMESTONE).add(RankineBlocks.LIMESTONE.getStone());
+        tag(RankineTags.Blocks.STONES_SCHIST).add(StoneBlocks.SCHIST.getStone(),StoneBlocks.GREENSCHIST.getStone(),StoneBlocks.BLUESCHIST.getStone(),StoneBlocks.WHITESCHIST.getStone());
+        tag(RankineTags.Blocks.STONES_DOLOMITE).add(StoneBlocks.DOLOSTONE.getStone());
+        tag(RankineTags.Blocks.STONES_MARBLE).add(StoneBlocks.WHITE_MARBLE.getStone()).add(StoneBlocks.GRAY_MARBLE.getStone()).add(StoneBlocks.BLACK_MARBLE.getStone()).add(StoneBlocks.ROSE_MARBLE.getStone());
+        tag(RankineTags.Blocks.STONES_GABBRO).add(StoneBlocks.GABBRO.getStone()).add(StoneBlocks.ANORTHOSITE.getStone()).add(StoneBlocks.NORITE.getStone()).add(StoneBlocks.PYROXENITE.getStone()).add(StoneBlocks.TROCTOLITE.getStone());
+        tag(RankineTags.Blocks.STONES_MARLSTONE).add(StoneBlocks.MARLSTONE.getStone());
+        tag(RankineTags.Blocks.STONES_MUDSTONE).add(StoneBlocks.MUDSTONE.getStone());
+        tag(RankineTags.Blocks.STONES_RHYOLITE).add(StoneBlocks.RHYOLITE.getStone(),StoneBlocks.COMENDITE.getStone());
+        tag(RankineTags.Blocks.STONES_SYENITE).add(StoneBlocks.SYENITE.getStone());
+        tag(RankineTags.Blocks.STONES_PHONOLITE).add(StoneBlocks.PHONOLITE.getStone());
+        tag(RankineTags.Blocks.STONES_GRANODIORITE).add(StoneBlocks.GRANODIORITE.getStone());
+        tag(RankineTags.Blocks.STONES_KIMBERLITE).add(StoneBlocks.KIMBERLITE.getStone());
+        tag(RankineTags.Blocks.STONES_KOMATIITE).add(StoneBlocks.KOMATIITE.getStone());
+        tag(RankineTags.Blocks.STONES_GNEISS).add(StoneBlocks.GNEISS.getStone());
+        tag(RankineTags.Blocks.STONES_LIMESTONE).add(StoneBlocks.LIMESTONE.getStone());
         tag(RankineTags.Blocks.STONES_SKARN).add(RankineBlocks.SKARN.get());
-        tag(RankineTags.Blocks.STONES_MARIPOSITE).add(RankineBlocks.MARIPOSITE.getStone());
-        tag(RankineTags.Blocks.STONES_QUARTZITE).add(RankineBlocks.QUARTZITE.getStone());
-        tag(RankineTags.Blocks.STONES_CHALK).add(RankineBlocks.CHALK.getStone());
-        tag(RankineTags.Blocks.STONES_SOAPSTONE).add(RankineBlocks.SOAPSTONE.getStone());
-        tag(RankineTags.Blocks.STONES_SHALE).add(RankineBlocks.SHALE.getStone());
-        tag(RankineTags.Blocks.STONES_SILTSTONE).add(RankineBlocks.SILTSTONE.getStone());
-        tag(RankineTags.Blocks.STONES_SERPENTINITE).add(RankineBlocks.SERPENTINITE.getStone());
-        tag(RankineTags.Blocks.STONES_ECLOGITE).add(RankineBlocks.ECLOGITE.getStone());
-        tag(RankineTags.Blocks.STONES_SLATE).add(RankineBlocks.SLATE.getStone());
-        tag(RankineTags.Blocks.STONES_SHONKINITE).add(RankineBlocks.SHONKINITE.getStone());
+        tag(RankineTags.Blocks.STONES_MARIPOSITE).add(StoneBlocks.MARIPOSITE.getStone());
+        tag(RankineTags.Blocks.STONES_QUARTZITE).add(StoneBlocks.QUARTZITE.getStone());
+        tag(RankineTags.Blocks.STONES_CHALK).add(StoneBlocks.CHALK.getStone());
+        tag(RankineTags.Blocks.STONES_SOAPSTONE).add(StoneBlocks.SOAPSTONE.getStone());
+        tag(RankineTags.Blocks.STONES_SHALE).add(StoneBlocks.SHALE.getStone());
+        tag(RankineTags.Blocks.STONES_SILTSTONE).add(StoneBlocks.SILTSTONE.getStone());
+        tag(RankineTags.Blocks.STONES_SERPENTINITE).add(StoneBlocks.SERPENTINITE.getStone());
+        tag(RankineTags.Blocks.STONES_ECLOGITE).add(StoneBlocks.ECLOGITE.getStone());
+        tag(RankineTags.Blocks.STONES_SLATE).add(StoneBlocks.SLATE.getStone());
+        tag(RankineTags.Blocks.STONES_SHONKINITE).add(StoneBlocks.SHONKINITE.getStone());
 
         tag(RankineTags.Blocks.IGNEOUS_STONES).addTags(RankineTags.Blocks.STONES_ANDESITE,RankineTags.Blocks.STONES_BASALT,RankineTags.Blocks.STONES_DACITE,RankineTags.Blocks.STONES_GABBRO,RankineTags.Blocks.STONES_PEGMATITE,RankineTags.Blocks.STONES_GRANODIORITE,RankineTags.Blocks.STONES_PORPHYRY,RankineTags.Blocks.STONES_GRANITE,RankineTags.Blocks.STONES_SHONKINITE,RankineTags.Blocks.STONES_PERIDOTITE,RankineTags.Blocks.STONES_KIMBERLITE,RankineTags.Blocks.STONES_KOMATIITE,RankineTags.Blocks.STONES_PUMICE,RankineTags.Blocks.STONES_SCORIA,RankineTags.Blocks.STONES_RHYOLITE);
         tag(RankineTags.Blocks.METAMORPHIC_STONES).addTags(RankineTags.Blocks.STONES_GNEISS,RankineTags.Blocks.STONES_SCHIST,RankineTags.Blocks.STONES_MARIPOSITE,RankineTags.Blocks.STONES_MARBLE,RankineTags.Blocks.STONES_PHYLITE,RankineTags.Blocks.STONES_SLATE,RankineTags.Blocks.STONES_SERPENTINITE,RankineTags.Blocks.STONES_ECLOGITE,RankineTags.Blocks.STONES_QUARTZITE,RankineTags.Blocks.STONES_SOAPSTONE);

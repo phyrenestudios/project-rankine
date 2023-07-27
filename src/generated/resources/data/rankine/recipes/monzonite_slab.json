@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_slab",
+  "key": {
+    "#": {
+      "item": "rankine:monzonite"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "rankine:monzonite_slab"
+  },
+  "show_notification": true
+}

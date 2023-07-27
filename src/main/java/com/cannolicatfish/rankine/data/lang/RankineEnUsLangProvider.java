@@ -33,11 +33,12 @@ public class RankineEnUsLangProvider extends LanguageProvider {
     protected void addTranslations() {
 
 
-        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
-            for (Block blk : Stone.getStoneBlocks()) {
+        for (StoneBlocks baseStone : StoneBlocks.values()) {
+            for (Block blk : baseStone.getStoneBlocks()) {
                 add(blk, parseLangName(name(blk)));
             }
         }
+
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             for (Block blk : Wood.getWoodBlocks()) {
                 if (blk != null && !(blk instanceof SignBlock)) {

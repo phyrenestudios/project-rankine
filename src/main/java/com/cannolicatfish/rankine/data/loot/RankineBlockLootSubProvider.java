@@ -59,12 +59,12 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
-            for (Block blk : Stone.getStoneBlocks()) {
+        for (StoneBlocks baseStone : StoneBlocks.values()) {
+            for (Block blk : baseStone.getStoneBlocks()) {
                 if (blk instanceof SlabBlock) {
                     addSlab(blk);
                 } else if (blk instanceof InfestedBlock) {
-                    otherWhenSilkTouch(blk, Stone.getStone());
+                    otherWhenSilkTouch(blk, baseStone.getStone());
                 } else {
                     dropSelf(blk);
                 }

@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/foidolite_bricks1",
+  "overrides": [
+    {
+      "model": "rankine:block/foidolite_bricks2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    }
+  ]
+}

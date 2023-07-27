@@ -37,29 +37,29 @@ public class RankineItemModelProvider extends ItemModelProvider {
     }
 
     protected void registerModels() {
-        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
-            //withExistingParent(Stone.getStone());
-            buildingModeItem(Stone.getPolished().asItem(), ((BuildingModeBlock) Stone.getPolished()).getMaxStyles());
-            buildingModeItem(Stone.getBricks().asItem(), ((BuildingModeBlock) Stone.getBricks()).getMaxStyles());
-            buildingModeItem(Stone.getMossyBricks().asItem(), ((BuildingModeBlock) Stone.getMossyBricks()).getMaxStyles());
-            slabParent(Stone.getSlab());
-            slabParent(Stone.getPolishedSlab());
-            slabParent(Stone.getBricksSlab());
-            slabParent(Stone.getMossyBricksSlab());
-            stairsParent(Stone.getStairs());
-            stairsParent(Stone.getPolishedStairs());
-            stairsParent(Stone.getBricksStairs());
-            stairsParent(Stone.getMossyBricksStairs());
-            wallParent(Stone.getWall());
-            wallParent(Stone.getPolishedWall());
-            wallParent(Stone.getBricksWall());
-            wallParent(Stone.getMossyBricksWall());
-            withExistingParent(name(Stone.getPressurePlate()), getBlockRSL(name(Stone.getPressurePlate(),"_up")));
-            withExistingParent(name(Stone.getBricksPressurePlate()), getBlockRSL(name(Stone.getBricksPressurePlate(),"_up")));
-            withExistingParent(name(Stone.getButton()), getBlockRSL(name(Stone.getButton(),"_inventory")));
-            withExistingParent(name(Stone.getCobble()), getBlockRSL(name(Stone.getCobble(),"1")));
-            withExistingParent(name(Stone.getColumn()), getBlockRSL(name(Stone.getColumn(),"1")));
-            withExistingParent(Stone.getInfested());
+        for (StoneBlocks baseStone : StoneBlocks.values()) {
+            withExistingParent(baseStone.getStone());
+            buildingModeItem(baseStone.getPolished().asItem(), ((BuildingModeBlock) baseStone.getPolished()).getMaxStyles());
+            buildingModeItem(baseStone.getBricks().asItem(), ((BuildingModeBlock) baseStone.getBricks()).getMaxStyles());
+            buildingModeItem(baseStone.getMossyBricks().asItem(), ((BuildingModeBlock) baseStone.getMossyBricks()).getMaxStyles());
+            slabParent(baseStone.getSlab());
+            slabParent(baseStone.getPolishedSlab());
+            slabParent(baseStone.getBricksSlab());
+            slabParent(baseStone.getMossyBricksSlab());
+            stairsParent(baseStone.getStairs());
+            stairsParent(baseStone.getPolishedStairs());
+            stairsParent(baseStone.getBricksStairs());
+            stairsParent(baseStone.getMossyBricksStairs());
+            wallParent(baseStone.getWall());
+            wallParent(baseStone.getPolishedWall());
+            wallParent(baseStone.getBricksWall());
+            wallParent(baseStone.getMossyBricksWall());
+            withExistingParent(name(baseStone.getPressurePlate()), getBlockRSL(name(baseStone.getPressurePlate(),"_up")));
+            withExistingParent(name(baseStone.getBricksPressurePlate()), getBlockRSL(name(baseStone.getBricksPressurePlate(),"_up")));
+            withExistingParent(name(baseStone.getButton()), getBlockRSL(name(baseStone.getButton(),"_inventory")));
+            withExistingParent(name(baseStone.getCobble()), getBlockRSL(name(baseStone.getCobble(),"1")));
+            withExistingParent(name(baseStone.getColumn()), getBlockRSL(name(baseStone.getColumn(),"1")));
+            withExistingParent(baseStone.getInfested());
         }
 
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {

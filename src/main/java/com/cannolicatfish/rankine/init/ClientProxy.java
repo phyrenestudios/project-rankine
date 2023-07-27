@@ -7,9 +7,8 @@ import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerScreen;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineBricks;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineDripstone;
-import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
-import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
+import com.cannolicatfish.rankine.blocks.block_groups.StoneBlocks;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceScreen;
@@ -78,10 +77,10 @@ public class ClientProxy implements IProxy {
             ItemProperties.register(Wood.getPlanks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Wood.getPlanks().asItem()).getBuildingMode(stack) : 1.0F);
             ItemProperties.register(Wood.getBookshelf().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Wood.getBookshelf().asItem()).getBuildingMode(stack) : 1.0F);
         }
-        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
-            ItemProperties.register(Stone.getPolished().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getPolished().asItem()).getBuildingMode(stack) : 1.0F);
-            ItemProperties.register(Stone.getBricks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getBricks().asItem()).getBuildingMode(stack) : 1.0F);
-            ItemProperties.register(Stone.getMossyBricks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getMossyBricks().asItem()).getBuildingMode(stack) : 1.0F);
+        for (StoneBlocks baseStone : StoneBlocks.values()) {
+            ItemProperties.register(baseStone.getPolished().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) baseStone.getPolished().asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(baseStone.getBricks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) baseStone.getBricks().asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(baseStone.getMossyBricks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) baseStone.getMossyBricks().asItem()).getBuildingMode(stack) : 1.0F);
         }
 
         ItemProperties.register(RankineItems.SHULKER_GAS_VACUUM.get(),
@@ -104,16 +103,6 @@ public class ClientProxy implements IProxy {
         MenuScreens.register(RankineMenus.INDUCTION_FURNACE_CONTAINER.get(), InductionFurnaceScreen::new);
         MenuScreens.register(RankineMenus.FUSION_FURNACE_CONTAINER.get(), FusionFurnaceScreen::new);
 
-
-        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
-            List<Block> blockList = new ArrayList<>();
-            for (Block blk : Stone.getStoneBlocks()) {
-                if (blk instanceof RankineStoneBricksBlock) {
-                    blockList.add(blk);
-                }
-            }
-            addCutout(blockList);
-        }
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             List<Block> cutoutList = new ArrayList<>();
             List<Block> cutoutMippedList = new ArrayList<>();

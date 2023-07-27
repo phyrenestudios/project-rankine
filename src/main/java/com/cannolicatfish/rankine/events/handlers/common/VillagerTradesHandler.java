@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
+import com.cannolicatfish.rankine.blocks.block_groups.StoneBlocks;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.util.RankineVillagerTrades;
 import net.minecraft.tags.ItemTags;
@@ -111,7 +112,7 @@ public class VillagerTradesHandler {
             level5.add((entity,rand) -> new MerchantOffer(new ItemStack(Items.NETHER_STAR, 1), new ItemStack(Items.EMERALD, 64),12,50,0.05f));
 
         } else if (event.getType() == RankineVillagerProfessions.ROCK_COLLECTOR.get()) {
-            level1.addAll(RankineVillagerTrades.returnTagTrades(Tags.Items.STONE, RankineBlocks.ANORTHOSITE.getStone().asItem(),16,1,16,10,0.05f));
+            level1.addAll(RankineVillagerTrades.returnTagTrades(Tags.Items.STONE, StoneBlocks.ANORTHOSITE.getStone().asItem(),16,1,16,10,0.05f));
             List<Block> rocks = ForgeRegistries.BLOCKS.tags().getTag(Tags.Blocks.STONE).stream().toList();
             if (!rocks.isEmpty()) {
                 for (Block rock : rocks) {

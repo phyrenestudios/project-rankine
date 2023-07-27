@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:tonalite_bricks"
+  },
+  "result": "rankine:tonalite_bricks_wall"
+}

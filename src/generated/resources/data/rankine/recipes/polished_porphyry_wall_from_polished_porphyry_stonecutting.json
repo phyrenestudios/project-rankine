@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:polished_porphyry"
+  },
+  "result": "rankine:polished_porphyry_wall"
+}

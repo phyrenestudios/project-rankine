@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:websterite"
+  },
+  "result": "rankine:polished_websterite"
+}

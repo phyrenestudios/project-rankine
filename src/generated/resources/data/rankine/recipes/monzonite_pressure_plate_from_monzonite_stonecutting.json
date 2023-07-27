@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:monzonite"
+  },
+  "result": "rankine:monzonite_pressure_plate"
+}

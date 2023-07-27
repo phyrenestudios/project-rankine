@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "rankine:mossy_mica_schist_bricks"
-  },
-  "result": "rankine:mossy_mica_schist_bricks_wall"
-}

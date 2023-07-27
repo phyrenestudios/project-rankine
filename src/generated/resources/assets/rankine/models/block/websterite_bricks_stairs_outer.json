@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "rankine:block/websterite_bricks",
+    "side": "rankine:block/websterite_bricks",
+    "top": "rankine:block/websterite_bricks"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:dacite_cobble"
+    },
+    {
+      "item": "rankine:dacite_cobble"
+    },
+    {
+      "item": "rankine:dacite_cobble"
+    },
+    {
+      "item": "rankine:dacite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:dacite"
+  }
+}

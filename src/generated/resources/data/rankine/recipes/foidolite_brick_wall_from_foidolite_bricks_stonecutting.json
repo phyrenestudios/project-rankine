@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:foidolite_bricks"
+  },
+  "result": "rankine:foidolite_bricks_wall"
+}

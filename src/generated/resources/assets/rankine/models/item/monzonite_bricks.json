@@ -1,0 +1,11 @@
+{
+  "parent": "rankine:block/monzonite_bricks1",
+  "overrides": [
+    {
+      "model": "rankine:block/monzonite_bricks2",
+      "predicate": {
+        "rankine:building_mode": 2.0
+      }
+    }
+  ]
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "rankine:block/purple_porphyry",
-    "side": "rankine:block/purple_porphyry",
-    "top": "rankine:block/purple_porphyry"
-  }
-}

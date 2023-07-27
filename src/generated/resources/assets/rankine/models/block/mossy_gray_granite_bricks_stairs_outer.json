@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "rankine:block/mossy_gray_granite_bricks",
-    "side": "rankine:block/mossy_gray_granite_bricks",
-    "top": "rankine:block/mossy_gray_granite_bricks"
-  }
-}

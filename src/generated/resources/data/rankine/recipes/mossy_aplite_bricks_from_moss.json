@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "mossy_bricks_moss",
+  "ingredients": [
+    {
+      "item": "rankine:aplite"
+    },
+    {
+      "item": "minecraft:moss_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:mossy_aplite_bricks"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/foidolite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/foidolite"
+    },
+    "type=top": {
+      "model": "rankine:block/foidolite_slab_top"
+    }
+  }
+}

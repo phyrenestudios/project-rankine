@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "rankine:websterite_bricks"
+  },
+  "result": "rankine:websterite_bricks_slab"
+}

@@ -634,29 +634,29 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         }
 
-        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
-            String baseStone = Stone.getBaseName();
-            Block COBBLE = Stone.getCobble();
-            Block COLUMN = Stone.getColumn();
-            Block STONE = Stone.getStone();
-            Block POLISHED_STONE = Stone.getPolished();
-            Block STONE_BRICKS = Stone.getBricks();
-            Block MOSSY_STONE_BRICKS = Stone.getMossyBricks();
-            Block STONE_SLAB = Stone.getSlab();
-            Block POLISHED_STONE_SLAB = Stone.getPolishedSlab();
-            Block STONE_BRICKS_SLAB = Stone.getBricksSlab();
-            Block MOSSY_STONE_BRICKS_SLAB = Stone.getMossyBricksSlab();
-            Block STONE_STAIRS = Stone.getStairs();
-            Block POLISHED_STONE_STAIRS = Stone.getPolishedStairs();
-            Block STONE_BRICKS_STAIRS = Stone.getBricksStairs();
-            Block MOSSY_STONE_BRICKS_STAIRS = Stone.getMossyBricksStairs();
-            Block STONE_WALL = Stone.getWall();
-            Block POLISHED_STONE_WALL = Stone.getPolishedWall();
-            Block STONE_BRICKS_WALL = Stone.getBricksWall();
-            Block MOSSY_STONE_BRICKS_WALL = Stone.getMossyBricksWall();
-            Block STONE_PRESSURE_PLATE = Stone.getPressurePlate();
-            Block STONE_BRICKS_PRESSURE_PLATE = Stone.getBricksPressurePlate();
-            Block STONE_BUTTON = Stone.getButton();
+        for (StoneBlocks baseStone : StoneBlocks.values()) {
+            String baseStoneName = baseStone.getBaseName();
+            Block COBBLE = baseStone.getCobble();
+            Block COLUMN = baseStone.getColumn();
+            Block STONE = baseStone.getStone();
+            Block POLISHED_STONE = baseStone.getPolished();
+            Block STONE_BRICKS = baseStone.getBricks();
+            Block MOSSY_STONE_BRICKS = baseStone.getMossyBricks();
+            Block STONE_SLAB = baseStone.getSlab();
+            Block POLISHED_STONE_SLAB = baseStone.getPolishedSlab();
+            Block STONE_BRICKS_SLAB = baseStone.getBricksSlab();
+            Block MOSSY_STONE_BRICKS_SLAB = baseStone.getMossyBricksSlab();
+            Block STONE_STAIRS = baseStone.getStairs();
+            Block POLISHED_STONE_STAIRS = baseStone.getPolishedStairs();
+            Block STONE_BRICKS_STAIRS = baseStone.getBricksStairs();
+            Block MOSSY_STONE_BRICKS_STAIRS = baseStone.getMossyBricksStairs();
+            Block STONE_WALL = baseStone.getWall();
+            Block POLISHED_STONE_WALL = baseStone.getPolishedWall();
+            Block STONE_BRICKS_WALL = baseStone.getBricksWall();
+            Block MOSSY_STONE_BRICKS_WALL = baseStone.getMossyBricksWall();
+            Block STONE_PRESSURE_PLATE = baseStone.getPressurePlate();
+            Block STONE_BRICKS_PRESSURE_PLATE = baseStone.getBricksPressurePlate();
+            Block STONE_BUTTON = baseStone.getButton();
 
             ShapedRecipeBuilder.shaped(RecipeCategory.MISC, COLUMN, 8)
                     .pattern("#")
@@ -701,32 +701,32 @@ public class RankineRecipesProvider extends RecipeProvider {
             pressurePlate(consumer, STONE_PRESSURE_PLATE.asItem(), STONE.asItem(), "stone_pressure_plate");
             pressurePlate(consumer, STONE_BRICKS_PRESSURE_PLATE.asItem(), STONE_BRICKS.asItem(), "stone_pressure_plate");
             ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, STONE_BUTTON).requires(STONE).group("stone_button").unlockedBy("has_ingredient", has(STONE)).save(consumer);
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MOSSY_STONE_BRICKS).requires(STONE).requires(Items.VINE).group("mossy_bricks_vines").unlockedBy("has_ingredient", has(STONE)).save(consumer,"rankine:mossy_"+baseStone+"_bricks_from_vine");
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MOSSY_STONE_BRICKS).requires(STONE).requires(Items.MOSS_BLOCK).group("mossy_bricks_moss").unlockedBy("has_ingredient", has(STONE)).save(consumer,"rankine:mossy_"+baseStone+"_bricks_from_moss");
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MOSSY_STONE_BRICKS).requires(STONE).requires(Items.VINE).group("mossy_bricks_vines").unlockedBy("has_ingredient", has(STONE)).save(consumer,"rankine:mossy_"+baseStoneName+"_bricks_from_vine");
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MOSSY_STONE_BRICKS).requires(STONE).requires(Items.MOSS_BLOCK).group("mossy_bricks_moss").unlockedBy("has_ingredient", has(STONE)).save(consumer,"rankine:mossy_"+baseStoneName+"_bricks_from_moss");
 
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, POLISHED_STONE, 1).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:polished_"+baseStone+"_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, STONE_BRICKS, 1).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_bricks_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, STONE_SLAB, 2).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_slab_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, STONE_STAIRS).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_stairs_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, STONE_WALL).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_wall_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, STONE_PRESSURE_PLATE).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_pressure_plate_from_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, STONE_BUTTON).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStone+"_button_from_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, POLISHED_STONE, 1).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:polished_"+baseStoneName+"_from_"+baseStoneName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, STONE_BRICKS, 1).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStoneName+"_bricks_from_"+baseStoneName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, STONE_SLAB, 2).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStoneName+"_slab_from_"+baseStoneName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, STONE_STAIRS).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStoneName+"_stairs_from_"+baseStoneName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, STONE_WALL).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStoneName+"_wall_from_"+baseStoneName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, STONE_PRESSURE_PLATE).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStoneName+"_pressure_plate_from_"+baseStoneName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE), RecipeCategory.MISC, STONE_BUTTON).unlockedBy("has_ingredient", has(STONE)).save(consumer, "rankine:"+baseStoneName+"_button_from_"+baseStoneName+"_stonecutting");
 
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), RecipeCategory.MISC, STONE_BRICKS_SLAB, 2).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_slab_from_"+baseStone+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), RecipeCategory.MISC, STONE_BRICKS_STAIRS).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_stairs_from_"+baseStone+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), RecipeCategory.MISC, STONE_BRICKS_WALL).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_wall_from_"+baseStone+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), RecipeCategory.MISC, STONE_BRICKS_PRESSURE_PLATE).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStone+"_brick_button_from_"+baseStone+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), RecipeCategory.MISC, STONE_BRICKS_SLAB, 2).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStoneName+"_brick_slab_from_"+baseStoneName+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), RecipeCategory.MISC, STONE_BRICKS_STAIRS).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStoneName+"_brick_stairs_from_"+baseStoneName+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), RecipeCategory.MISC, STONE_BRICKS_WALL).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStoneName+"_brick_wall_from_"+baseStoneName+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(STONE_BRICKS), RecipeCategory.MISC, STONE_BRICKS_PRESSURE_PLATE).unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer, "rankine:"+baseStoneName+"_brick_button_from_"+baseStoneName+"_bricks_stonecutting");
 
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(MOSSY_STONE_BRICKS), RecipeCategory.MISC, MOSSY_STONE_BRICKS_SLAB, 2).unlockedBy("has_ingredient", has(MOSSY_STONE_BRICKS)).save(consumer, "rankine:mossy_"+baseStone+"_brick_slab_from_mossy_"+baseStone+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(MOSSY_STONE_BRICKS), RecipeCategory.MISC, MOSSY_STONE_BRICKS_STAIRS).unlockedBy("has_ingredient", has(MOSSY_STONE_BRICKS)).save(consumer, "rankine:mossy_"+baseStone+"_brick_stairs_from_mossy_"+baseStone+"_bricks_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(MOSSY_STONE_BRICKS), RecipeCategory.MISC, MOSSY_STONE_BRICKS_WALL).unlockedBy("has_ingredient", has(MOSSY_STONE_BRICKS)).save(consumer, "rankine:mossy_"+baseStone+"_brick_wall_from_mossy_"+baseStone+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(MOSSY_STONE_BRICKS), RecipeCategory.MISC, MOSSY_STONE_BRICKS_SLAB, 2).unlockedBy("has_ingredient", has(MOSSY_STONE_BRICKS)).save(consumer, "rankine:mossy_"+baseStoneName+"_brick_slab_from_mossy_"+baseStoneName+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(MOSSY_STONE_BRICKS), RecipeCategory.MISC, MOSSY_STONE_BRICKS_STAIRS).unlockedBy("has_ingredient", has(MOSSY_STONE_BRICKS)).save(consumer, "rankine:mossy_"+baseStoneName+"_brick_stairs_from_mossy_"+baseStoneName+"_bricks_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(MOSSY_STONE_BRICKS), RecipeCategory.MISC, MOSSY_STONE_BRICKS_WALL).unlockedBy("has_ingredient", has(MOSSY_STONE_BRICKS)).save(consumer, "rankine:mossy_"+baseStoneName+"_brick_wall_from_mossy_"+baseStoneName+"_bricks_stonecutting");
 
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), RecipeCategory.MISC, POLISHED_STONE_SLAB, 2).unlockedBy("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStone+"_slab_from_polished_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), RecipeCategory.MISC, POLISHED_STONE_STAIRS).unlockedBy("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStone+"_stairs_from_polished_"+baseStone+"_stonecutting");
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), RecipeCategory.MISC, POLISHED_STONE_WALL).unlockedBy("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStone+"_wall_from_polished_"+baseStone+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), RecipeCategory.MISC, POLISHED_STONE_SLAB, 2).unlockedBy("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStoneName+"_slab_from_polished_"+baseStoneName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), RecipeCategory.MISC, POLISHED_STONE_STAIRS).unlockedBy("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStoneName+"_stairs_from_polished_"+baseStoneName+"_stonecutting");
+            SingleItemRecipeBuilder.stonecutting(Ingredient.of(POLISHED_STONE), RecipeCategory.MISC, POLISHED_STONE_WALL).unlockedBy("has_ingredient", has(POLISHED_STONE)).save(consumer, "rankine:polished_"+baseStoneName+"_wall_from_polished_"+baseStoneName+"_stonecutting");
 
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, STONE).requires(STONE_SLAB).requires(STONE_SLAB).group("block_from_slab").unlockedBy("has_ingredient", has(STONE)).save(consumer,"rankine:"+baseStone+"_from_slab");
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, STONE,3).requires(STONE_STAIRS).requires(STONE_STAIRS).requires(STONE_STAIRS).requires(STONE_STAIRS).group("block_from_stairs").unlockedBy("has_ingredient", has(STONE)).save(consumer,"rankine:"+baseStone+"_from_stairs");
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, STONE).requires(STONE_SLAB).requires(STONE_SLAB).group("block_from_slab").unlockedBy("has_ingredient", has(STONE)).save(consumer,"rankine:"+baseStoneName+"_from_slab");
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, STONE,3).requires(STONE_STAIRS).requires(STONE_STAIRS).requires(STONE_STAIRS).requires(STONE_STAIRS).group("block_from_stairs").unlockedBy("has_ingredient", has(STONE)).save(consumer,"rankine:"+baseStoneName+"_from_stairs");
 
             ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, STONE_BRICKS).requires(STONE_BRICKS_SLAB).requires(STONE_BRICKS_SLAB).group("block_from_slab").unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer,"rankine:"+getItemName(STONE_BRICKS)+"_from_slab");
             ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, STONE_BRICKS,3).requires(STONE_BRICKS_STAIRS).requires(STONE_BRICKS_STAIRS).requires(STONE_BRICKS_STAIRS).requires(STONE_BRICKS_STAIRS).group("block_from_stairs").unlockedBy("has_ingredient", has(STONE_BRICKS)).save(consumer,"rankine:"+getItemName(STONE_BRICKS)+"_from_stairs");

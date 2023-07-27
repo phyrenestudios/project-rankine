@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "rankine:block/mica_schist",
-    "side": "rankine:block/mica_schist",
-    "top": "rankine:block/mica_schist"
-  }
-}

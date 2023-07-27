@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:syenite_cobble"
+    },
+    {
+      "item": "rankine:syenite_cobble"
+    },
+    {
+      "item": "rankine:syenite_cobble"
+    },
+    {
+      "item": "rankine:syenite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:syenite"
+  }
+}

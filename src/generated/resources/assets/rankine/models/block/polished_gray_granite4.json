@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:block/polished_stone_offset_ew",
-  "textures": {
-    "all": "rankine:block/polished_gray_granite"
-  }
-}

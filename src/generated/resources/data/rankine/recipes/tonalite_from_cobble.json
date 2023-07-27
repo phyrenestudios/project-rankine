@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:tonalite_cobble"
+    },
+    {
+      "item": "rankine:tonalite_cobble"
+    },
+    {
+      "item": "rankine:tonalite_cobble"
+    },
+    {
+      "item": "rankine:tonalite_cobble"
+    }
+  ],
+  "result": {
+    "item": "rankine:tonalite"
+  }
+}

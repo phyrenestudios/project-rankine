@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:syenite_bricks"
+  },
+  "result": "rankine:syenite_bricks_wall"
+}

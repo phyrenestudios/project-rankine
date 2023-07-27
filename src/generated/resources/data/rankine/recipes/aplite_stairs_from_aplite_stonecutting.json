@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:aplite"
+  },
+  "result": "rankine:aplite_stairs"
+}

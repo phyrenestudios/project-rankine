@@ -52,29 +52,29 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
-            simpleBlockWithItem(Stone.getStone(), cubeAll(Stone.getStone()));
-            fancyPolishedBlock(Stone.getPolished());
-            fancyStoneBricksBlock(Stone.getBricks());
-            fancyMossyStoneBricksBlock(Stone.getMossyBricks());
-            slabBlock(Stone.getSlab(), getBlockRSL(Stone.getBaseName()), getBlockRSL(Stone.getBaseName()));
-            slabBlock(Stone.getPolishedSlab(), getBlockRSL("polished_"+Stone.getBaseName()+"1"), getBlockRSL("polished_"+Stone.getBaseName()));
-            slabBlock(Stone.getBricksSlab(), getBlockRSL(Stone.getBaseName()+"_bricks1"), getBlockRSL(Stone.getBaseName()+"_bricks"));
-            slabBlock(Stone.getMossyBricksSlab(), getBlockRSL("mossy_"+Stone.getBaseName()+"_bricks1"), getBlockRSL("mossy_"+Stone.getBaseName()+"_bricks"));
-            stairsBlock(Stone.getStairs(), getBlockRSL(Stone.getBaseName()));
-            stairsBlock(Stone.getPolishedStairs(), getBlockRSL("polished_"+Stone.getBaseName()));
-            stairsBlock(Stone.getBricksStairs(), getBlockRSL(Stone.getBaseName()+"_bricks"));
-            stairsBlock(Stone.getMossyBricksStairs(), getBlockRSL("mossy_"+Stone.getBaseName()+"_bricks"));
-            wallBlock(Stone.getWall(), getBlockRSL(Stone.getBaseName()));
-            wallBlock(Stone.getPolishedWall(), getBlockRSL("polished_"+Stone.getBaseName()));
-            wallBlock(Stone.getBricksWall(), getBlockRSL(Stone.getBaseName()+"_bricks"));
-            wallBlock(Stone.getMossyBricksWall(), getBlockRSL("mossy_"+Stone.getBaseName()+"_bricks"));
-            pressurePlateBlock(Stone.getPressurePlate(), getBlockRSL(Stone.getBaseName()));
-            pressurePlateBlock(Stone.getBricksPressurePlate(), getBlockRSL(Stone.getBaseName()+"_bricks"));
-            buttonBlock(Stone.getButton(), getBlockRSL(Stone.getBaseName()));
-            cobble(Stone.getCobble());
-            columnBlock(Stone.getColumn(), getBlockRSL(Stone.getBaseName()));
-            simpleBlock(Stone.getInfested(),models().withExistingParent(name(Stone.getInfested()), getBlockRSL(Stone.getBaseName())));
+        for (StoneBlocks baseStone : StoneBlocks.values()) {
+            simpleBlockWithItem(baseStone.getStone(), cubeAll(baseStone.getStone()));
+            fancyPolishedBlock(baseStone.getPolished());
+            fancyStoneBricksBlock(baseStone.getBricks());
+            fancyMossyStoneBricksBlock(baseStone.getMossyBricks());
+            slabBlock(baseStone.getSlab(), getBlockRSL(baseStone.getBaseName()), getBlockRSL(baseStone.getBaseName()));
+            slabBlock(baseStone.getPolishedSlab(), getBlockRSL("polished_"+baseStone.getBaseName()+"1"), getBlockRSL("polished_"+baseStone.getBaseName()));
+            slabBlock(baseStone.getBricksSlab(), getBlockRSL(baseStone.getBaseName()+"_bricks1"), getBlockRSL(baseStone.getBaseName()+"_bricks"));
+            slabBlock(baseStone.getMossyBricksSlab(), getBlockRSL("mossy_"+baseStone.getBaseName()+"_bricks1"), getBlockRSL("mossy_"+baseStone.getBaseName()+"_bricks"));
+            stairsBlock(baseStone.getStairs(), getBlockRSL(baseStone.getBaseName()));
+            stairsBlock(baseStone.getPolishedStairs(), getBlockRSL("polished_"+baseStone.getBaseName()));
+            stairsBlock(baseStone.getBricksStairs(), getBlockRSL(baseStone.getBaseName()+"_bricks"));
+            stairsBlock(baseStone.getMossyBricksStairs(), getBlockRSL("mossy_"+baseStone.getBaseName()+"_bricks"));
+            wallBlock(baseStone.getWall(), getBlockRSL(baseStone.getBaseName()));
+            wallBlock(baseStone.getPolishedWall(), getBlockRSL("polished_"+baseStone.getBaseName()));
+            wallBlock(baseStone.getBricksWall(), getBlockRSL(baseStone.getBaseName()+"_bricks"));
+            wallBlock(baseStone.getMossyBricksWall(), getBlockRSL("mossy_"+baseStone.getBaseName()+"_bricks"));
+            pressurePlateBlock(baseStone.getPressurePlate(), getBlockRSL(baseStone.getBaseName()));
+            pressurePlateBlock(baseStone.getBricksPressurePlate(), getBlockRSL(baseStone.getBaseName()+"_bricks"));
+            buttonBlock(baseStone.getButton(), getBlockRSL(baseStone.getBaseName()));
+            cobble(baseStone.getCobble());
+            columnBlock(baseStone.getColumn(), getBlockRSL(baseStone.getBaseName()));
+            simpleBlock(baseStone.getInfested(),models().withExistingParent(name(baseStone.getInfested()), getBlockRSL(baseStone.getBaseName())));
         }
 
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
@@ -449,7 +449,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         layerBlock(RankineBlocks.WHITE_CLOVER.get());
         layerBlock(RankineBlocks.YELLOW_CLOVER.get());
 
-        steppingStoneBlock(RankineBlocks.SLATE_STEPPING_STONES.get(), blockTexture(RankineBlocks.SLATE.getStone()));
+        steppingStoneBlock(RankineBlocks.SLATE_STEPPING_STONES.get(), blockTexture(StoneBlocks.SLATE.getStone()));
 
         getVariantBuilder(RankineBlocks.SHORT_GRASS.get())
                 .partialState().modelForState()

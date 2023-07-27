@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "rankine:nepheline_syenite"
-  },
-  "result": "rankine:nepheline_syenite_stairs"
-}

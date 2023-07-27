@@ -252,11 +252,11 @@ public class ReplacementUtils {
                                 chunk.setBlockState(TARGET_POS, vanillaOresMap.get(TARGET).defaultBlockState().setValue(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(stone.getBlock())),false);
                             }
 
-                        } else if (TARGET.equals(Blocks.INFESTED_STONE) || TARGET.equals(Blocks.INFESTED_DEEPSLATE)) {
-                            BlockState stone = getStone(blockList,y,STONE_NOISE);
-                            if (stone != null && VanillaIntegration.RankineStonesMap.containsKey(stone.getBlock())) {
-                                chunk.setBlockState(TARGET_POS, VanillaIntegration.RankineStonesMap.get(stone.getBlock()).getInfested().defaultBlockState(),false);
-                            }
+                        //} else if (TARGET.equals(Blocks.INFESTED_STONE) || TARGET.equals(Blocks.INFESTED_DEEPSLATE)) {
+                        //    BlockState stone = getStone(blockList,y,STONE_NOISE);
+                        //    if (stone != null && VanillaIntegration.RankineStonesMap.containsKey(stone.getBlock())) {
+                        //        chunk.setBlockState(TARGET_POS, VanillaIntegration.RankineStonesMap.get(stone.getBlock()).getInfested().defaultBlockState(),false);
+                        //    }
                         } else if (TARGET_BS.is(Blocks.POINTED_DRIPSTONE)) {
                             Block DRIP = WorldgenUtils.DRIPSTONES.get(GEN_BIOMES.indexOf(TARGET_BIOME));
                             if (DRIP != Blocks.AIR) {

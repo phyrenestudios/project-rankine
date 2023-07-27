@@ -1,7 +1,0 @@
-{
-  "parent": "rankine:block/template_rankine_ore",
-  "textures": {
-    "background": "rankine:block/diabase",
-    "overlay": "rankine:block/native_tin_ore"
-  }
-}

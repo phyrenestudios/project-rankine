@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_button",
+  "ingredients": [
+    {
+      "item": "rankine:dacite"
+    }
+  ],
+  "result": {
+    "item": "rankine:dacite_button"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "rankine:block/schist_pressure_plate_up"
+    },
+    "powered=true": {
+      "model": "rankine:block/schist_pressure_plate_down"
+    }
+  }
+}

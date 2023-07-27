@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/polished_websterite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_websterite1"
+    },
+    "type=top": {
+      "model": "rankine:block/polished_websterite_slab_top"
+    }
+  }
+}

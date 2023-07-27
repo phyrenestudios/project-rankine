@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.worldgen.features.misc;
 
-import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -8,8 +7,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
@@ -38,9 +35,10 @@ public class CobblePatchFeature extends Feature<RandomPatchConfiguration> {
 
         if (rockList.size() < 1) return false;
         Block stoneBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(rockList.get(random.nextInt(rockList.size()))));
-        if (!VanillaIntegration.RankineStonesMap.containsKey(stoneBlock)) {
+       // if (!VanillaIntegration.RankineStonesMap.containsKey(stoneBlock)) {
             return false;
-        }
+       // }
+        /*
         BlockState blockstate = VanillaIntegration.RankineStonesMap.get(stoneBlock).getCobble().defaultBlockState();
 
 
@@ -58,6 +56,8 @@ public class CobblePatchFeature extends Feature<RandomPatchConfiguration> {
         }
 
         return i > 0;
+
+         */
     }
 }
 

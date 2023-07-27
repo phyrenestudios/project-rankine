@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.block_groups.FiberBlocks;
+import com.cannolicatfish.rankine.blocks.block_groups.StoneBlocks;
 import com.cannolicatfish.rankine.items.*;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerItem;
@@ -23,6 +24,7 @@ public class RankineItems {
 
     static {
         FiberBlocks.registerItems();
+        StoneBlocks.registerItems();
     }
 
     public static final RegistryObject<Item> GRANITE_BRICKS = ITEMS.register("granite_bricks", () -> new BuildingModeBlockItem(RankineBlocks.GRANITE_BRICKS.get(), DEF_BUILDING));

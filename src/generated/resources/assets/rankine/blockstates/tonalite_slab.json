@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/tonalite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/tonalite"
+    },
+    "type=top": {
+      "model": "rankine:block/tonalite_slab_top"
+    }
+  }
+}
