@@ -1,7 +1,9 @@
 {
+  "name": "element.iron.name",
+  "symbol": "element.iron.symbol",
   "atomicNumber": 26,
   "color": 14211288,
-  "items": ["forge:nuggets/iron","forge:ingots/iron","forge:storage_blocks/iron"],
+  "items": ["T#forge:nuggets/iron","T#forge:ingots/iron","T#forge:storage_blocks/iron"],
   "materialValues": [1,9,81],
   "elementStats": {
     "durability": {
@@ -36,10 +38,10 @@
       "modifiers": ["MAX","NONE"],
       "limit": [0,0]
     },
-    "corrosionResistance": {
+    "density": {
       "breaks": [100],
       "formulas": ["LINEAR"],
-      "a": [-0.01],
+      "a": [1],
       "b": [0],
       "modifiers": ["NONE"],
       "limit": [0]

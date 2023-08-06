@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -130,5 +131,30 @@ public final class Element {
 
     public ElementStats getElementStats() {
         return elementStats;
+    }
+
+    public boolean test(@Nullable ItemStack stack) {
+        if (stack == null) {
+            return false;
+        } else {
+            for(Ingredient i : this.getIngredients()) {
+                if (i.test(stack)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+
+    public int getMaterialCount(ItemStack stack) {
+        int index = 0;
+        for(Ingredient i : this.getIngredients()) {
+            if (i.test(stack)) {
+                return getMaterialValues().get(index) * stack.getCount();
+            }
+            index++;
+        }
+        return 0;
     }
 }

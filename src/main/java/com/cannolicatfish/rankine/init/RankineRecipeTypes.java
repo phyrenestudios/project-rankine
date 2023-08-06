@@ -16,6 +16,12 @@ public class RankineRecipeTypes {
         }
     });
 
+    public static RegistryObject<RecipeType<AlloyFurnaceRecipe>> ALLOY_FURNACE = RECIPE_TYPES.register("alloy_furnace",() -> new RecipeType<>() {
+        public String toString() {
+            return "alloy_furnace";
+        }
+    });
+
     public static RegistryObject<RecipeType<CrushingRecipe>> CRUSHING = RECIPE_TYPES.register("crushing",() -> new RecipeType<>() {
         public String toString() {
             return "crushing";
