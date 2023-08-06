@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/rooted_sandy_clay"
+      },
+      {
+        "model": "rankine:block/rooted_sandy_clay",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/rooted_sandy_clay",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/rooted_sandy_clay",
+        "y": 270
+      }
+    ]
+  }
+}

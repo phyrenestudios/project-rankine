@@ -36,7 +36,7 @@ public class FertilizerItem extends Item {
             for (BlockPos b : BlockPos.betweenClosed(pos.offset(-radius, -radius, -radius), pos.offset(radius, radius, radius))) {
                 Block blk = worldIn.getBlockState(b).getBlock();
                 if (blk instanceof GrassySoilBlock && b.distSqr(pos) <= radius*radius) {
-                    worldIn.setBlock(b, blk.defaultBlockState().setValue(GrassySoilBlock.DEAD, false), 2);
+                    //worldIn.setBlock(b, blk.defaultBlockState().setValue(GrassySoilBlock.DEAD, false), 2);
                 }
             }
         }

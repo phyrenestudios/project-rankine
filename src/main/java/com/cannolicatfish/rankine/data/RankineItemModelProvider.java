@@ -122,6 +122,11 @@ public class RankineItemModelProvider extends ItemModelProvider {
             withExistingParent(fiber.getBlock());
             withExistingParent(fiber.getMat());
         }
+        for (SoilBlocks base : SoilBlocks.values()) {
+            for (Block blk : base.getAlBllocks()) {
+                withExistingParent(blk);
+            }
+        }
 
         //food items
         for (Item item : Stream.of(RankineLists.SEEDS,RankineLists.GRAINS,RankineLists.RAW_FISH,RankineLists.COOKED_FISH,RankineLists.GAS_BOTTLES,RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -145,13 +150,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.LEAF_LITTERS,
                 RankineLists.CRUSHING_HEADS,
                 RankineLists.MINING_HEADS,
-                RankineLists.SOIL_BLOCKS,
-                RankineLists.MUD_BLOCKS,
-                RankineLists.COARSE_SOIL_BLOCKS,
-                RankineLists.GRASS_BLOCKS,
-                RankineLists.PODZOL_BLOCKS,
-                RankineLists.MYCELIUM_BLOCKS,
-                RankineLists.PATH_BLOCKS,
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
                 RankineLists.LEDS,
@@ -169,7 +167,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
         }
 
         for (Block blk : Arrays.asList(
-
                 RankineBlocks.ANTIMATTER.get(),
                 RankineBlocks.FLOOD_GATE.get(),
                 RankineBlocks.ALLUVIUM.get(),
@@ -185,7 +182,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.KAOLIN.get(),
                 RankineBlocks.COB.get(),
                 RankineBlocks.STICK_BLOCK.get(),
-                RankineBlocks.MYCELIUM_PATH.get(),
                 RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(),
                 RankineBlocks.PORPHYRY_COPPER.get()
         )) {
@@ -475,7 +471,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.VANILLA_BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             buildingModeItem(BLK.asItem(), ((BuildingModeBlock) BLK).getMaxStyles());
         }
-        withExistingParent(name(RankineBlocks.TILLED_SOIL.get()), new ResourceLocation("rankine","block/tilled_soil_loam"));
         withExistingParent(name(RankineBlocks.STUMP.get()), new ResourceLocation("rankine","block/stump0"));
         withExistingParent(name(RankineBlocks.MIXING_BARREL.get()), new ResourceLocation("rankine","block/mixing_barrel0"));
 

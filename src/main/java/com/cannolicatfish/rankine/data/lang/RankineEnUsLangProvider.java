@@ -33,8 +33,8 @@ public class RankineEnUsLangProvider extends LanguageProvider {
     protected void addTranslations() {
 
 
-        for (StoneBlocks baseStone : StoneBlocks.values()) {
-            for (Block blk : baseStone.getStoneBlocks()) {
+        for (StoneBlocks base : StoneBlocks.values()) {
+            for (Block blk : base.getStoneBlocks()) {
                 add(blk, parseLangName(name(blk)));
             }
         }
@@ -53,13 +53,18 @@ public class RankineEnUsLangProvider extends LanguageProvider {
                 add(blk, parseLangName(name(blk)));
             }
         }
-        for (CementBlocks baseCementBlock : CementBlocks.values()) {
-            for (Block blk : baseCementBlock.getCementBlocks()) {
+        for (CementBlocks base : CementBlocks.values()) {
+            for (Block blk : base.getCementBlocks()) {
                 add(blk, parseLangName(name(blk)));
             }
         }
-        for (BricksBlocks baseBricksBlock : BricksBlocks.values()) {
-            for (Block blk : baseBricksBlock.getBricksBlocks()) {
+        for (BricksBlocks base : BricksBlocks.values()) {
+            for (Block blk : base.getBricksBlocks()) {
+                add(blk, parseLangName(name(blk)));
+            }
+        }
+        for (SoilBlocks base : SoilBlocks.values()) {
+            for (Block blk : base.getAlBllocks()) {
                 add(blk, parseLangName(name(blk)));
             }
         }
@@ -111,13 +116,6 @@ public class RankineEnUsLangProvider extends LanguageProvider {
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.ROTATION_BLOCKS,
                 RankineLists.LIGHTNING_GLASSES,
-                RankineLists.COARSE_SOIL_BLOCKS,
-                RankineLists.SOIL_BLOCKS,
-                RankineLists.MUD_BLOCKS,
-                RankineLists.GRASS_BLOCKS,
-                RankineLists.PODZOL_BLOCKS,
-                RankineLists.MYCELIUM_BLOCKS,
-                RankineLists.PATH_BLOCKS,
                 RankineLists.ELECTROMAGNETS,
                 RankineLists.CRUSHING_HEADS,
                 RankineLists.MINING_HEADS,
@@ -168,7 +166,6 @@ public class RankineEnUsLangProvider extends LanguageProvider {
                 RankineBlocks.SLATE_STEPPING_STONES.get(),
                 RankineBlocks.GAS_BOTTLER.get(),
                 RankineBlocks.GAS_VENT.get(),
-                RankineBlocks.TILLED_SOIL.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
                 RankineBlocks.ORNAMENT.get(),
                 RankineBlocks.LOCUST_SPINE.get(),
@@ -215,7 +212,6 @@ public class RankineEnUsLangProvider extends LanguageProvider {
                 RankineBlocks.ALLUVIUM.get(),
                 RankineBlocks.COB.get(),
                 RankineBlocks.SOD_BLOCK.get(),
-                RankineBlocks.MYCELIUM_PATH.get(),
                 RankineBlocks.BONE_CHAR_BLOCK.get(),
                 RankineBlocks.STICK_BLOCK.get(),
 

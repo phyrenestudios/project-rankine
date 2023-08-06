@@ -70,6 +70,17 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
                 }
             }
         }
+        for (SoilBlocks base : SoilBlocks.values()) {
+            dropSelf(base.getSoilBlock());
+            dropSelf(base.getCoarseSoilBlock());
+            dropSelf(base.getRootedSoilBlock());
+            dropSelf(base.getMudBlock());
+            dropOther(base.getPathBlock(), base.getSoilBlock());
+            dropOther(base.getFarmlandBlock(), base.getSoilBlock());
+            addSilkTouchSingleItem(base.getGrassBlock(), base.getSoilBlock());
+            addSilkTouchSingleItem(base.getPodzolBlock(), base.getSoilBlock());
+            addSilkTouchSingleItem(base.getMyceliumBlock(), base.getSoilBlock());
+        }
 
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             for (Block blk : Wood.getWoodBlocks()) {
@@ -151,8 +162,6 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
                 RankineLists.GEODES,
                 RankineLists.LEDS,
                 RankineLists.GLAZED_PORCELAIN_BLOCKS,
-                RankineLists.COARSE_SOIL_BLOCKS,
-                RankineLists.MUD_BLOCKS,
                 RankineLists.MINERAL_WOOL,
                 RankineLists.METAL_TRAPDOORS,
                 RankineLists.ALLOY_LADDERS,
@@ -228,7 +237,6 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
         for (Block blk : Arrays.asList(
                 RankineBlocks.ROPE.get(),
                 RankineBlocks.CORN_STALK.get(),
-                RankineBlocks.TILLED_SOIL.get(),
                 RankineBlocks.AGED_CHEESE.get(),
                 RankineBlocks.UNAGED_CHEESE.get(),
                 RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get(),
@@ -264,18 +272,7 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
         ).flatMap(Collection::stream).collect(Collectors.toList())) {
             addSlab(blk);
         }
-        for (Block SOIL : Stream.of(RankineLists.SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            Block GRASS = RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(SOIL));
-            Block PODZOL = RankineLists.PODZOL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(SOIL));
-            Block MYCELIUM = RankineLists.MYCELIUM_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(SOIL));
-            Block PATH = RankineLists.PATH_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(SOIL));
-            dropSelf(SOIL);
-            dropOther(PATH, SOIL);
-            addSilkTouchSingleItem(GRASS, SOIL);
-            addSilkTouchSingleItem(PODZOL, SOIL);
-            addSilkTouchSingleItem(MYCELIUM, SOIL);
-        }
-        dropOther(RankineBlocks.MYCELIUM_PATH.get(), Blocks.DIRT);
+
         dropOther(RankineBlocks.ENDER_SHIRO.get(), Blocks.END_STONE);
 
 

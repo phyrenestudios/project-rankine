@@ -1,6 +1,15 @@
 {
   "values": [
-    "minecraft:farmland",
-    "rankine:tilled_soil"
+    "rankine:humus_farmland",
+    "rankine:loam_farmland",
+    "rankine:silty_loam_farmland",
+    "rankine:loamy_sand_farmland",
+    "rankine:sandy_loam_farmland",
+    "rankine:clay_loam_farmland",
+    "rankine:sandy_clay_loam_farmland",
+    "rankine:silty_clay_loam_farmland",
+    "rankine:sandy_clay_farmland",
+    "rankine:silty_clay_farmland",
+    "minecraft:farmland"
   ]
 }

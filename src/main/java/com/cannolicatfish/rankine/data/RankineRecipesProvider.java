@@ -551,11 +551,6 @@ public class RankineRecipesProvider extends RecipeProvider {
                 ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BLK.asItem(), 4).pattern("##").define('#', LEAF).group("rankine:leaf_litters").unlockedBy("has_ingredient", has(LEAF)).save(consumer);
             }
         }
-        for (Block COARSE_SOIL : RankineLists.COARSE_SOIL_BLOCKS) {
-            Block SOIL = RankineLists.SOIL_BLOCKS.get(RankineLists.COARSE_SOIL_BLOCKS.indexOf(COARSE_SOIL));
-            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, COARSE_SOIL.asItem(), 4).pattern("#G").pattern("G#").define('#', SOIL).define('G', Tags.Items.GRAVEL).group("rankine:coarse_soil").unlockedBy("has_ingredient", has(SOIL)).save(consumer);
-
-        }
         for (Block BLK : RankineLists.GLAZED_PORCELAIN_BLOCKS) {
             TagKey<Item> DYE = RankineLists.DYES.get(RankineLists.GLAZED_PORCELAIN_BLOCKS.indexOf(BLK));
             centerRing(consumer, BLK.asItem(), 8, Ingredient.of(RankineItems.PORCELAIN.get()), Ingredient.of(DYE), "rankine:glazed_porcelain", RankineItems.PORCELAIN.get());
@@ -634,6 +629,10 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         }
 
+        for (SoilBlocks base : SoilBlocks.values()) {
+            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, base.getCoarseSoilBlock().asItem(), 4).pattern("#G").pattern("G#").define('#', base.getSoilBlock()).define('G', Tags.Items.GRAVEL).group("rankine:coarse_soil").unlockedBy("has_ingredient", has(base.getSoilBlock())).save(consumer);
+
+        }
         for (StoneBlocks baseStone : StoneBlocks.values()) {
             String baseStoneName = baseStone.getBaseName();
             Block COBBLE = baseStone.getCobble();

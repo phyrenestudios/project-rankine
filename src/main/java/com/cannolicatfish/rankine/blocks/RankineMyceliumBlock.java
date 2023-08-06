@@ -1,12 +1,13 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.blocks.block_enums.SoilBlocks;
 import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineLists;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
@@ -18,56 +19,66 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
+import org.jetbrains.annotations.Nullable;
 
 public class RankineMyceliumBlock extends MyceliumBlock {
-    public RankineMyceliumBlock() {
+    SoilBlocks soilType;
+
+    public RankineMyceliumBlock(SoilBlocks soilType) {
         super(BlockBehaviour.Properties.of(Material.GRASS, MaterialColor.COLOR_PURPLE).randomTicks().strength(0.6F).sound(SoundType.GRASS));
+        this.soilType = soilType;
     }
 
-    private static boolean isSnowyConditions(BlockState state, LevelReader worldReader, BlockPos pos) {
-        BlockPos blockpos = pos.above();
-        BlockState blockstate = worldReader.getBlockState(blockpos);
+    @Override
+    public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
+        if (ToolActions.HOE_TILL == toolAction && (context.getLevel().getBlockState(context.getClickedPos().above()).isAir())) {
+            return SoilBlocks.getSoilFromBlock(state.getBlock()).getFarmlandBlock().defaultBlockState();
+        } else if (ToolActions.SHOVEL_FLATTEN == toolAction) {
+            return SoilBlocks.getSoilFromBlock(state.getBlock()).getPathBlock().defaultBlockState();
+        }
+        return null;
+    }
+
+    private static boolean canBeGrass(BlockState p_56824_, LevelReader p_56825_, BlockPos p_56826_) {
+        BlockPos blockpos = p_56826_.above();
+        BlockState blockstate = p_56825_.getBlockState(blockpos);
         if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowLayerBlock.LAYERS) == 1) {
             return true;
         } else if (blockstate.getFluidState().getAmount() == 8) {
             return false;
         } else {
-            int i = LayerLightEngine.getLightBlockInto(worldReader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(worldReader, blockpos));
-            return i < worldReader.getMaxLightLevel();
+            int i = LayerLightEngine.getLightBlockInto(p_56825_, p_56824_, p_56826_, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(p_56825_, blockpos));
+            return i < p_56825_.getMaxLightLevel();
         }
     }
 
-    private static boolean isSnowyAndNotUnderwater(BlockState state, LevelReader worldReader, BlockPos pos) {
-        BlockPos blockpos = pos.above();
-        return isSnowyConditions(state, worldReader, pos) && !worldReader.getFluidState(blockpos).is(FluidTags.WATER);
+    private static boolean canPropagate(BlockState p_56828_, LevelReader p_56829_, BlockPos p_56830_) {
+        BlockPos blockpos = p_56830_.above();
+        return canBeGrass(p_56828_, p_56829_, p_56830_) && !p_56829_.getFluidState(blockpos).is(FluidTags.WATER);
     }
 
-    /**
-     * Performs a random tick on a block.
-     */
-    @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
-        if (!isSnowyConditions(state, worldIn, pos)) {
-            if (!worldIn.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
-            worldIn.setBlockAndUpdate(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.MYCELIUM_BLOCKS.indexOf(state.getBlock())).defaultBlockState());
+    public void randomTick(BlockState stateIn, ServerLevel levelIn, BlockPos posIn, RandomSource randomIn) {
+        if (!canBeGrass(stateIn, levelIn, posIn)) {
+            if (!levelIn.isAreaLoaded(posIn, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
+            levelIn.setBlockAndUpdate(posIn, soilType.getSoilBlock().defaultBlockState());
         } else {
-            if (worldIn.getMaxLocalRawBrightness(pos.above()) >= 9) {
+            if (!levelIn.isAreaLoaded(posIn, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
+            if (levelIn.getMaxLocalRawBrightness(posIn.above()) >= 9) {
                 BlockState blockstate = this.defaultBlockState();
 
                 for(int i = 0; i < 4; ++i) {
-                    BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-                    if (worldIn.getBlockState(blockpos).is(Blocks.DIRT) && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
-                        worldIn.setBlockAndUpdate(blockpos, blockstate.setValue(SNOWY, worldIn.getBlockState(blockpos.above()).is(Blocks.SNOW)));
-                    } else if (RankineLists.SOIL_BLOCKS.contains(worldIn.getBlockState(blockpos).getBlock()) && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
-                        worldIn.setBlockAndUpdate(blockpos, RankineLists.MYCELIUM_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(worldIn.getBlockState(blockpos).getBlock())).defaultBlockState().setValue(SNOWY, worldIn.getBlockState(blockpos.above()).is(Blocks.SNOW)));
+                    BlockPos blockpos = posIn.offset(randomIn.nextInt(3) - 1, randomIn.nextInt(5) - 3, randomIn.nextInt(3) - 1);
+                    if ((levelIn.getBlockState(blockpos).is(Blocks.DIRT) || SoilBlocks.getSoilFromBlock(levelIn.getBlockState(blockpos).getBlock()) != null) && canPropagate(blockstate, levelIn, blockpos)) {
+                        levelIn.setBlockAndUpdate(blockpos, blockstate.setValue(SNOWY, levelIn.getBlockState(blockpos.above()).is(Blocks.SNOW)));
                     }
                 }
-
-                if (worldIn.getBlockState(pos.above()).is(Blocks.AIR) && random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get()) {
-                    worldIn.setBlock(pos.above(),random.nextBoolean() ? Blocks.RED_MUSHROOM.defaultBlockState() : Blocks.BROWN_MUSHROOM.defaultBlockState(),2);
-                }
             }
+        }
 
+        if (levelIn.getBlockState(posIn.above()).is(Blocks.AIR) && randomIn.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get()) {
+            levelIn.setBlock(posIn.above(),randomIn.nextBoolean() ? Blocks.RED_MUSHROOM.defaultBlockState() : Blocks.BROWN_MUSHROOM.defaultBlockState(),2);
         }
     }
 

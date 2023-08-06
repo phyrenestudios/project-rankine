@@ -1,6 +1,6 @@
 {
   "variants": {
-    "dead=false,snowy=false": [
+    "snowy=false": [
       {
         "model": "rankine:block/sandy_loam_grass_block"
       },
@@ -17,27 +17,7 @@
         "y": 270
       }
     ],
-    "dead=false,snowy=true": {
-      "model": "rankine:block/sandy_loam_grass_block_snow"
-    },
-    "dead=true,snowy=false": [
-      {
-        "model": "rankine:block/sandy_loam_grass_block"
-      },
-      {
-        "model": "rankine:block/sandy_loam_grass_block",
-        "y": 90
-      },
-      {
-        "model": "rankine:block/sandy_loam_grass_block",
-        "y": 180
-      },
-      {
-        "model": "rankine:block/sandy_loam_grass_block",
-        "y": 270
-      }
-    ],
-    "dead=true,snowy=true": {
+    "snowy=true": {
       "model": "rankine:block/sandy_loam_grass_block_snow"
     }
   }

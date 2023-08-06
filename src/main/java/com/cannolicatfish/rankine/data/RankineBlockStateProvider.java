@@ -12,10 +12,8 @@ import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankineDoublePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
-import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
-import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
@@ -139,6 +137,24 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             fiberBlock(fiber.getBlock());
             fiberMatBlock(fiber.getMat(), getBlockRSL(fiber.getBlock()));
         }
+        for (SoilBlocks base : SoilBlocks.values()) {
+            rotationBlock(base.getSoilBlock());
+            rotationBlock(base.getCoarseSoilBlock());
+            rotationBlock(base.getRootedSoilBlock());
+            rotationBlock(base.getMudBlock());
+            grassySoilBlock(base.getGrassBlock(), base.getSoilBlock());
+            getVariantBuilder(base.getPodzolBlock())
+                    .partialState().with(BlockStateProperties.SNOWY,false).modelForState().modelFile(models().cubeBottomTop(name(base.getPodzolBlock()), getBlockRSL(base.getPodzolBlock()), getBlockRSL(base.getSoilBlock()),getBlockRSL("minecraft","podzol_top"))).addModel()
+                    .partialState().with(BlockStateProperties.SNOWY,true).modelForState().modelFile(new ModelFile.ExistingModelFile(getBlockRSL(name(base.getSoilBlock(),"_grass_block_snow")),models().existingFileHelper)).addModel();
+            getVariantBuilder(base.getMyceliumBlock())
+                    .partialState().with(BlockStateProperties.SNOWY,false).modelForState().modelFile(models().cubeBottomTop(name(base.getMyceliumBlock()), getBlockRSL(base.getMyceliumBlock()), getBlockRSL(base.getSoilBlock()),getBlockRSL("minecraft","mycelium_top"))).addModel()
+                    .partialState().with(BlockStateProperties.SNOWY,true).modelForState().modelFile(new ModelFile.ExistingModelFile(getBlockRSL(name(base.getSoilBlock(),"_grass_block_snow")),models().existingFileHelper)).addModel();
+            pathBlock(base.getPathBlock(), new ResourceLocation("minecraft","block/dirt_path_top"), getBlockRSL(name(base.getPathBlock(),"_side")), getBlockRSL(base.getSoilBlock()));
+            getVariantBuilder(base.getFarmlandBlock()).forAllStates(state -> {
+                int MOISTURE = state.getValue(BlockStateProperties.MOISTURE);
+                return ConfiguredModel.builder().modelFile(models().withExistingParent(name(base.getFarmlandBlock()) + (MOISTURE == 7 ? "_moist" : ""), mcLoc("block/template_farmland")).texture("dirt", getBlockRSL(base.getSoilBlock())).texture("top", getBlockRSL(name(base.getSoilBlock())+"_farmland" + (MOISTURE == 7 ? "_moist" : "")))).build();
+            });
+        }
 
         for (Block blk : Stream.of(
                 RankineLists.ALLOY_BLOCKS,
@@ -206,9 +222,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsBlock(blk,true);
         }
-        for (Block blk : Stream.of(RankineLists.MUD_BLOCKS,RankineLists.SOIL_BLOCKS,RankineLists.COARSE_SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            rotationBlock(blk);
-        }
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
             pressurePlateBlock((RankineStonePressurePlate) blk, getBlockRSL(Arrays.asList(name(blk).split("_pressure_plate")).get(0)));
         }
@@ -232,39 +245,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(name(BLK), modLoc("alloy_sheetmetal"))).addModel();
         }
         //getVariantBuilder(RankineBlocks.ENDER_SHIRO.get()).partialState().modelForState().modelFile(models().cubeBottomTop(RankineBlocks.ENDER_SHIRO.get().getRegistryName().getPath(), getRSL("ender_shiro_side"), getRSL("minecraft","end_stone"), getRSL("ender_shiro_top"))).addModel();
-
-        getVariantBuilder(RankineBlocks.TILLED_SOIL.get()).forAllStates(state -> {
-            int MOISTURE = state.getValue(TilledSoilBlock.MOISTURE);
-            TilledSoilTypes TYPE = state.getValue(TilledSoilBlock.SOIL_TYPE);
-            ModelFile DRY;
-            ModelFile MOIST;
-            switch (TYPE) {
-                case LOAM:
-                case HUMUS:
-                case LOAMY_SAND:
-                case CLAY_LOAM:
-                case SANDY_CLAY_LOAM:
-                case SILTY_CLAY_LOAM:
-                case SILTY_LOAM:
-                case SANDY_CLAY:
-                case SILTY_CLAY:
-                case SANDY_LOAM:
-                     DRY = models().withExistingParent(name(RankineBlocks.TILLED_SOIL.get())+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", getBlockRSL(TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland"));
-                     MOIST = models().withExistingParent(name(RankineBlocks.TILLED_SOIL.get())+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", getBlockRSL(TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland_moist"));
-                    break;
-                case SOUL_SOIL:
-                    DRY = models().withExistingParent(name(RankineBlocks.TILLED_SOIL.get())+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", new ResourceLocation("minecraft", "block/"+TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland"));
-                    MOIST = models().withExistingParent(name(RankineBlocks.TILLED_SOIL.get())+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", new ResourceLocation("minecraft", "block/"+TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland_moist"));
-                    break;
-                case DIRT:
-                default:
-                    DRY = models().withExistingParent(name(RankineBlocks.TILLED_SOIL.get())+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", new ResourceLocation("minecraft", "block/"+TYPE.getSerializedName())).texture("top", new ResourceLocation("minecraft:block/farmland"));
-                    MOIST = models().withExistingParent(name(RankineBlocks.TILLED_SOIL.get())+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", new ResourceLocation("minecraft", "block/"+TYPE.getSerializedName())).texture("top", new ResourceLocation("minecraft:block/farmland_moist"));
-                    break;
-            }
-
-            return MOISTURE == 7 ? ConfiguredModel.builder().modelFile(MOIST).build() : ConfiguredModel.builder().modelFile(DRY).build();
-            });
 
         //Rotation blocks
         for (Block blk : Stream.of(RankineLists.ROTATION_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -381,34 +361,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             });
         }
 
-
-
         mixingBarrelBlock(RankineBlocks.MIXING_BARREL.get());
-        //grassy soils
-        for (Block GRASS : RankineLists.GRASS_BLOCKS) {
-            Block SOIL = RankineLists.SOIL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(GRASS));
-            grassySoilBlock(GRASS, SOIL);
-        }
-        for (Block PODZOL : RankineLists.PODZOL_BLOCKS) {
-            Block SOIL = RankineLists.SOIL_BLOCKS.get(RankineLists.PODZOL_BLOCKS.indexOf(PODZOL));
-            getVariantBuilder(PODZOL)
-                    .partialState().with(BlockStateProperties.SNOWY,false).modelForState().modelFile(models().cubeBottomTop(name(PODZOL), getBlockRSL(PODZOL), getBlockRSL(SOIL),getBlockRSL("minecraft","podzol_top"))).addModel()
-                    .partialState().with(BlockStateProperties.SNOWY,true).modelForState().modelFile(new ModelFile.ExistingModelFile(getBlockRSL(name(SOIL,"_grass_block_snow")),models().existingFileHelper)).addModel();
-        }
-        for (Block MYCELIUM : RankineLists.MYCELIUM_BLOCKS) {
-            Block SOIL = RankineLists.SOIL_BLOCKS.get(RankineLists.MYCELIUM_BLOCKS.indexOf(MYCELIUM));
-            getVariantBuilder(MYCELIUM)
-                    .partialState().with(BlockStateProperties.SNOWY,false).modelForState().modelFile(models().cubeBottomTop(name(MYCELIUM), getBlockRSL(MYCELIUM), getBlockRSL(SOIL),getBlockRSL("minecraft","mycelium_top"))).addModel()
-                    .partialState().with(BlockStateProperties.SNOWY,true).modelForState().modelFile(new ModelFile.ExistingModelFile(getBlockRSL(name(SOIL,"_grass_block_snow")),models().existingFileHelper)).addModel();
-        }
-        for (Block PATH : RankineLists.PATH_BLOCKS) {
-            Block SOIL = RankineLists.SOIL_BLOCKS.get(RankineLists.PATH_BLOCKS.indexOf(PATH));
-            ResourceLocation TOP = getBlockRSL(name(PATH,"_top"));
-            ResourceLocation SIDE = getBlockRSL(name(PATH,"_side"));
-            ResourceLocation BOTTOM = getBlockRSL(SOIL);
-            pathBlock(PATH, new ResourceLocation("minecraft","block/dirt_path_top"), SIDE, BOTTOM);
-        }
-        pathBlock(RankineBlocks.MYCELIUM_PATH.get(), getBlockRSL("mycelium_path_top"), getBlockRSL("mycelium_path_side"), new ResourceLocation("minecraft","block/dirt"));
 
 
         for (Block blk : RankineLists.ALLOY_PEDESTALS) {
@@ -943,10 +896,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         ModelFile grassy = models().withExistingParent(grassyName, modLoc("block/template_grassy_soil")).texture("soil", new ResourceLocation("rankine", "block/" + soilName)).texture("grassy_soil_top", getBlockRSL("minecraft","grass_block_top")).texture("grassy_soil_side", new ResourceLocation("rankine", "block/" + grassyName + "_side")).texture("grassy_soil_side_overlay", new ResourceLocation("rankine", "block/" + grassyName + "_side_overlay"));
         ModelFile snowy = models().withExistingParent(grassyName+"_snow", mcLoc("block/cube_bottom_top")).texture("top", getBlockRSL("minecraft","grass_block_top")).texture("bottom", new ResourceLocation("rankine", "block/" + soilName)).texture("side", new ResourceLocation("rankine", "block/"+grassyName+"_snow"));
         getVariantBuilder(grass)
-                .partialState().with(GrassBlock.SNOWY, false).with(GrassySoilBlock.DEAD,true).modelForState().modelFile(grassy).rotationY(0).nextModel().modelFile(grassy).rotationY(90).nextModel().modelFile(grassy).rotationY(180).nextModel().modelFile(grassy).rotationY(270).addModel()
-                .partialState().with(GrassBlock.SNOWY, false).with(GrassySoilBlock.DEAD,false).modelForState().modelFile(grassy).rotationY(0).nextModel().modelFile(grassy).rotationY(90).nextModel().modelFile(grassy).rotationY(180).nextModel().modelFile(grassy).rotationY(270).addModel()
-                .partialState().with(GrassBlock.SNOWY, true).with(GrassySoilBlock.DEAD,false).modelForState().modelFile(snowy).addModel()
-                .partialState().with(GrassBlock.SNOWY, true).with(GrassySoilBlock.DEAD,true).modelForState().modelFile(snowy).addModel();
+                .partialState().with(GrassBlock.SNOWY, false).modelForState().modelFile(grassy).rotationY(0).nextModel().modelFile(grassy).rotationY(90).nextModel().modelFile(grassy).rotationY(180).nextModel().modelFile(grassy).rotationY(270).addModel()
+                .partialState().with(GrassBlock.SNOWY, true).modelForState().modelFile(snowy).addModel();
     }
 
     public void rotationBlock(Block blk) {

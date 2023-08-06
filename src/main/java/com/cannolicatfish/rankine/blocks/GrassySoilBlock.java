@@ -1,9 +1,8 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.blocks.block_enums.SoilBlocks;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineLists;
-import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,95 +10,106 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.lighting.LayerLightEngine;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.phys.AABB;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 public class GrassySoilBlock extends GrassBlock {
-    public static final BooleanProperty DEAD = BooleanProperty.create("dead");
+    SoilBlocks soilType;
 
-    public GrassySoilBlock() {
+    public GrassySoilBlock(SoilBlocks soilType) {
         super(BlockBehaviour.Properties.of(Material.GRASS).randomTicks().strength(0.6F).sound(SoundType.GRASS));
-        this.registerDefaultState(this.stateDefinition.any().setValue(SNOWY, false).setValue(DEAD, false));
+        this.soilType = soilType;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level worldIn, RandomSource rand, BlockPos pos, BlockState state) {
-        return !state.getValue(DEAD);
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(SNOWY,DEAD);
-    }
-
-    @Override
-    public void randomTick(BlockState state, ServerLevel levelIn, BlockPos pos, RandomSource random) {
-        if (!isSnowyConditions(state, levelIn, pos)) {
-            if (!levelIn.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
-            if (RankineLists.GRASS_BLOCKS.contains(state.getBlock())) {
-                levelIn.setBlockAndUpdate(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(state.getBlock())).defaultBlockState());
-            } else {
-                levelIn.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
-            }
-            return;
+    public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
+        if (ToolActions.HOE_TILL == toolAction && (context.getLevel().getBlockState(context.getClickedPos().above()).isAir())) {
+            return SoilBlocks.getSoilFromBlock(state.getBlock()).getFarmlandBlock().defaultBlockState();
+        } else if (ToolActions.SHOVEL_FLATTEN == toolAction) {
+            return SoilBlocks.getSoilFromBlock(state.getBlock()).getPathBlock().defaultBlockState();
         }
+        return null;
+    }
 
-        if (levelIn.getMaxLocalRawBrightness(pos.above()) >= 9) {
-            BlockState blockstate = this.defaultBlockState();
-            for (int i = 0; i < 4; ++i) {
-                BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-                if (levelIn.getBlockState(blockpos).is(Blocks.DIRT) && isSnowyAndNotUnderwater(blockstate, levelIn, blockpos)) {
-                    levelIn.setBlockAndUpdate(blockpos, Blocks.GRASS_BLOCK.defaultBlockState().setValue(SNOWY, levelIn.getBlockState(blockpos.above()).is(Blocks.SNOW)));
-                } else if (RankineLists.SOIL_BLOCKS.contains(levelIn.getBlockState(blockpos).getBlock()) && isSnowyAndNotUnderwater(blockstate, levelIn, blockpos)) {
-                    levelIn.setBlockAndUpdate(blockpos, RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(levelIn.getBlockState(blockpos).getBlock())).defaultBlockState().setValue(SNOWY, levelIn.getBlockState(blockpos.above()).is(Blocks.SNOW)).setValue(DEAD, blockstate.getValue(DEAD)));
+    private static boolean canBeGrass(BlockState p_56824_, LevelReader p_56825_, BlockPos p_56826_) {
+        BlockPos blockpos = p_56826_.above();
+        BlockState blockstate = p_56825_.getBlockState(blockpos);
+        if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowLayerBlock.LAYERS) == 1) {
+            return true;
+        } else if (blockstate.getFluidState().getAmount() == 8) {
+            return false;
+        } else {
+            int i = LayerLightEngine.getLightBlockInto(p_56825_, p_56824_, p_56826_, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(p_56825_, blockpos));
+            return i < p_56825_.getMaxLightLevel();
+        }
+    }
+
+    private static boolean canPropagate(BlockState p_56828_, LevelReader p_56829_, BlockPos p_56830_) {
+        BlockPos blockpos = p_56830_.above();
+        return canBeGrass(p_56828_, p_56829_, p_56830_) && !p_56829_.getFluidState(blockpos).is(FluidTags.WATER);
+    }
+
+    @Override
+    public void randomTick(BlockState stateIn, ServerLevel levelIn, BlockPos posIn, RandomSource randomIn) {
+        if (!canBeGrass(stateIn, levelIn, posIn)) {
+            if (!levelIn.isAreaLoaded(posIn, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
+            levelIn.setBlockAndUpdate(posIn, soilType.getSoilBlock().defaultBlockState());
+        } else {
+            if (!levelIn.isAreaLoaded(posIn, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
+            if (levelIn.getMaxLocalRawBrightness(posIn.above()) >= 9) {
+                BlockState blockstate = this.defaultBlockState();
+
+                for(int i = 0; i < 4; ++i) {
+                    BlockPos blockpos = posIn.offset(randomIn.nextInt(3) - 1, randomIn.nextInt(5) - 3, randomIn.nextInt(3) - 1);
+                    if ((levelIn.getBlockState(blockpos).is(Blocks.DIRT) || SoilBlocks.getSoilFromBlock(levelIn.getBlockState(blockpos).getBlock()) != null) && canPropagate(blockstate, levelIn, blockpos)) {
+                        levelIn.setBlockAndUpdate(blockpos, blockstate.setValue(SNOWY, levelIn.getBlockState(blockpos.above()).is(Blocks.SNOW)));
+                    }
                 }
             }
-            if (random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get() && !state.getValue(DEAD)) {
-                growGrassBlock(state,levelIn,pos,random);
-            }
+
         }
 
-        if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get()) {
+        if (randomIn.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get()) {
             Block ceillingBlock = Blocks.AIR;
             int i = 1;
             while (i <= 40) {
-                if (!levelIn.isEmptyBlock(pos.relative(Direction.UP, i)) && !(levelIn.getBlockState(pos.above(i)).canBeReplaced(Fluids.WATER))) {
-                    ceillingBlock = levelIn.getBlockState(pos.above(i)).getBlock();
+                if (!levelIn.isEmptyBlock(posIn.relative(Direction.UP, i)) && !(levelIn.getBlockState(posIn.above(i)).canBeReplaced(Fluids.WATER))) {
+                    ceillingBlock = levelIn.getBlockState(posIn.above(i)).getBlock();
                     break;
                 }
                 ++i;
             }
-            if (ceillingBlock instanceof LeavesBlock && !(ceillingBlock instanceof RankineLeavesBlock) && (levelIn.getBlockState(pos.above(i - 1)).canBeReplaced(Fluids.WATER) || levelIn.getBlockState(pos.above(i - 1)).is(Blocks.AIR))) {
+            if (ceillingBlock instanceof LeavesBlock && !(ceillingBlock instanceof RankineLeavesBlock) && (levelIn.getBlockState(posIn.above(i - 1)).canBeReplaced(Fluids.WATER) || levelIn.getBlockState(posIn.above(i - 1)).is(Blocks.AIR))) {
                 if (ResourceLocation.tryParse("rankine:"+ForgeRegistries.BLOCKS.getKey(ceillingBlock).getPath().replace("leaves", "leaf_litter")) != null) {
-                    levelIn.setBlock(pos.above(i - 1), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:"+ForgeRegistries.BLOCKS.getKey(ceillingBlock).getPath().replace("leaves", "leaf_litter"))).defaultBlockState(), 3);
+                    levelIn.setBlock(posIn.above(i - 1), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:"+ForgeRegistries.BLOCKS.getKey(ceillingBlock).getPath().replace("leaves", "leaf_litter"))).defaultBlockState(), 3);
                 }
             }
+        } else if (randomIn.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get()) {
+            growGrassBlock(stateIn,levelIn,posIn,randomIn);
         }
+    }
 
+        /*
         if (Config.GENERAL.PATH_CREATION.get() && random.nextInt(Config.GENERAL.PATH_CREATION_TIME.get()) == 0) {
             List<LivingEntity> entitiesOnBlock = levelIn.getEntitiesOfClass(LivingEntity.class, new AABB(pos.above(), pos.above()).expandTowards(1, 1, 1), (e) -> e instanceof Player);
             if (!entitiesOnBlock.isEmpty() && VanillaIntegration.pathBlocks_map.containsKey(state.getBlock()) && !levelIn.getBlockState(pos.above()).getMaterial().blocksMotion()) {
                 levelIn.setBlock(pos, VanillaIntegration.pathBlocks_map.get(state.getBlock()).defaultBlockState(), 3);
             }
         }
+         */
 
-    }
 
     public void growGrassBlock(BlockState state, ServerLevel levelIn, BlockPos pos, RandomSource random) {
         BlockState aboveState = levelIn.getBlockState(pos.above());
@@ -121,20 +131,5 @@ public class GrassySoilBlock extends GrassBlock {
         }
     }
 
-    private static boolean isSnowyAndNotUnderwater(BlockState state, LevelReader worldReader, BlockPos pos) {
-        return isSnowyConditions(state, worldReader, pos) && !worldReader.getFluidState(pos.above()).is(FluidTags.WATER);
-    }
-    private static boolean isSnowyConditions(BlockState state, LevelReader worldReader, BlockPos pos) {
-        BlockPos blockpos = pos.above();
-        BlockState blockstate = worldReader.getBlockState(blockpos);
-        if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowLayerBlock.LAYERS) == 1) {
-            return true;
-        } else if (blockstate.getFluidState().getAmount() == 8) {
-            return false;
-        } else {
-            int i = LayerLightEngine.getLightBlockInto(worldReader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(worldReader, blockpos));
-            return i < worldReader.getMaxLightLevel();
-        }
-    }
 
 }

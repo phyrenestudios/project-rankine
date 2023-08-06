@@ -2,14 +2,14 @@
   "values": [
     "rankine:humus_mycelium",
     "rankine:loam_mycelium",
-    "rankine:silty_clay_mycelium",
-    "rankine:sandy_clay_mycelium",
     "rankine:silty_loam_mycelium",
-    "rankine:clay_loam_mycelium",
-    "rankine:sandy_loam_mycelium",
     "rankine:loamy_sand_mycelium",
+    "rankine:sandy_loam_mycelium",
+    "rankine:clay_loam_mycelium",
     "rankine:sandy_clay_loam_mycelium",
     "rankine:silty_clay_loam_mycelium",
+    "rankine:sandy_clay_mycelium",
+    "rankine:silty_clay_mycelium",
     "minecraft:mycelium"
   ]
 }

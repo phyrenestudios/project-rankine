@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
-import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -98,6 +97,7 @@ public class RankineCropsBlock extends CropBlock {
 
     // Soil type for crops is scored by an int[3] array; [Sand, Silt, Clay]
     public float calcSoilScore(LevelReader worldIn, BlockPos pos) {
+        /*
         if (worldIn.getBlockState(pos.below()).getBlock() instanceof TilledSoilBlock && worldIn.getBlockState(pos.below()).hasProperty(TilledSoilBlock.SOIL_TYPE)) {
             switch (worldIn.getBlockState(pos.below()).getValue(TilledSoilBlock.SOIL_TYPE)) {
                 case DIRT, SOUL_SOIL -> { return 1; }
@@ -131,6 +131,8 @@ public class RankineCropsBlock extends CropBlock {
                         + 0.55f * this.soilScore[2]; }
             }
         }
+
+         */
         return 1;
 
     }

@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineLists;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -59,8 +58,8 @@ public class LeafLitterBlock extends FallingBlock {
                     levelIn.setBlock(pos.below(), Blocks.MOSSY_STONE_BRICKS.defaultBlockState(), 3);
                 } else if (groundBS.is(Blocks.GRASS_BLOCK)) {
                     levelIn.setBlock(pos.below(), Blocks.PODZOL.defaultBlockState(), 3);
-                } else if (RankineLists.GRASS_BLOCKS.contains(groundBS.getBlock())) {
-                    levelIn.setBlock(pos.below(), RankineLists.PODZOL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(groundBS.getBlock())).defaultBlockState(), 3);
+               // } else if (RankineLists.GRASS_BLOCKS.contains(groundBS.getBlock())) {
+                //    levelIn.setBlock(pos.below(), RankineLists.PODZOL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(groundBS.getBlock())).defaultBlockState(), 3);
                 }
             }
             levelIn.destroyBlock(pos, false);

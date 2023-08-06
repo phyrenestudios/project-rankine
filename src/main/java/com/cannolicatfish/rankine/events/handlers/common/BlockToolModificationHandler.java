@@ -10,8 +10,11 @@ public class BlockToolModificationHandler {
             ForgeConfigSpec.BooleanValue configSpec = VanillaIntegration.DISABLED_ITEMS.get(event.getContext().getItemInHand().getItem());
             if (configSpec != null && configSpec.get()) {
                 event.setCanceled(true);
+                return;
             }
         }
+
+
 
     }
 }

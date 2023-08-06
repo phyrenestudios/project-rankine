@@ -1,14 +1,12 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.GrassySoilBlock;
 import com.cannolicatfish.rankine.blocks.HollowLogBlock;
 import com.cannolicatfish.rankine.blocks.LeafLitterBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.batterycharger.BatteryChargerScreen;
-import com.cannolicatfish.rankine.blocks.block_enums.BricksBlocks;
-import com.cannolicatfish.rankine.blocks.block_enums.RankineDripstone;
-import com.cannolicatfish.rankine.blocks.block_enums.RankineWood;
-import com.cannolicatfish.rankine.blocks.block_enums.StoneBlocks;
+import com.cannolicatfish.rankine.blocks.block_enums.*;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceScreen;
@@ -122,6 +120,7 @@ public class ClientProxy implements IProxy {
             ItemBlockRenderTypes.setRenderLayer(Dripstone.getPointedDripstone(), RenderType.cutout());
         }
 
+        addCutout(Stream.of(SoilBlocks.values()).map(SoilBlocks::getAlBllocks).flatMap(Collection::stream).filter((blk) -> blk instanceof GrassySoilBlock).toList());
         addCutout(RankineLists.MINING_HEADS);
         addCutout(RankineLists.METAL_DOORS);
         addCutout(RankineLists.METAL_TRAPDOORS);
@@ -156,7 +155,6 @@ public class ClientProxy implements IProxy {
 
         ));
 
-        addCutoutMipped(RankineLists.GRASS_BLOCKS);
         addCutoutMipped(RankineLists.CROPS_SINGLE);
         addCutoutMipped(RankineLists.CROPS_DOUBLE);
         addCutoutMipped(RankineLists.CROPS_TRIPLE);

@@ -60,67 +60,16 @@ public class ReplacementUtils {
         vanillaOresMap.put(Blocks.NETHER_QUARTZ_ORE, RankineBlocks.NETHER_QUARTZ_ORE.get());
         vanillaOresMap.put(Blocks.NETHER_GOLD_ORE, RankineBlocks.NETHER_GOLD_ORE.get());
 
-        mudMap.put(RankineBlocks.LOAM.get(), RankineBlocks.LOAM_MUD.get());
-        mudMap.put(RankineBlocks.COARSE_LOAM.get(), RankineBlocks.LOAM_MUD.get());
-        mudMap.put(RankineBlocks.LOAM_GRASS_BLOCK.get(), RankineBlocks.LOAM_MUD.get());
-        mudMap.put(RankineBlocks.LOAM_PODZOL.get(), RankineBlocks.LOAM_MUD.get());
-        mudMap.put(RankineBlocks.LOAM_MYCELIUM.get(), RankineBlocks.LOAM_MUD.get());
-        mudMap.put(RankineBlocks.HUMUS.get(), RankineBlocks.HUMUS_MUD.get());
-        mudMap.put(RankineBlocks.COARSE_HUMUS.get(), RankineBlocks.HUMUS_MUD.get());
-        mudMap.put(RankineBlocks.HUMUS_GRASS_BLOCK.get(), RankineBlocks.HUMUS_MUD.get());
-        mudMap.put(RankineBlocks.HUMUS_PODZOL.get(), RankineBlocks.HUMUS_MUD.get());
-        mudMap.put(RankineBlocks.HUMUS_MYCELIUM.get(), RankineBlocks.HUMUS_MUD.get());
-        mudMap.put(RankineBlocks.CLAY_LOAM.get(), RankineBlocks.CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.COARSE_CLAY_LOAM.get(), RankineBlocks.CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.CLAY_LOAM_GRASS_BLOCK.get(), RankineBlocks.CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.CLAY_LOAM_PODZOL.get(), RankineBlocks.CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.CLAY_LOAM_MYCELIUM.get(), RankineBlocks.CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SANDY_CLAY_LOAM.get(), RankineBlocks.SANDY_CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.COARSE_SANDY_CLAY_LOAM.get(), RankineBlocks.SANDY_CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SANDY_CLAY_LOAM_GRASS_BLOCK.get(), RankineBlocks.SANDY_CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SANDY_CLAY_LOAM_PODZOL.get(), RankineBlocks.SANDY_CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SANDY_CLAY_LOAM_MYCELIUM.get(), RankineBlocks.SANDY_CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SILTY_CLAY_LOAM.get(), RankineBlocks.SILTY_CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.COARSE_SILTY_CLAY_LOAM.get(), RankineBlocks.SILTY_CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SILTY_CLAY_LOAM_GRASS_BLOCK.get(), RankineBlocks.SILTY_CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SILTY_CLAY_LOAM_PODZOL.get(), RankineBlocks.SILTY_CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SILTY_CLAY_LOAM_MYCELIUM.get(), RankineBlocks.SILTY_CLAY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SILTY_LOAM.get(), RankineBlocks.SILTY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.COARSE_SILTY_LOAM.get(), RankineBlocks.SILTY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SILTY_LOAM_GRASS_BLOCK.get(), RankineBlocks.SILTY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SILTY_LOAM_PODZOL.get(), RankineBlocks.SILTY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SILTY_LOAM_MYCELIUM.get(), RankineBlocks.SILTY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SANDY_LOAM.get(), RankineBlocks.SANDY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.COARSE_SANDY_LOAM.get(), RankineBlocks.SANDY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SANDY_LOAM_GRASS_BLOCK.get(), RankineBlocks.SANDY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SANDY_LOAM_PODZOL.get(), RankineBlocks.SANDY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.SANDY_LOAM_MYCELIUM.get(), RankineBlocks.SANDY_LOAM_MUD.get());
-        mudMap.put(RankineBlocks.LOAMY_SAND.get(), RankineBlocks.LOAMY_SAND_MUD.get());
-        mudMap.put(RankineBlocks.COARSE_LOAMY_SAND.get(), RankineBlocks.LOAMY_SAND_MUD.get());
-        mudMap.put(RankineBlocks.LOAMY_SAND_GRASS_BLOCK.get(), RankineBlocks.LOAMY_SAND_MUD.get());
-        mudMap.put(RankineBlocks.LOAMY_SAND_PODZOL.get(), RankineBlocks.LOAMY_SAND_MUD.get());
-        mudMap.put(RankineBlocks.LOAMY_SAND_MYCELIUM.get(), RankineBlocks.LOAMY_SAND_MUD.get());
-        mudMap.put(RankineBlocks.SANDY_CLAY.get(), RankineBlocks.SANDY_CLAY_MUD.get());
-        mudMap.put(RankineBlocks.COARSE_SANDY_CLAY.get(), RankineBlocks.SANDY_CLAY_MUD.get());
-        mudMap.put(RankineBlocks.SANDY_CLAY_GRASS_BLOCK.get(), RankineBlocks.SANDY_CLAY_MUD.get());
-        mudMap.put(RankineBlocks.SANDY_CLAY_PODZOL.get(), RankineBlocks.SANDY_CLAY_MUD.get());
-        mudMap.put(RankineBlocks.SANDY_CLAY_MYCELIUM.get(), RankineBlocks.SANDY_CLAY_MUD.get());
-        mudMap.put(RankineBlocks.SILTY_CLAY.get(), RankineBlocks.SILTY_CLAY_MUD.get());
-        mudMap.put(RankineBlocks.COARSE_SILTY_CLAY.get(), RankineBlocks.SILTY_CLAY_MUD.get());
-        mudMap.put(RankineBlocks.SILTY_CLAY_GRASS_BLOCK.get(), RankineBlocks.SILTY_CLAY_MUD.get());
-        mudMap.put(RankineBlocks.SILTY_CLAY_PODZOL.get(), RankineBlocks.SILTY_CLAY_MUD.get());
-        mudMap.put(RankineBlocks.SILTY_CLAY_MYCELIUM.get(), RankineBlocks.SILTY_CLAY_MUD.get());
-
         //replacerMap.put(Blocks.GRASS_BLOCK, index -> Config.WORLDGEN.SOIL_GEN.get() ? (NOISE > 0.3 ? WorldgenUtils.O1.get(index) : WorldgenUtils.O2.get(index)) : Blocks.AIR);
-        replacerMap.put(Blocks.DIRT_PATH, index -> Config.WORLDGEN.SOIL_GEN.get() ? (STONE_NOISE > 0.3 ? VanillaIntegration.pathBlocks_map.getOrDefault(WorldgenUtils.O1.get(index),Blocks.AIR) : VanillaIntegration.pathBlocks_map.getOrDefault(WorldgenUtils.O2.get(index),Blocks.AIR)) : Blocks.AIR);
+        //replacerMap.put(Blocks.DIRT_PATH, index -> Config.WORLDGEN.SOIL_GEN.get() ? (STONE_NOISE > 0.3 ? VanillaIntegration.pathBlocks_map.getOrDefault(WorldgenUtils.O1.get(index),Blocks.AIR) : VanillaIntegration.pathBlocks_map.getOrDefault(WorldgenUtils.O2.get(index),Blocks.AIR)) : Blocks.AIR);
         replacerMap.put(Blocks.COARSE_DIRT, index -> {
             if (!Config.WORLDGEN.SOIL_GEN.get()) {
                 return Blocks.AIR;
             }
             Block b = STONE_NOISE > 0.3 ? WorldgenUtils.A1.get(index) : WorldgenUtils.A2.get(index);
-            if (RankineLists.SOIL_BLOCKS.contains(b)) {
-                return RankineLists.COARSE_SOIL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(b));
-            }
+        //    if (RankineLists.SOIL_BLOCKS.contains(b)) {
+         //       return RankineLists.COARSE_SOIL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(b));
+        //    }
             return Blocks.AIR;
         });
         replacerMap.put(Blocks.MYCELIUM, index -> {
@@ -128,9 +77,9 @@ public class ReplacementUtils {
                 return Blocks.AIR;
             }
             Block b = STONE_NOISE > 0.3 ? WorldgenUtils.A1.get(index) : WorldgenUtils.A2.get(index);
-            if (RankineLists.SOIL_BLOCKS.contains(b)) {
-                return RankineLists.MYCELIUM_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(b));
-            }
+         //   if (RankineLists.SOIL_BLOCKS.contains(b)) {
+         //       return RankineLists.MYCELIUM_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(b));
+          //  }
             return Blocks.AIR;
         });
         replacerMap.put(Blocks.PODZOL, index -> {
@@ -138,9 +87,9 @@ public class ReplacementUtils {
                 return Blocks.AIR;
             }
             Block b = STONE_NOISE > 0.3 ? WorldgenUtils.A1.get(index) : WorldgenUtils.A2.get(index);
-            if (RankineLists.SOIL_BLOCKS.contains(b)) {
-                return RankineLists.PODZOL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(b));
-            }
+        //    if (RankineLists.SOIL_BLOCKS.contains(b)) {
+        //        return RankineLists.PODZOL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(b));
+        //    }
             return Blocks.AIR;
         });
         replacerMap.put(Blocks.GRAVEL, index -> WorldgenUtils.GRAVELS.get(index) != Blocks.AIR ? WorldgenUtils.GRAVELS.get(index) : Blocks.AIR);

@@ -4,7 +4,6 @@ import com.cannolicatfish.rankine.blocks.block_enums.RankineWood;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
-import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyHoeItem;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;
@@ -78,11 +77,11 @@ public class RightClickBlockHandler {
 
         // Mud creation
         if (itemStack.getItem() instanceof PotionItem && PotionUtils.getPotion(itemStack).equals(Potions.WATER)) {
-            if (RankineLists.SOIL_BLOCKS.contains(levelIn.getBlockState(posIn).getBlock())) {
-                levelIn.setBlockAndUpdate(posIn, RankineLists.MUD_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(levelIn.getBlockState(posIn).getBlock())).defaultBlockState());
-                playerIn.getInventory().add(ItemUtils.createFilledResult(itemStack, playerIn, new ItemStack(Items.GLASS_BOTTLE)));
-                return;
-            }
+        //    if (RankineLists.SOIL_BLOCKS.contains(levelIn.getBlockState(posIn).getBlock())) {
+        //        levelIn.setBlockAndUpdate(posIn, RankineLists.MUD_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(levelIn.getBlockState(posIn).getBlock())).defaultBlockState());
+        //        playerIn.getInventory().add(ItemUtils.createFilledResult(itemStack, playerIn, new ItemStack(Items.GLASS_BOTTLE)));
+       //         return;
+        //    }
         }
 
 
@@ -164,26 +163,8 @@ public class RightClickBlockHandler {
                     event.setResult(Event.Result.ALLOW);
                 }
             }
-        } else if (item instanceof ShovelItem) {
-            if (VanillaIntegration.pathBlocks_map.get(b) != null) {
-                worldIn.playSound(player, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
-                worldIn.setBlock(pos, VanillaIntegration.pathBlocks_map.get(b).defaultBlockState(), 2);
-                stack.hurtAndBreak(1, player, (entity) -> {
-                    entity.broadcastBreakEvent(event.getHand());
-                });
-                player.swing(event.getHand());
-                event.setResult(Event.Result.ALLOW);
-            }
         } else if (item instanceof HoeItem) {
-            if (VanillaIntegration.hoeables_map.get(b) != null) {
-                worldIn.playSound(player, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                worldIn.setBlock(pos, RankineBlocks.TILLED_SOIL.get().defaultBlockState().setValue(TilledSoilBlock.MOISTURE, 0).setValue(TilledSoilBlock.SOIL_TYPE, VanillaIntegration.hoeables_map.get(b)), 3);
-                stack.hurtAndBreak(1, player, (entity) -> {
-                    entity.broadcastBreakEvent(event.getHand());
-                });
-                player.swing(event.getHand());
-                event.setResult(Event.Result.ALLOW);
-            } else if (b instanceof DoubleCropsBlock && item instanceof AlloyHoeItem) {
+            if (b instanceof DoubleCropsBlock && item instanceof AlloyHoeItem) {
                 if (targetBS.hasProperty(CropBlock.AGE) && targetBS.getValue(DoubleCropsBlock.AGE) == 7) {
                     if (targetBS.getValue(DoubleCropsBlock.SECTION) == DoubleBlockHalf.LOWER) {
                         worldIn.destroyBlock(pos,true);
@@ -225,7 +206,6 @@ public class RightClickBlockHandler {
                     }
                 }
             } else if (b instanceof CropBlock && item instanceof AlloyHoeItem) {
-
                 if (targetBS.hasProperty(CropBlock.AGE) && targetBS.getValue(CropBlock.AGE) == 7) {
                     worldIn.destroyBlock(pos,true);
                     if (targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,pos)) {
@@ -253,11 +233,11 @@ public class RightClickBlockHandler {
             Block target = state.getBlock();
             if ((ForgeRegistries.BLOCKS.tags().getTag(RankineTags.Blocks.GRASS_BLOCKS).contains(target)) && direction.equals(Direction.UP)) {
                 world.playSound(player, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
-                if (RankineLists.GRASS_BLOCKS.contains(target)) {
-                    world.setBlock(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(target)).defaultBlockState(), 3);
-                } else {
+            //    if (RankineLists.GRASS_BLOCKS.contains(target)) {
+            //        world.setBlock(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(target)).defaultBlockState(), 3);
+            //    } else {
                     world.setBlock(pos, Blocks.DIRT.defaultBlockState(), 3);
-                }
+           //     }
                 player.swing(hand);
                 if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !world.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                     Block.popResource(world, pos.above(), new ItemStack(Items.GRASS, 1));

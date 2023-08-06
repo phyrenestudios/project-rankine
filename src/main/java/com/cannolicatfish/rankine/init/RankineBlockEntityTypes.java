@@ -21,7 +21,6 @@ import com.cannolicatfish.rankine.blocks.pedestal.PedestalTile;
 import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanTile;
 import com.cannolicatfish.rankine.blocks.signs.RankineSignBlockEntity;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapTile;
-import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilTile;
 import com.cannolicatfish.rankine.client.renders.PedestalRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
@@ -84,10 +83,6 @@ public class RankineBlockEntityTypes {
 
     public static final RegistryObject<BlockEntityType<AlloyBlockTile>> ALLOY_BLOCK = BLOCK_ENTITY_TYPES.register("alloy_block",
             () -> BlockEntityType.Builder.of(AlloyBlockTile::new, RankineBlocks.ALLOY_BLOCK.get())
-                    .build(null));
-
-    public static final RegistryObject<BlockEntityType<TilledSoilTile>> TILLED_SOIL = BLOCK_ENTITY_TYPES.register("tilled_soil",
-            () -> BlockEntityType.Builder.of(TilledSoilTile::new, RankineBlocks.TILLED_SOIL.get())
                     .build(null));
 
     public static final RegistryObject<BlockEntityType<GroundTapTile>> GROUND_TAP = BLOCK_ENTITY_TYPES.register("ground_tap",

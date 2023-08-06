@@ -43,7 +43,7 @@ public class HerbicideItem extends Item {
                 } else if (blk instanceof SaplingBlock && b.distSqr(pos) <= radius*radius) {
                     worldIn.setBlock(b, Blocks.DEAD_BUSH.defaultBlockState(), 2);
                 } else if (blk instanceof GrassySoilBlock && b.distSqr(pos) <= radius*radius) {
-                    worldIn.setBlock(b, blk.defaultBlockState().setValue(GrassySoilBlock.DEAD, true), 2);
+                    //worldIn.setBlock(b, blk.defaultBlockState().setValue(GrassySoilBlock.DEAD, true), 2);
                 }
             }
         }

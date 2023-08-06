@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "moisture=0": {
+      "model": "rankine:block/sandy_clay_loam_farmland"
+    },
+    "moisture=1": {
+      "model": "rankine:block/sandy_clay_loam_farmland"
+    },
+    "moisture=2": {
+      "model": "rankine:block/sandy_clay_loam_farmland"
+    },
+    "moisture=3": {
+      "model": "rankine:block/sandy_clay_loam_farmland"
+    },
+    "moisture=4": {
+      "model": "rankine:block/sandy_clay_loam_farmland"
+    },
+    "moisture=5": {
+      "model": "rankine:block/sandy_clay_loam_farmland"
+    },
+    "moisture=6": {
+      "model": "rankine:block/sandy_clay_loam_farmland"
+    },
+    "moisture=7": {
+      "model": "rankine:block/sandy_clay_loam_farmland_moist"
+    }
+  }
+}

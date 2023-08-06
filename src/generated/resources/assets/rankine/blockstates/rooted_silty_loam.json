@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/rooted_silty_loam"
+      },
+      {
+        "model": "rankine:block/rooted_silty_loam",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/rooted_silty_loam",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/rooted_silty_loam",
+        "y": 270
+      }
+    ]
+  }
+}

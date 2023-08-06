@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.items;
 
-import com.cannolicatfish.rankine.init.RankineLists;
+import com.cannolicatfish.rankine.blocks.block_enums.SoilBlocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -35,8 +35,8 @@ public class GrassSeedsItem extends Item {
             BlockState target_bs = worldIn.getBlockState(pos);
             if (target_bs.is(Blocks.DIRT)) {
                 grass = Blocks.GRASS_BLOCK;
-            } else if (RankineLists.SOIL_BLOCKS.contains(target_bs.getBlock())) {
-                grass = RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(target_bs.getBlock()));
+            } else if (SoilBlocks.getSoilFromBlock(target_bs.getBlock()) != null) {
+                grass = SoilBlocks.getSoilFromBlock(target_bs.getBlock()).getGrassBlock();
             } else {
                 return super.useOn(context);
             }

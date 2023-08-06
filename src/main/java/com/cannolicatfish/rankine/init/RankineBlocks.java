@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.MudBlock;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.alloys.AlloyBlock;
@@ -34,7 +33,6 @@ import com.cannolicatfish.rankine.blocks.sedimentfan.SedimentFanBlock;
 import com.cannolicatfish.rankine.blocks.tap.TapLineBlock;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableBlock;
-import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import com.cannolicatfish.rankine.worldgen.trees.*;
 import net.minecraft.core.particles.ParticleTypes;
@@ -71,6 +69,7 @@ public class RankineBlocks {
         StoneBlocks.registerBlocks();
         CementBlocks.registerBlocks();
         BricksBlocks.registerBlocks();
+        SoilBlocks.registerBlocks();
     }
     //WOODS
     public static final RankineWood CEDAR = RankineWood.newWoodReg("cedar", 2.0f,true, true, 2, new CedarTreeGrower());
@@ -280,83 +279,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SILT = BLOCKS.register("silt", () -> new RankineSandBlock(11770483, Block.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.SAND).strength(0.5F)));
     public static final RegistryObject<Block> PERMAFROST = BLOCKS.register("permafrost", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(1.5F).sound(SoundType.GRAVEL)));
 
-    public static final RegistryObject<Block> HUMUS = BLOCKS.register("humus", SoilBlock::new);
-    public static final RegistryObject<Block> LOAM = BLOCKS.register("loam", SoilBlock::new);
-    public static final RegistryObject<Block> SILTY_LOAM = BLOCKS.register("silty_loam", SoilBlock::new);
-    public static final RegistryObject<Block> LOAMY_SAND = BLOCKS.register("loamy_sand", SoilBlock::new);
-    public static final RegistryObject<Block> SANDY_LOAM = BLOCKS.register("sandy_loam", SoilBlock::new);
-    public static final RegistryObject<Block> CLAY_LOAM = BLOCKS.register("clay_loam", SoilBlock::new);
-    public static final RegistryObject<Block> SANDY_CLAY_LOAM = BLOCKS.register("sandy_clay_loam", SoilBlock::new);
-    public static final RegistryObject<Block> SILTY_CLAY_LOAM = BLOCKS.register("silty_clay_loam", SoilBlock::new);
-    public static final RegistryObject<Block> SANDY_CLAY = BLOCKS.register("sandy_clay", SoilBlock::new);
-    public static final RegistryObject<Block> SILTY_CLAY = BLOCKS.register("silty_clay", SoilBlock::new);
-    public static final RegistryObject<Block> COARSE_HUMUS = BLOCKS.register("coarse_humus", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> COARSE_LOAM = BLOCKS.register("coarse_loam", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> COARSE_SILTY_LOAM = BLOCKS.register("coarse_silty_loam", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> COARSE_LOAMY_SAND = BLOCKS.register("coarse_loamy_sand", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> COARSE_SANDY_LOAM = BLOCKS.register("coarse_sandy_loam", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> COARSE_CLAY_LOAM = BLOCKS.register("coarse_clay_loam", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> COARSE_SANDY_CLAY_LOAM = BLOCKS.register("coarse_sandy_clay_loam", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> COARSE_SILTY_CLAY_LOAM = BLOCKS.register("coarse_silty_clay_loam", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> COARSE_SANDY_CLAY = BLOCKS.register("coarse_sandy_clay", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> COARSE_SILTY_CLAY = BLOCKS.register("coarse_silty_clay", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> HUMUS_MUD = BLOCKS.register("humus_mud", MudBlock::new);
-    public static final RegistryObject<Block> LOAM_MUD = BLOCKS.register("loam_mud", MudBlock::new);
-    public static final RegistryObject<Block> SILTY_LOAM_MUD = BLOCKS.register("silty_loam_mud", MudBlock::new);
-    public static final RegistryObject<Block> LOAMY_SAND_MUD = BLOCKS.register("loamy_sand_mud", MudBlock::new);
-    public static final RegistryObject<Block> SANDY_LOAM_MUD = BLOCKS.register("sandy_loam_mud", MudBlock::new);
-    public static final RegistryObject<Block> CLAY_LOAM_MUD = BLOCKS.register("clay_loam_mud", MudBlock::new);
-    public static final RegistryObject<Block> SANDY_CLAY_LOAM_MUD = BLOCKS.register("sandy_clay_loam_mud", MudBlock::new);
-    public static final RegistryObject<Block> SILTY_CLAY_LOAM_MUD = BLOCKS.register("silty_clay_loam_mud", MudBlock::new);
-    public static final RegistryObject<Block> SANDY_CLAY_MUD = BLOCKS.register("sandy_clay_mud", MudBlock::new);
-    public static final RegistryObject<Block> SILTY_CLAY_MUD = BLOCKS.register("silty_clay_mud", MudBlock::new);
-    public static final RegistryObject<Block> HUMUS_GRASS_PATH = BLOCKS.register("humus_grass_path", GrassySoilPathBlock::new);
-    public static final RegistryObject<Block> LOAM_GRASS_PATH = BLOCKS.register("loam_grass_path", GrassySoilPathBlock::new);
-    public static final RegistryObject<Block> SILTY_LOAM_GRASS_PATH = BLOCKS.register("silty_loam_grass_path", GrassySoilPathBlock::new);
-    public static final RegistryObject<Block> LOAMY_SAND_GRASS_PATH = BLOCKS.register("loamy_sand_grass_path", GrassySoilPathBlock::new);
-    public static final RegistryObject<Block> SANDY_LOAM_GRASS_PATH = BLOCKS.register("sandy_loam_grass_path", GrassySoilPathBlock::new);
-    public static final RegistryObject<Block> CLAY_LOAM_GRASS_PATH = BLOCKS.register("clay_loam_grass_path", GrassySoilPathBlock::new);
-    public static final RegistryObject<Block> SANDY_CLAY_LOAM_GRASS_PATH = BLOCKS.register("sandy_clay_loam_grass_path", GrassySoilPathBlock::new);
-    public static final RegistryObject<Block> SILTY_CLAY_LOAM_GRASS_PATH = BLOCKS.register("silty_clay_loam_grass_path", GrassySoilPathBlock::new);
-    public static final RegistryObject<Block> SANDY_CLAY_GRASS_PATH = BLOCKS.register("sandy_clay_grass_path", GrassySoilPathBlock::new);
-    public static final RegistryObject<Block> SILTY_CLAY_GRASS_PATH = BLOCKS.register("silty_clay_grass_path", GrassySoilPathBlock::new);
-    public static final RegistryObject<Block> HUMUS_GRASS_BLOCK = BLOCKS.register("humus_grass_block", GrassySoilBlock::new);
-    public static final RegistryObject<Block> LOAM_GRASS_BLOCK = BLOCKS.register("loam_grass_block", GrassySoilBlock::new);
-    public static final RegistryObject<Block> SILTY_LOAM_GRASS_BLOCK = BLOCKS.register("silty_loam_grass_block", GrassySoilBlock::new);
-    public static final RegistryObject<Block> LOAMY_SAND_GRASS_BLOCK = BLOCKS.register("loamy_sand_grass_block", GrassySoilBlock::new);
-    public static final RegistryObject<Block> SANDY_LOAM_GRASS_BLOCK = BLOCKS.register("sandy_loam_grass_block", GrassySoilBlock::new);
-    public static final RegistryObject<Block> CLAY_LOAM_GRASS_BLOCK = BLOCKS.register("clay_loam_grass_block", GrassySoilBlock::new);
-    public static final RegistryObject<Block> SANDY_CLAY_LOAM_GRASS_BLOCK = BLOCKS.register("sandy_clay_loam_grass_block", GrassySoilBlock::new);
-    public static final RegistryObject<Block> SILTY_CLAY_LOAM_GRASS_BLOCK = BLOCKS.register("silty_clay_loam_grass_block", GrassySoilBlock::new);
-    public static final RegistryObject<Block> SANDY_CLAY_GRASS_BLOCK = BLOCKS.register("sandy_clay_grass_block", GrassySoilBlock::new);
-    public static final RegistryObject<Block> SILTY_CLAY_GRASS_BLOCK = BLOCKS.register("silty_clay_grass_block", GrassySoilBlock::new);
-    public static final RegistryObject<Block> HUMUS_PODZOL = BLOCKS.register("humus_podzol", RankinePodzolBlock::new);
-    public static final RegistryObject<Block> LOAM_PODZOL = BLOCKS.register("loam_podzol", RankinePodzolBlock::new);
-    public static final RegistryObject<Block> SILTY_LOAM_PODZOL = BLOCKS.register("silty_loam_podzol", RankinePodzolBlock::new);
-    public static final RegistryObject<Block> LOAMY_SAND_PODZOL = BLOCKS.register("loamy_sand_podzol", RankinePodzolBlock::new);
-    public static final RegistryObject<Block> SANDY_LOAM_PODZOL = BLOCKS.register("sandy_loam_podzol", RankinePodzolBlock::new);
-    public static final RegistryObject<Block> CLAY_LOAM_PODZOL = BLOCKS.register("clay_loam_podzol", RankinePodzolBlock::new);
-    public static final RegistryObject<Block> SANDY_CLAY_LOAM_PODZOL = BLOCKS.register("sandy_clay_loam_podzol", RankinePodzolBlock::new);
-    public static final RegistryObject<Block> SILTY_CLAY_LOAM_PODZOL = BLOCKS.register("silty_clay_loam_podzol", RankinePodzolBlock::new);
-    public static final RegistryObject<Block> SANDY_CLAY_PODZOL = BLOCKS.register("sandy_clay_podzol", RankinePodzolBlock::new);
-    public static final RegistryObject<Block> SILTY_CLAY_PODZOL = BLOCKS.register("silty_clay_podzol", RankinePodzolBlock::new);
-    public static final RegistryObject<Block> HUMUS_MYCELIUM = BLOCKS.register("humus_mycelium", RankineMyceliumBlock::new);
-    public static final RegistryObject<Block> LOAM_MYCELIUM = BLOCKS.register("loam_mycelium", RankineMyceliumBlock::new);
-    public static final RegistryObject<Block> SILTY_LOAM_MYCELIUM = BLOCKS.register("silty_loam_mycelium", RankineMyceliumBlock::new);
-    public static final RegistryObject<Block> LOAMY_SAND_MYCELIUM = BLOCKS.register("loamy_sand_mycelium", RankineMyceliumBlock::new);
-    public static final RegistryObject<Block> SANDY_LOAM_MYCELIUM = BLOCKS.register("sandy_loam_mycelium", RankineMyceliumBlock::new);
-    public static final RegistryObject<Block> CLAY_LOAM_MYCELIUM = BLOCKS.register("clay_loam_mycelium", RankineMyceliumBlock::new);
-    public static final RegistryObject<Block> SANDY_CLAY_LOAM_MYCELIUM = BLOCKS.register("sandy_clay_loam_mycelium", RankineMyceliumBlock::new);
-    public static final RegistryObject<Block> SILTY_CLAY_LOAM_MYCELIUM = BLOCKS.register("silty_clay_loam_mycelium", RankineMyceliumBlock::new);
-    public static final RegistryObject<Block> SANDY_CLAY_MYCELIUM = BLOCKS.register("sandy_clay_mycelium", RankineMyceliumBlock::new);
-    public static final RegistryObject<Block> SILTY_CLAY_MYCELIUM = BLOCKS.register("silty_clay_mycelium", RankineMyceliumBlock::new);
-
-
-    public static final RegistryObject<Block> MYCELIUM_PATH = BLOCKS.register("mycelium_path", () -> new DirtPathBlock(Block.Properties.of(Material.DIRT).sound(SoundType.GRAVEL).strength(0.5F)));
-
     //gravel path?
     public static final RegistryObject<Block> ENDER_SHIRO = BLOCKS.register("ender_shiro", () -> new EnderShiroBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(0.8F).sound(SoundType.ROOTS).randomTicks()));
-    public static final RegistryObject<Block> TILLED_SOIL = BLOCKS.register("tilled_soil", () -> new TilledSoilBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> LIGHTNING_GLASS = BLOCKS.register("lightning_glass", () -> new LightningGlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
     public static final RegistryObject<Block> RED_LIGHTNING_GLASS = BLOCKS.register("red_lightning_glass", () -> new LightningGlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));
     public static final RegistryObject<Block> SOUL_LIGHTNING_GLASS = BLOCKS.register("soul_lightning_glass", () -> new LightningGlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.5F).sound(SoundType.GLASS).noOcclusion()));

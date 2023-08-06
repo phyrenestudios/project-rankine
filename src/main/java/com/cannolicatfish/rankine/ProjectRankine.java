@@ -1,6 +1,8 @@
 package com.cannolicatfish.rankine;
 
+import com.cannolicatfish.rankine.blocks.GrassySoilBlock;
 import com.cannolicatfish.rankine.blocks.block_enums.RankineWood;
+import com.cannolicatfish.rankine.blocks.block_enums.SoilBlocks;
 import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.element.Element;
 import com.cannolicatfish.rankine.events.handlers.common.CreativeTabsHandler;
@@ -154,7 +156,7 @@ public class ProjectRankine {
         @SubscribeEvent
         @OnlyIn(Dist.CLIENT)
         public static void onItemColorRegistry(final RegisterColorHandlersEvent.Item event) {
-            for (Block b : RankineLists.GRASS_BLOCKS) {
+            for (Block b : Stream.of(SoilBlocks.values()).map(SoilBlocks::getAlBllocks).flatMap(Collection::stream).filter((blk) -> blk instanceof GrassySoilBlock).toList()) {
                 event.getItemColors().register(new GrassItemBaseColor(), b.asItem());
             }
             for (Block b : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.ALLOY_POLES,RankineLists.ALLOY_BARS,RankineLists.ALLOY_LADDERS,RankineLists.SHEETMETALS,RankineLists.ALLOY_SHEETMETALS).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -197,7 +199,7 @@ public class ProjectRankine {
         @OnlyIn(Dist.CLIENT)
         public static void onBlockColorRegistry(final RegisterColorHandlersEvent.Block event) {
             event.getBlockColors().register(new CrucibleColor(), RankineBlocks.CRUCIBLE_BLOCK.get());
-            for (Block b : RankineLists.GRASS_BLOCKS) {
+            for (Block b : Stream.of(SoilBlocks.values()).map(SoilBlocks::getAlBllocks).flatMap(Collection::stream).filter((blk) -> blk instanceof GrassySoilBlock).toList()) {
                 event.getBlockColors().register(new GrassBlockBaseColor(), b);
             }
             event.getBlockColors().register(new AlloyBlockColor(), RankineBlocks.ALLOY_BLOCK.get());
