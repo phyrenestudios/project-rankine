@@ -1,31 +1,21 @@
 package com.cannolicatfish.rankine.util;
 
-import com.cannolicatfish.rankine.blocks.GrassySoilBlock;
-import com.cannolicatfish.rankine.blocks.RankineOreBlock;
-import com.cannolicatfish.rankine.blocks.RankinePointedDripstoneBlock;
-import com.cannolicatfish.rankine.init.*;
-import com.google.common.collect.ImmutableList;
+import com.cannolicatfish.rankine.blocks.block_enums.SoilBlocks;
+import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.LegacyRandomSource;
-import net.minecraft.world.level.levelgen.WorldgenRandom;
-import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 public class ReplacementUtils {
@@ -37,10 +27,41 @@ public class ReplacementUtils {
     private static double STONE_NOISE = 0;
     private static double SAND_NOISE = 0;
     private static Holder<Biome> BIOME;
-    private static final Map<Block, Function<Integer,Block>> replacerMap = new HashMap<>();
+    private static final Map<Block, Function<SoilBlocks,Block>> soilReplacerMap = new HashMap<>();
     private static final Map<Block, Block> vanillaOresMap = new HashMap<>();
-    private static final Map<Block, Block> mudMap = new HashMap<>();
+
     static {
+
+        soilReplacerMap.put(Blocks.GRASS_BLOCK, soil -> {
+            return soil.getGrassBlock();
+        });
+        soilReplacerMap.put(Blocks.DIRT, soil -> {
+            return soil.getSoilBlock();
+        });
+        soilReplacerMap.put(Blocks.DIRT_PATH, soil -> {
+            return soil.getPathBlock();
+        });
+        soilReplacerMap.put(Blocks.MUD, soil -> {
+            return soil.getMudBlock();
+        });
+        soilReplacerMap.put(Blocks.COARSE_DIRT, soil -> {
+            return soil.getCoarseSoilBlock();
+        });
+        soilReplacerMap.put(Blocks.MYCELIUM, soil -> {
+            return soil.getMyceliumBlock();
+        });
+        soilReplacerMap.put(Blocks.PODZOL, soil -> {
+            return soil.getPodzolBlock();
+        });
+        soilReplacerMap.put(Blocks.ROOTED_DIRT, soil -> {
+            return soil.getRootedSoilBlock();
+        });
+        soilReplacerMap.put(Blocks.FARMLAND, soil -> {
+            return soil.getFarmlandBlock();
+        });
+
+
+        /*
         vanillaOresMap.put(Blocks.IRON_ORE, RankineBlocks.IRON_ORE.get());
         vanillaOresMap.put(Blocks.DEEPSLATE_IRON_ORE, RankineBlocks.IRON_ORE.get());
         vanillaOresMap.put(Blocks.COAL_ORE, RankineBlocks.COAL_ORE.get());
@@ -60,38 +81,9 @@ public class ReplacementUtils {
         vanillaOresMap.put(Blocks.NETHER_QUARTZ_ORE, RankineBlocks.NETHER_QUARTZ_ORE.get());
         vanillaOresMap.put(Blocks.NETHER_GOLD_ORE, RankineBlocks.NETHER_GOLD_ORE.get());
 
-        //replacerMap.put(Blocks.GRASS_BLOCK, index -> Config.WORLDGEN.SOIL_GEN.get() ? (NOISE > 0.3 ? WorldgenUtils.O1.get(index) : WorldgenUtils.O2.get(index)) : Blocks.AIR);
-        //replacerMap.put(Blocks.DIRT_PATH, index -> Config.WORLDGEN.SOIL_GEN.get() ? (STONE_NOISE > 0.3 ? VanillaIntegration.pathBlocks_map.getOrDefault(WorldgenUtils.O1.get(index),Blocks.AIR) : VanillaIntegration.pathBlocks_map.getOrDefault(WorldgenUtils.O2.get(index),Blocks.AIR)) : Blocks.AIR);
-        replacerMap.put(Blocks.COARSE_DIRT, index -> {
-            if (!Config.WORLDGEN.SOIL_GEN.get()) {
-                return Blocks.AIR;
-            }
-            Block b = STONE_NOISE > 0.3 ? WorldgenUtils.A1.get(index) : WorldgenUtils.A2.get(index);
-        //    if (RankineLists.SOIL_BLOCKS.contains(b)) {
-         //       return RankineLists.COARSE_SOIL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(b));
-        //    }
-            return Blocks.AIR;
-        });
-        replacerMap.put(Blocks.MYCELIUM, index -> {
-            if (!Config.WORLDGEN.SOIL_GEN.get()) {
-                return Blocks.AIR;
-            }
-            Block b = STONE_NOISE > 0.3 ? WorldgenUtils.A1.get(index) : WorldgenUtils.A2.get(index);
-         //   if (RankineLists.SOIL_BLOCKS.contains(b)) {
-         //       return RankineLists.MYCELIUM_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(b));
-          //  }
-            return Blocks.AIR;
-        });
-        replacerMap.put(Blocks.PODZOL, index -> {
-            if (!Config.WORLDGEN.SOIL_GEN.get()) {
-                return Blocks.AIR;
-            }
-            Block b = STONE_NOISE > 0.3 ? WorldgenUtils.A1.get(index) : WorldgenUtils.A2.get(index);
-        //    if (RankineLists.SOIL_BLOCKS.contains(b)) {
-        //        return RankineLists.PODZOL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(b));
-        //    }
-            return Blocks.AIR;
-        });
+         */
+
+        /*
         replacerMap.put(Blocks.GRAVEL, index -> WorldgenUtils.GRAVELS.get(index) != Blocks.AIR ? WorldgenUtils.GRAVELS.get(index) : Blocks.AIR);
         replacerMap.put(Blocks.SAND, index -> (WorldgenUtils.SANDS.get(index) != Blocks.AIR) ? WorldgenUtils.SANDS.get(index) : SAND_NOISE > 0.5f ? RankineBlocks.WHITE_SAND.get() : Blocks.AIR);
         replacerMap.put(RankineBlocks.SOUL_SANDSTONE.getSandstone(), index -> (WorldgenUtils.SANDSTONES.get(index) != Blocks.AIR) ? WorldgenUtils.SANDSTONES.get(index) : SAND_NOISE > 0.8f ? RankineBlocks.BLACK_SANDSTONE.getSandstone() : Blocks.AIR);
@@ -101,19 +93,33 @@ public class ReplacementUtils {
         replacerMap.put(Blocks.TUFF, index -> BIOME.is(BiomeTags.IS_OCEAN) ? RankineBlocks.BASALTIC_TUFF.get() :
                 (BIOME.is(BiomeTags.IS_BADLANDS) || BIOME.is(Biomes.DESERT)) ? RankineBlocks.RHYOLITIC_TUFF.get() :
                         (BIOME.is(BiomeTags.IS_MOUNTAIN) || BIOME.is(BiomeTags.IS_HILL)) ? RankineBlocks.ANDESITIC_TUFF.get() : Blocks.AIR);
+
+         */
     }
 
     public static void performRetrogenReplacement(ChunkAccess chunk) {
 
         if (chunk.getWorldForge() == null) return;
-        PerlinSimplexNoise NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(4321L)), ImmutableList.of(0));
-
-        LevelAccessor levelIn = chunk.getWorldForge();
-        RandomSource rand = levelIn.getRandom();
-        BlockState returnedBlock;
         for (int x = chunk.getPos().getMinBlockX(); x <= chunk.getPos().getMaxBlockX(); ++x) {
             for (int z = chunk.getPos().getMinBlockZ(); z <= chunk.getPos().getMaxBlockZ(); ++z) {
-                
+                SoilBlocks soil = getSoilType(x,z);
+                for (int y = chunk.getHeight(Heightmap.Types.WORLD_SURFACE_WG, x, z); y >= chunk.getMinBuildHeight(); --y) {
+                    BlockPos TARGET_POS = new BlockPos(x, y, z);
+                    BlockState TARGET_BS = chunk.getBlockState(TARGET_POS);
+                    if (TARGET_BS.isAir()) continue;
+                    Block TARGET = TARGET_BS.getBlock();
+
+                    if (soilReplacerMap.containsKey(TARGET) && soil != null) {
+                        chunk.setBlockState(TARGET_POS, soilReplacerMap.get(TARGET).apply(soil).defaultBlockState(), false);
+                        if (TARGET_BS.is(Blocks.DIRT) && chunk.getBlockState(TARGET_POS.below()).is(Tags.Blocks.STONE)) {
+                            chunk.setBlockState(TARGET_POS.below(), soil.getCoarseSoilBlock().defaultBlockState(), false);
+                        }
+                    }
+                }
+
+
+
+/*
                 STONE_NOISE = NOISE.getValue((double) x / NOISE_SCALE, (double) z / NOISE_SCALE, false);
                 SAND_NOISE = NOISE.getValue((double) x / 80, (double) z / 80, false);
                 BIOME = levelIn.getBiome(new BlockPos(x, chunk.getMaxBuildHeight(), z));
@@ -142,8 +148,8 @@ public class ReplacementUtils {
                     }
 
                     if (genBiomesIndex != -1) {
-                        if (replacerMap.containsKey(TARGET)) {
-                            returnedBlock = replacerMap.get(TARGET).apply(genBiomesIndex).defaultBlockState();
+                        if (soilReplacerMap.containsKey(TARGET)) {
+                            returnedBlock = soilReplacerMap.get(TARGET).apply(genBiomesIndex).defaultBlockState();
                             if (returnedBlock != Blocks.AIR.defaultBlockState()) {
                                 chunk.setBlockState(TARGET_POS, returnedBlock, false);
                             }
@@ -152,7 +158,7 @@ public class ReplacementUtils {
                             if (grass == Blocks.AIR ) continue;
                             /*if (mudMap.containsKey(grass) && WorldgenUtils.isWet(chunk, TARGET_POS)) {
                                 chunk.setBlockState(TARGET_POS, RankineLists.MUD_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(grass)).defaultBlockState(), false);
-                            } else */
+                            } else
                             if (grass instanceof GrassySoilBlock) {
                                 chunk.setBlockState(TARGET_POS, grass.withPropertiesOf(TARGET_BS), false);
                             } else {
@@ -222,6 +228,8 @@ public class ReplacementUtils {
 
 
                 }
+
+                */
                 
                 
             }
@@ -229,11 +237,8 @@ public class ReplacementUtils {
         chunk.setUnsaved(true);
     }
 
-    public static BlockState getStone(List<String> blockList,int y,double stoneNoise) {
-        try {
-            return ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(blockList.get((int) Mth.clamp(Math.floor((y+stoneNoise/LAYER_BEND+80)/LAYER_THICKNESS),0,blockList.size()-1)))).defaultBlockState();
-        } catch (Exception e) {
-            return null;
-        }
+    private static SoilBlocks getSoilType(int x, int z) {
+        return SoilBlocks.LOAM;
     }
+
 }

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.entities.goals;
 
+import com.cannolicatfish.rankine.blocks.block_enums.SoilBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -36,7 +37,7 @@ public class EatGrassGoalModified extends Goal {
             return false;
         } else {
             BlockPos blockpos = this.grassEaterEntity.blockPosition();
-            if (IS_GRASS.test(this.entityWorld.getBlockState(blockpos))) {
+            if (IS_GRASS.test(this.entityWorld.getBlockState(blockpos.below()))) {
                 return true;
             } else {
                 return this.entityWorld.getBlockState(blockpos.below()).is(Blocks.GRASS_BLOCK);
@@ -81,23 +82,21 @@ public class EatGrassGoalModified extends Goal {
         this.eatingGrassTimer = Math.max(0, this.eatingGrassTimer - 1);
         if (this.eatingGrassTimer == 4) {
             BlockPos blockpos = this.grassEaterEntity.blockPosition();
-            if (IS_GRASS.test(this.entityWorld.getBlockState(blockpos))) {
+            BlockPos blockpos1 = blockpos.below();
+            if (IS_GRASS.test(this.entityWorld.getBlockState(blockpos1))) {
                 if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.entityWorld, this.grassEaterEntity)) {
                     this.entityWorld.destroyBlock(blockpos, false);
+                    this.entityWorld.setBlock(blockpos1, SoilBlocks.getSoilFromBlock(this.entityWorld.getBlockState(blockpos1).getBlock()) != null ? SoilBlocks.getSoilFromBlock(this.entityWorld.getBlockState(blockpos1).getBlock()).getSoilBlock().defaultBlockState() : Blocks.DIRT.defaultBlockState(), 2);
                 }
-
                 this.grassEaterEntity.ate();
-            } else {
-                BlockPos blockpos1 = blockpos.below();
-                if (this.entityWorld.getBlockState(blockpos1).is(Blocks.GRASS_BLOCK)) {
-                    if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.entityWorld, this.grassEaterEntity)) {
-                        this.entityWorld.levelEvent(2001, blockpos1, Block.getId(Blocks.GRASS_BLOCK.defaultBlockState()));
-                        this.entityWorld.setBlock(blockpos1, Blocks.DIRT.defaultBlockState(), 2);
-                    }
-
-                    this.grassEaterEntity.ate();
+            } else if (this.entityWorld.getBlockState(blockpos1).is(Blocks.GRASS_BLOCK)) {
+                if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.entityWorld, this.grassEaterEntity)) {
+                    this.entityWorld.levelEvent(2001, blockpos1, Block.getId(Blocks.GRASS_BLOCK.defaultBlockState()));
+                    this.entityWorld.setBlock(blockpos1, Blocks.DIRT.defaultBlockState(), 2);
                 }
+                this.grassEaterEntity.ate();
             }
+
 
         }
     }

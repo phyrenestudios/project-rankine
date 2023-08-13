@@ -39,6 +39,8 @@ public enum SoilBlocks {
     RegistryObject<GrassySoilBlock> grass;
     RegistryObject<RankinePodzolBlock> podzol;
     RegistryObject<RankineMyceliumBlock> mycelium;
+    //permafrost?
+    //underground mycelium?
     //mangove roots?
 
 
