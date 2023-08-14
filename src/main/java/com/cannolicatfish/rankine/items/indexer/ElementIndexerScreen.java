@@ -59,12 +59,12 @@ public class ElementIndexerScreen extends AbstractContainerScreen<ElementIndexer
         if (element != null)
         {
             ElementStats stats = element.getElementStats();
-            int durability = stats.getDurabilityEquation().calculateRounded(this.currentScroll);
-            String harvest = stats.getMiningTierEquation().getValue(this.currentScroll);
-            float mspeed = stats.getMiningSpeedEquation().calculateFloat(this.currentScroll);
-            float damage = stats.getAttackDamageEquation().calculateFloat(this.currentScroll);
-            float attspeed = stats.getAttackSpeedEquation().calculateFloat(this.currentScroll);
-            int enchant = stats.getEnchantabilityEquation().calculateRounded(this.currentScroll);
+            int durability = stats.getDurability((short) this.currentScroll);
+            String harvest = stats.getMiningTier((short) this.currentScroll);
+            float mspeed = stats.getMiningSpeed((short) this.currentScroll);
+            float damage = stats.getAttackDamage((short) this.currentScroll);
+            float attspeed = stats.getDensity((short) this.currentScroll);
+            int enchant = stats.getEnchantability((short) this.currentScroll);
             drawString(matrixStack,Minecraft.getInstance().font,"Durability: " + durability,12,30,(durability > 0 ? 0x55FF55 : durability < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().font,"Harvest Level: "+ harvest,12,42,(0xffffff));
             drawString(matrixStack,Minecraft.getInstance().font,"Mining Speed: "+ df.format(mspeed),12,54,(mspeed > 0 ? 0x55FF55 : mspeed < 0 ? 0xFF5555 : 0xffffff));

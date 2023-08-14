@@ -1,0 +1,58 @@
+{
+  "type": "rankine:element",
+  "name": "tin",
+  "symbol": "Sn",
+  "color": 11975882,
+  "atomicNumber": 50,
+  "priority": 1,
+  "items": [
+    "T#forge:nuggets/tin",
+    "T#forge:ingots/tin",
+    "T#forge:storage_blocks/tin"
+  ],
+  "materialValues": [
+    1,
+    9,
+    81
+  ],
+  "elementStats": {
+    "durability": [
+      {
+        "type": "LINEAR",
+        "c": 0.5
+      }
+    ],
+    "miningSpeed": [
+      {
+        "type": "LINEAR",
+        "c": 0.1,
+        "d": -0.5
+      }
+    ],
+    "enchantability": [
+      {
+        "stopAt": 49,
+        "type": "LINEAR",
+        "c": 0.05,
+        "d": 2
+      },
+      {
+        "stopAt": 100,
+        "type": "LINEAR",
+        "c": 0.0666,
+        "d": 3
+      }
+    ],
+    "miningTier": [
+      {
+        "stopAt": 14,
+        "value": "minecraft:wood"
+      },
+      {
+        "stopAt": 100,
+        "value": "minecraft:stone"
+      }
+    ]
+  }
+
+}

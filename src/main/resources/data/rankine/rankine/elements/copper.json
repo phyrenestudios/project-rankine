@@ -3,46 +3,55 @@
   "symbol": "Cu",
   "color": 15382670,
   "atomicNumber": 29,
-  "items": ["T#forge:nuggets/copper","T#forge:ingots/copper","T#forge:storage_blocks/copper"],
-  "materialValues": [1,9,81],
-  "durability": {
-    "breaks": [100],
-    "formulas": ["POWER"],
-    "a": [2.8],
-    "b": [5],
-    "modifiers": ["MULTIPLIER"],
-    "limit": [0.06667]
-  },
-  "miningspeed": {
-    "breaks": [100],
-    "formulas": ["LINEAR"],
-    "a": [0.05],
-    "b": [0],
-    "modifiers": ["MIN"],
-    "limit": [5]
-  },
-  "mininglevel": {
-    "breaks": [9,19,100],
-    "formulas": ["CONSTANT","CONSTANT","CONSTANT"],
-    "a": [0,1,2],
-    "b": [0,0,0],
-    "modifiers": ["NONE","NONE","NONE"],
-    "limit": [0,0,0]
-  },
-  "enchantability": {
-    "breaks": [100],
-    "formulas": ["LINEAR"],
-    "a": [0.1],
-    "b": [2],
-    "modifiers": ["MIN"],
-    "limit": [7]
-  },
-  "attackdamage": {
-    "breaks": [100],
-    "formulas": ["LINEAR"],
-    "a": [0.02],
-    "b": [0],
-    "modifiers": ["MIN"],
-    "limit": [1.2]
+  "priority": 2,
+  "items": [
+    "T#forge:nuggets/copper",
+    "T#forge:ingots/copper",
+    "T#forge:storage_blocks/copper"
+  ],
+  "materialValues": [
+    1,
+    9,
+    81
+  ],
+  "elementStats": {
+    "durability": [
+      {
+        "type": "POWER",
+        "a": 0.06,
+        "c": 2.8,
+        "d": 5
+      }
+    ],
+    "miningSpeed": [
+      {
+        "type": "LINEAR",
+        "c": 0.05,
+        "maxValue": 5
+      }
+    ],
+    "enchantability": [
+      {
+        "type": "LINEAR",
+        "c": 0.1,
+        "d": 2,
+        "maxValue": 7
+      }
+    ],
+    "miningTier": [
+      {
+        "stopAt": 9,
+        "value": "minecraft:wood"
+      },
+      {
+        "stopAt": 19,
+        "value": "minecraft:stone"
+      },
+      {
+        "stopAt": 100,
+        "value": "minecraft:iron"
+      }
+    ]
   }
+
 }

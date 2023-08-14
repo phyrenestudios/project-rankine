@@ -23,6 +23,7 @@ public final class Element {
     public static final Codec<Element> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(
                     Codec.STRING.optionalFieldOf("name").forGetter(l -> Optional.of(l.name)),
+                    Codec.SHORT.optionalFieldOf("priority").forGetter(l -> Optional.of(l.priority)),
                     Codec.STRING.optionalFieldOf("symbol").forGetter(l -> Optional.of(l.symbol)),
                     Codec.INT.optionalFieldOf("atomicNumber").forGetter(l -> Optional.of(l.atomicNumber)),
                     Codec.INT.optionalFieldOf("color").forGetter(l -> Optional.of(l.color)),
@@ -37,6 +38,7 @@ public final class Element {
     private ResourceLocation location;
 
     private final String name;
+    private final short priority;
     private final String symbol;
     private final int atomicNumber;
     private final int color;
@@ -49,9 +51,10 @@ public final class Element {
     private final List<String> enchantmentTypes;
     private final List<Float> enchantmentFactors;
 
-    public Element(Optional<String> nameIn, Optional<String> symbolIn, Optional<Integer> numIn, Optional<Integer> colorIn, List<String> items, List<Integer> values,
+    public Element(Optional<String> nameIn, Optional<Short> priorityIn, Optional<String> symbolIn, Optional<Integer> numIn, Optional<Integer> colorIn, List<String> items, List<Integer> values,
                          Optional<ElementStats> elementStatsIn,  Optional<List<String>> enchantmentsIn, Optional<List<String>> enchantmentTypesIn, Optional<List<Float>> enchantmentFactorsIn) {
         this.name = nameIn.orElse("element.unknown.name");
+        this.priority = priorityIn.orElse((short) 0);
         this.symbol = nameIn.orElse("element.unknown.symbol");
         this.atomicNumber = numIn.orElse(-1);
         this.color = colorIn.orElse(16777215);
