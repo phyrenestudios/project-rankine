@@ -36,7 +36,7 @@ import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableBlock;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
-import com.cannolicatfish.rankine.world.grower.*;
+import com.cannolicatfish.rankine.worldgen.trees.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -70,6 +70,7 @@ public class RankineBlocks {
 
     //STONES
     public static final RankineStone PEGMATITE = RankineStone.newStoneReg("pegmatite", "igneous");
+    public static final RankineStone QUARTZOLITE = RankineStone.newStoneReg("quartzolite", "igneous");
     public static final RankineStone GRAY_GRANITE = RankineStone.newStoneReg("gray_granite", "igneous");
     public static final RankineStone RHYOLITE = RankineStone.newStoneReg("rhyolite", "igneous");
     public static final RankineStone COMENDITE = RankineStone.newStoneReg("comendite", "igneous");
@@ -244,6 +245,10 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BASALT_BRICKS_WALL = BLOCKS.register("basalt_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(BASALT_BRICKS.get())));
     public static final RegistryObject<Block> BASALT_BRICKS_PRESSURE_PLATE = BLOCKS.register("basalt_bricks_pressure_plate", RankineStonePressurePlate::new);
 
+    static {
+        FiberBlocks.registerBlocks();
+    }
+
     //weird mineral blocks
     public static final RegistryObject<Block> MELLITE_BLOCK = BLOCKS.register("mellite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> MONTROYDITE_BLOCK = BLOCKS.register("montroydite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 5.0F)));
@@ -254,46 +259,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BRIDGMANITE_BLOCK = BLOCKS.register("bridgmanite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> FERROPERICLASE_BLOCK = BLOCKS.register("ferropericlase_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> PEROVSKITE_BLOCK = BLOCKS.register("perovskite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 5.0F)));
-
-    //public static final RegistryObject<Block> FIBER_BED = BLOCKS.register("fiber_bed", () -> new FiberBedBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
-
-    public static final RegistryObject<Block> FIBER_BLOCK = BLOCKS.register("fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> FIBER_BLOCK_SLAB = BLOCKS.register("fiber_block_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> FIBER_BLOCK_STAIRS = BLOCKS.register("fiber_block_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> FIBER_BLOCK_WALL = BLOCKS.register("fiber_block_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> WHITE_FIBER_BLOCK = BLOCKS.register("white_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> ORANGE_FIBER_BLOCK = BLOCKS.register("orange_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> MAGENTA_FIBER_BLOCK = BLOCKS.register("magenta_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> LIGHT_BLUE_FIBER_BLOCK = BLOCKS.register("light_blue_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> YELLOW_FIBER_BLOCK = BLOCKS.register("yellow_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> LIME_FIBER_BLOCK = BLOCKS.register("lime_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> PINK_FIBER_BLOCK = BLOCKS.register("pink_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> GRAY_FIBER_BLOCK = BLOCKS.register("gray_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> LIGHT_GRAY_FIBER_BLOCK = BLOCKS.register("light_gray_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> CYAN_FIBER_BLOCK = BLOCKS.register("cyan_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> PURPLE_FIBER_BLOCK = BLOCKS.register("purple_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> BLUE_FIBER_BLOCK = BLOCKS.register("blue_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> GREEN_FIBER_BLOCK = BLOCKS.register("green_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> BROWN_FIBER_BLOCK = BLOCKS.register("brown_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> RED_FIBER_BLOCK = BLOCKS.register("red_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> BLACK_FIBER_BLOCK = BLOCKS.register("black_fiber_block", () -> new FiberBlock(BlockBehaviour.Properties.of(Material.WOOL, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> FIBER_MAT = BLOCKS.register("fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> WHITE_FIBER_MAT = BLOCKS.register("white_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> ORANGE_FIBER_MAT = BLOCKS.register("orange_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> MAGENTA_FIBER_MAT = BLOCKS.register("magenta_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> LIGHT_BLUE_FIBER_MAT = BLOCKS.register("light_blue_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> YELLOW_FIBER_MAT = BLOCKS.register("yellow_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> LIME_FIBER_MAT = BLOCKS.register("lime_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> PINK_FIBER_MAT = BLOCKS.register("pink_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> GRAY_FIBER_MAT = BLOCKS.register("gray_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> LIGHT_GRAY_FIBER_MAT = BLOCKS.register("light_gray_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> CYAN_FIBER_MAT = BLOCKS.register("cyan_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> PURPLE_FIBER_MAT = BLOCKS.register("purple_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> BLUE_FIBER_MAT = BLOCKS.register("blue_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> GREEN_FIBER_MAT = BLOCKS.register("green_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> BROWN_FIBER_MAT = BLOCKS.register("brown_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> RED_FIBER_MAT = BLOCKS.register("red_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> BLACK_FIBER_MAT = BLOCKS.register("black_fiber_mat", () -> new FiberMatBlock(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION, MaterialColor.SNOW).strength(0.1F).sound(SoundType.WOOL)));
 
     public static final RegistryObject<Block> DRY_ICE = BLOCKS.register("dry_ice", () -> new HalfTransparentBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID).strength(3.5F).friction(0.999F).sound(SoundType.GLASS)));
 

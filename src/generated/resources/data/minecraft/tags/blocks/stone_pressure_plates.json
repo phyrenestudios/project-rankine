@@ -2,6 +2,8 @@
   "values": [
     "rankine:pegmatite_pressure_plate",
     "rankine:pegmatite_bricks_pressure_plate",
+    "rankine:quartzolite_pressure_plate",
+    "rankine:quartzolite_bricks_pressure_plate",
     "rankine:gray_granite_pressure_plate",
     "rankine:gray_granite_bricks_pressure_plate",
     "rankine:rhyolite_pressure_plate",

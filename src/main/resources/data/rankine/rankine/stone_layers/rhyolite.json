@@ -1,0 +1,8 @@
+{
+  "layerBlock": "rankine:rhyolite",
+  "upperContinental": true,
+  "midContinental": true,
+  "deepContinental": true,
+  "upperOceanic": false,
+  "deppOceanic": false
+}

@@ -7,7 +7,6 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -185,9 +184,6 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(BlockTags.STONE_BRICKS).add(blk);
         }
-        for (Block blk : RankineLists.FIBER_MAT) {
-            tag(BlockTags.WOOL_CARPETS).add(blk);
-        }
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(BlockTags.STONE_PRESSURE_PLATES).add(blk);
         }
@@ -202,7 +198,13 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(BlockTags.BEACON_BASE_BLOCKS).add(blk);
         }
 
-        for (Block blk : Stream.of(RankineLists.BALES, RankineLists.FIBER_BLOCK, RankineLists.FIBER_MAT,
+        for (FiberBlocks fiber : FiberBlocks.values()) {
+            for (Block blk : fiber.getAllBlocks()) {
+                tag(BlockTags.MINEABLE_WITH_HOE).add(blk);
+            }
+            tag(BlockTags.WOOL_CARPETS).add(fiber.getMat());
+        }
+        for (Block blk : Stream.of(RankineLists.BALES,
                 Arrays.asList(RankineBlocks.COB.get(),RankineBlocks.REFINED_COB.get())).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(BlockTags.MINEABLE_WITH_HOE).add(blk);
         }

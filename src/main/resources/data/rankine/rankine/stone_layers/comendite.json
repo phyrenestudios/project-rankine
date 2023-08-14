@@ -1,0 +1,8 @@
+{
+  "layerBlock": "rankine:comendite",
+  "upperContinental": true,
+  "midContinental": true,
+  "deepContinental": true,
+  "upperOceanic": false,
+  "deppOceanic": false
+}

@@ -33,6 +33,10 @@
     "rankine:polished_pegmatite_stairs",
     "rankine:pegmatite_bricks_stairs",
     "rankine:mossy_pegmatite_bricks_stairs",
+    "rankine:quartzolite_stairs",
+    "rankine:polished_quartzolite_stairs",
+    "rankine:quartzolite_bricks_stairs",
+    "rankine:mossy_quartzolite_bricks_stairs",
     "rankine:gray_granite_stairs",
     "rankine:polished_gray_granite_stairs",
     "rankine:gray_granite_bricks_stairs",
@@ -274,7 +278,6 @@
     "rankine:packed_snow_stairs",
     "rankine:ice_bricks_stairs",
     "rankine:cast_iron_support_stairs",
-    "rankine:fiber_block_stairs",
     "rankine:checkered_marble_stairs"
   ]
 }

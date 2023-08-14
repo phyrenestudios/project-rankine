@@ -1,0 +1,11 @@
+{
+  "block": "rankine:gabbro",
+  "quartzMin": 0.2,
+  "quartzMax": 1.0,
+  "alkalinityMin": 0.3,
+  "alkalinityMax": 1.0,
+  "maficMin": 0.0,
+  "maficMax": 1.0,
+  "oreBlock": "rankine:bog_iron",
+  "oreChance": 0.04
+}

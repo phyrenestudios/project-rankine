@@ -118,6 +118,11 @@ public class RankineItemModelProvider extends ItemModelProvider {
             basicItemAltTexture(Dripstone.getPointedDripstone().asItem(), getBlockRSL(name(Dripstone.getPointedDripstone(),"_down_tip")));
         }
 
+        for (FiberBlocks fiber : FiberBlocks.values()) {
+            withExistingParent(fiber.getBlock());
+            withExistingParent(fiber.getMat());
+        }
+
         //food items
         for (Item item : Stream.of(RankineLists.SEEDS,RankineLists.GRAINS,RankineLists.RAW_FISH,RankineLists.COOKED_FISH,RankineLists.GAS_BOTTLES,RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(item);
@@ -138,8 +143,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.HOLLOW_LOGS,
                 RankineLists.LEAF_LITTERS,
-                RankineLists.FIBER_BLOCK,
-                RankineLists.FIBER_MAT,
                 RankineLists.CRUSHING_HEADS,
                 RankineLists.MINING_HEADS,
                 RankineLists.SOIL_BLOCKS,

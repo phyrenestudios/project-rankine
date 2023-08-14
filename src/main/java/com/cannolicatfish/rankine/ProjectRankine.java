@@ -6,6 +6,9 @@ import com.cannolicatfish.rankine.element.Element;
 import com.cannolicatfish.rankine.events.handlers.common.CreativeTabsHandler;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
+import com.cannolicatfish.rankine.stone_features.Intrusion;
+import com.cannolicatfish.rankine.stone_features.IntrusionShell;
+import com.cannolicatfish.rankine.stone_features.StoneLayer;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
 import net.minecraft.client.renderer.Sheets;
@@ -72,11 +75,16 @@ public class ProjectRankine {
         RankineVillagerProfessions.VILLAGER_PROFESSIONS.register(Bus);
         RankinePOIs.POI_TYPES.register(Bus);
 
-        //RankineFeatures.FEATURES.register(Bus);
+        RankineBiomeModifiers.BIOME_MODIFIERS.register(Bus);
+        RankineBiomeModifierSerializers.BIOME_MODIFIER_SERIALIZERS.register(Bus);
+        RankineFeatures.FEATURES.register(Bus);
         //RankineConfiguredFeatures.CONFIGURED_FEATURES.register(Bus);
         //RankinePlacedFeatures.PLACED_FEATURES.register(Bus);
         Bus.addListener((DataPackRegistryEvent.NewRegistry event) -> {
             event.dataPackRegistry(RankineElements.ELEMENT_REGISTRY_KEY, Element.CODEC, Element.CODEC);
+            event.dataPackRegistry(RankineWorldgen.INTRUSION_REGISTRY_KEY, Intrusion.CODEC, Intrusion.CODEC);
+            event.dataPackRegistry(RankineWorldgen.INTRUSION_SHELL_REGISTRY_KEY, IntrusionShell.CODEC, IntrusionShell.CODEC);
+            event.dataPackRegistry(RankineWorldgen.STONE_LAYER_REGISTRY_KEY, StoneLayer.CODEC, StoneLayer.CODEC);
         });
         Bus.addListener(this::LoadComplete);
 

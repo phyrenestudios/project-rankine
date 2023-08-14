@@ -1,0 +1,8 @@
+{
+  "layerBlock": "rankine:tholeiitic_basalt",
+  "upperContinental": false,
+  "midContinental": false,
+  "deepContinental": false,
+  "upperOceanic": true,
+  "deppOceanic": false
+}

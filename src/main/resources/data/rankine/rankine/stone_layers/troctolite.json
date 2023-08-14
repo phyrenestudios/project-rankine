@@ -1,0 +1,8 @@
+{
+  "layerBlock": "rankine:troctolite",
+  "upperContinental": false,
+  "midContinental": false,
+  "deepContinental": false,
+  "upperOceanic": true,
+  "deppOceanic": false
+}

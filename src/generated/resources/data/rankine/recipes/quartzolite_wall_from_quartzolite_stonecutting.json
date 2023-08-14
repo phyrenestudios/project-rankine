@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:quartzolite"
+  },
+  "result": "rankine:quartzolite_wall"
+}

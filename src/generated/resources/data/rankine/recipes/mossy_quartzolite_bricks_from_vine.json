@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "mossy_bricks_vines",
+  "ingredients": [
+    {
+      "item": "rankine:quartzolite"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "rankine:mossy_quartzolite_bricks"
+  }
+}

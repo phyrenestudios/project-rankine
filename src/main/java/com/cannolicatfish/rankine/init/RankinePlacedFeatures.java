@@ -1,21 +1,16 @@
 package com.cannolicatfish.rankine.init;
 
-import com.cannolicatfish.rankine.ProjectRankine;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraftforge.registries.DeferredRegister;
-
 public class RankinePlacedFeatures {
-
-    public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registries.PLACED_FEATURE, ProjectRankine.MODID);
 /*
+    public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registries.PLACED_FEATURE, ProjectRankine.MODID);
+
     public static final RegistryObject<PlacedFeature> PLACED_FUMAROLE = PLACED_FEATURES.register("fumarole", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_FUMAROLE.getHolder().get(), Arrays.asList(RarityFilter.onAverageOnceEvery(Config.WORLDGEN.FUMAROLE_GEN.get()), BiomeFilter.biome())));
     public static final RegistryObject<PlacedFeature> PLACED_INTRUSION = PLACED_FEATURES.register("intrusion", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_INTRUSION.getHolder().get(), Arrays.asList(BiomeFilter.biome())));
     public static final RegistryObject<PlacedFeature> PLACED_METEORITE = PLACED_FEATURES.register("meteorite", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_METEORITE.getHolder().get(), Arrays.asList(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, RarityFilter.onAverageOnceEvery(Config.WORLDGEN.METEORITE_CHANCE.get()), BiomeFilter.biome())));
     public static final RegistryObject<PlacedFeature> PLACED_END_METEORITE = PLACED_FEATURES.register("end_meteorite", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_END_METEORITE.getHolder().get(), Collections.singletonList(BiomeFilter.biome())));
     public static final RegistryObject<PlacedFeature> PLACED_ANTIMATTER_BLOB = PLACED_FEATURES.register("antimatter_blob", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_ANTIMATTER_BLOB.getHolder().get(), Collections.singletonList(BiomeFilter.biome())));
     public static final RegistryObject<PlacedFeature> PLACED_WALL_MUSHROOMS = PLACED_FEATURES.register("wall_mushrooms", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_WALL_MUSHROOMS.getHolder().get(), Arrays.asList(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, RarityFilter.onAverageOnceEvery(3), BiomeFilter.biome())));
-    public static final RegistryObject<PlacedFeature> PLACED_WORLD_REPLACER = PLACED_FEATURES.register("world_replacer", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_WORLD_REPLACER.getHolder().get(), Collections.emptyList()));
+    public static final RegistryObject<PlacedFeature> PLACED_WORLD_REPxLACER = PLACED_FEATURES.register("world_replacer", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_WORLD_REPLACER.getHolder().get(), Collections.emptyList()));
     public static final RegistryObject<PlacedFeature> PLACED_POST_WORLD_REPLACER = PLACED_FEATURES.register("pos_world_replacer", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_POST_WORLD_REPLACER.getHolder().get(), Collections.emptyList()));
     public static final RegistryObject<PlacedFeature> PLACED_FLAT_BEDROCK = PLACED_FEATURES.register("flat_bedrock", () -> new PlacedFeature(RankineConfiguredFeatures.CONFIGURED_FLAT_BEDROCK.getHolder().get(), Collections.emptyList()));
 
