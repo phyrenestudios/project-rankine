@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.core.BlockPos;
@@ -68,7 +68,7 @@ public class AlloyFurnaceContainer extends AbstractContainerMenu {
         return this.playerEntity.getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT.get(), new SimpleContainer(stack), this.playerEntity.getLevel()).isPresent();
     }
 
-    protected AlloyingRecipe hasAlloyRecipe(Container inv) {
+    protected OldAlloyingRecipe hasAlloyRecipe(Container inv) {
         return this.playerEntity.getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), inv, this.playerEntity.getLevel()).orElse(null);
     }
 
@@ -90,7 +90,7 @@ public class AlloyFurnaceContainer extends AbstractContainerMenu {
                     correctInputs ? 0x55FF55 : 0xFF5555);
         }
         String ret = RankineRecipes.generateAlloyString(furnaceInventory,tileEntity.getLevel());
-        AlloyingRecipe recipe = hasAlloyRecipe(furnaceInventory);
+        OldAlloyingRecipe recipe = hasAlloyRecipe(furnaceInventory);
         return new AbstractMap.SimpleEntry<>(ret.isEmpty() ? new String[]{""} : new String[]{recipe != null ? recipe.getResultItem(RegistryAccess.EMPTY).getDisplayName().getString() : "",ret},recipe != null ? 0x55FF55 : 0xFF5555);
     }
 

@@ -5,11 +5,11 @@ import com.cannolicatfish.rankine.recipe.*;
 import mezz.jei.api.recipe.RecipeType;
 
 public class RankineJEIRecipeTypes {
-    public static final RecipeType<AlloyingRecipe> ALLOYING_RECIPE_TYPE =
-            RecipeType.create(ProjectRankine.MODID, "alloying", AlloyingRecipe.class);
+    public static final RecipeType<OldAlloyingRecipe> ALLOYING_RECIPE_TYPE =
+            RecipeType.create(ProjectRankine.MODID, "alloying", OldAlloyingRecipe.class);
 
-    public static final RecipeType<AlloyingRecipe> INDUCTION_ALLOYING_RECIPE_TYPE =
-            RecipeType.create(ProjectRankine.MODID, "induction_alloying", AlloyingRecipe.class);
+    public static final RecipeType<OldAlloyingRecipe> INDUCTION_ALLOYING_RECIPE_TYPE =
+            RecipeType.create(ProjectRankine.MODID, "induction_alloying", OldAlloyingRecipe.class);
 
     public static final RecipeType<CrushingRecipe> CRUSHING_RECIPE_TYPE =
             RecipeType.create(ProjectRankine.MODID, "crushing", CrushingRecipe.class);

@@ -5,7 +5,7 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -138,7 +138,7 @@ public class AlloyTemplateItem extends Item {
         }
     }
 
-    public static void addTemplate(Level worldIn, ItemStack stack, AlloyingRecipe recipe, Container inv, DyeItem dye) {
+    public static void addTemplate(Level worldIn, ItemStack stack, OldAlloyingRecipe recipe, Container inv, DyeItem dye) {
         CompoundTag listnbt = new CompoundTag();
         ItemStack output = recipe.generateResult(worldIn,inv,3);
 
@@ -337,7 +337,7 @@ public class AlloyTemplateItem extends Item {
         {
             int random = worldIn.getRandom().nextInt(16);
             ItemStack[] inputs;
-            AlloyingRecipe recipeIn;
+            OldAlloyingRecipe recipeIn;
             SimpleContainer sim;
             switch (random)
             {

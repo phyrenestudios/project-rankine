@@ -4,7 +4,7 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTieredItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
@@ -122,9 +122,9 @@ public class PackagedToolItem extends Item {
             }
         }
 
-        List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get());
-        List<AlloyingRecipe> newRecipes = recipes.stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty()).collect(Collectors.toList());
-        AlloyingRecipe alloy = newRecipes.get(worldIn.getRandom().nextInt(recipes.size()));
+        List<OldAlloyingRecipe> recipes = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get());
+        List<OldAlloyingRecipe> newRecipes = recipes.stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty()).collect(Collectors.toList());
+        OldAlloyingRecipe alloy = newRecipes.get(worldIn.getRandom().nextInt(recipes.size()));
         //System.out.println(alloy.getId());
         //System.out.println(alloy.generateRandomResult(worldIn));
 

@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.recipe.AlloyModifierRecipe;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import net.minecraft.ChatFormatting;
@@ -23,7 +23,7 @@ import java.util.Map;
 public interface IAlloyProjectile extends IAlloySpecialItem {
 
     @Override
-    default void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier) {
+    default void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable OldAlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier) {
         CompoundTag listnbt = new CompoundTag();
         listnbt.putFloat("projectileDamage",createValueForProjectileDamage(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.ATTACK_DAMAGE)));
         stack.getOrCreateTag().put("StoredAlloyStats", listnbt);
@@ -66,7 +66,7 @@ public interface IAlloyProjectile extends IAlloySpecialItem {
         }
     }
 
-    default float createValueForProjectileDamage(Map<ElementRecipe,Integer> elementMap, AlloyingRecipe alloy, @javax.annotation.Nullable AlloyModifier modifier)
+    default float createValueForProjectileDamage(Map<ElementRecipe,Integer> elementMap, OldAlloyingRecipe alloy, @javax.annotation.Nullable AlloyModifier modifier)
     {
         float dmgmin = 0;
         float dmgmax = 0;

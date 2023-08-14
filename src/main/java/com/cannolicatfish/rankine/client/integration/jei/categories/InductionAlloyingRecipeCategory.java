@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.client.integration.jei.categories;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.client.integration.jei.recipes.RankineJEIRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -22,12 +22,12 @@ public class InductionAlloyingRecipeCategory extends AlloyingRecipeCategory {
     }
 
     @Override
-    public RecipeType<AlloyingRecipe> getRecipeType() {
+    public RecipeType<OldAlloyingRecipe> getRecipeType() {
         return RankineJEIRecipeTypes.ALLOYING_RECIPE_TYPE;
     }
 
     @Override
-    public @Nullable ResourceLocation getRegistryName(AlloyingRecipe recipe) {
+    public @Nullable ResourceLocation getRegistryName(OldAlloyingRecipe recipe) {
         return UID;
     }
 

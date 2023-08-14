@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.items.alloys;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.AlloyModifierRecipe;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
@@ -41,7 +41,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
     }
 
     @Override
-    default void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier) {
+    default void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable OldAlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier) {
         CompoundTag listnbt = new CompoundTag();
         listnbt.putInt("durability",createValueForDurability(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.DURABILITY)));
         listnbt.putInt("enchantability",createValueForEnchantability(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.ENCHANTABILITY)));
@@ -90,7 +90,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
     }
 
 
-    default int createValueForDurability(Map<ElementRecipe,Integer> elementMap, @Nullable AlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
+    default int createValueForDurability(Map<ElementRecipe,Integer> elementMap, @Nullable OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
         int dur = 0;
         for (Map.Entry<ElementRecipe,Integer> set : elementMap.entrySet()) {
             dur += set.getKey().getDurability(set.getValue());
@@ -105,7 +105,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return Math.max(1,dur);
     }
 
-    default float createValueForMiningSpeed(Map<ElementRecipe,Integer> elementMap, AlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
+    default float createValueForMiningSpeed(Map<ElementRecipe,Integer> elementMap, OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
         float ms = 0;
         for (Map.Entry<ElementRecipe,Integer> set : elementMap.entrySet()) {
             ms += set.getKey().getMiningSpeed(set.getValue());
@@ -121,7 +121,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
     }
 
 
-    default int createValueForEnchantability(Map<ElementRecipe, Integer> elementMap, AlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
+    default int createValueForEnchantability(Map<ElementRecipe, Integer> elementMap, OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
         int ench = 0;
         for (Map.Entry<ElementRecipe,Integer> set : elementMap.entrySet()) {
             ench += set.getKey().getEnchantability(set.getValue());
@@ -136,7 +136,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return Math.max(1,ench);
     }
 
-    default int createValueForHarvestLevel(Map<ElementRecipe, Integer> elementMap, AlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
+    default int createValueForHarvestLevel(Map<ElementRecipe, Integer> elementMap, OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
         int hlmin = 0;
         int hlmax = 0;
         for (Map.Entry<ElementRecipe,Integer> set : elementMap.entrySet()) {
@@ -156,7 +156,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return hl;
     }
 
-    default float createValueForAttackSpeed(Map<ElementRecipe,Integer> elementMap, AlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
+    default float createValueForAttackSpeed(Map<ElementRecipe,Integer> elementMap, OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
         float asmin = 0;
         float asmax = 0;
         for (Map.Entry<ElementRecipe,Integer> set : elementMap.entrySet()) {
@@ -176,7 +176,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return Math.round(as*100)/100f;
     }
 
-    default float createValueForAttackDamage(Map<ElementRecipe,Integer> elementMap, AlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
+    default float createValueForAttackDamage(Map<ElementRecipe,Integer> elementMap, OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
         float dmgmin = 0;
         float dmgmax = 0;
         for (Map.Entry<ElementRecipe,Integer> set : elementMap.entrySet()) {
@@ -196,7 +196,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return Math.round(dmg*100)/100f;
     }
 
-    default float createValueForCorrosionResistance(Map<ElementRecipe,Integer> elementMap, AlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
+    default float createValueForCorrosionResistance(Map<ElementRecipe,Integer> elementMap, OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
         float cr = 0;
         for (Map.Entry<ElementRecipe,Integer> set : elementMap.entrySet()) {
             cr += set.getKey().getCorrosionResistance(set.getValue());
@@ -211,7 +211,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return Math.round(Math.min(Math.max(0,cr),1)*100)/100f;
     }
 
-    default float createValueForHeatResistance(Map<ElementRecipe,Integer> elementMap, AlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
+    default float createValueForHeatResistance(Map<ElementRecipe,Integer> elementMap, OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
         float hr = 0;
         for (Map.Entry<ElementRecipe,Integer> set : elementMap.entrySet()) {
             hr += set.getKey().getHeatResistance(set.getValue());
@@ -226,7 +226,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return Math.round(Math.min(Math.max(0,hr),1)*100)/100f;
     }
 
-    default float createValueForToughness(Map<ElementRecipe,Integer> elementMap, AlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
+    default float createValueForToughness(Map<ElementRecipe,Integer> elementMap, OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
         float tough = 0;
         for (Map.Entry<ElementRecipe,Integer> set : elementMap.entrySet()) {
             tough += set.getKey().getToughness(set.getValue());
@@ -241,7 +241,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return Math.round(Math.min(Math.max(-1,tough),1)*100)/100f;
     }
 
-    default float createValueForKnockbackResistance(Map<ElementRecipe,Integer> elementMap, AlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
+    default float createValueForKnockbackResistance(Map<ElementRecipe,Integer> elementMap, OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
         float kr = 0;
         for (Map.Entry<ElementRecipe,Integer> set : elementMap.entrySet()) {
             kr += set.getKey().getKnockbackResistance(set.getValue());
@@ -426,7 +426,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         int maxLvl = 5;
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null && worldIn.getRecipeManager().byKey(rs).isPresent()) {
-            AlloyingRecipe recipe = (AlloyingRecipe) worldIn.getRecipeManager().byKey(rs).get();
+            OldAlloyingRecipe recipe = (OldAlloyingRecipe) worldIn.getRecipeManager().byKey(rs).get();
             start = recipe.getMinEnchantability();
             interval = recipe.getEnchantInterval();
             maxLvl = recipe.getMaxEnchantLevelIn();

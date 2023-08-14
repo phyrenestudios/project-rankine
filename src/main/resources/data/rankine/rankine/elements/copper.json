@@ -1,0 +1,57 @@
+{
+  "name": "copper",
+  "symbol": "Cu",
+  "color": 15382670,
+  "atomicNumber": 29,
+  "priority": 2,
+  "items": [
+    "T#forge:nuggets/copper",
+    "T#forge:ingots/copper",
+    "T#forge:storage_blocks/copper"
+  ],
+  "materialValues": [
+    1,
+    9,
+    81
+  ],
+  "elementStats": {
+    "durability": [
+      {
+        "type": "POWER",
+        "a": 0.06,
+        "c": 2.8,
+        "d": 5
+      }
+    ],
+    "miningSpeed": [
+      {
+        "type": "LINEAR",
+        "c": 0.05,
+        "maxValue": 5
+      }
+    ],
+    "enchantability": [
+      {
+        "type": "LINEAR",
+        "c": 0.1,
+        "d": 2,
+        "maxValue": 7
+      }
+    ],
+    "miningTier": [
+      {
+        "stopAt": 9,
+        "value": "minecraft:wood"
+      },
+      {
+        "stopAt": 19,
+        "value": "minecraft:stone"
+      },
+      {
+        "stopAt": 100,
+        "value": "minecraft:iron"
+      }
+    ]
+  }
+
+}

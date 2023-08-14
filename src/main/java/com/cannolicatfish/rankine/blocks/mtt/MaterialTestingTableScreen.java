@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.blocks.mtt;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.element.ElementEquation;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -32,7 +32,7 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
     private final int textureXSize;
     private final int textureYSize;
     private ElementRecipe element = null;
-    private AlloyingRecipe alloy = null;
+    private OldAlloyingRecipe alloy = null;
     public MaterialTestingTableScreen(MaterialTestingTableContainer container, Inventory inv, Component name) {
         super(container, inv, name);
         this.imageWidth = 256;
@@ -137,7 +137,7 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
         }
     }
 
-    private List<Component> checkAlloyDetails(ItemStack alloy, AlloyingRecipe alloyRecipe, StatType stat, Level worldIn) {
+    private List<Component> checkAlloyDetails(ItemStack alloy, OldAlloyingRecipe alloyRecipe, StatType stat, Level worldIn) {
         List<Component> dets = new ArrayList<>();
 
         ListTag details = IAlloyItem.getElementNBT(alloy);
@@ -181,7 +181,7 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
 
     private List<Component> checkStatRange(ElementRecipe recipe, StatType stat) {
         ElementEquation eq = recipe.getStatEquation(stat.ordinal());
-        ElementEquation.FormulaType[] eqTypes = eq.getFormulaTypes();
+        ElementEquation.FormulaType[] eqTypes = eq.getFormulaTypes().toArray(new ElementEquation.FormulaType[0]);
 
         List<Integer> breaks = eq.getBreaks();
         int[] bounds = Arrays.copyOf(new int[]{0},breaks.size()+1);

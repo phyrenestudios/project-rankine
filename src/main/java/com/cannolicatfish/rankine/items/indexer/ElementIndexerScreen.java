@@ -1,33 +1,33 @@
 package com.cannolicatfish.rankine.items.indexer;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.recipe.ElementRecipe;
+import com.cannolicatfish.rankine.element.Element;
+import com.cannolicatfish.rankine.element.ElementStats;
+import com.cannolicatfish.rankine.init.RankineElements;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.platform.GlStateManager;
+import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.Util;
-import net.minecraft.util.Mth;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.lwjgl.opengl.GL11;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.Collections;
 import java.util.Locale;
 
 @OnlyIn(Dist.CLIENT)
 public class ElementIndexerScreen extends AbstractContainerScreen<ElementIndexerContainer> {
     private int currentScroll = 100;
-    private ElementRecipe element = null;
+    private Element element = null;
     private static final PeriodicTableUtils utils = new PeriodicTableUtils();
     private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/element_indexer.png");
     public ElementIndexerScreen(ElementIndexerContainer screenContainer, Inventory inv, Component titleIn) {
@@ -52,41 +52,34 @@ public class ElementIndexerScreen extends AbstractContainerScreen<ElementIndexer
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
 
-        if (Minecraft.getInstance().level != null && element != this.menu.getSlotItem(Minecraft.getInstance().level))
+        if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.registryAccess().registry(RankineElements.ELEMENT_REGISTRY_KEY).isPresent())
         {
-            element = this.menu.getSlotItem(Minecraft.getInstance().level);
+            element = Minecraft.getInstance().level.registryAccess().registry(RankineElements.ELEMENT_REGISTRY_KEY).get().stream().filter(element1 -> element1.test(this.menu.getSlotItem())).findFirst().orElse(null);
         }
         if (element != null)
         {
-            int durability = element.getDurability(this.currentScroll);
-            int harvest = element.getMiningLevel(this.currentScroll);
-            float mspeed = element.getMiningSpeed(this.currentScroll);
-            float damage = element.getDamage(this.currentScroll);
-            float attspeed = element.getAttackSpeed(this.currentScroll);
-            int enchant = element.getEnchantability(this.currentScroll);
-            float corr = element.getCorrosionResistance(this.currentScroll);
-            float heat = element.getHeatResistance(this.currentScroll);
-            float tough = element.getToughness(this.currentScroll);
-            float elec = element.getElectrodePotential();
+            ElementStats stats = element.getElementStats();
+            int durability = stats.getDurability((short) this.currentScroll);
+            String harvest = stats.getMiningTier((short) this.currentScroll);
+            float mspeed = stats.getMiningSpeed((short) this.currentScroll);
+            float damage = stats.getAttackDamage((short) this.currentScroll);
+            float attspeed = stats.getDensity((short) this.currentScroll);
+            int enchant = stats.getEnchantability((short) this.currentScroll);
             drawString(matrixStack,Minecraft.getInstance().font,"Durability: " + durability,12,30,(durability > 0 ? 0x55FF55 : durability < 0 ? 0xFF5555 : 0xffffff));
-            drawString(matrixStack,Minecraft.getInstance().font,"Harvest Level: "+ harvest,12,42,(harvest > 0 ? 0x55FF55 : harvest < 0 ? 0xFF5555 : 0xffffff));
+            drawString(matrixStack,Minecraft.getInstance().font,"Harvest Level: "+ harvest,12,42,(0xffffff));
             drawString(matrixStack,Minecraft.getInstance().font,"Mining Speed: "+ df.format(mspeed),12,54,(mspeed > 0 ? 0x55FF55 : mspeed < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().font,"Damage: "+ df.format(damage),12,66,(damage > 0 ? 0x55FF55 : damage < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().font,"Attack Speed: "+ df.format(attspeed),12,78,(attspeed > 0 ? 0x55FF55 : attspeed < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().font,"Enchantability: "+ enchant,12,90,(enchant > 0 ? 0x55FF55 : enchant < 0 ? 0xFF5555 : 0xffffff));
-            drawString(matrixStack,Minecraft.getInstance().font,"Corrosion Resistance: "+ df.format(corr * 100) + "%",12,102,(corr > 0 ? 0x55FF55 : corr < 0 ? 0xFF5555 : 0xffffff));
-            drawString(matrixStack,Minecraft.getInstance().font,"Heat Resistance: "+ df.format(heat * 100) + "%",12,114,(heat > 0 ? 0x55FF55 : heat < 0 ? 0xFF5555 : 0xffffff));
-            drawString(matrixStack,Minecraft.getInstance().font,"Toughness: "+ df.format(tough * 100) + "%",12,126,(tough > 0 ? 0x55FF55 : tough < 0 ? 0xFF5555 : 0xffffff));
-            drawString(matrixStack,Minecraft.getInstance().font,"E: "+ elec +"V",110,126,0x55FFFF);
 
             /*Enchantment e = element.getToolEnchantment(this.currentScroll);
             if (e != null) {
                 drawCenteredString(matrixStack,Minecraft.getInstance().fontRenderer,e.getDisplayName(1).getString(),125,66,0x55FF55);
             }*/
 
-            drawString(matrixStack,Minecraft.getInstance().font,element.getName().toUpperCase(Locale.ROOT),32,10,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().font, I18n.get(element.getLocalName()).toUpperCase(Locale.ROOT),32,10,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().font,String.valueOf(element.getAtomicNumber()),138,32,0xffffff);
-            drawScaledString(matrixStack,Minecraft.getInstance().font,String.valueOf(element.getSymbol()),138,42, 2,0xffffff);
+            drawScaledString(matrixStack,Minecraft.getInstance().font,I18n.get(element.getSymbol()),138,42, 2,0xffffff);
         } else
         {
             //drawCenteredString(matrixStack,Minecraft.getInstance().fontRenderer,"MATERIALNAME",88,12,0xffffff);
@@ -98,8 +91,6 @@ public class ElementIndexerScreen extends AbstractContainerScreen<ElementIndexer
             drawString(matrixStack,Minecraft.getInstance().font,"Enchantability:",12,90,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().font,"Corrosion Resistance:",12,102,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().font,"Heat Resistance:",12,114,0xffffff);
-            drawString(matrixStack,Minecraft.getInstance().font,"Toughness:",12,126,0xffffff);
-            drawString(matrixStack,Minecraft.getInstance().font,"E:",110,126,0x55FFFF);
         }
 
     }

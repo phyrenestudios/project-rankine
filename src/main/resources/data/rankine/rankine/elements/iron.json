@@ -1,9 +1,0 @@
-{
-  "atomicNumber": 26,
-  "color": 14211288,
-  "items": ["forge:nuggets/iron","forge:ingots/iron","forge:storage_blocks/iron"],
-  "materialValues": [1,9,81],
-  "enchantments": ["minecraft:unbreaking"],
-  "enchantmentTypes": ["PICKAXE"],
-  "enchantmentFactors": [1.4]
-}

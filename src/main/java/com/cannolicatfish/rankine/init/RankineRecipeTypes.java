@@ -10,9 +10,15 @@ import net.minecraftforge.registries.RegistryObject;
 public class RankineRecipeTypes {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES.getRegistryName(), ProjectRankine.MODID);
 
-    public static RegistryObject<RecipeType<AlloyingRecipe>> ALLOYING = RECIPE_TYPES.register("alloying",() -> new RecipeType<>() {
+    public static RegistryObject<RecipeType<OldAlloyingRecipe>> ALLOYING = RECIPE_TYPES.register("alloying",() -> new RecipeType<>() {
         public String toString() {
             return "alloying";
+        }
+    });
+
+    public static RegistryObject<RecipeType<AlloyFurnaceRecipe>> ALLOY_FURNACE = RECIPE_TYPES.register("alloy_furnace",() -> new RecipeType<>() {
+        public String toString() {
+            return "alloy_furnace";
         }
     });
 

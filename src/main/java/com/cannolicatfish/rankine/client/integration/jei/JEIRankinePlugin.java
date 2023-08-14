@@ -39,7 +39,7 @@ import java.util.List;
 public class JEIRankinePlugin implements IModPlugin {
 
     public static final RecipeType<AirDistillationRecipe> AIR_DISTILLATION = RecipeType.create("rankine","air_distillation", AirDistillationRecipe.class);
-    public static final RecipeType<AlloyingRecipe> ALLOYING = RecipeType.create("rankine","alloying", AlloyingRecipe.class);
+    public static final RecipeType<OldAlloyingRecipe> ALLOYING = RecipeType.create("rankine","alloying", OldAlloyingRecipe.class);
     public static final RecipeType<IBatteryRecipe> BATTERY = RecipeType.create("rankine","battery", IBatteryRecipe.class);
     public static final RecipeType<BeehiveOvenRecipe> BEEHIVE_OVEN = RecipeType.create("rankine","beehive_oven", BeehiveOvenRecipe.class);
     public static final RecipeType<IRankineCauldronRecipe> CAULDRON_DRYING = RecipeType.create("rankine","cauldron_drying", IRankineCauldronRecipe.class);

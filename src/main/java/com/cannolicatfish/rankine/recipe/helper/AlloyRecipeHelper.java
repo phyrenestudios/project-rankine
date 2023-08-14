@@ -1,14 +1,6 @@
 package com.cannolicatfish.rankine.recipe.helper;
 
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.*;
 

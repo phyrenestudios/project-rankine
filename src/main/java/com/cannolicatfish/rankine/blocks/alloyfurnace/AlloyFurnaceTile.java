@@ -4,7 +4,7 @@ import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -131,7 +131,7 @@ public class AlloyFurnaceTile extends BlockEntity implements WorldlyContainer, M
             ItemStack[] inputs = new ItemStack[]{tile.items.get(0), tile.items.get(1), tile.items.get(2),tile.items.get(3),tile.items.get(4),tile.items.get(5)};
             ItemStack fuel = tile.items.get(6);
             if ((tile.isBurning() || !fuel.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
-                AlloyingRecipe irecipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), tile, level).orElse(null);
+                OldAlloyingRecipe irecipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), tile, level).orElse(null);
                 if (!tile.isBurning() && tile.canSmelt(irecipe,tile)) {
                     tile.burnTime = ForgeHooks.getBurnTime(fuel, RecipeType.SMELTING);
                     tile.currentBurnTime = tile.burnTime;
@@ -248,7 +248,7 @@ public class AlloyFurnaceTile extends BlockEntity implements WorldlyContainer, M
     }
 
 
-    private boolean canSmelt(@Nullable AlloyingRecipe recipeIn, Container inv)
+    private boolean canSmelt(@Nullable OldAlloyingRecipe recipeIn, Container inv)
     {
         if (recipeIn != null || inv.getItem(7).getItem() instanceof AlloyTemplateItem) {
             recipeMode = inv.getItem(7).getItem() instanceof AlloyTemplateItem;

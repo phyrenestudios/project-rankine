@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.recipe.AlloyModifierRecipe;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyColorHelper;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
@@ -47,7 +47,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
         return Component.translatable(this.getDescriptionId(stack),Component.translatable(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
     @Override
-    public void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier) {
+    public void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable OldAlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier) {
         CompoundTag listnbt = new CompoundTag();
         listnbt.putInt("durability",createValueForArmorDurability(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.DURABILITY)));
         listnbt.putInt("armorToughness",createValueForArmorToughness(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.TOUGHNESS)));
@@ -134,7 +134,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
         }
     }
 
-    private int createValueForArmorDurability(Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
+    private int createValueForArmorDurability(Map<ElementRecipe, Integer> elementMap, @Nullable OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier) {
         int durability = IAlloyTieredItem.super.createValueForDurability(elementMap, alloy, modifier);
         final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
         if (durability <= 100) {
@@ -144,7 +144,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
         }
     }
 
-    private int createValueForArmorToughness(Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloy, @Nullable AlloyModifier modifier)
+    private int createValueForArmorToughness(Map<ElementRecipe, Integer> elementMap, @Nullable OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier)
     {
         float tough = createValueForToughness(elementMap,alloy,modifier);
         if (tough >= 0.4) {
@@ -160,7 +160,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyTieredItem
         }
     }
 
-    private int createValueForDamageResistance(Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloy, @Nullable AlloyModifier modifier)
+    private int createValueForDamageResistance(Map<ElementRecipe, Integer> elementMap, @Nullable OldAlloyingRecipe alloy, @Nullable AlloyModifier modifier)
     {
         ArmorItem.Type slotType = this.getType();
         int hl = createValueForHarvestLevel(elementMap,alloy,modifier);

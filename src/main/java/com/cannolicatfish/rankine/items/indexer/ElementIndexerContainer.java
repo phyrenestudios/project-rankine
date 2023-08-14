@@ -1,17 +1,13 @@
 package com.cannolicatfish.rankine.items.indexer;
 
 import com.cannolicatfish.rankine.init.RankineMenus;
-import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.util.*;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -48,15 +44,8 @@ public class ElementIndexerContainer extends AbstractContainerMenu {
 
     }
 
-    public ElementRecipe getSlotItem(Level worldIn) {
-        ItemStack stack = this.handler.getStackInSlot(0);
-
-        if (utils.hasElementRecipe(stack, worldIn))
-        {
-            return utils.getElementRecipe(stack, worldIn);
-        } else {
-            return null;
-        }
+    public ItemStack getSlotItem() {
+        return this.handler.getStackInSlot(0);
     }
 
     public ItemStack quickMoveStack(Player playerIn, int index) {

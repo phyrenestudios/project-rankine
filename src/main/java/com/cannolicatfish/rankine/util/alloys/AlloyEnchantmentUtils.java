@@ -5,7 +5,7 @@ import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.OldAlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -22,7 +22,7 @@ import java.util.List;
 
 public class AlloyEnchantmentUtils {
 
-    public static List<Enchantment> getAlloyEnchantments(AlloyingRecipe recipe, ItemStack stack, Level worldIn) {
+    public static List<Enchantment> getAlloyEnchantments(OldAlloyingRecipe recipe, ItemStack stack, Level worldIn) {
         List<Enchantment> enchantments = new ArrayList<>();
         List<String> alloyEnchants = recipe.getEnchantments();
         List<String> alloyEnchantTypes = recipe.getEnchantmentTypes();
