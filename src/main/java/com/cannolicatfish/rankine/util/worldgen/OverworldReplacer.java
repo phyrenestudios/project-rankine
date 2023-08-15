@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
-import org.joml.Vector3d;
+import org.joml.Vector3f;
 import oshi.util.tuples.Pair;
 
 import java.util.ArrayList;
@@ -42,7 +42,8 @@ public class OverworldReplacer {
     private static final PerlinSimplexNoise alkalinityNoise = new PerlinSimplexNoise(rand, ImmutableList.of(0));
     private static final PerlinSimplexNoise maficNoise = new PerlinSimplexNoise(rand, ImmutableList.of(0));
     private static final PerlinSimplexNoise intrusionSelectorNoise = new PerlinSimplexNoise(rand, ImmutableList.of(0));
-    private static final PerlinSimplexNoise layerSelectorNoise = new PerlinSimplexNoise(rand, ImmutableList.of(0));
+    private static final PerlinSimplexNoise layerSelectorNoise1 = new PerlinSimplexNoise(rand, ImmutableList.of(0));
+    private static final PerlinSimplexNoise layerSelectorNoise2 = new PerlinSimplexNoise(rand, ImmutableList.of(0));
     private static final PerlinSimplexNoise layerShapingNoise = new PerlinSimplexNoise(rand, ImmutableList.of(0));
 
     private static final List<Block> upperContinentalBlocks = new ArrayList<>();
@@ -67,36 +68,39 @@ public class OverworldReplacer {
         }
     }
 
-    private static final double worleyScale = 500D;
+    private static final float worleyScale = 500f;
     private static final short layerThickness = 40;
     private static final short waveOffset = 50;
-    private static Block getWorleyBlock(WorldGenLevel levelIn, BlockPos posIn) {
-        Vector3d inputRegionPos = getRegionCord(posIn);
-        Vector3d closestRegion = null;
-        double shortestRegionDistance = 10.0D*worleyScale;
-        Pair<Short,Short> layerNums =  getLayer(levelIn, posIn);
+    public static Block getWorleyBlock(ChunkAccess chunkIn, BlockPos posIn) {
+        Pair<Float,Short> layerNums =  getLayer(chunkIn, posIn);
+        Vector3f inputRegion = getInputRegion(posIn, layerNums.getB() % 2 == 0);
+        Vector3f inputVec = getInputOffsetVec(posIn, layerNums.getB() % 2 == 0).add(0f, layerNums.getA(),0f).sub(inputRegion);
+        Vector3f closestPoint = null;
+        float minDist = 5.0f;
         for (short i=-1; i<=1; i+=1) {
-            for (short j=-1; j<=1; j+=1) {
-                Vector3d regionJitterPoint = getRegionJitterPoint(new Vector3d(i*worleyScale+inputRegionPos.x(), inputRegionPos.y(), j*worleyScale+inputRegionPos.z()), layerNums.getB());
-                double regionalDistance = getDistance(regionJitterPoint, posIn, layerNums.getA());
-                if (regionalDistance < shortestRegionDistance) {
-                    shortestRegionDistance = regionalDistance;
-                    closestRegion = regionJitterPoint;
+            for (short j = -1; j <= 1; j += 1) {
+                Vector3f neighborOffset = new Vector3f(i,0,j);
+                Vector3f neighborPoint = randomVec3XZ(add(neighborOffset, inputRegion), layerNums.getB());
+                float dist = add(neighborPoint, neighborOffset).sub(inputVec).length();
+                if (dist < minDist) {
+                    minDist = dist;
+                    closestPoint = add(neighborPoint, add(neighborOffset, inputRegion));
                 }
             }
         }
+
         List<Block> validBlocks;
-        if (levelIn.getBiome(new BlockPos(posIn.getX(), levelIn.getHeight(Heightmap.Types.WORLD_SURFACE_WG, posIn.getX(), posIn.getZ()), posIn.getZ())).is(RankineTags.Biomes.OCEANIC_CRUST)) {
-            validBlocks = layerNums.getB() <= 1 ? deepOceanicBlocks : upperOceanicBlocks;
+        if (chunkIn.getWorldForge().getBiome(new BlockPos(posIn.getX(), chunkIn.getHeight(Heightmap.Types.WORLD_SURFACE_WG, posIn.getX(), posIn.getZ()), posIn.getZ())).is(RankineTags.Biomes.OCEANIC_CRUST)) {
+            validBlocks = layerNums.getB() <= 0 ? deepOceanicBlocks : upperOceanicBlocks;
         } else {
-            validBlocks = layerNums.getB() <= 1 ? deepContinentalBlocks : upperContinentalBlocks;
+            validBlocks = layerNums.getB() <= -2 ? deepContinentalBlocks : layerNums.getB() <= 1 ? midContinentalBlocks : upperContinentalBlocks;
         }
 
-         if (!validBlocks.isEmpty() && closestRegion != null) return validBlocks.get((int) Math.floor((layerSelectorNoise.getValue(closestRegion.x(), closestRegion.y(), false)+1)/2*validBlocks.size()));
+        if (!validBlocks.isEmpty() && closestPoint != null) return validBlocks.get((int) Math.floor((layerSelectorNoise1.getValue(closestPoint.x(), closestPoint.z(), false)+1)/2*validBlocks.size()));
         return Blocks.STONE;
     }
 
-    private static Pair<Short,Short> getLayer(WorldGenLevel levelIn, BlockPos posIn) {
+    private static Pair<Float,Short> getLayer(ChunkAccess chunkIn, BlockPos posIn) {
         double noise = layerShapingNoise.getValue(posIn.getX()/300D, posIn.getZ()/300D, false);
         if (noise < 0.5) {
             noise = lerp(-1.0D, 0.0D, 0.5D, 1.00, noise);
@@ -106,8 +110,8 @@ public class OverworldReplacer {
             noise = lerp(0.8D, 1.6D, 1.00, 3.0D, noise);
         }
         double thicknessNoise = layerShapingNoise.getValue((posIn.getX()-30)/300D, (posIn.getZ()-30)/300D, false)+1;
-        double adjustedY = posIn.getY() - levelIn.getMinBuildHeight() - noise * waveOffset;
-        return new Pair<>((short) (adjustedY-adjustedY%layerThickness), (short) Math.floor(adjustedY / (layerThickness)));
+        double adjustedY = posIn.getY() - chunkIn.getWorldForge().getMinBuildHeight() - noise * waveOffset;
+        return new Pair<>((float) adjustedY/layerThickness % 1f, (short) Math.floor(adjustedY / (layerThickness)));
 
     }
 
@@ -117,20 +121,19 @@ public class OverworldReplacer {
         return (yb - ya) / (xb - xa) * (x - xa) + ya;
     }
 
-    private static Vector3d getRegionCord(BlockPos posIn) {
-        double xMod = posIn.getX() % worleyScale;
-        double zMod = posIn.getZ() % worleyScale;
-        double xShift = xMod==0 ? 0 : xMod<0 ? worleyScale - Math.abs(xMod): Math.abs(xMod);
-        double zShift = zMod==0 ? 0 : zMod<0 ? worleyScale - Math.abs(zMod): Math.abs(zMod);
-        return new Vector3d( posIn.getX() - xShift, 0, posIn.getZ() - zShift);
+    private static Vector3f getInputOffsetVec(BlockPos posIn, boolean shift) {
+        int xshift = (int) (worleyScale*0.1*(layerSelectorNoise1.getValue(posIn.getX()*0.02+33, posIn.getZ()*0.02+33, false)+1)/2);
+        int zshift =  (int) (worleyScale*0.1*(layerSelectorNoise1.getValue(posIn.getX()*0.02+11, posIn.getZ()*0.02+11, false)+1)/2);
+        return new Vector3f((posIn.getX()+xshift)/worleyScale, 0, (posIn.getZ()+zshift)/worleyScale);
     }
-
-    private static double getDistance(Vector3d vec1, BlockPos posIn, short layerStart) {
-        return vec1.distance(posIn.getX()+worleyScale/10*(layerSelectorNoise.getValue(posIn.getX()/50D,posIn.getZ()/50D,false)+1)/2, (double) (posIn.getY()-layerStart)/layerThickness*worleyScale/3,posIn.getZ()+worleyScale/10*(layerSelectorNoise.getValue(posIn.getX()/50D+16,posIn.getZ()/50D+16,false)+1)/2);
+    private static Vector3f getInputRegion(BlockPos posIn, boolean shift) {
+        return new Vector3f((float) Math.floor(posIn.getX()/worleyScale), 0, (float) Math.floor(posIn.getZ()/worleyScale));
     }
-
-    private static Vector3d getRegionJitterPoint(Vector3d inputRegionPos, int layer) {
-        return inputRegionPos.add(worleyScale*(layerSelectorNoise.getValue(inputRegionPos.x()+16*layer, inputRegionPos.z()+16*layer, false)+1)/2, worleyScale*(layerSelectorNoise.getValue(inputRegionPos.x()+16*(layer+2), inputRegionPos.z()+16*(layer+2), false)+1)/2, worleyScale*(layerSelectorNoise.getValue(inputRegionPos.x()+16*(layer+1), inputRegionPos.z()+16*(layer+1), false)+1)/2);
+    private static Vector3f randomVec3XZ(Vector3f vecIn, int layer) {
+        return new Vector3f((float) (layerSelectorNoise1.getValue(vecIn.x()+16*layer, vecIn.z()+16*layer, false)+1f)/2f,(float) (layerSelectorNoise1.getValue(vecIn.x()+160*layer, vecIn.z()+160*layer, false)+1f)/2f,(float) (layerSelectorNoise2.getValue(vecIn.x()+16*layer, vecIn.z()+16*layer, false)+1f)/2f);
+    }
+    private static Vector3f add(Vector3f vec1, Vector3f vec2) {
+        return new Vector3f(vec1.x()+vec2.x(), vec1.y()+vec2.y(), vec1.z()+vec2.z());
     }
 
     public static boolean replace(WorldGenLevel levelIn, ChunkAccess chunkIn) {
@@ -146,7 +149,7 @@ public class OverworldReplacer {
                     BlockPos TARGET_POS = new BlockPos(x,y,z);
                     BlockState TARGET_BS = levelIn.getBlockState(TARGET_POS);
                     if (TARGET_BS.is(BlockTags.BASE_STONE_OVERWORLD)) {
-                        Block layerBlock = getWorleyBlock(levelIn, TARGET_POS);
+                        Block layerBlock = getWorleyBlock(chunkIn, TARGET_POS);
                         //if (!isIntrusion(levelIn, layerBlock, x,y,z, intrusionNoise)) {
                             levelIn.setBlock(TARGET_POS, layerBlock.defaultBlockState(), 3);
                         //}

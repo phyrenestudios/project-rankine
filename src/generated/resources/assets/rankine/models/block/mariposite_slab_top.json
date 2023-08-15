@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "rankine:block/mariposite",
-    "side": "rankine:block/mariposite",
-    "top": "rankine:block/mariposite"
-  }
-}

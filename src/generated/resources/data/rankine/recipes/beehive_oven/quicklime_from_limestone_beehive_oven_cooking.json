@@ -1,7 +1,7 @@
 {
   "type": "rankine:beehive_oven",
   "input": {
-    "tag": "forge:stones/limestone"
+    "item": "rankine:limestone"
   },
   "maxCookTime": 600,
   "minCookTime": 300,

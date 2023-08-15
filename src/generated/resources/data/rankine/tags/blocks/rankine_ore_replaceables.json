@@ -1,7 +1,6 @@
 {
   "values": [
     "#minecraft:base_stone_overworld",
-    "#minecraft:base_stone_nether",
-    "#forge:base_stone_end"
+    "#minecraft:base_stone_nether"
   ]
 }

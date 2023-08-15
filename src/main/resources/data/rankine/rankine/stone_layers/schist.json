@@ -1,0 +1,8 @@
+{
+  "layerBlock": "rankine:schist",
+  "upperContinental": true,
+  "midContinental": true,
+  "deepContinental": false,
+  "upperOceanic": true,
+  "deppOceanic": false
+}

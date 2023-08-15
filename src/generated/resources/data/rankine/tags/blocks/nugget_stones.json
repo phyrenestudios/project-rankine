@@ -1,7 +1,6 @@
 {
   "values": [
     "#forge:tuff",
-    "#forge:base_stone_end",
     "#minecraft:base_stone_nether",
     "#minecraft:base_stone_overworld"
   ]

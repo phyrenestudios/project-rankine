@@ -1,7 +1,7 @@
 {
   "layerBlock": "rankine:chalk",
   "upperContinental": true,
-  "midContinental": true,
+  "midContinental": false,
   "deepContinental": false,
   "upperOceanic": true,
   "deppOceanic": false

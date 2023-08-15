@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_button",
+  "ingredients": [
+    {
+      "item": "rankine:picrite"
+    }
+  ],
+  "result": {
+    "item": "rankine:picrite_button"
+  }
+}

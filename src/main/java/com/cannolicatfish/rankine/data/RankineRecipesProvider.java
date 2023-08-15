@@ -313,7 +313,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.TERRACOTTA,1).requires(ItemTags.TERRACOTTA).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(ItemTags.TERRACOTTA)).save(consumer, "rankine:terracotta_from_colors");
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GLASS,1).requires(Tags.Items.GLASS).requires(RankineItems.BLEACH.get()).unlockedBy("has_ingredient", has(Tags.Items.GLASS)).save(consumer, "rankine:glass_from_colors");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.SLATE_STEPPING_STONES.get(), 4).pattern("###").define('#', RankineTags.Items.STONES_SLATE).unlockedBy("has_ingredient", has(RankineTags.Items.STONES_SLATE)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.SLATE_STEPPING_STONES.get(), 4).pattern("###").define('#', StoneBlocks.SLATE.getStone()).unlockedBy("has_ingredient", has(StoneBlocks.SLATE.getStone())).save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineItems.EMERGENCY_FLOTATION_DEVICE.get(), 1).pattern(" # ").pattern("#C#").pattern(" # ").define('C', RankineItems.CARBON_DIOXIDE_GAS_BOTTLE.get()).define('#', RankineTags.Items.RUBBER).unlockedBy("has_ingredient", has(RankineTags.Items.RUBBER)).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.SOD_BLOCK.get(), 4).pattern("##").pattern("##").define('#', RankineTags.Items.GRASS_BLOCKS).unlockedBy("has_ingredient", has(RankineTags.Items.GRASS_BLOCKS)).save(consumer);
@@ -996,8 +996,8 @@ public class RankineRecipesProvider extends RecipeProvider {
         for (Map.Entry<Ingredient,Block> entry : BEEHIVE_OVEN_OTHER_MAP.entrySet()) {
             BeehiveOvenRecipeBuilder.beehiveOvenRecipe(entry.getKey(),entry.getValue()).save(consumer,new ResourceLocation("rankine:beehive_oven/"+getItemName(entry.getKey().getItems()[0].getItem())+"_beehive_oven_cooking"));
         }
-        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.STONES_LIMESTONE), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:beehive_oven/quicklime_from_limestone_beehive_oven_cooking"));
-        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.STONES_DOLOMITE), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:beehive_oven/quicklime_from_dolomite_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(StoneBlocks.LIMESTONE.getStone()), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:beehive_oven/quicklime_from_limestone_beehive_oven_cooking"));
+        BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(StoneBlocks.DOLOSTONE.getStone()), RankineBlocks.QUICKLIME_BLOCK.get()).save(consumer, new ResourceLocation("rankine:beehive_oven/quicklime_from_dolomite_beehive_oven_cooking"));
         BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(ItemTags.SAND), Blocks.GLASS).save(consumer, new ResourceLocation("rankine:beehive_oven/glass_from_sand_beehive_oven_cooking"));
         BeehiveOvenRecipeBuilder.beehiveOvenRecipe(Ingredient.of(RankineTags.Items.SILT), Blocks.GLASS).save(consumer, new ResourceLocation("rankine:beehive_oven/glass_from_silt_beehive_oven_cooking"));
 

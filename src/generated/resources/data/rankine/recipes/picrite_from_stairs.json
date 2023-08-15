@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:picrite_stairs"
+    },
+    {
+      "item": "rankine:picrite_stairs"
+    },
+    {
+      "item": "rankine:picrite_stairs"
+    },
+    {
+      "item": "rankine:picrite_stairs"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "rankine:picrite"
+  }
+}

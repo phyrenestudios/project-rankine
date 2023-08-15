@@ -1,0 +1,8 @@
+{
+  "layerBlock": "rankine:picrite",
+  "upperContinental": false,
+  "midContinental": false,
+  "deepContinental": false,
+  "upperOceanic": true,
+  "deppOceanic": false
+}

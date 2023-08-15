@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "rankine:picrite_bricks"
+  },
+  "result": "rankine:picrite_bricks_stairs"
+}

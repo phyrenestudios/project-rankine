@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:stones/slate"
+            "items": [
+              "rankine:slate"
+            ]
           }
         ]
       },

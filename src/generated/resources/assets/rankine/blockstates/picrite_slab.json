@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rankine:block/picrite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/picrite"
+    },
+    "type=top": {
+      "model": "rankine:block/picrite_slab_top"
+    }
+  }
+}

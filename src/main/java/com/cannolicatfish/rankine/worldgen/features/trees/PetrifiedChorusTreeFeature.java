@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.worldgen.features.trees;
 
-import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -9,6 +8,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -108,6 +108,6 @@ public class PetrifiedChorusTreeFeature extends Feature<TreeConfiguration> {
     }
 
     public static boolean isValidGround(LevelAccessor world, BlockPos pos) {
-        return world.getBlockState(pos).is(RankineTags.Blocks.BASE_STONE_END);
+        return world.getBlockState(pos).is(Blocks.END_STONE);
     }
 }

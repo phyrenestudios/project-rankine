@@ -48,15 +48,16 @@ public enum StoneBlocks {
     ANORTHOSITE(StoneType.IGNEOUS,false,false),
     DIABASE(StoneType.IGNEOUS,false,false),
     THOLEIITIC_BASALT(StoneType.IGNEOUS,false,false),
+    PICRITE(StoneType.IGNEOUS,false,false),
 
+    KOMATIITE(StoneType.IGNEOUS,false,false),
+    KIMBERLITE(StoneType.IGNEOUS,false,false),
     DUNITE(StoneType.IGNEOUS,false,false),
     HARZBURGITE(StoneType.IGNEOUS,false,false),
     LHERZOLITE(StoneType.IGNEOUS,false,false),
     WEHRLITE(StoneType.IGNEOUS,false,false),
     WEBSTERITE(StoneType.IGNEOUS,false,false),
     PYROXENITE(StoneType.IGNEOUS,false,false),
-    KOMATIITE(StoneType.IGNEOUS,false,false),
-    KIMBERLITE(StoneType.IGNEOUS,false,false),
 
     SOMMANITE(StoneType.MANTLE,false,false),
     RINGWOODINE(StoneType.MANTLE,false,false),
@@ -77,7 +78,6 @@ public enum StoneBlocks {
     GNEISS(StoneType.METAMORPHIC,false,false),
     QUARTZITE(StoneType.METAMORPHIC,false,false),
     SERPENTINITE(StoneType.METAMORPHIC,false,false),
-    MARIPOSITE(StoneType.METAMORPHIC,false,false),
     ECLOGITE(StoneType.METAMORPHIC,false,false),
 
     LIMESTONE(StoneType.SEDIMENTARY,false,false),

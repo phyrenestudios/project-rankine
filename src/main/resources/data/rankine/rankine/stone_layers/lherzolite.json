@@ -1,0 +1,8 @@
+{
+  "layerBlock": "rankine:lherzolite",
+  "upperContinental": false,
+  "midContinental": false,
+  "deepContinental": true,
+  "upperOceanic": false,
+  "deppOceanic": false
+}

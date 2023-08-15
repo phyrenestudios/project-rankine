@@ -330,51 +330,9 @@ public final class RankineTags {
         public static final TagKey<Block> ORES_GRAPHITE = forgeBlock("ores/graphite");
         public static final TagKey<Block> ORES_SALT = forgeBlock("ores/salt");
 
-
-
-
-        public static final TagKey<Block> STONES_PEGMATITE = forgeBlock("stones/pegmatite");
-        public static final TagKey<Block> STONES_GRANITE = forgeBlock("stones/granite");
-        public static final TagKey<Block> STONES_RHYOLITE = forgeBlock("stones/rhyolite");
-        public static final TagKey<Block> STONES_SYENITE = forgeBlock("stones/syenite");
-        public static final TagKey<Block> STONES_PHONOLITE = forgeBlock("stones/phonolite");
-        public static final TagKey<Block> STONES_GRANODIORITE = forgeBlock("stones/granodiorite");
-        public static final TagKey<Block> STONES_PORPHYRY = forgeBlock("stones/porphyry");
-        public static final TagKey<Block> STONES_ANDESITE = forgeBlock("stones/andesite");
-        public static final TagKey<Block> STONES_BASALT = forgeBlock("stones/basalt");
-        public static final TagKey<Block> STONES_DACITE = forgeBlock("stones/dacite");
-        public static final TagKey<Block> STONES_GABBRO = forgeBlock("stones/gabbro");
-        public static final TagKey<Block> STONES_KIMBERLITE = forgeBlock("stones/kimberlite");
-        public static final TagKey<Block> STONES_KOMATIITE = forgeBlock("stones/komatiite");
-        public static final TagKey<Block> STONES_PUMICE = forgeBlock("stones/pumice");
-        public static final TagKey<Block> STONES_SCORIA = forgeBlock("stones/scoria");
-        public static final TagKey<Block> STONES_SHONKINITE = forgeBlock("stones/shonkinite");
-        public static final TagKey<Block> STONES_PERIDOTITE = forgeBlock("stones/peridotite");
-        public static final TagKey<Block> STONES_MARBLE = forgeBlock("stones/marble");
-        public static final TagKey<Block> STONES_GNEISS = forgeBlock("stones/gneiss");
-        public static final TagKey<Block> STONES_SCHIST = forgeBlock("stones/schist");
-        public static final TagKey<Block> STONES_PHYLITE = forgeBlock("stones/phylite");
-        public static final TagKey<Block> STONES_SLATE = forgeBlock("stones/slate");
-        public static final TagKey<Block> STONES_SKARN = forgeBlock("stones/skarn");
-        public static final TagKey<Block> STONES_MARIPOSITE = forgeBlock("stones/mariposite");
-        public static final TagKey<Block> STONES_QUARTZITE = forgeBlock("stones/quartzite");
-        public static final TagKey<Block> STONES_LIMESTONE = forgeBlock("stones/limestone");
-        public static final TagKey<Block> STONES_DOLOMITE = forgeBlock("stones/dolomite");
-        public static final TagKey<Block> STONES_CHALK = forgeBlock("stones/chalk");
-        public static final TagKey<Block> STONES_SOAPSTONE = forgeBlock("stones/soapstone");
-        public static final TagKey<Block> STONES_SHALE = forgeBlock("stones/shale");
-        public static final TagKey<Block> STONES_SILTSTONE = forgeBlock("stones/siltstone");
-        public static final TagKey<Block> STONES_BRECCIA = forgeBlock("stones/breccia");
-        public static final TagKey<Block> STONES_MUDSTONE = forgeBlock("stones/mudstone");
-        public static final TagKey<Block> STONES_SANDSTONE = forgeBlock("stones/sandstone");
-        public static final TagKey<Block> STONES_SERPENTINITE = forgeBlock("stones/serpetinite");
-        public static final TagKey<Block> STONES_ECLOGITE = forgeBlock("stones/eclogite");
-        public static final TagKey<Block> STONES_MARLSTONE = forgeBlock("stones/marlstone");
-
         public static final TagKey<Block> IGNEOUS_STONES = forgeBlock("igneous_stones");
         public static final TagKey<Block> METAMORPHIC_STONES = forgeBlock("metamorphic_stones");
         public static final TagKey<Block> SEDIMENTARY_STONES = forgeBlock("sedimentary_stones");
-        public static final TagKey<Block> BASE_STONE_END = forgeBlock("base_stone_end");
         public static final TagKey<Block> WG_STONE = forgeBlock("wg_stone");
         public static final TagKey<Block> WG_DIRT = forgeBlock("wg_dirt");
         public static final TagKey<Block> WG_CLAY = forgeBlock("wg_clay");
@@ -1142,44 +1100,6 @@ public final class RankineTags {
         public static final TagKey<Item> ORES_PHOSPHORUS = forgeItem("ores/phosphorus");
         public static final TagKey<Item> ORES_GRAPHITE = forgeItem("ores/graphite");
         public static final TagKey<Item> ORES_SALT = forgeItem("ores/salt");
-        
-        public static final TagKey<Item> STONES_PEGMATITE = forgeItem("stones/pegmatite");
-        public static final TagKey<Item> STONES_GRANITE = forgeItem("stones/granite");
-        public static final TagKey<Item> STONES_RHYOLITE = forgeItem("stones/rhyolite");
-        public static final TagKey<Item> STONES_SYENITE = forgeItem("stones/syenite");
-        public static final TagKey<Item> STONES_PHONOLITE = forgeItem("stones/phonolite");
-        public static final TagKey<Item> STONES_GRANODIORITE = forgeItem("stones/granodiorite");
-        public static final TagKey<Item> STONES_PORPHYRY = forgeItem("stones/porphyry");
-        public static final TagKey<Item> STONES_ANDESITE = forgeItem("stones/andesite");
-        public static final TagKey<Item> STONES_BASALT = forgeItem("stones/basalt");
-        public static final TagKey<Item> STONES_DACITE = forgeItem("stones/dacite");
-        public static final TagKey<Item> STONES_GABBRO = forgeItem("stones/gabbro");
-        public static final TagKey<Item> STONES_KIMBERLITE = forgeItem("stones/kimberlite");
-        public static final TagKey<Item> STONES_KOMATIITE = forgeItem("stones/komatiite");
-        public static final TagKey<Item> STONES_PUMICE = forgeItem("stones/pumice");
-        public static final TagKey<Item> STONES_SCORIA = forgeItem("stones/scoria");
-        public static final TagKey<Item> STONES_SHONKINITE = forgeItem("stones/shonkinite");
-        public static final TagKey<Item> STONES_PERIDOTITE = forgeItem("stones/peridotite");
-        public static final TagKey<Item> STONES_MARBLE = forgeItem("stones/marble");
-        public static final TagKey<Item> STONES_GNEISS = forgeItem("stones/gneiss");
-        public static final TagKey<Item> STONES_SCHIST = forgeItem("stones/schist");
-        public static final TagKey<Item> STONES_PHYLITE = forgeItem("stones/phylite");
-        public static final TagKey<Item> STONES_SLATE = forgeItem("stones/slate");
-        public static final TagKey<Item> STONES_SKARN = forgeItem("stones/skarn");
-        public static final TagKey<Item> STONES_MARIPOSITE = forgeItem("stones/mariposite");
-        public static final TagKey<Item> STONES_QUARTZITE = forgeItem("stones/quartzite");
-        public static final TagKey<Item> STONES_LIMESTONE = forgeItem("stones/limestone");
-        public static final TagKey<Item> STONES_DOLOMITE = forgeItem("stones/dolomite");
-        public static final TagKey<Item> STONES_CHALK = forgeItem("stones/chalk");
-        public static final TagKey<Item> STONES_SOAPSTONE = forgeItem("stones/soapstone");
-        public static final TagKey<Item> STONES_SHALE = forgeItem("stones/shale");
-        public static final TagKey<Item> STONES_SILTSTONE = forgeItem("stones/siltstone");
-        public static final TagKey<Item> STONES_BRECCIA = forgeItem("stones/breccia");
-        public static final TagKey<Item> STONES_MUDSTONE = forgeItem("stones/mudstone");
-        public static final TagKey<Item> STONES_SANDSTONE = forgeItem("stones/sandstone");
-        public static final TagKey<Item> STONES_SERPENTINITE = forgeItem("stones/serpetinite");
-        public static final TagKey<Item> STONES_ECLOGITE = forgeItem("stones/eclogite");
-        public static final TagKey<Item> STONES_MARLSTONE = forgeItem("stones/marlstone");
 
         public static final TagKey<Item> IGNEOUS_STONES = forgeItem("igneous_stones");
         public static final TagKey<Item> METAMORPHIC_STONES = forgeItem("metamorphic_stones");

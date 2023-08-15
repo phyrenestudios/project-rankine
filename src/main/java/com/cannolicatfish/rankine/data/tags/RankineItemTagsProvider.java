@@ -74,45 +74,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(Tags.Blocks.ORES_QUARTZ, Tags.Items.ORES_QUARTZ);
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
 
-        copy(RankineTags.Blocks.STONES_DACITE, RankineTags.Items.STONES_DACITE);
-        copy(RankineTags.Blocks.STONES_ANDESITE, RankineTags.Items.STONES_ANDESITE);
-        copy(RankineTags.Blocks.STONES_BASALT, RankineTags.Items.STONES_BASALT);
-        copy(RankineTags.Blocks.STONES_GRANITE, RankineTags.Items.STONES_GRANITE);
-        copy(RankineTags.Blocks.STONES_SANDSTONE, RankineTags.Items.STONES_SANDSTONE);
-        copy(Tags.Blocks.SANDSTONE, Tags.Items.SANDSTONE);
-        copy(RankineTags.Blocks.STONES_PEGMATITE, RankineTags.Items.STONES_PEGMATITE);
-        copy(RankineTags.Blocks.STONES_BRECCIA, RankineTags.Items.STONES_BRECCIA);
-        copy(RankineTags.Blocks.STONES_PERIDOTITE, RankineTags.Items.STONES_PERIDOTITE);
-        copy(RankineTags.Blocks.STONES_PHYLITE, RankineTags.Items.STONES_PHYLITE);
-        copy(RankineTags.Blocks.STONES_PORPHYRY, RankineTags.Items.STONES_PORPHYRY);
-        copy(RankineTags.Blocks.STONES_PUMICE, RankineTags.Items.STONES_PUMICE);
-        copy(RankineTags.Blocks.STONES_SCORIA, RankineTags.Items.STONES_SCORIA);
-        copy(RankineTags.Blocks.STONES_SCHIST, RankineTags.Items.STONES_SCHIST);
-        copy(RankineTags.Blocks.STONES_DOLOMITE, RankineTags.Items.STONES_DOLOMITE);
-        copy(RankineTags.Blocks.STONES_MARBLE, RankineTags.Items.STONES_MARBLE);
-        copy(RankineTags.Blocks.STONES_GABBRO, RankineTags.Items.STONES_GABBRO);
-        copy(RankineTags.Blocks.STONES_MARLSTONE, RankineTags.Items.STONES_MARLSTONE);
-        copy(RankineTags.Blocks.STONES_MUDSTONE, RankineTags.Items.STONES_MUDSTONE);
-        copy(RankineTags.Blocks.STONES_RHYOLITE, RankineTags.Items.STONES_RHYOLITE);
-        copy(RankineTags.Blocks.STONES_SYENITE, RankineTags.Items.STONES_SYENITE);
-        copy(RankineTags.Blocks.STONES_PHONOLITE, RankineTags.Items.STONES_PHONOLITE);
-        copy(RankineTags.Blocks.STONES_GRANODIORITE, RankineTags.Items.STONES_GRANODIORITE);
-        copy(RankineTags.Blocks.STONES_KIMBERLITE, RankineTags.Items.STONES_KIMBERLITE);
-        copy(RankineTags.Blocks.STONES_KOMATIITE, RankineTags.Items.STONES_KOMATIITE);
-        copy(RankineTags.Blocks.STONES_GNEISS, RankineTags.Items.STONES_GNEISS);
-        copy(RankineTags.Blocks.STONES_LIMESTONE, RankineTags.Items.STONES_LIMESTONE);
-        copy(RankineTags.Blocks.STONES_SKARN, RankineTags.Items.STONES_SKARN);
-        copy(RankineTags.Blocks.STONES_MARIPOSITE, RankineTags.Items.STONES_MARIPOSITE);
-        copy(RankineTags.Blocks.STONES_QUARTZITE, RankineTags.Items.STONES_QUARTZITE);
-        copy(RankineTags.Blocks.STONES_CHALK, RankineTags.Items.STONES_CHALK);
-        copy(RankineTags.Blocks.STONES_SOAPSTONE, RankineTags.Items.STONES_SOAPSTONE);
-        copy(RankineTags.Blocks.STONES_SHALE, RankineTags.Items.STONES_SHALE);
-        copy(RankineTags.Blocks.STONES_SILTSTONE, RankineTags.Items.STONES_SILTSTONE);
-        copy(RankineTags.Blocks.STONES_SERPENTINITE, RankineTags.Items.STONES_SERPENTINITE);
-        copy(RankineTags.Blocks.STONES_ECLOGITE, RankineTags.Items.STONES_ECLOGITE);
-        copy(RankineTags.Blocks.STONES_SLATE, RankineTags.Items.STONES_SLATE);
-        copy(RankineTags.Blocks.STONES_SHONKINITE, RankineTags.Items.STONES_SHONKINITE);
-
         /*
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             copy(BlockTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")), ItemTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")));

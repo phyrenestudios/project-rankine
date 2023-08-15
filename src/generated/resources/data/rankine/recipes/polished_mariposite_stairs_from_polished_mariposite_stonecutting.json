@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "rankine:polished_mariposite"
-  },
-  "result": "rankine:polished_mariposite_stairs"
-}

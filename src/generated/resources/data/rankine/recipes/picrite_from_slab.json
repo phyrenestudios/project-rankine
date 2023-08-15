@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:picrite_slab"
+    },
+    {
+      "item": "rankine:picrite_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:picrite"
+  }
+}

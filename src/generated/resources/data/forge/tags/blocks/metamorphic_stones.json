@@ -1,14 +1,18 @@
 {
   "values": [
-    "#forge:stones/gneiss",
-    "#forge:stones/schist",
-    "#forge:stones/mariposite",
-    "#forge:stones/marble",
-    "#forge:stones/phylite",
-    "#forge:stones/slate",
-    "#forge:stones/serpetinite",
-    "#forge:stones/eclogite",
-    "#forge:stones/quartzite",
-    "#forge:stones/soapstone"
+    "rankine:black_marble",
+    "rankine:gray_marble",
+    "rankine:white_marble",
+    "rankine:rose_marble",
+    "rankine:slate",
+    "rankine:phyllite",
+    "rankine:schist",
+    "rankine:blueschist",
+    "rankine:greenschist",
+    "rankine:whiteschist",
+    "rankine:gneiss",
+    "rankine:quartzite",
+    "rankine:serpentinite",
+    "rankine:eclogite"
   ]
 }

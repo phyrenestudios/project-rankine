@@ -1,7 +1,7 @@
 {
   "type": "rankine:beehive_oven",
   "input": {
-    "tag": "forge:stones/dolomite"
+    "item": "rankine:dolostone"
   },
   "maxCookTime": 600,
   "minCookTime": 300,

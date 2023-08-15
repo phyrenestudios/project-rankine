@@ -76,11 +76,11 @@ public final class DataGenerators {
         registryBuilder.add(ForgeRegistries.Keys.BIOME_MODIFIERS, context -> {
             HolderGetter<Biome> biomeGetter = context.lookup(Registries.BIOME);
 
-            context.register(ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(ProjectRankine.MODID, "overworld_stone_replacer")), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                    biomeGetter.getOrThrow(BiomeTags.IS_OVERWORLD),
-                    HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(RankineUndergroundPlacements.OVERWORLD_STONE_REPLACER)),
-                    GenerationStep.Decoration.TOP_LAYER_MODIFICATION
-            ));
+            //context.register(ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(ProjectRankine.MODID, "overworld_stone_replacer")), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+           //         biomeGetter.getOrThrow(BiomeTags.IS_OVERWORLD),
+           //         HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(RankineUndergroundPlacements.OVERWORLD_STONE_REPLACER)),
+           //         GenerationStep.Decoration.TOP_LAYER_MODIFICATION
+           // ));
             context.register(ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(ProjectRankine.MODID, "honey_locust_tree")), new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                     biomeGetter.getOrThrow(BiomeTags.IS_OVERWORLD),
                     HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(RankineTreePlacements.PLACED_HONEY_LOCUST_TREE)),

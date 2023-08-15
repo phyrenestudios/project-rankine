@@ -1,12 +1,16 @@
 {
   "values": [
-    "#forge:stones/limestone",
-    "#forge:stones/dolomite",
-    "#forge:stones/mudstone",
-    "#forge:stones/shale",
-    "#forge:stones/siltstone",
-    "#forge:stones/sandstone",
-    "#forge:stones/marlstone",
-    "#forge:stones/chalk"
+    "rankine:limestone",
+    "rankine:dolostone",
+    "rankine:chalk",
+    "rankine:marlstone",
+    "rankine:soapstone",
+    "rankine:shale",
+    "rankine:mudstone",
+    "rankine:siltstone",
+    "rankine:itacolumite",
+    "rankine:arkose",
+    "rankine:graywacke",
+    "rankine:honeystone"
   ]
 }
