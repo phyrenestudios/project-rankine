@@ -10,6 +10,7 @@ import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.stone_features.Intrusion;
 import com.cannolicatfish.rankine.stone_features.IntrusionShell;
+import com.cannolicatfish.rankine.stone_features.SoilLayer;
 import com.cannolicatfish.rankine.stone_features.StoneLayer;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.util.colors.*;
@@ -87,6 +88,7 @@ public class ProjectRankine {
             event.dataPackRegistry(RankineWorldgen.INTRUSION_REGISTRY_KEY, Intrusion.CODEC, Intrusion.CODEC);
             event.dataPackRegistry(RankineWorldgen.INTRUSION_SHELL_REGISTRY_KEY, IntrusionShell.CODEC, IntrusionShell.CODEC);
             event.dataPackRegistry(RankineWorldgen.STONE_LAYER_REGISTRY_KEY, StoneLayer.CODEC, StoneLayer.CODEC);
+            event.dataPackRegistry(RankineWorldgen.SOIL_LAYER_REGISTRY_KEY, SoilLayer.CODEC, SoilLayer.CODEC);
         });
         Bus.addListener(this::LoadComplete);
 

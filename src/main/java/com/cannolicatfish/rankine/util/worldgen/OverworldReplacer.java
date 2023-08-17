@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.init.RankineWorldgen;
 import com.cannolicatfish.rankine.stone_features.Intrusion;
 import com.cannolicatfish.rankine.stone_features.IntrusionShell;
 import com.cannolicatfish.rankine.stone_features.StoneLayer;
+import com.cannolicatfish.rankine.util.WorleyNoise3D;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
@@ -43,7 +44,6 @@ public class OverworldReplacer {
     private static final PerlinSimplexNoise maficNoise = new PerlinSimplexNoise(rand, ImmutableList.of(0));
     private static final PerlinSimplexNoise intrusionSelectorNoise = new PerlinSimplexNoise(rand, ImmutableList.of(0));
     private static final PerlinSimplexNoise layerSelectorNoise1 = new PerlinSimplexNoise(rand, ImmutableList.of(0));
-    private static final PerlinSimplexNoise layerSelectorNoise2 = new PerlinSimplexNoise(rand, ImmutableList.of(0));
     private static final PerlinSimplexNoise layerShapingNoise = new PerlinSimplexNoise(rand, ImmutableList.of(0));
 
     private static final List<Block> upperContinentalBlocks = new ArrayList<>();
@@ -68,27 +68,11 @@ public class OverworldReplacer {
         }
     }
 
-    private static final float worleyScale = 500f;
     private static final short layerThickness = 40;
     private static final short waveOffset = 50;
     public static Block getWorleyBlock(ChunkAccess chunkIn, BlockPos posIn) {
         Pair<Float,Short> layerNums =  getLayer(chunkIn, posIn);
-        Vector3f inputRegion = getInputRegion(posIn, layerNums.getB() % 2 == 0);
-        Vector3f inputVec = getInputOffsetVec(posIn, layerNums.getB() % 2 == 0).add(0f, layerNums.getA(),0f).sub(inputRegion);
-        Vector3f closestPoint = null;
-        float minDist = 5.0f;
-        for (short i=-1; i<=1; i+=1) {
-            for (short j = -1; j <= 1; j += 1) {
-                Vector3f neighborOffset = new Vector3f(i,0,j);
-                Vector3f neighborPoint = randomVec3XZ(add(neighborOffset, inputRegion), layerNums.getB());
-                float dist = add(neighborPoint, neighborOffset).sub(inputVec).length();
-                if (dist < minDist) {
-                    minDist = dist;
-                    closestPoint = add(neighborPoint, add(neighborOffset, inputRegion));
-                }
-            }
-        }
-
+        Vector3f closestPoint = WorleyNoise3D.closestPoint(layerSelectorNoise1,500F,true,posIn, layerNums);
         List<Block> validBlocks;
         if (chunkIn.getWorldForge().getBiome(new BlockPos(posIn.getX(), chunkIn.getHeight(Heightmap.Types.WORLD_SURFACE_WG, posIn.getX(), posIn.getZ()), posIn.getZ())).is(RankineTags.Biomes.OCEANIC_CRUST)) {
             validBlocks = layerNums.getB() <= 0 ? deepOceanicBlocks : upperOceanicBlocks;
@@ -121,20 +105,6 @@ public class OverworldReplacer {
         return (yb - ya) / (xb - xa) * (x - xa) + ya;
     }
 
-    private static Vector3f getInputOffsetVec(BlockPos posIn, boolean shift) {
-        int xshift = (int) (worleyScale*0.1*(layerSelectorNoise1.getValue(posIn.getX()*0.02+33, posIn.getZ()*0.02+33, false)+1)/2);
-        int zshift =  (int) (worleyScale*0.1*(layerSelectorNoise1.getValue(posIn.getX()*0.02+11, posIn.getZ()*0.02+11, false)+1)/2);
-        return new Vector3f((posIn.getX()+xshift)/worleyScale, 0, (posIn.getZ()+zshift)/worleyScale);
-    }
-    private static Vector3f getInputRegion(BlockPos posIn, boolean shift) {
-        return new Vector3f((float) Math.floor(posIn.getX()/worleyScale), 0, (float) Math.floor(posIn.getZ()/worleyScale));
-    }
-    private static Vector3f randomVec3XZ(Vector3f vecIn, int layer) {
-        return new Vector3f((float) (layerSelectorNoise1.getValue(vecIn.x()+16*layer, vecIn.z()+16*layer, false)+1f)/2f,(float) (layerSelectorNoise1.getValue(vecIn.x()+160*layer, vecIn.z()+160*layer, false)+1f)/2f,(float) (layerSelectorNoise2.getValue(vecIn.x()+16*layer, vecIn.z()+16*layer, false)+1f)/2f);
-    }
-    private static Vector3f add(Vector3f vec1, Vector3f vec2) {
-        return new Vector3f(vec1.x()+vec2.x(), vec1.y()+vec2.y(), vec1.z()+vec2.z());
-    }
 
     public static boolean replace(WorldGenLevel levelIn, ChunkAccess chunkIn) {
         for (int x = chunkIn.getPos().getMinBlockX(); x <= chunkIn.getPos().getMaxBlockX(); ++x) {

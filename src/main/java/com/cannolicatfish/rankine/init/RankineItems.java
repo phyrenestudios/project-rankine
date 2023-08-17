@@ -73,7 +73,6 @@ public class RankineItems {
     public static final RegistryObject<Item> ICE_BRICKS_STAIRS = ITEMS.register("ice_bricks_stairs", () -> new BlockItem(RankineBlocks.ICE_BRICKS_STAIRS.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> ICE_BRICKS_WALL = ITEMS.register("ice_bricks_wall", () -> new BlockItem(RankineBlocks.ICE_BRICKS_WALL.get(),new Item.Properties().stacksTo(64)));
 
-    public static final RegistryObject<Item> PERMAFROST = ITEMS.register("permafrost", () -> new BlockItem(RankineBlocks.PERMAFROST.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> LATERITE = ITEMS.register("laterite", () -> new BlockItem(RankineBlocks.LATERITE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> SILT = ITEMS.register("silt", () -> new BlockItem(RankineBlocks.SILT.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> SOD_BLOCK = ITEMS.register("sod_block", () -> new BlockItem(RankineBlocks.SOD_BLOCK.get(),new Item.Properties().stacksTo(64)));

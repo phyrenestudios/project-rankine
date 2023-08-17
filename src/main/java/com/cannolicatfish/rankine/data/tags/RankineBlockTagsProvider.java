@@ -210,7 +210,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
             tag(BlockTags.MINEABLE_WITH_HOE).add(blk);
         }
         for (Block blk : Stream.of(RankineLists.SANDS,
-                Arrays.asList(RankineBlocks.FIRE_CLAY.get(),RankineBlocks.PORCELAIN_CLAY.get(),RankineBlocks.HALLOYSITE_BLOCK.get(),RankineBlocks.KAOLINITE_BLOCK.get(),RankineBlocks.LATERITE.get(),RankineBlocks.WHITE_SAND.get(),RankineBlocks.BLACK_SAND.get(),RankineBlocks.DESERT_SAND.get(),RankineBlocks.ALLUVIUM.get(),RankineBlocks.LIGHT_GRAVEL.get(),RankineBlocks.DARK_GRAVEL.get(),RankineBlocks.PERMAFROST.get(),RankineBlocks.SILT.get(),RankineBlocks.SOD_BLOCK.get(),RankineBlocks.PACKED_SNOW.get(),RankineBlocks.PACKED_SNOW_SLAB.get(),RankineBlocks.PACKED_SNOW_WALL.get(),RankineBlocks.PACKED_SNOW_STAIRS.get())).flatMap(Collection::stream).collect(Collectors.toList())) {
+                Arrays.asList(RankineBlocks.FIRE_CLAY.get(),RankineBlocks.PORCELAIN_CLAY.get(),RankineBlocks.HALLOYSITE_BLOCK.get(),RankineBlocks.KAOLINITE_BLOCK.get(),RankineBlocks.LATERITE.get(),RankineBlocks.WHITE_SAND.get(),RankineBlocks.BLACK_SAND.get(),RankineBlocks.DESERT_SAND.get(),RankineBlocks.ALLUVIUM.get(),RankineBlocks.LIGHT_GRAVEL.get(),RankineBlocks.DARK_GRAVEL.get(),RankineBlocks.SILT.get(),RankineBlocks.SOD_BLOCK.get(),RankineBlocks.PACKED_SNOW.get(),RankineBlocks.PACKED_SNOW_SLAB.get(),RankineBlocks.PACKED_SNOW_WALL.get(),RankineBlocks.PACKED_SNOW_STAIRS.get())).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(BlockTags.MINEABLE_WITH_SHOVEL).add(blk);
         }
         for (Block blk : Stream.of(RankineLists.HOLLOW_LOGS, RankineLists.MUSHROOM_BLOCKS,
@@ -291,7 +291,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(RankineTags.Blocks.PATH_BLOCKS).add(Blocks.DIRT_PATH);
         tag(RankineTags.Blocks.MYCELIUM).add(Blocks.MYCELIUM);
         tag(RankineTags.Blocks.PODZOL).add(Blocks.PODZOL);
-        tag(BlockTags.DIRT).add(RankineBlocks.PERMAFROST.get()).add(RankineBlocks.ALLUVIUM.get());
+        tag(BlockTags.DIRT).add(RankineBlocks.ALLUVIUM.get());
         tag(RankineTags.Blocks.FARMLAND).add(Blocks.FARMLAND);
 
         for (Block blk : Stream.of(RankineLists.CONCRETE).flatMap(Collection::stream).collect(Collectors.toList())) {

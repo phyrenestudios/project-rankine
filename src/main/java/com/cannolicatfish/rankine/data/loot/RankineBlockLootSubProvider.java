@@ -75,6 +75,7 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
             dropSelf(base.getCoarseSoilBlock());
             dropSelf(base.getRootedSoilBlock());
             dropSelf(base.getMudBlock());
+            dropSelf(base.getPermafrostBlock());
             dropOther(base.getPathBlock(), base.getSoilBlock());
             dropOther(base.getFarmlandBlock(), base.getSoilBlock());
             addSilkTouchSingleItem(base.getGrassBlock(), base.getSoilBlock());

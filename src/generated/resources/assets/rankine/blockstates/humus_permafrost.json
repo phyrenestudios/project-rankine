@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/humus_permafrost"
+      },
+      {
+        "model": "rankine:block/humus_permafrost",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/humus_permafrost",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/humus_permafrost",
+        "y": 270
+      }
+    ]
+  }
+}

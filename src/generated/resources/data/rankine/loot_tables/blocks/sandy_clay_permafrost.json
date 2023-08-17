@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:permafrost"
+          "name": "rankine:sandy_clay_permafrost"
         }
       ],
       "rolls": 1.0

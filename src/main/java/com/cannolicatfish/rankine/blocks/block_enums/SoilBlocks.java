@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks.block_enums;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.farmland.RankineFarmlandBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -13,11 +14,12 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.RegistryObject;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public enum SoilBlocks {
+public enum SoilBlocks implements StringRepresentable {
 
     HUMUS(),
     LOAM(),
@@ -34,17 +36,28 @@ public enum SoilBlocks {
     RegistryObject<CoarseSoilBlock> coarseSoil;
     RegistryObject<RootedSoilBlock> rootedSoil;
     RegistryObject<MudBlock> mud;
+    RegistryObject<PermafrostBlock> permafrost;
     RegistryObject<SoilPathBlock> path;
     RegistryObject<RankineFarmlandBlock> farmland;
     RegistryObject<GrassySoilBlock> grass;
     RegistryObject<RankinePodzolBlock> podzol;
     RegistryObject<RankineMyceliumBlock> mycelium;
-    //permafrost?
-    //underground mycelium?
+    //RegistryObject<RankineMyceliumBlock> hyphae;
     //mangove roots?
 
+    public static final StringRepresentable.EnumCodec<SoilBlocks> CODEC = StringRepresentable.fromEnum(SoilBlocks::values);
 
     SoilBlocks() {}
+
+    @Override
+    public String getSerializedName() {
+        return getName();
+    }
+
+    @Nullable
+    public static SoilBlocks byName(String p_41058_) {
+        return CODEC.byName(p_41058_);
+    }
 
     public String getName() {
         return name().toLowerCase(Locale.ROOT);
@@ -53,10 +66,12 @@ public enum SoilBlocks {
     public CoarseSoilBlock getCoarseSoilBlock() {return this.coarseSoil.get();}
     public RootedSoilBlock getRootedSoilBlock() {return this.rootedSoil.get();}
     public MudBlock getMudBlock() {return this.mud.get();}
+    public PermafrostBlock getPermafrostBlock() {return this.permafrost.get();}
     public SoilPathBlock getPathBlock() {return this.path.get();}
     public GrassySoilBlock getGrassBlock() {return this.grass.get();}
     public RankinePodzolBlock getPodzolBlock() {return this.podzol.get();}
     public RankineMyceliumBlock getMyceliumBlock() {return this.mycelium.get();}
+   // public RankineMyceliumBlock getHyphaeBlock() {return this.hyphae.get();}
     public RankineFarmlandBlock getFarmlandBlock() {return this.farmland.get();}
     public List<Block> getAlBllocks() {
         return Arrays.asList(
@@ -64,6 +79,7 @@ public enum SoilBlocks {
                 this.getCoarseSoilBlock(),
                 this.getRootedSoilBlock(),
                 this.getMudBlock(),
+                this.getPermafrostBlock(),
                 this.getPathBlock(),
                 this.getGrassBlock(),
                 this.getPodzolBlock(),
@@ -86,12 +102,14 @@ public enum SoilBlocks {
             baseSoilBlock.grass =  RankineBlocks.BLOCKS.register(baseSoilBlock.getName()+"_grass_block", () -> new GrassySoilBlock(baseSoilBlock));
             baseSoilBlock.podzol =  RankineBlocks.BLOCKS.register(baseSoilBlock.getName()+"_podzol", RankinePodzolBlock::new);
             baseSoilBlock.mycelium =  RankineBlocks.BLOCKS.register(baseSoilBlock.getName()+"_mycelium", () -> new RankineMyceliumBlock(baseSoilBlock));
+            //baseSoilBlock.mycelium =  RankineBlocks.BLOCKS.register(baseSoilBlock.getName()+"_hyphae", () -> new RankineMyceliumBlock(baseSoilBlock));
             baseSoilBlock.path =  RankineBlocks.BLOCKS.register(baseSoilBlock.getName()+"_path", () -> new SoilPathBlock(baseSoilBlock));
             baseSoilBlock.soil =  RankineBlocks.BLOCKS.register(baseSoilBlock.getName(), SoilBlock::new);
             baseSoilBlock.coarseSoil =  RankineBlocks.BLOCKS.register("coarse_"+baseSoilBlock.getName(), CoarseSoilBlock::new);
             baseSoilBlock.rootedSoil =  RankineBlocks.BLOCKS.register("rooted_"+baseSoilBlock.getName(), RootedSoilBlock::new);
             baseSoilBlock.farmland =  RankineBlocks.BLOCKS.register(baseSoilBlock.getName()+"_farmland", () -> new RankineFarmlandBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
             baseSoilBlock.mud =  RankineBlocks.BLOCKS.register(baseSoilBlock.getName()+"_mud", () -> new MudBlock(BlockBehaviour.Properties.copy(baseSoilBlock.soil.get()).color(MaterialColor.TERRACOTTA_BROWN).sound(SoundType.MUD)));
+            baseSoilBlock.permafrost =  RankineBlocks.BLOCKS.register(baseSoilBlock.getName()+"_permafrost", PermafrostBlock::new);
         }
     }
 
@@ -107,10 +125,9 @@ public enum SoilBlocks {
             RankineBlocks.ITEMS.register("rooted_"+baseSoilBlock.getName(), () -> new BlockItem(baseSoilBlock.rootedSoil.get(), DEF_BUILDING));
             RankineBlocks.ITEMS.register(baseSoilBlock.getName()+"_mud", () -> new BlockItem(baseSoilBlock.mud.get(), DEF_BUILDING));
             RankineBlocks.ITEMS.register(baseSoilBlock.getName()+"_farmland", () -> new BlockItem(baseSoilBlock.farmland.get(), DEF_BUILDING));
+            RankineBlocks.ITEMS.register(baseSoilBlock.getName()+"_permafrost", () -> new BlockItem(baseSoilBlock.permafrost.get(), DEF_BUILDING));
         }
     }
-
-
 
 
 }

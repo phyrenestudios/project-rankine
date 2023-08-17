@@ -70,6 +70,8 @@ public class RankineBlocks {
         CementBlocks.registerBlocks();
         BricksBlocks.registerBlocks();
         SoilBlocks.registerBlocks();
+        FiberBlocks.registerBlocks();
+
     }
     //WOODS
     public static final RankineWood CEDAR = RankineWood.newWoodReg("cedar", 2.0f,true, true, 2, new CedarTreeGrower());
@@ -153,10 +155,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BASALT_BRICKS_STAIRS = BLOCKS.register("basalt_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(BASALT_BRICKS.get())));
     public static final RegistryObject<Block> BASALT_BRICKS_WALL = BLOCKS.register("basalt_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(BASALT_BRICKS.get())));
     public static final RegistryObject<Block> BASALT_BRICKS_PRESSURE_PLATE = BLOCKS.register("basalt_bricks_pressure_plate", RankineStonePressurePlate::new);
-
-    static {
-        FiberBlocks.registerBlocks();
-    }
 
     //weird mineral blocks
     public static final RegistryObject<Block> MELLITE_BLOCK = BLOCKS.register("mellite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 5.0F)));
@@ -275,9 +273,7 @@ public class RankineBlocks {
 
 
     public static final RegistryObject<Block> SOD_BLOCK = BLOCKS.register("sod_block", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS, MaterialColor.DIRT).strength(0.5F).sound(SoundType.GRASS)));
-
     public static final RegistryObject<Block> SILT = BLOCKS.register("silt", () -> new RankineSandBlock(11770483, Block.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.SAND).strength(0.5F)));
-    public static final RegistryObject<Block> PERMAFROST = BLOCKS.register("permafrost", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(1.5F).sound(SoundType.GRAVEL)));
 
     //gravel path?
     public static final RegistryObject<Block> ENDER_SHIRO = BLOCKS.register("ender_shiro", () -> new EnderShiroBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(0.8F).sound(SoundType.ROOTS).randomTicks()));

@@ -1,9 +1,6 @@
 {
   "parent": "rankine:block/template_grassy_soil",
   "textures": {
-    "grassy_soil_side": "rankine:block/humus_grass_block_side",
-    "grassy_soil_side_overlay": "rankine:block/humus_grass_block_side_overlay",
-    "grassy_soil_top": "minecraft:block/grass_block_top",
     "soil": "rankine:block/humus"
   }
 }

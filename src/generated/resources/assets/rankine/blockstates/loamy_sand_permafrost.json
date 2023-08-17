@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/loamy_sand_permafrost"
+      },
+      {
+        "model": "rankine:block/loamy_sand_permafrost",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/loamy_sand_permafrost",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/loamy_sand_permafrost",
+        "y": 270
+      }
+    ]
+  }
+}

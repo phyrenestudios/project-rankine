@@ -1,3 +1,5 @@
 {
-  "B": "minecraft:coarse_dirt"
+  "B": "minecraft:coarse_dirt",
+  "mud": "minecraft:mud",
+  "permafrost": "rankine:loam_permafrost"
 }

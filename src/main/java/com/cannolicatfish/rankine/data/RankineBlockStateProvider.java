@@ -142,6 +142,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             rotationBlock(base.getCoarseSoilBlock());
             rotationBlock(base.getRootedSoilBlock());
             rotationBlock(base.getMudBlock());
+            rotationBlock(base.getPermafrostBlock());
             grassySoilBlock(base.getGrassBlock(), base.getSoilBlock());
             getVariantBuilder(base.getPodzolBlock())
                     .partialState().with(BlockStateProperties.SNOWY,false).modelForState().modelFile(models().cubeBottomTop(name(base.getPodzolBlock()), getBlockRSL(base.getPodzolBlock()), getBlockRSL(base.getSoilBlock()),getBlockRSL("minecraft","podzol_top"))).addModel()
@@ -893,7 +894,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     public void grassySoilBlock(Block grass, Block soil) {
         String grassyName = name(grass);
         String soilName = name(soil);
-        ModelFile grassy = models().withExistingParent(grassyName, modLoc("block/template_grassy_soil")).texture("soil", new ResourceLocation("rankine", "block/" + soilName)).texture("grassy_soil_top", getBlockRSL("minecraft","grass_block_top")).texture("grassy_soil_side", new ResourceLocation("rankine", "block/" + grassyName + "_side")).texture("grassy_soil_side_overlay", new ResourceLocation("rankine", "block/" + grassyName + "_side_overlay"));
+        ModelFile grassy = models().withExistingParent(grassyName, modLoc("block/template_grassy_soil")).texture("soil", new ResourceLocation("rankine", "block/" + soilName));
         ModelFile snowy = models().withExistingParent(grassyName+"_snow", mcLoc("block/cube_bottom_top")).texture("top", getBlockRSL("minecraft","grass_block_top")).texture("bottom", new ResourceLocation("rankine", "block/" + soilName)).texture("side", new ResourceLocation("rankine", "block/"+grassyName+"_snow"));
         getVariantBuilder(grass)
                 .partialState().with(GrassBlock.SNOWY, false).modelForState().modelFile(grassy).rotationY(0).nextModel().modelFile(grassy).rotationY(90).nextModel().modelFile(grassy).rotationY(180).nextModel().modelFile(grassy).rotationY(270).addModel()

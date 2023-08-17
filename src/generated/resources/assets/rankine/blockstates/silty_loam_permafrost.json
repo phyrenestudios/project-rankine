@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/silty_loam_permafrost"
+      },
+      {
+        "model": "rankine:block/silty_loam_permafrost",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/silty_loam_permafrost",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/silty_loam_permafrost",
+        "y": 270
+      }
+    ]
+  }
+}
