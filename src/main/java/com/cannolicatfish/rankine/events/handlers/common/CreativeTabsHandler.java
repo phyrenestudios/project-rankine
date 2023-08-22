@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.events.handlers.common;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.block_enums.BricksBlocks;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -24,6 +25,8 @@ public class CreativeTabsHandler {
     public static void addItemsToTabs(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab() == NATURAL_BLOCKS) {
             RankineBlocks.ITEMS.getEntries().stream().map(RegistryObject::get)
+                .forEach(block -> event.accept(block.asItem()));
+            RankineItems.ITEMS.getEntries().stream().map(RegistryObject::get)
                 .forEach(block -> event.accept(block.asItem()));
 
             /*

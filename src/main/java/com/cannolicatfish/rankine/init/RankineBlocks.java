@@ -34,7 +34,7 @@ import com.cannolicatfish.rankine.blocks.tap.TapLineBlock;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableBlock;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
-import com.cannolicatfish.rankine.worldgen.trees.*;
+import com.cannolicatfish.rankine.worldgen.treeGrowers.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -71,6 +71,7 @@ public class RankineBlocks {
         BricksBlocks.registerBlocks();
         CementBlocks.registerBlocks();
         FiberBlocks.registerBlocks();
+        MeteorBlocks.registerBlocks();
 
     }
     //WOODS
@@ -951,16 +952,11 @@ public class RankineBlocks {
     public static final RegistryObject<Block> NETHER_QUARTZ_ORE = BLOCKS.register("nether_quartz_ore", () -> new RankineOreBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_QUARTZ_ORE), UniformInt.of(2,5)));
     public static final RegistryObject<Block> NETHER_GOLD_ORE = BLOCKS.register("nether_gold_ore", () -> new RankineOreBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE), UniformInt.of(0,1)));
 
-    public static final RegistryObject<Block> METEORITE = BLOCKS.register("meteorite", () -> new Block(DEF_STONE));
-    public static final RegistryObject<Block> METEORITE_BRICKS = BLOCKS.register("meteorite_bricks", () -> new Block(DEF_STONE));
-    public static final RegistryObject<Block> ENSTATITE_CHONDRITE = BLOCKS.register("enstatite_chondrite", () -> new Block(DEF_STONE));
-    public static final RegistryObject<Block> ENSTATITE_CHONDRITE_BRICKS = BLOCKS.register("enstatite_chondrite_bricks", () -> new Block(DEF_STONE));
-    public static final RegistryObject<Block> FROZEN_METEORITE = BLOCKS.register("frozen_meteorite", () -> new Block(DEF_STONE));
-    public static final RegistryObject<Block> FROZEN_METEORITE_BRICKS = BLOCKS.register("frozen_meteorite_bricks", () -> new Block(DEF_STONE));
     public static final RegistryObject<Block> GREEN_TEKTITE = BLOCKS.register("green_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GRAY_TEKTITE = BLOCKS.register("gray_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLACK_TEKTITE = BLOCKS.register("black_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BROWN_TEKTITE = BLOCKS.register("brown_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> ANTIMATTER = BLOCKS.register("antimatter", () -> new AntimatterBlock(Block.Properties.of(Material.BARRIER).strength(-1.0F, 3600000.8F).noOcclusion().noCollission().noLootTable()));
     public static final RegistryObject<Block> UNAMED_EXPLOSIVE = BLOCKS.register("unamed_explosive", () -> new UnamedExplosiveBlock(Block.Properties.of(Material.BARRIER).strength(20.0F, 50.0F)));
 

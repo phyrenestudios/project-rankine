@@ -1,5 +1,13 @@
 {
   "values": [
+    "rankine:chondrite",
+    "rankine:enstatite_chondrite",
+    "rankine:carbonaceous_chondrite",
+    "rankine:icy_chondrite",
+    "rankine:angrite",
+    "rankine:ureilite",
+    "rankine:pallasite",
+    "rankine:mesosiderite",
     "rankine:lapis_ore",
     "rankine:bog_iron",
     "rankine:ironstone",

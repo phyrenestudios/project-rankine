@@ -524,15 +524,6 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         SpecialRecipeBuilder.special(RankineRecipeSerializers.JAM_RECIPE_SERIALIZER.get()).save(consumer, "fruit_jam");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.METEORITE_BRICKS.get()).define('#', RankineBlocks.METEORITE.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_meteorite", has(RankineBlocks.METEORITE.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.ENSTATITE_CHONDRITE_BRICKS.get()).define('#', RankineBlocks.ENSTATITE_CHONDRITE.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_enstatite_chondrite", has(RankineBlocks.ENSTATITE_CHONDRITE.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RankineBlocks.FROZEN_METEORITE_BRICKS.get()).define('#', RankineBlocks.FROZEN_METEORITE.get()).define('M', RankineItems.MORTAR.get()).pattern("#M").pattern("M#").unlockedBy("has_meteorite", has(RankineBlocks.FROZEN_METEORITE.get())).save(consumer);
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineBlocks.METEORITE.get()), RecipeCategory.MISC, RankineBlocks.METEORITE_BRICKS.get(), 1).unlockedBy("has_meteorite", has(RankineBlocks.METEORITE.get())).save(consumer, "rankine:meteorite_bricks_from_stonecutting");
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineBlocks.FROZEN_METEORITE.get()), RecipeCategory.MISC, RankineBlocks.FROZEN_METEORITE_BRICKS.get(), 1).unlockedBy("has_frozen_meteorite", has(RankineBlocks.FROZEN_METEORITE.get())).save(consumer, "rankine:frozen_meteorite_bricks_from_stonecutting");
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(RankineBlocks.ENSTATITE_CHONDRITE.get()), RecipeCategory.MISC, RankineBlocks.ENSTATITE_CHONDRITE_BRICKS.get(), 1).unlockedBy("has_meteorite", has(RankineBlocks.ENSTATITE_CHONDRITE.get())).save(consumer, "rankine:enstatite_bricks_from_stonecutting");
-
-
-
 
         for (Block HOLLOW : RankineLists.HOLLOW_LOGS) {
             String PATH = getItemName(HOLLOW);

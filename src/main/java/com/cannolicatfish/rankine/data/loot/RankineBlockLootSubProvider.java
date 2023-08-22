@@ -142,6 +142,9 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
                 }
             }
         }
+        for (MeteorBlocks base : MeteorBlocks.values()) {
+            dropSelf(base.getMeteorBlock());
+        }
         for (FiberBlocks fiber : FiberBlocks.values()) {
             dropSelf(fiber.getBlock());
             dropSelf(fiber.getMat());

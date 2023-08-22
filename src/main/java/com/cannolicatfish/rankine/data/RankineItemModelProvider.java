@@ -117,7 +117,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
             withExistingParent(Dripstone.getDripstone());
             basicItemAltTexture(Dripstone.getPointedDripstone().asItem(), getBlockRSL(name(Dripstone.getPointedDripstone(),"_down_tip")));
         }
-
+        for (MeteorBlocks base : MeteorBlocks.values()) {
+            withExistingParent(base.getMeteorBlock());
+        }
         for (FiberBlocks fiber : FiberBlocks.values()) {
             withExistingParent(fiber.getBlock());
             withExistingParent(fiber.getMat());

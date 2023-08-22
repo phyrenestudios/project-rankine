@@ -111,20 +111,16 @@ public class RankineItems {
     public static final RegistryObject<Item> BITUMINOUS_SEAM = ITEMS.register("bituminous_seam", () -> new BlockItem(RankineBlocks.BITUMINOUS_SEAM.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> ANTHRACITE_SEAM = ITEMS.register("anthracite_seam", () -> new BlockItem(RankineBlocks.ANTHRACITE_SEAM.get(),new Item.Properties().stacksTo(64)));
 
-
-    public static final RegistryObject<Item> FUMAROLE_DEPOSIT = ITEMS.register("fumarole_deposit", () -> new BlockItem(RankineBlocks.FUMAROLE_DEPOSIT.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> FULGURITE = ITEMS.register("fulgurite", () -> new BlockItem(RankineBlocks.FULGURITE.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> METEORITE = ITEMS.register("meteorite", () -> new BlockItem(RankineBlocks.METEORITE.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> METEORITE_BRICKS = ITEMS.register("meteorite_bricks", () -> new BlockItem(RankineBlocks.METEORITE_BRICKS.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> ENSTATITE_CHONDRITE = ITEMS.register("enstatite_chondrite", () -> new BlockItem(RankineBlocks.ENSTATITE_CHONDRITE.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> ENSTATITE_CHONDRITE_BRICKS = ITEMS.register("enstatite_chondrite_bricks", () -> new BlockItem(RankineBlocks.ENSTATITE_CHONDRITE_BRICKS.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> FROZEN_METEORITE = ITEMS.register("frozen_meteorite", () -> new BlockItem(RankineBlocks.FROZEN_METEORITE.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> FROZEN_METEORITE_BRICKS = ITEMS.register("frozen_meteorite_bricks", () -> new BlockItem(RankineBlocks.FROZEN_METEORITE_BRICKS.get(),new Item.Properties().stacksTo(64)));
+    static {
+        MeteorBlocks.registerItems();
+    }
     public static final RegistryObject<Item> METEORIC_ICE = ITEMS.register("meteoric_ice", () -> new BlockItem(RankineBlocks.METEORIC_ICE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> GREEN_TEKITE = ITEMS.register("green_tektite", () -> new BlockItem(RankineBlocks.GREEN_TEKTITE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> GRAY_TEKITE = ITEMS.register("gray_tektite", () -> new BlockItem(RankineBlocks.GRAY_TEKTITE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> BLACK_TEKITE = ITEMS.register("black_tektite", () -> new BlockItem(RankineBlocks.BLACK_TEKTITE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> BROWN_TEKITE = ITEMS.register("brown_tektite", () -> new BlockItem(RankineBlocks.BROWN_TEKTITE.get(),new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FUMAROLE_DEPOSIT = ITEMS.register("fumarole_deposit", () -> new BlockItem(RankineBlocks.FUMAROLE_DEPOSIT.get(),new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FULGURITE = ITEMS.register("fulgurite", () -> new BlockItem(RankineBlocks.FULGURITE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> LIGHTNING_GLASS = ITEMS.register("lightning_glass", () -> new BlockItem(RankineBlocks.LIGHTNING_GLASS.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> RED_LIGHTNING_GLASS = ITEMS.register("red_lightning_glass", () -> new BlockItem(RankineBlocks.RED_LIGHTNING_GLASS.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> SOUL_LIGHTNING_GLASS = ITEMS.register("soul_lightning_glass", () -> new BlockItem(RankineBlocks.SOUL_LIGHTNING_GLASS.get(),new Item.Properties().stacksTo(64)));

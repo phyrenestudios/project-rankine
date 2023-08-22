@@ -1,20 +1,12 @@
 package com.cannolicatfish.rankine.worldgen.features.misc;
 
-import com.cannolicatfish.rankine.blocks.RankineOreBlock;
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
-import java.util.Arrays;
 
 public class EndMeteoriteFeature extends Feature<NoneFeatureConfiguration> {
     public EndMeteoriteFeature(Codec<NoneFeatureConfiguration> p_i49915_1_) {
@@ -26,7 +18,7 @@ public class EndMeteoriteFeature extends Feature<NoneFeatureConfiguration> {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
         RandomSource rand = reader.getRandom();
-
+/*
         if (rand.nextFloat() < Config.WORLDGEN.END_METEORITE_CHANCE.get()) {
             ChunkAccess chunk = reader.getChunk(pos);
             int randX = chunk.getPos().getMinBlockX() + rand.nextInt(16);
@@ -83,6 +75,8 @@ public class EndMeteoriteFeature extends Feature<NoneFeatureConfiguration> {
                 }
             }
         }
+
+ */
         return true;
     }
 

@@ -132,8 +132,6 @@ public class VillagerTradesHandler {
             level3.add(new BasicItemListing(1, new ItemStack(Items.PURPUR_BLOCK, 2),12,10,0.05f));
             level4.add(new BasicItemListing(1, new ItemStack(RankineItems.PHOSPHORITE.get(), 2),12,10,0.05f));
             level4.add(new BasicItemListing(1, new ItemStack(RankineItems.IRONSTONE.get(), 2),12,10,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(RankineItems.METEORITE.get(), 2),12,10,0.05f));
-            level4.add(new BasicItemListing(1, new ItemStack(RankineItems.ENSTATITE_CHONDRITE.get(), 2),12,10,0.05f));
             level5.add(new BasicItemListing(1, new ItemStack(CementBlocks.ROMAN_CONCRETE.getCementBlock(), 1),24,10,0.05f));
         }
 

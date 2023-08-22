@@ -13,10 +13,12 @@ public class RankineUndergroundFeatures {
 
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_STONE_REPLACER = RankineFeatureUtils.createKey("stone_replacer");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_METEORITE = RankineFeatureUtils.createKey("overworld_meteorite");
 
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         register(context, RankineUndergroundFeatures.OVERWORLD_STONE_REPLACER, RankineFeatures.OVERWORLD_STONE_REPLACER.get(), new NoneFeatureConfiguration());
+        register(context, RankineUndergroundFeatures.OVERWORLD_METEORITE, RankineFeatures.OVERWORLD_METEORITE.get(), new NoneFeatureConfiguration());
 
     }
 

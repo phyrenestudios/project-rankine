@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.worldgen.features.underground.MeteoriteFeature;
 import com.cannolicatfish.rankine.worldgen.features.misc.WorldReplacerFeature;
 import com.cannolicatfish.rankine.worldgen.features.trees.*;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -37,6 +38,7 @@ public class RankineFeatures {
 
      */
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> OVERWORLD_STONE_REPLACER = FEATURES.register("overworld_stone_replacer", () -> new WorldReplacerFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> OVERWORLD_METEORITE = FEATURES.register("overworld_meteorite", () -> new MeteoriteFeature(NoneFeatureConfiguration.CODEC));
 
 
     public static final RegistryObject<Feature<TreeConfiguration>> CEDAR_TREE = FEATURES.register("cedar_tree", () -> new CedarTreeFeature(TreeConfiguration.CODEC));

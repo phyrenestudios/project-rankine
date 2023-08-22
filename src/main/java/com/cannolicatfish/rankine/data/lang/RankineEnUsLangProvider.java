@@ -73,7 +73,9 @@ public class RankineEnUsLangProvider extends LanguageProvider {
                 add(blk, parseLangName(name(blk)));
             }
         }
-
+        for (MeteorBlocks base : MeteorBlocks.values()) {
+            add(base.getMeteorBlock(), parseLangName(name(base.getMeteorBlock())));
+        }
         for (FiberBlocks fiber : FiberBlocks.values()) {
             add(fiber.getBlock(), parseLangName(name(fiber.getBlock())));
             add(fiber.getMat(), parseLangName(name(fiber.getMat())));

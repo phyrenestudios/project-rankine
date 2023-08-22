@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.events.handlers.common;
 import com.cannolicatfish.rankine.blocks.block_enums.RankineWood;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
-import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
+import com.cannolicatfish.rankine.blocks.blockstates.TripleBlockSection;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyHoeItem;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;

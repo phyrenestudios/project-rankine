@@ -120,10 +120,6 @@ public class RankineRemappings {
 
         blockRemappings.put(new ResourceLocation("rankine:dacitic_tuff"), RankineBlocks.ANDESITIC_TUFF.get());
 
-        blockRemappings.put(new ResourceLocation("rankine:enstatite"), RankineBlocks.ENSTATITE_CHONDRITE.get());
-        blockRemappings.put(new ResourceLocation("rankine:enstatite_paver"), RankineBlocks.ENSTATITE_CHONDRITE_BRICKS.get());
-        blockRemappings.put(new ResourceLocation("rankine:meteorite_paver"), RankineBlocks.METEORITE_BRICKS.get());
-
         blockRemappings.put(new ResourceLocation("rankine:etched_glass0"), Blocks.GLASS);
         blockRemappings.put(new ResourceLocation("rankine:etched_glass1"), Blocks.GLASS);
         blockRemappings.put(new ResourceLocation("rankine:etched_glass2"), Blocks.GLASS);

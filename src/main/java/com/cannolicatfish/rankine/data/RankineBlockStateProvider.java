@@ -12,7 +12,7 @@ import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankineDoublePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
-import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
+import com.cannolicatfish.rankine.blocks.blockstates.TripleBlockSection;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
@@ -136,6 +136,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (FiberBlocks fiber : FiberBlocks.values()) {
             fiberBlock(fiber.getBlock());
             fiberMatBlock(fiber.getMat(), getBlockRSL(fiber.getBlock()));
+        }
+        for (MeteorBlocks base : MeteorBlocks.values()) {
+            simpleBlock(base.getMeteorBlock());
         }
         for (SoilBlocks base : SoilBlocks.values()) {
             rotationBlock(base.getSoilBlock());

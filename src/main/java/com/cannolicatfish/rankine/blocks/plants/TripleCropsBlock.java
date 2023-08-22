@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
-import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
+import com.cannolicatfish.rankine.blocks.blockstates.TripleBlockSection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

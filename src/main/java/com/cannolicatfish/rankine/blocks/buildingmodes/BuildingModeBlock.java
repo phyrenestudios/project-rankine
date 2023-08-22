@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks.buildingmodes;
 
-import com.cannolicatfish.rankine.blocks.states.RankineBlockStateProperties;
+import com.cannolicatfish.rankine.blocks.blockstates.RankineBlockStateProperties;
 import com.cannolicatfish.rankine.items.BuildingModeBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
@@ -14,8 +14,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.HitResult;
 
 import javax.annotation.Nullable;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class BuildingModeBlock extends Block {
 

@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
-import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
+import com.cannolicatfish.rankine.blocks.blockstates.TripleBlockSection;
 import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
@@ -23,11 +23,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class CornStalkBlock extends BushBlock {
 

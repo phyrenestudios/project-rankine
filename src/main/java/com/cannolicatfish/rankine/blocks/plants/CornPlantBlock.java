@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
-import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
+import com.cannolicatfish.rankine.blocks.blockstates.TripleBlockSection;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.world.level.block.state.BlockState;
@@ -17,8 +17,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class CornPlantBlock extends TripleCropsBlock {
 

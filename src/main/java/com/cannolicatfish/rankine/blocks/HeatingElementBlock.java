@@ -15,8 +15,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 public class HeatingElementBlock extends DirectionalBlock {
     static HashMap<Block, Block> MeltMap = new HashMap<>();
     static {
@@ -29,7 +27,6 @@ public class HeatingElementBlock extends DirectionalBlock {
         MeltMap.put(Blocks.BLUE_ICE, Blocks.WATER);
         MeltMap.put(RankineBlocks.METEORIC_ICE.get(), Blocks.WATER);
         MeltMap.put(RankineBlocks.DRY_ICE.get(), RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get());
-        MeltMap.put(RankineBlocks.FROZEN_METEORITE.get(), RankineBlocks.METEORITE.get());
     }
     int radius;
 
