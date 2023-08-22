@@ -77,9 +77,9 @@ public class ElementIndexerScreen extends AbstractContainerScreen<ElementIndexer
                 drawCenteredString(matrixStack,Minecraft.getInstance().fontRenderer,e.getDisplayName(1).getString(),125,66,0x55FF55);
             }*/
 
-            drawString(matrixStack,Minecraft.getInstance().font, I18n.get(element.getLocalName()).toUpperCase(Locale.ROOT),32,10,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().font, I18n.get(element.getLocalizedName()).toUpperCase(Locale.ROOT),32,10,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().font,String.valueOf(element.getAtomicNumber()),138,32,0xffffff);
-            drawScaledString(matrixStack,Minecraft.getInstance().font,I18n.get(element.getSymbol()),138,42, 2,0xffffff);
+            drawScaledString(matrixStack,Minecraft.getInstance().font,I18n.get(element.getLocalizedSymbol()),138,42, 2,0xffffff);
         } else
         {
             //drawCenteredString(matrixStack,Minecraft.getInstance().fontRenderer,"MATERIALNAME",88,12,0xffffff);

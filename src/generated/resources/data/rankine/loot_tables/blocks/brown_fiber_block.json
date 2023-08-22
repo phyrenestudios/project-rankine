@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "rankine:brown_fiber_block"
         }
       ],
       "rolls": 1.0

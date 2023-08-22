@@ -1,0 +1,103 @@
+{
+  "type": "rankine:alloy_furnace",
+  "name": "alloy.bronze.name",
+  "color": 15510384,
+  "defaultComposition": [
+    {
+      "element": "rankine:elements/copper",
+      "percent": 0.75
+    },
+    {
+      "element": "rankine:elements/tin",
+      "percent": 0.25
+    }
+  ],
+  "requiredElements": [
+    {
+      "element": "rankine:elements/copper",
+      "min": 0.70,
+      "max": 0.90
+    },
+    {
+      "element": "rankine:elements/tin",
+      "min": 0.10,
+      "max": 0.30
+    }
+  ],
+  "optionalElements": [
+    {
+      "element": "rankine:elements/aluminum",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/manganese",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/nickel",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/zinc",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/arsenic",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/iron",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/bismuth",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/lead",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/antimony",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/beryllium",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/tellurium",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/silicon",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/phosphorus",
+      "min": 0,
+      "max": 0.12
+    },
+    {
+      "element": "rankine:elements/chlorine",
+      "min": 0,
+      "max": 0.05
+    }
+  ],
+  "bonusStats": {
+    "durability": 100
+  },
+  "result": "rankine:bronze_ingot"
+}

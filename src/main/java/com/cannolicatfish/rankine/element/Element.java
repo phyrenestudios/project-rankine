@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.element;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -55,7 +56,7 @@ public final class Element {
                          Optional<ElementStats> elementStatsIn,  Optional<List<String>> enchantmentsIn, Optional<List<String>> enchantmentTypesIn, Optional<List<Float>> enchantmentFactorsIn) {
         this.name = nameIn.orElse("element.unknown.name");
         this.priority = priorityIn.orElse((short) 0);
-        this.symbol = nameIn.orElse("element.unknown.symbol");
+        this.symbol = symbolIn.orElse("element.unknown.symbol");
         this.atomicNumber = numIn.orElse(-1);
         this.color = colorIn.orElse(16777215);
         this.items = items;
@@ -124,12 +125,20 @@ public final class Element {
         return enchantmentFactors;
     }
 
-    public String getLocalName() {
+    public String getName() {
         return name;
     }
 
     public String getSymbol() {
        return symbol;
+    }
+
+    public String getLocalizedName() {
+        return I18n.get(name);
+    }
+
+    public String getLocalizedSymbol() {
+        return I18n.get(symbol);
     }
 
     public ElementStats getElementStats() {

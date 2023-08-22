@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "rankine:fiber_block_stairs"
         }
       ],
       "rolls": 1.0

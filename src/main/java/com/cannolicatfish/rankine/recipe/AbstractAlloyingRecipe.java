@@ -248,7 +248,7 @@ public abstract class AbstractAlloyingRecipe implements Recipe<Container> {
             String name = json.has("name") ? json.get("name").getAsString() : "alloy.unknown.name";
             int color = json.has("color") ? Math.max(0,json.get("color").getAsInt()) : 1677215;
             boolean forceNBT = json.has("forceNBT") && json.get("forceNBT").getAsBoolean();
-            boolean requiresTemplate = json.has("forceNBT") && json.get("forceNBT").getAsBoolean();
+            boolean requiresTemplate = json.has("requiresTemplate") && json.get("requiresTemplate").getAsBoolean();
             int materialToIngot = json.has("materialToIngot") ? Math.max(1,json.get("materialToIngot").getAsInt()) : 9;
 
             ItemStack result = new ItemStack(BuiltInRegistries.ITEM.getOptional(new ResourceLocation(GsonHelper.getAsString(json, "result"))).orElseThrow(() -> new IllegalStateException("Item: " + new ResourceLocation(GsonHelper.getAsString(json, "result")) + " does not exist")));
@@ -291,26 +291,27 @@ public abstract class AbstractAlloyingRecipe implements Recipe<Container> {
 
             }
 
-            JsonArray bonusStatsArray = new JsonArray();
+            JsonElement bonusStatsObject = new JsonObject();
             AlloyBonusStats bonusStats = null;
             if (json.has("bonusStats")) {
-                bonusStatsArray = GsonHelper.getAsJsonArray(json, "bonusStats");
+                bonusStatsObject = GsonHelper.getAsJsonObject(json, "bonusStats");
             }
-            for (JsonElement element : bonusStatsArray) {
-                if (element.isJsonObject()) {
-                    JsonObject object = element.getAsJsonObject();
-                    Tier currentTier = Tiers.WOOD;
+            if (bonusStatsObject.isJsonObject()) {
+                JsonObject object = bonusStatsObject.getAsJsonObject();
+                Tier currentTier = Tiers.WOOD;
+                if (object.has("tier")) {
                     Tier curTier = TierSortingRegistry.byName(new ResourceLocation(object.get("tier").getAsString()));
                     if (curTier != null) {
                         currentTier = curTier;
                     }
-                    bonusStats = new AlloyBonusStats(object.has("durability") ? object.get("durability").getAsInt() : 0,
-                            object.has("miningSpeed") ? object.get("miningSpeed").getAsFloat() : 0,
-                            object.has("density") ? object.get("density").getAsFloat() : 0,
-                            object.has("attackDamage") ? object.get("attackDamage").getAsInt() : 0,
-                            object.has("enchantability") ? object.get("enchantability").getAsInt() : 0,
-                            currentTier);
                 }
+
+                bonusStats = new AlloyBonusStats(object.has("durability") ? object.get("durability").getAsInt() : 0,
+                        object.has("miningSpeed") ? object.get("miningSpeed").getAsFloat() : 0,
+                        object.has("density") ? object.get("density").getAsFloat() : 0,
+                        object.has("attackDamage") ? object.get("attackDamage").getAsInt() : 0,
+                        object.has("enchantability") ? object.get("enchantability").getAsInt() : 0,
+                        currentTier);
             }
 
             JsonArray enchantmentArray = new JsonArray();
