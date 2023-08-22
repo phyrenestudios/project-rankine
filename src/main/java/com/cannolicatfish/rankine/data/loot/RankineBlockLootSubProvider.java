@@ -321,16 +321,16 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
         addNativeOre(RankineBlocks.STIBNITE_ORE.get(), RankineItems.ANTIMONY_NUGGET.get());
         addNativeOre(RankineBlocks.PORPHYRY_COPPER.get(), RankineItems.COPPER_NUGGET.get());
 
-        addOre(RankineBlocks.LIGNITE_ORE.get(), RankineItems.LIGNITE.get());
-        addOre(RankineBlocks.SUBBITUMINOUS_ORE.get(), RankineItems.SUBBITUMINOUS_COAL.get());
-        addOre(RankineBlocks.BITUMINOUS_ORE.get(), RankineItems.BITUMINOUS_COAL.get());
-        addOre(RankineBlocks.ANTHRACITE_ORE.get(), RankineItems.ANTHRACITE_COAL.get());
+        addOre(RankineBlocks.LIGNITE_SEAM.get(), RankineItems.LIGNITE.get());
+        addOre(RankineBlocks.COAL_SEAM.get(), Items.COAL);
+        addOre(RankineBlocks.BITUMINOUS_SEAM.get(), RankineItems.BITUMINOUS_COAL.get());
+        addOre(RankineBlocks.ANTHRACITE_SEAM.get(), RankineItems.ANTHRACITE_COAL.get());
+
         addOre(RankineBlocks.LONSDALEITE_ORE.get(), RankineItems.LONSDALEITE_DIAMOND.get());
         addOre(RankineBlocks.PLUMBAGO_ORE.get(), RankineItems.GRAPHITE.get());
         addOre(RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(), Items.DIAMOND);
         addOre(RankineBlocks.BERYL_ORE.get(), Items.EMERALD);
         addOre(RankineBlocks.GWIHABAITE_CRYSTAL.get(), RankineItems.GWIHABAITE.get());
-        addOreMultiDrop(RankineBlocks.LAZURITE_ORE.get(), Items.LAPIS_LAZULI, 4.0F, 9.0F);
 
 
         //Vanilla ores

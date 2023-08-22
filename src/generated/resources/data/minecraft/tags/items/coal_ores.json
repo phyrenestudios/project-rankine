@@ -1,9 +1,5 @@
 {
   "values": [
-    "rankine:coal_ore",
-    "rankine:lignite_ore",
-    "rankine:subbituminous_ore",
-    "rankine:bituminous_ore",
-    "rankine:anthracite_ore"
+    "rankine:coal_ore"
   ]
 }

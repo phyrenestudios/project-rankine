@@ -117,7 +117,6 @@ public class RankineRecipesProvider extends RecipeProvider {
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.SPHALERITE_BLOCK.get()), RankineBlocks.ZINC_BLOCK.get());
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.SPODUMENE_BLOCK.get()), RankineBlocks.LITHIUM_BLOCK.get());
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.STIBNITE_BLOCK.get()), RankineBlocks.ANTIMONY_BLOCK.get());
-        BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(RankineBlocks.SUBBITUMINOUS_COAL_BLOCK.get()), RankineBlocks.BITUMINOUS_COAL_BLOCK.get());
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(Blocks.RAW_COPPER_BLOCK), Blocks.COPPER_BLOCK);
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(Blocks.RAW_GOLD_BLOCK), Blocks.GOLD_BLOCK);
         BEEHIVE_OVEN_MINERAL_MAP.put(Ingredient.of(Blocks.RAW_IRON_BLOCK), Blocks.IRON_BLOCK);
@@ -173,7 +172,6 @@ public class RankineRecipesProvider extends RecipeProvider {
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(RankineItems.SILT.get()), RecipeCategory.MISC, Items.GLASS, 0.1F, 200).unlockedBy("has_ingredient", has(RankineBlocks.SILT.get().asItem())).save(consumer, "rankine:glass_from_silt_smelting");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.TORCH, 3).pattern("C").pattern("S").define('C', RankineItems.LIGNITE.get()).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_ingredient", has(RankineItems.LIGNITE.get())).group("torch").save(consumer, "rankine:torch_from_lignite");
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.TORCH, 4).pattern("C").pattern("S").define('C', RankineItems.SUBBITUMINOUS_COAL.get()).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_ingredient", has(RankineItems.SUBBITUMINOUS_COAL.get())).group("torch").save(consumer, "rankine:torch_from_subbituminous_coal");
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.TORCH, 6).pattern("C").pattern("S").define('C', RankineItems.BITUMINOUS_COAL.get()).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_ingredient", has(RankineItems.BITUMINOUS_COAL.get())).group("torch").save(consumer, "rankine:torch_from_bituminous_coal");
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.TORCH, 8).pattern("C").pattern("S").define('C', RankineItems.ANTHRACITE_COAL.get()).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_ingredient", has(RankineItems.ANTHRACITE_COAL.get())).group("torch").save(consumer, "rankine:torch_from_anthracite_coal");
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Blocks.TORCH, 8).pattern("C").pattern("S").define('C', RankineTags.Items.COKE).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_ingredient", has(RankineTags.Items.COKE)).group("torch").save(consumer, "rankine:torch_from_coke");
@@ -191,7 +189,6 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.COAL,2).requires(RankineItems.ANTHRACITE_COAL.get()).unlockedBy("has_ingredient", has(RankineItems.ANTHRACITE_COAL.get())).group("coal").save(consumer, "rankine:coal_from_anthracite");
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.COAL,3).requires(RankineItems.BITUMINOUS_COAL.get()).requires(RankineItems.BITUMINOUS_COAL.get()).unlockedBy("has_ingredient", has(RankineItems.BITUMINOUS_COAL.get())).group("coal").save(consumer, "rankine:coal_from_bituminous");
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.COAL,1).requires(RankineItems.SUBBITUMINOUS_COAL.get()).unlockedBy("has_ingredient", has(RankineItems.SUBBITUMINOUS_COAL.get())).group("coal").save(consumer, "rankine:coal_from_subbituminous");
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.COAL,2).requires(RankineItems.LIGNITE.get()).requires(RankineItems.LIGNITE.get()).requires(RankineItems.LIGNITE.get()).unlockedBy("has_ingredient", has(RankineItems.LIGNITE.get())).group("coal").save(consumer, "rankine:coal_from_lignite");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.CAKE, 1).pattern("MMM").pattern("SES").pattern("GGG").define('M',Items.MILK_BUCKET).define('S', Items.SUGAR).define('E', Tags.Items.EGGS).define('G', RankineTags.Items.GRAIN).unlockedBy("has_ingredient", has(RankineTags.Items.GRAIN)).save(consumer, "rankine:cake_from_grains");

@@ -118,12 +118,14 @@ public class VanillaIntegration {
 
     public static void populateFuelMap() {
         fuelValueMap.put(RankineItems.LIGNITE.get(),1200);
+        fuelValueMap.put(RankineItems.LIGNITE_SEAM.get(),2400);
         fuelValueMap.put(RankineItems.LIGNITE_BLOCK.get(),12000);
-        fuelValueMap.put(RankineItems.SUBBITUMINOUS_COAL.get(),1600);
-        fuelValueMap.put(RankineItems.SUBBITUMINOUS_COAL_BLOCK.get(),16000);
+        fuelValueMap.put(RankineItems.COAL_SEAM.get(),3200);
         fuelValueMap.put(RankineItems.BITUMINOUS_COAL.get(),2400);
+        fuelValueMap.put(RankineItems.BITUMINOUS_SEAM.get(),4800);
         fuelValueMap.put(RankineItems.BITUMINOUS_COAL_BLOCK.get(),24000);
         fuelValueMap.put(RankineItems.ANTHRACITE_COAL.get(),3200);
+        fuelValueMap.put(RankineItems.ANTHRACITE_SEAM.get(),6400);
         fuelValueMap.put(RankineItems.ANTHRACITE_COAL_BLOCK.get(),32000);
         fuelValueMap.put(RankineItems.COKE.get(),3200);
         fuelValueMap.put(RankineItems.COKE_BLOCK.get(),32000);

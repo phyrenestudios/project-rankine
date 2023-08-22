@@ -67,9 +67,9 @@ public class RankineBlocks {
 
     static {
         StoneBlocks.registerBlocks();
-        CementBlocks.registerBlocks();
-        BricksBlocks.registerBlocks();
         SoilBlocks.registerBlocks();
+        BricksBlocks.registerBlocks();
+        CementBlocks.registerBlocks();
         FiberBlocks.registerBlocks();
 
     }
@@ -296,17 +296,32 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CVD_GLASS = BLOCKS.register("cvd_glass", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(12.0F, 60.0F).sound(SoundType.GLASS).noOcclusion()));
     public static final RegistryObject<Block> COB = BLOCKS.register("cob", () -> new Block(Block.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.GRAVEL).strength(1.0F)));
     public static final RegistryObject<Block> REFINED_COB = BLOCKS.register("refined_cob", () -> new Block(Block.Properties.of(Material.DIRT, MaterialColor.DIRT).sound(SoundType.GRAVEL).strength(2.0F)));
-    public static final RegistryObject<Block> BANDED_IRON_FORMATION = BLOCKS.register("banded_iron_formation", () -> new Block(DEF_STONE));
-    public static final RegistryObject<Block> PHOSPHORITE = BLOCKS.register("phosphorite", () -> new Block(DEF_STONE));
+
     public static final RegistryObject<Block> LATERITE = BLOCKS.register("laterite", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(1.0F).sound(SoundType.GRAVEL)));
-    public static final RegistryObject<Block> SYLVINITE = BLOCKS.register("sylvinite", () -> new Block(DEF_STONE));
     public static final RegistryObject<Block> KAOLIN = BLOCKS.register("kaolin", () -> new Block(DEF_STONE));
 
-    public static final RegistryObject<Block> FUMAROLE_DEPOSIT = BLOCKS.register("fumarole_deposit", () -> new Block(DEF_STONE));
+
+    public static final RegistryObject<Block> SYLVINITE = BLOCKS.register("sylvinite", () -> new Block(DEF_STONE));
+    public static final RegistryObject<Block> PHOSPHORITE = BLOCKS.register("phosphorite", () -> new Block(DEF_STONE));
     public static final RegistryObject<Block> IRONSTONE = BLOCKS.register("ironstone", () -> new Block(DEF_STONE));
     public static final RegistryObject<Block> BOG_IRON = BLOCKS.register("bog_iron", () -> new Block(DEF_STONE));
+    public static final RegistryObject<Block> MAGNETITITE = BLOCKS.register("magnetitite", () -> new Block(DEF_STONE));
+    public static final RegistryObject<Block> CHROMITITE = BLOCKS.register("chromitite", () -> new Block(DEF_STONE));
+    public static final RegistryObject<Block> LAPIS_STONE = BLOCKS.register("lapis_stone", () -> new Block(DEF_STONE));
+
+    public static final RegistryObject<Block> LIGNITE_SEAM = BLOCKS.register("lignite_seam", () -> new Block(DEF_STONE));
+    public static final RegistryObject<Block> COAL_SEAM = BLOCKS.register("coal_seam", () -> new Block(DEF_STONE));
+    public static final RegistryObject<Block> BITUMINOUS_SEAM = BLOCKS.register("bituminous_seam", () -> new Block(DEF_STONE));
+    public static final RegistryObject<Block> ANTHRACITE_SEAM = BLOCKS.register("anthracite_seam", () -> new Block(DEF_STONE));
+
+
+
     public static final RegistryObject<Block> PORPHYRY_COPPER = BLOCKS.register("porphyry_copper", () -> new DropExperienceBlock(DEF_STONE, UniformInt.of(0,1)));
     public static final RegistryObject<Block> KIMBERLITIC_DIAMOND_ORE = BLOCKS.register("kimberlitic_diamond_ore", () -> new DropExperienceBlock(DEF_STONE, UniformInt.of(3,7)));
+    public static final RegistryObject<Block> FUMAROLE_DEPOSIT = BLOCKS.register("fumarole_deposit", () -> new Block(DEF_STONE));
+
+
+
     public static final RegistryObject<Block> QUICKLIME_BLOCK = BLOCKS.register("quicklime_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 2.0F)));
     public static final RegistryObject<Block> MAGNESITE_BLOCK = BLOCKS.register("magnesite_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 2.0F)));
     public static final RegistryObject<Block> MAGNESIA_BLOCK = BLOCKS.register("magnesia_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 2.0F)));
@@ -867,7 +882,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PLATINUM_ARSENIDE_BLOCK = BLOCKS.register("platinum_arsenide_block", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 5.0F)));
     public static final RegistryObject<Block> COKE_BLOCK = BLOCKS.register("coke_block", () -> new Block(Block.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
     public static final RegistryObject<Block> LIGNITE_BLOCK = BLOCKS.register("lignite_block", () -> new Block(Block.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
-    public static final RegistryObject<Block> SUBBITUMINOUS_COAL_BLOCK = BLOCKS.register("subbituminous_coal_block", () -> new Block(Block.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
     public static final RegistryObject<Block> BITUMINOUS_COAL_BLOCK = BLOCKS.register("bituminous_coal_block", () -> new Block(Block.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
     public static final RegistryObject<Block> ANTHRACITE_COAL_BLOCK = BLOCKS.register("anthracite_coal_block", () -> new Block(Block.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
     public static final RegistryObject<Block> ANDESINE_BLOCK = BLOCKS.register("andesine_block", () -> new Block(Block.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
@@ -876,10 +890,6 @@ public class RankineBlocks {
     //ORES
     public static final RegistryObject<Block> CHALCOCITE_ORE = BLOCKS.register("chalcocite_ore", () -> new RankineOreBlock(DEF_ORE));
     public static final RegistryObject<Block> PETALITE_ORE = BLOCKS.register("petalite_ore", () -> new RankineOreBlock(DEF_ORE));
-    public static final RegistryObject<Block> LIGNITE_ORE = BLOCKS.register("lignite_ore", () -> new RankineOreBlock(DEF_ORE, UniformInt.of(0,1)));
-    public static final RegistryObject<Block> SUBBITUMINOUS_ORE = BLOCKS.register("subbituminous_ore", () -> new RankineOreBlock(DEF_ORE, UniformInt.of(0,2)));
-    public static final RegistryObject<Block> BITUMINOUS_ORE = BLOCKS.register("bituminous_ore", () -> new RankineOreBlock(DEF_ORE, UniformInt.of(1,3)));
-    public static final RegistryObject<Block> ANTHRACITE_ORE = BLOCKS.register("anthracite_ore", () -> new RankineOreBlock(DEF_ORE, UniformInt.of(2,4)));
     public static final RegistryObject<Block> MAGNESITE_ORE = BLOCKS.register("magnesite_ore", () -> new RankineOreBlock(DEF_ORE));
     public static final RegistryObject<Block> BAUXITE_ORE = BLOCKS.register("bauxite_ore", () -> new RankineOreBlock(DEF_ORE));
     public static final RegistryObject<Block> NATIVE_SULFUR_ORE = BLOCKS.register("native_sulfur_ore", () -> new RankineOreBlock(DEF_ORE, UniformInt.of(0,2)));
@@ -928,7 +938,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TETRATAENITE_ORE = BLOCKS.register("tetrataenite_ore", () -> new RankineOreBlock(DEF_ORE));
     public static final RegistryObject<Block> LONSDALEITE_ORE = BLOCKS.register("lonsdaleite_ore", () -> new RankineOreBlock(DEF_ORE, UniformInt.of(5,10)));
     public static final RegistryObject<Block> MONAZITE_ORE = BLOCKS.register("monazite_ore", () -> new RankineOreBlock(DEF_ORE));
-    public static final RegistryObject<Block> LAZURITE_ORE = BLOCKS.register("lazurite_ore", () -> new RankineOreBlock(DEF_ORE, UniformInt.of(2,5)));
     public static final RegistryObject<Block> BERYL_ORE = BLOCKS.register("beryl_ore", () -> new RankineOreBlock(DEF_ORE, UniformInt.of(3,7)));
 
     public static final RegistryObject<Block> COAL_ORE = BLOCKS.register("coal_ore", () -> new RankineOreBlock(BlockBehaviour.Properties.copy(Blocks.COAL_ORE), UniformInt.of(0,2)));
