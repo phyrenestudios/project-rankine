@@ -1,6 +1,6 @@
 {
-  "name": "copper",
-  "symbol": "Cu",
+  "name": "element.copper.name",
+  "symbol": "element.copper.symbol",
   "color": 15382670,
   "atomicNumber": 29,
   "priority": 2,
@@ -28,6 +28,12 @@
         "type": "LINEAR",
         "c": 0.05,
         "maxValue": 5
+      }
+    ],
+    "density": [
+      {
+        "type": "LINEAR",
+        "c": 1.13
       }
     ],
     "enchantability": [

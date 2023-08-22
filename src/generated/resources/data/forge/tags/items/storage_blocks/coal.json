@@ -1,0 +1,8 @@
+{
+  "values": [
+    "rankine:lignite_block",
+    "rankine:subbituminous_coal_block",
+    "rankine:bituminous_coal_block",
+    "rankine:anthracite_coal_block"
+  ]
+}

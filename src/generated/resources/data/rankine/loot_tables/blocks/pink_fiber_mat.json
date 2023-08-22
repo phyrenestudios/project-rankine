@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "rankine:pink_fiber_mat"
         }
       ],
       "rolls": 1.0

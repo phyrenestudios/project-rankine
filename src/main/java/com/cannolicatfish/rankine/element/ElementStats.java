@@ -44,7 +44,7 @@ public class ElementStats {
         this.durability = durabilityIn.orElse(new ArrayList<>());
         this.miningSpeed = miningSpeedIn.orElse(new ArrayList<>());
         this.enchantability = enchantabilityIn.orElse(new ArrayList<>());
-        this.density = durabilityIn.orElse(new ArrayList<>());
+        this.density = densityIn.orElse(new ArrayList<>());
         this.attackDamage = attackDamageIn.orElse(new ArrayList<>());
 
         this.miningTier = miningTierIn.orElse(new ArrayList<>());

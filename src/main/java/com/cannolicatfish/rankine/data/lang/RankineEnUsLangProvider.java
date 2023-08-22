@@ -876,6 +876,15 @@ public class RankineEnUsLangProvider extends LanguageProvider {
         add("element.rankine:elements/copper.desc1", "Commonly used in electrical components and early alloys.");
         add("element.rankine:elements/copper.desc2", "Commonly used in electrical components and early alloys.");
 
+        add("element.hydrogen.name", "Hydrogen");
+        add("element.hydrogen.symbol", "H");
+        add("element.helium.name", "Helium");
+        add("element.helium.symbol", "He");
+        add("element.copper.name", "Copper");
+        add("element.copper.symbol", "Cu");
+        add("element.tin.name", "Tin");
+        add("element.tin.symbol", "Sn");
+
         add("item.rankine.acanthite.tooltip0", "Ag2S");
         add("item.rankine.acanthite.tooltip1", "Used as a source of silver.");
         add("item.rankine.alumina.tooltip0", "Al2O3");

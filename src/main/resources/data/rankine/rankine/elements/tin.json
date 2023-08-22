@@ -1,7 +1,7 @@
 {
   "type": "rankine:element",
-  "name": "tin",
-  "symbol": "Sn",
+  "name": "element.tin.name",
+  "symbol": "element.tin.symbol",
   "color": 11975882,
   "atomicNumber": 50,
   "priority": 1,
@@ -27,6 +27,12 @@
         "type": "LINEAR",
         "c": 0.1,
         "d": -0.5
+      }
+    ],
+    "density": [
+      {
+        "type": "LINEAR",
+        "c": 0.925
       }
     ],
     "enchantability": [
