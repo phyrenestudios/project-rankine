@@ -1,7 +1,6 @@
 {
   "values": [
     "rankine:diamond_ore",
-    "rankine:kimberlitic_diamond_ore",
-    "rankine:lonsdaleite_ore"
+    "rankine:kimberlitic_diamond_ore"
   ]
 }

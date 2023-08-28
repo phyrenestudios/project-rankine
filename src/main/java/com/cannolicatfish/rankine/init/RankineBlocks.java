@@ -134,6 +134,12 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PUMICE = BLOCKS.register("pumice", () -> new Block(Block.Properties.copy(Blocks.COBBLESTONE)));
     public static final RegistryObject<Block> SCORIA = BLOCKS.register("scoria", () -> new Block(Block.Properties.copy(Blocks.COBBLESTONE)));
 
+    public static final RegistryObject<Block> LONSDALEITE = BLOCKS.register("lonsdaleite", () -> new Block(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(2.0F, 5.0F)));
+
+    public static final RegistryObject<Block> GREEN_TEKTITE = BLOCKS.register("green_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> GRAY_TEKTITE = BLOCKS.register("gray_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> BLACK_TEKTITE = BLOCKS.register("black_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> BROWN_TEKTITE = BLOCKS.register("brown_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
 
     //Other Stones
     public static final RegistryObject<Block> GRANITE_BRICKS = BLOCKS.register("granite_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
@@ -933,11 +939,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CINNABAR_ORE = BLOCKS.register("cinnabar_ore", () -> new RankineOreBlock(DEF_ORE, UniformInt.of(2,4)));
     public static final RegistryObject<Block> CRYOLITE_ORE = BLOCKS.register("cryolite_ore", () -> new RankineOreBlock(DEF_ORE));
     public static final RegistryObject<Block> PYRITE_ORE = BLOCKS.register("pyrite_ore", () -> new RankineOreBlock(DEF_ORE));
-    public static final RegistryObject<Block> KAMACITE_ORE = BLOCKS.register("kamacite_ore", () -> new RankineOreBlock(DEF_ORE));
-    public static final RegistryObject<Block> ANTITAENITE_ORE = BLOCKS.register("antitaenite_ore", () -> new RankineOreBlock(DEF_ORE));
-    public static final RegistryObject<Block> TAENITE_ORE = BLOCKS.register("taenite_ore", () -> new RankineOreBlock(DEF_ORE));
-    public static final RegistryObject<Block> TETRATAENITE_ORE = BLOCKS.register("tetrataenite_ore", () -> new RankineOreBlock(DEF_ORE));
-    public static final RegistryObject<Block> LONSDALEITE_ORE = BLOCKS.register("lonsdaleite_ore", () -> new RankineOreBlock(DEF_ORE, UniformInt.of(5,10)));
     public static final RegistryObject<Block> MONAZITE_ORE = BLOCKS.register("monazite_ore", () -> new RankineOreBlock(DEF_ORE));
     public static final RegistryObject<Block> BERYL_ORE = BLOCKS.register("beryl_ore", () -> new RankineOreBlock(DEF_ORE, UniformInt.of(3,7)));
 
@@ -951,11 +952,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> EMERALD_ORE = BLOCKS.register("emerald_ore", () -> new RankineOreBlock(BlockBehaviour.Properties.copy(Blocks.EMERALD_ORE), UniformInt.of(3,7)));
     public static final RegistryObject<Block> NETHER_QUARTZ_ORE = BLOCKS.register("nether_quartz_ore", () -> new RankineOreBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_QUARTZ_ORE), UniformInt.of(2,5)));
     public static final RegistryObject<Block> NETHER_GOLD_ORE = BLOCKS.register("nether_gold_ore", () -> new RankineOreBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE), UniformInt.of(0,1)));
-
-    public static final RegistryObject<Block> GREEN_TEKTITE = BLOCKS.register("green_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> GRAY_TEKTITE = BLOCKS.register("gray_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> BLACK_TEKTITE = BLOCKS.register("black_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> BROWN_TEKTITE = BLOCKS.register("brown_tektite", () -> new GlassBlock(Block.Properties.of(Material.GLASS).strength(5.0F, 30.0F).sound(SoundType.GLASS).noOcclusion().requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> ANTIMATTER = BLOCKS.register("antimatter", () -> new AntimatterBlock(Block.Properties.of(Material.BARRIER).strength(-1.0F, 3600000.8F).noOcclusion().noCollission().noLootTable()));
     public static final RegistryObject<Block> UNAMED_EXPLOSIVE = BLOCKS.register("unamed_explosive", () -> new UnamedExplosiveBlock(Block.Properties.of(Material.BARRIER).strength(20.0F, 50.0F)));

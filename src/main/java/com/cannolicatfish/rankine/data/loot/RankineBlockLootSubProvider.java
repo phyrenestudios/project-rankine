@@ -198,10 +198,6 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
                 RankineBlocks.MONAZITE_ORE.get(),
                 RankineBlocks.INTERSPINIFEX_ORE.get(),
                 RankineBlocks.COLTAN_ORE.get(),
-                RankineBlocks.KAMACITE_ORE.get(),
-                RankineBlocks.ANTITAENITE_ORE.get(),
-                RankineBlocks.TAENITE_ORE.get(),
-                RankineBlocks.TETRATAENITE_ORE.get(),
                 RankineBlocks.FLOOD_GATE.get(),
                 RankineBlocks.BONE_CHAR_BLOCK.get(),
                 RankineBlocks.UNAMED_EXPLOSIVE.get(),
@@ -328,8 +324,8 @@ public final class RankineBlockLootSubProvider extends BlockLootSubProvider {
         addOre(RankineBlocks.COAL_SEAM.get(), Items.COAL);
         addOre(RankineBlocks.BITUMINOUS_SEAM.get(), RankineItems.BITUMINOUS_COAL.get());
         addOre(RankineBlocks.ANTHRACITE_SEAM.get(), RankineItems.ANTHRACITE_COAL.get());
+        addOre(RankineBlocks.LONSDALEITE.get(), RankineItems.LONSDALEITE_DIAMOND.get());
 
-        addOre(RankineBlocks.LONSDALEITE_ORE.get(), RankineItems.LONSDALEITE_DIAMOND.get());
         addOre(RankineBlocks.PLUMBAGO_ORE.get(), RankineItems.GRAPHITE.get());
         addOre(RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(), Items.DIAMOND);
         addOre(RankineBlocks.BERYL_ORE.get(), Items.EMERALD);

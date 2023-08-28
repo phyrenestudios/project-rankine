@@ -115,6 +115,7 @@ public class RankineItems {
         MeteorBlocks.registerItems();
     }
     public static final RegistryObject<Item> METEORIC_ICE = ITEMS.register("meteoric_ice", () -> new BlockItem(RankineBlocks.METEORIC_ICE.get(),new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> LONSDALEITE = ITEMS.register("lonsdaleite", () -> new BlockItem(RankineBlocks.LONSDALEITE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> GREEN_TEKITE = ITEMS.register("green_tektite", () -> new BlockItem(RankineBlocks.GREEN_TEKTITE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> GRAY_TEKITE = ITEMS.register("gray_tektite", () -> new BlockItem(RankineBlocks.GRAY_TEKTITE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> BLACK_TEKITE = ITEMS.register("black_tektite", () -> new BlockItem(RankineBlocks.BLACK_TEKTITE.get(),new Item.Properties().stacksTo(64)));
@@ -641,7 +642,6 @@ public class RankineItems {
     public static final RegistryObject<Item> GREENOCKITE_ORE = ITEMS.register("greenockite_ore", () -> new BlockItem(RankineBlocks.GREENOCKITE_ORE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> INTERSPINIFEX_ORE = ITEMS.register("interspinifex_ore", () -> new BlockItem(RankineBlocks.INTERSPINIFEX_ORE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> ILMENITE_ORE = ITEMS.register("ilmenite_ore", () -> new BlockItem(RankineBlocks.ILMENITE_ORE.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> LONSDALEITE_ORE = ITEMS.register("lonsdaleite_ore", () -> new BlockItem(RankineBlocks.LONSDALEITE_ORE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> MAGNESITE_ORE = ITEMS.register("magnesite_ore", () -> new BlockItem(RankineBlocks.MAGNESITE_ORE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> MAGNETITE_ORE = ITEMS.register("magnetite_ore", () -> new BlockItem(RankineBlocks.MAGNETITE_ORE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> HEMATITE_ORE = ITEMS.register("hematite_ore", () -> new BlockItem(RankineBlocks.HEMATITE_ORE.get(),new Item.Properties().stacksTo(64)));
@@ -672,10 +672,6 @@ public class RankineItems {
     public static final RegistryObject<Item> WOLFRAMITE_ORE = ITEMS.register("wolframite_ore", () -> new BlockItem(RankineBlocks.WOLFRAMITE_ORE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> XENOTIME_ORE = ITEMS.register("xenotime_ore", () -> new BlockItem(RankineBlocks.XENOTIME_ORE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> BERYL_ORE = ITEMS.register("beryl_ore", () -> new BlockItem(RankineBlocks.BERYL_ORE.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> KAMACITE = ITEMS.register("kamacite_ore", () -> new BlockItem(RankineBlocks.KAMACITE_ORE.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> ANTITAENITE = ITEMS.register("antitaenite_ore", () -> new BlockItem(RankineBlocks.ANTITAENITE_ORE.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> TAENITE = ITEMS.register("taenite_ore", () -> new BlockItem(RankineBlocks.TAENITE_ORE.get(),new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> TETRATAENITE = ITEMS.register("tetrataenite_ore", () -> new BlockItem(RankineBlocks.TETRATAENITE_ORE.get(),new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> COAL_ORE = ITEMS.register("coal_ore", () -> new BlockItem(RankineBlocks.COAL_ORE.get(),new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> IRON_ORE = ITEMS.register("iron_ore", () -> new BlockItem(RankineBlocks.IRON_ORE.get(),new Item.Properties().stacksTo(64)));

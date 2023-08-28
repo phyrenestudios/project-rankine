@@ -2,5 +2,5 @@
   "type": "forge:add_features",
   "biomes": "#minecraft:is_overworld",
   "features": "rankine:overworld_meteorite",
-  "step": "top_layer_modification"
+  "step": "local_modifications"
 }

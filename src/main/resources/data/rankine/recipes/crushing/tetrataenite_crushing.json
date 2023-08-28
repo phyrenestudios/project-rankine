@@ -1,0 +1,56 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:tetrataenite"
+  },
+  "guaranteed": [
+    {
+      "item": "rankine:meteoric_iron",
+      "alloyComp": "50Fe-50Ni",
+      "alloyRecipe": "rankine:alloying/invar_alloying"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 40,
+      "remove": false
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "count": 3,
+      "weight": 12
+    },
+    {
+      "item": "rankine:nickel_nugget",
+      "count": 3,
+      "weight": 12
+    },
+    {
+      "item": "rankine:germanium_nugget",
+      "count": 3,
+      "weight": 16
+    },
+    {
+      "item": "rankine:copper_nugget",
+      "count": 3,
+      "weight": 10
+    },
+    {
+      "item": "rankine:osmium_nugget",
+      "count": 3,
+      "weight": 5,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:gallium_nugget",
+      "count": 3,
+      "weight": 5,
+      "tier": "minecraft:diamond"
+    },
+    {
+      "item": "rankine:chromite",
+      "weight": 2,
+      "tier": "minecraft:diamond"
+    }
+  ]
+}
