@@ -13,6 +13,7 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.joml.Quaternionf;
@@ -21,6 +22,13 @@ import org.joml.Quaternionf;
 public class PedestalRenderer implements BlockEntityRenderer<PedestalTile> {
 
     public PedestalRenderer(BlockEntityRendererProvider.Context context) {}
+
+    // BlockEntity#getRenderBoundingBox was removed in NeoForge 1.21 (see PedestalTile PORT-TODO);
+    // the same 1.18.2 bounding box now lives on the renderer via IBlockEntityRendererExtension.
+    @Override
+    public AABB getRenderBoundingBox(PedestalTile blockEntity) {
+        return new AABB(blockEntity.getBlockPos(), blockEntity.getBlockPos().above(2));
+    }
 
     @Override
     public void render(PedestalTile blockEntityIn, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {

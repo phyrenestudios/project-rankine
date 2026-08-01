@@ -22,16 +22,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ElementRecipe implements Recipe<RecipeInput> {
+public class ElementRecipe implements Recipe<SingleRecipeInput> {
 
     private final String name;
     private final String symbol;
@@ -66,8 +66,8 @@ public class ElementRecipe implements Recipe<RecipeInput> {
     }
 
     @Override
-    public boolean matches(RecipeInput inv, Level worldIn) {
-        Item reg = inv.getItem(0).getItem();
+    public boolean matches(SingleRecipeInput inv, Level worldIn) {
+        Item reg = inv.item().getItem();
         if (reg != Items.AIR) {
             for (String s : items) {
                 if (s.contains("T#")) {
@@ -96,7 +96,7 @@ public class ElementRecipe implements Recipe<RecipeInput> {
     }
 
     @Override
-    public ItemStack assemble(RecipeInput inv, HolderLookup.Provider provider) {
+    public ItemStack assemble(SingleRecipeInput inv, HolderLookup.Provider provider) {
         return ItemStack.EMPTY;
     }
 

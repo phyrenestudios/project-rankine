@@ -4,12 +4,10 @@ import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
+import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
-import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -23,7 +21,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -32,10 +30,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.TierSortingRegistry;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
 
 public class AlloyHammerItem extends HammerItem implements IAlloyTool {
@@ -54,8 +50,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
-        List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
-        return TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);
+        return !state.is(RankineToolMaterials.incorrectBlocksForLevel(getAlloyHarvestLevel(stack)));
     }
 
     @Override
@@ -66,9 +61,10 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
         return Component.translatable(this.getDescriptionId(stack),Component.translatable(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
+    @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && RankineEnchantmentHelper.getLightningAspectEnchantment(stack) > 0) {
-            LightningBolt ent = new LightningBolt(EntityType.LIGHTNING_BOLT,attacker.level);
+            LightningBolt ent = new LightningBolt(EntityType.LIGHTNING_BOLT,attacker.level());
             //ent.moveTo(Vector3d.atBottomCenterOf(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
             ent.setPos(target.getX(),target.getY(),target.getZ());
             ((ServerLevel)target.getCommandSenderWorld()).addFreshEntity(ent);
@@ -86,10 +82,12 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
             }
 
         }
-        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,true), attacker, (entity) -> {
-            entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-        });
         return true;
+    }
+
+    @Override
+    public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,true), attacker, EquipmentSlot.MAINHAND);
     }
 
     @Override
@@ -99,25 +97,24 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
             creativeFlag = ((Player) entityLiving).isCreative();
         }
         if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isEmptyBlock(pos) && this.isCorrectToolForDrops(stack,state)) {
-            for (CrushingRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING)) {
+            for (RecipeHolder<CrushingRecipe> recipeHolder : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING.get())) {
+                CrushingRecipe recipe = recipeHolder.value();
                 for (ItemStack s : recipe.getIngredientAsStackList()) {
                     if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem()) {
                         if (state.getDestroySpeed(worldIn, pos) != 0.0F) {
-                            stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (p_220038_0_) -> {
-                                p_220038_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-                            });
+                            stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, EquipmentSlot.MAINHAND);
                         }
 
                         if (!creativeFlag) {
                             List<ItemStack> results;
-                            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ATOMIZE.get(),stack) > 0) {
-                                Tuple<List<ItemStack>,Integer> atomizeResults = recipe.getAtomizeResults(getAlloyTier(stack), worldIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(getAlloyTier(stack))  + 1 + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE,stack));
+                            if (getEnchantmentLevel(stack, RankineEnchantments.ATOMIZE) > 0) {
+                                Tuple<List<ItemStack>,Integer> atomizeResults = recipe.getAtomizeResults(getAlloyTier(stack), worldIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(getAlloyTier(stack))  + 1 + getEnchantmentLevel(stack, Enchantments.FORTUNE));
                                 results = atomizeResults.getA();
                                 for (int i = 0; i < atomizeResults.getB(); i++) {
                                     worldIn.addFreshEntity(new ExperienceOrb(worldIn, pos.getX(), pos.getY() + 0.5D, pos.getZ(), worldIn.getRandom().nextInt(2) + 1));
                                 }
                             } else {
-                                results = recipe.getResults(getAlloyTier(stack), worldIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(getAlloyTier(stack))  + 1 + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE,stack));
+                                results = recipe.getResults(getAlloyTier(stack), worldIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(getAlloyTier(stack))  + 1 + getEnchantmentLevel(stack, Enchantments.FORTUNE));
                             }
                             for (ItemStack t : results) {
                                 Block.popResource(worldIn, pos, t.copy());
@@ -145,16 +142,16 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     }
 
     @Override
-    public int getItemEnchantability(ItemStack stack) {
+    public int getEnchantmentValue(ItemStack stack) {
         return this.getAlloyEnchantability(stack);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        addAlloyInformation(stack,worldIn,tooltip,flagIn);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
+        addAlloyInformation(stack,context.level(),tooltip,flagIn);
         if (flagIn.isAdvanced()) {
-            addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
+            addAdvancedAlloyInformation(stack,context.level(),tooltip,flagIn);
         }
     }
 
@@ -177,15 +174,9 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
-    @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
-            items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
-            items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
-        } else if (this.allowdedIn(group)) {
-            super.fillItemCategory(group,items);
-        }
-    }
+    // PORT-TODO(init): fillItemCategory is gone — dynamic creative-tab variants
+    // (AlloyCustomHelper.getItemsFromAlloying/getItemsFromAlloyCrafting when defaultAlloyRecipe == null)
+    // must be added in RankineCreativeTabs' displayItems.
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
@@ -196,12 +187,12 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
             if (anvil.getBlock() == Blocks.CHIPPED_ANVIL && (getAlloyDurability(context.getItemInHand()) - context.getItemInHand().getDamageValue()) >= 100) {
                 worldIn.setBlock(pos,Blocks.ANVIL.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING,anvil.getValue(HorizontalDirectionalBlock.FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundSource.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
-                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), EquipmentSlot.MAINHAND);
                 return InteractionResult.SUCCESS;
             } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (getAlloyDurability(context.getItemInHand()) - context.getItemInHand().getDamageValue()) >= 100) {
                 worldIn.setBlock(pos,Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING,anvil.getValue(HorizontalDirectionalBlock.FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundSource.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
-                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), EquipmentSlot.MAINHAND);
                 return InteractionResult.SUCCESS;
             }
         }
@@ -224,8 +215,8 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);
 
-            String s2 = IAlloyItem.getAlloyRecipe(repair).toString();
-            String r2 = IAlloyItem.getAlloyRecipe(toRepair).toString();
+            String s2 = String.valueOf(IAlloyItem.getAlloyRecipe(repair));
+            String r2 = String.valueOf(IAlloyItem.getAlloyRecipe(toRepair));
             return !s.isEmpty() && s.equals(r) && s2.equals(r2);
         }
         return false;

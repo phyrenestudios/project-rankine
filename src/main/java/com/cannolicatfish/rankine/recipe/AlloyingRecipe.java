@@ -382,7 +382,7 @@ public class AlloyingRecipe implements Recipe<RecipeInput> {
             ItemStack stack = inv.getItem(i);
             if (!stack.isEmpty()) {
                 boolean flag = false;
-                RecipeInput elementInput = new SingleRecipeInput(stack);
+                SingleRecipeInput elementInput = new SingleRecipeInput(stack);
                 RecipeHolder<ElementRecipe> elementHolder = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT.get(), elementInput, worldIn).orElse(null);
                 if (elementHolder != null && getElements().contains(elementHolder.id())) {
                     ElementRecipe element = elementHolder.value();

@@ -2,11 +2,15 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -18,15 +22,30 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
-public class RankineWallMushroomBlock extends BushBlock implements BonemealableBlock{
+// PORT-TODO(RankineWallMushroomBlock): vanilla's own MushroomBlock now stores a ResourceKey<ConfiguredFeature<?,?>>
+// (resolved via level.registryAccess() at grow time) instead of a Supplier<Holder<...>>. We keep the existing
+// Supplier<Holder<...>> field/constructor signature unchanged since instances are constructed from the init/
+// package (outside this file's ownership) and changing the public constructor would break that call site.
+// Consequently codec() below cannot faithfully round-trip the feature supplier (Suppliers aren't codec-serializable
+// and nothing in-engine actually decodes a registered mod Block through this codec at runtime) - it satisfies the
+// now-mandatory BlockBehaviour#codec() contract without attempting to reconstruct the feature reference.
+public class RankineWallMushroomBlock extends BushBlock implements BonemealableBlock {
+    public static final MapCodec<RankineWallMushroomBlock> CODEC = RecordCodecBuilder.mapCodec(instance ->
+            instance.group(propertiesCodec()).apply(instance, properties -> new RankineWallMushroomBlock(properties, () -> {
+                throw new UnsupportedOperationException("RankineWallMushroomBlock cannot be reconstructed from its codec; it is only ever constructed directly during registration.");
+            }))
+    );
+
+    @Override
+    public MapCodec<? extends RankineWallMushroomBlock> codec() {
+        return CODEC;
+    }
+
     private final Supplier<Holder<? extends ConfiguredFeature<?, ?>>> featureSupplier;
     protected static final VoxelShape[] SHAPES = new VoxelShape[] {
             Block.box(3.0D, 3.0D, 0.0D, 13.0D, 13.0D, 3.0D),
@@ -48,16 +67,20 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return SHAPES[state.getValue(HORIZONTAL_FACING).get2DDataValue()];
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    protected void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (random.nextInt(Config.GENERAL.MUSHROOM_HOLLOW_LOG_RATE.get()) == 0) {
             BlockState log = worldIn.getBlockState(pos.relative(state.getValue(HORIZONTAL_FACING).getOpposite()));
-            if (log.getBlock() instanceof RotatedPillarBlock && ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:hollow_"+log.getBlock().getRegistryName().getPath())) != Blocks.AIR) {
-                worldIn.setBlockAndUpdate(pos.relative(state.getValue(HORIZONTAL_FACING).getOpposite()), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:hollow_"+log.getBlock().getRegistryName().getPath())).defaultBlockState().setValue(HollowLogBlock.AXIS,log.getValue(RotatedPillarBlock.AXIS)));
+            if (log.getBlock() instanceof RotatedPillarBlock) {
+                ResourceLocation hollowId = ResourceLocation.tryParse("rankine:hollow_" + BuiltInRegistries.BLOCK.getKey(log.getBlock()).getPath());
+                Block hollow = BuiltInRegistries.BLOCK.get(hollowId);
+                if (hollow != Blocks.AIR) {
+                    worldIn.setBlockAndUpdate(pos.relative(state.getValue(HORIZONTAL_FACING).getOpposite()), hollow.defaultBlockState().setValue(HollowLogBlock.AXIS, log.getValue(RotatedPillarBlock.AXIS)));
+                }
             }
         }
         if (Config.GENERAL.MUSHROOM_SPREAD.get()) {
@@ -74,7 +97,10 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
                 }
 
                 BlockPos blockpos1 = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - random.nextInt(2), random.nextInt(3) - 1);
-                if (worldIn.getBlockState(blockpos1).getMaterial().equals(Material.WOOD)) {
+                // PORT-TODO(RankineWallMushroomBlock): Material.WOOD is gone; substituted with a SoundType.WOOD
+                // check as the closest available "is a wood block" heuristic (Material.WOOD blocks and
+                // SoundType.WOOD blocks overlap almost completely in vanilla and modded content).
+                if (worldIn.getBlockState(blockpos1).getSoundType() == SoundType.WOOD) {
                     Direction dir = WorldgenUtils.randomHorizontalDirection(random);
                     if (state.setValue(HORIZONTAL_FACING,dir).canSurvive(worldIn, blockpos1.relative(dir))) {
                         worldIn.setBlock(blockpos1.relative(dir), state.setValue(HORIZONTAL_FACING,dir), 2);
@@ -99,29 +125,34 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
         return state.isSolidRender(worldIn, pos);
     }
 
+    // PORT-TODO(RankineWallMushroomBlock): Material.WOOD is gone; substituted with a SoundType.WOOD check (see
+    // note above in randomTick) as the closest available 1:1 stand-in.
     @Override
-    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+    protected boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         BlockPos blockpos = pos.relative(state.getValue(HORIZONTAL_FACING).getOpposite());
         BlockState blockstate = worldIn.getBlockState(blockpos);
-        return blockstate.getMaterial().equals(Material.WOOD) && blockstate.isFaceSturdy(worldIn,blockpos,state.getValue(HORIZONTAL_FACING));
+        return blockstate.getSoundType() == SoundType.WOOD && blockstate.isFaceSturdy(worldIn,blockpos,state.getValue(HORIZONTAL_FACING));
     }
 
 
-    public void growMushroom(ServerLevel worldIn, BlockPos pos, BlockState p_54862_, Random p_54863_) {
+    public void growMushroom(ServerLevel worldIn, BlockPos pos, BlockState p_54862_, RandomSource p_54863_) {
         if (!this.featureSupplier.get().value().place(worldIn, worldIn.getChunkSource().getGenerator(), p_54863_, pos)) {
             worldIn.setBlock(pos,p_54862_,3);
         }
     }
 
-    public boolean isValidBonemealTarget(BlockGetter p_54870_, BlockPos pos, BlockState p_54872_, boolean p_54873_) {
+    @Override
+    public boolean isValidBonemealTarget(LevelReader p_54870_, BlockPos pos, BlockState p_54872_) {
         return true;
     }
 
-    public boolean isBonemealSuccess(Level p_54875_, Random p_54876_, BlockPos pos, BlockState p_54878_) {
+    @Override
+    public boolean isBonemealSuccess(Level p_54875_, RandomSource p_54876_, BlockPos pos, BlockState p_54878_) {
         return (double)p_54876_.nextFloat() < 0.4D;
     }
 
-    public void performBonemeal(ServerLevel p_54865_, Random p_54866_, BlockPos pos, BlockState p_54868_) {
+    @Override
+    public void performBonemeal(ServerLevel p_54865_, RandomSource p_54866_, BlockPos pos, BlockState p_54868_) {
         this.growMushroom(p_54865_, pos, p_54868_, p_54866_);
     }
 
